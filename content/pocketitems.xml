@@ -1,0 +1,33 @@
+<pocketitems>
+<!-- 
+	<card pickup="4101" type="special" description="Money for people" hud="Silver Donation Card" name="Silver Donation Card" mimiccharge="6" />
+	<card pickup="4102" type="special" description="Money for people" hud="VIP Donation Card" name="VIP Donation Card" mimiccharge="6" />
+	 -->
+	<card pickup="4103" type="tarot" description="Gacha time!" hud="Crane Card" name="Crane Card" mimiccharge="6" />
+	<card pickup="4104" type="tarot" description="Repent" hud="Confessional Card" name="Confessional Card" mimiccharge="4" />
+	<card type="suit" description="You feel your sins" hud="Black Joker" name="Black Joker" mimiccharge="2" />
+	<card type="suit" description="You feel your sins" hud="White Joker" name="White Joker" mimiccharge="2" />
+	<card type="suit" description="You will not want this" hud="Color Joker" name="Color Joker" mimiccharge="6" />
+	<card pickup="4105" type="special" description="Your dreams will be fulfilled" hud="Wakaba's Dream Card" name="Wakaba's Dream Card" mimiccharge="12" />
+
+	<card pickup="4106" type="rune" description="meaning of blessing" hud="Soul of Wakaba" name="Soul of Wakaba" mimiccharge="12" />
+	<card pickup="4110" type="rune" description="meaning of nemesis" hud="Soul of Wakaba?" name="Soul of Wakaba?" mimiccharge="12" />
+
+	<card pickup="4107" type="tarot" description="Information of nothing" hud="Unknown Bookmark" name="Unknown Bookmark" mimiccharge="1" />
+	<card pickup="4108" type="rune" description="Cycle your fate" hud="Soul of Shiori" name="Soul of Shiori" mimiccharge="8" />
+	<card pickup="4109" type="suit" description=";P" hud="Queen of Spades" name="Queen of Spades" mimiccharge="12" />
+
+	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
+	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="12" />
+	<pilleffect name="All Stats Down" class="3-" mimiccharge="4" />
+	<pilleffect name="All Stats Up" class="3+" mimiccharge="12" />
+	<pilleffect name="Trolled!" class="3-" mimiccharge="4" />
+	<pilleffect name="To the Start!" class="0+" mimiccharge="2" />
+	<pilleffect name="Explosive Diarrhea 2!" class="0-" mimiccharge="2" />
+	<pilleffect name="Social Distance" class="2-" mimiccharge="4" tags="nogreed"/>
+	<pilleffect name="Flame Princess!" class="1+" mimiccharge="12" />
+	<pilleffect name="Firey Touch" class="2-" mimiccharge="4" />
+	<pilleffect name="Priest's Blessing" class="3+" mimiccharge="4" />
+	<pilleffect name="Unholy Curse" class="3-" mimiccharge="4" />
+
+</pocketitems>

@@ -1,0 +1,44 @@
+<locusts gfxroot="gfx/familiar/locusts/">
+	<!--
+		Color presets
+	-->
+	<color name="default" />
+	<color name="fly_red" r="768" g="512" b="512" or="0" og="-255" ob="-255"/>
+	<color name="fly_green" r="512" g="768" b="512" or="-255" og="0" ob="-255"/>
+	<color name="fly_blue" r="512" g="512" b="768" or="-255" og="-255" ob="0"/>
+	<color name="fly_yellow" r="1024" g="768" b="512" or="0" og="0" ob="-255"/>
+	<color name="fly_orange" r="1024" g="512" b="512" or="0" og="0" ob="-255"/>
+	<color name="fly_black" r="255" g="255" b="255"/>
+	<color name="fly_purple" r="768" g="512" b="1024" or="0" og="-255" ob="0"/>
+	<color name="fly_pink" r="1024" g="512" b="768" or="0" og="-255" ob="0"/>
+	<color name="fly_cyan" r="680" g="1024" b="1024" or="0" og="0" ob="0"/>
+	<color name="fly_white" r="383" g="510" b="510" or="40" og="50" ob="50"/>
+	
+	<!-- The Sad Onion -->
+	<!--<locust id="1" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="0" color="fly_red" />-->
+	
+	
+	<!-- Not sure adding name is sure, but left it just in case. id should be matched with items.xml -->
+	<locust id="1" name="Wakaba's Blessing" damageMultiplier="2" speed="1" collisionInterval="1" tearFlags="2,65" color="fly_blue" backColor="fly_cyan" />
+	<locust id="2" name="Wakaba's Nemesis" damageMultiplier="5" speed="1" collisionInterval="7" tearFlags="68" color="fly_red" backColor="fly_black" />
+	<locust id="3" name="Eat Heart" damageMultiplier="3" speed="2" collisionInterval="2" tearFlags="0" color="fly_red" backColor="fly_blue" />
+	<locust id="4" name="Book of Forgotten" damageMultiplier="1" speed="2" collisionInterval="2" tearFlags="0" color="fly_black" />
+	<locust id="5" name="D-Cup Ice Cream" damageMultiplier="2" speed="1" collisionInterval="6" tearFlags="0" color="fly_purple" />
+	<locust id="6" name="Mysterious game CD" damageMultiplier="1" speed="1" collisionInterval="4" tearFlags="0" color="fly_pink" />
+	<locust id="7" name="Wakaba's Pendant" count="3" damageMultiplier="1" speed="1" collisionInterval="4" tearFlags="0" color="fly_green" />
+	<locust id="9" name="Plumy" damageMultiplier="4" scale="2" speed="1.2" collisionInterval="3" tearFlags="0" color="fly_red" backColor="fly_purple" />
+	<locust id="8" name="Secret Card" count="2" damageMultiplier="0.8" speed="1" collisionInterval="1" tearFlags="40" color="fly_yellow" />
+	<locust id="10" name="Executioner" damageMultiplier="16" scale="4" speed="0.1" collisionInterval="30" tearFlags="39" color="fly_pink" backColor="fly_orange" />
+	<locust id="11" name="Revenge Fruit" damageMultiplier="1" scale="1" speed="1" collisionInterval="1" tearFlags="33" color="fly_green" backColor="fly_red" />
+	<!-- <locust id="12" name="Return Postage" damageMultiplier="1" scale="1" speed="1" collisionInterval="1" tearFlags="33" color="fly_green" backColor="fly_red" /> -->
+	<locust id="13" name="Wakaba's Uniform" damageMultiplier="1" count="5" scale="0.7" speed="1" collisionInterval="3" tearFlags="79" color="fly_purple" backColor="fly_black" />
+	<locust id="14" name="New Year's Eve Bomb" damageMultiplier="9" scale="2" speed="1" collisionInterval="22" tearFlags="47" color="fly_white" backColor="fly_yellow" />
+	<locust id="15" name="Eye of Clock" damageMultiplier="0.8" count="3" scale="0.9" speed="1" collisionInterval="3" tearFlags="55" color="fly_blue" backColor="fly_red" />
+	<locust id="16" name="Lil Wakaba" damageMultiplier="1" scale="1" speed="3" collisionInterval="5" tearFlags="55" color="fly_purple" backColor="fly_blue" />
+	<!-- <locust id="17" name="Counter" damageMultiplier="1" scale="1" speed="1" collisionInterval="1" tearFlags="33" color="fly_green" backColor="fly_red" /> -->
+	<!-- <locust id="18" name="D6 Plus" damageMultiplier="1" scale="1" speed="1" collisionInterval="1" tearFlags="33" color="fly_green" backColor="fly_red" /> -->
+	<!-- <locust id="19" name="D6 Chaos" damageMultiplier="1" scale="1" speed="1" collisionInterval="1" tearFlags="33" color="fly_green" backColor="fly_red" /> -->
+	
+	<locust id="28" name="Micro Doppelganger" damageMultiplier="0.9" count="3" scale="0.75" speed="3" collisionInterval="1" tearFlags="0" color="fly_yellow" backColor="fly_blue" />
+	
+</locusts>

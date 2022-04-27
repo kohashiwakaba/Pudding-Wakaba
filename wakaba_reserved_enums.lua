@@ -1,0 +1,8 @@
+wakaba.COLLECTIBLE_SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs")
+wakaba.COLLECTIBLE_THE_WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo")
+wakaba.COLLECTIBLE_BEETLEJUICE = Isaac.GetItemIdByName("Beetlejuice")
+wakaba.COLLECTIBLE_BEAM = Isaac.GetItemIdByName("Sunflower Beam")
+wakaba.COLLECTIBLE_HYDRA = Isaac.GetItemIdByName("Hydra")
+wakaba.COLLECTIBLE_TOTAL_CORRUPTION = Isaac.GetItemIdByName("Total Corruption")
+wakaba.COLLECTIBLE_SYRUP = Isaac.GetItemIdByName("Syrup")
+--wakaba.COLLECTIBLE_EASTER_EGG = Isaac.GetItemIdByName("Easter Egg")

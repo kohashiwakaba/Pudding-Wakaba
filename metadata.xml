@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>!~Pudding And Wakaba [REP]</name>
+    <directory>pudding and wakaba</directory>
+    <id>2543118811</id>
+    <description>The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
+
+[h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
+[b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b]
+[b]HIGHLY[/b] recommended to use Encyclopedia, or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2503022727] Completion Marks for ALL Modded Characters [/url].
+
+Mod Includes : 
+A new Curse!(Must be enabled manually)
+6 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms)
+10 (+42 unlockable) new Items
+1 (+9 unlockable) new Trinkets
+11 unlockable new Card/Runes
+12 new Pills - [spoiler]Damage Multiplier Up/Down, All Stats Up/Down, Trolled!, To the Start!, Explosive Diarrhea 2!, Social Distance, Flame Princess, Firey Touch, Priest's Blessing, Unholy Curse[/spoiler]
+16 new Challenges
+
+[h1]Items and Characters[/h1]
+[b][url=https://kohashiwakaba.notion.site/4e87f1c646524283896401a270750755?v=b0de151aac874afa8aec361b255110f9]Item Guides are finally here[/url], but Using External Item Description, or Encyclopedia Wiki is strongly recommended!. [/b] old mini item guide is in discussion.
+
+[b][url=https://steamcommunity.com/workshop/filedetails/discussion/2543118811/5183064363533361286]Character Informations are here[/url], Using Encyclopedia Wiki is strongly recommended. [/b]
+
+[h1] Stackable Holy Mantle [/h1]
+Have multiple shields at the same time! Collecting multiple Holy Mantle items now allows to give corresponding amount of shields.
+This mod also gives multiple shields for Blanket item if you entered a Boss Room, Plus now works on Dogma and The Beast fight!
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2613009134]Stackable Holy Mantle is also available as a seperate mod.[/url]
+
+[h1] Curse of Flames (Experimental) [/h1]
+ - Isaac cannot touch items! the items are cursed and it will be on fire!
+ - Trying to get items will turn item to Wisps.
+ - Wisps spawned this way are much stronger than regular wisps.
+ - Plot-Critical items like Polaroid/Negative can be collected as normal even when curse is active.
+
+[h1] Inventory Descriptions (Experimental) [/h1]
+ - Press F4 to show current items you have. Pressing F4 again to exit list mode.
+ - Also shows current curse descriptions.
+
+[h1] New Tweaks [/h1]
+These tweaks can be activated via Mod Config Menu.
+
+ - [b]Defeating Isaac or Satan, onwards force opens Void Portals.[/b]
+   Defeating Mega Satan is turned off by default. as this prevents getting completion marks. Other bosses are still able to get marks, but as the side effect, two void portals can appear. This does not apply for the challenges. This function is similar to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=938928749]AlwaysVoid[/url] mod, however, this mod checks on room clears, rather than death of certain bosses.
+
+ - [b]Defeating Mom drops The Fool/Telepills.[/b]
+   This allows escaping Mom Boss room when Mom is defeated. This [b]does[/b] apply for the challenges. If Isaac has Little Baggy, 'To the Start!' pill will be dropped instead.
+
+ - [b]Defeating Mom in Mausoleum/Gehenna II drops both Knife Pieces[/b]
+   One of the reason of this tweak is the Mist area in Mines/Ashpit II. as entering Mist area removes all costumes except the ones defined in players.xml. which is not possible to add modded costumes. This does not apply for the challenges.
+
+ - [b]Defeating ??? or The Lamb drops both Key Pieces[/b]
+   This is recommended for Tainted Wakaba, as she is unable to see Angel Rooms. This does not apply for the challenges.
+
+ - [b]Defeating Mother or Delirium drops R Key[/b]
+   Can be used with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665] Runs Continue Past Mother [/url]. This does not apply for the challenges.
+
+ - [b]Entering Mausoleum/Gehenna I drops certain trinket[/b]
+   Accidentally entered wrong floor in Mines/Ashpit II? The trinket will spawn in the starting room of the floor, Entering Mausoleum/Gehenna II while Holding the trinket will make Mom into [spoiler]Dad's Note[/spoiler]. This does not apply for the challenges.
+
+ - [b]Entering Home drops certain key[/b]
+   Forgot dropping trinkets? Accidentally got Little Baggy? Entering Home will remove Little Baggy and drops [spoiler]Cracked Key[/spoiler] at the starting room. original idea is from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2529468660] cracked key at home [/url]
+ mod. This does not apply for the challenges.
+
+[h1] More Notes [/h1]
+[list]
+ [*] As this is my very first mod, this mod is does not have many items as almost all items requires to be unlocked. More items and challenges coming soon.
+ [*] [b]Like other mods, you MUST restart the game if you installed, enabled/disabled, or updated the mod.[/b]
+ [*] Synergizes with Abyss item (Incomplete but most items work)
+ [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362] Encyclopedia [/url]
+ [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued is not tested, but will work without major issues.)
+ [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2490515687] POG for Good Items [/url] (Only for Wakaba/Shiori)
+ [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2516781344] Old Wardrobe + [/url]
+ [*] Wakaba's Mega Mush costume requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2697721144]Unique MEGAIsaacs[/url]
+[/list]
+
+True co-op not tested, but most items should work. except for certain items which requires rendering text [spoiler]Wakaba's Double Dreams[/spoiler]
+
+[h1] Special Thanks [/h1]
+- _Kilburn - Tearsup function
+- AgentCucco - Various code snippets, Achievement Papers, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2520695034]Damocles API[/url]
+- Mana - Item reroll function snippet
+- Nato Potato - for Modded costume handling and empty Pedestal removal
+- meloonicscorp - Glitched item spawn function snippet
+- Xalum, DeadInfinity - getting current dimension snippet
+- Zamiel, NeoDement - for player identifier logic
+- im_tem - Pseudo-Lilith Birtrhright position 
+- Wofsauge - Pseudo-Dark Arts trails snippet
+- Cadaver: The Rotten Expansion - for implementation for Clover Chest
+- Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
+    <version>0.96</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Pills"/>
+    <tag id="Cards"/>
+    <tag id="Player Characters"/>
+    <tag id="Familiars"/>
+    <tag id="Challenges"/>
+</metadata>

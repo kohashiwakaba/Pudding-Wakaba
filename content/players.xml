@@ -1,0 +1,66 @@
+<players root="gfx/characters/costumes/" 
+         portraitroot="gfx/ui/stage/" 
+         nameimageroot="gfx/ui/boss/" 
+         bigportraitroot="gfx/ui/stage/">
+				 
+<!--
+	the tags for this if you have being following the instructions are:
+	nameimage = playername_charactername.png
+	portrait = playerportrait_charactername.png
+	skin = character_charactername.png
+	name = charactername , this time Uppercase the name you put here.
+	
+	skincolor="-1" if you don't need this, just leave it at -1
+	
+	known valid numbers:
+	-1 = all, 0 = white, 1 = black, 2 = blue, 3 = red, 4 = green, 5 = grey
+	
+	other valid tags are:
+	hp="2" this is how much hp the character starts with, every 2 is 1 red heart.
+	armor="1" this is how many soul hearts the character starts with, every 2 is 1 soul heart
+	black="1" this is how many black hearts the character starts with, every 2 is 1 black heart
+	coins="1" this is how many coins the character starts with
+	bombs="1" this is how many bombs the character starts with
+	keys="1" this is how many keys the character starts with
+	broken="1" this is how many broken hearts the character starts with every 1 is 1 broken heart (REP)
+	birthright="" this is the unique description that will appear when picking up birthright with your character.
+	bSkinParent="name" use this to set this character as the tainted version of the specified character name.
+	
+	when your done remove this comment section :)
+!-->
+	<player name="Wakaba"
+	hp="4" broken="9" card="80" coins="5" items="416" birthright="True Pure girl"
+	portrait="WakabaPortrait.png"
+	nameimage="playername_wakaba.png"
+	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba" />
+	
+	<player name="WakabaB" bSkinParent="Wakaba" 
+	black="6" bombs="2" birthright="Explosion immunity + Fury Management" 
+	portrait="WakabaPortrait_b.png"
+	nameimage="playername_wakaba.png" skin="character_wakabab.png" skinColor="1" costumeSuffix="shadow" />
+
+	<player name="Shiori"
+	hp="6" keys="12" birthright="Trace for knowledge" 
+	portrait="ShioriPortrait.png"
+	nameimage="playername_shiori.png"
+	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori" />
+	
+	<player name="ShioriB" bSkinParent="Shiori" 
+	armor="6" keys="12" birthright="Luminous Connection"
+	portrait="ShioriPortrait_b.png"
+	nameimage="playername_shiori.png" skin="character_shiorib.png" skinColor="0" costumeSuffix="minerva" />
+
+	<player name="Tsukasa"
+	hp="6" birthright="Brighter Luna"
+	portrait="TsukasaPortrait.png"
+	nameimage="playername_tsukasa.png"
+	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa" />
+	
+	<player name="TsukasaB" bSkinParent="Tsukasa" 
+	hp="6" birthright="???" canShoot="false"
+	portrait="TsukasaPortrait_b.png"
+	nameimage="playername_tsukasa.png" skin="character_tsukasab.png" skinColor="0" costumeSuffix="tsukasab" />
+
+	
+	
+</players>

@@ -1,0 +1,22 @@
+<costumes anm2root="gfx/characters/">
+<!--
+see (https://wofsauge.github.io/IsaacDocs/rep/xml/costumes2/) for more info on the tags :)
+!-->
+	<costume anm2path="character_wakaba.anm2" type="none" priority="99" />
+	<costume anm2path="character_not_wakaba.anm2" type="none" priority="99" />
+	<costume anm2path="character_wakaba_b.anm2" type="none" priority="99" />
+	<costume anm2path="WakabaHair.anm2" type="none" priority="99" />
+	<costume anm2path="WakabaHair_b.anm2" type="none" priority="99" />
+	<costume anm2path="character_shiori.anm2" type="none" priority="99" />
+	<costume anm2path="character_shiori_b.anm2" type="none" priority="99" forceHeadColor="true" skinColor="0" />
+	<costume anm2path="character_shiori_b_body.anm2" type="none" isFlying="true" forceBodyColor="true" skinColor="0" />
+	<costume anm2path="character_tsukasa.anm2" type="none" priority="99" />
+	<costume anm2path="character_tsukasa_b.anm2" type="none" priority="99" />
+
+	
+	<costume id="7" anm2path="collectible_wakaba_pendant.anm2" type="passive" hasOverlay="true" />
+	
+	<costume anm2path="wakabapog.anm2" priority="98" type="none" hasSkinAlt="true"/>
+	<costume anm2path="shioripog.anm2" priority="98" type="none" hasSkinAlt="true"/>
+	<costume anm2path="shiorisosig.anm2" priority="98" type="none" hasSkinAlt="true"/>
+</costumes>
