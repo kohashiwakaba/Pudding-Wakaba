@@ -247,7 +247,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_
 function wakaba:Cache_Concentration(player, cacheFlag)
 	if player:GetData().wakaba and player:GetData().wakaba.concentrationcount then
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-			player.TearRange = player.TearRange + (player:GetData().wakaba.concentrationcount * 40 * 1.5)
+			player.TearRange = player.TearRange + (36 * 1.5) + (4 * player:GetData().wakaba.concentrationcount)
 		end
 	end
 end

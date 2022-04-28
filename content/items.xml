@@ -20,7 +20,7 @@
 	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="3" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" />
 	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="4" bombs="9"/>
 
-	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarussharedglobal" quality="3" />
+	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarussharedglobal tech" quality="3" />
 	<familiar id="16" cache="luck" description="Buddy for luck" gfx="lilwakaba.png" name="Lil Wakaba" tags="stars offensive baby summonable monstermanual" quality="3" />
 	
 	<active id="17" description="Counter Lasers" gfx="counter.png" chargetype="timed" maxcharges="150" name="Counter" devilprice="2" quality="4" tags="" />
@@ -34,8 +34,8 @@
 	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" name="Wakaba's 9'o Clock Curfew" tags="quest" hidden="true" quality="0"/>
 	<active description="Think before stick" gfx="edenstickynote.png" maxcharges="0" name="Eden's Sticky Note" tags="quest" hidden="true" quality="0"/>
 
-	<active id="19" description="Re-Reroll your Destiny" gfx="d6plus.png" maxcharges="6" name="D6 Plus" devilprice="2" tags="offensive book" quality="4" />
-	<active id="20" description="Can you take your Destiny?" gfx="d6chaos.png" maxcharges="2" name="D6 Chaos" tags="offensive" quality="4" />
+	<active id="19" description="Re-Reroll your Destiny" gfx="d6plus.png" maxcharges="4" name="D6 Plus" devilprice="2" tags="offensive book" quality="4" />
+	<active id="20" description="Can you take your Destiny?" gfx="d6chaos.png" maxcharges="1" name="D6 Chaos" tags="offensive" quality="4" />
 
 	<familiar id="21" cache="firedelay" description="Buddy for cooking" gfx="lilmoe.png" name="Lil Moe" tags="stars offensive baby summonable monstermanual" quality="3" />
 	<passive id="22" name="Book of Shiori" description="Knowledge Expansion" gfx="bookofshiori.png" devilprice="1" tags="book nocantrip offensive summonable" quality="3" />
@@ -49,7 +49,7 @@
 	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="nochallenge" quality="2"/>
 	<active id="31" description="Guide book for the lost lambs" gfx="bookofconquest.png" maxcharges="12" name="Book of Conquest" devilprice="2" tags="book offensive" quality="4" />
 	<passive id="32" description="Comback Stronger" gfx="bookofthegod.png" name="Book of The God" tags="book angel offensive nocantrip" quality="3"/>
-	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="12" name="Grimreaper Defender" devilprice="2" tags="book devil offensive nochallenge" quality="3" />
+	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="6" name="Grimreaper Defender" devilprice="2" tags="book devil offensive nochallenge" quality="3" />
 	<passive id="34" description="Help the friends" gfx="minervaaura.png" name="Minerva's Aura" devilprice="2" tags="angel offensive summonable" quality="4" />
 	<active id="35" description="Feel the wave" gfx="bookofthefallen.png" chargetype="timed" maxcharges="300" devilprice="2" name="Book of The Fallen" tags="quest book devil offensive" quality="3" />
 	<active id="36" description="Demeter Lore" gfx="maijimamythology.png" chargetype="timed" maxcharges="480" name="Maijima Mythology" tags="offensive stars book angel" quality="2" />
@@ -76,7 +76,7 @@
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip" devilprice="2" quality="4"/>
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="4" hidden="true"/>
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive" quality="4" hidden="true"/>
-	<active id="51" description="Stomp the basics" gfx="beetlejuice.png" maxcharges="3" name="Beetlejuice" tags="offensive nocantrip" quality="3" hidden="true"/>
+	<active id="51" description="There is an imposter among us" gfx="beetlejuice.png" maxcharges="3" name="Beetlejuice" tags="offensive nocantrip" quality="3" hidden="true"/>
 	<active id="52" description="Hadar Sen Olmen" gfx="beam.png" maxcharges="12" name="Sunflower Beam" shopprice="55" devilprice="2" tags="devil stars offensive" quality="4" hidden="true"/>
 	<active id="53" passivecache="true" cache="familiars" description="Shrine protector" gfx="murasame.png" maxcharges="12" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarussharedglobal" quality="4"/>
 	
@@ -87,15 +87,14 @@
 	<passive id="57" cache="damage tearflag" description="DMG up" gfx="advancedcrystal.png" name="Advanced Crystal" tags="offensive" devilprice="1" quality="4"/>
 	<passive id="58" cache="damage tearflag" description="DMG up" gfx="mysticcrystal.png" name="Mystic Crystal" tags="offensive" devilprice="1" quality="4"/>
 	
-	<active id="59" passivecache="true" cache="tearflag" description="Mana-eating snakes" gfx="hydra.png" maxcharges="12" name="Hydra" shopprice="32" devilprice="2" tags="offensive" quality="4" hidden="true"/>
+	<familiar id="59" cache="damage" description="Snake friend" gfx="hydra.png" name="Hydra" shopprice="32" devilprice="2" tags="offensive baby" quality="4" hidden="true"/>
 	<active id="60" description="Use it carefully" gfx="totalcorruption.png" maxcharges="0" name="Total Corruption" devilprice="2" tags="offensive" quality="3" hidden="true"/>
-	<active id="61" passivecache="true" cache="flying" description="A flying turtle!" gfx="syrup.png" maxcharges="3" name="Syrup" tags="offensive" quality="3" hidden="true"/>
+	<active id="61" passivecache="true" cache="flying speed range" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="offensive" quality="3" hidden="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="2"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="8" name="3D Printer" shopprice="20" devilprice="1" tags="offensive" quality="4"/>
-	<passive id="64" description="Clean yourself" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive" devilprice="1" quality="3"/>
-	<active id="65" description="Cards are Pills" maxcharges="3" gfx="pocketbeetle.png" name="Pocket Beetlejuice" tags="offensive" devilprice="1" quality="2"/>
-	<active id="66" description="Pills are Cards" maxcharges="3" gfx="capsulebeetle.png" name="Capsule Beetlejuice" tags="offensive" devilprice="1" quality="2"/>
+	<passive id="64" description="Clean yourself" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>
 	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" devilprice="1" quality="1"/>
+	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" devilprice="1" quality="2"/>
 
 
 

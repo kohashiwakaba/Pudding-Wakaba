@@ -65,6 +65,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostWakabaUpdate)
 --LagCheck
 
 function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
+	Isaac.DebugString("[wakaba] TookDmg flag:"..flag.."")
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR) 
 	then
@@ -97,7 +98,8 @@ function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
 	-- Sharp Plug, Blood Oath do NOT have DAMAGE_NO_PENALTIES flag, so must also check DAMAGE_RED_HEARTS flag
 	-- Do NOT give DAMAGE_NO_PENALTIES flag, or return false when being damaged with DAMAGE_RED_HEARTS flag, otherwise Sharp Plug, Blood Oath becomes unusable (Both deal half heart damage, but will do nothing)
 	-- Crow Heart does NOT have DAMAGE_RED_HEARTS flag. So ignore that trinket
-	and not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS)
+	and flag & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES 
+	and flag & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
 	and (wakaba.state.hasbless or wakaba.state.hasnemesis or wakaba:hasLunarStone(entity:ToPlayer()))
 	then
 		flag = flag | DamageFlag.DAMAGE_NO_PENALTIES

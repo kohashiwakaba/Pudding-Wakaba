@@ -187,7 +187,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	end
 	if player:GetData().wakaba.blessmantlenum and player:GetData().wakaba.blessmantlenum > 0 then
 		for i = 1, player:GetData().wakaba.blessmantlenum do
-			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 		end
 		player:GetData().wakaba.blessmantlenum = nil
 	end
@@ -195,6 +195,14 @@ function wakaba:PlayerUpdate_Nemesis(player)
 
 	if wakaba:HasNemesis(player)
 	then
+		local writableRoomDesc = Game():GetLevel():GetRoomByIdx(-1)
+		if writableRoomDesc then
+			if writableRoomDesc.SurpriseMiniboss then
+				print("writableRoomDesc.SurpriseMiniboss")
+			end
+			writableRoomDesc.SurpriseMiniboss = false
+		end
+
 		player:GetData().wakaba.nemesisupdatedelay = player:GetData().wakaba.nemesisupdatedelay or 0
 
 
@@ -380,7 +388,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 					player:GetData().wakaba.pendingblessmantle = wakaba:GetBlessNum(player)
 				else
 					for i = 1, wakaba:GetBlessNum(player) do
-						player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+						player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 					end
 				end
 			end

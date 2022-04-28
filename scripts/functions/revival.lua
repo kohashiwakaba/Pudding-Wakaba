@@ -84,7 +84,7 @@ function wakaba:isMausoleumDoor(damageflag)
 	end
 end
 
-function wakaba:IsSacrificeRoomSpikes()
+function wakaba:IsSacrificeRoomSpikes(flag)
   return (Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and flag & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES)
 end
 
@@ -177,7 +177,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
 
 
   if not data.wakaba.damageflag then
-    if data.wakaba.grimreaper and not wakaba:IsSacrificeRoomSpikes() then
+    if data.wakaba.grimreaper and not wakaba:IsSacrificeRoomSpikes(flag) then
       --print("TookDamage - Grimreaper Defender")
       data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NO_PENALTIES
       player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)
@@ -185,7 +185,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
       end
       return false
-    elseif player:HasTrinket(wakaba.TRINKET_DETERMINATION_RIBBON) and not wakaba:IsSacrificeRoomSpikes() then
+    elseif player:HasTrinket(wakaba.TRINKET_DETERMINATION_RIBBON) and not wakaba:IsSacrificeRoomSpikes(flag) then
       --print("TookDamage - TRINKET_DETERMINATION_RIBBON")
       data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
       player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)

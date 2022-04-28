@@ -32,6 +32,7 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="3D Printer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Clensing Foam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -93,6 +94,7 @@
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -161,6 +163,7 @@
 		<Item Name="Concentration" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="3D Printer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -261,6 +264,7 @@
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="oldChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

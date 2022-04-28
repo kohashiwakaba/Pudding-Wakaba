@@ -182,7 +182,30 @@ function wakaba:unlockCheck(item, pool)
 	return isUnlocked
 end
 
+local lastSelected = nil
+local initialItemNext = false
+local flipItemNext = false
+local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
+local lastFrameGridChecked = 0
+
 function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
+
+	local validQuality = {
+		["0"] = true,
+		["1"] = true,
+		["2"] = true,
+		["3"] = true,
+		["4"] = true,
+	}
+
+	local preConditionMet = false
+	if wakaba.state.rerollloopcount == 0 then
+		lastSelected = selected
+	end
+	
+	--if not decrease then return end
+
+	if Game():GetFrameCount() == 0 then return end
 	-- Unlock check and Flip interaction for External Item Description
 	if seed == 1 then return end 
 	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
@@ -202,9 +225,12 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local config = Isaac.GetItemConfig()
 	local AllowActives = wakaba.state.allowactives
   local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
+
 	local hasDejaVu = false
 	local hasSacredOrb = false
 	local hasNeko = false
+	local hasAntiBalance = false
+
 	local eatHeartUsed = false
 	local eatHeartCharges = 0
 	local onlyIsaacCartridge = 0
@@ -216,7 +242,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 			return
 		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) and not decrease then
-			return
+			--return
 		end
 		if player.Variant == 0 then
 			estimatedPlayerCount = estimatedPlayerCount + 1
@@ -236,6 +262,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		end
 		if player:HasCollectible(wakaba.COLLECTIBLE_NEKO_FIGURE) then
 			hasNeko = true
+		end
+		if player:HasCollectible(wakaba.COLLECTIBLE_ANTI_BALANCE) then
+			hasAntiBalance = true
 		end
 		if pData.wakaba and pData.wakaba.eatheartused then
 			eatHeartUsed = true
@@ -285,20 +314,23 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	elseif hasNeko and Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
 		MinQuality = 3
 	elseif not eatHeartUsed and wakaba.state.hasnemesis and not wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore and not hasSacredOrb then
-		if Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
+		if Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET or itemType == ItemPoolType.POOL_ULTRA_SECRET then
 			MinQuality = 3
 		else
 			MaxQuality = 2
 		end
 	elseif not eatHeartUsed and not wakaba.state.hasnemesis and wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore then
 		MinQuality = 2
+	elseif hasAntiBalance then
+		validQuality["2"] = false
 	end
 
 	local itemConfig = config:GetCollectible(selected)
 	local active = (AllowActives == true) and true or (itemConfig.Type == ItemType.ITEM_PASSIVE or itemConfig.Type == ItemType.ITEM_FAMILIAR)
 	local min_quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
 	local max_quality = MaxQuality == 4 and true or (itemConfig.Quality <= MaxQuality or selected == wakaba.COLLECTIBLE_WAKABAS_BLESSING or selected == CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-	
+	local valid_quality = validQuality[tostring(itemConfig.Quality)]
+
 	--check time
 	-- No reroll when should not change Fair Options at the Start? mod
 	if FairOptionsConfig and not FairOptionsConfig.Disabled then
@@ -322,237 +354,78 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 			rng2:SetSeed(Game():GetRoom():GetSpawnSeed(), 35)
 			local TargetIndex = rng2:RandomInt(#candidates) + 1
 			pool:AddRoomBlacklist(candidates[TargetIndex])
-			return candidates[TargetIndex]
+			preConditionMet = true
+			selected = candidates[TargetIndex]
 		end
 	end
 
 
 	-- Print time
-	local isConditionMet = (isPoolCorrect and isRangeCorrect and active and isUnlocked and min_quality and max_quality)
+	local isConditionMet = (isPoolCorrect and isRangeCorrect and active and isUnlocked and min_quality and max_quality and valid_quality)
 	local str_ispassed = (isConditionMet and "passed") or "not passed"
 	Isaac.DebugString("[wakaba] Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
 	--print("[wakaba] Rerolling items - seed "..seed.."#"..wakaba.state.rerollloopcount..", Item No."..selected.." is "..str_ispassed,itemType,decrease)
 
 	pool:AddRoomBlacklist(selected)
-	if not isConditionMet then
+	if not preConditionMet and not isConditionMet and wakaba.state.rerollloopcount <= wakaba.state.options.rerollbreakfastthreshold then
 		wakaba.state.rerollloopcount = wakaba.state.rerollloopcount + 1
-		-- Return Moe's Muffin if too much (Default : 160)
-		if wakaba.state.rerollloopcount > wakaba.state.options.rerollbreakfastthreshold then
-			wakaba.state.rerollloopcount = 0
-			return CollectibleType.COLLECTIBLE_BREAKFAST
-		else
-			-- Change roll pool into Treasure if too much (Default : 120)
-			if wakaba.state.rerollloopcount > wakaba.state.options.rerolltreasurethreshold then
-				itemType = ItemPoolType.POOL_TREASURE
-			end
-			if FairOptionsConfig and not FairOptionsConfig.Disabled and FairOptionsConfig.RerollCount > 0 then
-				if FairOptionsConfig:IsAffectedRoom() and wakaba.pedestalreroll then
-					FairOptionsConfig.RerollCount = FairOptionsConfig.RerollCount - 1
-				end
-			end
-			return pool:GetCollectible(itemType, decrease, seed, CollectibleType.COLLECTIBLE_BREAKFAST)
+		-- Change roll pool into Treasure if too much (Default : 120)
+		if wakaba.state.rerollloopcount > wakaba.state.options.rerolltreasurethreshold then
+			itemType = ItemPoolType.POOL_TREASURE
 		end
+		if FairOptionsConfig and not FairOptionsConfig.Disabled and FairOptionsConfig.RerollCount > 0 then
+			if FairOptionsConfig:IsAffectedRoom() and wakaba.pedestalreroll then
+				FairOptionsConfig.RerollCount = FairOptionsConfig.RerollCount - 1
+			end
+		end
+		local nextRNG = RNG()
+		nextRNG:SetSeed(seed, 35)
+
+		return pool:GetCollectible(itemType, decrease, nextRNG:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
 	else
 		wakaba.state.rerollloopcount = 0
 		wakaba.state.spent = false
 		wakaba.state.eatheartused = false
+		if wakaba.state.rerollloopcount >= wakaba.state.options.rerollbreakfastthreshold then
+			selected = CollectibleType.COLLECTIBLE_BREAKFAST
+		end
 		
 		randselected = false
 		-- TODO : also Flip data for EID
 		table.insert(selecteditems, selected)
+		if EID then
+			if wakaba.state.dreampool ~= ItemPoolType.POOL_NULL or itemPoolType == ItemPoolType.POOL_CRANE_GAME then
+				for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+					print(tostring(crane.InitSeed), crane.DropSeed, EID.CraneItemType[tostring(crane.InitSeed)], EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed])
+					if not crane:GetSprite():IsPlaying("Broken") then
+						if EID.CraneItemType[tostring(crane.InitSeed)] then
+							if EID.CraneItemType[tostring(crane.InitSeed)] == lastSelected then
+								EID.CraneItemType[tostring(crane.InitSeed)] = selected
+							end--[[ 
+							if not EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] or EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] == lastSelected then
+								EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] = selected
+							end ]]
+						end
+					end
+				end
+			end
+
+			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+			for _, item in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
+				if EID.flipItemPositions[curRoomIndex] 
+				and EID.flipItemPositions[curRoomIndex][item.InitSeed][1] == lastSelected 
+				and EID.flipItemPositions[curRoomIndex][item.InitSeed][2] == Game():GetRoom():GetGridIndex(item.Position)
+				then
+					EID.flipItemPositions[curRoomIndex][item.InitSeed][1] = selected
+				end
+			end
+
+		end
+		pool:ResetRoomBlacklist()
 		return selected
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, wakaba.rollCheck)
-
-function wakaba:rollCheck_pre(itemPoolType, decrease, seed)
-
-	if wakaba.state.rerollloopcount > 0 then return end
-	
-	-- Unlock check and Flip interaction for External Item Description
-	if seed == 1 then return end 
-	--if not decrease then return end
-	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
-	if selected and selected <= 0 then
-		return
-	end
-	
-	if (Game().Challenge == wakaba.challenges.CHALLENGE_HOLD) then
-		return wakaba.COLLECTIBLE_CLOVER_SHARD
-	end
-
-	wakaba.state.rerollloopcount = wakaba.state.rerollloopcount or 0
-
-	local pool = Game():GetItemPool()
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
-	local config = Isaac.GetItemConfig()
-	local AllowActives = wakaba.state.allowactives
-  local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
-	local hasDejaVu = false
-	local hasSacredOrb = false
-	local hasNeko = false
-	local eatHeartUsed = false
-	local eatHeartCharges = 0
-	local onlyIsaacCartridge = 0
-	local estimatedPlayerCount = 0
-	local hasIsaacCartridge = false
-	for i = 1, Game():GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if player.Variant == 0 then
-			estimatedPlayerCount = estimatedPlayerCount + 1
-			-- not implemented yet
-			if --[[ player:HasTrinket(wakaba.TRINKET_ISAAC_CARTRIDGE) or ]] 
-			(player:GetPlayerType() == wakaba.PLAYER_TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
-			then
-				onlyIsaacCartridge = onlyIsaacCartridge + 1
-			end
-		end
-		local pData = player:GetData()
-		if player:HasCollectible(wakaba.COLLECTIBLE_DEJA_VU) then
-			hasDejaVu = true
-		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_SACRED_ORB) then
-			hasSacredOrb = true
-		end
-		if Isaac.GetCurseIdByName("Blessing of Fortune") > 0 
-		and level:GetCurses() & (1 << (Isaac.GetCurseIdByName("Blessing of Fortune") - 1)) > 0
-		then
-			hasSacredOrb = true
-		end
-		if player:HasCollectible(wakaba.COLLECTIBLE_NEKO_FIGURE) then
-			hasNeko = true
-		end
-		if pData.wakaba and pData.wakaba.eatheartused then
-			eatHeartUsed = true
-			eatHeartCharges = pData.wakaba.eatheartcharges
-		end
-	end
-	if estimatedPlayerCount == onlyIsaacCartridge then
-		hasIsaacCartridge = true
-	end
-
-	if wakaba.state.allowactives == nil then
-    AllowActives = true
-  end
-	if wakaba.fullreroll then
-		AllowActives = false
-	end
-
-	local itemType = defaultPool
-	
-	if wakaba.state.dreampool ~= ItemPoolType.POOL_NULL and wakaba.state.rerollloopcount <= 40 then
-		itemType = wakaba.state.dreampool
-		AllowActives = false
-	end
-
-	if wakaba.state.dreampool == ItemPoolType.POOL_NULL and level:GetCurrentRoomDesc().Flags & RoomDescriptor.FLAG_DEVIL_TREASURE == RoomDescriptor.FLAG_DEVIL_TREASURE then
-		itemType = ItemPoolType.POOL_DEVIL
-	end
-	local selected = nil
-	local ispassed = false
-	while not selected or not ispassed do
-		--print(wakaba.state.rerollloopcount)
-		local tempsel = pool:GetCollectible(itemType, decrease, seed)
-		
-		--check time
-		-- No reroll when should not change Fair Options at the Start? mod
-		if FairOptionsConfig and not FairOptionsConfig.Disabled then
-			local level = Game():GetLevel()
-			if FairOptionsConfig.IsAffectedRoom ~= nil and FairOptionsConfig:IsAffectedRoom() and wakaba.pedestalreroll then
-				index = (FairOptionsConfig.RerollCount % FairOptionsConfig.RerollItemsNumber) + 1
-				if FairOptionsConfig.RerollCount < 1 and index ~= 1 then 
-					selected = tempsel
-					ispassed = true
-					break
-				end
-			end
-		end
-	
-		-- Check Deja Vu spawn after Fair Options at the Start? mod check
-		-- Don't check Deja Vu again if conditions are not met
-		if wakaba.state.rerollloopcount == 0 and hasDejaVu then
-			local candidates = wakaba:ReadDejaVuCandidates()
-			
-			local rng = RNG()
-			rng:SetSeed(Random(), 35)
-			local chance = rng:RandomInt(10000)
-			if chance <= 1250 then
-				local rng2 = RNG()
-				rng2:SetSeed(Game():GetRoom():GetSpawnSeed(), 35)
-				local TargetIndex = rng2:RandomInt(#candidates) + 1
-				pool:AddRoomBlacklist(candidates[TargetIndex])
-				selected = candidates[TargetIndex]
-				ispassed = true
-				break
-			end
-		end
-
-		local isPoolCorrect = (itemPoolType == itemType)
-		local isRangeCorrect = tempsel and ((not hasIsaacCartridge) or (tempsel == CollectibleType.COLLECTIBLE_BIRTHRIGHT) or (tempsel < CollectibleType.COLLECTIBLE_DIPLOPIA or tempsel > CollectibleType.COLLECTIBLE_MOMS_RING))
-		local isUnlocked = tempsel and wakaba:unlockCheck(tempsel)
-		local MinQuality = 0
-		local MaxQuality = 4
-		
-		if eatHeartUsed then
-			local rng = RNG()
-			rng:SetSeed(seed, 35)
-			local chance = rng:RandomFloat() * 480000
-			if eatHeartCharges >= 240000 then
-				if chance <= eatHeartCharges then MinQuality = 4 else MinQuality = 3 end
-			end
-		elseif hasNeko and Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
-			MinQuality = 3
-		elseif not eatHeartUsed and wakaba.state.hasnemesis and not wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore and not hasSacredOrb then
-			if Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
-				MinQuality = 3
-			else
-				MaxQuality = 2
-			end
-		elseif not eatHeartUsed and not wakaba.state.hasnemesis and wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore then
-			MinQuality = 2
-		end
-	
-		local itemConfig = config:GetCollectible(tempsel)
-		local active = (AllowActives == true) and true or (itemConfig.Type == ItemType.ITEM_PASSIVE or itemConfig.Type == ItemType.ITEM_FAMILIAR)
-		local min_quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
-		local max_quality = MaxQuality == 4 and true or (itemConfig.Quality <= MaxQuality or tempsel == wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-		
-		local isConditionMet = (isPoolCorrect and isRangeCorrect and active and isUnlocked and min_quality and max_quality)
-		
-		local str_ispassed = (isConditionMet and "passed") or "not passed"
-		Isaac.DebugString("[wakaba] Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. tempsel .. " is " ..str_ispassed)
-		--print("[wakaba] Rerolling items - seed "..seed.."#"..wakaba.state.rerollloopcount..", Item No."..tempsel.." is "..str_ispassed,itemType,decrease)
-
-		wakaba.state.rerollloopcount = wakaba.state.rerollloopcount + 1
-		-- Return Moe's Muffin if too much (Default : 160)
-		if wakaba.state.rerollloopcount > wakaba.state.options.rerollbreakfastthreshold then
-			wakaba.state.rerollloopcount = 0
-			selected = CollectibleType.COLLECTIBLE_BREAKFAST
-			ispassed = true
-			break
-		else
-			-- Change roll pool into Treasure if too much (Default : 120)
-			if wakaba.state.rerollloopcount > wakaba.state.options.rerolltreasurethreshold then
-				itemType = ItemPoolType.POOL_TREASURE
-			end
-			if FairOptionsConfig and not FairOptionsConfig.Disabled and FairOptionsConfig.RerollCount > 0 then
-				if FairOptionsConfig:IsAffectedRoom() and wakaba.pedestalreroll then
-					FairOptionsConfig.RerollCount = FairOptionsConfig.RerollCount - 1
-				end
-			end
-		end
-		selected = tempsel
-		ispassed = isConditionMet
-	end
-
-	wakaba.state.rerollloopcount = 0
-	wakaba.state.spent = false
-	wakaba.state.eatheartused = false
-	return selected
-end
---wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.rollCheck_pre)
-
 
 function wakaba:rerollCooltime()
 	if #selecteditems > 0 then

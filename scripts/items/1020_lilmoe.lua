@@ -17,7 +17,7 @@ local function fireTearMoe(player, familiar, vector, rotation)
 	local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, randomTearVariant, 0, Vector(familiar.Position.X, familiar.Position.Y), vector, familiar)
 	tear = entity:ToTear()
 	tear.Scale = 0.9
-	tear.TearFlags = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_ORBIT_ADVANCED | wakaba.TEARFLAG(randomTearFlag)
+	tear.TearFlags = TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_ORBIT_ADVANCED | wakaba.TEARFLAG(randomTearFlag)
 	tear.FallingSpeed = 0
 	tear.FallingAcceleration = -0.1
 
@@ -89,9 +89,9 @@ function wakaba:updateLilMoe(familiar)
 			fireTearMoe(player, familiar, Vector(0, player.ShotSpeed * 10), 0)
 	
 			if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-				familiar.FireCooldown = player.MaxFireDelay * 1 // 1
+				familiar.FireCooldown = player.MaxFireDelay * 1.25 // 1
 			else
-				familiar.FireCooldown = player.MaxFireDelay * 2 // 1
+				familiar.FireCooldown = player.MaxFireDelay * 2.5 // 1
 			end
 		end
 	end

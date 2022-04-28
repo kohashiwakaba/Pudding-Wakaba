@@ -93,8 +93,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
-		.. "#↑ {{Damage}}공격력 +1.5"
-		.. "#↑ {{Tears}}연사 +1.5"
+		.. "#↑ {{Damage}}공격력 +1"
+		.. "#↑ {{Tears}}연사(+상한) +1.5"
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -478,7 +478,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_MURASAME] = {
 		itemName = "무라사메",
 		description = ""
-		.. "#!!! 소지 효과 : "
+		.. "#!!! 소지 시 : "
 		.. "#{{AngelDevilChance}} 악마방/천사방이 반드시 등장합니다."
 		.. "#{{AngelChance}} 악마 거래 이후에도 천사방이 등장할 수 있습니다."
 		.. "#무라사메 패밀리어를 소환합니다."
@@ -548,6 +548,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.COLLECTIBLE_SYRUP] = {
+		itemName = "시럽",
+		description = ""
+		.. "#!!! 소지 하는 동안:"
+		.. "#↓ {{Speed}}이동속도 배율 x0.9"
+		.. "#↑ {{Range}}사거리 +3"
+		.. "#비행 능력을 얻습니다."
+		.. "{{CR}}",
+	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "파워 봄",
 		description = ""
@@ -556,6 +566,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 폭탄이 10 미만인 경우 사용 불가"
 		.. "#현재 방에서 거대한 폭발을 일으켜 "
 		.. "#!!! 틱 당 폭발 공격력 : 사용한 폭탄 수 * 0.2"
+		.. "{{CR}}",
+	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	}, ]]
+	--[[ [wakaba.COLLECTIBLE_HYDRA] = {
+		itemName = "히드라",
+		description = ""
+		.. "#{{Poison}} 적이 있는 방향으로 최대 공격력 20의 독성 유도 혈사포를 자동으로 발사합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	}, ]]
@@ -585,28 +602,15 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "클렌징 폼",
 		description = ""
 		.. "#{{Poison}} 캐릭터와 가까이 있는 적을 중독시킵니다."
-		.. "#캐릭터와 가까이 있는 일반 챔피언 몬스터를 일반 몬스터로 바꿉니다."
+		.. "#캐릭터와 가까이 있는 일반 몬스터의 챔피언 속성을 제거합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.COLLECTIBLE_BEETLEJUICE] = {
 		itemName = "비틀쥬스",
 		description = ""
-		.. "#방 안의 모든 픽업 아이템을 특정 규칙에 따라 바꿉니다."
-		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	},
-	[wakaba.COLLECTIBLE_BEETLEJUICE_CARD] = {
-		itemName = "비틀쥬스 - 캡슐",
-		description = ""
-		.. "#{{Card}} 방 안의 모든 알약을 카드로 바꿉니다."
-		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	},
-	[wakaba.COLLECTIBLE_BEETLEJUICE_PILL] = {
-		itemName = "비틀쥬스 - 포켓",
-		description = ""
-		.. "#{{Pill}} 방 안의 모든 카드를 알약으로 바꿉니다."
+		.. "#!!! 소지한 상태에선 카드/룬/알약을 소지할 수 없으며 액티브 아이템으로 흡수됩니다."
+		.. "#사용 시 흡수한 카드/룬/알약의 갯수만큼 적에게 64의 방어 무시 피해를 주며 방 안의 적에거 40의 피해를 줍니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -614,6 +618,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "바벨탑의 저주 2",
 		description = ""
 		.. "#가능한 경우, 모든 픽업 아이템 ({{Coin}}/{{Key}}/{{Bomb}}/{{Heart}}/{{Pill}}/{{Card}})이 황금 형태로 등장합니다."
+		.. "{{CR}}",
+	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
+	[wakaba.COLLECTIBLE_ANTI_BALANCE] = {
+		itemName = "안티 밸런스",
+		description = ""
+		.. "#{{Quality2}}등급의 아이템이 등장하지 않습니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -676,6 +687,82 @@ wakaba.descriptions[desclang].belial = {
 	},
 }
 wakaba.descriptions[desclang].bookofvirtues = {
+
+	--[[ Book of Virtues
+		Ring position > count
+		tearvariants
+		effects
+		when destroyed
+	 ]]
+
+	[wakaba.COLLECTIBLE_EATHEART] = {
+		description = "{{ColorLime}}내부 링 1마리: {{CR}}#불꽃이 어떠한 피해도 입지 않습니다."
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#불꽃이 꺼지면 {{BoneHeart}}뼈하트, 혹은 아군 Bony류 몬스터를 소환합니다."
+	},
+	[wakaba.COLLECTIBLE_UNIFORM] = {
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다."
+	},
+	[wakaba.COLLECTIBLE_COUNTER] = {
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#카운터가 발동 중일 때 모든 불꽃이 무적이 되며 레이저의 공격력이 (불꽃 x2)만큼 추가됩니다."
+	},
+	[wakaba.COLLECTIBLE_D6_PLUS] = {
+		description = "{{ColorLime}}내부 링 1마리: {{CR}}바꾼 아이템의 수만큼 불꽃을 추가로 소환합니다."
+	},
+	[wakaba.COLLECTIBLE_D6_CHAOS] = {
+		description = "{{ColorLime}}내부 링 1마리: {{CR}}바꾼 아이템의 수만큼 불꽃을 추가로 소환합니다."
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}{{Weakness}}맞으면 적을 약화시키는 유도 눈물을 발사합니다."
+	},
+	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}{{Rune}}적을 처치할 때 15%의 확률로 룬을 드랍합니다.#{{Rune}}불꽃이 꺼지면 룬을 드랍합니다."
+	},
+	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#불꽃이 꺼지면 꼬마 아이작을 소환합니다."
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#모든 탄막에 무적이며 불꽃 주변의 탄막을 지웁니다.#접촉 시 사라집니다."
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = {
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 적에게 닿으면 해당 적을 아군으로 만드면서 불꽃이 꺼집니다."
+	},
+	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
+		description = "{{ColorLime}}내부 링 1마리: {{CR}}불꽃의 체력이 매우 높음#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
+		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6마리: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
+	},
+	[wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY] = {
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#불꽃이 꺼지면 Unknown Bookmark를 드랍합니다."
+	},
+	[wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#현재 켜져 있는 모든 불꽃을 흡수하며 능력치로 환산합니다."
+	},
+	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+		description = "{{ColorLime}}내부 링 1마리: {{CR}}#캐릭터와 같은 공격력의 눈물을 발사합니다."
+	},
+	[wakaba.COLLECTIBLE_BALANCE] = {
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#열쇠와 폭탄의 수가 같은 상태에서 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
+	},
+	[wakaba.COLLECTIBLE_FLASH_SHIFT] = {
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
+	},
+	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
+	},
+	[wakaba.COLLECTIBLE_3D_PRINTER] = {
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#불꽃이 꺼지면 장신구를 드랍합니다."
+	},
+
+	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
+		description = "{{ColorRed}}!!!효과 없음{{CR}}#"
+	},
+
+
+
+
 	
 }
 wakaba.descriptions[desclang].abyss = {
@@ -766,7 +853,7 @@ wakaba.descriptions[desclang].bless = {
 		description = "지우개 눈물 발사 확률 10x", 
 	},
 	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "무적 시간이 2초로 증가({{Card"..Card.CARD_SOUL_LOST.."}}로스트류 캐릭터 및 상태는 미적용)", 
+		description = "무적 시간이 1.5초로 증가({{Card"..Card.CARD_SOUL_LOST.."}}로스트류 캐릭터 및 상태는 미적용)", 
 	},
 }
 wakaba.descriptions[desclang].nemesis = {

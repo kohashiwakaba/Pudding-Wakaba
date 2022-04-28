@@ -6,7 +6,9 @@ wakaba.PILL_ALL_STATS_DOWN = Isaac.GetPillEffectByName("All Stats Down")
 wakaba.PILL_TROLLED = Isaac.GetPillEffectByName("Trolled!")
 wakaba.PILL_TO_THE_START = Isaac.GetPillEffectByName("To the Start!")
 wakaba.PILL_EXPLOSIVE_DIARRHEA_2 = Isaac.GetPillEffectByName("Explosive Diarrhea 2!")
+wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT = Isaac.GetPillEffectByName("Explosive Diarrhea 2?")
 wakaba.PILL_SOCIAL_DISTANCE = Isaac.GetPillEffectByName("Social Distance")
+wakaba.PILL_DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders")
 wakaba.PILL_FLAME_PRINCESS = Isaac.GetPillEffectByName("Flame Princess!")
 wakaba.PILL_FIREY_TOUCH = Isaac.GetPillEffectByName("Firey Touch")
 wakaba.PILL_PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing")
@@ -20,10 +22,12 @@ local convertPHD = {
   [wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = wakaba.PILL_DAMAGE_MULTIPLIER_UP,
   [wakaba.PILL_ALL_STATS_UP] = -1,
   [wakaba.PILL_ALL_STATS_DOWN] = wakaba.PILL_ALL_STATS_UP,
-  [wakaba.PILL_TROLLED] = wakaba.PILL_TO_THE_START,
   [wakaba.PILL_TO_THE_START] = -1,
+  [wakaba.PILL_TROLLED] = wakaba.PILL_TO_THE_START,
   [wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = -1,
-  [wakaba.PILL_SOCIAL_DISTANCE] = wakaba.PILL_ALL_STATS_UP,
+  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = wakaba.PILL_EXPLOSIVE_DIARRHEA_2,
+  [wakaba.PILL_DUALITY_ORDERS] = -1,
+  [wakaba.PILL_SOCIAL_DISTANCE] = wakaba.PILL_DUALITY_ORDERS,
   [wakaba.PILL_FLAME_PRINCESS] = -1,
   [wakaba.PILL_FIREY_TOUCH] = wakaba.PILL_FLAME_PRINCESS,
   [wakaba.PILL_PRIEST_BLESSING] = -1,
@@ -36,7 +40,8 @@ local convertFalsePHD = {
   [wakaba.PILL_ALL_STATS_DOWN] = -1,
   [wakaba.PILL_TROLLED] = -1,
   [wakaba.PILL_TO_THE_START] = -1,
-  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = -1,
+  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT,
+  [wakaba.PILL_DUALITY_ORDERS] = wakaba.PILL_SOCIAL_DISTANCE,
   [wakaba.PILL_SOCIAL_DISTANCE] = -1,
   [wakaba.PILL_FLAME_PRINCESS] = wakaba.PILL_FIREY_TOUCH,
   [wakaba.PILL_FIREY_TOUCH] = -1,
@@ -90,9 +95,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
     if hasPHD(player) then phd = true; estdamage = player.Damage end
     if hasFalsePHD(player) then fhd = true end
     if pillEffect == wakaba.PILL_SOCIAL_DISTANCE 
-    and (wakaba:HasBless(player) or wakaba:HasNemesis(player) 
-      or player:HasCollectible(CollectibleType.COLLECTIBLE_EUCHARIST) or player:HasCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD)
-      or Game():IsGreedMode()) then
+    and Game():IsGreedMode() then
       return wakaba.PILL_ALL_STATS_UP
     end
     if pillEffect == wakaba.PILL_FIREY_TOUCH then
@@ -211,6 +214,9 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         player:AnimateSad()
       else
         Game():StartRoomTransition(-2,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
+        if isHorse then
+          player:AddBrokenHearts(-1)
+        end
       end
     elseif pillEffect == wakaba.PILL_TO_THE_START then
       local hasBeast = wakaba:HasBeast()
@@ -229,16 +235,31 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
           else
             player:AddSoulHearts(2)
           end
+          player:AddBrokenHearts(-1)
         end
         Game():StartRoomTransition(Game():GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
       end
+    elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT then
+      player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
     elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2 then
       wakaba:GetPlayerEntityData(player)
       player:GetData().wakaba.trollbrimstonecounter = player:GetPillRNG(wakaba.PILL_EXPLOSIVE_DIARRHEA_2):RandomInt(100)
       Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ENEMY_BRIMSTONE_SWIRL, 0, player.Position, Vector.Zero, nil)
+      if isHorse then
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
+      end
       player:AnimateSad()
+    elseif pillEffect == wakaba.PILL_DUALITY_ORDERS then
+
+
+      if isHorse then
+        Game():SetLastDevilRoomStage(-1)
+      end
     elseif pillEffect == wakaba.PILL_SOCIAL_DISTANCE then
       Game():GetLevel():DisableDevilRoom()
+      if isHorse then
+        Game():SetLastDevilRoomStage(Game():GetLevel():GetAbsoluteStage())
+      end
       player:AnimateSad()
     elseif pillEffect == wakaba.PILL_FLAME_PRINCESS then
       local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)

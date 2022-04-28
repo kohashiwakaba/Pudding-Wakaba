@@ -83,7 +83,7 @@ function mantlemod:activeDogma(npc)
 			end
 			if wakaba.state.options.stackableblanket >= 0 then
 				for i = 1, blanketcount do
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+					player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 				end
 			end
 			local mantle = player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
@@ -232,7 +232,7 @@ function mantlemod:HolyCardUsed(card, player, flags)
 	else
 		if not (wakaba.state.options.stackableholycard ~= 0 and player:GetData().wakaba.holycardused >= wakaba.state.options.stackableholycard - 1) then
 			player:GetData().wakaba.holycardused = player:GetData().wakaba.holycardused + 1
-			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 		end
 	end
 end

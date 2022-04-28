@@ -72,7 +72,7 @@ function wakaba:ItemUse_Counter(_, rng, player, useFlags, activeSlot, varData)
 		at = 600
 	end
 	if wakaba:HasBless(player) and player:GetPlayerType() ~= PlayerType.PLAYER_JACOB_B then
-		at = at * 2
+		at = at * 1.5
 	end
 	if ct == nil then
 		player:GetData().wakabacountertimer = at
