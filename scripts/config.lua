@@ -960,7 +960,7 @@ if MCM then
 			Minimum = 1,
 			Maximum = 2,
 			Display = function()
-				return "Delirium: " .. deliName[wakaba.state.forcevoid.delirium]
+				return "Delirium: " .. deliName[wakaba.state.forcevoid.delirium+1]
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.delirium = currentNum
