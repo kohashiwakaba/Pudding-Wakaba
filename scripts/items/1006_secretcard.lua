@@ -52,7 +52,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	if hasSecretCard then
 		for i = 0, 169 do
 			local room = Game():GetLevel():GetRoomByIdx(i,-1)
-			if room.Data.Type == RoomType.ROOM_SHOP and room.SurpriseMiniboss then
+			if room.Data and room.Data.Type == RoomType.ROOM_SHOP and room.SurpriseMiniboss then
 				room.SurpriseMiniboss = false
 			end
 		end
