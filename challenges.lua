@@ -774,17 +774,6 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollisionChallenge_Delivery, PickupVariant.PICKUP_COLLECTIBLE)
 
-function wakaba:prePickupCollisionChallenge_Random(pickup, colliders, low)
-	if Game().Challenge == Challenges.CHALLENGE_RAND then
-		local room = Game():GetRoom()
-		if room:GetBossID() ~= 70 or room:IsClear() then
-			return false
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollisionChallenge_Random, PickupVariant.PICKUP_BIGCHEST)
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollisionChallenge_Random, PickupVariant.PICKUP_TROPHY)
-
 function wakaba:pullDamage(target, damage, flags, source, cooldown)
 	if Game().Challenge == Challenges.CHALLENGE_PULL then
 		if source.Entity ~= nil and source.Entity.Type == 2 then
