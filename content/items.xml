@@ -46,10 +46,10 @@
 	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="4" name="Shiori's Bottle of Runes" tags="book offensive" quality="2" />
 	<active id="28" description="Split yourself" gfx="microdoppelganger.png" maxcharges="6" name="Micro Doppelganger" tags="book offensive" quality="2" />
 	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="240" name="Book of Silence" tags="book" quality="4" />
-	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="nochallenge" quality="2"/>
+	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="" quality="2"/>
 	<active id="31" description="Guide book for the lost lambs" gfx="bookofconquest.png" maxcharges="12" name="Book of Conquest" devilprice="2" tags="book offensive" quality="4" />
 	<passive id="32" description="Comback Stronger" gfx="bookofthegod.png" name="Book of The God" tags="book angel offensive nocantrip" quality="3"/>
-	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="6" name="Grimreaper Defender" devilprice="2" tags="book devil offensive nochallenge" quality="3" />
+	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="6" name="Grimreaper Defender" devilprice="2" tags="book devil offensive " quality="3" />
 	<passive id="34" description="Help the friends" gfx="minervaaura.png" name="Minerva's Aura" devilprice="2" tags="angel offensive summonable" quality="4" />
 	<active id="35" description="Feel the wave" gfx="bookofthefallen.png" chargetype="timed" maxcharges="300" devilprice="2" name="Book of The Fallen" tags="quest book devil offensive" quality="3" />
 	<active id="36" description="Demeter Lore" gfx="maijimamythology.png" chargetype="timed" maxcharges="480" name="Maijima Mythology" tags="offensive stars book angel" quality="2" />
