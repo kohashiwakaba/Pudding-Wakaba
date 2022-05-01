@@ -77,6 +77,7 @@ local function hasFalsePHD(player)
   end
 end
 
+-- IsPlayerUsingHorsePill : from Xalum
 function wakaba:IsPlayerUsingHorsePill(player, useFlags)
   local pillColour = player:GetPill(0)
 
@@ -250,10 +251,21 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       end
       player:AnimateSad()
     elseif pillEffect == wakaba.PILL_DUALITY_ORDERS then
+      local indRng = player:GetPillRNG(wakaba.PILL_DUALITY_ORDERS)
+      local ind = indRng:RandomInt(41000) + 60
 
+      local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
+        Game():GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
+        Isaac.GetFreeNearPosition(player.Position - 32, 32), Vector(0,0), nil)
+      local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
+      Game():GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
+        Isaac.GetFreeNearPosition(player.Position + 32, 32), Vector(0,0), nil)
 
       if isHorse then
         Game():SetLastDevilRoomStage(-1)
+      else
+        p1.OptionsPickupIndex = ind
+        p2.OptionsPickupIndex = ind
       end
     elseif pillEffect == wakaba.PILL_SOCIAL_DISTANCE then
       Game():GetLevel():DisableDevilRoom()
