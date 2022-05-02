@@ -1436,7 +1436,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_WAKABA --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_WAKABA, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_WAKABA, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_WAKABA, wakaba.costumeNullWhiteList)
 
   costumeProtector:AddPlayer(
     player,
@@ -1447,7 +1447,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_WAKABA_B --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_WAKABA_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_WAKABA_B, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_WAKABA_B, wakaba.costumeNullWhiteList)
 
   costumeProtector:AddPlayer(
     player,
@@ -1458,7 +1458,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_SHIORI --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_SHIORI, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_SHIORI, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_SHIORI, wakaba.costumeNullWhiteList)
   costumeProtector:AddPlayer(
     player,
     wakaba.PLAYER_SHIORI_B,
@@ -1468,7 +1468,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_SHIORI_B --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_SHIORI_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_SHIORI_B, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_SHIORI_B, wakaba.costumeNullWhiteList)
 
   
   costumeProtector:AddPlayer(
@@ -1480,7 +1480,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_TSUKASA --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_TSUKASA, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_TSUKASA, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_TSUKASA, wakaba.costumeNullWhiteList)
 
   costumeProtector:AddPlayer(
     player,
@@ -1491,7 +1491,7 @@ function wakaba:PostGlobalPlayerInit(player)
     wakaba.COSTUME_TSUKASA_B --Your character's additional costume. Hair, ears, whatever.
   )
   costumeProtector:ItemCostumeWhitelist(wakaba.PLAYER_TSUKASA_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullEffectWhitelist(wakaba.PLAYER_TSUKASA_B, wakaba.costumeNullWhiteList)
+  costumeProtector:NullItemIDWhitelist(wakaba.PLAYER_TSUKASA_B, wakaba.costumeNullWhiteList)
 	--print(player:GetPlayerType(), #costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()], costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()][CollectibleType.COLLECTIBLE_LUNA])
 	
 	--wakaba:save(true)
