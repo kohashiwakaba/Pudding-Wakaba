@@ -551,10 +551,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_SYRUP] = {
 		itemName = "시럽",
 		description = ""
-		.. "#!!! 소지 하는 동안:"
-		.. "#↓ {{Speed}}이동속도 배율 x0.9"
-		.. "#↑ {{Range}}사거리 +3"
+		.. "#!!! 소지 시:"
+		.. "#↓ {{SpeedSmall}}이동속도 배율 x0.9"
+		.. "#↑ {{RangeSmall}}사거리 +3"
+		.. "#↑ {{DamageSmall}}공격력 +1.25"
 		.. "#비행 능력을 얻습니다."
+		.. "#!!! (사용 효과는 없습니다)"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

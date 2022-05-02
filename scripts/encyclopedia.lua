@@ -1854,6 +1854,27 @@ if Encyclopedia then
 				{str = "Removes champion and Applies poison to enemies in a small radius around Isaac."},
 			},
 		},
+		COLLECTIBLE_SYRUP = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "While held", clr = 3, halign = 0},
+				{str = "Flight"},
+				{str = "0.9x Speed Multiplier"},
+				{str = "+3 Range"},
+				{str = "+1.25 Damage"},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "This item counts as minor passive item, It takes active slot, but no effect on usage."},
+			},
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "Syrup is a turtle pet from light novel/anime Bofuri, or 'Welcome to I Don't Want to Get Hurt, so I'll Max Out My Defense'."},
+				{str = "Maple, who is Syrup's owner, met syrup by defeating extreme boss 'Silverwing' by matching party with Sally, who is super expert player by using her controls."},
+				{str = "Syrup is one of the mythical beasts that had their eggs hidden in the game."},
+				{str = "Normally, Syrup is incapable of flight, but Maple combined the skill and the game's system to make it fly, she even got a skill just to fly with it."},
+			},
+		},
 		
 		COLLECTIBLE_APOLLYON_CRISIS = {
 			{ -- Effects
@@ -2595,13 +2616,12 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_SYRUP,
-		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
-		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
+		WikiDesc = Wiki.COLLECTIBLE_SYRUP,
 		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 		},
 	})
 	

@@ -89,7 +89,7 @@
 	
 	<familiar id="59" cache="damage" description="Snake friend" gfx="hydra.png" name="Hydra" shopprice="32" devilprice="2" tags="offensive baby" quality="4" hidden="true"/>
 	<active id="60" description="Use it carefully" gfx="totalcorruption.png" maxcharges="0" name="Total Corruption" devilprice="2" tags="offensive" quality="3" hidden="true"/>
-	<active id="61" passivecache="true" cache="flying speed range" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="offensive" quality="3" hidden="true"/>
+	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="baby" quality="3" addcostumeonpickup="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="2"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="8" name="3D Printer" shopprice="20" devilprice="1" tags="offensive" quality="4"/>
 	<passive id="64" description="Clean yourself" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>

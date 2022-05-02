@@ -557,11 +557,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Syrup",
 		description = ""
 		.. "#!!! While Held:"
-		.. "#↓ -10% {{Speed}}Speed Down"
-		.. "#↑ +3 {{Range}}Range Up"
+		.. "#↓ {{Speed}}-10% Speed"
+		.. "#↑ {{Range}}+3 Range"
+		.. "#↑ {{Damage}}+1.25 Damage"
 		.. "#Flight"
+		.. "#!!! Does not have on use effect"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "Power Bomb",

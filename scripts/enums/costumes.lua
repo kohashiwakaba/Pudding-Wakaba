@@ -22,6 +22,9 @@ wakaba.cpmanagedplayertype = {
 }
 
 wakaba.costumeCollectibleWhiteList = {
+  [CollectibleType.COLLECTIBLE_PONY] = true,
+  [CollectibleType.COLLECTIBLE_WHITE_PONY] = true,
+  [wakaba.COLLECTIBLE_SYRUP] = true,
   [CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = true,
   [CollectibleType.COLLECTIBLE_TOOTH_AND_NAIL] = true,
   [CollectibleType.COLLECTIBLE_MEGA_MUSH] = false,
