@@ -193,26 +193,6 @@ wakaba.pickupSpriteIndex = {
 	["CONQUEST"] = 18,
 }
 
-if not (EID and EID.TRANSFORMATION) then
-	EID = {}
-	EID.TRANSFORMATION = {
-		["GUPPY"] = 1,
-		["LORD_OF_THE_FLIES"] = 3,
-		["MUSHROOM"] = 2,
-		["ANGEL"] = 10,
-		["BOB"] = 8,
-		["SPUN"] = 5,
-		["MOM"] = 6,
-		["CONJOINED"] = 4,
-		["LEVIATHAN"] = 9,
-		["POOP"] = 7,
-		["BOOKWORM"] = 12,
-		["ADULT"] = 14,
-		["SPIDERBABY"] = 13,
-		["SUPERBUM"] = 11
-	}
-end
-
 -- Reserved for popup image
 wakaba.achievementsprite = {
 	dcupicecream = "gfx/ui/achievement_wakaba/achievement_dcupicecream.png",
