@@ -17,6 +17,9 @@ if EIDKR then
 			krfont:DrawStringScaledUTF8("자세한 내용 및 설정방법은 한글 설명모드 페이지의 설명을 참고해주세요.", 10, 240, 1, 1, KColor(1, 1, 1, 1), 0, false)
 		end
 	end)
+	wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+		printCounter = 600
+	end)
 	return 
 end
 
