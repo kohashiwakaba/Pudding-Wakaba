@@ -640,8 +640,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2] = {
 		itemName = "Curse of The Tower 2",
 		description = ""
-		.. "#All {{Key}}/{{Bomb}}/{{Pill}}/{{Card}} will be appeared as their golden variant if possible"
-		.. "#!!! Beware: Troll Bombs also appear as their golden variant too!"
+		.. "#{{GoldenBomb}} Infinite Bombs"
+		.. "#Upon taking damage, spawns a golden troll bomb around the room"
+		.. "#!!! Beware: All troll bombs are converted into Golden troll bombs if possible!"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

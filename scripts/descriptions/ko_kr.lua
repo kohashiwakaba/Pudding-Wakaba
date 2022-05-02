@@ -619,7 +619,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2] = {
 		itemName = "바벨탑의 저주 2",
 		description = ""
-		.. "#가능한 경우, 모든 픽업 아이템 ({{Coin}}/{{Key}}/{{Bomb}}/{{Heart}}/{{Pill}}/{{Card}})이 황금 형태로 등장합니다."
+		.. "#{{GoldenBomb}} 항상 황금폭탄을 가집니다."
+		.. "#피격 시 황금 트롤폭탄 하나를 소환합니다."
+		.. "#!!! 경고: 모든 트롤 폭탄이 황금 트롤폭탄으로 바뀝니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

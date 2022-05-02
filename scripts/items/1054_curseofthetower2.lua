@@ -8,6 +8,10 @@ function wakaba:Update_CurseOfTower2()
     local player = Game():GetPlayer(num - 1)
     if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
       hastower = true
+      if not player:HasGoldenBomb() then
+        player:AddGoldenBomb()
+      end
+      break
     end
   end
 end
@@ -23,30 +27,7 @@ function wakaba:PickupSelect_CurseOfTower2(pickup)
   local spawnent = 5
   local spawnvar = nil
   local spawnsub = 0
-  if variant == PickupVariant.PICKUP_PILL and subtype ~= PillColor.PILL_GOLD then
-    spawnvar = variant
-    spawnsub = PillColor.PILL_GOLD
-  elseif variant == PickupVariant.PICKUP_TAROTCARD 
-  and Isaac.GetCardIdByName("Golden Card") > -1
-  and subtype ~= Isaac.GetCardIdByName("Golden Card") then
-    spawnvar = variant
-    spawnsub = Isaac.GetCardIdByName("Golden Card")
-  --[[ elseif variant == PickupVariant.PICKUP_HEART and subtype ~= HeartSubType.HEART_GOLDEN then
-    spawnvar = variant
-    spawnsub = HeartSubType.HEART_GOLDEN
-  elseif variant == PickupVariant.PICKUP_COIN and subtype ~= CoinSubType.COIN_GOLDEN then
-    spawnvar = variant
-    spawnsub = CoinSubType.COIN_GOLDEN ]]
-  elseif variant == PickupVariant.PICKUP_KEY and subtype ~= KeySubType.KEY_GOLDEN then
-   spawnvar = variant
-   spawnsub = KeySubType.KEY_GOLDEN
-  elseif variant == PickupVariant.PICKUP_LIL_BATTERY and subtype ~= BatterySubType.BATTERY_GOLDEN then
-   spawnvar = variant
-   spawnsub = BatterySubType.BATTERY_GOLDEN
-  elseif variant == PickupVariant.PICKUP_TRINKET and subtype < TrinketType.TRINKET_GOLDEN_FLAG then
-    spawnvar = variant
-    spawnsub = subtype | TrinketType.TRINKET_GOLDEN_FLAG
-  elseif variant == PickupVariant.PICKUP_BOMB then
+  if variant == PickupVariant.PICKUP_BOMB then
     if subtype == BombSubType.BOMB_TROLL then
       spawnvar = variant
       spawnsub = BombSubType.BOMB_GOLDENTROLL
@@ -103,3 +84,23 @@ function wakaba:EntitySelect_CurseOfTower2(entitybomb)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTower2)
+
+
+function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
+	local player = entity:ToPlayer()
+	if player then
+		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+			if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
+				entity:ToPlayer():SetMinDamageCooldown(1)
+				return false
+			end
+			if flags & DamageFlag.DAMAGE_CRUSH == DamageFlag.DAMAGE_CRUSH then
+				entity:ToPlayer():SetMinDamageCooldown(1)
+				return false
+			end
+      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CurseOfTower2, EntityType.ENTITY_PLAYER)
+

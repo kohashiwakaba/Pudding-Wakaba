@@ -1854,6 +1854,20 @@ if Encyclopedia then
 				{str = "Removes champion and Applies poison to enemies in a small radius around Isaac."},
 			},
 		},
+		COLLECTIBLE_ANTI_BALANCE = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Prevents Quality 2 items to be spawned."},
+			},
+		},
+		COLLECTIBLE_CURSE_OF_THE_TOWER_2 = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Isaac gets Golden Bomb permanently."},
+				{str = "Upon taking damage, spawns a golden troll bomb around the room."},
+				{str = "All troll bombs are converted into Golden troll bombs if possible."},
+			},
+		},
 		COLLECTIBLE_SYRUP = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2648,6 +2662,36 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
+		},
+	})
+
+	--Anti Balance
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_ANTI_BALANCE,
+		WikiDesc = Wiki.COLLECTIBLE_ANTI_BALANCE,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_CURSE,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_RED_CHEST,
+		},
+	})
+
+	--Curse of the Tower 2
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2,
+		WikiDesc = Wiki.COLLECTIBLE_CURSE_OF_THE_TOWER_2,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_CURSE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_CURSE,
+			Encyclopedia.ItemPools.POOL_RED_CHEST,
+			Encyclopedia.ItemPools.POOL_BOMB_BUM,
 		},
 	})
 	
