@@ -8,7 +8,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.PLAYER_WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}알트 와카바{{CR}}",
-		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS"}}Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
+		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS.."}}Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
 	},
 	[wakaba.PLAYER_SHIORI] = {
 		playerName = "{{ColorBookofShiori}}시오리",
