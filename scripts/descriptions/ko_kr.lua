@@ -8,7 +8,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.PLAYER_WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}알트 와카바{{CR}}",
-		description = "공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
+		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS"}}Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
 	},
 	[wakaba.PLAYER_SHIORI] = {
 		playerName = "{{ColorBookofShiori}}시오리",
@@ -17,14 +17,14 @@ wakaba.descriptions[desclang].birthright = {
 	[wakaba.PLAYER_SHIORI_B] = {
 		playerName = "{{ColorCyan}}미네르바{{CR}} (알트 시오리)",
 		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} 미네르바의 오라 효과 적용:"
-		.. "#↑ {{Damage}}공격력 +1.5"
-		.. "#↑ {{Tears}}연사 +1.5"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
 		.. "#유도 눈물을 발사합니다."
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}}함락의 책과 액티브 아이템 사용에 필요한 열쇠 갯수가 일정량 감소합니다. (최소 1)#↑ 현재 함락된 적들의 코스트에 비례하여 모든 능력치가 상승합니다.",
+		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}} Book of Conquest와 액티브 아이템 사용에 필요한 열쇠 갯수가 일정량 감소합니다. (최소 1)#↑ 현재 함락된 적들의 코스트에 비례하여 모든 능력치가 상승합니다.",
 	},
 	[wakaba.PLAYER_TSUKASA] = {
 		playerName = "{{ColorPink}}츠카사",
-		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#↑ {{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}}루나 게이지의 상한이 200%로 증가합니다.",
+		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#↑ {{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}}Lunar Stone 게이지의 상한이 200%로 증가합니다.",
 	},
 	[wakaba.PLAYER_TSUKASA_B] = {
 		playerName = "이름 없음(알트 츠카사)",
@@ -38,7 +38,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ {{Quality0}}/{{Quality1}} 아이템이 등장하지 않습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#전체 체력이 1칸 이하일 때 방마다 {{HolyMantle}}피격을 1회 막아주는 보호막이 제공됩니다."
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -47,7 +47,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다.(와카바 제외)"
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{Damage}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
 		.. "#↓ {{Quality3}}/{{Quality4}} 아이템이 등장하지 않습니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		-- .. "#악마방{{DevilRoom}} 아이템의 가격이 6코인으로 고정됩니다."
@@ -61,12 +61,12 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다.(와카바 제외)"
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{Damage}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
 		.. "#{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다."
 		.. "#↑ 선택형 아이템을 모두 획득할 수 있습니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#전체 체력이 1칸 이하일 때 방마다 {{HolyMantle}}피격을 1회 막아주는 보호막이 제공됩니다."
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
 	},
@@ -93,8 +93,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
-		.. "#↑ {{Damage}}공격력 +1"
-		.. "#↑ {{Tears}}연사(+상한) +1.5"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -104,7 +104,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↓ 최대 체력이 상한이 8칸으로 감소합니다."
-		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{Damage}}공격력과 {{Tears}}연사가 증가합니다."
+		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{DamageSmall}}공격력과 {{TearsSmall}}연사가 증가합니다."
 		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소합니다."
 		.. "#소울 하트가 있을 경우, 강제로 소모하여 월석 게이지를 회복합니다."
 		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
@@ -117,8 +117,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
-		.. "#↓ 피격 무적 시간이 제거됩니다."
-		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 상태에 따라 체력을 빠른 속도로 회복합니다."
+		.. "#↓ {{ColorOrange}}피격 무적 시간이 제거됩니다."
+		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 보정 상태에 따라 체력을 빠른 속도로 회복합니다."
 		.. "#{{Heart}} {{ColorRed}}빨간 하트를 회복하며 모든 소울 하트가 뼈 하트로 전환됩니다."
 		.. "#{{SoulHeart}} {{ColorSoul}}캐릭터가 획득한 최대치까지 소울 하트를 회복합니다."
 		.. "#{{Card"..Card.CARD_SOUL_LOST.."}} {{ColorSilver}}최대 5회까지 피격을 막아주는 {{HolyMantle}}신성한 보호막이 회복됩니다."
@@ -154,31 +154,31 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
 		itemName = "잊혀진 자의 책",
 		description = ""
-		.. "#!!! 모든 플레이어에게 적용"
+		.. "#!!! 사용 시 모든 플레이어에게 적용:"
 		.. "#↑ {{BoneHeart}}뼈하트 +3"
-		.. "#체력을 전부 회복합니다."
+		.. "#{{Heart}} 체력을 전부 회복합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.COLLECTIBLE_D_CUP_ICECREAM] = {
 		itemName = "D컵 아이스크림",
 		description = ""
-		.. "#↑ 최대 체력 +1"
+		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{Heart}}빨간하트 +1"
-		.. "#↑ {{Damage}}공격력 +0.3"
-		.. "#↑ {{Damage}}공격력 배율 x1.8 (중첩 불가)"
+		.. "#↑ {{DamageSmall}}공격력 +0.3"
+		.. "#↑ {{DamageSmall}}공격력 배율 x1.8 (중첩 불가)"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD] = {
 		itemName = "정체불명의 게임 CD",
 		description = ""
-		.. "#↑ 최대 체력 +1"
-		.. "#↑ {{Tears}}연사 +0.7"
-		.. "#↑ {{Speed}}이동속도 +0.16"
-		.. "#↑ {{Shotspeed}}탄속 +0.1"
-		.. "#↑ {{Range}}사거리 +0.85"
-		.. "#↑ {{Damage}}공격력 +0.5"
+		.. "#↑ {{Heart}}최대 체력 +1"
+		.. "#↑ {{TearsSmall}}연사 +0.7"
+		.. "#↑ {{SpeedSmall}}이동속도 +0.16"
+		.. "#↑ {{ShotspeedSmall}}탄속 +0.1"
+		.. "#↑ {{RangeSmall}}사거리 +0.85"
+		.. "#↑ {{DamageSmall}}공격력 +0.5"
 		.. "#방 색상이 임의의 색상으로 바뀝니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -186,46 +186,47 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
 		itemName = "와카바의 펜던트",
 		description = ""
-		.. "#↑ {{Luck}}행운을 최소 7 이상으로 설정"
-		.. "#↑ {{Luck}}행운에 영향을 주는 아이템의 갯수만큼 {{Luck}}행운 + 0.35"
-		.. "#↑ {{Damage}}공격력 +1"
-		.. "#체력을 모두 회복합니다"
+		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
+		.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 갯수만큼 행운 +0.35"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#{{Heart}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.COLLECTIBLE_SECRET_CARD] = {
 		itemName = "극비 카드",
 		description = ""
-		.. "#{{Coin}} 코인 +22"
+		.. "#↑ {{Coin}}동전 +22"
 		.. "#방을 클리어하면 랜덤한 갯수의 동전이 쌓입니다."
 		.. "#해당 방에서 피격을 받지 않고 방을 클리어하면 쌓이는 동전이 두 배가 됩니다."
-		.. "#그리드 모드에서는 위 효과 대신 모든 동전이 1+1 동전으로 바뀝니다."
+		.. "#{{GreedModeSmall}} 그리드 모드에서는 위 효과 대신 모든 동전이 1+1 동전으로 바뀝니다."
+		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.COLLECTIBLE_PLUMY] = {
 		itemName = "플럼이",
 		description = ""
-		.. "#캐릭터를 따라다니는 {{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}}베이비 플럼 패밀리어가 투사체를 막아줍니다."
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} 캐릭터를 따라다니는 베이비 플럼 패밀리어가 투사체를 막아줍니다."
 		.. "#캐릭터가 발사하는 방향 앞에서 눈물을 따라서 발사합니다."
-		.. "#투사체를 너무 많이 방어할 시 활동할 수 없으며 10초동안의 휴식이 필요합니다."
+		.. "#너무 많이 피해를 입으면 잠시동안 활동할 수 없으며 10초동안의 휴식이 필요합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
 	[wakaba.COLLECTIBLE_EXECUTIONER] = {
 		itemName = "처형자",
 		description = ""
-		.. "#매우 낮은 확률로 {{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}}지우개 눈물을 발사합니다."
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 매우 낮은 확률로 지우개 눈물을 발사합니다."
 		.. "#보스만 있는 상태에선 항상 지우개 눈물을 발사합니다."
-		.. "#{{Blank}} {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 지우개 눈물이 발사되지 않습니다){{ColorReset}}"
+		.. "#!!! {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 지우개 눈물이 발사되지 않습니다){{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
 	[wakaba.COLLECTIBLE_NEW_YEAR_BOMB] = {
 		itemName = "새해 이브 폭탄",
 		description = ""
-		.. "#{{Bomb}} 폭탄 +9"
-		.. "#{{PoopPickup}} (알트 ??? 한정으로 방마다 똥 +2)"
+		.. "#↑ {{Bomb}}폭탄 +9"
+		.. "#↑ {{PoopPickup}}알트 ??? 한정으로 방마다 똥 +2"
 		.. "#캐릭터의 폭발 공격에 맞은 적은 HP가 1로 줄어들지만 더 이상 캐릭터의 폭발로 죽지 않습니다"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
@@ -233,8 +234,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_REVENGE_FRUIT] = {
 		itemName = "복수과",
 		description = ""
-		.. "#일정 확률로 눈물 대신 {{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}}혈사포를 발사합니다."
-		.. "#한 스테이지 내에서 피격 횟수가 많을수록 혈사포의 발사 확률이 증가합니다."
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 일정 확률로 눈물 대신 혈사포를 발사합니다."
+		.. "#피격 시 그 스테이지에서 혈사포의 발사 확률이 증가합니다."
 		--.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 1.5x Damage multiplier"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
@@ -255,7 +256,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#원형의 레이저 3개가 캐릭터의 주변을 회전합니다."
 		.. "#레이저의 공격력은 캐릭터의 공격력에 비례합니다."
-		.. "#!!! 레이저의 대미지 : 캐릭터의 대미지 * 0.4."
+		.. "#!!! 레이저의 공격력 : 캐릭터의 공격력 x0.4."
 		.. "#눈물 발사 버튼을 누르고 있으면 각 원형 레이저에서 새로운 직선 레이저를 발사합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
@@ -263,7 +264,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_LIL_WAKABA] = {
 		itemName = "리틀 와카바",
 		description = ""
-		.. "#공격하는 방향으로 캐릭터의 공격력 x0.4의 {{Collectible"..CollectibleType.COLLECTIBLE_TECH_X .."}}원형 레이저를 발사합니다."
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_TECH_X .."}} 공격하는 방향으로 캐릭터의 공격력 x0.4의 원형 레이저를 발사합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
@@ -305,7 +306,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_LIL_MOE] = {
 		itemName = "리틀 모에",
 		description = ""
-		.. "#일정 주기로 모에 주변을 도는 눈물을 발사합니다."
+		.. "#일정 주기로 모에 주변을 도는 유도 눈물을 발사합니다."
 		.. "#눈물의 효과는 각각 랜덤이며 각각의 눈물은 적에게 최소 4의 대미지를 줍니다."
 		.. "#{{Blank}} (폭발성 눈물은 발사되지 않습니다)."
 		.. "#눈물의 발사 주기는 캐릭터의 연사에 비례합니다."
@@ -316,7 +317,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "집중의 책",
 		description = ""
 		.. "#사용 시 현재 방의 모든 적들의 피격 대미지를 두 배로 늘립니다."
-		.. "#캐릭터가 움직이지 않을 경우 {{Damage}}공격력 +1.4, {{Tears}}연사 +1.0 증가한 상태로 유도 눈물을 발사합니다."
+		.. "#캐릭터가 움직이지 않을 경우 {{DamageSmall}}공격력 +1.4, {{TearsSmall}}연사 +1.0 증가한 상태로 유도 눈물을 발사합니다."
 		.. "#!!! 캐릭터 역시 피격 시 최소 2칸의 피해를 받습니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -324,7 +325,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
 		itemName = "시오리의 룬이 담긴 병",
 		description = ""
-		.. "#사용 시 임의의 {{Rune}}룬 하나를 지급합니다."
+		.. "#{{Rune}} 사용 시 임의의 룬 하나를 지급합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -347,7 +348,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "{{ColorRed}}빈티지의 위협",
 		description = ""
 		.. "#↑ 목숨 +1"
-		.. "#사망 시 현재 방에서 알트 시오리로 부활합니다."
+		.. "#{{Player"..wakaba.PLAYER_SHIORI_B.."}} 사망 시 현재 방에서 알트 시오리로 부활합니다."
 		.. "#알트 시오리로 부활할 경우 열쇠 갯수가 0개로 초기화되며 4개의 {{Collectible656}}다모클레스의 검이 활성화됩니다."
 		.. "#{{Warning}} {{ColorBlink}}{{ColorRed}}경고 : 패널티 피격을 받으면 피격받는 그 즉시 다모클레스의 검이 떨어지며 추가 목숨 갯수 및 남은 플레이어와 관계없이 즉시 게임이 종료됩니다.{{ColorReset}}"
 		.. "{{CR}}",
@@ -356,9 +357,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_BOOK_OF_THE_GOD] = {
 		itemName = "신의 책",
 		description = ""
-		.. "#피격 시 하트가 없을 경우 천사로 변신합니다."
+		.. "#피격 시 체력이 없을 경우 천사로 변신합니다."
 		.. "#!!! 천사 상태로 돌입 시 이하 효과 발동:"
-		.. "#↓ {{Damage}}공격력 배율 x0.5"
+		.. "#↓ {{DamageSmall}}공격력 배율 x0.5"
 		.. "#눈물에 후광이 생기며 후광에 닿은 적은 프레임당 캐릭터의 공격력의 피해를 입습니다."
 		.. "#피격 시 부서진 하트 하나가 추가되며 모든 하트가 {{BrokenHeart}}부서진 하트로 채워질 경우 사망합니다."
 		.. "#!!! 천사 상태로 돌입하면 더 이상 희생 방의 희생 보상을 받을 수 없습니다."
@@ -388,9 +389,9 @@ wakaba.descriptions[desclang].collectibles = {
 		--.. "#!!! 타천사로 부활 전까지 아이템 사용 불가"
 		.. "#피격 시 하트가 없을 경우 타천사로 변신하며 블랙하트 6개를 획득합니다."
 		.. "#!!! {{ColorSilver}}타천사 상태로 돌입 시 이하 효과 발동:"
-		.. "#{{ColorSilver}}사용 시 임의의 적의 위치에 캐릭터의 공격력 + 35의 피해를 주는 불꽃을 소환합니다."
+		.. "#{{ColorSilver}}사용 시 임의의 적의 위치에 캐릭터의 공격력 +35의 피해를 주는 불꽃을 소환합니다."
 		.. "#↓ {{ColorSilver}}눈물 발사 불가능"
-		.. "#↑ {{ColorSilver}}{{Damage}}공격력 배율 x16.0"
+		.. "#↑ {{DamageSmall}}{{ColorSilver}}공격력 배율 x16.0"
 		.. "#!!! {{ColorYellow}}더 이상 액티브 아이템을 바꿀 수 없습니다{{ColorReset}}"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.LEVIATHAN .. "," ..EID.TRANSFORMATION.BOOKWORM .. "",
@@ -415,7 +416,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_LIL_SHIVA] = {
 		itemName = "리틀 시바",
 		description = ""
-		.. "#일정 주기로 {{Collectible532}}눈물을 흡수하는 눈물을 일렬로 5발 발사합니다."
+		.. "#{{Collectible532}} 일정 주기로 눈물을 흡수하는 눈물을 일렬로 5발 발사합니다."
 		.. "#최대 5번 흡수 시 파열되어 8방향으로 작은 눈물이 발사됩니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
@@ -423,7 +424,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_NEKO_FIGURE] = {
 		itemName = "고양이 피규어",
 		description = ""
-		.. "#↓ {{Damage}}공격력 배율 x0.9"
+		.. "#↓ {{DamageSmall}}공격력 배율 x0.9"
 		.. "#캐릭터의 공격이 적의 방어력을 무시합니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "{{CR}}",
@@ -440,7 +441,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_LIL_MAO] = {
 		itemName = "리틀 마오",
 		description = ""
-		.. "#↑ {{Speed}}이동속도 +0.15"
+		.. "#↑ {{SpeedSmall}}이동속도 +0.15"
 		.. "#스스로 움직일 수 없으며 둥근 레이저가 그녀 주변을 둘러쌉니다."
 		.. "#캐릭터와 접촉 후 공격 키로 던질 수 있습니다."
 		.. "{{CR}}",
@@ -458,7 +459,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_BALANCE] = {
 		itemName = "미러 밸런스",
 		description = ""
-		.. "#{{Coin}} 동전 +10"
+		.. "#↑ {{Coin}}동전 +10"
 		.. "#동전 5개를 소모하여 폭탄과 열쇠를 각각 1개씩 획득합니다."
 		.. "#!!! 동전이 부족한 상태에서 사용 시: "
 		.. "#폭탄 혹은 열쇠 중 갯수가 많은 쪽을 1개 차감하여 다른 쪽 픽업을 1개 획득합니다."
@@ -468,10 +469,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_MOE_MUFFIN] = {
 		itemName = "모에의 머핀",
 		description = ""
-		.. "↑ 최대 체력 +1"
-		.. "#{{Heart}}빨간하트 +1"
-		.. "#↑ {{Damage}}공격력 +1.5"
-		.. "#↑ {{Range}}사거리 +1.5"
+		.. "↑ {{Heart}}최대 체력 +1"
+		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{DamageSmall}}공격력 +1.5"
+		.. "#↑ {{RangeSmall}}사거리 +1.5"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -502,8 +503,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "클로버 잎사귀",
 		description = ""
 		.. "↑ 최대 체력 +1"
-		.. "#{{Heart}}빨간하트 +1"
-		.. "#↑ {{Damage}}공격력 배율 x1.11"
+		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{DamageSmall}}공격력 배율 x1.11"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -517,7 +518,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_ARCANE_CRYSTAL] = {
 		itemName = "아케인 크리스탈",
 		description = ""
-		.. "#↑ {{Damage}}공격력 배율 1.12x"
+		.. "#↑ {{DamageSmall}}공격력 배율 1.12x"
 		.. "#공격에 유도 효과가 생깁니다."
 		.. "#적들이 대미지를 받을 때 70%의 확률로 한 번 더 받습니다."
 		.. "{{CR}}",
@@ -526,7 +527,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_ADVANCED_CRYSTAL] = {
 		itemName = "어드밴스드 크리스탈",
 		description = ""
-		.. "#↑ {{Damage}}공격력 배율 1.14x"
+		.. "#↑ {{DamageSmall}}공격력 배율 1.14x"
 		.. "#공격이 적을 관통합니다."
 		.. "#적들이 대미지를 받을 때 25%의 확률로 적의 방어를 무시합니다."
 		.. "{{CR}}",
@@ -535,7 +536,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_MYSTIC_CRYSTAL] = {
 		itemName = "미스틱 크리스탈",
 		description = ""
-		.. "#↑ {{Damage}}공격력 배율 1.16x"
+		.. "#↑ {{DamageSmall}}공격력 배율 1.16x"
 		.. "#눈물에 후광이 생깁니다."
 		.. "#{{Card" .. Card.CARD_HOLY .."}} 하트가 꽉 찬 상태에서 소울 하트 픽업을 집을 경우 Holy Mantle 방어막을 지급합니다. (최대 5회)"
 		.. "{{CR}}",
@@ -655,7 +656,7 @@ wakaba.descriptions[desclang].collectibles = {
 
 wakaba.descriptions[desclang].bingeeater = {
 	[wakaba.COLLECTIBLE_D_CUP_ICECREAM] = {
-		description = "↑ {{Damage}}공격력 +1.0#↓ {{Speed}}이동속도 -0.04",
+		description = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
 	},
 	--[[ [wakaba.COLLECTIBLE_MOE_MUFFIN] = {
 		description = "+1.0 Damage Up",
@@ -684,7 +685,7 @@ wakaba.descriptions[desclang].belial = {
 		description = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%", 
 	},
 	[wakaba.COLLECTIBLE_PHANTOM_CLOAK] = {
-		description = "은폐 상태일 때 {{Damage}}공격력 배율 x1.25", 
+		description = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25", 
 	},
 	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
 		description = "아이템 소환 시 악마방 배열의 아이템이 소환됩니다.", 
@@ -812,16 +813,16 @@ wakaba.descriptions[desclang].abyss = {
 }
 wakaba.descriptions[desclang].wakaba = {
 	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
-		description = "{{Tears}}연사 배율 x1.25",
+		description = "{{TearsSmall}}연사 배율 x1.25",
 	},
 	[CollectibleType.COLLECTIBLE_URANUS] = {
-		description = "{{Damage}}공격력 배율 x1.5#{{ColorWakabaBless}}와카바의 공격이 적의 방어력을 무시합니다.",
+		description = "{{DamageSmall}}공격력 배율 x1.5#{{ColorWakabaBless}}와카바의 공격이 적의 방어력을 무시합니다.",
 	},
 	
 }
 wakaba.descriptions[desclang].wakaba_b = {
 	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
-		description = "{{Damage}}공격력 +4#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
+		description = "{{DamageSmall}}공격력 +4#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
 	},
 }
 wakaba.descriptions[desclang].shiori = {
@@ -848,7 +849,7 @@ wakaba.descriptions[desclang].bless = {
 		description = "아이템을 2개 소환합니다.", 
 	},
 	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
-		description = "{{Luck}}행운을 최소 10 이상으로 설정#↑ {{ColorWakabaBless}}행운에 영향을 주는 아이템의 갯수만큼 {{Luck}}행운 + 0.5", 
+		description = "{{LuckSmall}}행운을 최소 10 이상으로 설정#↑ {{ColorWakabaBless}}행운에 영향을 주는 아이템의 갯수만큼 {{LuckSmall}}행운 + 0.5", 
 	},
 	[wakaba.COLLECTIBLE_PLUMY] = {
 		description = "플럼이가 캐릭터의 눈물을 발사할 수 있게 됩니다.", 
@@ -870,10 +871,10 @@ wakaba.descriptions[desclang].nemesis = {
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
-		description = "현재 방에서 {{Damage}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.", 
+		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.", 
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
-		description = "현재 방에서 {{Damage}}추가 공격력 +1.5#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible462}}벨리알의 눈효과가 적용됩니다.", 
+		description = "현재 방에서 {{DamageSmall}}추가 공격력 +1.5#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible462}}벨리알의 눈효과가 적용됩니다.", 
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
 		description = "캐릭터 공격력 64%의 위력의 검은 고리를 5개를 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible592}}눈물이 돌이 됩니다.", 
@@ -900,7 +901,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 		description = "Darkness 및 Lost 저주를 해제하며 3종류의 지도 효과를 전부 발동합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible618}}표식을 박는 눈물을 발사합니다.", 
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
-		description = "현재 층에서 {{Damage}}추가 공격력 +1.0#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible259}}공포를 거는 눈물을 발사합니다.", 
+		description = "현재 층에서 {{DamageSmall}}추가 공격력 +1.0#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible259}}공포를 거는 눈물을 발사합니다.", 
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
 		description = "아군 Bony를 추가로 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible237}}낫을 발사합니다.", 
@@ -948,7 +949,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.BRING_ME_THERE] = {
 		itemName = "나를 데려다 줘",
 		description = ""
-		.. "#↑ {{Tears}}연사 +1.5"
+		.. "#↑ {{TearsSmall}}연사 +1.5"
 		.. "#이 장신구를 소지한 상태에서 Mausoleum/Gehenna II에 진입할 경우 엄마(Mom) 대신 아빠의 노트(Dad's Note)가 등장합니다."
 		.. "#이 장신구는 Mines/Ashpit II, Mausoleum/Gehenna I 스테이지 시작방에서도 등장합니다."
 		.. "#!!! {{ColorRed}}아빠의 노트로 교체된 경우 더 이상 Womb/Corpse 스테이지로 진입할 수 없습니다.{{ColorReset}}"
@@ -967,9 +968,9 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.TRINKET_CLOVER] = {
 		itemName = "클로버",
 		description = ""
-		.. "↑ {{Tears}}연사 +0.3"
-		.. "#↑ {{Luck}}행운 +2"
-		.. "#↑ {{Luck}}행운 배율 x2"
+		.. "↑ {{TearsSmall}}연사 +0.3"
+		.. "#↑ {{LuckSmall}}행운 +2"
+		.. "#↑ {{LuckSmall}}행운 배율 x2"
 		.. "#↑ 행운이 0 이하인 경우 0 이상이 되도록 반전됩니다."
 		.. "#행운 동전의 등장 확률이 증가합니다."
 		.. "{{CR}}",
@@ -1013,11 +1014,11 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.TRINKET_RING_OF_JUPITER] = {
 		itemName = "유피테르의 유대",
 		description = ""
-		.. "↑ {{Tears}}연사 +20%"
-		.. "#↑ {{Speed}}이동속도  +10%"
-		.. "#↑ {{Damage}}공격력 +16%"
-		.. "#↑ {{Shotspeed}}탄속 +5%"
-		.. "#↑ {{Luck}}행운 +1"
+		.. "↑ {{TearsSmall}}연사 +20%"
+		.. "#↑ {{SpeedSmall}}이동속도  +10%"
+		.. "#↑ {{DamageSmall}}공격력 +16%"
+		.. "#↑ {{ShotspeedSmall}}탄속 +5%"
+		.. "#↑ {{LuckSmall}}행운 +1"
 		.. "#모든 플레이어가 해당 장신구의 스탯 증가량만큼 증가합니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -1042,8 +1043,8 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.TRINKET_RANGE_OS] = {
 		itemName = "강습형 전투 시스템",
 		description = ""
-		.. "#↓ {{Range}}사거리 배율 x0.55"
-		.. "#↑ {{Damage}}공격력 배율 x2.25"
+		.. "#↓ {{RangeSmall}}사거리 배율 x0.55"
+		.. "#↑ {{DamageSmall}}공격력 배율 x2.25"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -1130,23 +1131,23 @@ wakaba.descriptions[desclang].runechalk = {
 wakaba.descriptions[desclang].pills = {
 	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
 		itemName = "공격력 배율 증가",
-		description = "↑ {{Damage}}공격력 배율 x1.08#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		description = "↑ {{DamageSmall}}공격력 배율 x1.08#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
 	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "공격력 배율 감소",
-		description = "↓ {{Damage}}공격력 배율 x0.98#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		description = "↓ {{DamageSmall}}공격력 배율 x0.98#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
 	[wakaba.PILL_ALL_STATS_UP] = {
 		itemName = "모든 능력치 증가",
-		description = "↑ {{Damage}}공격력 +0.25#↑ {{Tears}}연사 +0.2#↑ {{Speed}}이동속도 +0.12#↑ {{Range}}사거리 +0.4#↑ {{Shotspeed}}탄속 +0.08#↑ {{Luck}}행운 +1#",
+		description = "↑ {{DamageSmall}}공격력 +0.25#↑ {{TearsSmall}}연사 +0.2#↑ {{SpeedSmall}}이동속도 +0.12#↑ {{RangeSmall}}사거리 +0.4#↑ {{ShotspeedSmall}}탄속 +0.08#↑ {{LuckSmall}}행운 +1#",
 	},
 	[wakaba.PILL_ALL_STATS_DOWN] = {
 		itemName = "모든 능력치 감소",
-		description = "↓ {{Damage}}공격력 -0.1#↓ {{Tears}}연사 -0.08#↓ {{Speed}}이동속도 -0.09#↓ {{Range}}사거리 -0.25#↓ {{Shotspeed}}탄속 -0.06#↓ {{Luck}}행운 -1#",
+		description = "↓ {{DamageSmall}}공격력 -0.1#↓ {{TearsSmall}}연사 -0.08#↓ {{SpeedSmall}}이동속도 -0.09#↓ {{RangeSmall}}사거리 -0.25#↓ {{ShotspeedSmall}}탄속 -0.06#↓ {{LuckSmall}}행운 -1#",
 	},
 	[wakaba.PILL_TROLLED] = {
 		itemName = "낚였구나아아아아아아",
-		description = "에러방으로 텔레포트합니다.",
+		description = "에러방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.",
 	},
 	[wakaba.PILL_TO_THE_START] = {
 		itemName = "태초마을",
@@ -1159,6 +1160,10 @@ wakaba.descriptions[desclang].pills = {
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		itemName = "사회적 거리두기",
 		description = "현재 층에서 악마방/천사방의 등장을 막습니다.",
+	},
+	[wakaba.PILL_DUALITY_ORDERS] = {
+		itemName = "이중 질서",
+		description = "{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#둘 중 하나만 획득할 수 있습니다.",
 	},
 	[wakaba.PILL_FLAME_PRINCESS] = {
 		itemName = "불꽃 공주",
@@ -1179,52 +1184,69 @@ wakaba.descriptions[desclang].pills = {
 }
 wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
-		itemName = "Damage Multiplier Up",
-		description = "↑ +16% Damage Multiplier",
+		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_UP),
+		"공격력 배율 증가",
+		"↑ +16% {{DamageSmall}}Damage Multiplier",
 	},
 	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
-		itemName = "Damage Down",
-		description = "↓ -0.4 Damage down",
+		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_DOWN),
+		"공격력 배율 감소",
+		"↓ -4% {{DamageSmall}}Damage Multiplier",
 	},
 	[wakaba.PILL_ALL_STATS_UP] = {
-		itemName = "All Stats Up",
-		description = "↑ +2 Damage up#↑ +1.0 Tears up#↑ +0.4 Speed up#↑ +0.16 Shot Speed up#↑ +2 Luck up#",
+		tostring(wakaba.PILL_ALL_STATS_UP),
+		"모든 능력치 증가",
+		"↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.4#↑ {{SpeedSmall}}이동속도 +0.24#↑ {{RangeSmall}}사거리 +0.8#↑ {{ShotspeedSmall}}탄속 +0.16#↑ {{LuckSmall}}행운 +2",
 	},
 	[wakaba.PILL_ALL_STATS_DOWN] = {
-		itemName = "All Stats Down",
-		description = "↓ -0.2 Damage down#↓ -0.4 Tears down#↓ -0.24 Speed down#↓ -0.12 Shot Speed down#↓ -2 Luck down#",
+		tostring(wakaba.PILL_ALL_STATS_DOWN),
+		"모든 능력치 감소",
+		"↓ {{DamageSmall}}공격력 -0.2#↓ {{TearsSmall}}연사 -0.16#↓ {{SpeedSmall}}이동속도 -0.18#↓ {{RangeSmall}}사거리 -0.5#↓ {{ShotspeedSmall}}탄속 -0.12#↓ {{LuckSmall}}행운 -2",
 	},
 	[wakaba.PILL_TROLLED] = {
-		itemName = "Trolled!",
-		description = "Teleports to I AM ERROR room",
+		tostring(wakaba.PILL_TROLLED),
+		"낚였구나아아아아아아",
+		"에러방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}소지 불가능 체력 -1",
 	},
 	[wakaba.PILL_TO_THE_START] = {
-		itemName = "To the Start!",
-		description = "Teleports to Starting room on the floor#Heals 1 Heart",
+		tostring(wakaba.PILL_TO_THE_START),
+		"태초마을",
+		"각 층의 시작 방으로 텔레포트합니다.#↑ {{Heart}}하트 +1#↑ {{BrokenHeart}}소지 불가능 체력 -1",
 	},
 	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = {
-		itemName = "Explosive Diarrehea 2!",
-		description = "Spawns 2 troll Brimstone swirls at Isaac's position",
+		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
+		"혈사 설사 2",
+		"캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.",
 	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
-		itemName = "Social Distance",
-		description = "Closes Devil/Angel room for current floor",
+		tostring(wakaba.PILL_SOCIAL_DISTANCE),
+		"사회적 거리두기",
+		"현재 층에서 악마방/천사방의 등장을 막습니다.#↓ 이후 층에서의 악마방/천사방 확률 감소",
+	},
+	[wakaba.PILL_DUALITY_ORDERS] = {
+		tostring(wakaba.PILL_DUALITY_ORDERS),
+		"이중 질서",
+		"{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#두 아이템 모두 획득할 수 있습니다.",
 	},
 	[wakaba.PILL_FLAME_PRINCESS] = {
-		itemName = "Flame Princess",
-		description = "Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max healt#Spawns a {{Collectible584}}Book of Virtues Wisp if there are no wisps",
+		tostring(wakaba.PILL_FLAME_PRINCESS),
+		"불꽃 공주",
+		"소지 중인 레메게톤 위습을 흡수하여 아이템을 2개씩 획득합니다.#흡수하지 못한 위습의 체력을 전부 회복합니다.#위습을 하나도 소지하지 않은 경우 위습을 하나 소환합니다.",
 	},
 	[wakaba.PILL_FIREY_TOUCH] = {
-		itemName = "Firey Touch",
-		description = "Curse of Flames effect for current floor#Heals all Wisps' health to max",
+		tostring(wakaba.PILL_FIREY_TOUCH),
+		"앗 뜨거!",
+		"{{WakabaCurseFlames}} Curse of Flames!(불꽃의 저주)에 걸립니다.#위습의 체력을 전부 회복합니다.",
 	},
 	[wakaba.PILL_PRIEST_BLESSING] = {
-		itemName = "Priest's Blessing",
-		description = "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
+		tostring(wakaba.PILL_PRIEST_BLESSING),
+		"성녀의 가호",
+		"피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.#{{Card51}} (Holy Card 효과와 동일)",
 	},
 	[wakaba.PILL_UNHOLY_CURSE] = {
-		itemName = "Unholy Curse",
-		description = "Removes a stack from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
+		tostring(wakaba.PILL_UNHOLY_CURSE),
+		"빼앗긴 신앙",
+		"Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
 	},
 }
 
@@ -1328,7 +1350,7 @@ wakaba.descriptions[desclang].entities = {
 		.. "#{{Warning}} 상자에서 이하 아이템 중 하나를 드랍합니다 :"
 		.. "#{{Coin}} {{ColorSilver}}황금 코인"
 		.. "#{{Coin}} {{ColorSilver}}행운 코인 2개"
-		.. "#{{Luck}} {{ColorSilver}}운 관련 아이템"
+		.. "#{{LuckSmall}} {{ColorSilver}}운 관련 아이템"
 	},
 }
 
@@ -1568,7 +1590,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "카인",
 		description = "인류 최초로 살인을 하였습니다."
 		.. "#!!! 왼쪽 눈이 안대로 가려져 있어 오른쪽 눈으로만 눈물을 발사합니다. 한 쪽 눈에만 적용되는 눈물은 확률적으로 발사합니다."
-		.. "#{{Damage}} 체력이 낮으나 공격력이 높습니다."
+		.. "#{{DamageSmall}} 체력이 낮으나 공격력이 높습니다."
 		.. "#{{Collectible46}} 기본 소지 아이템 : 행운의 발"
 		.. "#{{Trinket19}} {{GoldenKey}}기본 소지 장신구 : 종이 클립({{GreedMode}}: 68{{Coin}})"
 		.. "#"
@@ -1578,7 +1600,7 @@ wakaba.descriptions[desclang].playernotes = {
 		-- icon = "",
 		name = "유다",
 		description = "예수를 3{{Coin}}에 팔아 버린 예수의 12 제자 중 한명입니다."
-		.. "#{{Damage}} 체력이 매우 낮으나 공격력이 매우 높습니다."
+		.. "#{{DamageSmall}} 체력이 매우 낮으나 공격력이 매우 높습니다."
 		.. "#{{Collectible34}} 기본 소지 아이템 : 벨리알의 책"
 		.. "#!!! 유다의 모자는 성경과 무관합니다."
 		.. "",
@@ -1620,7 +1642,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "아자젤",
 		description = "인간세계에서 온갖 것들을 유혹한 타천사입니다."
 		.. "#남자들에게는 싸우는 법을, 여자들에게는 화장하는 법을 가르쳐 주었습니다."
-		.. "#{{Damage}} 공격력이 매우 높습니다."
+		.. "#{{DamageSmall}} 공격력이 매우 높습니다."
 		.. "#{{Collectible118}} 검은 날개로 날 수 있으며 사거리가 매우 짧은 혈사포를 발사합니다."
 		.. "",
 	},
@@ -1671,7 +1693,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "예수를 3{{Coin}}에 팔아 버린 예수의 12 제자 중 한명...의 그림자입니다."
 		.. "#{{BlackHeart}} 최대 체력 = 블랙하트의 보정을 받으며 빨간하트를 채울 수 없습니다."
 		.. "#침대에서 자면 소울하트 3칸을 회복합니다."
-		.. "#{{Damage}} 공격력이 매우 높습니다."
+		.. "#{{DamageSmall}} 공격력이 매우 높습니다."
 		.. "#!!! 이 캐릭터의 체크리스트는 유다의 체크리스트와 공유합니다."
 		.. "",
 	},
@@ -1825,7 +1847,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{PoopPickup}} 사용 시 1.5초 후 폭발하는 폭탄입니다." -- 폭탄
 		.. "#{{PoopPickup}} Butter Bean 아이템 효과와 동일" -- 방귀
 		.. "#{{PoopPickup}} Explosive Diarrhea 알약과 동일" -- 
-		.. "#{{PoopPickup}} 바닥에 설사 장판을 깝니다. 설사 장판 위에서 {{Damage}}공격력 +1.5 {{Tears}}연사 +1" ]]
+		.. "#{{PoopPickup}} 바닥에 설사 장판을 깝니다. 설사 장판 위에서 {{DamageSmall}}공격력 +1.5 {{TearsSmall}}연사 +1" ]]
 		.. "#{{Collectible715}} 고유 능력 : 고정"
 		.. "",
 	},
@@ -2012,7 +2034,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
 		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
 		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 악마방의 모든 아이템이 6코인으로 판매됩니다."
-		.. "#{{Damage}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
+		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
 		.. "#{{Pill}} 알트 와카바로 플레이 시 행운 증가, 이동 속도 감소 알약이 등장하지 않습니다."
 		.. "#{{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS.."}} 고유 능력 : 와카바의 숙명"
 		.. "#{{Collectible"..wakaba.COLLECTIBLE_EATHEART.."}} 고유 능력 : 사랑먹이"
