@@ -343,7 +343,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	-- Check Deja Vu spawn after Fair Options at the Start? mod check
 	-- Don't check Deja Vu again if conditions are not met
-	if wakaba.state.rerollloopcount == 0 and hasDejaVu then
+	if wakaba.state.rerollloopcount == 0 and hasDejaVu and itemConfig.Quality <= 2 then
 		local candidates = wakaba:ReadDejaVuCandidates()
 		
 		local rng = RNG()
