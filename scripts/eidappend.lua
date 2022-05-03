@@ -616,9 +616,11 @@ if EID then
 				for pillid, pilldesc in pairs(wakabaDescTables.pills) do
 					EID:addPill(pillid, pilldesc.description, pilldesc.itemName, lang)
 				end
-				for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
+				--EID:addHorsePill doesn't exist lol
+				EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)
+				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
-				end
+				end ]]
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
 					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, entitydesc.description, lang)
 				end
