@@ -413,6 +413,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
 			for _, item in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 				if EID.flipItemPositions[curRoomIndex] 
+				and EID.flipItemPositions[curRoomIndex][item.InitSeed]
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed][1] == lastSelected 
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed][2] == Game():GetRoom():GetGridIndex(item.Position)
 				then
