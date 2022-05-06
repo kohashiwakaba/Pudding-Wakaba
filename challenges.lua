@@ -80,8 +80,6 @@ function wakaba:startChallenge(continue)
 	end
 	if wakaba:isDelirium() or wakaba:isHush() then
 		Game().BlueWombParTime = 2147483647
-	else
-		Game().BlueWombParTime = 54000
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.startChallenge)
