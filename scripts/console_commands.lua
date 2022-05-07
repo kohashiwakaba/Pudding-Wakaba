@@ -162,37 +162,6 @@ function wakaba:ConsoleCommands(cmd, param)
 		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaDebug)
 		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")
 	end
-	--[[ 
-	if cmd == "wakaba_unlockstats" then
-		if param == "wakaba" then
-			
-		elseif param == "wakaba_b" then
-			
-		elseif param == "shiori" then
-			
-		elseif param == "shiori_b" then
-			
-		elseif param == "challenge" then
-
-		--elseif PostItForAll and param == "syncmarks" then
-
-		else
-			print("")
-			print("")
-			print("")
-			print("")
-			print("Unlock status for Pudding and Wakaba")
-			print("")
-			print("wakaba_unlockstats wakaba - Show Wakaba unlock status")
-			print("wakaba_unlockstats wakaba_b - Show Tainted Wakaba unlock status")
-			print("wakaba_unlockstats shiori - Show Shiori unlock status")
-			print("wakaba_unlockstats shiori_b - Show Tainted Shiori unlock status")
-			print("wakaba_unlockstats challenge - Show Challenge unlock status")
-			if PostItForAll then
-				--print("wakaba_unlockstats syncmarks - Sync Completion marks for `Completion Marks for ALL Modded Characters` mod")
-			end
-		end
-	end ]]
 	-- Wakaba unlock cheats
 	if cmd == "wakaba_cheat" then
 		if param == "wakaba" then
@@ -205,7 +174,15 @@ function wakaba:ConsoleCommands(cmd, param)
 			wakaba:unlockTaintedShiori(true)
 		elseif param == "challenge" then
 			wakaba:unlockChallenge(true)
+		elseif param == "all" then
+			wakaba:unlockWakaba(true)
+			wakaba:unlockTaintedWakaba(true)
+			wakaba:unlockShiori(true)
+			wakaba:unlockTaintedShiori(true)
+			wakaba:unlockChallenge(true)
 		else
+			print("")
+			print("")
 			print("")
 			print("")
 			print("")
@@ -219,6 +196,7 @@ function wakaba:ConsoleCommands(cmd, param)
 			print("wakaba_cheat shiori - Unlock all Shiori unlocks")
 			print("wakaba_cheat shiori_b - Unlock all Tainted Shiori unlocks")
 			print("wakaba_cheat challenge - Unlock all Challenge unlocks")
+			print("wakaba_cheat all - Unlock all above")
 		end
 	end
 
