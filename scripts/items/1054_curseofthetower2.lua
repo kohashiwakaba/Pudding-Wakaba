@@ -90,14 +90,14 @@ function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown
 	local player = entity:ToPlayer()
 	if player then
 		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
-			if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
+			--[[ if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
 				entity:ToPlayer():SetMinDamageCooldown(1)
 				return false
 			end
 			if flags & DamageFlag.DAMAGE_CRUSH == DamageFlag.DAMAGE_CRUSH then
 				entity:ToPlayer():SetMinDamageCooldown(1)
 				return false
-			end
+			end ]]
       Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
 		end
 	end
