@@ -68,7 +68,7 @@
 	THSTR.AddCustomCostume({2000 + myCostume}) -- the variable containing your modded costume (Null costumes only)
 ]]
 
-function wakaba:GameStart_NotWakaba(fromsave)
+--[[ function wakaba:GameStart_NotWakaba(fromsave)
 	if TheStrangerRole ~= nil then -- Test if "The Stranger" mod is active
 
 		THSTR.AddCustomRole("Not Wakaba", "11116", 1.0, 10, 4.0, 0.9, 2, 16)
@@ -89,7 +89,7 @@ function wakaba:GameStart_NotWakaba(fromsave)
 
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_NotWakaba)
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_NotWakaba) ]]
 
 
 -- That's all ! You can now create as many role as you want ! Have fun !
