@@ -321,7 +321,8 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		end
 	elseif not eatHeartUsed and not wakaba.state.hasnemesis and wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore then
 		MinQuality = 2
-	elseif hasAntiBalance then
+	end
+	if hasAntiBalance then
 		validQuality["2"] = false
 	end
 
