@@ -23,6 +23,7 @@ if EID then
 			[wakaba.SOUL_WAKABA2] = 12,
 			[wakaba.SOUL_SHIORI] = 10,
 			--[wakaba.SOUL_TSUKASA] = 13,
+			[wakaba.CARD_RETURN_TOKEN] = 14,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)
@@ -552,7 +553,9 @@ if EID then
 			EID:setModIndicatorName("Pudding & Wakaba")
 			EID:setModIndicatorIcon("Player"..wakaba.PLAYER_WAKABA.."", true)
 			for cardid, carddata in pairs(wakaba.descriptions["en_us"].cards) do
-				EID:addCardMetadata(cardid, carddata.mimiccharge, carddata.isrune)
+				if carddata.mimiccharge then
+					EID:addCardMetadata(cardid, carddata.mimiccharge, carddata.isrune)
+				end
 			end
 			for pillid, pilldata in pairs(wakaba.descriptions["en_us"].pills) do
 				EID:addPillMetadata(pillid, pilldata.mimiccharge, pilldata.class)

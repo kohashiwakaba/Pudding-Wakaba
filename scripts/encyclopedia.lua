@@ -1176,6 +1176,14 @@ if Encyclopedia then
 				{str = "Activates Random Book of Shiori tear effect."},
 			},
 		},
+		CARD_RETURN_TOKEN = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Invokes R Key Effect."},
+				{str = "Also resets game timer."},
+				{str = "Removes all of Isaac's health, consumables, card/pills, and trinkets."},
+			},
+		},
 		
 		BRING_ME_THERE = {
 			{ -- Effects
@@ -2960,6 +2968,22 @@ if Encyclopedia then
 				return self
 			end
 		end,
+	})
+	
+	--Soul of Shiori
+	Encyclopedia.AddCard({
+		Class = class,
+		ModName = class,
+		ID = wakaba.CARD_RETURN_TOKEN,
+		WikiDesc = Wiki.CARD_RETURN_TOKEN,
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Return Token",0),
+		--[[ UnlockFunc = function(self)
+			if not wakaba.state.unlock.returncard then
+				self.Desc = "Defeat Boss Rush, Hush as Tainted Tsukasa"
+				
+				return self
+			end
+		end, ]]
 	})
 	
 	--Revenge Fruit

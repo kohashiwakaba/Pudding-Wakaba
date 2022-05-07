@@ -1100,6 +1100,10 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "미지의 책갈피",
 		description = "#사용 시 임의의 책 효과를 발동합니다.",
 	},
+	[wakaba.CARD_RETURN_TOKEN] = {
+		itemName = "리턴 토큰",
+		description = "{{Collectible636}} 사용 시 R 키 효과 발동:#소지중인 아이템과 능력치가 유지된 상태로 게임을 다시 시작합니다.#{{Timer}} 게임 시간이 초기화됩니다.#!!! {{ColorRed}}체력을 포함한{{CR}} 캐릭터의 모든 픽업 아이템을 지웁니다.",
+	},
 	
 	[wakaba.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",

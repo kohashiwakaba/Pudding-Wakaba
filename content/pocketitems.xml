@@ -17,6 +17,8 @@
 	<card pickup="4108" type="rune" description="Cycle your fate" hud="Soul of Shiori" name="Soul of Shiori" mimiccharge="6" />
 	<card pickup="4109" type="suit" description=";P" hud="Queen of Spades" name="Queen of Spades" mimiccharge="10" />
 
+	<card pickup="4111" type="object" description="History repeat itself" hud="Return Token" name="Return Token"/>
+
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />
 	<pilleffect name="All Stats Down" class="3-" mimiccharge="4" />

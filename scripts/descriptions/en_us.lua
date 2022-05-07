@@ -1046,6 +1046,10 @@ wakaba.descriptions[desclang].cards = {
 		description = "Activates a random book effect#!!! Following books can be activated:",
 		mimiccharge = 1,
 	},
+	[wakaba.CARD_RETURN_TOKEN] = {
+		itemName = "Return Token",
+		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact#{{Timer}} Resets game timer#Removes all of Isaac's consumables {{ColorRed}}including health{{CR}}",
+	},
 	--[[ [wakaba.CARD_BASEMENT_CARD] = {
 		itemName = "Basement Card",
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact",
