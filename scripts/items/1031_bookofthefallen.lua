@@ -75,6 +75,7 @@ function wakaba:AfterRevival_BookOfTheFallen(player)
 	Poof.SpriteScale = Vector(1.5, 1.5)
 	data.wakaba.shioridevil = true
 	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FLYING | CacheFlag.CACHE_TEARFLAG)
+	player:AddBlackHearts(12)
 
 	player:EvaluateItems()
 end
