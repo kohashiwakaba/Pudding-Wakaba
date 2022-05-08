@@ -190,32 +190,34 @@
 	-->
 	
 	<!-- Eat Heart -->
-	<wisp id="3" hp="24" count="4" damage="14" stageDamage="2" flameColor="flame_black" coreColor="core_red" tearColor="tear_red" layer="2" coreGfx="heart.png" />
+	<wisp id="3" hp="24" count="1" canShoot="false" flameColor="flame_black" coreColor="core_red" tearColor="tear_red" layer="0" coreGfx="heart.png" />
 	
 	<!-- Book of Forgotten -->
-	<wisp id="4" hp="4" damage="5" stageDamage="0.5" flameColor="flame_black" coreColor="core_white" tearColor="tear_white" layer="2" coreGfx="heart.png" />
+	<wisp id="4" hp="3" damage="4" stageDamage="0.5" flameColor="flame_black" coreColor="core_white" tearColor="tear_white" layer="1" coreGfx="heart.png" />
 	<!-- Wakaba's Uniform -->
-	<wisp id="13" count="0" hp="3" damage="1" stageDamage="0.2" flameColor="flame_bright_blue" tearColor="tear_purple" fireDelay="7" coreColor="core_purple" layer="-1" coreGfx="box.png" />
+	<wisp id="13" count="0"/>
 	<!-- Counter -->
+	<wisp id="17" count="0"/>
 	<!-- D6 Plus -->
 	<wisp id="19" hp="4" damage="3" flameColor="flame_bright_blue" tearColor="tear_purple" coreColor="core_purple" coreGfx="dice.png" />
 	<!-- D6 Chaos -->
 	<wisp id="20" hp="2" damage="3" flameColor="flame_green" tearColor="tear_purple" coreColor="core_purple" coreGfx="dice.png" />
 	<!-- Book of Focus -->
-	<wisp id="26" hp="6" damage="6" stageDamage="1" flameColor="flame_green" tearColor="tear_purple" coreColor="core_purple" coreGfx="shield.png" />
+	<wisp id="26" hp="6" damage="6" stageDamage="1" tearFlags="2" flameColor="flame_green" tearColor="tear_purple" coreColor="core_purple" coreGfx="shield.png" />
 	<!-- Shiori's Bottle of Runes -->
 	<wisp id="27" hp="4" damage="3" flameColor="flame_white" tearColor="tear_purple" coreColor="core_purple" coreGfx="rune.png" tearFlags="80" />
 	<!-- Micro Doppelganger -->
 	<wisp id="28" hp="4" damage="3" flameColor="flame_yellow" tearColor="tear_beige" coreColor="core_beige" coreGfx="isaac.png" tearFlags="1" />
 	<!-- Book of Silence -->
+	<wisp id="29" hp="1" damage="3" flameColor="flame_purple" tearColor="tear_black" coreColor="core_black" canShoot="false" layer="2"/>
 	<!-- Book of Conquest -->
-	<wisp id="31" count="0" hp="8" damage="10" flameColor="flame_pink" tearColor="tear_plum" coreColor="core_plum" coreGfx="heart.png" tearFlags2="13" tearColor2="tear_pink" procChance="0.2" />
+	<wisp id="31" count="0" hp="8" damage="10" flameColor="flame_pink" tearColor="tear_plum" coreColor="core_plum" coreGfx="heart.png" tearFlags2="13" tearColor2="tear_pink" procChance="0.2" layer="2"/>
 	<!-- Grimreaper Defender -->
-	<wisp id="33" hp="8" damage="10" flameColor="flame_black" tearColor="tear_black" coreColor="core_black" coreGfx="sword.png" tearFlags2="20" tearColor2="tear_purple" procChance="0.32" />
+	<wisp id="33" count="0" hp="64" damage="10" flameColor="flame_white" tearColor="tear_black" coreColor="core_black" coreGfx="sword.png" tearFlags2="20" tearColor2="tear_purple" procChance="0.32" layer="0"/>
 	<!-- Book of the Fallen -->
-	<wisp id="35" hp="3" damage="3" canShoot="false" flameColor="flame_black" tearColor="tear_purple" coreColor="core_purple" coreGfx="cross_inverted.png" />
+	<wisp id="35" hp="3" damage="8" canShoot="false" flameColor="flame_black" tearColor="tear_purple" coreColor="core_purple" coreGfx="cross_inverted.png" />
 	<!-- Maijima Mythology -->
-	<wisp id="36" hp="1" damage="3" flameColor="flame_white" tearColor="tear_beige" coreColor="core_beige" coreGfx="card.png" />
+	<wisp id="36" hp="1" damage="3" flameColor="flame_white" tearColor="tear_beige" coreColor="core_beige" coreGfx="card.png" layer="2"/>
 	<!-- Book of Trauma -->
 	<!-- Apollyon Crisis -->
 	<wisp id="38" hp="4" damage="3" flameColor="flame_grey" tearColor="tear_black" coreColor="core_black" coreGfx="locust.png" />
@@ -226,4 +228,5 @@
 	
 	
 	
+	<wisp id="999" count="0" />
 </wisps>
