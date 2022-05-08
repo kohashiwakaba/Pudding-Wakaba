@@ -256,10 +256,10 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
 
       local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
         Game():GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
-        Isaac.GetFreeNearPosition(player.Position - 32, 32), Vector(0,0), nil)
+        Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil)
       local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
       Game():GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
-        Isaac.GetFreeNearPosition(player.Position + 32, 32), Vector(0,0), nil)
+        Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil)
 
       if isHorse then
         Game():SetLastDevilRoomStage(-1)
