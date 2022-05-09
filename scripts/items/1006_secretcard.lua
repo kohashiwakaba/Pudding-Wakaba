@@ -37,7 +37,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
   damaged = false
   for i = 1, Game():GetNumPlayers() do
   	local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_SECRET_CARD) and not Game():IsGreedMode() then
+		if (player:GetPlayerType() == wakaba.PLAYER_WAKABA or player:HasCollectible(wakaba.COLLECTIBLE_SECRET_CARD)) and not Game():IsGreedMode() then
 			hasSecretCard = true
 		end
   	if Game():GetRoom():IsFirstVisit() and player:HasCollectible(wakaba.COLLECTIBLE_SECRET_CARD) and not Game():IsGreedMode() then
