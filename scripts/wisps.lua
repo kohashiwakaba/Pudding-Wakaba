@@ -21,8 +21,15 @@ function wakaba:TakeDamage_Wisps(wisp, amount, flags, source, cooldown)
   end
   if wisp:ToFamiliar() and wisp:ToFamiliar().Player then
     local player = wisp:ToFamiliar().Player
+    -- Counter
+    if player:GetData().wakabacountertimer and player:GetData().wakabacountertimer > 0 then
+      return false
+    end
+    -- Wakaba's Uniform
+    if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM) then
+      return false
+    end
     -- Flash Shift
-
     
   end
 end

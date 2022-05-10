@@ -710,7 +710,7 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다."
 	},
 	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#카운터가 발동 중일 때 모든 불꽃이 무적이 되며 레이저의 공격력이 (불꽃 x2)만큼 추가됩니다."
+		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다."
 	},
 	[wakaba.COLLECTIBLE_D6_PLUS] = {
 		description = "{{ColorLime}}내부 링 1마리: {{CR}}바꾼 아이템의 수만큼 불꽃을 추가로 소환합니다."
@@ -719,10 +719,10 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		description = "{{ColorLime}}내부 링 1마리: {{CR}}바꾼 아이템의 수만큼 불꽃을 추가로 소환합니다."
 	},
 	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
-		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}{{Weakness}}맞으면 적을 약화시키는 유도 눈물을 발사합니다."
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#유도 눈물을 발사합니다."
 	},
 	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
-		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}{{Rune}}적을 처치할 때 15%의 확률로 룬을 드랍합니다.#{{Rune}}불꽃이 꺼지면 룬을 드랍합니다."
+		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#{{Rune}}적을 처치할 때 15%의 확률로 룬을 드랍합니다.#{{Rune}}불꽃이 꺼지면 룬을 드랍합니다."
 	},
 	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
 		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#불꽃이 꺼지면 꼬마 아이작을 소환합니다."

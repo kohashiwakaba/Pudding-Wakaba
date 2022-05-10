@@ -190,7 +190,7 @@
 	-->
 	
 	<!-- Eat Heart -->
-	<wisp id="3" hp="24" count="1" canShoot="false" flameColor="flame_black" coreColor="core_red" tearColor="tear_red" layer="0" coreGfx="heart.png" />
+	<wisp id="3" hp="24" canShoot="false" flameColor="flame_black" coreColor="core_red" tearColor="tear_red" layer="0" coreGfx="heart.png" priority="99"/>
 	
 	<!-- Book of Forgotten -->
 	<wisp id="4" hp="3" damage="4" stageDamage="0.5" flameColor="flame_black" coreColor="core_white" tearColor="tear_white" layer="1" coreGfx="heart.png" />
