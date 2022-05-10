@@ -736,33 +736,33 @@ wakaba.descriptions[desclang].bookofvirtues = {
 	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
 		description = "{{ColorLime}}내부 링 1마리: {{CR}}불꽃의 체력이 매우 높음#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
+	--[[ [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
 		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6마리: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
-	},
+	}, ]]
 	[wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY] = {
 		description = "{{ColorOrange}}외부 링 1마리: {{CR}}#불꽃이 꺼지면 Unknown Bookmark를 드랍합니다."
 	},
-	[wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
+	--[[ [wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#현재 켜져 있는 모든 불꽃을 흡수하며 능력치로 환산합니다."
-	},
-	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+	}, ]]
+	--[[ [wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
 		description = "{{ColorLime}}내부 링 1마리: {{CR}}#캐릭터와 같은 공격력의 눈물을 발사합니다."
-	},
+	}, ]]
 	[wakaba.COLLECTIBLE_BALANCE] = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#열쇠와 폭탄의 수가 같은 상태에서 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
 	},
-	[wakaba.COLLECTIBLE_FLASH_SHIFT] = {
+	--[[ [wakaba.COLLECTIBLE_FLASH_SHIFT] = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
 	},
 	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
 		description = "{{ColorOrange}}외부 링 1마리: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
-	},
+	}, ]]
 	[wakaba.COLLECTIBLE_3D_PRINTER] = {
 		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#불꽃이 꺼지면 장신구를 드랍합니다."
 	},
 
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
-		description = "{{ColorRed}}!!!효과 없음{{CR}}#"
+		description = "{{ColorRed}}!!!효과 없음{{CR}}"
 	},
 
 

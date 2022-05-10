@@ -720,7 +720,79 @@ wakaba.descriptions[desclang].belial = {
 	},
 }
 wakaba.descriptions[desclang].bookofvirtues = {
-	
+
+	--[[ Book of Virtues
+		Ring position > count
+		tearvariants
+		effects
+		when destroyed
+	 ]]
+
+	[wakaba.COLLECTIBLE_EATHEART] = {
+		description = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears"
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed"
+	},
+	[wakaba.COLLECTIBLE_UNIFORM] = {
+		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held"
+	},
+	[wakaba.COLLECTIBLE_COUNTER] = {
+		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while counter shield is active"
+	},
+	[wakaba.COLLECTIBLE_D6_PLUS] = {
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
+	},
+	[wakaba.COLLECTIBLE_D6_CHAOS] = {
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
+		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Homing tears"
+	},
+	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{Rune}}15% chance for enemy to drop rune on kill#{{Rune}}Spawns a rune when destroyed"
+	},
+	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns MinIsaacs when destroyed"
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Immune to projectiles#Erases nearby projectiles"
+	},
+	[wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = {
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact"
+	},
+	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Consumed upon death and revives"
+	},
+	--[[ [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
+		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
+	}, ]]
+	[wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY] = {
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns Unknown Bookmark when destroyed"
+	},
+	--[[ [wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
+		description = "{{ColorRed}}!!!No Wisp {{CR}}#현재 켜져 있는 모든 불꽃을 흡수하며 능력치로 환산합니다."
+	}, ]]
+	--[[ [wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}#캐릭터와 같은 공격력의 눈물을 발사합니다."
+	}, ]]
+	[wakaba.COLLECTIBLE_BALANCE] = {
+		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while Isaac has same Keys and Bombs"
+	},
+	--[[ [wakaba.COLLECTIBLE_FLASH_SHIFT] = {
+		description = "{{ColorRed}}!!!No Wisp {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
+	},
+	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
+	}, ]]
+	[wakaba.COLLECTIBLE_3D_PRINTER] = {
+		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed"
+	},
+
+	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
+		description = "{{ColorRed}}!!!No effect{{CR}}"
+	},
+
 }
 wakaba.descriptions[desclang].abyss = {
 	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
