@@ -60,3 +60,17 @@ function wakaba:wispDeathCheck(wisp)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, wakaba.wispDeathCheck, EntityType.ENTITY_FAMILIAR)
+
+function wakaba:FamiliarUpdate_Wisps(familiar)
+  if familiar.SubType == wakaba.COLLECTIBLE_BOOK_OF_SILENCE then
+    local famloc = familiar.Position
+    local projectiles = Isaac.FindInRadius(famloc, 60, EntityPartition.BULLET)
+    for i, entity in ipairs(projectiles) do
+      if not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+        entity:Remove()
+      end
+    end
+
+  end
+end
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Wisps, FamiliarVariant.WISP)
