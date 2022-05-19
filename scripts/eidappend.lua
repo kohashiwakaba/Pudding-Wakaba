@@ -549,6 +549,7 @@ if EID then
 		end
 
 		function wakaba:UpdateWakabaDescriptions()
+			EID._currentMod = "Pudding and Wakaba"
 			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
 			EID:setModIndicatorName("Pudding & Wakaba")
 			EID:setModIndicatorIcon("Player"..wakaba.PLAYER_WAKABA.."", true)
@@ -667,6 +668,8 @@ if EID then
 	
 			
 			--EID:addDescriptionModifier("Pudding and Wakaba", EIDWakabaConditions, nil)
+			
+			EID._currentMod = "Pudding and Wakaba_reserved"
 		end
 
 		--wakaba:UpdateWakabaDescriptions()
