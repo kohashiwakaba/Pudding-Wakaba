@@ -22,7 +22,9 @@ function wakaba:PEffectUpdate_ClensingFoam(player)
         if entity:ToNPC() then
           if not entity:IsBoss() and entity:ToNPC():IsChampion() then
             local previousNPC = entity:ToNPC()
-            Isaac.Spawn(previousNPC.Type, previousNPC.Variant, previousNPC.SubType, previousNPC.Position, previousNPC.Velocity, previousNPC.Parent)
+            local newNPC = Isaac.Spawn(previousNPC.Type, previousNPC.Variant, previousNPC.SubType, previousNPC.Position, previousNPC.Velocity, previousNPC.Parent)
+            newNPC:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+            newNPC.HitPoints = previousNPC.HitPoints / 2.5
             previousNPC:Remove()
           end
         end
