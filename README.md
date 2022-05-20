@@ -44,13 +44,21 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
 - Wisps spawned this way are much stronger than regular wisps.
 - Plot-Critical items like Polaroid/Negative can be collected as normal even when curse is active.
 
+## Dead Wisp Notification (Experimental)
+- An alert will show if a Lemegeton Wisp is destroyed.
+- Follows EID item names.
+
 ## Inventory Descriptions (Currently on development)
 - Press F5 to show current items you have. Pressing F5 again to exit list mode.
 - Also shows current curse descriptions.
 
-
 ## Mod Compatibilities
 - **External Item Descriptions** - required to activate Pudding & Wakaba.
+   - P&W uses EID for certain items and tweaks.
+      - Unlock status
+      - Inventory Description
+      - Wakaba's Uniform
+      - Book of Conquest
 - **Mod Compatibility Hack** - allows certain mods make compatible.
 - **Mod Config Menu - Pure** - can configure some mod options.
 
