@@ -101,7 +101,7 @@ function wakaba:PlayDeathAnimationWithRevival(player, itemID, currentroom)
   end
   SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_SMALL)
   SFXManager():Play(SoundEffect.SOUND_ISAACDIES)
-  player:SetMinDamageCooldown(180)
+  player:SetMinDamageCooldown(300)
   player.Velocity = Vector.Zero
   player.ControlsEnabled = false
   data.wakaba.reviveanim = itemID
@@ -130,7 +130,7 @@ function wakaba:PlayerUpdate_Revival(player)
   if data.wakaba.revivefinished and player:AreControlsEnabled() then
     --print("revivefinished")
     player:AnimateCollectible(data.wakaba.reviveanim)
-    player:SetMinDamageCooldown(60)
+    player:SetMinDamageCooldown(300)
     --print("check Post-Revival function")
     data.wakaba.reviveanim = nil
     data.wakaba.revivefinished = nil
