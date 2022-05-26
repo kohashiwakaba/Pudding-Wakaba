@@ -8,6 +8,7 @@ function wakaba:IsLost(player)
 end
 
 function wakaba:CanRevive(player)
+  if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
   local data = player:GetData()
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
     return {ID = wakaba.COLLECTIBLE_LUNAR_STONE}
@@ -121,6 +122,10 @@ function wakaba:PlayerUpdate_Revival(player)
     local revivaldata = wakaba:CanRevive(player)
     if revivaldata then
       player:Revive()
+      --[[ if player:GetOtherTwin() then
+        player:GetOtherTwin():Revive()
+        player:GetOtherTwin():SetMinDamageCooldown(40)
+      end ]]
       wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID)
       if revivaldata.PostRevival then
         wakaba:AddPostRevive(player, revivaldata.PostRevival)
@@ -307,3 +312,27 @@ if DetailedRespawnGlobalAPI then
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the Fallen"))
 end
+
+-- Barebone function by Mr.SeemsGood
+--[[ 
+local function isPlayerDying(player)
+  if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return end
+  -- and by 'dying' I (unfortunately) mean 'playing death animation'
+  local sprite = player:GetSprite()
+  
+  return (sprite:IsPlaying("Death") and sprite:GetFrame() > 50) or
+  (sprite:IsPlaying("LostDeath") and sprite:GetFrame() > 30)
+end
+
+local function reviveWithTwin(player)
+  -- allows you to revive the player, give them short i-v frames, and revive their twin (e.g. Esau or Tainted Soul)
+  player:Revive()
+  player:SetMinDamageCooldown(40)
+  if player:GetOtherTwin() then
+      player:GetOtherTwin():Revive()
+      player:GetOtherTwin():SetMinDamageCooldown(40)
+  end
+end
+
+-- run these on MC_POST_UPDATE, MC_POST_PLAYER_UPDATE or MC_POST_PEFFECT_UPDATE
+ ]]
