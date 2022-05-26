@@ -521,8 +521,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_NASA_LOVER] = {
 		itemName = "Nasa Lover",
 		description = ""
-		.. "#{{Collectible494}} Electric tears"
-		.. "#{{Collectible494}} All Isaac's familiars also gain electric tears"
+		.. "#{{Collectible494}} Electric tear familiar"
+		.. "#{{Collectible494}} Isaac and all of Isaac's familiars also gain electric tears"
+		.. "#{{Collectible565}} Make Blood Puppy friendly"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

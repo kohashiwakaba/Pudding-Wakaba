@@ -1819,6 +1819,30 @@ if Encyclopedia then
 				{str = "Flash shift is a great ability for players because of allowing to move a lot faster."},
 			},
 		},
+		
+		COLLECTIBLE_NASA_LOVER = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Spawns a familiar that follows Isaac around shooting electric tears, similar as Jacob's Ladder tears"},
+				{str = "This item belongs to the Conjoined set. Collecting three items from this set will transform Isaac into a three-faced version of himself."},
+			},
+			{ -- Synergies
+				{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+				{str = "Blood Puppy", clr = 3, halign = 0},
+				{str = "Blood puppy will be friendly permanently, regardless of its level."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Once Tsukasa defeats Isaac, Tsukasa starts with Lil Nasa and is intrinsic to the character, and it can't be rerolled"},
+				{str = "- Only Lil Nasa will follow her, Blood Puppy will not be friendly automatically."},
+				{str = "Tsukasa can still find this item on a pedestal. Picking the item allows her to make Bloody Puppy friendly."},
+			},
+			{ -- Trivia
+					{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+					{str = "Yuzaki Nasa is Tsukasa's husband, with name of 'NASA', as his dad liked the idea that his son would become ' a man who's as vast as space...'."},
+					{str = "He hated the fact that he was often mocked for his name. In response to this, he studied a lot with the main target to become a man nobody can make fun of."},
+			},
+		},
 		COLLECTIBLE_PHANTOM_CLOAK = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3460,12 +3484,15 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_NASA_LOVER,
 		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
-		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.COLLECTIBLE_NASA_LOVER,
+		WikiDesc = Wiki.COLLECTIBLE_NASA_LOVER,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_KEY_MASTER,
+			Encyclopedia.ItemPools.POOL_BABY_SHOP,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
 	--Beetlejuice

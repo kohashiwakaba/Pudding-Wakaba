@@ -511,7 +511,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_NASA_LOVER] = {
 		itemName = "나사 러버",
 		description = ""
+		.. "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."
 		.. "#캐릭터와 패밀리어의 공격이 적에게 부딪힐 때 마다 1~2개의 짧은 유도 레이저가 발사됩니다."
+		.. "#{{Collectible565}} Blood Puppy가 플레이어를 공격하지 않습니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

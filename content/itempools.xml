@@ -6,6 +6,7 @@
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D6 Plus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -131,6 +132,7 @@
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -242,6 +244,7 @@
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of The God" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="bombBum">
 		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -301,6 +304,7 @@
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -314,6 +318,7 @@
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Counter" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="D6 Plus" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
