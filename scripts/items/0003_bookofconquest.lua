@@ -138,7 +138,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			for _, entity in ipairs(entities) do
 				if entity:IsEnemy() 
 				and not entity:IsInvincible()
-				and (entity:IsBoss() and player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY))
+				and (not entity:IsBoss() or (entity:IsBoss() and player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)))
 				and not wakaba:has_value(wakaba.conquestblacklist, entity.Type)
 				then
 					entity:AddCharmed(EntityRef(player), -1)
