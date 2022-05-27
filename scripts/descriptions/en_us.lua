@@ -525,7 +525,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Collectible494}} Isaac and all of Isaac's familiars also gain electric tears"
 		.. "#{{Collectible565}} Make Blood Puppy friendly"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
 	[wakaba.COLLECTIBLE_ARCANE_CRYSTAL] = {
 		itemName = "Arcane Crystal",

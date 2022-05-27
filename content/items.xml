@@ -80,7 +80,7 @@
 	<active id="52" description="Hadar Sen Olmen" gfx="beam.png" maxcharges="12" name="Sunflower Beam" shopprice="55" devilprice="2" tags="devil stars offensive" quality="4" hidden="true"/>
 	<active id="53" passivecache="true" cache="familiars" description="Shrine protector" gfx="murasame.png" maxcharges="12" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarussharedglobal" quality="4"/>
 	
-	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip" devilprice="1" quality="3"/>
+	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3"/>
 	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="offensive" quality="4"/>
 
 	<passive id="56" cache="damage tearflag" description="DMG up" gfx="arcanecrystal.png" name="Arcane Crystal" tags="offensive" devilprice="1" quality="4"/>
