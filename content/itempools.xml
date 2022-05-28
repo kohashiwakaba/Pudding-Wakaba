@@ -18,6 +18,7 @@
 		<Item Name="Question Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -101,6 +102,7 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -144,6 +146,7 @@
 		<Item Name="Question Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Clensing Foam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -212,6 +215,7 @@
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	
 	
@@ -238,6 +242,7 @@
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -277,6 +282,7 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="oldChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -325,6 +331,7 @@
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

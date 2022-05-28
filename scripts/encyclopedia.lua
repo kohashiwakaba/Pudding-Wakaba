@@ -319,7 +319,7 @@ if Encyclopedia then
 					{str = "x Murasame : Defeat Mom's Heart as Tsukasa on Hard Mode"},
 					{str = "- Nasa Lover : Defeat Isaac as Tsukasa"},
 					{str = "x Beetlejuice : Defeat Satan as Tsukasa"},
-					{str = "x Total Corruption : Defeat ??? as Tsukasa"},
+					{str = "x Red Corruption : Defeat ??? as Tsukasa"},
 					{str = "x Power Bomb : Defeat The Lamb as Tsukasa"},
 					{str = "x Beam : Defeat Mega Satan as Tsukasa"},
 					{str = "- Concentration : Defeat Boss Rush as Tsukasa"},
@@ -1898,6 +1898,33 @@ if Encyclopedia then
 				{str = "Isaac gets Golden Bomb permanently."},
 				{str = "Upon taking damage, spawns a golden troll bomb around the room."},
 				{str = "All troll bombs are converted into Golden troll bombs if possible."},
+			},
+		},
+		COLLECTIBLE_VENOM_INCANTATION = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "+1 Damage"},
+				{str = "If an enemy takes damage with Poison/Burn, it will be killed instantly for 5% chance."},
+				{str = "- Instakill chance does not scale with luck"},
+				{str = "- Non-major Bosses have 1.36% chance instead of 5%"},
+				{str = "- Major Bosses are immune to this effect"},
+				{str = "This item belongs to the Spun set. Collecting three items from this set will transform Isaac into buff berserker."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Although the item gives powerful effect for Poison/Burn status effect, this item does not have any of them."},
+			},
+			{ -- Synergies
+				{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+				{str = "Toxic Shock/Acid Baby", clr = 3, halign = 0},
+				{str = "Every tick damage has a chance to instakill an enemy"},
+				{str = "Scorpio", clr = 3, halign = 0},
+				{str = "Every tear has poison effect, resulting higher chance to instakill an enemy"},
+			},
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "Venom Incantation is Maple's high-valuable skill that instakills an enemy by 10% chance if the attack has poison."},
+				{str = "After the acknowlegement of Maple's poison-based skills, most people learned poison resistant skills to compete against Maple, Venom Incantation ignores poison resistance however."},
 			},
 		},
 		COLLECTIBLE_SYRUP = {
@@ -3483,8 +3510,6 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_NASA_LOVER,
-		Hide = true,
-		ID = wakaba.COLLECTIBLE_NASA_LOVER,
 		WikiDesc = Wiki.COLLECTIBLE_NASA_LOVER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3510,11 +3535,11 @@ if Encyclopedia then
 		},
 	})
 	
-	--Total Corruption
+	--Red Corruption
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_TOTAL_CORRUPTION,
+		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
 		Hide = true,
 		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
 		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
@@ -3649,6 +3674,23 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 	})
+	--Venom Incantation
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_VENOM_INCANTATION,
+		WikiDesc = Wiki.COLLECTIBLE_VENOM_INCANTATION,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_CURSE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_CURSE,
+			Encyclopedia.ItemPools.POOL_GREED_BOSS,
+			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
+			Encyclopedia.ItemPools.POOL_RED_CHEST,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		},
+	})
 	--Hydra
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3664,6 +3706,24 @@ if Encyclopedia then
 		},
 	})
 
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = Isaac.GetItemIdByName("Paralyze Shout"),
+		Hide = true,
+	})
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = Isaac.GetItemIdByName("Break Core"),
+		Hide = true,
+	})
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = Isaac.GetItemIdByName("Double Invader"),
+		Hide = true,
+	})
 
 
 

@@ -635,6 +635,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.COLLECTIBLE_VENOM_INCANTATION] = {
+		itemName = "고독의 주법",
+		description = ""
+		.. "#↑ {{Damage}}공격력 +1"
+		.. "#{{Poison}} 독/화상 공격이 5%의 확률로 적을 즉사시킵니다.#{{Blank}} (일반 보스의 경우 1.36%)"
+		.. "{{CR}}",
+	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

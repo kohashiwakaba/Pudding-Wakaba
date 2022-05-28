@@ -1041,6 +1041,7 @@ include('scripts.items.1051_questionblock')
 include('scripts.items.1052_clensingfoam')
 include('scripts.items.1053_beetlejuice')
 include('scripts.items.1054_curseofthetower2')
+include('scripts.items.1056_venomincantation')
 
 include('scripts.pickups.2005_dreamcard')
 include('scripts.items.1200_doubledreams')

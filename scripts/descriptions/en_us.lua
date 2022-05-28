@@ -604,8 +604,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	--[[ [wakaba.COLLECTIBLE_TOTAL_CORRUPTION] = {
-		itemName = "Total Corruption",
+	--[[ [wakaba.COLLECTIBLE_RED_CORRUPTION] = {
+		itemName = "Red Corruption",
 		description = ""
 		.. "#Injects Heart Container to enter Hypermode"
 		.. "#!!! While in Hypermode:"
@@ -660,6 +660,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Prevents Quality {{Quality2}} items from spawning"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
+	[wakaba.COLLECTIBLE_VENOM_INCANTATION] = {
+		itemName = "Venom Incantation",
+		description = ""
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "#{{Poison}} Poison/Burn damage have 5% chance to instakill normal enemies#{{Blank}} (1.36% on non-major bosses)"
+		.. "{{CR}}",
+		transformations = EID.TRANSFORMATION.SPUN .. "",
 	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",

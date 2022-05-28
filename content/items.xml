@@ -88,7 +88,7 @@
 	<passive id="58" cache="damage tearflag" description="DMG up" gfx="mysticcrystal.png" name="Mystic Crystal" tags="offensive" devilprice="1" quality="4"/>
 	
 	<familiar id="59" cache="damage" description="Snake friend" gfx="hydra.png" name="Hydra" shopprice="32" devilprice="2" tags="offensive baby" quality="4" hidden="true"/>
-	<active id="60" description="Use it carefully" gfx="totalcorruption.png" maxcharges="0" name="Total Corruption" devilprice="2" tags="offensive" quality="3" hidden="true"/>
+	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive" quality="3"/>
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="baby" quality="3" addcostumeonpickup="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="2"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="8" name="3D Printer" shopprice="20" devilprice="1" tags="offensive" quality="4"/>
@@ -97,6 +97,10 @@
 	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" devilprice="1" quality="2"/>
 
 
+	<active id="69" description="Temporary stun + Weakness" gfx="paralyzeshout.png" name="Paralyze Shout" maxcharges="2" devilprice="1" quality="1" tags="offensive" hidden="true"/>
+	<passive id="70" cache="damage" description="No Escape" gfx="venomincantation.png" name="Venom Incantation" devilprice="2" quality="4" tags="offensive syringe"/>
+	<active id="71" description="Last Stand" gfx="breakcore.png" name="Break Core" maxcharges="0" devilprice="1" quality="2" tags="offensive" hidden="true"/>
+	<passive id="41"  cache="damage" description="DMG Way up, but what at cost?" gfx="doubleinvader.png" name="Double Invader" devilprice="1" quality="3" tags="offensive" hidden="true"/>
 
 	<!--
 	<passive description="Neko Lover" gfx="kokoalover.png" name="Kokoa Lover" tags="" quality="2" hidden="true" />
@@ -127,7 +131,7 @@
 	<trinket cache="all" name="Ring of Jupiter" description="We become one" gfx="ringofjupiter.png" />
 	<trinket name="Dimension Cutter" description="Voided Memory" gfx="dimensioncutter.png" tags="nogreed"/>
 	<trinket name="Delimiter" description="Weaker rocks" gfx="delimiter.png" tags="nogreed"/>
-	<trinket  cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
+	<trinket cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
 	
 
 
