@@ -1081,6 +1081,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
+	[wakaba.TRINKET_SIREN_BADGE] = {
+		itemName = "Siren's Badge",
+		description = ""
+		.. "#Prevents contact damage"
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {

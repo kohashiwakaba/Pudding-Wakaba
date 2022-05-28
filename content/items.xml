@@ -132,6 +132,7 @@
 	<trinket name="Dimension Cutter" description="Voided Memory" gfx="dimensioncutter.png" tags="nogreed"/>
 	<trinket name="Delimiter" description="Weaker rocks" gfx="delimiter.png" tags="nogreed"/>
 	<trinket cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
+	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	
 
 

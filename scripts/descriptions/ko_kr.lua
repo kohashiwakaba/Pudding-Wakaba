@@ -1057,6 +1057,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
+	[wakaba.TRINKET_SIREN_BADGE] = {
+		itemName = "사이렌 뱃지",
+		description = ""
+		.. "#캐릭터가 접촉 피해를 받지 않습니다."
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {

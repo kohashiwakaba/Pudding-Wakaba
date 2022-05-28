@@ -44,9 +44,9 @@ function wakaba:trinketUnlockCheck(trinket)
 	if trinket == wakaba.TRINKET_RING_OF_JUPITER and wakaba.state.unlock.ringofjupiter < 1 then
 		isUnlocked = false
   end
-	if trinket == wakaba.TRINKET_RANGE_OS --[[ and wakaba.state.unlock.rangesystem < 1 ]] then
+	--[[ if trinket == wakaba.TRINKET_RANGE_OS and wakaba.state.unlock.rangesystem < 1 then
 		isUnlocked = false
-  end
+  end ]]
 
 	if trinket == wakaba.TRINKET_DIMENSION_CUTTER and not wakaba.state.unlock.delirium then
 		isUnlocked = false

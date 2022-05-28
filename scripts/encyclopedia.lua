@@ -1323,6 +1323,20 @@ if Encyclopedia then
 				{str = "Many players overused this equipment to control main skills for each unit, to only use stronger skills, which was not available in normal automatic playthrough."},
 			},
 		},
+		
+		TRINKET_SIREN_BADGE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Prevents contact damage for Isaac"},
+				{str = "Isaac still can be damaged from non-contact damage such as spikes, curse room doors, or projectiles"},
+			},
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "This item is inspired from 'Pure Love' from 'Rabi-Ribi'."},
+				{str = "In Rabi-Ribi, there are a demon called Lilith, who held the badge"},
+				{str = "Pure Love prevents any collision damage from bosses"},
+			},
+		},
 
 
 		COLLECTIBLE_COUNTER = {
@@ -3457,6 +3471,20 @@ if Encyclopedia then
 		--[[ UnlockFunc = function(self)
 			if not wakaba.state.unlock.rangesystem then
 				self.Desc = "Defeat Hush as Tsukasa"
+				return self
+			end
+		end, ]]
+	})
+
+	--Range OS
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.TRINKET_SIREN_BADGE,
+		WikiDesc = Wiki.TRINKET_SIREN_BADGE,
+		--[[ UnlockFunc = function(self)
+			if not wakaba.state.unlock.rangesystem then
+				self.Desc = "Defeat Mother as Tsukasa"
 				return self
 			end
 		end, ]]
