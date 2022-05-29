@@ -154,7 +154,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Book of Forgotten",
 		description = ""
 		.. "#Applies to all players on use:"
-		.. "#↑ {{BoneHeart}} +3 Bone Hearts"
+		.. "#↑ {{BoneHeart}} +1 Bone Heart"
 		.. "#{{Heart}} Heals all heart containers"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -704,7 +704,7 @@ wakaba.descriptions[desclang].bingeeater = {
 }
 wakaba.descriptions[desclang].belial = {
 	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
-		description = "{{BlackHeart}}Gives 3 Black Hearts instead of Bone Hearts. Full Health effect is still intact",
+		description = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
 	},
 	[wakaba.COLLECTIBLE_UNIFORM] = {
 		description = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform", 

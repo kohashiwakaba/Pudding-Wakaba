@@ -788,7 +788,7 @@ if Encyclopedia then
 		COLLECTIBLE_BOOK_OF_FORGOTTEN = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-				{str = "Gives 3 Bone Hearts."},
+				{str = "Gives a Bone Heart."},
 				{str = "Fully heals Isaac."},
 			},
 			{ -- Notes

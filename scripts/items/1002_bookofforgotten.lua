@@ -6,12 +6,16 @@ function wakaba.ItemUse_BookOfForgotten()
 		local hasBless = wakaba:HasBless(pl)
 		SFXManager():Play(SoundEffect.SOUND_BONE_HEART, 1, 0, false, 1)
 		if wakaba:HasJudasBr(pl) then
-			pl:AddBlackHearts(6)
+			pl:AddBlackHearts(2)
 		else
-			pl:AddBoneHearts(3)
+			pl:AddBoneHearts(1)
 		end
 		pl:AddHearts(114) -- Theorically 57 is max heart containers
   end
+
+	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
+		player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN, "UseItem", "PlayerPickup")
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfForgotten, wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN)
 

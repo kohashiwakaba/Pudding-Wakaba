@@ -155,7 +155,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "잊혀진 자의 책",
 		description = ""
 		.. "#!!! 사용 시 모든 플레이어에게 적용:"
-		.. "#↑ {{BoneHeart}}뼈하트 +3"
+		.. "#↑ {{BoneHeart}}뼈하트 +1"
 		.. "#{{Heart}} 체력을 전부 회복합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -676,7 +676,7 @@ wakaba.descriptions[desclang].bingeeater = {
 }
 wakaba.descriptions[desclang].belial = {
 	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
-		description = "뼈하트 대신 {{BlackHeart}}블랙하트 3개를 획득합니다.",
+		description = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
 	},
 	[wakaba.COLLECTIBLE_UNIFORM] = {
 		description = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - 악마 카드 효과를 같이 발동합니다.", 
