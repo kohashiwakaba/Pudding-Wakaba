@@ -3,7 +3,9 @@
     <name>!~Pudding And Wakaba [REP]</name>
     <directory>pudding and wakaba</directory>
     <id>2543118811</id>
-    <description>The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
+    <description>[h1]이 모드는 한글 설명모드를 지원하지 않습니다. 한글 설명도 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url] 모드가 필요합니다.[/h1]
+
+The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
 
 [h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
 [b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b]
@@ -35,7 +37,7 @@ This mod also gives multiple shields for Blanket item if you entered a Boss Room
  - Plot-Critical items like Polaroid/Negative can be collected as normal even when curse is active.
 
 [h1] Inventory Descriptions (Experimental) [/h1]
- - Press F4 to show current items you have. Pressing F4 again to exit list mode.
+ - Press F5 to show current items you have. Pressing F5 again to exit list mode.
  - Also shows current curse descriptions.
 
 [h1] New Tweaks [/h1]
@@ -89,7 +91,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>0.97</version>
+    <version>0.98</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
