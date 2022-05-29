@@ -1231,6 +1231,12 @@ wakaba.descriptions[desclang].pills = {
 		mimiccharge = 3,
 		class = "2-",
 	},
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+		itemName = "Explosive Diarrehea 2?",
+		description = "{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
+		mimiccharge = 6,
+		class = "2+",
+	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		itemName = "Social Distance",
 		description = "Closes Devil/Angel room for current floor",
@@ -1303,6 +1309,11 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
 		"Explosive Diarrehea 2!",
 		"Spawns 2 troll Brimstone swirls at Isaac's position",
+	},
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
+		"Explosive Diarrehea 2?",
+		"{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
 	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		tostring(wakaba.PILL_SOCIAL_DISTANCE),

@@ -1177,6 +1177,12 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "혈사 설사 2",
 		description = "캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.",
 	},
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+		itemName = "Explosive Diarrehea 2?",
+		description = "{{Card88}} Soul of Azazel 효과 발동:#7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
+		mimiccharge = 6,
+		class = "2+",
+	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		itemName = "사회적 거리두기",
 		description = "현재 층에서 악마방/천사방의 등장을 막습니다.",
@@ -1237,6 +1243,11 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
 		"혈사 설사 2",
 		"캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.",
+	},
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
+		"혈사 설사 2?",
+		"{{Card88}} Soul of Azazel 효과 발동:#7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
 	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		tostring(wakaba.PILL_SOCIAL_DISTANCE),
