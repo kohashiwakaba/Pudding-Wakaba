@@ -1,6 +1,24 @@
 wakaba.COLLECTIBLE_VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation")
 
+wakaba.venomblacklist = {
+	EntityType.ENTITY_MOM,
+	EntityType.ENTITY_MOMS_HEART,
+	EntityType.ENTITY_ISAAC,
+	EntityType.ENTITY_SATAN,
+	EntityType.ENTITY_MEGA_SATAN,
+	EntityType.ENTITY_MEGA_SATAN_2,
+	EntityType.ENTITY_THE_LAMB,
+	EntityType.ENTITY_HUSH,
+	EntityType.ENTITY_DELIRIUM,
+	EntityType.ENTITY_ULTRA_GREED,
+	EntityType.ENTITY_MOTHER,
+	EntityType.ENTITY_DOGMA,
+	EntityType.ENTITY_BEAST,
+	EntityType.ENTITY_HORNFEL,
+}
+
 function wakaba:TakeDamage_VenomIncantation(entity, amount, flags, source, countdown)
+	if wakaba:has_value(wakaba.venomblacklist, entity.Type) then return end
 	if entity.Type == EntityType.ENTITY_PLAYER then return end
 	if not entity:IsEnemy() then return end
 	if entity:IsInvincible() then return end
