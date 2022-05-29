@@ -762,10 +762,10 @@ wakaba.descriptions[desclang].bookofvirtues = {
 	},
 	--[[ [wakaba.COLLECTIBLE_FLASH_SHIFT] = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
-	},
-	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
-		description = "{{ColorOrange}}외부 링 1마리: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
 	}, ]]
+	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+		description = "{{ColorOrange}}내부 링 1마리: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
+	},
 	[wakaba.COLLECTIBLE_3D_PRINTER] = {
 		description = "{{ColorYellow}}중앙 링 1마리: {{CR}}#불꽃이 꺼지면 장신구를 드랍합니다."
 	},

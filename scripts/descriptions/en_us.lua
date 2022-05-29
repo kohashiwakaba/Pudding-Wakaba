@@ -771,7 +771,7 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact"
 	},
 	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Consumed upon death and revives"
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Revives Isaac on death and the wisp is consumed"
 	},
 	--[[ [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
 		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
@@ -790,10 +790,10 @@ wakaba.descriptions[desclang].bookofvirtues = {
 	},
 	--[[ [wakaba.COLLECTIBLE_FLASH_SHIFT] = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
-	},
-	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}(최대 1)#불꽃이 어떠한 피해도 입지 않습니다.#불꽃이 켜져있는 동안 사망 시 이 불꽃을 소모하여 부활합니다."
 	}, ]]
+	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+		description = "{{ColorLime}}Inner Ring x1: {{CR}}(Max 1)#Invincible Wisp#Revives Isaac on death and the wisp is consumed"
+	},
 	[wakaba.COLLECTIBLE_3D_PRINTER] = {
 		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed"
 	},

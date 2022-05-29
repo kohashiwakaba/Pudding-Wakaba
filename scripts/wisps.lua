@@ -1,4 +1,12 @@
-
+function wakaba:HasWisp(player, collectibleType)
+  if not player then return end
+  local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, collectibleType, false, false)
+  for i, wisp in ipairs(wisps) do
+    if wisp:ToFamiliar() and GetPtrHash(wisp:ToFamiliar().Player) == GetPtrHash(player) then
+      return wisp:ToFamiliar()
+    end
+  end
+end
 
 function wakaba:TakeDamage_Wisps(wisp, amount, flags, source, cooldown)
   if wisp.Variant ~= FamiliarVariant.WISP then return end

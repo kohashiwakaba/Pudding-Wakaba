@@ -12,6 +12,10 @@ function wakaba:CanRevive(player)
   local data = player:GetData()
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
     return {ID = wakaba.COLLECTIBLE_LUNAR_STONE}
+  elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
+    return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = wakaba:AfterRevival_QuestionBlock(player)}
+  elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
+    return {ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, PostRevival = wakaba:AfterRevival_GrimreaperDefender(player)}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
     return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD, PostRevival = wakaba:AfterRevival_BookOfTheGod(player)}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
@@ -102,7 +106,7 @@ function wakaba:PlayDeathAnimationWithRevival(player, itemID, currentroom)
   end
   SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_SMALL)
   SFXManager():Play(SoundEffect.SOUND_ISAACDIES)
-  player:SetMinDamageCooldown(300)
+  player:SetMinDamageCooldown(180)
   player.Velocity = Vector.Zero
   player.ControlsEnabled = false
   data.wakaba.reviveanim = itemID
@@ -119,13 +123,15 @@ function wakaba:PlayerUpdate_Revival(player)
   wakaba:GetPlayerEntityData(player)
   local data = player:GetData()
   if player:IsDead() and not player:WillPlayerRevive() then
-    local revivaldata = wakaba:CanRevive(player)
+    local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
     if revivaldata then
       player:Revive()
-      --[[ if player:GetOtherTwin() then
-        player:GetOtherTwin():Revive()
-        player:GetOtherTwin():SetMinDamageCooldown(40)
-      end ]]
+      if player:GetOtherTwin() then
+        if player:GetOtherTwin():IsDead() and not player:GetOtherTwin():WillPlayerRevive() then
+          player:GetOtherTwin():Revive()
+          player:GetOtherTwin():SetMinDamageCooldown(180)
+        end
+      end
       wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID)
       if revivaldata.PostRevival then
         wakaba:AddPostRevive(player, revivaldata.PostRevival)
@@ -135,7 +141,7 @@ function wakaba:PlayerUpdate_Revival(player)
   if data.wakaba.revivefinished and player:AreControlsEnabled() then
     --print("revivefinished")
     player:AnimateCollectible(data.wakaba.reviveanim)
-    player:SetMinDamageCooldown(300)
+    player:SetMinDamageCooldown(180)
     --print("check Post-Revival function")
     data.wakaba.reviveanim = nil
     data.wakaba.revivefinished = nil
@@ -226,6 +232,26 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_LUNAR_STONE)
         return false
+      elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
+        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
+        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
+        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        if wakaba:isMausoleumDoor(flag) then
+          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+        end
+        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+        wakaba:AddPostRevive(player, wakaba:AfterRevival_QuestionBlock(player))
+        return false
+      elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
+        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
+        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
+        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        if wakaba:isMausoleumDoor(flag) then
+          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+        end
+        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
+        wakaba:AddPostRevive(player, wakaba:AfterRevival_GrimreaperDefender(player))
+        return false
       elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
@@ -291,12 +317,26 @@ if DetailedRespawnGlobalAPI then
     additionalText = "xInf",
   }, DetailedRespawnGlobalAPI.RespawnPosition.Last)
   DetailedRespawnGlobalAPI:AddCustomRespawn({
+    name = "Question Block Wisp",
+    itemId = wakaba.COLLECTIBLE_QUESTION_BLOCK,
+    condition = function(_, player)
+      return wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+    end,
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Lunar Stone"))
+  DetailedRespawnGlobalAPI:AddCustomRespawn({
+    name = "Grimreaper Defender Wisp",
+    itemId = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER,
+    condition = function(_, player)
+      return wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
+    end,
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Question Block Wisp"))
+  DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Book of the God",
     itemId = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD,
     condition = function(_, player)
       return player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not player:GetData().wakaba.shioriangel
     end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Lunar Stone"))
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Book of the Fallen",
     itemId = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN,

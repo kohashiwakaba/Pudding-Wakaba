@@ -9,6 +9,10 @@ function wakaba:ItemUse_GrimreaperDefender(_, rng, player, useFlags, activeSlot,
 	local skull = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.DEATH_SKULL, 0, Vector(player.Position.X, player.Position.Y - 50), Vector.Zero, player)
 	skull:GetData().wakaba = {}
 
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) and not wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
+		player:AddWisp(wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, player.Position, true, false)
+	end
+
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, "UseItem", "PlayerPickup")
 	end
@@ -25,3 +29,12 @@ function wakaba:NewRoom_GrimreaperDefender()
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_GrimreaperDefender)
+
+
+
+function wakaba:AfterRevival_GrimreaperDefender(player)
+	local wisp = wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
+	if wisp then
+		wisp:Kill()
+	end
+end

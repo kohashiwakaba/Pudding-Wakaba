@@ -36,6 +36,9 @@ function wakaba:ItemUse_QuestionBlock(_, rng, player, useFlags, activeSlot, varD
     SFXManager():Play(SoundEffect.SOUND_PENNYPICKUP, 1, 0, false, 1)
   end
 
+	if discharge and player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) and not wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
+		player:AddWisp(wakaba.COLLECTIBLE_QUESTION_BLOCK, player.Position, true, false)
+	end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.COLLECTIBLE_QUESTION_BLOCK, "UseItem", "PlayerPickup")
@@ -60,3 +63,13 @@ function wakaba:TakeDmg_QuestionBlock(entity, amount, flag, source, countdownFra
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_QuestionBlock, EntityType.ENTITY_PLAYER)
+
+
+
+
+function wakaba:AfterRevival_QuestionBlock(player)
+	local wisp = wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+	if wisp then
+		wisp:Kill()
+	end
+end
