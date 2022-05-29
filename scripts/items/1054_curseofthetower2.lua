@@ -1,6 +1,15 @@
 wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2")
 local hastower = false
-
+local rolledPickup = {
+  PickupVariant.PICKUP_COIN,
+  PickupVariant.PICKUP_GRAB_BAG,
+  PickupVariant.PICKUP_HEART,
+  PickupVariant.PICKUP_KEY,
+  PickupVariant.PICKUP_LIL_BATTERY,
+  PickupVariant.PICKUP_PILL,
+  PickupVariant.PICKUP_TAROTCARD,
+  PickupVariant.PICKUP_TRINKET,
+}
 
 function wakaba:Update_CurseOfTower2()
   hastower = false
@@ -41,8 +50,10 @@ function wakaba:PickupSelect_CurseOfTower2(pickup)
         spawnsub = BombSubType.BOMB_GOLDENTROLL
       end
     elseif subtype ~= BombSubType.BOMB_GOLDEN then
-      spawnvar = variant
-      spawnsub = BombSubType.BOMB_GOLDEN
+      local rng = RNG()
+      rng:SetSeed(pickup.InitSeed, 35)
+      spawnvar = rolledPickup[rng:RandomInt(#rolledPickup) + 1]
+      spawnsub = 0
     end
   end
   if spawnvar then
