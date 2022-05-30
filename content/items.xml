@@ -8,7 +8,7 @@
 	<!-- <active id="3002" description="Like a Pudding" gfx="letheart.png" maxcharges="240000" name="Let Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" hidden="true" />
 	<active id="3003" description="Like a Pudding" gfx="catheart.png" maxcharges="240000" name="Cat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" hidden="true" />
 	<active id="3004" description="Like a Pudding" gfx="constheart.png" maxcharges="240000" name="Const Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" hidden="true" /> -->
-	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="12" name="Book of Forgotten" tags="book nolostbr" quality="3" />
+	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" />
 	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive food summonable" quality="4" />
 	<passive id="6" cache="all" hearts="4" maxhearts="2" description="All Stats Up! + You feel lewd" gfx="gamecd.png" name="Mysterious game CD" tags="offensive tearsup summonable" quality="3" />
 	<passive id="7" cache="damage luck" hearts="100" description="You feel Super Lucky!" gfx="wakabapendant.png" name="Wakaba's Pendant" tags="stars offensive summonable" quality="2" />

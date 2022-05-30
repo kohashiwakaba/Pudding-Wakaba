@@ -80,8 +80,8 @@ function wakaba:deepcopy(orig, copies)
 	return copy
 end
 
-wakaba.version = "v98 Tsukasa 2022.05.29"
-wakaba.intversion = 9800
+wakaba.version = "v98a Tsukasa 2022.05.30"
+wakaba.intversion = 9801
 
 wakaba.modpath = FilepathHelper.GetCurrentModPath()
 wakaba.itemConfig = Isaac.GetItemConfig()
