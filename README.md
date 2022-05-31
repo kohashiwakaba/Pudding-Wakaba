@@ -17,7 +17,7 @@ An anime mod that contains characters from the creator's favorite.
    - Priest's Blessing/Unholy Curse
 - 16 new Challenges
 
-**Current Version : v97-Tsukasa**(updated time : 2022-04-08)
+**Current Version : v98-Tsukasa**(updated time : 2022-05-29)
 
 ## Characters
 
@@ -61,6 +61,7 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
       - Book of Conquest
 - **Mod Compatibility Hack** - allows certain mods make compatible.
 - **Mod Config Menu - Pure** - can configure some mod options.
+- Not compatible with EID Korean.
 
 ## Special Thanks
 - _Kilburn - Tearsup function
