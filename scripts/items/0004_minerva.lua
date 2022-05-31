@@ -173,7 +173,9 @@ function wakaba:EffectUpdate_Minerva(effect)
 				if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
 					ent:GetData().wakaba.insideminerva = true
 					ent:GetData().wakaba.minervacount = 5
-					ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+					if (ent:ToPlayer() and not ent:ToPlayer():GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_CAMO_UNDIES)) then
+						ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+					end
 				else
 					ent:GetData().wakaba.minervalevel[psti][sti] = wakaba:auraCount(effect.Parent:ToPlayer())
 					ent:GetData().wakaba.insideminerva = true
@@ -183,9 +185,15 @@ function wakaba:EffectUpdate_Minerva(effect)
 					then
 						ent:GetData().wakaba.minervacount = 7
 						ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+						if (ent:ToPlayer() and not ent:ToPlayer():GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_CAMO_UNDIES)) then
+							ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+						end
 					else
 						ent:GetData().wakaba.minervacount = 5
 						ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+						if (ent:ToPlayer() and not ent:ToPlayer():GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_CAMO_UNDIES)) then
+							ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 5, 1, true, false)
+						end
 					end
 				end
 			else
