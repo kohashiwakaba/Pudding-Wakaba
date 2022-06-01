@@ -1,7 +1,7 @@
 wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD")
 
 
-function wakaba:cacheUpdate25(player, cacheFlag)
+function wakaba:Cache_GameCD(player, cacheFlag)
 	if player:HasCollectible(wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD) then
 		if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed + (0.16 * player:GetCollectibleNum(wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD))
@@ -22,7 +22,7 @@ function wakaba:cacheUpdate25(player, cacheFlag)
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.cacheUpdate25)
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_GameCD)
 
 function wakaba:LewdRoomEffect()
 	local hasCd = false
