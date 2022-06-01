@@ -100,7 +100,8 @@
 	<active id="69" description="Temporary stun + Weakness" gfx="paralyzeshout.png" name="Paralyze Shout" maxcharges="2" devilprice="1" quality="1" tags="offensive" hidden="true"/>
 	<passive id="70" cache="damage" description="No Escape" gfx="venomincantation.png" name="Venom Incantation" devilprice="2" quality="4" tags="offensive syringe"/>
 	<active id="71" description="Last Stand" gfx="breakcore.png" name="Break Core" maxcharges="0" devilprice="1" quality="2" tags="offensive" hidden="true"/>
-	<passive id="41"  cache="damage" description="DMG Way up, but what at cost?" gfx="doubleinvader.png" name="Double Invader" devilprice="1" quality="3" tags="offensive" hidden="true"/>
+	<passive id="72" cache="damage" description="DMG Way up, but what at cost?" gfx="doubleinvader.png" name="Double Invader" devilprice="1" quality="3" tags="offensive" hidden="true"/>
+	<passive id="73" cache="range luck" description="Help from the fairies" gfx="fireflylighter.png" name="Firefly Lighter" devilprice="1" quality="1" tags="offensive"/>
 
 	<!--
 	<passive description="Neko Lover" gfx="kokoalover.png" name="Kokoa Lover" tags="" quality="2" hidden="true" />

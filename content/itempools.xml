@@ -48,6 +48,7 @@
 		<Item Name="Advanced Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Mystic Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.5" RemoveOn="0.001"/>
@@ -156,6 +157,7 @@
 		<Item Name="Arcane Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Advanced Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Mystic Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -232,6 +234,7 @@
 		<Item Name="Mystic Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Question Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="3D Printer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -250,6 +253,7 @@
 		<Item Name="Book of The God" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Nasa" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="bombBum">
 		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

@@ -638,9 +638,18 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_VENOM_INCANTATION] = {
 		itemName = "고독의 주법",
 		description = ""
-		.. "#↑ {{Damage}}공격력 +1"
+		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{Poison}} 독/화상 공격이 5%의 확률로 적을 즉사시킵니다.#{{Blank}} (일반 보스의 경우 1.36%)"
 		.. "{{CR}}",
+	},
+	[wakaba.COLLECTIBLE_FIREFLY_LIGHTER] = {
+		itemName = "반딧불이 병",
+		description = ""
+		.. "#↑ {{RangeSmall}}사거리 +2"
+		.. "#↑ {{LuckSmall}}행운 +1"
+		.. "#방마다 방을 밝혀주는 반딧불이 무리를 소환합니다."
+		.. "{{CR}}",
+		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",

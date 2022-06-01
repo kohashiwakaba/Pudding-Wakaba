@@ -1962,6 +1962,14 @@ if Encyclopedia then
 				{str = "Normally, Syrup is incapable of flight, but Maple combined the skill and the game's system to make it fly, she even got a skill just to fly with it."},
 			},
 		},
+		COLLECTIBLE_FIREFLY_LIGHTER = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "+2 Range"},
+				{str = "+1 Luck"},
+				{str = "Constantly spawns fireflies that brightens the room"},
+			},
+		},
 		
 		COLLECTIBLE_APOLLYON_CRISIS = {
 			{ -- Effects
@@ -3112,6 +3120,20 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		},
+	})
+	
+	--Firefly Lighter
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_FIREFLY_LIGHTER,
+		WikiDesc = Wiki.COLLECTIBLE_FIREFLY_LIGHTER,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_BOSS,
+			Encyclopedia.ItemPools.POOL_GREED_BOSS,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_KEY_MASTER,
 		},
 	})
 	

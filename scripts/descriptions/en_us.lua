@@ -669,6 +669,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.SPUN .. "",
 	},
+	[wakaba.COLLECTIBLE_FIREFLY_LIGHTER] = {
+		itemName = "Firefly Lighter",
+		description = ""
+		.. "#↑ {{Range}} +2 Range"
+		.. "#↑ {{Luck}} +1 Luck"
+		.. "#Constantly spawns fireflies that brightens the room"
+		.. "{{CR}}",
+		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
