@@ -14,10 +14,20 @@ function wakaba:NewRoom_FireflyLighter()
     local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(wakaba.COLLECTIBLE_FIREFLY_LIGHTER) then
 			currentRoomDesc.NoReward = false
-			for i = 1, 120 do
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.WISP, 0, Game():GetRoom():GetRandomPosition(1), Vector(0,0), player):SetColor(Color(0, 1, 1, 1, 0, 0, 0), 2000, 1, false, false)
+			local repeatcount = 30
+			local roomshape = room:GetRoomShape()
+			if roomshape == RoomShape.ROOMSHAPE_1x2 or roomshape == RoomShape.ROOMSHAPE_2x1 then
+				repeatcount = 60
+			elseif roomshape >= RoomShape.ROOMSHAPE_LTL and roomshape <= RoomShape.ROOMSHAPE_LBR then
+				repeatcount = 90
+			elseif roomshape == RoomShape.ROOMSHAPE_2x2 then
+				repeatcount = 120
+			end
+			for i = 1, 30 do 
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.WISP, 0, room:GetRandomPosition(10), Vector(0,0), player):SetColor(Color(0, 1, 1, 1, 0, 0, 0), 2000, 1, false, false) 
 			end
 			--[[ if currentRoomDesc.Flags & RoomDescriptor.FLAG_PITCH_BLACK == RoomDescriptor.FLAG_PITCH_BLACK then
+			
 			end ]]
 		end
   end
