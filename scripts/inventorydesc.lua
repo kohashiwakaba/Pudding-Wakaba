@@ -180,6 +180,31 @@ function wakaba:TestTrinkets(min, max)
 
 end
 
+function wakaba:TestCards(min, max)
+	local items = {}
+	for i = min, max do
+		local config = Isaac.GetItemConfig()
+		if config:GetCard(i) then
+			table.insert(items, {
+				type = 5,
+				variant = 300,
+				subtype = i,
+			})
+		end
+	end
+	idesc.state.showList = true
+	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
+	idesc.state.listprops.screenx = x
+	idesc.state.listprops.screeny = y
+
+	idesc.state.lists.items = items
+	--idesc.state.lists.cards = cards
+	--idesc.state.lists.pills = pills
+
+	idesc.state.listprops.max = #items
+
+end
+
 function idesc:SetCurrentItemLists()
 	local playernotes = {}
 	local items = {}
