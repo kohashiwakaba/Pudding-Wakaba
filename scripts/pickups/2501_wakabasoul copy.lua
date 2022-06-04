@@ -24,6 +24,37 @@ local function IsRoomNearby(roomIdx)
 	end
 end
 
+local function GetGeneratedRedRoom(roomIdx)
+  local level = Game():GetLevel()
+	local replacedIdx = false
+	for i = 0, 3 do
+		replacedIdx = level:MakeRedRoomDoor(roomIdx, i)
+		print(i, roomIdx, replacedIdx)
+		if replacedIdx then
+			local top = roomIdx - 13
+			local bottom = roomIdx + 13
+			local left = roomIdx - 1
+			local right = roomIdx + 1
+			print(i, roomIdx, left, top, bottom, right)
+
+			if i == 0 and left >= 0 and left % 13 ~= 12 then
+				print(i, roomIdx, left, top, bottom, right, "Returned")
+				return left
+			elseif i == 1 and top >= 0 then
+				print(i, roomIdx, left, top, bottom, right, "Returned")
+				return top
+			elseif i == 2 and right <= 169 and right % 13 ~= 0 then
+				print(i, roomIdx, left, top, bottom, right, "Returned")
+				return right
+			elseif i == 3 and bottom <= 169 then
+				print(i, roomIdx, left, top, bottom, right, "Returned")
+				return bottom
+			end
+		end
+	end
+	return false
+end
+
 local availabledevilroom = {
 	0,1,2,3,4,5,6,12,16,17,18
 }
@@ -51,77 +82,85 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 					if roomCount.Data and roomCount.Data.Type == RoomType.ROOM_TREASURE then IsTreasure = true end
 					return
 				end
-				if i ~= StartingRoom 
-				and roomCount.Data 
-				and (roomCount.Data.Shape == RoomShape.ROOMSHAPE_1x1) 
-				and (roomCount.Data.Type == RoomType.ROOM_DEFAULT) 
-				and roomCount.Data.Name ~= "Mirror Room" 
-				and roomCount.Data.Name ~= "White Fire Room" 
-				and roomCount.Data.Name ~= "Button Room" 
-				then
+				if i ~= StartingRoom and roomCount.Data and roomCount.ListIndex > 0 and (roomCount.Data.Shape == RoomShape.ROOMSHAPE_1x1) and (roomCount.Data.Type == RoomType.ROOM_DEFAULT or roomCount.Data.Type == RoomType.ROOM_ANGEL or roomCount.Data.Type == RoomType.ROOM_DEVIL) then
 					doorCount = roomCount.Data.Doors
 					visitCount = roomCount.VisitedCount
-					if --[[ wakaba:numNextRoomCount(i) and doorCount < 16 and]] visitCount < 1 then
-						table.insert(candidates, i)
-					end
+					table.insert(candidates, i)
+					--[[ if visitCount < 1 then
+					end ]]
 				end
 			end
 		end
+
 	
 		while #candidates > 0 do
 			--print("Found Angel Candidate!")
 			local s = RNG():RandomInt(#candidates) + 1
 			local roomIdx = candidates[s]
-			local targetSpecial = level:GetRoomByIdx(roomIdx)
-			local copyIdx = -1
-			local tempRoomData = Game():GetLevel():GetRoomByIdx(-1,-1).Data
-			Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-			Game():GetLevel():InitializeDevilAngelRoom(false, true)
-			if card == wakaba.SOUL_WAKABA2 then
-				while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-					Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-					Game():GetLevel():InitializeDevilAngelRoom(false, true)
-				end
-			else
-				while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-					Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-					Game():GetLevel():InitializeDevilAngelRoom(true, false)
-				end
-			end
-			--print(Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
-			if card == wakaba.SOUL_WAKABA2 then
-			end
-			--[[ 
-				-1 : Devil/Angel room : Must invalidate before copy
-				-2 : Error room
-				-3 : Goto rooms. Planetariums this time
-				-12 : Genesis Room : Game crash :(
-				-13 : Member card room : Just another Shop with Member card shop layout.
-				-18 : Stairway room
-			]]
-			local d = targetSpecial.Data
-			targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
-			Game():GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
-			selected = roomIdx
-			if card == wakaba.SOUL_WAKABA2 then
-				table.insert(wakaba.state.wakabadevilshops, selected)
-			else
-				table.insert(wakaba.state.wakabaangelshops, selected)
-			end
-			candidates = {}
-			targetSpecial.DisplayFlags = 1 << 0 | 1 << 2
-			if MinimapAPI then
-				local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
-				mRoom.Shape = RoomShape.ROOMSHAPE_1x1
+			--local targetSpecial = level:GetRoomByIdx(roomIdx)
+
+			local replacedIdx = GetGeneratedRedRoom(roomIdx)
+			print(replacedIdx)
+			if replacedIdx then
+				local targetSpecial = level:GetRoomByIdx(replacedIdx)
+				local copyIdx = -1
+				local tempRoom = Game():GetLevel():GetRoomByIdx(-1,-1)
+				local tempRoomData = Game():GetLevel():GetRoomByIdx(-1,-1).Data
+				Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
 				if card == wakaba.SOUL_WAKABA2 then
-					mRoom.Type = RoomType.ROOM_DEVIL
-					mRoom.PermanentIcons = {"DevilRoom"}
+					Game():GetLevel():InitializeDevilAngelRoom(false, true)
+					while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						Game():GetLevel():InitializeDevilAngelRoom(false, true)
+					end
 				else
-					mRoom.Type = RoomType.ROOM_ANGEL
-					mRoom.PermanentIcons = {"AngelRoom"}
+					Game():GetLevel():InitializeDevilAngelRoom(true, false)
+					while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						Game():GetLevel():InitializeDevilAngelRoom(true, false)
+					end
 				end
+				--print(Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
+				if card == wakaba.SOUL_WAKABA2 then
+				end
+				--[[ 
+					-1 : Devil/Angel room : Must invalidate before copy
+					-2 : Error room
+					-3 : Goto rooms. Planetariums this time
+					-12 : Genesis Room : Game crash :(
+					-13 : Member card room : Just another Shop with Member card shop layout.
+					-18 : Stairway room
+				]]
+				local d = targetSpecial.Data
+				targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
+				Game():GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
+				selected = replacedIdx
+				if card == wakaba.SOUL_WAKABA2 then
+					table.insert(wakaba.state.wakabadevilshops, selected)
+				else
+					table.insert(wakaba.state.wakabaangelshops, selected)
+				end
+				candidates = {}
+				targetSpecial.DisplayFlags = 1 << 0 | 1 << 2
+				if MinimapAPI then
+					local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
+					mRoom.Shape = RoomShape.ROOMSHAPE_1x1
+					if card == wakaba.SOUL_WAKABA2 then
+						mRoom.Type = RoomType.ROOM_DEVIL
+						mRoom.PermanentIcons = {"DevilRoom"}
+					else
+						mRoom.Type = RoomType.ROOM_ANGEL
+						mRoom.PermanentIcons = {"AngelRoom"}
+					end
+				end
+			else
+				table.remove(candidates, s)
 			end
 		end
+
+
+
+
 		if selected then
 			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 				local doorR = room:GetDoor(i)
