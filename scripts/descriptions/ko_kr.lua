@@ -648,6 +648,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{RangeSmall}}사거리 +2"
 		.. "#↑ {{LuckSmall}}행운 +1"
 		.. "#방마다 방을 밝혀주는 반딧불이 무리를 소환합니다."
+		.. "#버튼으로 인한 함정이 발동되어도 방 클리어 보상을 소환합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},

@@ -675,6 +675,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Range}} +2 Range"
 		.. "#↑ {{Luck}} +1 Luck"
 		.. "#Constantly spawns fireflies that brightens the room"
+		.. "#Room clear rewards can be spawned for traps through Reward plate"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
