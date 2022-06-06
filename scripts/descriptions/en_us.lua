@@ -1161,13 +1161,13 @@ wakaba.descriptions[desclang].cards = {
 	
 	[wakaba.SOUL_WAKABA] = {
 		itemName = "Soul of Wakaba",
-		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Converts random unvisited room into Angel shop",
+		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Converts random unvisited room into Angel shop#{{AngelRoom}} Spawns an Angel room item for sale if no rooms are available",
 		mimiccharge = 10,
 		isrune = true,
 	},
 	[wakaba.SOUL_WAKABA2] = {
 		itemName = "Soul of Wakaba?",
-		description = "{{SoulHeart}} +1 Soul Heart#{{DevilRoom}} Converts random unvisited room into Devil room",
+		description = "{{SoulHeart}} +1 Soul Heart#{{DevilRoom}} Converts random unvisited room into Devil room#{{AngelRoom}} Spawns a Devil room item for sale if no rooms are available",
 		mimiccharge = 10,
 		isrune = true,
 	},

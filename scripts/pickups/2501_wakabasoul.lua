@@ -76,13 +76,14 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			local copyIdx = -1
 			local tempRoomData = Game():GetLevel():GetRoomByIdx(-1,-1).Data
 			Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-			Game():GetLevel():InitializeDevilAngelRoom(false, true)
 			if card == wakaba.SOUL_WAKABA2 then
+				Game():GetLevel():InitializeDevilAngelRoom(false, true)
 				while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
 					Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
 					Game():GetLevel():InitializeDevilAngelRoom(false, true)
 				end
 			else
+				Game():GetLevel():InitializeDevilAngelRoom(true, false)
 				while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
 					Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
 					Game():GetLevel():InitializeDevilAngelRoom(true, false)
@@ -138,6 +139,28 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			end
 			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		else
+			if card == wakaba.SOUL_WAKABA2 then
+				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
+					Game():GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
+					Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+				p1.ShopItemId = -1
+				if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
+					p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1
+					if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY then
+						p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1 - 6
+					end
+				end
+			else
+				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
+					Game():GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
+					Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+				p1.ShopItemId = -1
+				if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
+					p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * 15
+				end
+			end
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
+
 			--[[ for i = 0, Game():GetNumPlayers() - 1 do
 				Isaac.GetPlayer(i):SetMinDamageCooldown(60)
 			end ]]

@@ -1133,11 +1133,11 @@ wakaba.descriptions[desclang].cards = {
 	
 	[wakaba.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",
-		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 방문하지 않은 임의의 방을 {{AngelRoom}}천사 상점으로 바꿉니다.",
+		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 방문하지 않은 임의의 방을 {{AngelRoom}}천사 상점으로 바꿉니다.#{{AngelRoom}} 바꿀 수 있는 방이 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.SOUL_WAKABA2] = {
 		itemName = "와카바의 영혼?",
-		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 방문하지 않은 임의의 방을 {{DevilRoom}}악마방으로 바꿉니다.",
+		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 방문하지 않은 임의의 방을 {{DevilRoom}}악마방으로 바꿉니다.#{{DevilRoom}} 바꿀 수 있는 방이 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.SOUL_SHIORI] = {
 		itemName = "시오리의 영혼",
