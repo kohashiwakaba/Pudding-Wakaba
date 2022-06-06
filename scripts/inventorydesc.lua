@@ -577,7 +577,7 @@ local function onRender()
 				local qtextrenderpos = renderpos + Vector(-33, (height / 2) + 1)
 				local textrenderpos = renderpos + Vector(0, 1)
 				local isModded = obj.ModName
-				local modIcon = isModded and EID.ModIndicator[obj.ModName].Icon
+				local modIcon = isModded and EID.ModIndicator[obj.ModName] and EID.ModIndicator[obj.ModName].Icon
 				local color = i == currentcursor and EID:getColor("{{ColorGold}}", EID:getNameColor()) or EID:getNameColor()
 				local frameno = v.lemegeton == true and wakaba.state.options.lemegetonicon or wakaba.state.options.idleicon
 				frameno = i == currentcursor and wakaba.state.options.selicon or frameno
