@@ -51,7 +51,7 @@
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
-		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.5" RemoveOn="0.001"/>
+		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="1" RemoveOn="0.001"/>
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Revenge Fruit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -66,12 +66,12 @@
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Shiori" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Grimreaper Defender" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Vintage Threat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Book of The God" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Book of The God" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -93,7 +93,7 @@
 		<Item Name="Book of Silence" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
+		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -103,7 +103,8 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -209,15 +210,15 @@
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedCurse">
-		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.05" RemoveOn="0.001"/>
-		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="0.375" RemoveOn="0.075"/>
-		<Item Name="Executioner" Weight="1" DecreaseBy="0.375" RemoveOn="0.075"/>
-		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.001"/>
+		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="0.4" RemoveOn="0.075"/>
+		<Item Name="Executioner" Weight="1" DecreaseBy="0.4" RemoveOn="0.075"/>
+		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	
 	
@@ -246,6 +247,7 @@
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Double Invader" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -286,21 +288,22 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Double Invader" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="oldChest">
-		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.001"/>
-		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Murasame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
+		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="0.5" RemoveOn="0.001"/>
+		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Murasame" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="woodenChest">
-		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.001"/>
-		<Item Name="Book of The God" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Concentration" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="0.5" RemoveOn="0.001"/>
+		<Item Name="Book of The God" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Concentration" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -336,6 +339,7 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

@@ -21,7 +21,7 @@ function wakaba:getDevilAngelStatus()
 		if wakaba:HasNemesis(pl) then
 			nemesis = true
 		end
-		if pl:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS) then
+		if pl:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS) or pl:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_INVADER) then
 			wdreams = true
 		end
 		if pl:GetCard(0) == wakaba.CARD_BLACK_JOKER or pl:GetCard(1) == wakaba.CARD_BLACK_JOKER then

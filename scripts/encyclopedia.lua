@@ -1096,6 +1096,15 @@ if Encyclopedia then
 			},
 		},
 		
+		COLLECTIBLE_DOUBLE_INVADER = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "+300% Damage Multiplier"},
+				{str = "- +100% Damage Multiplier per extra copy"},
+				{str = "Devil/Angel rooms no longer appear."},
+			},
+		},
+		
 		COLLECTIBLE_DOUBLE_DREAMS = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3721,6 +3730,19 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_LIBRARY,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
+		},
+	})
+	--Venom Incantation
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_DOUBLE_INVADER,
+		WikiDesc = Wiki.COLLECTIBLE_DOUBLE_INVADER,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_CURSE,
+			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
+			Encyclopedia.ItemPools.POOL_RED_CHEST,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
 	--Venom Incantation

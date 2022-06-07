@@ -651,6 +651,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
+	[wakaba.COLLECTIBLE_DOUBLE_INVADER] = {
+		itemName = "침략자",
+		description = ""
+		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
+		.. "#↑ {{DamageSmall}}공격력 배율 x4#{{Blank}} (중첩 시 x1.0배 추가)"
+		.. "{{CR}}",
+	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

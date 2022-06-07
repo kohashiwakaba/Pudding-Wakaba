@@ -678,6 +678,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
+	[wakaba.COLLECTIBLE_DOUBLE_INVADER] = {
+		itemName = "Double Invader",
+		description = ""
+		.. "#↓ Devil/Angel rooms no longer appear"
+		.. "#↑ {{Damage}} +300% Damage Multiplier#{{Blank}} (+100% per extra stack)"
+		.. "{{CR}}",
+	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
