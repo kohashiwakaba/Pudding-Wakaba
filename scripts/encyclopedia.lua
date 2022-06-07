@@ -860,7 +860,6 @@ if Encyclopedia then
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "+22 Coins."},
 				{str = "Coins will be generated per room cleared."},
-				{str = "- If Isaac gets no damage in the room, the reward will be doubled."},
 				{str = "In Greed mode, all coins will be 1+1 coin instead of room reward."},
 			},
 			{ -- Notes

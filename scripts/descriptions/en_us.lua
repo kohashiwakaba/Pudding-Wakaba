@@ -197,7 +197,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Coin}} +22 Coins"
 		.. "#{{Coin}} Coins will be generated per room cleared"
-		.. "#The reward will be doubled on no damage"
 		.. "#{{GreedMode}} all coins will be 1+1 coin"
 		.. "#{{Shop}} Prevents Greed / Super Greed to be spawned in Shops"
 		.. "{{CR}}",

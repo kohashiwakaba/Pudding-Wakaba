@@ -198,7 +198,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Coin}}동전 +22"
 		.. "#방을 클리어하면 랜덤한 갯수의 동전이 쌓입니다."
-		.. "#해당 방에서 피격을 받지 않고 방을 클리어하면 쌓이는 동전이 두 배가 됩니다."
 		.. "#{{GreedModeSmall}} 그리드 모드에서는 위 효과 대신 모든 동전이 1+1 동전으로 바뀝니다."
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
