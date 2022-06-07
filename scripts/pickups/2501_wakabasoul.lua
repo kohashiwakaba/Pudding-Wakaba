@@ -58,6 +58,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				and roomCount.Data.Name ~= "Mirror Room" 
 				and roomCount.Data.Name ~= "White Fire Room" 
 				and roomCount.Data.Name ~= "Button Room" 
+				and roomCount.Data.Name ~= "Fool Room" 
 				then
 					doorCount = roomCount.Data.Doors
 					visitCount = roomCount.VisitedCount
