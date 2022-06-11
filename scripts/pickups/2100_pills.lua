@@ -242,7 +242,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         Game():StartRoomTransition(Game():GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
       end
     elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT then
-      player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
+      player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
     elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2 then
       wakaba:GetPlayerEntityData(player)
       player:GetData().wakaba.trollbrimstonecounter = player:GetPillRNG(wakaba.PILL_EXPLOSIVE_DIARRHEA_2):RandomInt(100)
