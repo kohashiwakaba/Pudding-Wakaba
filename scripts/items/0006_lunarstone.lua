@@ -68,8 +68,8 @@ function wakaba:PlayerUpdate_LunarStone(player)
 				end
 			end
 		end
-		if ((player:GetHearts() + player:GetSoulHearts() > 16) and player:GetSoulHearts() > 0) 
-		or (player:GetPlayerType() == wakaba.PLAYER_TSUKASA and ((player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) or player:GetSoulHearts() > 2)) then
+		if (player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) or player:GetSoulHearts() > 2
+		then
 			if data.wakaba.lunarregenrate < 0
 			or ((player:GetPlayerType() == wakaba.PLAYER_TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 2000000) 
 			or ((player:GetPlayerType() == wakaba.PLAYER_TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 1000000) 
