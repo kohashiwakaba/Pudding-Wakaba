@@ -156,7 +156,7 @@ end
 function wakaba:PreTakeDamage_EatHeart(entity, amount, flags, source, countdown)
 	if entity.Type == EntityType.ENTITY_PLAYER then
 		local player = entity:ToPlayer()
-		if player and player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+		if player and player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) and flags & DamageFlag.DAMAGE_NOKILL == DamageFlag.DAMAGE_NOKILL then
 			wakaba:ChargeEatHeart(player, amount, "PlayerDamage")
 		end
 	else
@@ -183,15 +183,31 @@ end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamage_EatHeart)
 
 
+function wakaba:TakeDamage_EatHeart(entity, amount, flags, source, cooldown)
+	-- If the player is Wakaba
+	--print(entity.Type)
+	local player = entity:ToPlayer()
+	if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART)	then
+		wakaba:RegisterHeart(player)
+	end
+end
+
+
 function wakaba:PlayerUpdate_EatHeart(player)
 	wakaba:GetPlayerEntityData(player)
+	--[[ if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+		if wakaba:IsHeartDifferent(player) then
+			wakaba:RemoveRegisteredHeart(player)
+			wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
+		end
+	end ]]
 	if player:GetData().wakaba.eatheartchargepending and player:GetData().wakaba.tempeatheartcharges then
 		wakaba:ChargeEatHeart(player, player:GetData().wakaba.tempeatheartcharges, "Preserve")
 		player:GetData().wakaba.eatheartchargepending = nil
 		player:GetData().wakaba.tempeatheartcharges = nil
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_EatHeart)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_EatHeart)
 
 function wakaba:Damocles_EatHeart()
 	local dupcnt = 0

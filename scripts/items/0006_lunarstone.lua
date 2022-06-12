@@ -24,7 +24,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 		data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
 		data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
 		data.wakaba.lunargastimeout = data.wakaba.lunargastimeout or 0
-		if wakaba:IsHeartDifferent(player) then
+		--[[ if wakaba:IsHeartDifferent(player) then
 			wakaba:RemoveRegisteredHeart(player)
 			data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
 			data.wakaba.lunargauge = data.wakaba.lunargauge - 40000
@@ -37,7 +37,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 			SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()
-		end
+		end ]]
 		if wakaba:IsHeartEmpty(player) then
 			if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
 				player:AddMaxHearts(2)

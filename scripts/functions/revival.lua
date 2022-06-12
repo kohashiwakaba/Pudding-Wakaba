@@ -122,6 +122,28 @@ end
 function wakaba:PlayerUpdate_Revival(player)
   wakaba:GetPlayerEntityData(player)
   local data = player:GetData()
+  if wakaba:IsHeartDifferent(player) then
+    wakaba:RemoveRegisteredHeart(player)
+		if wakaba:hasLunarStone(player) then
+			data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
+			data.wakaba.lunargauge = data.wakaba.lunargauge - 40000
+			data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
+			if data.wakaba.lunarregenrate >= 0 then
+				data.wakaba.lunarregenrate = -25
+			else
+				data.wakaba.lunarregenrate = data.wakaba.lunarregenrate - 5
+			end
+			SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
+			player:AddCacheFlags(CacheFlag.CACHE_ALL)
+			player:EvaluateItems()
+		end
+    if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+      wakaba:RemoveRegisteredHeart(player)
+      wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
+    end
+  end
+
+
   if player:IsDead() and not player:WillPlayerRevive() then
     local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
     if revivaldata then
@@ -181,6 +203,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
   --print(data.wakaba.damageflag)
 
 
+  wakaba:TakeDamage_EatHeart(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_LunarStone(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_Concentration(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_Elixir(entity, amount, flag, source, countdown)
