@@ -51,8 +51,11 @@ function wakaba:PlayerUpdate_LunarStone(player)
 				data.wakaba.lunargastimeout = 0
 				data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate
 			elseif data.wakaba.lunarregenrate < 0 then
-				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B
-				and (data.wakaba.lunarregenrate < (player:GetHearts() * -1)) then
+				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER 
+				and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B
+				and (data.wakaba.lunarregenrate < (player:GetHearts() * -1)) 
+				and player:CanPickSoulHearts()
+				then
 					data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate + player:GetHearts()
 				end
 				data.wakaba.lunargastimeout = data.wakaba.lunargastimeout + 1
