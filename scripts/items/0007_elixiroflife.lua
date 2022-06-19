@@ -68,7 +68,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 				local thresholdmantlecount = wakaba.state.options.stackableholycard <= 5 and wakaba.state.options.stackableholycard or 5
 				if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) < thresholdmantlecount then
 					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | wakaba.useflag.USE_UNIFORM)
+					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOHUD)
 					data.wakaba.elixircooldown = wakaba.elixirmaxcooldown
 				end
 			elseif (player:GetEffectiveMaxHearts() < 2 and not player:CanPickRedHearts() and player:GetSoulHearts() < 6) or (data.wakaba.elixirmaxsoulhearts and player:GetSoulHearts() < data.wakaba.elixirmaxsoulhearts) then

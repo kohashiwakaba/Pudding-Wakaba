@@ -1,7 +1,7 @@
 wakaba.CARD_RETURN_TOKEN = Isaac.GetCardIdByName("Return Token")
 
 function wakaba:UseCard_ReturnToken(_, player, flags)
-	player:UseCard(Card.CARD_REVERSE_FOOL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | wakaba.useflag.USE_UNIFORM)
+	player:UseCard(Card.CARD_REVERSE_FOOL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_R_KEY, UseFlag.USE_NOANIM | UseFlag.USE_VOID, -1)
 	Game().TimeCounter = 0
 end

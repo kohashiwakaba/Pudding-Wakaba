@@ -347,9 +347,9 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       end
       player:AnimateSad()
     elseif pillEffect == wakaba.PILL_PRIEST_BLESSING then
-      player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
+      player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       if multiplier == 2 then
-        player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
+        player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       end
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)

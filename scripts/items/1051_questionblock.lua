@@ -57,7 +57,7 @@ function wakaba:TakeDmg_QuestionBlock(entity, amount, flag, source, countdownFra
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM)
     elseif not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
-      player:UseCard(Card.CARD_SOUL_LOST, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER)
+      player:UseCard(Card.CARD_SOUL_LOST, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       return false
 		end
 	end

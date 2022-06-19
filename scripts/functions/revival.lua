@@ -239,7 +239,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           --player:DropTrinket(player.Position, false)
           player:TryRemoveTrinket(wakaba.TRINKET_DETERMINATION_RIBBON)
           Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.TRINKET_DETERMINATION_RIBBON, Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
-          player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC)
+          player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
         end
         return false
       end

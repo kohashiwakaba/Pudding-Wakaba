@@ -125,7 +125,7 @@ function mantlemod:checkCurrentHolyCard(player)
 	if player:GetData().wakaba.activatewoodencross then
 		if player:GetTrinketMultiplier(TrinketType.TRINKET_WOODEN_CROSS) >= 1 then
 			for i = 1, player:GetTrinketMultiplier(TrinketType.TRINKET_WOODEN_CROSS) do
-				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
+				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 				--player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 			end
 		end

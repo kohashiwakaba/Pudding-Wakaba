@@ -84,11 +84,11 @@ function wakaba:PickupCollision_Crystals(pickup, collider, low)
 		if player:HasCollectible(wakaba.COLLECTIBLE_MYSTIC_CRYSTAL) then
 			local picked = false
 			if pickup.SubType == HeartSubType.HEART_BLENDED or pickup.SubType == HeartSubType.HEART_SOUL then
-				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | wakaba.useflag.USE_UNIFORM)
-				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | wakaba.useflag.USE_UNIFORM)
+				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
+				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
 				picked = true
 			elseif pickup.SubType == HeartSubType.HEART_HALF_SOUL then
-				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | wakaba.useflag.USE_UNIFORM)
+				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
 				picked = true
 			end
 			if picked then

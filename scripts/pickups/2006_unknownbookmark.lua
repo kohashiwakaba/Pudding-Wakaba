@@ -6,7 +6,7 @@ function wakaba:onUseCard2006(_, player, flags)
 		local subrandom = player:GetCardRNG(wakaba.CARD_UNKNOWN_BOOKMARK):RandomInt(#books) + 1
 		local selected = books[subrandom]
 		if selected == wakaba.COLLECTIBLE_DOUBLE_DREAMS then
-			player:UseCard(wakaba.CARD_DREAM_CARD, 0)
+			player:UseCard(wakaba.CARD_DREAM_CARD, 0 | UseFlag.USE_NOHUD)
 		else
 			player:UseActiveItem(selected, UseFlag.USE_VOID, -1)
 		end

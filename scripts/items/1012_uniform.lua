@@ -264,7 +264,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Uniform, wakaba.COLLECTIBLE_UNIFORM)
 
 function wakaba:useUniform(player)
-	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOANIM | wakaba.useflag.USE_UNIFORM
+	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD
 	for i,item in pairs(player:GetData().wakaba.uniform.items) do
 		--local index = tonumber(string.sub(i, 5, 5))
 		if item.type == "card" then
@@ -291,7 +291,7 @@ function wakaba:useUniform(player)
 end
 
 function wakaba:usePocket32(cardpill, player, flags)
-	if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM) and flags & wakaba.useflag.USE_UNIFORM ~= wakaba.useflag.USE_UNIFORM then
+	if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM) and flags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD then
 		usinguniform = true
 		wakaba:useUniform(player)
 	end

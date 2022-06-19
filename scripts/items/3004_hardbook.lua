@@ -24,7 +24,7 @@ function wakaba:PreTakeDamage_HardBook(entity, amount, flags, source, countdown)
 					Game():GetItemPool():RemoveCollectible(selected)
 				end
 				if wakaba:IsLost(player) then
-					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC)
+					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
 					return false
 				end
 			end
