@@ -32,6 +32,9 @@ function wakaba:IsFatalDamage(player, amount)
   if player:WillPlayerRevive() then
     return false
   end
+  if player:HasMortalDamage() then
+    return true
+  end
   if wakaba:IsLost(player) then
     return true
   end
