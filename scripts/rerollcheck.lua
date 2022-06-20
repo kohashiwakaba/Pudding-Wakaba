@@ -411,7 +411,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 				end
 			end
 
-			local curRoomIndex = Game():GetLevel():GetCurrentRoomIndex()
+			local curRoomIndex = Game():GetLevel():GetCurrentRoomDesc().ListIndex
 			for _, item in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 				if EID.flipItemPositions[curRoomIndex] 
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed]
