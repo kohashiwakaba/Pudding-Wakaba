@@ -78,7 +78,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_Crystals)
 function wakaba:PickupCollision_Crystals(pickup, collider, low)
   if collider:ToPlayer() then
     local player = collider:ToPlayer()
-		if (player:CanPickRedHearts() or player:CanPickSoulHearts()) and not wakaba:IsLost(player) then return end
+		if player:CanPickSoulHearts() and not wakaba:IsLost(player) then return end
 		local thresholdmantlecount = wakaba.state.options.stackableholycard <= 5 and wakaba.state.options.stackableholycard or 5
 		if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) >= thresholdmantlecount then return end 
 		if player:HasCollectible(wakaba.COLLECTIBLE_MYSTIC_CRYSTAL) then
