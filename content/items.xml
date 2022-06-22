@@ -88,7 +88,7 @@
 	<passive id="58" cache="damage tearflag" description="DMG up" gfx="mysticcrystal.png" name="Mystic Crystal" tags="offensive" devilprice="1" quality="4"/>
 	
 	<familiar id="59" cache="damage" description="Snake friend" gfx="hydra.png" name="Hydra" shopprice="32" devilprice="2" tags="offensive baby" quality="4" hidden="true"/>
-	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive" quality="3"/>
+	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive nogreed" quality="3"/>
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="baby" quality="3" addcostumeonpickup="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="2"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="8" name="3D Printer" shopprice="20" devilprice="1" tags="offensive" quality="4"/>

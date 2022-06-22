@@ -592,6 +592,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.COLLECTIBLE_RED_CORRUPTION] = {
+		itemName = "적색 감염",
+		description = "{{Collectible21}} 맵에 특수방의 위치를 표시합니다."
+		.. "#보스방을 제외한 모든 특수 방이 빨간 방으로 바뀝니다."
+		.. "#가능한 경우, 특수 방 주변에 새로운 방이 생성됩니다."
+		.. "{{CR}}",
+	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
 	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
 		itemName = "물음표 블럭",
 		description = ""

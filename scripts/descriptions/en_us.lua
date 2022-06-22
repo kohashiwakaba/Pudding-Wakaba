@@ -619,6 +619,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	}, ]]
+	[wakaba.COLLECTIBLE_RED_CORRUPTION] = {
+		itemName = "Red Corruption",
+		description = "{{Collectible21}} Reveals icons on the map"
+		.. "#All special rooms except Boss rooms will be turned into red rooms"
+		.. "#Generates new rooms adjacent special rooms if possible"
+		.. "{{CR}}",
+	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
 	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
 		itemName = "Question Block",
 		description = ""

@@ -1048,6 +1048,22 @@ if Encyclopedia then
 			},
 		},
 		
+		COLLECTIBLE_RED_CORRUPTION = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Generates new rooms adjacent special rooms if possible."},
+				{str = "All special rooms except Boss rooms will be turned into red rooms."},
+				{str = "Reveals the locations and types of all special rooms on the map."},
+				{str = "- All rooms created from Red Corruption will also be revealed."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "All special rooms that turned into red rooms will do behave differently."},
+				{str = "- All special rooms that require key will show same door images."},
+				{str = "- Challenge/Boss Challenge rooms will always open regardless of health."},
+			},
+		},
+		
 		COLLECTIBLE_ARCANE_CRYSTAL = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3599,12 +3615,16 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
 		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
-		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
+		WikiDesc = Wiki.COLLECTIBLE_RED_CORRUPTION,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_SECRET,
+			Encyclopedia.ItemPools.POOL_CURSE,
+			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
+			Encyclopedia.ItemPools.POOL_RED_CHEST,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
+			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 		},
 	})
 	--Beam
@@ -3732,7 +3752,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 	})
-	--Venom Incantation
+	--Double Invader
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,

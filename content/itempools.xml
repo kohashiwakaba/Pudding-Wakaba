@@ -38,6 +38,7 @@
 		<Item Name="Clensing Foam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -94,6 +95,7 @@
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -105,6 +107,7 @@
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -248,6 +251,7 @@
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -290,6 +294,7 @@
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="oldChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -340,11 +345,13 @@
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Executioner" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
+		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>

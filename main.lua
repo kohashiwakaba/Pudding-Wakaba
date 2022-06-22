@@ -1044,6 +1044,7 @@ include('scripts.items.1054_curseofthetower2')
 include('scripts.items.1056_venomincantation')
 include('scripts.items.1057_fireflylighter')
 include('scripts.items.1058_doubleinvader')
+include('scripts.items.1059_redcorruption')
 
 include('scripts.pickups.2005_dreamcard')
 include('scripts.items.1200_doubledreams')
@@ -1772,6 +1773,81 @@ function wakaba:OnGameExit(shouldSave)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.OnGameExit)
+
+
+-- TestFuncs
+--[[ local function CountBits(mask)
+	local count = 0
+	while mask ~= 0 do
+		count = count + 1
+		mask = mask & mask - 1
+	end
+
+	return count
+end
+
+function wakaba:Test_CardUse(cardID, playerWhoUsedItem, useFlags)
+	print(cardID, CountBits(useFlags))
+end
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.Test_CardUse) ]]
+
+function wakaba:RandomInt(min, max, customRNG) --This and GetRandomElem were written by Guwahavel (hi)
+	local rand = customRNG or wakaba.RNG
+	if not max then
+			max = min
+			min = 0
+	end  
+	if min > max then 
+			local temp = min
+			min = max
+			max = temp
+	end
+	return min + (rand:RandomInt(max - min + 1))
+end
+
+function wakaba:GetRandomElem(table, customRNG)
+	if table and #table > 0 then
+	local index = wakaba:RandomInt(1, #table, customRNG)
+			return table[index], index
+	end
+end
+
+
+
+local function runUpdates(tab) --This is from Fiend Folio
+	for i = #tab, 1, -1 do
+			local f = tab[i]
+			f.Delay = f.Delay - 1
+			if f.Delay <= 0 then
+					f.Func()
+					table.remove(tab, i)
+			end
+	end
+end
+
+wakaba.delayedFuncs = {}
+function wakaba:scheduleForUpdate(foo, delay, callback)
+	callback = callback or ModCallbacks.MC_POST_UPDATE
+	if not wakaba.delayedFuncs[callback] then
+			wakaba.delayedFuncs[callback] = {}
+			wakaba:AddCallback(callback, function()
+					runUpdates(wakaba.delayedFuncs[callback])
+			end)
+	end
+
+	table.insert(wakaba.delayedFuncs[callback], { Func = foo, Delay = delay })
+end
+
+function wakaba:Shuffle(tbl)
+	for i = #tbl, 2, -1 do
+    local j = wakaba:RandomInt(1, i)
+    tbl[i], tbl[j] = tbl[j], tbl[i]
+  end
+  return tbl
+end
+
+
+
 
 print("Pudding and Wakaba", wakaba.version, "load complete.")
 --wakaba:luamodInit()
