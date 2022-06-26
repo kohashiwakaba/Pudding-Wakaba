@@ -218,6 +218,16 @@ function wakaba:blessnemesisrender()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER , wakaba.blessnemesisrender)
 
+function wakaba:DreamsPostLevel()
+  local status = wakaba:getDevilAngelStatus()
+  local wdreams = status.WDreams
+	if wdreams then
+    Game():GetLevel():DisableDevilRoom()
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.DreamsPostLevel)
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.DreamsPostLevel)
+
 --[[ function wakaba:NewLevel_PrepareOverrideDevilAngel()
   local level = Game():GetLevel()
   level:InitializeDevilAngelRoom(true, false)

@@ -69,18 +69,6 @@ function wakaba:GetNextPool(current)
 	return wakaba.ItemPoolType[1]
 end
 
-function wakaba:DreamsPostLevel()
-	local level = Game():GetLevel()
-	if wakaba.hasdreams then
-		if wakaba:isDevilAngelAllowed() == true then
-			level:DisableDevilRoom()
-		end
-	end
-	
-	
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.DreamsPostLevel)
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.DreamsPostLevel)
 
 function wakaba:renderDreams()
 	wakaba.hasdreams = false
