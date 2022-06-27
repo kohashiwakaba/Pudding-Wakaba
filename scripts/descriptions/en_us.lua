@@ -1863,7 +1863,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "The Broken: Isaac got hit too many times from Mom"
 		.. "#Tainted Isaac can only hold 8 passive items at a time. Tainted Isaac's current 8 passive items are visible in the top-left corner of the screen, with one highlighted by a white square"
 		.. "#Upon picking up a 9th passive item, the item currently selected, or rather the item currently in the white square, will be dropped on a pedestal in front of Tainted Isaac"
-		.. "# The swap key can be pressed to cycle which item is selected"
+		.. "#The swap key can be pressed to cycle which item is selected"
 		.. "",
 	},
 	[PlayerType.PLAYER_MAGDALENE_B] = {

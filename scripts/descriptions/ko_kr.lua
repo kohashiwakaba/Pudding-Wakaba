@@ -1048,7 +1048,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "유피테르의 유대",
 		description = ""
 		.. "↑ {{TearsSmall}}연사 +20%"
-		.. "#↑ {{SpeedSmall}}이동속도  +10%"
+		.. "#↑ {{SpeedSmall}}이동속도 +10%"
 		.. "#↑ {{DamageSmall}}공격력 +16%"
 		.. "#↑ {{ShotspeedSmall}}탄속 +5%"
 		.. "#↑ {{LuckSmall}}행운 +1"
