@@ -2039,7 +2039,6 @@ if Encyclopedia then
 				{str = "Upon use, Spawns a Soul Heart type Lil clot for 99.5% chance."},
 				{str = "- Isaac will be teleported into Death Certificate room if the spawn fails."},
 				{str = "Heals all spawned Lil Clots' health by 2."},
-				{str = "Heals all spawned Red Heart Type Lil Clots' health to 60."},
 				{str = "This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm."},
 			},
 			{ -- Trivia
