@@ -1,5 +1,6 @@
 wakaba.COLLECTIBLE_ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition")
 
+--[[ 
 function wakaba:FamiliarUpdate(familiar)
 	local isholding1 = familiar.Player and familiar.Player:HasCollectible(wakaba.COLLECTIBLE_ISEKAI_DEFINITION)
 	local isholding2 = familiar.Parent and familiar.Parent:ToPlayer() and familiar.Parent:HasCollectible(wakaba.COLLECTIBLE_ISEKAI_DEFINITION)
@@ -12,6 +13,7 @@ function wakaba:FamiliarUpdate(familiar)
 
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate, FamiliarVariant.BLOOD_BABY)
+ ]]
 
 function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 	local chance = rng:RandomFloat() * 10000

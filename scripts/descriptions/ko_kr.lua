@@ -449,7 +449,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
 		itemName = "이세계 정의서",
 		description = ""
-		.. "#소지 시 꼬마 클롯의 체력이 피격 시에만 감소합니다."
 		.. "#사용 시 99.5%의 확률로 캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사하는 꼬마 클롯을 소환합니다."
 		.. "#소환된 모든 꼬마 클롯의 체력을 2 회복합니다."
 		.. "{{CR}}",

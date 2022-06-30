@@ -459,8 +459,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
 		itemName = "Isekai Definition",
 		description = ""
-		.. "#Prevents Lil Clot's natural health reduction while held"
-		.. "#For 99.5% chance, Spawn a regular Lil Clot"
+		.. "#For 99.5% chance, Spawn a blue Lil Clot"
 		.. "#Heals all spawned Lil Clots' health by 2"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
