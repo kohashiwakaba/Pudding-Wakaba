@@ -584,11 +584,11 @@ if EID then
 
 			EID.MarkupSizeMap["{{Beast}}"] = "{{BeastSmall}}"
 
-			if Sewn_API then -- no support for multilang sadly
+			--[[ if Sewn_API then -- no support for multilang sadly
 				for familiar, famdesc in pairs(wakaba.descriptions["en_us"].sewnupgrade) do
 					Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc.ultra)
 				end
-			end
+			end ]]
 			for lang, wakabaDescTables in pairs(wakaba.descriptions) do
 				--print(lang)
 				for itemID, itemdesc in pairs(wakabaDescTables.collectibles) do
@@ -639,11 +639,11 @@ if EID then
 						wakaba.descriptions[desclang].curses[curseid] = wakabaDescTables.cursesappend.further[curseid]
 					end
 				end ]]
-				--[[ if Sewn_API then
+				if Sewn_API then
 					for familiar, famdesc in pairs(wakabaDescTables.sewnupgrade) do
-						Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc,ultra)
+						Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc.ultra, nil, famdesc.name, lang)
 					end
-				end ]]
+				end
 			end
 
 			for curseid, cursedesc in pairs(wakaba.descriptions["en_us"].curses) do

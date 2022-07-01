@@ -1314,6 +1314,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#킹 베이비가 없어도 리틀 와카바가 자동으로 적을 향해 공격합니다."
 		.. "#원형 레이저의 공격력이 캐릭터의 공격력으로 증가합니다."
 		.. "{{CR}}",
+		name = "리틀 와카바",
 	},
 	[wakaba.FAMILIAR_LIL_MOE] = {
 		super = ""
@@ -1324,6 +1325,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#눈물의 효과가 3개를 가집니다."
 		.. "#눈물의 공격력이 캐릭터의 공격력의 200%로 증가합니다."
 		.. "{{CR}}",
+		name = "리틀 모에",
 	},
 	[wakaba.FAMILIAR_LIL_SHIVA] = {
 		super = ""
@@ -1335,6 +1337,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#눈물의 공격력이 캐릭터의 공격력의 200%로 증가합니다."
 		.. "#눈물이 적을 통과하면 눈물이 빨간 눈처럼 바뀌며 유도 효과와 함께 공격력이 두 배가 됩니다."
 		.. "{{CR}}",
+		name = "리틀 시바",
 	},
 	[wakaba.FAMILIAR_PLUMY] = {
 		super = ""
@@ -1347,6 +1350,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#↑ 연사 및 정확도 증가"
 		.. "#↑ 회복 소요시간이 더 감소합니다."
 		.. "{{CR}}",
+		name = "플럼이",
 	},
 }
 

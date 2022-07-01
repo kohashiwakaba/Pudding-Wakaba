@@ -1380,6 +1380,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#Automatically aims at the enemy even without King Baby"
 		.. "#Deals 100% of Isaac's damage"
 		.. "{{CR}}",
+		name = "Lil Wakaba",
 	},
 	[wakaba.FAMILIAR_LIL_MOE] = {
 		super = ""
@@ -1390,6 +1391,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#Three effects can be combined"
 		.. "#Deals 200% of Isaac's damage"
 		.. "{{CR}}",
+		name = "Lil Wakaba",
 	},
 	[wakaba.FAMILIAR_LIL_SHIVA] = {
 		super = ""
@@ -1401,6 +1403,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#Fires 8 charged wave of tears"
 		.. "#After hitting the first enemy, the tear deals double damage and gains a homing effect"
 		.. "{{CR}}",
+		name = "Lil Shiva",
 	},
 	[wakaba.FAMILIAR_PLUMY] = {
 		super = ""
@@ -1413,6 +1416,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "#Bouncing tears"
 		.. "#↑ Reduced recovery time"
 		.. "{{CR}}",
+		name = "Plumy",
 	},
 }
 wakaba.descriptions[desclang].uniform = {
