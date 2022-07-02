@@ -623,6 +623,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "{{Collectible21}} Reveals icons on the map"
 		.. "#All special rooms except Boss rooms will be turned into red rooms"
 		.. "#Generates new rooms adjacent special rooms if possible"
+		.. "#!!! Some doors may lead to {{ErrorRoom}}I AM ERROR rooms!"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

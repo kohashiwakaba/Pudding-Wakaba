@@ -596,6 +596,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "{{Collectible21}} 맵에 특수방의 위치를 표시합니다."
 		.. "#보스방을 제외한 모든 특수 방이 빨간 방으로 바뀝니다."
 		.. "#가능한 경우, 특수 방 주변에 새로운 방이 생성됩니다."
+		.. "#!!! {{ErrorRoom}}오류방으로 향하는 문이 생성될 수 있습니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

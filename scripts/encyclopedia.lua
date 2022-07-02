@@ -1055,12 +1055,14 @@ if Encyclopedia then
 				{str = "All special rooms except Boss rooms will be turned into red rooms."},
 				{str = "Reveals the locations and types of all special rooms on the map."},
 				{str = "- All rooms created from Red Corruption will also be revealed."},
+				{str = "No effect on ???/Home."},
 			},
 			{ -- Notes
 				{str = "Notes", fsize = 2, clr = 3, halign = 0},
 				{str = "All special rooms that turned into red rooms will do behave differently."},
 				{str = "- All special rooms that require key will show same door images."},
 				{str = "- Challenge/Boss Challenge rooms will always open regardless of health."},
+				{str = "Due to issues from Modding API, some rooms may not created correctly. Doors that is not created correctly may lead to I AM ERROR room."},
 			},
 		},
 		

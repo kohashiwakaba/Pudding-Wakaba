@@ -28,6 +28,7 @@ end
 function wakaba:NewLevel_RedCorruption()
 	local game = Game()
 	local level = game:GetLevel()
+	if level:GetAbsoluteStage() == LevelStage.STAGE5 or level:GetAbsoluteStage() == LevelStage.STAGE8 then return end
 	local hasCorruption = false
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
