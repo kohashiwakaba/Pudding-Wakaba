@@ -1188,7 +1188,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.PILL_TROLLED] = {
 		itemName = "낚였구나아아아아아아",
-		description = "에러방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.",
+		description = "{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.",
 	},
 	[wakaba.PILL_TO_THE_START] = {
 		itemName = "태초마을",
@@ -1253,7 +1253,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_TROLLED] = {
 		tostring(wakaba.PILL_TROLLED),
 		"낚였구나아아아아아아",
-		"에러방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}소지 불가능 체력 -1",
+		"{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}소지 불가능 체력 -1",
 	},
 	[wakaba.PILL_TO_THE_START] = {
 		tostring(wakaba.PILL_TO_THE_START),

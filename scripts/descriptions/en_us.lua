@@ -1236,7 +1236,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.PILL_TROLLED] = {
 		itemName = "Trolled!",
-		description = "Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home",
+		description = "{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -1319,7 +1319,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_TROLLED] = {
 		tostring(wakaba.PILL_TROLLED),
 		"Trolled!",
-		"Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
+		"{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
 	},
 	[wakaba.PILL_TO_THE_START] = {
 		tostring(wakaba.PILL_TO_THE_START),
