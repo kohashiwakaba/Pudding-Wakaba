@@ -245,11 +245,11 @@ function wakaba:CalculateCost(entity, hasbirthright, hascarbattery)
 	end
 	hasbirthright = hasbirthright or false
 	hascarbattery = hascarbattery or false
-	local bombdelimiter = 50 -- 1 bomb per 35 hp
+	local bombdelimiter = 45 -- 1 bomb per 35 hp
 	local keydelimiter = 25 -- 1 key per 12 hp
 	if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game().Difficulty == Difficulty.DIFFICULTY_GREEDIER then
-		bombdelimiter = 42
-		keydelimiter = 18
+		bombdelimiter = 30
+		keydelimiter = 10
 	end
 	if hasbirthright then
 		bombdelimiter = bombdelimiter + 16
