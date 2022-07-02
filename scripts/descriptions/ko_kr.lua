@@ -890,9 +890,6 @@ wakaba.descriptions[desclang].bless = {
 	[wakaba.COLLECTIBLE_EXECUTIONER] = {
 		description = "지우개 눈물 발사 확률 10x", 
 	},
-	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "무적 시간이 1.5초로 증가({{Card"..Card.CARD_SOUL_LOST.."}}로스트류 캐릭터 및 상태는 미적용)", 
-	},
 }
 wakaba.descriptions[desclang].nemesis = {
 	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {

@@ -1375,8 +1375,6 @@ if Encyclopedia then
 			},
 			{ -- Notes
 				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-				{str = "Wakaba's Blessing", clr = 3, halign = 0},
-				{str = "Makes Isaac invincible for 2 seconds."},
 				{str = "Void", clr = 3, halign = 0},
 				{str = "Loses automatic activation when voided, Makes Isaac invincible for 20 seconds instead."},
 			},

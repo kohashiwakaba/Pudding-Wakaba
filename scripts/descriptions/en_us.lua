@@ -914,9 +914,6 @@ wakaba.descriptions[desclang].bless = {
 	[wakaba.COLLECTIBLE_EXECUTIONER] = {
 		description = "↑ 1.2x chance for Eraser tears", 
 	},
-	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "↑ Makes Isaac invincible for 1.5 seconds (does NOT apply for {{Card"..Card.CARD_SOUL_LOST.."}}Lost Curse state)", 
-	},
 }
 wakaba.descriptions[desclang].nemesis = {
 	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {

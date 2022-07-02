@@ -71,9 +71,6 @@ function wakaba:ItemUse_Counter(_, rng, player, useFlags, activeSlot, varData)
 	if useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID then
 		at = 600
 	end
-	if wakaba:HasBless(player) and player:GetPlayerType() ~= PlayerType.PLAYER_JACOB_B then
-		at = at * 1.5
-	end
 	if ct == nil then
 		player:GetData().wakabacountertimer = at
 		player:AddCostume(shadow, false)
