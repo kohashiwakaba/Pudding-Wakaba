@@ -45,9 +45,6 @@
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Arcane Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Advanced Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Mystic Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>

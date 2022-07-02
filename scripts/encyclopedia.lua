@@ -3687,7 +3687,6 @@ if Encyclopedia then
 		WikiDesc = Wiki.COLLECTIBLE_ARCANE_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_BOSS,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
@@ -3702,7 +3701,6 @@ if Encyclopedia then
 		WikiDesc = Wiki.COLLECTIBLE_ADVANCED_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_BOSS,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
@@ -3717,7 +3715,6 @@ if Encyclopedia then
 		WikiDesc = Wiki.COLLECTIBLE_MYSTIC_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_BOSS,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
