@@ -743,7 +743,7 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다."
 	},
 	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다."
+		description = "{{ColorOrange}}외부 링 1마리: {{CR}}사용한 방에서만 존재#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다."
 	},
 	[wakaba.COLLECTIBLE_D6_PLUS] = {
 		description = "{{ColorLime}}내부 링 1마리: {{CR}}바꾼 아이템의 수만큼 불꽃을 추가로 소환합니다."

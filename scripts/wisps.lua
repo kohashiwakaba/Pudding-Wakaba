@@ -1,3 +1,8 @@
+local roomWispTypes = {
+  wakaba.COLLECTIBLE_COUNTER,
+
+}
+
 function wakaba:HasWisp(player, collectibleType)
   if not player then return end
   local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, collectibleType, false, false)
@@ -11,6 +16,8 @@ end
 function wakaba:TakeDamage_Wisps(wisp, amount, flags, source, cooldown)
   if wisp.Variant ~= FamiliarVariant.WISP then return end
   if wisp.SubType == wakaba.COLLECTIBLE_EATHEART then
+    return false
+  elseif wisp.SubType == wakaba.COLLECTIBLE_COUNTER then
     return false
   elseif wisp.SubType == wakaba.COLLECTIBLE_BOOK_OF_SILENCE then
   elseif wisp.SubType == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then
@@ -82,3 +89,13 @@ function wakaba:FamiliarUpdate_Wisps(familiar)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Wisps, FamiliarVariant.WISP)
+
+function wakaba:NewRoom_Wisps()
+  for _, wispType in ipairs(roomWispTypes) do
+    local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, wispType)
+    for _, wisp in ipairs(wisps) do
+      wisp:Remove()
+    end
+  end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Wisps)

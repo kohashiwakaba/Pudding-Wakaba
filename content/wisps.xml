@@ -197,7 +197,7 @@
 	<!-- Wakaba's Uniform -->
 	<wisp id="13" count="0"/>
 	<!-- Counter -->
-	<wisp id="17" count="0"/>
+	<wisp id="17" layer="2" hp="2" damage="3" priority="-1" flameColor="flame_white" coreColor="core_bright_blue"/>
 	<!-- D6 Plus -->
 	<wisp id="19" hp="4" damage="3" flameColor="flame_bright_blue" tearColor="tear_purple" coreColor="core_purple" coreGfx="dice.png" />
 	<!-- D6 Chaos -->

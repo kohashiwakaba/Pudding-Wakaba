@@ -771,7 +771,7 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held"
 	},
 	[wakaba.COLLECTIBLE_COUNTER] = {
-		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while counter shield is active"
+		description = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active"
 	},
 	[wakaba.COLLECTIBLE_D6_PLUS] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
