@@ -955,15 +955,15 @@ if MCM then
 		{
 			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
-				return wakaba.state.forcevoid.delirium
+				return AnIndexOf(deli, wakaba.state.forcevoid.delirium)
 			end,
 			Minimum = 1,
 			Maximum = 2,
 			Display = function()
-				return "Delirium: " .. deliName[wakaba.state.forcevoid.delirium+1]
+				return "Delirium: " .. forceVoidName[wakaba.state.forcevoid.delirium+1]
 			end,
 			OnChange = function(currentNum)
-				wakaba.state.forcevoid.delirium = currentNum
+				wakaba.state.forcevoid.delirium = deli[currentNum]
 				
 			end,
 			Info = {
