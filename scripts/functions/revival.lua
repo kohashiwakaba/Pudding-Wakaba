@@ -141,8 +141,10 @@ function wakaba:PlayerUpdate_Revival(player)
 			player:EvaluateItems()
 		end
     if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
-      wakaba:RemoveRegisteredHeart(player)
       wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
+    end
+    if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
     end
   end
 
@@ -206,6 +208,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
   --print(data.wakaba.damageflag)
 
 
+  wakaba:TakeDamage_CurseOfTower2(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_EatHeart(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_LunarStone(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_Concentration(entity, amount, flag, source, countdown)

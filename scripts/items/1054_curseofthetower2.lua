@@ -96,11 +96,11 @@ function wakaba:EntitySelect_CurseOfTower2(entitybomb)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTower2)
 
-
 function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
 	local player = entity:ToPlayer()
 	if player then
 		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+      wakaba:RegisterHeart(player)
 			--[[ if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
 				entity:ToPlayer():SetMinDamageCooldown(1)
 				return false
@@ -109,9 +109,9 @@ function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown
 				entity:ToPlayer():SetMinDamageCooldown(1)
 				return false
 			end ]]
-      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
+      --Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CurseOfTower2, EntityType.ENTITY_PLAYER)
+--wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CurseOfTower2, EntityType.ENTITY_PLAYER)
 
