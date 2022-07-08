@@ -579,8 +579,7 @@ local function onRender()
 				local isModded = obj.ModName
 				local modIcon = isModded and EID.ModIndicator[obj.ModName] and EID.ModIndicator[obj.ModName].Icon
 				local color = i == currentcursor and EID:getColor("{{ColorGold}}", EID:getNameColor()) or EID:getNameColor()
-				local frameno = v.lemegeton == true and wakaba.state.options.lemegetonicon or wakaba.state.options.idleicon
-				frameno = i == currentcursor and wakaba.state.options.selicon or frameno
+				local frameno = i == currentcursor and wakaba.state.options.selicon or wakaba.state.options.idleicon
 				idesc.IconBgSprite.Scale = Vector(EID.Scale / 3, EID.Scale / 3)
 				idesc.IconBgSprite.Color = Color(1, 1, 1, EID.Config["Transparency"], 0, 0, 0)
 				if v.type == wakaba.INVDESC_TYPE_PLAYER and extIcon then
@@ -594,6 +593,7 @@ local function onRender()
 				elseif v.variant == 100 then
 					if REPENTANCE and EID.Config["ShowQuality"] then
 						local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(v.subtype)).Quality)
+						frameno = v.lemegeton and wakaba.state.options.lemegetonicon or wakaba.state.options.idleicon
 						frameno = i == currentcursor and wakaba.state.options.selicon or wakaba.state.options["q"..quality.."icon"]
 						idesc.IconBgSprite:SetFrame("ItemIcon",frameno)
 						idesc.IconBgSprite:Render(iconrenderpos, Vector(0,0), Vector(0,0))
@@ -606,6 +606,7 @@ local function onRender()
 					EID:renderInlineIcons({{obj.Icon,0}}, renderpos.X - 18, renderpos.Y + ( (height / 2) + 1))
 				end
 				local curName = obj.Name
+				curName = v.lemegeton and "{{Collectible"..CollectibleType.COLLECTIBLE_LEMEGETON.."}} "..curName or curName
 				
 				if EID.Config["TranslateItemName"] ~= 2 then
 					local prevLanguage = EID.Config["Language"]
