@@ -99,7 +99,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTo
 function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
 	local player = entity:ToPlayer()
 	if player then
-		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) 
+    and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
+    and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
       wakaba:RegisterHeart(player)
 			--[[ if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
 				entity:ToPlayer():SetMinDamageCooldown(1)
