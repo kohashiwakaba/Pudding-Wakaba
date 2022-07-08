@@ -151,7 +151,12 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffect_Uniform)
 
 function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
-	if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then 
+	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
+	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) 
+	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC) 
+	then 
+		usinguniform = true
+		wakaba:useUniform(player)
 		return 
 	end
 	local discharge = false
@@ -193,16 +198,18 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 	if oldItemType ~= nil then
 		if player:GetActiveItem(ActiveSlot.SLOT_POCKET) > 0 then
 			if oldItemType == "card" then
-				if player:GetCard(0) == 0 then --Handle PocketActiveItem check
-					if player:GetCard(1) == 0 then
+				if player:GetCard(0) == 0 and not (index == 1 and player:GetCard(0) == Card.CARD_WILD) then --Handle PocketActiveItem check
+					if player:GetCard(1) == 0 and not (index == 1 and player:GetCard(1) == Card.CARD_WILD) then
 						player:SetCard(1,oldItemData)
-					elseif player:GetCard(2) == 0 then
+					elseif player:GetCard(2) == 0 and not (index == 1 and player:GetCard(2) == Card.CARD_WILD) then
 						player:SetCard(2,oldItemData)
 					else
 						err = err + 1
 					end
-				else
+				elseif not (index == 1 and player:GetCard(0) == Card.CARD_WILD) then
 					player:SetCard(0,oldItemData)
+				else
+					err = err + 1
 				end
 			elseif oldItemType == "pill" then
 				if player:GetPill(0) == 0 then --Handle PocketActiveItem check
@@ -219,17 +226,25 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 			end
 		else
 			if oldItemType == "card" then
-				player:SetCard(0,oldItemData)
+				if index == 1 and player:GetCard(0) == Card.CARD_WILD then
+					err = err + 1
+				else
+					player:SetCard(0,oldItemData)
+				end
 			elseif oldItemType == "pill" then
 				player:SetPill(0,oldItemData)
 			end
 		end
 	elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) > 0 then
-		if card ~= 0 and pill == 0 then
+		if (card ~= 0 and not (index == 1 and card == Card.CARD_WILD)) and pill == 0 then
 			player:SetCard(0,0)
 		elseif card == 0 and pill ~= 0 then
 			player:SetPill(0,0)
+		else
+			err = err + 1
 		end
+	elseif index == 1 and card == Card.CARD_WILD then
+		err = err + 1
 	else
 		player:SetCard(0,0)
 	end
