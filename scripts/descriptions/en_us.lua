@@ -1296,72 +1296,72 @@ wakaba.descriptions[desclang].pills = {
 	},
 }
 wakaba.descriptions[desclang].horsepills = {
-	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
+	[wakaba.PILL_DAMAGE_MULTIPLIER_UP +1] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_UP),
 		"Damage Multiplier Up",
 		"↑ {{Damage}} +16% Damage Multiplier",
 	},
-	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
+	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN +1] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_DOWN),
 		"Damage Multiplier Down",
 		"↓ {{Damage}} -4% Damage Multiplier",
 	},
-	[wakaba.PILL_ALL_STATS_UP] = {
+	[wakaba.PILL_ALL_STATS_UP +1] = {
 		tostring(wakaba.PILL_ALL_STATS_UP),
 		"All Stats Up",
 		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.16 Shot Speed#↑ {{Luck}} +2 Luck#",
 	},
-	[wakaba.PILL_ALL_STATS_DOWN] = {
+	[wakaba.PILL_ALL_STATS_DOWN +1] = {
 		tostring(wakaba.PILL_ALL_STATS_DOWN),
 		"All Stats Down",
 		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.12 Shot Speed#↓ {{Luck}} -2 Luck#",
 	},
-	[wakaba.PILL_TROLLED] = {
+	[wakaba.PILL_TROLLED +1] = {
 		tostring(wakaba.PILL_TROLLED),
 		"Trolled!",
 		"{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
 	},
-	[wakaba.PILL_TO_THE_START] = {
+	[wakaba.PILL_TO_THE_START +1] = {
 		tostring(wakaba.PILL_TO_THE_START),
 		"To the Start!",
 		"Teleports to Starting room on the floor#Heals 1 Heart#Removes a Broken Heart",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = {
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2 +1] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
 		"Explosive Diarrehea 2!",
 		"Spawns 2 troll Brimstone swirls at Isaac's position",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT +1] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
 		"Explosive Diarrehea 2?",
 		"{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
 	},
-	[wakaba.PILL_SOCIAL_DISTANCE] = {
+	[wakaba.PILL_SOCIAL_DISTANCE +1] = {
 		tostring(wakaba.PILL_SOCIAL_DISTANCE),
 		"Social Distance",
 		"Closes Devil/Angel room for current floor#↓ {{AngelDevilChance}} Decreases Devil/Angel room chance for later floors",
 	},
-	[wakaba.PILL_DUALITY_ORDERS] = {
+	[wakaba.PILL_DUALITY_ORDERS +1] = {
 		tostring(wakaba.PILL_DUALITY_ORDERS),
 		"Duality Orders",
 		"Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
 	},
-	[wakaba.PILL_FLAME_PRINCESS] = {
+	[wakaba.PILL_FLAME_PRINCESS +1] = {
 		tostring(wakaba.PILL_FLAME_PRINCESS),
 		"Flame Princess",
 		"Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max healt#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
 	},
-	[wakaba.PILL_FIREY_TOUCH] = {
+	[wakaba.PILL_FIREY_TOUCH +1] = {
 		tostring(wakaba.PILL_FIREY_TOUCH),
 		"Firey Touch",
 		"{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
 	},
-	[wakaba.PILL_PRIEST_BLESSING] = {
+	[wakaba.PILL_PRIEST_BLESSING +1] = {
 		tostring(wakaba.PILL_PRIEST_BLESSING),
 		"Priest's Blessing",
 		"Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
 	},
-	[wakaba.PILL_UNHOLY_CURSE] = {
+	[wakaba.PILL_UNHOLY_CURSE +1] = {
 		tostring(wakaba.PILL_UNHOLY_CURSE),
 		"Unholy Curse",
 		"Breaks a stack from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",

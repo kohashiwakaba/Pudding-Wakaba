@@ -1230,72 +1230,72 @@ wakaba.descriptions[desclang].pills = {
 	},
 }
 wakaba.descriptions[desclang].horsepills = {
-	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
+	[wakaba.PILL_DAMAGE_MULTIPLIER_UP +1] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_UP),
 		"공격력 배율 증가",
 		"↑ {{DamageSmall}}공격력 배율 {{ColorCyan}}x1.16{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
-	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
+	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN +1] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_DOWN),
 		"공격력 배율 감소",
 		"↓ {{DamageSmall}}공격력 배율 {{ColorYellow}}x0.96{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
-	[wakaba.PILL_ALL_STATS_UP] = {
+	[wakaba.PILL_ALL_STATS_UP +1] = {
 		tostring(wakaba.PILL_ALL_STATS_UP),
 		"모든 능력치 증가",
 		"↑ {{DamageSmall}}공격력 +{{ColorCyan}}0.5{{CR}}#↑ {{TearsSmall}}연사 +{{ColorCyan}}0.4{{CR}}#↑ {{SpeedSmall}}이동속도 +{{ColorCyan}}0.24{{CR}}#↑ {{RangeSmall}}사거리 +{{ColorCyan}}0.8{{CR}}#↑ {{ShotspeedSmall}}탄속 +{{ColorCyan}}0.16{{CR}}#↑ {{LuckSmall}}행운 +{{ColorCyan}}2{{CR}}",
 	},
-	[wakaba.PILL_ALL_STATS_DOWN] = {
+	[wakaba.PILL_ALL_STATS_DOWN +1] = {
 		tostring(wakaba.PILL_ALL_STATS_DOWN),
 		"모든 능력치 감소",
 		"↓ {{DamageSmall}}공격력 -{{ColorYellow}}0.2{{CR}}#↓ {{TearsSmall}}연사 -{{ColorYellow}}0.16{{CR}}#↓ {{SpeedSmall}}이동속도 -{{ColorYellow}}0.18{{CR}}#↓ {{RangeSmall}}사거리 -{{ColorYellow}}0.5{{CR}}#↓ {{ShotspeedSmall}}탄속 -{{ColorYellow}}0.12{{CR}}#↓ {{LuckSmall}}행운 -{{ColorYellow}}2{{CR}}",
 	},
-	[wakaba.PILL_TROLLED] = {
+	[wakaba.PILL_TROLLED +1] = {
 		tostring(wakaba.PILL_TROLLED),
 		"낚였구나아아아아아아",
 		"{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
-	[wakaba.PILL_TO_THE_START] = {
+	[wakaba.PILL_TO_THE_START +1] = {
 		tostring(wakaba.PILL_TO_THE_START),
 		"태초마을",
 		"각 층의 시작 방으로 텔레포트합니다.#↑ {{Heart}}하트 +1#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = {
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2 +1] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
 		"혈사 설사 2",
 		"캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT +1] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
 		"혈사 설사 2?",
 		"{{Card88}}7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
 	},
-	[wakaba.PILL_SOCIAL_DISTANCE] = {
+	[wakaba.PILL_SOCIAL_DISTANCE +1] = {
 		tostring(wakaba.PILL_SOCIAL_DISTANCE),
 		"사회적 거리두기",
 		"현재 층에서 악마방/천사방의 등장을 막습니다.#↓ {{ColorYellow}}이후 층에서의 악마방/천사방 확률 감소{{CR}}",
 	},
-	[wakaba.PILL_DUALITY_ORDERS] = {
+	[wakaba.PILL_DUALITY_ORDERS +1] = {
 		tostring(wakaba.PILL_DUALITY_ORDERS),
 		"이중 질서",
 		"{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#{{ColorCyan}}두 아이템 모두 획득할 수 있습니다.{{CR}}",
 	},
-	[wakaba.PILL_FLAME_PRINCESS] = {
+	[wakaba.PILL_FLAME_PRINCESS +1] = {
 		tostring(wakaba.PILL_FLAME_PRINCESS),
 		"불꽃 공주",
 		"소지 중인 레메게톤 불꽃을 흡수하여 아이템을 {{ColorCyan}}2개씩{{CR}} 획득합니다.#흡수하지 못한 불꽃의 체력을 전부 회복합니다.#불꽃을 하나도 소지하지 않은 경우 불꽃을 하나 소환합니다.",
 	},
-	[wakaba.PILL_FIREY_TOUCH] = {
+	[wakaba.PILL_FIREY_TOUCH +1] = {
 		tostring(wakaba.PILL_FIREY_TOUCH),
 		"앗 뜨거!",
 		"{{WakabaCurseFlames}} Curse of Flames!(불꽃의 저주)에 걸립니다.#위습의 체력을 전부 회복합니다.",
 	},
-	[wakaba.PILL_PRIEST_BLESSING] = {
+	[wakaba.PILL_PRIEST_BLESSING +1] = {
 		tostring(wakaba.PILL_PRIEST_BLESSING),
 		"성녀의 가호",
 		"피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.#{{Card51}} (Holy Card 효과와 동일)",
 	},
-	[wakaba.PILL_UNHOLY_CURSE] = {
+	[wakaba.PILL_UNHOLY_CURSE +1] = {
 		tostring(wakaba.PILL_UNHOLY_CURSE),
 		"빼앗긴 신앙",
 		"Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
