@@ -4,10 +4,10 @@ wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {
 	[wakaba.PLAYER_WAKABA] = {
 		playerName = "{{ColorWakabaBless}}Wakaba",
-		description = "↑ {{Heart}}Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in all floors except Blue Womb",
+		description = "↑ {{Heart}}Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in all floors",
 	},
 	[wakaba.PLAYER_WAKABA_B] = {
-		playerName = "{{ColorWakabaNemesis}}Furious Wakaba",
+		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba",
 		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS.."}}Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
 	},
 	[wakaba.PLAYER_SHIORI] = {
@@ -15,7 +15,7 @@ wakaba.descriptions[desclang].birthright = {
 		description = "↑ Halves key consume when using active item(Minimum 1)",
 	},
 	[wakaba.PLAYER_SHIORI_B] = {
-		playerName = "{{ColorCyan}}Minerva",
+		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
 		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
 	},
 	[wakaba.PLAYER_TSUKASA] = {
@@ -23,7 +23,7 @@ wakaba.descriptions[desclang].birthright = {
 		description = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}}Lunar gauge limit",
 	},
 	[wakaba.PLAYER_TSUKASA_B] = {
-		playerName = "(name unknown)",
+		playerName = "???(Tainted Tsukasa)",
 		description = "↑ Extends invincibility frames to 3#↑ Reduces health recover threshold",
 	},
 }

@@ -3,19 +3,19 @@ local desclang = "ko_kr"
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {
 	[wakaba.PLAYER_WAKABA] = {
-		playerName = "{{ColorWakabaBless}}와카바{{CR}}",
-		description = "↑ 체력 상한 +1#{{AngelChance}} 천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다.",
+		playerName = "{{ColorWakabaBless}}Wakaba{{CR}}",
+		description = "↑ 체력 상한 +1#{{AngelChance}} 천사방이 모든 층에서 항상 등장합니다.",
 	},
 	[wakaba.PLAYER_WAKABA_B] = {
-		playerName = "{{ColorWakabaNemesis}}알트 와카바{{CR}}",
+		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba{{CR}}",
 		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS.."}}Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
 	},
 	[wakaba.PLAYER_SHIORI] = {
-		playerName = "{{ColorBookofShiori}}시오리",
+		playerName = "{{ColorBookofShiori}}Shiori",
 		description = "↑ 액티브 아이템 사용에 필요한 열쇠 갯수가 절반으로 감소합니다. (최소 1)",
 	},
 	[wakaba.PLAYER_SHIORI_B] = {
-		playerName = "{{ColorCyan}}미네르바{{CR}} (알트 시오리)",
+		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
 		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} 미네르바의 오라 효과 적용:"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
@@ -23,11 +23,11 @@ wakaba.descriptions[desclang].birthright = {
 		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}} Book of Conquest와 액티브 아이템 사용에 필요한 열쇠 갯수가 일정량 감소합니다. (최소 1)#↑ 현재 함락된 적들의 코스트에 비례하여 모든 능력치가 상승합니다.",
 	},
 	[wakaba.PLAYER_TSUKASA] = {
-		playerName = "{{ColorPink}}츠카사",
+		playerName = "{{ColorPink}}Tsukasa",
 		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#↑ {{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}}Lunar Stone 게이지의 상한이 200%로 증가합니다.",
 	},
 	[wakaba.PLAYER_TSUKASA_B] = {
-		playerName = "이름 없음(알트 츠카사)",
+		playerName = "???(Tainted Tsukasa)",
 		description = "↑ 무적 시간이 3프레임으로 증가합니다.#↑ 체력 회복에 대한 필요 시간이 짧아집니다.",
 	},
 }
@@ -1233,32 +1233,32 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_UP),
 		"공격력 배율 증가",
-		"↑ +16% {{DamageSmall}}Damage Multiplier",
+		"↑ {{DamageSmall}}공격력 배율 {{ColorCyan}}x1.16{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
 	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_DOWN),
 		"공격력 배율 감소",
-		"↓ -4% {{DamageSmall}}Damage Multiplier",
+		"↓ {{DamageSmall}}공격력 배율 {{ColorYellow}}x0.96{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
 	[wakaba.PILL_ALL_STATS_UP] = {
 		tostring(wakaba.PILL_ALL_STATS_UP),
 		"모든 능력치 증가",
-		"↑ {{DamageSmall}}공격력 +0.5#↑ {{TearsSmall}}연사 +0.4#↑ {{SpeedSmall}}이동속도 +0.24#↑ {{RangeSmall}}사거리 +0.8#↑ {{ShotspeedSmall}}탄속 +0.16#↑ {{LuckSmall}}행운 +2",
+		"↑ {{DamageSmall}}공격력 +{{ColorCyan}}0.5{{CR}}#↑ {{TearsSmall}}연사 +{{ColorCyan}}0.4{{CR}}#↑ {{SpeedSmall}}이동속도 +{{ColorCyan}}0.24{{CR}}#↑ {{RangeSmall}}사거리 +{{ColorCyan}}0.8{{CR}}#↑ {{ShotspeedSmall}}탄속 +{{ColorCyan}}0.16{{CR}}#↑ {{LuckSmall}}행운 +{{ColorCyan}}2{{CR}}",
 	},
 	[wakaba.PILL_ALL_STATS_DOWN] = {
 		tostring(wakaba.PILL_ALL_STATS_DOWN),
 		"모든 능력치 감소",
-		"↓ {{DamageSmall}}공격력 -0.2#↓ {{TearsSmall}}연사 -0.16#↓ {{SpeedSmall}}이동속도 -0.18#↓ {{RangeSmall}}사거리 -0.5#↓ {{ShotspeedSmall}}탄속 -0.12#↓ {{LuckSmall}}행운 -2",
+		"↓ {{DamageSmall}}공격력 -{{ColorYellow}}0.2{{CR}}#↓ {{TearsSmall}}연사 -{{ColorYellow}}0.16{{CR}}#↓ {{SpeedSmall}}이동속도 -{{ColorYellow}}0.18{{CR}}#↓ {{RangeSmall}}사거리 -{{ColorYellow}}0.5{{CR}}#↓ {{ShotspeedSmall}}탄속 -{{ColorYellow}}0.12{{CR}}#↓ {{LuckSmall}}행운 -{{ColorYellow}}2{{CR}}",
 	},
 	[wakaba.PILL_TROLLED] = {
 		tostring(wakaba.PILL_TROLLED),
 		"낚였구나아아아아아아",
-		"{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}소지 불가능 체력 -1",
+		"{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
 	[wakaba.PILL_TO_THE_START] = {
 		tostring(wakaba.PILL_TO_THE_START),
 		"태초마을",
-		"각 층의 시작 방으로 텔레포트합니다.#↑ {{Heart}}하트 +1#↑ {{BrokenHeart}}소지 불가능 체력 -1",
+		"각 층의 시작 방으로 텔레포트합니다.#↑ {{Heart}}하트 +1#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
 	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
@@ -1268,22 +1268,22 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
 		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
 		"혈사 설사 2?",
-		"{{Card88}} Soul of Azazel 효과 발동:#7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
+		"{{Card88}}7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
 	},
 	[wakaba.PILL_SOCIAL_DISTANCE] = {
 		tostring(wakaba.PILL_SOCIAL_DISTANCE),
 		"사회적 거리두기",
-		"현재 층에서 악마방/천사방의 등장을 막습니다.#↓ 이후 층에서의 악마방/천사방 확률 감소",
+		"현재 층에서 악마방/천사방의 등장을 막습니다.#↓ {{ColorYellow}}이후 층에서의 악마방/천사방 확률 감소{{CR}}",
 	},
 	[wakaba.PILL_DUALITY_ORDERS] = {
 		tostring(wakaba.PILL_DUALITY_ORDERS),
 		"이중 질서",
-		"{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#두 아이템 모두 획득할 수 있습니다.",
+		"{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#{{ColorCyan}}두 아이템 모두 획득할 수 있습니다.{{CR}}",
 	},
 	[wakaba.PILL_FLAME_PRINCESS] = {
 		tostring(wakaba.PILL_FLAME_PRINCESS),
 		"불꽃 공주",
-		"소지 중인 레메게톤 위습을 흡수하여 아이템을 2개씩 획득합니다.#흡수하지 못한 위습의 체력을 전부 회복합니다.#위습을 하나도 소지하지 않은 경우 위습을 하나 소환합니다.",
+		"소지 중인 레메게톤 불꽃을 흡수하여 아이템을 {{ColorCyan}}2개씩{{CR}} 획득합니다.#흡수하지 못한 불꽃의 체력을 전부 회복합니다.#불꽃을 하나도 소지하지 않은 경우 불꽃을 하나 소환합니다.",
 	},
 	[wakaba.PILL_FIREY_TOUCH] = {
 		tostring(wakaba.PILL_FIREY_TOUCH),
