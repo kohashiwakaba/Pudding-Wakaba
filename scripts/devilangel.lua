@@ -166,10 +166,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.checkTempDevilAngelRoomSt
 
 
 function wakaba:NewRoom_DevilAngel()
-	if Game():GetRoom():GetType() == RoomType.ROOM_BOSS 
-  and (not Game():GetLevel():CanSpawnDevilRoom() or Game():GetLevel():IsDevilRoomDisabled())
-  and Game():GetRoom():IsClear() then
-		local room = Game():GetRoom()
+  local room = Game():GetRoom()
+  local level = Game():GetLevel()
+  local currentstage = level:GetAbsoluteStage()
+  local currentroomtype = room:GetType()
+	if ((currentroomtype == RoomType.ROOM_BOSS and (not level:CanSpawnDevilRoom() or level:IsDevilRoomDisabled()))
+    or ((currentstage == LevelStage.STAGE4_3 or currentstage == LevelStage.STAGE8) and level:GetCurrentRoomIndex() == 84)
+  )
+  and room:IsClear() then
     local status = wakaba:getDevilAngelStatus()
     local bless = status.Blessing
     local nemesis = status.Nemesis
@@ -178,8 +182,6 @@ function wakaba:NewRoom_DevilAngel()
     local jokers = status.Jokers
     local wdreams = status.WDreams
     local wakababr = status.WakabaBR
-    local currentroom = Game():GetRoom()
-    local currentroomtype = currentroom:GetType()
 
     if not wdreams and ((bless and nemesis) or wakababr) then
       --print("try")
