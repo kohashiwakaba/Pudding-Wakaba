@@ -291,10 +291,10 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_BookOfTheGod(player))
         return false
-      elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and data.wakaba.shioriangel and (player:GetHeartLimit() > 2) then
+      elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and data.wakaba.shioriangel --[[ and (player:GetHeartLimit() > 2) ]] then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         else
