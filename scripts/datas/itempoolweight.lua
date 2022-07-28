@@ -1,12 +1,11 @@
 
--- Only put if the weight is not 1.0, or have one of these tags : offensive, nolostbr, nochallenge, nogreed
 --[[ 
   You don't have to put all items in this table.
   But should insert if one of following conditions are met:
   ----------------------
   - Any items that is not weight of 1.0
   - Quality 0~2 : for Sacred Orb, T.Lost
-  - tag 'offensive' : for T.Lost
+  - not having tag 'offensive' : for T.Lost
   - tag 'nogreed' : for Greed Mode
   - tag 'nokeeper' : for Keeper
   - tag 'nochallenge' : for Challenges if any challenge uses T.Cain
@@ -19,6 +18,7 @@ wakaba.ItemPoolWeights = {
     [wakaba.COLLECTIBLE_MYSTIC_CRYSTAL] = 0.5,
     [wakaba.COLLECTIBLE_QUESTION_BLOCK] = 0.5,
     [wakaba.COLLECTIBLE_VENOM_INCANTATION] = 0.1,
+    [wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = 1.0,
   },
   [ItemPoolType.POOL_SHOP] = {
     [wakaba.COLLECTIBLE_WAKABAS_BLESSING] = 0.5,
@@ -30,15 +30,25 @@ wakaba.ItemPoolWeights = {
     [wakaba.COLLECTIBLE_ANTI_BALANCE] = 0.5,
     [wakaba.COLLECTIBLE_SYRUP] = 0.5,
     [wakaba.COLLECTIBLE_RED_CORRUPTION] = 0.5,
+    [wakaba.COLLECTIBLE_COUNTER] = 1.0,
+    [wakaba.COLLECTIBLE_RETURN_POSTAGE] = 1.0,
+    [wakaba.COLLECTIBLE_ANTI_BALANCE] = 1.0,
   },
   [ItemPoolType.POOL_BOSS] = {
     [wakaba.COLLECTIBLE_D_CUP_ICECREAM] = 0.2,
   },
   [ItemPoolType.POOL_DEVIL] = {
     [wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = 0.5,
+    [wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = 1.0,
+    [wakaba.COLLECTIBLE_VINTAGE_THREAT] = 1.0,
+    [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = 1.0,
+    [wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = 1.0,
   },
   [ItemPoolType.POOL_ANGEL] = {
     [wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = 0.5,
+    [wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = 1.0,
+    [wakaba.COLLECTIBLE_VINTAGE_THREAT] = 1.0,
+    [wakaba.COLLECTIBLE_BOOK_OF_THE_GOD] = 1.0,
   },
   [ItemPoolType.POOL_SECRET] = {
     [wakaba.COLLECTIBLE_WAKABAS_BLESSING] = 0.1,
@@ -47,6 +57,9 @@ wakaba.ItemPoolWeights = {
     [wakaba.COLLECTIBLE_NEW_YEAR_BOMB] = 0.75,
     [wakaba.COLLECTIBLE_DOUBLE_DREAMS] = 0.75,
     [wakaba.COLLECTIBLE_LUNAR_STONE] = 0.4,
+    [wakaba.COLLECTIBLE_RETURN_POSTAGE] = 1.0,
+    [wakaba.COLLECTIBLE_UNIFORM] = 1.0,
+    [wakaba.COLLECTIBLE_RED_CORRUPTION] = 1.0,
   },
   --[[ [ItemPoolType.POOL_LIBRARY] = {
     [wakaba.COLLECTIBLE_DOUBLE_DREAMS] = 0.2,
@@ -62,14 +75,19 @@ wakaba.ItemPoolWeights = {
   },
   [ItemPoolType.POOL_RED_CHEST] = {
     [wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = 0.1,
+    [wakaba.COLLECTIBLE_ANTI_BALANCE] = 1.0,
+    [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = 1.0,
+    [wakaba.COLLECTIBLE_RED_CORRUPTION] = 1.0,
   },
   [ItemPoolType.POOL_CURSE] = {
     --[wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = 0.1,
     [wakaba.COLLECTIBLE_DOUBLE_INVADER] = 0.5,
     [wakaba.COLLECTIBLE_RED_CORRUPTION] = 0.5,
+    [wakaba.COLLECTIBLE_ANTI_BALANCE] = 1.0,
+    [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = 1.0,
   },
   [ItemPoolType.POOL_PLANETARIUM] = {
-
+    [wakaba.COLLECTIBLE_LUNAR_STONE] = 1.0,
   },
 }
 

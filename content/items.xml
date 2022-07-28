@@ -1,7 +1,7 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/wakaba_dreamcatcher.anm2">
 	
 	<!-- Death items frame 0 -->
-	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" cache="all" shopprice="41" devilprice="2" tags="angel stars nocantrip summonable noeden lazarussharedglobal" quality="4" />
+	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" cache="all" shopprice="41" devilprice="2" tags="angel stars offensive nocantrip summonable noeden lazarussharedglobal" quality="4" />
 	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" cache="all" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarussharedglobal" quality="4" />
 	
 	<active id="3" description="Like a Pudding" gfx="eatheart.png" maxcharges="240000" name="Eat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30"/>
@@ -45,8 +45,8 @@
 	<active id="26" description="Use with Caution" gfx="bookoffocus.png" maxcharges="6" name="Book of Focus" tags="book offensive" quality="3" />
 	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="4" name="Shiori's Bottle of Runes" tags="book offensive" quality="2" />
 	<active id="28" description="Split yourself" gfx="microdoppelganger.png" maxcharges="6" name="Micro Doppelganger" tags="book offensive" quality="2" />
-	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="240" name="Book of Silence" tags="book" quality="4" />
-	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="" quality="2"/>
+	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="240" name="Book of Silence" tags="book offensive" quality="4" />
+	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="nochallenge" quality="2"/>
 	<active id="31" description="Guide book for the lost lambs" gfx="bookofconquest.png" maxcharges="12" name="Book of Conquest" devilprice="2" tags="book offensive" quality="4" />
 	<passive id="32" description="Comback Stronger" gfx="bookofthegod.png" name="Book of The God" tags="book angel offensive nocantrip" quality="3"/>
 	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="6" name="Grimreaper Defender" devilprice="2" tags="book devil offensive " quality="3" />
@@ -93,7 +93,7 @@
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="2"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="8" name="3D Printer" shopprice="20" devilprice="1" tags="offensive" quality="4"/>
 	<passive id="64" description="Clean yourself" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>
-	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" devilprice="1" quality="1"/>
+	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive" devilprice="1" quality="1"/>
 	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" devilprice="1" quality="2"/>
 
 
