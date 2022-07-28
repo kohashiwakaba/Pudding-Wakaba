@@ -185,7 +185,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 			player:EvaluateItems()
 		end
 	end
-	if player:GetData().wakaba.blessmantlenum and player:GetData().wakaba.blessmantlenum > 0 then
+	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and player:GetData().wakaba.blessmantlenum and player:GetData().wakaba.blessmantlenum > 0 then
 		for i = 1, player:GetData().wakaba.blessmantlenum do
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 		end
@@ -386,7 +386,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 				--print("Holy Mantle for Wakaba's Blessing activated")
 				if Game():GetRoom():GetType() == RoomType.ROOM_BOSS and StageAPI and not Game():GetRoom():IsClear() then
 					player:GetData().wakaba.pendingblessmantle = wakaba:GetBlessNum(player)
-				else
+				elseif player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
 					for i = 1, wakaba:GetBlessNum(player) do
 						player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
 					end
@@ -509,7 +509,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.blessnemesis)
 
 function wakaba:TakeDmg_BlessNemesis(player, amount, flag, source, countdownFrames)
 	player = player:ToPlayer()
-	if player and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
+	if player and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
 		if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= (2 + amount) then
 			player:GetData().wakaba.blessmantlenum = wakaba:GetBlessNum(player)
 			player:GetData().wakaba.blessmantle = true
