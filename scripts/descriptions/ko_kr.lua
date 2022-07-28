@@ -38,7 +38,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ {{Quality0}}/{{Quality1}} 아이템이 등장하지 않습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},

@@ -34,7 +34,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Prevents {{Quality0}}/{{Quality1}} items from spawning"
 		.. "#All damage taken will be non-penalty damage"
-		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less"
+		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
