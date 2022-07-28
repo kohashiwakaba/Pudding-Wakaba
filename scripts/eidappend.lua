@@ -668,6 +668,7 @@ if EID then
 	
 			
 			--EID:addDescriptionModifier("Pudding and Wakaba", EIDWakabaConditions, nil)
+			wakaba:ReplaceEIDBagWeight()
 			
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end

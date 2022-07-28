@@ -1094,6 +1094,7 @@ include('scripts.functions.revival')
 include('challenges')
 include('scripts.curses')
 
+include('scripts.datas.itempoolweight')
 
 include('scripts.descriptions.en_us')
 include('scripts.descriptions.ko_kr')
