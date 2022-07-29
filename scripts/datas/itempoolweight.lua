@@ -32,7 +32,6 @@ wakaba.ItemPoolWeights = {
     [wakaba.COLLECTIBLE_RED_CORRUPTION] = 0.5,
     [wakaba.COLLECTIBLE_COUNTER] = 1.0,
     [wakaba.COLLECTIBLE_RETURN_POSTAGE] = 1.0,
-    [wakaba.COLLECTIBLE_ANTI_BALANCE] = 1.0,
   },
   [ItemPoolType.POOL_BOSS] = {
     [wakaba.COLLECTIBLE_D_CUP_ICECREAM] = 0.2,
@@ -91,29 +90,33 @@ wakaba.ItemPoolWeights = {
   },
 }
 
+local moddedCrafting = false
 -- Run this function inside 'PostGameStarted' callback.
 function wakaba:ReplaceEIDBagWeight()
+  if not EID.Config["BagOfCraftingModdedRecipes"] or moddedCrafting then return end
   local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
   [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
   
   local CraftingItemPools = EID.XMLItemPools
   print("[wakaba] Starting EID crafting data replacement")
   for poolNum, _ in pairs(poolToIcon) do
-    for _, entry in pairs(CraftingItemPools[poolNum+1]) do
+    for s, entry in pairs(CraftingItemPools[poolNum+1]) do
       for itemId, weight in pairs(wakaba.ItemPoolWeights[poolNum]) do
         local found = false
-        print(itemId, weight, entry[1])
-        if entry[1] == itemId then
+        if entry[1] == itemId and weight ~= 1.0 then
           found = true
+          --print("[wakaba] found :", poolNum, itemId, weight)
           entry[2] = weight
           break
         end
         -- Add weight data for tagged items if not available in item pools
         if not found then
-          table.insert(CraftingItemPools[poolNum+1], {itemId, weight or 1.0})
+          --print("[wakaba] not found :", poolNum, itemId)
+          --table.insert(CraftingItemPools[poolNum+1], {itemId, weight or 1.0})
         end
       end
     end
   end
+  moddedCrafting = true
   print("[wakaba] Finished EID crafting data replacement")
 end
