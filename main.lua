@@ -1045,6 +1045,7 @@ include('scripts.items.1056_venomincantation')
 include('scripts.items.1057_fireflylighter')
 include('scripts.items.1058_doubleinvader')
 include('scripts.items.1059_redcorruption')
+include('scripts.items.1060_plasmabeam')
 
 include('scripts.pickups.2005_dreamcard')
 include('scripts.items.1200_doubledreams')

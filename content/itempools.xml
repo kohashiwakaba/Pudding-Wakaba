@@ -93,6 +93,7 @@
 		<Item Name="Lunar Stone" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -269,6 +270,7 @@
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="batteryBum">
+		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="shellGame">
 	</Pool>
@@ -350,5 +352,6 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>

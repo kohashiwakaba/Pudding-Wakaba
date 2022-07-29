@@ -561,6 +561,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.COLLECTIBLE_PLASMA_BEAM] = {
+		itemName = "플라즈마 빔",
+		description = ""
+		.. "#↑ {{RangeSmall}}사거리 +2"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#{{Burning}} 공격이 적을 관통하며 화상을 입힙니다."
+	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "파워 봄",
 		description = ""

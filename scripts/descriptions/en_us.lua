@@ -571,6 +571,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
+	[wakaba.COLLECTIBLE_PLASMA_BEAM] = {
+		itemName = "Plasma Beam",
+		description = ""
+		.. "#↑ {{Range}} +2 Range"
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "#{{Burning}} Piercing tears that can hit enemies multiple times and light enemies on fire"
+	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "Power Bomb",
 		description = ""

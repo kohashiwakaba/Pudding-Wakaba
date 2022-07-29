@@ -1991,6 +1991,33 @@ if Encyclopedia then
 				{str = "Normally, Syrup is incapable of flight, but Maple combined the skill and the game's system to make it fly, she even got a skill just to fly with it."},
 			},
 		},
+		COLLECTIBLE_PLASMA_BEAM = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "+2 Range"},
+				{str = "+1 Damage"},
+				{str = "Grants piercing tears that travel through enemies (but not obstacles) instead of breaking on impact with them."},
+				{str = "Tears can hit the same enemy multiple times."},
+				{str = "Tears inflict burn to enemies."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Since the tears can strike one enemy multiple times, low shot speed can be very beneficial whereas high shot speed may lower effective damage."},
+				{str = "Walking backward while firing can allow tears to move slower, making it useful for increasing damage output."},
+			},
+			--[[ { -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "8 Inch Nails / Blister / Pisces", clr = 3, halign = 0},
+				{str = "Adds knockbacks to tears."},
+			}, ]]
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "Plasma Beam is one of the strongest beam through entire Metroid series."},
+				{str = "Plasma Beam is first introduced in Metroid II - The Return of Samus. Plasma Beam in 2D Metroid series has abilty to pierce enemies."},
+				{str = "Plasma Beam had got huge buff from Metroid Fusion, allowing a single beam hitting same enemy multiple times, and even piercing bosses."},
+				{str = "Plasma Beam in 3D Metroid series also had burning effect for various enemies."},
+			},
+		},
 		COLLECTIBLE_FIREFLY_LIGHTER = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3631,6 +3658,18 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 		},
 	})
+	-- Plasma Beam
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_PLASMA_BEAM,
+		WikiDesc = Wiki.COLLECTIBLE_PLASMA_BEAM,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SECRET,
+			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+		},
+	})
+
 	--Beam
 	Encyclopedia.AddItem({
 		Class = class,
