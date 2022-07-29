@@ -3,11 +3,6 @@ wakaba.COLLECTIBLE_BOOK_OF_FOCUS = Isaac.GetItemIdByName("Book of Focus")
 
 function wakaba:ItemUse_BookOfFocus(_, rng, player, useFlags, activeSlot, varData)
 	
-	local data = player:GetData()
-	data.wakaba = data.wakaba or {}
-	local w = data.wakaba
-	w.bookoffocus = w.bookoffocus or 0
-	w.bookoffocus = w.bookoffocus + 1
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_FOCUS, "UseItem", "PlayerPickup")
 	end
@@ -16,16 +11,6 @@ function wakaba:ItemUse_BookOfFocus(_, rng, player, useFlags, activeSlot, varDat
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfFocus, wakaba.COLLECTIBLE_BOOK_OF_FOCUS)
 
-function wakaba:NewRoom_BookOfFocus()
-  for i = 0, Game():GetNumPlayers()-1 do
-    local player = Isaac.GetPlayer(i)
-		if player:GetData().wakaba then 
-			player:GetData().wakaba.bookoffocus = 0
-		end
-  end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BookOfFocus)
-wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.NewRoom_BookOfFocus)
 
 function wakaba:PostShiori_BookofFocus(player)
 	if not player:GetData().wakaba then return end
@@ -58,10 +43,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShiori_Bookof
 function wakaba:NpcUpcate_BookofFocus(entity) 
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		local data = player:GetData()
-		data.wakaba = data.wakaba or {}
-		data.wakaba.bookoffocus = data.wakaba.bookoffocus or 0
-		if data.wakaba.bookoffocus > 0 and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_WEAKNESS) then
+		local playerEffects = player:GetEffects()
+		local focusnum = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_BOOK_OF_FOCUS)
+		if focusnum > 0 and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_WEAKNESS) then
 			entity:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
 		end
 	end
@@ -86,19 +70,16 @@ function wakaba:PreTakeDamage_BookofFocus(entity, amount, flags, source, countdo
 			player = source.Entity:ToPlayer()
 		end
 		if player ~= nil then
-			local data = player:GetData()
-			data.wakaba = data.wakaba or {}
-			data.wakaba.bookoffocus = data.wakaba.bookoffocus or 0
-			if data.wakaba.bookoffocus < 0 then
-				
-			end
+			local playerEffects = player:GetEffects()
+			local focusnum = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_BOOK_OF_FOCUS)
 		end
 	elseif entity.Type == EntityType.ENTITY_PLAYER
 	and amount < 4 then
 		local player = entity:ToPlayer()
-		if not player or not player:GetData().wakaba then return end
+		if not player then return end
 	
-		local focus = player:GetData().wakaba.bookoffocus or 0
+		local playerEffects = player:GetEffects()
+		local focus = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_BOOK_OF_FOCUS)
 		if focus > 0
 		and not (flags & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
 		then
@@ -115,7 +96,8 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamage_BookofF
 function wakaba:Cache_BookofFocus(player, cacheFlag)
 	if not player:GetData().wakaba then return end
 
-	local focus = player:GetData().wakaba.bookoffocus or 0
+	local playerEffects = player:GetEffects()
+	local focus = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_BOOK_OF_FOCUS)
 	local isnotmoving = player:GetData().wakaba.isnotmoving or false
 	if focus > 0 and isnotmoving then 
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then

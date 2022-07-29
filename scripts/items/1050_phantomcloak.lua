@@ -158,6 +158,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PhantomCloak, wakaba
 
 function wakaba:Cache_PhantomCloak(player, cacheFlag)
 	if not player:GetData().wakaba then return end
+	if not wakaba:HasShiori(player) then return end
 	pData = player:GetData()
 	if pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
