@@ -1995,7 +1995,7 @@ if Encyclopedia then
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "+2 Range"},
-				{str = "+1 Damage"},
+				{str = "-40% Damage"},
 				{str = "Grants piercing tears that travel through enemies (but not obstacles) instead of breaking on impact with them."},
 				{str = "Tears can hit the same enemy multiple times."},
 				{str = "Tears inflict burn to enemies."},

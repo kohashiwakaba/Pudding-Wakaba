@@ -575,7 +575,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Plasma Beam",
 		description = ""
 		.. "#↑ {{Range}} +2 Range"
-		.. "#↑ {{Damage}} +1 Damage"
+		.. "#↓ {{Damage}} -40% Damage"
 		.. "#{{Burning}} Piercing tears that can hit enemies multiple times and light enemies on fire"
 	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {

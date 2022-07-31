@@ -565,7 +565,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "플라즈마 빔",
 		description = ""
 		.. "#↑ {{RangeSmall}}사거리 +2"
-		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↓ {{DamageSmall}}공격력 배율 x0.6"
 		.. "#{{Burning}} 공격이 적을 관통하며 화상을 입힙니다."
 	},
 	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
