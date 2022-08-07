@@ -2,16 +2,16 @@ wakaba.COLLECTIBLE_NASA_LOVER = Isaac.GetItemIdByName("Nasa Lover")
 wakaba.FAMILIAR_LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa")
 
 function wakaba:Cache_NasaLover(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER) then
+	local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER)
+	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_NASA_LOVER)
+	local tsukasa = (wakaba.state.unlock.nasalover > 0 and player:GetPlayerType() == wakaba.PLAYER_TSUKASA) and 1 or 0
+	if hasitem or efcount > 0 or tsukasa > 0  then
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_JACOBS
 		end
 	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_NASA_LOVER)
-		local tsukasa = (wakaba.state.unlock.nasalover > 0 and player:GetPlayerType() == wakaba.PLAYER_TSUKASA) and 1 or 0
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 or tsukasa > 0 then
 			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_NASA_LOVER) + efcount + tsukasa
