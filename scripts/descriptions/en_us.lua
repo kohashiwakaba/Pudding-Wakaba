@@ -1231,13 +1231,13 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.PILL_ALL_STATS_UP] = {
 		itemName = "All Stats Up",
-		description = "↑ {{Damage}} +0.25 Damage#↑ {{Tears}} +0.2 Tears#↑ {{Speed}} +0.12 Speed#↑ {{Range}} +0.4 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +1 Luck#",
+		description = "↑ {{Damage}} +0.25 Damage#↑ {{Tears}} +0.2 Tears#↑ {{Speed}} +0.12 Speed#↑ {{Range}} +0.4 Range#↑ {{Shotspeed}} +0.04 Shot Speed#↑ {{Luck}} +1 Luck#",
 		mimiccharge = 8,
 		class = "3+",
 	},
 	[wakaba.PILL_ALL_STATS_DOWN] = {
 		itemName = "All Stats Down",
-		description = "↓ {{Damage}} -0.1 Damage#↓ {{Tears}} -0.08 Tears#↓ {{Speed}} -0.09 Speed#↓ {{Range}} -0.25 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -1 Luck#",
+		description = "↓ {{Damage}} -0.1 Damage#↓ {{Tears}} -0.08 Tears#↓ {{Speed}} -0.09 Speed#↓ {{Range}} -0.25 Range#↓ {{Shotspeed}} -0.03 Shot Speed#↓ {{Luck}} -1 Luck#",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -1316,12 +1316,12 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.PILL_ALL_STATS_UP +1] = {
 		tostring(wakaba.PILL_ALL_STATS_UP),
 		"All Stats Up",
-		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.16 Shot Speed#↑ {{Luck}} +2 Luck#",
+		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +2 Luck#",
 	},
 	[wakaba.PILL_ALL_STATS_DOWN +1] = {
 		tostring(wakaba.PILL_ALL_STATS_DOWN),
 		"All Stats Down",
-		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.12 Shot Speed#↓ {{Luck}} -2 Luck#",
+		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
 	},
 	[wakaba.PILL_TROLLED +1] = {
 		tostring(wakaba.PILL_TROLLED),

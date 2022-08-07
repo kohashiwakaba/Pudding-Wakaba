@@ -390,7 +390,11 @@ function wakaba:onPillCache(player, cacheFlag)
       player.Damage = player.Damage * (1 + sti.statmultiplier.damage)
     end
     if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-      player.ShotSpeed = player.ShotSpeed + sti.statmodify.shotspeed
+      if sti.statmodify.shotspeed >= 0 then
+        player.ShotSpeed = player.ShotSpeed + (math.sqrt(1 + sti.statmodify.shotspeed) - 1)
+      else
+        player.ShotSpeed = player.ShotSpeed + sti.statmodify.shotspeed
+      end
     end
     if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
       player.TearRange = player.TearRange + (sti.statmodify.range * 40)
