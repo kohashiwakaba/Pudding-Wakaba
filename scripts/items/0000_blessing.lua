@@ -562,13 +562,11 @@ function wakaba:RevealItemImage(pickup, offset)
 		end
 		if hasbless and Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND then
 			local sprite = pickup:GetSprite()
-			if pickup:GetData().EID_IsAltChoice then
-				pickup:GetData().EID_IsAltChoice = false
-			end
 			
 			sprite:ReplaceSpritesheet(1, itemData.GfxFileName)
 			sprite:LoadGraphics()
 			pickup:GetData().wakaba.removequestion = true
+			pickup:GetData().EID_DontHide = true
 		end
 	end
 end
