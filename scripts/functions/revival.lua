@@ -143,8 +143,8 @@ function wakaba:PlayerUpdate_Revival(player)
     if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
       wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
     end
-    if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
-      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
+    if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+      Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(player), Vector.Zero, nil)
     end
   end
 
