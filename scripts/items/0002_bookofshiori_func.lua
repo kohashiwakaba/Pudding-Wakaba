@@ -552,16 +552,15 @@ function wakaba:NPCDeath_BookofShiori(entity)
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba then
 			local luck = player.Luck
-			local random = wakaba.RNG:RandomFloat() * 100
-			if not player:GetData().wakaba then return end 
+			local random = entity:GetDropRNG():RandomFloat() * 100
 			local nextflag = player:GetData().wakaba.nextshioriflag
 			if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SIN 
-			and random <= (10 + (0.75 * luck)) then
+			and random <= (8 + (0.75 * luck)) then
 				local subrandom = wakaba.RNG:RandomInt(#wakaba.pickupvars) + 1
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, wakaba.pickupvars[subrandom], 0, Isaac.GetFreeNearPosition(entity.Position, 0.0), Vector.Zero, player)
 			end
 			if nextflag == CollectibleType.COLLECTIBLE_LEMEGETON 
-			and random <= (10 + (0.75 * luck)) then
+			and random <= (4 + (0.25 * luck)) then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, 0, Isaac.GetFreeNearPosition(entity.Position, 0.0), Vector.Zero, player)
 			end
     end
