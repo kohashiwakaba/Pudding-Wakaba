@@ -127,6 +127,17 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onNemesisCache)
 
 function wakaba:PlayerUpdate_Nemesis(player)
+	local newItem = wakaba.COLLECTIBLE_WAKABA_DUALITY
+	local newItemConfig = Isaac.GetItemConfig():GetCollectible(newItem) -- Define combined item
+	local newName = newItemConfig.Name
+	local newDesc = newItemConfig.Description
+	if Options.Language ~= "en" then
+		local descTable = wakaba.descriptions[wakaba.LanguageMap[Options.Language]]
+		if descTable then
+			newName = descTable.collectibles[newItem].itemName or newName
+			newDesc = descTable.collectibles[newItem].queueDesc or newDesc
+		end
+	end
 	--[[ 
 		In order to combine two items, You must check 3 conditions 
 		0. If the combined item should not be in Death Certificate rooms, Item pools, or Spindown Dice, then you must add 'hidden="true"' for the combined item in items.xml.
@@ -139,8 +150,8 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	if wakaba:HasBless(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABAS_NEMESIS then
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY) -- Define combined item
 		if player:FlushQueueItem() then -- Skip current queued item animation, This will add item B in Isaac's inventory.
-			player:AnimateCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY, "Pickup", "PlayerPickupSparkle") -- Manually animate pickup animation
-			Game():GetHUD():ShowItemText(newItemConfig.Name, newItemConfig.Description, false) -- Show item name and descriptions to HUD
+			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle") -- Manually animate pickup animation
+			Game():GetHUD():ShowItemText(newName, newDesc, false) -- Show item name and descriptions to HUD
 			player:QueueItem(newItemConfig) -- Queue combined item. Finishing animation will add the combined one.
 		end
 		-- Then remove both items which were supposed to be combined. Must call after player:FlushQueueItem() is called
@@ -149,8 +160,8 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	elseif wakaba:HasNemesis(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABAS_BLESSING then
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY)
 		if player:FlushQueueItem() then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY, "Pickup", "PlayerPickupSparkle")
-			Game():GetHUD():ShowItemText(newItemConfig.Name, newItemConfig.Description, false)
+			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle")
+			Game():GetHUD():ShowItemText(newName, newDesc, false)
 			player:QueueItem(newItemConfig)
 		end
 		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
@@ -158,11 +169,11 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	elseif wakaba:HasBless(player) and player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS, true) then
 		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
 		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
-		player:AddCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY)
+		player:AddCollectible(newItem)
 	elseif wakaba:HasNemesis(player) and player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING, true) then
 		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
 		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
-		player:AddCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY)
+		player:AddCollectible(newItem)
 	end
 
 	wakaba:GetPlayerEntityData(player)

@@ -671,7 +671,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_ANTI_BALANCE] = {
 		itemName = "Anti Balance",
 		description = ""
-		.. "#Prevents Quality {{Quality2}} items from spawning"
+		.. "#{{Pill}} All pills will be Horse pills"
+		.. "#Prevents Quality {{Quality2}} items from spawning if possible"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

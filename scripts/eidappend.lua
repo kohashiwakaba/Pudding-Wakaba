@@ -833,6 +833,67 @@ if EID then
 		end
 		--wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
 
-
   end
 end
+
+wakaba.LanguageMap = {
+	["jp"] = "ja_jp",
+	["es"] = "spa",
+	["de"] = "de",
+	["ru"] = "ru",
+	["kr"] = "ko_kr",
+	["zh"] = "zh_cn",
+}
+local languageMap = wakaba.LanguageMap
+
+local i_queueLastFrame
+local i_queueNow
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
+	if Options.Language == "en" then return end
+	local descTable = wakaba.descriptions[languageMap[Options.Language]]
+	if not descTable then return end
+
+	i_queueNow = player.QueuedItem.Item
+	if (i_queueNow ~= nil) then
+		if i_queueNow.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+			local playerType = player:GetPlayerType()
+			for playerID, itemdesc in pairs(descTable.birthright) do
+				if (playerType == playerID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
+					local itemName = descTable.birthrightName
+					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
+					Game():GetHUD():ShowItemText(itemName, queueDesc)
+				end
+			end
+		else
+			for itemID, itemdesc in pairs(descTable.collectibles) do
+				if (i_queueNow.ID == itemID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
+					local itemName = itemdesc.itemName or i_queueNow.Name
+					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
+					Game():GetHUD():ShowItemText(itemName, queueDesc)
+				end
+			end
+		end
+	end
+	i_queueLastFrame = i_queueNow
+end)
+
+
+local t_queueLastFrame
+local t_queueNow
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
+	if Options.Language == "en" then return end
+	local descTable = wakaba.descriptions[languageMap[Options.Language]]
+	if not descTable then return end
+
+	t_queueNow = player.QueuedItem.Item
+	if (t_queueNow ~= nil) then
+		for itemID, itemdesc in pairs(descTable.trinkets) do
+			if (t_queueNow.ID == itemID and t_queueNow:IsTrinket() and t_queueLastFrame == nil) then
+				local itemName = itemdesc.itemName or t_queueNow.Name
+				local queueDesc = itemdesc.queueDesc or t_queueNow.Description
+				Game():GetHUD():ShowItemText(itemName, queueDesc)
+			end
+		end
+	end
+	t_queueLastFrame = t_queueNow
+end)
