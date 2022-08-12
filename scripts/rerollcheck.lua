@@ -381,7 +381,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		end
 		local nextRNG = RNG()
 		nextRNG:SetSeed(seed, 35)
-
+		decrease = false
 		return pool:GetCollectible(itemType, decrease, nextRNG:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
 	else
 		wakaba.state.rerollloopcount = 0
