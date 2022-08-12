@@ -103,7 +103,7 @@
 	<passive id="72" cache="damage" description="DMG Way up, but what at cost?" gfx="doubleinvader.png" name="Double Invader" devilprice="2" quality="3" tags="offensive"/>
 	<passive id="73" cache="range luck" description="Help from the fairies" gfx="fireflylighter.png" name="Firefly Lighter" devilprice="1" quality="1" tags="offensive"/>
 
-	<passive id="74" cache="range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" tags="offensive"/>
+	<passive id="74" cache="damage range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" tags="offensive"/>
 	<!--
 	<passive description="Neko Lover" gfx="kokoalover.png" name="Kokoa Lover" tags="" quality="2" hidden="true" />
 	<passive description="" gfx="sunnybeam.png" name="Sunny Beam" cache="firedelay damage" tags="" quality="3" hidden="true" />
