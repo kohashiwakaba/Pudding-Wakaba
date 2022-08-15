@@ -166,6 +166,16 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
     multiplier = 2
   end
   --print(isHorse)
+	if useFlags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD and Options.Language ~= "en" then 
+    local descTable = wakaba.descriptions[wakaba.LanguageMap[Options.Language]]
+    if descTable then
+      local pilltable = descTable.pills
+      if pilltable and pilltable[pillEffect] and pilltable[pillEffect].itemName then
+        Game():GetHUD():ShowItemText(pilltable[pillEffect].itemName)
+      end
+    end
+  end
+
   if wakaba:getstoredindex(player) ~= nil then
     if pillEffect == wakaba.PILL_DAMAGE_MULTIPLIER_UP then
       player:GetData().wakaba.statmultiplier.damage = player:GetData().wakaba.statmultiplier.damage + (0.08 * multiplier)
