@@ -34,6 +34,11 @@ wakaba.conquestsegmentwhitelist = {
 	EntityType.ENTITY_LARRYJR,
 	EntityType.ENTITY_CHUB,
 }
+
+wakaba.conqueredSeed = {
+
+}
+
 wakaba.conquestready = {}
 wakaba.conquestreadycount = 0
 local bombcost, keycost = 0, 0
@@ -88,6 +93,7 @@ function wakaba:ConquerEnemy(entity)
 	entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
 	entity:GetData().wakaba = entity:GetData().wakaba or {}
 	entity:GetData().wakaba.conquered = true
+	wakaba.conqueredSeed[tostring(entity.InitSeed)] = true
 end
 
 function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, varData)
@@ -287,10 +293,17 @@ function wakaba:Render_BookOfConquest()
 	end
 	local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 	for _, entity in ipairs(entities) do
+
+		if entity.Type == EntityType.ENTITY_PITFALL and entity.SpawnerEntity and wakaba.conqueredSeed[tostring(entity.SpawnerEntity.InitSeed)] then
+			entity:Remove()
+		end
 		
 		if entity:GetData().wakaba and entity:GetData().wakaba.conquered then
 			entity:AddCharmed(EntityRef(player), -1)
 			entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+		elseif wakaba.conqueredSeed[tostring(entity.InitSeed)] and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+			--print(entity.Type, "!!!")
+			entity:AddCharmed(EntityRef(player), -1)
 		elseif entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
 			--[[ if entity:IsBoss() and not entity:HasEntityFlags(EntityFlag.FLAG_PERSISTENT) then
 				entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
@@ -472,3 +485,22 @@ function wakaba:NewRoom_BookOfConquest()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BookOfConquest)
+
+function wakaba:preEntitySpawn_Conquest(type, variant, subType, pos, velocity, spawner, seed)
+	if type == EntityType.ENTITY_BOMB or type == EntityType.ENTITY_PITFALL then
+		--[[ print(type, variant, subType, seed)
+		if spawner then
+			print(type, variant, subType, seed, spawner.Type, spawner.InitSeed, spawner.DropSeed)
+			print(wakaba.conqueredSeed[tostring(spawner.InitSeed)])
+		end ]]
+		if spawner and wakaba.conqueredSeed[tostring(spawner.InitSeed)] then
+			wakaba.conqueredSeed[tostring(seed)] = true
+		end
+	end
+end
+EID:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_Conquest)
+
+function wakaba:NewLevel_Conquest()
+	wakaba.conqueredSeed = {}
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Conquest)

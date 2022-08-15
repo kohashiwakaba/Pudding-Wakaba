@@ -416,6 +416,7 @@ function wakaba:ItemUse_Murasame(_, rng, player, useFlags, activeSlot, varData)
 		ents[i].HitPoints = 320
 		ents[i]:GetData().wakaba = {}
 		ents[i]:GetData().wakaba.conquered = true
+		wakaba.conqueredSeed[tostring(ents[i].InitSeed)] = true
 		if i ~= 1 then
 			ents[i].Parent = ents[i-1]
 			ents[i-1].Child = ents[i]
