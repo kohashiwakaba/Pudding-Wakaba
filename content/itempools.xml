@@ -19,6 +19,7 @@
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
+		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -150,6 +151,7 @@
 		<Item Name="Clensing Foam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
