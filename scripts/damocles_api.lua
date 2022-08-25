@@ -1,12 +1,44 @@
+local DamoclesAPIVersion = 1.4
 CCO = CCO or {}
 
-if CCO.DamoclesAPI then return end
+if CCO.DamoclesAPI then
+	if not CCO.DamoclesAPI.VERSION
+	or CCO.DamoclesAPI.VERSION < DamoclesAPIVersion
+	then
+		Isaac.DebugString("Damocles API: [WARNING] A mod (or more) above this message has an outdated version of Damocles API, make sure to check which mod(s) do and notify their developer(s) to avoid errors.")
+		Isaac.DebugString("Damocles API: [WARNING] Most up to date version: [" .. tostring(DamoclesAPIVersion) .. "] (mods with an older version than this should be disabled or updated)")
+		Isaac.DebugString("Damocles API: [WARNING] Current loaded version: [" .. tostring(CCO.DamoclesAPI.VERSION or "UNKNOWN") .. "]")
+		print("Damocles API: [WARNING] Outdated Damocles API version, check the log.txt file for more information.")
+		print("Damocles API: [WARNING] C:/Users/[username]/Documents/My Games/Binding of Isaac Repentance/log.txt")
+	end
+	
+	return
+end
 
 CCO.DamoclesAPI = RegisterMod("Damocles API", 1)
+CCO.DamoclesAPI.VERSION = DamoclesAPIVersion
 local game = Game()
 local itemsTable = {}
 local itempool = game:GetItemPool()
 local DamoclesCacheFncs = {}
+
+local disableDamocles = false
+local activeBlacklist = {}
+
+function CCO.DamoclesAPI.AddActiveToBlacklist(itemId)
+	if type(itemId) ~= "number"
+	or itemId % 1 ~= 0 
+	then
+		Isaac.DebugString("Error - [CCO.DamoclesAPI.AddActiveToBlacklist] invalid argument #1 (itemId)")
+		return false
+	end
+	
+	activeBlacklist[itemId] = true
+	
+	return true
+end
+CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_MOVING_BOX)
+CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_D6)
 
 function CCO.DamoclesAPI.AddDamoclesCallback(fnc, fncFailsafe)
 	if type(fnc) == "table" then
@@ -38,16 +70,6 @@ local function itemSpawnedOneFrameAgo(curRoom, dim)
 	return false
 end
 
-local function sharesPositionWithItem(curRoom, dim, pickup)
-	for _, item in ipairs(itemsTable[dim][curRoom]) do
-		if item.Position and pickup.Position:DistanceSquared(item.Position) <= 4 then
-			return true
-		end
-	end
-
-	return false
-end
-
 local function EvaluateDuplicates()
 	local damoclesCount = 0
 	
@@ -58,20 +80,33 @@ local function EvaluateDuplicates()
 	return damoclesCount
 end
 
-local function getDimension(roomDesc) -- By Xalum and DeadInfinity.
+local function getDimension()
 	local level = game:GetLevel()
-    local desc = roomDesc or level:GetCurrentRoomDesc()
+    local roomIndex = level:GetCurrentRoomIndex()
 
-    local hash = GetPtrHash(desc)
-    for dim = 0, 2 do
-        local dimensionDesc = level:GetRoomByIdx(desc.SafeGridIndex, dim)
-		
-        if GetPtrHash(dimensionDesc) == hash then
-            return dim
+    for i = 0, 2 do
+        if GetPtrHash(level:GetRoomByIdx(roomIndex, i)) == GetPtrHash(level:GetRoomByIdx(roomIndex, -1)) then
+            return i
         end
     end
+    
+    return 0
+end
+
+local function isButteredActive(pickup) -- may be able to proc false positives
+	local player = pickup.SpawnerEntity and pickup.SpawnerEntity:ToPlayer() or nil
 	
-	return 0
+	if not player then
+		return false
+	end
+	
+	if player:GetActiveItem() == pickup.SubType
+	and player:HasTrinket(TrinketType.TRINKET_BUTTER)
+	then
+		return true
+	end
+	
+	return false
 end
 
 CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pickup)
@@ -103,22 +138,13 @@ CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pick
 	}
 	
 	local data = pickup:GetData()
+	local player = pickup.SpawnerEntity and pickup.SpawnerEntity:ToPlayer() or nil
+	
 	if data.DamoclesDuplicate
-	or pickup.SpawnerEntity
 	or pickup.Touched == true
+	or itemSpawnedOneFrameAgo(curRoom, dim)
+	or pickup:IsShopItem()
 	then
-		itemsTable[dim][curRoom][#itemsTable[dim][curRoom]].Position = pickup.Position
-		return
-	end
-	
-	if itemSpawnedOneFrameAgo(curRoom, dim) or sharesPositionWithItem(curRoom, dim, pickup) then
-		itemsTable[dim][curRoom][#itemsTable[dim][curRoom]].Position = pickup.Position
-		return
-	end
-	
-	itemsTable[dim][curRoom][#itemsTable[dim][curRoom]].Position = pickup.Position
-	
-	if pickup:IsShopItem() then
 		return
 	end
 	
@@ -126,7 +152,7 @@ CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pick
 	local rng
 	
 	if pickup.OptionsPickupIndex ~= 0 then
-		rng = wakaba.RNG
+		rng = RNG()
 		rng:SetSeed(pickup.OptionsPickupIndex, 35)
 	end
 	
@@ -144,13 +170,31 @@ CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pick
 	end
 end, PickupVariant.PICKUP_COLLECTIBLE)
 
+CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, itemId, rng, player)
+	if activeBlacklist[itemId] then
+		disableDamocles = true
+	end
+end)
+
 CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, function(_, pickup)
 	pickup:ClearEntityFlags(EntityFlag.FLAG_ITEM_SHOULD_DUPLICATE)
+	
+	if disableDamocles
+	or isButteredActive(pickup)
+	then
+		local data = pickup:GetData()
+		
+		data.DamoclesDuplicate = true
+	end
 end, PickupVariant.PICKUP_COLLECTIBLE)
+
+CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+	disableDamocles = false
+end)
 
 CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
 	itemsTable = {}
 end)
 
-Isaac.DebugString("[wakaba]Damocles API: Loaded Successfully!")
-print("Damocles API: Loaded Successfully!")
+Isaac.DebugString("Damocles API: Loaded Successfully! Version: " .. CCO.DamoclesAPI.VERSION)
+print("Damocles API: Loaded Successfully! Version: " .. CCO.DamoclesAPI.VERSION)
