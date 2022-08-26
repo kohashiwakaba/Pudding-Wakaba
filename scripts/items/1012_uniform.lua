@@ -18,6 +18,15 @@ wakaba.state.uniform[player] = {
 }
 ]]
 
+-- wakaba_compat_check : Fiend Folio
+local isFFPill = {}
+if FiendFolio then
+  do
+    for i = 1, #FiendFolio.FFPillColours do
+      isFFPill[FiendFolio.FFPillColours[i]] = true
+    end
+  end
+end
 
 function wakaba:inputcheck32(entity, hook, action)
 	
@@ -293,7 +302,27 @@ function wakaba:useUniform(player)
 			end
 		elseif item.type == "pill" then
 			--print("using pill", item.pilleffect)
-			player:UsePill(item.pilleffect, item.cardpill, flag)
+			local replacedPillEffect = item.pilleffect
+			if FiendFolio and item.pilleffect == FiendFolio.ITEM.PILL.FF_UNIDENTIFIED then
+				local pill = item.cardpill
+				pill = pill % 2048
+				FiendFolio.savedata.run.IdentifiedRunPills = FiendFolio.savedata.run.IdentifiedRunPills or {}
+				if not FiendFolio.savedata.run.IdentifiedRunPills[tostring(pill)] then
+					FiendFolio.savedata.run.IdentifiedRunPills[tostring(pill)] = true
+				end
+			
+				local pillreplaced = 1
+				if FiendFolio.savedata.run.PillCopies and FiendFolio.savedata.run.PillCopies[tostring(pill)] then
+					pillreplaced = FiendFolio.savedata.run.PillCopies[tostring(pill)]
+				end
+			
+				local itempool = Game():GetItemPool()
+				replacedPillEffect = itempool:GetPillEffect(pillreplaced, player)
+				-- check again
+				if item.pilleffect == FiendFolio.ITEM.PILL.FF_UNIDENTIFIED then
+					player:GetData().wakaba.uniform.items[i].pilleffect = replacedPillEffect
+				end
+			player:UsePill(replacedPillEffect, item.cardpill, flag)
 			if wakaba:HasJudasBr(player) then
 				player:UseCard(Card.CARD_DEVIL, flag)
 			end
