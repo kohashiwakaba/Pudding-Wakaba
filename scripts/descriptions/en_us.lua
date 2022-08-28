@@ -698,7 +698,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Double Invader",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
-		.. "#↑ {{Damage}} +300% Damage Multiplier#{{Blank}} (+100% per extra stack)"
+		.. "#↑ {{Damage}} +250% Damage Multiplier#{{Blank}} (+100% per extra stack)"
 		.. "{{CR}}",
 	},
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {

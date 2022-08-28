@@ -742,7 +742,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "침략자",
 		description = ""
 		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
-		.. "#↑ {{DamageSmall}}공격력 배율 x4#{{Blank}} (중첩 시 x1.0배 추가)"
+		.. "#↑ {{DamageSmall}}공격력 배율 x2.5#{{Blank}} (중첩 시 x1.0배 추가)"
 		.. "{{CR}}",
 		queueDesc = "공격력 대폭 증가... 그 대가는?",
 	},

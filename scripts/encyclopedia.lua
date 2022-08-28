@@ -1122,7 +1122,7 @@ if Encyclopedia then
 		COLLECTIBLE_DOUBLE_INVADER = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-				{str = "+300% Damage Multiplier"},
+				{str = "+250% Damage Multiplier"},
 				{str = "- +100% Damage Multiplier per extra copy"},
 				{str = "Devil/Angel rooms no longer appear."},
 			},
