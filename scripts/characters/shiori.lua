@@ -776,3 +776,23 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.ShioriExit)
 
 
+-- Pause Screen Completion Marks API
+PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.PLAYER_SHIORI, function()
+	local wakabaCompletionTable = {
+		["MOMSHEART"] = wakaba.state.unlock.hardbook,
+		["ISAAC"] = wakaba.state.unlock.shiorid6plus,
+		["SATAN"] = wakaba.state.unlock.bookoffocus,
+		["BLUEBABY"] = wakaba.state.unlock.deckofrunes,
+		["LAMB"] = wakaba.state.unlock.grimreaperdefender,
+		["BOSSRUSH"] = wakaba.state.unlock.unknownbookmark,
+		["MEGASATAN"] = wakaba.state.unlock.bookoffallen,
+		["HUSH"] = wakaba.state.unlock.bookofgatling,
+		["DELIRIUM"] = wakaba.state.unlock.bookofsilence,
+		["MOTHER"] = wakaba.state.unlock.bookoftheking,
+		["BEAST"] = wakaba.state.unlock.bookofthegod,
+		["ULTRAGREED"] = wakaba.state.unlock.magnetheaven,
+	}
+	return wakabaCompletionTable
+end)
+
+

@@ -205,4 +205,23 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.TsukasaExit_b)
 end ]]
 
 
+-- Pause Screen Completion Marks API
+PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.PLAYER_TSUKASA_B, function()
+	local wakabaCompletionTable = {
+		["MOMSHEART"] = wakaba.state.unlock.taintedtsukasamomsheart,
+		["ISAAC"] = wakaba.state.unlock.isaaccartridge1,
+		["SATAN"] = wakaba.state.unlock.isaaccartridge2,
+		["BLUEBABY"] = wakaba.state.unlock.isaaccartridge3,
+		["LAMB"] = wakaba.state.unlock.isaaccartridge4,
+		["BOSSRUSH"] = wakaba.state.unlock.tsukasasoul1,
+		["MEGASATAN"] = wakaba.state.unlock.maplesyrup,
+		["HUSH"] = wakaba.state.unlock.tsukasasoul2,
+		["DELIRIUM"] = wakaba.state.unlock.flashshift,
+		["MOTHER"] = wakaba.state.unlock.sirenbadge,
+		["BEAST"] = wakaba.state.unlock.elixiroflife,
+		["ULTRAGREED"] = wakaba.state.unlock.returncard,
+	}
+	return wakabaCompletionTable
+end)
+
 

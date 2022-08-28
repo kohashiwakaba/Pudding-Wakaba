@@ -182,3 +182,22 @@ function wakaba:WakabaExit_b()
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.WakabaExit_b)
 
+
+-- Pause Screen Completion Marks API
+PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.PLAYER_WAKABA_B, function()
+	local wakabaCompletionTable = {
+		["MOMSHEART"] = wakaba.state.unlock.taintedwakabamomsheart,
+		["ISAAC"] = wakaba.state.unlock.bookofforgotten1,
+		["SATAN"] = wakaba.state.unlock.bookofforgotten2,
+		["BLUEBABY"] = wakaba.state.unlock.bookofforgotten3,
+		["LAMB"] = wakaba.state.unlock.bookofforgotten4,
+		["BOSSRUSH"] = wakaba.state.unlock.wakabasoul1,
+		["MEGASATAN"] = wakaba.state.unlock.cloverchest,
+		["HUSH"] = wakaba.state.unlock.wakabasoul2,
+		["DELIRIUM"] = wakaba.state.unlock.eatheart,
+		["MOTHER"] = wakaba.state.unlock.bitcoin,
+		["BEAST"] = wakaba.state.unlock.nemesis,
+		["ULTRAGREED"] = wakaba.state.unlock.blackjoker,
+	}
+	return wakabaCompletionTable
+end)

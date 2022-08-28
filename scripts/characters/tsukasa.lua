@@ -210,3 +210,25 @@ end ]]
 
 
 
+-- Pause Screen Completion Marks API
+PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.PLAYER_TSUKASA, function()
+	local wakabaCompletionTable = {
+		["MOMSHEART"] = wakaba.state.unlock.murasame,
+		["ISAAC"] = wakaba.state.unlock.nasalover,
+		["SATAN"] = wakaba.state.unlock.beetlejuice,
+		["BLUEBABY"] = wakaba.state.unlock.totalcorruption,
+		["LAMB"] = wakaba.state.unlock.powerbomb,
+		["BOSSRUSH"] = wakaba.state.unlock.concentration,
+		["MEGASATAN"] = wakaba.state.unlock.beam,
+		["HUSH"] = wakaba.state.unlock.rangesystem,
+		["DELIRIUM"] = wakaba.state.unlock.newyearbomb,
+		["MOTHER"] = wakaba.state.unlock.phantomcloak,
+		["BEAST"] = wakaba.state.unlock.hydra,
+		["ULTRAGREED"] = wakaba.state.unlock.arcanecrystal,
+	}
+	return wakabaCompletionTable
+end)
+
+
+
+
