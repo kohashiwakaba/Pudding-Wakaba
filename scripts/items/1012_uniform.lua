@@ -322,6 +322,7 @@ function wakaba:useUniform(player)
 				if item.pilleffect == FiendFolio.ITEM.PILL.FF_UNIDENTIFIED then
 					player:GetData().wakaba.uniform.items[i].pilleffect = replacedPillEffect
 				end
+			end
 			player:UsePill(replacedPillEffect, item.cardpill, flag)
 			if wakaba:HasJudasBr(player) then
 				player:UseCard(Card.CARD_DEVIL, flag)
