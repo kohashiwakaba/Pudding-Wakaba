@@ -58,7 +58,9 @@ function wakaba:IsFatalDamage(player, amount)
   end
   return false
 end
-
+function wakaba:IsPlayerDying(player)
+  return player:GetSprite():GetAnimation():sub(-#"Death") == "Death" --does their current animation end with "Death"?
+end
 
 function wakaba:IsHeartEmpty(player)
   if player:GetHearts() == 0 and player:GetSoulHearts() == 0 and player:GetBoneHearts() == 0 then
@@ -102,14 +104,14 @@ function wakaba:PlayDeathAnimationWithRevival(player, itemID, currentroom)
   wakaba:GetPlayerEntityData(player)
   local data = player:GetData()
   --player:StopExtraAnimation()
-  if wakaba:IsLost(player) then
+  --[[ if wakaba:IsLost(player) then
     player:PlayExtraAnimation("LostDeath")
   else
     player:PlayExtraAnimation("Death")
   end
   SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_SMALL)
   SFXManager():Play(SoundEffect.SOUND_ISAACDIES)
-  player:SetMinDamageCooldown(180)
+  player:SetMinDamageCooldown(180) ]]
   player.Velocity = Vector.Zero
   player.ControlsEnabled = false
   data.wakaba.reviveanim = itemID
@@ -255,42 +257,46 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
       if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
         --print("TookDamage - COLLECTIBLE_LUNAR_STONE")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_LUNAR_STONE)
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_QuestionBlock(player))
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_GrimreaperDefender(player))
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_BookOfTheGod(player))
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and data.wakaba.shioriangel --[[ and (player:GetHeartLimit() > 2) ]] then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
@@ -304,23 +310,25 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
       elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_FALLEN")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_BookOfTheFallen(player))
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
         --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_FALLEN")
         data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
+        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
         if wakaba:isMausoleumDoor(flag) then
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_VINTAGE_THREAT, true)
         wakaba:AddPostRevive(player, wakaba:AfterRevival_VintageThreat(player))
-        return false
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        --return false
       end
     end
   end

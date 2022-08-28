@@ -38,7 +38,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()
 		end ]]
-		if wakaba:IsHeartEmpty(player) then
+		if wakaba:IsHeartEmpty(player) and not wakaba:IsPlayerDying(player) then
 			if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
 				player:AddMaxHearts(2)
 				player:AddHearts(2)
