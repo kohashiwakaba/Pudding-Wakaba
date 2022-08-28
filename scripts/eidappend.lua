@@ -38,20 +38,20 @@ if EID then
 
 		wakaba.EIDBlankCardCooldowns = {
 			-- Blank Card
-			[wakaba.CARD_CRANE_CARD] = 6,
+			[wakaba.CARD_CRANE_CARD] = 5,
 			[wakaba.CARD_CONFESSIONAL_CARD] = 4,
 			[wakaba.CARD_BLACK_JOKER] = 2,
 			[wakaba.CARD_WHITE_JOKER] = 2,
 			[wakaba.CARD_COLOR_JOKER] = 6,
-			[wakaba.CARD_DREAM_CARD] = 12,
+			[wakaba.CARD_DREAM_CARD] = 8,
 			[wakaba.CARD_UNKNOWN_BOOKMARK] = 1,
-			[wakaba.CARD_QUEEN_OF_SPADES] = 12,
+			[wakaba.CARD_QUEEN_OF_SPADES] = 8,
 		}
 		wakaba.EIDClearRuneCooldowns = {
 			-- Clear Rune
-			[wakaba.SOUL_WAKABA] = 12,
-			[wakaba.SOUL_WAKABA2] = 12,
-			[wakaba.SOUL_SHIORI] = 8,
+			[wakaba.SOUL_WAKABA] = 8,
+			[wakaba.SOUL_WAKABA2] = 8,
+			[wakaba.SOUL_SHIORI] = 6,
 		}
 		wakaba.EIDPlaceboCooldowns = {
 			-- Placebo
