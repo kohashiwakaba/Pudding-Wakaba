@@ -8,6 +8,7 @@ function wakaba:IsLost(player)
 end
 
 function wakaba:CanRevive(player)
+  if not player then return false end
   if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
   local data = player:GetData()
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
