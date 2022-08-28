@@ -115,7 +115,7 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 			end
 		end
 		if player:GetData().wakaba then
-			if player:GetPlayerType() ~= 23 and player:GetData().wakaba.shioridevil and not player:GetData().wakaba.blindfolded then
+			if player:GetPlayerType() ~= 23 and player:GetData().wakaba.shioridevil and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
 				local OldChallenge=Game().Challenge
 				Game().Challenge=6
 				player:UpdateCanShoot()
