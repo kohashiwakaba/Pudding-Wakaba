@@ -11,18 +11,19 @@ function wakaba:CanRevive(player)
   if not player then return false end
   if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
   local data = player:GetData()
+  if player:GetData().wakaba.vintagethreat then return false end
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
     return {ID = wakaba.COLLECTIBLE_LUNAR_STONE}
   elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
-    return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = wakaba:AfterRevival_QuestionBlock(player)}
+    return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
   elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
-    return {ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, PostRevival = wakaba:AfterRevival_GrimreaperDefender(player)}
+    return {ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
-    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD, PostRevival = wakaba:AfterRevival_BookOfTheGod(player)}
+    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
-    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, PostRevival = wakaba:AfterRevival_BookOfTheFallen(player)}
+    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
-    return {ID = wakaba.COLLECTIBLE_VINTAGE_THREAT, PostRevival = wakaba:AfterRevival_VintageThreat(player)}
+    return {ID = wakaba.COLLECTIBLE_VINTAGE_THREAT, PostRevival = function() wakaba:AfterRevival_VintageThreat(player) end}
   end
   return false
 end
@@ -125,6 +126,23 @@ function wakaba:AddPostRevive(player, func)
   player:GetData().wakaba.postrevivefunction = func
 end
 
+function wakaba:UseItem_Revival(usedItem, rng, player, flags, slot, vardata)
+  local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
+  if not revivaldata then return end
+  if usedItem == CollectibleType.COLLECTIBLE_BIBLE then
+    local level = Game():GetLevel()
+    local room = Game():GetRoom()
+    if room and room:GetBossID() == 24 then
+      if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+      end
+      wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID)
+      wakaba:AddPostRevive(player, revivaldata.PostRevival)
+    end
+  end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.UseItem_Revival)
+
 function wakaba:PlayerUpdate_Revival(player)
   wakaba:GetPlayerEntityData(player)
   local data = player:GetData()
@@ -150,15 +168,36 @@ function wakaba:PlayerUpdate_Revival(player)
       Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(player), Vector.Zero, nil)
     end
   end
-
-
-  if player:IsDead() and not player:WillPlayerRevive() then
-    local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
-    if revivaldata then
-      player:Revive()
-      if player:GetOtherTwin() then
-        if player:GetOtherTwin():IsDead() and not player:GetOtherTwin():WillPlayerRevive() then
-          player:GetOtherTwin():Revive()
+  local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
+  --print(revivaldata and player:IsDead())
+  data.wakaba.checkForDevilDealRevive = data.wakaba.checkForDevilDealRevive or false
+  if revivaldata and wakaba:IsHeartEmpty(player) and not player:IsItemQueueEmpty() then
+    -- print("IsEmpty", data.wakaba.checkForDevilDealRevive, revivaldata)
+    data.wakaba.checkForDevilDealRevive = true
+    if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+    end
+  end
+  if data.wakaba.checkForDevilDealRevive and player:IsItemQueueEmpty() then
+    -- print("not IsEmpty", data.wakaba.checkForDevilDealRevive, revivaldata, not wakaba:IsHeartEmpty(player))
+    if not wakaba:IsHeartEmpty(player) and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+    elseif revivaldata then
+      wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID)
+      wakaba:AddPostRevive(player, revivaldata.PostRevival)
+    end
+    data.wakaba.checkForDevilDealRevive = nil
+  end
+  if revivaldata and wakaba:IsPlayerDying(player) then --[[ player:IsDead() ]]
+    --print("isDead!", player:WillPlayerRevive(), data.wakaba.reviveanim, data.wakaba.revivefinished)
+    if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+    end
+    if not player:WillPlayerRevive() then
+      --player:Revive()
+      if player:GetOtherTwin() and wakaba:IsPlayerDying(player:GetOtherTwin()) then --[[ player:GetOtherTwin():IsDead() ]]
+        if not player:GetOtherTwin():GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+          player:GetOtherTwin():GetEffects():AddNullEffect(NullItemID.ID_LAZAUS_SOUL_REVIVE)
           player:GetOtherTwin():SetMinDamageCooldown(180)
         end
       end
@@ -168,8 +207,16 @@ function wakaba:PlayerUpdate_Revival(player)
       end
     end
   end
-  if data.wakaba.revivefinished and player:AreControlsEnabled() then
-    --print("revivefinished")
+  if data.wakaba.revivefinished and wakaba:IsPlayerDying(player) then
+    player:GetSprite():SetLastFrame()
+    player:StopExtraAnimation()
+    if data.wakaba.postrevivefunction then -- moved here to handle delay
+      data.wakaba.postrevivefunction(player)
+      data.wakaba.postrevivefunction = nil
+    end
+  elseif data.wakaba.revivefinished and player:AreControlsEnabled() then
+    --print("revivefinished", player:IsDead(), player:GetSprite():GetAnimation(), player)
+    --print("animate!")
     player:AnimateCollectible(data.wakaba.reviveanim)
     player:SetMinDamageCooldown(180)
     --print("check Post-Revival function")
@@ -177,21 +224,52 @@ function wakaba:PlayerUpdate_Revival(player)
     data.wakaba.revivefinished = nil
     data.wakaba.revivecurrentroom = nil
     player.ControlsEnabled = true
-    if data.wakaba.postrevivefunction then
-      --print("postrev")
+    --[[ if data.wakaba.postrevivefunction then
+      print("postrev")
       data.wakaba.postrevivefunction(player)
       data.wakaba.postrevivefunction = nil
-    end
+    end ]]
     if data.wakaba.reviveasjudas then
       player:ChangePlayerType(PlayerType.PLAYER_BLACKJUDAS)
+    end
+    if player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
     end
   elseif data.wakaba.reviveanim then
     --print("reviveanim", player:GetSprite():GetAnimation(), player:IsExtraAnimationFinished())
     player.Velocity = Vector.Zero
-    if player:IsExtraAnimationFinished() then
+    --print(wakaba:IsPlayerDying(player), player:GetSprite():GetAnimation())
+    if player:IsDead() and player:GetSprite():IsFinished(player:GetSprite():GetAnimation()) then 
       --print("reviveanimfinished")
       if not data.wakaba.revivecurrentroom and not wakaba:HasBeast() then
-        Game():StartRoomTransition(Game():GetLevel():GetLastRoomDesc().SafeGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.WALK, player)
+
+        local level = Game():GetLevel()
+        local room = Game():GetRoom()
+  
+        local enterDoorIndex = level.EnterDoor
+        print(enterDoorIndex == -1)
+        print(room:GetDoor(enterDoorIndex) == nil)
+        print(level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex())
+        if enterDoorIndex == -1 or room:GetDoor(enterDoorIndex) == nil or level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
+          if level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
+            Game():StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
+          elseif room:GetDoor(enterDoorIndex) ~= nil then
+            print("try1")
+            local enterDoor = room:GetDoor(enterDoorIndex)
+            local targetRoomDirection = enterDoor.Direction
+            Game():StartRoomTransition(level:GetPreviousRoomIndex(), targetRoomDirection, RoomTransitionAnim.ANKH)
+          else
+            Game():StartRoomTransition(level:GetPreviousRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
+          end
+        else
+          local enterDoor = room:GetDoor(enterDoorIndex)
+          local targetRoomIndex = enterDoor.TargetRoomIndex
+          local targetRoomDirection = enterDoor.Direction
+  
+          level.LeaveDoor = -1 -- api why
+          Game():StartRoomTransition(targetRoomIndex, targetRoomDirection, RoomTransitionAnim.ANKH)
+        end
+        --Game():StartRoomTransition(Game():GetLevel():GetLastRoomDesc().SafeGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.WALK, player)
       else
         player.ControlsEnabled = true
       end
@@ -273,7 +351,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
-        wakaba:AddPostRevive(player, wakaba:AfterRevival_QuestionBlock(player))
+        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_QuestionBlock(player) end)
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
         --return false
       elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
@@ -284,7 +362,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
-        wakaba:AddPostRevive(player, wakaba:AfterRevival_GrimreaperDefender(player))
+        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_GrimreaperDefender(player) end)
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
         --return false
       elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
@@ -295,7 +373,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
-        wakaba:AddPostRevive(player, wakaba:AfterRevival_BookOfTheGod(player))
+        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_BookOfTheGod(player) end)
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
         --return false
       elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and data.wakaba.shioriangel --[[ and (player:GetHeartLimit() > 2) ]] then
@@ -316,7 +394,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN)
-        wakaba:AddPostRevive(player, wakaba:AfterRevival_BookOfTheFallen(player))
+        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_BookOfTheFallen(player) end)
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
         --return false
       elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
@@ -327,7 +405,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
           wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
         end
         wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_VINTAGE_THREAT, true)
-        wakaba:AddPostRevive(player, wakaba:AfterRevival_VintageThreat(player))
+        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_VintageThreat(player) end)
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
         --return false
       end
