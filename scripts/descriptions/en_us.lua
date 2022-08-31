@@ -654,8 +654,8 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.COLLECTIBLE_BEETLEJUICE] = {
 		itemName = "Beetlejuice",
-		description = ""
-		.. "#"
+		description = "{{Pill}} Identifies all pills"
+		.. "#{{Pill}} When used, Randomizes 6 pill effects for current run"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

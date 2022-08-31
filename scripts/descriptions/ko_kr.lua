@@ -694,8 +694,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_BEETLEJUICE] = {
 		itemName = "비틀쥬스",
 		description = ""
-		.. "#!!! 소지한 상태에선 카드/룬/알약을 소지할 수 없으며 액티브 아이템으로 흡수됩니다."
-		.. "#사용 시 흡수한 카드/룬/알약의 갯수만큼 적에게 64의 방어 무시 피해를 주며 방 안의 적에거 40의 피해를 줍니다."
+		.. "#{{Pill}} 확인되지 않은 알약의 효과를 알 수 있습니다."
+		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 6개를 랜덤으로 바꿉니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "???",

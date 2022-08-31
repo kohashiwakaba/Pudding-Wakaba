@@ -1,6 +1,6 @@
 wakaba.COLLECTIBLE_BEETLEJUICE = Isaac.GetItemIdByName("Beetlejuice")
 
-local availablePills = {}
+local replacedPills = {}
 
 function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, varData)
 	pData = player:GetData()
@@ -9,16 +9,25 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
   local discharge = true
 	local pool = Game():GetItemPool()
 	local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_BEETLEJUICE)
-	for i = 1, 6 do
+	local count = 8
+	if FiendFolio then count = 20 end
+	for i = 1, count do
 		local pillEffectCandidates = Isaac.GetItemConfig():GetPillEffects()
-		local replacedPillEffect = Isaac.GetItemConfig():GetPillEffect(rng:RandomInt(pillEffectCandidates.Size)).ID
+		local replacedPillEffect = -1
+		while replacedPillEffect == -1 or replacedPills[replacedPillEffect] do
+			replacedPillEffect = Isaac.GetItemConfig():GetPillEffect(rng:RandomInt(pillEffectCandidates.Size)).ID
+		end
 		local newPill = pool:ForceAddPillEffect(replacedPillEffect)
 		pool:IdentifyPill(newPill)
+		replacedPills[replacedPillEffect] = true
 	end
-
+	if not failed then
+		SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
+	end
 	if not failed and not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(item, "UseItem", "PlayerPickup")
 	end
+	replacedPills = {}
   return {Discharge = discharge}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Beetlejuice, wakaba.COLLECTIBLE_BEETLEJUICE)
@@ -37,7 +46,7 @@ function wakaba:PlayerUpdate_Beetlejuice(player)
 		if FiendFolio then
 			for i = 1, #FiendFolio.FFPillColours do
 					FiendFolio.savedata.run.IdentifiedRunPills = FiendFolio.savedata.run.IdentifiedRunPills or {}
-					FiendFolio.savedata.run.IdentifiedRunPills[tostring(mod.FFPillColours[i])] = true
+					FiendFolio.savedata.run.IdentifiedRunPills[tostring(FiendFolio.FFPillColours[i])] = true
 			end
 		end
 		data.wakaba.IdentifyPills = true
