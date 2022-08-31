@@ -1,4 +1,4 @@
-wakaba.CARD_CONFESSIONAL_CARD = Isaac.GetCardIdByName("Confessional Card")
+wakaba.CARD_CONFESSIONAL_CARD = Isaac.GetCardIdByName("wakaba_Confessional Card")
 local animation = "gfx/confessionalcarddrop.anm2"
 local ConfessionalCardChance = wakaba.state.silverchance
 

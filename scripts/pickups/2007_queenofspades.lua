@@ -1,4 +1,4 @@
-wakaba.CARD_QUEEN_OF_SPADES = Isaac.GetCardIdByName("Queen of Spades")
+wakaba.CARD_QUEEN_OF_SPADES = Isaac.GetCardIdByName("wakaba_Queen of Spades")
 
 local spawncowntdown = -1
 local pos = nil

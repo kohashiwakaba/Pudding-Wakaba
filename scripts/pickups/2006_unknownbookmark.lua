@@ -1,4 +1,4 @@
-wakaba.CARD_UNKNOWN_BOOKMARK = Isaac.GetCardIdByName("Unknown Bookmark")
+wakaba.CARD_UNKNOWN_BOOKMARK = Isaac.GetCardIdByName("wakaba_Unknown Bookmark")
 
 function wakaba:onUseCard2006(_, player, flags)
 	local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)

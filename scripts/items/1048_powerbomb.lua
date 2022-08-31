@@ -35,6 +35,7 @@ function wakaba:EffectUpdate_PowerBomb(effect)
     effectsprite:Play("Exploding")
     effectsprite:Update()
   elseif effectsprite:IsFinished("Exploding") then
+    SFXManager():Play(SoundEffect.SOUND_REVERSE_EXPLOSION)
     effectsprite:Play("Fading")
     effectsprite:Update()
   elseif effectsprite:IsPlaying("Fading") then

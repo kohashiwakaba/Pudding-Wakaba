@@ -3,19 +3,19 @@
 	<card pickup="4101" type="special" description="Money for people" hud="Silver Donation Card" name="Silver Donation Card" mimiccharge="6" />
 	<card pickup="4102" type="special" description="Money for people" hud="VIP Donation Card" name="VIP Donation Card" mimiccharge="6" />
 	 -->
-	<card pickup="4103" type="tarot" description="Gacha time!" hud="Crane Card" name="Crane Card" mimiccharge="5" />
-	<card pickup="4104" type="tarot" description="Repent" hud="Confessional Card" name="Confessional Card" mimiccharge="4" />
-	<card type="suit" description="You feel your sins" hud="Black Joker" name="Black Joker" mimiccharge="2" />
-	<card type="suit" description="You feel your sins" hud="White Joker" name="White Joker" mimiccharge="2" />
-	<card type="suit" description="You will not want this" hud="Color Joker" name="Color Joker" mimiccharge="6" />
+	<card pickup="4103" type="tarot" description="Gacha time!" hud="wakaba_Crane Card" name="Crane Card" mimiccharge="5" />
+	<card pickup="4104" type="tarot" description="Repent" hud="wakaba_Confessional Card" name="Confessional Card" mimiccharge="4" />
+	<card type="suit" description="You feel your sins" hud="wakaba_Black Joker" name="Black Joker" mimiccharge="2" />
+	<card type="suit" description="You feel your sins" hud="wakaba_White Joker" name="White Joker" mimiccharge="2" />
+	<card type="suit" description="You will not want this" hud="wakaba_Color Joker" name="Color Joker" mimiccharge="6" />
 	<card pickup="4105" type="special" description="Your dreams will be fulfilled" hud="Wakaba's Dream Card" name="Wakaba's Dream Card" mimiccharge="8" />
 
 	<card pickup="4106" type="rune" description="meaning of blessing" hud="Soul of Wakaba" name="Soul of Wakaba" mimiccharge="8" />
 	<card pickup="4110" type="rune" description="meaning of nemesis" hud="Soul of Wakaba?" name="Soul of Wakaba?" mimiccharge="8" />
 
-	<card pickup="4107" type="tarot" description="Information of nothing" hud="Unknown Bookmark" name="Unknown Bookmark" mimiccharge="1" />
+	<card pickup="4107" type="tarot" description="Information of nothing" hud="wakaba_Unknown Bookmark" name="Unknown Bookmark" mimiccharge="1" />
 	<card pickup="4108" type="rune" description="Cycle your fate" hud="Soul of Shiori" name="Soul of Shiori" mimiccharge="6" />
-	<card pickup="4109" type="suit" description=";P" hud="Queen of Spades" name="Queen of Spades" mimiccharge="8" />
+	<card pickup="4109" type="suit" description=";P" hud="wakaba_Queen of Spades" name="Queen of Spades" mimiccharge="8" />
 
 	<card pickup="4111" type="object" description="History repeat itself" hud="Return Token" name="Return Token"/>
 

@@ -1,4 +1,4 @@
-wakaba.CARD_CRANE_CARD = Isaac.GetCardIdByName("Crane Card")
+wakaba.CARD_CRANE_CARD = Isaac.GetCardIdByName("wakaba_Crane Card")
 local animation = "gfx/cranecarddrop.anm2"
 local CraneCardChance = wakaba.state.silverchance
 
