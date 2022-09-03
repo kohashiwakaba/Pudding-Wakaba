@@ -23,9 +23,20 @@ if EIDKR then
 	return 
 end
 
+
+
+
 include("scripts.filepathhelper")
 include('scripts.achievement_display_api')
 include("scripts.pause_screen_completion_marks_api")
+include("scripts.wakaba_deadseascrolls.wakabadss")
+include("scripts.wakaba_deadseascrolls.dss_characters")
+include("scripts.wakaba_deadseascrolls.changelogs")
+
+
+
+
+
 wakaba.f = Font() -- init font object
 wakaba.f:Load("font/pftempestasevencondensed.fnt") -- load a font into the font object
 wakaba.cf = Font() -- init font object
