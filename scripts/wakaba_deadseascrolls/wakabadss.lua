@@ -136,7 +136,7 @@ local wakabadirectory = {
       },
       {
         str = 'characters',
-        dest = 'characters',
+        dest = 'characters_setting',
         tooltip = {strset = {'change', 'character', 'settings'}}
       },
     }
@@ -161,10 +161,27 @@ local wakabadirectory = {
         end,
         tooltip = {strset = {'change', 'direction', 'for', 'charge bar', 'numbers'}}
       },
+      {
+        str = 'hud alpha',
+        min = 0,
+        max = 100,
+        increment = 1,
+        suf = '%',
+        setting = 20,
+        variable = "UniformAlpha",
+        load = function()
+          return wakaba.state.options.uniformalpha or 20
+        end,
+        store = function(var)
+          wakaba.state.options.uniformalpha = var
+        end,
+        tooltip = {strset = {'transparency','setting','for',"wakaba's",'unform','and','book of','shiori'}},
+      },
       {str = '', fsize = 1, nosel = true},
       {
-          str = 'stackable mantle',
-          nosel = true
+          str = '-stackable mantle-',
+          nosel = true,
+          glowcolor = 3
       },
       {str = 'set these values to -1 to disable', fsize = 1, nosel = true},
       {str = 'or 0 so set infinite', fsize = 1, nosel = true},
@@ -238,7 +255,8 @@ local wakabadirectory = {
       {str = '', fsize = 1, nosel = true},
       {
           str = '- blanket -',
-          nosel = true
+          nosel = true,
+          glowcolor = 3
       },
       {str = '', fsize = 2, nosel = true},
       {
@@ -297,26 +315,26 @@ local wakabadirectory = {
       {str = '', fsize = 1, nosel = true},
       {
           str = '- inventory desc. -',
-          nosel = true
+          nosel = true,
+          glowcolor = 3
       },
       {str = 'press toggle key to enter list', fsize = 1, nosel = true},
       {str = 'press up/down for scroll', fsize = 1, nosel = true},
       {str = '', fsize = 2, nosel = true},
-      
       {
-      str = 'keybind option',
-      -- A keybind option lets you bind a key!
-      keybind = true,
-      -- -1 means no key set, otherwise use the Keyboard enum!
-      setting = Keyboard.KEY_F5,
-      variable = "InvDescListkey",
-      load = function()
-          return wakaba.state.options.listkey or Keyboard.KEY_F5
-      end,
-      store = function(var)
-          wakaba.state.options.listkey = var
-      end,
-      tooltip = {strset = {'press to','display','list and','descriptions','for current','held items','','default = f5'}},
+        str = 'keybind option',
+        -- A keybind option lets you bind a key!
+        keybind = true,
+        -- -1 means no key set, otherwise use the Keyboard enum!
+        setting = Keyboard.KEY_F5,
+        variable = "InvDescListkey",
+        load = function()
+            return wakaba.state.options.listkey or Keyboard.KEY_F5
+        end,
+        store = function(var)
+            wakaba.state.options.listkey = var
+        end,
+        tooltip = {strset = {'press to','display','list and','descriptions','for current','held items','','default = f5'}},
       },
       {
         str = 'list offset',
@@ -331,7 +349,7 @@ local wakabadirectory = {
         store = function(var)
           wakaba.state.options.listoffset = var
         end,
-        tooltip = {strset = {'right offse','for list','of items','','default = 200'}},
+        tooltip = {strset = {'right offset','for list','of items','','default = 200'}},
       },
       {
         str = 'show curses',
@@ -419,6 +437,268 @@ local wakabadirectory = {
         tooltip = {strset = {'show','pocket items','in','inventory','descriptions'}}
       },
     },
+  },
+  characters_setting = {
+    title = 'characters',
+    buttons = {
+      
+      {
+        str = 'uniform for t.lost',
+        choices = {'true', 'false'},
+        setting = 1,
+        variable = 'LostUniform',
+        load = function()
+          if wakaba.state.options.lostuniform then
+            return 1
+          else
+            return 2
+          end
+        end,
+        store = function(var)
+          wakaba.state.options.lostuniform = (var == 1)
+        end,
+        displayif = function(btn, item, tbl)
+          return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'t.lost','starts with',"wakaba's",'uniform'}}
+      },
+      {
+        str = 'sticky for t.eden',
+        choices = {'true', 'false'},
+        setting = 1,
+        variable = 'EdenSticky',
+        load = function()
+          if wakaba.state.options.edensticky then
+            return 1
+          else
+            return 2
+          end
+        end,
+        store = function(var)
+          wakaba.state.options.edensticky = (var == 1)
+        end,
+        displayif = function(btn, item, tbl)
+          return wakaba.state.unlock.edensticky
+        end,
+        tooltip = {strset = {'t.eden','starts with','sticky','note'}}
+      },
+
+	    ---------------------------------------------------------------------------
+	    -------------------------------Wakaba Settings-----------------------------
+      --[[
+      {str = '', fsize = 1, nosel = true},
+      {
+          str = 'wakaba',
+          nosel = true
+      },
+      {str = '', fsize = 2, nosel = true},
+      ]]
+
+      ---------------------------------------------------------------------------
+      -----------------------------  Shiori Settings  ---------------------------
+      {str = '', fsize = 1, nosel = true},
+      {
+          str = '- shiori -',
+          nosel = true,
+          glowcolor = 3
+      },
+      {str = '', fsize = 2, nosel = true},
+
+      {
+        str = 'modes',
+        choices = wakaba.shiorimodestringsdss,
+        setting = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS + 1,
+        variable = 'ShioriModes',
+        load = function()
+          return wakaba.state.options.shiorimodes + 1
+        end,
+        store = function(var)
+          wakaba.state.options.shiorimodes = var - 1
+        end,
+        changefunc = function(button, item)
+          item.shiorimodes = button.setting - 1
+        end,
+        tooltip = {strset = {'sets',"shiori's",'character','mode'}}
+      },
+      {
+          str = '',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = '',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = '',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = '',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+        str = '', fsize = 2, nosel = true,
+        displayif = function(btn, item, tbl)
+          return item.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+        end,
+      },
+      {
+        str = 'books per floor',
+        min = 1,
+        max = 10,
+        increment = 1,
+        setting = 3,
+        variable = "ShioriAkasicBookCount",
+        load = function()
+          return wakaba.state.options.shioriakasicbooks or 3
+        end,
+        store = function(var)
+          wakaba.state.options.shioriakasicbooks = var
+        end,
+        displayif = function(btn, item, tbl)
+          return item.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+        end,
+        tooltip = {strset = {'number of','books','shiori can','start','each floor','','default = 3'}},
+      },
+      {
+        str = 'min quality',
+        min = 0,
+        max = 4,
+        increment = 1,
+        setting = 0,
+        variable = "ShioriAkasicMinQuality",
+        load = function()
+          return wakaba.state.options.shioriakasicminquality or 0
+        end,
+        store = function(var)
+          wakaba.state.options.shioriakasicminquality = var
+          if wakaba.state.options.shioriakasicminquality > wakaba.state.options.shioriakasicmaxquality then
+            wakaba.state.options.shioriakasicmaxquality = wakaba.state.options.shioriakasicminquality
+          end
+        end,
+        displayif = function(btn, item, tbl)
+          return item.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+        end,
+        tooltip = {strset = {'minimum','quality for','books','','default = 0'}},
+      },
+      {
+        str = 'max quality',
+        min = 0,
+        max = 4,
+        increment = 1,
+        setting = 4,
+        variable = "ShioriAkasicMaxQuality",
+        load = function()
+          return wakaba.state.options.shioriakasicmaxquality or 4
+        end,
+        store = function(var)
+          wakaba.state.options.shioriakasicmaxquality = var
+          if wakaba.state.options.shioriakasicminquality > wakaba.state.options.shioriakasicmaxquality then
+            wakaba.state.options.shioriakasicminquality = wakaba.state.options.shioriakasicmaxquality
+          end
+        end,
+        displayif = function(btn, item, tbl)
+          return item.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+        end,
+        tooltip = {strset = {'maximum','quality for','books','','default = 4'}},
+      },
+      
+	    ---------------------------------------------------------------------------
+	    -----------------------------  Tsukasa Settings  ---------------------------
+      {str = '', fsize = 1, nosel = true},
+      {
+          str = '- tsukasa -',
+          nosel = true,
+          glowcolor = 3
+      },
+      {str = '', fsize = 2, nosel = true},
+
+      {
+        str = 'concentration key',
+        -- A keybind option lets you bind a key!
+        keybind = true,
+        -- -1 means no key set, otherwise use the Keyboard enum!
+        setting = Keyboard.KEY_LEFT_CONTROL,
+        variable = "TsukasaConcentrationKey",
+        load = function()
+            return wakaba.state.options.concentrationkeyboard or Keyboard.KEY_LEFT_CONTROL
+        end,
+        store = function(var)
+            wakaba.state.options.concentrationkeyboard = var
+        end,
+        tooltip = {strset = {'hold to','enter','concentration','mode for','tsukasa','','default = lctrl'}},
+      },
+      {
+        str = 'show lunar percent',
+        choices = {'true', 'false'},
+        setting = 1,
+        variable = 'TsukasaLunarPercentShow',
+        load = function()
+          if wakaba.state.options.lunarpercent then
+            return 1
+          else
+            return 2
+          end
+        end,
+        store = function(var)
+          wakaba.state.options.lunarpercent = (var == 1)
+        end,
+        tooltip = {strset = {'show','percent','for','lunar stone'}}
+      },
+
+    },
+    generate = function(item)
+      item.shiorimodes = wakaba.state.options.shiorimodes or wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+    end,
+    update = function(item)
+      local setting = item.shiorimodes or wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
+      local shioriModeStr1Index = -1
+      if item and item.buttons then
+        for i, button in ipairs(item.buttons) do
+          if button.variable == 'ShioriModes' then
+            shioriModeStr1Index = i + 1
+          end
+        end
+      end
+      if shioriModeStr1Index ~= -1 then
+        if wakaba.shiorimodestrings[setting].dssdesc1 then
+          item.buttons[shioriModeStr1Index].str = wakaba.shiorimodestrings[setting].dssdesc1
+          item.buttons[shioriModeStr1Index].display = true
+          item.buttons[shioriModeStr1Index].nosel = true
+        else
+          item.buttons[shioriModeStr1Index].str = ""
+          item.buttons[shioriModeStr1Index].display = false
+        end
+        if wakaba.shiorimodestrings[setting].dssdesc2 then
+          item.buttons[shioriModeStr1Index+1].str = wakaba.shiorimodestrings[setting].dssdesc2
+          item.buttons[shioriModeStr1Index+1].display = true
+          item.buttons[shioriModeStr1Index+1].nosel = true
+        else
+          item.buttons[shioriModeStr1Index+1].str = ""
+          item.buttons[shioriModeStr1Index+1].display = false
+        end
+        if wakaba.shiorimodestrings[setting].dssdesc3 then
+          item.buttons[shioriModeStr1Index+2].str = wakaba.shiorimodestrings[setting].dssdesc3
+          item.buttons[shioriModeStr1Index+2].display = true
+          item.buttons[shioriModeStr1Index+2].nosel = true
+        else
+          item.buttons[shioriModeStr1Index+2].str = ""
+          item.buttons[shioriModeStr1Index+2].display = false
+        end
+        if wakaba.shiorimodestrings[setting].dssdesc4 then
+          item.buttons[shioriModeStr1Index+3].str = wakaba.shiorimodestrings[setting].dssdesc4
+          item.buttons[shioriModeStr1Index+3].display = true
+          item.buttons[shioriModeStr1Index+3].nosel = true
+        else
+          item.buttons[shioriModeStr1Index+3].str = ""
+          item.buttons[shioriModeStr1Index+3].display = false
+        end
+      end
+    end
   },
   characters = {
     title = 'characters',

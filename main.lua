@@ -29,9 +29,6 @@ end
 include("scripts.filepathhelper")
 include('scripts.achievement_display_api')
 include("scripts.pause_screen_completion_marks_api")
-include("scripts.wakaba_deadseascrolls.wakabadss")
-include("scripts.wakaba_deadseascrolls.dss_characters")
-include("scripts.wakaba_deadseascrolls.changelogs")
 
 
 
@@ -302,18 +299,57 @@ wakaba.shiorimodes = {
 }
 
 wakaba.shiorimodestrings = {
-	[wakaba.shiorimodes.SHIORI_LIBRARIAN] = {name = "Librarian", configdesc = "Shiori starts with most books",},
-	[wakaba.shiorimodes.SHIORI_COLLECTOR] = {name = "Collector", configdesc = "Shiori starts with a random book, and must be collected manually. Most book actives will be moved into pocket slot automatically",},
-	[wakaba.shiorimodes.SHIORI_AKASIC_RECORDS] = {name = "Akasic Records", configdesc = "Shiori can use only 3 books per floor(Default)",},
-	[wakaba.shiorimodes.SHIORI_PURE_BODY] = {name = "Pure Body", configdesc = "Shiori starts with most books, but cannot collect any collectibles. Touching the collectible will dissolved into keys",},
+	[wakaba.shiorimodes.SHIORI_LIBRARIAN] = {
+		name = "Librarian", 
+		configdesc = "Shiori starts with most books",
+		dssdesc1 = "shiori starts with most books",
+	},
+	[wakaba.shiorimodes.SHIORI_COLLECTOR] = {
+		name = "Collector", 
+		configdesc = "Shiori starts with a random book, and must be collected manually. Most book actives will be moved into pocket slot automatically",
+		dssdesc1 = "shiori starts with a random book,",
+		dssdesc2 = "and must be collected manually.",
+		dssdesc3 = "most book actives will be moved",
+		dssdesc4 = "into pocket slot automatically",
+	},
+	[wakaba.shiorimodes.SHIORI_AKASIC_RECORDS] = {
+		name = "Akasic Records", 
+		configdesc = "Shiori can use only 3 books per floor(Default)",
+		dssdesc1 = "shiori can use only 3 books",
+		dssdesc2 = "per floor(default)",
+	},
+	[wakaba.shiorimodes.SHIORI_PURE_BODY] = {
+		name = "Pure Body", 
+		configdesc = "Shiori starts with most books, but cannot collect any collectibles. Touching the collectible will dissolved into keys",
+		dssdesc1 = "shiori starts with most books,",
+		dssdesc2 = "but cannot collect any collectibles",
+		dssdesc3 = "touching the collectible",
+		dssdesc4 = "will dissolved into keys",
+	},
 	--[wakaba.shiorimodes.SHIORI_MINERVA] = {name = "Minerva?", configdesc = "Unimplemented",},
-	[wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR] = {name = "Curse of Saytr", configdesc = "Shiori cannot switch books manually, books will be randomized on active item usage.",},
+	[wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR] = {
+		name = "Curse of Saytr", 
+		configdesc = "Shiori cannot switch books manually, books will be randomized on active item usage.",
+		dssdesc1 = "shiori cannot switch books manually",
+		dssdesc2 = "books will be randomized",
+		dssdesc3 = "on active item usage",
+	},
 }
 
+wakaba.shiorimodestringsdss = {}
+
+for i = 0, #wakaba.shiorimodestrings do
+	wakaba.shiorimodestringsdss[i+1] = wakaba.shiorimodestrings[i].name:lower()
+end
 
 wakaba.wikidesc = {}
 wakaba.adjustedwikidesc = {}
 wakaba.krwikidesc = {}
+
+include("scripts.wakaba_deadseascrolls.wakabadss")
+include("scripts.wakaba_deadseascrolls.dss_characters")
+include("scripts.wakaba_deadseascrolls.changelogs")
+
 
 -- Persistent Settings - ForceVoid
 --[[
