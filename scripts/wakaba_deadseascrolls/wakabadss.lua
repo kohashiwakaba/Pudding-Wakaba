@@ -97,7 +97,7 @@ local wakabadirectory = {
           -- The "dest" option, if specified, means that pressing the button will send you to that page of your menu.
           -- If using the "openmenu" action, "dest" will pick which item of that menu you are sent to.
           {str = 'settings', dest = 'settings'},
-          {str = 'characters', dest = 'characters'},
+          --[[ {str = 'characters', dest = 'characters'}, ]]
 
           -- A few default buttons are provided in the table returned from DSSInitializerFunction.
           -- They're buttons that handle generic menu features, like changelogs, palette, and the menu opening keybind
@@ -106,7 +106,7 @@ local wakabadirectory = {
           dssmod.changelogsButton,
 
           -- Text font size can be modified with the "fsize" tag. There are three font sizes, 1, 2, and 3, with 1 being the smallest and 3 being the largest.
-          {str = 'look at the little text!', fsize = 2, nosel = true}
+          --[[ {str = 'look at the little text!', fsize = 2, nosel = true} ]]
       },
 
       -- A tooltip can be set either on an item or a button, and will display in the corner of the menu while a button is selected or the item is visible with no tooltip selected from a button.
@@ -127,7 +127,7 @@ local wakabadirectory = {
       {
         str = 'general',
         dest = 'general',
-        tooltip = {strset = {'if enabled', 'there will be', 'increased', 'fortune', 'variety', '', 'enabled by', 'default'}}
+        tooltip = {strset = {'settings', 'for', 'wakaba mod'}}
       },
       {
         str = 'forcevoid',
@@ -137,7 +137,7 @@ local wakabadirectory = {
       {
         str = 'characters',
         dest = 'characters_setting',
-        tooltip = {strset = {'change', 'character', 'settings'}}
+        tooltip = {strset = {'settings', 'for', 'wakaba', 'characters'}}
       },
     }
   },
