@@ -92,7 +92,7 @@ local wakabadirectory = {
           --- "resume" closes the menu, like the resume game button on the pause menu. Generally a good idea to have a button for this on your main page!
           --- "back" backs out to the previous menu item, as if you had sent the menu back input
           --- "openmenu" opens a different dss menu, using the "menu" tag of the button as the name
-          {str = 'resume game', action = 'resume'},
+          {str = 'resume', action = 'resume'},
 
           -- The "dest" option, if specified, means that pressing the button will send you to that page of your menu.
           -- If using the "openmenu" action, "dest" will pick which item of that menu you are sent to.
@@ -202,6 +202,14 @@ local wakabadirectory = {
         end,
         store = function(var)
           wakaba.state.options.stackablemantle = var
+        end,
+        changefunc = function(button, item)
+          --[[ 
+          if button.setting == -1 then
+          elseif button.setting == 0 then
+          else
+          end
+          ]]
         end,
         tooltip = {strset = {'max stacks for', 'holy mantle','','does not','affect',"'the lost's", 'unique mantle'}},
       },
@@ -541,10 +549,7 @@ local wakabadirectory = {
           fsize = 1,
       },
       {
-        str = '', fsize = 2, nosel = true,
-        displayif = function(btn, item, tbl)
-          return item.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
-        end,
+        str = '', fsize = 1, nosel = true,
       },
       {
         str = 'books per floor',
@@ -699,6 +704,254 @@ local wakabadirectory = {
         end
       end
     end
+  },
+	---------------------------------------------------------------------------
+	-----------------------------------ForceVoid-------------------------------
+  forcevoid = {
+    title = 'forcevoid',
+    buttons = {
+      {
+          str = '- progression -',
+          nosel = true,
+          glowcolor = 3
+      },
+      {str = '', fsize = 2, nosel = true},
+      {
+        str = 'ascent',
+        choices = {"don't drop", "drop fool/to the start"},
+        setting = 1,
+        variable = 'ForceVoidFool',
+        load = function()
+          return wakaba.state.forcevoid.mom + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.mom = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'defeating','mom drops','the fool','to enter','the ascent'}}
+      },
+      {
+        str = 'mega satan',
+        choices = {"don't drop", "drop key pieces"},
+        setting = 1,
+        variable = 'ForceVoidKeyPieces',
+        load = function()
+          return wakaba.state.forcevoid.keypiece + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.keypiece = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'defeating','???/lamb','drops','key pieces','to enter','mega satan'}}
+      },
+      {
+        str = 'corpse',
+        choices = {"don't drop", "drop knife pieces"},
+        setting = 1,
+        variable = 'ForceVoidKnifePieces',
+        load = function()
+          return wakaba.state.forcevoid.knifepiece + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.knifepiece = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'defeating','mausoleum','mom drops','knife pieces','to enter','the corpse'}}
+      },
+      {
+        str = 'wrong mausoleum',
+        choices = {"don't drop", "drop the paper trinket"},
+        setting = 1,
+        variable = 'ForceVoidBringMeThere',
+        load = function()
+          return wakaba.state.forcevoid.beast + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.beast = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'drops','a trinket','at the','starting room'}}
+      },
+      {
+          str = 'entering mausoleum/gehenna ii',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = 'while holding/gulping the trinket',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = "will replace mom to dad's note",
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = "the trinket will be",
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = "spawn on starting room of",
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = "mines/ashpit ii or mausoleum/gehenna i",
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = "",
+          nosel = true,
+          fsize = 1,
+      },
+      {
+        str = 'missing red key',
+        choices = {"don't drop", "drop cracked key"},
+        setting = 1,
+        variable = 'ForceVoidRedKey',
+        load = function()
+          return wakaba.state.forcevoid.crackedkey + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.crackedkey = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'entering','home removes','little baggy','and drops','cracked key'}}
+      },
+      {str = '', fsize = 1, nosel = true},
+      {
+          str = '- void portals -',
+          nosel = true,
+          glowcolor = 3
+      },
+      {str = '', fsize = 2, nosel = true},
+      {
+        str = 'isaac/satan',
+        choices = {"normal", "force open void portal", "drop r key"},
+        setting = 1,
+        variable = 'ForceVoidIsaacSatan',
+        load = function()
+          return wakaba.state.forcevoid.isaacsatan + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.isaacsatan = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'change','behavior','when','isaac/satan','is','defeated'}}
+      },
+      {
+        str = '???/lamb',
+        choices = {"normal", "force open void portal", "drop r key"},
+        setting = 1,
+        variable = 'ForceVoidBBLamb',
+        load = function()
+          return wakaba.state.forcevoid.bblamb + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.bblamb = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'change','behavior','when','???/lamb','is','defeated'}}
+      },
+      {
+        str = 'mega satan',
+        choices = {"normal", "force open void portal", "drop r key"},
+        setting = 1,
+        variable = 'ForceVoidMegaSatan',
+        load = function()
+          return wakaba.state.forcevoid.megasatan + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.megasatan = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'change','behavior','when','mega satan','is','defeated'}}
+      },
+      {
+          str = '!!! warning !!!',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = 'turning on this option will lock',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+          str = 'mega satan achievements!',
+          nosel = true,
+          fsize = 1,
+      },
+      {
+        str = 'mother',
+        choices = {"normal", "force open void portal", "drop r key", "sheol/cath passage"},
+        setting = 1,
+        variable = 'ForceVoidMother',
+        load = function()
+          return wakaba.state.forcevoid.mother + 1
+        end,
+        store = function(var)
+          wakaba.state.forcevoid.mother = var - 1
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'change','behavior','when','mother','is','defeated'}}
+      },
+      {
+        str = 'delirium',
+        choices = {"normal", "drop r key"},
+        setting = 1,
+        variable = 'ForceVoidDelirium',
+        load = function()
+          if wakaba.state.forcevoid.mother == 2 then
+            return 2
+          else
+            return 1
+          end
+        end,
+        store = function(var)
+          if var == 2 then
+            wakaba.state.forcevoid.mother = 2
+          else
+            wakaba.state.forcevoid.mother = 0
+          end
+        end,
+        displayif = function(btn, item, tbl)
+          return true
+          --return wakaba.state.unlock.lostuniform
+        end,
+        tooltip = {strset = {'change','behavior','when','delirium','is','defeated'}}
+      },
+    },
   },
   characters = {
     title = 'characters',
