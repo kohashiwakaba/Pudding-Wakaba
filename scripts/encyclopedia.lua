@@ -1886,6 +1886,14 @@ if Encyclopedia then
 					{str = "He hated the fact that he was often mocked for his name. In response to this, he studied a lot with the main target to become a man nobody can make fun of."},
 			},
 		},
+		COLLECTIBLE_BEETLEJUICE = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Identifies all pills on pickup"},
+				{str = "When used, Randomizes 6 pill effects for current run"},
+			},
+		},
+
 		COLLECTIBLE_PHANTOM_CLOAK = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3630,13 +3638,13 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_BEETLEJUICE,
-		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
-		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.COLLECTIBLE_BEETLEJUICE,
+		WikiDesc = Wiki.COLLECTIBLE_BEETLEJUICE,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 		},
 	})
 	
