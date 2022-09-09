@@ -1,15 +1,15 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Tsukasa v99", 
 [[{FSIZE2}General/Misc
 
+- Applied Dead Sea Scrolls 
+menu for mod.
+
 - Added Korean Quotes 
 for collectibles/Trinkets/Pills.
 
 - Updated reroll function
 from Pudding n Wakaba 
 to sync EID's function properly.
-
-- Modified functions for adding 
-Horse Pill descriptions for EID.
 
 - Added Pause Screen 
 Completion Marks API.
@@ -27,6 +27,11 @@ Unlocked by ???
 Passive
 Unlocked by ???
 (default currently)
+
+{CLR3} Beetlejuice}
+Active
+Defeat Satan as Tsukasa
+(not yet)
 
 {CLR3} Red Corruption}
 Passive
@@ -80,8 +85,6 @@ decreases gradually
 when Isaac cannot get soul hearts. 
 (Can be changed later)
 
-x Adjusted shot speed from Plumy's tears.
-
 - Increased general costs for 
 Book of Conquest.
 
@@ -92,6 +95,9 @@ no longer appear in Boss rooms.
 no longer spawns 
 Golden troll bombs 
 for non-penalty damage.
+
+- Anti Balance also turns
+all pills into horse variant.
 
 - Reduced drop rate for 
 Book of Shiori 
