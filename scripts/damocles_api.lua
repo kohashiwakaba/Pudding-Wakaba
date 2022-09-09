@@ -1,4 +1,4 @@
-local DamoclesAPIVersion = 1.4
+local DamoclesAPIVersion = 1.5
 CCO = CCO or {}
 
 if CCO.DamoclesAPI then
@@ -20,10 +20,11 @@ CCO.DamoclesAPI.VERSION = DamoclesAPIVersion
 local game = Game()
 local itemsTable = {}
 local itempool = game:GetItemPool()
-local DamoclesCacheFncs = {}
 
+local DamoclesCacheFncs = {}
 local disableDamocles = false
 local activeBlacklist = {}
+local pickupData = {}
 
 function CCO.DamoclesAPI.AddActiveToBlacklist(itemId)
 	if type(itemId) ~= "number"
@@ -39,6 +40,8 @@ function CCO.DamoclesAPI.AddActiveToBlacklist(itemId)
 end
 CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_MOVING_BOX)
 CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_D6)
+CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_SPINDOWN_DICE)
+CCO.DamoclesAPI.AddActiveToBlacklist(CollectibleType.COLLECTIBLE_FLIP)
 
 function CCO.DamoclesAPI.AddDamoclesCallback(fnc, fncFailsafe)
 	if type(fnc) == "table" then
@@ -58,6 +61,20 @@ local function countDamocles()
 	return damoclesCount
 end
 CCO.DamoclesAPI.AddDamoclesCallback(countDamocles)
+
+local function getData(dataTable, entity)
+	local index = tostring(entity.InitSeed)
+	
+	if dataTable[index] == nil then
+		dataTable[index] = {}
+	end
+	
+	return dataTable[index]
+end
+
+local function getPickupData(entity)
+	return getData(pickupData, entity)
+end
 
 local function itemSpawnedOneFrameAgo(curRoom, dim)
 	local gameFrameCount = game:GetFrameCount()
@@ -137,8 +154,21 @@ CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, function(_, pick
 		FrameCount = game:GetFrameCount(),
 	}
 	
-	local data = pickup:GetData()
+	local targetPos = pickup.TargetPosition
+	local pickupData = getPickupData(pickup)
+	local data = pickup:GetData() -- since it's a variable designed to be accessed by any mods.
 	local player = pickup.SpawnerEntity and pickup.SpawnerEntity:ToPlayer() or nil
+	
+	if pickupData.targetPos
+	and pickupData.targetPos[targetPos.X]
+	and pickupData.targetPos[targetPos.X][targetPos.Y]
+	then
+		return
+	end
+	
+	pickupData.targetPos = pickupData.targetPos or {}
+	pickupData.targetPos[targetPos.X] = pickupData.targetPos[targetPos.X] or {}
+	pickupData.targetPos[targetPos.X][targetPos.Y] = true
 	
 	if data.DamoclesDuplicate
 	or pickup.Touched == true
@@ -194,6 +224,7 @@ end)
 
 CCO.DamoclesAPI:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
 	itemsTable = {}
+	pickupData = {}
 end)
 
 Isaac.DebugString("Damocles API: Loaded Successfully! Version: " .. CCO.DamoclesAPI.VERSION)
