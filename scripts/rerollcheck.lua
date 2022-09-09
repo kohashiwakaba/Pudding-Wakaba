@@ -284,7 +284,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local itemType = defaultPool
 	
-	if wakaba.state.dreampool ~= ItemPoolType.POOL_NULL and wakaba.state.rerollloopcount <= 40 then
+	if wakaba.state.dreampool ~= ItemPoolType.POOL_NULL and wakaba.state.rerollloopcount <= 5 then
 		itemType = wakaba.state.dreampool
 		AllowActives = false
 	end
@@ -305,6 +305,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local MinQuality = 0
 	local MaxQuality = 4
 	if eatHeartUsed then
+		--decrease = false
 		local rng = RNG()
 		rng:SetSeed(seed, 35)
 		local chance = rng:RandomFloat() * 480000
@@ -381,7 +382,6 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		end
 		local nextRNG = RNG()
 		nextRNG:SetSeed(seed, 35)
-		decrease = false
 		return pool:GetCollectible(itemType, decrease, nextRNG:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
 	else
 		wakaba.state.rerollloopcount = 0
