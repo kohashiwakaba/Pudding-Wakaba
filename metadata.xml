@@ -3,12 +3,10 @@
     <name>!~Pudding And Wakaba [REP]</name>
     <directory>pudding and wakaba</directory>
     <id>2543118811</id>
-    <description>[h1]이 모드는 한글 설명모드를 지원하지 않습니다. 한글 설명도 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url] 모드가 필요합니다.[/h1]
-
-The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
+    <description>The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
 
 [h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
-[b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b]
+[b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean compatible)
 [b]HIGHLY[/b] recommended to use Encyclopedia, or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2503022727] Completion Marks for ALL Modded Characters [/url].
 
 Mod Includes : 
@@ -23,7 +21,7 @@ A new Curse!(Must be enabled manually)
 [h1]Items and Characters[/h1]
 [b][url=https://kohashiwakaba.notion.site/4e87f1c646524283896401a270750755?v=b0de151aac874afa8aec361b255110f9]Item Guides are finally here[/url], but Using External Item Description, or Encyclopedia Wiki is strongly recommended!. [/b] old mini item guide is in discussion.
 
-[b][url=https://steamcommunity.com/workshop/filedetails/discussion/2543118811/5183064363533361286]Character Informations are here[/url], Using Encyclopedia Wiki is strongly recommended. [/b]
+[b][strike][url=https://steamcommunity.com/workshop/filedetails/discussion/2543118811/5183064363533361286]Character Informations under construction[/url][/strike], Using Encyclopedia Wiki is strongly recommended. [/b]
 
 [h1] Stackable Holy Mantle [/h1]
 Have multiple shields at the same time! Collecting multiple Holy Mantle items now allows to give corresponding amount of shields.
@@ -40,35 +38,11 @@ This mod also gives multiple shields for Blanket item if you entered a Boss Room
  - Press F5 to show current items you have. Pressing F5 again to exit list mode.
  - Also shows current curse descriptions.
 
-[h1] New Tweaks [/h1]
-These tweaks can be activated via Mod Config Menu.
-
- - [b]Defeating Isaac or Satan, onwards force opens Void Portals.[/b]
-   Defeating Mega Satan is turned off by default. as this prevents getting completion marks. Other bosses are still able to get marks, but as the side effect, two void portals can appear. This does not apply for the challenges. This function is similar to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=938928749]AlwaysVoid[/url] mod, however, this mod checks on room clears, rather than death of certain bosses.
-
- - [b]Defeating Mom drops The Fool/Telepills.[/b]
-   This allows escaping Mom Boss room when Mom is defeated. This [b]does[/b] apply for the challenges. If Isaac has Little Baggy, 'To the Start!' pill will be dropped instead.
-
- - [b]Defeating Mom in Mausoleum/Gehenna II drops both Knife Pieces[/b]
-   One of the reason of this tweak is the Mist area in Mines/Ashpit II. as entering Mist area removes all costumes except the ones defined in players.xml. which is not possible to add modded costumes. This does not apply for the challenges.
-
- - [b]Defeating ??? or The Lamb drops both Key Pieces[/b]
-   This is recommended for Tainted Wakaba, as she is unable to see Angel Rooms. This does not apply for the challenges.
-
- - [b]Defeating Mother or Delirium drops R Key[/b]
-   Can be used with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665] Runs Continue Past Mother [/url]. This does not apply for the challenges.
-
- - [b]Entering Mausoleum/Gehenna I drops certain trinket[/b]
-   Accidentally entered wrong floor in Mines/Ashpit II? The trinket will spawn in the starting room of the floor, Entering Mausoleum/Gehenna II while Holding the trinket will make Mom into [spoiler]Dad's Note[/spoiler]. This does not apply for the challenges.
-
- - [b]Entering Home drops certain key[/b]
-   Forgot dropping trinkets? Accidentally got Little Baggy? Entering Home will remove Little Baggy and drops [spoiler]Cracked Key[/spoiler] at the starting room. original idea is from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2529468660] cracked key at home [/url]
- mod. This does not apply for the challenges.
-
 [h1] More Notes [/h1]
 [list]
  [*] As this is my very first mod, this mod is does not have many items as almost all items requires to be unlocked. More items and challenges coming soon.
  [*] [b]Like other mods, you MUST restart the game if you installed, enabled/disabled, or updated the mod.[/b]
+ [*] Some tweaks can be activated via Mod Config Menu. 
  [*] Synergizes with Abyss item (Incomplete but most items work)
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362] Encyclopedia [/url]
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued is not tested, but will work without major issues.)
@@ -91,7 +65,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>0.98</version>
+    <version>0.100</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
