@@ -95,3 +95,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_RedCorruption)
 
 
+function wakaba:PostGetCollectible_RedCorruption(player, item)
+	local game = Game()
+	local level = game:GetLevel()
+	level:ApplyCompassEffect()
+end
+wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_RedCorruption, wakaba.COLLECTIBLE_RED_CORRUPTION)
