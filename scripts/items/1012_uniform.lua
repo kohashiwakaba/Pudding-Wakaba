@@ -163,6 +163,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
 	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) 
 	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC) 
+	or (useFlags & UseFlag.USE_OWNED ~= UseFlag.USE_OWNED) 
 	then 
 		usinguniform = true
 		wakaba:useUniform(player)
