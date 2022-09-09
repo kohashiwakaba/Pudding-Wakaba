@@ -29,6 +29,7 @@ end
 include("scripts.filepathhelper")
 include('scripts.achievement_display_api')
 include("scripts.pause_screen_completion_marks_api")
+include("scripts.postgetcollectible") -- temp library for post get collectible
 
 
 
