@@ -28,14 +28,14 @@ end
 function wakaba:NewLevel_RedCorruption()
 	local game = Game()
 	local level = game:GetLevel()
-	if level:GetAbsoluteStage() == LevelStage.STAGE5 or level:GetAbsoluteStage() == LevelStage.STAGE8 then return end
+	if level:GetAbsoluteStage() == LevelStage.STAGE4_3 or level:GetAbsoluteStage() == LevelStage.STAGE8 then return end
 	local hasCorruption = false
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.COLLECTIBLE_RED_CORRUPTION) then
 			hasCorruption = true
 		end
-		if hasCorruption and not (game.Difficulty == Difficulty.DIFFICULTY_GREED or game.Difficulty == Difficulty.DIFFICULTY_GREEDIER) then
+		if hasCorruption and not game:IsGreedMode() then
 			for i=0,168 do
 				local roomDesc = level:GetRoomByIdx(i)
 				if roomDesc.Data 
@@ -99,5 +99,8 @@ function wakaba:PostGetCollectible_RedCorruption(player, item)
 	local game = Game()
 	local level = game:GetLevel()
 	level:ApplyCompassEffect()
+	if game:IsGreedMode() then
+		level:ApplyBlueMapEffect()
+	end
 end
 wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_RedCorruption, wakaba.COLLECTIBLE_RED_CORRUPTION)

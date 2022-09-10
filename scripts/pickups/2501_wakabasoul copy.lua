@@ -72,7 +72,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 
 	if CurStage ~= LevelStage.STAGE8 then
 		local selected
-		if (game.Difficulty == Difficulty.DIFFICULTY_GREED or game.Difficulty == Difficulty.DIFFICULTY_GREEDIER) then
+		if game:IsGreedMode() then
 		else
 			for i=0,168 do
 				local roomCount = level:GetRoomByIdx(i)
@@ -199,7 +199,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba
 function wakaba:onGetCard2201(rng, currentCard, playing, runes, onlyRunes)
 	--print(currentCard == wakaba.SOUL_WAKABA, currentCard)
 	if currentCard == wakaba.SOUL_WAKABA or currentCard == wakaba.SOUL_WAKABA2 then
-		if (Game().Difficulty == Difficulty.DIFFICULTY_GREED or Game().Difficulty == Difficulty.DIFFICULTY_GREEDIER) or not wakaba.state.unlock.wakabasoul then
+		if Game():IsGreedMode() or not wakaba.state.unlock.wakabasoul then
 			Isaac.DebugString("[wakaba] Soul of Wakaba not unlocked. Replacing into Lunar Shard")
 			return Card.RUNE_SHARD
 		end
