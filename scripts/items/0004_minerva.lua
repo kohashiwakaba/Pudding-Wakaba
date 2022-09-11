@@ -10,6 +10,8 @@ function wakaba:hasAura(player)
     return true
 	elseif player:HasCollectible(wakaba.COLLECTIBLE_MINERVA_AURA) then
 		return true
+	elseif player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_MINERVA_AURA) then
+		return true
 	elseif Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
 		return true
 	else
@@ -24,9 +26,14 @@ function wakaba:auraCount(player)
 	local count = 0
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
     count = count + 1
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_MINERVA_AURA) then
+	end
+	if player:HasCollectible(wakaba.COLLECTIBLE_MINERVA_AURA) then
 		count = count + player:GetCollectibleNum(wakaba.COLLECTIBLE_MINERVA_AURA)
-	elseif Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+	end
+	if player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_MINERVA_AURA) then
+		count = count + player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_MINERVA_AURA)
+	end
+	if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
     count = count + 1
 	end
 	return count
@@ -244,7 +251,7 @@ function wakaba:PlayerUpdate_Minerva(player)
 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Minerva)
-
+--[[ 
 function wakaba:TestRender_Minerva()
   for i = 1, Game():GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
@@ -267,7 +274,7 @@ function wakaba:TestRender_Minerva()
 		wakaba.f:DrawStringScaledUTF8((i - 1) .. "+" .. minervalevel, Isaac.WorldToScreen(player.Position).X, Isaac.WorldToScreen(player.Position).Y, 1, 1, KColor(1,1,1,1,0,0,0),0,true)
 	end
 
-end
+end ]]
 --wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.TestRender_Minerva)
 
 function wakaba:Cache_Minerva(player, cacheFlag)
@@ -387,14 +394,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCChange_Minerva)
 
 --LagCheck
 
-function wakaba:GameStart_Minerva(continue)
+--[[ function wakaba:GameStart_Minerva(continue)
   for i = 1, Game():GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		if wakaba:hasAura(player) then
 			local aura = wakaba:initAura(player)
 		end
 	end
-end
+end ]]
 --wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_Minerva)
 
 function wakaba:PlayerTakeDmg_Minerva(entity, amount, flag, source, countdownFrames)
