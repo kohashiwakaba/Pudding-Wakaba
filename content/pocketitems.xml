@@ -19,6 +19,9 @@
 
 	<card pickup="4111" type="object" description="History repeat itself" hud="Return Token" name="Return Token"/>
 
+	<!-- Wakaba Tickets -->
+	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
+
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />
 	<pilleffect name="All Stats Down" class="3-" mimiccharge="4" />

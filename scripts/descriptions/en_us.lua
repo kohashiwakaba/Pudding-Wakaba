@@ -1162,6 +1162,11 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "Return Token",
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact#{{Timer}} Resets game timer#Removes all of Isaac's consumables {{ColorRed}}including health{{CR}}",
 	},
+	[wakaba.CARD_MINERVA_TICKET] = {
+		itemName = "Return Token",
+		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} Activates Minerva's Aura for current room",
+		mimiccharge = 3,
+	},
 	--[[ [wakaba.CARD_BASEMENT_CARD] = {
 		itemName = "Basement Card",
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact",

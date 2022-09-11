@@ -24,6 +24,7 @@ if EID then
 			[wakaba.SOUL_SHIORI] = 10,
 			--[wakaba.SOUL_TSUKASA] = 13,
 			[wakaba.CARD_RETURN_TOKEN] = 14,
+			[wakaba.CARD_MINERVA_TICKET] = 15,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)
@@ -35,7 +36,7 @@ if EID then
 			[wakaba.PLAYER_TSUKASA] = "Tsukasa",
 			[wakaba.PLAYER_TSUKASA_B] = "TsukasaB",
 		}
-
+--[[ 
 		wakaba.EIDBlankCardCooldowns = {
 			-- Blank Card
 			[wakaba.CARD_CRANE_CARD] = 5,
@@ -65,7 +66,7 @@ if EID then
 			[wakaba.PILL_SOCIAL_DISTANCE] = 1,
 			[wakaba.PILL_FLAME_PRINCESS] = 12,
 			[wakaba.PILL_FIREY_TOUCH] = 6,
-		}
+		} ]]
 
 		function wakaba:getWakabaDesc(entries, id)
 			lang = EID:getLanguage() or "en_us"

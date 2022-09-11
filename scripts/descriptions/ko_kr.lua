@@ -1250,6 +1250,16 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "리턴 토큰",
 		description = "{{Collectible636}} 사용 시 R 키 효과 발동:#소지중인 아이템과 능력치가 유지된 상태로 게임을 다시 시작합니다.#{{Timer}} 게임 시간이 초기화됩니다.#!!! {{ColorRed}}체력을 포함한{{CR}} 캐릭터의 모든 픽업 아이템을 지웁니다.",
 	},
+	[wakaba.CARD_MINERVA_TICKET] = {
+		itemName = "미네르바 티켓",
+		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} 사용 시 그 방에서 오라를 발산합니다."
+		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
+		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
+		.. "#유도 눈물을 발사합니다."
+		.. "{{CR}}",
+	},
 	
 	[wakaba.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",

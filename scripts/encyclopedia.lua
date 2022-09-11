@@ -1184,6 +1184,12 @@ if Encyclopedia then
 				{str = "- Book of Virtues: This item counts as passive item, thus will not be activated."},
 			},
 		},
+		CARD_MINERVA_TICKET = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Activates Minerva's Aura for current room."},
+			},
+		},
 
 		SOUL_WAKABA = {
 			{ -- Effect
@@ -3123,6 +3129,22 @@ if Encyclopedia then
 				return self
 			end
 		end,
+	})
+	
+	--Queen of Spades
+	Encyclopedia.AddCard({
+		Class = class,
+		ModName = class,
+		ID = wakaba.CARD_MINERVA_TICKET,
+		WikiDesc = Wiki.CARD_MINERVA_TICKET,
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Minerva Ticket",0),
+		--[[ UnlockFunc = function(self)
+			if wakaba.state.unlock.queenofspades < 1 then
+				self.Desc = "Complete Ultra Greedier as Tainted Shiori"
+				
+				return self
+			end
+		end, ]]
 	})
 	
 	
