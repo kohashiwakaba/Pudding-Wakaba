@@ -695,10 +695,11 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "비틀쥬스",
 		description = ""
 		.. "#{{Pill}} 확인되지 않은 알약의 효과를 알 수 있습니다."
-		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 6개를 랜덤으로 바꿉니다."
+		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 8개를 랜덤으로 바꾸며 바뀐 알약 중 하나를 드랍합니다."
+		.. "#{{Pill}} 소지한 상태에서 방 클리어 시 알약을 추가로 드랍합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	queueDesc = "???",
+	queueDesc = "알약 내용물을 바꾸는 능력",
 	},
 	[wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2] = {
 		itemName = "바벨탑의 저주 2",

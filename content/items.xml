@@ -76,7 +76,7 @@
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip" devilprice="2" quality="4"/>
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="4" hidden="true"/>
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive" quality="4" hidden="true"/>
-	<active id="51" description="Reroll Pills" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="offensive" quality="3"/>
+	<active id="51" description="Reroll Pills" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive" quality="3"/>
 	<active id="52" description="Hadar Sen Olmen" gfx="beam.png" maxcharges="12" name="Sunflower Beam" shopprice="55" devilprice="2" tags="devil stars offensive" quality="4" hidden="true"/>
 	<active id="53" passivecache="true" cache="familiars" description="Shrine protector" gfx="murasame.png" maxcharges="12" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarussharedglobal" quality="4"/>
 	

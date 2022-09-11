@@ -1891,6 +1891,8 @@ if Encyclopedia then
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "Identifies all pills on pickup"},
 				{str = "When used, Randomizes 6 pill effects for current run"},
+				{str = "While held, An extra pill can spawn on room clears."},
+				{str = "- Chance for spawning extra pill is 20%, does not affected by luck."},
 			},
 		},
 

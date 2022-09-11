@@ -655,7 +655,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_BEETLEJUICE] = {
 		itemName = "Beetlejuice",
 		description = "{{Pill}} Identifies all pills"
-		.. "#{{Pill}} When used, Randomizes 6 pill effects for current run"
+		.. "#{{Pill}} When used, Randomizes 6 pill effects for current run and spawns one of changed pills"
+		.. "#{{Pill}} Extra pills can be spawned on room clears while held"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
