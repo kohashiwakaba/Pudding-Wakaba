@@ -1881,9 +1881,9 @@ if Encyclopedia then
 				{str = "Tsukasa can still find this item on a pedestal. Picking the item allows her to make Bloody Puppy friendly."},
 			},
 			{ -- Trivia
-					{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-					{str = "Yuzaki Nasa is Tsukasa's husband, with name of 'NASA', as his dad liked the idea that his son would become ' a man who's as vast as space...'."},
-					{str = "He hated the fact that he was often mocked for his name. In response to this, he studied a lot with the main target to become a man nobody can make fun of."},
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "Yuzaki Nasa is Tsukasa's husband, with name of 'NASA', as his dad liked the idea that his son would become ' a man who's as vast as space...'."},
+				{str = "He hated the fact that he was often mocked for his name. In response to this, he studied a lot with the main target to become a man nobody can make fun of."},
 			},
 		},
 		COLLECTIBLE_BEETLEJUICE = {
