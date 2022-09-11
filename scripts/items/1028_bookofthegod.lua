@@ -42,6 +42,7 @@ function wakaba:AfterRevival_BookOfTheGod(player)
 	player:EvaluateItems()
 	player:AddBrokenHearts(-12)
 	player:AddSoulHearts(1)
+	player:RemoveCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
 end
 
 

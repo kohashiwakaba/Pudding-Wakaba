@@ -542,15 +542,6 @@ wakaba.descriptions[desclang].collectibles = {
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "신사 지킴이",
 	},
-	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
-		itemName = "Caramella Pancake",
-		description = ""
-		.. "#↑ +1 Damage Up"
-		.. "#↑ +1 Luck Up"
-		.. "#↑ Prevents {{Quality0}} items to be spawned"
-		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	}, ]]
 	[wakaba.COLLECTIBLE_CLOVER_SHARD] = {
 		itemName = "클로버 잎사귀",
 		description = ""
@@ -747,6 +738,29 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "공격력 대폭 증가... 그 대가는?",
 	},
+	[wakaba.COLLECTIBLE_SEE_DES_BISCHOFS] = {
+		itemName = "비숍의 강물",
+		description = "모든 비극의 시작"
+		.. "#↑ 목숨 +1"
+		.. "#{{Player"..wakaba.PLAYER_TSUKASA_B.."}} 사망 시 전 방에서 Tainted Tsukasa로 부활합니다."
+		.. "{{CR}}",
+	},
+	[wakaba.COLLECTIBLE_JAR_OF_CLOVER] = {
+		itemName = "클로버 씨앗 병",
+		description = "그녀가 태어날 때까지"
+		.. "#↑ 목숨 +1"
+		.. "#{{Player"..wakaba.PLAYER_WAKABA.."}} 사망 시 전 방에서 Wakaba로 부활합니다."
+		.. "#{{Player"..wakaba.PLAYER_WAKABA_B.."}} Tainted Wakaba의 경우 Wakaba 캐릭터로 변경되지 않습니다."
+		.. "{{CR}}",
+	},
+	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
+		itemName = "카라멜라 팬케이크",
+		description = ""
+		.. "#↑ 목숨 +1"
+		.. "#{{Player"..wakaba.PLAYER_RICHER.."}} 사망 시 전 방에서 Richer로 부활합니다."
+		.. "#{{Player"..wakaba.PLAYER_RICHER_B.."}} Tainted Richer의 경우 Richer 캐릭터로 변경되지 않습니다."
+		.. "{{CR}}",
+	}, ]]
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

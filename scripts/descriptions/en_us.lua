@@ -350,8 +350,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.COLLECTIBLE_VINTAGE_THREAT] = {
 		itemName = "{{ColorRed}}Vintage Threat",
 		description = ""
-		.. "#+1 Extra life"
-		.. "#{{Player"..wakaba.PLAYER_SHIORI_B.."}}On death, Revives into Tainted Shiori in current room"
+		.. "#{{Player"..wakaba.PLAYER_SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room"
 		.. "#Reviving into Tainted Shiori resets keys count to 0, and activates 4 {{Collectible656}}Damocles swords"
 		.. "#!!! {{ColorBlink}}{{ColorRed}}TAKING ANY PENALTY DAMAGE WILL MAKE DAMOCLES SWORD FALL AND ENDS THE RUN IMMEDIATELY REGARDLESS OF EXTRA LIVES OR REMANING PLAYERS!{{ColorReset}}"
 		.. "{{CR}}",
@@ -392,7 +391,7 @@ wakaba.descriptions[desclang].collectibles = {
 		--.. "#!!! This item cannot be used before reviving into Fallen Angel"
 		.. "#If damage is lethal while having this item, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
-		.. "#{{ColorSilver}}Upon use, Spawns fires at random enemies which deal Isaac's Damage + 35"
+		.. "#{{ColorSilver}}On use, Spawns fires at random enemies which deal Isaac's Damage + 35"
 		.. "#↓ {{ColorSilver}}Can no longer shoot tears"
 		.. "#↑ {{Damage}} {{ColorSilver}}+1500% Damage Multiplier"
 		.. "#!!! {{ColorYellow}}Isaac can no longer swap active items{{ColorReset}}"
@@ -498,15 +497,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
-		itemName = "Caramella Pancake",
-		description = ""
-		.. "#↑ +1 Damage Up"
-		.. "#↑ +1 Luck Up"
-		.. "#↑ Prevents {{Quality0}} items to be spawned"
-		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	}, ]]
 	[wakaba.COLLECTIBLE_CLOVER_SHARD] = {
 		itemName = "Clover Shard",
 		description = ""
@@ -609,22 +599,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	--[[ [wakaba.COLLECTIBLE_RED_CORRUPTION] = {
-		itemName = "Red Corruption",
-		description = ""
-		.. "#Injects Heart Container to enter Hypermode"
-		.. "#!!! While in Hypermode:"
-		.. "#Isaac is invincible against non-champion enemies"
-		.. "#Shooting tears reduce Hypermode gauge. Hypermode ends when gauge is depleted, or in after 25 seconds"
-		.. "#Hypermode gauge recharges after 10 seconds, and Kills Isaac when fully charged"
-		.. "#!!! In The Void:"
-		.. "#Isaac is in permanent Hypermode. Taking damage will increase Hypermode gauge."
-		.. "#CANNOT USE GENESIS OR R KEY!"
-		.. "#This item is removed after defeating Delirium. Hypermode ends afterwards."
-		.. ""
-		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	}, ]]
 	[wakaba.COLLECTIBLE_RED_CORRUPTION] = {
 		itemName = "Red Corruption",
 		description = "{{Collectible21}} Reveals icons on the map"
@@ -702,6 +676,26 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +250% Damage Multiplier#{{Blank}} (+100% per extra stack)"
 		.. "{{CR}}",
 	},
+	[wakaba.COLLECTIBLE_SEE_DES_BISCHOFS] = {
+		itemName = "See Des Bischofs",
+		description = ""
+		.. "#{{Player"..wakaba.PLAYER_TSUKASA_B.."}} Respawn as Tainted Tsukasa on death"
+		.. "{{CR}}",
+	},
+	[wakaba.COLLECTIBLE_JAR_OF_CLOVER] = {
+		itemName = "Jar of Clover",
+		description = ""
+		.. "#{{Player"..wakaba.PLAYER_WAKABA.."}} Respawn as Wakaba on death"
+		.. "#{{Player"..wakaba.PLAYER_WAKABA_B.."}} Tainted Wakaba simply revives"
+		.. "{{CR}}",
+	},
+	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
+		itemName = "Caramella Pancake",
+		description = ""
+		.. "#{{Player"..wakaba.PLAYER_RICHER.."}} Respawn as Richer on death"
+		.. "#{{Player"..wakaba.PLAYER_RICHER_B.."}} Tainted Richer simply revives"
+		.. "{{CR}}",
+	}, ]]
 	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

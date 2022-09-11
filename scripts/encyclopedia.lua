@@ -1636,7 +1636,45 @@ if Encyclopedia then
 				{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
 				{str = "- Shiori will also lose all of her books."},
 				{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
-				{str = "While playing as Tainted Forgotten you will die upon being resurrected."},
+			},
+		},
+
+		COLLECTIBLE_SEE_DES_BISCHOFS = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Grants an extra life."},
+				{str = "- Isaac will respawn as Tainted Tsukasa in the current room."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Resurrection items activate in a set order."},
+				{str = "Because characters are respawned as Tainted Tsukasa, The abilities for their original character will be lost."},
+				{str = "- Azazel will also lose his short-ranged Brimstone."},
+				{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
+				{str = "- Shiori will also lose all of her books."},
+				{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
+			},
+		},
+
+		COLLECTIBLE_JAR_OF_CLOVER = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Grants an extra life."},
+				{str = "- Isaac will respawn as Wakaba in the current room."},
+			},
+			{ -- Notes
+				{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+				{str = "Tainted Wakaba", clr = 3, halign = 0},
+				{str = "Revives as herself, rather than normal wakaba. Effectively acts as 1up!"},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Resurrection items activate in a set order."},
+				{str = "Because characters are respawned as Wakaba, The abilities for their original character will be lost."},
+				{str = "- Azazel will also lose his short-ranged Brimstone."},
+				{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
+				{str = "- Shiori will also lose all of her books."},
+				{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
 			},
 		},
 
@@ -2841,6 +2879,33 @@ if Encyclopedia then
 		},
 	})
 	
+	--See Des Bischofs
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS,
+		WikiDesc = Wiki.COLLECTIBLE_SEE_DES_BISCHOFS,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
+		},
+	})
+	
+	--Jar of Clover
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_JAR_OF_CLOVER,
+		WikiDesc = Wiki.COLLECTIBLE_JAR_OF_CLOVER,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
+		},
+	})
 
 	--Wakaba's Pendant
 	Encyclopedia.AddItem({
@@ -2954,7 +3019,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_CRANE_CARD,
 		WikiDesc = Wiki.CARD_CRANE_CARD,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Crane Card",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Crane Card",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.cranecard < 1 then
 				self.Desc = "Defeat Ultra Greedier as Wakaba"
@@ -2970,7 +3035,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_CONFESSIONAL_CARD,
 		WikiDesc = Wiki.CARD_CONFESSIONAL_CARD,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Confessional Card",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Confessional Card",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.confessionalcard < 1 then
 				self.Desc = "Defeat Mother as Wakaba"
@@ -2986,7 +3051,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_BLACK_JOKER,
 		WikiDesc = Wiki.CARD_BLACK_JOKER,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Black Joker",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Black Joker",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.blackjoker < 2 then
 				self.Desc = "Defeat Ultra Greedier as Tainted Wakaba"
@@ -3002,7 +3067,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_WHITE_JOKER,
 		WikiDesc = Wiki.CARD_WHITE_JOKER,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "White Joker",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_White Joker",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.whitejoker < 1 then
 				self.Desc = "Defeat Mega Satan as Wakaba"
@@ -3018,7 +3083,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_COLOR_JOKER,
 		WikiDesc = Wiki.CARD_COLOR_JOKER,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Color Joker",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Color Joker",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.colorjoker < 1 then
 				self.Desc = "Defeat Hush as Wakaba"
@@ -3034,7 +3099,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_UNKNOWN_BOOKMARK,
 		WikiDesc = Wiki.CARD_UNKNOWN_BOOKMARK,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Unknown Bookmark",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Unknown Bookmark",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.unknownbookmark < 1 then
 				self.Desc = "Complete Boss Rush as Shiori"
@@ -3050,7 +3115,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.CARD_QUEEN_OF_SPADES,
 		WikiDesc = Wiki.CARD_QUEEN_OF_SPADES,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Queen of Spades",0),
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Queen of Spades",0),
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.queenofspades < 1 then
 				self.Desc = "Complete Ultra Greedier as Tainted Shiori"
@@ -4147,12 +4212,6 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = Isaac.GetItemIdByName("Shiori's Yellow Bookmark"),
-		Hide = true,
-	})
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
-		ID = Isaac.GetItemIdByName("See des Bischofs"),
 		Hide = true,
 	})
 	

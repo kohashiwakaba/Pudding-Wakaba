@@ -18,12 +18,18 @@ function wakaba:CanRevive(player)
     return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
   elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
     return {ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
+  elseif player:HasCollectible(wakaba.COLLECTIBLE_SEE_DES_BISCHOFS) then
+    return {ID = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
+  elseif player:HasCollectible(wakaba.COLLECTIBLE_JAR_OF_CLOVER) then
+    return {ID = wakaba.COLLECTIBLE_JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
+  --[[ elseif player:HasCollectible(wakaba.COLLECTIBLE_CARAMELLA_PANCAKE) then
+    return {ID = wakaba.COLLECTIBLE_CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end} ]]
+  elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) then
     return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
     return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
   elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
-    return {ID = wakaba.COLLECTIBLE_VINTAGE_THREAT, PostRevival = function() wakaba:AfterRevival_VintageThreat(player) end}
+    return {ID = wakaba.COLLECTIBLE_VINTAGE_THREAT, PostRevival = function() wakaba:AfterRevival_VintageThreat(player) end, CurrentRoom = true}
   end
   return false
 end
@@ -210,10 +216,10 @@ function wakaba:PlayerUpdate_Revival(player)
   if data.wakaba.revivefinished and wakaba:IsPlayerDying(player) then
     player:GetSprite():SetLastFrame()
     player:StopExtraAnimation()
-    if data.wakaba.postrevivefunction then -- moved here to handle delay
+    --[[ if data.wakaba.postrevivefunction then -- moved here to handle delay
       data.wakaba.postrevivefunction(player)
       data.wakaba.postrevivefunction = nil
-    end
+    end ]]
   elseif data.wakaba.revivefinished and player:AreControlsEnabled() then
     --print("revivefinished", player:IsDead(), player:GetSprite():GetAnimation(), player)
     --print("animate!")
@@ -229,6 +235,10 @@ function wakaba:PlayerUpdate_Revival(player)
       data.wakaba.postrevivefunction(player)
       data.wakaba.postrevivefunction = nil
     end ]]
+    if data.wakaba.postrevivefunction then -- moved here to handle delay
+      data.wakaba.postrevivefunction(player)
+      data.wakaba.postrevivefunction = nil
+    end
     if data.wakaba.reviveasjudas then
       player:ChangePlayerType(PlayerType.PLAYER_BLACKJUDAS)
     end
@@ -295,9 +305,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_Concentration(entity, amount, flag, source, countdown)
   wakaba:TakeDamage_Elixir(entity, amount, flag, source, countdown)
 
-
-
-  if not data.wakaba.damageflag then
+  if not data.wakaba.damageflag or flag & DamageFlag.DAMAGE_NOKILL == 0 then
     if data.wakaba.grimreaper and not wakaba:IsSacrificeRoomSpikes(flag) then
       --print("TookDamage - Grimreaper Defender")
       data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NO_PENALTIES
@@ -331,84 +339,38 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         return false
       end
       return false
-    end
-    if wakaba:IsFatalDamage(player, amount) then
-      if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
-        --print("TookDamage - COLLECTIBLE_LUNAR_STONE")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+    elseif 
+      (not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK))
+      and (data.wakaba.shioriangel)
+    then
+      data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
+      player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)
+      if wakaba:isMausoleumDoor(flag) then
+        wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+      else
+        player:AddBrokenHearts(1)
+        if player:GetBrokenHearts() >= 12 then
+          local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
+          if revivaldata then
+            data.wakaba.checkForDevilDealRevive = true
+            if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+              player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+            end
+          end
         end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_LUNAR_STONE)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
-      elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
-        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_QuestionBlock(player) end)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
-      elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
-        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_GrimreaperDefender(player) end)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
-      elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not data.wakaba.shioriangel then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
-        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_BookOfTheGod(player) end)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
-      elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and data.wakaba.shioriangel --[[ and (player:GetHeartLimit() > 2) ]] then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_GOD")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        else
-          player:AddBrokenHearts(1)
-        end
-        return false
-      elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_FALLEN")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN)
-        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_BookOfTheFallen(player) end)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
-      elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
-        --print("TookDamage - COLLECTIBLE_BOOK_OF_THE_FALLEN")
-        data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
-        --player:TakeDamage(amount, flag | data.wakaba.damageflag, source, countdown)
-        if wakaba:isMausoleumDoor(flag) then
-          wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-        end
-        wakaba:PlayDeathAnimationWithRevival(player, wakaba.COLLECTIBLE_VINTAGE_THREAT, true)
-        wakaba:AddPostRevive(player, function() wakaba:AfterRevival_VintageThreat(player) end)
-        player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-        --return false
       end
+      return false
+    end
+  end
+  if flag & DamageFlag.DAMAGE_NOKILL == 0 and wakaba:IsFatalDamage(player, amount) then
+    local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
+    if revivaldata then
+      if wakaba:isMausoleumDoor(flag) then
+        wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+      end
+      wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID, revivaldata.CurrentRoom)
+      wakaba:AddPostRevive(player, revivaldata.PostRevival)
+      player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
     end
   end
   data.wakaba.damageflag = nil
@@ -454,12 +416,26 @@ if DetailedRespawnGlobalAPI then
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
+    name = "See Des Bischofs",
+    itemId = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS,
+    condition = function(_, player)
+      return player:HasCollectible(wakaba.COLLECTIBLE_SEE_DES_BISCHOFS)
+    end,
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the God"))
+  DetailedRespawnGlobalAPI:AddCustomRespawn({
+    name = "Jar of Clover",
+    itemId = wakaba.COLLECTIBLE_JAR_OF_CLOVER,
+    condition = function(_, player)
+      return player:HasCollectible(wakaba.COLLECTIBLE_JAR_OF_CLOVER)
+    end,
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("See Des Bischofs"))
+  DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Book of the Fallen",
     itemId = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN,
     condition = function(_, player)
       return player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil
     end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the God"))
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Jar of Clover"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Vintage Threat",
     itemId = wakaba.COLLECTIBLE_VINTAGE_THREAT,

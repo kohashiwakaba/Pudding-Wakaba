@@ -1096,6 +1096,7 @@ include('scripts.items.1058_doubleinvader')
 include('scripts.items.1059_redcorruption')
 include('scripts.items.1060_plasmabeam')
 include('scripts.items.1061_antibalance')
+include('scripts.items.1062_lakeofbishop')
 
 include('scripts.pickups.2005_dreamcard')
 include('scripts.items.1200_doubledreams')

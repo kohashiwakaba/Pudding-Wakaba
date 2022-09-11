@@ -20,6 +20,8 @@
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="See Des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -154,6 +156,8 @@
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="See Des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -242,6 +246,8 @@
 		<Item Name="3D Printer" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="See Des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -314,6 +320,8 @@
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="0.5" RemoveOn="0.001"/>
 		<Item Name="Book of The God" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Concentration" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="See Des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
