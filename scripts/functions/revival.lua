@@ -9,11 +9,12 @@ end
 
 function wakaba:CanRevive(player)
   if not player then return false end
+  if player:WillPlayerRevive() then return false end
   if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
   local data = player:GetData()
   if player:GetData().wakaba.vintagethreat then return false end
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
-    return {ID = wakaba.COLLECTIBLE_LUNAR_STONE}
+    return {ID = wakaba.COLLECTIBLE_LUNAR_STONE, PostRevival = function() wakaba:AfterRevival_LunarStone(player) end}
   elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
     return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
   elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
@@ -68,6 +69,9 @@ function wakaba:IsFatalDamage(player, amount)
 end
 function wakaba:IsPlayerDying(player)
   return player:GetSprite():GetAnimation():sub(-#"Death") == "Death" --does their current animation end with "Death"?
+end
+function wakaba:IsPlayerDuringRevival(player)
+  return player:GetSprite():GetAnimation():find("^Pickup") --does their current animation start with "Pickup"?
 end
 
 function wakaba:IsHeartEmpty(player)
@@ -154,8 +158,8 @@ function wakaba:PlayerUpdate_Revival(player)
   local data = player:GetData()
   if wakaba:IsHeartDifferent(player) then
     wakaba:RemoveRegisteredHeart(player)
-		if wakaba:hasLunarStone(player) then
-			data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
+		if wakaba:hasLunarStone(player) and data.wakaba.lunargauge then
+			--data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
 			data.wakaba.lunargauge = data.wakaba.lunargauge - 40000
 			data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
 			if data.wakaba.lunarregenrate >= 0 then
@@ -195,8 +199,11 @@ function wakaba:PlayerUpdate_Revival(player)
     data.wakaba.checkForDevilDealRevive = nil
   end
   if revivaldata and wakaba:IsPlayerDying(player) then --[[ player:IsDead() ]]
-    --print("isDead!", player:WillPlayerRevive(), data.wakaba.reviveanim, data.wakaba.revivefinished)
+    -- print("isDead!", player:WillPlayerRevive(), data.wakaba.reviveanim, data.wakaba.revivefinished)
+    
+    -- Do not add if revived during vanilla revival items
     if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      --print("add safety revival")
       player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
     end
     if not player:WillPlayerRevive() then
@@ -257,14 +264,14 @@ function wakaba:PlayerUpdate_Revival(player)
         local room = Game():GetRoom()
   
         local enterDoorIndex = level.EnterDoor
-        print(enterDoorIndex == -1)
+        --[[ print(enterDoorIndex == -1)
         print(room:GetDoor(enterDoorIndex) == nil)
-        print(level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex())
+        print(level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex()) ]]
         if enterDoorIndex == -1 or room:GetDoor(enterDoorIndex) == nil or level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
           if level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
             Game():StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
           elseif room:GetDoor(enterDoorIndex) ~= nil then
-            print("try1")
+            --print("try1")
             local enterDoor = room:GetDoor(enterDoorIndex)
             local targetRoomDirection = enterDoor.Direction
             Game():StartRoomTransition(level:GetPreviousRoomIndex(), targetRoomDirection, RoomTransitionAnim.ANKH)
@@ -285,6 +292,10 @@ function wakaba:PlayerUpdate_Revival(player)
       end
       data.wakaba.revivefinished = true
       --player.ControlsEnabled = true
+    end
+  elseif wakaba:IsPlayerDuringRevival(player) and player:GetSprite():IsFinished(player:GetSprite():GetAnimation()) then
+    if player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+      player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
     end
   end
 end
