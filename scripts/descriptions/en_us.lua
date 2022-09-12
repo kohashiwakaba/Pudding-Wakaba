@@ -1120,15 +1120,15 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#{{Collectible619}}Birthright, Modded items also appear"
 		.. "{{CR}}",
 	},
-	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
-		itemName = "Isaac Cartridge",
+	[wakaba.TRINKET_AFTERBIRTH_CARTRIDGE] = {
+		itemName = "Afterbirth Cartridge",
 		description = ""
 		.. "#Only TBoI ~ Afterbirth+ items will appear"
 		.. "#{{Collectible619}}Birthright also appears"
 		.. "{{CR}}",
 	},
-	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
-		itemName = "Isaac Cartridge",
+	[wakaba.TRINKET_REPENTANCE_CARTRIDGE] = {
+		itemName = "Repentance Cartridge",
 		description = ""
 		.. "#Only TBoI ~ Repentance items will appear"
 		.. "{{CR}}",

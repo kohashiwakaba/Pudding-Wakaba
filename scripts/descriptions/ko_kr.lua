@@ -1200,23 +1200,23 @@ wakaba.descriptions[desclang].trinkets = {
 	queueDesc = "키스하는 건 무죄",
 	},
 	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
-		itemName = "Isaac Cartridge",
+		itemName = "아이작 카트리지",
 		description = ""
 		.. "#아이작의 번제 오리지널 ~ 리버스의 아이템만 등장합니다."
 		.. "#{{Collectible619}}Birthright 및 모드 아이템도 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "그 때 그 시절로",
 	},
-	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
-		itemName = "Isaac Cartridge",
+	[wakaba.TRINKET_AFTERBIRTH_CARTRIDGE] = {
+		itemName = "애프터버스 카트리지",
 		description = ""
 		.. "#아이작의 번제 오리지널 ~ 애프터버스+의 아이템만 등장합니다."
 		.. "#{{Collectible619}}Birthright도 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "그 때 그 시절로",
 	},
-	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
-		itemName = "Isaac Cartridge",
+	[wakaba.TRINKET_REPENTANCE_CARTRIDGE] = {
+		itemName = "리펜턴스 카트리지",
 		description = ""
 		.. "#아이작의 번제 오리지널 ~ 리펜턴스의 아이템만 등장합니다."
 		.. "{{CR}}",
