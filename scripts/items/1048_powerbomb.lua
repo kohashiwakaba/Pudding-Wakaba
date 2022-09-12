@@ -1,13 +1,5 @@
 wakaba.COLLECTIBLE_POWER_BOMB = Isaac.GetItemIdByName("Power Bomb")
 wakaba.EFFECT_POWER_BOMB = Isaac.GetEntityVariantByName("Wakaba Power Bomb Explosion")
-wakaba.SFX_POWER_BOMB_EXPLOSION = Isaac.GetSoundIdByName("pb_explosion")
-wakaba.SFX_POWER_BOMB_CHARGE = Isaac.GetSoundIdByName("pb_charge")
-wakaba.SFX_POWER_BOMB_LOOP = Isaac.GetSoundIdByName("pb_loop")
-wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_1 = Isaac.GetSoundIdByName("pb_after_explosion1")
-wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_2 = Isaac.GetSoundIdByName("pb_after_explosion2")
-wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_3 = Isaac.GetSoundIdByName("pb_after_explosion3")
-wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_4 = Isaac.GetSoundIdByName("pb_after_explosion4")
-wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_5 = Isaac.GetSoundIdByName("pb_after_explosion5")
 local sfx = SFXManager()
 
 function wakaba:UsePowerBomb(player, position, bombs)

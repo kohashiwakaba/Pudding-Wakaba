@@ -65,7 +65,7 @@ function wakaba:PlayerUpdate_PhantomCloak(player)
 				end
 			elseif pData.wakaba.phantomcloak.timer and pData.wakaba.phantomcloak.timer >= 12000 then
 				pData.wakaba.phantomcloak.timer = nil
-				SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+				SFXManager():Play(wakaba.SFX_AEION_CHARGE)
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 			end
 		end

@@ -99,7 +99,7 @@ function wakaba:PlayerUpdate_FlashShift(player)
 		if pData.wakaba.fstimer and pData.wakaba.fstimer >= maxval then
 			pData.wakaba.fstimer = nil
 			pData.wakaba.fscounter = 3
-			SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+			SFXManager():Play(wakaba.SFX_AEION_CHARGE)
 			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 		elseif pData.wakaba.fstimer then
 			pData.wakaba.fstimer = pData.wakaba.fstimer + 1
