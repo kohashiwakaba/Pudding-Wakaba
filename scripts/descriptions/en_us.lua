@@ -568,17 +568,18 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ {{Damage}} -40% Damage"
 		.. "#{{Burning}} Piercing tears that can hit enemies multiple times and light enemies on fire"
 	},
-	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
+	[wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "Power Bomb",
 		description = ""
-		.. "#+5 Bombs"
+		.. "#{{Bomb}} +10 Bombs"
+		.. "#!!! Cannot use normal bombs"
 		.. "#!!! Consumes half of current held bombs"
-		.. "#!!! Cannot be charged and used if current bomb is lower than 10"
 		.. "#Makes giant explosion that destroys all objects, opens all doors, and damages all enemies in the current room"
 		.. "#!!! Explosion damage : 0.2 * consumed bombs per tick"
+		.. "#{{Bomb}} Killing enemies has chance to drop bombs that despawns after 1.5 seconds"
+		.. "#{{LuckSmall}} :3+({{LuckSmall}})%/max10%"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	}, ]]
+	},
 	--[[ [wakaba.COLLECTIBLE_HYDRA] = {
 		itemName = "Hydra",
 		description = ""

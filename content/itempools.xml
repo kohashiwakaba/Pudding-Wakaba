@@ -98,6 +98,7 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -187,6 +188,7 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="3D Printer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -274,6 +276,7 @@
 	<Pool name="bombBum">
 		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -313,6 +316,8 @@
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="woodenChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>

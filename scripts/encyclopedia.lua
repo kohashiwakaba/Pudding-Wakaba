@@ -2003,6 +2003,27 @@ if Encyclopedia then
 				{str = "Phantom Clock emphasizes hiding the user from danger. In Metroid Dread, Phantom Clock is used in certain area, where is occupied by a certain mechanic, which insta-kills the player when touched."},
 			},
 		},
+
+		COLLECTIBLE_POWER_BOMB = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "While held", clr = 3, halign = 0},
+				{str = "Isaac cannot use normal bombs."},
+				{str = "Killing enemies have 7% chance to drop bombs that disappears after 1.5 seconds."},
+				{str = "Isaac must have 10 or more bombs to use the item."},
+				{str = "On use", clr = 3, halign = 0},
+				{str = "Consumes half of Isaac's bombs and Makes an explosion in entire room."},
+				{str = "- Bombs are less consumed when Isaac has golden bombs."},
+				{str = "All enemies take damage 0.2 x consumed bomb count per tick."},
+				{str = "All doors and rock obstacles also destroyed during this process."},
+			},
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "Power Bomb is one of most famous powerup in Metroid series."},
+				{str = "In most Metroid series, Power bomb damages 300 damage per tick, total 600."},
+				{str = "Power Bomb in later series also used as other usage, such as revealing hidden blocks which weapon is able to break."},
+			},
+		},
 		COLLECTIBLE_QUESTION_BLOCK = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2039,8 +2060,14 @@ if Encyclopedia then
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "Isaac gets Golden Bomb permanently."},
+				{str = "Replaces all bomb spawns with a random pickup."},
 				{str = "Upon taking damage, spawns a golden troll bomb around the room."},
 				{str = "All troll bombs are converted into Golden troll bombs if possible."},
+			},
+			{ -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "Power Bomb", clr = 3, halign = 0},
+				{str = "Does not replace bomb pickups while held."},
 			},
 		},
 		COLLECTIBLE_VENOM_INCANTATION = {
@@ -3811,7 +3838,6 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_BEETLEJUICE,
-		ID = wakaba.COLLECTIBLE_BEETLEJUICE,
 		WikiDesc = Wiki.COLLECTIBLE_BEETLEJUICE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3826,8 +3852,6 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
-		Hide = true,
-		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
 		WikiDesc = Wiki.COLLECTIBLE_RED_CORRUPTION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3839,6 +3863,19 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 		},
 	})
+	--Power Bomb
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.COLLECTIBLE_POWER_BOMB,
+		WikiDesc = Wiki.COLLECTIBLE_POWER_BOMB,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SECRET,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BOMB_BUM,
+			Encyclopedia.ItemPools.POOL_OLD_CHEST,
+		},
+	})
 	-- Plasma Beam
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3848,6 +3885,7 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 	})
 

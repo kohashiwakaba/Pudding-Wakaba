@@ -116,6 +116,7 @@
 	<passive id="75" cache="firedelay" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2"/>
 	<passive id="76" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2"/>
 	<passive id="77" cache="damage" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" quality="2" hidden="true"/>
+	<active id="78" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" chargetype="special" bombs="10" maxcharges="10" quality="3" tags="offensive"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" cache="all" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" />

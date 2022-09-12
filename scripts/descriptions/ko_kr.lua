@@ -621,17 +621,19 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Burning}} 공격이 적을 관통하며 화상을 입힙니다.",
 		queueDesc = "초강력 관통 공격",
 	},
-	--[[ [wakaba.COLLECTIBLE_POWER_BOMB] = {
+	[wakaba.COLLECTIBLE_POWER_BOMB] = {
 		itemName = "파워 봄",
 		description = ""
-		.. "#폭탄 +5"
-		.. "#!!! 사용 시 현재 폭탄의 절반만큼 소모"
-		.. "#!!! 폭탄이 10 미만인 경우 사용 불가"
-		.. "#현재 방에서 거대한 폭발을 일으켜 "
+		.. "#↑ {{Bomb}}폭탄 +10"
+		.. "#!!! 소지 중일 때 폭탄 사용 불가"
+		.. "#!!! 사용 시 현재 폭탄의 절반만큼 소모하며;"
+		.. "#그 방의 모든 적에게 피해를 주며 모든 돌 오브젝트와 문을 파괴합니다."
 		.. "#!!! 틱 당 폭발 공격력 : 사용한 폭탄 수 * 0.2"
+		.. "#적 처치 시 7%의 확률로 1.5초 후 사라지는 폭탄을 드랍합니다."
+		.. "#{{LuckSmall}} :3+({{LuckSmall}})%/최대10%"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	}, ]]
+		queueDesc = "압축식 폭발 공격",
+	},
 	--[[ [wakaba.COLLECTIBLE_HYDRA] = {
 		itemName = "히드라",
 		description = ""

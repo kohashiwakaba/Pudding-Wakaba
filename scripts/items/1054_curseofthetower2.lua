@@ -1,5 +1,6 @@
 wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2")
 local hastower = false
+local haspb = false
 local rolledPickup = {
   PickupVariant.PICKUP_COIN,
   PickupVariant.PICKUP_GRAB_BAG,
@@ -13,6 +14,7 @@ local rolledPickup = {
 
 function wakaba:Update_CurseOfTower2()
   hastower = false
+  haspb = false
   for num = 1, Game():GetNumPlayers() do
     local player = Game():GetPlayer(num - 1)
     if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
@@ -20,7 +22,9 @@ function wakaba:Update_CurseOfTower2()
       if not player:HasGoldenBomb() then
         player:AddGoldenBomb()
       end
-      break
+    end
+    if player:HasCollectible(wakaba.COLLECTIBLE_POWER_BOMB) then
+      haspb = true
     end
   end
 end
@@ -28,7 +32,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_CurseOfTower2)
 
 function wakaba:PickupSelect_CurseOfTower2(pickup)
-  if not hastower then return end
+  if not hastower or haspb then return end
   local variant = pickup.Variant
   local subtype = pickup.SubType
   local savedpos = pickup.Position + Vector.Zero

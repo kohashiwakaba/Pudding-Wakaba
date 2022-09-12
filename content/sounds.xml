@@ -5,4 +5,34 @@
     <sound name="deadseascrolls_whoosh">
         <sample weight="1" path="deadseascrolls/whoosh.wav"/>
     </sound>
+    <sound name="aeion_charged">
+        <sample weight="1" path="dreadsfx/aeion_charged.wav"/>
+    </sound>
+    <sound name="pb_explosion">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_01.wav"/>
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_02.wav"/>
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_03.wav"/>
+    </sound>
+    <sound name="pb_loop">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_loop.wav"/>
+    </sound>
+    <sound name="pb_charge">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_charge.wav"/>
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_charge_02.wav"/>
+    </sound>
+    <sound name="pb_after_explosion1">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion3.wav"/>
+    </sound>
+    <sound name="pb_after_explosion2">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion5.wav"/>
+    </sound>
+    <sound name="pb_after_explosion3">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion7.wav"/>
+    </sound>
+    <sound name="pb_after_explosion4">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion8.wav"/>
+    </sound>
+    <sound name="pb_after_explosion5">
+        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion9.wav"/>
+    </sound>
 </sounds>
