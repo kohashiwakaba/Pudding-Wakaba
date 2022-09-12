@@ -134,6 +134,9 @@
 	<trinket cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	
+	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />
+	<trinket name="Afterbirth Cartridge" description="Only Isaac to Afterbirth+" gfx="afterbirthcartridge.png" />
+	<trinket name="Repentance Cartridge" description="Only Isaac to Repentance" gfx="repentancecartridge.png" />
 
 
 </items>

@@ -47,6 +47,22 @@ function wakaba:trinketUnlockCheck(trinket)
 	--[[ if trinket == wakaba.TRINKET_RANGE_OS and wakaba.state.unlock.rangesystem < 1 then
 		isUnlocked = false
   end ]]
+	
+	--[[ if trinket == wakaba.TRINKET_SIREN_BADGE and wakaba.state.unlock.sirenbadge < 1 then
+		isUnlocked = false
+  end ]]
+	
+	--[[ if trinket == wakaba.TRINKET_ISAAC_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
+		isUnlocked = false
+  end ]]
+	
+	--[[ if trinket == wakaba.TRINKET_AFTERBIRTH_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
+		isUnlocked = false
+  end ]]
+	
+	--[[ if trinket == wakaba.TRINKET_REPENTANCE_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
+		isUnlocked = false
+  end ]]
 
 	if trinket == wakaba.TRINKET_DIMENSION_CUTTER and not wakaba.state.unlock.delirium then
 		isUnlocked = false
@@ -182,6 +198,20 @@ function wakaba:unlockCheck(item, pool)
 	return isUnlocked
 end
 
+local function IsRangeCorrect(selected, isaacOnly, aftOnly, repOnly)
+	if not selected then return true end
+	if selected == CollectibleType.COLLECTIBLE_BIRTHRIGHT then return true end
+	if not (isaacOnly or aftOnly or repOnly) then return true end
+	local isModded = selected > CollectibleType.COLLECTIBLE_MOMS_RING
+	if repOnly then
+		return selected <= CollectibleType.COLLECTIBLE_MOMS_RING or selected == CollectibleType.COLLECTIBLE_CLEAR_RUNE
+	elseif aftOnly then
+		return selected <= CollectibleType.COLLECTIBLE_MOMS_SHOVEL
+	elseif isaacOnly then
+		return isModded or (selected < CollectibleType.COLLECTIBLE_DIPLOPIA and selected ~= CollectibleType.COLLECTIBLE_CLEAR_RUNE)
+	end
+end
+
 local lastSelected = nil
 local initialItemNext = false
 local flipItemNext = false
@@ -233,9 +263,10 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local eatHeartUsed = false
 	local eatHeartCharges = 0
-	local onlyIsaacCartridge = 0
 	local estimatedPlayerCount = 0
 	local hasIsaacCartridge = false
+	local hasAftCartridge = false
+	local hasRepCartridge = false
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -247,10 +278,16 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if player.Variant == 0 then
 			estimatedPlayerCount = estimatedPlayerCount + 1
 			-- not implemented yet
-			if --[[ player:HasTrinket(wakaba.TRINKET_ISAAC_CARTRIDGE) or ]] 
+			if player:HasTrinket(wakaba.TRINKET_ISAAC_CARTRIDGE) or 
 			(player:GetPlayerType() == wakaba.PLAYER_TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 			then
-				onlyIsaacCartridge = onlyIsaacCartridge + 1
+				hasIsaacCartridge = true
+			end
+			if player:HasTrinket(wakaba.TRINKET_AFTERBIRTH_CARTRIDGE) then
+				hasAftCartridge = true
+			end
+			if player:HasTrinket(wakaba.TRINKET_REPENTANCE_CARTRIDGE) then
+				hasRepCartridge = true
 			end
 		end
 		local pData = player:GetData()
@@ -270,9 +307,6 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 			eatHeartUsed = true
 			eatHeartCharges = pData.wakaba.eatheartcharges
 		end
-	end
-	if estimatedPlayerCount == onlyIsaacCartridge then
-		hasIsaacCartridge = true
 	end
 
 	if wakaba.state.allowactives == nil then
@@ -300,7 +334,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	end
 
 	local isPoolCorrect = (itemPoolType == itemType) or randselected
-	local isRangeCorrect = selected and ((not hasIsaacCartridge) or (selected == CollectibleType.COLLECTIBLE_BIRTHRIGHT) or (selected < CollectibleType.COLLECTIBLE_DIPLOPIA or selected > CollectibleType.COLLECTIBLE_MOMS_RING))
+	local isRangeCorrect = selected and IsRangeCorrect(selected, hasIsaacCartridge, hasAftCartridge, hasRepCartridge)
 	local isUnlocked = selected and wakaba:unlockCheck(selected)
 	local MinQuality = 0
 	local MaxQuality = 4

@@ -303,7 +303,7 @@ if Encyclopedia then
 					{str = "Red Hearts and Lunar gauge also can be healed if too low."},
 					{str = "Tsukasa cannot move while in concentration. Taking damage in this state will double damage taken."},
 					{str = "Isaac Cartridge", clr = 3, halign = 0},
-					{str = "Tsukasa only can find pre-rebirth items, Clear Rune, and modded items."},
+					{str = "Tsukasa only can find pre-rebirth items, and modded items."},
 			},
 			{ -- Birthright
 					{str = "Birthright", fsize = 2, clr = 3, halign = 0},
@@ -1372,6 +1372,52 @@ if Encyclopedia then
 				{str = "This item is inspired from 'Pure Love' from 'Rabi-Ribi'."},
 				{str = "In Rabi-Ribi, there are a demon called Lilith, who held the badge"},
 				{str = "Pure Love prevents any collision damage from bosses"},
+			},
+		},
+		
+		TRINKET_ISAAC_CARTRIDGE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Isaac only can find pre-rebirth items, and modded items."},
+				{str = "Birthright is whitelisted from this trinket."},
+				{str = "Only modded items will be shown in Planetarium pool."},
+			},
+			{ -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "Afterbirth Cartridge", clr = 3, halign = 0},
+				{str = "Overrides Isaac Cartridge."},
+				{str = "Repentance Cartridge", clr = 3, halign = 0},
+				{str = "Overrides Isaac Cartridge."},
+			},
+		},
+		
+		TRINKET_AFTERBIRTH_CARTRIDGE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Isaac only can find pre-afterbirth+ items."},
+				{str = "Birthright is whitelisted from this trinket."},
+				{str = "Treasure item pool items will be shown in Planetarium pool."},
+			},
+			{ -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "Tsukasa/Isaac Cartridge", clr = 3, halign = 0},
+				{str = "Overridden by Afterbirth Cartridge."},
+				{str = "Repentance Cartridge", clr = 3, halign = 0},
+				{str = "Overrides Afterbirth Cartridge."},
+			},
+		},
+		
+		TRINKET_REPENTANCE_CARTRIDGE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Isaac only can find pre-repentance items, making modded items unable to be found."},
+			},
+			{ -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "Tsukasa/Isaac Cartridge", clr = 3, halign = 0},
+				{str = "Overridden by Repentance Cartridge."},
+				{str = "Afterbirth Cartridge", clr = 3, halign = 0},
+				{str = "Overridden by Repentance Cartridge."},
 			},
 		},
 
@@ -3131,7 +3177,7 @@ if Encyclopedia then
 		end,
 	})
 	
-	--Queen of Spades
+	--Minerva Ticket
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
@@ -3663,6 +3709,44 @@ if Encyclopedia then
 			end
 		end, ]]
 	})
+	
+	--Isaac Cartridges
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.TRINKET_ISAAC_CARTRIDGE,
+		WikiDesc = Wiki.TRINKET_ISAAC_CARTRIDGE,
+		UnlockFunc = function(self)
+			if not wakaba.state.unlock.isaaccartridge then
+				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+				return self
+			end
+		end,
+	})
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.TRINKET_AFTERBIRTH_CARTRIDGE,
+		WikiDesc = Wiki.TRINKET_AFTERBIRTH_CARTRIDGE,
+		UnlockFunc = function(self)
+			if not wakaba.state.unlock.isaaccartridge then
+				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+				return self
+			end
+		end,
+	})
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.TRINKET_REPENTANCE_CARTRIDGE,
+		WikiDesc = Wiki.TRINKET_REPENTANCE_CARTRIDGE,
+		UnlockFunc = function(self)
+			if not wakaba.state.unlock.isaaccartridge then
+				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+				return self
+			end
+		end,
+	})
 
 	--Delimiter
 	Encyclopedia.AddTrinket({
@@ -3944,12 +4028,6 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = Isaac.GetItemIdByName("Break Core"),
-		Hide = true,
-	})
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
-		ID = Isaac.GetItemIdByName("Double Invader"),
 		Hide = true,
 	})
 

@@ -1126,6 +1126,7 @@ include('scripts.items.3008_dimensioncutter')
 include('scripts.items.3009_delimiter')
 include('scripts.items.3010_rangeos')
 include('scripts.items.3011_sirenbadge')
+include('scripts.items.3012_isaaccartridge')
 
 include('scripts.pickups.4000_cloverchest')
 

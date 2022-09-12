@@ -1112,6 +1112,26 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
+	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
+		itemName = "Isaac Cartridge",
+		description = ""
+		.. "#Only TBoI ~ Rebirth items will appear"
+		.. "#{{Collectible619}}Birthright, Modded items also appear"
+		.. "{{CR}}",
+	},
+	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
+		itemName = "Isaac Cartridge",
+		description = ""
+		.. "#Only TBoI ~ Afterbirth+ items will appear"
+		.. "#{{Collectible619}}Birthright also appears"
+		.. "{{CR}}",
+	},
+	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
+		itemName = "Isaac Cartridge",
+		description = ""
+		.. "#Only TBoI ~ Repentance items will appear"
+		.. "{{CR}}",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {
