@@ -1167,6 +1167,8 @@ include('scripts.wisps')
 include('scripts.config')
 include('scripts.console_commands')
 
+include('scripts.compat.fiendfolio')
+
 --require 'monster'
 
 
@@ -1274,6 +1276,10 @@ function wakaba:init(continue)
 		wakaba:UpdateWakabaDescriptions()
 		--wakaba:UpdateWakabaEncyclopediaDescriptions()
 	end
+	if FiendFolio then
+		wakaba:GameStart_FiendFolioCompat()
+	end
+
 	wakaba.wispupdaterequired = true
 end
 
