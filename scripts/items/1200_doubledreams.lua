@@ -138,9 +138,9 @@ function wakaba:dreamsUpdate(player)
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST)
 			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
-		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
+		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
 		for i, e in ipairs(wisps) do
-			if e.SubType == CollectibleType.COLLECTIBLE_CHAOS or CollectibleType.COLLECTIBLE_EUCHARIST or CollectibleType.COLLECTIBLE_GOAT_HEAD then
+			if e.SubType == CollectibleType.COLLECTIBLE_CHAOS or e.SubType == CollectibleType.COLLECTIBLE_EUCHARIST or e.SubType == CollectibleType.COLLECTIBLE_GOAT_HEAD then
 				e:Kill()
 				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 				--dreamcard:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, CollectibleType.CARD_DREAM_CARD, false, false, true)
