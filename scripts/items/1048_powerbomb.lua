@@ -87,7 +87,7 @@ function wakaba:NPCDeath_PowerBomb(entity)
       local luck = player.Luck
       luck = math.max(math.min(luck, 0), 7)
       local number = (rng:RandomInt(10000) / 100)
-      if (3+luck) >= number then
+      if (8+luck) >= number then
         local bomb = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, 0, entity.Position, wakaba:RandomVelocity(), nil):ToPickup()
         bomb.Timeout = 45
       end
