@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_THE_GOD = Isaac.GetItemIdByName("Book of The God")
-
-
 function wakaba:initSingleCrack(player, pos)
 	--EffectVariant.CRACK_THE_SKY
 	local laser = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY, -1, pos, Vector.Zero, player):ToEffect()
@@ -42,7 +39,7 @@ function wakaba:AfterRevival_BookOfTheGod(player)
 	player:EvaluateItems()
 	player:AddBrokenHearts(-12)
 	player:AddSoulHearts(1)
-	player:RemoveCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD)
 end
 
 

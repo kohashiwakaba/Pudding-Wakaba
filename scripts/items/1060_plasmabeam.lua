@@ -1,14 +1,11 @@
-wakaba.COLLECTIBLE_PLASMA_BEAM = Isaac.GetItemIdByName("Plasma Beam")
-
-
 function wakaba:TearInit_PlasmaBeam(tear)
 	if (tear and tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())
 	or (tear and tear.Parent and tear.Parent:ToPlayer())
 	then
 		local player = (tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()) or (tear.Parent and tear.Parent:ToPlayer())
 		local playerEffects = player:GetEffects()
-		local plasmaEffect = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_PLASMA_BEAM)
-		local plasma = player:GetCollectibleNum(wakaba.COLLECTIBLE_PLASMA_BEAM)
+		local plasmaEffect = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.PLASMA_BEAM)
+		local plasma = player:GetCollectibleNum(wakaba.Enums.Collectibles.PLASMA_BEAM)
 		if plasma + plasmaEffect > 0 then
 			tear:GetData().wakaba = tear:GetData().wakaba or {}
 			tear:GetData().wakaba.plasma = true
@@ -92,8 +89,8 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_PlasmaBeam
 
 function wakaba:Cache_PlasmaBeam(player, cacheFlag)
 	local playerEffects = player:GetEffects()
-	local plasmaEffect = playerEffects:GetCollectibleEffectNum(wakaba.COLLECTIBLE_PLASMA_BEAM)
-	local plasma = player:GetCollectibleNum(wakaba.COLLECTIBLE_PLASMA_BEAM)
+	local plasmaEffect = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.PLASMA_BEAM)
+	local plasma = player:GetCollectibleNum(wakaba.Enums.Collectibles.PLASMA_BEAM)
 	local isnotmoving = player:GetData().wakaba.isnotmoving or false
 	if plasmaEffect + plasma > 0 then 
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then

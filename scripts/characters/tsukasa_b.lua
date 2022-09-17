@@ -34,7 +34,7 @@ function wakaba:PostTsukasaUpdate_b(player)
 		local data = player:GetData()
 		if wakaba:IsFireTriggered(player) then
 			data.wakaba.flashshifttrigger = wakaba.dashflags.FLASH_SHIFT_TSUKASA_B
-			player:UseActiveItem(wakaba.COLLECTIBLE_FLASH_SHIFT, UseFlag.USE_OWNED | UseFlag.USE_CUSTOMVARDATA, -1)
+			player:UseActiveItem(wakaba.Enums.Collectibles.FLASH_SHIFT, UseFlag.USE_OWNED | UseFlag.USE_CUSTOMVARDATA, -1)
 		end 
 	end
 end
@@ -157,8 +157,8 @@ function wakaba:AfterTsukasaInit_b(player)
 			end
 			local data = player:GetData()
 			data.wakaba = data.wakaba or {}
-			--[[ if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.COLLECTIBLE_MURASAME and Game().Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(wakaba.COLLECTIBLE_MURASAME, ActiveSlot.SLOT_POCKET, true)
+			--[[ if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.MURASAME and Game().Challenge == Challenge.CHALLENGE_NULL then
+				player:SetPocketActiveItem(wakaba.Enums.Collectibles.MURASAME, ActiveSlot.SLOT_POCKET, true)
 				player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
 			end ]]
 		end

@@ -80,16 +80,16 @@ function INVDESC:RemoveCollectibleBlacklist(collectibleType)
 	end
 end
 
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_WAKABA, wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_WAKABA_B, wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI, wakaba.COLLECTIBLE_BOOK_OF_SHIORI)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI_B, wakaba.COLLECTIBLE_BOOK_OF_SHIORI)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI_B, wakaba.COLLECTIBLE_MINERVA_AURA)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA, wakaba.COLLECTIBLE_LUNAR_STONE)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA, wakaba.COLLECTIBLE_CONCENTRATION)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.COLLECTIBLE_FLASH_SHIFT)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.COLLECTIBLE_ELIXIR_OF_LIFE)
-INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.COLLECTIBLE_MURASAME)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_WAKABA, wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_WAKABA_B, wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI, wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI_B, wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_SHIORI_B, wakaba.Enums.Collectibles.MINERVA_AURA)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA, wakaba.Enums.Collectibles.LUNAR_STONE)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA, wakaba.Enums.Collectibles.CONCENTRATION)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.Enums.Collectibles.FLASH_SHIFT)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
+INVDESC:LinkCollectibleForCharacter(wakaba.PLAYER_TSUKASA_B, wakaba.Enums.Collectibles.MURASAME)
 
 
 local offset = (REPENTANCE and Options.HUDOffset) or 1

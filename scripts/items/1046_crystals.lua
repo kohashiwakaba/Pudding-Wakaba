@@ -1,27 +1,23 @@
-wakaba.COLLECTIBLE_ARCANE_CRYSTAL = Isaac.GetItemIdByName("Arcane Crystal")
-wakaba.COLLECTIBLE_ADVANCED_CRYSTAL = Isaac.GetItemIdByName("Advanced Crystal")
-wakaba.COLLECTIBLE_MYSTIC_CRYSTAL = Isaac.GetItemIdByName("Mystic Crystal")
-
 function wakaba:Cache_Crystals(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_ARCANE_CRYSTAL) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.ARCANE_CRYSTAL) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1 + (0.12 * player:GetCollectibleNum(wakaba.COLLECTIBLE_ARCANE_CRYSTAL)))
+			player.Damage = player.Damage * (1 + (0.12 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ARCANE_CRYSTAL)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
 		end
 	end
-	if player:HasCollectible(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1 + (0.14 * player:GetCollectibleNum(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL)))
+			player.Damage = player.Damage * (1 + (0.14 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING
 		end
 	end
-	if player:HasCollectible(wakaba.COLLECTIBLE_MYSTIC_CRYSTAL) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1 + (0.16 * player:GetCollectibleNum(wakaba.COLLECTIBLE_MYSTIC_CRYSTAL)))
+			player.Damage = player.Damage * (1 + (0.16 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_GLOW
@@ -49,19 +45,19 @@ function wakaba:TakeDmg_Crystals(entity, amount, flag, source, countdownFrames)
 			player = source.Entity:ToPlayer()
 		end
 		if player then
-			if player:HasCollectible(wakaba.COLLECTIBLE_ARCANE_CRYSTAL) then
-				local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_ARCANE_CRYSTAL)
+			if player:HasCollectible(wakaba.Enums.Collectibles.ARCANE_CRYSTAL) then
+				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ARCANE_CRYSTAL)
 				local chance = rng:RandomInt(1000000)
-				local threshold = 700000 + (30000 * player:GetCollectibleNum(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL))
+				local threshold = 700000 + (30000 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL))
 				if chance <= threshold then
 					flag = flag | DamageFlag.DAMAGE_CLONES
 					entity:TakeDamage(amount, flag, source, countdownFrames)
 				end
 			end
-			if player:HasCollectible(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL) then
-				local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL)
+			if player:HasCollectible(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL) then
+				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL)
 				local chance = rng:RandomInt(1000000)
-				local threshold = 250000 + (50000 * player:GetCollectibleNum(wakaba.COLLECTIBLE_ADVANCED_CRYSTAL))
+				local threshold = 250000 + (50000 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL))
 				if chance <= threshold then
 					flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
 					entity:TakeDamage(amount, flag, source, countdownFrames)
@@ -81,7 +77,7 @@ function wakaba:PickupCollision_Crystals(pickup, collider, low)
 		if player:CanPickSoulHearts() and not wakaba:IsLost(player) then return end
 		local thresholdmantlecount = wakaba.state.options.stackableholycard <= 5 and wakaba.state.options.stackableholycard or 5
 		if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) >= thresholdmantlecount then return end 
-		if player:HasCollectible(wakaba.COLLECTIBLE_MYSTIC_CRYSTAL) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL) then
 			local picked = false
 			if pickup.SubType == HeartSubType.HEART_BLENDED or pickup.SubType == HeartSubType.HEART_SOUL then
 				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)

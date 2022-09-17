@@ -1,9 +1,7 @@
-wakaba.COLLECTIBLE_DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader")
-
 function wakaba:Cache_DoubleInvader(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_INVADER) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1.5 + player:GetCollectibleNum(wakaba.COLLECTIBLE_DOUBLE_INVADER))
+			player.Damage = player.Damage * (1.5 + player:GetCollectibleNum(wakaba.Enums.Collectibles.DOUBLE_INVADER))
 		end
 	end
 end

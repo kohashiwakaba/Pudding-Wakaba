@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_LUNAR_STONE = Isaac.GetItemIdByName("Lunar Stone")
 
 function wakaba:hasLunarStone(player, includeDead)
 	if not player then 
@@ -8,7 +7,7 @@ function wakaba:hasLunarStone(player, includeDead)
 	local sti = wakaba:getstoredindex(player)
 	if player:GetPlayerType() == wakaba.PLAYER_TSUKASA and (includeDead or not (player:IsDead() and not player:WillPlayerRevive())) then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_LUNAR_STONE) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
 		return true
 	else
 		return false
@@ -111,11 +110,11 @@ function wakaba:PlayerUpdate_LunarStone(player)
 		if data.wakaba.lunargauge then
 			if data.wakaba.lunargauge > 0 then
 			else
-				if player:HasCollectible(wakaba.COLLECTIBLE_LUNAR_STONE) then
-					player:RemoveCollectible(wakaba.COLLECTIBLE_LUNAR_STONE)
+				if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
+					player:RemoveCollectible(wakaba.Enums.Collectibles.LUNAR_STONE)
 					data.wakaba.lunargauge = nil
 					data.wakaba.lunarregenrate = nil
-				elseif not player:HasCollectible(wakaba.COLLECTIBLE_LUNAR_STONE) and player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
+				elseif not player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) and player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
 					data.wakaba.nolunarrefill = true
 					local revivaldata = wakaba:CanRevive(player)
 					if not player:WillPlayerRevive() and revivaldata then
@@ -234,7 +233,7 @@ end
 
 function wakaba:Cache_LunarStone(player, cacheFlag)
   if wakaba:hasLunarStone(player) then
-		local count = player:GetCollectibleNum(wakaba.COLLECTIBLE_LUNAR_STONE)
+		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
 		if player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
 			count = count + 1
 		end

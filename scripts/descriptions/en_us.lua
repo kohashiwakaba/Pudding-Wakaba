@@ -8,7 +8,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.PLAYER_WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba",
-		description = "↑ {{Collectible"..wakaba.COLLECTIBLE_WAKABAS_NEMESIS.."}}Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
+		description = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}}Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
 	},
 	[wakaba.PLAYER_SHIORI] = {
 		playerName = "{{ColorBookofShiori}}Shiori",
@@ -16,11 +16,11 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.PLAYER_SHIORI_B] = {
 		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
-		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
 	},
 	[wakaba.PLAYER_TSUKASA] = {
 		playerName = "{{ColorPink}}Tsukasa",
-		description = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}}Lunar gauge limit",
+		description = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge limit",
 	},
 	[wakaba.PLAYER_TSUKASA_B] = {
 		playerName = "???(Tainted Tsukasa)",
@@ -28,7 +28,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
-	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		itemName = "Wakaba's Blessing",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -38,7 +38,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = {
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 		itemName = "Wakaba's Nemesis",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -52,7 +52,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
 	},
-	[wakaba.COLLECTIBLE_WAKABA_DUALITY] = {
+	[wakaba.Enums.Collectibles.WAKABA_DUALITY] = {
 		itemName = "Wakaba Duality",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -66,7 +66,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_SHIORI] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
 		itemName = "Book of Shiori",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -77,7 +77,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		itemName = "Book of Conquest",
 		description = ""
 		.. "#Permanently charms non-boss enemies in the current room."
@@ -86,7 +86,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MINERVA_AURA] = {
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		itemName = "Minerva's Aura",
 		description = ""
 		.. "#Isaac and Other players inside aura grants:"
@@ -97,7 +97,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.COLLECTIBLE_LUNAR_STONE] = {
+	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
 		itemName = "Lunar Stone",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -110,7 +110,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#All damage taken will be non-penalty damage"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_ELIXIR_OF_LIFE] = {
+	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
 		itemName = "Elixir of Life",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -122,7 +122,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Card"..Card.CARD_SOUL_LOST.."}} {{ColorSilver}}Regenerates {{Collectible313}}Holy Mantle shields up to 5"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_FLASH_SHIFT] = {
+	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
 		itemName = "Flash Shift",
 		description = ""
 		.. "Shifts Isaac for four direction that Isaac moving"
@@ -130,7 +130,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! Familiars do not shift, Beware when using orbitals or wisps"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_CONCENTRATION] = {
+	[wakaba.Enums.Collectibles.CONCENTRATION] = {
 		itemName = "Concentration",
 		description = ""
 		.. "#Hold Drop button to enter concentration mode"
@@ -140,7 +140,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! Isaac cannot move and takes twice damage while in concentration mode"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_EATHEART] = {
+	[wakaba.Enums.Collectibles.EATHEART] = {
 		itemName = "Eat Heart",
 		description = ""
 		.. "#Only can be charged through damaging enemies or self damage."
@@ -150,7 +150,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "Book of Forgotten",
 		description = ""
 		.. "#Applies to all players on use:"
@@ -159,7 +159,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_D_CUP_ICECREAM] = {
+	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D-Cup Ice Cream",
 		description = ""
 		.. "#↑ {{Heart}} +1 Heart Container"
@@ -169,7 +169,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD] = {
+	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "Mysterious game CD",
 		description = ""
 		.. "#↑ {{Heart}} +1 Heart Container"
@@ -182,7 +182,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		itemName = "Wakaba's Pendant",
 		description = ""
 		.. "#{{Luck}} Sets your Luck to 7 if you have less than 7"
@@ -192,7 +192,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_SECRET_CARD] = {
+	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "Secret Card",
 		description = ""
 		.. "#↑ {{Coin}} +22 Coins"
@@ -202,7 +202,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_PLUMY] = {
+	[wakaba.Enums.Collectibles.PLUMY] = {
 		itemName = "Plumy",
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} A Baby Plum familiar that follows Isaac."
@@ -211,7 +211,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_EXECUTIONER] = {
+	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		itemName = "Executioner",
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} Shoots Eraser tears for extremely low rate"
@@ -220,7 +220,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_NEW_YEAR_BOMB] = {
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
 		itemName = "New Year's Eve Bomb",
 		description = ""
 		.. "#↑ {{Bomb}} +9 Bombs"
@@ -230,7 +230,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_REVENGE_FRUIT] = {
+	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
 		itemName = "Revenge Fruit",
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} Adds a chance to shoot Brimstone Lasers instead of a tear"
@@ -240,7 +240,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_UNIFORM] = {
+	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "Wakaba's Uniform",
 		description = ""
 		.. "#Upon use, stores/swaps current card, pill, or rune"
@@ -251,7 +251,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_EYE_OF_CLOCK] = {
+	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
 		description = ""
 		.. "#3 Tech. X lasers orbit Isaac"
@@ -260,7 +260,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_LIL_WAKABA] = {
+	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
 		itemName = "Lil Wakaba",
 		description = ""
 		.. "#Shoots small Tech.X Lasers"
@@ -269,7 +269,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_COUNTER] = {
+	[wakaba.Enums.Collectibles.COUNTER] = {
 		itemName = "Counter",
 		description = ""
 		.. "#Makes Isaac invincible for 1 second"
@@ -279,7 +279,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_RETURN_POSTAGE] = {
+	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "Return Postage",
 		description = ""
 		.. "#All selected enemies become charmed permenantly"
@@ -288,7 +288,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_D6_PLUS] = {
+	[wakaba.Enums.Collectibles.D6_PLUS] = {
 		itemName = "D6 Plus",
 		description = ""
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} Invokes Soul of Isaac effect"
@@ -298,7 +298,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_D6_CHAOS] = {
+	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		itemName = "D6 Chaos",
 		description = ""
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} Invokes Soul of Isaac effect for {{ColorRed}}9 times{{CR}}"
@@ -306,7 +306,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_LIL_MOE] = {
+	[wakaba.Enums.Collectibles.LIL_MOE] = {
 		itemName = "Lil Moe",
 		description = ""
 		.. "#Shoots orbiting and homing tears"
@@ -316,7 +316,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "Book of Focus",
 		description = ""
 		.. "#{{Weakness}} Weakens all enemies in the current room"
@@ -325,14 +325,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		itemName = "Shiori's Bottle of Runes",
 		description = ""
 		.. "#{{Rune}} Gives Isaac a random rune"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		itemName = "Micro Doppelganger",
 		description = ""
 		.. "#Spawns 12 tiny Isaac familiars."
@@ -340,14 +340,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		itemName = "Book of Silence",
 		description = ""
 		.. "#Removes all enemy projectiles"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_VINTAGE_THREAT] = {
+	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "{{ColorRed}}Vintage Threat",
 		description = ""
 		.. "#{{Player"..wakaba.PLAYER_SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room"
@@ -356,7 +356,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_THE_GOD] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = {
 		itemName = "Book of the God",
 		description = ""
 		.. "#If damage is lethal, Isaac turns into angel"
@@ -368,7 +368,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
 		itemName = "Grimreaper Defender",
 		description = ""
 		.. "#Prevents death and all damage taken is reduced to half a heart for current room."
@@ -377,7 +377,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_TRAUMA] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
 		itemName = "Book of Trauma",
 		description = ""
 		.. "#Detonate any tears currently on the screen, causing each one to explode."
@@ -385,7 +385,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "Book of The Fallen",
 		description = ""
 		--.. "#!!! This item cannot be used before reviving into Fallen Angel"
@@ -398,7 +398,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY] = {
+	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
 		itemName = "Maijima Mythology",
 		description = ""
 		.. "#Random book active item effect"
@@ -406,7 +406,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "Apollyon Crisis",
 		description = ""
 		.. "#Invokes both {{Collectible477}}Void and {{Collectible706}}Abyss effect:"
@@ -417,7 +417,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_LIL_SHIVA] = {
+	[wakaba.Enums.Collectibles.LIL_SHIVA] = {
 		itemName = "Lil Shiva",
 		description = ""
 		.. "#{{Collectible532}} hungry tear familiar"
@@ -429,7 +429,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_NEKO_FIGURE] = {
+	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
 		itemName = "Neko Figure",
 		description = ""
 		.. "#↓ {{Damage}} -10% Damage"
@@ -438,7 +438,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.GUPPY .. "",
 	},
-	[wakaba.COLLECTIBLE_DEJA_VU] = {
+	[wakaba.Enums.Collectibles.DEJA_VU] = {
 		itemName = "Deja Vu",
 		description = ""
 		.. "#12.5% chance to reroll items into items that Isaac already holds"
@@ -446,7 +446,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.GUPPY .. "",
 	},
-	[wakaba.COLLECTIBLE_LIL_MAO] = {
+	[wakaba.Enums.Collectibles.LIL_MAO] = {
 		itemName = "Lil Mao",
 		description = ""
 		.. "#↑ {{Speed}} +0.15 Speed"
@@ -455,7 +455,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		itemName = "Isekai Definition",
 		description = ""
 		.. "#For 99.5% chance, Spawn a blue Lil Clot"
@@ -463,7 +463,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_BALANCE] = {
+	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "Balance ecnalaB",
 		description = ""
 		.. "#↑ {{Coin}} +10 Coins"
@@ -473,7 +473,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MOE_MUFFIN] = {
+	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "Moe's Muffin",
 		description = ""
 		.. "↑ {{Heart}} +1 Heart Container"
@@ -483,7 +483,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MURASAME] = {
+	[wakaba.Enums.Collectibles.MURASAME] = {
 		itemName = "Murasame",
 		description = ""
 		.. "#!!! While held : "
@@ -497,7 +497,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_CLOVER_SHARD] = {
+	[wakaba.Enums.Collectibles.CLOVER_SHARD] = {
 		itemName = "Clover Shard",
 		description = ""
 		.. "↑ {{Heart}} +1 Heart Container"
@@ -506,7 +506,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_NASA_LOVER] = {
+	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		itemName = "Nasa Lover",
 		description = ""
 		.. "#{{Collectible494}} Electric tear familiar"
@@ -515,7 +515,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_ARCANE_CRYSTAL] = {
+	[wakaba.Enums.Collectibles.ARCANE_CRYSTAL] = {
 		itemName = "Arcane Crystal",
 		description = ""
 		.. "#↑ {{Damage}} +12% Damage Multiplier"
@@ -524,7 +524,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_ADVANCED_CRYSTAL] = {
+	[wakaba.Enums.Collectibles.ADVANCED_CRYSTAL] = {
 		itemName = "Advanced Crystal",
 		description = ""
 		.. "#↑ {{Damage}} +14% Damage Multiplier"
@@ -533,7 +533,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_MYSTIC_CRYSTAL] = {
+	[wakaba.Enums.Collectibles.MYSTIC_CRYSTAL] = {
 		itemName = "Mystic Crystal",
 		description = ""
 		.. "#↑ {{Damage}} +16% Damage Multiplier"
@@ -542,14 +542,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_3D_PRINTER] = {
+	[wakaba.Enums.Collectibles._3D_PRINTER] = {
 		itemName = "3d Printer",
 		description = ""
 		.. "#Duplicates and smelts current held trinket"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_SYRUP] = {
+	[wakaba.Enums.Collectibles.SYRUP] = {
 		itemName = "Syrup",
 		description = ""
 		.. "#!!! While Held:"
@@ -561,14 +561,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
-	[wakaba.COLLECTIBLE_PLASMA_BEAM] = {
+	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
 		itemName = "Plasma Beam",
 		description = ""
 		.. "#↑ {{Range}} +2 Range"
 		.. "#↓ {{Damage}} -40% Damage"
 		.. "#{{Burning}} Piercing tears that can hit enemies multiple times and light enemies on fire"
 	},
-	[wakaba.COLLECTIBLE_POWER_BOMB] = {
+	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "Power Bomb",
 		description = ""
 		.. "#{{Bomb}} +10 Bombs"
@@ -580,7 +580,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{LuckSmall}} :3+({{LuckSmall}})%/max10%"
 		.. "{{CR}}",
 	},
-	--[[ [wakaba.COLLECTIBLE_HYDRA] = {
+	--[[ [wakaba.Enums.Collectibles.HYDRA] = {
 		itemName = "Hydra",
 		description = ""
 		.. "#{{Poison}} Familiar that charges to shoot a poison brimstone laser automatically"
@@ -588,7 +588,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	}, ]]
-	[wakaba.COLLECTIBLE_PHANTOM_CLOAK] = {
+	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		itemName = "Phantom Cloak",
 		description = ""
 		.. "#Makes Isaac invisible for short time"
@@ -600,7 +600,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_RED_CORRUPTION] = {
+	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "Red Corruption",
 		description = "{{Collectible21}} Reveals icons on the map"
 		.. "#All special rooms except Boss rooms will be turned into red rooms"
@@ -609,7 +609,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "Question Block",
 		description = ""
 		.. "#25% chance to spawn Collectible item"
@@ -619,7 +619,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_CLENSING_FOAM] = {
+	[wakaba.Enums.Collectibles.CLENSING_FOAM] = {
 		itemName = "Clensing Foam",
 		description = ""
 		.. "#{{Poison}} Poisons enemies in a small radius around Isaac"
@@ -627,7 +627,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOB .. "",
 	},
-	[wakaba.COLLECTIBLE_BEETLEJUICE] = {
+	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
 		itemName = "Beetlejuice",
 		description = "{{Pill}} Identifies all pills"
 		.. "#{{Pill}} When used, Randomizes 6 pill effects for current run and spawns one of changed pills"
@@ -635,7 +635,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2] = {
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
 		itemName = "Curse of The Tower 2",
 		description = ""
 		.. "#{{GoldenBomb}} Infinite Bombs"
@@ -644,7 +644,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_ANTI_BALANCE] = {
+	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "Anti Balance",
 		description = ""
 		.. "#{{Pill}} All pills will be Horse pills"
@@ -652,7 +652,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
-	[wakaba.COLLECTIBLE_VENOM_INCANTATION] = {
+	[wakaba.Enums.Collectibles.VENOM_INCANTATION] = {
 		itemName = "Venom Incantation",
 		description = ""
 		.. "#↑ {{Damage}} +1 Damage"
@@ -660,7 +660,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.SPUN .. "",
 	},
-	[wakaba.COLLECTIBLE_FIREFLY_LIGHTER] = {
+	[wakaba.Enums.Collectibles.FIREFLY_LIGHTER] = {
 		itemName = "Firefly Lighter",
 		description = ""
 		.. "#↑ {{Range}} +2 Range"
@@ -670,44 +670,44 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
-	[wakaba.COLLECTIBLE_DOUBLE_INVADER] = {
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		itemName = "Double Invader",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
 		.. "#↑ {{Damage}} +250% Damage Multiplier#{{Blank}} (+100% per extra stack)"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_SEE_DES_BISCHOFS] = {
+	[wakaba.Enums.Collectibles.SEE_DES_BISCHOFS] = {
 		itemName = "See Des Bischofs",
 		description = ""
 		.. "#{{Player"..wakaba.PLAYER_TSUKASA_B.."}} Respawn as Tainted Tsukasa on death"
 		.. "{{CR}}",
 	},
-	[wakaba.COLLECTIBLE_JAR_OF_CLOVER] = {
+	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		itemName = "Jar of Clover",
 		description = ""
 		.. "#{{Player"..wakaba.PLAYER_WAKABA.."}} Respawn as Wakaba on death"
 		.. "#{{Player"..wakaba.PLAYER_WAKABA_B.."}} Tainted Wakaba simply revives"
 		.. "{{CR}}",
 	},
-	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
+	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "Caramella Pancake",
 		description = ""
 		.. "#{{Player"..wakaba.PLAYER_RICHER.."}} Respawn as Richer on death"
 		.. "#{{Player"..wakaba.PLAYER_RICHER_B.."}} Tainted Richer simply revives"
 		.. "{{CR}}",
 	}, ]]
-	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
 		.. "#Upon use, Change the form of Wakaba's dreams"
 		.. "#If collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
-		.. "#{{Card"..wakaba.CARD_DREAM_CARD.."}} 8% chance to spawn Wakaba's Dream Card on room clears"
+		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} 8% chance to spawn Wakaba's Dream Card on room clears"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 	},
-	[wakaba.COLLECTIBLE_EDEN_STICKY_NOTE] = {
+	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
 		description = ""
 		.. "#!!! ONE TIME USE"
@@ -720,39 +720,39 @@ wakaba.descriptions[desclang].collectibles = {
 }
 
 wakaba.descriptions[desclang].bingeeater = {
-	[wakaba.COLLECTIBLE_D_CUP_ICECREAM] = {
+	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		description = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
 	},
-	--[[ [wakaba.COLLECTIBLE_MOE_MUFFIN] = {
+	--[[ [wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		description = "+1.0 {{Damage}}Damage Up",
 	}, ]]
-	--[[ [wakaba.COLLECTIBLE_CARAMELLA_PANCAKE] = {
+	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		description = "+1.0 {{Damage}}Damage Up",
 	}, ]]
 }
 wakaba.descriptions[desclang].belial = {
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		description = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
 	},
-	[wakaba.COLLECTIBLE_UNIFORM] = {
+	[wakaba.Enums.Collectibles.UNIFORM] = {
 		description = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform", 
 	},
-	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		description = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance", 
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles", 
 	},
-	[wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		description = "Summons Black Heart type Lil Clot instead of Soul Heart type", 
 	},
-	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
-		description = "↑ +4% chance to drop {{Card"..wakaba.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used", 
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
+		description = "↑ +4% chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used", 
 	},
-	[wakaba.COLLECTIBLE_PHANTOM_CLOAK] = {
+	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		description = "↑ {{Damage}} +25% Damage multiplier while in cloaked state", 
 	},
-	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		description = "Spawns {{DevilRoom}}Devil room items instead of current pool", 
 	},
 }
@@ -765,115 +765,115 @@ wakaba.descriptions[desclang].bookofvirtues = {
 		when destroyed
 	 ]]
 
-	[wakaba.COLLECTIBLE_EATHEART] = {
+	[wakaba.Enums.Collectibles.EATHEART] = {
 		description = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears"
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed"
 	},
-	[wakaba.COLLECTIBLE_UNIFORM] = {
+	[wakaba.Enums.Collectibles.UNIFORM] = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held"
 	},
-	[wakaba.COLLECTIBLE_COUNTER] = {
+	[wakaba.Enums.Collectibles.COUNTER] = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active"
 	},
-	[wakaba.COLLECTIBLE_D6_PLUS] = {
+	[wakaba.Enums.Collectibles.D6_PLUS] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
 	},
-	[wakaba.COLLECTIBLE_D6_CHAOS] = {
+	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Homing tears"
 	},
-	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{Rune}}15% chance for enemy to drop rune on kill#{{Rune}}Spawns a rune when destroyed"
 	},
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns MinIsaacs when destroyed"
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Immune to projectiles#Erases nearby projectiles"
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact"
 	},
-	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Revives Isaac on death and the wisp is consumed"
 	},
-	--[[ [wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN] = {
+	--[[ [wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
 	}, ]]
-	[wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY] = {
+	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
 		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns Unknown Bookmark when destroyed"
 	},
-	--[[ [wakaba.COLLECTIBLE_APOLLYON_CRISIS] = {
+	--[[ [wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#현재 켜져 있는 모든 불꽃을 흡수하며 능력치로 환산합니다."
 	}, ]]
-	--[[ [wakaba.COLLECTIBLE_ISEKAI_DEFINITION] = {
+	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}#캐릭터와 같은 공격력의 눈물을 발사합니다."
 	}, ]]
-	[wakaba.COLLECTIBLE_BALANCE] = {
+	[wakaba.Enums.Collectibles.BALANCE] = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while Isaac has same Keys and Bombs"
 	},
-	--[[ [wakaba.COLLECTIBLE_FLASH_SHIFT] = {
+	--[[ [wakaba.Enums.Collectibles.FLASH_SHIFT] = {
 		description = "{{ColorRed}}!!!No Wisp {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
 	}, ]]
-	[wakaba.COLLECTIBLE_QUESTION_BLOCK] = {
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		description = "{{ColorLime}}Inner Ring x1: {{CR}}(Max 1)#Invincible Wisp#Revives Isaac on death and the wisp is consumed"
 	},
-	[wakaba.COLLECTIBLE_3D_PRINTER] = {
+	[wakaba.Enums.Collectibles._3D_PRINTER] = {
 		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed"
 	},
 
-	[wakaba.COLLECTIBLE_DOUBLE_DREAMS] = {
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		description = "{{ColorRed}}!!!No effect{{CR}}"
 	},
 
 }
 wakaba.descriptions[desclang].abyss = {
-	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		description = "deals 7x faster than normal locust, double of Isaac's Damage, chases through enemies, and freezes on death"
 	},
-	[wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = {
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 		description = "deals 5X of Isaac's Damage"
 	},
-	[wakaba.COLLECTIBLE_EATHEART] = {
+	[wakaba.Enums.Collectibles.EATHEART] = {
 		description = "deals 3.5x faster than normal locust, triple of Isaac's Damage, travels at double speed"
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		description = "deals 3.5x faster than normal locust, double of Isaac's Damage, travels at double speed"
 	},
-	[wakaba.COLLECTIBLE_D_CUP_ICECREAM] = {
+	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		description = "deals 1.2x faster than normal locust, double of Isaac's Damage"
 	},
-	[wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD] = {
+	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		description = "deals 1.7x faster than normal locust, double of Isaac's Damage"
 	},
-	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		description = "3 Locusts that deal 1.7x faster than normal locust"
 	},
-	[wakaba.COLLECTIBLE_SECRET_CARD] = {
+	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		description = "2 yellow locust that deal 7x faster than normal locust, 0.8x Isaac's Damage, drops coins when dealing damage"
 	},
-	[wakaba.COLLECTIBLE_PLUMY] = {
+	[wakaba.Enums.Collectibles.PLUMY] = {
 		description = "Plumy Locust deals 2.3x faster than normal locust, 4x Isaac's Damage"
 	},
-	[wakaba.COLLECTIBLE_EXECUTIONER] = {
+	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		description = "4.2x 'slower' than normal locust, 16x Isaac's Damage, travels at 0.1x speed"
 	},
-	[wakaba.COLLECTIBLE_UNIFORM] = {
+	[wakaba.Enums.Collectibles.UNIFORM] = {
 		description = "5 Locusts that deal 2.3x faster than normal locust, drops card when killed by the locust"
 	},
-	[wakaba.COLLECTIBLE_LIL_WAKABA] = {
+	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
 		description = "deals 1.3x faster than normal locust, travels 3x speed"
 	},
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		description = "3 Locusts that deals 7x faster than normal locust, 0.9x Isaac's Damage, travels 3x speed"
 	},
 }
 wakaba.descriptions[desclang].wakaba = {
-	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		description = "↑ {{Tears}} -25% Tear Delay",
 	},
 	[CollectibleType.COLLECTIBLE_URANUS] = {
@@ -882,17 +882,17 @@ wakaba.descriptions[desclang].wakaba = {
 	
 }
 wakaba.descriptions[desclang].wakaba_b = {
-	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		description = "↑ {{Damage}} +4 Damage Up#↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
 	},
 }
 wakaba.descriptions[desclang].shiori = {
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		description = "Spawns 3 tiny Isaac familiars.",
 	},
 }
 wakaba.descriptions[desclang].shiori_b = {
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		description = "Spawns 3 tiny Isaac familiars.",
 	},
 }
@@ -903,27 +903,27 @@ wakaba.descriptions[desclang].tsukasa_b = {
 	
 }
 wakaba.descriptions[desclang].bless = {
-	[wakaba.COLLECTIBLE_WAKABAS_NEMESIS] = {
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 		description = "{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaBless}}Can get all items with selection",
 	},
-	[wakaba.COLLECTIBLE_EATHEART] = {
+	[wakaba.Enums.Collectibles.EATHEART] = {
 		description = "Spawns two collectible items instead of one", 
 	},
-	[wakaba.COLLECTIBLE_WAKABAS_PENDANT] = {
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		description = "↑ {{Luck}} Additional +0.15 Luck up per Luck affect items#{{Luck}} {{ColorWakabaBless}}Sets to 10 Luck if Luck is lower than 10", 
 	},
-	[wakaba.COLLECTIBLE_PLUMY] = {
+	[wakaba.Enums.Collectibles.PLUMY] = {
 		description = "Plumy can replicate Isaac's tears", 
 	},
-	[wakaba.COLLECTIBLE_EXECUTIONER] = {
+	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		description = "↑ 1.2x chance for Eraser tears", 
 	},
 }
 wakaba.descriptions[desclang].nemesis = {
-	[wakaba.COLLECTIBLE_WAKABAS_BLESSING] = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		description = "#{{AngelDevilChance}} 100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaNemesis}}Can get all items with selection",
 	},
-	[wakaba.COLLECTIBLE_REVENGE_FRUIT] = {
+	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
 		description = "↑ 2x chance for Lasers, Grants Homing Lasers", 
 	},
 }
@@ -967,28 +967,28 @@ wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
 		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Gives Chance to drop batteries when enemies are killed until next book use", 
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_CONQUEST] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm", 
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Bone Tears({{Collectible453}}) until next book use", 
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		description = "Ignores Enemy's armor when not moving#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
-	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = {
+	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		description = "No Extra temporary effect#{{Rune}} {{ColorBookofShiori}}Adds chance to drop a rune when enemies are killed until next book use", 
 	},
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = {
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		description = "Damage taken for Minissac is greatly reduced#{{ColorBookofShiori}}Minissac Copies Most of Isaac's tear effects until next book use", 
 	},
-	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = {
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description = "Prevents all enemy projectiles for extra 2 seconds#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses", 
 	},
-	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = {
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
 		description = "No extra Temporary effect #{{Collectible579}} {{ColorBookofShiori}}Gives Temporary Black Spirit Sword. The Scythe tears will be fired instead of sword projectile", 
 	},
-	[wakaba.COLLECTIBLE_PHANTOM_CLOAK] = {
+	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)", 
 	},
 }
@@ -1004,7 +1004,7 @@ wakaba.descriptions[desclang].flashmurasame = {
 
 
 wakaba.descriptions[desclang].trinkets = {
-	[wakaba.BRING_ME_THERE] = {
+	[wakaba.Enums.Trinkets.BRING_ME_THERE] = {
 		itemName = "Bring me there",
 		description = ""
 		.. "#↑ {{Tears}} +1.5 Fire Rate"
@@ -1014,7 +1014,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_BITCOIN] = {
+	[wakaba.Enums.Trinkets.BITCOIN] = {
 		itemName = "Bitcoin II",
 		description = ""
 		.. "#Randomize consumable counters."
@@ -1023,7 +1023,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_CLOVER] = {
+	[wakaba.Enums.Trinkets.CLOVER] = {
 		itemName = "Clover",
 		description = ""
 		.. "#↑ {{Tears}} +0.3 Fire Rate"
@@ -1034,7 +1034,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_MAGNET_HEAVEN] = {
+	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {
 		itemName = "Magnet Heaven",
 		description = ""
 		.. "#Instantly teleports Bombs, Keys, and Coins to Isaac"
@@ -1042,7 +1042,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_HARD_BOOK] = {
+	[wakaba.Enums.Trinkets.HARD_BOOK] = {
 		itemName = "Hard Book",
 		description = ""
 		.. "#Chance to drop random book collectible upon getting hit"
@@ -1051,7 +1051,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_DETERMINATION_RIBBON] = {
+	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {
 		itemName = "Determination Ribbon",
 		description = ""
 		.. "#All damage taken will be reduced to half heart"
@@ -1061,7 +1061,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_BOOKMARK_BAG] = {
+	[wakaba.Enums.Trinkets.BOOKMARK_BAG] = {
 		itemName = "Bookmark Bag",
 		description = ""
 		.. "#Gives random one-time-use book item when Isaac enters new room"
@@ -1069,7 +1069,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_RING_OF_JUPITER] = {
+	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = {
 		itemName = "Ring of Jupiter",
 		description = ""
 		.. "#Applies to all players:"
@@ -1081,7 +1081,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_DIMENSION_CUTTER] = {
+	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = {
 		itemName = "Dimension Cutter",
 		description = ""
 		.. "#{{Collectible510}} 15% chance to spawn random delirious boss when entering an uncleared room"
@@ -1089,7 +1089,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_DELIMITER] = {
+	[wakaba.Enums.Trinkets.DELIMITER] = {
 		itemName = "Delimiter",
 		description = ""
 		.. "#!!! When entering new room :"
@@ -1098,7 +1098,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_RANGE_OS] = {
+	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "Range OS",
 		description = ""
 		.. "#↓ {{Range}} -45% Range Multiplier"
@@ -1106,28 +1106,28 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_SIREN_BADGE] = {
+	[wakaba.Enums.Trinkets.SIREN_BADGE] = {
 		itemName = "Siren's Badge",
 		description = ""
 		.. "#Prevents contact damage"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
-	[wakaba.TRINKET_ISAAC_CARTRIDGE] = {
+	[wakaba.Enums.Trinkets.ISAAC_CARTRIDGE] = {
 		itemName = "Isaac Cartridge",
 		description = ""
 		.. "#Only TBoI ~ Rebirth items will appear"
 		.. "#{{Collectible619}}Birthright, Modded items also appear"
 		.. "{{CR}}",
 	},
-	[wakaba.TRINKET_AFTERBIRTH_CARTRIDGE] = {
+	[wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE] = {
 		itemName = "Afterbirth Cartridge",
 		description = ""
 		.. "#Only TBoI ~ Afterbirth+ items will appear"
 		.. "#{{Collectible619}}Birthright also appears"
 		.. "{{CR}}",
 	},
-	[wakaba.TRINKET_REPENTANCE_CARTRIDGE] = {
+	[wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE] = {
 		itemName = "Repentance Cartridge",
 		description = ""
 		.. "#Only TBoI ~ Repentance items will appear"
@@ -1139,85 +1139,85 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	
 }
 wakaba.descriptions[desclang].cards = {
-	[wakaba.CARD_CRANE_CARD] = {
+	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "Crane Card",
 		description = "{{CraneGame}} Spawns a Crane Game machine",
 		mimiccharge = 6,
 	},
-	[wakaba.CARD_CONFESSIONAL_CARD] = {
+	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "Confessional Card",
 		description = "{{Confessional}} Spawns a Confessional Booth",
 		mimiccharge = 4,
 	},
-	[wakaba.CARD_BLACK_JOKER] = {
+	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "Black Joker",
 		description = "{{DevilChance}} While held, prevents Angel room to be spawned. #{{DevilRoom}} Upon use, Teleports the player to the Devil room",
 		mimiccharge = 2,
 	},
-	[wakaba.CARD_WHITE_JOKER] = {
+	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "White Joker",
 		description = "{{AngelChance}} While held, prevents Devil room to be spawned. #{{AngelRoom}} Upon use, Teleports the player to the Angel room",
 		mimiccharge = 2,
 	},
-	[wakaba.CARD_COLOR_JOKER] = {
+	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "Color Joker",
 		description = "{{BrokenHeart}} Sets Broken Heart counts to 6 #Spawns 3 Collectible items and 8 Card/Rune/Soul Stones",
 		mimiccharge = 6,
 	},
-	[wakaba.CARD_QUEEN_OF_SPADES] = {
+	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "Queen of Spades",
 		description = "{{Key}} Spawns 3~26 keys",
 		mimiccharge = 10,
 	},
-	[wakaba.CARD_DREAM_CARD] = {
+	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "Wakaba's Dream Card",
 		description = "Spawns a random collectible item",
 		mimiccharge = 10,
 	},
-	[wakaba.CARD_UNKNOWN_BOOKMARK] = {
+	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "Unknown Bookmark",
 		description = "Activates a random book effect#!!! Following books can be activated:",
 		mimiccharge = 1,
 	},
-	[wakaba.CARD_RETURN_TOKEN] = {
+	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
 		itemName = "Return Token",
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact#{{Timer}} Resets game timer#Removes all of Isaac's consumables {{ColorRed}}including health{{CR}}",
 	},
-	[wakaba.CARD_MINERVA_TICKET] = {
+	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
 		itemName = "Return Token",
-		description = "{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} Activates Minerva's Aura for current room",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room",
 		mimiccharge = 3,
 	},
-	--[[ [wakaba.CARD_BASEMENT_CARD] = {
+	--[[ [wakaba.Enums.Cards.CARD_BASEMENT_CARD] = {
 		itemName = "Basement Card",
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact",
 		mimiccharge = 12,
 	},
-	[wakaba.CARD_PREMIUM_BASEMENT_CARD] = {
+	[wakaba.Enums.Cards.CARD_PREMIUM_BASEMENT_CARD] = {
 		itemName = "Premium Basement Card",
 		description = "Brings you back to the first floor of a new run#{{Quality4}} Only {{Quality4}} items stay intact#{{Collectible636}} Grants Rock Bottom",
 		mimiccharge = 12,
 	}, ]]
 	
-	[wakaba.SOUL_WAKABA] = {
+	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "Soul of Wakaba",
 		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Converts random unvisited room into Angel shop#{{AngelRoom}} Spawns an Angel room item for sale if no rooms are available",
 		mimiccharge = 10,
 		isrune = true,
 	},
-	[wakaba.SOUL_WAKABA2] = {
+	[wakaba.Enums.Cards.SOUL_WAKABA2] = {
 		itemName = "Soul of Wakaba?",
 		description = "{{SoulHeart}} +1 Soul Heart#{{DevilRoom}} Converts random unvisited room into Devil room#{{AngelRoom}} Spawns a Devil room item for sale if no rooms are available",
 		mimiccharge = 10,
 		isrune = true,
 	},
-	[wakaba.SOUL_SHIORI] = {
+	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "Soul of Shiori",
 		description = "{{Heart}} Heals 2 Red Hearts#Activates Random Book of Shiori tear effect",
 		mimiccharge = 8,
 		isrune = true,
 	},
-	--[[ [wakaba.SOUL_TSUKASA] = {
+	--[[ [wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "Soul of Tsukasa",
 		description = "Emits electricity in random position",
 		mimiccharge = 3,
@@ -1225,13 +1225,13 @@ wakaba.descriptions[desclang].cards = {
 	}, ]]
 }
 wakaba.descriptions[desclang].tarotcloth = {
-	[wakaba.CARD_CRANE_CARD] = {
+	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		description = "Spawns 2 Crane Game machines",
 	},
-	[wakaba.CARD_CONFESSIONAL_CARD] = {
+	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		description = "Spawns 2 Confessional Booths",
 	},
-	[wakaba.CARD_UNKNOWN_BOOKMARK] = {
+	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		description = "Activates 2 random book effects",
 	},
 }
@@ -1239,85 +1239,85 @@ wakaba.descriptions[desclang].runechalk = {
 	
 }
 wakaba.descriptions[desclang].pills = {
-	[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		itemName = "Damage Multiplier Up",
 		description = "↑ {{Damage}} +8% Damage Multiplier",
 		mimiccharge = 12,
 		class = "3+",
 	},
-	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "Damage Multiplier Down",
 		description = "↓ {{Damage}} -2% Damage Multiplier",
 		mimiccharge = 4,
 		class = "3-",
 	},
-	[wakaba.PILL_ALL_STATS_UP] = {
+	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		itemName = "All Stats Up",
 		description = "↑ {{Damage}} +0.25 Damage#↑ {{Tears}} +0.2 Tears#↑ {{Speed}} +0.12 Speed#↑ {{Range}} +0.4 Range#↑ {{Shotspeed}} +0.04 Shot Speed#↑ {{Luck}} +1 Luck#",
 		mimiccharge = 8,
 		class = "3+",
 	},
-	[wakaba.PILL_ALL_STATS_DOWN] = {
+	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
 		itemName = "All Stats Down",
 		description = "↓ {{Damage}} -0.1 Damage#↓ {{Tears}} -0.08 Tears#↓ {{Speed}} -0.09 Speed#↓ {{Range}} -0.25 Range#↓ {{Shotspeed}} -0.03 Shot Speed#↓ {{Luck}} -1 Luck#",
 		mimiccharge = 4,
 		class = "3-",
 	},
-	[wakaba.PILL_TROLLED] = {
+	[wakaba.Enums.Pills.TROLLED] = {
 		itemName = "Trolled!",
 		description = "{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home",
 		mimiccharge = 4,
 		class = "3-",
 	},
-	[wakaba.PILL_TO_THE_START] = {
+	[wakaba.Enums.Pills.TO_THE_START] = {
 		itemName = "To the Start!",
 		description = "Teleports to Starting room on the floor",
 		mimiccharge = 2,
 		class = "0+",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		itemName = "Explosive Diarrehea 2!",
 		description = "Spawns 2 troll Brimstone swirls at Isaac's position",
 		mimiccharge = 3,
 		class = "2-",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		itemName = "Explosive Diarrehea 2?",
 		description = "{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
 		mimiccharge = 6,
 		class = "2+",
 	},
-	[wakaba.PILL_SOCIAL_DISTANCE] = {
+	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
 		itemName = "Social Distance",
 		description = "Closes Devil/Angel room for current floor",
 		mimiccharge = 4,
 		class = "2-",
 	},
-	[wakaba.PILL_DUALITY_ORDERS] = {
+	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		itemName = "Duality Orders",
 		description = "Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Only one can be taken",
 		mimiccharge = 6,
 		class = "3+",
 	},
-	[wakaba.PILL_FLAME_PRINCESS] = {
+	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
 		itemName = "Flame Princess",
 		description = "Absorbs all Lemegeton Wisps into items#Heals all remaining Wisps' health to max#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
 		mimiccharge = 8,
 		class = "1+",
 	},
-	[wakaba.PILL_FIREY_TOUCH] = {
+	[wakaba.Enums.Pills.FIREY_TOUCH] = {
 		itemName = "Firey Touch",
 		description = "{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
 		mimiccharge = 4,
 		class = "2-",
 	},
-	[wakaba.PILL_PRIEST_BLESSING] = {
+	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		itemName = "Priest's Blessing",
 		description = "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
 		mimiccharge = 4,
 		class = "3+",
 	},
-	[wakaba.PILL_UNHOLY_CURSE] = {
+	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		itemName = "Unholy Curse",
 		description = "Breaks a stack from Holy Mantle shield#Does nothing if Isaac don't have Holy Mantle shields",
 		mimiccharge = 4,
@@ -1325,80 +1325,80 @@ wakaba.descriptions[desclang].pills = {
 	},
 }
 wakaba.descriptions[desclang].horsepills = {
-	[wakaba.PILL_DAMAGE_MULTIPLIER_UP +1] = {
-		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_UP),
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP +1] = {
+		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
 		"Damage Multiplier Up",
 		"↑ {{Damage}} +16% Damage Multiplier",
 	},
-	[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN +1] = {
-		tostring(wakaba.PILL_DAMAGE_MULTIPLIER_DOWN),
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN +1] = {
+		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"Damage Multiplier Down",
 		"↓ {{Damage}} -4% Damage Multiplier",
 	},
-	[wakaba.PILL_ALL_STATS_UP +1] = {
-		tostring(wakaba.PILL_ALL_STATS_UP),
+	[wakaba.Enums.Pills.ALL_STATS_UP +1] = {
+		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
 		"All Stats Up",
 		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +2 Luck#",
 	},
-	[wakaba.PILL_ALL_STATS_DOWN +1] = {
-		tostring(wakaba.PILL_ALL_STATS_DOWN),
+	[wakaba.Enums.Pills.ALL_STATS_DOWN +1] = {
+		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
 		"All Stats Down",
 		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
 	},
-	[wakaba.PILL_TROLLED +1] = {
-		tostring(wakaba.PILL_TROLLED),
+	[wakaba.Enums.Pills.TROLLED +1] = {
+		tostring(wakaba.Enums.Pills.TROLLED),
 		"Trolled!",
 		"{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
 	},
-	[wakaba.PILL_TO_THE_START +1] = {
-		tostring(wakaba.PILL_TO_THE_START),
+	[wakaba.Enums.Pills.TO_THE_START +1] = {
+		tostring(wakaba.Enums.Pills.TO_THE_START),
 		"To the Start!",
 		"Teleports to Starting room on the floor#Heals 1 Heart#Removes a Broken Heart",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2 +1] = {
-		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2),
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2 +1] = {
+		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),
 		"Explosive Diarrehea 2!",
 		"Spawns 2 troll Brimstone swirls at Isaac's position",
 	},
-	[wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT +1] = {
-		tostring(wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT),
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT +1] = {
+		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT),
 		"Explosive Diarrehea 2?",
 		"{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
 	},
-	[wakaba.PILL_SOCIAL_DISTANCE +1] = {
-		tostring(wakaba.PILL_SOCIAL_DISTANCE),
+	[wakaba.Enums.Pills.SOCIAL_DISTANCE +1] = {
+		tostring(wakaba.Enums.Pills.SOCIAL_DISTANCE),
 		"Social Distance",
 		"Closes Devil/Angel room for current floor#↓ {{AngelDevilChance}} Decreases Devil/Angel room chance for later floors",
 	},
-	[wakaba.PILL_DUALITY_ORDERS +1] = {
-		tostring(wakaba.PILL_DUALITY_ORDERS),
+	[wakaba.Enums.Pills.DUALITY_ORDERS +1] = {
+		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
 		"Duality Orders",
 		"Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
 	},
-	[wakaba.PILL_FLAME_PRINCESS +1] = {
-		tostring(wakaba.PILL_FLAME_PRINCESS),
+	[wakaba.Enums.Pills.FLAME_PRINCESS +1] = {
+		tostring(wakaba.Enums.Pills.FLAME_PRINCESS),
 		"Flame Princess",
 		"Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max healt#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
 	},
-	[wakaba.PILL_FIREY_TOUCH +1] = {
-		tostring(wakaba.PILL_FIREY_TOUCH),
+	[wakaba.Enums.Pills.FIREY_TOUCH +1] = {
+		tostring(wakaba.Enums.Pills.FIREY_TOUCH),
 		"Firey Touch",
 		"{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
 	},
-	[wakaba.PILL_PRIEST_BLESSING +1] = {
-		tostring(wakaba.PILL_PRIEST_BLESSING),
+	[wakaba.Enums.Pills.PRIEST_BLESSING +1] = {
+		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
 		"Priest's Blessing",
 		"Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
 	},
-	[wakaba.PILL_UNHOLY_CURSE +1] = {
-		tostring(wakaba.PILL_UNHOLY_CURSE),
+	[wakaba.Enums.Pills.UNHOLY_CURSE +1] = {
+		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"Unholy Curse",
 		"Breaks a stack from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
 	},
 }
 
 wakaba.descriptions[desclang].sewnupgrade = {
-	[wakaba.FAMILIAR_LIL_WAKABA] = {
+	[wakaba.Enums.Familiars.LIL_WAKABA] = {
 		super = ""
 		.. "#Gives Homing property for lasers"
 		.. "#Deals 70% of Isaac's damage"
@@ -1409,7 +1409,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "{{CR}}",
 		name = "Lil Wakaba",
 	},
-	[wakaba.FAMILIAR_LIL_MOE] = {
+	[wakaba.Enums.Familiars.LIL_MOE] = {
 		super = ""
 		.. "#Two effects can be combined"
 		.. "#Deals 150% of Isaac's damage"
@@ -1420,7 +1420,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "{{CR}}",
 		name = "Lil Wakaba",
 	},
-	[wakaba.FAMILIAR_LIL_SHIVA] = {
+	[wakaba.Enums.Familiars.LIL_SHIVA] = {
 		super = ""
 		.. "#Fires 7 charged wave of tears"
 		.. "#Deals 150% of your damage"
@@ -1432,7 +1432,7 @@ wakaba.descriptions[desclang].sewnupgrade = {
 		.. "{{CR}}",
 		name = "Lil Shiva",
 	},
-	[wakaba.FAMILIAR_PLUMY] = {
+	[wakaba.Enums.Familiars.PLUMY] = {
 		super = ""
 		.. "#Allows to shoot Isaac's tears"
 		.. "#↑ Damage Up"
@@ -1488,7 +1488,7 @@ wakaba.descriptions[desclang].entities = {
 	},
 	{
 		type = EntityType.ENTITY_PICKUP,
-		variant = wakaba.PICKUP_CLOVER_CHEST,
+		variant = wakaba.Enums.Pickups.CLOVER_CHEST,
 		subtype = wakaba.ChestSubType.CLOSED,
 		name = "Wakaba's Clover Chest",
 		description = ""
@@ -1992,7 +1992,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible721}} {{ColorRed}}Every time they take damage, all of their stats, items (passive and active), their trinket and their currently-held card or pill get re-rolled{{CR}}"
 		.. "#{{CurseBlind}} Starts with : ???"
 		.. "#{{CurseBlind}} Starts with : ???"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_EDEN_STICKY_NOTE.."}} {{GoldenKey}}Unique ability : Eden's Sticky Note(w98: Complete Hyper Random)"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.EDEN_STICKY_NOTE.."}} {{GoldenKey}}Unique ability : Eden's Sticky Note(w98: Complete Hyper Random)"
 		.. "",
 	},
 	[PlayerType.PLAYER_THELOST_B] = {
@@ -2004,7 +2004,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Blank}} Blacklisted items only appear with set drops"
 		.. "#{{Card51}} Starts with : Holy Card"
 		.. "#{{Card51}} All cards that spawn have roughly a 10% chance of being turned into a Holy Card"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_UNIFORM.."}} {{GoldenKey}}Starts with : Wakaba's Uniform(w09: Complete Draw Five)"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}} {{GoldenKey}}Starts with : Wakaba's Uniform(w09: Complete Draw Five)"
 		.. "",
 	},
 	[PlayerType.PLAYER_LAZARUS2_B] = {
@@ -2116,7 +2116,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{AngelChance}} She only can see Angel rooms"
 		.. "#{{BrokenHeart}} Due to her lonely past, her heart is mostly filled with Broken Hearts"
 		.. "#{{Pill}} Wakaba is unable to see Speed up, Luck Down pills"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_WAKABAS_BLESSING.."}} Wakaba starts with Wakaba's Blessing"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Wakaba starts with Wakaba's Blessing"
 		--.. "#"
 		.. "",
 	},
@@ -2128,8 +2128,8 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{DevilChance}} She only can see Devil rooms. All devil deals' price are 6 coins"
 		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
 		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_EATHEART.."}} Tainted Wakaba starts with Eat Heart"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} Tainted Wakaba starts with Eat Heart"
 		--.. "#"
 		.. "",
 	},
@@ -2140,7 +2140,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "Shiori is a librarian from {{ColorBookofConquest}}The World God only Knows{{CR}} from Wakagi Tamaki"
 		.. "#Low damage but shoots directional tears"
 		.. "#{{Key}} Shiori requires keys to use active items. Lil' Batteries recover Shiori's Keys"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_SHIORI.."}} Shiori starts with Book of Shiori"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Shiori starts with Book of Shiori"
 		--.. "#"
 		.. "",
 	},
@@ -2151,9 +2151,9 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#She is little girl, but her wings allow her to fly"
 		.. "#Low damage but shoots directional tears"
 		.. "#{{Key}} Minerva requires keys to use active items. Lil' Batteries recover Minerva's Keys"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_SHIORI.."}} Minerva starts with Book of Shiori"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_MINERVA_AURA.."}} Minerva starts with Minerva's Aura"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_BOOK_OF_CONQUEST.."}} Minerva starts with Book of Conquest"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Minerva starts with Book of Shiori"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Minerva starts with Minerva's Aura"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Minerva starts with Book of Conquest"
 		--.. "#"
 		.. "",
 	},
@@ -2164,9 +2164,9 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "Tsukasa is mysterious girl from {{ColorBookofConquest}}Tonikaku Kawaii{{CR}} from Hata Kenjiro"
 		.. "#Shoots short range, spectral lasers"
 		.. "#Due to her eternities, Tshkasa only can see items from ~Rebirth, and modded items"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_LUNAR_STONE.."}} Tsukasa starts with Lunar Stone"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Tsukasa starts with Lunar Stone"
 		.. "#!!! Tsukasa dies when Lunar Stone disappears"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_CONCENTRATION.."}} Tsukasa starts with Concentration"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} Tsukasa starts with Concentration"
 		--.. "#"
 		.. "",
 	},
@@ -2177,9 +2177,9 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#Cannot shoot tears, but her fairy, Murasame "
 		.. "#Due to side effect from Elixir of Life, she {{ColorRed}}DOES NOT HAVE INVINCIBILITY FRAMES{{CR}}"
 		.. "#Due to Elixir of Life, she recovers health for fast speed"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_ELIXIR_OF_LIFE.."}} Tainted Tsukasa starts with Elixir of Life"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_MURASAME.."}} Tainted Tsukasa starts with Murasame"
-		.. "#{{Collectible"..wakaba.COLLECTIBLE_FLASH_SHIFT.."}} Tainted Tsukasa starts with Flash Shift"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} Tainted Tsukasa starts with Elixir of Life"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} Tainted Tsukasa starts with Murasame"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Tainted Tsukasa starts with Flash Shift"
 		--.. "#"
 		.. "",
 	},

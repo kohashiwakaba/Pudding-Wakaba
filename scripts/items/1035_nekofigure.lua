@@ -1,8 +1,6 @@
-wakaba.COLLECTIBLE_NEKO_FIGURE = Isaac.GetItemIdByName("Neko Figure")
-
 function wakaba:Cache_NekoFigure(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_NEKO_FIGURE) 
-	and player:GetCollectibleNum(wakaba.COLLECTIBLE_NEKO_FIGURE) == 1 then
+	if player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE) 
+	and player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) == 1 then
     if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
       player.Damage = player.Damage * 0.9
     end
@@ -29,7 +27,7 @@ function wakaba:TakeDmg_NekoFigure(entity, amount, flag, source, countdownFrames
 			player = source.Entity:ToPlayer()
 		end
 		if player ~= nil then
-			if player:HasCollectible(wakaba.COLLECTIBLE_NEKO_FIGURE)
+			if player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE)
 			then
 				flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR
 				entity:TakeDamage(amount, flag, source, countdownFrames)
@@ -45,7 +43,7 @@ function wakaba:GetCard_NekoFigure(rng, currentCard, playing, runes, onlyRunes)
 	local hasneko = false
   for i = 1, Game():GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_NEKO_FIGURE) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE) then
 			hasneko = true
 		end
 	end

@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_EYE_OF_CLOCK = Isaac.GetItemIdByName("Eye of Clock")
 local laserRot1 = 0
 local laserRot2 = 0
 local laserRot3 = 0
@@ -6,7 +5,7 @@ local lasers = {}
 local sublasers = {}
 
 local function fireTechClock(player)
-	local multiplier = (0.4 * player:GetCollectibleNum(wakaba.COLLECTIBLE_EYE_OF_CLOCK))
+	local multiplier = (0.4 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechXLaser(player.Position, Vector.Zero, 0.02, nil, multiplier)
 	laser.CollisionDamage = 1
   laser.Variant = 2
@@ -18,7 +17,7 @@ local function fireTechClock(player)
 end
 
 local function fireTechClock_Sub(player, laser, direction)
-	local multiplier = (0.25 * player:GetCollectibleNum(wakaba.COLLECTIBLE_EYE_OF_CLOCK))
+	local multiplier = (0.25 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechLaser(laser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
 	laser.CollisionDamage = 1
 	laser:AddTearFlags(TearFlags.TEAR_SPECTRAL)
@@ -55,7 +54,7 @@ end
 
 
 function wakaba:pUpdate35(player)
-	if player:HasCollectible(wakaba.COLLECTIBLE_EYE_OF_CLOCK) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
 		local sti = wakaba:getstoredindex(player)
 		if lasers[sti] == nil then
 			lasers[sti] = {}
@@ -141,7 +140,7 @@ function wakaba:newRoom35()
 	for num = 1, Game():GetNumPlayers() do
 		local player = Game():GetPlayer(num)
 		local sti = wakaba:getstoredindex(player)
-		if player:HasCollectible(wakaba.COLLECTIBLE_EYE_OF_CLOCK) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
 			initLasers(player)
 		elseif sti ~= nil then
 			lasers[sti] = nil

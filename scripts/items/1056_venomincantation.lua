@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation")
-
 wakaba.venomblacklist = {
 	EntityType.ENTITY_MOM,
 	EntityType.ENTITY_MOMS_HEART,
@@ -26,8 +24,8 @@ function wakaba:TakeDamage_VenomIncantation(entity, amount, flags, source, count
 	if flags & DamageFlag.DAMAGE_POISON_BURN == DamageFlag.DAMAGE_POISON_BURN then
 		for i = 0, Game():GetNumPlayers()-1 do
 			local player = Isaac.GetPlayer(i)
-			if player:HasCollectible(wakaba.COLLECTIBLE_VENOM_INCANTATION) then
-				local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_VENOM_INCANTATION)
+			if player:HasCollectible(wakaba.Enums.Collectibles.VENOM_INCANTATION) then
+				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.VENOM_INCANTATION)
 				local chance = 0.05
 				if entity:IsBoss() then
 					chance = 0.0136
@@ -45,7 +43,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_VenomIncan
 
 
 function wakaba:Cache_VenomIncantation(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_VENOM_INCANTATION) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.VENOM_INCANTATION) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 1
 		end

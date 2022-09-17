@@ -1,7 +1,3 @@
-wakaba.COLLECTIBLE_SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs")
-wakaba.COLLECTIBLE_JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover")
-wakaba.COLLECTIBLE_CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake")
-
 function wakaba:AfterRevival_LakeOfBishop(player)
 	player:ChangePlayerType(wakaba.PLAYER_TSUKASA_B)
 	wakaba:AfterTsukasaInit_b(player)
@@ -10,7 +6,7 @@ function wakaba:AfterRevival_LakeOfBishop(player)
 	player:AddBoneHearts(-12)
 	player:AddSoulHearts(-36)
 	player:AddHearts(6)
-	player:RemoveCollectible(wakaba.COLLECTIBLE_SEE_DES_BISCHOFS)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS)
 end
 
 function wakaba:AfterRevival_JarOfClover(player)
@@ -25,7 +21,7 @@ function wakaba:AfterRevival_JarOfClover(player)
 		player:AddSoulHearts(-36)
 		player:AddHearts(4)
 	end
-	player:RemoveCollectible(wakaba.COLLECTIBLE_JAR_OF_CLOVER)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 end
 
  
@@ -41,7 +37,7 @@ function wakaba:AfterRevival_CaramellaPancake(player)
 		player:AddMaxHearts(6)
 		player:AddHearts(6)
 	end
-	player:RemoveCollectible(wakaba.COLLECTIBLE_CARAMELLA_PANCAKE)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
 end
  ]]
 

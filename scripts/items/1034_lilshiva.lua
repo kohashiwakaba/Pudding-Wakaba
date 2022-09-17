@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_LIL_SHIVA = Isaac.GetItemIdByName("Lil Shiva")
-wakaba.FAMILIAR_LIL_SHIVA = Isaac.GetEntityVariantByName("Lil Shiva")
-
 local function fireTearShiva(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
 	local tear_vector = nil
@@ -118,13 +115,13 @@ end
 function wakaba:onCacheLilShiva(player, cacheFlag)
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_LIL_SHIVA)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_LIL_SHIVA)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_SHIVA)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_SHIVA)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_LIL_SHIVA) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_SHIVA) + efcount
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_LIL_SHIVA, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_LIL_SHIVA))
+		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_SHIVA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_SHIVA))
 	end
 end
 
@@ -133,9 +130,9 @@ function wakaba:UpgradeLilShiva(familiar)
 end
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(wakaba.FAMILIAR_LIL_SHIVA, wakaba.COLLECTIBLE_LIL_SHIVA)
+	Sewn_API:MakeFamiliarAvailable(wakaba.Enums.Familiars.LIL_SHIVA, wakaba.Enums.Collectibles.LIL_SHIVA)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onCacheLilShiva)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilShiva, wakaba.FAMILIAR_LIL_SHIVA)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilShiva, wakaba.FAMILIAR_LIL_SHIVA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilShiva, wakaba.Enums.Familiars.LIL_SHIVA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilShiva, wakaba.Enums.Familiars.LIL_SHIVA)

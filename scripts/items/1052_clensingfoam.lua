@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_CLENSING_FOAM = Isaac.GetItemIdByName("Clensing Foam")
-
-
 function wakaba:PEffectUpdate_ClensingFoam(player)
   local radius = 60
   local multi = 1
@@ -8,11 +5,11 @@ function wakaba:PEffectUpdate_ClensingFoam(player)
     radius = 2000
     multi = 0.12
   end
-  if player:HasCollectible(wakaba.COLLECTIBLE_CLENSING_FOAM) then
+  if player:HasCollectible(wakaba.Enums.Collectibles.CLENSING_FOAM) then
     local entities = Isaac.FindInRadius(player.Position, radius, EntityPartition.ENEMY)
     for _, entity in ipairs(entities) do
       if entity:IsEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-        local multiplier = (1 + player:GetCollectibleNum(wakaba.COLLECTIBLE_CLENSING_FOAM)) * multi
+        local multiplier = (1 + player:GetCollectibleNum(wakaba.Enums.Collectibles.CLENSING_FOAM)) * multi
         local length = 15
         if entity:IsBoss() then
           multiplier = multiplier * 3

@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_DEJA_VU = Isaac.GetItemIdByName("Deja Vu")
 
 --[[ 
 function wakaba:CheckItemCandidates(player)
@@ -34,8 +33,8 @@ function wakaba:NewRoom_DejaVu()
 	if not Game():GetRoom():IsFirstVisit() then return end
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_DEJA_VU) then
-			local chance = player:GetCollectibleRNG(wakaba.COLLECTIBLE_DEJA_VU):RandomInt(1000000)
+		if player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU) then
+			local chance = player:GetCollectibleRNG(wakaba.Enums.Collectibles.DEJA_VU):RandomInt(1000000)
 			if chance <= 100000 then
 				SFXManager():Play(SoundEffect.SOUND_MOM_VOX_EVILLAUGH)
 				break

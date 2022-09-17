@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter")
-
-
 function wakaba:NewRoom_FireflyLighter()
 
 	local level = Game():GetLevel()
@@ -12,7 +9,7 @@ function wakaba:NewRoom_FireflyLighter()
 
   for i = 0, Game():GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
-		if player:HasCollectible(wakaba.COLLECTIBLE_FIREFLY_LIGHTER) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 			currentRoomDesc.NoReward = false
 			local repeatcount = 30
 			local roomshape = room:GetRoomShape()
@@ -37,7 +34,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_FireflyLighter)
 
  
 function wakaba:PlayerUpdate_FireflyLighter(player)
-	if player:HasCollectible(wakaba.COLLECTIBLE_FIREFLY_LIGHTER) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 		local level = Game():GetLevel()
 		local currentRoomDesc = level:GetRoomByIdx(level:GetCurrentRoomIndex())
 		if currentRoomDesc.NoReward then
@@ -48,12 +45,12 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_FireflyLighter)
 
 function wakaba:Cache_FireflyLighter(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_FIREFLY_LIGHTER) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 		if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-			player.Luck = player.Luck + (1 * player:GetCollectibleNum(wakaba.COLLECTIBLE_FIREFLY_LIGHTER))
+			player.Luck = player.Luck + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.FIREFLY_LIGHTER))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-			player.TearRange = player.TearRange + (80 * player:GetCollectibleNum(wakaba.COLLECTIBLE_FIREFLY_LIGHTER))
+			player.TearRange = player.TearRange + (80 * player:GetCollectibleNum(wakaba.Enums.Collectibles.FIREFLY_LIGHTER))
 		end
 	end
 

@@ -72,18 +72,18 @@
 	if TheStrangerRole ~= nil then -- Test if "The Stranger" mod is active
 
 		THSTR.AddCustomRole("Not Wakaba", "11116", 1.0, 10, 4.0, 0.9, 2, 16)
-		THSTR.AddCustomPickupItems(5, 0, 0, CollectibleType.COLLECTIBLE_DEEP_POCKETS, wakaba.COLLECTIBLE_SECRET_CARD, TrinketType.TRINKET_SILVER_DOLLAR + 4000)
+		THSTR.AddCustomPickupItems(5, 0, 0, CollectibleType.COLLECTIBLE_DEEP_POCKETS, wakaba.Enums.Collectibles.SECRET_CARD, TrinketType.TRINKET_SILVER_DOLLAR + 4000)
 		THSTR.AddCustomCostume({wakaba.COSTUME_NOT_WAKABA+2000})
 
 		if wakaba.state.unlock.wakabauniform > 0 then
 			THSTR.AddCustomRole("Gacha Time!", "00010", 1.0, 8, 4.2, 1.0, 0, 10, 1)
-			THSTR.AddCustomPickupItems(0, 0, 0, wakaba.COLLECTIBLE_UNIFORM, CollectibleType.COLLECTIBLE_RUNE_BAG, CollectibleType.COLLECTIBLE_BOOSTER_PACK)
+			THSTR.AddCustomPickupItems(0, 0, 0, wakaba.Enums.Collectibles.UNIFORM, CollectibleType.COLLECTIBLE_RUNE_BAG, CollectibleType.COLLECTIBLE_BOOSTER_PACK)
 			THSTR.AddCustomCostume({CollectibleType.COLLECTIBLE_LUNA})
 		end
 
 		if wakaba.state.unlock.deliverysystem then
 			THSTR.AddCustomRole("Slime Summoner", "21000", 1.0, 7, 3.5, 1.0, 0, 12)
-			THSTR.AddCustomPickupItems(3, 0, 0, wakaba.COLLECTIBLE_ISEKAI_DEFINITION + 2000)
+			THSTR.AddCustomPickupItems(3, 0, 0, wakaba.Enums.Collectibles.ISEKAI_DEFINITION + 2000)
 			THSTR.AddCustomCostume({CollectibleType.COLLECTIBLE_SAD_ONION, CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES})
 		end
 

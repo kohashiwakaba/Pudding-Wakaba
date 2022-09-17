@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo")
 wakaba.fcount = 0
 wakaba.killcount = 0
 
@@ -10,13 +9,13 @@ if EID then
 	t = t .. "# Planetariums and Treasure rooms are free to enter"
 	t = t .. "#↑ +0.1 Tears, +0.3 Damage up per Planetarium unlock item."
 	t = t .. ""
-  EID:addCollectible(wakaba.COLLECTIBLE_WINTER_ALBIREO, t, "The Winter Albireo", "en_us")
-	--EID:assignTransformation("collectible", wakaba.COLLECTIBLE_D_CUP_ICECREAM, EID.TRANSFORMATION.BOOKWORM .. "")
+  EID:addCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO, t, "The Winter Albireo", "en_us")
+	--EID:assignTransformation("collectible", wakaba.Enums.Collectibles.D_CUP_ICECREAM, EID.TRANSFORMATION.BOOKWORM .. "")
 	if EIDKR then
 		local tk = "/머리/ 아이작을 따라다니는 오라가 생성됩니다."
 		tk = tk .. "#/머리/ 영구 매혹된 몬스터가 오라 안에 있을 시 서서히 체력을 회복합니다."
 		tk = tk .. "#/머리/ 아이작과 다른 캐릭터가 오라 안에 있을 시 공격력이 +1.5, 연사가 +2.0 증가하며 공격에 유도 효과가 생깁니다." 
-		EID:addCollectible(wakaba.COLLECTIBLE_WINTER_ALBIREO, tk, "The Winter Albireo", "ko_kr", "겨울의 알비레오")
+		EID:addCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO, tk, "The Winter Albireo", "ko_kr", "겨울의 알비레오")
 	end
 end
 
@@ -28,7 +27,7 @@ function wakaba:hasAlbireo(player)
 	end
 	--[[ if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Saya", false) then
     return true
-	else ]]if player:HasCollectible(wakaba.COLLECTIBLE_WINTER_ALBIREO) then
+	else ]]if player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) then
 		return true
 	else
 		return false
@@ -84,7 +83,7 @@ function wakaba:NewRoom_Albireo()
 				local player = Isaac.GetPlayer(i - 1)
 				local luck = player.Luck
 				if luck < 0 then luck = 0 end
-				if wakaba:hasAlbireo(player) and player:GetCollectibleRNG(wakaba.COLLECTIBLE_WINTER_ALBIREO):RandomInt(10000) > (4000 + (luck * 200)) then
+				if wakaba:hasAlbireo(player) and player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO):RandomInt(10000) > (4000 + (luck * 200)) then
 					replacePlanetarium = true 
 					break
 				end

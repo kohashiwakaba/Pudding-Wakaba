@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_3D_PRINTER = Isaac.GetItemIdByName("3D Printer")
-
 function wakaba:ItemUse_3dPrinter(_, rng, player, useFlags, activeSlot, varData)
 
   --get the trinkets they're currently holding
@@ -18,7 +16,7 @@ function wakaba:ItemUse_3dPrinter(_, rng, player, useFlags, activeSlot, varData)
 
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_3D_PRINTER, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles._3D_PRINTER, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_3dPrinter, wakaba.COLLECTIBLE_3D_PRINTER)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_3dPrinter, wakaba.Enums.Collectibles._3D_PRINTER)

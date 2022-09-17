@@ -31,8 +31,8 @@ wakaba.shioriblacklisted = {
 }
 wakaba.shioriwhitelisted = {
   CollectibleType.COLLECTIBLE_ERASER,
-  wakaba.COLLECTIBLE_BOOK_OF_TRAUMA,
-  wakaba.COLLECTIBLE_BOOK_OF_SILENCE,
+  wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
+  wakaba.Enums.Collectibles.BOOK_OF_SILENCE,
 }
 wakaba.bookcache = {}
 
@@ -42,31 +42,31 @@ function wakaba:BlacklistBook(item, bookstate)
 end
 
 -- Blacklist items for Shiori character
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
 
 -- Blacklist items for Hard Drop trinket
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BOOK_OF_SHIORI, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SHIORI, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 
 -- Blacklist items for Unknown Bookmark, Maijima Mythology
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BALANCE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BALANCE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 
 -- Blacklist items for Soul of Shiori
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_D6_PLUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_MICRO_DOPPELGANGER, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BOOK_OF_FOCUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BOOK_OF_SILENCE, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.D6_PLUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_FOCUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
 
 -- Blacklist items for Shiori character
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-wakaba:BlacklistBook(wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_LEMEGETON, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 
 function wakaba:GetBookItems(bookstate)
@@ -78,10 +78,10 @@ function wakaba:GetBookItems(bookstate)
   wakaba:getUnlockState()
   if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI then
     if Game().Challenge == wakaba.challenges.CHALLENGE_DOPP then
-      table.insert(books,wakaba.COLLECTIBLE_MICRO_DOPPELGANGER)
+      table.insert(books,wakaba.Enums.Collectibles.MICRO_DOPPELGANGER)
       return books
     elseif Game().Challenge == wakaba.challenges.CHALLENGE_SLNT then
-      table.insert(books,wakaba.COLLECTIBLE_BOOK_OF_SILENCE)
+      table.insert(books,wakaba.Enums.Collectibles.BOOK_OF_SILENCE)
       return books
     end
   end
@@ -100,27 +100,27 @@ function wakaba:GetBookItems(bookstate)
       or (bookstate == wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS and isQualityMet)
       then
         if item.Type == ItemType.ITEM_ACTIVE then
-          if item.ID == wakaba.COLLECTIBLE_D6_PLUS then
+          if item.ID == wakaba.Enums.Collectibles.D6_PLUS then
             if wakaba.state.unlock.shiorid6plus > 0 then
               table.insert(books,item.ID) 
               Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
             end
-          elseif item.ID == wakaba.COLLECTIBLE_MICRO_DOPPELGANGER then
+          elseif item.ID == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
             if wakaba:unlockCheck(item.ID) then 
               table.insert(books,item.ID) 
               Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
             end
-          elseif item.ID == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then
+          elseif item.ID == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
             if wakaba:unlockCheck(item.ID) then 
               table.insert(books,item.ID) 
               Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
             end
-          elseif item.ID == wakaba.COLLECTIBLE_ISEKAI_DEFINITION then
+          elseif item.ID == wakaba.Enums.Collectibles.ISEKAI_DEFINITION then
             if wakaba:unlockCheck(item.ID) then 
               table.insert(books,item.ID) 
               Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
             end
-          elseif item.ID == wakaba.COLLECTIBLE_BALANCE then
+          elseif item.ID == wakaba.Enums.Collectibles.BALANCE then
             if wakaba:unlockCheck(item.ID) then 
               table.insert(books,item.ID) 
               Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
@@ -232,7 +232,7 @@ function wakaba:SetShioriCharge(player, amount, slot)
         player:SetActiveCharge(200000, slot)
       end
     end
-  elseif activeItem == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then
+  elseif activeItem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
     if wakaba.killcount <= 160 then
       player:SetActiveCharge(200000, slot)
     else
@@ -315,7 +315,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
     local charge = item.MaxCharges
     local chargeType = item.chargeType --does not work
     local consume = charge
-    if useditem == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then return end
+    if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
     if ((item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL) 
     and not wakaba:has_value(wakaba.shioriwhitelisted, useditem)) then
       if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then 

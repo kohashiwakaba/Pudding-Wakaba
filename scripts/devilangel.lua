@@ -21,14 +21,14 @@ function wakaba:getDevilAngelStatus()
 		if wakaba:HasNemesis(pl) then
 			nemesis = true
 		end
-		if pl:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS) or pl:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_INVADER) then
+		if pl:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) or pl:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 			wdreams = true
 		end
-		if pl:GetCard(0) == wakaba.CARD_BLACK_JOKER or pl:GetCard(1) == wakaba.CARD_BLACK_JOKER then
+		if pl:GetCard(0) == wakaba.Enums.Cards.CARD_BLACK_JOKER or pl:GetCard(1) == wakaba.Enums.Cards.CARD_BLACK_JOKER then
 			nemesis = true
       jokers = true
 		end
-		if pl:GetCard(0) == wakaba.CARD_WHITE_JOKER or pl:GetCard(1) == wakaba.CARD_WHITE_JOKER then
+		if pl:GetCard(0) == wakaba.Enums.Cards.CARD_WHITE_JOKER or pl:GetCard(1) == wakaba.Enums.Cards.CARD_WHITE_JOKER then
 			bless = true
       jokers = true
 		end

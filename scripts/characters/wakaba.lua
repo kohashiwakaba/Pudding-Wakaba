@@ -85,7 +85,7 @@ function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
 		end
 		if player ~= nil then
 			if (player:GetPlayerType() == wakaba.PLAYER_WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
-			or (player:GetPlayerType() ~= wakaba.PLAYER_WAKABA and player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS))
+			or (player:GetPlayerType() ~= wakaba.PLAYER_WAKABA and player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS))
 			or player:GetPlayerType() == wakaba.PLAYER_WAKABA_B
 			then
 				flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR
@@ -156,7 +156,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
     	end
     	if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
     	    player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, WakabaChar.TEARS)
-					if player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING) then
+					if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) then
 						if player.MaxFireDelay < 0 then
 							player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (player.MaxFireDelay * -0.25))
 						else

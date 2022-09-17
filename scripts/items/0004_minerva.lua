@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_MINERVA_AURA = Isaac.GetItemIdByName("Minerva's Aura")
 wakaba.fcount = 0
 wakaba.killcount = 0
 
@@ -8,9 +7,9 @@ function wakaba:hasAura(player)
 	end
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_MINERVA_AURA) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.MINERVA_AURA) then
 		return true
-	elseif player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_MINERVA_AURA) then
+	elseif player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MINERVA_AURA) then
 		return true
 	elseif Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
 		return true
@@ -27,11 +26,11 @@ function wakaba:auraCount(player)
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
     count = count + 1
 	end
-	if player:HasCollectible(wakaba.COLLECTIBLE_MINERVA_AURA) then
-		count = count + player:GetCollectibleNum(wakaba.COLLECTIBLE_MINERVA_AURA)
+	if player:HasCollectible(wakaba.Enums.Collectibles.MINERVA_AURA) then
+		count = count + player:GetCollectibleNum(wakaba.Enums.Collectibles.MINERVA_AURA)
 	end
-	if player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_MINERVA_AURA) then
-		count = count + player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_MINERVA_AURA)
+	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MINERVA_AURA) then
+		count = count + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.MINERVA_AURA)
 	end
 	if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
     count = count + 1

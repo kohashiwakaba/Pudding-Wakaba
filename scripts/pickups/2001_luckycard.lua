@@ -1,5 +1,5 @@
-wakaba.CARD_DONATION_CARD = Isaac.GetCardIdByName("Silver Donation Card")
-wakaba.CARD_VIP_DONATION_CARD = Isaac.GetCardIdByName("VIP Donation Card")
+wakaba.Enums.Cards.CARD_DONATION_CARD = Isaac.GetCardIdByName("Silver Donation Card")
+wakaba.Enums.Cards.CARD_VIP_DONATION_CARD = Isaac.GetCardIdByName("VIP Donation Card")
 local SilverCardChance = wakaba.state.silverchance
 local VIPCardChance = wakaba.state.vipchance
 local animation = "gfx/donationcarddrop.anm2"
@@ -16,12 +16,12 @@ local oldNumCoins
 if EID then
 	local t = ""
 	t = t .. "Spawns/unjams a donation machine"
-  EID:addCard(wakaba.CARD_DONATION_CARD, t)
+  EID:addCard(wakaba.Enums.Cards.CARD_DONATION_CARD, t)
 	
 	local p = ""
 	p = p .. "Spawns/unjams a donation machine"
 	p = p .. "#Spawns a penny which allows free coin donations for the current room"
-  EID:addCard(wakaba.CARD_VIP_DONATION_CARD, p)
+  EID:addCard(wakaba.Enums.Cards.CARD_VIP_DONATION_CARD, p)
 	
 	if EIDKR then
 
@@ -29,7 +29,7 @@ if EID then
 		tk = tk .. "/머리/ 기부 기계를 소환합니다."
 		tk = tk .. "/머리/ 기부 기계가 이미 존재할 경우 고장난 기부 기계를 되돌립니다."
 		tk = tk .. "/머리/ 그리드 모드에서는 그리드 기계가 소환됩니다."
-		EID:addCard(wakaba.CARD_DONATION_CARD, tk, "Silver Donation Card", "ko_kr", "은색 기부 카드")
+		EID:addCard(wakaba.Enums.Cards.CARD_DONATION_CARD, tk, "Silver Donation Card", "ko_kr", "은색 기부 카드")
 		
 		local pk = ""
 		pk = pk .. "/머리/ 기부 기계를 소환합니다."
@@ -37,12 +37,12 @@ if EID then
 		pk = pk .. "/머리/ 그리드 모드에서는 그리드 기계가 소환됩니다."
 		pk = pk .. "/머리/ 동전 하나가 소환됩니다. 소환된 동전을 획득할 경우 무한정 기부할 수 있습니다."
 		pk = pk .. "/머리/ 무한 기부는 다른 방으로 이동 시 해제됩니다."
-		EID:addCard(wakaba.CARD_VIP_DONATION_CARD, pk, "VIP Donation Card", "ko_kr", "VIP 기부 카드")
+		EID:addCard(wakaba.Enums.Cards.CARD_VIP_DONATION_CARD, pk, "VIP Donation Card", "ko_kr", "VIP 기부 카드")
 	else
 		local donationCardSprite = Sprite()
 		donationCardSprite:Load("gfx/eid_cardfronts.anm2", true)
-		EID:addIcon("Card"..wakaba.CARD_DONATION_CARD, "Cards", 0, 9, 9, -1, 0, donationCardSprite)
-		EID:addIcon("Card"..wakaba.CARD_VIP_DONATION_CARD, "Cards", 1, 9, 9, -1, 0, donationCardSprite)
+		EID:addIcon("Card"..wakaba.Enums.Cards.CARD_DONATION_CARD, "Cards", 0, 9, 9, -1, 0, donationCardSprite)
+		EID:addIcon("Card"..wakaba.Enums.Cards.CARD_VIP_DONATION_CARD, "Cards", 1, 9, 9, -1, 0, donationCardSprite)
 	end
 	
 end
@@ -109,7 +109,7 @@ function wakaba:onUseCard2001(_, player, flags)
 		SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2001, wakaba.CARD_DONATION_CARD)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2001, wakaba.Enums.Cards.CARD_DONATION_CARD)
 
 function wakaba:onUseCardVIP2001(_, player, flags)
 	-- Donate_____() doesn't actually donate; it just changes the amount the Game() thinks you "donated" on the current floor
@@ -133,7 +133,7 @@ function wakaba:onUseCardVIP2001(_, player, flags)
 		SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCardVIP2001, wakaba.CARD_VIP_DONATION_CARD)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCardVIP2001, wakaba.Enums.Cards.CARD_VIP_DONATION_CARD)
 
 function checkForJam()
 	if (Game():GetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED) or Game():GetStateFlag(GameStateFlag.STATE_GREED_SLOT_JAMMED)) and wakaba.state.totalNumCoinsDonated < wakaba.state.minDonationLimit then
@@ -166,11 +166,11 @@ function wakaba:onGetCard2001(rng, currentCard, playing, runes, onlyRunes)
 		local vipRandomInt = rng:RandomInt(VIPCardChance)
 		local randomInt = rng:RandomInt(SilverCardChance)
 		if wakaba.state.unlock.donationcard > 0 and vipRandomInt == 1 then
-			return wakaba.CARD_VIP_DONATION_CARD
-		elseif wakaba.state.unlock.donationcard < 1 and currentCard == wakaba.CARD_VIP_DONATION_CARD then
-			return wakaba.CARD_DONATION_CARD
+			return wakaba.Enums.Cards.CARD_VIP_DONATION_CARD
+		elseif wakaba.state.unlock.donationcard < 1 and currentCard == wakaba.Enums.Cards.CARD_VIP_DONATION_CARD then
+			return wakaba.Enums.Cards.CARD_DONATION_CARD
 		elseif randomInt == 1 then
-			return wakaba.CARD_DONATION_CARD
+			return wakaba.Enums.Cards.CARD_DONATION_CARD
 		end
 	end
 end

@@ -1,10 +1,8 @@
-wakaba.COLLECTIBLE_VINTAGE_THREAT = Isaac.GetItemIdByName("Vintage Threat")
-
 function wakaba:AfterRevival_VintageThreat(player)
 	--print("AfterVThreatInit")
 	local data = player:GetData()
   data.wakaba = data.wakaba or {}
-	--player:RemoveCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT)
+	--player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
 	local Poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector.Zero, player):ToEffect()
 	Poof.SpriteScale = Vector(1.5, 1.5)
 	player:ChangePlayerType(wakaba.PLAYER_SHIORI_B)
@@ -33,7 +31,7 @@ function wakaba:PlayerUpdate_VintageThreat()
     local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
-			player:RemoveCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT)
+			player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
 			player:GetData().wakaba.vintagethreatremovecnt = player:GetData().wakaba.vintagethreatremovecnt - 1
 		end
 		if player:IsDead() and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:GetData().wakaba.vintagethreat then

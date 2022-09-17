@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_CONQUEST = Isaac.GetItemIdByName("Book of Conquest")
 wakaba.conquestmode = false
 wakaba.conquestcontrollerindex = nil
 wakaba.nearestenemy = nil
@@ -66,7 +65,7 @@ function wakaba:SetConquestCharge(player, slot)
   if activeConfig == nil then return end
   local maxCharges = activeConfig.MaxCharges
   local chargeType = activeConfig.ChargeType
-  if activeItem == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then
+  if activeItem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
     if wakaba.killcount <= 160 then
       player:SetActiveCharge(200000, slot)
     else
@@ -78,8 +77,8 @@ end
 function wakaba:PlayerUpdate_Conquest(player)
 	if player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Shiori", false) 
 	and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) 
-	and player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_SHIORI)
-	and player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST)
+	and player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+	and player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 	then
     wakaba:SetConquestCharge(player, ActiveSlot.SLOT_PRIMARY)
     wakaba:SetConquestCharge(player, ActiveSlot.SLOT_SECONDARY)
@@ -106,7 +105,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 	if not wakaba.conquestmode then
 		if (player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false) 
 		or player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
-		or player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_SHIORI))
+		or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI))
 		and useFlags & UseFlag.USE_VOID == 0
 		and activeSlot ~= ActiveSlot.SLOT_POCKET2 then
 			--Isaac.GetPlayer(0):UseActiveItem(CollectibleType.COLLECTIBLE_PAUSE, UseFlag.USE_NOANIM)
@@ -126,7 +125,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 				player:AnimateSad()
 				return {Discharge = false}
 			end
-			player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, "UseItem", "PlayerPickup")
 			player:GetData().wakaba.conquestmode = true
 			player:GetData().wakaba.conquestcursor = 1
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
@@ -172,7 +171,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			wakaba:CalculateMinervaCost()
 			SFXManager():Play(SoundEffect.SOUND_ANGEL_BEAM, 1, 0, false, 1)
 			if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-				player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST, "UseItem", "PlayerPickup")
+				player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, "UseItem", "PlayerPickup")
 			end
 		end
 	else
@@ -213,7 +212,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 				end
 			end
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				player:AddWisp(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST, player.Position)
+				player:AddWisp(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, player.Position)
 			end
 			SFXManager():Play(SoundEffect.SOUND_ANGEL_BEAM, 1, 0, false, 1)
 			--wakaba:initSingleCrack(player, target.Position)
@@ -243,7 +242,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 		wakaba.conquestmode = false
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfConquest, wakaba.COLLECTIBLE_BOOK_OF_CONQUEST)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfConquest, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 
 function wakaba:CalculateCost(entity, hasbirthright, hascarbattery)
 	if wakaba:has_value(wakaba.conquestblacklist, entity) then
@@ -287,7 +286,7 @@ function wakaba:Render_BookOfConquest()
 	local alpha = wakaba.state.currentalpha
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST) then
 			hasconquest = true
 		end
 	end
@@ -446,7 +445,7 @@ function wakaba:Render_BookOfConquest()
 			end
 		end
 		if EID then
-			local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.COLLECTIBLE_BOOK_OF_CONQUEST)
+			local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 			demoDescObj.Description = eidstring
 			EID:displayPermanentText(demoDescObj)
 		end

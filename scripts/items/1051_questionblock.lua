@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_QUESTION_BLOCK = Isaac.GetItemIdByName("Question Block")
-
 function wakaba:ItemUse_QuestionBlock(_, rng, player, useFlags, activeSlot, varData)
 	pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
@@ -36,23 +34,23 @@ function wakaba:ItemUse_QuestionBlock(_, rng, player, useFlags, activeSlot, varD
     SFXManager():Play(SoundEffect.SOUND_PENNYPICKUP, 1, 0, false, 1)
   end
 
-	if discharge and player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) and not wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
-		player:AddWisp(wakaba.COLLECTIBLE_QUESTION_BLOCK, player.Position, true, false)
+	if discharge and player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) and not wakaba:HasWisp(player, wakaba.Enums.Collectibles.QUESTION_BLOCK) then
+		player:AddWisp(wakaba.Enums.Collectibles.QUESTION_BLOCK, player.Position, true, false)
 	end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_QUESTION_BLOCK, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.QUESTION_BLOCK, "UseItem", "PlayerPickup")
 	end
   return {Discharge = discharge}
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_QuestionBlock, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_QuestionBlock, wakaba.Enums.Collectibles.QUESTION_BLOCK)
 
 function wakaba:TakeDmg_QuestionBlock(entity, amount, flag, source, countdownFrames)
 	if not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS)
 	then
 		local player = entity:ToPlayer()
 		--Double check just in case
-    if not player:HasCollectible(wakaba.COLLECTIBLE_QUESTION_BLOCK) then return end
+    if not player:HasCollectible(wakaba.Enums.Collectibles.QUESTION_BLOCK) then return end
 		if (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS) then return end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM)
@@ -68,7 +66,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_QuestionBlock
 
 
 function wakaba:AfterRevival_QuestionBlock(player)
-	local wisp = wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+	local wisp = wakaba:HasWisp(player, wakaba.Enums.Collectibles.QUESTION_BLOCK)
 	if wisp then
 		wisp:Kill()
 	end

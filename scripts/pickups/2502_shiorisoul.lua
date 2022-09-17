@@ -1,4 +1,3 @@
-wakaba.SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori")
 local DreamCardChance = wakaba.state.silverchance
 local rng = wakaba.RNG
 
@@ -15,7 +14,7 @@ local function randomchoice(t, rng) --Selects a random item from a table
 end
 
 function wakaba:UseCard_SoulOfShiori(_, player, flags)
-	local rng = player:GetCardRNG(wakaba.SOUL_SHIORI)
+	local rng = player:GetCardRNG(wakaba.Enums.Cards.SOUL_SHIORI)
 	local candidates = wakaba.bookofshiori
 	local selected = -1
 	local keys = {}
@@ -38,11 +37,11 @@ function wakaba:UseCard_SoulOfShiori(_, player, flags)
 	states.soulflag = states.soulflag | wakaba.soulflag.SOUL_OF_WAKABA_BLESSING ]]
 
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfShiori, wakaba.SOUL_SHIORI)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfShiori, wakaba.Enums.Cards.SOUL_SHIORI)
 
 function wakaba:GetCard_SoulOfShiori(rng, currentCard, playing, runes, onlyRunes)
 	Isaac.DebugString("[wakaba] callback currentCard = " .. currentCard)
-	if currentCard == wakaba.SOUL_SHIORI then
+	if currentCard == wakaba.Enums.Cards.SOUL_SHIORI then
 		if not wakaba.state.unlock.shiorisoul then
 			Isaac.DebugString("[wakaba] Soul of Shiori not unlocked. Replacing into Lunar Shard")
 			return Card.RUNE_SHARD
@@ -56,8 +55,8 @@ function wakaba:RuneTest(count)
 	local itemp = Game():GetItemPool()
 	for i = 1, count do
 		local card = itemp:GetCard(Game():GetSeeds():GetNextSeed(), false, true, true)
-		if card == wakaba.SOUL_SHIORI then print("Shiori detected")
-		elseif card == wakaba.SOUL_WAKABA then print("Wakaba detected")
+		if card == wakaba.Enums.Cards.SOUL_SHIORI then print("Shiori detected")
+		elseif card == wakaba.Enums.Cards.SOUL_WAKABA then print("Wakaba detected")
 		else --print(card)
 		end
 	end

@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_COUNTER = Isaac.GetItemIdByName("Counter")
 local countertimer = 0
 local counteractivetimer = 30
 local shadowitem = CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS
@@ -30,13 +29,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.CounterPlayerEffe
 
 function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 	local player = entity:ToPlayer()
-	if player:HasCollectible(wakaba.COLLECTIBLE_COUNTER) then
-		local counterslot = wakaba:GetActiveSlot(player, wakaba.COLLECTIBLE_COUNTER)
+	if player:HasCollectible(wakaba.Enums.Collectibles.COUNTER) then
+		local counterslot = wakaba:GetActiveSlot(player, wakaba.Enums.Collectibles.COUNTER)
 		if counterslot ~= nil and player:GetActiveCharge(counterslot) >= 120 and player:GetData().wakabacountertimer == 0 then
 			--player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
 			--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, 1)
 			SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
-			player:UseActiveItem(wakaba.COLLECTIBLE_COUNTER, 0, counterslot)
+			player:UseActiveItem(wakaba.Enums.Collectibles.COUNTER, 0, counterslot)
 			player:DischargeActiveItem(counterslot)
 			
 			if source.Entity ~= nil and source.Entity.SpawnerEntity ~= nil then
@@ -81,7 +80,7 @@ function wakaba:ItemUse_Counter(_, rng, player, useFlags, activeSlot, varData)
 		--print("counter timer added")
 	end
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_COUNTER, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.COUNTER, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_Counter, wakaba.COLLECTIBLE_COUNTER)
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_Counter, wakaba.Enums.Collectibles.COUNTER)

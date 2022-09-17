@@ -1,10 +1,8 @@
-wakaba.COLLECTIBLE_ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance")
-
 function wakaba:PlayerUpdate_AntiBalance(player)
 	local hasAnti = false
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_ANTI_BALANCE) or player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_ANTI_BALANCE) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.ANTI_BALANCE) then
 			hasAnti = true
 		end
 	end
@@ -24,7 +22,7 @@ function wakaba:PickupInit_AntiBalance(pickup)
 	local hasAnti = false
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_ANTI_BALANCE) or player:GetEffects():HasCollectibleEffect(wakaba.COLLECTIBLE_ANTI_BALANCE) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.ANTI_BALANCE) then
 			hasAnti = true
 		end
 	end

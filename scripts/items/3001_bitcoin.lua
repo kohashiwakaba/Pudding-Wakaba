@@ -1,8 +1,5 @@
-wakaba.TRINKET_BITCOIN = Isaac.GetTrinketIdByName("Bitcoin II")
-
-
 function wakaba:updatePlayerBitcoin(player)
-	if player:HasTrinket(wakaba.TRINKET_BITCOIN, false) then
+	if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
 		if player:GetPlayerType() ~= PlayerType.PLAYER_XXX_B then
 			player:AddBombs(-99)
 			player:AddBombs(math.random(99))
@@ -34,7 +31,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.updatePlayerBitco
 function wakaba:newRoomBitcoin()
 	for num = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(num)
-		if player:HasTrinket(wakaba.TRINKET_BITCOIN, false) then
+		if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, false, false, false, false, -1)
 		end
 	end
@@ -43,8 +40,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.newRoomBitcoin)
 
 
 function wakaba:onBitcoinCache(player, cacheFlag)
-  if player:HasTrinket(wakaba.TRINKET_BITCOIN, false) then
-		local multiplier = 1 + (0.1 * player:GetTrinketMultiplier(wakaba.TRINKET_BITCOIN))
+  if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
+		local multiplier = 1 + (0.1 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.BITCOIN))
     if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
         player.Damage = player.Damage * multiplier
     end
@@ -72,7 +69,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onBitcoinCache)
 
 
 function wakaba.bitcoinUnlockCheck(pickup)
-	if pickup.SubType == wakaba.TRINKET_BITCOIN and wakaba.state.unlock.bitcoin <= 0 then
+	if pickup.SubType == wakaba.Enums.Trinkets.BITCOIN and wakaba.state.unlock.bitcoin <= 0 then
 			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, Game():GetItemPool():GetTrinket())
 	end
 end

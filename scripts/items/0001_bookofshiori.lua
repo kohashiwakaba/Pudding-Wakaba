@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_SHIORI = Isaac.GetItemIdByName("Book of Shiori")
 wakaba.state.currentlibraryindex = 0
 
 function wakaba:HasShiori(player)
@@ -6,7 +5,7 @@ function wakaba:HasShiori(player)
     return true
 	elseif player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
 		return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_SHIORI) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI) then
 		return true
 	else
 		return false
@@ -29,7 +28,7 @@ function wakaba:NewLevel_BookOfShiori()
 	if true --[[ level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() ]] then
 		for i = 1, Game():GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
-			if player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_SHIORI)then
+			if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)then
 				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 				if #books < 1 then
 					books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_HARD_BOOK)

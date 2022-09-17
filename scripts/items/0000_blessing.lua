@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_WAKABAS_BLESSING = Isaac.GetItemIdByName("Wakaba's Blessing")
-wakaba.COLLECTIBLE_WAKABAS_NEMESIS = Isaac.GetItemIdByName("Wakaba's Nemesis")
-wakaba.COLLECTIBLE_WAKABA_DUALITY = Isaac.GetItemIdByName("Wakaba Duality")
 local removesatanwisp = false
 local valuesupdated = false
 wakaba.state.eatheartused = false
@@ -39,13 +36,13 @@ local ignorelist = {}
 local hidelist = {}
 local duped = {}
 function wakaba:onNemesisCache(player, cacheFlag)
-  if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABA_DUALITY))
+  if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABA_DUALITY))
 	and Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND 
 	then
 		wakaba:GetPlayerEntityData(player)
 		local nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
 		local collectibleNum = player:GetCollectibleCount()
-		local nemesiscount = player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_NEMESIS) + player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABA_DUALITY)
+		local nemesiscount = player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:GetPlayerType() == wakaba.PLAYER_WAKABA_B then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 				nemesiscount = 0
@@ -127,7 +124,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onNemesisCache)
 
 function wakaba:PlayerUpdate_Nemesis(player)
-	local newItem = wakaba.COLLECTIBLE_WAKABA_DUALITY
+	local newItem = wakaba.Enums.Collectibles.WAKABA_DUALITY
 	local newItemConfig = Isaac.GetItemConfig():GetCollectible(newItem) -- Define combined item
 	local newName = newItemConfig.Name
 	local newDesc = newItemConfig.Description
@@ -147,32 +144,32 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	]]
 	-- In this example, wakaba:HasBless(player) checks whether player has Wakaba's Blessing(item A), or the character is Wakaba
 	-- You would normally use player:HasCollectible(itemID.A, true) for item check. AGAIN, MUST SET 'IgnoreModifiers' ARGUMENT AS 'true'
-	if wakaba:HasBless(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABAS_NEMESIS then
-		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY) -- Define combined item
+	if wakaba:HasBless(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABAS_NEMESIS then
+		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) -- Define combined item
 		if player:FlushQueueItem() then -- Skip current queued item animation, This will add item B in Isaac's inventory.
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle") -- Manually animate pickup animation
 			Game():GetHUD():ShowItemText(newName, newDesc, false) -- Show item name and descriptions to HUD
 			player:QueueItem(newItemConfig) -- Queue combined item. Finishing animation will add the combined one.
 		end
 		-- Then remove both items which were supposed to be combined. Must call after player:FlushQueueItem() is called
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
-	elseif wakaba:HasNemesis(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABAS_BLESSING then
-		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
+	elseif wakaba:HasNemesis(player) and not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABAS_BLESSING then
+		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:FlushQueueItem() then
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle")
 			Game():GetHUD():ShowItemText(newName, newDesc, false)
 			player:QueueItem(newItemConfig)
 		end
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
-	elseif wakaba:HasBless(player) and player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS, true) then
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
+	elseif wakaba:HasBless(player) and player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS, true) then
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 		player:AddCollectible(newItem)
-	elseif wakaba:HasNemesis(player) and player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING, true) then
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING)
-		player:RemoveCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS)
+	elseif wakaba:HasNemesis(player) and player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING, true) then
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 		player:AddCollectible(newItem)
 	end
 
@@ -180,7 +177,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 	player:GetData().wakaba.currItemNum = player:GetData().wakaba.currItemNum or 0
 	--[[ player:GetData().wakaba.tempbless = player:GetData().wakaba.tempbless or false
 
-	if not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.COLLECTIBLE_WAKABAS_BLESSING then
+	if not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABAS_BLESSING then
 		player:GetData().wakaba.tempbless = true
 	end
 	if player:GetData().wakaba.tempbless and player:IsExtraAnimationFinished() then
@@ -188,7 +185,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		player:GetData().wakaba.tempbless = false
 	end ]]
 	
-	if player:HasCollectible(wakaba.COLLECTIBLE_DEJA_VU) --[[ or player:HasCollectible(wakaba.COLLECTIBLE_WINTER_ALBIREO) ]] then
+	if player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU) --[[ or player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) ]] then
 		if player:GetCollectibleCount() ~= player:GetData().wakaba.dejavuItemNum and not player:IsHoldingItem() then
 			player:GetData().wakaba.dejavuItemNum = player:GetCollectibleCount()
 			wakaba:CheckItemCandidates(player)
@@ -255,7 +252,7 @@ function wakaba:CheckItemCandidates(player)
 		
 		if targetItem and not targetItem:HasTags(ItemConfig.TAG_QUEST)
 		and (targetItem.Type == ItemType.ITEM_PASSIVE or targetItem.Type == ItemType.ITEM_FAMILIAR)
-		and itemId ~= wakaba.COLLECTIBLE_DEJA_VU
+		and itemId ~= wakaba.Enums.Collectibles.DEJA_VU
 		then
 			for i = 1, player:GetCollectibleNum(itemId) do
 				DejaVuCandidates[#DejaVuCandidates + 1] = itemId
@@ -316,7 +313,7 @@ function wakaba:HasBless(player, includeWakaba)
 	includeWakaba = includeWakaba or true
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_BLESSING) or player:HasCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		return true
 	else
 		return false
@@ -329,7 +326,7 @@ function wakaba:GetBlessNum(player, includeWakaba)
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
 		r = r + 1
 	end
-	return r + player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_BLESSING) + player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABA_DUALITY)
+	return r + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_BLESSING) + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 end
 
 function wakaba:ReEvaluateNemesisStats(player)
@@ -348,7 +345,7 @@ function wakaba:HasNemesis(player, includeWakaba)
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
 		wakaba:ReEvaluateNemesisStats(player)
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_NEMESIS) or player:HasCollectible(wakaba.COLLECTIBLE_WAKABA_DUALITY) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		wakaba:ReEvaluateNemesisStats(player)
 		return true
 	else

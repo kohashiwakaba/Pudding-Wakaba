@@ -1,4 +1,4 @@
-wakaba.COLLECTIBLE_FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift")
+wakaba.Enums.Collectibles.FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift")
 wakaba.KNIFE_FLASH_SHIFT = 4101
 wakaba.SUBTYPE_FLASH_SHIFT = 4101
 local flashcooldown = 8
@@ -10,7 +10,7 @@ function wakaba:hasFlashShift(player)
 	end
 	if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_FLASH_SHIFT) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.FLASH_SHIFT) then
 		return true
 	else
 		return false
@@ -99,7 +99,7 @@ function wakaba:PlayerUpdate_FlashShift(player)
 		if pData.wakaba.fstimer and pData.wakaba.fstimer >= maxval then
 			pData.wakaba.fstimer = nil
 			pData.wakaba.fscounter = 3
-			SFXManager():Play(wakaba.SFX_AEION_CHARGE)
+			SFXManager():Play(wakaba.Enums.SoundEffects.AEION_CHARGE)
 			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 		elseif pData.wakaba.fstimer then
 			pData.wakaba.fstimer = pData.wakaba.fstimer + 1
@@ -149,9 +149,9 @@ function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData
 		for i, ent in ipairs(ents) do
 			--ent:TakeDamage(player.Damage * 3, 0, EntityRef(player), 0)
 		end
-		if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B or player:HasCollectible(wakaba.COLLECTIBLE_MURASAME) then
+		if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B or player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) then
 			SFXManager():Play(SoundEffect.SOUND_KNIFE_PULL)
-			local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.FAMILIAR_MURASAME, -1)
+			local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.Enums.Familiars.MURASAME, -1)
 			for i, e in ipairs(familiars) do
 				local familiar = e:ToFamiliar()
 				if familiar and GetPtrHash(familiar.Player) == GetPtrHash(player) then
@@ -196,7 +196,7 @@ function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData
 		pData.wakaba.fstimer = 0
 	end ]]
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_FlashShift, wakaba.COLLECTIBLE_FLASH_SHIFT)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_FlashShift, wakaba.Enums.Collectibles.FLASH_SHIFT)
 
 
 function wakaba:Input_FlashShift(entity, hook, action)

@@ -1,4 +1,3 @@
-wakaba.BRING_ME_THERE = Isaac.GetTrinketIdByName("Bring me there")
 
 local function isRep(stype)
 	if (stype == StageType.STAGETYPE_REPENTANCE or stype == StageType.STAGETYPE_REPENTANCE_B) then
@@ -14,7 +13,7 @@ function wakaba:checkMausoleumDest()
 	local hasnote = false
 	for num = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(num)
-		if player:HasTrinket(wakaba.BRING_ME_THERE) then
+		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) then
 			hasnote = true
 			--Game():SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true)
 		end
@@ -46,7 +45,7 @@ function wakaba:startMausoleumRoomCheck()
 	local hasTrinket = false
 	for i = 1, Game():GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
-		if player:HasTrinket(wakaba.BRING_ME_THERE) then
+		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) then
 			hasTrinket = true
 		end
 	end
@@ -71,7 +70,7 @@ function wakaba:startMausoleumRoomCheck()
 				if level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH == LevelCurse.CURSE_OF_LABYRINTH and not Game():GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT) then
 					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_FORGET_ME_NOW, room:GetGridPosition(102), Vector(0,0), nil)
 				end
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.BRING_ME_THERE, room:GetGridPosition(92), Vector(0,0), nil)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, room:GetGridPosition(92), Vector(0,0), nil)
 			end
 		end
 	end
@@ -79,14 +78,14 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.startMausoleumRoomCheck)
 
 function wakaba:dadNoteCache(player, cacheFlag)
-	if player:HasTrinket(wakaba.BRING_ME_THERE) and cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.5 * player:GetTrinketMultiplier(wakaba.BRING_ME_THERE)))
+	if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) and cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.5 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.BRING_ME_THERE)))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.dadNoteCache)
 
 function wakaba.dadNotePickupCheck(pickup)
-	if pickup.Variant == PickupVariant.PICKUP_TRINKET and pickup.SubType == wakaba.BRING_ME_THERE and Game().Challenge ~= Challenge.CHALLENGE_NULL then
+	if pickup.Variant == PickupVariant.PICKUP_TRINKET and pickup.SubType == wakaba.Enums.Trinkets.BRING_ME_THERE and Game().Challenge ~= Challenge.CHALLENGE_NULL then
 		pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, TrinketType.TRINKET_NULL)
 	end
 end

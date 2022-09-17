@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_BURN_AND_BURN = Isaac.GetItemIdByName("Burn and burn")
 
 --[[ 
 function wakaba:CheckItemCandidates(player)
@@ -31,7 +30,7 @@ function wakaba:CheckItemCandidates(player)
 end ]]
 
 function wakaba:Cache_DejaVu(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_DEJA_VU) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU) then
 
   end
 end

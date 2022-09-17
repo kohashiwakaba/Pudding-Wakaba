@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_ELIXIR_OF_LIFE = Isaac.GetItemIdByName("Elixir of Life")
 wakaba.elixirmaxcooldown = 16
 wakaba.elixirmaxcooldowndamage = 50
 
@@ -9,7 +8,7 @@ function wakaba:hasElixir(player)
 	end
 	if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B and not (player:IsDead() and not player:WillPlayerRevive()) then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_ELIXIR_OF_LIFE) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE) then
 		return true
 	else
 		return false
@@ -111,7 +110,7 @@ function wakaba:TakeDamage_Elixir(entity, amount, flags, source, cooldown)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 17)
 		or flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
 		then
-			local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_ELIXIR_OF_LIFE)
+			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
 			local chance = rng:RandomInt(1000000)
 			if chance <= 350000 then
 				player:AddMaxHearts(-2)

@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN = Isaac.GetItemIdByName("Book of The Fallen")
-
 local function calculateLength(player, r, i)
 	local x, y = player.Position.X, player.Position.Y
   local angle = i * math.pi / 180
@@ -152,10 +150,10 @@ function wakaba:ItemUse_BookOfTheFallen(_, rng, player, useFlags, activeSlot, va
 	player:GetData().wakaba.fallenangelfirecount = 150
 	
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
 
 function wakaba:NewRoom_BookOfTheFallen()
   for i = 1, Game():GetNumPlayers() do

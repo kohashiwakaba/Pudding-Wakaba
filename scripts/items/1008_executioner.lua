@@ -1,11 +1,10 @@
-wakaba.COLLECTIBLE_EXECUTIONER = Isaac.GetItemIdByName("Executioner")
 local alwayseraser = 0 -- 0 : default, 1 : always, -1 : never
 
 function wakaba:update28()
 	newplumcount = 0
   for i = 1, Game():GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_EXECUTIONER) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
 			trycount = true
 		else
 			trycount = false
@@ -49,10 +48,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
 	if tear ~= nil 
 	and tear.SpawnerEntity ~= nil
 	and tear.SpawnerEntity:ToPlayer() ~= nil 
-	and tear.SpawnerEntity:ToPlayer():HasCollectible(wakaba.COLLECTIBLE_EXECUTIONER) then
+	and tear.SpawnerEntity:ToPlayer():HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
 		local spawner = tear.SpawnerEntity:ToPlayer()
-		local rng = spawner:GetCollectibleRNG(wakaba.COLLECTIBLE_EXECUTIONER)
-		local luck = (spawner.Luck) * spawner:GetCollectibleNum(wakaba.COLLECTIBLE_EXECUTIONER, false)
+		local rng = spawner:GetCollectibleRNG(wakaba.Enums.Collectibles.EXECUTIONER)
+		local luck = (spawner.Luck) * spawner:GetCollectibleNum(wakaba.Enums.Collectibles.EXECUTIONER, false)
 		local negativeLuck = luck
 		if luck < 0 then
 			luck = 1

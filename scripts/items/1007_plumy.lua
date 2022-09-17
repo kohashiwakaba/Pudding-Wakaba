@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_PLUMY = Isaac.GetItemIdByName("Plumy")
-wakaba.FAMILIAR_PLUMY = Isaac.GetEntityVariantByName("Plumy")
 local cooldown = 120
 local plumcount = 0
 local hasPlum = false
@@ -67,7 +65,7 @@ function wakaba:initPlumSingleLaser(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(13.5) or vector:Resized(8)
 	local tear_angle = vector:GetAngleDegrees()
-	local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_PLUMY)
+	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.PLUMY)
 	local cornangle = (Sewn_API and Sewn_API:IsUltra(fData)) and 1 or 4
 	local float = Vector(0, rng:RandomFloat() * cornangle - (cornangle / 2)):Rotated(tear_angle)
 	local multiplier = 1 + (rng:RandomFloat() * 0.4 - 0.2)
@@ -91,7 +89,7 @@ local function InitPlumTear(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(math.max(30 / player.MaxFireDelay, 13.5)) or vector:Resized(math.max(30 / player.MaxFireDelay, 8))
 	local tear_angle = vector:GetAngleDegrees()
-	local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_PLUMY)
+	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.PLUMY)
 	local cornangle = (Sewn_API and Sewn_API:IsUltra(fData)) and 1 or 4
 	local float = Vector(0, rng:RandomFloat() * cornangle - (cornangle / 2)):Rotated(tear_angle)
 	local multiplier = 1 + (rng:RandomFloat() * 0.4 - 0.2)
@@ -141,7 +139,7 @@ function wakaba:initPlumKnife(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(13.5) or vector:Resized(8)
 	local tear_angle = vector:GetAngleDegrees()
-	local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_PLUMY)
+	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.PLUMY)
 	local cornangle = (Sewn_API and Sewn_API:IsUltra(fData)) and 1 or 4
 	local randcornangle = rng:RandomFloat() * cornangle - (cornangle / 2)
 	local float = Vector(0, randcornangle):Rotated(tear_angle)
@@ -339,7 +337,7 @@ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, e)
 	hasPlum = false
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_PLUMY) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.PLUMY) then
 			hasPlum = true
 		end
 		if wakaba:HasBless(player) then
@@ -359,7 +357,7 @@ end, FamiliarVariant.BABY_PLUM)
 function wakaba:NewRoom_Plumy()
   for i = 0, Game():GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
-		if player:HasCollectible(wakaba.COLLECTIBLE_PLUMY) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.PLUMY) then
 			player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
 			player:EvaluateItems()
 		end
@@ -406,7 +404,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_Plumy)
 
 function wakaba:TakeDamage_Plumy(familiar, damage, flags, source, cooldown)
 	--print("Plum took dmg")
-	if familiar.Variant ~= wakaba.FAMILIAR_PLUMY then return end
+	if familiar.Variant ~= wakaba.Enums.Familiars.PLUMY then return end
 	if not familiar:GetData().wakaba then return end
 	if familiar:GetData().wakaba.plumrecover then return false end
 	familiar:GetData().wakaba.plumhealth = familiar:GetData().wakaba.plumhealth - (damage * 1000)
@@ -420,21 +418,21 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Plumy, Ent
 function wakaba:Cache_Plumy(player, cacheFlag)
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_PLUMY)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_PLUMY)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.PLUMY)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.PLUMY)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_PLUMY) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.PLUMY) + efcount
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_PLUMY, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_PLUMY))
+		player:CheckFamiliar(wakaba.Enums.Familiars.PLUMY, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.PLUMY))
 	end
 end
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(wakaba.FAMILIAR_PLUMY, wakaba.COLLECTIBLE_PLUMY)
+	Sewn_API:MakeFamiliarAvailable(wakaba.Enums.Familiars.PLUMY, wakaba.Enums.Collectibles.PLUMY)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Plumy)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_Plumy, wakaba.FAMILIAR_PLUMY)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Plumy, wakaba.FAMILIAR_PLUMY)
-wakaba:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, wakaba.FamiliarCollision_Plumy, wakaba.FAMILIAR_PLUMY)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_Plumy, wakaba.Enums.Familiars.PLUMY)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Plumy, wakaba.Enums.Familiars.PLUMY)
+wakaba:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, wakaba.FamiliarCollision_Plumy, wakaba.Enums.Familiars.PLUMY)

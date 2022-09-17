@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_CONCENTRATION = Isaac.GetItemIdByName("Concentration")
 wakaba.concentrationmodes = {
 	NORMAL = 1,
 	LOW_HEALTH = 2,
@@ -17,7 +16,7 @@ function wakaba:hasConcentration(player)
 	end
 	if player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_CONCENTRATION) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION) then
 		return true
 	else
 		return false

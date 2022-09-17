@@ -14,23 +14,23 @@ function wakaba:CanRevive(player)
   local data = player:GetData()
   if player:GetData().wakaba.vintagethreat then return false end
   if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
-    return {ID = wakaba.COLLECTIBLE_LUNAR_STONE, PostRevival = function() wakaba:AfterRevival_LunarStone(player) end}
-  elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK) then
-    return {ID = wakaba.COLLECTIBLE_QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
-  elseif wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER) then
-    return {ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_SEE_DES_BISCHOFS) then
-    return {ID = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_JAR_OF_CLOVER) then
-    return {ID = wakaba.COLLECTIBLE_JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
-  --[[ elseif player:HasCollectible(wakaba.COLLECTIBLE_CARAMELLA_PANCAKE) then
-    return {ID = wakaba.COLLECTIBLE_CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end} ]]
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) then
-    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
-    return {ID = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
-  elseif player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
-    return {ID = wakaba.COLLECTIBLE_VINTAGE_THREAT, PostRevival = function() wakaba:AfterRevival_VintageThreat(player) end, CurrentRoom = true}
+    return {ID = wakaba.Enums.Collectibles.LUNAR_STONE, PostRevival = function() wakaba:AfterRevival_LunarStone(player) end}
+  elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.QUESTION_BLOCK) then
+    return {ID = wakaba.Enums.Collectibles.QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
+  elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
+    return {ID = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS) then
+    return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
+    return {ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
+  --[[ elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
+    return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end} ]]
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
+    return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
+    return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
+    return {ID = wakaba.Enums.Collectibles.VINTAGE_THREAT, PostRevival = function() wakaba:AfterRevival_VintageThreat(player) end, CurrentRoom = true}
   end
   return false
 end
@@ -171,10 +171,10 @@ function wakaba:PlayerUpdate_Revival(player)
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()
 		end
-    if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+    if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then
       wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
     end
-    if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+    if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
       Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(player), Vector.Zero, nil)
     end
   end
@@ -325,26 +325,26 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
       end
       return false
-    elseif player:HasTrinket(wakaba.TRINKET_DETERMINATION_RIBBON) and not wakaba:IsSacrificeRoomSpikes(flag) then
+    elseif player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and not wakaba:IsSacrificeRoomSpikes(flag) then
       --print("TookDamage - TRINKET_DETERMINATION_RIBBON")
       data.wakaba.damageflag = DamageFlag.DAMAGE_NOKILL
       player:TakeDamage(1, flag | data.wakaba.damageflag, source, countdown)
       if wakaba:isMausoleumDoor(flag) then
         wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-      elseif player:GetTrinketMultiplier(wakaba.TRINKET_DETERMINATION_RIBBON) < 5 then
-        local chance = player:GetTrinketRNG(wakaba.TRINKET_DETERMINATION_RIBBON):RandomInt(1000000)
+      elseif player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) < 5 then
+        local chance = player:GetTrinketRNG(wakaba.Enums.Trinkets.DETERMINATION_RIBBON):RandomInt(1000000)
         local threshold = 20000
         if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
           threshold = threshold / 4
         end
-        if player:GetTrinketMultiplier(wakaba.TRINKET_DETERMINATION_RIBBON) > 0 then
-          threshold = threshold / player:GetTrinketMultiplier(wakaba.TRINKET_DETERMINATION_RIBBON)
+        if player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) > 0 then
+          threshold = threshold / player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON)
         end
         --print(chance, threshold)
         if chance < threshold then
           --player:DropTrinket(player.Position, false)
-          player:TryRemoveTrinket(wakaba.TRINKET_DETERMINATION_RIBBON)
-          Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.TRINKET_DETERMINATION_RIBBON, Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
+          player:TryRemoveTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON)
+          Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.DETERMINATION_RIBBON, Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
           player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
         end
         return false
@@ -399,7 +399,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectPlanC, Collectible
 if DetailedRespawnGlobalAPI then
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Lunar Stone",
-    itemId = wakaba.COLLECTIBLE_LUNAR_STONE,
+    itemId = wakaba.Enums.Collectibles.LUNAR_STONE,
     condition = function(self, player)
       return wakaba:hasLunarStone(player)
     end,
@@ -407,51 +407,51 @@ if DetailedRespawnGlobalAPI then
   }, DetailedRespawnGlobalAPI.RespawnPosition.Last)
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Question Block Wisp",
-    itemId = wakaba.COLLECTIBLE_QUESTION_BLOCK,
+    itemId = wakaba.Enums.Collectibles.QUESTION_BLOCK,
     condition = function(_, player)
-      return wakaba:HasWisp(player, wakaba.COLLECTIBLE_QUESTION_BLOCK)
+      return wakaba:HasWisp(player, wakaba.Enums.Collectibles.QUESTION_BLOCK)
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Lunar Stone"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Grimreaper Defender Wisp",
-    itemId = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER,
+    itemId = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
     condition = function(_, player)
-      return wakaba:HasWisp(player, wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER)
+      return wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Question Block Wisp"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Book of the God",
-    itemId = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD,
+    itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,
     condition = function(_, player)
-      return player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_GOD) and not player:GetData().wakaba.shioriangel
+      return player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) and not player:GetData().wakaba.shioriangel
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "See Des Bischofs",
-    itemId = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS,
+    itemId = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
     condition = function(_, player)
-      return player:HasCollectible(wakaba.COLLECTIBLE_SEE_DES_BISCHOFS)
+      return player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS)
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the God"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Jar of Clover",
-    itemId = wakaba.COLLECTIBLE_JAR_OF_CLOVER,
+    itemId = wakaba.Enums.Collectibles.JAR_OF_CLOVER,
     condition = function(_, player)
-      return player:HasCollectible(wakaba.COLLECTIBLE_JAR_OF_CLOVER)
+      return player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("See Des Bischofs"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Book of the Fallen",
-    itemId = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN,
+    itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,
     condition = function(_, player)
-      return player:HasCollectible(wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil
+      return player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Jar of Clover"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Vintage Threat",
-    itemId = wakaba.COLLECTIBLE_VINTAGE_THREAT,
+    itemId = wakaba.Enums.Collectibles.VINTAGE_THREAT,
     condition = function(_, player)
-      return player:HasCollectible(wakaba.COLLECTIBLE_VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat
+      return player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the Fallen"))
 end

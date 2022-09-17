@@ -1,16 +1,15 @@
-wakaba.COLLECTIBLE_REVENGE_FRUIT = Isaac.GetItemIdByName("Revenge Fruit")
 local revenge = wakaba.state.revengecount 
 
 function wakaba:TearInit_RevengeFruit(tear)
 	if tear
 	and tear.SpawnerEntity
 	and tear.SpawnerEntity:ToPlayer()
-	and tear.SpawnerEntity:ToPlayer():HasCollectible(wakaba.COLLECTIBLE_REVENGE_FRUIT) 
+	and tear.SpawnerEntity:ToPlayer():HasCollectible(wakaba.Enums.Collectibles.REVENGE_FRUIT) 
 	then
 		local player = tear.SpawnerEntity:ToPlayer()
-		local luck = (player.Luck) * player:GetCollectibleNum(wakaba.COLLECTIBLE_REVENGE_FRUIT, false)
+		local luck = (player.Luck) * player:GetCollectibleNum(wakaba.Enums.Collectibles.REVENGE_FRUIT, false)
 		local negativeLuck = luck
-		local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_REVENGE_FRUIT)
+		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.REVENGE_FRUIT)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.revengecount = player:GetData().wakaba.revengecount or 7
 		if luck < 0 then
@@ -51,7 +50,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RevengeFr
 
 function wakaba:RevengeFruitTakeDmg(entity, amount, flag, source, countdownFrames)
 	if entity.Type == EntityType.ENTITY_PLAYER
-	and entity:ToPlayer():HasCollectible(wakaba.COLLECTIBLE_REVENGE_FRUIT)
+	and entity:ToPlayer():HasCollectible(wakaba.Enums.Collectibles.REVENGE_FRUIT)
 	then
 		local player = entity:ToPlayer()
 		wakaba:GetPlayerEntityData(player)
@@ -73,7 +72,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.RevengeFruitPostLevel)
 
 function wakaba:cacheUpdate31(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_REVENGE_FRUIT) and not player:HasWeaponType(WeaponType.WEAPON_TEARS) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.REVENGE_FRUIT) and not player:HasWeaponType(WeaponType.WEAPON_TEARS) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * 1.5
 		end

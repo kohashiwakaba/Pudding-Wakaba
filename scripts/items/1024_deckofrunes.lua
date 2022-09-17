@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_DECK_OF_RUNES = Isaac.GetItemIdByName("Shiori's Bottle of Runes")
-
 function wakaba:ItemUse_DeckOfRunes(_, rng, player, useFlags, activeSlot, varData)
 	local judaschance = rng:RandomFloat() * 10000
 	if judaschance >= 5000 and wakaba:HasJudasBr(player) then
@@ -11,7 +9,7 @@ function wakaba:ItemUse_DeckOfRunes(_, rng, player, useFlags, activeSlot, varDat
 		player:UseCard(Card.RUNE_BLACK, UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD)
 	end
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_DECK_OF_RUNES, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.DECK_OF_RUNES, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_DeckOfRunes, wakaba.COLLECTIBLE_DECK_OF_RUNES)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_DeckOfRunes, wakaba.Enums.Collectibles.DECK_OF_RUNES)

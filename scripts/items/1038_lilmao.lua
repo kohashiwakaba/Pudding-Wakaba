@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_LIL_MAO = Isaac.GetItemIdByName("Lil Mao")
 wakaba.SUBTYPE_LIL_MAO = 93
 
 function wakaba:InitMaoLaser(player, familiar, multiplier)
@@ -90,20 +89,20 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_LilMao)
 
 function wakaba:onCacheLilMao(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_LIL_MAO) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.LIL_MAO) then
 		if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-			player.MoveSpeed = player.MoveSpeed + (0.15 * player:GetCollectibleNum(wakaba.COLLECTIBLE_LIL_MAO))
+			player.MoveSpeed = player.MoveSpeed + (0.15 * player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_MAO))
 		end
 	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_LIL_MAO)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_LIL_MAO)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_MAO)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_MAO)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_LIL_MAO) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_MAO) + efcount
 		end
-		player:CheckFamiliar(FamiliarVariant.CUBE_BABY, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_LIL_MAO), Isaac.GetItemConfig():GetCollectible(wakaba.COLLECTIBLE_LIL_MAO), wakaba.SUBTYPE_LIL_MAO)
+		player:CheckFamiliar(FamiliarVariant.CUBE_BABY, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_MAO), Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.LIL_MAO), wakaba.SUBTYPE_LIL_MAO)
 	end
 end
 

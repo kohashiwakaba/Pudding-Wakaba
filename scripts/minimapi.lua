@@ -1,6 +1,6 @@
 
 wakaba.pickupAnimFrames = {
-	[wakaba.PICKUP_CLOVER_CHEST] = 0,
+	[wakaba.Enums.Pickups.CLOVER_CHEST] = 0,
 }
 wakaba.curseAnimFrames = {
 	[wakaba.curses.CURSE_OF_FLAMES] = 0,
@@ -33,14 +33,14 @@ if MinimapAPI then
 		"CloverChestIcon", 
 		wakaba.MiniMapAPISprite, 
 		"Pickups", 
-		wakaba.pickupAnimFrames[wakaba.PICKUP_CLOVER_CHEST]
+		wakaba.pickupAnimFrames[wakaba.Enums.Pickups.CLOVER_CHEST]
 	)
 
 	MinimapAPI:AddPickup(
 		"CloverChest", 
 		"CloverChestIcon", 
 		5, 
-		wakaba.PICKUP_CLOVER_CHEST, 
+		wakaba.Enums.Pickups.CLOVER_CHEST, 
 		wakaba.ChestSubType.CLOSED, 
 		MinimapAPI.PickupChestNotCollected, 
 		"chests", 

@@ -1,5 +1,3 @@
-wakaba.TRINKET_RING_OF_JUPITER = Isaac.GetTrinketIdByName("Ring of Jupiter")
-
 local jupiterstats = {
 	damage = 0,
 	speed = 0,
@@ -13,13 +11,13 @@ function wakaba:Update_RingofJupiter()
 	currjupiterstats = wakaba:deepcopy(jupiterstats)
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasTrinket(wakaba.TRINKET_RING_OF_JUPITER) then
+		if player:HasTrinket(wakaba.Enums.Trinkets.RING_OF_JUPITER) then
 			--print("Adding Player",i,"stats...")
-			currjupiterstats.damage = currjupiterstats.damage + ((player.Damage * 0.16) * player:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER))
-			currjupiterstats.speed = currjupiterstats.speed + ((player.MoveSpeed * 0.1) * player:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER))
-			currjupiterstats.tears = currjupiterstats.tears + ((30 / (player.MaxFireDelay + 1)) * 0.2 * player:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER))
-			currjupiterstats.shotspeed = currjupiterstats.shotspeed + ((player.ShotSpeed * 0.05) * player:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER))
-			currjupiterstats.luck = currjupiterstats.luck + (1 * player:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER))
+			currjupiterstats.damage = currjupiterstats.damage + ((player.Damage * 0.16) * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER))
+			currjupiterstats.speed = currjupiterstats.speed + ((player.MoveSpeed * 0.1) * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER))
+			currjupiterstats.tears = currjupiterstats.tears + ((30 / (player.MaxFireDelay + 1)) * 0.2 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER))
+			currjupiterstats.shotspeed = currjupiterstats.shotspeed + ((player.ShotSpeed * 0.05) * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER))
+			currjupiterstats.luck = currjupiterstats.luck + (1 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER))
 		end
 	end
 end
@@ -29,8 +27,8 @@ function wakaba:Cache_RingofJupiter(player, cacheFlag)
 	local jupiter = 0 
 	for i = 1, Game():GetNumPlayers() do
 		local p = Isaac.GetPlayer(i - 1)
-		if p:HasTrinket(wakaba.TRINKET_RING_OF_JUPITER) then
-			jupiter = jupiter + p:GetTrinketMultiplier(wakaba.TRINKET_RING_OF_JUPITER)
+		if p:HasTrinket(wakaba.Enums.Trinkets.RING_OF_JUPITER) then
+			jupiter = jupiter + p:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER)
 		end
 	end
 	if jupiter > 0 then

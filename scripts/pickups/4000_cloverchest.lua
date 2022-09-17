@@ -1,11 +1,8 @@
 
-wakaba.PICKUP_CLOVER_CHEST = Isaac.GetEntityVariantByName("Clover Chest")
 wakaba.ChestSubType = {
   CLOSED = 1,
   OPEN = 0
 }
-
-
 
 
 function wakaba:manageCloverChests()
@@ -18,7 +15,7 @@ function wakaba:manageCloverChests()
       break
     end
   end
-  local entities = Isaac.FindByType(5, wakaba.PICKUP_CLOVER_CHEST, -1)
+  local entities = Isaac.FindByType(5, wakaba.Enums.Pickups.CLOVER_CHEST, -1)
   for i, entity in ipairs(entities) do
     if entity.SubType == wakaba.ChestSubType.OPEN then
       entity:Remove()
@@ -53,7 +50,7 @@ function wakaba:ReplaceChests(pickup)
   and stage ~= LevelStage.STAGE6 
   and wakaba.ItemRNG:RandomFloat() < 0.05 
   and Game():GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
-    pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.PICKUP_CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
+    pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceChests, PickupVariant.PICKUP_CHEST)
@@ -68,7 +65,7 @@ function wakaba:ReplaceCloverChests(pickup)
     end
   end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceCloverChests, wakaba.PICKUP_CLOVER_CHEST)
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceCloverChests, wakaba.Enums.Pickups.CLOVER_CHEST)
 
 function wakaba:UpdateChests(pickup)
   if pickup:GetSprite():IsEventTriggered("DropSound") then
@@ -100,7 +97,7 @@ function wakaba:spawnCloverChestReward(chest)
     item:GetSprite():LoadGraphics()
     table.insert(wakaba.state.cloverchestpedestals, item.InitSeed)
     item.Wait = 10
-    --local new = chest:Morph(EntityType.ENTITY_PICKUP, wakaba.PICKUP_CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+    --local new = chest:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
     --new.Visible = false
     --new.EntityCollisionClass = 0
     chest:Remove()
@@ -115,7 +112,7 @@ function wakaba:spawnCloverChestReward(chest)
     item:GetSprite():LoadGraphics()
     table.insert(wakaba.state.cloverchestpedestals, item.InitSeed)
     item.Wait = 10
-    --local new = chest:Morph(EntityType.ENTITY_PICKUP, wakaba.PICKUP_CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+    --local new = chest:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
     --new.Visible = false
     --new.EntityCollisionClass = 0
     chest:Remove()
@@ -151,7 +148,7 @@ function wakaba:openCloverChest(player, pickup)
   if player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KEY) then
     numRewards = numRewards * 2
   end
-  if player:HasTrinket(wakaba.TRINKET_CLOVER) then
+  if player:HasTrinket(wakaba.Enums.Trinkets.CLOVER) then
     numRewards = numRewards * 2
   end
   if player:HasTrinket(TrinketType.TRINKET_POKER_CHIP) then
@@ -180,7 +177,7 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
       end
       pickup.Touched = true
     
-      pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.PICKUP_CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+      pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
       SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
       SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
       wakaba:openCloverChest(player, pickup)
@@ -188,16 +185,16 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
   end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_CloverChest, wakaba.PICKUP_CLOVER_CHEST)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_CloverChest, wakaba.Enums.Pickups.CLOVER_CHEST)
 
 function wakaba:TearUpdate_CloverChest(tear)
 	local ents = Isaac.FindInRadius(tear.Position, 12)
 	for i, entity in ipairs(ents) do
-    if entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == wakaba.PICKUP_CLOVER_CHEST and entity.SubType == wakaba.ChestSubType.CLOSED then
+    if entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == wakaba.Enums.Pickups.CLOVER_CHEST and entity.SubType == wakaba.ChestSubType.CLOSED then
       entity = entity:ToPickup()
       entity.Touched = true
     
-      entity:Morph(EntityType.ENTITY_PICKUP, wakaba.PICKUP_CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+      entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
       SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
       SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
   

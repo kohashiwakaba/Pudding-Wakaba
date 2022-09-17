@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_PHANTOM_CLOAK = Isaac.GetItemIdByName("Phantom Cloak")
-
 local function TryOpenChallengeDoor()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 		local doorR = Game():GetRoom():GetDoor(i)
@@ -65,7 +63,7 @@ function wakaba:PlayerUpdate_PhantomCloak(player)
 				end
 			elseif pData.wakaba.phantomcloak.timer and pData.wakaba.phantomcloak.timer >= 12000 then
 				pData.wakaba.phantomcloak.timer = nil
-				SFXManager():Play(wakaba.SFX_AEION_CHARGE)
+				SFXManager():Play(wakaba.Enums.SoundEffects.AEION_CHARGE)
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 			end
 		end
@@ -133,7 +131,7 @@ function wakaba:ItemUse_PhantomCloak(_, rng, player, useFlags, activeSlot, varDa
 		player:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
 		TryOpenChallengeDoor()
 		--[[ if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_PHANTOM_CLOAK, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.PHANTOM_CLOAK, "UseItem", "PlayerPickup")
 		end ]]
 		if wakaba:HasJudasBr(player) then
 			SFXManager():Play(SoundEffect.SOUND_DEVIL_CARD)
@@ -153,7 +151,7 @@ function wakaba:ItemUse_PhantomCloak(_, rng, player, useFlags, activeSlot, varDa
 	
 end
 
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PhantomCloak, wakaba.COLLECTIBLE_PHANTOM_CLOAK)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PhantomCloak, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
 
 
 function wakaba:Cache_PhantomCloak(player, cacheFlag)

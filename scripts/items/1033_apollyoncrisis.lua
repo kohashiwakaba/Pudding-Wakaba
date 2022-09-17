@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_APOLLYON_CRISIS = Isaac.GetItemIdByName("Apollyon Crisis")
 wakaba.BetterVoiding = {}
 
 local BetterVoiding_ApollyonCrisis = nil
@@ -12,7 +11,7 @@ function wakaba:tryAddBetterVoiding()
 		local preVoidingColor = Color(0.11,0.11,0.11,0.9,0,0,0)
 		flagsV = BetterVoiding.VoidingFlags.V_NEAREST_PAYABLE_PICKUP | BetterVoiding.VoidingFlags.V_ALL_FREE_PICKUPS
 		flagsPC = BetterVoiding.PickupCategoryFlags.PC_PRICE_FREE | BetterVoiding.PickupCategoryFlags.PC_PRICE_HEARTS | BetterVoiding.PickupCategoryFlags.PC_PRICE_COINS | BetterVoiding.PickupCategoryFlags.PC_PRICE_SPIKES | BetterVoiding.PickupCategoryFlags.PC_TYPE_COLLECTIBLE
-		BetterVoiding_ApollyonCrisis = BetterVoiding.betterVoidingItemConstructor(BVIType, wakaba.COLLECTIBLE_APOLLYON_CRISIS, true, flagsV, flagsPC, preVoidingColor)
+		BetterVoiding_ApollyonCrisis = BetterVoiding.betterVoidingItemConstructor(BVIType, wakaba.Enums.Collectibles.APOLLYON_CRISIS, true, flagsV, flagsPC, preVoidingColor)
 		if BetterVoiding_ApollyonCrisis then
 			--print("Better Voiding link for Apollyon Crisis")
 			wakaba.BetterVoiding.ApollyonCrisis = BetterVoiding_ApollyonCrisis
@@ -46,7 +45,7 @@ function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, var
 		local pedestals = BetterVoiding.betterVoiding(BetterVoiding_ApollyonCrisis, player)
 		for p, dist in pairs(pedestals) do
 			--Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.SubType, player.Position, Vector.Zero, player):ToFamiliar()
-			if (p.SubType == CollectibleType.COLLECTIBLE_VOID or p.SubType == CollectibleType.COLLECTIBLE_ABYSS or p.SubType == wakaba.COLLECTIBLE_APOLLYON_CRISIS) then
+			if (p.SubType == CollectibleType.COLLECTIBLE_VOID or p.SubType == CollectibleType.COLLECTIBLE_ABYSS or p.SubType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
 			end
 		end
@@ -68,7 +67,7 @@ function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, var
 		else
 			for i, p in ipairs(pedestals) do
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.CollectibleType, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
-				if (p.CollectibleType == CollectibleType.COLLECTIBLE_VOID or p.CollectibleType == CollectibleType.COLLECTIBLE_ABYSS or p.CollectibleType == wakaba.COLLECTIBLE_APOLLYON_CRISIS) then
+				if (p.CollectibleType == CollectibleType.COLLECTIBLE_VOID or p.CollectibleType == CollectibleType.COLLECTIBLE_ABYSS or p.CollectibleType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
 					p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
 				end
 			end
@@ -77,10 +76,10 @@ function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, var
 	end
 	
 	if not (pedestals and useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_APOLLYON_CRISIS, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.APOLLYON_CRISIS, "UseItem", "PlayerPickup")
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_ApollyonCrisis, wakaba.COLLECTIBLE_APOLLYON_CRISIS)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_ApollyonCrisis, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
 
 wakaba.BetterVoiding.ApollyonCrisis = BetterVoiding_ApollyonCrisis

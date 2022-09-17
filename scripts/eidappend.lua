@@ -11,20 +11,20 @@ if EID then
 		wakaba.CardSprite = Sprite()
 		wakaba.CardSprite:Load("gfx/eid_cardfronts.anm2", true)
 		wakaba.CardSpriteFrames = {
-			[wakaba.CARD_CRANE_CARD] = 2,
-			[wakaba.CARD_CONFESSIONAL_CARD] = 3,
-			[wakaba.CARD_BLACK_JOKER] = 4,
-			[wakaba.CARD_WHITE_JOKER] = 5,
-			[wakaba.CARD_COLOR_JOKER] = 6,
-			[wakaba.CARD_DREAM_CARD] = 8,
-			[wakaba.CARD_UNKNOWN_BOOKMARK] = 9,
-			[wakaba.CARD_QUEEN_OF_SPADES] = 11,
-			[wakaba.SOUL_WAKABA] = 7,
-			[wakaba.SOUL_WAKABA2] = 12,
-			[wakaba.SOUL_SHIORI] = 10,
-			--[wakaba.SOUL_TSUKASA] = 13,
-			[wakaba.CARD_RETURN_TOKEN] = 14,
-			[wakaba.CARD_MINERVA_TICKET] = 15,
+			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 2,
+			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 3,
+			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 4,
+			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 5,
+			[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 6,
+			[wakaba.Enums.Cards.CARD_DREAM_CARD] = 8,
+			[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 9,
+			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 11,
+			[wakaba.Enums.Cards.SOUL_WAKABA] = 7,
+			[wakaba.Enums.Cards.SOUL_WAKABA2] = 12,
+			[wakaba.Enums.Cards.SOUL_SHIORI] = 10,
+			--[wakaba.Enums.Cards.SOUL_TSUKASA] = 13,
+			[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 14,
+			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 15,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)
@@ -39,33 +39,33 @@ if EID then
 --[[ 
 		wakaba.EIDBlankCardCooldowns = {
 			-- Blank Card
-			[wakaba.CARD_CRANE_CARD] = 5,
-			[wakaba.CARD_CONFESSIONAL_CARD] = 4,
-			[wakaba.CARD_BLACK_JOKER] = 2,
-			[wakaba.CARD_WHITE_JOKER] = 2,
-			[wakaba.CARD_COLOR_JOKER] = 6,
-			[wakaba.CARD_DREAM_CARD] = 8,
-			[wakaba.CARD_UNKNOWN_BOOKMARK] = 1,
-			[wakaba.CARD_QUEEN_OF_SPADES] = 8,
+			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 5,
+			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 4,
+			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 2,
+			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 2,
+			[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 6,
+			[wakaba.Enums.Cards.CARD_DREAM_CARD] = 8,
+			[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
+			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 8,
 		}
 		wakaba.EIDClearRuneCooldowns = {
 			-- Clear Rune
-			[wakaba.SOUL_WAKABA] = 8,
-			[wakaba.SOUL_WAKABA2] = 8,
-			[wakaba.SOUL_SHIORI] = 6,
+			[wakaba.Enums.Cards.SOUL_WAKABA] = 8,
+			[wakaba.Enums.Cards.SOUL_WAKABA2] = 8,
+			[wakaba.Enums.Cards.SOUL_SHIORI] = 6,
 		}
 		wakaba.EIDPlaceboCooldowns = {
 			-- Placebo
-			[wakaba.PILL_DAMAGE_MULTIPLIER_UP] = 12,
-			[wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = 4,
-			[wakaba.PILL_ALL_STATS_UP] = 12,
-			[wakaba.PILL_ALL_STATS_DOWN] = 4,
-			[wakaba.PILL_TROLLED] = 2,
-			[wakaba.PILL_TO_THE_START] = 2,
-			[wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = 2,
-			[wakaba.PILL_SOCIAL_DISTANCE] = 1,
-			[wakaba.PILL_FLAME_PRINCESS] = 12,
-			[wakaba.PILL_FIREY_TOUCH] = 6,
+			[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = 12,
+			[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = 4,
+			[wakaba.Enums.Pills.ALL_STATS_UP] = 12,
+			[wakaba.Enums.Pills.ALL_STATS_DOWN] = 4,
+			[wakaba.Enums.Pills.TROLLED] = 2,
+			[wakaba.Enums.Pills.TO_THE_START] = 2,
+			[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = 2,
+			[wakaba.Enums.Pills.SOCIAL_DISTANCE] = 1,
+			[wakaba.Enums.Pills.FLAME_PRINCESS] = 12,
+			[wakaba.Enums.Pills.FIREY_TOUCH] = 6,
 		} ]]
 
 		function wakaba:getWakabaDesc(entries, id)
@@ -80,9 +80,9 @@ if EID then
 			end
 		end
 
-    table.insert(EID.TextReplacementPairs, {"{{WakabaBless}}","{{Collectible" .. wakaba.COLLECTIBLE_WAKABAS_BLESSING .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{WakabaNemesis}}","{{Collectible" .. wakaba.COLLECTIBLE_WAKABAS_NEMESIS .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{Shiori}}","{{Collectible" .. wakaba.COLLECTIBLE_BOOK_OF_SHIORI .. "}}"})
+    table.insert(EID.TextReplacementPairs, {"{{WakabaBless}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}}"})
+    table.insert(EID.TextReplacementPairs, {"{{WakabaNemesis}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}}"})
+    table.insert(EID.TextReplacementPairs, {"{{Shiori}}","{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}}"})
     table.insert(EID.TextReplacementPairs, {"{{Judasbr}}","{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}}"})
     table.insert(EID.TextReplacementPairs, {"{{WakabaBlankCard}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
     table.insert(EID.TextReplacementPairs, {"{{WakabaPlacebo}}","{{Collectible" .. CollectibleType.COLLECTIBLE_PLACEBO .. "}}"})
@@ -194,7 +194,7 @@ if EID then
 	  	local wakabaBuff = wakaba:getWakabaDesc("bless", descObj.ObjSubType)
 	  	if wakabaBuff then
         local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.COLLECTIBLE_WAKABAS_BLESSING .. "}} {{ColorWakabaBless}}"
+	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} {{ColorWakabaBless}}"
 	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 	  	end
 	  	return descObj
@@ -218,7 +218,7 @@ if EID then
 	  	local wakabaBuff = wakaba:getWakabaDesc("nemesis", descObj.ObjSubType)
 	  	if wakabaBuff then
         local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.COLLECTIBLE_WAKABAS_NEMESIS .. "}} {{ColorWakabaNemesis}}"
+	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}} {{ColorWakabaNemesis}}"
 	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 	  	end
 	  	return descObj
@@ -290,7 +290,7 @@ if EID then
 	  	local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
 	  	if wakabaBuff then
         local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.COLLECTIBLE_BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
+	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
 	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 	  	end
 	  	return descObj
@@ -447,9 +447,9 @@ if EID then
 		end
 
 		local collectiblesCheck = {
-			wakaba.COLLECTIBLE_WAKABAS_BLESSING,
-			wakaba.COLLECTIBLE_WAKABAS_NEMESIS,
-			wakaba.COLLECTIBLE_BOOK_OF_SHIORI,
+			wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+			wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
+			wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
 			CollectibleType.COLLECTIBLE_BINGE_EATER, 
 			CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES,
 			CollectibleType.COLLECTIBLE_TAROT_CLOTH, 
@@ -518,9 +518,9 @@ if EID then
 
 				if collectiblesOwned[664] then table.insert(callbacks, BingeeaterCallback) end
 
-				if collectiblesOwned[wakaba.COLLECTIBLE_WAKABAS_BLESSING] then table.insert(callbacks, BlessingCallback) end
-				if collectiblesOwned[wakaba.COLLECTIBLE_WAKABAS_NEMESIS] then table.insert(callbacks, NemesisCallback) end
-				if collectiblesOwned[wakaba.COLLECTIBLE_BOOK_OF_SHIORI] then table.insert(callbacks, ShioriBookCallback) end
+				if collectiblesOwned[wakaba.Enums.Collectibles.WAKABAS_BLESSING] then table.insert(callbacks, BlessingCallback) end
+				if collectiblesOwned[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] then table.insert(callbacks, NemesisCallback) end
+				if collectiblesOwned[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] then table.insert(callbacks, ShioriBookCallback) end
 
 
 				if collectiblesOwned[59] then table.insert(callbacks, JudasCallback) end
@@ -782,21 +782,21 @@ if EID then
 			str = str .. getmarkup(wakaba.state.unlock.sirenbadge) .. "{{Mother}}"
 			str = str .. getmarkup(wakaba.state.unlock.elixiroflife) .. "{{Beast}}"
 			str = str .. "#{{Trophy}} "
-			str = str .. getboolup(wakaba.state.unlock.eyeofclock) .. "{{Collectible"..wakaba.COLLECTIBLE_EYE_OF_CLOCK.."}}"
-			str = str .. getboolup(wakaba.state.unlock.plumy) .. "{{Collectible"..wakaba.COLLECTIBLE_PLUMY.."}}"
-			str = str .. getboolup(wakaba.state.unlock.delimiter) .. "{{Trinket"..wakaba.TRINKET_DELIMITER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.nekodoll) .. "{{Collectible"..wakaba.COLLECTIBLE_NEKO_FIGURE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.microdoppelganger) .. "{{Collectible"..wakaba.COLLECTIBLE_MICRO_DOPPELGANGER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.delirium) .. "{{Trinket"..wakaba.TRINKET_DIMENSION_CUTTER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.lilwakaba) .. "{{Collectible"..wakaba.COLLECTIBLE_LIL_WAKABA.."}}"
+			str = str .. getboolup(wakaba.state.unlock.eyeofclock) .. "{{Collectible"..wakaba.Enums.Collectibles.EYE_OF_CLOCK.."}}"
+			str = str .. getboolup(wakaba.state.unlock.plumy) .. "{{Collectible"..wakaba.Enums.Collectibles.PLUMY.."}}"
+			str = str .. getboolup(wakaba.state.unlock.delimiter) .. "{{Trinket"..wakaba.Enums.Trinkets.DELIMITER.."}}"
+			str = str .. getboolup(wakaba.state.unlock.nekodoll) .. "{{Collectible"..wakaba.Enums.Collectibles.NEKO_FIGURE.."}}"
+			str = str .. getboolup(wakaba.state.unlock.microdoppelganger) .. "{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}}"
+			str = str .. getboolup(wakaba.state.unlock.delirium) .. "{{Trinket"..wakaba.Enums.Trinkets.DIMENSION_CUTTER.."}}"
+			str = str .. getboolup(wakaba.state.unlock.lilwakaba) .. "{{Collectible"..wakaba.Enums.Collectibles.LIL_WAKABA.."}}"
 			str = str .. getboolup(wakaba.state.unlock.lostuniform) .. "{{Player31}}"
-			str = str .. getboolup(wakaba.state.unlock.executioner) .. "{{Collectible"..wakaba.COLLECTIBLE_EXECUTIONER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.apollyoncrisis) .. "{{Collectible"..wakaba.COLLECTIBLE_APOLLYON_CRISIS.."}}"
-			str = str .. getboolup(wakaba.state.unlock.deliverysystem) .. "{{Collectible"..wakaba.COLLECTIBLE_ISEKAI_DEFINITION.."}}"
-			str = str .. getboolup(wakaba.state.unlock.calculation) .. "{{Collectible"..wakaba.COLLECTIBLE_BALANCE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.lilmao) .. "{{Collectible"..wakaba.COLLECTIBLE_LIL_MAO.."}}"
-			str = str .. getboolup(wakaba.state.unlock.edensticky) .. "{{Collectible"..wakaba.COLLECTIBLE_EDEN_STICKY_NOTE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.doubledreams) .. "{{Collectible"..wakaba.COLLECTIBLE_DOUBLE_DREAMS.."}}"
+			str = str .. getboolup(wakaba.state.unlock.executioner) .. "{{Collectible"..wakaba.Enums.Collectibles.EXECUTIONER.."}}"
+			str = str .. getboolup(wakaba.state.unlock.apollyoncrisis) .. "{{Collectible"..wakaba.Enums.Collectibles.APOLLYON_CRISIS.."}}"
+			str = str .. getboolup(wakaba.state.unlock.deliverysystem) .. "{{Collectible"..wakaba.Enums.Collectibles.ISEKAI_DEFINITION.."}}"
+			str = str .. getboolup(wakaba.state.unlock.calculation) .. "{{Collectible"..wakaba.Enums.Collectibles.BALANCE.."}}"
+			str = str .. getboolup(wakaba.state.unlock.lilmao) .. "{{Collectible"..wakaba.Enums.Collectibles.LIL_MAO.."}}"
+			str = str .. getboolup(wakaba.state.unlock.edensticky) .. "{{Collectible"..wakaba.Enums.Collectibles.EDEN_STICKY_NOTE.."}}"
+			str = str .. getboolup(wakaba.state.unlock.doubledreams) .. "{{Collectible"..wakaba.Enums.Collectibles.DOUBLE_DREAMS.."}}"
 
 			return str
 		end

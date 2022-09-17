@@ -105,7 +105,7 @@ wakaba.bookofshiori = {
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = function(player, rng, useflag, slot, vardata)
 		local candidates = {}
 		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
-		local randInt = player:GetCollectibleRNG(wakaba.COLLECTIBLE_BOOK_OF_SHIORI):RandomInt(10000)
+		local randInt = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI):RandomInt(10000)
 		for i, e in ipairs(wisps) do
 			if e.SpawnerEntity.Index == player.Index then
 				haswisp = true
@@ -123,7 +123,7 @@ wakaba.bookofshiori = {
 		end
 
 		if #candidates > 0 and randInt < threshold then
-			local e = candidates[player:GetCollectibleRNG(wakaba.COLLECTIBLE_BOOK_OF_SHIORI):RandomInt(#candidates) + 1]
+			local e = candidates[player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI):RandomInt(#candidates) + 1]
 			local wisp = e.Entity
 			local item = wisp.SubType
 			wisp:Kill()
@@ -134,41 +134,41 @@ wakaba.bookofshiori = {
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN] = function(player, rng, useflag, slot, vardata)
+	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = function(player, rng, useflag, slot, vardata)
   	local dat = player:GetData().wakaba.shioribonecount
   	player:GetData().wakaba.shioribonecount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_BOOK_OF_FOCUS] = function(player, rng, useflag, slot, vardata)
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = function(player, rng, useflag, slot, vardata)
   	local dat = player:GetData().wakaba.shiorifocuscount
   	player:GetData().wakaba.shiorifocuscount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_BOOK_OF_FOCUS
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FOCUS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_DECK_OF_RUNES] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_DECK_OF_RUNES
+	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = function(player, rng, useflag, slot, vardata)
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.DECK_OF_RUNES
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_MICRO_DOPPELGANGER] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_MICRO_DOPPELGANGER
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = function(player, rng, useflag, slot, vardata)
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.MICRO_DOPPELGANGER
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_BOOK_OF_SILENCE] = function(player, rng, useflag, slot, vardata)
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = function(player, rng, useflag, slot, vardata)
   	local dat = player:GetData().wakaba.shiorisilencecount
   	player:GetData().wakaba.shiorisilencecount = (dat and dat + 60) or 60
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_BOOK_OF_SILENCE
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_SILENCE
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
-	[wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER] = function(player, rng, useflag, slot, vardata)
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = function(player, rng, useflag, slot, vardata)
   	local dat = player:GetData().wakaba.shiorigrimcount
   	player:GetData().wakaba.shiorigrimcount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER
+  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -206,7 +206,7 @@ wakaba.BookofShiori_D6Plus = function(player, rng, useflag, slot, vardata)
 	--print("Player", player:GetName(), "used D6 Plus")
 end
 
-wakaba:AddBookofShioriFunc(wakaba.COLLECTIBLE_D6_PLUS, wakaba.BookofShiori_D6Plus)
+wakaba:AddBookofShioriFunc(wakaba.Enums.Collectibles.D6_PLUS, wakaba.BookofShiori_D6Plus)
 
 function wakaba:GameStart_BookOfShiori(iscont)
 	--[[ if RepentancePlusMod then
@@ -308,11 +308,11 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 		if bible > 0 then player.Damage = player.Damage * (1.2 * (bible + 1)) end
 		if belial > 0 then player.Damage = player.Damage + (1.5 * (belial + 1)) end
 		if satan > 0 then player.Damage = player.Damage + (1.0 * (satan + 1)) end
-    if nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then player.Damage = player.Damage * 0.6 end
+    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.Damage = player.Damage * 0.6 end
   end
   if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
     if bible > 0 then player.ShotSpeed = player.ShotSpeed * 0.8 end
-    if nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then player.ShotSpeed = player.ShotSpeed * 3 end
+    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.ShotSpeed = player.ShotSpeed * 3 end
   end
   --[[ if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
     player.TearHeight = player.TearHeight - ShioriChar.TEARHEIGHT
@@ -329,7 +329,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
   end ]]
   if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
     --[[ player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ShioriChar.TEARS) ]]
-    if nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then
+    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
 			if player.MaxFireDelay < -0.33 then
 				player.MaxFireDelay = -0.99
 			elseif player.MaxFireDelay < 0 then
@@ -361,7 +361,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_GROW | TearFlags.TEAR_FEAR end
 		if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING end
-    if nextflag == wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN then 
+    if nextflag == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_BONE end
   end
   if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
@@ -369,7 +369,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
   end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local seven = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_7_SEALS)
-		if revel > 0 then player:CheckFamiliar(FamiliarVariant.LIL_HARBINGERS, (revel * 2) + seven, player:GetCollectibleRNG(wakaba.COLLECTIBLE_BOOK_OF_SHIORI)) end
+		if revel > 0 then player:CheckFamiliar(FamiliarVariant.LIL_HARBINGERS, (revel * 2) + seven, player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)) end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BookofShiori)
@@ -382,12 +382,12 @@ function wakaba:PlayerUpdate_BookofShiori(player)
 		if silence > 0 then
 			player:GetData().wakaba.shiorisilencecount = player:GetData().wakaba.shiorisilencecount - 1
 		end
-		if nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER and not isgrim then 
+		if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER and not isgrim then 
 			player:AddCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SWORD)
 			player:AddCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
 			player:GetData().wakaba.shiorigrimreaper = true
 		end
-		if isgrim and nextflag ~= wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then
+		if isgrim and nextflag ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_SPIRIT_SWORD)
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE)
 			player:GetData().wakaba.shiorigrimreaper = false
@@ -405,7 +405,7 @@ function wakaba:KnifeUpdate_BookofShiori(knife)
 	local nextflag = player:GetData().wakaba.nextshioriflag 
 	local isgrim = player:GetData().wakaba.shiorigrimreaper
 
-  if isgrim and nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then
+  if isgrim and nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
     sprite:ReplaceSpritesheet(0,"gfx/grimreapersword.png")
 		sprite:ReplaceSpritesheet(1,"gfx/grimreapersword.png")
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_BERSERK) then 
@@ -438,8 +438,8 @@ function wakaba:TearInit_BookofShiori(tear)
 				if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS then tear:ChangeVariant(TearVariant.LOST_CONTACT) end
 				if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then tear:ChangeVariant(TearVariant.SCHYTHE) end
 				if nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then tear:ChangeVariant(TearVariant.DARK_MATTER) end
-				if nextflag == wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN then tear:ChangeVariant(TearVariant.BONE) end
-				if nextflag == wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER then tear:ChangeVariant(TearVariant.SCHYTHE) end
+				if nextflag == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then tear:ChangeVariant(TearVariant.BONE) end
+				if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then tear:ChangeVariant(TearVariant.SCHYTHE) end
 			end
 		elseif tear.SpawnerType == EntityType.ENTITY_FAMILIAR then
 			
@@ -458,7 +458,7 @@ function wakaba:TearInit_BookofShiori(tear)
 					tear.CollisionDamage = tear:GetData().wakabaoriginitdmg * 3
 					--tear.CollisionDamage = tear.CollisionDamage * 4
 				end
-				if nextflag == wakaba.COLLECTIBLE_MICRO_DOPPELGANGER and familiar.Variant == FamiliarVariant.MINISAAC then
+				if nextflag == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER and familiar.Variant == FamiliarVariant.MINISAAC then
 					tear:AddTearFlags(player.TearFlags)
 				end
 				
@@ -495,7 +495,7 @@ function wakaba:TearUpdate_BookofShiori(tear)
 						tear.CollisionDamage = tear:GetData().wakabaorigdmg * 3
 						--tear.CollisionDamage = tear.CollisionDamage * 4
 					end
-					if nextflag == wakaba.COLLECTIBLE_MICRO_DOPPELGANGER and familiar.Variant == FamiliarVariant.MINISAAC then
+					if nextflag == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER and familiar.Variant == FamiliarVariant.MINISAAC then
 						tear:AddTearFlags(player.TearFlags)
 					end
 				end
@@ -514,7 +514,7 @@ function wakaba:ProjectileUpdate_BookofShiori(tear)
 		if player:GetData().wakaba then
 			local nextflag = player:GetData().wakaba.nextshioriflag 
 			local silence = player:GetData().wakaba.shiorisilencecount or 0
-			if nextflag == wakaba.COLLECTIBLE_BOOK_OF_SILENCE and silence > 0 then
+			if nextflag == wakaba.Enums.Collectibles.BOOK_OF_SILENCE and silence > 0 then
 				tear:Remove()
 			end
 		end
@@ -609,7 +609,7 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 					amount = amount * 2
 					ischanged = true
 				end
-				if nextflag == wakaba.COLLECTIBLE_DECK_OF_RUNES then
+				if nextflag == wakaba.Enums.Collectibles.DECK_OF_RUNES then
 					local random = wakaba.RNG:RandomFloat() * 100
 					if random <= (8 + (player.Luck * 0.6 )) then
 						flag = flag | DamageFlag.DAMAGE_SPAWN_RUNE
@@ -651,7 +651,7 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 			and entity.Variant == FamiliarVariant.MINISAAC then
 				return false
 			end
-			if nextflag == wakaba.COLLECTIBLE_MICRO_DOPPELGANGER 
+			if nextflag == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER 
 			and entity.Variant == FamiliarVariant.MINISAAC then
 				flag = flag | DamageFlag.DAMAGE_CLONES
 				entity:TakeDamage(0.008, flag, source, countdownFrames)
@@ -668,7 +668,7 @@ function wakaba:updateDopp(familiar)
 	if not player:GetData().wakaba then return end 
 	local nextflag = player:GetData().wakaba.nextshioriflag 
 	if Game().Challenge == wakaba.challenges.CHALLENGE_DOPP
-	or nextflag == wakaba.COLLECTIBLE_MICRO_DOPPELGANGER then
+	or nextflag == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
 		familiar:PickEnemyTarget(230, 13, 1, Vector.Zero, 180)
 	end
 end

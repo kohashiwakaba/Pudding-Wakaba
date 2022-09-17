@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_TRAUMA = Isaac.GetItemIdByName("Book of Trauma")
-
-
 function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varData)
 	local entities = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	for _, e in ipairs(entities) do
@@ -9,8 +6,8 @@ function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varDa
 	end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_TRAUMA, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTrauma, wakaba.COLLECTIBLE_BOOK_OF_TRAUMA)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTrauma, wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
 

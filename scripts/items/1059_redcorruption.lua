@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_RED_CORRUPTION = Isaac.GetItemIdByName("Red Corruption")
-
-
 function wakaba:UpdateRoomDisplayFlags(initroomdesc)
 	local level = Game():GetLevel()
 	local roomdesc = level:GetRoomByIdx(initroomdesc.GridIndex)
@@ -32,7 +29,7 @@ function wakaba:NewLevel_RedCorruption()
 	local hasCorruption = false
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_RED_CORRUPTION) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) then
 			hasCorruption = true
 		end
 		if hasCorruption and not game:IsGreedMode() then
@@ -103,4 +100,4 @@ function wakaba:PostGetCollectible_RedCorruption(player, item)
 		level:ApplyBlueMapEffect()
 	end
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_RedCorruption, wakaba.COLLECTIBLE_RED_CORRUPTION)
+wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_RedCorruption, wakaba.Enums.Collectibles.RED_CORRUPTION)

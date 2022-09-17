@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY = Isaac.GetItemIdByName("Maijima Mythology")
-
 local eidmatchlang = {
 	["en"] = "en_us",
 	["es"] = "spa",
@@ -39,8 +37,8 @@ function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
 		wakaba:GetPlayerEntityData(player)
 		local subrandom = wakaba.RNG:RandomInt(#books) + 1
 		local selected = books[subrandom]
-		if selected == wakaba.COLLECTIBLE_DOUBLE_DREAMS then
-			player:UseCard(wakaba.CARD_DREAM_CARD, 0 | UseFlag.USE_NOHUD)
+		if selected == wakaba.Enums.Collectibles.DOUBLE_DREAMS then
+			player:UseCard(wakaba.Enums.Cards.CARD_DREAM_CARD, 0 | UseFlag.USE_NOHUD)
 		else
 			player:UseActiveItem(selected, UseFlag.USE_VOID, -1)
 		end
@@ -58,9 +56,9 @@ function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
 		table.insert(player:GetData().wakaba.pendingmaijima, bookstring)
 		EID.Config.Language = tempeidlang
 		if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, "UseItem", "PlayerPickup")
 		end
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Maijima, wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Maijima, wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY)

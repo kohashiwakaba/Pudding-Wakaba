@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_RETURN_POSTAGE = Isaac.GetItemIdByName("Return Postage")
 local haspostage = 0
 
 
@@ -8,8 +7,8 @@ function wakaba:PostageUpdate()
 	
 	for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_RETURN_POSTAGE, false) then
-			haspostage = haspostage + player:GetCollectibleNum(wakaba.COLLECTIBLE_RETURN_POSTAGE)
+		if player:HasCollectible(wakaba.Enums.Collectibles.RETURN_POSTAGE, false) then
+			haspostage = haspostage + player:GetCollectibleNum(wakaba.Enums.Collectibles.RETURN_POSTAGE)
 		end
 	end
 	if haspostage > 0 then

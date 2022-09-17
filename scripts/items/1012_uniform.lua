@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_UNIFORM = Isaac.GetItemIdByName("Wakaba's Uniform")
 local usinguniform = false
 local displayuniformslot = false
 --wakaba.f:DrawString("droid",60,50,KColor(1,1,1,1,0,0,0),0,true) -- render string with loaded font on position 60x50y
@@ -40,7 +39,7 @@ function wakaba:render32()
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
-			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.COLLECTIBLE_UNIFORM then
+			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM then
 				--print("Drop Button pressed.") 
 				local index = player:GetData().wakaba.uniform.cursor
 				if index == nil then
@@ -60,7 +59,7 @@ function wakaba:render32()
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		--if Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
-		if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM, true)
+		if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM, true)
 		and Game():GetHUD():IsVisible()
 		then
 			local alpha = wakaba.state.currentalpha / 100
@@ -114,7 +113,7 @@ function wakaba:render32()
 			if EID then
 				if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
 					displayuniformslot = true
-					local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.COLLECTIBLE_UNIFORM)
+					local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.Enums.Collectibles.UNIFORM)
 					local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 					--demoDescObj.ObjVariant = 350
 					local prefix = unistr.changeslot .. " : {{ButtonRT}}"
@@ -146,12 +145,12 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.render32)
 
 function wakaba:PlayerEffect_Uniform(player)
-	if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) then
 		if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
-			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.COLLECTIBLE_UNIFORM and player:NeedsCharge(ActiveSlot.SLOT_PRIMARY) then
+			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM and player:NeedsCharge(ActiveSlot.SLOT_PRIMARY) then
 				player:FullCharge(ActiveSlot.SLOT_PRIMARY)
 			end
-			if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.COLLECTIBLE_UNIFORM and player:NeedsCharge(ActiveSlot.SLOT_SECONDARY) then
+			if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.UNIFORM and player:NeedsCharge(ActiveSlot.SLOT_SECONDARY) then
 				player:FullCharge(ActiveSlot.SLOT_SECONDARY)
 			end
 		end
@@ -277,7 +276,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 		player:AnimateSad()
 		--SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
 	elseif card ~= 0 or pill ~= 0 or oldItemType ~= nil then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_UNIFORM, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.UNIFORM, "UseItem", "PlayerPickup")
 		SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
 		discharge = true
 	end
@@ -286,7 +285,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 	end
 	return {Discharge = discharge}
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Uniform, wakaba.COLLECTIBLE_UNIFORM)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Uniform, wakaba.Enums.Collectibles.UNIFORM)
 
 function wakaba:useUniform(player)
 	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD
@@ -299,7 +298,7 @@ function wakaba:useUniform(player)
 				player:UseCard(Card.CARD_DEVIL, flag)
 			end
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				player:AddWisp(wakaba.COLLECTIBLE_UNIFORM, player.Position)
+				player:AddWisp(wakaba.Enums.Collectibles.UNIFORM, player.Position)
 			end
 		elseif item.type == "pill" then
 			--print("using pill", item.pilleffect)
@@ -329,7 +328,7 @@ function wakaba:useUniform(player)
 				player:UseCard(Card.CARD_DEVIL, flag)
 			end
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				player:AddWisp(wakaba.COLLECTIBLE_UNIFORM, player.Position)
+				player:AddWisp(wakaba.Enums.Collectibles.UNIFORM, player.Position)
 			end
 		end
 	end
@@ -337,7 +336,7 @@ function wakaba:useUniform(player)
 end
 
 function wakaba:usePocket32(cardpill, player, flags)
-	if player:HasCollectible(wakaba.COLLECTIBLE_UNIFORM) and flags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD then
+	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) and flags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD then
 		usinguniform = true
 		wakaba:useUniform(player)
 	end

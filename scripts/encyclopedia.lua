@@ -2478,7 +2478,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABAS_BLESSING,
+		ID = wakaba.Enums.Collectibles.WAKABAS_BLESSING,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABAS_BLESSING,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2503,7 +2503,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABAS_NEMESIS,
+		ID = wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABAS_NEMESIS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2528,7 +2528,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABA_DUALITY,
+		ID = wakaba.Enums.Collectibles.WAKABA_DUALITY,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABA_DUALITY,
 		Pools = {
 		},
@@ -2545,7 +2545,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_SHIORI,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_SHIORI,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -2567,7 +2567,7 @@ if Encyclopedia then
 	--[[ Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WINTER_ALBIREO,
+		ID = wakaba.Enums.Collectibles.WINTER_ALBIREO,
 		WikiDesc = Wiki.COLLECTIBLE_WINTER_ALBIREO,
 		Hide = true,
 	}) ]]
@@ -2576,7 +2576,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_EATHEART,
+		ID = wakaba.Enums.Collectibles.EATHEART,
 		WikiDesc = Wiki.COLLECTIBLE_EATHEART,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_DEVIL,
@@ -2607,7 +2607,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_CONQUEST,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_CONQUEST,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_CONQUEST,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -2630,7 +2630,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MINERVA_AURA,
+		ID = wakaba.Enums.Collectibles.MINERVA_AURA,
 		WikiDesc = Wiki.COLLECTIBLE_MINERVA_AURA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -2650,7 +2650,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_LUNAR_STONE,
+		ID = wakaba.Enums.Collectibles.LUNAR_STONE,
 		WikiDesc = Wiki.COLLECTIBLE_LUNAR_STONE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -2675,7 +2675,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_CONCENTRATION,
+		ID = wakaba.Enums.Collectibles.CONCENTRATION,
 		WikiDesc = Wiki.COLLECTIBLE_CONCENTRATION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2704,7 +2704,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_ELIXIR_OF_LIFE,
+		ID = wakaba.Enums.Collectibles.ELIXIR_OF_LIFE,
 		WikiDesc = Wiki.COLLECTIBLE_ELIXIR_OF_LIFE,
 		--[[ Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -2730,7 +2730,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_FLASH_SHIFT,
+		ID = wakaba.Enums.Collectibles.FLASH_SHIFT,
 		WikiDesc = Wiki.COLLECTIBLE_FLASH_SHIFT,
 		--[[ Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -2756,7 +2756,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MURASAME,
+		ID = wakaba.Enums.Collectibles.MURASAME,
 		WikiDesc = Wiki.COLLECTIBLE_MURASAME,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_ANGEL,
@@ -2783,7 +2783,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_FORGOTTEN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2812,7 +2812,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_D_CUP_ICECREAM,
+		ID = wakaba.Enums.Collectibles.D_CUP_ICECREAM,
 		WikiDesc = Wiki.COLLECTIBLE_D_CUP_ICECREAM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2836,7 +2836,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MYSTERIOUS_GAME_CD,
+		ID = wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD,
 		WikiDesc = Wiki.COLLECTIBLE_MYSTERIOUS_GAME_CD,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -2856,7 +2856,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MAIJIMA_MYTHOLOGY,
+		ID = wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY,
 		WikiDesc = Wiki.COLLECTIBLE_MAIJIMA_MYTHOLOGY,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2879,7 +2879,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -2892,7 +2892,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_SYRUP,
+		ID = wakaba.Enums.Collectibles.SYRUP,
 		WikiDesc = Wiki.COLLECTIBLE_SYRUP,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2906,7 +2906,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_3D_PRINTER,
+		ID = wakaba.Enums.Collectibles._3D_PRINTER,
 		WikiDesc = Wiki.COLLECTIBLE_3D_PRINTER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2919,7 +2919,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_CLENSING_FOAM,
+		ID = wakaba.Enums.Collectibles.CLENSING_FOAM,
 		WikiDesc = Wiki.COLLECTIBLE_CLENSING_FOAM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2932,7 +2932,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_ANTI_BALANCE,
+		ID = wakaba.Enums.Collectibles.ANTI_BALANCE,
 		WikiDesc = Wiki.COLLECTIBLE_ANTI_BALANCE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -2946,7 +2946,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2,
+		ID = wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2,
 		WikiDesc = Wiki.COLLECTIBLE_CURSE_OF_THE_TOWER_2,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2962,7 +2962,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_SEE_DES_BISCHOFS,
+		ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
 		WikiDesc = Wiki.COLLECTIBLE_SEE_DES_BISCHOFS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2976,7 +2976,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_JAR_OF_CLOVER,
+		ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER,
 		WikiDesc = Wiki.COLLECTIBLE_JAR_OF_CLOVER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -2990,7 +2990,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABAS_PENDANT,
+		ID = wakaba.Enums.Collectibles.WAKABAS_PENDANT,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABAS_PENDANT,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -3015,7 +3015,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_SECRET_CARD,
+		ID = wakaba.Enums.Collectibles.SECRET_CARD,
 		WikiDesc = Wiki.COLLECTIBLE_SECRET_CARD,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3043,7 +3043,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_D6_PLUS,
+		ID = wakaba.Enums.Collectibles.D6_PLUS,
 		WikiDesc = Wiki.COLLECTIBLE_D6_PLUS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3056,7 +3056,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_D6_CHAOS,
+		ID = wakaba.Enums.Collectibles.D6_CHAOS,
 		WikiDesc = Wiki.COLLECTIBLE_D6_CHAOS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3070,7 +3070,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_DONATION_CARD,
+		ID = wakaba.Enums.Cards.CARD_DONATION_CARD,
 		WikiDesc = Wiki.CARD_DONATION_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Silver Donation Card",0),
 	})
@@ -3080,7 +3080,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_VIP_DONATION_CARD,
+		ID = wakaba.Enums.Cards.CARD_VIP_DONATION_CARD,
 		WikiDesc = Wiki.CARD_VIP_DONATION_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "VIP Donation Card",0),
 		UnlockFunc = function(self)
@@ -3096,7 +3096,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_CRANE_CARD,
+		ID = wakaba.Enums.Cards.CARD_CRANE_CARD,
 		WikiDesc = Wiki.CARD_CRANE_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Crane Card",0),
 		UnlockFunc = function(self)
@@ -3112,7 +3112,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_CONFESSIONAL_CARD,
+		ID = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
 		WikiDesc = Wiki.CARD_CONFESSIONAL_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Confessional Card",0),
 		UnlockFunc = function(self)
@@ -3128,7 +3128,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_BLACK_JOKER,
+		ID = wakaba.Enums.Cards.CARD_BLACK_JOKER,
 		WikiDesc = Wiki.CARD_BLACK_JOKER,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Black Joker",0),
 		UnlockFunc = function(self)
@@ -3144,7 +3144,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_WHITE_JOKER,
+		ID = wakaba.Enums.Cards.CARD_WHITE_JOKER,
 		WikiDesc = Wiki.CARD_WHITE_JOKER,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_White Joker",0),
 		UnlockFunc = function(self)
@@ -3160,7 +3160,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_COLOR_JOKER,
+		ID = wakaba.Enums.Cards.CARD_COLOR_JOKER,
 		WikiDesc = Wiki.CARD_COLOR_JOKER,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Color Joker",0),
 		UnlockFunc = function(self)
@@ -3176,7 +3176,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_UNKNOWN_BOOKMARK,
+		ID = wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
 		WikiDesc = Wiki.CARD_UNKNOWN_BOOKMARK,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Unknown Bookmark",0),
 		UnlockFunc = function(self)
@@ -3192,7 +3192,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_QUEEN_OF_SPADES,
+		ID = wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,
 		WikiDesc = Wiki.CARD_QUEEN_OF_SPADES,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Queen of Spades",0),
 		UnlockFunc = function(self)
@@ -3208,7 +3208,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_MINERVA_TICKET,
+		ID = wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 		WikiDesc = Wiki.CARD_MINERVA_TICKET,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Minerva Ticket",0),
 		--[[ UnlockFunc = function(self)
@@ -3225,7 +3225,7 @@ if Encyclopedia then
 	Encyclopedia.AddSoul({
 		Class = class,
 		ModName = class,
-		ID = wakaba.SOUL_WAKABA,
+		ID = wakaba.Enums.Cards.SOUL_WAKABA,
 		WikiDesc = Wiki.SOUL_WAKABA,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Wakaba",0),
 		UnlockFunc = function(self)
@@ -3240,7 +3240,7 @@ if Encyclopedia then
 	Encyclopedia.AddSoul({
 		Class = class,
 		ModName = class,
-		ID = wakaba.SOUL_WAKABA2,
+		ID = wakaba.Enums.Cards.SOUL_WAKABA2,
 		WikiDesc = Wiki.SOUL_WAKABA2,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Wakaba?",0),
 		UnlockFunc = function(self)
@@ -3256,7 +3256,7 @@ if Encyclopedia then
 	Encyclopedia.AddSoul({
 		Class = class,
 		ModName = class,
-		ID = wakaba.SOUL_SHIORI,
+		ID = wakaba.Enums.Cards.SOUL_SHIORI,
 		WikiDesc = Wiki.SOUL_SHIORI,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Shiori",0),
 		UnlockFunc = function(self)
@@ -3272,7 +3272,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_RETURN_TOKEN,
+		ID = wakaba.Enums.Cards.CARD_RETURN_TOKEN,
 		WikiDesc = Wiki.CARD_RETURN_TOKEN,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Return Token",0),
 		--[[ UnlockFunc = function(self)
@@ -3288,7 +3288,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_REVENGE_FRUIT,
+		ID = wakaba.Enums.Collectibles.REVENGE_FRUIT,
 		WikiDesc = Wiki.COLLECTIBLE_REVENGE_FRUIT,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_DEVIL,
@@ -3308,7 +3308,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_LIL_MOE,
+		ID = wakaba.Enums.Collectibles.LIL_MOE,
 		WikiDesc = Wiki.COLLECTIBLE_LIL_MOE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3324,7 +3324,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_LIL_SHIVA,
+		ID = wakaba.Enums.Collectibles.LIL_SHIVA,
 		WikiDesc = Wiki.COLLECTIBLE_LIL_SHIVA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3340,7 +3340,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_DEJA_VU,
+		ID = wakaba.Enums.Collectibles.DEJA_VU,
 		WikiDesc = Wiki.COLLECTIBLE_DEJA_VU,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3352,7 +3352,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_FIREFLY_LIGHTER,
+		ID = wakaba.Enums.Collectibles.FIREFLY_LIGHTER,
 		WikiDesc = Wiki.COLLECTIBLE_FIREFLY_LIGHTER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -3366,7 +3366,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_UNIFORM,
+		ID = wakaba.Enums.Collectibles.UNIFORM,
 		WikiDesc = Wiki.COLLECTIBLE_UNIFORM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -3386,7 +3386,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_COUNTER,
+		ID = wakaba.Enums.Collectibles.COUNTER,
 		WikiDesc = Wiki.COLLECTIBLE_COUNTER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3406,7 +3406,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_RETURN_POSTAGE,
+		ID = wakaba.Enums.Collectibles.RETURN_POSTAGE,
 		WikiDesc = Wiki.COLLECTIBLE_RETURN_POSTAGE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3428,7 +3428,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_FOCUS,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_FOCUS,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_FOCUS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -3450,7 +3450,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_DECK_OF_RUNES,
+		ID = wakaba.Enums.Collectibles.DECK_OF_RUNES,
 		WikiDesc = Wiki.COLLECTIBLE_DECK_OF_RUNES,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3474,7 +3474,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_GRIMREAPER_DEFENDER,
+		ID = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
 		WikiDesc = Wiki.COLLECTIBLE_GRIMREAPER_DEFENDER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -3494,7 +3494,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_THE_FALLEN,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_THE_FALLEN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -3519,7 +3519,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_TRAUMA,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_TRAUMA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3540,7 +3540,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_SILENCE,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_SILENCE,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_SILENCE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -3559,7 +3559,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_VINTAGE_THREAT,
+		ID = wakaba.Enums.Collectibles.VINTAGE_THREAT,
 		WikiDesc = Wiki.COLLECTIBLE_VINTAGE_THREAT,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_DEVIL,
@@ -3581,7 +3581,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BOOK_OF_THE_GOD,
+		ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,
 		WikiDesc = Wiki.COLLECTIBLE_BOOK_OF_THE_GOD,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_LIBRARY,
@@ -3605,7 +3605,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.BRING_ME_THERE,
+		ID = wakaba.Enums.Trinkets.BRING_ME_THERE,
 		WikiDesc = Wiki.BRING_ME_THERE,
 	})
 	
@@ -3614,7 +3614,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_BITCOIN,
+		ID = wakaba.Enums.Trinkets.BITCOIN,
 		WikiDesc = Wiki.TRINKET_BITCOIN,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.bitcoin < 1 then
@@ -3628,7 +3628,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_CLOVER,
+		ID = wakaba.Enums.Trinkets.CLOVER,
 		WikiDesc = Wiki.TRINKET_CLOVER,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.clover < 2 then
@@ -3642,7 +3642,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_HARD_BOOK,
+		ID = wakaba.Enums.Trinkets.HARD_BOOK,
 		WikiDesc = Wiki.TRINKET_HARD_BOOK,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.hardbook < 2 then
@@ -3656,7 +3656,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_MAGNET_HEAVEN,
+		ID = wakaba.Enums.Trinkets.MAGNET_HEAVEN,
 		WikiDesc = Wiki.TRINKET_MAGNET_HEAVEN,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.magnetheaven < 1 then
@@ -3671,7 +3671,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_DETERMINATION_RIBBON,
+		ID = wakaba.Enums.Trinkets.DETERMINATION_RIBBON,
 		WikiDesc = Wiki.TRINKET_DETERMINATION_RIBBON,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.magnetheaven < 1 then
@@ -3685,7 +3685,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_BOOKMARK_BAG,
+		ID = wakaba.Enums.Trinkets.BOOKMARK_BAG,
 		WikiDesc = Wiki.TRINKET_BOOKMARK_BAG,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.bookmarkbag then
@@ -3699,7 +3699,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_RING_OF_JUPITER,
+		ID = wakaba.Enums.Trinkets.RING_OF_JUPITER,
 		WikiDesc = Wiki.TRINKET_RING_OF_JUPITER,
 		UnlockFunc = function(self)
 			if wakaba.state.unlock.ringofjupiter < 1 then
@@ -3713,7 +3713,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_RANGE_OS,
+		ID = wakaba.Enums.Trinkets.RANGE_OS,
 		WikiDesc = Wiki.TRINKET_RANGE_OS,
 		--[[ UnlockFunc = function(self)
 			if not wakaba.state.unlock.rangesystem then
@@ -3727,7 +3727,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_SIREN_BADGE,
+		ID = wakaba.Enums.Trinkets.SIREN_BADGE,
 		WikiDesc = Wiki.TRINKET_SIREN_BADGE,
 		--[[ UnlockFunc = function(self)
 			if not wakaba.state.unlock.rangesystem then
@@ -3741,7 +3741,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_ISAAC_CARTRIDGE,
+		ID = wakaba.Enums.Trinkets.ISAAC_CARTRIDGE,
 		WikiDesc = Wiki.TRINKET_ISAAC_CARTRIDGE,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.isaaccartridge then
@@ -3753,7 +3753,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_AFTERBIRTH_CARTRIDGE,
+		ID = wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE,
 		WikiDesc = Wiki.TRINKET_AFTERBIRTH_CARTRIDGE,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.isaaccartridge then
@@ -3765,7 +3765,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_REPENTANCE_CARTRIDGE,
+		ID = wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE,
 		WikiDesc = Wiki.TRINKET_REPENTANCE_CARTRIDGE,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.isaaccartridge then
@@ -3779,7 +3779,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_DELIMITER,
+		ID = wakaba.Enums.Trinkets.DELIMITER,
 		WikiDesc = Wiki.TRINKET_DELIMITER,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.delimiter then
@@ -3793,7 +3793,7 @@ if Encyclopedia then
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
-		ID = wakaba.TRINKET_DIMENSION_CUTTER,
+		ID = wakaba.Enums.Trinkets.DIMENSION_CUTTER,
 		WikiDesc = Wiki.TRINKET_DIMENSION_CUTTER,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.delirium then
@@ -3822,7 +3822,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_NASA_LOVER,
+		ID = wakaba.Enums.Collectibles.NASA_LOVER,
 		WikiDesc = Wiki.COLLECTIBLE_NASA_LOVER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3837,7 +3837,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BEETLEJUICE,
+		ID = wakaba.Enums.Collectibles.BEETLEJUICE,
 		WikiDesc = Wiki.COLLECTIBLE_BEETLEJUICE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3851,7 +3851,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_RED_CORRUPTION,
+		ID = wakaba.Enums.Collectibles.RED_CORRUPTION,
 		WikiDesc = Wiki.COLLECTIBLE_RED_CORRUPTION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -3867,7 +3867,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_POWER_BOMB,
+		ID = wakaba.Enums.Collectibles.POWER_BOMB,
 		WikiDesc = Wiki.COLLECTIBLE_POWER_BOMB,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -3880,7 +3880,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_PLASMA_BEAM,
+		ID = wakaba.Enums.Collectibles.PLASMA_BEAM,
 		WikiDesc = Wiki.COLLECTIBLE_PLASMA_BEAM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -3893,9 +3893,9 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BEAM,
+		ID = wakaba.Enums.Collectibles.BEAM,
 		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -3907,9 +3907,9 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_THE_WINTER_ALBIREO,
+		ID = wakaba.Enums.Collectibles.THE_WINTER_ALBIREO,
 		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -3922,7 +3922,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_NEW_YEAR_BOMB,
+		ID = wakaba.Enums.Collectibles.NEW_YEAR_BOMB,
 		WikiDesc = Wiki.COLLECTIBLE_NEW_YEAR_BOMB,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -3945,8 +3945,8 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_ARCANE_CRYSTAL,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.ARCANE_CRYSTAL,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_ARCANE_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3959,8 +3959,8 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_ADVANCED_CRYSTAL,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.ADVANCED_CRYSTAL,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_ADVANCED_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3973,8 +3973,8 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MYSTIC_CRYSTAL,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.MYSTIC_CRYSTAL,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_MYSTIC_CRYSTAL,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -3987,8 +3987,8 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_QUESTION_BLOCK,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.QUESTION_BLOCK,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_QUESTION_BLOCK,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4000,8 +4000,8 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_PHANTOM_CLOAK,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		ID = wakaba.Enums.Collectibles.PHANTOM_CLOAK,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		WikiDesc = Wiki.COLLECTIBLE_PHANTOM_CLOAK,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -4015,7 +4015,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_DOUBLE_INVADER,
+		ID = wakaba.Enums.Collectibles.DOUBLE_INVADER,
 		WikiDesc = Wiki.COLLECTIBLE_DOUBLE_INVADER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_CURSE,
@@ -4028,7 +4028,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_VENOM_INCANTATION,
+		ID = wakaba.Enums.Collectibles.VENOM_INCANTATION,
 		WikiDesc = Wiki.COLLECTIBLE_VENOM_INCANTATION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4045,9 +4045,9 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_HYDRA,
+		ID = wakaba.Enums.Collectibles.HYDRA,
 		Hide = true,
-		--ID = wakaba.COLLECTIBLE_MOE_MUFFIN,
+		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		--WikiDesc = Wiki.COLLECTIBLE_MOE_MUFFIN,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_BOSS,
@@ -4081,7 +4081,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_EYE_OF_CLOCK,
+		ID = wakaba.Enums.Collectibles.EYE_OF_CLOCK,
 		WikiDesc = Wiki.COLLECTIBLE_EYE_OF_CLOCK,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4101,7 +4101,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_PLUMY,
+		ID = wakaba.Enums.Collectibles.PLUMY,
 		WikiDesc = Wiki.COLLECTIBLE_PLUMY,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4124,7 +4124,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_NEKO_FIGURE,
+		ID = wakaba.Enums.Collectibles.NEKO_FIGURE,
 		WikiDesc = Wiki.COLLECTIBLE_NEKO_FIGURE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_DEVIL,
@@ -4148,7 +4148,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_MICRO_DOPPELGANGER,
+		ID = wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,
 		WikiDesc = Wiki.COLLECTIBLE_MICRO_DOPPELGANGER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4169,7 +4169,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_LIL_WAKABA,
+		ID = wakaba.Enums.Collectibles.LIL_WAKABA,
 		WikiDesc = Wiki.COLLECTIBLE_LIL_WAKABA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4194,7 +4194,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_EXECUTIONER,
+		ID = wakaba.Enums.Collectibles.EXECUTIONER,
 		WikiDesc = Wiki.COLLECTIBLE_EXECUTIONER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -4214,7 +4214,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_APOLLYON_CRISIS,
+		ID = wakaba.Enums.Collectibles.APOLLYON_CRISIS,
 		WikiDesc = Wiki.COLLECTIBLE_APOLLYON_CRISIS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -4236,7 +4236,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_ISEKAI_DEFINITION,
+		ID = wakaba.Enums.Collectibles.ISEKAI_DEFINITION,
 		WikiDesc = Wiki.COLLECTIBLE_ISEKAI_DEFINITION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -4263,7 +4263,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_BALANCE,
+		ID = wakaba.Enums.Collectibles.BALANCE,
 		WikiDesc = Wiki.COLLECTIBLE_BALANCE,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
@@ -4282,7 +4282,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_LIL_MAO,
+		ID = wakaba.Enums.Collectibles.LIL_MAO,
 		WikiDesc = Wiki.COLLECTIBLE_LIL_MAO,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
@@ -4304,7 +4304,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_CLOVER_SHARD,
+		ID = wakaba.Enums.Collectibles.CLOVER_SHARD,
 		WikiDesc = Wiki.COLLECTIBLE_CLOVER_SHARD,
 	})
 	
@@ -4312,20 +4312,20 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABAS_CURFEW,
+		ID = wakaba.Enums.Collectibles.WAKABAS_CURFEW,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABAS_CURFEW,
 	})
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_WAKABAS_CURFEW2,
+		ID = wakaba.Enums.Collectibles.WAKABAS_CURFEW2,
 		WikiDesc = Wiki.COLLECTIBLE_WAKABAS_CURFEW,
 		Hide = true,
 	})
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_EDEN_STICKY_NOTE,
+		ID = wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,
 		WikiDesc = Wiki.COLLECTIBLE_EDEN_STICKY_NOTE,
 		UnlockFunc = function(self)
 			if not wakaba.state.unlock.edensticky then
@@ -4357,7 +4357,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.COLLECTIBLE_DOUBLE_DREAMS,
+		ID = wakaba.Enums.Collectibles.DOUBLE_DREAMS,
 		WikiDesc = Wiki.COLLECTIBLE_DOUBLE_DREAMS,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
@@ -4376,7 +4376,7 @@ if Encyclopedia then
 	Encyclopedia.AddCard({
 		Class = class,
 		ModName = class,
-		ID = wakaba.CARD_DREAM_CARD,
+		ID = wakaba.Enums.Cards.CARD_DREAM_CARD,
 		WikiDesc = Wiki.CARD_DREAM_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Wakaba's Dream Card"),
 		UnlockFunc = function(self)

@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams")
 --wakaba.f:DrawString("droid",60,50,KColor(1,1,1,1,0,0,0),0,true) -- render string with loaded font on position 60x50y
 wakaba.ItemPoolType = {
 	ItemPoolType.POOL_NULL,
@@ -74,7 +73,7 @@ function wakaba:renderDreams()
 	wakaba.hasdreams = false
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 			wakaba.hasdreams = true
 		end
 	end
@@ -114,35 +113,35 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_ENTER)
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
 	else
-		local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+		local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 	end
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS, "UseItem", "PlayerPickup")
 	end
 	return {Discharge = false}
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.COLLECTIBLE_DOUBLE_DREAMS)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 
 
 function wakaba:dreamsUpdate(player)
 	if wakaba.hasdreams then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CHAOS, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_CHAOS)
-			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD)
-			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST)
-			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
 		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
 		for i, e in ipairs(wisps) do
 			if e.SubType == CollectibleType.COLLECTIBLE_CHAOS or e.SubType == CollectibleType.COLLECTIBLE_EUCHARIST or e.SubType == CollectibleType.COLLECTIBLE_GOAT_HEAD then
 				e:Kill()
-				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 				--dreamcard:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, CollectibleType.CARD_DREAM_CARD, false, false, true)
 			end
 		end
@@ -162,8 +161,8 @@ function wakaba:dreamsCardBonus(rng, spawnPosition)
 
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.COLLECTIBLE_DOUBLE_DREAMS) then
-			local rng = player:GetCollectibleRNG(wakaba.COLLECTIBLE_DOUBLE_DREAMS)
+		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
+			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 			local randomnum = rng:RandomInt(10000)
 			wakaba:GetPlayerEntityData(player)
 			player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack or 0
@@ -172,7 +171,7 @@ function wakaba:dreamsCardBonus(rng, spawnPosition)
 				player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack + 400
 			end
 			if randomnum <= border or player:GetData().wakaba.dreamstack >= 10000 then
-				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
+				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 				player:GetData().wakaba.dreamstack = 0
 			end
 		end

@@ -7,9 +7,9 @@ https://cdn.discordapp.com/attachments/360574749639835648/925763568123650108/lil
 
 
 local familiarwhitelist={
-  wakaba.FAMILIAR_LIL_WAKABA,
-  wakaba.FAMILIAR_LIL_MOE,
-  wakaba.FAMILIAR_LIL_SHIVA,
+  wakaba.Enums.Familiars.LIL_WAKABA,
+  wakaba.Enums.Familiars.LIL_MOE,
+  wakaba.Enums.Familiars.LIL_SHIVA,
 }
 local testcondition = true -- Too lazy to remove this
 

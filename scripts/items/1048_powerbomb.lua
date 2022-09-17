@@ -1,23 +1,21 @@
-wakaba.COLLECTIBLE_POWER_BOMB = Isaac.GetItemIdByName("Power Bomb")
-wakaba.EFFECT_POWER_BOMB = Isaac.GetEntityVariantByName("Wakaba Power Bomb Explosion")
 local sfx = SFXManager()
 
 function wakaba:UsePowerBomb(player, position, bombs)
   player = player or Isaac.GetPlayer()
   position = position or player.Position
   bombs = bombs or player:GetNumBombs()
-  local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, wakaba.EFFECT_POWER_BOMB, 0, position, Vector.Zero, nil):ToEffect()
+  local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, wakaba.Enums.Effects.POWER_BOMB, 0, position, Vector.Zero, nil):ToEffect()
   explosion:GetData().wakaba = {}
   explosion:GetData().wakaba.damage = bombs
-  sfx:Play(wakaba.SFX_POWER_BOMB_EXPLOSION)
-  sfx:Play(wakaba.SFX_POWER_BOMB_LOOP, 1, 2, true)
+  sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_EXPLOSION)
+  sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_LOOP, 1, 2, true)
 end
 
 function wakaba:EffectInit_PowerBomb(effect)
   local effectsprite = effect:GetSprite()
   effectsprite.Scale = Vector(3, 3)
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_PowerBomb, wakaba.EFFECT_POWER_BOMB)
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
 function wakaba:EffectUpdate_PowerBomb(effect)
   effect:GetData().wakaba = effect:GetData().wakaba or {}
@@ -42,12 +40,12 @@ function wakaba:EffectUpdate_PowerBomb(effect)
     effectsprite:Update()
   elseif effectsprite:IsFinished("Exploding") then
     --sfx:Play(SoundEffect.SOUND_REVERSE_EXPLOSION)
-    sfx:Stop(wakaba.SFX_POWER_BOMB_LOOP)
-    sfx:Play(wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_1)
-    sfx:Play(wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_2)
-    sfx:Play(wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_3)
-    sfx:Play(wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_4)
-    sfx:Play(wakaba.SFX_POWER_BOMB_AFTER_EXPLOSION_5)
+    sfx:Stop(wakaba.Enums.SoundEffects.POWER_BOMB_LOOP)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_1)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_2)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_3)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_4)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_5)
     effectsprite:Play("Fading")
     effectsprite:Update()
   elseif effectsprite:IsPlaying("Fading") then
@@ -65,7 +63,7 @@ function wakaba:EffectUpdate_PowerBomb(effect)
     end
   end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_PowerBomb, wakaba.EFFECT_POWER_BOMB)
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
 function wakaba:EffectRender_PowerBomb(effect)
   if sfx:IsPlaying(SoundEffect.SOUND_UNLOCK00) then
@@ -78,12 +76,12 @@ function wakaba:EffectRender_PowerBomb(effect)
     effectsprite:Update()
   end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, wakaba.EffectRender_PowerBomb, wakaba.EFFECT_POWER_BOMB)
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, wakaba.EffectRender_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
 function wakaba:NPCDeath_PowerBomb(entity)
   for i = 1, Game():GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-    if player:HasCollectible(wakaba.COLLECTIBLE_POWER_BOMB) then
+    if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
       local rng = RNG()
       rng:SetSeed(entity.DropSeed, 35)
       local luck = player.Luck
@@ -101,15 +99,15 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCDeath_PowerBomb)
 function wakaba:PlayerUpdate_PowerBomb(player)
   --wakaba:GetPlayerEntityData(player)
   --local data = player:GetData()
-	if player:HasCollectible(wakaba.COLLECTIBLE_POWER_BOMB) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
     local bombs = player:GetNumBombs()
-    if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.COLLECTIBLE_POWER_BOMB then
+    if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.POWER_BOMB then
       player:SetActiveCharge(bombs, ActiveSlot.SLOT_PRIMARY)
     end
-    if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.COLLECTIBLE_POWER_BOMB then
+    if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.POWER_BOMB then
       player:SetActiveCharge(bombs, ActiveSlot.SLOT_SECONDARY)
     end
-    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.COLLECTIBLE_POWER_BOMB then
+    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.POWER_BOMB then
       player:SetActiveCharge(bombs, ActiveSlot.SLOT_POCKET)
     end
   else
@@ -125,7 +123,7 @@ function wakaba:InputAction_PowerBomb(entity, hook, action)
 	if not entity then return end
   if not entity:ToPlayer() then return end
   local player = entity:ToPlayer()
-	if player:HasCollectible(wakaba.COLLECTIBLE_POWER_BOMB) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
     if action == ButtonAction.ACTION_BOMB then return false end
   end
 end
@@ -141,7 +139,7 @@ function wakaba:ItemUse_PowerBomb(_, rng, player, useFlags, activeSlot, varData)
   end
   player:AddBombs(-bombs)
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_POWER_BOMB, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.POWER_BOMB, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PowerBomb, wakaba.COLLECTIBLE_POWER_BOMB)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PowerBomb, wakaba.Enums.Collectibles.POWER_BOMB)

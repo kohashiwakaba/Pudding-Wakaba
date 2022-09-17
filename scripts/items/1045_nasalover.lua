@@ -1,9 +1,6 @@
-wakaba.COLLECTIBLE_NASA_LOVER = Isaac.GetItemIdByName("Nasa Lover")
-wakaba.FAMILIAR_LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa")
-
 function wakaba:Cache_NasaLover(player, cacheFlag)
-	local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER)
-	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_NASA_LOVER)
+	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.NASA_LOVER)
+	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NASA_LOVER)
 	local tsukasa = (wakaba.state.unlock.nasalover > 0 and player:GetPlayerType() == wakaba.PLAYER_TSUKASA) and 1 or 0
 	if hasitem or efcount > 0 or tsukasa > 0  then
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
@@ -14,9 +11,9 @@ function wakaba:Cache_NasaLover(player, cacheFlag)
 		local count = 0
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 or tsukasa > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_NASA_LOVER) + efcount + tsukasa
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.NASA_LOVER) + efcount + tsukasa
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_LIL_NASA, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_NASA_LOVER))
+		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_NASA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.NASA_LOVER))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_NasaLover)
@@ -26,7 +23,7 @@ function wakaba:FamiliarUpdate_NasaLover(familiar)
 	data.wakaba = data.wakaba or {}
 	if familiar.Player then
 		local player = familiar.Player
-		if player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.NASA_LOVER) then
 			data.wakaba.nasalover = true
 		else
 			data.wakaba.nasalover = nil
@@ -57,7 +54,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.TearInit_NasaLover)
 function wakaba:NPC_NasaLover(puppy)
 	if not puppy.SpawnerEntity or not puppy.SpawnerEntity:ToPlayer() then return end
 	local player = puppy.SpawnerEntity:ToPlayer()
-	if player:HasCollectible(wakaba.COLLECTIBLE_NASA_LOVER) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.NASA_LOVER) then
 		if not puppy:HasEntityFlags(EntityFlag.FLAG_CHARM) then
 			puppy:AddEntityFlags(EntityFlag.FLAG_CHARM)
 		end
@@ -158,8 +155,8 @@ function wakaba:updateLilNasa(familiar)
 end
 
 
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilNasa, wakaba.FAMILIAR_LIL_NASA)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilNasa, wakaba.FAMILIAR_LIL_NASA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilNasa, wakaba.Enums.Familiars.LIL_NASA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilNasa, wakaba.Enums.Familiars.LIL_NASA)
 
 
 

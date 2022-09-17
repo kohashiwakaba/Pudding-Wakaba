@@ -25,6 +25,7 @@ end
 
 
 
+include("scripts.enums.constants")
 
 include("scripts.filepathhelper")
 include('scripts.achievement_display_api')
@@ -1233,7 +1234,7 @@ function wakaba:init(continue)
 		--wakaba.state.playersavedata = {}
 
 		-- Removing locked items
-		for i = wakaba.COLLECTIBLE_WAKABAS_BLESSING, Isaac.GetItemConfig():GetCollectibles().Size -1 do
+		for i = wakaba.Enums.Collectibles.WAKABAS_BLESSING, Isaac.GetItemConfig():GetCollectibles().Size -1 do
 			local isUnlocked = wakaba:unlockCheck(i)
 			if not isUnlocked then
 				Isaac.DebugString("[wakaba]Item ID ".. i .. " Not unlocked! removing from the pools...")
@@ -1244,7 +1245,7 @@ function wakaba:init(continue)
 			end
 		end
 		-- Removing locked trinkets(doesn't work)
-		--[[ for i = wakaba.TRINKET_CLOVER, Isaac.GetItemConfig():GetTrinkets().Size -1 do
+		--[[ for i = wakaba.Enums.Trinkets.CLOVER, Isaac.GetItemConfig():GetTrinkets().Size -1 do
 			if not wakaba:trinketUnlockCheck(i) then
 				Isaac.DebugString("[wakaba]Trinket ID ".. i .. " Not unlocked! removing from the pools...")
 				Game():GetItemPool():RemoveCollectible(i)
@@ -1487,9 +1488,9 @@ function wakaba:PostGlobalPlayerInit(player)
 
 	if Game().TimeCounter == 0 then
 		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and Game().Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then
-			player:SetPocketActiveItem(wakaba.COLLECTIBLE_EDEN_STICKY_NOTE, ActiveSlot.SLOT_POCKET, false)
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE, ActiveSlot.SLOT_POCKET, false)
 		elseif wakaba.state.unlock.lostuniform and wakaba.state.options.lostuniform and Game().Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 31 then
-			player:AddCollectible(wakaba.COLLECTIBLE_UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
+			player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
 		end
 	end
 

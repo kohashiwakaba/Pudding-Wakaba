@@ -1,21 +1,19 @@
-wakaba.COLLECTIBLE_HYDRA = Isaac.GetItemIdByName("Hydra")
-
 function wakaba:Cache_Hydra(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_HYDRA) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.HYDRA) then
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_POISON
 		end
 	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_HYDRA)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_HYDRA)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.HYDRA)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.HYDRA)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_HYDRA) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.HYDRA) + efcount
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_HYDRA_LEFT, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_HYDRA))
-		player:CheckFamiliar(wakaba.FAMILIAR_HYDRA_RIGHT, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_HYDRA))
+		player:CheckFamiliar(wakaba.Enums.Familiars.HYDRA_LEFT, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.HYDRA))
+		player:CheckFamiliar(wakaba.Enums.Familiars.HYDRA_RIGHT, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.HYDRA))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Hydra)
@@ -25,7 +23,7 @@ function wakaba:FamiliarUpdate_Hydra(familiar)
 	data.wakaba = data.wakaba or {}
 	if familiar.Player then
 		local player = familiar.Player
-		if player:HasCollectible(wakaba.COLLECTIBLE_HYDRA) then
+		if player:HasCollectible(wakaba.Enums.Collectibles.HYDRA) then
 			data.wakaba.nasalover = true
 		else
 			data.wakaba.nasalover = nil
@@ -56,7 +54,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.TearInit_Hydra)
 function wakaba:NPC_Hydra(puppy)
 	if not puppy.SpawnerEntity or not puppy.SpawnerEntity:ToPlayer() then return end
 	local player = puppy.SpawnerEntity:ToPlayer()
-	if player:HasCollectible(wakaba.COLLECTIBLE_HYDRA) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.HYDRA) then
 		if not puppy:HasEntityFlags(EntityFlag.FLAG_CHARM) then
 			puppy:AddEntityFlags(EntityFlag.FLAG_CHARM)
 		end

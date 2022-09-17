@@ -1,61 +1,46 @@
 
-wakaba.PILL_DAMAGE_MULTIPLIER_UP = Isaac.GetPillEffectByName("Damage Multiplier Up")
-wakaba.PILL_DAMAGE_MULTIPLIER_DOWN = Isaac.GetPillEffectByName("Damage Multiplier Down")
-wakaba.PILL_ALL_STATS_UP = Isaac.GetPillEffectByName("All Stats Up")
-wakaba.PILL_ALL_STATS_DOWN = Isaac.GetPillEffectByName("All Stats Down")
-wakaba.PILL_TROLLED = Isaac.GetPillEffectByName("Trolled!")
-wakaba.PILL_TO_THE_START = Isaac.GetPillEffectByName("To the Start!")
-wakaba.PILL_EXPLOSIVE_DIARRHEA_2 = Isaac.GetPillEffectByName("Explosive Diarrhea 2!")
-wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT = Isaac.GetPillEffectByName("Explosive Diarrhea 2?")
-wakaba.PILL_SOCIAL_DISTANCE = Isaac.GetPillEffectByName("Social Distance")
-wakaba.PILL_DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders")
-wakaba.PILL_FLAME_PRINCESS = Isaac.GetPillEffectByName("Flame Princess!")
-wakaba.PILL_FIREY_TOUCH = Isaac.GetPillEffectByName("Firey Touch")
-wakaba.PILL_PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing")
-wakaba.PILL_UNHOLY_CURSE = Isaac.GetPillEffectByName("Unholy Curse")
-
-wakaba.minpillno = wakaba.PILL_DAMAGE_MULTIPLIER_UP
-wakaba.maxpillno = wakaba.PILL_UNHOLY_CURSE
+wakaba.minpillno = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP
+wakaba.maxpillno = wakaba.Enums.Pills.UNHOLY_CURSE
 
 local convertPHD = {
-  [wakaba.PILL_DAMAGE_MULTIPLIER_UP] = -1,
-  [wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = wakaba.PILL_DAMAGE_MULTIPLIER_UP,
-  [wakaba.PILL_ALL_STATS_UP] = -1,
-  [wakaba.PILL_ALL_STATS_DOWN] = wakaba.PILL_ALL_STATS_UP,
-  [wakaba.PILL_TO_THE_START] = -1,
-  [wakaba.PILL_TROLLED] = wakaba.PILL_TO_THE_START,
-  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = -1,
-  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT,
-  [wakaba.PILL_DUALITY_ORDERS] = -1,
-  [wakaba.PILL_SOCIAL_DISTANCE] = wakaba.PILL_DUALITY_ORDERS,
-  [wakaba.PILL_FLAME_PRINCESS] = -1,
-  [wakaba.PILL_FIREY_TOUCH] = wakaba.PILL_FLAME_PRINCESS,
-  [wakaba.PILL_PRIEST_BLESSING] = -1,
-  [wakaba.PILL_UNHOLY_CURSE] = wakaba.PILL_PRIEST_BLESSING,
+  [wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = -1,
+  [wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP,
+  [wakaba.Enums.Pills.ALL_STATS_UP] = -1,
+  [wakaba.Enums.Pills.ALL_STATS_DOWN] = wakaba.Enums.Pills.ALL_STATS_UP,
+  [wakaba.Enums.Pills.TO_THE_START] = -1,
+  [wakaba.Enums.Pills.TROLLED] = wakaba.Enums.Pills.TO_THE_START,
+  [wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = -1,
+  [wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT,
+  [wakaba.Enums.Pills.DUALITY_ORDERS] = -1,
+  [wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
+  [wakaba.Enums.Pills.FLAME_PRINCESS] = -1,
+  [wakaba.Enums.Pills.FIREY_TOUCH] = wakaba.Enums.Pills.FLAME_PRINCESS,
+  [wakaba.Enums.Pills.PRIEST_BLESSING] = -1,
+  [wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
 }
 local convertFalsePHD = {
-  [wakaba.PILL_DAMAGE_MULTIPLIER_UP] = wakaba.PILL_DAMAGE_MULTIPLIER_DOWN,
-  [wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = -1,
-  [wakaba.PILL_ALL_STATS_UP] = wakaba.PILL_ALL_STATS_DOWN,
-  [wakaba.PILL_ALL_STATS_DOWN] = -1,
-  [wakaba.PILL_TROLLED] = -1,
-  [wakaba.PILL_TO_THE_START] = -1,
-  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2] = -1,
-  [wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT] = wakaba.PILL_EXPLOSIVE_DIARRHEA_2,
-  [wakaba.PILL_DUALITY_ORDERS] = wakaba.PILL_SOCIAL_DISTANCE,
-  [wakaba.PILL_SOCIAL_DISTANCE] = -1,
-  [wakaba.PILL_FLAME_PRINCESS] = wakaba.PILL_FIREY_TOUCH,
-  [wakaba.PILL_FIREY_TOUCH] = -1,
-  [wakaba.PILL_PRIEST_BLESSING] = wakaba.PILL_UNHOLY_CURSE,
-  [wakaba.PILL_UNHOLY_CURSE] = -1,
+  [wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN,
+  [wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = -1,
+  [wakaba.Enums.Pills.ALL_STATS_UP] = wakaba.Enums.Pills.ALL_STATS_DOWN,
+  [wakaba.Enums.Pills.ALL_STATS_DOWN] = -1,
+  [wakaba.Enums.Pills.TROLLED] = -1,
+  [wakaba.Enums.Pills.TO_THE_START] = -1,
+  [wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = -1,
+  [wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2,
+  [wakaba.Enums.Pills.DUALITY_ORDERS] = wakaba.Enums.Pills.SOCIAL_DISTANCE,
+  [wakaba.Enums.Pills.SOCIAL_DISTANCE] = -1,
+  [wakaba.Enums.Pills.FLAME_PRINCESS] = wakaba.Enums.Pills.FIREY_TOUCH,
+  [wakaba.Enums.Pills.FIREY_TOUCH] = -1,
+  [wakaba.Enums.Pills.PRIEST_BLESSING] = wakaba.Enums.Pills.UNHOLY_CURSE,
+  [wakaba.Enums.Pills.UNHOLY_CURSE] = -1,
 }
 local pillClass = {
-  [wakaba.PILL_DAMAGE_MULTIPLIER_DOWN] = -3,
-  [wakaba.PILL_ALL_STATS_DOWN] = -3,
-  [wakaba.PILL_TROLLED] = -3,
-  [wakaba.PILL_SOCIAL_DISTANCE] = -2,
-  [wakaba.PILL_FIREY_TOUCH] = -2,
-  [wakaba.PILL_UNHOLY_CURSE] = -3,
+  [wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = -3,
+  [wakaba.Enums.Pills.ALL_STATS_DOWN] = -3,
+  [wakaba.Enums.Pills.TROLLED] = -3,
+  [wakaba.Enums.Pills.SOCIAL_DISTANCE] = -2,
+  [wakaba.Enums.Pills.FIREY_TOUCH] = -2,
+  [wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
 }
 
 local function hasPHD(player)
@@ -96,13 +81,13 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 		local player = Isaac.GetPlayer(i - 1)
     if hasPHD(player) then phd = true; estdamage = player.Damage end
     if hasFalsePHD(player) then fhd = true end
-    if pillEffect == wakaba.PILL_SOCIAL_DISTANCE 
+    if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE 
     and Game():IsGreedMode() then
-      return wakaba.PILL_ALL_STATS_UP
+      return wakaba.Enums.Pills.ALL_STATS_UP
     end
-    if pillEffect == wakaba.PILL_FIREY_TOUCH then
+    if pillEffect == wakaba.Enums.Pills.FIREY_TOUCH then
       if wakaba.state.options.flamescurserate == 0 then
-        return wakaba.PILL_EXPLOSIVE_DIARRHEA_2
+        return wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2
       end
     end
     if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
@@ -122,17 +107,17 @@ function wakaba:getPillEffect(pillEffect, pillColor)
     elseif player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
       if pillEffect == PillEffect.PILLEFFECT_LUCK_UP then
         if phd then
-          return wakaba.PILL_DAMAGE_MULTIPLIER_UP
+          return wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP
         else
           return PillEffect.PILLEFFECT_LUCK_DOWN
         end
       end
     elseif player:GetPlayerType() == 21 then
-      if pillEffect == wakaba.PILL_FLAME_PRINCESS then
+      if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
 		  	pillEffect = convertFalsePHD[pillEffect]
       end
     elseif player:GetPlayerType() == 30 then
-      if pillEffect == wakaba.PILL_FLAME_PRINCESS then
+      if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
 		  	pillEffect = convertFalsePHD[pillEffect]
       end
     end
@@ -177,18 +162,18 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
   end
 
   if wakaba:getstoredindex(player) ~= nil then
-    if pillEffect == wakaba.PILL_DAMAGE_MULTIPLIER_UP then
+    if pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP then
       player:GetData().wakaba.statmultiplier.damage = player:GetData().wakaba.statmultiplier.damage + (0.08 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
       player:EvaluateItems()
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
-    elseif pillEffect == wakaba.PILL_DAMAGE_MULTIPLIER_DOWN then
+    elseif pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN then
       player:GetData().wakaba.statmultiplier.damage = player:GetData().wakaba.statmultiplier.damage - (0.02 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
       player:EvaluateItems()
       player:AnimateSad()
-    elseif pillEffect == wakaba.PILL_ALL_STATS_UP then
+    elseif pillEffect == wakaba.Enums.Pills.ALL_STATS_UP then
       player:GetData().wakaba.statmodify.damage = player:GetData().wakaba.statmodify.damage + (0.25 * multiplier)
       player:GetData().wakaba.statmodify.tears = player:GetData().wakaba.statmodify.tears + (0.2 * multiplier)
       player:GetData().wakaba.statmodify.range = player:GetData().wakaba.statmodify.range + (0.4 * multiplier)
@@ -199,7 +184,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       player:EvaluateItems()
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
-    elseif pillEffect == wakaba.PILL_ALL_STATS_DOWN then
+    elseif pillEffect == wakaba.Enums.Pills.ALL_STATS_DOWN then
       player:GetData().wakaba.statmodify.damage = player:GetData().wakaba.statmodify.damage - (0.1 * multiplier)
       player:GetData().wakaba.statmodify.tears = player:GetData().wakaba.statmodify.tears - (0.08 * multiplier)
       player:GetData().wakaba.statmodify.range = player:GetData().wakaba.statmodify.range - (0.25 * multiplier)
@@ -209,7 +194,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       player:AddCacheFlags(CacheFlag.CACHE_ALL)
       player:EvaluateItems()
       player:AnimateSad()
-    elseif pillEffect == wakaba.PILL_TROLLED then
+    elseif pillEffect == wakaba.Enums.Pills.TROLLED then
       local hasBeast = wakaba:HasBeast()
       if hasBeast then
         for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_BEAST, -1, -1, false, false)) do
@@ -230,7 +215,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
           player:AddBrokenHearts(-1)
         end
       end
-    elseif pillEffect == wakaba.PILL_TO_THE_START then
+    elseif pillEffect == wakaba.Enums.Pills.TO_THE_START then
       local hasBeast = wakaba:HasBeast()
       if hasBeast then
         for i = 1, Game():GetNumPlayers() do
@@ -251,18 +236,18 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         end
         Game():StartRoomTransition(Game():GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
       end
-    elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2_NOT then
+    elseif pillEffect == wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT then
       player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
-    elseif pillEffect == wakaba.PILL_EXPLOSIVE_DIARRHEA_2 then
+    elseif pillEffect == wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2 then
       wakaba:GetPlayerEntityData(player)
-      player:GetData().wakaba.trollbrimstonecounter = player:GetPillRNG(wakaba.PILL_EXPLOSIVE_DIARRHEA_2):RandomInt(100)
+      player:GetData().wakaba.trollbrimstonecounter = player:GetPillRNG(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2):RandomInt(100)
       Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ENEMY_BRIMSTONE_SWIRL, 0, player.Position, Vector.Zero, nil)
       if isHorse then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_HEAD_OF_KRAMPUS, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
       end
       player:AnimateSad()
-    elseif pillEffect == wakaba.PILL_DUALITY_ORDERS then
-      local indRng = player:GetPillRNG(wakaba.PILL_DUALITY_ORDERS)
+    elseif pillEffect == wakaba.Enums.Pills.DUALITY_ORDERS then
+      local indRng = player:GetPillRNG(wakaba.Enums.Pills.DUALITY_ORDERS)
       local ind = indRng:RandomInt(41000) + 60
 
       local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
@@ -278,13 +263,13 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         p1.OptionsPickupIndex = ind
         p2.OptionsPickupIndex = ind
       end
-    elseif pillEffect == wakaba.PILL_SOCIAL_DISTANCE then
+    elseif pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE then
       Game():GetLevel():DisableDevilRoom()
       if isHorse then
         Game():SetLastDevilRoomStage(Game():GetLevel():GetAbsoluteStage())
       end
       player:AnimateSad()
-    elseif pillEffect == wakaba.PILL_FLAME_PRINCESS then
+    elseif pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
       local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
       local haswisp = false
       local wispcnt = 0
@@ -335,7 +320,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
 
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
-    elseif pillEffect == wakaba.PILL_FIREY_TOUCH then
+    elseif pillEffect == wakaba.Enums.Pills.FIREY_TOUCH then
       Game():GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES)
       local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
       for i, e in ipairs(wisps) do
@@ -356,14 +341,14 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         end
       end
       player:AnimateSad()
-    elseif pillEffect == wakaba.PILL_PRIEST_BLESSING then
+    elseif pillEffect == wakaba.Enums.Pills.PRIEST_BLESSING then
       player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       if multiplier == 2 then
         player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       end
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
-    elseif pillEffect == wakaba.PILL_UNHOLY_CURSE then
+    elseif pillEffect == wakaba.Enums.Pills.UNHOLY_CURSE then
       if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) > 0 then
         if multiplier == 2 and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) > 1 then
           player:TakeDamage(1, DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(player), 0)
@@ -447,13 +432,13 @@ function wakaba:PlayerInit_Pills(player)
     local pool = Game():GetItemPool()
     local hasPriest = false
     for i = 1, 13 do
-      if pool:GetPillEffect(i) == wakaba.PILL_PRIEST_BLESSING then
+      if pool:GetPillEffect(i) == wakaba.Enums.Pills.PRIEST_BLESSING then
         pool:IdentifyPill(i)
         hasPriest = true
       end
     end
     if not hasPriest then
-      local pill = pool:ForceAddPillEffect(wakaba.PILL_PRIEST_BLESSING)
+      local pill = pool:ForceAddPillEffect(wakaba.Enums.Pills.PRIEST_BLESSING)
       pool:IdentifyPill(pill)
     end
   end

@@ -4,6 +4,8 @@ wakaba.PLAYER_SHIORI = Isaac.GetPlayerTypeByName("Shiori", false)
 wakaba.PLAYER_SHIORI_B = Isaac.GetPlayerTypeByName("ShioriB", true)
 wakaba.PLAYER_TSUKASA = Isaac.GetPlayerTypeByName("Tsukasa", false)
 wakaba.PLAYER_TSUKASA_B = Isaac.GetPlayerTypeByName("TsukasaB", true)
+--wakaba.PLAYER_RICHER = Isaac.GetPlayerTypeByName("Richer", false)
+--wakaba.PLAYER_RICHER_B = Isaac.GetPlayerTypeByName("RicherB", true)
 --[[ 
 wakaba.PLAYER_WAKABA = Isaac.GetPlayerTypeByName("#WAKABA_WAKABA_NAME", false)
 wakaba.PLAYER_WAKABA_B = Isaac.GetPlayerTypeByName("#WAKABA_WAKABAB_NAME", true)

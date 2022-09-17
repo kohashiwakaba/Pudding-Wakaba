@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_LIL_WAKABA = Isaac.GetItemIdByName("Lil Wakaba")
-wakaba.FAMILIAR_LIL_WAKABA = Isaac.GetEntityVariantByName("Lil Wakaba")
-
 
 wakaba.DIRECTION_FLOAT_ANIM = {
 	[Direction.NO_DIRECTION] = "FloatDown", 
@@ -187,13 +184,13 @@ end
 function wakaba:onCacheLilWakaba(player, cacheFlag)
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_LIL_WAKABA)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_LIL_WAKABA)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_WAKABA)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_WAKABA)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_LIL_WAKABA) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_WAKABA) + efcount
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_LIL_WAKABA, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_LIL_WAKABA))
+		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_WAKABA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_WAKABA))
 	end
 end
 
@@ -202,9 +199,9 @@ function wakaba:UpgradeLilWakaba(familiar)
 end
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(wakaba.FAMILIAR_LIL_WAKABA, wakaba.COLLECTIBLE_LIL_WAKABA)
+	Sewn_API:MakeFamiliarAvailable(wakaba.Enums.Familiars.LIL_WAKABA, wakaba.Enums.Collectibles.LIL_WAKABA)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onCacheLilWakaba)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilWakaba, wakaba.FAMILIAR_LIL_WAKABA)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilWakaba, wakaba.FAMILIAR_LIL_WAKABA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilWakaba, wakaba.Enums.Familiars.LIL_WAKABA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilWakaba, wakaba.Enums.Familiars.LIL_WAKABA)

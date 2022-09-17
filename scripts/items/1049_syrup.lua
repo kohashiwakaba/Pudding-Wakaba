@@ -1,7 +1,5 @@
-wakaba.COLLECTIBLE_SYRUP = Isaac.GetItemIdByName("Syrup")
-
 function wakaba:Cache_Syrup(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_SYRUP) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.SYRUP) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 1.25
 		end

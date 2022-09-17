@@ -1,8 +1,3 @@
-wakaba.COLLECTIBLE_EATHEART = Isaac.GetItemIdByName("Eat Heart")
-wakaba.COLLECTIBLE_EATHEART_WAKABA = Isaac.GetItemIdByName("Eat Heart")
---wakaba.COLLECTIBLE_EATHEART_MAO = Isaac.GetItemIdByName("Let Heart")
---wakaba.COLLECTIBLE_EATHEART_MOE = Isaac.GetItemIdByName("Cat Heart")
---wakaba.COLLECTIBLE_EATHEART_SHIVA = Isaac.GetItemIdByName("Const Heart")
 local eatHeartErr = 0
 local used = 0
 local hasHeart = 0
@@ -16,7 +11,7 @@ if EID then
 	t = t .. "# Spawns a random collectible item from current item pool"
 	t = t .. "# Items with a quality of 3+ are guaranteed. Higher quality of items that will be spawned for high charges"
 	t = t .. ""
-  --EID:addCollectible(wakaba.COLLECTIBLE_EATHEART, t)
+  --EID:addCollectible(wakaba.Enums.Collectibles.EATHEART, t)
 --[[ 
 	local t2 = ""
 	t2 = t2 .. "# Only can be charged through damaging enemies or self damage."
@@ -26,8 +21,8 @@ if EID then
 	t2 = t2 .. "# Laser strength and damage scales with charges"
 	t2 = t2 .. "# Charges slowly deplete as long as laser persists"
 	t2 = t2 .. ""
-  EID:addCollectible(wakaba.COLLECTIBLE_EATHEART_MAO, t2)
-	wakaba.eidextradesc.blessing[wakaba.COLLECTIBLE_EATHEART_MAO] = {
+  EID:addCollectible(wakaba.Enums.Collectibles.EATHEART_MAO, t2)
+	wakaba.eidextradesc.blessing[wakaba.Enums.Collectibles.EATHEART_MAO] = {
 		en_us = "Spawns Homing laser, allowing to attack additional enemy", 
 	}
 
@@ -39,8 +34,8 @@ if EID then
 	t3 = t3 .. "# Laser strength and damage scales with charges"
 	t3 = t3 .. "# Charges slowly deplete as long as laser persists"
 	t3 = t3 .. ""
-  EID:addCollectible(wakaba.COLLECTIBLE_EATHEART_MOE, t3)
-	wakaba.eidextradesc.blessing[wakaba.COLLECTIBLE_EATHEART_MOE] = {
+  EID:addCollectible(wakaba.Enums.Collectibles.EATHEART_MOE, t3)
+	wakaba.eidextradesc.blessing[wakaba.Enums.Collectibles.EATHEART_MOE] = {
 		en_us = "Spawns Homing laser, allowing to attack additional enemy", 
 	}
 	 ]]
@@ -90,9 +85,9 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 		Item1:GetData().DamoclesDuplicate = false
 		wakaba:InsertNemesis(Item1.SubType)
 		if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_EATHEART, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.EATHEART, "UseItem", "PlayerPickup")
 		end
-		if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then -- No charge on Void use
+		if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then -- No charge on Void use
 			player:GetData().wakaba.eatheartchargepending = true
 			player:GetData().wakaba.tempeatheartcharges = tempeatheartcharges
 		end
@@ -104,7 +99,7 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 	--used = 0
 	return result
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_EatHeart, wakaba.COLLECTIBLE_EATHEART)
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_EatHeart, wakaba.Enums.Collectibles.EATHEART)
 
 function wakaba:ChargeEatHeart(player, amount, mode)
 	-- mode : true - player is taken, false - enemy is taken
@@ -136,17 +131,17 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 	end
 	local chargeamount = (amount * multiplier) // 1
 	--print(amount, multiplier, chargeamount)
-	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.COLLECTIBLE_EATHEART then
+	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_PRIMARY)
 		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_PRIMARY)
 	end
-	if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.COLLECTIBLE_EATHEART then
+	if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_SECONDARY) + player:GetBatteryCharge(ActiveSlot.SLOT_SECONDARY) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_SECONDARY)
 		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_SECONDARY)
 	end
-	if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.COLLECTIBLE_EATHEART then
+	if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_POCKET)
 		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
@@ -156,7 +151,7 @@ end
 function wakaba:PreTakeDamage_EatHeart(entity, amount, flags, source, countdown)
 	if entity.Type == EntityType.ENTITY_PLAYER then
 		local player = entity:ToPlayer()
-		if player and player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) and flags & DamageFlag.DAMAGE_NOKILL == DamageFlag.DAMAGE_NOKILL then
+		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) and flags & DamageFlag.DAMAGE_NOKILL == DamageFlag.DAMAGE_NOKILL then
 			wakaba:ChargeEatHeart(player, amount, "PlayerDamage")
 		end
 	else
@@ -172,7 +167,7 @@ function wakaba:PreTakeDamage_EatHeart(entity, amount, flags, source, countdown)
 		then
 			player = source.Entity:ToPlayer()
 		end
-		if player and player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then
 			if entity.HitPoints < amount then
 				amount = entity.HitPoints
 			end
@@ -187,7 +182,7 @@ function wakaba:TakeDamage_EatHeart(entity, amount, flags, source, cooldown)
 	-- If the player is Wakaba
 	--print(entity.Type)
 	local player = entity:ToPlayer()
-	if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART)	then
+	if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART)	then
 		wakaba:RegisterHeart(player)
 	end
 end
@@ -195,7 +190,7 @@ end
 
 function wakaba:PlayerUpdate_EatHeart(player)
 	wakaba:GetPlayerEntityData(player)
-	--[[ if player:HasCollectible(wakaba.COLLECTIBLE_EATHEART) then
+	--[[ if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then
 		if wakaba:IsHeartDifferent(player) then
 			wakaba:RemoveRegisteredHeart(player)
 			wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
@@ -239,7 +234,7 @@ function wakaba:PlayerRender_EatHeart(player)
 	wakaba:GetPlayerEntityData(player)
 	local usedslot = -1
 	--print(player:GetCard(0) == 0, player:GetPill(0) == 0)
-	if (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.COLLECTIBLE_EATHEART)
+	if (Input.IsActionTriggered(ButtonAction.ACTION_PILLCARD, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.EATHEART)
 	then
 		--print(not pData.wakaba.ehtriggered and (player:GetCard(0) == 0 and player:GetPill(0) == 0))
 		if not pData.wakaba.ehtriggered and (player:GetCard(0) == 0 and player:GetPill(0) == 0) then
@@ -251,14 +246,14 @@ function wakaba:PlayerRender_EatHeart(player)
 			pData.wakaba.ehtriggered = true
 		end
 	end
-	if (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.COLLECTIBLE_EATHEART)
+	if (Input.IsActionTriggered(ButtonAction.ACTION_ITEM, player.ControllerIndex) and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.EATHEART)
 	then
 		usedslot = ActiveSlot.SLOT_PRIMARY
 		pData.wakaba.ehused = true
 		pData.wakaba.ehtriggered = true
 	end
 	if pData.wakaba.ehtriggered and pData.wakaba.ehused then
-		player:UseActiveItem(wakaba.COLLECTIBLE_EATHEART, UseFlag.USE_OWNED)
+		player:UseActiveItem(wakaba.Enums.Collectibles.EATHEART, UseFlag.USE_OWNED)
 		pData.wakaba.ehused = nil
 		pData.wakaba.ehtriggered = nil
 	end

@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_MURASAME = Isaac.GetItemIdByName("Murasame")
-wakaba.FAMILIAR_MURASAME = Isaac.GetEntityVariantByName("Murasame")
 
 wakaba.murasameblacklist = {
 	EntityType.ENTITY_CHUB,
@@ -56,7 +54,7 @@ function wakaba:HasMurasame(player)
 	end
 	if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
     return true
-	elseif player:HasCollectible(wakaba.COLLECTIBLE_MURASAME) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) then
 		return true
 	else
 		return false
@@ -338,19 +336,19 @@ function wakaba:onCacheMurasame(player, cacheFlag)
 	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		if player:HasCollectible(wakaba.COLLECTIBLE_MURASAME) or voided or player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
+		if player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) or voided or player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 			local voidcount = (voided and 1) or 0
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_MURASAME) + voidcount + (player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B and 1 or 0)
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.MURASAME) + voidcount + (player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B and 1 or 0)
 			count = count > 1 and 1 or count
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_MURASAME, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_MURASAME))
+		player:CheckFamiliar(wakaba.Enums.Familiars.MURASAME, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.MURASAME))
 	end
 end
 
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onCacheMurasame)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initMurasame, wakaba.FAMILIAR_MURASAME)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateMurasame, wakaba.FAMILIAR_MURASAME)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initMurasame, wakaba.Enums.Familiars.MURASAME)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateMurasame, wakaba.Enums.Familiars.MURASAME)
 
 
 function wakaba:TearInit_Murasame(tear)
@@ -386,11 +384,11 @@ function wakaba:FamiliarCollision_Murasame(familiar, entity, bool)
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, wakaba.FamiliarCollision_Murasame, wakaba.FAMILIAR_MURASAME)
+wakaba:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, wakaba.FamiliarCollision_Murasame, wakaba.Enums.Familiars.MURASAME)
 
 function wakaba:PlayerRender_Murasame(player)
 	wakaba:GetPlayerEntityData(player)
-	if (player:GetData().wakaba.voided and player:GetData().wakaba.voided.murasame) or player:HasCollectible(wakaba.COLLECTIBLE_MURASAME) or player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
+	if (player:GetData().wakaba.voided and player:GetData().wakaba.voided.murasame) or player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) or player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 		Game():GetLevel():SetStateFlag(LevelStateFlag.STATE_REDHEART_DAMAGED, false)
 		Game():GetRoom():SetRedHeartDamage(false)
 		Game():SetLastDevilRoomStage(LevelStage.STAGE_NULL)
@@ -426,12 +424,12 @@ function wakaba:ItemUse_Murasame(_, rng, player, useFlags, activeSlot, varData)
 	SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 	SFXManager():Play(SoundEffect.SOUND_SUPERHOLY, 1, 0, false, 1)
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_MURASAME, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.MURASAME, "UseItem", "PlayerPickup")
 	end
 	--wakaba:Dash(player, dashstate)
 end
 
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Murasame, wakaba.COLLECTIBLE_MURASAME)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Murasame, wakaba.Enums.Collectibles.MURASAME)
 
 
 function wakaba:NPCUpdate_Murasame(entity)

@@ -1,9 +1,7 @@
-wakaba.COLLECTIBLE_ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition")
-
 --[[ 
 function wakaba:FamiliarUpdate(familiar)
-	local isholding1 = familiar.Player and familiar.Player:HasCollectible(wakaba.COLLECTIBLE_ISEKAI_DEFINITION)
-	local isholding2 = familiar.Parent and familiar.Parent:ToPlayer() and familiar.Parent:HasCollectible(wakaba.COLLECTIBLE_ISEKAI_DEFINITION)
+	local isholding1 = familiar.Player and familiar.Player:HasCollectible(wakaba.Enums.Collectibles.ISEKAI_DEFINITION)
+	local isholding2 = familiar.Parent and familiar.Parent:ToPlayer() and familiar.Parent:HasCollectible(wakaba.Enums.Collectibles.ISEKAI_DEFINITION)
 
 	if isholding1 or isholding2 then
 		if familiar.HitPoints <= 60 then
@@ -47,8 +45,8 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 		end
 
 		if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_ISEKAI_DEFINITION, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.ISEKAI_DEFINITION, "UseItem", "PlayerPickup")
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Isekai, wakaba.COLLECTIBLE_ISEKAI_DEFINITION)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Isekai, wakaba.Enums.Collectibles.ISEKAI_DEFINITION)

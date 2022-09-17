@@ -354,7 +354,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			end
 			if hasbaggy then
 				local pool = Game():GetItemPool()
-				local pill = pool:ForceAddPillEffect(wakaba.PILL_TO_THE_START)
+				local pill = pool:ForceAddPillEffect(wakaba.Enums.Pills.TO_THE_START)
 				pool:IdentifyPill(pill)
 				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, pill, false, false, true)

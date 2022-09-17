@@ -1,4 +1,3 @@
-wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2")
 local hastower = false
 local haspb = false
 local rolledPickup = {
@@ -17,13 +16,13 @@ function wakaba:Update_CurseOfTower2()
   haspb = false
   for num = 1, Game():GetNumPlayers() do
     local player = Game():GetPlayer(num - 1)
-    if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) then
+    if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
       hastower = true
       if not player:HasGoldenBomb() then
         player:AddGoldenBomb()
       end
     end
-    if player:HasCollectible(wakaba.COLLECTIBLE_POWER_BOMB) then
+    if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
       haspb = true
     end
   end
@@ -103,7 +102,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTo
 function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
 	local player = entity:ToPlayer()
 	if player then
-		if player:HasCollectible(wakaba.COLLECTIBLE_CURSE_OF_THE_TOWER_2) 
+		if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) 
     and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
     and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
       wakaba:RegisterHeart(player)

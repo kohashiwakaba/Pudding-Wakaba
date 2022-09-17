@@ -42,7 +42,7 @@ function wakaba:SetShioriCharge_b(player, amount, slot)
         player:SetActiveCharge(200000, slot)
       end
     end
-  elseif activeItem == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then
+  elseif activeItem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
     if wakaba.killcount <= 160 then
       player:SetActiveCharge(200000, slot)
     else
@@ -105,7 +105,7 @@ function wakaba:ItemUse_Shiori_b(useditem, rng, player, useflag, slot, vardata)
     local charge = item.MaxCharges
     local chargeType = item.chargeType --does not work
     local consume = charge
-    if useditem == wakaba.COLLECTIBLE_BOOK_OF_CONQUEST then return end
+    if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
     --if slot == ActiveSlot.SLOT_POCKET and Game().Challenge == wakaba.challenges.CHALLENGE_GURD then return end
     if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and consume > 1 then
       consume = consume - 1
@@ -397,7 +397,7 @@ function wakaba:AfterShioriInit_b(player)
     data.wakaba.currdamage = data.wakaba.currdamage or 0
     data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
     data.wakaba.nextshioriflag = data.wakaba.nextshioriflag or 0
-    player:SetPocketActiveItem(wakaba.COLLECTIBLE_BOOK_OF_CONQUEST, ActiveSlot.SLOT_POCKET, false)
+    player:SetPocketActiveItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, ActiveSlot.SLOT_POCKET, false)
     Isaac.DebugString("[wakaba]Adding bookmakrs")
     if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
     if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end

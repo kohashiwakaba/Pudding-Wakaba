@@ -1,10 +1,8 @@
-wakaba.COLLECTIBLE_WAKABAS_PENDANT = Isaac.GetItemIdByName("Wakaba's Pendant")
-
 function wakaba:cacheUpdate23(player, cacheFlag)
-	if player:HasCollectible(wakaba.COLLECTIBLE_WAKABAS_PENDANT) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) then
 		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + (4 * player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_PENDANT))
+				player.Damage = player.Damage + (4 * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
 		else
 			local pendantcnt = 0
@@ -12,12 +10,12 @@ function wakaba:cacheUpdate23(player, cacheFlag)
 				pendantcnt = #player:GetData().wakaba.PendantCandidates
 			end
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_PENDANT))
+				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
 			if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_PENDANT))
+				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 				if wakaba:HasBless(player) then
-					player.Luck = player.Luck + (0.15 * pendantcnt * player:GetCollectibleNum(wakaba.COLLECTIBLE_WAKABAS_PENDANT))
+					player.Luck = player.Luck + (0.15 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 					if player.Luck < 10 then
 						player.Luck = 10
 					end

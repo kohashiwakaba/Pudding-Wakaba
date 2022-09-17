@@ -145,8 +145,8 @@ function wakaba:AfterWakabaInit_b(player)
 	if player:GetPlayerType() == playerType then
     local data = player:GetData()
     data.wakaba = data.wakaba or {}
-    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.COLLECTIBLE_EATHEART and Game().Challenge == Challenge.CHALLENGE_NULL then
-			player:SetPocketActiveItem(wakaba.COLLECTIBLE_EATHEART, ActiveSlot.SLOT_POCKET, true)
+    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.EATHEART and Game().Challenge == Challenge.CHALLENGE_NULL then
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EATHEART, ActiveSlot.SLOT_POCKET, true)
 			player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
     end
 		if wakaba.state.options.cp_wakaba_b then

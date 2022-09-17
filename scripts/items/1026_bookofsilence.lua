@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_SILENCE = Isaac.GetItemIdByName("Book of Silence")
-
-
 function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varData)
 	local enemydmgvalue = 0
 	local hasjudas = false
@@ -37,8 +34,8 @@ function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varD
 		end
 	else
 		if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-			player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_SILENCE, "UseItem", "PlayerPickup")
+			player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, "UseItem", "PlayerPickup")
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfSilence, wakaba.COLLECTIBLE_BOOK_OF_SILENCE)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfSilence, wakaba.Enums.Collectibles.BOOK_OF_SILENCE)

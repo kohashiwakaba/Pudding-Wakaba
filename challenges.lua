@@ -1,7 +1,7 @@
 
-wakaba.COLLECTIBLE_WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew")
-wakaba.COLLECTIBLE_WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew")
---wakaba.COLLECTIBLE_LAKE_OF_BISHOP = Isaac.GetItemIdByName("See des Bischofs")
+wakaba.Enums.Collectibles.WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew")
+wakaba.Enums.Collectibles.WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew")
+--wakaba.Enums.Collectibles.LAKE_OF_BISHOP = Isaac.GetItemIdByName("See des Bischofs")
 
 
 local Challenges = wakaba.challenges
@@ -86,21 +86,21 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.startChallenge)
 
 function wakaba:challengeItemCheck(player)
 	if Game():GetFrameCount() > 0 then
-		if Game().Challenge == Challenges.CHALLENGE_ELEC and not player:HasCollectible(wakaba.COLLECTIBLE_EYE_OF_CLOCK) then
-			player:AddCollectible(wakaba.COLLECTIBLE_EYE_OF_CLOCK)
-		elseif Game().Challenge == Challenges.CHALLENGE_DOPP and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.COLLECTIBLE_MICRO_DOPPELGANGER then
+		if Game().Challenge == Challenges.CHALLENGE_ELEC and not player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
+			player:AddCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK)
+		elseif Game().Challenge == Challenges.CHALLENGE_DOPP and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
 			--print("Retaking")
-			player:SetPocketActiveItem(wakaba.COLLECTIBLE_MICRO_DOPPELGANGER, ActiveSlot.SLOT_POCKET, true)
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, ActiveSlot.SLOT_POCKET, true)
 		elseif Game().Challenge == Challenges.CHALLENGE_DELI and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= CollectibleType.COLLECTIBLE_STITCHES then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_STITCHES, ActiveSlot.SLOT_POCKET, true)
-		elseif Game().Challenge == Challenges.CHALLENGE_SIST and not player:HasCollectible(wakaba.COLLECTIBLE_LIL_WAKABA) then
-			player:AddCollectible(wakaba.COLLECTIBLE_LIL_WAKABA)
+		elseif Game().Challenge == Challenges.CHALLENGE_SIST and not player:HasCollectible(wakaba.Enums.Collectibles.LIL_WAKABA) then
+			player:AddCollectible(wakaba.Enums.Collectibles.LIL_WAKABA)
 		elseif Game().Challenge == Challenges.CHALLENGE_HUSH and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= CollectibleType.COLLECTIBLE_WHITE_PONY then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_WHITE_PONY, ActiveSlot.SLOT_POCKET, true)
-		elseif Game().Challenge == Challenges.CHALLENGE_HOLD and not player:HasCollectible(wakaba.COLLECTIBLE_LIL_MAO) then
-			player:AddCollectible(wakaba.COLLECTIBLE_LIL_MAO)
-		elseif Game().Challenge == Challenges.CHALLENGE_DRMS and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.COLLECTIBLE_DOUBLE_DREAMS then
-			player:SetPocketActiveItem(wakaba.COLLECTIBLE_DOUBLE_DREAMS, ActiveSlot.SLOT_POCKET, true)
+		elseif Game().Challenge == Challenges.CHALLENGE_HOLD and not player:HasCollectible(wakaba.Enums.Collectibles.LIL_MAO) then
+			player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
+		elseif Game().Challenge == Challenges.CHALLENGE_DRMS and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.DOUBLE_DREAMS then
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS, ActiveSlot.SLOT_POCKET, true)
 		end
 	end
 end
@@ -113,10 +113,10 @@ function wakaba:PostChallengePlayerInit(player)
 	if Game().Challenge == Challenges.CHALLENGE_ELEC and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-		player:AddCollectible(wakaba.COLLECTIBLE_EYE_OF_CLOCK)
+		player:AddCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK)
 		--Game():GetSeeds():AddSeedEffect(SeedEffect.SEED_ICE_PHYSICS)
 	elseif Game().Challenge == Challenges.CHALLENGE_PLUM then
-		player:AddCollectible(wakaba.COLLECTIBLE_PLUMY)
+		player:AddCollectible(wakaba.Enums.Collectibles.PLUMY)
 	elseif Game().Challenge == Challenges.CHALLENGE_GUPP and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("WakabaB", true) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("WakabaB", true))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_b.anm2"))
@@ -124,11 +124,11 @@ function wakaba:PostChallengePlayerInit(player)
 	elseif Game().Challenge == Challenges.CHALLENGE_DOPP and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Shiori", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Shiori", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_shiori.anm2"))
-		player:SetPocketActiveItem(wakaba.COLLECTIBLE_MICRO_DOPPELGANGER, ActiveSlot.SLOT_POCKET, true)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, ActiveSlot.SLOT_POCKET, true)
     wakaba:AfterShioriInit(player)
-		player:GetData().wakaba.nextshioriflag = wakaba.COLLECTIBLE_MICRO_DOPPELGANGER
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.MICRO_DOPPELGANGER
 		player:AddKeys(6)
-		player:UseActiveItem(wakaba.COLLECTIBLE_MICRO_DOPPELGANGER, (UseFlag.USE_NOANIM | UseFlag.USE_OWNED), -1)
+		player:UseActiveItem(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, (UseFlag.USE_NOANIM | UseFlag.USE_OWNED), -1)
 	elseif Game().Challenge == Challenges.CHALLENGE_DELI and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -137,9 +137,9 @@ function wakaba:PostChallengePlayerInit(player)
 	elseif Game().Challenge == Challenges.CHALLENGE_SIST and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-		player:AddCollectible(wakaba.COLLECTIBLE_LIL_WAKABA)
+		player:AddCollectible(wakaba.Enums.Collectibles.LIL_WAKABA)
 	elseif Game().Challenge == Challenges.CHALLENGE_DRAW then
-		player:AddCollectible(wakaba.COLLECTIBLE_UNIFORM)
+		player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM)
 	elseif Game().Challenge == Challenges.CHALLENGE_HUSH and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -148,8 +148,8 @@ function wakaba:PostChallengePlayerInit(player)
 	elseif Game().Challenge == Challenges.CHALLENGE_APPL and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, wakaba.COLLECTIBLE_WAKABAS_BLESSING, player.Position, Vector.Zero, player):ToFamiliar()
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, wakaba.COLLECTIBLE_WAKABAS_NEMESIS, player.Position, Vector.Zero, player):ToFamiliar()
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, wakaba.Enums.Collectibles.WAKABAS_BLESSING, player.Position, Vector.Zero, player):ToFamiliar()
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, wakaba.Enums.Collectibles.WAKABAS_NEMESIS, player.Position, Vector.Zero, player):ToFamiliar()
 	elseif Game().Challenge == Challenges.CHALLENGE_BIKE and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -157,7 +157,7 @@ function wakaba:PostChallengePlayerInit(player)
 	elseif Game().Challenge == Challenges.CHALLENGE_BIKE and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
 		--print("esau spawn cont")
 		player:GetData().wakaba.pendingesauspawn = true
-		--player:AddCollectible(wakaba.COLLECTIBLE_MINERVA_AURA)
+		--player:AddCollectible(wakaba.Enums.Collectibles.MINERVA_AURA)
 	--[[ elseif Game().Challenge == Challenges.CHALLENGE_GURD and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("ShioriB", true))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_shiori.anm2"))
@@ -171,7 +171,7 @@ function wakaba:PostChallengePlayerInit(player)
 		bishop:AddCharmed(EntityRef(player), -1)
 		bishop:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_SPIKE_DAMAGE | EntityFlag.FLAG_DONT_OVERWRITE)
 		bishop.HitPoints = bishop.MaxHitPoints * 100
-		player:SetPocketActiveItem(wakaba.COLLECTIBLE_LAKE_OF_BISHOP, ActiveSlot.SLOT_POCKET, true) ]]
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.LAKE_OF_BISHOP, ActiveSlot.SLOT_POCKET, true) ]]
 		
 	elseif Game().Challenge == Challenges.CHALLENGE_CALC and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("ShioriB", true))
@@ -180,20 +180,20 @@ function wakaba:PostChallengePlayerInit(player)
 		player:AddBombs(32)
 		player:AddKeys(99)
 	elseif Game().Challenge == Challenges.CHALLENGE_HOLD then
-		--player:AddCollectible(wakaba.COLLECTIBLE_LIL_MAO)
+		--player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
 	elseif Game().Challenge == Challenges.CHALLENGE_RAND and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", randtainted) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-		player:SetPocketActiveItem(wakaba.COLLECTIBLE_WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
 		player:DischargeActiveItem(ActiveSlot.SLOT_POCKET)
 	elseif Game().Challenge == Challenges.CHALLENGE_DRMS and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-		player:SetPocketActiveItem(wakaba.COLLECTIBLE_DOUBLE_DREAMS, ActiveSlot.SLOT_POCKET, true)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS, ActiveSlot.SLOT_POCKET, true)
 	elseif Game().Challenge == Challenges.CHALLENGE_SLNT and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Shiori", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Shiori", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_shiori.anm2"))
-		player:SetPocketActiveItem(wakaba.COLLECTIBLE_BOOK_OF_SILENCE, ActiveSlot.SLOT_POCKET, true)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, ActiveSlot.SLOT_POCKET, true)
     wakaba:AfterShioriInit(player)
 		player:AddKeys(6)
 		Game():GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
@@ -513,7 +513,7 @@ end
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_LakeOfBishop, wakaba.COLLECTIBLE_LAKE_OF_BISHOP) ]]
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_LakeOfBishop, wakaba.Enums.Collectibles.LAKE_OF_BISHOP) ]]
 
 
 function wakaba:ChallengePostLevel()
@@ -688,7 +688,7 @@ function wakaba:PostWakabaChallengeUpdate()
 					player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
 					player:AnimateSad()
 					randtainted = false
-					player:SetPocketActiveItem(wakaba.COLLECTIBLE_WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, false)
+					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, false)
 					--randinterval = 300
 					SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
 				else
@@ -730,7 +730,7 @@ function wakaba:PostWakabaChallengeUpdate()
 					player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_b.anm2"))
 					player:AnimateSad()
 					randtainted = true
-					player:SetPocketActiveItem(wakaba.COLLECTIBLE_WAKABAS_CURFEW2, ActiveSlot.SLOT_POCKET, false)
+					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW2, ActiveSlot.SLOT_POCKET, false)
 					--randinterval = 300
 					SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
 				end
@@ -789,8 +789,8 @@ function wakaba:playerDamageChallenge(target, damage, flags, source, cooldown)
 	if Game().Challenge == Challenges.CHALLENGE_RAND then
 			local player = target:ToPlayer()
 			if player then
-				if player:GetActiveItem() ~= wakaba.COLLECTIBLE_WAKABAS_CURFEW and player:GetActiveItem() ~= wakaba.COLLECTIBLE_WAKABAS_CURFEW2 then
-					player:SetPocketActiveItem(wakaba.COLLECTIBLE_WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
+				if player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW and player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW2 then
+					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
 				end
 				player:FullCharge(ActiveSlot.SLOT_POCKET, true)
 				player:AddBrokenHearts(-1)
@@ -956,4 +956,4 @@ function wakaba:PreUseItem_NoGenesis(item, rng, player, flag, slot, varData)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_GENESIS)
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, wakaba.COLLECTIBLE_EDEN_STICKY_NOTE)
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)

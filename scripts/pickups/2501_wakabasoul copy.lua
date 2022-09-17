@@ -1,5 +1,3 @@
-wakaba.SOUL_WAKABA = Isaac.GetCardIdByName("Soul of Wakaba")
-wakaba.SOUL_WAKABA2 = Isaac.GetCardIdByName("Soul of Wakaba?")
 local rng = wakaba.RNG
 
 
@@ -107,7 +105,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				local tempRoom = Game():GetLevel():GetRoomByIdx(-1,-1)
 				local tempRoomData = Game():GetLevel():GetRoomByIdx(-1,-1).Data
 				Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-				if card == wakaba.SOUL_WAKABA2 then
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 					Game():GetLevel():InitializeDevilAngelRoom(false, true)
 					while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
 						Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
@@ -121,7 +119,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 					end
 				end
 				--print(Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
-				if card == wakaba.SOUL_WAKABA2 then
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				end
 				--[[ 
 					-1 : Devil/Angel room : Must invalidate before copy
@@ -135,7 +133,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
 				Game():GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
 				selected = replacedIdx
-				if card == wakaba.SOUL_WAKABA2 then
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 					table.insert(wakaba.state.wakabadevilshops, selected)
 				else
 					table.insert(wakaba.state.wakabaangelshops, selected)
@@ -145,7 +143,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				if MinimapAPI then
 					local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
 					mRoom.Shape = RoomShape.ROOMSHAPE_1x1
-					if card == wakaba.SOUL_WAKABA2 then
+					if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 						mRoom.Type = RoomType.ROOM_DEVIL
 						mRoom.PermanentIcons = {"DevilRoom"}
 					else
@@ -166,7 +164,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				local doorR = room:GetDoor(i)
 				if doorR then 
 					if doorR.TargetRoomIndex == selected then
-						if card == wakaba.SOUL_WAKABA2 then
+						if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 							doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEVIL)
 						else
 							doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ANGEL)
@@ -193,12 +191,12 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 	states.soulflag = states.soulflag | wakaba.soulflag.SOUL_OF_WAKABA_BLESSING ]]
 
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.SOUL_WAKABA)
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.SOUL_WAKABA2)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.Enums.Cards.SOUL_WAKABA)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.Enums.Cards.SOUL_WAKABA2)
 
 function wakaba:onGetCard2201(rng, currentCard, playing, runes, onlyRunes)
-	--print(currentCard == wakaba.SOUL_WAKABA, currentCard)
-	if currentCard == wakaba.SOUL_WAKABA or currentCard == wakaba.SOUL_WAKABA2 then
+	--print(currentCard == wakaba.Enums.Cards.SOUL_WAKABA, currentCard)
+	if currentCard == wakaba.Enums.Cards.SOUL_WAKABA or currentCard == wakaba.Enums.Cards.SOUL_WAKABA2 then
 		if Game():IsGreedMode() or not wakaba.state.unlock.wakabasoul then
 			Isaac.DebugString("[wakaba] Soul of Wakaba not unlocked. Replacing into Lunar Shard")
 			return Card.RUNE_SHARD

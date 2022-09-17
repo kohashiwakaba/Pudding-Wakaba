@@ -1,6 +1,3 @@
-wakaba.COLLECTIBLE_LIL_MOE = Isaac.GetItemIdByName("Lil Moe")
-wakaba.FAMILIAR_LIL_MOE = Isaac.GetEntityVariantByName("Lil Moe")
-
 local function fireTearMoe(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
 	local tear_vector = nil
@@ -124,13 +121,13 @@ end
 function wakaba:onCacheLilMoe(player, cacheFlag)
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.COLLECTIBLE_LIL_MOE)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.COLLECTIBLE_LIL_MOE)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_MOE)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_MOE)
 		efcount = efcount <= 64 and efcount or 64
 		if hasitem or efcount > 0 then
-			count = player:GetCollectibleNum(wakaba.COLLECTIBLE_LIL_MOE) + efcount
+			count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_MOE) + efcount
 		end
-		player:CheckFamiliar(wakaba.FAMILIAR_LIL_MOE, count, player:GetCollectibleRNG(wakaba.COLLECTIBLE_LIL_MOE))
+		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_MOE, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_MOE))
 	end
 end
 
@@ -139,9 +136,9 @@ function wakaba:UpgradeLilMoe(familiar)
 end
 
 if Sewn_API then
-	Sewn_API:MakeFamiliarAvailable(wakaba.FAMILIAR_LIL_MOE, wakaba.COLLECTIBLE_LIL_MOE)
+	Sewn_API:MakeFamiliarAvailable(wakaba.Enums.Familiars.LIL_MOE, wakaba.Enums.Collectibles.LIL_MOE)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onCacheLilMoe)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilMoe, wakaba.FAMILIAR_LIL_MOE)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilMoe, wakaba.FAMILIAR_LIL_MOE)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.initLilMoe, wakaba.Enums.Familiars.LIL_MOE)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateLilMoe, wakaba.Enums.Familiars.LIL_MOE)

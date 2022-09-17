@@ -1,5 +1,3 @@
-wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten")
-
 function wakaba:ItemUse_BookOfForgotten(_, rng, player, useFlags, activeSlot, varData)
   for i = 1, Game():GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
@@ -14,10 +12,10 @@ function wakaba:ItemUse_BookOfForgotten(_, rng, player, useFlags, activeSlot, va
   end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfForgotten, wakaba.COLLECTIBLE_BOOK_OF_FORGOTTEN)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfForgotten, wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN)
 
 
 

@@ -1,6 +1,3 @@
-wakaba.TRINKET_DELIMITER = Isaac.GetTrinketIdByName("Delimiter")
-
-
 function wakaba:NewRoom_Delimiter()
 	if Game():GetRoom():IsFirstVisit() then
 		local room = Game():GetRoom()
@@ -8,10 +5,10 @@ function wakaba:NewRoom_Delimiter()
 		local priorRNG
 		for i = 1, Game():GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
-			if player:HasTrinket(wakaba.TRINKET_DELIMITER) then
-				delimitermultiplier = delimitermultiplier + player:GetTrinketMultiplier(wakaba.TRINKET_DELIMITER)
+			if player:HasTrinket(wakaba.Enums.Trinkets.DELIMITER) then
+				delimitermultiplier = delimitermultiplier + player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DELIMITER)
 				if not priorRNG then
-					priorRNG = player:GetTrinketRNG(wakaba.TRINKET_DELIMITER)
+					priorRNG = player:GetTrinketRNG(wakaba.Enums.Trinkets.DELIMITER)
 				end
 			end
 		end

@@ -1,6 +1,3 @@
-wakaba.CARD_BLACK_JOKER = Isaac.GetCardIdByName("wakaba_Black Joker")
-wakaba.CARD_WHITE_JOKER = Isaac.GetCardIdByName("wakaba_White Joker")
-wakaba.CARD_COLOR_JOKER = Isaac.GetCardIdByName("wakaba_Color Joker")
 local JokerChance = wakaba.state.silverchance
 local origAngelChance = wakaba.state.angelchance
 local rng = wakaba.RNG
@@ -25,7 +22,7 @@ function wakaba:onUseCard2004b(_, player, flags)
 		Game():StartRoomTransition(-1,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004b, wakaba.CARD_BLACK_JOKER)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004b, wakaba.Enums.Cards.CARD_BLACK_JOKER)
 function wakaba:onUseCard2004w(_, player, flags)
 	local hasBeast = wakaba:HasBeast()
 	if hasBeast then
@@ -41,7 +38,7 @@ function wakaba:onUseCard2004w(_, player, flags)
 		Game():StartRoomTransition(-1,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004w, wakaba.CARD_WHITE_JOKER)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004w, wakaba.Enums.Cards.CARD_WHITE_JOKER)
 function wakaba:onUseCard2004c(_, player, flags)
 	if player:GetBrokenHearts() ~= 6 then
 		player:AddBrokenHearts(-(player:GetBrokenHearts()-6))
@@ -53,7 +50,7 @@ function wakaba:onUseCard2004c(_, player, flags)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Game():GetItemPool():GetCard(rng:Next(), false, true, false), Isaac.GetFreeNearPosition(Vector(player.Position.X + 30, player.Position.Y - 30), 0), Vector(0,0), nil)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004c, wakaba.CARD_COLOR_JOKER)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2004c, wakaba.Enums.Cards.CARD_COLOR_JOKER)
 
 
 function wakaba:onUpdate2004()
@@ -62,10 +59,10 @@ function wakaba:onUpdate2004()
 	local duality = false
   for i = 1, Game():GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
-		if pl:GetCard(0) == wakaba.CARD_BLACK_JOKER or pl:GetCard(1) == wakaba.CARD_BLACK_JOKER then
+		if pl:GetCard(0) == wakaba.Enums.Cards.CARD_BLACK_JOKER or pl:GetCard(1) == wakaba.Enums.Cards.CARD_BLACK_JOKER then
 			blackcount = blackcount + 1
 		end
-		if pl:GetCard(0) == wakaba.CARD_WHITE_JOKER or pl:GetCard(1) == wakaba.CARD_WHITE_JOKER then
+		if pl:GetCard(0) == wakaba.Enums.Cards.CARD_WHITE_JOKER or pl:GetCard(1) == wakaba.Enums.Cards.CARD_WHITE_JOKER then
 			whitecount = whitecount + 1
 		end
 		if pl:HasCollectible(CollectibleType.COLLECTIBLE_DUALITY) then
@@ -95,15 +92,15 @@ end
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.onUpdate2004)
 
 function wakaba:onGetCard2004(rng, currentCard, playing, runes, onlyRunes)
-	if not onlyRunes and currentCard == wakaba.CARD_BLACK_JOKER then
+	if not onlyRunes and currentCard == wakaba.Enums.Cards.CARD_BLACK_JOKER then
 		if wakaba.state.unlock.blackjoker < 1 then
 			return Card.CARD_JOKER
 		end
-	elseif not onlyRunes and currentCard == wakaba.CARD_WHITE_JOKER then
+	elseif not onlyRunes and currentCard == wakaba.Enums.Cards.CARD_WHITE_JOKER then
 		if wakaba.state.unlock.whitejoker < 1 then
 			return Card.CARD_JOKER
 		end
-	elseif not onlyRunes and currentCard == wakaba.CARD_COLOR_JOKER then
+	elseif not onlyRunes and currentCard == wakaba.Enums.Cards.CARD_COLOR_JOKER then
 		if wakaba.state.unlock.colorjoker < 1 then
 			return Card.CARD_JOKER
 		end

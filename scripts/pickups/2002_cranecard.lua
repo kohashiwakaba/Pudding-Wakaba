@@ -1,4 +1,3 @@
-wakaba.CARD_CRANE_CARD = Isaac.GetCardIdByName("wakaba_Crane Card")
 local animation = "gfx/cranecarddrop.anm2"
 local CraneCardChance = wakaba.state.silverchance
 
@@ -13,12 +12,12 @@ function wakaba:onUseCard2002(_, player, flags)
 	Isaac.Spawn(EntityType.ENTITY_SLOT, machineVariant, 0, newMachinePos, Vector(0,0), nil)
 	SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2002, wakaba.CARD_CRANE_CARD)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2002, wakaba.Enums.Cards.CARD_CRANE_CARD)
 
 
 function wakaba:onGetCard2002(rng, currentCard, playing, runes, onlyRunes)
 	local randomInt = rng:RandomInt(CraneCardChance)
-	if not onlyRunes and currentCard == wakaba.CARD_CRANE_CARD then
+	if not onlyRunes and currentCard == wakaba.Enums.Cards.CARD_CRANE_CARD then
 		if wakaba.state.unlock.cranecard < 1 then
 			return Game():GetItemPool():GetCard(rng:Next(), playing, runes, onlyRunes)
 		end
