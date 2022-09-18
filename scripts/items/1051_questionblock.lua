@@ -18,13 +18,13 @@ function wakaba:ItemUse_QuestionBlock(_, rng, player, useFlags, activeSlot, varD
       end
     end
   elseif chance <= 500000 then
-    local newMachinePos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
+    local newMachinePos = wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) then
       local pool = ItemPoolType.POOL_NULL
       if wakaba:HasJudasBr(player) then
         pool = ItemPoolType.POOL_DEVIL
       end
-      Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, Game():GetItemPool():GetCollectible(pool, true), newMachinePos, Vector(0,0), nil)
+      Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(pool, true), newMachinePos, Vector(0,0), nil)
     else
       Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, newMachinePos, Vector(0,0), nil)
     end

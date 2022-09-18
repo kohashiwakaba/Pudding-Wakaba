@@ -35,7 +35,7 @@ end
 
 function wakaba:PostWakabaRenderUpdate_b(player, offset)
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true)
-	and Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND then
+	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
 		if player:GetMaxHearts() > 0 then
 			local conv = player:GetMaxHearts()
 			player:AddMaxHearts(-conv, true)
@@ -101,7 +101,7 @@ function wakaba:onWakabaCache_b(player, cacheFlag)
   if player:GetPlayerType() == playerType 
 	then
 		--wakaba:GetWakabaCostume_b(player)
-		if Game().Challenge == wakaba.challenges.CHALLENGE_RAND then
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
 			if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 					player.TearFlags = player.TearFlags | WakabaChar_b.TEARFLAG
 			end
@@ -145,7 +145,7 @@ function wakaba:AfterWakabaInit_b(player)
 	if player:GetPlayerType() == playerType then
     local data = player:GetData()
     data.wakaba = data.wakaba or {}
-    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.EATHEART and Game().Challenge == Challenge.CHALLENGE_NULL then
+    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.EATHEART and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EATHEART, ActiveSlot.SLOT_POCKET, true)
 			player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
     end

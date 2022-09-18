@@ -1,13 +1,13 @@
 function wakaba:NewRoom_FireflyLighter()
 
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
 	local currentRoom = level:GetCurrentRoom()
 	local currentRoomDesc = level:GetRoomByIdx(level:GetCurrentRoomIndex())
 	local currentRoomType = currentRoom:GetType()
 	if currentRoomDesc.VisitedCount > 1 then return end
 
-  for i = 0, Game():GetNumPlayers()-1 do
+  for i = 0, wakaba.G:GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 			currentRoomDesc.NoReward = false
@@ -35,7 +35,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_FireflyLighter)
  
 function wakaba:PlayerUpdate_FireflyLighter(player)
 	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
-		local level = Game():GetLevel()
+		local level = wakaba.G:GetLevel()
 		local currentRoomDesc = level:GetRoomByIdx(level:GetCurrentRoomIndex())
 		if currentRoomDesc.NoReward then
 			currentRoomDesc.NoReward = false

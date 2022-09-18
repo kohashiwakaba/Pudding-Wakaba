@@ -160,8 +160,8 @@ function wakaba:RenderChargeBar(player, chargeno, currentvalue, minvalue, maxval
       sprite:SetFrame("Charging", 100 - ((currentvalue / maxvalue) * 100 // 1) - 1)
     end
   end
-  if Game():GetHUD():IsVisible() and Options.ChargeBars then
-    local ismirror = Game():GetRoom():IsMirrorWorld()
+  if wakaba.G:GetHUD():IsVisible() and Options.ChargeBars then
+    local ismirror = wakaba.G:GetRoom():IsMirrorWorld()
     sprite:Update()
     sprite:Render(Isaac.WorldToScreen(player.Position) + offset + Vector(0, -10), Vector(0,0), Vector(0,0))
     if count and sprite:GetAnimation() ~= "Disappear" then
@@ -223,19 +223,19 @@ function wakaba:RenderChargeBar(player, chargeno, currentvalue, minvalue, maxval
     end
     sprite:Update()
   end
-  if Game():GetHUD():IsVisible() and Options.ChargeBars then
-    sprite:Render(Isaac.WorldToScreen(player.Position) + offset - Game().ScreenShakeOffset + Vector(0, -10), Vector(0,0), Vector(0,0))
+  if wakaba.G:GetHUD():IsVisible() and Options.ChargeBars then
+    sprite:Render(Isaac.WorldToScreen(player.Position) + offset - wakaba.G.ScreenShakeOffset + Vector(0, -10), Vector(0,0), Vector(0,0))
     if count and sprite:GetAnimation() ~= "Disappear" then
       countsubfix = countsubfix or ""
       countprefix = countprefix or ""
-      local fpos = Isaac.WorldToScreen(player.Position) + offset - Game().ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
+      local fpos = Isaac.WorldToScreen(player.Position) + offset - wakaba.G.ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
       wakaba.cf:DrawStringScaledUTF8(countprefix .. count .. countsubfix, fpos.X, fpos.Y, 1.0, 1.0, KColor(1,1,1,1.0,0,0,0),0,true)
     end
   end
 end ]]
 
 function wakaba:PlayerRender_ChargeBar(player)
-  if Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
+  if wakaba.G:GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
 	wakaba:GetPlayerEntityData(player)
 	local chargestate = player:GetData().wakaba.chargestate
   if chargestate and #chargestate > 0 then
@@ -282,14 +282,14 @@ function wakaba:ChargeOn(bool)
 end
 
 function wakaba:TestDebugChargeRender()
-  for s = 0, Game():GetNumPlayers() - 1 do
+  for s = 0, wakaba.G:GetNumPlayers() - 1 do
     local player = Isaac.GetPlayer(s)
 	  wakaba:GetPlayerEntityData(player)
 	  local chargestate = player:GetData().wakaba.chargestate
     if chargestate and #chargestate > 0 then
       for i, e in ipairs(chargestate) do
         if e then
-          local fpos = Vector(200 + (50 * s), 60 + (8 * i)) - Game().ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
+          local fpos = Vector(200 + (50 * s), 60 + (8 * i)) - wakaba.G.ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
           wakaba.cf:DrawStringScaledUTF8("x" .. e.Index .. " - " .. e.Profile, fpos.X, fpos.Y, 1.0, 1.0, KColor(1,1,1,1.0,0,0,0),0,true)
           --wakaba:RenderChargeBar(player, i, c.CurrentValue, c.MinValue, c.MaxValue, c.Sprite, wakaba:GetChargebarPos(i), c.IncludeFinishAnim, c.Reverse, c.Count)
         end
@@ -338,13 +338,13 @@ function wakaba:RenderChargeBar(player, chargeno, currentvalue, minvalue, maxval
       sprite:SetFrame("Charging", 100 - ((currentvalue / maxvalue) * 100 // 1))
     end
   end
-  if Game():GetHUD():IsVisible() and Options.ChargeBars then
+  if wakaba.G:GetHUD():IsVisible() and Options.ChargeBars then
     sprite:Update()
-    sprite:Render(Isaac.WorldToScreen(player.Position) + offset - Game().ScreenShakeOffset + Vector(0, -10), Vector(0,0), Vector(0,0))
+    sprite:Render(Isaac.WorldToScreen(player.Position) + offset - wakaba.G.ScreenShakeOffset + Vector(0, -10), Vector(0,0), Vector(0,0))
     if count and sprite:GetAnimation() ~= "Disappear" then
       countsubfix = countsubfix or ""
       countprefix = countprefix or ""
-      local fpos = Isaac.WorldToScreen(player.Position) + offset - Game().ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
+      local fpos = Isaac.WorldToScreen(player.Position) + offset - wakaba.G.ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
       wakaba.cf:DrawStringScaledUTF8(countprefix .. count .. countsubfix, fpos.X, fpos.Y, 1.0, 1.0, KColor(1,1,1,1.0,0,0,0),0,true)
     end
   end

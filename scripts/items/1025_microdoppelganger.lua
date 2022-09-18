@@ -1,6 +1,6 @@
 function wakaba:ItemUse_MicroDoppelganger(_, rng, player, useFlags, activeSlot, varData)
 	player:AddMinisaac(player.Position)
-	if Game().Challenge ~= wakaba.challenges.CHALLENGE_DOPP then
+	if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DOPP then
 		player:AddMinisaac(player.Position)
 		player:AddMinisaac(player.Position)
 		player:AddMinisaac(player.Position)

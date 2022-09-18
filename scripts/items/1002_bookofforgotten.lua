@@ -1,5 +1,5 @@
 function wakaba:ItemUse_BookOfForgotten(_, rng, player, useFlags, activeSlot, varData)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		local hasBless = wakaba:HasBless(pl)
 		SFXManager():Play(SoundEffect.SOUND_BONE_HEART, 1, 0, false, 1)

@@ -12,7 +12,7 @@ function mantlemod:activeShield()
 	for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_BEAST, -1, -1, false, false)) do
 		hasbeast = wakaba.state.options.beastblanket and true
 	end
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.totalmantlecount = player:GetData().wakaba.totalmantlecount or 0
@@ -32,17 +32,17 @@ function mantlemod:activeShield()
 			activeShieldForPlayer(player, holycardcount)
 			player:GetData().wakaba.updateholycard = true
 		end
-		if Game():GetRoom():GetType() == RoomType.ROOM_BOSS or hasbeast then
+		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS or hasbeast then
 			if wakaba.state.options.stackableblanket ~= 0 and blanketcount > wakaba.state.options.stackableblanket then
 				blanketcount = wakaba.state.options.stackableblanket
 			end
 			if wakaba.state.options.stackableblanket >= 0 then
 				local count = blanketcount
-				if Game():GetRoom():GetType() == RoomType.ROOM_BOSS then
+				if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
 					blanketcount = blanketcount - 1
 				end
 				--activeShieldForPlayer(player, blanketcount)
-				if StageAPI and not Game():GetRoom():IsClear() then
+				if StageAPI and not wakaba.G:GetRoom():IsClear() then
 					player:GetData().wakaba.pendingblanket = mantlecount + holycardcount + blanketcount - 1
 				else
 					activeShieldForPlayer(player, blanketcount)
@@ -59,7 +59,7 @@ end
 mantlemod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mantlemod.activeShield)
 
 function mantlemod:activeShieldForLevel(curse)
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.pendingmantlestack = true
@@ -75,7 +75,7 @@ mantlemod:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, mantlemod.activeShieldFor
 function mantlemod:activeDogma(npc)
 	if not wakaba.state.options.dogmablanket then return end
 	if npc.Variant == 0 then
-		for num = 1, Game():GetNumPlayers() do
+		for num = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(num - 1)
 			local blanketcount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BLANKET)
 			if wakaba.state.options.stackableblanket ~= 0 and blanketcount > wakaba.state.options.stackableblanket then
@@ -99,21 +99,21 @@ function mantlemod:checkCurrentHolyCard(player)
 	--[[ if player:GetData().wakaba.istransition and not player:GetSprite():IsPlaying("Appear") then
 		player:GetData().wakaba.pendingmantlestack = true
 	end ]]
-	--print(Game():GetRoom():GetFrameCount())
+	--print(wakaba.G:GetRoom():GetFrameCount())
 	wakaba:GetPlayerEntityData(player)
-	if Game():GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingblanket and player:GetData().wakaba.pendingblanket > 0 then
+	if wakaba.G:GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingblanket and player:GetData().wakaba.pendingblanket > 0 then
 		--print("Activating for Blanket")
 		activeShieldForPlayer(player, player:GetData().wakaba.pendingblanket)
 		player:GetData().wakaba.pendingblanket = nil
 	end
-	if Game():GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingblessmantle and player:GetData().wakaba.pendingblessmantle > 0 then
+	if wakaba.G:GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingblessmantle and player:GetData().wakaba.pendingblessmantle > 0 then
 		--print("Activating for Blanket")
 		activeShieldForPlayer(player, player:GetData().wakaba.pendingblessmantle)
 		player:GetData().wakaba.pendingblessmantle = nil
 	end
 	local holycardcount = player:GetData().wakaba.holycardused or 0
-	--print("Checking Matle Stack", player:GetData().wakaba.pendingmantlestack, Game():IsPaused(), Game():GetRoom():GetFrameCount())
-	if Game():GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingmantlestack and not Game():IsPaused() then
+	--print("Checking Matle Stack", player:GetData().wakaba.pendingmantlestack, wakaba.G:IsPaused(), wakaba.G:GetRoom():GetFrameCount())
+	if wakaba.G:GetRoom():GetFrameCount() > 0 and player:GetData().wakaba.pendingmantlestack and not wakaba.G:IsPaused() then
 		--print("Activate for new floor")
 		if wakaba.state.options.stackableholycard >= 0 then
 			--print("Activating Holy Card", holycardcount)
@@ -132,7 +132,7 @@ function mantlemod:checkCurrentHolyCard(player)
 		--player:GetData().wakaba.isholycard = true
 		player:GetData().wakaba.activatewoodencross = false
 	end
-	if Game():GetRoom():GetFrameCount() <= 2 and player:GetData().wakaba.updateholycard then 
+	if wakaba.G:GetRoom():GetFrameCount() <= 2 and player:GetData().wakaba.updateholycard then 
 		local mantle = player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 		if mantle ~= nil then
 			player:GetData().wakaba.totalmantlecount = mantle.Count
@@ -162,7 +162,7 @@ function mantlemod:checkCurrentHolyCard(player)
 	if player:GetSprite():IsPlaying("Trapdoor") or player:GetSprite():IsPlaying("LightTravel") or player:GetSprite():IsPlaying("Appear") then
 		player:GetData().wakaba.istransition = true
 	end
-	if Game():GetRoom():GetFrameCount() > 0 and currentMantleCount ~= totalmantlecount and currentMantleCount < totalmantlecount and not player:GetData().wakaba.istransition then
+	if wakaba.G:GetRoom():GetFrameCount() > 0 and currentMantleCount ~= totalmantlecount and currentMantleCount < totalmantlecount and not player:GetData().wakaba.istransition then
 		
 		if player:GetData().wakaba.holycardused then
 			if player:GetData().wakaba.isholycard or player:GetData().wakaba.holycardused > 0 then
@@ -251,7 +251,7 @@ function mantlemod:HolyCardCountRender(player)
 	player:GetData().wakaba.holycardused = player:GetData().wakaba.holycardused or 0
 	player:GetData().wakaba.isholycard = player:GetData().wakaba.isholycard or false
 	--[[ 
-	local v = Isaac.WorldToScreen(player.Position) + Vector(0,16) - Game().ScreenShakeOffset
+	local v = Isaac.WorldToScreen(player.Position) + Vector(0,16) - wakaba.G.ScreenShakeOffset
 	local s = "X"
 	if player:GetData().wakaba.isholycard then
 		s = "V"
@@ -270,7 +270,7 @@ mantlemod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, mantlemod.HolyCardCoun
 
 
 function mantlemod:HolyCardContinue()
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		wakaba:GetPlayerEntityData(player)
 		--player:GetData().wakaba.pendingmantlestack = true

@@ -51,7 +51,7 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 	local tempeatheartcharges = 0
 	hasHeart = 0
 	local hasBless = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		local hasBless = wakaba:HasBless(player)
   end
@@ -80,7 +80,7 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 		
 	if hasHeart == 1 then
 		wakaba.state.eatheartused = true
-		local selected = Game():GetItemPool():GetCollectible(ItemPoolType.POOL_NULL)
+		local selected = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_NULL)
 		local Item1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(player.Position, 25), Vector(0,0), nil):ToPickup()
 		Item1:GetData().DamoclesDuplicate = false
 		wakaba:InsertNemesis(Item1.SubType)
@@ -134,17 +134,17 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_PRIMARY)
-		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_PRIMARY)
+		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_PRIMARY)
 	end
 	if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_SECONDARY) + player:GetBatteryCharge(ActiveSlot.SLOT_SECONDARY) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_SECONDARY)
-		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_SECONDARY)
+		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_SECONDARY)
 	end
 	if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.EATHEART then
 		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) + chargeamount
 		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_POCKET)
-		Game():GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
+		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
 	end
 end
 
@@ -206,7 +206,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_EatHe
 
 function wakaba:Damocles_EatHeart()
 	local dupcnt = 0
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if wakaba:HasBless(player) and used > 0 then
 			dupcnt = dupcnt + 1

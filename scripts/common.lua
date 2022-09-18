@@ -111,9 +111,9 @@ function wakaba:GetExpectedFamiliarNum(player, item)
 end
 
 function wakaba:GetCurrentDimension()
-	local here = GetPtrHash(Game():GetLevel():GetCurrentRoomDesc())
+	local here = GetPtrHash(wakaba.G:GetLevel():GetCurrentRoomDesc())
 	for dim=0, 2 do
-		if here == GetPtrHash(Game():GetLevel():GetRoomByIdx(Game():GetLevel():GetCurrentRoomIndex(), dim)) then return dim end
+		if here == GetPtrHash(wakaba.G:GetLevel():GetRoomByIdx(wakaba.G:GetLevel():GetCurrentRoomIndex(), dim)) then return dim end
 	end
 end
 
@@ -137,7 +137,7 @@ function wakaba:HasJudasBr(player)
 end
 
 function wakaba:GetPedestals(includeShop)
-  local game = game or Game()
+  local game = game or wakaba.G
   local pool = pool or game:GetItemPool()
   local config = config or Isaac.GetItemConfig()
   local Pedestals = {}
@@ -166,12 +166,12 @@ end
 function wakaba:CustomStrawman(PlayerType, ControllerIndex)
     PlayerType=PlayerType or 0
     ControllerIndex=ControllerIndex or 0
-    local LastPlayerIndex=Game():GetNumPlayers()-1
+    local LastPlayerIndex=wakaba.G:GetNumPlayers()-1
     if LastPlayerIndex>=63 then return nil else
         Isaac.ExecuteCommand('addplayer '..PlayerType..' '..ControllerIndex)    --spawn the dude
         local Strawman=Isaac.GetPlayer(LastPlayerIndex+1)
         Strawman.Parent=Isaac.GetPlayer(0)                                      --required for strawman hud
-        Game():GetHUD():AssignPlayerHUDs()
+        wakaba.G:GetHUD():AssignPlayerHUDs()
         return Strawman
     end
 end
@@ -221,18 +221,18 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665
 
 ]]
 function wakaba:ForceVoid(rng, spawnPosition)
-	local level = Game():GetLevel()
+	local level = wakaba.G:GetLevel()
 	local stage = level:GetAbsoluteStage()
 	local stageType = level:GetStageType()
 	local curse = level:GetCurses()
-	local room = Game():GetRoom()
+	local room = wakaba.G:GetRoom()
 	local type1 = room:GetType()
 	local bossID = room:GetBossID() -- 55:Mega Satan, 70:Delirium, 88:Mother
 	local finalcheck = isFinalStage(stage, stageType, bossID)
 	--print("finalcheck ", finalcheck)
 	if type1 == RoomType.ROOM_BOSS 
 	and finalcheck ~= wakaba.VoidFlags.NONE
-	and (Game().Challenge == Challenge.CHALLENGE_NULL) then 
+	and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL) then 
 	-- -------------------------------
 	-- Challenge.CHALLENGE_NULL must be set
 	-- This is because Some Wakaba's Challenges requires to beat Hush, Delirium, or even The Beast
@@ -315,14 +315,14 @@ function wakaba:ForceVoid(rng, spawnPosition)
 	-- -------------------------------
 	elseif type1 == RoomType.ROOM_BOSS 
 	and bossID == 6 
-	--and (Game().Challenge == Challenge.CHALLENGE_NULL) 
+	--and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL) 
 	then 
 		-- -------------------------------
 		-- Knife Piece check for Mausoleum/Gehenna II
 		-- -------------------------------
 		if wakaba.state.forcevoid.knifepiece > 0
 		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B) 
-		and Game().Challenge == Challenge.CHALLENGE_NULL then
+		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
 			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
 			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, false, false, true)
@@ -339,8 +339,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			-- Drops Telepills instead of Fool Card.
 			-- -------------------------------
 			local hasbaggy = false
-			for num = 1, Game():GetNumPlayers() do
-				local player = Game():GetPlayer(num - 1)
+			for num = 1, wakaba.G:GetNumPlayers() do
+				local player = wakaba.G:GetPlayer(num - 1)
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_SACK_HEAD, false) then
 					wakaba:GetPlayerEntityData(player)
 					player:GetData().wakaba.sackhead = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SACK_HEAD)
@@ -353,7 +353,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 				end
 			end
 			if hasbaggy then
-				local pool = Game():GetItemPool()
+				local pool = wakaba.G:GetItemPool()
 				local pill = pool:ForceAddPillEffect(wakaba.Enums.Pills.TO_THE_START)
 				pool:IdentifyPill(pill)
 				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
@@ -362,8 +362,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_FOOL, false, false, true)
 			end
-			for num = 1, Game():GetNumPlayers() do
-				local player = Game():GetPlayer(num - 1)
+			for num = 1, wakaba.G:GetNumPlayers() do
+				local player = wakaba.G:GetPlayer(num - 1)
 				if player:GetData().wakaba and player:GetData().wakaba.sackhead then
 					for i = 1, player:GetData().wakaba.sackhead do
 						player:AddCollectible(CollectibleType.COLLECTIBLE_SACK_HEAD)
@@ -379,13 +379,13 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.ForceVoid)
 
 -- Corpse to Sheol/Cathedral. currently unused because of bugged Delirium
 function wakaba:ForceVoidNewRoomCheck()
-	local level = Game():GetLevel()
+	local level = wakaba.G:GetLevel()
 	local stage = level:GetAbsoluteStage()
 	local stageType = level:GetStageType()
-	local room = Game():GetRoom()
+	local room = wakaba.G:GetRoom()
 	
 	if wakaba.state.forcevoid.crackedkey == 1
-	and Game().Challenge == Challenge.CHALLENGE_NULL
+	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 	then
 		if level:GetAbsoluteStage() == LevelStage.STAGE8 then
 			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
@@ -399,30 +399,30 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.ForceVoidNewRoomCheck)
 
 function wakaba:ForceVoidRenderCheck()
-	local level = Game():GetLevel()
+	local level = wakaba.G:GetLevel()
 	local stage = level:GetAbsoluteStage()
 	local stageType = level:GetStageType()
-	local room = Game():GetRoom()
+	local room = wakaba.G:GetRoom()
 	-- Corpse to Sheol/Cathedral. currently unused because of bugged Delirium
 	if room:GetBossID() == 88 then
-		for num = 1, Game():GetNumPlayers() do
-			local player = Game():GetPlayer(num - 1)
+		for num = 1, wakaba.G:GetNumPlayers() do
+			local player = wakaba.G:GetPlayer(num - 1)
 			if player:GetSprite():IsPlaying("Trapdoor") then
-				if (player.Position.X <= Game():GetRoom():GetCenterPos().X - 64) then
-					Game():GetLevel():SetStage(LevelStage.STAGE4_2, StageType.STAGETYPE_ORIGINAL)
+				if (player.Position.X <= wakaba.G:GetRoom():GetCenterPos().X - 64) then
+					wakaba.G:GetLevel():SetStage(LevelStage.STAGE4_2, StageType.STAGETYPE_ORIGINAL)
 				end
 			elseif player:GetSprite():IsPlaying("LightTravel") then
-				Game():GetLevel():SetStage(LevelStage.STAGE4_2, StageType.STAGETYPE_ORIGINAL)
+				wakaba.G:GetLevel():SetStage(LevelStage.STAGE4_2, StageType.STAGETYPE_ORIGINAL)
 			end
 		end
 	-- Remove Little Baggy to prevent Converting Cracked Key into pills
 	elseif wakaba.state.forcevoid.crackedkey == 1
 	and level:GetAbsoluteStage() == LevelStage.STAGE1_1
-	and Game():GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) == true
+	and wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) == true
 	then
 
-		for num = 1, Game():GetNumPlayers() do
-			local player = Game():GetPlayer(num - 1)
+		for num = 1, wakaba.G:GetNumPlayers() do
+			local player = wakaba.G:GetPlayer(num - 1)
 			if player:GetSprite():IsPlaying("LightTravel") then
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_LITTLE_BAGGY) then
 					-- Give Polydactyly first before removing Little Baggy
@@ -500,7 +500,7 @@ end
 
 -- Removes all spawned NPC entities when activating the function
 function wakaba:onFriendlyInit(npc) 
-    if Game().TimeCounter-usagetime == 0 then -- only remove enemies that spawned when the effect was called!
+    if wakaba.G.TimeCounter-usagetime == 0 then -- only remove enemies that spawned when the effect was called!
         npc:Remove()
     end
 end
@@ -511,7 +511,7 @@ function wakaba:ForceOpenDoor(player, roomType)
 	player = player or Isaac.GetPlayer()
 	
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
-		local doorR = Game():GetRoom():GetDoor(i)
+		local doorR = wakaba.G:GetRoom():GetDoor(i)
 		--print(i, (doorR and doorR.TargetRoomType), roomType)
 		if doorR and doorR.TargetRoomType == roomType then 
 			doorR:TryUnlock(player, true)
@@ -544,7 +544,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 	local hastaintedshiori = false
 	local hastsukasa = false
 	local hastaintedtsukasa = false
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == wakaba.PLAYER_WAKABA then
 			haswakaba = true
@@ -561,14 +561,14 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 		end
 	end
 	
-	local level = Game():GetLevel()
+	local level = wakaba.G:GetLevel()
 	local currentStage = level:GetAbsoluteStage()
 	local currentStageType = level:GetStageType()
-	local difficulty = Game().Difficulty
-	local room = Game():GetRoom()
+	local difficulty = wakaba.G.Difficulty
+	local room = wakaba.G:GetRoom()
 	local type1 = room:GetType()
 	local bossID = room:GetBossID()
-	if Game().Challenge == Challenge.CHALLENGE_NULL and Game():GetVictoryLap() <= 0 then
+	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
 		if difficulty < 2 and type1 == RoomType.ROOM_DUNGEON then
 			if currentStage == 13 and hasBeast then -- The Beast
 				hasBeast = false
@@ -894,95 +894,95 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				end
 			end
 		end
-	elseif Game().Challenge ~= Challenge.CHALLENGE_NULL then
-		if     Game().Challenge == wakaba.challenges.CHALLENGE_ELEC and bossID == 6 then
+	elseif wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then
+		if     wakaba.G.Challenge == wakaba.challenges.CHALLENGE_ELEC and bossID == 6 then
 			if not wakaba.state.unlock.eyeofclock then 
 				wakaba.state.unlock.eyeofclock = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.eyeofclock)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_PLUM and bossID == 63 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PLUM and bossID == 63 then
 			if not wakaba.state.unlock.plumy then
 				wakaba.state.unlock.plumy = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.plumy)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_PULL and (bossID == 8 or bossID == 25) then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PULL and (bossID == 8 or bossID == 25) then
 			if not wakaba.state.unlock.ultrablackhole then wakaba.state.unlock.ultrablackhole = true end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_MINE and (bossID == 8 or bossID == 25) then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_MINE and (bossID == 8 or bossID == 25) then
 			if not wakaba.state.unlock.delimiter then
 				wakaba.state.unlock.delimiter = true
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.delimiter)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_GUPP and bossID == 88 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_GUPP and bossID == 88 then
 			if not wakaba.state.unlock.nekodoll then 
 				wakaba.state.unlock.nekodoll = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.nekodoll)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_DOPP and bossID == 63 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DOPP and bossID == 63 then
 			if not wakaba.state.unlock.microdoppelganger then 
 				wakaba.state.unlock.microdoppelganger = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.microdoppelganger)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_DELI and bossID == 70 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DELI and bossID == 70 then
 			if not wakaba.state.unlock.delirium then 
 				wakaba.state.unlock.delirium = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.delirium)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_SIST and bossID == 54 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SIST and bossID == 54 then
 			if not wakaba.state.unlock.lilwakaba then 
 				wakaba.state.unlock.lilwakaba = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lilwakaba)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_DRAW and bossID == 40 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DRAW and bossID == 40 then
 			if not wakaba.state.unlock.lostuniform then 
 				wakaba.state.unlock.lostuniform = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lostuniform)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_HUSH and bossID == 63 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_HUSH and bossID == 63 then
 			if not wakaba.state.unlock.executioner then 
 				wakaba.state.unlock.executioner = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.executioner)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_APPL and bossID == 54 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_APPL and bossID == 54 then
 			if not wakaba.state.unlock.apollyoncrisis then 
 				wakaba.state.unlock.apollyoncrisis = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.apollyoncrisis)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_BIKE and bossID == 70 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE and bossID == 70 then
 			if not wakaba.state.unlock.deliverysystem then 
 				wakaba.state.unlock.deliverysystem = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.deliverysystem)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_CALC and bossID == 55 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_CALC and bossID == 55 then
 			if not wakaba.state.unlock.calculation then 
 				wakaba.state.unlock.calculation = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.calculation)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_HOLD and bossID == 88 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_HOLD and bossID == 88 then
 			if not wakaba.state.unlock.lilmao then 
 				wakaba.state.unlock.lilmao = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lilmao)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_RAND and bossID == 70 then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND and bossID == 70 then
 			if not wakaba.state.unlock.edensticky then 
 				wakaba.state.unlock.edensticky = true 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.edensticky)
 			end
 			wakaba:CheckWakabaChecklist()
-		elseif Game().Challenge == wakaba.challenges.CHALLENGE_DRMS then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DRMS then
 			if type1 == RoomType.ROOM_DUNGEON then
 				if currentStage == 13 and hasBeast then -- The Beast
 					hasBeast = false
@@ -1068,7 +1068,7 @@ local treasureRooms = {}
   snippet by KingBobson
 ]]
 function wakaba:numNextRoomCount(roomIdx)
-  local level = Game():GetLevel()
+  local level = wakaba.G:GetLevel()
   local nextcount = 0
   local door = 0
   if roomIdx >= 13 and level:GetRoomByIdx(roomIdx-13).Data and level:GetRoomByIdx(roomIdx-13).Data.Type ~= RoomType.ROOM_SECRET then
@@ -1092,7 +1092,7 @@ function wakaba:numNextRoomCount(roomIdx)
   end
 end
 function wakaba:getEstimatedDoorSlot(roomIdx)
-  local level = Game():GetLevel()
+  local level = wakaba.G:GetLevel()
   local nextcount = 0
   local door = 0
   if roomIdx >= 13 and level:GetRoomByIdx(roomIdx-13).Data and level:GetRoomByIdx(roomIdx-13).Data.Type ~= RoomType.ROOM_SECRET then
@@ -1120,7 +1120,7 @@ function wakaba:canConnect(door, copy)
 	local forbidden0 = 1 << DoorSlot.DOWN0
 	local forbidden1 = 1 << DoorSlot.DOWN1
 	if (door | forbidden0 == forbidden0) or (door | forbidden1 == forbidden1) then return false end
-  local level = Game():GetLevel()
+  local level = wakaba.G:GetLevel()
   local copyRoom = level:GetRoomByIdx(copy)
   local copyDoorPos = copyRoom.Data.Doors
   if copyDoorPos & door == door then
@@ -1129,14 +1129,14 @@ function wakaba:canConnect(door, copy)
 end
 
 function wakaba:TestRoom()
-  local game = Game()
-  local room = Game():GetRoom()
-  local level = Game():GetLevel()
+  local game = wakaba.G
+  local room = wakaba.G:GetRoom()
+  local level = wakaba.G:GetLevel()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
   local StartingRoom = 84
 
-  --if Game():GetFrameCount() == 0 then ReplaceT = false return end
+  --if wakaba.G:GetFrameCount() == 0 then ReplaceT = false return end
   
 	if room:IsFirstVisit() and CurRoom == StartingRoom then
     --print("Replace!")
@@ -1287,7 +1287,7 @@ wakaba.deliblacklist = {
 }
 
 function wakaba:BlacklistDeli(npc)
-	if Game():GetRoom():GetBossID() == 70 then
+	if wakaba.G:GetRoom():GetBossID() == 70 then
 		npc:Morph(EntityType.ENTITY_DELIRIUM, 0, 0, -1)
 		npc:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 	end
@@ -1298,7 +1298,7 @@ end
 
 function wakaba:Render_HUDAlpha()
 	local pressed = false
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		if Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer(i - 1).ControllerIndex) then
 			pressed = true
 		end
@@ -1364,7 +1364,7 @@ wakaba.taintedsprite = {
 
 --[[ 
 	Tainted Character unlock code from AgentCucco(Job)
-	Normally, the player is defined through for i = 0, Game():GetNumPlayers() -1 , then Isaac.GetPlayer(i).
+	Normally, the player is defined through for i = 0, wakaba.G:GetNumPlayers() -1 , then Isaac.GetPlayer(i).
 	But this function used Isaac.GetPlayer(0) on purpose as Tainted unlock only works for first player even with vanilla characters.
  ]]
 function wakaba:Effect_TaintedWakabaReady()
@@ -1373,7 +1373,7 @@ function wakaba:Effect_TaintedWakabaReady()
 	local ptype = Isaac.GetPlayer(0):GetPlayerType()
 
 	if wakaba:has_value(wakaba.validtainted, ptype) and not player:GetData().wakaba.taintedtouched then
-		if Game():GetLevel():GetCurrentRoomDesc().Data.Name == "Closet L" then
+		if wakaba.G:GetLevel():GetCurrentRoomDesc().Data.Name == "Closet L" then
 			local ents = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
 			local ents2 = Isaac.FindByType(EntityType.ENTITY_SHOPKEEPER)
 			if #ents + #ents2 > 0 then
@@ -1399,7 +1399,7 @@ function wakaba:Effect_TaintedWakabaReady()
 								CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedtsukasa)
 								wakaba:CheckWakabaChecklist()
 							else
-								for i = 0, Game():GetNumPlayers() - 1 do
+								for i = 0, wakaba.G:GetNumPlayers() - 1 do
 									Isaac.GetPlayer(i):AddCollectible(CollectibleType.COLLECTIBLE_INNER_CHILD)
 								end
 							end
@@ -1412,7 +1412,7 @@ function wakaba:Effect_TaintedWakabaReady()
 					sprite:LoadGraphics()
 				end
 			else
-				local ne = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, Game():GetRoom():GetCenterPos(), Vector.Zero, nil)
+				local ne = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, wakaba.G:GetRoom():GetCenterPos(), Vector.Zero, nil)
 				ne:GetData().wakaba = {}
 				ne:GetData().wakaba.tready = true
 				ne:GetData().wakaba.ptype = ptype
@@ -1432,7 +1432,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Effect_TaintedWak
 function wakaba:UniqueBirthrightUpdate(e)
 	local player = Isaac.GetPlayer(0)
 	if e.Type == EntityType.ENTITY_PICKUP and e.Variant == PickupVariant.PICKUP_COLLECTIBLE and e.SubType == CollectibleType.COLLECTIBLE_BIRTHRIGHT 
-	and Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND ~= LevelCurse.CURSE_OF_BLIND 
+	and wakaba.G:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND ~= LevelCurse.CURSE_OF_BLIND 
 	and wakaba.UniqueBirthrightSprites[player:GetPlayerType()] then
 		local sprite = e:GetSprite()
 		sprite:ReplaceSpritesheet(1, wakaba.UniqueBirthrightSprites[player:GetPlayerType()])

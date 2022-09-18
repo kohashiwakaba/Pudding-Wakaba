@@ -57,7 +57,7 @@ function wakaba:wispDeathCheck(wisp)
       if wisp.SubType == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BONE, wisp.Position, Vector.Zero, nil)
       elseif wisp.SubType == wakaba.Enums.Collectibles.DECK_OF_RUNES then
-				local selected = Game():GetItemPool():GetCard(player:GetCollectibleRNG(wakaba.Enums.Collectibles.DECK_OF_RUNES):Next(), false, true, true)
+				local selected = wakaba.G:GetItemPool():GetCard(player:GetCollectibleRNG(wakaba.Enums.Collectibles.DECK_OF_RUNES):Next(), false, true, true)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, selected, wisp.Position, Vector.Zero, nil)
       elseif wisp.SubType == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
         player:AddMinisaac(player.Position)

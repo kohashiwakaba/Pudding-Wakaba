@@ -108,7 +108,7 @@ if EID then
 		end
     EID:addColor("ColorBookofConquest", nil, function(_)
 			local maxAnimTime = 80
-			local animTime = Game():GetFrameCount() % maxAnimTime
+			local animTime = wakaba.G:GetFrameCount() % maxAnimTime
 			local c = EID.InlineColors
 			local colors = {c["ColorBoCLight"], c["ColorBocDark"]}
 			local colorFractions = (maxAnimTime - 1) / #colors
@@ -133,7 +133,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
 	  			return true
@@ -157,7 +157,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
 	  			return true
@@ -181,7 +181,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if wakaba:HasBless(player) then
 	  			return true
@@ -205,7 +205,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if wakaba:HasNemesis(player) then
 	  			return true
@@ -229,7 +229,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if player:GetPlayerType() == wakaba.PLAYER_SHIORI then
 	  			return true
@@ -253,7 +253,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if player:GetPlayerType() == wakaba.PLAYER_SHIORI_B then
 	  			return true
@@ -277,7 +277,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if wakaba:HasShiori(player) then
 	  			return true
@@ -301,7 +301,7 @@ if EID then
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
 	  		return false
 	  	end
-	  	for i = 0,Game():GetNumPlayers() - 1 do
+	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
 	  		local player = Isaac.GetPlayer(i)
 	  		if wakaba:HasJudasBr(player) then
 	  			return true
@@ -473,8 +473,8 @@ if EID then
 			if descObj.ObjType ~= 5 then return false end
 
 			-- recheck the players' owned collectibles periodically, not every frame
-			if Game():GetFrameCount() % 10 == 0 then
-				local numPlayers = Game():GetNumPlayers()
+			if wakaba.G:GetFrameCount() % 10 == 0 then
+				local numPlayers = wakaba.G:GetNumPlayers()
 				local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
 				for _,v in ipairs(playersCheck) do
 					hasPlayer[v] = false
@@ -802,7 +802,7 @@ if EID then
 		end
 		
 		function wakaba:RenderWakabaAchievement()
-			if Game():GetFrameCount() > wakaba.unlockdisplaytimer and Game():GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
+			if wakaba.G:GetFrameCount() > wakaba.unlockdisplaytimer and wakaba.G:GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
 				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 				demoDescObj.Name = "{{Player"..Isaac.GetPlayerTypeByName("Wakaba", false).."}} Pudding & Wakaba - completion mark status"
 				demoDescObj.Description = wakaba.eidunlockstr
@@ -816,7 +816,7 @@ if EID then
 			end
 		end
 		function wakaba:RenderWakabaDebug()
-			if Game():GetFrameCount() > wakaba.unlockdisplaytimer and Game():GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
+			if wakaba.G:GetFrameCount() > wakaba.unlockdisplaytimer and wakaba.G:GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
 				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 				demoDescObj.Name = "{{Player"..Isaac.GetPlayerTypeByName("Wakaba", false).."}} Pudding & Wakaba - 한글 설명 디버그용"
 				demoDescObj.Description = "#가나다라마바사아자차카타파하"
@@ -862,7 +862,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
 				if (playerType == playerID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
 					local itemName = descTable.birthrightName
 					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
-					Game():GetHUD():ShowItemText(itemName, queueDesc)
+					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
 				end
 			end
 		else
@@ -870,7 +870,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
 				if (i_queueNow.ID == itemID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
 					local itemName = itemdesc.itemName or i_queueNow.Name
 					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
-					Game():GetHUD():ShowItemText(itemName, queueDesc)
+					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
 				end
 			end
 		end
@@ -892,7 +892,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
 			if (t_queueNow.ID == itemID and t_queueNow:IsTrinket() and t_queueLastFrame == nil) then
 				local itemName = itemdesc.itemName or t_queueNow.Name
 				local queueDesc = itemdesc.queueDesc or t_queueNow.Description
-				Game():GetHUD():ShowItemText(itemName, queueDesc)
+				wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
 			end
 		end
 	end

@@ -20,7 +20,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.cloverCache)
 function wakaba:PostCloverUpdate()
 	hasclover = 0
 	
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasTrinket(wakaba.Enums.Trinkets.CLOVER, false) then
 			hasclover = hasclover + player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)

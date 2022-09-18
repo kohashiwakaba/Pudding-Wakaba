@@ -19,7 +19,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_GrimreaperDefender, 
 
 
 function wakaba:NewRoom_GrimreaperDefender()
-  for i = 0, Game():GetNumPlayers()-1 do
+  for i = 0, wakaba.G:GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba then 
 			player:GetData().wakaba.grimreaper = false

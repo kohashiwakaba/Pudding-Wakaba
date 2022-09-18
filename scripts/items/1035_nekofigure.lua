@@ -41,7 +41,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.TakeDmg_NekoFigure)
 
 function wakaba:GetCard_NekoFigure(rng, currentCard, playing, runes, onlyRunes)
 	local hasneko = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE) then
 			hasneko = true
@@ -49,9 +49,9 @@ function wakaba:GetCard_NekoFigure(rng, currentCard, playing, runes, onlyRunes)
 	end
 	local randomInt = rng:RandomInt(1000000)
 	if hasneko and currentCard ~= Card.CARD_HOLY then
-		if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL and randomInt <= 250000 then
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL and randomInt <= 250000 then
 			return Card.CARD_CRACKED_KEY
-		elseif Game().Difficulty == Difficulty.DIFFICULTY_HARD and randomInt <= 160000 then
+		elseif wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD and randomInt <= 160000 then
 			return Card.CARD_CRACKED_KEY
 		end
 	end

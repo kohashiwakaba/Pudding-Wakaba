@@ -208,7 +208,7 @@ end
 function idesc:SetCurrentItemLists()
 	local playernotes = {}
 	local items = {}
-	local currCurse = Game():GetLevel():GetCurses()
+	local currCurse = wakaba.G:GetLevel():GetCurses()
 	local curses = {}
 	local collectibles = {}
 	local lemegetonwisps = {}
@@ -216,7 +216,7 @@ function idesc:SetCurrentItemLists()
 	local cards = {}
 	local pills = {}
 	local currItemNo = 1
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local playerType = player:GetPlayerType()
 		if not wakaba:has_value(playernotes, playerType) then
@@ -238,7 +238,7 @@ function idesc:SetCurrentItemLists()
 			})
 		end
 	end
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		for i = 0, 3 do
 			local activeId = player:GetActiveItem(i)
@@ -276,7 +276,7 @@ function idesc:SetCurrentItemLists()
 
 	end
 	for itemId = 1, Isaac.GetItemConfig():GetCollectibles().Size - 1 do
-		for i = 0, Game():GetNumPlayers() - 1 do
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local playerType = player:GetPlayerType()
 			if not wakaba:has_value(collectibles, itemId) 
@@ -292,7 +292,7 @@ function idesc:SetCurrentItemLists()
 		end
 	end
 	for itemId = 1, Isaac.GetItemConfig():GetTrinkets().Size - 1 do
-		for i = 0, Game():GetNumPlayers() - 1 do
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			if not wakaba:has_value(trinkets) and player:HasTrinket(itemId) then
 				table.insert(trinkets, itemId)
@@ -344,7 +344,7 @@ local function resetList()
 	idesc.state.listprops.current = 1
 	idesc.state.listprops.max = 1
 	EID:hidePermanentText()
-	for i=0, Game():GetNumPlayers()-1 do
+	for i=0, wakaba.G:GetNumPlayers()-1 do
 
 		local player = Isaac.GetPlayer(i)
 		local data = player:GetData()
@@ -384,7 +384,7 @@ local function onUpdate(player)
 		idesc.state.listprops.screenx = x
 		idesc.state.listprops.screeny = y
 		if idesc.state.showList then
-			idesc.state.savedtimer = Game().TimeCounter
+			idesc.state.savedtimer = wakaba.G.TimeCounter
 		else
 			resetList()
 		end
@@ -468,7 +468,7 @@ local function onRender()
 
 	if idesc.state.showList and not EID.CachingDescription then
 
-		for i=0, Game():GetNumPlayers()-1 do
+		for i=0, wakaba.G:GetNumPlayers()-1 do
 
 			local player = Isaac.GetPlayer(i)
 			local data = player:GetData()
@@ -658,7 +658,7 @@ function idesc.InputAction(_, entity, inputHook, buttonAction)
 	if wakaba.state.options.listkey == -1 then return end
 	
 	if idesc.state.showList and idesc.state.savedtimer then
-		Game().TimeCounter = idesc.state.savedtimer
+		wakaba.G.TimeCounter = idesc.state.savedtimer
 	elseif idesc.state.savedtimer then 
 		idesc.state.savedtimer = nil
 	end

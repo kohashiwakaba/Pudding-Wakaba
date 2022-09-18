@@ -48,7 +48,7 @@ function deadwisp:Notif(wisp)
 		local wispp = wisp:ToFamiliar()
 		local itemType = wisp.SubType
 		local config = Isaac.GetItemConfig():GetCollectible(itemType)
-		local hud = Game():GetHUD()
+		local hud = wakaba.G:GetHUD()
 		--print(config and hud:IsVisible() and options.deadwispnotif)
 		if config and hud:IsVisible() and options.deadwispnotif and wisp.HitPoints <= 0 then
 			local str = deadwisp:GetStringfromLang(itemType, Options.Language)

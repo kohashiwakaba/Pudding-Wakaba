@@ -12,7 +12,7 @@ if MinimapAPI then
 	MinimapAPI:AddMapFlag(
 	  "CurseOfFlames",
 	  function()
-			return wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and Game():GetLevel():GetCurses() & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES
+			return wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and wakaba.G:GetLevel():GetCurses() & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES
 		end,
 	  wakaba.MiniMapAPISprite,
 	  "Curses",
@@ -22,7 +22,7 @@ if MinimapAPI then
 	MinimapAPI:AddMapFlag(
 	  "CurseOfSatyr",
 	  function()
-			return wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and Game():GetLevel():GetCurses() & wakaba.curses.CURSE_OF_SATYR == wakaba.curses.CURSE_OF_SATYR
+			return wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and wakaba.G:GetLevel():GetCurses() & wakaba.curses.CURSE_OF_SATYR == wakaba.curses.CURSE_OF_SATYR
 		end,
 	  wakaba.MiniMapAPISprite,
 	  "Curses",

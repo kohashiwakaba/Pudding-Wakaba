@@ -223,9 +223,9 @@ end
 function wakaba:PlayerRender_LunarStone(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
-	if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and Game():GetHUD():IsVisible() then
-		local x = Isaac.WorldToScreen(player.Position).X - 5 - Game().ScreenShakeOffset.X
-		local y = Isaac.WorldToScreen(player.Position).Y - 60 - Game().ScreenShakeOffset.Y
+	if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and wakaba.G:GetHUD():IsVisible() then
+		local x = Isaac.WorldToScreen(player.Position).X - 5 - wakaba.G.ScreenShakeOffset.X
+		local y = Isaac.WorldToScreen(player.Position).Y - 60 - wakaba.G.ScreenShakeOffset.Y
 		wakaba.f:DrawString(((data.wakaba.lunargauge // 1000) / 10), x, y ,KColor(0.9,0.8,1,1,0,0,0),0,true)
 	end
 end
@@ -277,9 +277,9 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
 
 
 function wakaba:RoomClear_LunarStone(rng, pos)
-	if Game():GetRoom():GetType() == RoomType.ROOM_BOSS then
-		for i = 0, Game():GetNumPlayers() - 1 do
-			local player = Game():GetPlayer(i)
+	if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
+			local player = wakaba.G:GetPlayer(i)
 			if wakaba:hasLunarStone(player) then
 				wakaba:GetPlayerEntityData(player)
 				local data = player:GetData()

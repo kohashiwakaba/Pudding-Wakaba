@@ -9,7 +9,7 @@ local currjupiterstats = wakaba:deepcopy(jupiterstats)
 
 function wakaba:Update_RingofJupiter()
 	currjupiterstats = wakaba:deepcopy(jupiterstats)
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasTrinket(wakaba.Enums.Trinkets.RING_OF_JUPITER) then
 			--print("Adding Player",i,"stats...")
@@ -25,7 +25,7 @@ end
 
 function wakaba:Cache_RingofJupiter(player, cacheFlag)
 	local jupiter = 0 
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local p = Isaac.GetPlayer(i - 1)
 		if p:HasTrinket(wakaba.Enums.Trinkets.RING_OF_JUPITER) then
 			jupiter = jupiter + p:GetTrinketMultiplier(wakaba.Enums.Trinkets.RING_OF_JUPITER)

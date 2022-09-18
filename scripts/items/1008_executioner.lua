@@ -2,7 +2,7 @@ local alwayseraser = 0 -- 0 : default, 1 : always, -1 : never
 
 function wakaba:update28()
 	newplumcount = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
 			trycount = true
@@ -14,7 +14,7 @@ function wakaba:update28()
 	local hasboss = false
 	local hasdogma = false
 	if trycount and Isaac.CountEnemies() > 0 then
-		local entities = Isaac.FindInRadius(Game():GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)
+		local entities = Isaac.FindInRadius(wakaba.G:GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)
 		for i, e in ipairs(entities) do
 			if e.Type == EntityType.ENTITY_DOGMA 
 			or e.Type == EntityType.ENTITY_VISAGE

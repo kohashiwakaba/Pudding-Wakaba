@@ -35,7 +35,7 @@ include("scripts.postgetcollectible") -- temp library for post get collectible
 
 
 
-
+wakaba.G = Game() -- Cache game object
 wakaba.f = Font() -- init font object
 wakaba.f:Load("font/pftempestasevencondensed.fnt") -- load a font into the font object
 wakaba.cf = Font() -- init font object
@@ -680,7 +680,7 @@ if not wakaba.state then
 end
 --Settings Here. Modify this area to change settings
 
---start from new Game()
+--start from new wakaba.G
 if not wakaba.defaultstate then
 	wakaba.defaultstate = wakaba:deepcopy(wakaba.state)
 end
@@ -849,7 +849,7 @@ wakaba.defaultsettings = {
 
 --Global Functions and variables
 
-local HUD = Game():GetHUD()
+local HUD = wakaba.G:GetHUD()
 wakaba.RNG = RNG()
 wakaba.ItemRNG = RNG()
 wakaba.PickupRNG = RNG()
@@ -876,8 +876,8 @@ function wakaba:InsertNemesis(id)
 end
 
 function wakaba:GetScreenSize()
-    local room = Game():GetRoom()
-    local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
+    local room = wakaba.G:GetRoom()
+    local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - wakaba.G.ScreenShakeOffset
     
     local rx = pos.X + 60 * 26 / 40
     local ry = pos.Y + 140 * (26 / 40)
@@ -888,7 +888,7 @@ function wakaba:GetScreenCenter()
     return wakaba:GetScreenSize()/2
 end
 function wakaba:GetGridCenter() --returns Vector
-	local room = Game():GetRoom()
+	local room = wakaba.G:GetRoom()
 	
 	local topleft = room:GetTopLeftPos()
 	local bottomright = room:GetBottomRightPos()
@@ -916,7 +916,7 @@ function wakaba:GetMaxCollectibleID()
 end
 
 function wakaba:WhitelistTag(tag)
-	local items = Game():GetItemPool()
+	local items = wakaba.G:GetItemPool()
 	local itemID = 0
 	local maxID = wakaba:GetMaxCollectibleID()
   local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
@@ -925,13 +925,13 @@ function wakaba:WhitelistTag(tag)
     lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
 		if lastItem ~= nil and not lastItem:HasTags(tag) then
 			--Isaac.ConsoleOutput("Removed : "..itemID.."/"..maxID.. "\n")
-			Game():GetItemPool():RemoveCollectible(itemID)
+			wakaba.G:GetItemPool():RemoveCollectible(itemID)
 		end
   until itemID > maxID
 end
 
 function wakaba:BlacklistTag(tag)
-	local items = Game():GetItemPool()
+	local items = wakaba.G:GetItemPool()
 	local itemID = 0
 	local maxID = wakaba:GetMaxCollectibleID()
   local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
@@ -940,7 +940,7 @@ function wakaba:BlacklistTag(tag)
     lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
 		if lastItem ~= nil and lastItem:HasTags(tag) then
 			--Isaac.ConsoleOutput("Removed : "..itemID.."/"..maxID.. "\n")
-			Game():GetItemPool():RemoveCollectible(itemID)
+			wakaba.G:GetItemPool():RemoveCollectible(itemID)
 		end
   until itemID > maxID
 end
@@ -962,7 +962,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUseCostumeReset)
 
 --[[
 	Get Offset by Peachee
-  @param {int} notches - the number of notches filled in on hud offset (default inGame() is between 0-10)
+  @param {int} notches - the number of notches filled in on hud offset (default inwakaba.G is between 0-10)
   @param {float} x - original x coordinate
   @param {float} y - original y coordinate
   @param {string} anchor - the anchoring position of the element: "topleft", "topright", "bottomleft", "bottomright" IE. stats are "topleft", minimap is "topright"
@@ -992,9 +992,9 @@ end
 local activePendingPapers = false
 
 function wakaba:activePapers()
-  local game = Game()
-  local room = Game():GetRoom()
-  local level = Game():GetLevel()
+  local game = wakaba.G
+  local room = wakaba.G:GetRoom()
+  local level = wakaba.G:GetLevel()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
   local StartingRoom = 84
@@ -1193,7 +1193,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat
 
 function wakaba:init(continue)
 	wakaba.eidHideInBattle = EID.Config["HideInBattle"]
-	wakaba.RNG:SetSeed(Game():GetSeeds():GetStartSeed(), 35)
+	wakaba.RNG:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
   --Isaac.DebugString(wakaba.state)
   if wakaba:HasData() then
 		Isaac.DebugString(wakaba:LoadData())
@@ -1238,7 +1238,7 @@ function wakaba:init(continue)
 			local isUnlocked = wakaba:unlockCheck(i)
 			if not isUnlocked then
 				Isaac.DebugString("[wakaba]Item ID ".. i .. " Not unlocked! removing from the pools...")
-				Game():GetItemPool():RemoveCollectible(i)
+				wakaba.G:GetItemPool():RemoveCollectible(i)
 			end
 			if EID then
 				EID.itemUnlockStates[i] = isUnlocked
@@ -1248,7 +1248,7 @@ function wakaba:init(continue)
 		--[[ for i = wakaba.Enums.Trinkets.CLOVER, Isaac.GetItemConfig():GetTrinkets().Size -1 do
 			if not wakaba:trinketUnlockCheck(i) then
 				Isaac.DebugString("[wakaba]Trinket ID ".. i .. " Not unlocked! removing from the pools...")
-				Game():GetItemPool():RemoveCollectible(i)
+				wakaba.G:GetItemPool():RemoveCollectible(i)
 			end
 		end ]]
 	else
@@ -1256,7 +1256,7 @@ function wakaba:init(continue)
 		local tempplayerdatas = wakaba.state.playersavedata
 		local reservedplayerdatas = {}
 
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			for i = 1, #tempplayerdatas do
 				--print(tempplayerdatas[i].hash , player:GetData().wakaba_lhash)
@@ -1431,7 +1431,7 @@ function wakaba:PostGlobalPlayerInit(player)
   if TotPlayers == 0 then
     wakaba.state.storedplayers = 0
     
-    if Game():GetFrameCount() == 0 then
+    if wakaba.G:GetFrameCount() == 0 then
       --print("Game Started")
 			wakaba.state.playersavedata = {}
     else
@@ -1486,10 +1486,10 @@ function wakaba:PostGlobalPlayerInit(player)
 	player:GetData().wakaba_lhash = phash
 	Isaac.DebugString("[wakaba]Wakaba - Persistent Data registered.")
 
-	if Game().TimeCounter == 0 then
-		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and Game().Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then
+	if wakaba.G.TimeCounter == 0 then
+		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE, ActiveSlot.SLOT_POCKET, false)
-		elseif wakaba.state.unlock.lostuniform and wakaba.state.options.lostuniform and Game().Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 31 then
+		elseif wakaba.state.unlock.lostuniform and wakaba.state.options.lostuniform and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 31 then
 			player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
 		end
 	end
@@ -1599,7 +1599,7 @@ costumeProtector.AddCallback("MC_POST_COSTUME_RESET", CostumeUpdate_wakaba)
 
 
 function wakaba:getcurrentindex(player)
-	for num = 0, Game():GetNumPlayers()-1 do
+	for num = 0, wakaba.G:GetNumPlayers()-1 do
 		if GetPtrHash(player) == GetPtrHash(Isaac.GetPlayer(num)) then 
 			return num + 1
 		end
@@ -1630,7 +1630,7 @@ end
 if potatopack2 == nil then
 	function wakaba:removePedestal(pickup)
 		local hasflip = false
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
 				hasflip = true
@@ -1650,11 +1650,11 @@ function wakaba:save(shouldSave)
 		Isaac.DebugString("[wakaba]Wakaba - Data Saving start")
 		wakaba.state.saved = true
 		wakaba.state.intversion = wakaba.intversion
-		wakaba.state.savedtimecounter = Game():GetFrameCount()
+		wakaba.state.savedtimecounter = wakaba.G:GetFrameCount()
 		--wakaba.state.playersavedata = {}
 		local reservedplayersavedata = {}
 
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			--[[ local playerdata = player:GetData().wakaba
 			local playerindex = player:GetData().wakaba_cindex
@@ -1818,12 +1818,12 @@ include('scripts.characters.not_wakaba')
 
 
 function wakaba:OnGameExit(shouldSave)
-	if Game():GetLevel():GetCurrentRoomIndex() == GridRooms.ROOM_DEBUG_IDX then
-		Game():StartRoomTransition(Game():GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.FADE,nil,-1)
-		--Game():GetLevel():ChangeRoom(Game():GetLevel():GetStartingRoomIndex(), -1)
+	if wakaba.G:GetLevel():GetCurrentRoomIndex() == GridRooms.ROOM_DEBUG_IDX then
+		wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.FADE,nil,-1)
+		--wakaba.G:GetLevel():ChangeRoom(wakaba.G:GetLevel():GetStartingRoomIndex(), -1)
 	end
 	
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.pendingmantlestack = true

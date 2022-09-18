@@ -71,7 +71,7 @@ end
 
 function wakaba:renderDreams()
 	wakaba.hasdreams = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 			wakaba.hasdreams = true
@@ -79,17 +79,17 @@ function wakaba:renderDreams()
 	end
 	
 	if wakaba.hasdreams
-	and Game():GetHUD():IsVisible()
+	and wakaba.G:GetHUD():IsVisible()
 	then
 		local ypos = 10
 		local list = wakaba.ItemPoolType
 		local pooltype = wakaba.state.dreampool
 		local current = AnIndexOf(list, wakaba.state.dreampool)
 		local poolname = wakaba.ItemPoolName[current]
-		if Game():GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN == LevelCurse.CURSE_OF_THE_UNKNOWN then
-			wakaba.f:DrawString("???", 20 - Game().ScreenShakeOffset.X, 5 - Game().ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
+		if wakaba.G:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN == LevelCurse.CURSE_OF_THE_UNKNOWN then
+			wakaba.f:DrawString("???", 20 - wakaba.G.ScreenShakeOffset.X, 5 - wakaba.G.ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
 		else
-			wakaba.f:DrawString(pooltype .. " " .. poolname, 20 - Game().ScreenShakeOffset.X, 5 - Game().ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
+			wakaba.f:DrawString(pooltype .. " " .. poolname, 20 - wakaba.G.ScreenShakeOffset.X, 5 - wakaba.G.ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
 		end
 		
 		--Isaac.RenderText("Sample text", 155, 20, 1, 1, 1, 255)
@@ -155,11 +155,11 @@ function wakaba:dreamsCardBonus(rng, spawnPosition)
 	--local randomInt = rng:RandomInt(100)
 	
 	local border = 800
-	if Game().Challenge == wakaba.challenges.CHALLENGE_DRMS then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DRMS then
 		border = border * 2
 	end
 
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.DOUBLE_DREAMS)

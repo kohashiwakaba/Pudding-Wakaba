@@ -1,6 +1,6 @@
 local function TryOpenChallengeDoor()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
-		local doorR = Game():GetRoom():GetDoor(i)
+		local doorR = wakaba.G:GetRoom():GetDoor(i)
 		if doorR then 
 			if doorR.TargetRoomType == RoomType.ROOM_CHALLENGE then
 				doorR:TryUnlock(Isaac.GetPlayer(), true)
@@ -10,7 +10,7 @@ local function TryOpenChallengeDoor()
 end
 
 function wakaba:NewRoom_PhantomCloak()
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		pData = player:GetData()
 		if pData.wakaba and pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then

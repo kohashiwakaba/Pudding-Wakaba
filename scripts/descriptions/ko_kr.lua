@@ -1222,6 +1222,12 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "그 때 그 시절로",
 	},
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {
+		itemName = "별빛 뒤집기",
+		description = ""
+		.. "#{{TraseureRoom}}보물방에서 장신구를 버리면 {{Planetarium}}천체관 아이템으로 바뀝니다."
+		.. "{{CR}}",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {

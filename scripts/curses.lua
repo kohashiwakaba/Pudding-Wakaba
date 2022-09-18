@@ -29,21 +29,21 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_refreshWispSize)
 
 function wakaba:Curse_BlackCandleCheck(player)
-	local curse = Game():GetLevel():GetCurses() 
+	local curse = wakaba.G:GetLevel():GetCurses() 
 	if player:GetPlayerType() == wakaba.PLAYER_SHIORI
 	and wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR
-	and Game().Challenge == Challenge.CHALLENGE_NULL
+	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 	and curse & wakaba.curses.CURSE_OF_SATYR ~= wakaba.curses.CURSE_OF_SATYR
 	then
-		Game():GetLevel():RemoveCurses(Game():GetLevel():GetCurses())
-		Game():GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
+		wakaba.G:GetLevel():RemoveCurses(wakaba.G:GetLevel():GetCurses())
+		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE) then
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES then
-			Game():GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_FLAMES)
+			wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_FLAMES)
 		end
 		if CURCOL and curse & wakaba.curses.CURSE_OF_BLIGHT == wakaba.curses.CURSE_OF_BLIGHT then
-			Game():GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_BLIGHT)
+			wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_BLIGHT)
 		end
 	end
 end
@@ -52,12 +52,12 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_BlackCandle
 function wakaba:Curse_Evaluate(curse)
 	--if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
 	--[[ print(wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR)
-	print(Game():GetLevel():GetAbsoluteStage())
-	print(Game().TimeCounter) ]]
-	for i = 1, Game():GetNumPlayers() do
+	print(wakaba.G:GetLevel():GetAbsoluteStage())
+	print(wakaba.G.TimeCounter) ]]
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == wakaba.PLAYER_SHIORI
-		and ((wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and Game().TimeCounter == 0)
+		and ((wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and wakaba.G.TimeCounter == 0)
 		or wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR) then
 			curse = wakaba.curses.CURSE_OF_SATYR
 			return curse
@@ -66,7 +66,7 @@ function wakaba:Curse_Evaluate(curse)
 			return curse
 		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
-		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) then
+		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) then
 			if curse | LevelCurse.CURSE_OF_BLIND == LevelCurse.CURSE_OF_BLIND then
 				curse = curse & ~LevelCurse.CURSE_OF_BLIND
 			end
@@ -102,18 +102,18 @@ wakaba:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, wakaba.Curse_Evaluate)
 
 function wakaba:Curse_PlayerRender(player)
 	if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) then
-		local curse = Game():GetLevel():GetCurses()
+		local curse = wakaba.G:GetLevel():GetCurses()
 		if curse & LevelCurse.CURSE_OF_BLIND == LevelCurse.CURSE_OF_BLIND then
-			Game():GetLevel():RemoveCurses(LevelCurse.CURSE_OF_BLIND)
+			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_BLIND)
 		end
 		if CURCOL and curse & wakaba.curses.CURSE_OF_BLIGHT == wakaba.curses.CURSE_OF_BLIGHT then
-			Game():GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_BLIGHT)
+			wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_BLIGHT)
 		end
 	end
 	if wakaba:hasElixir(player) then
-		local curse = Game():GetLevel():GetCurses()
+		local curse = wakaba.G:GetLevel():GetCurses()
 		if curse & LevelCurse.CURSE_OF_THE_UNKNOWN == LevelCurse.CURSE_OF_THE_UNKNOWN then
-			Game():GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_UNKNOWN)
+			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_UNKNOWN)
 		end
 	end
 end
@@ -122,9 +122,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.Curse_PlayerRender
 if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 	function wakaba:PlayerUpdate_Curse(player)
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
-		local curse = Game():GetLevel():GetCurses() 
+		local curse = wakaba.G:GetLevel():GetCurses() 
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES
-		--[[ and (Game():GetRoom():GetType() == RoomType.ROOM_CHALLENGE or Game():GetRoom():GetType() == RoomType.ROOM_BOSSRUSH) ]] then
+		--[[ and (wakaba.G:GetRoom():GetType() == RoomType.ROOM_CHALLENGE or wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSSRUSH) ]] then
 			if not player:IsItemQueueEmpty() and player.QueuedItem.Item:IsCollectible() then
 				local heldItem = player.QueuedItem.Item
 				if heldItem:HasTags(ItemConfig.TAG_QUEST) or heldItem.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
@@ -140,10 +140,10 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					local familiar
 					if heldItem:HasTags(ItemConfig.TAG_SUMMONABLE) then
 						familiar = player:AddItemWisp(heldItem.ID, player.Position, true)
-						--Game():GetHUD():ShowItemText(player, heldItem.ID)
+						--wakaba.G:GetHUD():ShowItemText(player, heldItem.ID)
 					else
 						familiar = player:AddWisp(heldItem.ID, player.Position, true, false)
-						Game():GetHUD():ShowItemText("Oh no...", "", false)
+						wakaba.G:GetHUD():ShowItemText("Oh no...", "", false)
 					end
 					if familiar then
 						familiar.Parent = collider
@@ -153,7 +153,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 						familiar.HitPoints = familiar.MaxHitPoints
 					end
 		
-					Game():GetLevel():UpdateVisibility()
+					wakaba.G:GetLevel():UpdateVisibility()
 					player:AnimateSad()
 				end
 			end
@@ -163,10 +163,10 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 	
 	function wakaba:Curse_PickupCollision(pickup, collider, low)
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
-		if Game():GetRoom():GetType() == RoomType.ROOM_CHALLENGE then return end
-		if Game():GetRoom():GetType() == RoomType.ROOM_BOSSRUSH then return end
+		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_CHALLENGE then return end
+		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSSRUSH then return end
 		if not collider:ToPlayer() then return end
-		local curse = Game():GetLevel():GetCurses() 
+		local curse = wakaba.G:GetLevel():GetCurses() 
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES then
 			local id = pickup.SubType
 			if id == 0 then return end
@@ -238,10 +238,10 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 				if config:HasTags(ItemConfig.TAG_SUMMONABLE) then
 					--print(player, player.Index)
 					familiar = player:AddItemWisp(id, player.Position, true)
-					Game():GetHUD():ShowItemText(player, config)
+					wakaba.G:GetHUD():ShowItemText(player, config)
 				else
 					familiar = player:AddWisp(id, player.Position, true, false)
-					Game():GetHUD():ShowItemText("Oh no...", "", false)
+					wakaba.G:GetHUD():ShowItemText("Oh no...", "", false)
 				end
 				if familiar then
 					familiar.Parent = collider
@@ -264,10 +264,10 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 						local Poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, pickup):ToEffect()
 						pickup:Remove()
 					end
-					--[[ if Game():GetRoom():GetType() == RoomType.ROOM_CHALLENGE or Game():GetRoom():GetType() == RoomType.ROOM_BOSSRUSH then
-						Game():GetRoom():SetAmbushDone(false)
+					--[[ if wakaba.G:GetRoom():GetType() == RoomType.ROOM_CHALLENGE or wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSSRUSH then
+						wakaba.G:GetRoom():SetAmbushDone(false)
 					end ]]
-					Game():GetLevel():UpdateVisibility()
+					wakaba.G:GetLevel():UpdateVisibility()
 					player:AnimateSad()
 				end
 	

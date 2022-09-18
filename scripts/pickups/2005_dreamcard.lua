@@ -9,7 +9,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2005, wakaba.Enums.
 
 function wakaba:onGetCard2005(rng, currentCard, playing, runes, onlyRunes)
 	local hasDreams = false
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 			hasDreams = true

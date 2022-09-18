@@ -279,7 +279,7 @@ function wakaba:updateMurasame(familiar)
 				e:Die()
 			end
 		end
-		local grid = Game():GetRoom():GetGridEntityFromPos(familiar.Position)
+		local grid = wakaba.G:GetRoom():GetGridEntityFromPos(familiar.Position)
 		if grid then
 			local gridtype = grid:GetType()
 			if (gridtype >= GridEntityType.GRID_ROCK and gridtype <= GridEntityType.GRID_ROCK_ALT) 
@@ -379,7 +379,7 @@ function wakaba:FamiliarCollision_Murasame(familiar, entity, bool)
 			if player:HasWeaponType(WeaponType.WEAPON_ROCKETS) then
 				mult = 2
 			end
-			Game():BombExplosionEffects(familiar.Position, player.Damage * 10 * mult, player.TearFlags, Color.Default, player, mult * 0.75, true, false, DamageFlag.DAMAGE_EXPLOSION)
+			wakaba.G:BombExplosionEffects(familiar.Position, player.Damage * 10 * mult, player.TearFlags, Color.Default, player, mult * 0.75, true, false, DamageFlag.DAMAGE_EXPLOSION)
 		end
 	end
 end
@@ -389,18 +389,18 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, wakaba.FamiliarCollis
 function wakaba:PlayerRender_Murasame(player)
 	wakaba:GetPlayerEntityData(player)
 	if (player:GetData().wakaba.voided and player:GetData().wakaba.voided.murasame) or player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) or player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
-		Game():GetLevel():SetStateFlag(LevelStateFlag.STATE_REDHEART_DAMAGED, false)
-		Game():GetRoom():SetRedHeartDamage(false)
-		Game():SetLastDevilRoomStage(LevelStage.STAGE_NULL)
-		if Game():GetLevel():GetAngelRoomChance() <= 0 then
-			Game():GetLevel():AddAngelRoomChance((Game():GetLevel():GetAngelRoomChance() * -1) + 0.00001)
+		wakaba.G:GetLevel():SetStateFlag(LevelStateFlag.STATE_REDHEART_DAMAGED, false)
+		wakaba.G:GetRoom():SetRedHeartDamage(false)
+		wakaba.G:SetLastDevilRoomStage(LevelStage.STAGE_NULL)
+		if wakaba.G:GetLevel():GetAngelRoomChance() <= 0 then
+			wakaba.G:GetLevel():AddAngelRoomChance((wakaba.G:GetLevel():GetAngelRoomChance() * -1) + 0.00001)
 		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_Murasame)
 
 function wakaba:ItemUse_Murasame(_, rng, player, useFlags, activeSlot, varData)
-	--local newMachinePos = Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
+	--local newMachinePos = wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
 	local newMachinePos = Isaac.GetFreeNearPosition(player.Position, 40)
 	local eType, eVariant, count = wakaba:GetMurasameBoss(rng)
 	local ents = {}
@@ -420,7 +420,7 @@ function wakaba:ItemUse_Murasame(_, rng, player, useFlags, activeSlot, varData)
 			ents[i-1].Child = ents[i]
 		end
 	end
-	Game():GetLevel():AddAngelRoomChance(0.2)
+	wakaba.G:GetLevel():AddAngelRoomChance(0.2)
 	SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 	SFXManager():Play(SoundEffect.SOUND_SUPERHOLY, 1, 0, false, 1)
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
@@ -455,7 +455,7 @@ function wakaba:BossKill_Murasame(entity)
 	if not entity:IsBoss() then return end
 	if wakaba:has_value(wakaba.murasameblacklist, entity.Type) then return end
 	if wakaba:has_value(wakaba.conquestblacklist, entity.Type) then return end
-	if Game():GetRoom():GetType() == RoomType.ROOM_BOSS then
+	if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
 		addMurasameBoss(entity)
 	end
 end
@@ -466,7 +466,7 @@ local function CheckTears()
 	local tears = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	for i, e in ipairs(tears) do
 		local tear = e:ToTear()
-		local fpos = Vector(30, 60 + (8 * i)) - Game().ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
+		local fpos = Vector(30, 60 + (8 * i)) - wakaba.G.ScreenShakeOffset + Vector(0, -10) + Vector(8, -8)
 		local str = ""
 		for p = 1, TearFlags.TEAR_EFFECT_COUNT do
 			if tear:HasTearFlags(wakaba.TEARFLAG(p)) then

@@ -37,7 +37,7 @@ local hidelist = {}
 local duped = {}
 function wakaba:onNemesisCache(player, cacheFlag)
   if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABA_DUALITY))
-	and Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND 
+	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND 
 	then
 		wakaba:GetPlayerEntityData(player)
 		local nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
@@ -66,7 +66,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
     	end
 		end
 		if nemesiscount > 0 then
-			if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game().Difficulty == Difficulty.DIFFICULTY_GREEDIER then
+			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREEDIER then
 				if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 					player.ShotSpeed = player.ShotSpeed - (collectibleNum * 0.02)
 				end
@@ -148,7 +148,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) -- Define combined item
 		if player:FlushQueueItem() then -- Skip current queued item animation, This will add item B in Isaac's inventory.
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle") -- Manually animate pickup animation
-			Game():GetHUD():ShowItemText(newName, newDesc, false) -- Show item name and descriptions to HUD
+			wakaba.G:GetHUD():ShowItemText(newName, newDesc, false) -- Show item name and descriptions to HUD
 			player:QueueItem(newItemConfig) -- Queue combined item. Finishing animation will add the combined one.
 		end
 		-- Then remove both items which were supposed to be combined. Must call after player:FlushQueueItem() is called
@@ -158,7 +158,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:FlushQueueItem() then
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle")
-			Game():GetHUD():ShowItemText(newName, newDesc, false)
+			wakaba.G:GetHUD():ShowItemText(newName, newDesc, false)
 			player:QueueItem(newItemConfig)
 		end
 		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
@@ -203,7 +203,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 
 	if wakaba:HasNemesis(player)
 	then
-		local writableRoomDesc = Game():GetLevel():GetRoomByIdx(-1)
+		local writableRoomDesc = wakaba.G:GetLevel():GetRoomByIdx(-1)
 		if writableRoomDesc then
 			if writableRoomDesc.SurpriseMiniboss then
 				print("writableRoomDesc.SurpriseMiniboss")
@@ -274,7 +274,7 @@ end
 
 function wakaba:ReadDejaVuCandidates()
 	local TotalDejaVuCandidates = {}
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba and player:GetData().wakaba.DejaVuCandidates then
 			local DejaVuItems = player:GetData().wakaba.DejaVuCandidates
@@ -289,15 +289,15 @@ function wakaba:ReadDejaVuCandidates()
 end
 
 function wakaba:ShouldRemoveIndex()
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
 
 	if wakaba.state.options.blessnemesisindexed 
 	then return false end
 
 	if room:GetType() == RoomType.ROOM_TREASURE
 	and level:GetAbsoluteStage() == LevelStage.STAGE1_1
-	and not Game():GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+	and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 	and wakaba.state.options.firsttreasureroomindexed
 	then return false end
 	
@@ -366,8 +366,8 @@ function wakaba:updateDevilAngelRoomDoor(rng, pos)
 	local dealdoor=nil
 	local doorcount=0
 	for i=0,8 do
-		if Game():GetRoom():GetDoor(i) and Game():GetRoom():GetDoor(i).TargetRoomIndex==-1 then
-			dealdoor=Game():GetRoom():GetDoor(i)
+		if wakaba.G:GetRoom():GetDoor(i) and wakaba.G:GetRoom():GetDoor(i).TargetRoomIndex==-1 then
+			dealdoor=wakaba.G:GetRoom():GetDoor(i)
 			doorcount=doorcount+1
 		end
 	end
@@ -376,15 +376,15 @@ end
 
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
   ignorelist = {}
   hidelist = {}  
 	
 	local bless = false
 	local nemesis = false
 	local duality = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.blessmantle = nil
@@ -392,7 +392,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 			bless = true
 			if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= 2 then
 				--print("Holy Mantle for Wakaba's Blessing activated")
-				if Game():GetRoom():GetType() == RoomType.ROOM_BOSS and StageAPI and not Game():GetRoom():IsClear() then
+				if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS and StageAPI and not wakaba.G:GetRoom():IsClear() then
 					player:GetData().wakaba.pendingblessmantle = wakaba:GetBlessNum(player)
 				elseif player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
 					for i = 1, wakaba:GetBlessNum(player) do
@@ -411,7 +411,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	
 	--[[ if not duality
 	and room:GetType() == RoomType.ROOM_BOSS
-	and not Game().Challenge == wakaba.challenges.CHALLENGE_RAND then
+	and not wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
 		if wakaba.state.hasbless and not wakaba.state.hasnemesis then
 			level:InitializeDevilAngelRoom(true, false)
 		elseif not wakaba.state.hasbless and wakaba.state.hasnemesis then
@@ -455,7 +455,7 @@ function wakaba:blessnemesis()
 	local blesscount = 0
 	local nemesiscount = 0
 	local wakababrcount = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if wakaba:HasBless(player) then
 			blesscount = blesscount + 1
@@ -486,25 +486,25 @@ function wakaba:blessnemesis()
 	
 	--collectible end
 	if wakaba.state.hasbless and not wakaba.state.hasnemesis then
-		if Game():GetLevel():GetAngelRoomChance() < 1 then
-			Game():GetLevel():AddAngelRoomChance(1 - Game():GetLevel():GetAngelRoomChance())
+		if wakaba.G:GetLevel():GetAngelRoomChance() < 1 then
+			wakaba.G:GetLevel():AddAngelRoomChance(1 - wakaba.G:GetLevel():GetAngelRoomChance())
 		end
-		--[[ if Game():GetDevilRoomDeals() > 0 then
-			Game():AddDevilRoomDeal(-Game():GetDevilRoomDeals())
+		--[[ if wakaba.G:GetDevilRoomDeals() > 0 then
+			wakaba.G:AddDevilRoomDeal(-wakaba.G:GetDevilRoomDeals())
 		end ]]
 	elseif not wakaba.state.hasbless and wakaba.state.hasnemesis then
-		if Game():GetDevilRoomDeals() < 1 then
-			Game():AddDevilRoomDeal()
+		if wakaba.G:GetDevilRoomDeals() < 1 then
+			wakaba.G:AddDevilRoomDeal()
 		end
-		if Game():GetLevel():GetAngelRoomChance() > 0 then
-			Game():GetLevel():AddAngelRoomChance(-Game():GetLevel():GetAngelRoomChance())
+		if wakaba.G:GetLevel():GetAngelRoomChance() > 0 then
+			wakaba.G:GetLevel():AddAngelRoomChance(-wakaba.G:GetLevel():GetAngelRoomChance())
 		end
 	end
 
 	
 	--[[ if removesatanwisp then
 		
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			wakaba:CleanupContinueSatanWisps(_, player)
 		end
@@ -530,7 +530,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.TakeDmg_BlessNemesis
 function wakaba:pickupinit(pickup)
 	local haslost = false
 	local steamcount = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		--[[ if player:GetPlayerType() == 10
 		or player:GetPlayerType() == 31
@@ -544,7 +544,7 @@ function wakaba:pickupinit(pickup)
 	end
 	
 	if wakaba.state.hasnemesis then
-		if Game():GetRoom():GetType() == RoomType.ROOM_DEVIL and pickup:IsShopItem() and pickup.Price ~= -1000 then
+		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_DEVIL and pickup:IsShopItem() and pickup.Price ~= -1000 then
 			pickup.Price = 12 -- Discount at least once
 			for i = 0, steamcount do
 				pickup.Price = pickup.Price // 2
@@ -562,13 +562,13 @@ function wakaba:RevealItemImage(pickup, offset)
 	if not pickup:GetData().wakaba.removequestion
 	and pickup.SubType > 0 and itemData then
 		local hasbless = false
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) then
 				hasbless = true
 			end
 		end
-		if hasbless and Game():GetRoom():GetType() == RoomType.ROOM_TREASURE and Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND then
+		if hasbless and wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
 			local sprite = pickup:GetSprite()
 			
 			sprite:ReplaceSpritesheet(1, itemData.GfxFileName)
@@ -582,7 +582,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, P
 
 function wakaba:GetCard_Nemesis(rng, currentCard, playing, runes, onlyRunes)
 	local hasnemesis = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if wakaba:HasNemesis(player) then
 			hasnemesis = true
@@ -590,9 +590,9 @@ function wakaba:GetCard_Nemesis(rng, currentCard, playing, runes, onlyRunes)
 	end
 	local randomInt = rng:RandomInt(1000000)
 	if hasnemesis and currentCard ~= Card.CARD_HOLY then
-		if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL and randomInt <= 250000 then
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL and randomInt <= 250000 then
 			return Card.CARD_CRACKED_KEY
-		elseif Game().Difficulty == Difficulty.DIFFICULTY_HARD and randomInt <= 115000 then
+		elseif wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD and randomInt <= 115000 then
 			return Card.CARD_CRACKED_KEY
 		end
 	end

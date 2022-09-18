@@ -6,7 +6,7 @@ function wakaba:PickupUpdate_Magnet(pickup)
 	local pooplimit = 9
 	local attplayer = nil
 	
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if not attplayer and player:GetPlayerType() ~= PlayerType.PLAYER_CAIN_B and player:HasTrinket(wakaba.Enums.Trinkets.MAGNET_HEAVEN, false) then
 			ismagnet = true
@@ -42,7 +42,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_Magne
 
 function wakaba.PickupInit_Magnet(pickup)
 	if pickup.SubType == wakaba.Enums.Trinkets.MAGNET_HEAVEN and wakaba.state.unlock.magnetheaven <= 0 then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, Game():GetItemPool():GetTrinket())
+			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.G:GetItemPool():GetTrinket())
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_Magnet, PickupVariant.PICKUP_TRINKET)

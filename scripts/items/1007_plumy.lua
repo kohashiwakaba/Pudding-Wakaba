@@ -3,7 +3,7 @@ local plumcount = 0
 local hasPlum = false
 
 local function CanPlumShootPlayerTears(player, fData)
-	return wakaba:HasBless(player) or (Sewn_API and Sewn_API:IsSuper(fData)) or Game().Challenge == wakaba.challenges.CHALLENGE_PLUM
+	return wakaba:HasBless(player) or (Sewn_API and Sewn_API:IsSuper(fData)) or wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PLUM
 end
 
 local function getPlumShootFrame(angle)
@@ -335,7 +335,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, e)
 	--print(e.State)
 	hasPlum = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.PLUMY) then
 			hasPlum = true
@@ -355,7 +355,7 @@ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, e)
 end, FamiliarVariant.BABY_PLUM)
 
 function wakaba:NewRoom_Plumy()
-  for i = 0, Game():GetNumPlayers()-1 do
+  for i = 0, wakaba.G:GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(wakaba.Enums.Collectibles.PLUMY) then
 			player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
@@ -366,7 +366,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Plumy)
 
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
-	if Game().Challenge == wakaba.challenges.CHALLENGE_PLUM
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PLUM
 	or wakaba.state.hasbless
 	then
 		if hasPlum
@@ -376,13 +376,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
 				tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 				tear:SetColor(Color(0.3, 0, 0.4, 1, 0.3, 0, 0.5), -1, 1, true, false)
 			end
-			if Game().Challenge == wakaba.challenges.CHALLENGE_PLUM then
-				local stage = Game():GetLevel():GetAbsoluteStage()
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PLUM then
+				local stage = wakaba.G:GetLevel():GetAbsoluteStage()
 				if stage >= 3 then tear.TearFlags = tear.TearFlags | TearFlags.TEAR_PIERCING end
 				if stage >= 5 then tear.TearFlags = tear.TearFlags | TearFlags.TEAR_JACOBS end
 				if stage >= 7 then tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING end
 				if stage >= 12 then tear.TearFlags = tear.TearFlags | TearFlags.TEAR_LIGHT_FROM_HEAVEN end
-				for i = 1, Game():GetNumPlayers() do
+				for i = 1, wakaba.G:GetNumPlayers() do
 					local player = Isaac.GetPlayer(i - 1)
 					tear:SetColor(player.TearColor, -1, 1, false, false)
 					tear.TearFlags = tear.TearFlags | player.TearFlags

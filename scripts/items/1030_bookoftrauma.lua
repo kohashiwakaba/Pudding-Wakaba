@@ -1,7 +1,7 @@
 function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varData)
 	local entities = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	for _, e in ipairs(entities) do
-		Game():BombExplosionEffects(e.Position, player.Damage * 8 + 20, TearFlags.TEAR_BRIMSTONE_BOMB, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
+		wakaba.G:BombExplosionEffects(e.Position, player.Damage * 8 + 20, TearFlags.TEAR_BRIMSTONE_BOMB, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
 		e:Remove()
 	end
 

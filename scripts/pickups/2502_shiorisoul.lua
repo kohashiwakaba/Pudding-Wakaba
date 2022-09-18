@@ -52,9 +52,9 @@ wakaba:AddCallback(ModCallbacks.MC_GET_CARD, wakaba.GetCard_SoulOfShiori)
 
 function wakaba:RuneTest(count)
 	count = count or 200
-	local itemp = Game():GetItemPool()
+	local itemp = wakaba.G:GetItemPool()
 	for i = 1, count do
-		local card = itemp:GetCard(Game():GetSeeds():GetNextSeed(), false, true, true)
+		local card = itemp:GetCard(wakaba.G:GetSeeds():GetNextSeed(), false, true, true)
 		if card == wakaba.Enums.Cards.SOUL_SHIORI then print("Shiori detected")
 		elseif card == wakaba.Enums.Cards.SOUL_WAKABA then print("Wakaba detected")
 		else --print(card)

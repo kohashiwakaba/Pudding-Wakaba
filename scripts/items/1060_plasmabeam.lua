@@ -41,7 +41,7 @@ function wakaba:TearUpdate_PlasmaBeam(tear)
 			tear:GetData().wakaba.plasma_explosive = true
 		end
 		if tear:GetData().wakaba.plasma_explosive and tear:IsDead() and not tear:GetData().wakaba.plasma_explosive_dead then
-			Game():BombExplosionEffects(tear.Position, tear.CollisionDamage, tear.TearFlags, Color.Default, tear.SpawnerEntity)
+			wakaba.G:BombExplosionEffects(tear.Position, tear.CollisionDamage, tear.TearFlags, Color.Default, tear.SpawnerEntity)
 			tear:GetData().wakaba.plasma_explosive_dead = true
 		end
 	end
@@ -56,7 +56,7 @@ function wakaba:TearCollision_PlasmaBeam(tear, entity, low)
 		if not entity:IsEnemy() or entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) 
 		then return end
 		if tear:GetData().wakaba.plasma_explosive or (tear:GetData().wakaba.plasma_ipecac and tear.Type == EntityType.ENTITY_KNIFE) then
-			Game():BombExplosionEffects(tear.Position, tear.CollisionDamage, tear.TearFlags | TearFlags.TEAR_BURN, Color.Default, tear.SpawnerEntity)
+			wakaba.G:BombExplosionEffects(tear.Position, tear.CollisionDamage, tear.TearFlags | TearFlags.TEAR_BURN, Color.Default, tear.SpawnerEntity)
 			if entity:IsInvincible() then
 				entity:TakeDamage(tear.CollisionDamage, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(tear), 0)
 			end

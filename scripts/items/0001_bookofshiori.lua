@@ -23,10 +23,10 @@ function wakaba:HasTaintedShiori(player)
 end
 
 function wakaba:NewLevel_BookOfShiori()
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
 	if true --[[ level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() ]] then
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)then
 				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
@@ -36,14 +36,14 @@ function wakaba:NewLevel_BookOfShiori()
 				local selected = books[wakaba.RNG:RandomInt(#books) + 1]
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(room:GetGridPosition(102), 32.0), Vector.Zero, player)
 				table.insert(wakaba.state.shioridropped, selected)
-				Game():GetItemPool():RemoveCollectible(selected)
+				wakaba.G:GetItemPool():RemoveCollectible(selected)
 			elseif player:GetPlayerType() == wakaba.PLAYER_SHIORI
-			and (wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_COLLECTOR and Game().TimeCounter > 0) then
+			and (wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_COLLECTOR and wakaba.G.TimeCounter > 0) then
 				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
 				if #books < 1 then
 					books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_HARD_BOOK)
 				end
-				if Game().TimeCounter > 0 then
+				if wakaba.G.TimeCounter > 0 then
 					for i = #books, 1, -1 do
 						if wakaba:has_value(player:GetData().wakaba.books, books[i]) then
 							table.remove(books, i)
@@ -53,7 +53,7 @@ function wakaba:NewLevel_BookOfShiori()
 				local selected = books[wakaba.RNG:RandomInt(#books) + 1]
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(room:GetGridPosition(102), 32.0), Vector.Zero, player)
 				table.insert(wakaba.state.shioridropped, selected)
-				Game():GetItemPool():RemoveCollectible(selected)
+				wakaba.G:GetItemPool():RemoveCollectible(selected)
 			end
 		end
 	end
@@ -63,7 +63,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_BookOfShiori)
 function wakaba:BookofShioriUpdate()
 	local shioricount = 0
 	local taintedshioricount = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if wakaba:HasShiori(player) then
 			shioricount = shioricount + 1

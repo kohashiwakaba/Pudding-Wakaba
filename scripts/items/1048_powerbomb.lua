@@ -23,7 +23,7 @@ function wakaba:EffectUpdate_PowerBomb(effect)
   local state = 0
   local effectsprite = effect:GetSprite()
   if effectsprite:IsFinished("Explode") then
-    local room = Game():GetRoom()
+    local room = wakaba.G:GetRoom()
     for i = 0, room:GetGridSize() do
       if room:GetGridEntity(i) then
         if room:GetGridEntity(i):GetType() == GridEntityType.GRID_DOOR then
@@ -79,7 +79,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, wakaba.EffectRender_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
 function wakaba:NPCDeath_PowerBomb(entity)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
     if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
       local rng = RNG()

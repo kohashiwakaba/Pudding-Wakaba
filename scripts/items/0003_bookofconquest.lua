@@ -252,7 +252,7 @@ function wakaba:CalculateCost(entity, hasbirthright, hascarbattery)
 	hascarbattery = hascarbattery or false
 	local bombdelimiter = 45 -- 1 bomb per 35 hp
 	local keydelimiter = 25 -- 1 key per 12 hp
-	if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game().Difficulty == Difficulty.DIFFICULTY_GREEDIER then
+	if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREEDIER then
 		bombdelimiter = 30
 		keydelimiter = 10
 	end
@@ -284,7 +284,7 @@ end
 function wakaba:Render_BookOfConquest()
 	local hasconquest = false
 	local alpha = wakaba.state.currentalpha
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST) then
 			hasconquest = true
@@ -314,13 +314,13 @@ function wakaba:Render_BookOfConquest()
 		end
 	end
 
-	if hasconquest and Game():GetHUD():IsVisible() then
+	if hasconquest and wakaba.G:GetHUD():IsVisible() then
 		local o = wakaba:GetScreenSize()
 		local c = wakaba:GetScreenCenter()
 		local x, y = wakaba.hudoffset(10, c.X - 25, 0, "topleft")
-		if Game().Challenge == wakaba.challenges.CHALLENGE_CALC then
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_CALC then
 			wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.BROKEN)
-			wakaba.pickupdisplaySptite:Render(Vector(x - 16, y) - Game().ScreenShakeOffset, Vector(0,0), Vector(0,0))
+			wakaba.pickupdisplaySptite:Render(Vector(x - 16, y) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
 			wakaba.pickupdisplaySptite.Color = Color(1,1,1,1,0,0,0)
 			local color = KColor(1,1,1,1,0,0,0)
 			if wakaba.killcount >= 60 then
@@ -331,7 +331,7 @@ function wakaba:Render_BookOfConquest()
 			wakaba.f:DrawString(res .. "/100", x, y ,color,0,true)
 		else
 			wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.RED_HEART)
-			wakaba.pickupdisplaySptite:Render(Vector(x - 16, y) - Game().ScreenShakeOffset, Vector(0,0), Vector(0,0))
+			wakaba.pickupdisplaySptite:Render(Vector(x - 16, y) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
 			wakaba.pickupdisplaySptite.Color = Color(1,1,1,1,0,0,0)
 			wakaba.f:DrawString(math.floor(wakaba.killcount) .. "/160", x, y ,KColor(1,1,1,1,0,0,0),0,true)
 		end
@@ -347,7 +347,7 @@ function wakaba:Render_BookOfConquest()
 			entity:AddEntityFlags(EntityFlag.FLAG_FREEZE)
 		end
 		--Isaac.GetPlayer(0):UseActiveItem(CollectibleType.COLLECTIBLE_PAUSE, UseFlag.USE_NOANIM)
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
@@ -404,7 +404,7 @@ function wakaba:Render_BookOfConquest()
 				target = player:GetData().wakaba.conquestcursor and wakaba.conquestready[player:GetData().wakaba.conquestcursor] and wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
 				--print(target.Type, (target.Parent and target.Parent.Type), (target.Child and target.Child.Type))
 				local s = "+" .. player:GetData().wakaba.conquestcursor .. "/" ..wakaba.conquestreadycount
-				wakaba.f:DrawStringScaledUTF8(s, Isaac.WorldToScreen(player.Position).X - Game().ScreenShakeOffset.X, Isaac.WorldToScreen(player.Position).Y - Game().ScreenShakeOffset.Y, 1, 1, KColor(1,1,1,1,0,0,0),0,true)
+				wakaba.f:DrawStringScaledUTF8(s, Isaac.WorldToScreen(player.Position).X - wakaba.G.ScreenShakeOffset.X, Isaac.WorldToScreen(player.Position).Y - wakaba.G.ScreenShakeOffset.Y, 1, 1, KColor(1,1,1,1,0,0,0),0,true)
 				if target ~= nil then
 					local canConquer = true
 					eidstring = string.gsub(eidstring, "{{{SelectedEnemy}}}", getNameEntity(target))
@@ -421,13 +421,13 @@ function wakaba:Render_BookOfConquest()
 					eidstring = eidstring .. " " .. (player:GetNumKeys() < keycost and "{{ColorRed}}" or "") .. math.floor(keycost // 1) .. "{{Key}}{{CR}}"
 					if bombcost > 0 then
 						wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.BOMB)
-						wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 35) - Game().ScreenShakeOffset, Vector(0,0), Vector(0,0))
-						wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumBombs() .. "/" .. (bombcost // 1), Isaac.WorldToScreen(target.Position).X - Game().ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 35 - Game().ScreenShakeOffset.Y, 1, 1, bcolor,0,true)
+						wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 35) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
+						wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumBombs() .. "/" .. (bombcost // 1), Isaac.WorldToScreen(target.Position).X - wakaba.G.ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 35 - wakaba.G.ScreenShakeOffset.Y, 1, 1, bcolor,0,true)
 						eidstring = eidstring .. " + " .. (player:GetNumBombs() < bombcost and "{{ColorRed}}" or "") .. math.floor(bombcost // 1) .. "{{Bomb}}"
 					end
 					wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.KEY)
-					wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 25) - Game().ScreenShakeOffset, Vector(0,0), Vector(0,0))
-					wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumKeys() .. "/" .. (keycost // 1), Isaac.WorldToScreen(target.Position).X - Game().ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 25 - Game().ScreenShakeOffset.Y, 1, 1, kcolor,0,true)
+					wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 25) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
+					wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumKeys() .. "/" .. (keycost // 1), Isaac.WorldToScreen(target.Position).X - wakaba.G.ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 25 - wakaba.G.ScreenShakeOffset.Y, 1, 1, kcolor,0,true)
 					
 					if target:IsBoss() then
 						eidstring = eidstring .. "#!!! {{ColorCyan}}"..conqstr.selectboss.."{{CR}}"

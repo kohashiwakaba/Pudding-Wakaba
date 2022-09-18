@@ -79,7 +79,7 @@ function wakaba:AfterRevival_BookOfTheFallen(player)
 end
 
 function wakaba:PlayerUpdate_BookOfTheFallen()
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.fallenangelfirecount = player:GetData().wakaba.fallenangelfirecount or -1
@@ -114,19 +114,19 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 		end
 		if player:GetData().wakaba then
 			if player:GetPlayerType() ~= 23 and player:GetData().wakaba.shioridevil and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
-				local OldChallenge=Game().Challenge
-				Game().Challenge=6
+				local OldChallenge=wakaba.G.Challenge
+				wakaba.G.Challenge=6
 				player:UpdateCanShoot()
 				player:GetData().wakaba.blindfolded = true
-				Game().Challenge=OldChallenge
+				wakaba.G.Challenge=OldChallenge
 				player:AddNullCostume(14)
 				--print("Trying Add Blindfold Costume")
 			elseif player:GetData().wakaba.blindfolded and not player:GetData().wakaba.shioridevil then
-				local OldChallenge=Game().Challenge
-				Game().Challenge=0
+				local OldChallenge=wakaba.G.Challenge
+				wakaba.G.Challenge=0
 				player:UpdateCanShoot()
 				player:GetData().wakaba.blindfolded = false
-				Game().Challenge=OldChallenge
+				wakaba.G.Challenge=OldChallenge
 				player:TryRemoveNullCostume(14)
 				--print("Trying Remove Blindfold Costume")
 			end
@@ -156,7 +156,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
 
 function wakaba:NewRoom_BookOfTheFallen()
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba and player:GetData().wakaba.fallenangelfirecount and player:GetData().wakaba.fallenangelfirecount > -1 then
 			player:GetData().wakaba.fallenangelfirecount = -1

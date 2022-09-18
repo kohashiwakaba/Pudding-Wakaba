@@ -36,7 +36,7 @@ end
 
 function wakaba:render32()
 
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM then
@@ -56,11 +56,11 @@ function wakaba:render32()
 			end
 		end
 	end
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		--if Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
 		if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM, true)
-		and Game():GetHUD():IsVisible()
+		and wakaba.G:GetHUD():IsVisible()
 		then
 			local alpha = wakaba.state.currentalpha / 100
 			local scale = wakaba.state.options.uniformscale / 100
@@ -76,7 +76,7 @@ function wakaba:render32()
 					eidstring = eidstring .. "#{{Blank}} "
 				end
 				ypos = 10 + (10 * tonumber(i))
-				ypos = ypos - Game().ScreenShakeOffset.Y
+				ypos = ypos - wakaba.G.ScreenShakeOffset.Y
 				--print("using ", item.cardpill)
 				if item.type == "card" then
 				--print("cardname ", wakaba.cardname[item.cardpill][2])
@@ -87,7 +87,7 @@ function wakaba:render32()
 						preservedslotstate = true
 					end
 				elseif item.type == "pill" then
-					if Game():GetItemPool():IsPillIdentified(item.cardpill) then
+					if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
 						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or wakaba.itemConfig:GetPillEffect(item.pilleffect).Name
 						if item.pilleffect == 14 then 
 							str = "Gold Pill" 
@@ -146,7 +146,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.render32)
 
 function wakaba:PlayerEffect_Uniform(player)
 	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) then
-		if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM and player:NeedsCharge(ActiveSlot.SLOT_PRIMARY) then
 				player:FullCharge(ActiveSlot.SLOT_PRIMARY)
 			end
@@ -185,7 +185,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 	elseif card == 0 and pill ~= 0 then
 		player:GetData().wakaba.uniform.items[index].type = "pill"
 		player:GetData().wakaba.uniform.items[index].cardpill = pill
-		player:GetData().wakaba.uniform.items[index].pilleffect = Game():GetItemPool():GetPillEffect(pill, player)
+		player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(pill, player)
 	elseif card == 0 and pill == 0 then
 		player:GetData().wakaba.uniform.items[index].type = nil
 		player:GetData().wakaba.uniform.items[index].cardpill = nil
@@ -265,7 +265,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 		elseif card == 0 and pill ~= 0 then
 			player:GetData().wakaba.uniform.items[index].type = "pill"
 			player:GetData().wakaba.uniform.items[index].cardpill = pill
-			player:GetData().wakaba.uniform.items[index].pilleffect = Game():GetItemPool():GetPillEffect(pill, player)
+			player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(pill, player)
 		elseif card == 0 and pill == 0 then
 			player:GetData().wakaba.uniform.items[index].type = nil
 			player:GetData().wakaba.uniform.items[index].cardpill = nil
@@ -280,7 +280,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 		SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
 		discharge = true
 	end
-	if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
+	if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
 		discharge = false
 	end
 	return {Discharge = discharge}
@@ -316,7 +316,7 @@ function wakaba:useUniform(player)
 					pillreplaced = FiendFolio.savedata.run.PillCopies[tostring(pill)]
 				end
 			
-				local itempool = Game():GetItemPool()
+				local itempool = wakaba.G:GetItemPool()
 				replacedPillEffect = itempool:GetPillEffect(pillreplaced, player)
 				-- check again
 				if item.pilleffect == FiendFolio.ITEM.PILL.FF_UNIDENTIFIED then

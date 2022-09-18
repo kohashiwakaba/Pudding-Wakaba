@@ -2589,7 +2589,7 @@ if Encyclopedia then
 		ActiveCharge = 7500,
 		UnlockFunc = function(self)
 			local hastaintedwakaba = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_WAKABA_B then
 					hastaintedwakaba = true
@@ -2658,7 +2658,7 @@ if Encyclopedia then
 		},
 		--[[ UnlockFunc = function(self)
 			local haslunarstone = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
 					haslunarstone = true
@@ -2686,7 +2686,7 @@ if Encyclopedia then
 		},
 		--[[ UnlockFunc = function(self)
 			local haslunarstone = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
 					haslunarstone = true
@@ -2713,7 +2713,7 @@ if Encyclopedia then
 		}, ]]
 		UnlockFunc = function(self)
 			local haselixir = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 					haselixir = true
@@ -2739,7 +2739,7 @@ if Encyclopedia then
 		}, ]]
 		UnlockFunc = function(self)
 			local haselixir = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 					haselixir = true
@@ -2765,7 +2765,7 @@ if Encyclopedia then
 		},
 		--[[ UnlockFunc = function(self)
 			local haselixir = false
-			for i = 1, Game():GetNumPlayers() do
+			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 					haselixir = true
@@ -3374,7 +3374,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
-			if wakaba.state.unlock.wakabauniform < 1 and Game().Challenge ~= wakaba.challenges.CHALLENGE_DRAW then
+			if wakaba.state.unlock.wakabauniform < 1 and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRAW then
 				self.Desc = "Defeat Delirium as Wakaba"
 				
 				return self
@@ -4088,7 +4088,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.eyeofclock and Game().Challenge ~= wakaba.challenges.CHALLENGE_ELEC then
+			if not wakaba.state.unlock.eyeofclock and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_ELEC then
 				self.Desc = "Complete Electric Disorder (challenge No.01w)"
 				self.WikiDesc = Wiki.COLLECTIBLE_EYE_OF_CLOCK
 				
@@ -4111,7 +4111,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.plumy and Game().Challenge ~= wakaba.challenges.CHALLENGE_PLUM then
+			if not wakaba.state.unlock.plumy and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_PLUM then
 				self.Desc = "Complete Berry Best Friend (challenge No.02w)"
 				self.WikiDesc = Wiki.COLLECTIBLE_PLUMY
 				
@@ -4157,7 +4157,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.microdoppelganger and Game().Challenge ~= wakaba.challenges.CHALLENGE_DOPP then
+			if not wakaba.state.unlock.microdoppelganger and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DOPP then
 				self.Desc = "Complete Doppelganger (challenge No.06w)"
 				
 				return self
@@ -4182,7 +4182,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.lilwakaba and Game().Challenge ~= wakaba.challenges.CHALLENGE_SIST then
+			if not wakaba.state.unlock.lilwakaba and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_SIST then
 				self.Desc = "Complete Sisters From Beyond (challenge No.08w)"
 				
 				return self
@@ -4293,7 +4293,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.lilmao and Game().Challenge ~= wakaba.challenges.CHALLENGE_HOLD then
+			if not wakaba.state.unlock.lilmao and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_HOLD then
 				self.Desc = "Complete Hold Me (challenge No.14w)"
 				
 				return self
@@ -4365,7 +4365,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 		},
 		UnlockFunc = function(self)
-			if not wakaba.state.unlock.doubledreams and Game().Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
+			if not wakaba.state.unlock.doubledreams and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
 				self.Desc = "Complete True Purist Girl (challenge No.99w)"
 				self.Hide = true
 				return self
@@ -4380,7 +4380,7 @@ if Encyclopedia then
 		WikiDesc = Wiki.CARD_DREAM_CARD,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Wakaba's Dream Card"),
 		UnlockFunc = function(self)
-			if wakaba.state.unlock.donationcard < 1 and Game().Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
+			if wakaba.state.unlock.donationcard < 1 and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
 				self.Desc = "Complete Boss Rush as Wakaba"
 				
 				return self

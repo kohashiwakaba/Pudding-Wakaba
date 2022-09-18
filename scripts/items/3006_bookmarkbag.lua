@@ -1,6 +1,6 @@
 function wakaba:NewRoom_BookmarkBag()
-	if Game():GetRoom():IsFirstVisit() then
-		for i = 1, Game():GetNumPlayers() do
+	if wakaba.G:GetRoom():IsFirstVisit() then
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:HasTrinket(wakaba.Enums.Trinkets.BOOKMARK_BAG) then
 				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)

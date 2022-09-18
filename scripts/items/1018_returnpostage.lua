@@ -5,7 +5,7 @@ function wakaba:PostageUpdate()
 	
 	haspostage = 0
 	
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.RETURN_POSTAGE, false) then
 			haspostage = haspostage + player:GetCollectibleNum(wakaba.Enums.Collectibles.RETURN_POSTAGE)

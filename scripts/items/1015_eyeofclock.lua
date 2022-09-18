@@ -137,8 +137,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.pUpdate35)
 
 function wakaba:newRoom35()
 	
-	for num = 1, Game():GetNumPlayers() do
-		local player = Game():GetPlayer(num)
+	for num = 1, wakaba.G:GetNumPlayers() do
+		local player = wakaba.G:GetPlayer(num)
 		local sti = wakaba:getstoredindex(player)
 		if player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
 			initLasers(player)

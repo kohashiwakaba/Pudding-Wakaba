@@ -5,7 +5,7 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
 	pData.wakaba = pData.wakaba or {}
 	local failed = false 
   local discharge = true
-	local pool = Game():GetItemPool()
+	local pool = wakaba.G:GetItemPool()
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
 	local count = 8
 	if FiendFolio then count = 20 end
@@ -36,7 +36,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Beetlejuice, wakaba.
 
 function wakaba:RoomClearAwards_Beetlejuice(rng, spawnPosition)
 	local border = 800
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.BEETLEJUICE) then
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
@@ -54,7 +54,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClearAwards_Beetlejuice)
 
 function wakaba:PostGetCollectible_Beetlejuice(player, item)
-	local game = Game()
+	local game = wakaba.G
 	local room = game:GetRoom()
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
 	

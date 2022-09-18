@@ -29,7 +29,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.updatePlayerBitcoin)
 
 function wakaba:newRoomBitcoin()
-	for num = 1, Game():GetNumPlayers() do
+	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num)
 		if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, false, false, false, false, -1)
@@ -70,7 +70,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onBitcoinCache)
 
 function wakaba.bitcoinUnlockCheck(pickup)
 	if pickup.SubType == wakaba.Enums.Trinkets.BITCOIN and wakaba.state.unlock.bitcoin <= 0 then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, Game():GetItemPool():GetTrinket())
+			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.G:GetItemPool():GetTrinket())
 	end
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.bitcoinUnlockCheck, PickupVariant.PICKUP_TRINKET)

@@ -77,10 +77,10 @@ function wakaba:GetBookItems(bookstate)
   local bookstate = bookstate or wakaba.bookstate.BOOKSHELF_SHIORI
   wakaba:getUnlockState()
   if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI then
-    if Game().Challenge == wakaba.challenges.CHALLENGE_DOPP then
+    if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DOPP then
       table.insert(books,wakaba.Enums.Collectibles.MICRO_DOPPELGANGER)
       return books
-    elseif Game().Challenge == wakaba.challenges.CHALLENGE_SLNT then
+    elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SLNT then
       table.insert(books,wakaba.Enums.Collectibles.BOOK_OF_SILENCE)
       return books
     end
@@ -258,7 +258,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShioriPlayerUpdate)
 
 function wakaba:updateShiori(player)
-	if player:GetPlayerType() == playerType and Game().Challenge == Challenge.CHALLENGE_NULL then
+	if player:GetPlayerType() == playerType and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
     local data = player:GetData()
     pdata = data.wakaba
 	  if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
@@ -338,7 +338,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
       local data = player:GetData()
       data.wakaba = data.wakaba or {}
       data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-      if Game().Challenge == Challenge.CHALLENGE_NULL then
+      if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
         --player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
       end
@@ -503,7 +503,7 @@ end
 function wakaba:PostShioriPickupInit(pickup)
   local hasshiori = false
   local shioriluck = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       hasshiori = true
@@ -523,7 +523,7 @@ end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PostShioriPickupInit)
 
 function wakaba:PostNPCDeathShiori(entity)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       local data = player:GetData()
@@ -570,7 +570,7 @@ function wakaba:PreTakeDamageShiori(entity, amount, flags, source, countdown)
           increase = entity.HitPoints
         end
         data.wakaba.currdamage = data.wakaba.currdamage + increase
-        local border = 40 + (20 * Game():GetLevel():GetAbsoluteStage())
+        local border = 40 + (20 * wakaba.G:GetLevel():GetAbsoluteStage())
         if data.wakaba.currdamage >= border then
           data.wakaba.currdamage = data.wakaba.currdamage - border
           player:AddKeys(1)
@@ -584,7 +584,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamageShiori)
 function wakaba:PreRoomClearShiori(rng, spawnPosition)
   local hasshiori = false
   local shioriluck = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       hasshiori = true
@@ -603,11 +603,11 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.PreRoomClearShiori)
 
 function wakaba:NewLevel_Shiori()
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType
-    and (wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS and Game().TimeCounter > 0) then
-      if Game().Challenge == Challenge.CHALLENGE_NULL then
+    and (wakaba.state.currentshiorimode == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS and wakaba.G.TimeCounter > 0) then
+      if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         local data = player:GetData()
         data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS, player, wakaba.state.options.shioriakasicbooks)
         --player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
@@ -676,25 +676,25 @@ function wakaba:AfterShioriInit(player)
     data.wakaba = data.wakaba or {}
     if wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_LIBRARIAN then
       data.wakaba.books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
-      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and Game().Challenge == Challenge.CHALLENGE_NULL then
+      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         --player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
         player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
       end
     elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_COLLECTOR then
       data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-      if Game().Challenge == Challenge.CHALLENGE_NULL then
+      if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
         --player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
       end
     elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS then
       data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS, player, wakaba.state.options.shioriakasicbooks)
-      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and Game().Challenge == Challenge.CHALLENGE_NULL then
+      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
         --player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
       end
     elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_PURE_BODY then
       data.wakaba.books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and Game().Challenge == Challenge.CHALLENGE_NULL then
+      if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
         --player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
       end
@@ -702,7 +702,7 @@ function wakaba:AfterShioriInit(player)
       data.wakaba.books = {}
     elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR then
       data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-      if Game().Challenge == Challenge.CHALLENGE_NULL then
+      if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
         player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
         --player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
       end
@@ -723,7 +723,7 @@ function wakaba:AfterShioriInit(player)
 			player:AddTrinket(TrinketType.TRINKET_OLD_CAPACITOR)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end
-		if Game():IsGreedMode() and not player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY, false) then
+		if wakaba.G:IsGreedMode() and not player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY, false) then
 			player:AddTrinket(TrinketType.TRINKET_FLAT_PENNY)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end

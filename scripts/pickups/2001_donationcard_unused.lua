@@ -56,13 +56,13 @@ end
 
 function wakaba:onStart2001()
 	player = Isaac.GetPlayer()
-	isGreedMode = Game():IsGreedMode()
+	isGreedMode = wakaba.G:IsGreedMode()
 	numCoinsDonated = 0
 	oldNumCoinsDonated = numCoinsDonated
 	numCoins = player:GetNumCoins()
 	oldNumCoins = numCoins
 
-	if Game():GetFrameCount() == 0 then
+	if wakaba.G:GetFrameCount() == 0 then
 		wakaba.state.totalNumCoinsDonated = 0
 		wakaba.state.minDonationLimit = 0
 	end
@@ -73,14 +73,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.onStart2001)
 
 function wakaba:onUpdate2001()
 	if usedCardInThisRoom then
-		if isGreedMode and Game():GetLevel():GetStage() == 7 and Game():GetRoom():IsClear() then
-			-- numCoinsDonated = Game():GetDonationModGreed() -- doesn't work in the API
+		if isGreedMode and wakaba.G:GetLevel():GetStage() == 7 and wakaba.G:GetRoom():IsClear() then
+			-- numCoinsDonated = wakaba.G:GetDonationModGreed() -- doesn't work in the API
 			numCoins = player:GetNumCoins()
 			if numCoins < oldNumCoins then
 				numCoinsDonated = numCoinsDonated + (oldNumCoins - numCoins)
 			end
 		else
-			numCoinsDonated = Game():GetDonationModAngel()
+			numCoinsDonated = wakaba.G:GetDonationModAngel()
 		end
 		if numCoinsDonated > oldNumCoinsDonated then
 			player:AddCoins(numCoinsDonated - oldNumCoinsDonated)
@@ -94,7 +94,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.onUpdate2001)
 
 function wakaba:onUseCard2001(_, player, flags)
-	-- Donate_____() doesn't actually donate; it just changes the amount the Game() thinks you "donated" on the current floor
+	-- Donate_____() doesn't actually donate; it just changes the amount the wakaba.G thinks you "donated" on the current floor
 	local newMachinePos = Isaac.GetFreeNearPosition(Vector(player.Position.X + 30, player.Position.Y - 30), 0)
 	usedCardInThisRoom = true
 	wakaba.state.minDonationLimit = wakaba.state.totalNumCoinsDonated + 5
@@ -117,7 +117,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCard2001, wakaba.Enums.Cards.CARD_DONATION_CARD)
 
 function wakaba:onUseCardVIP2001(_, player, flags)
-	-- Donate_____() doesn't actually donate; it just changes the amount the Game() thinks you "donated" on the current floor
+	-- Donate_____() doesn't actually donate; it just changes the amount the wakaba.G thinks you "donated" on the current floor
 	local newMachinePos = Isaac.GetFreeNearPosition(Vector(player.Position.X + 30, player.Position.Y - 30), 0)
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 1, Isaac.GetFreeNearPosition(Vector(player.Position.X + 20*math.random(-1,1), player.Position.Y + 20*math.random(-1,1)), 0), Vector(0,0), nil):ToPickup()
 	usedCardInThisRoom = true
@@ -141,9 +141,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.onUseCardVIP2001, wakaba.Enums.Cards.CARD_VIP_DONATION_CARD)
 
 function checkForJam()
-	if (Game():GetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED) or Game():GetStateFlag(GameStateFlag.STATE_GREED_SLOT_JAMMED)) and wakaba.state.totalNumCoinsDonated < wakaba.state.minDonationLimit then
-		Game():SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED, false)
-		Game():SetStateFlag(GameStateFlag.STATE_GREED_SLOT_JAMMED, false)
+	if (wakaba.G:GetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED) or wakaba.G:GetStateFlag(GameStateFlag.STATE_GREED_SLOT_JAMMED)) and wakaba.state.totalNumCoinsDonated < wakaba.state.minDonationLimit then
+		wakaba.G:SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_JAMMED, false)
+		wakaba.G:SetStateFlag(GameStateFlag.STATE_GREED_SLOT_JAMMED, false)
 		local machineVariant = 8
 		if isGreedMode then
 			machineVariant = 11
@@ -167,7 +167,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.onNewRoom2001)
 
 
 function wakaba:onGetCard2001(rng, currentCard, playing, runes, onlyRunes)
-	if not onlyRunes and currentCard ~= Card.CARD_CHAOS and currentCard ~= Card.CARD_HOLY_CARD and Game().Challenge == Challenge.CHALLENGE_NULL then
+	if not onlyRunes and currentCard ~= Card.CARD_CHAOS and currentCard ~= Card.CARD_HOLY_CARD and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 		local vipRandomInt = rng:RandomInt(VIPCardChance)
 		local randomInt = rng:RandomInt(SilverCardChance)
 		if wakaba.state.unlock.donationcard > 0 and vipRandomInt == 1 then

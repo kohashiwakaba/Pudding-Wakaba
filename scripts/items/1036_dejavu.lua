@@ -1,7 +1,7 @@
 
 --[[ 
 function wakaba:CheckItemCandidates(player)
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		local DejaVuCandidates = {}
@@ -30,8 +30,8 @@ function wakaba:CheckItemCandidates(player)
 end ]]
 
 function wakaba:NewRoom_DejaVu()
-	if not Game():GetRoom():IsFirstVisit() then return end
-	for i = 1, Game():GetNumPlayers() do
+	if not wakaba.G:GetRoom():IsFirstVisit() then return end
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU) then
 			local chance = player:GetCollectibleRNG(wakaba.Enums.Collectibles.DEJA_VU):RandomInt(1000000)

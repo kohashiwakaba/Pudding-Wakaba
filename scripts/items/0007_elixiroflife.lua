@@ -46,7 +46,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 					else
 						player:SetMinDamageCooldown(1)
 					end
-				elseif Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
+				elseif wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
 					if player.FrameCount % 2 == 0 then
 						player:ResetDamageCooldown()
 					else

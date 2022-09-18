@@ -130,7 +130,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onTsukasaCache_b)
 
 --[[ function wakaba:TsukasaRoomInit()
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == wakaba.PLAYER_TSUKASA_B then
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_TECHNOLOGY, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME, -1)
@@ -157,7 +157,7 @@ function wakaba:AfterTsukasaInit_b(player)
 			end
 			local data = player:GetData()
 			data.wakaba = data.wakaba or {}
-			--[[ if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.MURASAME and Game().Challenge == Challenge.CHALLENGE_NULL then
+			--[[ if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.MURASAME and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 				player:SetPocketActiveItem(wakaba.Enums.Collectibles.MURASAME, ActiveSlot.SLOT_POCKET, true)
 				player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
 			end ]]

@@ -1,6 +1,6 @@
 function wakaba:NewRoom_NewYearBomb()
-	if Game():GetRoom():IsFirstVisit() then
-		for i = 1, Game():GetNumPlayers() do
+	if wakaba.G:GetRoom():IsFirstVisit() then
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B and player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) then
 				player:AddPoopMana(2)
@@ -16,8 +16,8 @@ function wakaba:newYearBombDamage(target, damage, flags, source, cooldown)
 			local player = source.Entity.SpawnerEntity:ToPlayer()
 			--print(player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB))
 			if player ~= nil and player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) then
-				if not Game():HasHallucination() then
-					Game():ShowHallucination(30)
+				if not wakaba.G:HasHallucination() then
+					wakaba.G:ShowHallucination(30)
 				end
 				target.HitPoints = 1
 				return false

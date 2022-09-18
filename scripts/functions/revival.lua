@@ -88,9 +88,9 @@ function wakaba:isMausoleumDoor(damageflag)
 	and damageflag & DamageFlag.DAMAGE_NO_MODIFIERS == DamageFlag.DAMAGE_NO_MODIFIERS
 	and damageflag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES
 	then
-		local isBossRoom = Game():GetRoom():GetType() == RoomType.ROOM_BOSS
-		local stage = Game():GetLevel():GetAbsoluteStage()
-		local isRepentance = (Game():GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE or Game():GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
+		local isBossRoom = wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS
+		local stage = wakaba.G:GetLevel():GetAbsoluteStage()
+		local isRepentance = (wakaba.G:GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE or wakaba.G:GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
 		if isBossRoom then
 			if (stage == LevelStage.STAGE2_2 and isRepentance)
       or (stage == LevelStage.STAGE2_1 and isRepentance)
@@ -107,7 +107,7 @@ function wakaba:isMausoleumDoor(damageflag)
 end
 
 function wakaba:IsSacrificeRoomSpikes(flag)
-  return (Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE and flag & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES)
+  return (wakaba.G:GetRoom():GetType() == RoomType.ROOM_SACRIFICE and flag & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES)
 end
 
 function wakaba:PlayDeathAnimationWithRevival(player, itemID, currentroom)
@@ -140,8 +140,8 @@ function wakaba:UseItem_Revival(usedItem, rng, player, flags, slot, vardata)
   local revivaldata = wakaba:CanRevive(player) or wakaba:CanRevive(player:GetOtherTwin())
   if not revivaldata then return end
   if usedItem == CollectibleType.COLLECTIBLE_BIBLE then
-    local level = Game():GetLevel()
-    local room = Game():GetRoom()
+    local level = wakaba.G:GetLevel()
+    local room = wakaba.G:GetRoom()
     if room and room:GetBossID() == 24 then
       if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
         player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
@@ -260,8 +260,8 @@ function wakaba:PlayerUpdate_Revival(player)
       --print("reviveanimfinished")
       if not data.wakaba.revivecurrentroom and not wakaba:HasBeast() then
 
-        local level = Game():GetLevel()
-        local room = Game():GetRoom()
+        local level = wakaba.G:GetLevel()
+        local room = wakaba.G:GetRoom()
   
         local enterDoorIndex = level.EnterDoor
         --[[ print(enterDoorIndex == -1)
@@ -269,14 +269,14 @@ function wakaba:PlayerUpdate_Revival(player)
         print(level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex()) ]]
         if enterDoorIndex == -1 or room:GetDoor(enterDoorIndex) == nil or level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
           if level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
-            Game():StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
+            wakaba.G:StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
           elseif room:GetDoor(enterDoorIndex) ~= nil then
             --print("try1")
             local enterDoor = room:GetDoor(enterDoorIndex)
             local targetRoomDirection = enterDoor.Direction
-            Game():StartRoomTransition(level:GetPreviousRoomIndex(), targetRoomDirection, RoomTransitionAnim.ANKH)
+            wakaba.G:StartRoomTransition(level:GetPreviousRoomIndex(), targetRoomDirection, RoomTransitionAnim.ANKH)
           else
-            Game():StartRoomTransition(level:GetPreviousRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
+            wakaba.G:StartRoomTransition(level:GetPreviousRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.ANKH)
           end
         else
           local enterDoor = room:GetDoor(enterDoorIndex)
@@ -284,9 +284,9 @@ function wakaba:PlayerUpdate_Revival(player)
           local targetRoomDirection = enterDoor.Direction
   
           level.LeaveDoor = -1 -- api why
-          Game():StartRoomTransition(targetRoomIndex, targetRoomDirection, RoomTransitionAnim.ANKH)
+          wakaba.G:StartRoomTransition(targetRoomIndex, targetRoomDirection, RoomTransitionAnim.ANKH)
         end
-        --Game():StartRoomTransition(Game():GetLevel():GetLastRoomDesc().SafeGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.WALK, player)
+        --wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, Direction.NO_DIRECTION, RoomTransitionAnim.WALK, player)
       else
         player.ControlsEnabled = true
       end
@@ -334,7 +334,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
       elseif player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) < 5 then
         local chance = player:GetTrinketRNG(wakaba.Enums.Trinkets.DETERMINATION_RIBBON):RandomInt(1000000)
         local threshold = 20000
-        if Game().Difficulty == Difficulty.DIFFICULTY_NORMAL or Game().Difficulty == Difficulty.DIFFICULTY_GREED then
+        if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
           threshold = threshold / 4
         end
         if player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) > 0 then
@@ -344,7 +344,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
         if chance < threshold then
           --player:DropTrinket(player.Position, false)
           player:TryRemoveTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON)
-          Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.DETERMINATION_RIBBON, Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
+          Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.DETERMINATION_RIBBON, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
           player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
         end
         return false

@@ -77,12 +77,12 @@ function wakaba:getPillEffect(pillEffect, pillColor)
   local phd = false
   local fhd = false
   local estdamage = 3.5
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
     if hasPHD(player) then phd = true; estdamage = player.Damage end
     if hasFalsePHD(player) then fhd = true end
     if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE 
-    and Game():IsGreedMode() then
+    and wakaba.G:IsGreedMode() then
       return wakaba.Enums.Pills.ALL_STATS_UP
     end
     if pillEffect == wakaba.Enums.Pills.FIREY_TOUCH then
@@ -156,7 +156,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
     if descTable then
       local pilltable = descTable.pills
       if pilltable and pilltable[pillEffect] and pilltable[pillEffect].itemName then
-        Game():GetHUD():ShowItemText(pilltable[pillEffect].itemName)
+        wakaba.G:GetHUD():ShowItemText(pilltable[pillEffect].itemName)
       end
     end
   end
@@ -201,7 +201,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
           entity.HitPoints = entity.MaxHitPoints
         end
         player:AnimateSad()
-      elseif Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE8 or Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE4_3 then
+      elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE8 or wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE4_3 then
         player.AddCollectible(player, CollectibleType.COLLECTIBLE_TMTRAINER)
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector(0,0), nil)
         if isHorse then
@@ -210,7 +210,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
         player.RemoveCollectible(player, CollectibleType.COLLECTIBLE_TMTRAINER)
         player:AnimateSad()
       else
-        Game():StartRoomTransition(-2,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
+        wakaba.G:StartRoomTransition(-2,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
         if isHorse then
           player:AddBrokenHearts(-1)
         end
@@ -218,7 +218,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
     elseif pillEffect == wakaba.Enums.Pills.TO_THE_START then
       local hasBeast = wakaba:HasBeast()
       if hasBeast then
-        for i = 1, Game():GetNumPlayers() do
+        for i = 1, wakaba.G:GetNumPlayers() do
 	      	local player = Isaac.GetPlayer(i - 1)
           player:AddHearts(24)
           player:AddSoulHearts(24)
@@ -234,7 +234,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
           end
           player:AddBrokenHearts(-1)
         end
-        Game():StartRoomTransition(Game():GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
+        wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
       end
     elseif pillEffect == wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT then
       player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
@@ -251,22 +251,22 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       local ind = indRng:RandomInt(41000) + 60
 
       local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-        Game():GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
+        wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
         Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
       local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-      Game():GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
+      wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
         Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
 
       if isHorse then
-        Game():SetLastDevilRoomStage(-1)
+        wakaba.G:SetLastDevilRoomStage(-1)
       else
         p1.OptionsPickupIndex = ind
         p2.OptionsPickupIndex = ind
       end
     elseif pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE then
-      Game():GetLevel():DisableDevilRoom()
+      wakaba.G:GetLevel():DisableDevilRoom()
       if isHorse then
-        Game():SetLastDevilRoomStage(Game():GetLevel():GetAbsoluteStage())
+        wakaba.G:SetLastDevilRoomStage(wakaba.G:GetLevel():GetAbsoluteStage())
       end
       player:AnimateSad()
     elseif pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
@@ -321,7 +321,7 @@ function wakaba:useWakabaPill(pillEffect, player, useFlags)
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
     elseif pillEffect == wakaba.Enums.Pills.FIREY_TOUCH then
-      Game():GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES)
+      wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES)
       local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
       for i, e in ipairs(wisps) do
         if e.SpawnerEntity.Index == player.Index then
@@ -429,7 +429,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.onPillUpdate)
 
 function wakaba:PlayerInit_Pills(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_THELOST_B then
-    local pool = Game():GetItemPool()
+    local pool = wakaba.G:GetItemPool()
     local hasPriest = false
     for i = 1, 13 do
       if pool:GetPillEffect(i) == wakaba.Enums.Pills.PRIEST_BLESSING then

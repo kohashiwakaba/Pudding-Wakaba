@@ -1,7 +1,7 @@
 function wakaba:PEffectUpdate_ClensingFoam(player)
   local radius = 60
   local multi = 1
-  if Game():GetRoom():HasWater() then
+  if wakaba.G:GetRoom():HasWater() then
     radius = 2000
     multi = 0.12
   end

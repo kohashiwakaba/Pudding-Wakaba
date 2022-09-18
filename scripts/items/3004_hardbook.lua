@@ -3,7 +3,7 @@ function wakaba:PreTakeDamage_HardBook(entity, amount, flags, source, countdown)
 		local player = entity:ToPlayer()
 		if player:HasTrinket(wakaba.Enums.Trinkets.HARD_BOOK) then
 			local random = wakaba.RNG:RandomInt(100)
-			if Game():GetRoom():GetType() == RoomType.ROOM_SACRIFICE or wakaba:IsLost(player) then
+			if wakaba.G:GetRoom():GetType() == RoomType.ROOM_SACRIFICE or wakaba:IsLost(player) then
 				random = 0
 			end
 			if random <= 5 then
@@ -18,8 +18,8 @@ function wakaba:PreTakeDamage_HardBook(entity, amount, flags, source, countdown)
 						selected = books[player:GetTrinketRNG(wakaba.Enums.Trinkets.HARD_BOOK):RandomInt(#books) + 1]
 					end
 					table.insert(spawnedBooks, selected)
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Game():GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, player)
-					Game():GetItemPool():RemoveCollectible(selected)
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, player)
+					wakaba.G:GetItemPool():RemoveCollectible(selected)
 				end
 				if wakaba:IsLost(player) then
 					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)

@@ -9,7 +9,7 @@ function wakaba:AfterRevival_VintageThreat(player)
 	wakaba:AfterShioriInit_b(player)
 	wakaba:GetShioriCostume_b(player) 
 	wakaba:initAura(player)
-	Game():GetRoom():MamaMegaExplosion(player.Position)
+	wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS, UseFlag.USE_NOANIM)
 	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
 	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
@@ -27,7 +27,7 @@ function wakaba:AfterRevival_VintageThreat(player)
 end
 
 function wakaba:PlayerUpdate_VintageThreat()
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
@@ -40,7 +40,7 @@ function wakaba:PlayerUpdate_VintageThreat()
 		if player:GetData().wakaba.vintagegameover and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:IsExtraAnimationFinished() then
 			MusicManager():Play(Music.MUSIC_JINGLE_GAME_OVER, Options.MusicVolume)
 			MusicManager():Queue(Music.MUSIC_GAME_OVER)
-			Game():End(1)
+			wakaba.G:End(1)
 		end
 	end
 end

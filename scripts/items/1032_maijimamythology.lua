@@ -24,7 +24,7 @@ function wakaba:Display_Maijima(player)
 			end
 			tempstring = tempstring .. e
 		end
-		Game():GetHUD():ShowItemText(maijamastring[Options.Language or "en"], tempstring, false)
+		wakaba.G:GetHUD():ShowItemText(maijamastring[Options.Language or "en"], tempstring, false)
 		player:GetData().wakaba.pendingmaijima = nil
 	end
 end

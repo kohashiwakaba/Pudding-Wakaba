@@ -1,6 +1,6 @@
 function wakaba:NewRoom_DimensionCutter()
-	if not Game():GetRoom():IsClear() then
-		for i = 1, Game():GetNumPlayers() do
+	if not wakaba.G:GetRoom():IsClear() then
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:HasTrinket(wakaba.Enums.Trinkets.DIMENSION_CUTTER) then
 				for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DIMENSION_CUTTER) do

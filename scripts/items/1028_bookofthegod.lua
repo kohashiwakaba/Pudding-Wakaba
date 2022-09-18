@@ -44,7 +44,7 @@ end
 
 
 function wakaba:PlayerUpdate_BookOfTheGod()
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba
 		and player:GetData().wakaba.shioriangel then

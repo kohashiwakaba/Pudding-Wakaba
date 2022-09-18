@@ -1,26 +1,6 @@
 wakaba.fcount = 0
 wakaba.killcount = 0
 
-if EID then
-	local t = ""
-	t = t .. " Removes Jupiter from Item pool :)"
-	t = t .. "# Add a chance to replace Treasure rooms to planetariums"
-	t = t .. "# If there are no treasure rooms, a random room will be replaced into planetarium"
-	t = t .. "# Planetariums and Treasure rooms are free to enter"
-	t = t .. "#↑ +0.1 Tears, +0.3 Damage up per Planetarium unlock item."
-	t = t .. ""
-  EID:addCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO, t, "The Winter Albireo", "en_us")
-	--EID:assignTransformation("collectible", wakaba.Enums.Collectibles.D_CUP_ICECREAM, EID.TRANSFORMATION.BOOKWORM .. "")
-	if EIDKR then
-		local tk = "/머리/ 아이작을 따라다니는 오라가 생성됩니다."
-		tk = tk .. "#/머리/ 영구 매혹된 몬스터가 오라 안에 있을 시 서서히 체력을 회복합니다."
-		tk = tk .. "#/머리/ 아이작과 다른 캐릭터가 오라 안에 있을 시 공격력이 +1.5, 연사가 +2.0 증가하며 공격에 유도 효과가 생깁니다." 
-		EID:addCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO, tk, "The Winter Albireo", "ko_kr", "겨울의 알비레오")
-	end
-end
-
-
-
 function wakaba:hasAlbireo(player)
 	if not player then 
 		return false 
@@ -41,14 +21,14 @@ local candidates = {}
 local treasureRooms = {}
 
 function wakaba:NewRoom_Albireo()
-  local game = Game()
-  local room = Game():GetRoom()
-  local level = Game():GetLevel()
+  local game = wakaba.G
+  local room = wakaba.G:GetRoom()
+  local level = wakaba.G:GetLevel()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
   local StartingRoom = 84
 
-  --if Game():GetFrameCount() == 0 then ReplaceT = false return end
+  --if wakaba.G:GetFrameCount() == 0 then ReplaceT = false return end
   
 	if room:IsFirstVisit() and CurRoom == StartingRoom then
     print("Replace!")

@@ -32,7 +32,7 @@ function wakaba:SetShioriCharge_b(player, amount, slot)
   local slot = slot or ActiveSlot.SLOT_PRIMARY
   local activeItem = player:GetActiveItem(slot)
   if activeItem <= 0 then return end
-  --if slot == ActiveSlot.SLOT_POCKET and Game().Challenge == wakaba.challenges.CHALLENGE_GURD then return end
+  --if slot == ActiveSlot.SLOT_POCKET and wakaba.G.Challenge == wakaba.challenges.CHALLENGE_GURD then return end
   local activeConfig = wakaba.itemConfig:GetCollectible(activeItem)
   if activeConfig == nil then return end
   local maxCharges = activeConfig.MaxCharges
@@ -65,7 +65,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShioriPlayerU
 
 function wakaba:renderShiori_b()
 
-  --[[ for i = 1, Game():GetNumPlayers() do
+  --[[ for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       local data = player:GetData()
@@ -106,7 +106,7 @@ function wakaba:ItemUse_Shiori_b(useditem, rng, player, useflag, slot, vardata)
     local chargeType = item.chargeType --does not work
     local consume = charge
     if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
-    --if slot == ActiveSlot.SLOT_POCKET and Game().Challenge == wakaba.challenges.CHALLENGE_GURD then return end
+    --if slot == ActiveSlot.SLOT_POCKET and wakaba.G.Challenge == wakaba.challenges.CHALLENGE_GURD then return end
     if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and consume > 1 then
       consume = consume - 1
     end
@@ -233,7 +233,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.getPickupState_b, 
 function wakaba:PostShioriPickupInit_b(pickup)
   local hasshiori = false
   local shioriluck = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       hasshiori = true
@@ -253,7 +253,7 @@ end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PostShioriPickupInit_b)
 
 function wakaba:PostNPCDeathShiori_b(entity)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       local data = player:GetData()
@@ -300,7 +300,7 @@ function wakaba:PreTakeDamageShiori_b(entity, amount, flags, source, countdown)
           increase = entity.HitPoints
         end
         data.wakaba.currdamage = data.wakaba.currdamage + increase
-        local border = 40 + (20 * Game():GetLevel():GetAbsoluteStage())
+        local border = 40 + (20 * wakaba.G:GetLevel():GetAbsoluteStage())
         if data.wakaba.currdamage >= border then
           data.wakaba.currdamage = data.wakaba.currdamage - border
           player:AddKeys(1)
@@ -314,7 +314,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamageShiori_b
 function wakaba:PreRoomClearShiori(rng, spawnPosition)
   local hasshiori = false
   local shioriluck = 0
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == playerType then
       hasshiori = true
@@ -407,7 +407,7 @@ function wakaba:AfterShioriInit_b(player)
 			player:AddTrinket(TrinketType.TRINKET_OLD_CAPACITOR)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end
-		if Game():IsGreedMode() and not player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY, false) then
+		if wakaba.G:IsGreedMode() and not player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY, false) then
 			player:AddTrinket(TrinketType.TRINKET_FLAT_PENNY)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end

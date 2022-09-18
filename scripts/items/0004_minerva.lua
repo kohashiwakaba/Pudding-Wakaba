@@ -11,7 +11,7 @@ function wakaba:hasAura(player)
 		return true
 	elseif player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MINERVA_AURA) then
 		return true
-	elseif Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+	elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 		return true
 	else
 		return false
@@ -32,7 +32,7 @@ function wakaba:auraCount(player)
 	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MINERVA_AURA) then
 		count = count + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.MINERVA_AURA)
 	end
-	if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
     count = count + 1
 	end
 	return count
@@ -43,9 +43,9 @@ function wakaba:initAura(player)
 	aura:AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
 	aura.Timeout = 108000000
 	aura.LifeSpan = 108000000
-	if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 		local entities = Isaac.FindByType(EntityType.ENTITY_DARK_ESAU, 0, -1, false, false)
-		if #entities > 0 and Game():GetLevel():GetCurrentRoomIndex() ~= Game():GetLevel():GetStartingRoomIndex() then
+		if #entities > 0 and wakaba.G:GetLevel():GetCurrentRoomIndex() ~= wakaba.G:GetLevel():GetStartingRoomIndex() then
 			for i, e in ipairs(entities) do
 				aura.Parent = e
 				aura.Position = e.Position
@@ -80,7 +80,7 @@ function wakaba:checkAura(playerno)
 end
 
 function wakaba:NewRoom_Minerva()
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if wakaba:hasAura(player) and not wakaba:checkAura(i - 1) then
 			local aura = wakaba:initAura(player)
@@ -96,7 +96,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 	if not wdata == "minerva" then return end
 	if not effect.Parent then return end
 	local psti = wakaba:getstoredindex(effect.Parent:ToPlayer())
-	if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 		psti = 1
 	end
 	effect.Timeout = 108000000
@@ -116,7 +116,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 	for _, ent in ipairs(Isaac.FindInRadius(effect.Position, 88, EntityPartition.ENEMY)) do
 		if ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
 			--ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 1, 1, true, false)
-			if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then 
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then 
 				if ent.HitPoints < (ent.MaxHitPoints * 2) then
 					ent.HitPoints = ent.HitPoints + (ent.MaxHitPoints * 0.04)
 					if ent.HitPoints > (ent.MaxHitPoints * 2) then
@@ -151,7 +151,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 		end
 	end
 	
-  --[[ for i = 1, Game():GetNumPlayers() do
+  --[[ for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		
 		pl:GetData().wakaba = pl:GetData().wakaba or {}
@@ -167,8 +167,8 @@ function wakaba:EffectUpdate_Minerva(effect)
 		local sti = wakaba:getstoredindex(ent:ToPlayer())
 
 		--print(ent:ToPlayer():GetName(), effect.Parent:ToPlayer().ControllerIndex , ent:ToPlayer().ControllerIndex, effect.Parent:ToPlayer().ControllerIndex == ent:ToPlayer().ControllerIndex)
-		if (effect.Parent ~= nil and effect.Parent:ToPlayer() ~= nil) or Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
-			if  Game().Challenge ~= wakaba.challenges.CHALLENGE_BIKE
+		if (effect.Parent ~= nil and effect.Parent:ToPlayer() ~= nil) or wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
+			if  wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_BIKE
 			and GetPtrHash(effect.Parent:ToPlayer()) == GetPtrHash(ent:ToPlayer())
 			and (effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
 			and not effect.Parent:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
@@ -176,7 +176,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 				ent:GetData().wakaba.minervalevel[psti][sti] = 0
 				--ent:GetData().wakaba.minervacount = 0
 			elseif distance <= 88 then
-				if Game().Challenge == wakaba.challenges.CHALLENGE_BIKE then
+				if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 					ent:GetData().wakaba.insideminerva = true
 					ent:GetData().wakaba.minervacount = 5
 					if (ent:ToPlayer() and not ent:ToPlayer():GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_CAMO_UNDIES)) then
@@ -252,7 +252,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Minerva)
 --[[ 
 function wakaba:TestRender_Minerva()
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		local minervalevel = 0
 		for i = 1, wakaba.state.storedplayers do
@@ -394,7 +394,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCChange_Minerva)
 --LagCheck
 
 --[[ function wakaba:GameStart_Minerva(continue)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		if wakaba:hasAura(player) then
 			local aura = wakaba:initAura(player)

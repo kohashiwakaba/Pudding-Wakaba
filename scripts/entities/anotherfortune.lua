@@ -103,7 +103,7 @@ function wakaba:Update_AnotherFortune()
 			local threshold = 5
 			local exploderate = 20
 			local exploderatemultiplier = 1
-			if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game().Difficulty == Difficulty.DIFFICULTY_GREEDIER then
+			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREEDIER then
 				threshold = 3
 				exploderate = 30
 				exploderatemultiplier = 2
@@ -123,7 +123,7 @@ function wakaba:Update_AnotherFortune()
 		end
 		if slot:GetSprite():IsEventTriggered("Explosion") then
 			slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
-			Game():BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
+			wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
 		end
 		if slot:GetSprite():IsEventTriggered("Prize") then
 			--[[ 
@@ -140,13 +140,13 @@ function wakaba:Update_AnotherFortune()
 			if rewardflag == wakaba.afspool.BLEND_HEART then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLENDED, slot.Position, wakaba.RandomVelocity(), nil)
 			elseif rewardflag == wakaba.afspool.CARD then
-				local selected = Game():GetItemPool():GetCard(slot:GetDropRNG():Next(), true, false, false)
+				local selected = wakaba.G:GetItemPool():GetCard(slot:GetDropRNG():Next(), true, false, false)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, selected, slot.Position, wakaba.RandomVelocity(), nil)
 			elseif rewardflag == wakaba.afspool.RUNE then
-				local selected = Game():GetItemPool():GetCard(slot:GetDropRNG():Next(), false, true, true)
+				local selected = wakaba.G:GetItemPool():GetCard(slot:GetDropRNG():Next(), false, true, true)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, selected, slot.Position, wakaba.RandomVelocity(), nil)
 			elseif rewardflag == wakaba.afspool.GOLDEN_TRINKET then
-				local selected = Game():GetItemPool():GetTrinket() | TrinketType.TRINKET_GOLDEN_FLAG
+				local selected = wakaba.G:GetItemPool():GetTrinket() | TrinketType.TRINKET_GOLDEN_FLAG
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, selected, slot.Position, wakaba.RandomVelocity(), nil)
 			elseif rewardflag == wakaba.afspool.DICE_SHARD then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_DICE_SHARD, slot.Position, wakaba.RandomVelocity(), nil)
@@ -163,7 +163,7 @@ function wakaba:Update_AnotherFortune()
 
 				table.insert(wakaba.state.anotherfortunepedestals, item.InitSeed)
 				item.Wait = 10
-				Game():BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
+				wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
 				slot:Remove()
 			end
 

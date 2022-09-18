@@ -20,7 +20,7 @@ local randPool = {
 }
 
 function wakaba:trinketUnlockCheck(trinket)
-	if Game().Challenge == Challenge.CHALLENGE_PICA_RUN then return true end
+	if wakaba.G.Challenge == Challenge.CHALLENGE_PICA_RUN then return true end
 	local isUnlocked = true
 
 	if trinket == wakaba.Enums.Trinkets.BITCOIN and wakaba.state.unlock.bitcoin < 1 then
@@ -78,7 +78,7 @@ end
 
 function wakaba:GetNemesisTrinket(selected, rng)
 	if not wakaba:trinketUnlockCheck(selected) then
-		return Game():GetItemPool():GetTrinket()
+		return wakaba.G:GetItemPool():GetTrinket()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_GET_TRINKET, wakaba.GetNemesisTrinket)
@@ -235,7 +235,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	
 	--if not decrease then return end
 
-	if Game():GetFrameCount() == 0 then return end
+	if wakaba.G:GetFrameCount() == 0 then return end
 	-- Unlock check and Flip interaction for External Item Description
 	if seed == 1 then return end 
 	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
@@ -243,15 +243,15 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		return
 	end
 	
-	if (Game().Challenge == wakaba.challenges.CHALLENGE_HOLD) then
+	if (wakaba.G.Challenge == wakaba.challenges.CHALLENGE_HOLD) then
 		return wakaba.Enums.Collectibles.CLOVER_SHARD
 	end
 
 	wakaba.state.rerollloopcount = wakaba.state.rerollloopcount or 0
 
-	local pool = Game():GetItemPool()
-	local level = Game():GetLevel()
-	local room = Game():GetRoom()
+	local pool = wakaba.G:GetItemPool()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
 	local config = Isaac.GetItemConfig()
 	local AllowActives = wakaba.state.allowactives
   local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
@@ -267,7 +267,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local hasIsaacCartridge = false
 	local hasAftCartridge = false
 	local hasRepCartridge = false
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
 			return
@@ -328,7 +328,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		itemType = ItemPoolType.POOL_DEVIL
 	end
 	
-	if (Game().Challenge == wakaba.challenges.CHALLENGE_RAND) then
+	if (wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND) then
 		itemType = randPool[math.random(1,#randPool)]
 		randselected = true
 	end
@@ -346,10 +346,10 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if eatHeartCharges >= 240000 then
 			if chance <= eatHeartCharges then MinQuality = 4 else MinQuality = 3 end
 		end
-	elseif hasNeko and Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
+	elseif hasNeko and wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
 		MinQuality = 3
 	elseif not eatHeartUsed and wakaba.state.hasnemesis and not wakaba.state.hasbless and not wakaba.state.options.blessnemesisqualityignore and not hasSacredOrb then
-		if Game():GetRoom():GetType() == RoomType.ROOM_ULTRASECRET or itemType == ItemPoolType.POOL_ULTRA_SECRET then
+		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET or itemType == ItemPoolType.POOL_ULTRA_SECRET then
 			MinQuality = 3
 		else
 			MaxQuality = 2
@@ -370,7 +370,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	--check time
 	-- No reroll when should not change Fair Options at the Start? mod
 	if FairOptionsConfig and not FairOptionsConfig.Disabled then
-		local level = Game():GetLevel()
+		local level = wakaba.G:GetLevel()
 		if FairOptionsConfig.IsAffectedRoom ~= nil and FairOptionsConfig:IsAffectedRoom() and wakaba.pedestalreroll then
 			index = (FairOptionsConfig.RerollCount % FairOptionsConfig.RerollItemsNumber) + 1
 			if FairOptionsConfig.RerollCount < 1 and index ~= 1 then return end
@@ -387,7 +387,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		local chance = rng:RandomInt(10000)
 		if chance <= 1250 then
 			local rng2 = RNG()
-			rng2:SetSeed(Game():GetRoom():GetSpawnSeed(), 35)
+			rng2:SetSeed(wakaba.G:GetRoom():GetSpawnSeed(), 35)
 			local TargetIndex = rng2:RandomInt(#candidates) + 1
 			pool:AddRoomBlacklist(candidates[TargetIndex])
 			preConditionMet = true
@@ -445,12 +445,12 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 				end
 			end
 
-			local curRoomIndex = Game():GetLevel():GetCurrentRoomDesc().ListIndex
+			local curRoomIndex = wakaba.G:GetLevel():GetCurrentRoomDesc().ListIndex
 			for _, item in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
 				if EID.flipItemPositions[curRoomIndex] 
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed]
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed][1] == lastSelected 
-				and EID.flipItemPositions[curRoomIndex][item.InitSeed][2] == Game():GetRoom():GetGridIndex(item.Position)
+				and EID.flipItemPositions[curRoomIndex][item.InitSeed][2] == wakaba.G:GetRoom():GetGridIndex(item.Position)
 				then
 					EID.flipItemPositions[curRoomIndex][item.InitSeed][1] = selected
 				end
@@ -478,7 +478,7 @@ function wakaba:rerollCooltime()
 	if wakaba.rerollcooltime > -2 then
 		wakaba.rerollcooltime = wakaba.rerollcooltime - 1
 	else
-		for i = 1, Game():GetNumPlayers() do
+		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			local pData = player:GetData()
 			if player:GetData().wakaba and player:GetData().wakaba.eatheartused == true then
@@ -495,7 +495,7 @@ function wakaba:rerollCooltime()
 			FairOptionsConfig.Disabled = false
 		end
 		wakaba.state.nemesis = wakaba.defaultstate.nemesis
-		Game():GetItemPool():ResetRoomBlacklist()
+		wakaba.G:GetItemPool():ResetRoomBlacklist()
 	end
 
 end

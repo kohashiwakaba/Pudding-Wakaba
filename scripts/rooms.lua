@@ -1,5 +1,5 @@
 local rng = RNG()
-local game = Game()
+local game = wakaba.G
 
 -- Roomgen indexes by sgjd01
 wakaba.adjindexes = {

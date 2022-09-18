@@ -151,13 +151,13 @@ function wakaba:ConsoleCommands(cmd, param)
 	end
 	-- Wakaba unlock status
 	if EID and cmd == "wakaba_unlockstats" then
-		wakaba.unlockdisplaytimer = Game():GetFrameCount()
+		wakaba.unlockdisplaytimer = wakaba.G:GetFrameCount()
 		wakaba.eidunlockstr = wakaba:CheckWakabaAchievementString()
 		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
 		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")
 	end
 	if EID and cmd == "wakaba_debugkr" then
-		wakaba.unlockdisplaytimer = Game():GetFrameCount()
+		wakaba.unlockdisplaytimer = wakaba.G:GetFrameCount()
 		wakaba.eidunlockstr = wakaba:CheckWakabaAchievementString()
 		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaDebug)
 		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")

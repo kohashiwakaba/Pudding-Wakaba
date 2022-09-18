@@ -78,10 +78,10 @@ wakaba.bookofshiori = {
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = function(player, rng, useflag, slot, vardata)
-		Game():GetLevel():ApplyMapEffect()
-		Game():GetLevel():ApplyCompassEffect(true)
-		Game():GetLevel():ApplyBlueMapEffect()
-		Game():GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS | LevelCurse.CURSE_OF_THE_LOST)
+		wakaba.G:GetLevel():ApplyMapEffect()
+		wakaba.G:GetLevel():ApplyCompassEffect(true)
+		wakaba.G:GetLevel():ApplyBlueMapEffect()
+		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS | LevelCurse.CURSE_OF_THE_LOST)
   	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
@@ -262,15 +262,15 @@ function wakaba:PlayerRender_BookofShiori(player)
 			wData.ShioriSprite:LoadGraphics()
 			wData.ShioriSprite:SetFrame("Shiori", 1)
 		end
-		if Game():GetHUD():IsVisible() then
-			wakaba.ShioriSprite:Render(Isaac.WorldToScreen(player.Position) + Vector(0,-56) - Game().ScreenShakeOffset, Vector(0,0), Vector(0,0))
+		if wakaba.G:GetHUD():IsVisible() then
+			wakaba.ShioriSprite:Render(Isaac.WorldToScreen(player.Position) + Vector(0,-56) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
 		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_BookofShiori)
 
 function wakaba:NewRoom_BookofShiori()
-  for i = 0, Game():GetNumPlayers()-1 do
+  for i = 0, wakaba.G:GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba then
 			player:GetData().wakaba.shioribiblecount = 0 -- The Bible
@@ -279,8 +279,8 @@ function wakaba:NewRoom_BookofShiori()
 			player:GetData().wakaba.shioritrollbombcount = 0
 			player:GetData().wakaba.shioribonecount = 0
 
-			if Game():GetLevel():GetCurrentRoomIndex() == Game():GetLevel():GetStartingRoomIndex() 
-			and Game():GetRoom():IsFirstVisit() then
+			if wakaba.G:GetLevel():GetCurrentRoomIndex() == wakaba.G:GetLevel():GetStartingRoomIndex() 
+			and wakaba.G:GetRoom():IsFirstVisit() then
 				player:GetData().wakaba.shiorirevelcount = 0 -- Book of Revelations
 				player:GetData().wakaba.shiorisatancount = 0
 			end
@@ -509,7 +509,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, wakaba.TearUpdate_BookofSh
 
 function wakaba:ProjectileUpdate_BookofShiori(tear)
 
-  for i = 0, Game():GetNumPlayers()-1 do
+  for i = 0, wakaba.G:GetNumPlayers()-1 do
     local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba then
 			local nextflag = player:GetData().wakaba.nextshioriflag 
@@ -548,7 +548,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_BookofShiori)
 
 function wakaba:NPCDeath_BookofShiori(entity)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba then
 			local luck = player.Luck
@@ -647,7 +647,7 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 		if player ~= nil then
 			if not player:GetData().wakaba then return end 
 			local nextflag = player:GetData().wakaba.nextshioriflag 
-			if Game().Challenge == wakaba.challenges.CHALLENGE_DOPP
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DOPP
 			and entity.Variant == FamiliarVariant.MINISAAC then
 				return false
 			end
@@ -667,7 +667,7 @@ function wakaba:updateDopp(familiar)
 	local player = familiar.Player
 	if not player:GetData().wakaba then return end 
 	local nextflag = player:GetData().wakaba.nextshioriflag 
-	if Game().Challenge == wakaba.challenges.CHALLENGE_DOPP
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DOPP
 	or nextflag == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
 		familiar:PickEnemyTarget(230, 13, 1, Vector.Zero, 180)
 	end

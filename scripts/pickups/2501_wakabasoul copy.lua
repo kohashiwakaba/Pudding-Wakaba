@@ -6,7 +6,7 @@ local candidates = {}
 
 local function IsRoomNearby(roomIdx)
 	if roomIdx == 96 then return false end
-  local level = Game():GetLevel()
+  local level = wakaba.G:GetLevel()
 	local top = roomIdx - 13
 	local bottom = roomIdx + 13
 	local left = roomIdx - 1
@@ -23,7 +23,7 @@ local function IsRoomNearby(roomIdx)
 end
 
 local function GetGeneratedRedRoom(roomIdx)
-  local level = Game():GetLevel()
+  local level = wakaba.G:GetLevel()
 	local replacedIdx = false
 	for i = 0, 3 do
 		replacedIdx = level:MakeRedRoomDoor(roomIdx, i)
@@ -61,9 +61,9 @@ local availableangelroom = {
 }
 
 function wakaba:UseCard_SoulOfWakaba(card, player, flags)
-  local game = Game()
-  local room = Game():GetRoom()
-  local level = Game():GetLevel()
+  local game = wakaba.G
+  local room = wakaba.G:GetRoom()
+  local level = wakaba.G:GetLevel()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
   local StartingRoom = 84
@@ -102,23 +102,23 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			if replacedIdx then
 				local targetSpecial = level:GetRoomByIdx(replacedIdx)
 				local copyIdx = -1
-				local tempRoom = Game():GetLevel():GetRoomByIdx(-1,-1)
-				local tempRoomData = Game():GetLevel():GetRoomByIdx(-1,-1).Data
-				Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
+				local tempRoom = wakaba.G:GetLevel():GetRoomByIdx(-1,-1)
+				local tempRoomData = wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data
+				wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
 				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-					Game():GetLevel():InitializeDevilAngelRoom(false, true)
-					while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-						Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-						Game():GetLevel():InitializeDevilAngelRoom(false, true)
+					wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
+					while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
 					end
 				else
-					Game():GetLevel():InitializeDevilAngelRoom(true, false)
-					while(Game():GetLevel():GetRoomByIdx(-1,-1).Data and Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-						Game():GetLevel():GetRoomByIdx(-1,-1).Data=nil
-						Game():GetLevel():InitializeDevilAngelRoom(true, false)
+					wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
+					while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
 					end
 				end
-				--print(Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, Game():GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
+				--print(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
 				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				end
 				--[[ 
@@ -131,7 +131,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				]]
 				local d = targetSpecial.Data
 				targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
-				Game():GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
+				wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
 				selected = replacedIdx
 				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 					table.insert(wakaba.state.wakabadevilshops, selected)
@@ -175,17 +175,17 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			end
 			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		else
-			--[[ for i = 0, Game():GetNumPlayers() - 1 do
+			--[[ for i = 0, wakaba.G:GetNumPlayers() - 1 do
 				Isaac.GetPlayer(i):SetMinDamageCooldown(60)
 			end ]]
-			--Game():StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
+			--wakaba.G:StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 		end
 
 	
 	else
-		--Game():StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
+		--wakaba.G:StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 	end
-	Game():GetLevel():UpdateVisibility()
+	wakaba.G:GetLevel():UpdateVisibility()
 	player:AddSoulHearts(2)
 	--[[ local states = wakaba.state.playersavedata[wakaba:getstoredindex(player)]
 	states.soulflag = states.soulflag | wakaba.soulflag.SOUL_OF_WAKABA_BLESSING ]]
@@ -197,7 +197,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba
 function wakaba:onGetCard2201(rng, currentCard, playing, runes, onlyRunes)
 	--print(currentCard == wakaba.Enums.Cards.SOUL_WAKABA, currentCard)
 	if currentCard == wakaba.Enums.Cards.SOUL_WAKABA or currentCard == wakaba.Enums.Cards.SOUL_WAKABA2 then
-		if Game():IsGreedMode() or not wakaba.state.unlock.wakabasoul then
+		if wakaba.G:IsGreedMode() or not wakaba.state.unlock.wakabasoul then
 			Isaac.DebugString("[wakaba] Soul of Wakaba not unlocked. Replacing into Lunar Shard")
 			return Card.RUNE_SHARD
 		end
@@ -256,9 +256,9 @@ local slotpools = {
 
 
 function wakaba:NewRoom_SoulOfWakaba()
-  local game = Game()
-  local room = Game():GetRoom()
-  local level = Game():GetLevel()
+  local game = wakaba.G
+  local room = wakaba.G:GetRoom()
+  local level = wakaba.G:GetLevel()
   local CurStage = level:GetAbsoluteStage()
   local CurRoomIndex = level:GetCurrentRoomIndex()
   local StartingRoom = 84
@@ -266,7 +266,7 @@ function wakaba:NewRoom_SoulOfWakaba()
 		if CurRoomIndex == StartingRoom then
 			wakaba.state.wakabaangelshops = {}
 			wakaba.state.wakabadevilshops = {}
-		elseif wakaba:has_value(wakaba.state.wakabadevilshops, Game():GetLevel():GetCurrentRoomIndex()) then
+		elseif wakaba:has_value(wakaba.state.wakabadevilshops, wakaba.G:GetLevel():GetCurrentRoomIndex()) then
 			for i = 1, room:GetGridSize() do
 				local grid = room:GetGridEntity(i)
 				if grid and grid:ToPit() then
@@ -326,7 +326,7 @@ function wakaba:NewRoom_SoulOfWakaba()
 				end
 			end
 
-		elseif wakaba:has_value(wakaba.state.wakabaangelshops, Game():GetLevel():GetCurrentRoomIndex()) then
+		elseif wakaba:has_value(wakaba.state.wakabaangelshops, wakaba.G:GetLevel():GetCurrentRoomIndex()) then
 			local fireplaces = Isaac.FindByType(EntityType.ENTITY_FIREPLACE, -1, -1)
 			for i, f in ipairs(fireplaces) do
 				f:Remove()
@@ -391,7 +391,7 @@ function wakaba:NewRoom_SoulOfWakaba()
 			end
 
 		end
-	elseif wakaba:has_value(wakaba.state.wakabadevilshops, Game():GetLevel():GetCurrentRoomIndex()) then
+	elseif wakaba:has_value(wakaba.state.wakabadevilshops, wakaba.G:GetLevel():GetCurrentRoomIndex()) then
 		for i = 1, room:GetGridSize() do
 			local grid = room:GetGridEntity(i)
 			if grid and grid:ToPit() then

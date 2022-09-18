@@ -1,7 +1,7 @@
 
 --[[ 
 function wakaba:CheckItemCandidates(player)
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		local DejaVuCandidates = {}

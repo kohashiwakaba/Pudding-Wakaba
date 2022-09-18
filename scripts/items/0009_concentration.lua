@@ -185,7 +185,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Concentration)
 
 function wakaba.RoomClear_Concentration()
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
     local data = player:GetData()
 		wakaba:GetPlayerEntityData(player)

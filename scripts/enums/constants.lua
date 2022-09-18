@@ -24,8 +24,6 @@ wakaba.Enums.Collectibles = {
   FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift"),
   CONCENTRATION = Isaac.GetItemIdByName("Concentration"),
   RABBIT_RIBBON = Isaac.GetItemIdByName("Rabbit Ribbon"),
-  SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs"),
-  JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
 
   -- Regular items
   MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD"),
@@ -39,6 +37,8 @@ wakaba.Enums.Collectibles = {
   SYRUP = Isaac.GetItemIdByName("Syrup"),
   CLENSING_FOAM = Isaac.GetItemIdByName("Clensing Foam"),
   CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2"),
+  SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs"),
+  JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
 
   -- Wakaba items
   EATHEART = Isaac.GetItemIdByName("Eat Heart"),
@@ -88,13 +88,14 @@ wakaba.Enums.Collectibles = {
   FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),
   DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader"),
   ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
-  --SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
-  --MAID_OF_PAIN = Isaac.GetItemIdByName("Maid of Pain"),
-  --RICHERS_RECIPIES = Isaac.GetItemIdByName("Richer's Recipies"),
-  --CHIERI = Isaac.GetItemIdByName("Chieri"),
-  --LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
-  --LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
-  --WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
+  SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
+  MAID_OF_PAIN = Isaac.GetItemIdByName("Maid of Pain"),
+  RICHERS_RECIPE = Isaac.GetItemIdByName("Richer's Recipe"),
+  CHIERI = Isaac.GetItemIdByName("Chieri"),
+  LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
+  LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
+  BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
+  WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
 
   -- Challenge items
   PLUMY = Isaac.GetItemIdByName("Plumy"),
@@ -119,6 +120,7 @@ wakaba.Enums.Familiars = {
   LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa"),
   --LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
   --LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
+  --BLACK_RIBBON = Isaac.GetEntityVariantByName("Black Ribbon Particle"),
   --CHIERI = Isaac.GetEntityVariantByName("Chieri"),
 
 }
@@ -139,7 +141,7 @@ wakaba.Enums.Trinkets = {
   ISAAC_CARTRIDGE = Isaac.GetTrinketIdByName("Isaac Cartridge"),
   AFTERBIRTH_CARTRIDGE = Isaac.GetTrinketIdByName("Afterbirth Cartridge"),
   REPENTANCE_CARTRIDGE = Isaac.GetTrinketIdByName("Repentance Cartridge"),
-  --STAR_REVERSAL = Isaac.GetTrinketIdByName("Star Reversal"),
+  STAR_REVERSAL = Isaac.GetTrinketIdByName("Star Reversal"),
 
 }
 

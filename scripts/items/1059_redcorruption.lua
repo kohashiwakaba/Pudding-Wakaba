@@ -1,5 +1,5 @@
 function wakaba:UpdateRoomDisplayFlags(initroomdesc)
-	local level = Game():GetLevel()
+	local level = wakaba.G:GetLevel()
 	local roomdesc = level:GetRoomByIdx(initroomdesc.GridIndex)
 	local roomdata = roomdesc.Data
 	if level:GetRoomByIdx(roomdesc.GridIndex).DisplayFlags then
@@ -23,11 +23,11 @@ end
 
 
 function wakaba:NewLevel_RedCorruption()
-	local game = Game()
+	local game = wakaba.G
 	local level = game:GetLevel()
 	if level:GetAbsoluteStage() == LevelStage.STAGE4_3 or level:GetAbsoluteStage() == LevelStage.STAGE8 then return end
 	local hasCorruption = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) then
 			hasCorruption = true
@@ -93,7 +93,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_RedCorruption
 
 
 function wakaba:PostGetCollectible_RedCorruption(player, item)
-	local game = Game()
+	local game = wakaba.G
 	local level = game:GetLevel()
 	level:ApplyCompassEffect()
 	if game:IsGreedMode() then

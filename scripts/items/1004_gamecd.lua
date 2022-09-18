@@ -23,7 +23,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_GameCD)
 
 function wakaba:LewdRoomEffect()
 	local hasCd = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
 		if pl:HasCollectible(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD) then
 			hasCd = true
@@ -34,8 +34,8 @@ function wakaba:LewdRoomEffect()
 		local gg = (math.random(0,math.random(0,10)) * 0.01)
 		local bb = (math.random(0,math.random(0,10)) * 0.01)
 		local col = Color(1,1,1,1,rr,gg,bb)
-		Game():GetRoom():SetFloorColor(col)
-		Game():GetRoom():SetWallColor(col)
+		wakaba.G:GetRoom():SetFloorColor(col)
+		wakaba.G:GetRoom():SetWallColor(col)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.LewdRoomEffect)

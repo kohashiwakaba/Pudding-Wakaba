@@ -18,7 +18,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_EdenNote)
 
 function wakaba:ItemUse_EdenNote(_, rng, player, useFlags, activeSlot, varData)
-	if Game().Challenge == wakaba.challenges.CHALLENGE_RAND then return end
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then return end
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.prevcharge = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)

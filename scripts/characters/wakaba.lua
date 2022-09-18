@@ -39,12 +39,12 @@ function wakaba:PostWakabaUpdate()
 		hasconf = true
 	end
 	
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false)
 		then
 			wakaba:GetPlayerEntityData(player)
-			if Game().Challenge ~= wakaba.challenges.CHALLENGE_RAND 
+			if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND 
 			and not player:GetData().wakaba.shioriangel then
 				if hasconf then
 					broken = 0
@@ -128,7 +128,7 @@ local WakabaChar = {
 function wakaba:onWakabaCache(player, cacheFlag)
   if player:GetPlayerType() == playerType then
 		--wakaba:GetWakabaCostume(player)
-		if Game().Challenge == wakaba.challenges.CHALLENGE_RAND then
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
     	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
     	    player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
     	end

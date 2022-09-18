@@ -8,7 +8,7 @@ wakaba.ChestSubType = {
 function wakaba:manageCloverChests()
   local haspp = false
   
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i-1)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then
       haspp = true
@@ -44,19 +44,19 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_ResetCloverCh
 
 
 function wakaba:ReplaceChests(pickup)
-  local stage = Game():GetLevel():GetStage()
+  local stage = wakaba.G:GetLevel():GetStage()
   wakaba.ItemRNG:SetSeed(pickup.DropSeed, 0)
   if wakaba.state.unlock.cloverchest > 0 
   and stage ~= LevelStage.STAGE6 
   and wakaba.ItemRNG:RandomFloat() < 0.05 
-  and Game():GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
+  and wakaba.G:GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
     pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceChests, PickupVariant.PICKUP_CHEST)
 
 function wakaba:ReplaceCloverChests(pickup)
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i-1)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then
       pickup:GetSprite():ReplaceSpritesheet(0, "gfx/cloverchest_pp.png") 
@@ -76,7 +76,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.UpdateChests, Pick
 
 function wakaba:spawnCloverChestReward(chest)
   local haspp = false
-  for i = 1, Game():GetNumPlayers() do
+  for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i-1)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then
       haspp = true
@@ -101,7 +101,7 @@ function wakaba:spawnCloverChestReward(chest)
     --new.Visible = false
     --new.EntityCollisionClass = 0
     chest:Remove()
-  elseif Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE6 then
+  elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE6 then
     local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, chest.Position, Vector.Zero, nil):ToPickup()
     item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
     if haspp then

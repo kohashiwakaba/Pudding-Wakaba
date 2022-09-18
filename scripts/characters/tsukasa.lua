@@ -137,16 +137,16 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onTsukasaCache)
 
 function wakaba:NewRoom_Tsukasa()
-	local isTreasure = Game():GetRoom():GetType() == RoomType.ROOM_TREASURE
+	local isTreasure = wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE
 	local isTsukasa = false
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == wakaba.PLAYER_TSUKASA then
 			isTsukasa = true
 		end
 	end
 	if isTreasure and isTsukasa then 
-		Game():ShowHallucination(0, BackdropType.PLANETARIUM)
+		wakaba.G:ShowHallucination(0, BackdropType.PLANETARIUM)
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 	end
 end

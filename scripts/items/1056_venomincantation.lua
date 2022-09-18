@@ -22,7 +22,7 @@ function wakaba:TakeDamage_VenomIncantation(entity, amount, flags, source, count
 	if entity:IsInvincible() then return end
 
 	if flags & DamageFlag.DAMAGE_POISON_BURN == DamageFlag.DAMAGE_POISON_BURN then
-		for i = 0, Game():GetNumPlayers()-1 do
+		for i = 0, wakaba.G:GetNumPlayers()-1 do
 			local player = Isaac.GetPlayer(i)
 			if player:HasCollectible(wakaba.Enums.Collectibles.VENOM_INCANTATION) then
 				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.VENOM_INCANTATION)

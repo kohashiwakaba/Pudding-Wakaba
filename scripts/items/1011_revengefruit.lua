@@ -63,7 +63,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RevengeFruitTakeDmg)
 
 function wakaba:RevengeFruitPostLevel()
-	for i = 1, Game():GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.revengecount = 7

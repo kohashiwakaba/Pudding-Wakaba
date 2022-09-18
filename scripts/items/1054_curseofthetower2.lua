@@ -14,8 +14,8 @@ local rolledPickup = {
 function wakaba:Update_CurseOfTower2()
   hastower = false
   haspb = false
-  for num = 1, Game():GetNumPlayers() do
-    local player = Game():GetPlayer(num - 1)
+  for num = 1, wakaba.G:GetNumPlayers() do
+    local player = wakaba.G:GetPlayer(num - 1)
     if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
       hastower = true
       if not player:HasGoldenBomb() then
