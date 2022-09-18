@@ -1128,6 +1128,7 @@ include('scripts.items.3009_delimiter')
 include('scripts.items.3010_rangeos')
 include('scripts.items.3011_sirenbadge')
 include('scripts.items.3012_isaaccartridge')
+include('scripts.items.3013_starreversal')
 
 include('scripts.pickups.4000_cloverchest')
 

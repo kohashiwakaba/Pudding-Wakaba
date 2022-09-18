@@ -1133,6 +1133,12 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Only TBoI ~ Repentance items will appear"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {
+		itemName = "Star Reversal",
+		description = ""
+		.. "#Dropping the trinket in a {{TreasureRoom}}Treasure room exchanges it for {{Planetarium}}Planetarium item"
+		.. "{{CR}}",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {

@@ -134,6 +134,7 @@
 	<trinket name="Delimiter" description="Weaker rocks" gfx="delimiter.png" tags="nogreed"/>
 	<trinket cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
+	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
 	
 	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />
 	<trinket name="Afterbirth Cartridge" description="Only Isaac to Afterbirth+" gfx="afterbirthcartridge.png" />

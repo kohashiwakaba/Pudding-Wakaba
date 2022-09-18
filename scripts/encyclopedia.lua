@@ -1420,6 +1420,14 @@ if Encyclopedia then
 				{str = "Overridden by Repentance Cartridge."},
 			},
 		},
+		
+		TRINKET_STAR_REVERSAL = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "Dropping the trinket in a Treasure room exchanges it for Planetarium item."},
+				{str = "The trinket disappears on exchange."},
+			},
+		},
 
 
 		COLLECTIBLE_COUNTER = {
@@ -3773,6 +3781,19 @@ if Encyclopedia then
 				return self
 			end
 		end,
+	})
+	
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Trinkets.STAR_REVERSAL,
+		WikiDesc = Wiki.TRINKET_STAR_REVERSAL,
+		--[[ UnlockFunc = function(self)
+			if not wakaba.state.unlock.isaaccartridge then
+				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+				return self
+			end
+		end, ]]
 	})
 
 	--Delimiter
