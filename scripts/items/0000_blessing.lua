@@ -564,7 +564,7 @@ function wakaba:RevealItemImage(pickup, offset)
 		local hasbless = false
 		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
-			if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) then
+			if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) then
 				hasbless = true
 			end
 		end
