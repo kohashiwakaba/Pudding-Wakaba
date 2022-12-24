@@ -17,13 +17,14 @@ An anime mod that contains characters from the creator's favorite.
    - Priest's Blessing/Unholy Curse
 - 16 new Challenges
 
-**Current Version : v98-Tsukasa**(updated time : 2022-05-29)
+**Current Version : v100-Richer**(updated time : 2022-12-24)
 
 ## Characters
 
 - **Wakaba** (From Wakaba Girl - Hara Yui)
 - **Shiori** (From The World God only knows - Wakagi Tamaki)
 - **Tsukasa** (From Tonikaku Kawaii - Hata Kenjiro)
+- **Richer** (From Love's Sweet Garnish - Miyasaka Miyu / Miyasaka Nako)
 
 ## Item informations
 
@@ -70,8 +71,9 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
 - Nato Potato - for Modded costume handling and empty Pedestal removal
 - meloonicscorp - Glitched item spawn function snippet
 - Xalum, DeadInfinity - getting current dimension snippet
-- Zamiel, NeoDement - for player identifier logic
+- Zamiel, (+ NeoDement) - Isaacscript (+ for player identifier logic)
 - im_tem - Pseudo-Lilith Birtrhright position
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
+- bogdanrudyka - PostGetCollectible custom callback
 - Sanio - Character Costume Protector library / PnW uses modified version of Costume Protector.
