@@ -1,12 +1,11 @@
 
-wakaba.Enums.Collectibles.WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew")
-wakaba.Enums.Collectibles.WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew")
---wakaba.Enums.Collectibles.LAKE_OF_BISHOP = Isaac.GetItemIdByName("See des Bischofs")
+
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 
 local Challenges = wakaba.challenges
 local randinterval = 300
-local randtainted = wakaba.state.randtainted
+local randtainted = wakaba.runstate.randtainted
 local rift
 local isChallengeContinue = true
 
@@ -204,7 +203,7 @@ function wakaba:PostChallengePlayerInit(player)
 		local sti = player:GetData().wakaba.sindex
 		
 		wakaba.state.indexes[sti] = {
-			storeindex = wakaba.state.storedplayers,
+			storeindex = wakaba.runstate.storedplayers,
 			playertype = player:GetPlayerType(),
 			name = player:GetName(),
 			controllerindex = player.ControllerIndex, -- controllerindex is available this point
@@ -275,7 +274,6 @@ function wakaba:ChallengeSpeedUp()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
 	local type1 = room:GetType()
-  local StartingRoom = 84
 	
 	if wakaba:isSpeed() then
 		room:SetBrokenWatchState(2)
@@ -310,7 +308,7 @@ function wakaba:ChallengeSpeedUp()
 			--esau.EntityCollisionClass = EntityCollisionClass.ENTCOLL_PLAYERONLY
 			esau:Update()
 		end ]]
-		if room:IsFirstVisit() and CurRoom == StartingRoom then
+		if room:IsFirstVisit() and isc:inStartingRoom() then
 			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				wakaba:GetPlayerEntityData(player)
@@ -325,7 +323,7 @@ function wakaba:ChallengeSpeedUp()
 			end
 		end
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RAND then
-		if room:IsFirstVisit() and CurRoom == StartingRoom then
+		if room:IsFirstVisit() and isc:inStartingRoom() then
 			for i = 1, wakaba.G:GetNumPlayers() do
 				local player = Isaac.GetPlayer(i - 1)
 				player:AddBrokenHearts(-12)
@@ -373,13 +371,11 @@ function wakaba:PlayerUpdate_Delivery(player)
 		if chargestate then
 			chargestate.CurrentValue = player:GetData().wakaba.ponycurrframe
 			chargestate.Count = currval
-			chargestate.Sprite = wakaba.sprites.WhitePonySprite
 		else
 			chargestate = {
 				Index = chargeno,
 				Profile = "RushPony",
 				IncludeFinishAnim = true,
-				Sprite = wakaba.sprites.WhitePonySprite,
 				MaxValue = wakaba.ponycooldown,
 				MinValue = 0,
 				Count = currval,
@@ -397,7 +393,6 @@ function wakaba:PlayerUpdate_Delivery(player)
 		local level = wakaba.G:GetLevel()
 		local CurStage = level:GetAbsoluteStage()
 		local CurRoom = level:GetCurrentRoomIndex()
-		local StartingRoom = 84
 		wakaba:GetPlayerEntityData(player)
 		if player:GetData().wakaba.pendingesauspawn and not wakaba.G:IsPaused() then
 			player:GetData().wakaba.pendingesauspawn = false
@@ -415,7 +410,7 @@ function wakaba:PlayerUpdate_Delivery(player)
 		if player:GetData().wakaba.chargedframe > 5 then
 			player:GetData().wakaba.chargedframe = 0
 		end
-		if room:IsFirstVisit() and CurRoom == StartingRoom then
+		if room:IsFirstVisit() and isc:inStartingRoom() then
 			player:GetData().wakaba.minervacount = 7
 			player:GetData().wakaba.minervadeathcount = 600
 		elseif player:GetData().wakaba.minervacount > 0 then
@@ -455,13 +450,11 @@ function wakaba:PlayerUpdate_Delivery(player)
 		if chargestate then
 			chargestate.CurrentValue = player:GetData().wakaba.minervadeathcount
 			chargestate.Count = ((player:GetData().wakaba.minervadeathcount // 6 )/ 10)
-			chargestate.Sprite = wakaba.sprites.DeliveryMinervaSprite
 		else
 			chargestate = {
 				Index = chargeno,
 				Profile = "DeliveryMinerva",
 				IncludeFinishAnim = false,
-				Sprite = wakaba.sprites.DeliveryMinervaSprite,
 				MaxValue = 600,
 				MinValue = 1,
 				Count = ((player:GetData().wakaba.minervadeathcount // 6 )/ 10),
@@ -647,7 +640,7 @@ function wakaba:PostWakabaChallengeUpdate()
 			player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)
 			
 			if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 900 or player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) > 0 then
-				wakaba.state.allowactives = false
+				wakaba.roomstate.allowactives = false
 				player:TryRemoveNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
 				player:TryRemoveNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_b.anm2"))
 				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
@@ -743,8 +736,8 @@ function wakaba:PostWakabaChallengeUpdate()
 				end
 				player:DischargeActiveItem(ActiveSlot.SLOT_POCKET)
 				player:EvaluateItems()
-				--print("Form Changed : ", wakaba.state.hasbless,"/",wakaba.state.hasnemesis)
-				wakaba.state.allowactives = true
+				--print("Form Changed : ", wakaba.runstate.hasbless,"/",wakaba.runstate.hasnemesis)
+				wakaba.roomstate.allowactives = true
 			end
 		end
 	end

@@ -1,0 +1,16 @@
+wakaba.Enums.Players.WAKABA = Isaac.GetPlayerTypeByName("Wakaba", false)
+wakaba.Enums.Players.WAKABA_B = Isaac.GetPlayerTypeByName("WakabaB", true)
+wakaba.Enums.Players.SHIORI = Isaac.GetPlayerTypeByName("Shiori", false)
+wakaba.Enums.Players.SHIORI_B = Isaac.GetPlayerTypeByName("ShioriB", true)
+wakaba.Enums.Players.TSUKASA = Isaac.GetPlayerTypeByName("Tsukasa", false)
+wakaba.Enums.Players.TSUKASA_B = Isaac.GetPlayerTypeByName("TsukasaB", true)
+--wakaba.Enums.Players.RICHER = Isaac.GetPlayerTypeByName("Richer", false)
+--wakaba.Enums.Players.RICHER_B = Isaac.GetPlayerTypeByName("RicherB", true)
+--[[ 
+wakaba.Enums.Players.WAKABA = Isaac.GetPlayerTypeByName("#WAKABA_WAKABA_NAME", false)
+wakaba.Enums.Players.WAKABA_B = Isaac.GetPlayerTypeByName("#WAKABA_WAKABAB_NAME", true)
+wakaba.Enums.Players.SHIORI = Isaac.GetPlayerTypeByName("#WAKABA_SHIORI_NAME", false)
+wakaba.Enums.Players.SHIORI_B = Isaac.GetPlayerTypeByName("#WAKABA_SHIORIB_NAME", true)
+wakaba.Enums.Players.TSUKASA = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASA_NAME", false)
+wakaba.Enums.Players.TSUKASA_B = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASAB_NAME", true)
+ ]]

@@ -31,22 +31,22 @@
 See this community post for more details. It's not mine, but it's still very useful: https://steamcommunity.com/sharedfiles/filedetails/?id=835061601
 -->
 <challenges version="1">
-  <challenge name="Electric Disorder" playertype="2" endstage="6" getcurse="1" roomfilter="2,4" canshoot="false" cursefilter="32" />
-  <challenge name="Berry Best Friend" playertype="31" endstage="9" roomfilter="2,4" canshoot="false" startingitems="619,619,619,619,619,619,619,619,619"/>
-  <challenge name="Pull and Pull" playertype="3" endstage="8" maxhp="6" redhp="6" roomfilter="4" startingitems="-34,45,182,329,153,153,315,617,583"/>
-  <challenge name="Mine stuff" playertype="23" endstage="10" maxhp="16" redhp="16" canshoot="false" startingitems="-477,584,147" startingtrinkets="15"/>
-  <challenge name="Black neko dreams" endstage="8" getcurse="4" secretpath="true" canshoot="false" roomfilter="4" cursefilter="32" startingitems="134,81,212,360,626,627"/>
-  <challenge name="Doppelganger" endstage="9" altpath="true" roomfilter="4,7" canshoot="false" cursefilter="127" startingitems="247,598,633"/>
-  <challenge name="Delirium" playertype="2" endstage="11" roomfilter="4" canshoot="false" startingitems="20,116,63,182,356"/>
-  <challenge name="Sisters from Beyond"  canshoot="false" endstage="11" roomfilter="4" startingitems="412,357"/>
-  <challenge name="Draw Five" playertype="2" altpath="true" endstage="11" roomfilter="4" startingitems="252,251,534,85,63,116,654,624" startingtrinkets="45"/>
-  <challenge name="Rush Rush Hush" endstage="9" roomfilter="4" canshoot="false" startingitems="593"/>
-	<challenge name="Apollyon Crisis" endstage="11" canshoot="false" startingitems="534,477,706,63,116,633"/>
-	<challenge name="Delivery System" endstage="11" canshoot="false" roomfilter="4" startingitems="205,619"/>
-	<challenge name="Calculation" endstage="11" megasatan="true" canshoot="false" roomfilter="4" startingitems=""/>
-	<challenge name="Hold Me" playertype="23" endstage="8" secretpath="true" canshoot="false" roomfilter="4" startingitems="626,627,619,714"/>
+  <challenge name="[w01] Electric Disorder" playertype="2" endstage="6" getcurse="1" roomfilter="2,4" canshoot="false" cursefilter="32" />
+  <challenge name="[w02] Berry Best Friend" playertype="31" endstage="9" roomfilter="2,4" canshoot="false" startingitems="619,619,619,619,619,619,619,619,619"/>
+  <challenge name="[w03] Pull and Pull" playertype="3" endstage="8" maxhp="6" redhp="6" roomfilter="4" startingitems="-34,45,182,329,153,153,315,617,583"/>
+  <challenge name="[w04] Mine stuff" playertype="23" endstage="8" maxhp="16" redhp="16" canshoot="false" startingitems="-477,584,147" startingtrinkets="15"/>
+  <challenge name="[w05] Black neko dreams" endstage="8" getcurse="4" secretpath="true" canshoot="false" roomfilter="4" cursefilter="32" startingitems="134,81,212,360,626,627"/>
+  <challenge name="[w06] Doppelganger" endstage="9" altpath="true" roomfilter="4,7" canshoot="false" cursefilter="127" startingitems="247,598,633"/>
+  <challenge name="[w07] Delirium" playertype="2" endstage="11" roomfilter="4" canshoot="false" startingitems="20,116,63,182,356"/>
+  <challenge name="[w08] Sisters from Beyond"  canshoot="false" endstage="11" roomfilter="4" startingitems="412,357"/>
+  <challenge name="[w09] Draw Five" playertype="2" altpath="true" endstage="11" roomfilter="4" startingitems="252,251,534,85,63,116,654,624" startingtrinkets="45"/>
+  <challenge name="[w10] Rush Rush Hush" endstage="9" roomfilter="4" canshoot="false" startingitems="593"/>
+	<challenge name="[w11] Apollyon Crisis" endstage="11" canshoot="false" startingitems="534,477,706,63,116,633"/>
+	<challenge name="[w12] Delivery System" endstage="11" canshoot="false" roomfilter="4" startingitems="205,619"/>
+	<challenge name="[w13] Calculation" endstage="11" megasatan="true" canshoot="false" roomfilter="4" startingitems=""/>
+	<challenge name="[w14] Hold Me" playertype="23" endstage="8" secretpath="true" canshoot="false" roomfilter="2,4" startingitems="626,627,619,714,-710"/>
 	
-  <challenge name="Hyper Random" endstage="11" megasatan="true" roomfilter="2" getcurse="38" cursefilter="8" startingitems="633,721,669,12" />
-  <challenge name="True Purist Girl" endstage="13" secretpath="true" roomfilter="2,4,7,8,9,10,11,12,13,14,15,18,19,20,21" startingitems="626,627,619"/>
-	<challenge name="Pure Delirium vs Silence" difficulty="1" endstage="11" maxhp="18" redhp="18" startingitems="669,101,598,182,708,708,708,708,6" cursefilter="127" />
+  <challenge name="[w98] Hyper Random" endstage="11" megasatan="true" roomfilter="2" getcurse="38" cursefilter="8" startingitems="633,721,669,12" />
+  <challenge name="[w99] True Purist Girl" endstage="13" secretpath="true" roomfilter="2,4,7,8,9,10,11,12,13,14,15,18,19,20,21" startingitems="626,627,619"/>
+	<challenge name="[wb1] Pure Delirium vs Silence" difficulty="1" endstage="11" maxhp="18" redhp="18" startingitems="669,101,598,182,708,708,708,708,6" cursefilter="127" />
 </challenges>

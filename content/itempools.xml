@@ -22,6 +22,8 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -43,6 +45,11 @@
 		<Item Name="Syrup" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Red Corruption" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flash Shift" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prestige Pass" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -51,6 +58,7 @@
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="1" RemoveOn="0.001"/>
@@ -65,6 +73,9 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -79,6 +90,9 @@
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
@@ -99,6 +113,7 @@
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prestige Pass" Weight="1" DecreaseBy="1" RemoveOn="0.05"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -112,6 +127,7 @@
 		<Item Name="Double Invader" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Red Corruption" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -130,6 +146,7 @@
 		<Item Name="Book of Conquest" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.05"/>
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 	
 	
@@ -159,6 +176,9 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -169,6 +189,7 @@
 		<Item Name="Advanced Crystal" Weight="0.8" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Mystic Crystal" Weight="0.8" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -189,6 +210,9 @@
 		<Item Name="3D Printer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flash Shift" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -205,6 +229,7 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedAngel">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -219,6 +244,7 @@
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedCurse">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
@@ -250,6 +276,9 @@
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Cunning Paper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -264,6 +293,7 @@
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -283,6 +313,7 @@
 	</Pool>
 	<Pool name="rottenBeggar">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="batteryBum">
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -298,6 +329,7 @@
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="redChest">
 		<Item Name="Wakaba's Nemesis" Weight="0.1" DecreaseBy="0.04" RemoveOn="0.01"/>
@@ -318,6 +350,7 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="woodenChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -327,6 +360,7 @@
 		<Item Name="Concentration" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -364,6 +398,9 @@
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

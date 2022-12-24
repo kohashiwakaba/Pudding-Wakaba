@@ -1,120 +1,136 @@
 <entities anm2root="gfx/" version="5">
 
+	<!-- Familiars -->
+	<entity anm2path="easter_egg_orbital.anm2" baseHP="0" boss="0" champion="0" collisionDamage="7" collisionInterval="4" collisionMass="3" collisionRadius="8" friction="1" id="3" name="Easter Egg Orbital" numGridCollisionPoints="12" shadowSize="14" stageHP="0" tags="cansacrifice" variant="4100">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+	</entity>
+
 	<entity anm2path="lilwakaba.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Wakaba" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4101">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
 	<entity anm2path="lilmoe.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Moe" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4102">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
 	<entity anm2path="lilshiva.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Shiva" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4103">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
-	<entity anm2path="lilnasa.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Nasa" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4105">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+	<entity anm2path="lilnasa.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Nasa" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4104">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
 	<entity anm2path="murasame.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Murasame" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="" variant="4104">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
-    <entity anm2path="lilmao.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="14" collisionRadius="14" friction="1" id="3" name="Lil Mao" numGridCollisionPoints="12" shadowSize="20" stageHP="0" tags="cansacrifice" variant="239" subtype="93"/>
-    
-    <entity anm2path="wakaba_plumy.anm2" baseHP="2000" boss="0" champion="0" collisionDamage="25" collisionInterval="10" collisionMass="20" collisionRadius="26" friction="1" id="3" name="Plumy" numGridCollisionPoints="12" shadowSize="30" stageHP="0" tags="fly" variant="4105"/>
+	<entity anm2path="lilmao.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="14" collisionRadius="14" friction="1" id="3" name="Lil Mao" numGridCollisionPoints="12" shadowSize="20" stageHP="0" tags="cansacrifice" variant="239" subtype="93"/>
 
+	<entity anm2path="wakaba_plumy.anm2" baseHP="2000" boss="0" champion="0" collisionDamage="25" collisionInterval="10" collisionMass="20" collisionRadius="26" friction="1" id="3" name="Plumy" numGridCollisionPoints="12" shadowSize="30" stageHP="0" tags="fly" variant="4105"/>
+
+	<!-- Pickups -->
+
+	<entity anm2path="easter_egg_penny.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Easter Egg Penny" numGridCollisionPoints="24" shadowSize="14" stageHP="0" variant="20" subtype="401">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
+	<entity anm2path="clover_chest.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="0.5" id="5" name="Clover Chest" numGridCollisionPoints="24" shadowSize="28" stageHP="0" variant="4101" subtype="1">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="22" />
+	</entity>
+	<entity anm2path="clover_chest_open.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="0.5" id="5" name="Open Clover Chest" numGridCollisionPoints="24" shadowSize="28" stageHP="0" variant="4101" subtype="0">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
+	<!-- Machines -->
+	<entity anm2path="006.4101_shiori_valut.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Shiori Valut" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="41">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
+	<!-- Cards -->
+	<entity anm2path="Crane Card.anm2" baseHP="0" boss="0" champion="0" 
+		collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+		name="Crane Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4103">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+
+	<entity anm2path="Confessional Card.anm2" baseHP="0" boss="0" champion="0" 
+		collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+		name="Confessional Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4104">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+
+	<entity anm2path="Wakaba's Dream Card.anm2" baseHP="0" boss="0" champion="0" 
+		collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+		name="Wakaba's Dream Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4105">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
 	
-    <entity anm2path="clover_chest.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="0.5" id="5" name="Clover Chest" numGridCollisionPoints="24" shadowSize="28" stageHP="0" variant="4101" subtype="1">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="22" />
-    </entity>
-    <entity anm2path="clover_chest_open.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="0.5" id="5" name="Open Clover Chest" numGridCollisionPoints="24" shadowSize="28" stageHP="0" variant="4101" subtype="0">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity anm2path="006.4101_another fortune telling machine.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Another Fortune Machine" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="41">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <!-- 
-    <entity anm2path="Silver Donation Card.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Silver Donation Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4101">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> 
-    </entity>
-    
-    <entity anm2path="VIP Donation Card.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="VIP Donation Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4102">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" />
-    </entity>
-     -->
-    <entity anm2path="Crane Card.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Crane Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4103">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Confessional Card.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Confessional Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4104">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Wakaba's Dream Card.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Wakaba's Dream Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4105">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Soul of Wakaba.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Soul of Wakaba" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4106">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Soul of Wakaba2.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Soul of Wakaba?" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4110">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Unknown Bookmark.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Unknown Bookmark" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4107">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Soul of Shiori.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Soul of Shiori" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4108">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Return Token.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Return Token" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4111">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
-    
-    <entity anm2path="Wakaba Ticket.anm2" baseHP="0" boss="0" champion="0" 
-        collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
-        name="Wakaba Ticket" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4112">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	    <preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
-    </entity>
+	<entity anm2path="Unknown Bookmark.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Unknown Bookmark" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4107">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
 
-    <entity anm2path="wakaba_pb_impact.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Wakaba Power Bomb Explosion" numGridCollisionPoints="1" shadowSize="0" stageHP="0" variant="4101">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
-    </entity>
+	<!-- Souls/Essences -->
+	<entity anm2path="Soul of Wakaba.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Soul of Wakaba" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4106">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+		
+	<entity anm2path="Soul of Wakaba2.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Soul of Wakaba?" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4110">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+	
+	<entity anm2path="Soul of Shiori.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Soul of Shiori" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4108">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+	
+	<entity anm2path="Soul of Tsukasa.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Soul of Tsukasa" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4109">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+	
+	<!-- Objects -->
+	<entity anm2path="Return Token.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Return Token" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4111">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+	
+	<!-- Wakaba Tickets -->
+	<entity anm2path="Wakaba Ticket.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Wakaba Ticket" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4112">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+
+	<!-- Effects -->
+	<entity anm2path="wakaba_pb_impact.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Wakaba Power Bomb Explosion" numGridCollisionPoints="1" shadowSize="0" stageHP="0" variant="4101">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+	</entity>
+	<entity anm2path="murasame_shift_effect.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Murasame Shift Effect" numGridCollisionPoints="1" shadowSize="0" stageHP="0" variant="4102">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+	</entity>
+
+	<!-- Lunar Damocles -->
+	<entity anm2path="wakaba_lunar_damocles.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lunar Damocles" tags="uniquefamiliar" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant="4106"/>
 
 </entities>

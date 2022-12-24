@@ -19,8 +19,11 @@
 
 	<card pickup="4111" type="object" description="History repeat itself" hud="Return Token" name="Return Token"/>
 
+	<card pickup="4109" type="rune" description="Half-Life" hud="Soul of Tsukasa" name="Soul of Tsukasa" mimiccharge="12" />
+
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
+	<card pickup="4112" type="tarot" description="???" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
 
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />
@@ -35,6 +38,6 @@
 	<pilleffect name="Priest's Blessing" class="3+" mimiccharge="4" />
 	<pilleffect name="Unholy Curse" class="3-" mimiccharge="4" />
 	<pilleffect name="Duality Orders" class="3+" mimiccharge="8" tags="nogreed"/>
-	<pilleffect name="Explosive Diarrhea 2?" class="2+" mimiccharge="6"/>
+	<pilleffect name="Hellish Vomit" class="2+" mimiccharge="6"/>
 
 </pocketitems>

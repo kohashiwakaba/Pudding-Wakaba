@@ -28,39 +28,49 @@
 	
 	when your done remove this comment section :)
 !-->
-	<player name="Wakaba"
-	hp="4" broken="9" card="80" coins="5" items="416" birthright="True Pure girl"
+	<player name="Wakaba" costume="52"
+	hp="4" broken="9" card="80" coins="5" birthright="True Pure girl"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_wakaba.png"
 	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba" />
 	
-	<player name="WakabaB" bSkinParent="Wakaba" 
+	<player name="WakabaB" bSkinParent="Wakaba" costume="52"
 	black="6" bombs="2" birthright="Explosion immunity + Fury Management" 
 	portrait="WakabaPortrait_b.png"
-	nameimage="playername_wakaba.png" skin="character_wakabab.png" skinColor="1" costumeSuffix="shadow" />
+	nameimage="playername_wakaba.png" skin="character_wakabab.png" skinColor="1" costumeSuffix="wakaba_b" />
 
-	<player name="Shiori"
+	<player name="Shiori" costume="52"
 	hp="6" keys="12" birthright="Trace for knowledge" 
 	portrait="ShioriPortrait.png"
 	nameimage="playername_shiori.png"
 	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori" />
 	
-	<player name="ShioriB" bSkinParent="Shiori" 
+	<player name="ShioriB" bSkinParent="Shiori" costume="52"
 	armor="6" keys="12" birthright="Luminous Connection"
 	portrait="ShioriPortrait_b.png"
 	nameimage="playername_shiori.png" skin="character_shiorib.png" skinColor="0" costumeSuffix="minerva" />
 
-	<player name="Tsukasa"
+	<player name="Tsukasa" costume="52"
 	hp="6" birthright="Brighter Luna"
 	portrait="TsukasaPortrait.png"
 	nameimage="playername_tsukasa.png"
 	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa" />
 	
-	<player name="TsukasaB" bSkinParent="Tsukasa" 
-	hp="6" birthright="???" canShoot="false"
+	<player name="TsukasaB" bSkinParent="Tsukasa" costume="52"
+	hp="6" birthright="Overcome Tragic Trial"
 	portrait="TsukasaPortrait_b.png"
-	nameimage="playername_tsukasa.png" skin="character_tsukasab.png" skinColor="0" costumeSuffix="tsukasab" />
+	nameimage="playername_tsukasa.png" skin="character_tsukasa.png" skinColor="0" costumeSuffix="tsukasa" />
 
+	<player name="Richer" costume="52"
+	hp="4" armor="2" birthright="Better deals, Recipe Selection" 
+	portrait="null.png"
+	extraportrait="RicherPortraitExtra.anm2"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer" />
 	
-	
+	<player name="RicherB" bSkinParent="Richer" hidden="true"
+	hp="4" armor="2" birthright="Recipe Selection" 
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b" />
 </players>

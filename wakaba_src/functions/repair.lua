@@ -1,0 +1,7 @@
+function wakaba:IsRepairMode()
+  
+end
+
+
+
+

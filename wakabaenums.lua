@@ -1,11 +1,11 @@
 -- Preparing for further API update. Not being used currently
 -- Players
-wakaba.PLAYER_WAKABA = Isaac.GetPlayerTypeByName("#WAKABA_WAKABA_NAME", false)
-wakaba.PLAYER_WAKABA_B = Isaac.GetPlayerTypeByName("#WAKABA_WAKABAB_NAME", true)
-wakaba.PLAYER_SHIORI = Isaac.GetPlayerTypeByName("#WAKABA_SHIORI_NAME", false)
-wakaba.PLAYER_SHIORI_B = Isaac.GetPlayerTypeByName("#WAKABA_SHIORIB_NAME", true)
-wakaba.PLAYER_TSUKASA = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASA_NAME", false)
-wakaba.PLAYER_TSUKASA_B = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASAB_NAME", true)
+wakaba.Enums.Players.WAKABA = Isaac.GetPlayerTypeByName("#WAKABA_WAKABA_NAME", false)
+wakaba.Enums.Players.WAKABA_B = Isaac.GetPlayerTypeByName("#WAKABA_WAKABAB_NAME", true)
+wakaba.Enums.Players.SHIORI = Isaac.GetPlayerTypeByName("#WAKABA_SHIORI_NAME", false)
+wakaba.Enums.Players.SHIORI_B = Isaac.GetPlayerTypeByName("#WAKABA_SHIORIB_NAME", true)
+wakaba.Enums.Players.TSUKASA = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASA_NAME", false)
+wakaba.Enums.Players.TSUKASA_B = Isaac.GetPlayerTypeByName("#WAKABA_TSUKASAB_NAME", true)
 
 -- Items(normal)
 

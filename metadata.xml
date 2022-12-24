@@ -11,10 +11,10 @@
 
 Mod Includes : 
 A new Curse!(Must be enabled manually)
-6 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms)
-10 (+42 unlockable) new Items
-1 (+9 unlockable) new Trinkets
-11 unlockable new Card/Runes
+7 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
+13 (+65 unlockable) new Items
+1 (+17 unlockable) new Trinkets
+1 (+14 unlockable) new Card/Runes
 12 new Pills - [spoiler]Damage Multiplier Up/Down, All Stats Up/Down, Trolled!, To the Start!, Explosive Diarrhea 2!, Social Distance, Flame Princess, Firey Touch, Priest's Blessing, Unholy Curse[/spoiler]
 16 new Challenges
 
@@ -60,12 +60,14 @@ True co-op not tested, but most items should work. except for certain items whic
 - Nato Potato - for Modded costume handling and empty Pedestal removal
 - meloonicscorp - Glitched item spawn function snippet
 - Xalum, DeadInfinity - getting current dimension snippet
-- Zamiel, NeoDement - for player identifier logic
+- Zamiel, (+ NeoDement) - Isaacscript (+ for player identifier logic)
 - im_tem - Pseudo-Lilith Birtrhright position 
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
+- Connor - Hidden Item manager
+- bogdanrudyka - PostGetCollectible custom callback
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>0.100</version>
+    <version>100.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
