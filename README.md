@@ -3,10 +3,10 @@
 An anime mod that contains characters from the creator's favorite.
 **Pudding & Wakaba contains:**
 - A new Curse!(Must be enabled manually)
-- 6 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms)
-- 10 (+42 unlockable) new Items
-- 1 (+9 unlockable) new Trinkets
-- 11 unlockable new Card/Runes
+- 7 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
+- 13 (+65 unlockable) new Items
+- 1 (+17 unlockable) new Trinkets
+- 1 (+14 unlockable) new Card/Runes
 - 12 new Pills 
    - Damage Multiplier Up/Down
    - All Stats Up/Down
