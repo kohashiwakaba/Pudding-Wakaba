@@ -134,7 +134,7 @@ function wakaba:onTsukasaCache(player, cacheFlag)
 	
 end
  
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onTsukasaCache)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onTsukasaCache)
 
 function wakaba:NewRoom_Tsukasa()
 	--[[ local isTreasure = wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE

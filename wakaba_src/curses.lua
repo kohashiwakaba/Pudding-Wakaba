@@ -98,6 +98,9 @@ function wakaba:Curse_Evaluate(curse)
 		if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) then
 			curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_THE_LOST | wakaba.curses.CURSE_OF_FAIRY)
 		end
+		if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
+			curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_DARKNESS)
+		end
 		if wakaba:hasRibbon(player) then
 			if isc:hasCurse(LevelCurse.CURSE_OF_DARKNESS) then
 				curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_DARKNESS)
@@ -176,6 +179,9 @@ function wakaba:Curse_PlayerRender(player)
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_UNKNOWN)
 			wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL, false)
 		end
+	end
+	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
+		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS | wakaba.curses.CURSE_OF_SNIPER)
 	end
 	if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) then
 		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_LOST | wakaba.curses.CURSE_OF_FAIRY)

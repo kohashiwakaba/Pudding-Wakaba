@@ -12,23 +12,10 @@ function wakaba:cacheUpdate23(player, cacheFlag)
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
-			if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-				if wakaba:HasBless(player) then
-					if player.Luck < 10 then
-						player.Luck = 10
-					end
-					player.Luck = player.Luck + (0.15 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
-				else
-					if player.Luck < 7 then
-						player.Luck = 7
-					end
-					player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
-				end
-			end
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.cacheUpdate23)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.cacheUpdate23)
 
 
 

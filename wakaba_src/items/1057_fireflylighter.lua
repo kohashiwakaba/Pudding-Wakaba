@@ -1,38 +1,4 @@
-function wakaba:NewRoom_FireflyLighter()
 
-	local level = wakaba.G:GetLevel()
-	local room = wakaba.G:GetRoom()
-	local currentRoom = level:GetCurrentRoom()
-	local currentRoomDesc = level:GetRoomByIdx(level:GetCurrentRoomIndex())
-	local currentRoomType = currentRoom:GetType()
-	if currentRoomDesc.VisitedCount > 1 then return end
-
-  for i = 0, wakaba.G:GetNumPlayers()-1 do
-    local player = Isaac.GetPlayer(i)
-		if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
-			currentRoomDesc.NoReward = false
-			local repeatcount = 30
-			local roomshape = room:GetRoomShape()
-			if roomshape == RoomShape.ROOMSHAPE_1x2 or roomshape == RoomShape.ROOMSHAPE_2x1 then
-				repeatcount = 60
-			elseif roomshape >= RoomShape.ROOMSHAPE_LTL and roomshape <= RoomShape.ROOMSHAPE_LBR then
-				repeatcount = 90
-			elseif roomshape == RoomShape.ROOMSHAPE_2x2 then
-				repeatcount = 120
-			end
-			for i = 1, 30 do 
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.WISP, 0, room:GetRandomPosition(10), Vector(0,0), player):SetColor(Color(0, 1, 1, 1, 0, 0, 0), 2000, 1, false, false) 
-			end
-			--[[ if currentRoomDesc.Flags & RoomDescriptor.FLAG_PITCH_BLACK == RoomDescriptor.FLAG_PITCH_BLACK then
-			
-			end ]]
-		end
-  end
-
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_FireflyLighter)
-
- 
 function wakaba:PlayerUpdate_FireflyLighter(player)
 	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 		local level = wakaba.G:GetLevel()

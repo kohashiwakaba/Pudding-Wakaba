@@ -54,6 +54,9 @@ function wakaba:onNemesisCache(player, cacheFlag)
 				collectibleNum = collectibleNum - 1
 			end
 		end
+		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
+			nemesiscount = 0
+		end
 		local statpenalties = 1 - (collectibleNum * 0.01) -- 1 - 0.27 = 0.63
 		local tearspenalies = collectibleNum
 		if statpenalties <= 0 then

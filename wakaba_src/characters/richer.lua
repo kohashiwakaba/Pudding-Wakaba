@@ -60,7 +60,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 	
 end
  
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onRicherCache)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRicherCache)
 
 
 function wakaba:AfterRicherInit(player)

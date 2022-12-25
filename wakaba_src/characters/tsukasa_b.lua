@@ -144,7 +144,7 @@ function wakaba:onTsukasaCache_b(player, cacheFlag)
 	
 end
  
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onTsukasaCache_b)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onTsukasaCache_b)
 
 --[[ function wakaba:TsukasaRoomInit()
 	for i = 0, wakaba.G:GetNumPlayers() - 1 do

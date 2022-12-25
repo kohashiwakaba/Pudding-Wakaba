@@ -147,7 +147,7 @@ function wakaba:onWakabaCache_b(player, cacheFlag)
   end
 end
  
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onWakabaCache_b)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onWakabaCache_b)
 
 
 function wakaba:AfterWakabaInit_b(player)

@@ -24,6 +24,9 @@ function wakaba:PostageUpdate()
 		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_MOMS_HAND, -1, -1)) do
 			entity:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
 		end
+		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_ETERNALFLY, -1, -1)) do
+			entity:Remove()
+		end
 	end
 
 end

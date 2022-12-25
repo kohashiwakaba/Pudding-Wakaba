@@ -731,7 +731,7 @@ function wakaba:onShioriCache(player, cacheFlag)
 	
 end
  
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onShioriCache)
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onShioriCache)
 
 function wakaba:AfterShioriInit(player)
   local player = player or Isaac.GetPlayer()
