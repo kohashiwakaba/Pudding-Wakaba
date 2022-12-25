@@ -8,7 +8,11 @@ function wakaba:ItemUse_BookOfForgotten(_, rng, player, useFlags, activeSlot, va
 		else
 			pl:AddBoneHearts(1)
 		end
-		pl:AddHearts(114) -- Theorically 57 is max heart containers
+		if pl:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+			pl:AddHearts(6) -- Theorically 57 is max heart containers
+		else
+			pl:AddHearts(114) -- Theorically 57 is max heart containers
+		end
   end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
