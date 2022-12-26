@@ -158,12 +158,17 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 	local animdir = dirToStr[dir]
 	d.animpre = d.animpre or "Float"
 	d.cooldown = d.cooldown or 0
-	local damage = p:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
+	local cnt = p:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
+	local damage = cnt
 	if p:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
 		newcooldown = 30
 	end
 	local newcooldown = 60 - damage
-	damage = ((damage - 1) / 5) + 1
+	if cnt >= 5 then
+		damage = damage + 5
+	else
+		damage = ((damage - 1) / 5) + 1
+	end
 	if newcooldown < 1 then newcooldown = 1 end
 
 	if not (p:GetFireDirection() == Direction.NO_DIRECTION) and d.cooldown - familiar.FrameCount <= 0 then
