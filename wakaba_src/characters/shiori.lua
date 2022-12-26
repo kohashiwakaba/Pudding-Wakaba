@@ -579,12 +579,6 @@ function wakaba:PostShioriPickupCollision(pickup, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PostShioriPickupCollision)
 
-function wakaba:getPickupState(pickup, offset)
-  --print("Battery HP",pickup.HitPoints)
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.getPickupState, PickupVariant.PICKUP_LIL_BATTERY)
-
-
 function wakaba:PostNPCDeathShiori(entity)
   for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)

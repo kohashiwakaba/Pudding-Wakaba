@@ -181,11 +181,6 @@ function wakaba:PostShioriPickupCollision_b(pickup, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PostShioriPickupCollision_b)
 
-function wakaba:getPickupState_b(pickup, offset)
-  --print("Battery HP",pickup.HitPoints)
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.getPickupState_b, PickupVariant.PICKUP_LIL_BATTERY)
-
 function wakaba:PostShioriPickupInit_b(pickup)
   local hasshiori = false
   local shioriluck = 0
