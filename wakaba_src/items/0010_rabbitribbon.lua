@@ -123,7 +123,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_RabbitRibbon)
 function wakaba:NewRoom_RabbitRibbon()
 	if isc:inDeathCertificateArea() then return end
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
-	if isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
+	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
 		isc:clearFloorDisplayFlags()
 		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, 1, "WAKABA_RABBIT_RIBBON")
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_SPELUNKER_HAT) then
@@ -150,7 +150,7 @@ function wakaba:NewRoom_RabbitRibbon()
 			--MinimapAPI:LoadDefaultMap()
 		end
 	end
-	if isc:hasCurse(wakaba.curses.CURSE_OF_AMNESIA) then
+	if wakaba.curses.CURSE_OF_AMNESIA > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_AMNESIA) then
 		if StageAPI and StageAPI.InOverriddenStage() then return end
 		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBIT_RIBBON)
 		local result = rng:RandomFloat() * 100
@@ -175,7 +175,7 @@ function wakaba:NewRoom_RabbitRibbon()
 			end
 		end
 	end
-	if isc:hasCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL) then
+	if wakaba.curses.CURSE_OF_MAGICAL_GIRL > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL) then
 		local usedD10 = false
 		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
