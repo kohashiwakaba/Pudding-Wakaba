@@ -1,21 +1,7 @@
---[[ 
-function wakaba:FamiliarUpdate(familiar)
-	local isholding1 = familiar.Player and familiar.Player:HasCollectible(wakaba.Enums.Collectibles.ISEKAI_DEFINITION)
-	local isholding2 = familiar.Parent and familiar.Parent:ToPlayer() and familiar.Parent:HasCollectible(wakaba.Enums.Collectibles.ISEKAI_DEFINITION)
-
-	if isholding1 or isholding2 then
-		if familiar.HitPoints <= 60 then
-			familiar.HitPoints = familiar.HitPoints + (0.25 / 15)
-		end
-	end
-
-end
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate, FamiliarVariant.BLOOD_BABY)
- ]]
-
+local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 	local chance = rng:RandomFloat() * 10000
-	if 50 >= chance and not wakaba:HasBeast() then
+	if not isc:inDeathCertificateArea() and 50 >= chance and not wakaba:HasBeast() then
 		local pentagram = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HERETIC_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
 		pentagram.Parent = player
 		pentagram:FollowParent(player)
@@ -27,11 +13,7 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 		pentagram:SetColor(Color(0.5, 0, 1, 1, 1, 0, 1), 200, 2, true, false)
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)
 	else
-		if wakaba:HasJudasBr(player) then
-			local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 2, player.Position, Vector.Zero, player):ToFamiliar()
-		else
-			local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, 1, player.Position, Vector.Zero, player):ToFamiliar()
-		end
+		local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.RED_NO_SUMPTORIUM, player.Position, Vector.Zero, player):ToFamiliar()
 		SFXManager():Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT, 0.4, 0, false, 1.65)
 
 		local clots = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, -1)
