@@ -3,6 +3,15 @@ function wakaba:GameStart_FiendFolioCompat()
   if FiendFolio and not ffReplaced then
     FiendFolio.RockTrinkets[wakaba.Enums.Trinkets.BRING_ME_THERE] = -2
     FiendFolio.GolemTrinketWhitelist[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1
+    wakaba:addSilenceTarget("FF_Fire", 1000, 7005)
+    wakaba:addSilenceTarget("FF_Spider", 85, 962)
+    wakaba:addSilenceTarget("FF_Bubble", 150, 1)
+    wakaba:addSilenceTarget("FF_Stinger", 150, 6)
+    wakaba:addSilenceTarget("FF_Spore", 150, 15)
+
+    --[[ wakaba:addSilenceTarget("FF_Waiting_spider", 150, 10)
+    wakaba:addSilenceTarget("FF_Waiting_worm", 150, 16) ]]
+
 --[[ 
     wakaba.CatalogItems["FF_FIEND"] = {
       Weight = 1,

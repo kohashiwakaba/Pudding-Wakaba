@@ -1,3 +1,36 @@
+wakaba.SilenceErasures = {
+	{name = "Default", Type = EntityType.ENTITY_PROJECTILE},
+	{name = "I_Fire", Type = 33, Variant = 10},
+	{name = "I_Fire2", Type = 33, Variant = 11},
+}
+
+function wakaba:addSilenceTarget(modifierName, type, var, sub)
+	if type == EntityType.ENTITY_PLAYER then return end
+	for _,v in ipairs(wakaba.SilenceErasures) do
+		if v["name"] == modifierName then
+			v["Type"] = type
+			v["Variant"] = var
+			v["SubType"] = sub
+			return
+		end
+	end
+	table.insert(wakaba.SilenceErasures, {
+		name = modifierName,
+		Type = type,
+		Variant = var,
+		SubType = sub,
+	})
+end
+
+function wakaba:removeSilenceTarget(modifierName)
+	for i,v in ipairs(wakaba.SilenceErasures) do
+		if v["name"] == modifierName then
+			table.remove(wakaba.SilenceErasures,i)
+			return
+		end
+	end
+end
+
 function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varData)
 	local enemydmgvalue = 0
 	local hasjudas = false
@@ -8,12 +41,14 @@ function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varD
 	if wakaba:HasShiori(player) then
 		hasshiori = true
 	end
-	local ent = Isaac.FindByType(EntityType.ENTITY_PROJECTILE, Variant, SubType, true, true)
-	for i, e in ipairs(ent) do
-		if hasjudas then
-			enemydmgvalue = enemydmgvalue + e.CollisionDamage
+	for _, entry in ipairs(wakaba.SilenceErasures) do
+		local ent = Isaac.FindByType(entry.Type, entry.Variant or -1, entry.SubType or -1, true, true)
+		for i, e in ipairs(ent) do
+			if hasjudas then
+				enemydmgvalue = enemydmgvalue + e.CollisionDamage
+			end
+			e:Remove()
 		end
-		e:Remove()
 	end
 	if hasjudas then
 		local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 3000, EntityPartition.ENEMY)
