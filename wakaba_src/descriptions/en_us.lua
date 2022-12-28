@@ -213,7 +213,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Secret Card",
 		description = ""
 		.. "#↑ {{Coin}} +22 Coins"
-		.. "#{{Coin}} Coins will be generated per room cleared"
+		.. "#{{Coin}} Coins will be generated per room cleared ({{HardMode}} Only 1 per clear on Hard Mode)"
 		.. "#{{Shop}} Prevents Greed / Super Greed to be spawned in Shops"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -300,6 +300,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#All selected enemies become charmed permenantly"
 		.. "#{{Blank}} This includes : Needle, Pasty, Dust, Polty, Kineti, Mom's Hand"
 		.. "#!!! Haunted Chest still damages Isaac, but tries to throw away from him"
+		.. "#All Eternal Flies are removed"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
@@ -677,7 +678,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Range}} +2 Range"
 		.. "#↑ {{Luck}} +1 Luck"
-		.. "#Constantly spawns fireflies that brightens the room"
+		.. "#{{WakabaAntiCurseDarkness}} Curse of Dakrness immunity"
 		.. "#Room clear rewards can be spawned for traps through Reward plate"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",

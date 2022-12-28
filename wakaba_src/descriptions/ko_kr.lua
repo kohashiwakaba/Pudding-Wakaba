@@ -238,7 +238,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "극비 카드",
 		description = ""
 		.. "#↑ {{Coin}}동전 +22"
-		.. "#방 클리어 시 랜덤한 갯수의 동전이 쌓입니다."
+		.. "#방 클리어 시 랜덤한 갯수의 동전이 쌓입니다. ({{HardModeSmall}}하드:1개)"
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -331,6 +331,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#모든 Needle, Pasty, Dust, Polty, Kineti, Mom's Hand 몬스터들이 항상 아군이 됩니다."
 		.. "#!!! 유령 상자는 여전히 캐릭터에게 대미지를 주지만 캐릭터가 아닌 다른 곳을 향해 던지게 됩니다."
+		.. "#모든 Eternal Fly가 제거됩니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	queueDesc = "이런 놈들 다시 만나기 싫어",
@@ -367,7 +368,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "집중의 책",
 		description = ""
-		.. "#사용 시 현재 방의 모든 적들의 피격 대미지를 두 배로 늘립니다."
+		.. "#{{Weakness}} 사용 시 현재 방의 모든 적들의 피격 대미지를 두 배로 늘립니다."
 		.. "#캐릭터가 움직이지 않을 경우 {{DamageSmall}}공격력 +1.4, {{TearsSmall}}연사 +1.0 증가한 상태로 유도 눈물을 발사합니다."
 		.. "#!!! 캐릭터 역시 피격 시 최소 2칸의 피해를 받습니다."
 		.. "{{CR}}",
@@ -742,7 +743,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{RangeSmall}}사거리 +2"
 		.. "#↑ {{LuckSmall}}행운 +1"
-		.. "#방마다 방을 밝혀주는 반딧불이 무리를 소환합니다."
+		.. "#{{WakabaAntiCurseDarkness}} Darkness 저주에 걸리지 않습니다."
 		.. "#버튼으로 인한 함정이 발동되어도 방 클리어 보상을 소환합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",

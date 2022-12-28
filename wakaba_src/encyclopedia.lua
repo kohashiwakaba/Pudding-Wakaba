@@ -2450,11 +2450,12 @@ if Encyclopedia then
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "Sets Broken Heart counts to 6."},
+				{str = "- For characters that have less heart limit, sets brokne heart counts to half of their initial heart limit."},
 				{str = "Spawns 3 Collectible items and 8 Card/Rune/Soul Stones."},
 			},
 			{ -- Trivia
 				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-				{str = "Color Joker is inspired from certain card game called 'Onecard', which was popular among old korean teenagers using Playing cards. which was the counterpart of 'UNO'."},
+				{str = "Color Joker is inspired from certain card game called 'Onecard', was popular among old korean teenagers using generic Playing cards. which was the counterpart of 'UNO'."},
 				{str = "In OneCard, there are so many similarities share with UNO, Some are identical, and some are more powerful than UNO."},
 				{str = "There are no counterparts of this card in UNO, as 'Wild +4 card', or '+5 Card' from 'UNO Flip' is considered as the counterpart of 'Black Joker' in Onecard, which is far weaker version of Color Joker."},
 				{str = "- Color Joker in Onecard makes next person to force draw at least 8 cards (Simply 'Wild +8 Card'), while Black Joker only draws 5."},
@@ -2540,6 +2541,11 @@ if Encyclopedia then
 				{str = "+1.5 tears."},
 				{str = "Entering Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom."},
 				{str = "WARNING : CANNOT ENTER WOMB/CORPSE WHEN BEING REPLACED."},
+			},
+			{ -- Interactions
+				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+				{str = "Fiend Folio - Golem", clr = 3, halign = 0},
+				{str = "Bring Me There is considered as special trinket, thus will be not converted into random stones, will be act as normal stone if interacted with Golem's unique beggars."},
 			},
 			{ -- Notes
 				{str = "Notes", fsize = 2, clr = 3, halign = 0},
