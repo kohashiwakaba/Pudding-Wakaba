@@ -27,6 +27,11 @@ function wakaba:PostageUpdate()
 		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_ETERNALFLY, -1, -1)) do
 			entity:Remove()
 		end
+		if FiendFolio then
+			for i, entity in ipairs(Isaac.FindByType(160, 451, -1)) do
+				entity:Remove()
+			end
+		end
 	end
 
 end
