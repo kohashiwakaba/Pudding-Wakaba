@@ -69,4 +69,12 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
 	end
 end)
 
-
+function wakaba:Cache_Executioner(player, cacheFlag)
+	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.EXECUTIONER)
+	if hasitem  then
+		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
+			player.TearFlags = player.TearFlags | TearFlags.TEAR_BACKSTAB | TearFlags.TEAR_EXTRA_GORE
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Executioner)
