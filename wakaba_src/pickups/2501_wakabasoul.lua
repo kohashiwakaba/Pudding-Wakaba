@@ -37,6 +37,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
   local StartingRoom = 84
+	local failed = false
 
 	if CurStage ~= LevelStage.STAGE8 then
 		local selected
@@ -44,6 +45,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 		local newRoom = isc:newRoom(player:GetCardRNG(card))
 		if newRoom then
 			local targetSpecial = level:GetRoomByIdx(newRoom)
+			local roomIdx = newRoom
 			local copyIdx = -1
 			local tempRoomData = wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data
 			wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
@@ -60,8 +62,6 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 					wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
 				end
 			end
-			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-			end
 			--[[ 
 				-1 : Devil/Angel room : Must invalidate before copy
 				-2 : Error room
@@ -73,11 +73,11 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			local d = targetSpecial.Data
 			targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
 			wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
-			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+			--[[ if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				table.insert(wakaba.levelstate.wakabadevilshops, roomIdx)
 			else
 				table.insert(wakaba.levelstate.wakabaangelshops, roomIdx)
-			end
+			end ]]
 			targetSpecial.DisplayFlags = 1 << 0 | 1 << 2
 			if MinimapAPI then
 				local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
@@ -90,6 +90,9 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 						mRoom.Type = RoomType.ROOM_ANGEL
 						mRoom.PermanentIcons = {"AngelRoom"}
 					end
+				else
+					failed = true
+					goto failedSoulofWakaba
 				end
 			end
 			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
@@ -105,9 +108,13 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 					end
 				end
 			end
-			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 
 		else
+			failed = true
+			goto failedSoulofWakaba
+		end
+		::failedSoulofWakaba::
+		if failed then
 			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
 					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
@@ -128,8 +135,8 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 					p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * 15
 				end ]]
 			end
-			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		end
+		SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 	
 	else
 		--wakaba.G:StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
