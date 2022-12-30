@@ -34,6 +34,31 @@ if MCM then
 	MCM.UpdateSubcategory("Pudding & Wakaba", "General", {
 		Info = ""
 	})
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.allowlockeditems
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.allowlockeditems then
+					onOff = "True"
+				end
+				return "Allow Locked Items: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.allowlockeditems = currentBool
+			end,
+			Info = {
+				"Allows Locked items to be shown.",
+				"This ignores character's completion marks.",
+			}
+		}
+	)
+	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Charge Bars" end)
 	MCM.AddSetting(
 		"Pudding & Wakaba",

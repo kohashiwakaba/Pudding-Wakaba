@@ -183,6 +183,23 @@ local wakabadirectory = {
 		title = 'general settings',
 		buttons = {
 			{
+				str = 'allow locked items',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'AllowLockedItems',
+				load = function()
+					if wakaba.state.options.allowlockeditems then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.allowlockeditems = (var == 1)
+				end,
+				tooltip = {strset = {'change this', 'to enable or', 'disable all', 'unlocks.', "we'll still", 'keep track', 'for you!'}}
+			},
+			{
 				str = 'charge bar align',
 				choices = {'left', 'right'},
 				variable = "ChargebarAlign",
