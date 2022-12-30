@@ -1746,6 +1746,42 @@ wakaba.descriptions[desclang].curses = {
 		.. "#이 저주는 {{Collectible260}}Black Candle 아이템으로도 제거할 수 없습니다."
 		.. "",
 	},
+	[wakaba.curses.CURSE_OF_SNIPER] = {
+		icon = "WakabaCurseSniper",
+		name = "저격수의 저주",
+		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
+		.. "#{{CurseDarkness}} Darkness 저주를 교체하여 등장합니다."
+		.. "#눈물 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
+		.. "#멀리 있는 적에게 3배의 피해를 줍니다."
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_FAIRY] = {
+		icon = "WakabaCurseFairy",
+		name = "요정의 저주",
+		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
+		.. "#{{CurseLost}} Lost 저주를 교체하여 등장합니다."
+		.. "#현재 방 주변의 방 위치를 볼 수 있으나 더 멀리 있는 위치의 방은 지도에 표시되지 않습니다."
+		.. "#{{SecretRoom}} 비밀방 및 일급비밀방의 위치가 표시됩니다."
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_AMNESIA] = {
+		icon = "WakabaCurseAmnesia",
+		name = "망각의 저주",
+		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
+		.. "#{{CurseMaze}} Maze 저주를 교체하여 등장합니다."
+		.. "#방 입장 시 클리어한 방이 낮은 확률로 클리어하지 않은 상태로 바뀝니다."
+		.. "#다시 클리어할 경우 방 클리어 보상이 드랍되며 특수방은 적용되지 않습니다."
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
+		icon = "WakabaCurseMagicalGirl",
+		name = "마법소녀의 저주",
+		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
+		.. "#{{CurseUnknown}} Unknown 저주를 교체하여 등장합니다."
+		.. "#{{Card91}} 저주에 걸린 동안 항상 Lost 상태가 됩니다."
+		.. "#{{Collectible285}} 모든 적이 약화 형태로 등장합니다."
+		.. "",
+	},
 }
 
 wakaba.descriptions[desclang].cursesappend = {}
@@ -2383,6 +2419,17 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} 고유 능력 : 생명의 비약"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} 고유 능력 : 무라사메(패시브)"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} 고유 능력 : 플래시 시프트"
+		--.. "#"
+		.. "",
+	},
+	-- richer
+	[wakaba.Enums.Players.RICHER] = {
+		-- icon = "",
+		name = "리셰",
+		description = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
+		.. "#그녀의 달콤한 걸 좋아하는 특성 덕분에 위기를 살짝 넘길 수 있게 되었습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 기본 소지 아이템 : 달콤달콤 카탈로그"
 		--.. "#"
 		.. "",
 	},

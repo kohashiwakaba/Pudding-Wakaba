@@ -1599,6 +1599,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#!!! Only Boss/Treasure rooms are doubled. Other special rooms still contains as in single floor"
 		.. "#Both Treasure Room doors will be unlocked on first floor"
 		.. "#This curse cannot be removed by {{Collectible260}}Black Candle"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} If playing as Richer, or Rabbit Ribbon is held, Creates extra special rooms if possible"
 		.. "",
 		seedeffect = SeedEffect.SEED_PERMANENT_CURSE_LABYRINTH,
 	},
@@ -1672,6 +1673,42 @@ wakaba.descriptions[desclang].curses = {
 		.. "#Using the book in pocket slot makes the book change into another"
 		.. "#Unlike Unknown Bookmark or Maijima Mythology, Using the book this way will change Shiori's tear bonus"
 		.. "#This curse cannot be removed by {{Collectible260}}Black Candle"
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_SNIPER] = {
+		icon = "WakabaCurseSniper",
+		name = "Curse of Sniper",
+		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
+		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
+		.. "#Tears cannot damage enemies for a short time"
+		.. "#Deals 3x damage to enemies after 0.5 seconds"
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_FAIRY] = {
+		icon = "WakabaCurseFairy",
+		name = "Curse of Fairy",
+		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
+		.. "#{{CurseLost}} Replaces Curse of the Lost"
+		.. "#Isaac cannot see the map far away"
+		.. "#{{SecretRoom}} Can reveal Secret and Super Secret Rooms"
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_AMNESIA] = {
+		icon = "WakabaCurseAmnesia",
+		name = "Curse of Amnesia",
+		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
+		.. "#{{CurseMaze}} Replaces Curse of the Maze"
+		.. "#Sometimes cleared rooms are randomly be uncleared"
+		.. "#Special rooms are not included"
+		.. "",
+	},
+	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
+		icon = "WakabaCurseMagicalGirl",
+		name = "Curse of Magical Girl",
+		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
+		.. "#{{CurseUnknown}} Replaces Curse of the Unknown"
+		.. "#{{Card91}} Permanent Lost Curse state for current floor"
+		.. "#{{Collectible285}} All enemies are devolved if possible"
 		.. "",
 	},
 }
@@ -2238,7 +2275,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "Tsukasa",
 		description = "Tsukasa is mysterious girl from {{ColorBookofConquest}}Tonikaku Kawaii{{CR}} from Hata Kenjiro"
 		.. "#Shoots short range, spectral lasers"
-		.. "#Due to her eternities, Tshkasa only can see items from ~Rebirth, and modded items"
+		.. "#Due to her eternities, Tsukasa only can see items from ~Rebirth, and modded items"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Tsukasa starts with Lunar Stone"
 		.. "#!!! Tsukasa dies when Lunar Stone disappears"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} Tsukasa starts with Concentration"
@@ -2255,6 +2292,17 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} Tainted Tsukasa starts with Elixir of Life"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} Tainted Tsukasa starts with Murasame"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Tainted Tsukasa starts with Flash Shift"
+		--.. "#"
+		.. "",
+	},
+	-- richer
+	[wakaba.Enums.Players.RICHER] = {
+		-- icon = "",
+		name = "Richer",
+		description = "Richer is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
+		.. "#She can improve her destiny with her ribbon"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"
 		--.. "#"
 		.. "",
 	},
