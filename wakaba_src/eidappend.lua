@@ -604,7 +604,7 @@ if EID then
 			EID:addIcon("WakabaCurseFlames", "EID_Curses", 0, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseSatyr", "EID_Curses", 10, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseSniper", "EID_Curses", 11, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
-			EID:addIcon("WakabaCurseAmensia", "EID_Curses", 12, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaCurseAmnesia", "EID_Curses", 12, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseFairy", "EID_Curses", 13, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseMagicalGirl", "EID_Curses", 14, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaAntiCurseFlames", "EID_Curses", 1, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
