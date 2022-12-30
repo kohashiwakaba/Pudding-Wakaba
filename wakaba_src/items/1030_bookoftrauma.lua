@@ -1,15 +1,16 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varData)
 	local i = 0
+	local max = wakaba.Enums.Constants.MAX_TRAUMA_COUNT
 	local allowOtherTears = false
 	local entities = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	if #entities > 0 then
 		for _, e in ipairs(entities) do
-			if i < 15 and (allowOtherTears or (e.FrameCount > 0 and e:ToTear() and isc:isTearFromFamiliar(e:ToTear()))) then
+			if i < max and (allowOtherTears or GetPtrHash(isc:getPlayerFromEntity(e)) == GetPtrHash(player)) then
 				wakaba.G:BombExplosionEffects(e.Position, player.Damage * 8 + 20, TearFlags.TEAR_BRIMSTONE_BOMB, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
 				e:Remove()
 				i = i + 1
-			elseif i >= 15 then
+			elseif i >= max then
 				finished = true
 			end
 		end
