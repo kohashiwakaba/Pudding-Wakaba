@@ -1,3 +1,90 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101", 
+[[{FSIZE2}general stuff
+Added missing entries 
+for Inventory Descriptions
+
+Added Wakaba's ticket, 
+Shiori's Valut, Purple Coin, 
+and souls sprite 
+for MiniMAPI
+
+Added some failsafe for 
+Rabbit Ribbon curses, 
+This will prevent character 
+turning into The Lost 
+sometimes for no reason 
+after mod 
+enable/disable/update.
+
+{FSIZE2}tweaks + fixes
+
+Firefly Lighter no longer 
+spawns fireflies, 
+instead grants 
+Curse of Darkenss immunity.
+
+Wakaba Duality no longer 
+gives stat downs 
+granted from 
+Wakaba's Nemesis.
+
+Tweaked Wakaba's Pendant 
+Luck increments 
+with super late priority, 
+making Luck adjustment 
+after other modded items.
+
+Secret Card now only grants 
+only 1 coin per room clear 
+on Hard Mode. 
+(Not applied in Greedier)
+
+Color Joker now sets 
+Broken Hearts to 
+half of character's 
+Heart Limit
+
+Retrun Postage? 
+now removes 
+Eternal Fly and 
+Eternal Flickerspirit
+(Fiend Folio variant).
+
+Book of Trauma 
+now explodes 
+max 7 of Player's 
+tears on screen, 
+and Isaac's Position.
+
+Isekai Definition 
+now spawns a red clot 
+that doesn't drain health, 
+and no longer affected 
+by Judas' birthright.
+
+Easter Egg damage 
+increases more per coin 
+if Isaac has 5 
+or more Easter eggs
+
+Executioner now grants 
+Backstabber effect 
+by default
+
+Fixed rare cases 
+for Soul of Wakaba 
+fails to active
+
+Fixed Book of Silence 
+not erasing fires 
+from enemies
+
+Fixed allowing 
+locked items option 
+is absent in config
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v100", 
 [[{FSIZE2}save data has
 {FSIZE2}been reset!!!
