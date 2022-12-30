@@ -263,7 +263,8 @@ function wakaba:PlayerRender_BookofShiori(player)
 		if (not player:GetData().wakaba.nextshioriflag) or player:GetData().wakaba.nextshioriflag <= 0 then
 			shioriSpriteDatas[playerIndex].ShioriSprite:SetFrame("Shiori", 0)
 		else
-			local item = wakaba.itemConfig:GetCollectible(player:GetData().wakaba.nextshioriflag)
+			local itemConfig = Isaac.GetItemConfig()
+			local item = itemConfig:GetCollectible(player:GetData().wakaba.nextshioriflag)
 			shioriSpriteDatas[playerIndex].ShioriSprite:ReplaceSpritesheet(1, item.GfxFileName)
 			shioriSpriteDatas[playerIndex].ShioriSprite:LoadGraphics()
 			shioriSpriteDatas[playerIndex].ShioriSprite:SetFrame("Shiori", 1)

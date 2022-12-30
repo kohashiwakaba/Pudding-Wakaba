@@ -86,6 +86,7 @@ function wakaba:render32()
 			local ypos = 10
 			local eidstring = ""
 			local preservedslotstate = false
+			local itemConfig = Isaac.GetItemConfig()
 			for i,item in pairs(player:GetData().wakaba.uniform.items) do
 				local c = ""
 				if player:GetData().wakaba.uniform.cursor == i then
@@ -100,14 +101,14 @@ function wakaba:render32()
 				if item.type == "card" then
 				--print("cardname ", wakaba.cardname[item.cardpill][2])
 					--Isaac.RenderText(c .. wakaba.cardname[item.cardpill][2], 155, ypos, 1, 1, 1, 255)
-					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or wakaba.itemConfig:GetCard(item.cardpill).Name
+					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or itemConfig:GetCard(item.cardpill).Name
 					eidstring = eidstring .. "{{Card" .. item.cardpill .. "}} " .. str
 					if player:GetData().wakaba.uniform.cursor == i then
 						preservedslotstate = true
 					end
 				elseif item.type == "pill" then
 					if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
-						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or wakaba.itemConfig:GetPillEffect(item.pilleffect).Name
+						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
 						if item.pilleffect == 14 then 
 							str = "Gold Pill" 
 						end
@@ -175,6 +176,7 @@ if EID then
 		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 		local eidstring = ""
 		local preservedslotstate = false
+		local itemConfig = Isaac.GetItemConfig()
 		for i,item in pairs(player:GetData().wakaba.uniform.items) do
 			local c = ""
 			if player:GetData().wakaba.uniform.cursor == i then
@@ -184,14 +186,14 @@ if EID then
 				eidstring = eidstring .. "#{{Blank}} "
 			end
 			if item.type == "card" then
-				local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or wakaba.itemConfig:GetCard(item.cardpill).Name
+				local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or itemConfig:GetCard(item.cardpill).Name
 				eidstring = eidstring .. "{{Card" .. item.cardpill .. "}} " .. str
 				if player:GetData().wakaba.uniform.cursor == i then
 					preservedslotstate = true
 				end
 			elseif item.type == "pill" then
 				if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
-					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or wakaba.itemConfig:GetPillEffect(item.pilleffect).Name
+					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
 					if item.pilleffect == 14 then 
 						str = "Gold Pill" 
 					end

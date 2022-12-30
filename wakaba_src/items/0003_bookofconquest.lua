@@ -61,7 +61,8 @@ function wakaba:SetConquestCharge(player, slot)
   local slot = slot or ActiveSlot.SLOT_PRIMARY
   local activeItem = player:GetActiveItem(slot)
   if activeItem <= 0 then return end
-  local activeConfig = wakaba.itemConfig:GetCollectible(activeItem)
+	local itemConfig = Isaac.GetItemConfig()
+  local activeConfig = itemConfig:GetCollectible(activeItem)
   if activeConfig == nil then return end
   local maxCharges = activeConfig.MaxCharges
   local chargeType = activeConfig.ChargeType

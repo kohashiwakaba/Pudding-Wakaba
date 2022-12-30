@@ -223,7 +223,8 @@ function wakaba:SetShioriCharge(player, amount, slot)
   local slot = slot or ActiveSlot.SLOT_PRIMARY
   local activeItem = player:GetActiveItem(slot)
   if activeItem <= 0 then return end
-  local activeConfig = wakaba.itemConfig:GetCollectible(activeItem)
+  local itemConfig = Isaac.GetItemConfig()
+  local activeConfig = itemConfig:GetCollectible(activeItem)
   if activeConfig == nil then return end
   local maxCharges = activeConfig.MaxCharges
   local chargeType = activeConfig.ChargeType
@@ -461,9 +462,10 @@ function wakaba:PostShioriPickupCollision(pickup, collider, low)
             player:TakeDamage(2, DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(pickup), 0)
           end
           --pickup:GetSprite():Play("Collect", true)
-          local bookitem = wakaba.itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_POCKET))
-          local primaryitem = wakaba.itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_PRIMARY))
-          local secondaryitem = wakaba.itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_SECONDARY))
+          local itemConfig = Isaac.GetItemConfig()
+          local bookitem = itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_POCKET))
+          local primaryitem = itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_PRIMARY))
+          local secondaryitem = itemConfig:GetCollectible(player:GetActiveItem(ActiveSlot.SLOT_SECONDARY))
           if bookitem ~= nil and bookitem.MaxCharges ~= 0 and bookitem.ChargeType ~= ItemConfig.CHARGE_SPECIAL then
             player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
           elseif primaryitem ~= nil and primaryitem.MaxCharges ~= 0 and primaryitem.ChargeType ~= ItemConfig.CHARGE_SPECIAL then
