@@ -282,12 +282,9 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
     end
   end
  ]]
-	if flag & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then
-		entity:ToPlayer():GetData().wakaba.nokill = true
-	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_Revival, EntityType.ENTITY_PLAYER)
+wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 720, wakaba.TakeDmg_Revival, EntityType.ENTITY_PLAYER)
 
 function wakaba:detectPlanC(useditem, rng, player, useflag, slot, vardata)
 	if wakaba:HasJudasBr(player) then
