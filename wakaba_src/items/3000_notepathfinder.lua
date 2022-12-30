@@ -13,7 +13,7 @@ function wakaba:checkMausoleumDest()
 	local hasnote = false
 	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num)
-		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) then
+		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) and wakaba:CanOpenBeast() then
 			hasnote = true
 			--wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true)
 		end
@@ -52,7 +52,7 @@ function wakaba:startMausoleumRoomCheck()
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL
-	and not hasTrinket then
+	and not hasTrinket and wakaba:CanOpenBeast() then
 		if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit()
 		and isRep(level:GetStageType())
 		and level:GetAbsoluteStage() == LevelStage.STAGE3_1

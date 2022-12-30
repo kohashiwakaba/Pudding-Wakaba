@@ -193,9 +193,44 @@ default is false since reutrning anything in MC_PRE_SPAWN_CLEAN_AWARD refuses gr
 Trapdoor and Cathedral lights were planned to be added in Mother boss fight which is from
 https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665
 
-
-
 ]]
+function wakaba:CanOpenMother()
+	local c = Isaac.GetItemConfig()
+	return c:GetCollectible():(CollectibleType.COLLECTIBLE_MEAT_CLEAVER):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_YUCK_HEART):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_GUPPYS_EYE):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_AKELDAMA):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_ETERNAL_D6):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_BIRD_CAGE):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_BLOODY_GUST):IsAvailable() 
+			or c:GetTrinket():(TrinketType.TRINKET_DEVILS_CROWN):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_TINYTOMA):IsAvailable() 
+			or c:GetTrinket():(TrinketType.TRINKET_M):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_LOST_SOUL):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_BLOOD_PUPPY):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_KEEPERS_SACK):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_LIL_PORTAL):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_BONE_SPURS):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_REVELATION):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_MAGIC_SKIN):IsAvailable() 
+end
+
+function wakaba:CanOpenBeast()
+	local c = Isaac.GetItemConfig()
+	return c:GetCollectible():(CollectibleType.COLLECTIBLE_RED_KEY):IsAvailable() 
+end
+
+function wakaba:CanOpenMegaSatan()
+	local c = Isaac.GetItemConfig()
+	return c:GetCollectible():(CollectibleType.COLLECTIBLE_DADS_KEY):IsAvailable() 
+end
+
+function wakaba:CanOpenDeli()
+	local c = Isaac.GetItemConfig()
+	return c:GetCollectible():(CollectibleType.COLLECTIBLE_DELIRIOUS):IsAvailable() 
+			or c:GetCollectible():(CollectibleType.COLLECTIBLE_LIL_DELIRIUM):IsAvailable() 
+end
+
 function wakaba:ForceVoid(rng, spawnPosition)
 	local level = wakaba.G:GetLevel()
 	local stage = level:GetAbsoluteStage()
@@ -256,7 +291,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			rkey:GetData().DamoclesDuplicate = true
 		end
 
-		if finalcheck & wakaba.VoidFlags.VOID == wakaba.VoidFlags.VOID then
+		if finalcheck & wakaba.VoidFlags.VOID == wakaba.VoidFlags.VOID and wakaba:CanOpenDeli() then
 			Isaac.GridSpawn(17,0,voidfinals, true)
 			for i=1, room:GetGridSize() do
 				local gridEnt = room:GetGridEntity(i)
@@ -270,7 +305,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 				end
 			end
 		end
-		if finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES then
+		if finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES and wakaba:CanOpenMegaSatan() then
 			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
 			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_2, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
 			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, false, false, true)
@@ -298,7 +333,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 		-- -------------------------------
 		if wakaba.state.forcevoid.knifepiece > 0
 		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B) 
-		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
+		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
+		and wakaba:CanOpenMother() then
 			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
 			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
 			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, false, false, true)
@@ -309,7 +345,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 		-- -------------------------------
 		-- Fool card for Mom fight.
 		-- -------------------------------
-		if wakaba.state.forcevoid.mom > 0 then
+		if wakaba.state.forcevoid.mom > 0 and wakaba:CanOpenBeast() then
 			-- -------------------------------
 			-- Little Baggy Check.
 			-- Drops Telepills instead of Fool Card.
@@ -362,6 +398,7 @@ function wakaba:ForceVoidNewRoomCheck()
 	
 	if wakaba.state.forcevoid.crackedkey == 1
 	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
+	and wakaba:CanOpenBeast()
 	then
 		if level:GetAbsoluteStage() == LevelStage.STAGE8 then
 			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
