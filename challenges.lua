@@ -143,7 +143,7 @@ function wakaba:PostChallengePlayerInit(player)
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_WHITE_PONY, ActiveSlot.SLOT_POCKET, true)
-		player:GetData().wakaba.ponycurrframe = wakaba.ponycooldown
+		player:GetData().wakaba.ponycurrframe = wakaba.Enums.Constants.PONY_COOLDOWN
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_APPL and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -345,17 +345,17 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.ChallengeSpeedUp)
 function wakaba:PlayerUpdate_Delivery(player)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_HUSH then
 		wakaba:GetPlayerEntityData(player)
-		player:GetData().wakaba.ponycurrframe = player:GetData().wakaba.ponycurrframe or wakaba.ponycooldown
+		player:GetData().wakaba.ponycurrframe = player:GetData().wakaba.ponycurrframe or wakaba.Enums.Constants.PONY_COOLDOWN
 
 		if player:NeedsCharge(ActiveSlot.SLOT_POCKET) then
 			if player:GetData().wakaba.ponycurrframe > 0 then
 				player:GetData().wakaba.ponycurrframe = player:GetData().wakaba.ponycurrframe - 1
 			else
 				player:FullCharge(ActiveSlot.SLOT_POCKET, true)
-				player:GetData().wakaba.ponycurrframe = wakaba.ponycooldown
+				player:GetData().wakaba.ponycurrframe = wakaba.Enums.Constants.PONY_COOLDOWN
 			end
 		elseif player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 2 then
-			player:GetData().wakaba.ponycurrframe = wakaba.ponycooldown
+			player:GetData().wakaba.ponycurrframe = wakaba.Enums.Constants.PONY_COOLDOWN
 		end
 		if not wakaba.sprites.WhitePonySprite then 
 			wakaba.sprites.WhitePonySprite = Sprite()
@@ -366,7 +366,7 @@ function wakaba:PlayerUpdate_Delivery(player)
 		local chargeno = wakaba:GetChargeBarIndex(player, "RushPony")
 		local chargestate = wakaba:GetChargeState(player, "RushPony")
 		local count = (player:GetData().wakaba.ponycurrframe // 6) / 10
-		local currval = player:GetData().wakaba.ponycurrframe ~= wakaba.ponycooldown and count or nil
+		local currval = player:GetData().wakaba.ponycurrframe ~= wakaba.Enums.Constants.PONY_COOLDOWN and count or nil
 
 		if chargestate then
 			chargestate.CurrentValue = player:GetData().wakaba.ponycurrframe
@@ -376,7 +376,7 @@ function wakaba:PlayerUpdate_Delivery(player)
 				Index = chargeno,
 				Profile = "RushPony",
 				IncludeFinishAnim = true,
-				MaxValue = wakaba.ponycooldown,
+				MaxValue = wakaba.Enums.Constants.PONY_COOLDOWN,
 				MinValue = 0,
 				Count = currval,
 				CurrentValue = player:GetData().wakaba.ponycurrframe,

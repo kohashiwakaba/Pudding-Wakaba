@@ -260,6 +260,10 @@ wakaba.Enums.Chances = {
   AURORA_MAX = 100, -- 오로라 : 동전을 이스터에그로 바꿀 최대 확률
 }
 
+wakaba.Enums.Constants = {
+	PONY_COOLDOWN = 720
+}
+
 -- 시오리/알트시오리 배터리 획득 시 충전량
 wakaba.Enums.ShioriBatteries = {
 	[BatterySubType.BATTERY_NORMAL] = 3,
