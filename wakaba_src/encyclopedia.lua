@@ -1741,7 +1741,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	BOOK_OF_TRAUMA = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Once activated, all tears in the screen explode."},
+			{str = "Once activated, maximum of 7 player tears explode."},
 			{str = "- Isaac is immune to this explosion."},
 			{str = "- Explosion ignores enemy's armor."},
 			{str = "- Explosion also activates Brimstone Bombs effect. which bursts into Brimstone lasers in 4 directions."},

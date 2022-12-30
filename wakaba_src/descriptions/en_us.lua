@@ -396,7 +396,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
 		itemName = "Book of Trauma",
 		description = ""
-		.. "#Detonate any tears currently on the screen, causing each one to explode."
+		.. "#Detonate Isaac's tears currently on the screen, causing each one to explode (Max 15)."
 		.. "#Exploded tear shots Brimstone laser at 4 directions."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",

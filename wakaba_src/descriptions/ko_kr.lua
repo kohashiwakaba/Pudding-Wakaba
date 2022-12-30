@@ -437,7 +437,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
 		itemName = "트라우마의 책",
 		description = ""
-		.. "#사용 시 방 안의 모든 눈물이 폭발합니다."
+		.. "#사용 시 최대 15개의 캐릭터의 눈물이 폭발합니다."
 		.. "#폭발 지점마다 혈사포를 4방향으로 발사합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
