@@ -125,15 +125,12 @@ wakaba.version = "v100 Richer 2022.12.24"
 wakaba.intversion = 10000
 
 wakaba.modpath = GetCurrentModPath()
-wakaba.itemConfig = Isaac.GetItemConfig()
 
 wakaba.rerollcooltime = 0
 wakaba.hasdreams = false
 
 wakaba.costumecooldown = 600
 wakaba.costumecurrframe = 0
-
-wakaba.ponycooldown = 720
 
 wakaba.fullreroll = false
 wakaba.pedestalreroll = false
