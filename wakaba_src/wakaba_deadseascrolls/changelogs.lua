@@ -83,6 +83,10 @@ Fixed allowing
 locked items option 
 is absent in config
 
+Fixed Richer's Birthright
+not saving selected
+weapon on continue
+
 ]])
 
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v100", 
