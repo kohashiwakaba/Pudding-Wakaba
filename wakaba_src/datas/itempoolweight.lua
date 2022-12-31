@@ -140,7 +140,7 @@ function wakaba:ReplaceEIDBagWeight()
   local poolToIcon = { [0]="{{TreasureRoom}}",[1]="{{Shop}}",[2]="{{BossRoom}}",[3]="{{DevilRoom}}",[4]="{{AngelRoom}}",
   [5]="{{SecretRoom}}",[7]="{{PoopRoomIcon}}",[8]="{{GoldenChestRoomIcon}}",[9]="{{RedChestRoomIcon}}",[12]="{{CursedRoom}}",[26]="{{Planetarium}}" }
   
-  print("[wakaba] Starting EID crafting data replacement")
+  --print("[wakaba] Starting EID crafting data replacement")
   -- per pool
   for poolNum, _ in pairs(poolToIcon) do
     --for s, e in pairs(CraftingItemPools[1]) do
@@ -149,22 +149,22 @@ function wakaba:ReplaceEIDBagWeight()
       for s, entry in pairs(CraftingItemPools[poolNum+1]) do
         if entry[1] == itemId and weight ~= 1.0 then
           found = true
-          print("[wakaba] found :", itemId, "from pool", poolNum,", replacing weight of", weight)
+          --print("[wakaba] found :", itemId, "from pool", poolNum,", replacing weight of", weight)
           entry[2] = weight
           break
         elseif entry[1] == itemId then
           found = true
-          print("[wakaba] found :", itemId, "from pool", poolNum,", keep values")
+          --print("[wakaba] found :", itemId, "from pool", poolNum,", keep values")
           break
         end
       end
       -- Add weight data for tagged items if not available in item pools
       if not found then
-        print("[wakaba] not found :", itemId, "from", poolNum,", inserting weight of", weight)
+        --print("[wakaba] not found :", itemId, "from", poolNum,", inserting weight of", weight)
         table.insert(CraftingItemPools[poolNum+1], {itemId, weight or 1.0})
       end
     end
   end
   moddedCrafting = true
-  print("[wakaba] Finished EID crafting data replacement")
+  --print("[wakaba] Finished EID crafting data replacement")
 end
