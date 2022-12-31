@@ -5,10 +5,6 @@ function wakaba:cacheUpdate23(player, cacheFlag)
 				player.Damage = player.Damage + (4 * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
 		else
-			local pendantcnt = 0
-			if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
-				pendantcnt = #player:GetData().wakaba.PendantCandidates
-			end
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end

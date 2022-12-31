@@ -3,6 +3,10 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:Cache_Important(player, cacheFlag)
   if cacheFlag == CacheFlag.CACHE_LUCK then
     if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) and player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_B then
+			local pendantcnt = 0
+			if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
+				pendantcnt = #player:GetData().wakaba.PendantCandidates
+			end
       if wakaba:HasBless(player) then
         if player.Luck < 10 then
           player.Luck = 10
