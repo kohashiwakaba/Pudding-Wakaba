@@ -1,3 +1,16 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101a", 
+[[{FSIZE2}fixes
+Fixed Wakaba's Pendant 
+Luck stat not working
+
+Reverted on-take 
+damage effect to 
+normal priority 
+to fix taking double damage 
+while holding Eat Heart,
+Mistake, and Lunar Stone
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101", 
 [[{FSIZE2}general stuff
 Added missing entries 
