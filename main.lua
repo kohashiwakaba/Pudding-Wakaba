@@ -121,8 +121,8 @@ local function GetCurrentModPath()
 	return modPath
 end
 
-wakaba.version = "v100 Richer 2022.12.24"
-wakaba.intversion = 10000
+wakaba.version = "v101 Richer 2022.12.31"
+wakaba.intversion = 10100
 
 wakaba.modpath = GetCurrentModPath()
 
