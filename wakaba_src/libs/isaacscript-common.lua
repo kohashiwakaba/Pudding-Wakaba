@@ -1,6 +1,6 @@
 --[[
 
-isaacscript-common 17.0.1
+isaacscript-common 17.7.2
 
 This is the "isaacscript-common" library, which was created with the IsaacScript tool.
 
@@ -12273,8 +12273,8 @@ ____exports.ModCallback.POST_ENTITY_KILL = 68
 ____exports.ModCallback[____exports.ModCallback.POST_ENTITY_KILL] = "POST_ENTITY_KILL"
 ____exports.ModCallback.PRE_NPC_UPDATE = 69
 ____exports.ModCallback[____exports.ModCallback.PRE_NPC_UPDATE] = "PRE_NPC_UPDATE"
-____exports.ModCallback.PRE_SPAWN_CLEAN_AWARD = 70
-____exports.ModCallback[____exports.ModCallback.PRE_SPAWN_CLEAN_AWARD] = "PRE_SPAWN_CLEAN_AWARD"
+____exports.ModCallback.PRE_SPAWN_CLEAR_AWARD = 70
+____exports.ModCallback[____exports.ModCallback.PRE_SPAWN_CLEAR_AWARD] = "PRE_SPAWN_CLEAR_AWARD"
 ____exports.ModCallback.PRE_ROOM_ENTITY_SPAWN = 71
 ____exports.ModCallback[____exports.ModCallback.PRE_ROOM_ENTITY_SPAWN] = "PRE_ROOM_ENTITY_SPAWN"
 ____exports.ModCallback.PRE_ENTITY_DEVOLVE = 72
@@ -16310,6 +16310,10 @@ function ____exports.serializeKColor(self, kColor)
 end
 return ____exports
  end,
+["src.types.HasAllEnumKeys"] = function(...) 
+local ____exports = {}
+return ____exports
+ end,
 ["src.objects.directionNames"] = function(...) 
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -19504,7 +19508,7 @@ function ____exports.setEntityRandomColor(self, entity)
         false
     )
 end
-function ____exports.spawn(self, entityType, variant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawn(self, entityType, variant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -19514,7 +19518,8 @@ function ____exports.spawn(self, entityType, variant, subType, position, velocit
     if seedOrRNG == nil then
         seedOrRNG = nil
     end
-    if position == nil then
+    local room = game:GetRoom()
+    if positionOrGridIndex == nil then
         local entityID = ____exports.getEntityIDFromConstituents(nil, entityType, variant, subType)
         error(("Failed to spawn entity " .. entityID) .. " since an undefined position was passed to the \"spawn\" function.")
     end
@@ -19522,6 +19527,7 @@ function ____exports.spawn(self, entityType, variant, subType, position, velocit
         local entityID = ____exports.getEntityIDFromConstituents(nil, entityType, variant, subType)
         error(("Failed to spawn entity " .. entityID) .. " since an undefined velocity was passed to the \"spawn\" function.")
     end
+    local position = isVector(nil, positionOrGridIndex) and positionOrGridIndex or room:GetGridPosition(positionOrGridIndex)
     if seedOrRNG == nil then
         return Isaac.Spawn(
             entityType,
@@ -19543,7 +19549,7 @@ function ____exports.spawn(self, entityType, variant, subType, position, velocit
         seed
     )
 end
-function ____exports.spawnEntityID(self, entityID, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnEntityID(self, entityID, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -19559,13 +19565,13 @@ function ____exports.spawnEntityID(self, entityID, position, velocity, spawner, 
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnWithSeed(self, entityType, variant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnWithSeed(self, entityType, variant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -19577,7 +19583,7 @@ function ____exports.spawnWithSeed(self, entityType, variant, subType, position,
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -20822,6 +20828,8 @@ function ____exports.newCollectibleSprite(self, collectibleType)
     local gfxFileName = ____exports.getCollectibleGfxFilename(nil, collectibleType)
     sprite:ReplaceSpritesheet(CollectibleSpriteLayer.HEAD, gfxFileName)
     sprite:LoadGraphics()
+    local defaultAnimation = sprite:GetDefaultAnimation()
+    sprite:Play(defaultAnimation, true)
     return sprite
 end
 function ____exports.removeCollectibleFromItemTracker(self, collectibleType)
@@ -21468,6 +21476,15 @@ function ____exports.canPlayerCrushRocks(self, player)
     local effects = player:GetEffects()
     return player:HasCollectible(CollectibleType.LEO) or player:HasCollectible(CollectibleType.THUNDER_THIGHS) or effects:HasCollectibleEffect(CollectibleType.MEGA_MUSH) or player:HasPlayerForm(PlayerForm.STOMPY)
 end
+function ____exports.dequeueItem(self, player)
+    if player.QueuedItem.Item == nil then
+        return false
+    end
+    local queue = player.QueuedItem
+    queue.Item = nil
+    player.QueuedItem = queue
+    return true
+end
 function ____exports.getActiveItemSlot(self, player, collectibleType)
     local activeSlots = getEnumValues(nil, ActiveSlot)
     return __TS__ArrayFind(
@@ -21737,7 +21754,7 @@ function ____exports.removeAllActiveItems(self, player)
         do
             local collectibleType = player:GetActiveItem(activeSlot)
             if collectibleType == CollectibleType.NULL then
-                goto __continue89
+                goto __continue91
             end
             local hasCollectible
             repeat
@@ -21747,7 +21764,7 @@ function ____exports.removeAllActiveItems(self, player)
                 end
             until not hasCollectible
         end
-        ::__continue89::
+        ::__continue91::
     end
 end
 function ____exports.removeAllPlayerTrinkets(self, player)
@@ -21755,7 +21772,7 @@ function ____exports.removeAllPlayerTrinkets(self, player)
         do
             local trinketType = player:GetTrinket(trinketSlot)
             if trinketType == TrinketType.NULL then
-                goto __continue94
+                goto __continue96
             end
             local hasTrinket
             repeat
@@ -21765,7 +21782,7 @@ function ____exports.removeAllPlayerTrinkets(self, player)
                 end
             until not hasTrinket
         end
-        ::__continue94::
+        ::__continue96::
     end
 end
 function ____exports.removeCollectibleCostume(self, player, collectibleType)
@@ -21819,9 +21836,9 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
         itemPool:RemoveCollectible(collectibleType)
     end
     repeat
-        local ____switch113 = activeSlot
-        local ____cond113 = ____switch113 == ActiveSlot.PRIMARY
-        if ____cond113 then
+        local ____switch115 = activeSlot
+        local ____cond115 = ____switch115 == ActiveSlot.PRIMARY
+        if ____cond115 then
             do
                 if primaryCollectibleType ~= CollectibleType.NULL then
                     player:RemoveCollectible(primaryCollectibleType)
@@ -21830,8 +21847,8 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
                 break
             end
         end
-        ____cond113 = ____cond113 or ____switch113 == ActiveSlot.SECONDARY
-        if ____cond113 then
+        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.SECONDARY
+        if ____cond115 then
             do
                 if primaryCollectibleType ~= CollectibleType.NULL then
                     player:RemoveCollectible(primaryCollectibleType)
@@ -21846,16 +21863,16 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
                 break
             end
         end
-        ____cond113 = ____cond113 or ____switch113 == ActiveSlot.POCKET
-        if ____cond113 then
+        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.POCKET
+        if ____cond115 then
             do
                 player:SetPocketActiveItem(collectibleType, activeSlot, keepInPools)
                 player:SetActiveCharge(charge, activeSlot)
                 break
             end
         end
-        ____cond113 = ____cond113 or ____switch113 == ActiveSlot.POCKET_SINGLE_USE
-        if ____cond113 then
+        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.POCKET_SINGLE_USE
+        if ____cond115 then
             do
                 player:SetPocketActiveItem(collectibleType, activeSlot, keepInPools)
                 break
@@ -22788,7 +22805,7 @@ function ____exports.removeAllTears(self, tearVariant, subType, cap)
     local tears = ____exports.getTears(nil, tearVariant, subType)
     return removeEntities(nil, tears, cap)
 end
-function ____exports.spawnBomb(self, bombVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnBomb(self, bombVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22803,7 +22820,7 @@ function ____exports.spawnBomb(self, bombVariant, subType, position, velocity, s
         EntityType.BOMB,
         bombVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -22814,7 +22831,7 @@ function ____exports.spawnBomb(self, bombVariant, subType, position, velocity, s
     end
     return bomb
 end
-function ____exports.spawnBombWithSeed(self, bombVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnBombWithSeed(self, bombVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22825,13 +22842,13 @@ function ____exports.spawnBombWithSeed(self, bombVariant, subType, position, see
         nil,
         bombVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnEffect(self, effectVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnEffect(self, effectVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22846,7 +22863,7 @@ function ____exports.spawnEffect(self, effectVariant, subType, position, velocit
         EntityType.EFFECT,
         effectVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -22857,7 +22874,7 @@ function ____exports.spawnEffect(self, effectVariant, subType, position, velocit
     end
     return effect
 end
-function ____exports.spawnEffectWithSeed(self, effectVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnEffectWithSeed(self, effectVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22868,13 +22885,13 @@ function ____exports.spawnEffectWithSeed(self, effectVariant, subType, position,
         nil,
         effectVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnFamiliar(self, familiarVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnFamiliar(self, familiarVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22889,7 +22906,7 @@ function ____exports.spawnFamiliar(self, familiarVariant, subType, position, vel
         EntityType.FAMILIAR,
         familiarVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -22900,7 +22917,7 @@ function ____exports.spawnFamiliar(self, familiarVariant, subType, position, vel
     end
     return familiar
 end
-function ____exports.spawnFamiliarWithSeed(self, familiarVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnFamiliarWithSeed(self, familiarVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22911,13 +22928,13 @@ function ____exports.spawnFamiliarWithSeed(self, familiarVariant, subType, posit
         nil,
         familiarVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnKnife(self, knifeVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnKnife(self, knifeVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22932,7 +22949,7 @@ function ____exports.spawnKnife(self, knifeVariant, subType, position, velocity,
         EntityType.KNIFE,
         knifeVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -22943,7 +22960,7 @@ function ____exports.spawnKnife(self, knifeVariant, subType, position, velocity,
     end
     return knife
 end
-function ____exports.spawnKnifeWithSeed(self, knifeVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnKnifeWithSeed(self, knifeVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22954,13 +22971,13 @@ function ____exports.spawnKnifeWithSeed(self, knifeVariant, subType, position, s
         nil,
         knifeVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnLaser(self, laserVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnLaser(self, laserVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22975,7 +22992,7 @@ function ____exports.spawnLaser(self, laserVariant, subType, position, velocity,
         EntityType.LASER,
         laserVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -22986,7 +23003,7 @@ function ____exports.spawnLaser(self, laserVariant, subType, position, velocity,
     end
     return laser
 end
-function ____exports.spawnLaserWithSeed(self, laserVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnLaserWithSeed(self, laserVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -22997,13 +23014,13 @@ function ____exports.spawnLaserWithSeed(self, laserVariant, subType, position, s
         nil,
         laserVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnNPC(self, entityType, variant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnNPC(self, entityType, variant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23018,7 +23035,7 @@ function ____exports.spawnNPC(self, entityType, variant, subType, position, velo
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -23029,7 +23046,7 @@ function ____exports.spawnNPC(self, entityType, variant, subType, position, velo
     end
     return npc
 end
-function ____exports.spawnNPCWithSeed(self, entityType, variant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnNPCWithSeed(self, entityType, variant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23041,13 +23058,13 @@ function ____exports.spawnNPCWithSeed(self, entityType, variant, subType, positi
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnPickup(self, pickupVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnPickup(self, pickupVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23062,7 +23079,7 @@ function ____exports.spawnPickup(self, pickupVariant, subType, position, velocit
         EntityType.PICKUP,
         pickupVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -23073,7 +23090,7 @@ function ____exports.spawnPickup(self, pickupVariant, subType, position, velocit
     end
     return pickup
 end
-function ____exports.spawnPickupWithSeed(self, pickupVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnPickupWithSeed(self, pickupVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23084,13 +23101,13 @@ function ____exports.spawnPickupWithSeed(self, pickupVariant, subType, position,
         nil,
         pickupVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnProjectile(self, projectileVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnProjectile(self, projectileVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23105,7 +23122,7 @@ function ____exports.spawnProjectile(self, projectileVariant, subType, position,
         EntityType.PROJECTILE,
         projectileVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -23116,7 +23133,7 @@ function ____exports.spawnProjectile(self, projectileVariant, subType, position,
     end
     return projectile
 end
-function ____exports.spawnProjectileWithSeed(self, projectileVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnProjectileWithSeed(self, projectileVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23127,13 +23144,13 @@ function ____exports.spawnProjectileWithSeed(self, projectileVariant, subType, p
         nil,
         projectileVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnSlot(self, slotVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnSlot(self, slotVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23148,13 +23165,13 @@ function ____exports.spawnSlot(self, slotVariant, subType, position, velocity, s
         EntityType.SLOT,
         slotVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnSlotWithSeed(self, slotVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnSlotWithSeed(self, slotVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23165,13 +23182,13 @@ function ____exports.spawnSlotWithSeed(self, slotVariant, subType, position, see
         nil,
         slotVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnTear(self, tearVariant, subType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnTear(self, tearVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23186,7 +23203,7 @@ function ____exports.spawnTear(self, tearVariant, subType, position, velocity, s
         EntityType.TEAR,
         tearVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -23197,7 +23214,7 @@ function ____exports.spawnTear(self, tearVariant, subType, position, velocity, s
     end
     return tear
 end
-function ____exports.spawnTearWithSeed(self, tearVariant, subType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnTearWithSeed(self, tearVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -23208,7 +23225,7 @@ function ____exports.spawnTearWithSeed(self, tearVariant, subType, position, see
         nil,
         tearVariant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -24281,8 +24298,6 @@ ____exports.NARROW_ROOM_SHAPES_SET = __TS__New(Set, {RoomShape.IH, RoomShape.IV,
 return ____exports
  end,
 ["src.functions.roomShape"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local Map = ____lualib.Map
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local RoomShape = ____isaac_2Dtypescript_2Ddefinitions.RoomShape
@@ -25069,6 +25084,119 @@ function ____exports.reloadRoom(self)
 end
 return ____exports
  end,
+["src.objects.englishLevelNames"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local LevelStage = ____isaac_2Dtypescript_2Ddefinitions.LevelStage
+local StageType = ____isaac_2Dtypescript_2Ddefinitions.StageType
+____exports.ENGLISH_LEVEL_NAMES = {
+    [LevelStage.BASEMENT_1] = {
+        [StageType.ORIGINAL] = "Basement 1",
+        [StageType.WRATH_OF_THE_LAMB] = "Cellar 1",
+        [StageType.AFTERBIRTH] = "Burning Basement 1",
+        [StageType.GREED_MODE] = "Basement",
+        [StageType.REPENTANCE] = "Downpour 1",
+        [StageType.REPENTANCE_B] = "Dross 1"
+    },
+    [LevelStage.BASEMENT_2] = {
+        [StageType.ORIGINAL] = "Basement 2",
+        [StageType.WRATH_OF_THE_LAMB] = "Cellar 2",
+        [StageType.AFTERBIRTH] = "Burning Basement 2",
+        [StageType.GREED_MODE] = "Basement",
+        [StageType.REPENTANCE] = "Downpour 2",
+        [StageType.REPENTANCE_B] = "Dross 2"
+    },
+    [LevelStage.CAVES_1] = {
+        [StageType.ORIGINAL] = "Caves 1",
+        [StageType.WRATH_OF_THE_LAMB] = "Catacombs 1",
+        [StageType.AFTERBIRTH] = "Flooded Caves 1",
+        [StageType.GREED_MODE] = "Caves",
+        [StageType.REPENTANCE] = "Mines 1",
+        [StageType.REPENTANCE_B] = "Ashpit 1"
+    },
+    [LevelStage.CAVES_2] = {
+        [StageType.ORIGINAL] = "Caves 2",
+        [StageType.WRATH_OF_THE_LAMB] = "Catacombs 2",
+        [StageType.AFTERBIRTH] = "Flooded Caves 2",
+        [StageType.GREED_MODE] = "Caves",
+        [StageType.REPENTANCE] = "Mines 2",
+        [StageType.REPENTANCE_B] = "Ashpit 2"
+    },
+    [LevelStage.DEPTHS_1] = {
+        [StageType.ORIGINAL] = "Depths 1",
+        [StageType.WRATH_OF_THE_LAMB] = "Necropolis 1",
+        [StageType.AFTERBIRTH] = "Dank Depths 1",
+        [StageType.GREED_MODE] = "Depths",
+        [StageType.REPENTANCE] = "Mausoleum 1",
+        [StageType.REPENTANCE_B] = "Gehenna 1"
+    },
+    [LevelStage.DEPTHS_2] = {
+        [StageType.ORIGINAL] = "Depths 2",
+        [StageType.WRATH_OF_THE_LAMB] = "Necropolis 2",
+        [StageType.AFTERBIRTH] = "Dank Depths 2",
+        [StageType.GREED_MODE] = "Depths",
+        [StageType.REPENTANCE] = "Mausoleum 2",
+        [StageType.REPENTANCE_B] = "Gehenna 2"
+    },
+    [LevelStage.WOMB_1] = {
+        [StageType.ORIGINAL] = "Womb 1",
+        [StageType.WRATH_OF_THE_LAMB] = "Utero 1",
+        [StageType.AFTERBIRTH] = "Scarred Womb 1",
+        [StageType.GREED_MODE] = "Womb",
+        [StageType.REPENTANCE] = "Corpse 1",
+        [StageType.REPENTANCE_B] = "Mortis 1"
+    },
+    [LevelStage.WOMB_2] = {
+        [StageType.ORIGINAL] = "Womb 2",
+        [StageType.WRATH_OF_THE_LAMB] = "Utero 2",
+        [StageType.AFTERBIRTH] = "Scarred Womb 2",
+        [StageType.GREED_MODE] = "Womb",
+        [StageType.REPENTANCE] = "Corpse 2",
+        [StageType.REPENTANCE_B] = "Mortis 2"
+    },
+    [LevelStage.BLUE_WOMB] = {
+        [StageType.ORIGINAL] = "Blue Womb",
+        [StageType.WRATH_OF_THE_LAMB] = "Blue Womb",
+        [StageType.AFTERBIRTH] = "Blue Womb",
+        [StageType.GREED_MODE] = "Blue Womb",
+        [StageType.REPENTANCE] = "Blue Womb",
+        [StageType.REPENTANCE_B] = "Blue Womb"
+    },
+    [LevelStage.SHEOL_CATHEDRAL] = {
+        [StageType.ORIGINAL] = "Sheol",
+        [StageType.WRATH_OF_THE_LAMB] = "Cathedral",
+        [StageType.AFTERBIRTH] = "Undefined",
+        [StageType.GREED_MODE] = "Sheol",
+        [StageType.REPENTANCE] = "Undefined",
+        [StageType.REPENTANCE_B] = "Undefined"
+    },
+    [LevelStage.DARK_ROOM_CHEST] = {
+        [StageType.ORIGINAL] = "Dark Room",
+        [StageType.WRATH_OF_THE_LAMB] = "The Chest",
+        [StageType.AFTERBIRTH] = "Undefined",
+        [StageType.GREED_MODE] = "The Shop",
+        [StageType.REPENTANCE] = "Undefined",
+        [StageType.REPENTANCE_B] = "Undefined"
+    },
+    [LevelStage.THE_VOID] = {
+        [StageType.ORIGINAL] = "The Void",
+        [StageType.WRATH_OF_THE_LAMB] = "The Void",
+        [StageType.AFTERBIRTH] = "The Void",
+        [StageType.GREED_MODE] = "The Void",
+        [StageType.REPENTANCE] = "The Void",
+        [StageType.REPENTANCE_B] = "The Void"
+    },
+    [LevelStage.HOME] = {
+        [StageType.ORIGINAL] = "Home",
+        [StageType.WRATH_OF_THE_LAMB] = "Home",
+        [StageType.AFTERBIRTH] = "Home",
+        [StageType.GREED_MODE] = "Home",
+        [StageType.REPENTANCE] = "Home",
+        [StageType.REPENTANCE_B] = "Home"
+    }
+}
+return ____exports
+ end,
 ["src.objects.roomTypeGotoPrefixes"] = function(...) 
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -25142,6 +25270,8 @@ local LevelStage = ____isaac_2Dtypescript_2Ddefinitions.LevelStage
 local StageType = ____isaac_2Dtypescript_2Ddefinitions.StageType
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
+local ____englishLevelNames = require("src.objects.englishLevelNames")
+local ENGLISH_LEVEL_NAMES = ____englishLevelNames.ENGLISH_LEVEL_NAMES
 local ____roomTypeGotoPrefixes = require("src.objects.roomTypeGotoPrefixes")
 local ROOM_TYPE_GOTO_PREFIXES = ____roomTypeGotoPrefixes.ROOM_TYPE_GOTO_PREFIXES
 local ____stageTypeSuffixes = require("src.objects.stageTypeSuffixes")
@@ -25196,6 +25326,17 @@ function ____exports.getEffectiveStage(self)
         return asNumber(nil, stage) + 1
     end
     return stage
+end
+function ____exports.getEnglishLevelName(self, stage, stageType)
+    local level = game:GetLevel()
+    if stage == nil then
+        stage = level:GetStage()
+    end
+    if stageType == nil then
+        stageType = level:GetStageType()
+    end
+    local stageNames = ENGLISH_LEVEL_NAMES[stage]
+    return stageNames[stageType]
 end
 function ____exports.getGotoCommand(self, roomType, roomVariant)
     local prefix = ROOM_TYPE_GOTO_PREFIXES[roomType]
@@ -27109,6 +27250,8 @@ function ____exports.newTrinketSprite(self, trinketType)
     local gfxFileName = ____exports.getTrinketGfxFilename(nil, trinketType)
     sprite:ReplaceSpritesheet(TRINKET_SPRITE_LAYER, gfxFileName)
     sprite:LoadGraphics()
+    local defaultAnimation = sprite:GetDefaultAnimation()
+    sprite:Play(defaultAnimation, true)
     return sprite
 end
 function ____exports.setTrinketSprite(self, trinket, pngPath)
@@ -32451,8 +32594,8 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__Iterator = ____lualib.__TS__Iterator
+local __TS__Decorate = ____lualib.__TS__Decorate
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CacheFlag = ____isaac_2Dtypescript_2Ddefinitions.CacheFlag
@@ -32732,6 +32875,9 @@ function ModdedElementSets.prototype.lazyInitFlyingCollectibleTypesSet(self)
     for ____, collectibleType in ipairs(CONDITIONAL_FLYING_COLLECTIBLE_TYPES) do
         permanentFlyingCollectibleTypes:delete(collectibleType)
     end
+    for ____, collectibleType in __TS__Iterator(permanentFlyingCollectibleTypes:values()) do
+        self.permanentFlyingCollectibleTypesSet:add(collectibleType)
+    end
 end
 function ModdedElementSets.prototype.lazyInitFlyingTrinketTypesSet(self)
     if self.flyingTrinketTypesSet.size > 0 then
@@ -32755,7 +32901,7 @@ function ModdedElementSets.prototype.lazyInitEdenCollectibleTypesSet(self)
     for ____, collectibleType in ipairs(self:getCollectibleArray()) do
         do
             if isHiddenCollectible(nil, collectibleType) or collectibleHasTag(nil, collectibleType, ItemConfigTag.NO_EDEN) then
-                goto __continue71
+                goto __continue73
             end
             if isActiveCollectible(nil, collectibleType) then
                 self.edenActiveCollectibleTypesSet:add(collectibleType)
@@ -32764,7 +32910,7 @@ function ModdedElementSets.prototype.lazyInitEdenCollectibleTypesSet(self)
                 self.edenPassiveCollectibleTypesSet:add(collectibleType)
             end
         end
-        ::__continue71::
+        ::__continue73::
     end
 end
 function ModdedElementSets.prototype.lazyInitCardTypes(self)
@@ -33603,7 +33749,7 @@ end
 function ____exports.removeAllTrinkets(self, trinketType, cap)
     return removeAllPickups(nil, PickupVariant.TRINKET, trinketType, cap)
 end
-function ____exports.spawnBattery(self, batterySubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnBattery(self, batterySubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33617,13 +33763,13 @@ function ____exports.spawnBattery(self, batterySubType, position, velocity, spaw
         nil,
         PickupVariant.LIL_BATTERY,
         batterySubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnBatteryWithSeed(self, batterySubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnBatteryWithSeed(self, batterySubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33633,13 +33779,13 @@ function ____exports.spawnBatteryWithSeed(self, batterySubType, position, seedOr
     return ____exports.spawnBattery(
         nil,
         batterySubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnBombPickup(self, bombSubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnBombPickup(self, bombSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33653,13 +33799,13 @@ function ____exports.spawnBombPickup(self, bombSubType, position, velocity, spaw
         nil,
         PickupVariant.BOMB,
         bombSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnBombPickupWithSeed(self, bombSubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnBombPickupWithSeed(self, bombSubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33669,13 +33815,13 @@ function ____exports.spawnBombPickupWithSeed(self, bombSubType, position, seedOr
     return ____exports.spawnBombPickup(
         nil,
         bombSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnCard(self, cardType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnCard(self, cardType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33689,13 +33835,13 @@ function ____exports.spawnCard(self, cardType, position, velocity, spawner, seed
         nil,
         PickupVariant.TAROT_CARD,
         cardType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnCardWithSeed(self, cardType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnCardWithSeed(self, cardType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33705,13 +33851,13 @@ function ____exports.spawnCardWithSeed(self, cardType, position, seedOrRNG, velo
     return ____exports.spawnCard(
         nil,
         cardType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnCoin(self, coinSubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnCoin(self, coinSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33725,13 +33871,13 @@ function ____exports.spawnCoin(self, coinSubType, position, velocity, spawner, s
         nil,
         PickupVariant.COIN,
         coinSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnCoinWithSeed(self, coinSubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnCoinWithSeed(self, coinSubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33741,13 +33887,13 @@ function ____exports.spawnCoinWithSeed(self, coinSubType, position, seedOrRNG, v
     return ____exports.spawnCoin(
         nil,
         coinSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnHeart(self, heartSubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnHeart(self, heartSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33761,13 +33907,13 @@ function ____exports.spawnHeart(self, heartSubType, position, velocity, spawner,
         nil,
         PickupVariant.HEART,
         heartSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnHeartWithSeed(self, heartSubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnHeartWithSeed(self, heartSubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33777,13 +33923,13 @@ function ____exports.spawnHeartWithSeed(self, heartSubType, position, seedOrRNG,
     return ____exports.spawnHeart(
         nil,
         heartSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnKey(self, keySubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnKey(self, keySubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33797,13 +33943,13 @@ function ____exports.spawnKey(self, keySubType, position, velocity, spawner, see
         nil,
         PickupVariant.KEY,
         keySubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnKeyWithSeed(self, keySubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnKeyWithSeed(self, keySubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33813,13 +33959,13 @@ function ____exports.spawnKeyWithSeed(self, keySubType, position, seedOrRNG, vel
     return ____exports.spawnKey(
         nil,
         keySubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnPill(self, pillColor, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnPill(self, pillColor, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33833,13 +33979,13 @@ function ____exports.spawnPill(self, pillColor, position, velocity, spawner, see
         nil,
         PickupVariant.PILL,
         pillColor,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnPillWithSeed(self, pillColor, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnPillWithSeed(self, pillColor, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33849,13 +33995,13 @@ function ____exports.spawnPillWithSeed(self, pillColor, position, seedOrRNG, vel
     return ____exports.spawnPill(
         nil,
         pillColor,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnSack(self, sackSubType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnSack(self, sackSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33869,13 +34015,13 @@ function ____exports.spawnSack(self, sackSubType, position, velocity, spawner, s
         nil,
         PickupVariant.SACK,
         sackSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnSackWithSeed(self, sackSubType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnSackWithSeed(self, sackSubType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33885,13 +34031,13 @@ function ____exports.spawnSackWithSeed(self, sackSubType, position, seedOrRNG, v
     return ____exports.spawnSack(
         nil,
         sackSubType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnTrinket(self, trinketType, position, velocity, spawner, seedOrRNG)
+function ____exports.spawnTrinket(self, trinketType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33905,13 +34051,13 @@ function ____exports.spawnTrinket(self, trinketType, position, velocity, spawner
         nil,
         PickupVariant.TRINKET,
         trinketType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
     )
 end
-function ____exports.spawnTrinketWithSeed(self, trinketType, position, seedOrRNG, velocity, spawner)
+function ____exports.spawnTrinketWithSeed(self, trinketType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -33921,7 +34067,7 @@ function ____exports.spawnTrinketWithSeed(self, trinketType, position, seedOrRNG
     return ____exports.spawnTrinket(
         nil,
         trinketType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seedOrRNG
@@ -34706,6 +34852,9 @@ local SHOOTING_ACTIONS = {ButtonAction.SHOOT_LEFT, ButtonAction.SHOOT_RIGHT, But
 ____exports.SHOOTING_ACTIONS_SET = __TS__New(Set, SHOOTING_ACTIONS)
 function ____exports.controllerToString(self, controller)
     local key = Controller[controller]
+    if key == nil then
+        return nil
+    end
     return trimPrefix(nil, key, "BUTTON_")
 end
 function ____exports.getMoveActions(self)
@@ -34714,18 +34863,42 @@ end
 function ____exports.getShootActions(self)
     return ____exports.SHOOTING_ACTIONS_SET
 end
-function ____exports.isActionPressedOnAnyInput(self, buttonAction)
-    local controllerIndexes = getEnumValues(nil, ControllerIndex)
+function ____exports.isActionPressed(self, controllerIndex, ...)
+    local buttonActions = {...}
     return __TS__ArraySome(
-        controllerIndexes,
-        function(____, controllerIndex) return Input.IsActionPressed(buttonAction, controllerIndex) end
+        buttonActions,
+        function(____, buttonAction) return Input.IsActionPressed(buttonAction, controllerIndex) end
     )
 end
-function ____exports.isActionTriggeredOnAnyInput(self, buttonAction)
+function ____exports.isActionPressedOnAnyInput(self, ...)
+    local buttonActions = {...}
     local controllerIndexes = getEnumValues(nil, ControllerIndex)
     return __TS__ArraySome(
         controllerIndexes,
-        function(____, controllerIndex) return Input.IsActionTriggered(buttonAction, controllerIndex) end
+        function(____, controllerIndex) return ____exports.isActionPressed(
+            nil,
+            controllerIndex,
+            table.unpack(buttonActions)
+        ) end
+    )
+end
+function ____exports.isActionTriggered(self, controllerIndex, ...)
+    local buttonActions = {...}
+    return __TS__ArraySome(
+        buttonActions,
+        function(____, buttonAction) return Input.IsActionTriggered(buttonAction, controllerIndex) end
+    )
+end
+function ____exports.isActionTriggeredOnAnyInput(self, ...)
+    local buttonActions = {...}
+    local controllerIndexes = getEnumValues(nil, ControllerIndex)
+    return __TS__ArraySome(
+        controllerIndexes,
+        function(____, controllerIndex) return ____exports.isActionTriggered(
+            nil,
+            controllerIndex,
+            table.unpack(buttonActions)
+        ) end
     )
 end
 function ____exports.isKeyboardPressed(self, ...)
@@ -38400,7 +38573,7 @@ end
 function ____exports.isSin(self, npc)
     return SIN_ENTITY_TYPES_SET:has(npc.Type)
 end
-function ____exports.spawnBoss(self, entityType, variant, subType, position, velocity, spawner, seedOrRNG, numSegments)
+function ____exports.spawnBoss(self, entityType, variant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG, numSegments)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -38416,7 +38589,7 @@ function ____exports.spawnBoss(self, entityType, variant, subType, position, vel
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seed
@@ -38433,7 +38606,7 @@ function ____exports.spawnBoss(self, entityType, variant, subType, position, vel
                     entityType,
                     variant,
                     subType,
-                    position,
+                    positionOrGridIndex,
                     velocity,
                     spawner,
                     seed
@@ -38443,7 +38616,7 @@ function ____exports.spawnBoss(self, entityType, variant, subType, position, vel
     end
     return npc
 end
-function ____exports.spawnBossWithSeed(self, entityType, variant, subType, position, seedOrRNG, velocity, spawner, numSegments)
+function ____exports.spawnBossWithSeed(self, entityType, variant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner, numSegments)
     if velocity == nil then
         velocity = VectorZero
     end
@@ -38456,7 +38629,7 @@ function ____exports.spawnBossWithSeed(self, entityType, variant, subType, posit
         entityType,
         variant,
         subType,
-        position,
+        positionOrGridIndex,
         velocity,
         spawner,
         seed,
@@ -39097,7 +39270,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__ArraySome = ____lualib.__TS__ArraySome
 local __TS__ArrayFind = ____lualib.__TS__ArrayFind
 local ____exports = {}
-local willVanillaVersusScreenPlay, getPlayerPNGPaths, getBossPNGPaths, getBossPNGPathsCustom, DEFAULT_CHARACTER, PNG_PATH_PREFIX, PLAYER_PORTRAIT_PNG_PATH_PREFIX
+local willVanillaVersusScreenPlay, getPlayerPNGPaths, getBossPNGPaths, getBossPNGPathsCustom, PNG_PATH_PREFIX, PLAYER_PORTRAIT_PNG_PATH_PREFIX
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local BossID = ____isaac_2Dtypescript_2Ddefinitions.BossID
 local PlayerType = ____isaac_2Dtypescript_2Ddefinitions.PlayerType
@@ -39146,16 +39319,13 @@ end
 function getPlayerPNGPaths(self)
     local player = Isaac.GetPlayer()
     local character = player:GetPlayerType()
+    if character == PlayerType.POSSESSOR then
+        error("Failed to get the player PNG paths since they are a possessor.")
+    end
     local namePNGFileName = PLAYER_NAME_PNG_FILE_NAMES[character]
-    if namePNGFileName == nil then
-        namePNGFileName = PLAYER_NAME_PNG_FILE_NAMES[DEFAULT_CHARACTER]
-    end
-    local namePNGPath = (PNG_PATH_PREFIX .. "/") .. tostring(namePNGFileName)
+    local namePNGPath = (PNG_PATH_PREFIX .. "/") .. namePNGFileName
     local portraitFileName = PLAYER_PORTRAIT_PNG_FILE_NAMES[character]
-    if namePNGFileName == nil then
-        portraitFileName = PLAYER_PORTRAIT_PNG_FILE_NAMES[DEFAULT_CHARACTER]
-    end
-    local portraitPNGPath = (PLAYER_PORTRAIT_PNG_PATH_PREFIX .. "/") .. tostring(portraitFileName)
+    local portraitPNGPath = (PLAYER_PORTRAIT_PNG_PATH_PREFIX .. "/") .. portraitFileName
     return {namePNGPath = namePNGPath, portraitPNGPath = portraitPNGPath}
 end
 function getBossPNGPaths(self, customStage)
@@ -39192,7 +39362,6 @@ function getBossPNGPathsCustom(self, customStage)
     end
     return matchingBossEntry.versusScreen
 end
-DEFAULT_CHARACTER = PlayerType.ISAAC
 local DEFAULT_STAGE_ID = StageID.BASEMENT
 local VERSUS_SCREEN_ANIMATION_NAME = "Scene"
 local NUM_VERSUS_SCREEN_ANM2_LAYERS = 14
@@ -41257,7 +41426,7 @@ local anyPlayerIs = ____players.anyPlayerIs
 local ____rng = require("src.functions.rng")
 local getRandomSeed = ____rng.getRandomSeed
 local isRNG = ____rng.isRNG
-function ____exports.spawnCollectibleUnsafe(self, collectibleType, position, seedOrRNG, options, forceFreeItem, spawner)
+function ____exports.spawnCollectibleUnsafe(self, collectibleType, positionOrGridIndex, seedOrRNG, options, forceFreeItem, spawner)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
     end
@@ -41272,7 +41441,7 @@ function ____exports.spawnCollectibleUnsafe(self, collectibleType, position, see
         nil,
         PickupVariant.COLLECTIBLE,
         collectibleType,
-        position,
+        positionOrGridIndex,
         seed,
         VectorZero,
         spawner
@@ -41286,14 +41455,14 @@ function ____exports.spawnCollectibleUnsafe(self, collectibleType, position, see
     end
     return collectible
 end
-function ____exports.spawnEmptyCollectible(self, position, seedOrRNG)
+function ____exports.spawnEmptyCollectible(self, positionOrGridIndex, seedOrRNG)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
     end
     local collectible = ____exports.spawnCollectibleUnsafe(
         nil,
         CollectibleType.SAD_ONION,
-        position,
+        positionOrGridIndex,
         seedOrRNG,
         false,
         true
@@ -41401,7 +41570,7 @@ function SpawnCollectible.prototype.____constructor(self, preventCollectibleRota
     self.featuresUsed = {ISCFeature.PREVENT_COLLECTIBLE_ROTATION}
     self.preventCollectibleRotation = preventCollectibleRotation
 end
-function SpawnCollectible.prototype.spawnCollectible(self, collectibleType, position, seedOrRNG, options, forceFreeItem, spawner)
+function SpawnCollectible.prototype.spawnCollectible(self, collectibleType, positionOrGridIndex, seedOrRNG, options, forceFreeItem, spawner)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
     end
@@ -41414,7 +41583,7 @@ function SpawnCollectible.prototype.spawnCollectible(self, collectibleType, posi
     local collectible = spawnCollectibleUnsafe(
         nil,
         collectibleType,
-        position,
+        positionOrGridIndex,
         seedOrRNG,
         options,
         forceFreeItem,
@@ -41425,7 +41594,7 @@ function SpawnCollectible.prototype.spawnCollectible(self, collectibleType, posi
     end
     return collectible
 end
-function SpawnCollectible.prototype.spawnCollectibleFromPool(self, itemPoolType, position, seedOrRNG, options, forceFreeItem, spawner)
+function SpawnCollectible.prototype.spawnCollectibleFromPool(self, itemPoolType, positionOrGridIndex, seedOrRNG, options, forceFreeItem, spawner)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
     end
@@ -41439,7 +41608,7 @@ function SpawnCollectible.prototype.spawnCollectibleFromPool(self, itemPoolType,
     local collectibleType = itemPool:GetCollectible(itemPoolType)
     return self:spawnCollectible(
         collectibleType,
-        position,
+        positionOrGridIndex,
         seedOrRNG,
         options,
         forceFreeItem,
@@ -45701,6 +45870,9 @@ end
 function ____exports.secretRoom(self)
     warpToRoomType(nil, RoomType.SECRET)
 end
+function ____exports.secretShop(self)
+    changeRoom(nil, GridRoom.SECRET_SHOP)
+end
 function ____exports.seedStick(self)
     local seedsClass = game:GetSeeds()
     local startSeedString = seedsClass:GetStartSeedString()
@@ -47863,6 +48035,7 @@ local ____utils = require("src.functions.utils")
 local ____repeat = ____utils["repeat"]
 local ____vector = require("src.functions.vector")
 local getRandomVector = ____vector.getRandomVector
+local isVector = ____vector.isVector
 local ____Feature = require("src.classes.private.Feature")
 local Feature = ____Feature.Feature
 local ROCK_ALT_CHANCES = {NOTHING = 0.68, BASIC_DROP = 0.0967, TRINKET = 0.025, COLLECTIBLE = 0.005}
@@ -47880,10 +48053,12 @@ function SpawnRockAltRewards.prototype.____constructor(self, itemPoolDetection)
     self.featuresUsed = {ISCFeature.ITEM_POOL_DETECTION}
     self.itemPoolDetection = itemPoolDetection
 end
-function SpawnRockAltRewards.prototype.spawnRockAltReward(self, position, rockAltType, seedOrRNG)
+function SpawnRockAltRewards.prototype.spawnRockAltReward(self, positionOrGridIndex, rockAltType, seedOrRNG)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
     end
+    local room = game:GetRoom()
+    local position = isVector(nil, positionOrGridIndex) and positionOrGridIndex or room:GetGridPosition(positionOrGridIndex)
     local rng = isRNG(nil, seedOrRNG) and seedOrRNG or newRNG(nil, seedOrRNG)
     repeat
         local ____switch4 = rockAltType
@@ -49037,6 +49212,13 @@ function initDecoratedCallbacks(self, modFeature, constructor, tstlClassName, va
 end
 function addCallback(self, modFeature, modFeatureConstructor, mod, modCallback, callback, parameters, vanilla)
     local function wrappedCallback(____, ...)
+        local conditionalFunc = modFeature.callbackConditionalFunc
+        if conditionalFunc ~= nil then
+            local shouldRun = conditionalFunc(nil)
+            if not shouldRun then
+                return nil
+            end
+        end
         local castedCallback = callback
         return castedCallback(modFeature, ...)
     end
@@ -49125,6 +49307,7 @@ function ModFeature.prototype.____constructor(self, mod, init)
     if init == nil then
         init = true
     end
+    self.callbackConditionalFunc = nil
     self.initialized = false
     self.mod = mod
     if init then
@@ -49772,13 +49955,11 @@ local DEFAULT_GLOBALS = __TS__New(Set, {
     "assert",
     "collectgarbage",
     "coroutine",
-    "dofile",
     "error",
     "getmetatable",
     "include",
     "ipairs",
     "load",
-    "loadfile",
     "math",
     "next",
     "pairs",
@@ -49799,7 +49980,14 @@ local DEFAULT_GLOBALS = __TS__New(Set, {
     "utf8",
     "xpcall"
 })
-local LUA_DEBUG_ADDED_GLOBALS = __TS__New(Set, {"debug", "io", "os", "package"})
+local LUA_DEBUG_ADDED_GLOBALS = __TS__New(Set, {
+    "debug",
+    "dofile",
+    "loadfile",
+    "io",
+    "os",
+    "package"
+})
 local RACING_PLUS_SANDBOX_ADDED_GLOBALS = __TS__New(Set, {"sandboxTraceback", "sandboxGetTraceback", "getParentFunctionDescription"})
 function ____exports.getDefaultGlobals(self)
     local defaultGlobals = copySet(nil, DEFAULT_GLOBALS)
@@ -50403,10 +50591,6 @@ ____exports.K_COLORS = {
 return ____exports
  end,
 ["src.types.AllButLast"] = function(...) 
-local ____exports = {}
-return ____exports
- end,
-["src.types.HasAllEnumKeys"] = function(...) 
 local ____exports = {}
 return ____exports
  end,
