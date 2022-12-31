@@ -1418,6 +1418,7 @@ function wakaba:init(continue)
 			end
 		end
 		wakaba.runstate.playersavedata = reservedplayerdatas
+		wakaba:LoadHiddenItemData()
   end
 	-- Run this whether continue or not
 	if EID then
@@ -1810,6 +1811,7 @@ function wakaba:save(shouldSave)
 		wakaba.runstate.playersavedata = reservedplayersavedata
     --wakaba:SaveData(json.encode(wakaba.state))
 		--Isaac.DebugString("[wakaba]Wakaba - Data Saving end")
+		wakaba:SaveHiddenItemData()
 		wakaba:saveDataManagerSave()
 	end
 end

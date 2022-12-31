@@ -8,13 +8,17 @@ local ribbon_data = {
 wakaba:saveDataManager("Wakaba Hidden Items", ribbon_data)
 
 --local loaded = false
-
-wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPORTANT, function ()
+function wakaba:SaveHiddenItemData()
   ribbon_data.run.hiddendata = wakaba.HiddenItemManager:GetSaveData()
-end)
+end
 
-wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function (_, isContinued)
+wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPORTANT, wakaba.SaveHiddenItemData)
+
+
+function wakaba:LoadHiddenItemData()
   if (isContinued) then
     wakaba.HiddenItemManager:LoadData(ribbon_data.run.hiddendata)
   end
-end)
+end
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, wakaba.LoadHiddenItemData)
+
