@@ -1319,6 +1319,7 @@ include('wakaba_src.functions.revival')
 include('wakaba_src.functions.revival2')
 include('wakaba_src.functions.hidden_items')
 include('wakaba_src.functions.fireclub')
+include('wakaba_src.functions.important_stats')
 
 include('challenges')
 include('wakaba_src.curses')

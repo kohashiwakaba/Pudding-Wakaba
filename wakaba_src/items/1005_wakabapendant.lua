@@ -15,7 +15,7 @@ function wakaba:cacheUpdate23(player, cacheFlag)
 		end
 	end
 end
-wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.cacheUpdate23)
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.cacheUpdate23)
 
 
 
