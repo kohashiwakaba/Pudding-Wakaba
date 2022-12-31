@@ -284,7 +284,7 @@ function wakaba:TakeDmg_Revival(entity, amount, flag, source, countdown)
  ]]
 
 end
-wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 720, wakaba.TakeDmg_Revival, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_Revival, EntityType.ENTITY_PLAYER)
 
 function wakaba:detectPlanC(useditem, rng, player, useflag, slot, vardata)
 	if wakaba:HasJudasBr(player) then
@@ -448,14 +448,6 @@ end
     player:AddBrokenHearts(1)
     return false
   end
---[[ 
-  local revivaldata = wakaba:CanRevive(player)
-  if revivaldata then
-    wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID, revivaldata.CurrentRoom)
-    wakaba:AddPostRevive(player, revivaldata.PostRevival)
-    player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
-    --return false
-  end
-   ]]
+  return true
 end
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE, wakaba.PostPlayerFatalDamage)
