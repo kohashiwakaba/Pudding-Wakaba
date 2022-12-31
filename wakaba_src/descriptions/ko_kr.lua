@@ -872,9 +872,9 @@ wakaba.descriptions[desclang].belial = {
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}흑마술의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.", 
 	},
-	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
+	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		description = "블랙 하트 타입의 꼬마 클롯을 소환합니다.", 
-	},
+	}, ]]
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		description = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%", 
 	},

@@ -764,8 +764,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Armor-piercing tears"},
 			{str = "- some enemies like Hush have armor, taking less damage than regular enemies"},
-			{str = "All stats downs per item Isaac have."},
-			{str = "- Stats decreasing rate is 1% per item. maximum is 99.5% of Isaac's original stats for having 100 items."},
 			{str = "Upon picking up an item, Isaac gains a +3.6 temporary damage boost."},
 			{str = "- The temporary boost fades over 30 seconds."},
 			{str = "- The temporary boost stacks, taking more items gains additional +3.6 temporary damage up."},
@@ -1582,11 +1580,11 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "All selected enemies become charmed permenantly."},
 			{str = "This includes : Needle, Pasty, Dust, Polty, Kineti, Mom's Hand."},
+			{str = "All Eternal Flies are removed."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The included enemies are the mostly hated enemies among the players, especially as The Lost, as they pop up out of nowhere, easily being killed by them."},
-			{str = "The name of current item seems not fitting as it is, however it also serves as 'Return Postage' as the enemies do such things."},
 		},
 	},
 	
@@ -2059,7 +2057,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "+2 Range"},
 			{str = "+1 Luck"},
-			{str = "Constantly spawns fireflies that brightens the room"},
+			{str = "Grants Curse of Darkenss immunity"},
 		},
 	},
 	CARAMELLO_PANCAKE = {
@@ -2450,7 +2448,7 @@ if Encyclopedia then
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
 				{str = "Sets Broken Heart counts to 6."},
-				{str = "- For characters that have less heart limit, sets brokne heart counts to half of their initial heart limit."},
+				{str = "- For characters that have less heart limit, sets broken heart counts to half of their initial heart limit."},
 				{str = "Spawns 3 Collectible items and 8 Card/Rune/Soul Stones."},
 			},
 			{ -- Trivia

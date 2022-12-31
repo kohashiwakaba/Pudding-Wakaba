@@ -792,9 +792,9 @@ wakaba.descriptions[desclang].belial = {
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles", 
 	},
-	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
+	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		description = "Summons Black Heart type Lil Clot instead of Soul Heart type", 
-	},
+	}, ]]
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		description = "↑ +4% chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used", 
 	},
