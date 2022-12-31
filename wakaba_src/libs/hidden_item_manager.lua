@@ -1,12 +1,12 @@
 -- Hidden Item Manager, by Connor (aka Ghostbroster)
--- Version 1.4
+-- Version 1.5
 -- 
 -- Manages a system of hidden Lemegeton Item Wisps to simulate the effects of passive items without actually granting the player those items (so they can't be removed or rerolled!).
 -- Good for giving the effect of an item temporarily, making an item effect "innate" to a character, and all sorts of other stuff, probably.
 -- Please keep in mind that the game has a TOTAL FAMILIAR LIMIT of 64 at a time! Each item provided by this is a wisp familiar!
 -- So given that, please be careful and considerate when using this.
 -- 
--- GitHub Page: https://github.com/ConnorForan/PauseScreenCompletionMarksAPI
+-- GitHub Page: https://github.com/ConnorForan/HiddenItemManager
 -- Please refer to the GitHub page or the README file for more information and a guide.
 -- 
 -- Thanks Cake, DeadInfinity, Erfly, Taiga, and anyone else who might have helped figure out these wisp tricks.
@@ -42,8 +42,8 @@ function HiddenItemManager:Init(mod)
 	if not initialized then
 		HiddenItemManager.Mod = mod
 		
-		for _, tab in pairs(Callbacks) do
-			mod:AddCallback(tab.Callback, tab.Func, tab.Param)
+		for _, tab in ipairs(Callbacks) do
+			mod:AddPriorityCallback(tab.Callback, CallbackPriority.IMPORTANT, tab.Func, tab.Param)
 		end
 		HiddenItemManager.WispTag = "HiddenItemManager:" .. mod.Name
 		
@@ -84,45 +84,17 @@ local function GetGroup(group)
 	end
 end
 
-function tprint (tbl, indent)
-  if not indent then indent = 0 end
-  local toprint = string.rep(" ", indent) .. "{\r\n"
-  indent = indent + 2 
-  for k, v in pairs(tbl) do
-    toprint = toprint .. string.rep(" ", indent)
-    if (type(k) == "number") then
-      toprint = toprint .. "[" .. k .. "] = "
-    elseif (type(k) == "string") then
-      toprint = toprint  .. k ..  "= "   
-    end
-    if (type(v) == "number") then
-      toprint = toprint .. v .. ",\r\n"
-    elseif (type(v) == "string") then
-      toprint = toprint .. "\"" .. v .. "\",\r\n"
-    elseif (type(v) == "table") then
-      toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
-    else
-      toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
-    end
-  end
-  toprint = toprint .. string.rep(" ", indent-2) .. "}"
-  return toprint
-end
-
 -- Hidden item wisp data sorted into a nested table.
 -- player.InitSeed -> groupName -> CollectibleType -> wisp.InitSeed -> dataTable
 -- This table is good for API lookups like checking if an item effect is active, or counting them.
 local DATA = {}
-wakaba_HDATA = DATA
 
 -- Info on ALL hidden item wisps, simply just mapped by their InitSeeds.
 -- This table is good for wisps looking up their own data, as well as for SaveData.
 local INDEX = {}
-wakaba_HINDEX = INDEX
 
 -- Cache for EntityPtrs to wisps.
 local WISP_PTRS = {}
-wakaba_HWISP_PTRS = WISP_PTRS
 
 -- Wisps slated for removal, by InitSeed key.
 local WISPS_TO_REMOVE = {}
@@ -208,8 +180,17 @@ end
 local function GetPlayer(tab)
 	if not tab then return end
 	
+	local wisp = GetWisp(tab)
 	if wisp and wisp.Player and wisp.Player:Exists() then
 		return wisp.Player
+	end
+	
+	-- Player wasn't found on the wisp. Might be due to us temporarily nulling `wisp.Player` to avoid Sacrificial Altar. See if we can find the player.
+	for i=0, game:GetNumPlayers()-1 do
+		local player = game:GetPlayer(i)
+		if player and player:Exists() and GetKey(player) == tab.PlayerKey then
+			return player
+		end
 	end
 end
 
@@ -217,7 +198,7 @@ local function KillWisp(wisp)
 	if not wisp then return end
 	
 	if wisp.Player and wisp.SubType == CollectibleType.COLLECTIBLE_MARS then
-		player:TryRemoveNullCostume(NullItemID.ID_MARS)
+		wisp.Player:TryRemoveNullCostume(NullItemID.ID_MARS)
 	end
 	
 	-- Kill() after Remove() makes sure the effects of wisps are removed properly while still skipping the death animation/sounds.
@@ -674,6 +655,7 @@ function HiddenItemManager:ItemWispTears(tear)
 			and tear.SpawnerEntity.Variant == FamiliarVariant.ITEM_WISP
 			and IsManagedWisp(tear.SpawnerEntity) then
 		tear:Remove()
+		return true
 	end
 end
 AddCallback(ModCallbacks.MC_POST_TEAR_INIT, HiddenItemManager.ItemWispTears)
@@ -701,6 +683,9 @@ AddCallback(ModCallbacks.MC_USE_ITEM, function()
 		
 		if not player then
 			LOG_ERROR("Somehow lost track of player during Sacrificial Altar protection. Giving up on item #" .. data.Item .. " from group: " .. data.Group)
+			if wisp then
+				wisp.Player = Isaac.GetPlayer()  -- De-nil `wisp.Player` to avoid crashing if this somehow happens.
+			end
 			RemoveWisp(key)
 		elseif wisp then
 			wisp.Player = player
