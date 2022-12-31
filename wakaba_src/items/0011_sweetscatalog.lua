@@ -1,3 +1,13 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
+--[[ 
+local catalog_data = {
+	run = {
+
+	},
+}
+wakaba:saveDataManager("Sweets Catalog", catalog_data)
+local catalogDatas = catalog_data.run
+ ]]
 wakaba.CatalogItems = {
 	["TEMP"] = {
 		Weight = 0, -- Chance to be appeared, set to 0 to prevent to be chosen
@@ -82,9 +92,19 @@ wakaba.CatalogItems = {
 		RicherRecipe = true,
 	},
 }
-
+--[[ 
+function wakaba:PlayerUpdate_SweetsCatalog(player)
+	local playerIndex = isc:getPlayerIndex(player)
+	if catalogDatas[playerIndex] then
+		for i, itemID in ipairs(catalogDatas[playerIndex]) do
+			wakaba.HiddenItemManager:CheckStack(player, itemID, 1, "RICHER_CATALOG_PERSISTENT")
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_SweetsCatalog)
+ ]]
 function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varData)
-
+	local playerIndex = isc:getPlayerIndex(player)
 	-- get random 
 	local catalog = wakaba.CatalogItems
 	local totalweight = 0
@@ -123,7 +143,6 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 			wakaba.HiddenItemManager:RemoveAll(player, "RICHER_CATALOG")
 		end
 		if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			--wakaba.HiddenItemManager:Add(player, 1, -1, 1, "RICHER_CATALOG")
 			for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
 				wakaba.HiddenItemManager:Add(player, itemID, -1, 1, "RICHER_CATALOG")
 			end
