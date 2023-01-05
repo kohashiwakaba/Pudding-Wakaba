@@ -42,7 +42,7 @@ function wakaba:PostPlayerFatalDamage(player)
   local data = player:GetData()
   data.wakaba = data.wakaba or {}
   --if isc:willPlayerRevive(player) or isc:willReviveFromHeartbreak(player) or isc:willReviveFromSpiritShackles(player) then return end
-  if data.wakaba.grimreaper then
+  if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
     return false
   elseif player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) then
     if player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) < 5 then

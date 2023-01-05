@@ -419,7 +419,7 @@ end
  function wakaba:PostPlayerFatalDamage(player)
   wakaba:GetPlayerEntityData(player)
   local data = player:GetData()
-  if data.wakaba.grimreaper then
+  if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
     isc:useActiveItemTemp(player, CollectibleType.COLLECTIBLE_DULL_RAZOR)
     return false
   elseif player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) then
