@@ -2098,8 +2098,13 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	TRIAL_STEW = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Removes all health and Holy Mantle shields and fully charges active items."},
+			{str = "On use, Removes all health and Holy Mantle shields and fully charges active items."},
 			{str = "+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+			{str = ""},
 		},
 	}
 
