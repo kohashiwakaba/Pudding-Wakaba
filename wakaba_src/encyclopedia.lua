@@ -2095,6 +2095,13 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Boss rooms need to be cleared to spawn restock machine."},
 		},
 	},
+	TRIAL_STEW = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Removes all health and Holy Mantle shields and fully charges active items."},
+			{str = "+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields."},
+		},
+	}
 
 	
 	-----------------------------------------------------------------------------
@@ -4267,6 +4274,13 @@ if Encyclopedia then
 		},
 	})
 
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.TRIAL_STEW,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
+	})
+
 	
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4726,6 +4740,22 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.returntoken then
 				self.Desc = "Defeat Ultra Greedier as Tainted Tsukasa"
+				
+				return self
+			end
+		end,
+	})
+	
+	--Trial Stew
+	Encyclopedia.AddCard({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Cards.CARD_TRIAL_STEW,
+		WikiDesc = Wiki.CARD_TRIAL_STEW,
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Trial Stew",0),
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.trialstew then
+				self.Desc = "Defeat Ultra Greedier as Tainted Richer"
 				
 				return self
 			end

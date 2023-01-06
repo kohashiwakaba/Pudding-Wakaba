@@ -114,6 +114,7 @@ wakaba.Enums.Collectibles = {
   LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
   BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
   WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
+  TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
 
   -- Challenge items
   PLUMY = Isaac.GetItemIdByName("Plumy"),
@@ -209,6 +210,7 @@ wakaba.Enums.Cards = {
   SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
   SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
   CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
+  CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 
 }
 

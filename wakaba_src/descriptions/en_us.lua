@@ -1255,17 +1255,6 @@ wakaba.descriptions[desclang].cards = {
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room",
 		mimiccharge = 3,
 	},
-	--[[ [wakaba.Enums.Cards.CARD_BASEMENT_CARD] = {
-		itemName = "Basement Card",
-		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact",
-		mimiccharge = 12,
-	},
-	[wakaba.Enums.Cards.CARD_PREMIUM_BASEMENT_CARD] = {
-		itemName = "Premium Basement Card",
-		description = "Brings you back to the first floor of a new run#{{Quality4}} Only {{Quality4}} items stay intact#{{Collectible636}} Grants Rock Bottom",
-		mimiccharge = 12,
-	}, ]]
-	
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "Soul of Wakaba",
 		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Creates new Angel shop on current floor#{{AngelRoom}} Spawns an Angel room item for sale if no rooms are available",
@@ -1295,6 +1284,11 @@ wakaba.descriptions[desclang].cards = {
 		description = "Spawns a Shiori's Valut# The valut contains a collectible that requires 12 keys.",
 		mimiccharge = 6,
 	},
+	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
+		itemName = "Trial Stew",
+		description = "Removes all health and Holy Mantle shields and fully charges active items.#+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields.",
+		mimiccharge = 8,
+	},
 }
 wakaba.descriptions[desclang].tarotcloth = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
@@ -1308,6 +1302,9 @@ wakaba.descriptions[desclang].tarotcloth = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		description = "Spawns 2 valuts",
+	},
+	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
+		description = "Additional +1 Fire rate, +25% Damage",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

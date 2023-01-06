@@ -25,6 +25,8 @@
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
 	<card pickup="4112" type="tarot" description="???" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
 
+	<card pickup="4112" type="tarot" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>
+
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />
 	<pilleffect name="All Stats Down" class="3-" mimiccharge="4" />
