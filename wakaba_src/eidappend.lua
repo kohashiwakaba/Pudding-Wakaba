@@ -37,6 +37,7 @@ if EID then
 			[wakaba.Enums.Players.SHIORI_B] = "ShioriB",
 			[wakaba.Enums.Players.TSUKASA] = "Tsukasa",
 			[wakaba.Enums.Players.TSUKASA_B] = "TsukasaB",
+			[wakaba.Enums.Players.RICHER] = "Richer",
 		}
 --[[ 
 		wakaba.EIDBlankCardCooldowns = {
