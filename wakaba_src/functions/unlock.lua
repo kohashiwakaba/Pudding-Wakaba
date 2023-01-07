@@ -112,7 +112,7 @@ wakaba.UnlockTables = {
 		MegaSatan	= {"spirititems", "null",		wakaba.Enums.Cards.CARD_WHITE_JOKER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
 		Mother		= {"mistake", "null",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 		Beast		= {"winteralbireo", "null",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Greedier	= {"frozencard", "null",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Greedier	= {"trialstew", "null",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 	},
 }
 

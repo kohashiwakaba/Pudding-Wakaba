@@ -7,39 +7,86 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:UseCard_TrialStew(_, player, flags)
-	--player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW)
-	player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
-	player:GetEffects():RemoveNullEffect(NullItemID.ID_HOLY_CARD, -1)
-	for i = 1, 3 do
-		if player:GetActiveItem(i) ~= CollectibleType.COLLECTIBLE_BLANK_CARD then
-			player:FullCharge(i, true)
+	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW)
+	if flags & UseFlag.USE_CARBATTERY == 0 then
+		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
+		player:GetEffects():RemoveNullEffect(NullItemID.ID_HOLY_CARD, -1)
+		if player:GetBoneHearts() > 0 then
+			if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY_B then
+				player:AddHearts(-2000)
+			end
+			if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY then
+				player:AddSoulHearts(-2000)
+			end
+			player:AddBoneHearts(1 - player:GetBoneHearts())
+		elseif player:GetMaxHearts() <= 0 then
+			if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY_B then
+				player:AddHearts(-2000)
+			end
+			player:AddSoulHearts(1 - player:GetSoulHearts())
+		else
+			if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
+				player:AddHearts(2 - player:GetHearts())
+			else
+				player:AddHearts(1 - player:GetHearts())
+			end
+			if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY then
+				player:AddSoulHearts(-2000)
+			end
+		end
+		for i = 1, 3 do
+			if player:GetActiveItem(i) ~= CollectibleType.COLLECTIBLE_BLANK_CARD then
+				player:FullCharge(i, true)
+			end
+		end
+		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+			player:AddKeys(99)
+		elseif Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
+			player:AddCoins(-999)
 		end
 	end
-	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
-		player:AddKeys(99)
-	elseif Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
-		player:AddCoins(-999)
-	end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_TrialStew, wakaba.Enums.Cards.CARD_VALUT_RIFT)
+wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_TrialStew, wakaba.Enums.Cards.CARD_TRIAL_STEW)
 
 function wakaba:Cache_TrialStew(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.TRIAL_STEW) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.TRIAL_STEW) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.TRIAL_STEW)
-		local totalHearts = isc:getPlayerHearts(player)
+		local redHearts = player:GetHearts() - player:GetRottenHearts()
+		local soulHearts = player:GetSoulHearts()
+		local boneHearts = player:GetBoneHearts()
+		local totalHearts = redHearts + soulHearts + boneHearts
 		if Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
 			totalHearts = player:GetCoins() // 20
 		end
-		local totalShields = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
-		if totalHearts + totalShields == 1 then
+		local mantleConuts = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
+
+		local target = 1
+		if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
+			target = 2
+		end
+
+		if totalHearts + mantleConuts <= target then
 			if cacheFlag == CacheFlag.CACHE_DAMAGE then
 				player.Damage = player.Damage * (2 + (0.25 * (num - 1)))
 			end
 			if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-				player.MaxFireDelay = player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 7 + num)
+				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 7 + num)
 			end
 		end
 	end
 
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_TrialStew)
+
+function wakaba:PlayerUpdate_TrialStew(player)
+	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
+		local redHearts = player:GetHearts() - player:GetRottenHearts()
+		local soulHearts = player:GetSoulHearts()
+		local boneHearts = player:GetBoneHearts()
+		local mantleConuts = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
+		if redHearts + soulHearts + boneHearts + mantleConuts > 1 then
+			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, -1)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_TrialStew)

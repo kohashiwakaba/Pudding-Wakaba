@@ -431,7 +431,7 @@ local richer_saved_recipies = {
 			richersoul2 = 0, -- Hush
 			waterflame = 0, -- Delirium
 			spirititems = 0, -- Mega Satan
-			frozencard = 0, -- Ultra Greedier
+			trialstew = 0, -- Ultra Greedier
 			mistake = 0, -- Mother
 			winteralbireo = 0, -- The Beast
 			
@@ -1274,6 +1274,7 @@ include('wakaba_src.pickups.2007_queenofspades')
 include('wakaba_src.pickups.2008_returntoken')
 include('wakaba_src.pickups.2009_minervaticket')
 include('wakaba_src.pickups.2010_valutcard')
+include('wakaba_src.pickups.2011_trialstew')
 include('wakaba_src.pickups.2100_pills')
 include('wakaba_src.pickups.2501_wakabasoul')
 include('wakaba_src.pickups.2502_shiorisoul')

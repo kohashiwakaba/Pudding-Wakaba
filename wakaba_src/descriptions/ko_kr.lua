@@ -825,6 +825,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "베끼는 건 안돼!",
 	},
+	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
+		itemName = "시련의 국",
+		description = "!!! 캐릭터의 전체 체력이 반칸 + 보호막이 없을 때:#↑ {{TearsSmall}}연사(+상한) +8#↑ {{DamageSmall}}공격력 배율 x2",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""
@@ -1393,7 +1397,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",
-		description = "#사용 시 체력과 보호막을 전부 제거하며 액티브 아이템을 전부 충전합니다.#사용 직후 해당 상태를 유지하는 동안 연사 +8, 공격력 배율 x2",
+		description = "#사용 시 체력과 보호막을 전부 제거하며 액티브 아이템을 전부 충전합니다.#사용 직후 해당 상태를 유지하는 동안 {{TearsSmall}}연사 +8, {{DamageSmall}}공격력 배율 x2",
 	},
 }
 wakaba.descriptions[desclang].tarotcloth = {
@@ -1410,7 +1414,7 @@ wakaba.descriptions[desclang].tarotcloth = {
 		description = "#시오리의 창고를 2대 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "#추가 연사 +1, 추가 공격력 +25%",
+		description = "#{{TearsSmall}}추가 연사 +1, {{DamageSmall}}추가 공격력 +25%",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

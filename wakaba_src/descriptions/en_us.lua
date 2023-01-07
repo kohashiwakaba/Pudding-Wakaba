@@ -746,6 +746,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Card}} Triggers a random card effect each use"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
+		itemName = "Trial Stew",
+		description = "!!! While Isaac has only half heart and no shields:#↑ {{Tears}}+8 Fire rate#↑ {{Damage}}+100% Damage Multiplier",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

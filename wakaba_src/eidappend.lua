@@ -26,6 +26,7 @@ if EID then
 			[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 14,
 			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 15,
 			[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 16,
+			[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 17,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)

@@ -2066,7 +2066,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Grants an extra life."},
 			{str = "- Isaac will respawn as Richer in the previous room."},
 		},
-		{ -- Notes
+		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Richer", clr = 3, halign = 0},
 			{str = "Revives as herself, rather than normal Richer. Effectively acts as 1up!"},
@@ -2098,15 +2098,30 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	TRIAL_STEW = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only activated through cards, it doesn't appear in any item pools or death certificate rooms."},
 			{str = "On use, Removes all health and Holy Mantle shields and fully charges active items."},
 			{str = "+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields."},
 		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Blank Card", clr = 3, halign = 0},
+			{str = "Requires 8 charges to use. Does NOT recharges Blank Card itself if used by Blank Card"},
+			{str = "Holy Mantle, Blanket, Holy Card, Priest's Blessing, Wakaba's Blessing", clr = 3, halign = 0},
+			{str = "Fire rate, Damage bonus will be gone as soon as Isaac recovers shield."},
+			{str = "Elixir of Life / Tainted Tsukasa", clr = 3, halign = 0},
+			{str = "After use, Automatic refill will not work until the effect goes off."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Tarot Card", clr = 3, halign = 0},
+			{str = "Additional +1 Fire rate, and +25% damage bonus is granted."},
+		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
-			{str = ""},
+			{str = "Trial Stew is one of challenging items from 'Paper Mario : The Thousand Year Door', one of famous RPG titles from Mario series."},
+			{str = "Using Trial Stew in PM : TTYD reduces player's HP to 1, and FP to 0, but refills all star powers, which allows to use special moves."},
 		},
-	}
+	},
 
 	
 	-----------------------------------------------------------------------------
@@ -4756,8 +4771,8 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Cards.CARD_TRIAL_STEW,
-		WikiDesc = Wiki.CARD_TRIAL_STEW,
-		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Trial Stew",0),
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Trial Stew",0),
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.trialstew then
 				self.Desc = "Defeat Ultra Greedier as Tainted Richer"
