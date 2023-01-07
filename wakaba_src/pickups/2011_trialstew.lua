@@ -34,7 +34,7 @@ function wakaba:UseCard_TrialStew(_, player, flags)
 				player:AddSoulHearts(-2000)
 			end
 		end
-		for i = 1, 3 do
+		for i = 0, 2 do
 			if player:GetActiveItem(i) ~= CollectibleType.COLLECTIBLE_BLANK_CARD then
 				player:FullCharge(i, true)
 			end
