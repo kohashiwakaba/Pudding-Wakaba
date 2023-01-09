@@ -1,3 +1,4 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:NewRoom_DimensionCutter()
 	if not wakaba.G:GetRoom():IsClear() then
 		for i = 1, wakaba.G:GetNumPlayers() do
