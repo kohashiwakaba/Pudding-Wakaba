@@ -1230,6 +1230,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "차원검",
 		description = ""
 		.. "#클리어 하지 않은 방 진입 시 15%의 확률로 임의의 {{Collectible510}}델리리움의 모습을 한 보스가 등장합니다."
+		.. "#{{GreedModeSmall}} Greed 모드의 경우 5%, {{LuckSmall}}행운 10+일 때 25%"
 		.. "#↑ {{Card"..Card.CARD_CHAOS.."}}카오스 카드가 델리리움과 비스트에게 대미지를 줄 수 있습니다.(틱 당 339)"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",

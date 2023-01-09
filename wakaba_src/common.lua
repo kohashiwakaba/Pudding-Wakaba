@@ -1244,6 +1244,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.UniqueBirthrightUpda
 -- LuckPerc is how much each 1 Luck is worth in terms of percentage. (aka, if you want 1 luck = +5% chance on top whatever it rolled, put 5)
 -- returns true if you *Should* consider the roll successful, and false if not.
 function wakaba:Roll(rng, Luck, MinRoll, LuckPerc, MaxPerc)
+	if MaxPerc and type(MaxPerc) == "number" then
+		if MinRoll + (Luck * LuckPerc) >= MaxPerc then
+			Luck = (MaxPerc - MinRoll) / LuckPerc
+		end
+	end 
   local roll = rng:RandomFloat() * 100
   local offset = 100 - (roll + Luck * LuckPerc)
   if offset <= MinRoll then

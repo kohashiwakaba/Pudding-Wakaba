@@ -265,6 +265,10 @@ wakaba.Enums.Chances = {
 wakaba.Enums.Constants = {
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
+	DIMENSION_CUTTER_RATE = 15,
+	DIMENSION_CUTTER_GREED_MIN_RATE = 5,
+	DIMENSION_CUTTER_GREED_LUCK_RATE = 2,
+	DIMENSION_CUTTER_GREED_MAX_RATE = 25,
 }
 
 -- 시오리/알트시오리 배터리 획득 시 충전량
