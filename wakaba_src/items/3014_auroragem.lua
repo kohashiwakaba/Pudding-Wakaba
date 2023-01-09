@@ -23,7 +23,7 @@ function wakaba:CoinInit_AuroraGem(pickup)
     local minRoll = wakaba.Enums.Chances.AURORA_DEFAULT * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.AURORA_GEM)
     local chanceNum = wakaba.Enums.Chances.AURORA_LUCK
     local maxNum = wakaba.Enums.Chances.AURORA_MAX
-    local canTurn = wakaba:Roll(rng, player.Luck, minRoll, chanceNum, maxNum)
+    local canTurn = wakaba:Roll(rng, player.Luck + player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG), minRoll, chanceNum, maxNum)
 
     if canTurn then
       pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)
