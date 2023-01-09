@@ -29,6 +29,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.playerItemsArrayInit)
 
 --execute
 function mod:playerItemsArrayUpdate(player)
+	if player:IsCoopGhost() then return end
 	local data = player:GetData()
 	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
   local queuedItem = player.QueuedItem
