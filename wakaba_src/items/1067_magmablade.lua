@@ -9,15 +9,17 @@ local function getMagmaBladeMultiplier(player)
 end
 
 function wakaba:Cache_MagmaBlade(player, cacheFlag)
-  if canActivateMagmaBlade(player) and not player:HasWeaponType(WeaponType.WEAPON_TEARS) then
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage * (1 + getMagmaBladeMultiplier(player))
-  	end
-		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-			player.ShotSpeed = 0.6
+  if canActivateMagmaBlade(player) then
+		if not player:HasWeaponType(WeaponType.WEAPON_TEARS) then
+			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+				player.Damage = player.Damage * (1 + getMagmaBladeMultiplier(player))
+			end
+			if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+				player.ShotSpeed = 0.6
+			end
 		end
     if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING | TearFlags.TEAR_SPECTRAL
+			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_BURN
     end
 	end
 end
@@ -40,9 +42,13 @@ function wakaba:FireTearVLate_MagmaBlade(tear)
 		then
 			--tear:Remove()
 			tear:ChangeVariant(TearVariant.PUPULA)
+			if player.TearFlags & TearFlags.TEAR_EXPLOSIVE <= 0 then
+				tear:ClearTearFlags(TearFlags.TEAR_EXPLOSIVE)
+			end
 			tear.CollisionDamage = tear.CollisionDamage / 4
 			tear.Scale = tear.Scale * 3
 			tear:ResetSpriteScale()
+			SFXManager():Play(SoundEffect.SOUND_CANDLE_LIGHT)
 			wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.MagmaBlade)
 		end
 	end
