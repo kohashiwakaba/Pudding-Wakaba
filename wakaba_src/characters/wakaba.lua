@@ -79,7 +79,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Waka
 --LagCheck
 
 function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
-	Isaac.DebugString("[wakaba] TookDmg flag:"..flag.."")
+	--Isaac.DebugString("[wakaba] TookDmg flag:"..flag.."")
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR) 
 	then

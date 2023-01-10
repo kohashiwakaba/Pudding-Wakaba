@@ -1138,6 +1138,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Dimension Cutter",
 		description = ""
 		.. "#{{Collectible510}} 15% chance to spawn random delirious boss when entering an uncleared room"
+		.. "#{{GreedMode}} 5% chance for Greed mode, {{Luck}}max 25% for 10+ Luck"
 		.. "#↑ {{Card"..Card.CARD_CHAOS.."}}Chaos card can damage Delirium, and The Beast (339 damage per tick)"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",

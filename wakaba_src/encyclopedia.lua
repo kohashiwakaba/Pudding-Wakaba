@@ -2677,6 +2677,7 @@ if Encyclopedia then
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
 				{str = "When entering an uncleared room, Spawns a random Delirious boss for 15% chance."},
+				{str = "In Greed Mode, 5% chance for spawn, but scales with Luck, Maxing out 25% chance for 10 Luck."},
 				{str = "Chaos card can damage Delirium, and The Beast (339 damage per tick)."},
 			},
 		},
