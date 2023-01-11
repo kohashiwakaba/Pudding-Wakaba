@@ -1,6 +1,6 @@
 --[[
 
-isaacscript-common 17.7.2
+isaacscript-common 19.1.1
 
 This is the "isaacscript-common" library, which was created with the IsaacScript tool.
 
@@ -2591,203 +2591,217 @@ local ____exports = {}
 ____exports.ModCallbackCustom = {}
 ____exports.ModCallbackCustom.ENTITY_TAKE_DMG_FILTER = 0
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.ENTITY_TAKE_DMG_FILTER] = "ENTITY_TAKE_DMG_FILTER"
-____exports.ModCallbackCustom.POST_AMBUSH_FINISHED = 1
+____exports.ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER = 1
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER] = "ENTITY_TAKE_DMG_PLAYER"
+____exports.ModCallbackCustom.INPUT_ACTION_FILTER = 2
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.INPUT_ACTION_FILTER] = "INPUT_ACTION_FILTER"
+____exports.ModCallbackCustom.INPUT_ACTION_PLAYER = 3
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.INPUT_ACTION_PLAYER] = "INPUT_ACTION_PLAYER"
+____exports.ModCallbackCustom.POST_AMBUSH_FINISHED = 4
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_AMBUSH_FINISHED] = "POST_AMBUSH_FINISHED"
-____exports.ModCallbackCustom.POST_AMBUSH_STARTED = 2
+____exports.ModCallbackCustom.POST_AMBUSH_STARTED = 5
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_AMBUSH_STARTED] = "POST_AMBUSH_STARTED"
-____exports.ModCallbackCustom.POST_BOMB_EXPLODED = 3
+____exports.ModCallbackCustom.POST_BOMB_EXPLODED = 6
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_BOMB_EXPLODED] = "POST_BOMB_EXPLODED"
-____exports.ModCallbackCustom.POST_BOMB_INIT_LATE = 4
+____exports.ModCallbackCustom.POST_BOMB_INIT_LATE = 7
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_BOMB_INIT_LATE] = "POST_BOMB_INIT_LATE"
-____exports.ModCallbackCustom.POST_BONE_SWING = 5
+____exports.ModCallbackCustom.POST_BONE_SWING = 8
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_BONE_SWING] = "POST_BONE_SWING"
-____exports.ModCallbackCustom.POST_COLLECTIBLE_EMPTY = 6
+____exports.ModCallbackCustom.POST_COLLECTIBLE_EMPTY = 9
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_COLLECTIBLE_EMPTY] = "POST_COLLECTIBLE_EMPTY"
-____exports.ModCallbackCustom.POST_COLLECTIBLE_INIT_FIRST = 7
+____exports.ModCallbackCustom.POST_COLLECTIBLE_INIT_FIRST = 10
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_COLLECTIBLE_INIT_FIRST] = "POST_COLLECTIBLE_INIT_FIRST"
-____exports.ModCallbackCustom.POST_CURSED_TELEPORT = 8
+____exports.ModCallbackCustom.POST_CURSED_TELEPORT = 11
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_CURSED_TELEPORT] = "POST_CURSED_TELEPORT"
-____exports.ModCallbackCustom.POST_CUSTOM_REVIVE = 9
+____exports.ModCallbackCustom.POST_CUSTOM_REVIVE = 12
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_CUSTOM_REVIVE] = "POST_CUSTOM_REVIVE"
-____exports.ModCallbackCustom.POST_DICE_ROOM_ACTIVATED = 10
+____exports.ModCallbackCustom.POST_DICE_ROOM_ACTIVATED = 13
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_DICE_ROOM_ACTIVATED] = "POST_DICE_ROOM_ACTIVATED"
-____exports.ModCallbackCustom.POST_DOOR_RENDER = 11
+____exports.ModCallbackCustom.POST_DOOR_RENDER = 14
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_DOOR_RENDER] = "POST_DOOR_RENDER"
-____exports.ModCallbackCustom.POST_DOOR_UPDATE = 12
+____exports.ModCallbackCustom.POST_DOOR_UPDATE = 15
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_DOOR_UPDATE] = "POST_DOOR_UPDATE"
-____exports.ModCallbackCustom.POST_EFFECT_INIT_LATE = 13
+____exports.ModCallbackCustom.POST_EFFECT_INIT_LATE = 16
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_EFFECT_INIT_LATE] = "POST_EFFECT_INIT_LATE"
-____exports.ModCallbackCustom.POST_EFFECT_STATE_CHANGED = 14
+____exports.ModCallbackCustom.POST_EFFECT_STATE_CHANGED = 17
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_EFFECT_STATE_CHANGED] = "POST_EFFECT_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_ESAU_JR = 15
+____exports.ModCallbackCustom.POST_ESAU_JR = 18
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ESAU_JR] = "POST_ESAU_JR"
-____exports.ModCallbackCustom.POST_FAMILIAR_INIT_LATE = 16
+____exports.ModCallbackCustom.POST_FAMILIAR_INIT_LATE = 19
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_FAMILIAR_INIT_LATE] = "POST_FAMILIAR_INIT_LATE"
-____exports.ModCallbackCustom.POST_FAMILIAR_STATE_CHANGED = 17
+____exports.ModCallbackCustom.POST_FAMILIAR_STATE_CHANGED = 20
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_FAMILIAR_STATE_CHANGED] = "POST_FAMILIAR_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_FIRST_ESAU_JR = 18
+____exports.ModCallbackCustom.POST_FIRST_ESAU_JR = 21
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_FIRST_ESAU_JR] = "POST_FIRST_ESAU_JR"
-____exports.ModCallbackCustom.POST_FIRST_FLIP = 19
+____exports.ModCallbackCustom.POST_FIRST_FLIP = 22
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_FIRST_FLIP] = "POST_FIRST_FLIP"
-____exports.ModCallbackCustom.POST_FLIP = 20
+____exports.ModCallbackCustom.POST_FLIP = 23
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_FLIP] = "POST_FLIP"
-____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED = 21
+____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED = 24
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED] = "POST_GAME_STARTED_REORDERED"
-____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED_LAST = 22
+____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED_LAST = 25
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GAME_STARTED_REORDERED_LAST] = "POST_GAME_STARTED_REORDERED_LAST"
-____exports.ModCallbackCustom.POST_GREED_MODE_WAVE = 23
+____exports.ModCallbackCustom.POST_GREED_MODE_WAVE = 26
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GREED_MODE_WAVE] = "POST_GREED_MODE_WAVE"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_BROKEN = 24
+____exports.ModCallbackCustom.POST_GRID_ENTITY_BROKEN = 27
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_BROKEN] = "POST_GRID_ENTITY_BROKEN"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_COLLISION = 25
+____exports.ModCallbackCustom.POST_GRID_ENTITY_COLLISION = 28
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_COLLISION] = "POST_GRID_ENTITY_COLLISION"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_BROKEN = 26
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_BROKEN = 29
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_BROKEN] = "POST_GRID_ENTITY_CUSTOM_BROKEN"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_COLLISION = 27
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_COLLISION = 30
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_COLLISION] = "POST_GRID_ENTITY_CUSTOM_COLLISION"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_INIT = 28
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_INIT = 31
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_INIT] = "POST_GRID_ENTITY_CUSTOM_INIT"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_REMOVE = 29
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_REMOVE = 32
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_REMOVE] = "POST_GRID_ENTITY_CUSTOM_REMOVE"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_RENDER = 30
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_RENDER = 33
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_RENDER] = "POST_GRID_ENTITY_CUSTOM_RENDER"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_STATE_CHANGED = 31
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_STATE_CHANGED = 34
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_STATE_CHANGED] = "POST_GRID_ENTITY_CUSTOM_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE = 32
+____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE = 35
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE] = "POST_GRID_ENTITY_CUSTOM_UPDATE"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_INIT = 33
+____exports.ModCallbackCustom.POST_GRID_ENTITY_INIT = 36
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_INIT] = "POST_GRID_ENTITY_INIT"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_REMOVE = 34
+____exports.ModCallbackCustom.POST_GRID_ENTITY_REMOVE = 37
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_REMOVE] = "POST_GRID_ENTITY_REMOVE"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_RENDER = 35
+____exports.ModCallbackCustom.POST_GRID_ENTITY_RENDER = 38
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_RENDER] = "POST_GRID_ENTITY_RENDER"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED = 36
+____exports.ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED = 39
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED] = "POST_GRID_ENTITY_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_GRID_ENTITY_UPDATE = 37
+____exports.ModCallbackCustom.POST_GRID_ENTITY_UPDATE = 40
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_GRID_ENTITY_UPDATE] = "POST_GRID_ENTITY_UPDATE"
-____exports.ModCallbackCustom.POST_HOLY_MANTLE_REMOVED = 38
+____exports.ModCallbackCustom.POST_HOLY_MANTLE_REMOVED = 41
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_HOLY_MANTLE_REMOVED] = "POST_HOLY_MANTLE_REMOVED"
-____exports.ModCallbackCustom.POST_ITEM_DISCHARGE = 39
+____exports.ModCallbackCustom.POST_ITEM_DISCHARGE = 42
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ITEM_DISCHARGE] = "POST_ITEM_DISCHARGE"
-____exports.ModCallbackCustom.POST_ITEM_PICKUP = 40
+____exports.ModCallbackCustom.POST_ITEM_PICKUP = 43
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ITEM_PICKUP] = "POST_ITEM_PICKUP"
-____exports.ModCallbackCustom.POST_KNIFE_INIT_LATE = 41
+____exports.ModCallbackCustom.POST_KNIFE_INIT_LATE = 44
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_KNIFE_INIT_LATE] = "POST_KNIFE_INIT_LATE"
-____exports.ModCallbackCustom.POST_LASER_INIT_LATE = 42
+____exports.ModCallbackCustom.POST_LASER_INIT_LATE = 45
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_LASER_INIT_LATE] = "POST_LASER_INIT_LATE"
-____exports.ModCallbackCustom.POST_NEW_LEVEL_REORDERED = 43
+____exports.ModCallbackCustom.POST_NEW_LEVEL_REORDERED = 46
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NEW_LEVEL_REORDERED] = "POST_NEW_LEVEL_REORDERED"
-____exports.ModCallbackCustom.POST_NEW_ROOM_EARLY = 44
+____exports.ModCallbackCustom.POST_NEW_ROOM_EARLY = 47
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NEW_ROOM_EARLY] = "POST_NEW_ROOM_EARLY"
-____exports.ModCallbackCustom.POST_NEW_ROOM_REORDERED = 45
+____exports.ModCallbackCustom.POST_NEW_ROOM_REORDERED = 48
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NEW_ROOM_REORDERED] = "POST_NEW_ROOM_REORDERED"
-____exports.ModCallbackCustom.POST_NPC_DEATH_FILTER = 46
+____exports.ModCallbackCustom.POST_NPC_DEATH_FILTER = 49
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_DEATH_FILTER] = "POST_NPC_DEATH_FILTER"
-____exports.ModCallbackCustom.POST_NPC_INIT_FILTER = 47
+____exports.ModCallbackCustom.POST_NPC_INIT_FILTER = 50
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_INIT_FILTER] = "POST_NPC_INIT_FILTER"
-____exports.ModCallbackCustom.POST_NPC_INIT_LATE = 48
+____exports.ModCallbackCustom.POST_NPC_INIT_LATE = 51
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_INIT_LATE] = "POST_NPC_INIT_LATE"
-____exports.ModCallbackCustom.POST_NPC_RENDER_FILTER = 49
+____exports.ModCallbackCustom.POST_NPC_RENDER_FILTER = 52
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_RENDER_FILTER] = "POST_NPC_RENDER_FILTER"
-____exports.ModCallbackCustom.POST_NPC_STATE_CHANGED = 50
+____exports.ModCallbackCustom.POST_NPC_STATE_CHANGED = 53
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_STATE_CHANGED] = "POST_NPC_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_NPC_UPDATE_FILTER = 51
+____exports.ModCallbackCustom.POST_NPC_UPDATE_FILTER = 54
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_NPC_UPDATE_FILTER] = "POST_NPC_UPDATE_FILTER"
-____exports.ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED = 52
+____exports.ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED = 55
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED] = "POST_PEFFECT_UPDATE_REORDERED"
-____exports.ModCallbackCustom.POST_PICKUP_COLLECT = 53
+____exports.ModCallbackCustom.POST_PICKUP_COLLECT = 56
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_COLLECT] = "POST_PICKUP_COLLECT"
-____exports.ModCallbackCustom.POST_PICKUP_INIT_FIRST = 54
+____exports.ModCallbackCustom.POST_PICKUP_INIT_FILTER = 57
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_INIT_FILTER] = "POST_PICKUP_INIT_FILTER"
+____exports.ModCallbackCustom.POST_PICKUP_INIT_FIRST = 58
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_INIT_FIRST] = "POST_PICKUP_INIT_FIRST"
-____exports.ModCallbackCustom.POST_PICKUP_INIT_LATE = 55
+____exports.ModCallbackCustom.POST_PICKUP_INIT_LATE = 59
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_INIT_LATE] = "POST_PICKUP_INIT_LATE"
-____exports.ModCallbackCustom.POST_PICKUP_STATE_CHANGED = 56
+____exports.ModCallbackCustom.POST_PICKUP_RENDER_FILTER = 60
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_RENDER_FILTER] = "POST_PICKUP_RENDER_FILTER"
+____exports.ModCallbackCustom.POST_PICKUP_SELECTION_FILTER = 61
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_SELECTION_FILTER] = "POST_PICKUP_SELECTION_FILTER"
+____exports.ModCallbackCustom.POST_PICKUP_STATE_CHANGED = 62
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_STATE_CHANGED] = "POST_PICKUP_STATE_CHANGED"
-____exports.ModCallbackCustom.POST_PIT_RENDER = 57
+____exports.ModCallbackCustom.POST_PICKUP_UPDATE_FILTER = 63
+____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PICKUP_UPDATE_FILTER] = "POST_PICKUP_UPDATE_FILTER"
+____exports.ModCallbackCustom.POST_PIT_RENDER = 64
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PIT_RENDER] = "POST_PIT_RENDER"
-____exports.ModCallbackCustom.POST_PIT_UPDATE = 58
+____exports.ModCallbackCustom.POST_PIT_UPDATE = 65
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PIT_UPDATE] = "POST_PIT_UPDATE"
-____exports.ModCallbackCustom.POST_PLAYER_CHANGE_HEALTH = 59
+____exports.ModCallbackCustom.POST_PLAYER_CHANGE_HEALTH = 66
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_CHANGE_HEALTH] = "POST_PLAYER_CHANGE_HEALTH"
-____exports.ModCallbackCustom.POST_PLAYER_CHANGE_STAT = 60
+____exports.ModCallbackCustom.POST_PLAYER_CHANGE_STAT = 67
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_CHANGE_STAT] = "POST_PLAYER_CHANGE_STAT"
-____exports.ModCallbackCustom.POST_PLAYER_CHANGE_TYPE = 61
+____exports.ModCallbackCustom.POST_PLAYER_CHANGE_TYPE = 68
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_CHANGE_TYPE] = "POST_PLAYER_CHANGE_TYPE"
-____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED = 62
+____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED = 69
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED] = "POST_PLAYER_COLLECTIBLE_ADDED"
-____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED = 63
+____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED = 70
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED] = "POST_PLAYER_COLLECTIBLE_REMOVED"
-____exports.ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE = 64
+____exports.ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE = 71
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE] = "POST_PLAYER_FATAL_DAMAGE"
-____exports.ModCallbackCustom.POST_PLAYER_INIT_FIRST = 65
+____exports.ModCallbackCustom.POST_PLAYER_INIT_FIRST = 72
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_INIT_FIRST] = "POST_PLAYER_INIT_FIRST"
-____exports.ModCallbackCustom.POST_PLAYER_INIT_LATE = 66
+____exports.ModCallbackCustom.POST_PLAYER_INIT_LATE = 73
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_INIT_LATE] = "POST_PLAYER_INIT_LATE"
-____exports.ModCallbackCustom.POST_PLAYER_RENDER_REORDERED = 67
+____exports.ModCallbackCustom.POST_PLAYER_RENDER_REORDERED = 74
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_RENDER_REORDERED] = "POST_PLAYER_RENDER_REORDERED"
-____exports.ModCallbackCustom.POST_PLAYER_UPDATE_REORDERED = 68
+____exports.ModCallbackCustom.POST_PLAYER_UPDATE_REORDERED = 75
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PLAYER_UPDATE_REORDERED] = "POST_PLAYER_UPDATE_REORDERED"
-____exports.ModCallbackCustom.POST_POOP_RENDER = 69
+____exports.ModCallbackCustom.POST_POOP_RENDER = 76
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_POOP_RENDER] = "POST_POOP_RENDER"
-____exports.ModCallbackCustom.POST_POOP_UPDATE = 70
+____exports.ModCallbackCustom.POST_POOP_UPDATE = 77
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_POOP_UPDATE] = "POST_POOP_UPDATE"
-____exports.ModCallbackCustom.POST_PRESSURE_PLATE_RENDER = 71
+____exports.ModCallbackCustom.POST_PRESSURE_PLATE_RENDER = 78
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PRESSURE_PLATE_RENDER] = "POST_PRESSURE_PLATE_RENDER"
-____exports.ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE = 72
+____exports.ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE = 79
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE] = "POST_PRESSURE_PLATE_UPDATE"
-____exports.ModCallbackCustom.POST_PROJECTILE_INIT_LATE = 73
+____exports.ModCallbackCustom.POST_PROJECTILE_INIT_LATE = 80
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PROJECTILE_INIT_LATE] = "POST_PROJECTILE_INIT_LATE"
-____exports.ModCallbackCustom.POST_PURCHASE = 74
+____exports.ModCallbackCustom.POST_PURCHASE = 81
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_PURCHASE] = "POST_PURCHASE"
-____exports.ModCallbackCustom.POST_ROCK_RENDER = 75
+____exports.ModCallbackCustom.POST_ROCK_RENDER = 82
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ROCK_RENDER] = "POST_ROCK_RENDER"
-____exports.ModCallbackCustom.POST_ROCK_UPDATE = 76
+____exports.ModCallbackCustom.POST_ROCK_UPDATE = 83
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ROCK_UPDATE] = "POST_ROCK_UPDATE"
-____exports.ModCallbackCustom.POST_ROOM_CLEAR_CHANGED = 77
+____exports.ModCallbackCustom.POST_ROOM_CLEAR_CHANGED = 84
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_ROOM_CLEAR_CHANGED] = "POST_ROOM_CLEAR_CHANGED"
-____exports.ModCallbackCustom.POST_SACRIFICE = 78
+____exports.ModCallbackCustom.POST_SACRIFICE = 85
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SACRIFICE] = "POST_SACRIFICE"
-____exports.ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED = 79
+____exports.ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED = 86
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED] = "POST_SLOT_ANIMATION_CHANGED"
-____exports.ModCallbackCustom.POST_SLOT_COLLISION = 80
+____exports.ModCallbackCustom.POST_SLOT_COLLISION = 87
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_COLLISION] = "POST_SLOT_COLLISION"
-____exports.ModCallbackCustom.POST_SLOT_DESTROYED = 81
+____exports.ModCallbackCustom.POST_SLOT_DESTROYED = 88
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_DESTROYED] = "POST_SLOT_DESTROYED"
-____exports.ModCallbackCustom.POST_SLOT_INIT = 82
+____exports.ModCallbackCustom.POST_SLOT_INIT = 89
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_INIT] = "POST_SLOT_INIT"
-____exports.ModCallbackCustom.POST_SLOT_RENDER = 83
+____exports.ModCallbackCustom.POST_SLOT_RENDER = 90
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_RENDER] = "POST_SLOT_RENDER"
-____exports.ModCallbackCustom.POST_SLOT_UPDATE = 84
+____exports.ModCallbackCustom.POST_SLOT_UPDATE = 91
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SLOT_UPDATE] = "POST_SLOT_UPDATE"
-____exports.ModCallbackCustom.POST_SPIKES_RENDER = 85
+____exports.ModCallbackCustom.POST_SPIKES_RENDER = 92
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SPIKES_RENDER] = "POST_SPIKES_RENDER"
-____exports.ModCallbackCustom.POST_SPIKES_UPDATE = 86
+____exports.ModCallbackCustom.POST_SPIKES_UPDATE = 93
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_SPIKES_UPDATE] = "POST_SPIKES_UPDATE"
-____exports.ModCallbackCustom.POST_TEAR_INIT_LATE = 87
+____exports.ModCallbackCustom.POST_TEAR_INIT_LATE = 94
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TEAR_INIT_LATE] = "POST_TEAR_INIT_LATE"
-____exports.ModCallbackCustom.POST_TEAR_INIT_VERY_LATE = 88
+____exports.ModCallbackCustom.POST_TEAR_INIT_VERY_LATE = 95
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TEAR_INIT_VERY_LATE] = "POST_TEAR_INIT_VERY_LATE"
-____exports.ModCallbackCustom.POST_TNT_RENDER = 89
+____exports.ModCallbackCustom.POST_TNT_RENDER = 96
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TNT_RENDER] = "POST_TNT_RENDER"
-____exports.ModCallbackCustom.POST_TNT_UPDATE = 90
+____exports.ModCallbackCustom.POST_TNT_UPDATE = 97
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TNT_UPDATE] = "POST_TNT_UPDATE"
-____exports.ModCallbackCustom.POST_TRANSFORMATION = 91
+____exports.ModCallbackCustom.POST_TRANSFORMATION = 98
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TRANSFORMATION] = "POST_TRANSFORMATION"
-____exports.ModCallbackCustom.POST_TRINKET_BREAK = 92
+____exports.ModCallbackCustom.POST_TRINKET_BREAK = 99
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.POST_TRINKET_BREAK] = "POST_TRINKET_BREAK"
-____exports.ModCallbackCustom.PRE_BERSERK_DEATH = 93
+____exports.ModCallbackCustom.PRE_BERSERK_DEATH = 100
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_BERSERK_DEATH] = "PRE_BERSERK_DEATH"
-____exports.ModCallbackCustom.PRE_CUSTOM_REVIVE = 94
+____exports.ModCallbackCustom.PRE_CUSTOM_REVIVE = 101
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_CUSTOM_REVIVE] = "PRE_CUSTOM_REVIVE"
-____exports.ModCallbackCustom.PRE_GET_PEDESTAL = 95
+____exports.ModCallbackCustom.PRE_GET_PEDESTAL = 102
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_GET_PEDESTAL] = "PRE_GET_PEDESTAL"
-____exports.ModCallbackCustom.PRE_ITEM_PICKUP = 96
+____exports.ModCallbackCustom.PRE_ITEM_PICKUP = 103
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_ITEM_PICKUP] = "PRE_ITEM_PICKUP"
-____exports.ModCallbackCustom.PRE_NEW_LEVEL = 97
+____exports.ModCallbackCustom.PRE_NEW_LEVEL = 104
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_NEW_LEVEL] = "PRE_NEW_LEVEL"
-____exports.ModCallbackCustom.PRE_NPC_COLLISION_FILTER = 98
+____exports.ModCallbackCustom.PRE_NPC_COLLISION_FILTER = 105
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_NPC_COLLISION_FILTER] = "PRE_NPC_COLLISION_FILTER"
-____exports.ModCallbackCustom.PRE_NPC_UPDATE_FILTER = 99
+____exports.ModCallbackCustom.PRE_NPC_UPDATE_FILTER = 106
 ____exports.ModCallbackCustom[____exports.ModCallbackCustom.PRE_NPC_UPDATE_FILTER] = "PRE_NPC_UPDATE_FILTER"
 return ____exports
  end,
@@ -3981,6 +3995,7 @@ ____exports.CollectibleAnimation.EMPTY = "Empty"
 ____exports.CollectibleAnimation.SHOP_IDLE = "ShopIdle"
 ____exports.CollectibleAnimation.PLAYER_PICKUP = "PlayerPickup"
 ____exports.CollectibleAnimation.PLAYER_PICKUP_SPARKLE = "PlayerPickupSparkle"
+____exports.CollectibleAnimation.ALTERNATE = "Alternates"
 return ____exports
  end,
 ["lua_modules.isaac-typescript-definitions.dist.src.enums.CollectiblePedestalType"] = function(...) 
@@ -15336,6 +15351,9 @@ function ____exports.iRange(self, start, ____end, increment)
     end
     return array
 end
+function ____exports.inRange(self, num, start, ____end)
+    return num >= start and num <= ____end
+end
 function ____exports.isReflectionRender(self)
     local room = game:GetRoom()
     local renderMode = room:GetRenderMode()
@@ -15343,9 +15361,6 @@ function ____exports.isReflectionRender(self)
 end
 function ____exports.isVanillaConsoleCommand(self, commandName)
     return CONSOLE_COMMANDS_SET:has(commandName)
-end
-function ____exports.newObjectWithEnumKeys(self, theEnum, obj)
-    return obj
 end
 function ____exports.printConsole(self, msg)
     Isaac.ConsoleOutput(msg .. "\n")
@@ -15398,7 +15413,11 @@ local validateInterfaceMatchesEnum = ____utils.validateInterfaceMatchesEnum
 validateInterfaceMatchesEnum(nil)
 return ____exports
  end,
-["src.types.private.AllButFirst"] = function(...) 
+["src.types.AllButFirst"] = function(...) 
+local ____exports = {}
+return ____exports
+ end,
+["src.types.AnyFunction"] = function(...) 
 local ____exports = {}
 return ____exports
  end,
@@ -16340,6 +16359,34 @@ ____exports.DIRECTION_TO_DEGREES = {
 }
 return ____exports
  end,
+["src.objects.directionToMoveAction"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ButtonAction = ____isaac_2Dtypescript_2Ddefinitions.ButtonAction
+local Direction = ____isaac_2Dtypescript_2Ddefinitions.Direction
+____exports.DIRECTION_TO_MOVE_ACTION = {
+    [Direction.NO_DIRECTION] = nil,
+    [Direction.LEFT] = ButtonAction.LEFT,
+    [Direction.UP] = ButtonAction.UP,
+    [Direction.RIGHT] = ButtonAction.RIGHT,
+    [Direction.DOWN] = ButtonAction.DOWN
+}
+return ____exports
+ end,
+["src.objects.directionToShootAction"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ButtonAction = ____isaac_2Dtypescript_2Ddefinitions.ButtonAction
+local Direction = ____isaac_2Dtypescript_2Ddefinitions.Direction
+____exports.DIRECTION_TO_SHOOT_ACTION = {
+    [Direction.NO_DIRECTION] = nil,
+    [Direction.LEFT] = ButtonAction.SHOOT_LEFT,
+    [Direction.UP] = ButtonAction.SHOOT_UP,
+    [Direction.RIGHT] = ButtonAction.SHOOT_RIGHT,
+    [Direction.DOWN] = ButtonAction.SHOOT_DOWN
+}
+return ____exports
+ end,
 ["src.functions.array"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__ArrayEvery = ____lualib.__TS__ArrayEvery
@@ -16621,7 +16668,10 @@ function ____exports.getRandomArrayElementAndRemove(self, array, seedOrRNG, exce
     ____exports.arrayRemoveInPlace(nil, array, randomArrayElement)
     return randomArrayElement
 end
-function ____exports.isArray(self, object)
+function ____exports.isArray(self, object, ensureContiguousValues)
+    if ensureContiguousValues == nil then
+        ensureContiguousValues = true
+    end
     if not isTable(nil, object) then
         return false
     end
@@ -16640,14 +16690,16 @@ function ____exports.isArray(self, object)
     if not hasAllNumberKeys then
         return false
     end
-    do
-        local i = 1
-        while i <= #keys do
-            local element = object[i]
-            if element == nil then
-                return false
+    if ensureContiguousValues then
+        do
+            local i = 1
+            while i <= #keys do
+                local element = object[i]
+                if element == nil then
+                    return false
+                end
+                i = i + 1
             end
-            i = i + 1
         end
     end
     return true
@@ -16919,8 +16971,10 @@ ____exports.EGGY_STATE_FRAME_OF_FINAL_SPIDER = 45
 ____exports.EMPTY_PNG_PATH = "gfx/none.png"
 ____exports.FIRST_GLITCHED_COLLECTIBLE_TYPE = asCollectibleType(nil, (1 << 32) - 1)
 ____exports.GAME_FRAMES_PER_SECOND = 30
+____exports.GAME_FRAMES_PER_MINUTE = ____exports.GAME_FRAMES_PER_SECOND * 60
 ____exports.ITEM_CONFIG_CARD_TYPES_FOR_CARDS = __TS__New(Set, {ItemConfigCardType.TAROT, ItemConfigCardType.SUIT, ItemConfigCardType.SPECIAL, ItemConfigCardType.TAROT_REVERSE})
 ____exports.RENDER_FRAMES_PER_SECOND = 60
+____exports.RENDER_FRAMES_PER_MINUTE = ____exports.RENDER_FRAMES_PER_SECOND * 60
 ____exports.GRID_INDEX_CENTER_OF_1X1_ROOM = 67
 ____exports.LEVEL_GRID_COLUMN_HEIGHT = 13
 ____exports.LEVEL_GRID_ROW_WIDTH = 13
@@ -16974,6 +17028,10 @@ local ____directionNames = require("src.objects.directionNames")
 local DIRECTION_NAMES = ____directionNames.DIRECTION_NAMES
 local ____directionToDegrees = require("src.objects.directionToDegrees")
 local DIRECTION_TO_DEGREES = ____directionToDegrees.DIRECTION_TO_DEGREES
+local ____directionToMoveAction = require("src.objects.directionToMoveAction")
+local DIRECTION_TO_MOVE_ACTION = ____directionToMoveAction.DIRECTION_TO_MOVE_ACTION
+local ____directionToShootAction = require("src.objects.directionToShootAction")
+local DIRECTION_TO_SHOOT_ACTION = ____directionToShootAction.DIRECTION_TO_SHOOT_ACTION
 local ____directionToVector = require("src.objects.directionToVector")
 local DIRECTION_TO_VECTOR = ____directionToVector.DIRECTION_TO_VECTOR
 function ____exports.angleToDirection(self, angleDegrees)
@@ -16998,6 +17056,12 @@ function ____exports.angleToDirection(self, angleDegrees)
 end
 function ____exports.directionToDegrees(self, direction)
     return DIRECTION_TO_DEGREES[direction]
+end
+function ____exports.directionToMoveAction(self, direction)
+    return DIRECTION_TO_MOVE_ACTION[direction]
+end
+function ____exports.directionToShootAction(self, direction)
+    return DIRECTION_TO_SHOOT_ACTION[direction]
 end
 function ____exports.directionToVector(self, direction)
     return DIRECTION_TO_VECTOR[direction]
@@ -17264,7 +17328,6 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Spread = ____lualib.__TS__Spread
-local __TS__ArraySlice = ____lualib.__TS__ArraySlice
 local __TS__ArrayFindIndex = ____lualib.__TS__ArrayFindIndex
 local __TS__ArraySplice = ____lualib.__TS__ArraySplice
 local ____exports = {}
@@ -17279,13 +17342,10 @@ function CustomCallback.prototype.____constructor(self, ...)
     self.subscriptions = {}
     self.fire = function(____, ...)
         local fireArgs = {...}
-        for ____, ____value in ipairs(self.subscriptions) do
-            local callback = ____value[1]
-            local optionalArgsArray = __TS__ArraySlice(____value, 1)
-            local optionalArgs = optionalArgsArray
+        for ____, subscription in ipairs(self.subscriptions) do
+            local callbackFunc, optionalArgs = table.unpack(subscription)
             if self:shouldFire(fireArgs, optionalArgs) then
-                local callbackCasted = callback
-                local value = callbackCasted(
+                local value = callbackFunc(
                     nil,
                     __TS__Spread(fireArgs)
                 )
@@ -17298,10 +17358,11 @@ function CustomCallback.prototype.____constructor(self, ...)
     end
     self.shouldFire = function() return true end
 end
-function CustomCallback.prototype.addSubscriber(self, ...)
-    local args = {...}
+function CustomCallback.prototype.addSubscriber(self, callbackFunc, ...)
+    local optionalArgs = {...}
+    local subscription = {callbackFunc, optionalArgs}
     local ____self_subscriptions_0 = self.subscriptions
-    ____self_subscriptions_0[#____self_subscriptions_0 + 1] = args
+    ____self_subscriptions_0[#____self_subscriptions_0 + 1] = subscription
 end
 function CustomCallback.prototype.removeSubscriber(self, callback)
     local subscriptionIndexMatchingCallback = __TS__ArrayFindIndex(
@@ -17342,7 +17403,103 @@ function EntityTakeDmgFilter.prototype.____constructor(self)
         source,
         countdownFrames
     ) end
-    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmg}}}
+    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, self.entityTakeDmg}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.EntityTakeDmgPlayer"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____shouldFire = require("src.shouldFire")
+local shouldFirePlayer = ____shouldFire.shouldFirePlayer
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.EntityTakeDmgPlayer = __TS__Class()
+local EntityTakeDmgPlayer = ____exports.EntityTakeDmgPlayer
+EntityTakeDmgPlayer.name = "EntityTakeDmgPlayer"
+__TS__ClassExtends(EntityTakeDmgPlayer, CustomCallback)
+function EntityTakeDmgPlayer.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = shouldFirePlayer
+    self.entityTakeDmgPlayer = function(____, entity, amount, damageFlags, source, countdownFrames)
+        local player = entity:ToPlayer()
+        if player == nil then
+            return nil
+        end
+        return self:fire(
+            player,
+            amount,
+            damageFlags,
+            source,
+            countdownFrames
+        )
+    end
+    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, self.entityTakeDmgPlayer, {EntityType.PLAYER}}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.InputActionFilter"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.InputActionFilter = __TS__Class()
+local InputActionFilter = ____exports.InputActionFilter
+InputActionFilter.name = "InputActionFilter"
+__TS__ClassExtends(InputActionFilter, CustomCallback)
+function InputActionFilter.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = function(____, fireArgs, optionalArgs)
+        local _, inputHook, buttonAction = table.unpack(fireArgs)
+        local callbackInputHook, callbackButtonAction = table.unpack(optionalArgs)
+        return (callbackInputHook == nil or callbackInputHook == inputHook) and (callbackButtonAction == nil or callbackButtonAction == buttonAction)
+    end
+    self.inputAction = function(____, entity, inputHook, buttonAction) return self:fire(entity, inputHook, buttonAction) end
+    self.callbacksUsed = {{ModCallback.INPUT_ACTION, self.inputAction}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.InputActionPlayer"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.InputActionPlayer = __TS__Class()
+local InputActionPlayer = ____exports.InputActionPlayer
+InputActionPlayer.name = "InputActionPlayer"
+__TS__ClassExtends(InputActionPlayer, CustomCallback)
+function InputActionPlayer.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = function(____, fireArgs, optionalArgs)
+        local player, inputHook, buttonAction = table.unpack(fireArgs)
+        local callbackPlayerVariant, callbackCharacter, callbackInputHook, callbackButtonAction = table.unpack(optionalArgs)
+        local character = player:GetPlayerType()
+        return (callbackPlayerVariant == nil or callbackPlayerVariant == player.Variant) and (callbackCharacter == nil or callbackCharacter == character) and (callbackInputHook == nil or callbackInputHook == inputHook) and (callbackButtonAction == nil or callbackButtonAction == buttonAction)
+    end
+    self.inputAction = function(____, entity, inputHook, buttonAction)
+        if entity == nil then
+            return nil
+        end
+        local player = entity:ToPlayer()
+        if player == nil then
+            return nil
+        end
+        return self:fire(player, inputHook, buttonAction)
+    end
+    self.callbacksUsed = {{ModCallback.INPUT_ACTION, self.inputAction}}
 end
 return ____exports
  end,
@@ -17418,7 +17575,7 @@ function PostAmbushFinished.prototype.____constructor(self)
             self:fire(ambushType)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -17460,7 +17617,7 @@ function PostAmbushStarted.prototype.____constructor(self)
             self:fire(ambushType)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -17489,7 +17646,7 @@ function PostBombExploded.prototype.____constructor(self)
             self:fire(bomb)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_BOMB_UPDATE, {self.postBombUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_BOMB_UPDATE, self.postBombUpdate}}
 end
 return ____exports
  end,
@@ -17521,7 +17678,7 @@ function PostBombInitLate.prototype.____constructor(self)
             self:fire(bomb)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_BOMB_UPDATE, {self.postBombUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_BOMB_UPDATE, self.postBombUpdate}}
 end
 return ____exports
  end,
@@ -17551,7 +17708,7 @@ function PostBoneSwing.prototype.____constructor(self)
             self:postKnifeRenderBoneClub(knife)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_KNIFE_RENDER, {self.postKnifeRender}}}
+    self.callbacksUsed = {{ModCallback.POST_KNIFE_RENDER, self.postKnifeRender}}
 end
 function PostBoneSwing.prototype.postKnifeRenderBoneClub(self, knife)
     local sprite = knife:GetSprite()
@@ -17607,7 +17764,7 @@ function PostCollectibleEmpty.prototype.____constructor(self)
             self:collectibleTypeChanged(collectible, oldCollectibleType)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, {self.postPickupUpdateCollectible, PickupVariant.COLLECTIBLE}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, self.postPickupUpdateCollectible, {PickupVariant.COLLECTIBLE}}}
 end
 function PostCollectibleEmpty.prototype.collectibleTypeChanged(self, collectible, oldCollectibleType)
     if collectible.SubType == CollectibleType.NULL then
@@ -20905,7 +21062,7 @@ function PostCollectibleInitFirst.prototype.____constructor(self)
         self.v.run.seenCollectibles:add(collectibleIndex)
         self:fire(collectible)
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, {self.postPickupInitCollectible, PickupVariant.COLLECTIBLE}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, self.postPickupInitCollectible, {PickupVariant.COLLECTIBLE}}}
 end
 return ____exports
  end,
@@ -21749,12 +21906,19 @@ function ____exports.playerHasCollectible(self, player, ...)
         function(____, collectibleType) return player:HasCollectible(collectibleType) end
     )
 end
+function ____exports.playerHasForm(self, player, ...)
+    local playerForms = {...}
+    return __TS__ArraySome(
+        playerForms,
+        function(____, playerForm) return player:HasPlayerForm(playerForm) end
+    )
+end
 function ____exports.removeAllActiveItems(self, player)
     for ____, activeSlot in ipairs(getEnumValues(nil, ActiveSlot)) do
         do
             local collectibleType = player:GetActiveItem(activeSlot)
             if collectibleType == CollectibleType.NULL then
-                goto __continue91
+                goto __continue93
             end
             local hasCollectible
             repeat
@@ -21764,7 +21928,7 @@ function ____exports.removeAllActiveItems(self, player)
                 end
             until not hasCollectible
         end
-        ::__continue91::
+        ::__continue93::
     end
 end
 function ____exports.removeAllPlayerTrinkets(self, player)
@@ -21772,7 +21936,7 @@ function ____exports.removeAllPlayerTrinkets(self, player)
         do
             local trinketType = player:GetTrinket(trinketSlot)
             if trinketType == TrinketType.NULL then
-                goto __continue96
+                goto __continue98
             end
             local hasTrinket
             repeat
@@ -21782,7 +21946,7 @@ function ____exports.removeAllPlayerTrinkets(self, player)
                 end
             until not hasTrinket
         end
-        ::__continue96::
+        ::__continue98::
     end
 end
 function ____exports.removeCollectibleCostume(self, player, collectibleType)
@@ -21836,9 +22000,9 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
         itemPool:RemoveCollectible(collectibleType)
     end
     repeat
-        local ____switch115 = activeSlot
-        local ____cond115 = ____switch115 == ActiveSlot.PRIMARY
-        if ____cond115 then
+        local ____switch117 = activeSlot
+        local ____cond117 = ____switch117 == ActiveSlot.PRIMARY
+        if ____cond117 then
             do
                 if primaryCollectibleType ~= CollectibleType.NULL then
                     player:RemoveCollectible(primaryCollectibleType)
@@ -21847,8 +22011,8 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
                 break
             end
         end
-        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.SECONDARY
-        if ____cond115 then
+        ____cond117 = ____cond117 or ____switch117 == ActiveSlot.SECONDARY
+        if ____cond117 then
             do
                 if primaryCollectibleType ~= CollectibleType.NULL then
                     player:RemoveCollectible(primaryCollectibleType)
@@ -21863,16 +22027,16 @@ function ____exports.setActiveItem(self, player, collectibleType, activeSlot, ch
                 break
             end
         end
-        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.POCKET
-        if ____cond115 then
+        ____cond117 = ____cond117 or ____switch117 == ActiveSlot.POCKET
+        if ____cond117 then
             do
                 player:SetPocketActiveItem(collectibleType, activeSlot, keepInPools)
                 player:SetActiveCharge(charge, activeSlot)
                 break
             end
         end
-        ____cond115 = ____cond115 or ____switch115 == ActiveSlot.POCKET_SINGLE_USE
-        if ____cond115 then
+        ____cond117 = ____cond117 or ____switch117 == ActiveSlot.POCKET_SINGLE_USE
+        if ____cond117 then
             do
                 player:SetPocketActiveItem(collectibleType, activeSlot, keepInPools)
                 break
@@ -21925,13 +22089,14 @@ local playerIsTeleportingFromCursedTeleport
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
 local DamageFlag = ____isaac_2Dtypescript_2Ddefinitions.DamageFlag
-local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local PlayerVariant = ____isaac_2Dtypescript_2Ddefinitions.PlayerVariant
 local RoomType = ____isaac_2Dtypescript_2Ddefinitions.RoomType
 local TrinketType = ____isaac_2Dtypescript_2Ddefinitions.TrinketType
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____flag = require("src.functions.flag")
 local hasFlag = ____flag.hasFlag
 local ____playerDataStructures = require("src.functions.playerDataStructures")
@@ -21972,11 +22137,6 @@ function PostCursedTeleport.prototype.____constructor(self)
         level = {numSacrifices = 0}
     }
     self.shouldFire = shouldFirePlayer
-    self.entityTakeDmgPlayer = function(____, entity, _amount, damageFlags, _source, _countdownFrames)
-        self:incrementNumSacrifices(damageFlags)
-        self:setDamageFrame(entity, damageFlags)
-        return nil
-    end
     self.postPlayerRenderPlayer = function(____, player, _renderOffset)
         local trackingArray = mapGetPlayer(nil, self.v.run.playersDamageFrameMap, player)
         if trackingArray == nil then
@@ -21994,14 +22154,25 @@ function PostCursedTeleport.prototype.____constructor(self)
         mapSetPlayer(nil, self.v.run.playersDamageFrameMap, player, newTrackingArray)
         self:fire(player)
     end
-    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}}, {ModCallback.POST_PLAYER_RENDER, {self.postPlayerRenderPlayer, PlayerVariant.PLAYER}}}
-end
-function PostCursedTeleport.prototype.setDamageFrame(self, entity, damageFlags)
-    local gameFrameCount = game:GetFrameCount()
-    local player = entity:ToPlayer()
-    if player == nil then
-        return
+    self.entityTakeDmgPlayer = function(____, player, _amount, damageFlags, _source, _countdownFrames)
+        self:incrementNumSacrifices(damageFlags)
+        self:setDamageFrame(player, damageFlags)
+        return nil
     end
+    self.callbacksUsed = {{ModCallback.POST_PLAYER_RENDER, self.postPlayerRenderPlayer, {PlayerVariant.PLAYER}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}}
+end
+function PostCursedTeleport.prototype.incrementNumSacrifices(self, damageFlags)
+    local room = game:GetRoom()
+    local roomType = room:GetType()
+    local isSpikeDamage = hasFlag(nil, damageFlags, DamageFlag.SPIKES)
+    if roomType == RoomType.SACRIFICE and isSpikeDamage then
+        local ____self_v_level_0, ____numSacrifices_1 = self.v.level, "numSacrifices"
+        ____self_v_level_0[____numSacrifices_1] = ____self_v_level_0[____numSacrifices_1] + 1
+    end
+end
+function PostCursedTeleport.prototype.setDamageFrame(self, player, damageFlags)
+    local gameFrameCount = game:GetFrameCount()
     local trackingArray = mapGetPlayer(nil, self.v.run.playersDamageFrameMap, player)
     if trackingArray ~= nil then
         local lastDamageFrame, callbackFiredOnThisFrame = table.unpack(trackingArray)
@@ -22020,15 +22191,6 @@ function PostCursedTeleport.prototype.isPotentialNaturalTeleportFromSacrificeRoo
     local roomType = room:GetType()
     local isSpikeDamage = hasFlag(nil, damageFlags, DamageFlag.SPIKES)
     return roomType == RoomType.SACRIFICE and isSpikeDamage and (self.v.level.numSacrifices == 6 or self.v.level.numSacrifices >= 12)
-end
-function PostCursedTeleport.prototype.incrementNumSacrifices(self, damageFlags)
-    local room = game:GetRoom()
-    local roomType = room:GetType()
-    local isSpikeDamage = hasFlag(nil, damageFlags, DamageFlag.SPIKES)
-    if roomType == RoomType.SACRIFICE and isSpikeDamage then
-        local ____self_v_level_0, ____numSacrifices_1 = self.v.level, "numSacrifices"
-        ____self_v_level_0[____numSacrifices_1] = ____self_v_level_0[____numSacrifices_1] + 1
-    end
 end
 return ____exports
  end,
@@ -22201,7 +22363,7 @@ function PostDiceRoomActivated.prototype.____constructor(self)
             self:fire(closestPlayer, effect.SubType)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, {self.postEffectUpdateDiceFloor, EffectVariant.DICE_FLOOR}}}
+    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, self.postEffectUpdateDiceFloor, {EffectVariant.DICE_FLOOR}}}
 end
 return ____exports
  end,
@@ -22230,7 +22392,7 @@ function PostDoorRender.prototype.____constructor(self)
             self:fire(door)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -22259,7 +22421,7 @@ function PostDoorUpdate.prototype.____constructor(self)
             self:fire(door)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -22291,7 +22453,7 @@ function PostEffectInitLate.prototype.____constructor(self)
             self:fire(effect)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, {self.postEffectUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, self.postEffectUpdate}}
 end
 return ____exports
  end,
@@ -22329,7 +22491,7 @@ function PostEffectStateChanged.prototype.____constructor(self)
             self:fire(effect, previousState, currentState)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, {self.postEffectUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_EFFECT_UPDATE, self.postEffectUpdate}}
 end
 return ____exports
  end,
@@ -22380,7 +22542,7 @@ function PostFamiliarInitLate.prototype.____constructor(self)
             self:fire(familiar)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_UPDATE, {self.postFamiliarUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_UPDATE, self.postFamiliarUpdate}}
 end
 return ____exports
  end,
@@ -22418,7 +22580,7 @@ function PostFamiliarStateChanged.prototype.____constructor(self)
             self:fire(familiar, previousState, currentState)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_UPDATE, {self.postFamiliarUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_UPDATE, self.postFamiliarUpdate}}
 end
 return ____exports
  end,
@@ -23345,7 +23507,7 @@ function PostGreedModeWave.prototype.____constructor(self)
             self:fire(oldWave, newWave)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -23703,7 +23865,7 @@ function PostHolyMantleRemoved.prototype.____constructor(self)
             self:fire(player, oldNumHolyMantles, newNumHolyMantles)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 return ____exports
  end,
@@ -24613,8 +24775,8 @@ function PostItemDischarge.prototype.____constructor(self)
             ::__continue9::
         end
     end
-    self.callbacksUsed = {{ModCallback.PRE_NPC_COLLISION, {self.preNPCCollisionSucker, EntityType.SUCKER}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.callbacksUsed = {{ModCallback.PRE_NPC_COLLISION, self.preNPCCollisionSucker, {EntityType.SUCKER}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 function PostItemDischarge.prototype.preNPCCollisionBulb(self, _npc, collider)
     self:checkPlayerCollidedWithBulb(collider)
@@ -24687,7 +24849,7 @@ function PostKnifeInitLate.prototype.____constructor(self)
             self:fire(knife)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_KNIFE_UPDATE, {self.postKnifeUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_KNIFE_UPDATE, self.postKnifeUpdate}}
 end
 return ____exports
  end,
@@ -24719,7 +24881,7 @@ function PostLaserInitLate.prototype.____constructor(self)
             self:fire(laser)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_LASER_UPDATE, {self.postLaserUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_LASER_UPDATE, self.postLaserUpdate}}
 end
 return ____exports
  end,
@@ -25281,6 +25443,8 @@ local STAGE_TYPE_TO_LETTER = ____stageTypeToLetter.STAGE_TYPE_TO_LETTER
 local ____types = require("src.functions.types")
 local asLevelStage = ____types.asLevelStage
 local asNumber = ____types.asNumber
+local ____utils = require("src.functions.utils")
+local inRange = ____utils.inRange
 function ____exports.isRepentanceStage(self, stageType)
     return stageType == StageType.REPENTANCE or stageType == StageType.REPENTANCE_B
 end
@@ -25384,13 +25548,17 @@ end
 function ____exports.onFirstFloor(self)
     local effectiveStage = ____exports.getEffectiveStage(nil)
     local isOnAscent = ____exports.onAscent(nil)
-    return effectiveStage == 1 and not isOnAscent
+    return effectiveStage == LevelStage.BASEMENT_1 and not isOnAscent
 end
 function ____exports.onSheol(self)
     local level = game:GetLevel()
     local stage = level:GetStage()
     local stageType = level:GetStageType()
     return stage == LevelStage.SHEOL_CATHEDRAL and stageType == StageType.ORIGINAL
+end
+function ____exports.onStageWithNaturalDevilRoom(self)
+    local effectiveStage = ____exports.getEffectiveStage(nil)
+    return inRange(nil, effectiveStage, LevelStage.BASEMENT_2, LevelStage.WOMB_2) and effectiveStage ~= LevelStage.BLUE_WOMB
 end
 function ____exports.setStage(self, stage, stageType, reseed)
     if reseed == nil then
@@ -27372,7 +27540,7 @@ function ____exports.logFlags(self, flags, flagEnum, description)
     end
 end
 function ____exports.logArray(self, array)
-    if not isArray(nil, array) then
+    if not isArray(nil, array, false) then
         log(nil, "Tried to log an array, but the given object was not an array.")
         return
     end
@@ -27823,7 +27991,7 @@ function PostNewRoomEarly.prototype.____constructor(self)
         self:checkRoomChanged()
         return nil
     end
-    self.callbacksUsed = {{ModCallback.POST_NEW_ROOM, {self.postNewRoom}}, {ModCallback.PRE_ENTITY_SPAWN, {self.preEntitySpawn}}}
+    self.callbacksUsed = {{ModCallback.POST_NEW_ROOM, self.postNewRoom}, {ModCallback.PRE_ENTITY_SPAWN, self.preEntitySpawn}}
 end
 function PostNewRoomEarly.prototype.checkRoomChanged(self)
     if self:isNewRoom() then
@@ -27895,10 +28063,10 @@ __TS__ClassExtends(PostNPCDeathFilter, CustomCallback)
 function PostNPCDeathFilter.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.shouldFire = shouldFireNPC
-    self.postNPCRender = function(____, npc)
+    self.postNPCDeath = function(____, npc)
         self:fire(npc)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_DEATH, {self.postNPCRender}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_DEATH, self.postNPCDeath}}
 end
 return ____exports
  end,
@@ -27923,7 +28091,7 @@ function PostNPCInitFilter.prototype.____constructor(self)
     self.postNPCInit = function(____, npc)
         self:fire(npc)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, {self.postNPCInit}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, self.postNPCInit}}
 end
 return ____exports
  end,
@@ -27955,7 +28123,7 @@ function PostNPCInitLate.prototype.____constructor(self)
             self:fire(npc)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, {self.postNPCUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, self.postNPCUpdate}}
 end
 return ____exports
  end,
@@ -27980,7 +28148,7 @@ function PostNPCRenderFilter.prototype.____constructor(self)
     self.postNPCRender = function(____, npc, renderOffset)
         self:fire(npc, renderOffset)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_RENDER, {self.postNPCRender}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_RENDER, self.postNPCRender}}
 end
 return ____exports
  end,
@@ -28018,7 +28186,7 @@ function PostNPCStateChanged.prototype.____constructor(self)
             self:fire(npc, previousState, currentState)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, {self.postNPCUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, self.postNPCUpdate}}
 end
 return ____exports
  end,
@@ -28043,7 +28211,7 @@ function PostNPCUpdateFilter.prototype.____constructor(self)
     self.postNPCUpdate = function(____, npc)
         self:fire(npc)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, {self.postNPCUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_UPDATE, self.postNPCUpdate}}
 end
 return ____exports
  end,
@@ -28105,7 +28273,32 @@ function PostPickupCollect.prototype.____constructor(self)
             self:fire(pickup, player)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_RENDER, {self.postPickupRender}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_RENDER, self.postPickupRender}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.PostPickupInitFilter"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____shouldFire = require("src.shouldFire")
+local shouldFirePickup = ____shouldFire.shouldFirePickup
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.PostPickupInitFilter = __TS__Class()
+local PostPickupInitFilter = ____exports.PostPickupInitFilter
+PostPickupInitFilter.name = "PostPickupInitFilter"
+__TS__ClassExtends(PostPickupInitFilter, CustomCallback)
+function PostPickupInitFilter.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = shouldFirePickup
+    self.postPickupInit = function(____, pickup)
+        self:fire(pickup)
+    end
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, self.postPickupInit}}
 end
 return ____exports
  end,
@@ -28142,7 +28335,7 @@ function PostPickupInitFirst.prototype.____constructor(self)
             self:fire(pickup)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, {self.postPickupInit}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, self.postPickupInit}}
 end
 return ____exports
  end,
@@ -28174,7 +28367,55 @@ function PostPickupInitLate.prototype.____constructor(self)
             self:fire(pickup)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, {self.postPickupUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, self.postPickupUpdate}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.PostPickupRenderFilter"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____shouldFire = require("src.shouldFire")
+local shouldFirePickup = ____shouldFire.shouldFirePickup
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.PostPickupRenderFilter = __TS__Class()
+local PostPickupRenderFilter = ____exports.PostPickupRenderFilter
+PostPickupRenderFilter.name = "PostPickupRenderFilter"
+__TS__ClassExtends(PostPickupRenderFilter, CustomCallback)
+function PostPickupRenderFilter.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = shouldFirePickup
+    self.postPickupRender = function(____, pickup, renderOffset)
+        self:fire(pickup, renderOffset)
+    end
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_RENDER, self.postPickupRender}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.PostPickupSelectionFilter"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____shouldFire = require("src.shouldFire")
+local shouldFirePickup = ____shouldFire.shouldFirePickup
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.PostPickupSelectionFilter = __TS__Class()
+local PostPickupSelectionFilter = ____exports.PostPickupSelectionFilter
+PostPickupSelectionFilter.name = "PostPickupSelectionFilter"
+__TS__ClassExtends(PostPickupSelectionFilter, CustomCallback)
+function PostPickupSelectionFilter.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = shouldFirePickup
+    self.postPickupSelection = function(____, pickup, variant, subType) return self:fire(pickup, variant, subType) end
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_SELECTION, self.postPickupSelection}}
 end
 return ____exports
  end,
@@ -28212,7 +28453,32 @@ function PostPickupStateChanged.prototype.____constructor(self)
             self:fire(pickup, previousState, currentState)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, {self.postPickupUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, self.postPickupUpdate}}
+end
+return ____exports
+ end,
+["src.classes.callbacks.PostPickupUpdateFilter"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____shouldFire = require("src.shouldFire")
+local shouldFirePickup = ____shouldFire.shouldFirePickup
+local ____CustomCallback = require("src.classes.private.CustomCallback")
+local CustomCallback = ____CustomCallback.CustomCallback
+____exports.PostPickupUpdateFilter = __TS__Class()
+local PostPickupUpdateFilter = ____exports.PostPickupUpdateFilter
+PostPickupUpdateFilter.name = "PostPickupUpdateFilter"
+__TS__ClassExtends(PostPickupUpdateFilter, CustomCallback)
+function PostPickupUpdateFilter.prototype.____constructor(self)
+    CustomCallback.prototype.____constructor(self)
+    self.shouldFire = shouldFirePickup
+    self.postPickupUpdate = function(____, pickup)
+        self:fire(pickup)
+    end
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_UPDATE, self.postPickupUpdate}}
 end
 return ____exports
  end,
@@ -28589,7 +28855,7 @@ function PostPitRender.prototype.____constructor(self)
             self:fire(pit)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -28618,7 +28884,7 @@ function PostPitUpdate.prototype.____constructor(self)
             self:fire(pit)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -28675,7 +28941,7 @@ function PostPlayerChangeHealth.prototype.____constructor(self)
             end
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectReordered}}
 end
 return ____exports
  end,
@@ -28797,7 +29063,7 @@ function PostPlayerChangeStat.prototype.____constructor(self)
             ::__continue5::
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectReordered}}
 end
 return ____exports
  end,
@@ -28837,7 +29103,7 @@ function PostPlayerChangeType.prototype.____constructor(self)
             self:fire(player, storedCharacter, character)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectReordered}}
 end
 return ____exports
  end,
@@ -29103,10 +29369,11 @@ local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescri
 local BossID = ____isaac_2Dtypescript_2Ddefinitions.BossID
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
 local DamageFlagZero = ____isaac_2Dtypescript_2Ddefinitions.DamageFlagZero
-local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____playerDataStructures = require("src.functions.playerDataStructures")
 local mapGetPlayer = ____playerDataStructures.mapGetPlayer
 local mapSetPlayer = ____playerDataStructures.mapSetPlayer
@@ -29129,11 +29396,23 @@ function PostPlayerFatalDamage.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.v = {run = {playersLastDamageGameFrame = __TS__New(Map)}}
     self.shouldFire = shouldFirePlayer
-    self.entityTakeDmgPlayer = function(____, entity, amount, damageFlags, source, countdownFrames)
-        local player = entity:ToPlayer()
-        if player == nil then
+    self.preUseItemBible = function(____, _collectibleType, _rng, player, _useFlags, _activeSlot, _customVarData)
+        if not inBossRoomOf(nil, BossID.SATAN) then
             return nil
         end
+        local shouldSustainDeath = self:fire(
+            player,
+            0,
+            DamageFlagZero,
+            EntityRef(player),
+            0
+        )
+        if shouldSustainDeath ~= nil then
+            return not shouldSustainDeath
+        end
+        return nil
+    end
+    self.entityTakeDmgPlayer = function(____, player, amount, damageFlags, source, countdownFrames)
         if isChildPlayer(nil, player) then
             return nil
         end
@@ -29164,23 +29443,8 @@ function PostPlayerFatalDamage.prototype.____constructor(self)
         end
         return nil
     end
-    self.preUseItemBible = function(____, _collectibleType, _rng, player, _useFlags, _activeSlot, _customVarData)
-        if not inBossRoomOf(nil, BossID.SATAN) then
-            return nil
-        end
-        local shouldSustainDeath = self:fire(
-            player,
-            0,
-            DamageFlagZero,
-            EntityRef(player),
-            0
-        )
-        if shouldSustainDeath ~= nil then
-            return not shouldSustainDeath
-        end
-        return nil
-    end
-    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}}, {ModCallback.PRE_USE_ITEM, {self.preUseItemBible, CollectibleType.BIBLE}}}
+    self.callbacksUsed = {{ModCallback.PRE_USE_ITEM, self.preUseItemBible, {CollectibleType.BIBLE}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}}
 end
 return ____exports
  end,
@@ -29221,7 +29485,7 @@ function PostPlayerInitFirst.prototype.____constructor(self)
         end
         self:fire(player)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}, {ModCallbackCustom.POST_PLAYER_INIT_LATE, {self.postPlayerInitLate}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}, {ModCallbackCustom.POST_PLAYER_INIT_LATE, self.postPlayerInitLate}}
 end
 return ____exports
  end,
@@ -29255,7 +29519,7 @@ function PostPlayerInitLate.prototype.____constructor(self)
             self:fire(player)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 return ____exports
  end,
@@ -29328,7 +29592,7 @@ function PostPoopRender.prototype.____constructor(self)
             self:fire(poop)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -29357,7 +29621,7 @@ function PostPoopUpdate.prototype.____constructor(self)
             self:fire(poop)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -29386,7 +29650,7 @@ function PostPressurePlateRender.prototype.____constructor(self)
             self:fire(pressurePlate)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -29415,7 +29679,7 @@ function PostPressurePlateUpdate.prototype.____constructor(self)
             self:fire(pressurePlate)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -29447,7 +29711,7 @@ function PostProjectileInitLate.prototype.____constructor(self)
             self:fire(projectile)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PROJECTILE_UPDATE, {self.postProjectileUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_PROJECTILE_UPDATE, self.postProjectileUpdate}}
 end
 return ____exports
  end,
@@ -29489,7 +29753,7 @@ function PostPurchase.prototype.____constructor(self)
             self:playerPickedUpNewItem(player)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 function PostPurchase.prototype.playerPickedUpNewItem(self, player)
     local pickups = getPickups(nil)
@@ -29528,7 +29792,7 @@ function PostRockRender.prototype.____constructor(self)
             self:fire(rock)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -29557,7 +29821,7 @@ function PostRockUpdate.prototype.____constructor(self)
             self:fire(rock)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -29599,8 +29863,8 @@ function PostRoomClearChanged.prototype.____constructor(self)
         local roomClear = room:IsClear()
         self.v.room.cleared = roomClear
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
 end
 return ____exports
  end,
@@ -29611,11 +29875,11 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local DamageFlag = ____isaac_2Dtypescript_2Ddefinitions.DamageFlag
-local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
-local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local RoomType = ____isaac_2Dtypescript_2Ddefinitions.RoomType
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____flag = require("src.functions.flag")
 local hasFlag = ____flag.hasFlag
 local ____shouldFire = require("src.shouldFire")
@@ -29630,11 +29894,7 @@ function PostSacrifice.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.v = {level = {numSacrifices = 0}}
     self.shouldFire = shouldFirePlayer
-    self.entityTakeDmgPlayer = function(____, entity, _amount, damageFlags, _source, _countdownFrames)
-        local player = entity:ToPlayer()
-        if player == nil then
-            return nil
-        end
+    self.entityTakeDmgPlayer = function(____, player, _amount, damageFlags, _source, _countdownFrames)
         local room = game:GetRoom()
         local roomType = room:GetType()
         local isSpikeDamage = hasFlag(nil, damageFlags, DamageFlag.SPIKES)
@@ -29645,7 +29905,7 @@ function PostSacrifice.prototype.____constructor(self)
         end
         return nil
     end
-    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}}
 end
 return ____exports
  end,
@@ -29706,7 +29966,7 @@ function PostSlotCollision.prototype.____constructor(self)
         end
         return nil
     end
-    self.callbacksUsed = {{ModCallback.PRE_PLAYER_COLLISION, {self.prePlayerCollision}}}
+    self.callbacksUsed = {{ModCallback.PRE_PLAYER_COLLISION, self.prePlayerCollision}}
 end
 return ____exports
  end,
@@ -29775,8 +30035,8 @@ function PostSlotDestroyed.prototype.____constructor(self)
             self.v.room.slotPrizeAnimationGameFrame:delete(ptrHash)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_ENTITY_REMOVE, {self.postEntityRemoveSlot, EntityType.SLOT}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED, {self.postSlotAnimationChanged}}}
+    self.callbacksUsed = {{ModCallback.POST_ENTITY_REMOVE, self.postEntityRemoveSlot, {EntityType.SLOT}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED, self.postSlotAnimationChanged}}
 end
 return ____exports
  end,
@@ -29871,7 +30131,7 @@ function PostSpikesRender.prototype.____constructor(self)
             self:fire(spikes)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -29900,7 +30160,7 @@ function PostSpikesUpdate.prototype.____constructor(self)
             self:fire(spikes)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -29932,7 +30192,7 @@ function PostTearInitLate.prototype.____constructor(self)
             self:fire(tear)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_TEAR_UPDATE, {self.postTearUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_TEAR_UPDATE, self.postTearUpdate}}
 end
 return ____exports
  end,
@@ -29967,7 +30227,7 @@ function PostTearInitVeryLate.prototype.____constructor(self)
             self:fire(tear)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_TEAR_UPDATE, {self.postTearUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_TEAR_UPDATE, self.postTearUpdate}}
 end
 return ____exports
  end,
@@ -29996,7 +30256,7 @@ function PostTNTRender.prototype.____constructor(self)
             self:fire(tnt)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 return ____exports
  end,
@@ -30025,7 +30285,7 @@ function PostTNTUpdate.prototype.____constructor(self)
             self:fire(tnt)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
 end
 return ____exports
  end,
@@ -30077,7 +30337,7 @@ function PostTransformation.prototype.____constructor(self)
             end
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 return ____exports
  end,
@@ -30090,7 +30350,6 @@ local __TS__New = ____lualib.__TS__New
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
-local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local PickupVariant = ____isaac_2Dtypescript_2Ddefinitions.PickupVariant
 local TrinketType = ____isaac_2Dtypescript_2Ddefinitions.TrinketType
 local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
@@ -30115,11 +30374,7 @@ function PostTrinketBreak.prototype.____constructor(self)
         function() return __TS__New(Map) end
     )}}
     self.shouldFire = shouldFireTrinketType
-    self.entityTakeDmgPlayer = function(____, entity, _amount, _damageFlags, _source, _countdownFrames)
-        local player = entity:ToPlayer()
-        if player == nil then
-            return nil
-        end
+    self.entityTakeDmgPlayer = function(____, player, _amount, _damageFlags, _source, _countdownFrames)
         local trinketMap = defaultMapGetPlayer(nil, self.v.run.playersTrinketMap, player)
         for ____, trinketType in ipairs(TRINKETS_THAT_CAN_BREAK) do
             do
@@ -30129,16 +30384,16 @@ function PostTrinketBreak.prototype.____constructor(self)
                     oldNumTrinketsHeld = 0
                 end
                 if numTrinketsHeld >= oldNumTrinketsHeld then
-                    goto __continue6
+                    goto __continue5
                 end
                 trinketMap:set(trinketType, numTrinketsHeld)
                 local numTrinketsOnGround = Isaac.CountEntities(nil, EntityType.PICKUP, PickupVariant.TRINKET, trinketType)
                 if numTrinketsOnGround > 0 then
-                    goto __continue6
+                    goto __continue5
                 end
                 self:fire(player, trinketType)
             end
-            ::__continue6::
+            ::__continue5::
         end
         return nil
     end
@@ -30149,8 +30404,7 @@ function PostTrinketBreak.prototype.____constructor(self)
             trinketMap:set(trinketType, numTrinkets)
         end
     end
-    self.callbacksUsed = {{ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}, {ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 return ____exports
  end,
@@ -30191,7 +30445,7 @@ function PreBerserkDeath.prototype.____constructor(self)
             self:fire(player)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 return ____exports
  end,
@@ -30258,7 +30512,7 @@ function PreGetPedestal.prototype.____constructor(self)
         end
         return self:fire(player, collectible)
     end
-    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, {self.prePickupCollision, PickupVariant.COLLECTIBLE}}}
+    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, self.prePickupCollision, {PickupVariant.COLLECTIBLE}}}
 end
 return ____exports
  end,
@@ -30324,7 +30578,7 @@ function PreNewLevel.prototype.____constructor(self)
             self:fire(player)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PLAYER_RENDER, {self.postPlayerRender}}}
+    self.callbacksUsed = {{ModCallback.POST_PLAYER_RENDER, self.postPlayerRender}}
 end
 return ____exports
  end,
@@ -30347,7 +30601,7 @@ function PreNPCCollisionFilter.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.shouldFire = shouldFireNPC
     self.preNPCCollision = function(____, npc, collider, low) return self:fire(npc, collider, low) end
-    self.callbacksUsed = {{ModCallback.PRE_NPC_COLLISION, {self.preNPCCollision}}}
+    self.callbacksUsed = {{ModCallback.PRE_NPC_COLLISION, self.preNPCCollision}}
 end
 return ____exports
  end,
@@ -30370,7 +30624,7 @@ function PreNPCUpdateFilter.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.shouldFire = shouldFireNPC
     self.preNPCUpdate = function(____, npc) return self:fire(npc) end
-    self.callbacksUsed = {{ModCallback.PRE_NPC_UPDATE, {self.preNPCUpdate}}}
+    self.callbacksUsed = {{ModCallback.PRE_NPC_UPDATE, self.preNPCUpdate}}
 end
 return ____exports
  end,
@@ -30380,6 +30634,21 @@ do
     local ____EntityTakeDmgFilter = require("src.classes.callbacks.EntityTakeDmgFilter")
     local EntityTakeDmgFilter = ____EntityTakeDmgFilter.EntityTakeDmgFilter
     ____exports.EntityTakeDmgFilter = EntityTakeDmgFilter
+end
+do
+    local ____EntityTakeDmgPlayer = require("src.classes.callbacks.EntityTakeDmgPlayer")
+    local EntityTakeDmgPlayer = ____EntityTakeDmgPlayer.EntityTakeDmgPlayer
+    ____exports.EntityTakeDmgPlayer = EntityTakeDmgPlayer
+end
+do
+    local ____InputActionFilter = require("src.classes.callbacks.InputActionFilter")
+    local InputActionFilter = ____InputActionFilter.InputActionFilter
+    ____exports.InputActionFilter = InputActionFilter
+end
+do
+    local ____InputActionPlayer = require("src.classes.callbacks.InputActionPlayer")
+    local InputActionPlayer = ____InputActionPlayer.InputActionPlayer
+    ____exports.InputActionPlayer = InputActionPlayer
 end
 do
     local ____PostAmbushFinished = require("src.classes.callbacks.PostAmbushFinished")
@@ -30647,6 +30916,11 @@ do
     ____exports.PostPickupCollect = PostPickupCollect
 end
 do
+    local ____PostPickupInitFilter = require("src.classes.callbacks.PostPickupInitFilter")
+    local PostPickupInitFilter = ____PostPickupInitFilter.PostPickupInitFilter
+    ____exports.PostPickupInitFilter = PostPickupInitFilter
+end
+do
     local ____PostPickupInitFirst = require("src.classes.callbacks.PostPickupInitFirst")
     local PostPickupInitFirst = ____PostPickupInitFirst.PostPickupInitFirst
     ____exports.PostPickupInitFirst = PostPickupInitFirst
@@ -30657,9 +30931,24 @@ do
     ____exports.PostPickupInitLate = PostPickupInitLate
 end
 do
+    local ____PostPickupRenderFilter = require("src.classes.callbacks.PostPickupRenderFilter")
+    local PostPickupRenderFilter = ____PostPickupRenderFilter.PostPickupRenderFilter
+    ____exports.PostPickupRenderFilter = PostPickupRenderFilter
+end
+do
+    local ____PostPickupSelectionFilter = require("src.classes.callbacks.PostPickupSelectionFilter")
+    local PostPickupSelectionFilter = ____PostPickupSelectionFilter.PostPickupSelectionFilter
+    ____exports.PostPickupSelectionFilter = PostPickupSelectionFilter
+end
+do
     local ____PostPickupStateChanged = require("src.classes.callbacks.PostPickupStateChanged")
     local PostPickupStateChanged = ____PostPickupStateChanged.PostPickupStateChanged
     ____exports.PostPickupStateChanged = PostPickupStateChanged
+end
+do
+    local ____PostPickupUpdateFilter = require("src.classes.callbacks.PostPickupUpdateFilter")
+    local PostPickupUpdateFilter = ____PostPickupUpdateFilter.PostPickupUpdateFilter
+    ____exports.PostPickupUpdateFilter = PostPickupUpdateFilter
 end
 do
     local ____PostPitRender = require("src.classes.callbacks.PostPitRender")
@@ -30878,6 +31167,10 @@ do
 end
 return ____exports
  end,
+["src.types.AnyClass"] = function(...) 
+local ____exports = {}
+return ____exports
+ end,
 ["src.callbacks"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__New = ____lualib.__TS__New
@@ -30887,10 +31180,11 @@ local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
 local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____enums = require("src.functions.enums")
 local getEnumValues = ____enums.getEnumValues
-local ____utils = require("src.functions.utils")
-local newObjectWithEnumKeys = ____utils.newObjectWithEnumKeys
-local MOD_CALLBACK_CUSTOM_TO_CLASS = newObjectWithEnumKeys(nil, ModCallbackCustom, {
+local MOD_CALLBACK_CUSTOM_TO_CLASS = {
     [ModCallbackCustom.ENTITY_TAKE_DMG_FILTER] = cc.EntityTakeDmgFilter,
+    [ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER] = cc.EntityTakeDmgPlayer,
+    [ModCallbackCustom.INPUT_ACTION_FILTER] = cc.InputActionFilter,
+    [ModCallbackCustom.INPUT_ACTION_PLAYER] = cc.InputActionPlayer,
     [ModCallbackCustom.POST_AMBUSH_FINISHED] = cc.PostAmbushFinished,
     [ModCallbackCustom.POST_AMBUSH_STARTED] = cc.PostAmbushStarted,
     [ModCallbackCustom.POST_BOMB_EXPLODED] = cc.PostBombExploded,
@@ -30944,9 +31238,13 @@ local MOD_CALLBACK_CUSTOM_TO_CLASS = newObjectWithEnumKeys(nil, ModCallbackCusto
     [ModCallbackCustom.POST_NPC_UPDATE_FILTER] = cc.PostNPCUpdateFilter,
     [ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED] = cc.PostPEffectUpdateReordered,
     [ModCallbackCustom.POST_PICKUP_COLLECT] = cc.PostPickupCollect,
+    [ModCallbackCustom.POST_PICKUP_INIT_FILTER] = cc.PostPickupInitFilter,
     [ModCallbackCustom.POST_PICKUP_INIT_FIRST] = cc.PostPickupInitFirst,
     [ModCallbackCustom.POST_PICKUP_INIT_LATE] = cc.PostPickupInitLate,
+    [ModCallbackCustom.POST_PICKUP_RENDER_FILTER] = cc.PostPickupRenderFilter,
+    [ModCallbackCustom.POST_PICKUP_SELECTION_FILTER] = cc.PostPickupSelectionFilter,
     [ModCallbackCustom.POST_PICKUP_STATE_CHANGED] = cc.PostPickupStateChanged,
+    [ModCallbackCustom.POST_PICKUP_UPDATE_FILTER] = cc.PostPickupUpdateFilter,
     [ModCallbackCustom.POST_PIT_RENDER] = cc.PostPitRender,
     [ModCallbackCustom.POST_PIT_UPDATE] = cc.PostPitUpdate,
     [ModCallbackCustom.POST_PLAYER_CHANGE_HEALTH] = cc.PostPlayerChangeHealth,
@@ -30990,7 +31288,7 @@ local MOD_CALLBACK_CUSTOM_TO_CLASS = newObjectWithEnumKeys(nil, ModCallbackCusto
     [ModCallbackCustom.PRE_NEW_LEVEL] = cc.PreNewLevel,
     [ModCallbackCustom.PRE_NPC_COLLISION_FILTER] = cc.PreNPCCollisionFilter,
     [ModCallbackCustom.PRE_NPC_UPDATE_FILTER] = cc.PreNPCUpdateFilter
-})
+}
 function ____exports.getCallbacks(self)
     local instantiatedClasses = {}
     for ____, modCallbackCustom in ipairs(getEnumValues(nil, ModCallbackCustom)) do
@@ -31091,7 +31389,7 @@ function RunInNFrames.prototype.____constructor(self)
         checkExecuteQueuedFunctions(nil, renderFrameCount, self.v.run.queuedRenderFunctionTuples)
         checkExecuteIntervalFunctions(nil, renderFrameCount, self.v.run.intervalRenderFunctionTuples)
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}, {ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}, {ModCallback.POST_RENDER, self.postRender}}
 end
 function RunInNFrames.prototype.restartNextRenderFrame(self, character)
     self:runNextRenderFrame(function()
@@ -31256,8 +31554,8 @@ function CustomGridEntities.prototype.____constructor(self, runInNFrames)
         end
     end
     self.featuresUsed = {ISCFeature.RUN_IN_N_FRAMES}
-    self.callbacksUsed = {{ModCallback.PRE_USE_ITEM, {self.preUseItemWeNeedToGoDeeper, CollectibleType.WE_NEED_TO_GO_DEEPER}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.PRE_USE_ITEM, self.preUseItemWeNeedToGoDeeper, {CollectibleType.WE_NEED_TO_GO_DEEPER}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.runInNFrames = runInNFrames
 end
 function CustomGridEntities.prototype.spawnCustomGridEntity(self, gridEntityTypeCustom, gridIndexOrPosition, gridCollisionClass, anm2Path, defaultAnimation, baseGridEntityType, baseGridEntityVariant)
@@ -31430,15 +31728,15 @@ function CustomRevive.prototype.____constructor(self, preCustomRevive, postCusto
         end
         sfxManager:Stop(SoundEffect.ONE_UP)
     end
-    self.postPEffectUpdate = function(____, player)
-        self:checkWaitingForItemAnimation(player)
-    end
     self.postNewRoomReordered = function()
         if self.v.run.state ~= CustomReviveState.WAITING_FOR_ROOM_TRANSITION then
             return
         end
         self.v.run.state = CustomReviveState.WAITING_FOR_ITEM_ANIMATION
         self:logStateChanged()
+    end
+    self.postPEffectUpdateReordered = function(____, player)
+        self:checkWaitingForItemAnimation(player)
     end
     self.postPlayerFatalDamage = function(____, player)
         self:playerIsAboutToDie(player)
@@ -31448,8 +31746,8 @@ function CustomRevive.prototype.____constructor(self, preCustomRevive, postCusto
         self:playerIsAboutToDie(player)
     end
     self.featuresUsed = {ISCFeature.RUN_IN_N_FRAMES}
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}, {ModCallback.POST_PEFFECT_UPDATE, {self.postPEffectUpdate}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}, {ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE, {self.postPlayerFatalDamage}}, {ModCallbackCustom.PRE_BERSERK_DEATH, {self.preBerserkDeath}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}, {ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}, {ModCallbackCustom.POST_PLAYER_FATAL_DAMAGE, self.postPlayerFatalDamage}, {ModCallbackCustom.PRE_BERSERK_DEATH, self.preBerserkDeath}}
     self.preCustomRevive = preCustomRevive
     self.postCustomRevive = postCustomRevive
     self.runInNFrames = runInNFrames
@@ -31566,7 +31864,7 @@ function EsauJrDetection.prototype.____constructor(self, postEsauJr, postFirstEs
         self.v.run.usedEsauJrControllerIndex = player.ControllerIndex
         return nil
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}, {ModCallback.POST_USE_ITEM, {self.useItemEsauJr, CollectibleType.ESAU_JR}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}, {ModCallback.POST_USE_ITEM, self.useItemEsauJr, {CollectibleType.ESAU_JR}}}
     self.postEsauJr = postEsauJr
     self.postFirstEsauJr = postFirstEsauJr
 end
@@ -31626,7 +31924,7 @@ function FlipDetection.prototype.____constructor(self, postFlip, postFirstFlip)
         self.postFlip:fire(newLazarus, player)
         return nil
     end
-    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, {self.useItemFlip, CollectibleType.FLIP}}}
+    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, self.useItemFlip, {CollectibleType.FLIP}}}
     self.postFlip = postFlip
     self.postFirstFlip = postFirstFlip
 end
@@ -31699,7 +31997,7 @@ function GameReorderedCallbacks.prototype.____constructor(self, postGameStartedR
         self.forceNewRoom = false
         self.postNewRoomReordered:fire()
     end
-    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, {self.useItemGlowingHourGlass, CollectibleType.GLOWING_HOUR_GLASS}}, {ModCallback.POST_GAME_STARTED, {self.postGameStarted}}, {ModCallback.POST_NEW_LEVEL, {self.postNewLevel}}, {ModCallback.POST_NEW_ROOM, {self.postNewRoom}}}
+    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, self.useItemGlowingHourGlass, {CollectibleType.GLOWING_HOUR_GLASS}}, {ModCallback.POST_GAME_STARTED, self.postGameStarted}, {ModCallback.POST_NEW_LEVEL, self.postNewLevel}, {ModCallback.POST_NEW_ROOM, self.postNewRoom}}
     self.postGameStartedReordered = postGameStartedReordered
     self.postNewLevelReordered = postNewLevelReordered
     self.postNewRoomReordered = postNewRoomReordered
@@ -31791,7 +32089,7 @@ function GridEntityCollisionDetection.prototype.____constructor(self, postGridEn
             end
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
     self.postGridEntityCollision = postGridEntityCollision
     self.postGridEntityCustomCollision = postGridEntityCustomCollision
     self.customGridEntities = customGridEntities
@@ -31826,7 +32124,7 @@ function GridEntityRenderDetection.prototype.____constructor(self, postGridEntit
             end
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
     self.postGridEntityRender = postGridEntityRender
     self.postGridEntityCustomRender = postGridEntityCustomRender
     self.customGridEntities = customGridEntities
@@ -31884,8 +32182,8 @@ function GridEntityUpdateDetection.prototype.____constructor(self, postGridEntit
         end
     end
     self.featuresUsed = {ISCFeature.RUN_IN_N_FRAMES}
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.postGridEntityInit = postGridEntityInit
     self.postGridEntityCustomInit = postGridEntityCustomInit
     self.postGridEntityUpdate = postGridEntityUpdate
@@ -31969,7 +32267,8 @@ local __TS__New = ____lualib.__TS__New
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ItemType = ____isaac_2Dtypescript_2Ddefinitions.ItemType
-local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____playerDataStructures = require("src.functions.playerDataStructures")
 local defaultMapGetPlayer = ____playerDataStructures.defaultMapGetPlayer
 local ____types = require("src.functions.types")
@@ -31991,7 +32290,7 @@ function ItemPickupDetection.prototype.____constructor(self, postItemPickup, pre
         DefaultMap,
         function() return newPickingUpItem(nil) end
     )}}
-    self.postPEffectUpdate = function(____, player)
+    self.postPEffectUpdateReordered = function(____, player)
         local pickingUpItem = defaultMapGetPlayer(nil, self.v.run.playersPickingUpItemMap, player)
         if player:IsItemQueueEmpty() then
             self:queueEmpty(player, pickingUpItem)
@@ -31999,7 +32298,7 @@ function ItemPickupDetection.prototype.____constructor(self, postItemPickup, pre
             self:queueNotEmpty(player, pickingUpItem)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_PEFFECT_UPDATE, {self.postPEffectUpdate}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
     self.postItemPickup = postItemPickup
     self.preItemPickup = preItemPickup
 end
@@ -32388,7 +32687,7 @@ function ModdedElementDetection.prototype.____constructor(self)
     self.postPlayerInit = function(____, _player)
         self.atLeastOneCallbackFired = true
     end
-    self.callbacksUsed = {{ModCallback.POST_PLAYER_INIT, {self.postPlayerInit}}}
+    self.callbacksUsed = {{ModCallback.POST_PLAYER_INIT, self.postPlayerInit}}
 end
 function ModdedElementDetection.prototype.errorIfNoCallbacksFired(self, constantType)
     if not self.atLeastOneCallbackFired then
@@ -33263,7 +33562,6 @@ local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescri
 local ActiveSlot = ____isaac_2Dtypescript_2Ddefinitions.ActiveSlot
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
 local DamageFlag = ____isaac_2Dtypescript_2Ddefinitions.DamageFlag
-local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
 local ItemType = ____isaac_2Dtypescript_2Ddefinitions.ItemType
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local PlayerType = ____isaac_2Dtypescript_2Ddefinitions.PlayerType
@@ -33309,25 +33607,8 @@ function PlayerCollectibleDetection.prototype.____constructor(self, postPlayerCo
         self:updateCollectibleMapAndFire(player, nil)
         return nil
     end
-    self.postPEffectUpdate = function(____, player)
-        local oldCollectibleCount = defaultMapGetPlayer(nil, self.v.run.playersCollectibleCount, player)
-        local newCollectibleCount = player:GetCollectibleCount()
-        mapSetPlayer(nil, self.v.run.playersCollectibleCount, player, newCollectibleCount)
-        local difference = newCollectibleCount - oldCollectibleCount
-        if difference > 0 then
-            self:updateCollectibleMapAndFire(player, difference)
-        elseif difference < 0 then
-            self:updateCollectibleMapAndFire(player, difference * -1)
-        elseif difference == 0 then
-            self:checkActiveItemsChanged(player)
-        end
-    end
-    self.entityTakeDmgPlayer = function(____, entity, _amount, damageFlags, _source, _countdownFrames)
+    self.entityTakeDmgPlayer = function(____, player, _amount, damageFlags, _source, _countdownFrames)
         if hasFlag(nil, damageFlags, DamageFlag.FAKE) then
-            return nil
-        end
-        local player = entity:ToPlayer()
-        if player == nil then
             return nil
         end
         local character = player:GetPlayerType()
@@ -33351,9 +33632,22 @@ function PlayerCollectibleDetection.prototype.____constructor(self, postPlayerCo
         mapSetPlayer(nil, self.v.run.playersCollectibleCount, player, newCollectibleCount)
         self:updateCollectibleMapAndFire(player, 1)
     end
+    self.postPEffectUpdateReordered = function(____, player)
+        local oldCollectibleCount = defaultMapGetPlayer(nil, self.v.run.playersCollectibleCount, player)
+        local newCollectibleCount = player:GetCollectibleCount()
+        mapSetPlayer(nil, self.v.run.playersCollectibleCount, player, newCollectibleCount)
+        local difference = newCollectibleCount - oldCollectibleCount
+        if difference > 0 then
+            self:updateCollectibleMapAndFire(player, difference)
+        elseif difference < 0 then
+            self:updateCollectibleMapAndFire(player, difference * -1)
+        elseif difference == 0 then
+            self:checkActiveItemsChanged(player)
+        end
+    end
     self.featuresUsed = {ISCFeature.MODDED_ELEMENT_SETS, ISCFeature.RUN_IN_N_FRAMES}
-    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, {self.useItemD4, CollectibleType.D4}}, {ModCallback.POST_PEFFECT_UPDATE, {self.postPEffectUpdate}}, {ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_ITEM_PICKUP, {self.postItemPickup}}}
+    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, self.useItemD4, {CollectibleType.D4}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}, {ModCallbackCustom.POST_ITEM_PICKUP, self.postItemPickup}, {ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
     self.postPlayerCollectibleAdded = postPlayerCollectibleAdded
     self.postPlayerCollectibleRemoved = postPlayerCollectibleRemoved
     self.moddedElementSets = moddedElementSets
@@ -33482,8 +33776,8 @@ function PlayerReorderedCallbacks.prototype.____constructor(self, postPEffectUpd
         dequeue(nil, self.v.run.postPlayerUpdateQueue, self.postPlayerUpdateReordered.fire)
         dequeue(nil, self.v.run.postPlayerRenderQueue, self.postPlayerRenderReordered.fire)
     end
-    self.callbacksUsed = {{ModCallback.POST_PEFFECT_UPDATE, {self.postPEffectUpdate}}, {ModCallback.POST_PLAYER_UPDATE, {self.postPlayerUpdate}}, {ModCallback.POST_PLAYER_RENDER, {self.postPlayerRender}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_GAME_STARTED_REORDERED_LAST, {self.postGameStartedReorderedLast}}}
+    self.callbacksUsed = {{ModCallback.POST_PEFFECT_UPDATE, self.postPEffectUpdate}, {ModCallback.POST_PLAYER_UPDATE, self.postPlayerUpdate}, {ModCallback.POST_PLAYER_RENDER, self.postPlayerRender}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_GAME_STARTED_REORDERED_LAST, self.postGameStartedReorderedLast}}
     self.postPEffectUpdateReordered = postPEffectUpdateReordered
     self.postPlayerRenderReordered = postPlayerRenderReordered
     self.postPlayerUpdateReordered = postPlayerUpdateReordered
@@ -33527,7 +33821,7 @@ function SlotRenderDetection.prototype.____constructor(self, postSlotRender, pos
             self:checkSlotAnimationChanged(slot)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
     self.postSlotRender = postSlotRender
     self.postSlotAnimationChanged = postSlotAnimationChanged
 end
@@ -33576,8 +33870,8 @@ function SlotUpdateDetection.prototype.____constructor(self, postSlotInit, postS
             self:checkNewEntity(slot)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.postSlotInit = postSlotInit
     self.postSlotUpdate = postSlotUpdate
 end
@@ -34201,8 +34495,8 @@ function CharacterHealthConversion.prototype.____constructor(self)
         convertRedHeartContainers(nil, player, conversionHeartSubType)
         removeRedHearts(nil, player)
     end
-    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, {self.prePickupCollisionHeart, PickupVariant.HEART}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, self.prePickupCollisionHeart, {PickupVariant.HEART}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 function CharacterHealthConversion.prototype.registerCharacterHealthConversion(self, playerType, conversionHeartSubType)
     if self.characterHealthReplacementMap:has(playerType) then
@@ -34387,7 +34681,7 @@ function CharacterStats.prototype.____constructor(self)
         local delta = stat - defaultStat
         addStat(nil, player, cacheFlag, delta)
     end
-    self.callbacksUsed = {{ModCallback.EVALUATE_CACHE, {self.evaluateCache}}}
+    self.callbacksUsed = {{ModCallback.EVALUATE_CACHE, self.evaluateCache}}
 end
 function CharacterStats.prototype.registerCharacterStats(self, playerType, statMap)
     self.charactersStatMap:set(playerType, statMap)
@@ -34466,7 +34760,7 @@ function RoomHistory.prototype.____constructor(self)
         local ____self_v_run_roomHistory_0 = self.v.run.roomHistory
         ____self_v_run_roomHistory_0[#____self_v_run_roomHistory_0 + 1] = roomDescription
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_EARLY, {self.postNewRoomEarly}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_EARLY, self.postNewRoomEarly}}
 end
 function RoomHistory.prototype.getRoomHistory(self)
     return self.v.run.roomHistory
@@ -34501,6 +34795,1819 @@ __TS__Decorate({Exported}, RoomHistory.prototype, "getRoomHistory", true)
 __TS__Decorate({Exported}, RoomHistory.prototype, "getPreviousRoomDescription", true)
 __TS__Decorate({Exported}, RoomHistory.prototype, "getLatestRoomDescription", true)
 __TS__Decorate({Exported}, RoomHistory.prototype, "isLeavingRoom", true)
+return ____exports
+ end,
+["src.enums.SaveDataKey"] = function(...) 
+local ____exports = {}
+____exports.SaveDataKey = {}
+____exports.SaveDataKey.PERSISTENT = "persistent"
+____exports.SaveDataKey.RUN = "run"
+____exports.SaveDataKey.LEVEL = "level"
+____exports.SaveDataKey.ROOM = "room"
+return ____exports
+ end,
+["src.enums.SerializationType"] = function(...) 
+local ____exports = {}
+____exports.SerializationType = {}
+____exports.SerializationType.NONE = 0
+____exports.SerializationType[____exports.SerializationType.NONE] = "NONE"
+____exports.SerializationType.SERIALIZE = 1
+____exports.SerializationType[____exports.SerializationType.SERIALIZE] = "SERIALIZE"
+____exports.SerializationType.DESERIALIZE = 2
+____exports.SerializationType[____exports.SerializationType.DESERIALIZE] = "DESERIALIZE"
+return ____exports
+ end,
+["src.classes.features.other.saveDataManager.constants"] = function(...) 
+local ____exports = {}
+____exports.SAVE_DATA_MANAGER_DEBUG = false
+return ____exports
+ end,
+["src.objects.isaacAPIClassTypeToBrand"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local CopyableIsaacAPIClassType = ____isaac_2Dtypescript_2Ddefinitions.CopyableIsaacAPIClassType
+local ____SerializationBrand = require("src.enums.SerializationBrand")
+local SerializationBrand = ____SerializationBrand.SerializationBrand
+____exports.ISAAC_API_CLASS_TYPE_TO_BRAND = {
+    [CopyableIsaacAPIClassType.BIT_SET_128] = SerializationBrand.BIT_SET_128,
+    [CopyableIsaacAPIClassType.COLOR] = SerializationBrand.COLOR,
+    [CopyableIsaacAPIClassType.K_COLOR] = SerializationBrand.K_COLOR,
+    [CopyableIsaacAPIClassType.RNG] = SerializationBrand.RNG,
+    [CopyableIsaacAPIClassType.VECTOR] = SerializationBrand.VECTOR
+}
+return ____exports
+ end,
+["src.functions.serialization"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local Set = ____lualib.Set
+local __TS__New = ____lualib.__TS__New
+local __TS__TypeOf = ____lualib.__TS__TypeOf
+local __TS__ObjectEntries = ____lualib.__TS__ObjectEntries
+local __TS__ObjectValues = ____lualib.__TS__ObjectValues
+local __TS__ArrayMap = ____lualib.__TS__ArrayMap
+local __TS__ArraySome = ____lualib.__TS__ArraySome
+local ____exports = {}
+local getSerializedTableType
+local ____SerializationBrand = require("src.enums.SerializationBrand")
+local SerializationBrand = ____SerializationBrand.SerializationBrand
+local ____isaacAPIClassTypeToBrand = require("src.objects.isaacAPIClassTypeToBrand")
+local ISAAC_API_CLASS_TYPE_TO_BRAND = ____isaacAPIClassTypeToBrand.ISAAC_API_CLASS_TYPE_TO_BRAND
+local ____isaacAPIClassTypeToFunctions = require("src.objects.isaacAPIClassTypeToFunctions")
+local ISAAC_API_CLASS_TYPE_TO_FUNCTIONS = ____isaacAPIClassTypeToFunctions.ISAAC_API_CLASS_TYPE_TO_FUNCTIONS
+local ____enums = require("src.functions.enums")
+local getEnumValues = ____enums.getEnumValues
+local ____isaacAPIClass = require("src.functions.isaacAPIClass")
+local getIsaacAPIClassName = ____isaacAPIClass.getIsaacAPIClassName
+local ____types = require("src.functions.types")
+local isString = ____types.isString
+local isTable = ____types.isTable
+local isUserdata = ____types.isUserdata
+function getSerializedTableType(self, serializedIsaacAPIClass)
+    for ____, ____value in ipairs(__TS__ObjectEntries(ISAAC_API_CLASS_TYPE_TO_BRAND)) do
+        local copyableIsaacAPIClassType = ____value[1]
+        local serializationBrand = ____value[2]
+        if serializedIsaacAPIClass[serializationBrand] ~= nil then
+            return copyableIsaacAPIClassType
+        end
+    end
+    return nil
+end
+local SERIALIZATION_BRANDS = getEnumValues(nil, SerializationBrand)
+local SERIALIZATION_BRAND_SET = __TS__New(Set, SERIALIZATION_BRANDS)
+function ____exports.copyIsaacAPIClass(self, isaacAPIClass)
+    if not isUserdata(nil, isaacAPIClass) then
+        error("Failed to copy an Isaac API class since the provided object was of type: " .. __TS__TypeOf(isaacAPIClass))
+    end
+    local isaacAPIClassType = getIsaacAPIClassName(nil, isaacAPIClass)
+    if isaacAPIClassType == nil then
+        error("Failed to copy an Isaac API class since it does not have a class type.")
+    end
+    local copyableIsaacAPIClassType = isaacAPIClassType
+    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
+    if functions == nil then
+        error("Failed to copy an Isaac API class since the associated functions were not found for Isaac API class type: " .. copyableIsaacAPIClassType)
+    end
+    return functions:copy(isaacAPIClass)
+end
+function ____exports.deserializeIsaacAPIClass(self, serializedIsaacAPIClass)
+    if not isTable(nil, serializedIsaacAPIClass) then
+        error("Failed to deserialize an Isaac API class since the provided object was of type: " .. __TS__TypeOf(serializedIsaacAPIClass))
+    end
+    local copyableIsaacAPIClassType = getSerializedTableType(nil, serializedIsaacAPIClass)
+    if copyableIsaacAPIClassType == nil then
+        error("Failed to deserialize an Isaac API class since a valid class type brand was not found.")
+    end
+    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
+    if functions == nil then
+        error("Failed to deserialize an Isaac API class since the associated functions were not found for class type: " .. copyableIsaacAPIClassType)
+    end
+    return functions:deserialize(serializedIsaacAPIClass)
+end
+function ____exports.isCopyableIsaacAPIClass(self, object)
+    local allFunctions = __TS__ObjectValues(ISAAC_API_CLASS_TYPE_TO_FUNCTIONS)
+    local isFunctions = __TS__ArrayMap(
+        allFunctions,
+        function(____, functions) return functions.is end
+    )
+    return __TS__ArraySome(
+        isFunctions,
+        function(____, identityFunction) return identityFunction(nil, object) end
+    )
+end
+function ____exports.isSerializationBrand(self, key)
+    if not isString(nil, key) then
+        return false
+    end
+    return SERIALIZATION_BRAND_SET:has(key)
+end
+function ____exports.isSerializedIsaacAPIClass(self, object)
+    local allFunctions = __TS__ObjectValues(ISAAC_API_CLASS_TYPE_TO_FUNCTIONS)
+    local isSerializedFunctions = __TS__ArrayMap(
+        allFunctions,
+        function(____, functions) return functions.isSerialized end
+    )
+    return __TS__ArraySome(
+        isSerializedFunctions,
+        function(____, identityFunction) return identityFunction(nil, object) end
+    )
+end
+function ____exports.serializeIsaacAPIClass(self, isaacAPIClass)
+    if not isUserdata(nil, isaacAPIClass) then
+        error("Failed to serialize an Isaac API class since the provided object was of type: " .. __TS__TypeOf(isaacAPIClass))
+    end
+    local isaacAPIClassType = getIsaacAPIClassName(nil, isaacAPIClass)
+    if isaacAPIClassType == nil then
+        error("Failed to serialize an Isaac API class since it does not have a class type.")
+    end
+    local copyableIsaacAPIClassType = isaacAPIClassType
+    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
+    if functions == nil then
+        error("Failed to serialize an Isaac API class since the associated functions were not found for class type: " .. copyableIsaacAPIClassType)
+    end
+    return functions:serialize(isaacAPIClass)
+end
+return ____exports
+ end,
+["src.functions.deepCopy"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__New = ____lualib.__TS__New
+local Map = ____lualib.Map
+local Set = ____lualib.Set
+local __TS__Iterator = ____lualib.__TS__Iterator
+local __TS__ArraySort = ____lualib.__TS__ArraySort
+local __TS__ArraySome = ____lualib.__TS__ArraySome
+local ____exports = {}
+local deepCopyTable, deepCopyDefaultMap, getNewDefaultMap, deepCopyMap, deepCopySet, deepCopyTSTLClass, deepCopyArray, deepCopyNormalLuaTable, getCopiedEntries, checkMetatable, deepCopyUserdata
+local ____DefaultMap = require("src.classes.DefaultMap")
+local DefaultMap = ____DefaultMap.DefaultMap
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+local ____SerializationBrand = require("src.enums.SerializationBrand")
+local SerializationBrand = ____SerializationBrand.SerializationBrand
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____array = require("src.functions.array")
+local isArray = ____array.isArray
+local ____isaacAPIClass = require("src.functions.isaacAPIClass")
+local getIsaacAPIClassName = ____isaacAPIClass.getIsaacAPIClassName
+local ____log = require("src.functions.log")
+local log = ____log.log
+local ____serialization = require("src.functions.serialization")
+local copyIsaacAPIClass = ____serialization.copyIsaacAPIClass
+local deserializeIsaacAPIClass = ____serialization.deserializeIsaacAPIClass
+local isCopyableIsaacAPIClass = ____serialization.isCopyableIsaacAPIClass
+local isSerializationBrand = ____serialization.isSerializationBrand
+local isSerializedIsaacAPIClass = ____serialization.isSerializedIsaacAPIClass
+local serializeIsaacAPIClass = ____serialization.serializeIsaacAPIClass
+local ____tstlClass = require("src.functions.tstlClass")
+local getTSTLClassName = ____tstlClass.getTSTLClassName
+local isDefaultMap = ____tstlClass.isDefaultMap
+local isTSTLMap = ____tstlClass.isTSTLMap
+local isTSTLSet = ____tstlClass.isTSTLSet
+local newTSTLClass = ____tstlClass.newTSTLClass
+local ____types = require("src.functions.types")
+local asString = ____types.asString
+local isNumber = ____types.isNumber
+local isPrimitive = ____types.isPrimitive
+local ____utils = require("src.functions.utils")
+local getTraversalDescription = ____utils.getTraversalDescription
+local twoDimensionalSort = ____utils.twoDimensionalSort
+function ____exports.deepCopy(self, value, serializationType, traversalDescription, classConstructors, insideMap)
+    if serializationType == nil then
+        serializationType = SerializationType.NONE
+    end
+    if traversalDescription == nil then
+        traversalDescription = ""
+    end
+    if classConstructors == nil then
+        classConstructors = {}
+    end
+    if insideMap == nil then
+        insideMap = false
+    end
+    if SAVE_DATA_MANAGER_DEBUG then
+        local logString = "deepCopy is operating on: " .. traversalDescription
+        if serializationType == SerializationType.SERIALIZE then
+            logString = logString .. " (serializing)"
+        elseif serializationType == SerializationType.DESERIALIZE then
+            logString = logString .. " (deserializing)"
+        end
+        logString = logString .. ": " .. tostring(value)
+        log(nil, logString)
+    end
+    local valueType = type(value)
+    repeat
+        local ____switch6 = valueType
+        local ____cond6 = ____switch6 == "nil" or ____switch6 == "boolean" or ____switch6 == "number" or ____switch6 == "string"
+        if ____cond6 then
+            do
+                return value
+            end
+        end
+        ____cond6 = ____cond6 or (____switch6 == "function" or ____switch6 == "thread")
+        if ____cond6 then
+            do
+                if serializationType == SerializationType.SERIALIZE then
+                    error((("The deep copy function does not support serialization of \"" .. traversalDescription) .. "\", since it is type: ") .. valueType)
+                end
+                if serializationType == SerializationType.DESERIALIZE then
+                    error((("The deep copy function does not support deserialization of \"" .. traversalDescription) .. "\", since it is type: ") .. valueType)
+                end
+                return value
+            end
+        end
+        ____cond6 = ____cond6 or ____switch6 == "table"
+        if ____cond6 then
+            do
+                local luaMap = value
+                return deepCopyTable(
+                    nil,
+                    luaMap,
+                    serializationType,
+                    traversalDescription,
+                    classConstructors,
+                    insideMap
+                )
+            end
+        end
+        ____cond6 = ____cond6 or ____switch6 == "userdata"
+        if ____cond6 then
+            do
+                return deepCopyUserdata(nil, value, serializationType, traversalDescription)
+            end
+        end
+    until true
+end
+function deepCopyTable(self, luaMap, serializationType, traversalDescription, classConstructors, insideMap)
+    if isDefaultMap(nil, luaMap) or luaMap[SerializationBrand.DEFAULT_MAP] ~= nil then
+        return deepCopyDefaultMap(
+            nil,
+            luaMap,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+    end
+    if isTSTLMap(nil, luaMap) or luaMap[SerializationBrand.MAP] ~= nil then
+        return deepCopyMap(
+            nil,
+            luaMap,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+    end
+    if isTSTLSet(nil, luaMap) or luaMap[SerializationBrand.SET] ~= nil then
+        return deepCopySet(
+            nil,
+            luaMap,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+    end
+    local className = getTSTLClassName(nil, luaMap)
+    if className == "WeakMap" then
+        error("The deep copy function does not support copying the \"WeakMap\" class for: " .. traversalDescription)
+    end
+    if className == "WeakSet" then
+        error("The deep copy function does not support copying the \"WeakSet\" class for: " .. traversalDescription)
+    end
+    if className ~= nil or luaMap[SerializationBrand.TSTL_CLASS] ~= nil then
+        return deepCopyTSTLClass(
+            nil,
+            luaMap,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+    end
+    checkMetatable(nil, luaMap, traversalDescription)
+    if isSerializedIsaacAPIClass(nil, luaMap) and serializationType == SerializationType.DESERIALIZE then
+        return deserializeIsaacAPIClass(nil, luaMap)
+    end
+    if isArray(nil, luaMap) then
+        return deepCopyArray(
+            nil,
+            luaMap,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+    end
+    return deepCopyNormalLuaTable(
+        nil,
+        luaMap,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+end
+function deepCopyDefaultMap(self, defaultMap, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying a DefaultMap.")
+    end
+    local ____isDefaultMap_result_0
+    if isDefaultMap(nil, defaultMap) then
+        ____isDefaultMap_result_0 = defaultMap:getConstructorArg()
+    else
+        ____isDefaultMap_result_0 = nil
+    end
+    local constructorArg = ____isDefaultMap_result_0
+    if serializationType == SerializationType.SERIALIZE and not isPrimitive(nil, constructorArg) then
+        if insideMap then
+            error("Failed to deep copy a DefaultMap because it was instantiated with a factory function and was also inside of an array, map, or set. For more information, see: https://isaacscript.github.io/main/gotchas#failed-to-deep-copy-a-defaultmap")
+        else
+            return deepCopyMap(
+                nil,
+                defaultMap,
+                serializationType,
+                traversalDescription,
+                classConstructors,
+                insideMap
+            )
+        end
+    end
+    local newDefaultMap = getNewDefaultMap(
+        nil,
+        defaultMap,
+        serializationType,
+        traversalDescription,
+        constructorArg
+    )
+    insideMap = true
+    local ____getCopiedEntries_result_1 = getCopiedEntries(
+        nil,
+        defaultMap,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+    local entries = ____getCopiedEntries_result_1.entries
+    local convertedNumberKeysToStrings = ____getCopiedEntries_result_1.convertedNumberKeysToStrings
+    if convertedNumberKeysToStrings then
+        if isDefaultMap(nil, newDefaultMap) then
+            newDefaultMap:set(SerializationBrand.OBJECT_WITH_NUMBER_KEYS, "")
+        else
+            newDefaultMap[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
+        end
+    end
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        local value = ____value[2]
+        if isDefaultMap(nil, newDefaultMap) then
+            newDefaultMap:set(key, value)
+        else
+            newDefaultMap[key] = value
+        end
+    end
+    insideMap = false
+    return newDefaultMap
+end
+function getNewDefaultMap(self, defaultMap, serializationType, traversalDescription, constructorArg)
+    repeat
+        local ____switch35 = serializationType
+        local ____cond35 = ____switch35 == SerializationType.NONE
+        if ____cond35 then
+            do
+                return __TS__New(DefaultMap, constructorArg)
+            end
+        end
+        ____cond35 = ____cond35 or ____switch35 == SerializationType.SERIALIZE
+        if ____cond35 then
+            do
+                local newDefaultMap = {}
+                newDefaultMap[SerializationBrand.DEFAULT_MAP] = ""
+                newDefaultMap[SerializationBrand.DEFAULT_MAP_VALUE] = constructorArg
+                return newDefaultMap
+            end
+        end
+        ____cond35 = ____cond35 or ____switch35 == SerializationType.DESERIALIZE
+        if ____cond35 then
+            do
+                if isDefaultMap(nil, defaultMap) then
+                    error(("Failed to deserialize a default map of \"" .. traversalDescription) .. "\", since it was not a Lua table.")
+                end
+                local defaultMapValue = defaultMap[SerializationBrand.DEFAULT_MAP_VALUE]
+                if defaultMapValue == nil then
+                    error((("Failed to deserialize a default map of \"" .. traversalDescription) .. "\", since there was no serialization brand of: ") .. SerializationBrand.DEFAULT_MAP_VALUE)
+                end
+                return __TS__New(DefaultMap, defaultMapValue)
+            end
+        end
+    until true
+end
+function deepCopyMap(self, map, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying a Map.")
+    end
+    local newMap
+    if serializationType == SerializationType.SERIALIZE then
+        newMap = {}
+        newMap[SerializationBrand.MAP] = ""
+    else
+        newMap = __TS__New(Map)
+    end
+    insideMap = true
+    local ____getCopiedEntries_result_2 = getCopiedEntries(
+        nil,
+        map,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+    local entries = ____getCopiedEntries_result_2.entries
+    local convertedNumberKeysToStrings = ____getCopiedEntries_result_2.convertedNumberKeysToStrings
+    if convertedNumberKeysToStrings then
+        if isTSTLMap(nil, newMap) then
+            newMap:set(SerializationBrand.OBJECT_WITH_NUMBER_KEYS, "")
+        else
+            newMap[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
+        end
+    end
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        local value = ____value[2]
+        if isTSTLMap(nil, newMap) then
+            newMap:set(key, value)
+        else
+            newMap[key] = value
+        end
+    end
+    insideMap = false
+    return newMap
+end
+function deepCopySet(self, set, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying a Set.")
+    end
+    local newSet
+    if serializationType == SerializationType.SERIALIZE then
+        newSet = {}
+        newSet[SerializationBrand.SET] = ""
+    else
+        newSet = __TS__New(Set)
+    end
+    local ____getCopiedEntries_result_3 = getCopiedEntries(
+        nil,
+        set,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+    local entries = ____getCopiedEntries_result_3.entries
+    local convertedNumberKeysToStrings = ____getCopiedEntries_result_3.convertedNumberKeysToStrings
+    if convertedNumberKeysToStrings then
+        if isTSTLSet(nil, newSet) then
+            error("The deep copy function cannot convert number keys to strings for a Set.")
+        else
+            newSet[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
+        end
+    end
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        if isTSTLSet(nil, newSet) then
+            newSet:add(key)
+        else
+            newSet[key] = ""
+        end
+    end
+    return newSet
+end
+function deepCopyTSTLClass(self, tstlClass, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying a TSTL class.")
+    end
+    local newClass
+    repeat
+        local ____switch65 = serializationType
+        local ____cond65 = ____switch65 == SerializationType.NONE
+        if ____cond65 then
+            do
+                newClass = newTSTLClass(nil, tstlClass)
+                break
+            end
+        end
+        ____cond65 = ____cond65 or ____switch65 == SerializationType.SERIALIZE
+        if ____cond65 then
+            do
+                newClass = {}
+                local tstlClassName = getTSTLClassName(nil, tstlClass)
+                if tstlClassName ~= nil then
+                    newClass[SerializationBrand.TSTL_CLASS] = tstlClassName
+                end
+                break
+            end
+        end
+        ____cond65 = ____cond65 or ____switch65 == SerializationType.DESERIALIZE
+        if ____cond65 then
+            do
+                local tstlClassName = tstlClass[SerializationBrand.TSTL_CLASS]
+                if tstlClassName == nil then
+                    error("Failed to deserialize a TSTL class since the brand did not contain the class name.")
+                end
+                local classConstructor = classConstructors[tstlClassName]
+                if classConstructor == nil then
+                    error(("Failed to deserialize a TSTL class since there was no constructor registered for a class name of \"" .. tstlClassName) .. "\". If this mod is using the save data manager, it must register the class constructor with the \"saveDataManagerRegisterClass\" method.")
+                end
+                newClass = __TS__New(classConstructor)
+            end
+            break
+        end
+    until true
+    local ____getCopiedEntries_result_4 = getCopiedEntries(
+        nil,
+        tstlClass,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+    local entries = ____getCopiedEntries_result_4.entries
+    local convertedNumberKeysToStrings = ____getCopiedEntries_result_4.convertedNumberKeysToStrings
+    if convertedNumberKeysToStrings then
+        newClass[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
+    end
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        local value = ____value[2]
+        newClass[key] = value
+    end
+    return newClass
+end
+function deepCopyArray(self, array, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying an array.")
+    end
+    local newArray = {}
+    for ____, value in ipairs(array) do
+        local newValue = ____exports.deepCopy(
+            nil,
+            value,
+            serializationType,
+            traversalDescription,
+            classConstructors,
+            insideMap
+        )
+        newArray[#newArray + 1] = newValue
+    end
+    return newArray
+end
+function deepCopyNormalLuaTable(self, luaMap, serializationType, traversalDescription, classConstructors, insideMap)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "deepCopy is copying a normal Lua table.")
+    end
+    local newTable = {}
+    local ____getCopiedEntries_result_5 = getCopiedEntries(
+        nil,
+        luaMap,
+        serializationType,
+        traversalDescription,
+        classConstructors,
+        insideMap
+    )
+    local entries = ____getCopiedEntries_result_5.entries
+    local convertedNumberKeysToStrings = ____getCopiedEntries_result_5.convertedNumberKeysToStrings
+    if convertedNumberKeysToStrings then
+        newTable[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
+    end
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        local value = ____value[2]
+        newTable[key] = value
+    end
+    return newTable
+end
+function getCopiedEntries(self, object, serializationType, traversalDescription, classConstructors, insideMap)
+    local entries = {}
+    if isTSTLMap(nil, object) or isTSTLSet(nil, object) or isDefaultMap(nil, object) then
+        for ____, ____value in __TS__Iterator(object:entries()) do
+            local key = ____value[1]
+            local value = ____value[2]
+            entries[#entries + 1] = {key, value}
+        end
+    else
+        for key, value in pairs(object) do
+            entries[#entries + 1] = {key, value}
+        end
+    end
+    if SAVE_DATA_MANAGER_DEBUG then
+        __TS__ArraySort(entries, twoDimensionalSort)
+    end
+    local convertStringKeysToNumbers = serializationType == SerializationType.DESERIALIZE and __TS__ArraySome(
+        entries,
+        function(____, ____bindingPattern0)
+            local key
+            key = ____bindingPattern0[1]
+            return key == asString(nil, SerializationBrand.OBJECT_WITH_NUMBER_KEYS)
+        end
+    )
+    local hasNumberKeys = __TS__ArraySome(
+        entries,
+        function(____, ____bindingPattern0)
+            local key
+            key = ____bindingPattern0[1]
+            return isNumber(nil, key)
+        end
+    )
+    local convertNumberKeysToStrings = serializationType == SerializationType.SERIALIZE and hasNumberKeys
+    local copiedEntries = {}
+    for ____, ____value in ipairs(entries) do
+        local key = ____value[1]
+        local value = ____value[2]
+        do
+            if isSerializationBrand(nil, key) then
+                goto __continue93
+            end
+            traversalDescription = getTraversalDescription(nil, key, traversalDescription)
+            local newValue = ____exports.deepCopy(
+                nil,
+                value,
+                serializationType,
+                traversalDescription,
+                classConstructors,
+                insideMap
+            )
+            local keyToUse = key
+            if convertStringKeysToNumbers then
+                local numberKey = tonumber(key)
+                if numberKey ~= nil then
+                    keyToUse = numberKey
+                end
+            end
+            if convertNumberKeysToStrings then
+                keyToUse = tostring(key)
+            end
+            copiedEntries[#copiedEntries + 1] = {keyToUse, newValue}
+        end
+        ::__continue93::
+    end
+    return {entries = copiedEntries, convertedNumberKeysToStrings = convertNumberKeysToStrings}
+end
+function checkMetatable(self, luaMap, traversalDescription)
+    local metatable = getmetatable(luaMap)
+    if metatable == nil then
+        return
+    end
+    local tableDescription = traversalDescription == "" and "the table to copy" or ("\"" .. traversalDescription) .. "\""
+    error(("The deepCopy function detected that " .. tableDescription) .. " has a metatable. Copying tables with metatables is not supported, unless they are explicitly handled by the save data manager. (e.g. TypeScriptToLua Maps, TypeScriptToLua Sets, etc.)")
+end
+function deepCopyUserdata(self, value, serializationType, traversalDescription)
+    local classType = getIsaacAPIClassName(nil, value)
+    if classType == nil then
+        error("The deep copy function was not able to derive the Isaac API class type for: " .. traversalDescription)
+    end
+    if not isCopyableIsaacAPIClass(nil, value) then
+        error((("The deep copy function does not support serializing \"" .. traversalDescription) .. "\", since it is an Isaac API class of type: ") .. classType)
+    end
+    repeat
+        local ____switch104 = serializationType
+        local ____cond104 = ____switch104 == SerializationType.NONE
+        if ____cond104 then
+            do
+                return copyIsaacAPIClass(nil, value)
+            end
+        end
+        ____cond104 = ____cond104 or ____switch104 == SerializationType.SERIALIZE
+        if ____cond104 then
+            do
+                return serializeIsaacAPIClass(nil, value)
+            end
+        end
+        ____cond104 = ____cond104 or ____switch104 == SerializationType.DESERIALIZE
+        if ____cond104 then
+            do
+                error(("The deep copy function can not deserialize \"" .. traversalDescription) .. "\", since it is userdata.")
+            end
+            break
+        end
+    until true
+end
+return ____exports
+ end,
+["src.functions.merge"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local Set = ____lualib.Set
+local Map = ____lualib.Map
+local ____exports = {}
+local mergeSerializedArray, mergeSerializedTSTLObject, mergeSerializedTable
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+local ____SerializationBrand = require("src.enums.SerializationBrand")
+local SerializationBrand = ____SerializationBrand.SerializationBrand
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____array = require("src.functions.array")
+local isArray = ____array.isArray
+local ____deepCopy = require("src.functions.deepCopy")
+local deepCopy = ____deepCopy.deepCopy
+local ____log = require("src.functions.log")
+local log = ____log.log
+local ____serialization = require("src.functions.serialization")
+local deserializeIsaacAPIClass = ____serialization.deserializeIsaacAPIClass
+local isSerializationBrand = ____serialization.isSerializationBrand
+local isSerializedIsaacAPIClass = ____serialization.isSerializedIsaacAPIClass
+local ____table = require("src.functions.table")
+local clearTable = ____table.clearTable
+local iterateTableInOrder = ____table.iterateTableInOrder
+local ____tstlClass = require("src.functions.tstlClass")
+local isDefaultMap = ____tstlClass.isDefaultMap
+local isTSTLMap = ____tstlClass.isTSTLMap
+local isTSTLSet = ____tstlClass.isTSTLSet
+local ____types = require("src.functions.types")
+local isTable = ____types.isTable
+local ____utils = require("src.functions.utils")
+local getTraversalDescription = ____utils.getTraversalDescription
+function ____exports.merge(self, oldObject, newTable, traversalDescription, classConstructors)
+    if classConstructors == nil then
+        classConstructors = {}
+    end
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "merge is traversing: " .. traversalDescription)
+    end
+    if not isTable(nil, oldObject) then
+        error("The first argument given to the merge function is not a table.")
+    end
+    if not isTable(nil, newTable) then
+        error("The second argument given to the merge function is not a table.")
+    end
+    if isArray(nil, oldObject) and isArray(nil, newTable) then
+        mergeSerializedArray(
+            nil,
+            oldObject,
+            newTable,
+            traversalDescription,
+            classConstructors
+        )
+        return
+    end
+    if isTSTLMap(nil, oldObject) or isTSTLSet(nil, oldObject) or isDefaultMap(nil, oldObject) then
+        mergeSerializedTSTLObject(
+            nil,
+            oldObject,
+            newTable,
+            traversalDescription,
+            classConstructors
+        )
+    else
+        mergeSerializedTable(
+            nil,
+            oldObject,
+            newTable,
+            traversalDescription,
+            classConstructors
+        )
+    end
+end
+function mergeSerializedArray(self, oldArray, newArray, traversalDescription, classConstructors)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "merge encountered an array: " .. traversalDescription)
+    end
+    clearTable(nil, oldArray)
+    iterateTableInOrder(
+        nil,
+        newArray,
+        function(____, key, value)
+            local deserializedValue = deepCopy(
+                nil,
+                value,
+                SerializationType.DESERIALIZE,
+                traversalDescription,
+                classConstructors
+            )
+            oldArray[key] = deserializedValue
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+function mergeSerializedTSTLObject(self, oldObject, newTable, traversalDescription, classConstructors)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "merge encountered a TSTL object: " .. traversalDescription)
+    end
+    oldObject:clear()
+    local convertStringKeysToNumbers = newTable[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] ~= nil
+    iterateTableInOrder(
+        nil,
+        newTable,
+        function(____, key, value)
+            if isSerializationBrand(nil, key) then
+                return
+            end
+            local keyToUse = key
+            if convertStringKeysToNumbers then
+                local numberKey = tonumber(key)
+                if numberKey == nil then
+                    return
+                end
+                keyToUse = numberKey
+            end
+            if isTSTLMap(nil, oldObject) or isDefaultMap(nil, oldObject) then
+                local deserializedValue = deepCopy(
+                    nil,
+                    value,
+                    SerializationType.DESERIALIZE,
+                    traversalDescription,
+                    classConstructors
+                )
+                oldObject:set(keyToUse, deserializedValue)
+            elseif isTSTLSet(nil, oldObject) then
+                oldObject:add(keyToUse)
+            end
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+function mergeSerializedTable(self, oldTable, newTable, traversalDescription, classConstructors)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "merge encountered a Lua table: " .. traversalDescription)
+    end
+    iterateTableInOrder(
+        nil,
+        newTable,
+        function(____, key, value)
+            if SAVE_DATA_MANAGER_DEBUG then
+                local valueToPrint = value == "" and "(empty string)" or tostring(value)
+                log(nil, (("merge is merging: " .. traversalDescription) .. " --> ") .. valueToPrint)
+            end
+            if isSerializationBrand(nil, key) then
+                return
+            end
+            if isSerializedIsaacAPIClass(nil, value) then
+                if SAVE_DATA_MANAGER_DEBUG then
+                    log(nil, "merge found a serialized Isaac API class.")
+                end
+                local deserializedObject = deserializeIsaacAPIClass(nil, value)
+                oldTable[key] = deserializedObject
+                return
+            end
+            if isTable(nil, value) then
+                local oldValue = oldTable[key]
+                if not isTable(nil, oldValue) then
+                    oldValue = {}
+                    oldTable[key] = oldValue
+                end
+                traversalDescription = getTraversalDescription(nil, key, traversalDescription)
+                ____exports.merge(
+                    nil,
+                    oldValue,
+                    value,
+                    traversalDescription,
+                    classConstructors
+                )
+            else
+                oldTable[key] = value
+            end
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+return ____exports
+ end,
+["src.classes.features.other.saveDataManager.glowingHourGlass"] = function(...) 
+local ____exports = {}
+local ____SaveDataKey = require("src.enums.SaveDataKey")
+local SaveDataKey = ____SaveDataKey.SaveDataKey
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____deepCopy = require("src.functions.deepCopy")
+local deepCopy = ____deepCopy.deepCopy
+local ____merge = require("src.functions.merge")
+local merge = ____merge.merge
+local ____table = require("src.functions.table")
+local iterateTableInOrder = ____table.iterateTableInOrder
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+local GLOWING_HOUR_GLASS_BACKUP_KEYS = {SaveDataKey.RUN, SaveDataKey.LEVEL}
+local IGNORE_GLOWING_HOUR_GLASS_KEY = "__ignoreGlowingHourGlass"
+function ____exports.makeGlowingHourGlassBackup(self, saveDataMap, saveDataConditionalFuncMap, saveDataGlowingHourGlassMap)
+    iterateTableInOrder(
+        nil,
+        saveDataMap,
+        function(____, subscriberName, saveData)
+            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
+            if conditionalFunc ~= nil then
+                local shouldSave = conditionalFunc(nil)
+                if not shouldSave then
+                    return
+                end
+            end
+            for ____, saveDataKey in ipairs(GLOWING_HOUR_GLASS_BACKUP_KEYS) do
+                do
+                    local childTable = saveData[saveDataKey]
+                    if childTable == nil then
+                        goto __continue6
+                    end
+                    local childTableLuaMap = childTable
+                    if childTableLuaMap[IGNORE_GLOWING_HOUR_GLASS_KEY] ~= nil then
+                        goto __continue6
+                    end
+                    local saveDataGlowingHourGlass = saveDataGlowingHourGlassMap[subscriberName]
+                    if saveDataGlowingHourGlass == nil then
+                        saveDataGlowingHourGlass = {}
+                        saveDataGlowingHourGlassMap[subscriberName] = saveDataGlowingHourGlass
+                    end
+                    local copiedChildTable = deepCopy(nil, childTable, SerializationType.SERIALIZE)
+                    saveDataGlowingHourGlass[saveDataKey] = copiedChildTable
+                end
+                ::__continue6::
+            end
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+function ____exports.restoreGlowingHourGlassBackup(self, saveDataMap, saveDataConditionalFuncMap, saveDataGlowingHourGlassMap, classConstructors)
+    iterateTableInOrder(
+        nil,
+        saveDataMap,
+        function(____, subscriberName, saveData)
+            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
+            if conditionalFunc ~= nil then
+                local shouldSave = conditionalFunc(nil)
+                if not shouldSave then
+                    return
+                end
+            end
+            for ____, saveDataKey in ipairs(GLOWING_HOUR_GLASS_BACKUP_KEYS) do
+                do
+                    local childTable = saveData[saveDataKey]
+                    if childTable == nil then
+                        goto __continue15
+                    end
+                    local childTableLuaMap = childTable
+                    if childTableLuaMap[IGNORE_GLOWING_HOUR_GLASS_KEY] ~= nil then
+                        goto __continue15
+                    end
+                    local saveDataGlowingHourGlass = saveDataGlowingHourGlassMap[subscriberName]
+                    if saveDataGlowingHourGlass == nil then
+                        goto __continue15
+                    end
+                    local childTableBackup = saveDataGlowingHourGlass[saveDataKey]
+                    if childTableBackup == nil then
+                        goto __continue15
+                    end
+                    merge(
+                        nil,
+                        childTable,
+                        childTableBackup,
+                        subscriberName .. "__glowingHourGlass",
+                        classConstructors
+                    )
+                end
+                ::__continue15::
+            end
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+return ____exports
+ end,
+["src.functions.jsonHelpers"] = function(...) 
+local ____exports = {}
+local jsonLua = require("src.lib.jsonLua")
+local ____logMisc = require("src.functions.logMisc")
+local logError = ____logMisc.logError
+local function tryDecode(jsonString)
+    return jsonLua.decode(jsonString)
+end
+local function tryEncode(luaTable)
+    return jsonLua.encode(luaTable)
+end
+function ____exports.jsonDecode(self, jsonString)
+    local ok, luaTableOrErrMsg = pcall(tryDecode, jsonString)
+    if not ok then
+        logError(nil, "Failed to convert the JSON string to a Lua table: " .. jsonString)
+        return {}
+    end
+    return luaTableOrErrMsg
+end
+function ____exports.jsonEncode(self, luaTable)
+    local ok, jsonStringOrErrMsg = pcall(tryEncode, luaTable)
+    if not ok then
+        error("Failed to convert the Lua table to JSON: " .. jsonStringOrErrMsg)
+    end
+    return jsonStringOrErrMsg
+end
+return ____exports
+ end,
+["src.lib.jsonLua"] = function(...) 
+-- cspell:disable
+
+--
+-- json.lua
+--
+-- Copyright (c) 2020 rxi
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a copy of
+-- this software and associated documentation files (the "Software"), to deal in
+-- the Software without restriction, including without limitation the rights to
+-- use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+-- of the Software, and to permit persons to whom the Software is furnished to do
+-- so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in all
+-- copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+--
+
+local json = { _version = "0.1.2" }
+
+-------------------------------------------------------------------------------
+-- Encode
+-------------------------------------------------------------------------------
+
+local encode
+
+local escape_char_map = {
+  [ "\\" ] = "\\",
+  [ "\"" ] = "\"",
+  [ "\b" ] = "b",
+  [ "\f" ] = "f",
+  [ "\n" ] = "n",
+  [ "\r" ] = "r",
+  [ "\t" ] = "t",
+}
+
+local escape_char_map_inv = { [ "/" ] = "/" }
+for k, v in pairs(escape_char_map) do
+  escape_char_map_inv[v] = k
+end
+
+
+local function escape_char(c)
+  return "\\" .. (escape_char_map[c] or string.format("u%04x", c:byte()))
+end
+
+
+local function encode_nil(val)
+  return "null"
+end
+
+
+local function encode_table(val, stack)
+  local res = {}
+  stack = stack or {}
+
+  -- Circular reference?
+  if stack[val] then error("circular reference") end
+
+  stack[val] = true
+
+  if rawget(val, 1) ~= nil or next(val) == nil then
+    -- Treat as array -- check keys are valid and it is not sparse
+    local n = 0
+    for k in pairs(val) do
+      if type(k) ~= "number" then
+        error("invalid table: mixed or invalid key types")
+      end
+      n = n + 1
+    end
+    if n ~= #val then
+      error("invalid table: sparse array")
+    end
+    -- Encode
+    for i, v in ipairs(val) do
+      table.insert(res, encode(v, stack))
+    end
+    stack[val] = nil
+    return "[" .. table.concat(res, ",") .. "]"
+
+  else
+    -- Treat as an object
+    for k, v in pairs(val) do
+      if type(k) ~= "string" then
+        error("invalid table: mixed or invalid key types")
+      end
+      table.insert(res, encode(k, stack) .. ":" .. encode(v, stack))
+    end
+    stack[val] = nil
+    return "{" .. table.concat(res, ",") .. "}"
+  end
+end
+
+
+local function encode_string(val)
+  return '"' .. val:gsub('[%z\1-\31\\"]', escape_char) .. '"'
+end
+
+
+local function encode_number(val)
+  -- Check for NaN, -inf and inf
+  if val ~= val or val <= -math.huge or val >= math.huge then
+    error("unexpected number value '" .. tostring(val) .. "'")
+  end
+  return string.format("%.14g", val)
+end
+
+
+local type_func_map = {
+  [ "nil"     ] = encode_nil,
+  [ "table"   ] = encode_table,
+  [ "string"  ] = encode_string,
+  [ "number"  ] = encode_number,
+  [ "boolean" ] = tostring,
+}
+
+
+encode = function(val, stack)
+  local t = type(val)
+  local f = type_func_map[t]
+  if f then
+    return f(val, stack)
+  end
+  error("unexpected type '" .. t .. "'")
+end
+
+
+function json.encode(val)
+  return ( encode(val) )
+end
+
+
+-------------------------------------------------------------------------------
+-- Decode
+-------------------------------------------------------------------------------
+
+local parse
+
+local function create_set(...)
+  local res = {}
+  for i = 1, select("#", ...) do
+    res[ select(i, ...) ] = true
+  end
+  return res
+end
+
+local space_chars   = create_set(" ", "\t", "\r", "\n")
+local delim_chars   = create_set(" ", "\t", "\r", "\n", "]", "}", ",")
+local escape_chars  = create_set("\\", "/", '"', "b", "f", "n", "r", "t", "u")
+local literals      = create_set("true", "false", "null")
+
+local literal_map = {
+  [ "true"  ] = true,
+  [ "false" ] = false,
+  [ "null"  ] = nil,
+}
+
+
+local function next_char(str, idx, set, negate)
+  for i = idx, #str do
+    if set[str:sub(i, i)] ~= negate then
+      return i
+    end
+  end
+  return #str + 1
+end
+
+
+local function decode_error(str, idx, msg)
+  local line_count = 1
+  local col_count = 1
+  for i = 1, idx - 1 do
+    col_count = col_count + 1
+    if str:sub(i, i) == "\n" then
+      line_count = line_count + 1
+      col_count = 1
+    end
+  end
+  error( string.format("%s at line %d col %d", msg, line_count, col_count) )
+end
+
+
+local function codepoint_to_utf8(n)
+  -- http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=iws-appendixa
+  local f = math.floor
+  if n <= 0x7f then
+    return string.char(n)
+  elseif n <= 0x7ff then
+    return string.char(f(n / 64) + 192, n % 64 + 128)
+  elseif n <= 0xffff then
+    return string.char(f(n / 4096) + 224, f(n % 4096 / 64) + 128, n % 64 + 128)
+  elseif n <= 0x10ffff then
+    return string.char(f(n / 262144) + 240, f(n % 262144 / 4096) + 128,
+                       f(n % 4096 / 64) + 128, n % 64 + 128)
+  end
+  error( string.format("invalid unicode codepoint '%x'", n) )
+end
+
+
+local function parse_unicode_escape(s)
+  local n1 = tonumber( s:sub(1, 4),  16 )
+  local n2 = tonumber( s:sub(7, 10), 16 )
+   -- Surrogate pair?
+  if n2 then
+    return codepoint_to_utf8((n1 - 0xd800) * 0x400 + (n2 - 0xdc00) + 0x10000)
+  else
+    return codepoint_to_utf8(n1)
+  end
+end
+
+
+local function parse_string(str, i)
+  local res = ""
+  local j = i + 1
+  local k = j
+
+  while j <= #str do
+    local x = str:byte(j)
+
+    if x < 32 then
+      decode_error(str, j, "control character in string")
+
+    elseif x == 92 then -- `\`: Escape
+      res = res .. str:sub(k, j - 1)
+      j = j + 1
+      local c = str:sub(j, j)
+      if c == "u" then
+        local hex = str:match("^[dD][89aAbB]%x%x\\u%x%x%x%x", j + 1)
+                 or str:match("^%x%x%x%x", j + 1)
+                 or decode_error(str, j - 1, "invalid unicode escape in string")
+        res = res .. parse_unicode_escape(hex)
+        j = j + #hex
+      else
+        if not escape_chars[c] then
+          decode_error(str, j - 1, "invalid escape char '" .. c .. "' in string")
+        end
+        res = res .. escape_char_map_inv[c]
+      end
+      k = j + 1
+
+    elseif x == 34 then -- `"`: End of string
+      res = res .. str:sub(k, j - 1)
+      return res, j + 1
+    end
+
+    j = j + 1
+  end
+
+  decode_error(str, i, "expected closing quote for string")
+end
+
+
+local function parse_number(str, i)
+  local x = next_char(str, i, delim_chars)
+  local s = str:sub(i, x - 1)
+  local n = tonumber(s)
+  if not n then
+    decode_error(str, i, "invalid number '" .. s .. "'")
+  end
+  return n, x
+end
+
+
+local function parse_literal(str, i)
+  local x = next_char(str, i, delim_chars)
+  local word = str:sub(i, x - 1)
+  if not literals[word] then
+    decode_error(str, i, "invalid literal '" .. word .. "'")
+  end
+  return literal_map[word], x
+end
+
+
+local function parse_array(str, i)
+  local res = {}
+  local n = 1
+  i = i + 1
+  while 1 do
+    local x
+    i = next_char(str, i, space_chars, true)
+    -- Empty / end of array?
+    if str:sub(i, i) == "]" then
+      i = i + 1
+      break
+    end
+    -- Read token
+    x, i = parse(str, i)
+    res[n] = x
+    n = n + 1
+    -- Next token
+    i = next_char(str, i, space_chars, true)
+    local chr = str:sub(i, i)
+    i = i + 1
+    if chr == "]" then break end
+    if chr ~= "," then decode_error(str, i, "expected ']' or ','") end
+  end
+  return res, i
+end
+
+
+local function parse_object(str, i)
+  local res = {}
+  i = i + 1
+  while 1 do
+    local key, val
+    i = next_char(str, i, space_chars, true)
+    -- Empty / end of object?
+    if str:sub(i, i) == "}" then
+      i = i + 1
+      break
+    end
+    -- Read key
+    if str:sub(i, i) ~= '"' then
+      decode_error(str, i, "expected string for key")
+    end
+    key, i = parse(str, i)
+    -- Read ':' delimiter
+    i = next_char(str, i, space_chars, true)
+    if str:sub(i, i) ~= ":" then
+      decode_error(str, i, "expected ':' after key")
+    end
+    i = next_char(str, i + 1, space_chars, true)
+    -- Read value
+    val, i = parse(str, i)
+    -- Set
+    res[key] = val
+    -- Next token
+    i = next_char(str, i, space_chars, true)
+    local chr = str:sub(i, i)
+    i = i + 1
+    if chr == "}" then break end
+    if chr ~= "," then decode_error(str, i, "expected '}' or ','") end
+  end
+  return res, i
+end
+
+
+local char_func_map = {
+  [ '"' ] = parse_string,
+  [ "0" ] = parse_number,
+  [ "1" ] = parse_number,
+  [ "2" ] = parse_number,
+  [ "3" ] = parse_number,
+  [ "4" ] = parse_number,
+  [ "5" ] = parse_number,
+  [ "6" ] = parse_number,
+  [ "7" ] = parse_number,
+  [ "8" ] = parse_number,
+  [ "9" ] = parse_number,
+  [ "-" ] = parse_number,
+  [ "t" ] = parse_literal,
+  [ "f" ] = parse_literal,
+  [ "n" ] = parse_literal,
+  [ "[" ] = parse_array,
+  [ "{" ] = parse_object,
+}
+
+
+parse = function(str, idx)
+  local chr = str:sub(idx, idx)
+  local f = char_func_map[chr]
+  if f then
+    return f(str, idx)
+  end
+  decode_error(str, idx, "unexpected character '" .. chr .. "'")
+end
+
+
+function json.decode(str)
+  if type(str) ~= "string" then
+    error("expected argument of type string, got " .. type(str))
+  end
+  local res, idx = parse(str, next_char(str, 1, space_chars, true))
+  idx = next_char(str, idx, space_chars, true)
+  if idx <= #str then
+    decode_error(str, idx, "trailing garbage")
+  end
+  return res
+end
+
+
+return json
+ end,
+["src.classes.features.other.saveDataManager.loadFromDisk"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__StringTrim = ____lualib.__TS__StringTrim
+local ____exports = {}
+local readSaveDatFile, tryLoadModData, DEFAULT_MOD_DATA
+local ____jsonHelpers = require("src.functions.jsonHelpers")
+local jsonDecode = ____jsonHelpers.jsonDecode
+local ____log = require("src.functions.log")
+local log = ____log.log
+local ____logMisc = require("src.functions.logMisc")
+local logError = ____logMisc.logError
+local ____merge = require("src.functions.merge")
+local merge = ____merge.merge
+local ____table = require("src.functions.table")
+local iterateTableInOrder = ____table.iterateTableInOrder
+local ____types = require("src.functions.types")
+local isString = ____types.isString
+local isTable = ____types.isTable
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+function readSaveDatFile(self, mod)
+    local renderFrameCount = Isaac.GetFrameCount()
+    local ok, jsonStringOrErrMsg = pcall(tryLoadModData, mod)
+    if not ok then
+        logError(
+            nil,
+            (("Failed to read from the \"save#.dat\" file on render frame " .. tostring(renderFrameCount)) .. ": ") .. jsonStringOrErrMsg
+        )
+        return DEFAULT_MOD_DATA
+    end
+    if jsonStringOrErrMsg == nil then
+        return DEFAULT_MOD_DATA
+    end
+    local jsonStringTrimmed = __TS__StringTrim(jsonStringOrErrMsg)
+    if jsonStringTrimmed == "" then
+        return DEFAULT_MOD_DATA
+    end
+    return jsonStringTrimmed
+end
+function tryLoadModData(mod)
+    return mod:LoadData()
+end
+DEFAULT_MOD_DATA = "{}"
+function ____exports.loadFromDisk(self, mod, oldSaveData, classConstructors)
+    if not mod:HasData() then
+        return
+    end
+    local jsonString = readSaveDatFile(nil, mod)
+    local newSaveData = jsonDecode(nil, jsonString)
+    if SAVE_DATA_MANAGER_DEBUG then
+        log(nil, "Converted data from the \"save#.dat\" to a Lua table.")
+    end
+    iterateTableInOrder(
+        nil,
+        newSaveData,
+        function(____, subscriberName, saveData)
+            if not isString(nil, subscriberName) then
+                return
+            end
+            if not isTable(nil, saveData) then
+                return
+            end
+            local oldSaveDataForSubscriber = oldSaveData[subscriberName]
+            if oldSaveDataForSubscriber == nil then
+                return
+            end
+            if SAVE_DATA_MANAGER_DEBUG then
+                log(nil, "Merging in stored data for feature: " .. subscriberName)
+            end
+            merge(
+                nil,
+                oldSaveDataForSubscriber,
+                saveData,
+                subscriberName,
+                classConstructors
+            )
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+    log(nil, "The save data manager loaded data from the \"save#.dat\" file.")
+end
+return ____exports
+ end,
+["src.classes.features.other.saveDataManager.restoreDefaults"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local Set = ____lualib.Set
+local __TS__New = ____lualib.__TS__New
+local __TS__Iterator = ____lualib.__TS__Iterator
+local ____exports = {}
+local clearAndCopyAllElements, RESETTABLE_SAVE_DATA_KEYS
+local ____SaveDataKey = require("src.enums.SaveDataKey")
+local SaveDataKey = ____SaveDataKey.SaveDataKey
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____deepCopy = require("src.functions.deepCopy")
+local deepCopy = ____deepCopy.deepCopy
+local ____logMisc = require("src.functions.logMisc")
+local logError = ____logMisc.logError
+local ____table = require("src.functions.table")
+local clearTable = ____table.clearTable
+local iterateTableInOrder = ____table.iterateTableInOrder
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+function ____exports.restoreDefaultsForAllFeaturesKey(self, saveDataMap, saveDataDefaultsMap, saveDataKey)
+    iterateTableInOrder(
+        nil,
+        saveDataMap,
+        function(____, subscriberName, saveData)
+            ____exports.restoreDefaultForFeatureKey(
+                nil,
+                saveDataDefaultsMap,
+                subscriberName,
+                saveData,
+                saveDataKey
+            )
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+end
+function ____exports.restoreDefaultForFeatureKey(self, saveDataDefaultsMap, subscriberName, saveData, saveDataKey)
+    if not RESETTABLE_SAVE_DATA_KEYS:has(saveDataKey) then
+        error(("Failed to restore default values for a save data key of \"" .. saveDataKey) .. "\", since it is not on the allowed list of resettable save data keys.")
+    end
+    local childTable = saveData[saveDataKey]
+    if childTable == nil then
+        return
+    end
+    local saveDataDefaults = saveDataDefaultsMap[subscriberName]
+    if saveDataDefaults == nil then
+        logError(nil, "Failed to find the default copy of the save data for subscriber: " .. subscriberName)
+        return
+    end
+    local childTableDefaults = saveDataDefaults[saveDataKey]
+    if childTableDefaults == nil then
+        logError(nil, ((("Failed to find the default copy of the child table \"" .. saveDataKey) .. "\" for subscriber \"") .. subscriberName) .. "\". This error usually means that your save data is out of date. You can try purging all of your save data by deleting the following directory: C:\\Program Files (x86)\\Steam\\steamapps\\common\\The Binding of Isaac Rebirth\\data")
+        return
+    end
+    local childTableDefaultsCopy = deepCopy(nil, childTableDefaults, SerializationType.NONE, (subscriberName .. " --> ") .. saveDataKey)
+    clearAndCopyAllElements(nil, childTable, childTableDefaultsCopy)
+end
+function clearAndCopyAllElements(self, oldTable, newTable)
+    clearTable(nil, oldTable)
+    for key, value in pairs(newTable) do
+        oldTable[key] = value
+    end
+end
+RESETTABLE_SAVE_DATA_KEYS = __TS__New(Set, {SaveDataKey.RUN, SaveDataKey.LEVEL, SaveDataKey.ROOM})
+function ____exports.restoreDefaultsForAllFeaturesAndKeys(self, saveDataMap, saveDataDefaultsMap)
+    for ____, saveDataKey in __TS__Iterator(RESETTABLE_SAVE_DATA_KEYS:values()) do
+        ____exports.restoreDefaultsForAllFeaturesKey(nil, saveDataMap, saveDataDefaultsMap, saveDataKey)
+    end
+end
+return ____exports
+ end,
+["src.classes.features.other.saveDataManager.saveToDisk"] = function(...) 
+local ____exports = {}
+local getAllSaveDataToWriteToDisk
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____deepCopy = require("src.functions.deepCopy")
+local deepCopy = ____deepCopy.deepCopy
+local ____jsonHelpers = require("src.functions.jsonHelpers")
+local jsonEncode = ____jsonHelpers.jsonEncode
+local ____log = require("src.functions.log")
+local log = ____log.log
+local ____table = require("src.functions.table")
+local isTableEmpty = ____table.isTableEmpty
+local iterateTableInOrder = ____table.iterateTableInOrder
+local ____constants = require("src.classes.features.other.saveDataManager.constants")
+local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
+function getAllSaveDataToWriteToDisk(self, saveDataMap, saveDataConditionalFuncMap)
+    local allSaveData = {}
+    iterateTableInOrder(
+        nil,
+        saveDataMap,
+        function(____, subscriberName, saveData)
+            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
+            if conditionalFunc ~= nil then
+                local shouldSave = conditionalFunc(nil)
+                if not shouldSave then
+                    return
+                end
+            end
+            local saveDataWithoutRoom = {persistent = saveData.persistent, run = saveData.run, level = saveData.level}
+            if isTableEmpty(nil, saveDataWithoutRoom) then
+                return
+            end
+            local saveDataCopy = deepCopy(nil, saveDataWithoutRoom, SerializationType.SERIALIZE, subscriberName)
+            allSaveData[subscriberName] = saveDataCopy
+        end,
+        SAVE_DATA_MANAGER_DEBUG
+    )
+    return allSaveData
+end
+function ____exports.saveToDisk(self, mod, saveDataMap, saveDataConditionalFuncMap)
+    local allSaveData = getAllSaveDataToWriteToDisk(nil, saveDataMap, saveDataConditionalFuncMap)
+    local jsonString = jsonEncode(nil, allSaveData)
+    mod:SaveData(jsonString)
+    log(nil, "The save data manager wrote data to the \"save#.dat\" file.")
+end
+return ____exports
+ end,
+["src.classes.features.other.SaveDataManager"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local Set = ____lualib.Set
+local __TS__New = ____lualib.__TS__New
+local __TS__Class = ____lualib.__TS__Class
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local __TS__TypeOf = ____lualib.__TS__TypeOf
+local __TS__ObjectKeys = ____lualib.__TS__ObjectKeys
+local __TS__Decorate = ____lualib.__TS__Decorate
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
+local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
+local ____cachedClasses = require("src.core.cachedClasses")
+local game = ____cachedClasses.game
+local ____decorators = require("src.decorators")
+local Exported = ____decorators.Exported
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
+local ____SaveDataKey = require("src.enums.SaveDataKey")
+local SaveDataKey = ____SaveDataKey.SaveDataKey
+local ____SerializationType = require("src.enums.SerializationType")
+local SerializationType = ____SerializationType.SerializationType
+local ____deepCopy = require("src.functions.deepCopy")
+local deepCopy = ____deepCopy.deepCopy
+local ____stage = require("src.functions.stage")
+local onFirstFloor = ____stage.onFirstFloor
+local ____tstlClass = require("src.functions.tstlClass")
+local getTSTLClassName = ____tstlClass.getTSTLClassName
+local ____types = require("src.functions.types")
+local isString = ____types.isString
+local isTable = ____types.isTable
+local ____Feature = require("src.classes.private.Feature")
+local Feature = ____Feature.Feature
+local ____glowingHourGlass = require("src.classes.features.other.saveDataManager.glowingHourGlass")
+local makeGlowingHourGlassBackup = ____glowingHourGlass.makeGlowingHourGlassBackup
+local restoreGlowingHourGlassBackup = ____glowingHourGlass.restoreGlowingHourGlassBackup
+local ____loadFromDisk = require("src.classes.features.other.saveDataManager.loadFromDisk")
+local loadFromDisk = ____loadFromDisk.loadFromDisk
+local ____restoreDefaults = require("src.classes.features.other.saveDataManager.restoreDefaults")
+local restoreDefaultForFeatureKey = ____restoreDefaults.restoreDefaultForFeatureKey
+local restoreDefaultsForAllFeaturesAndKeys = ____restoreDefaults.restoreDefaultsForAllFeaturesAndKeys
+local restoreDefaultsForAllFeaturesKey = ____restoreDefaults.restoreDefaultsForAllFeaturesKey
+local ____saveToDisk = require("src.classes.features.other.saveDataManager.saveToDisk")
+local saveToDisk = ____saveToDisk.saveToDisk
+local NON_USER_DEFINED_CLASS_NAMES = __TS__New(Set, {"Map", "Set", "DefaultMap"})
+____exports.SaveDataManager = __TS__Class()
+local SaveDataManager = ____exports.SaveDataManager
+SaveDataManager.name = "SaveDataManager"
+__TS__ClassExtends(SaveDataManager, Feature)
+function SaveDataManager.prototype.____constructor(self, mod)
+    Feature.prototype.____constructor(self)
+    self.saveDataMap = {}
+    self.saveDataDefaultsMap = {}
+    self.saveDataConditionalFuncMap = {}
+    self.saveDataGlowingHourGlassMap = {}
+    self.classConstructors = {}
+    self.loadedDataOnThisRun = false
+    self.restoreGlowingHourGlassDataOnNextRoom = false
+    self.postUseItemGlowingHourGlass = function(____, _collectibleType, _rng, _player, _useFlags, _activeSlot, _customVarData)
+        self.restoreGlowingHourGlassDataOnNextRoom = true
+        return nil
+    end
+    self.postPlayerInit = function(____, _player)
+        if self.loadedDataOnThisRun then
+            return
+        end
+        self.loadedDataOnThisRun = true
+        self.restoreGlowingHourGlassDataOnNextRoom = false
+        loadFromDisk(nil, self.mod, self.saveDataMap, self.classConstructors)
+        local gameFrameCount = game:GetFrameCount()
+        local isContinued = gameFrameCount ~= 0
+        if not isContinued then
+            restoreDefaultsForAllFeaturesAndKeys(nil, self.saveDataMap, self.saveDataDefaultsMap)
+        end
+    end
+    self.preGameExit = function()
+        saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
+        self.loadedDataOnThisRun = false
+    end
+    self.postNewLevel = function()
+        restoreDefaultsForAllFeaturesKey(nil, self.saveDataMap, self.saveDataDefaultsMap, SaveDataKey.LEVEL)
+        if not onFirstFloor(nil) then
+            saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
+        end
+    end
+    self.postNewRoomEarly = function()
+        restoreDefaultsForAllFeaturesKey(nil, self.saveDataMap, self.saveDataDefaultsMap, SaveDataKey.ROOM)
+        if self.restoreGlowingHourGlassDataOnNextRoom then
+            self.restoreGlowingHourGlassDataOnNextRoom = false
+            restoreGlowingHourGlassBackup(
+                nil,
+                self.saveDataMap,
+                self.saveDataConditionalFuncMap,
+                self.saveDataGlowingHourGlassMap,
+                self.classConstructors
+            )
+        else
+            makeGlowingHourGlassBackup(nil, self.saveDataMap, self.saveDataConditionalFuncMap, self.saveDataGlowingHourGlassMap)
+        end
+    end
+    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, self.postUseItemGlowingHourGlass, {CollectibleType.GLOWING_HOUR_GLASS}}, {ModCallback.POST_PLAYER_INIT, self.postPlayerInit}, {ModCallback.PRE_GAME_EXIT, self.preGameExit}, {ModCallback.POST_NEW_LEVEL, self.postNewLevel}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_EARLY, self.postNewRoomEarly}}
+    self.mod = mod
+end
+function SaveDataManager.prototype.saveDataManager(self, key, v, conditionalFunc)
+    if not isString(nil, key) then
+        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
+    end
+    if self.saveDataMap[key] ~= nil then
+        error("The save data manager is already managing save data for a key of: " .. key)
+    end
+    self:storeClassConstructorsFromObject(v)
+    self.saveDataMap[key] = v
+    if conditionalFunc == false then
+        conditionalFunc = function() return false end
+    end
+    local saveDataKeys = __TS__ObjectKeys(v)
+    if #saveDataKeys == 1 and saveDataKeys[1] == "room" then
+        conditionalFunc = function() return false end
+    end
+    local saveDataCopy = deepCopy(nil, v, SerializationType.NONE, key)
+    self.saveDataDefaultsMap[key] = saveDataCopy
+    if conditionalFunc ~= nil then
+        self.saveDataConditionalFuncMap[key] = conditionalFunc
+    end
+end
+function SaveDataManager.prototype.storeClassConstructorsFromObject(self, luaMap)
+    local tstlClassName = getTSTLClassName(nil, luaMap)
+    if tstlClassName ~= nil and not NON_USER_DEFINED_CLASS_NAMES:has(tstlClassName) then
+        self.classConstructors[tstlClassName] = luaMap
+    end
+    for _key, value in pairs(luaMap) do
+        if isTable(nil, value) then
+            self:storeClassConstructorsFromObject(value)
+        end
+    end
+end
+function SaveDataManager.prototype.saveDataManagerLoad(self)
+    loadFromDisk(nil, self.mod, self.saveDataMap, self.classConstructors)
+end
+function SaveDataManager.prototype.saveDataManagerSave(self)
+    saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
+end
+function SaveDataManager.prototype.saveDataManagerSetGlobal(self)
+    g = self.saveDataMap
+end
+function SaveDataManager.prototype.saveDataManagerRegisterClass(self, ...)
+    local tstlClasses = {...}
+    for ____, tstlClass in ipairs(tstlClasses) do
+        local name = tstlClass.name
+        if name == nil then
+            error("Failed to register a class with the save data manager due to not being able to derive the name of the class.")
+        end
+        self.classConstructors[name] = tstlClass
+    end
+end
+function SaveDataManager.prototype.saveDataManagerRemove(self, key)
+    if not isString(nil, key) then
+        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
+    end
+    if not (self.saveDataMap[key] ~= nil) then
+        error("The save data manager is not managing save data for a key of: " .. key)
+    end
+    self.saveDataMap[key] = nil
+    self.saveDataDefaultsMap[key] = nil
+    self.saveDataConditionalFuncMap[key] = nil
+    self.saveDataGlowingHourGlassMap[key] = nil
+end
+function SaveDataManager.prototype.saveDataManagerReset(self, key, childObjectKey)
+    if not isString(nil, key) then
+        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
+    end
+    local saveData = self.saveDataMap[key]
+    if saveData == nil then
+        error("The save data manager is not managing save data for a key of: " .. key)
+    end
+    restoreDefaultForFeatureKey(
+        nil,
+        self.saveDataDefaultsMap,
+        key,
+        saveData,
+        childObjectKey
+    )
+end
+function SaveDataManager.prototype.saveDataManagerInMenu(self)
+    return not self.loadedDataOnThisRun
+end
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManager", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerLoad", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSave", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSetGlobal", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRegisterClass", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRemove", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerReset", true)
+__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerInMenu", true)
 return ____exports
  end,
 ["src.classes.features.other.PickupIndexCreation"] = function(...) 
@@ -34549,7 +36656,7 @@ ____exports.PickupIndexCreation = __TS__Class()
 local PickupIndexCreation = ____exports.PickupIndexCreation
 PickupIndexCreation.name = "PickupIndexCreation"
 __TS__ClassExtends(PickupIndexCreation, Feature)
-function PickupIndexCreation.prototype.____constructor(self, roomHistory)
+function PickupIndexCreation.prototype.____constructor(self, roomHistory, saveDataManager)
     Feature.prototype.____constructor(self)
     self.v = {
         run = {
@@ -34569,9 +36676,10 @@ function PickupIndexCreation.prototype.____constructor(self, roomHistory)
     self.postEntityRemovePickup = function(____, entity)
         self:checkDespawningFromPlayerLeavingRoom(entity)
     end
-    self.featuresUsed = {ISCFeature.ROOM_HISTORY}
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, {self.postPickupInit}}, {ModCallback.POST_ENTITY_REMOVE, {self.postEntityRemovePickup, EntityType.PICKUP}}}
+    self.featuresUsed = {ISCFeature.ROOM_HISTORY, ISCFeature.SAVE_DATA_MANAGER}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, self.postPickupInit}, {ModCallback.POST_ENTITY_REMOVE, self.postEntityRemovePickup, {EntityType.PICKUP}}}
     self.roomHistory = roomHistory
+    self.saveDataManager = saveDataManager
 end
 function PickupIndexCreation.prototype.setPickupIndex(self, pickup)
     local ptrHash = GetPtrHash(pickup)
@@ -34619,30 +36727,37 @@ function PickupIndexCreation.prototype.trackDespawningPickupMetadata(self, entit
     local pickupDescriptions = self.v.level.pickupData:getAndSetDefault(previousRoomListIndex)
     local pickupDescription = {position = entity.Position, initSeed = entity.InitSeed}
     pickupDescriptions:set(pickupIndex, pickupDescription)
+    local pickupDataMapForCurrentRoom = self:getPickupDataMapForCurrentRoom()
+    if pickupDataMapForCurrentRoom ~= nil then
+        pickupDataMapForCurrentRoom:set(pickupIndex, pickupDescription)
+    end
+    if self.saveDataManager:saveDataManagerInMenu() then
+        self.saveDataManager:saveDataManagerSave()
+    end
+end
+function PickupIndexCreation.prototype.getPickupDataMapForCurrentRoom(self)
     if onAscent(nil) then
-        return
+        return nil
     end
     local room = game:GetRoom()
     local roomType = room:GetType()
     repeat
-        local ____switch17 = roomType
-        local ____cond17 = ____switch17 == RoomType.TREASURE
-        if ____cond17 then
+        local ____switch20 = roomType
+        local ____cond20 = ____switch20 == RoomType.TREASURE
+        if ____cond20 then
             do
-                self.v.run.pickupDataTreasureRooms:set(pickupIndex, pickupDescription)
-                break
+                return self.v.run.pickupDataTreasureRooms
             end
         end
-        ____cond17 = ____cond17 or ____switch17 == RoomType.BOSS
-        if ____cond17 then
+        ____cond20 = ____cond20 or ____switch20 == RoomType.BOSS
+        if ____cond20 then
             do
-                self.v.run.pickupDataBossRooms:set(pickupIndex, pickupDescription)
-                break
+                return self.v.run.pickupDataBossRooms
             end
         end
         do
             do
-                break
+                return nil
             end
         end
     until true
@@ -34654,15 +36769,15 @@ function PickupIndexCreation.prototype.getPostAscentPickupIndex(self, pickup)
     local room = game:GetRoom()
     local roomType = room:GetType()
     repeat
-        local ____switch23 = roomType
-        local ____cond23 = ____switch23 == RoomType.TREASURE
-        if ____cond23 then
+        local ____switch26 = roomType
+        local ____cond26 = ____switch26 == RoomType.TREASURE
+        if ____cond26 then
             do
                 return getStoredPickupIndex(nil, pickup, self.v.run.pickupDataTreasureRooms)
             end
         end
-        ____cond23 = ____cond23 or ____switch23 == RoomType.BOSS
-        if ____cond23 then
+        ____cond26 = ____cond26 or ____switch26 == RoomType.BOSS
+        if ____cond26 then
             do
                 return getStoredPickupIndex(nil, pickup, self.v.run.pickupDataBossRooms)
             end
@@ -34730,7 +36845,7 @@ function CollectibleItemPoolType.prototype.____constructor(self, pickupIndexCrea
         self.v.run.collectibleItemPoolTypeMap:set(pickupIndex, lastItemPoolType)
     end
     self.featuresUsed = {ISCFeature.PICKUP_INDEX_CREATION}
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, {self.postPickupInitCollectible, PickupVariant.COLLECTIBLE}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_INIT, self.postPickupInitCollectible, {PickupVariant.COLLECTIBLE}}}
     self.pickupIndexCreation = pickupIndexCreation
 end
 function CollectibleItemPoolType.prototype.getCollectibleItemPoolType(self, collectible)
@@ -34998,7 +37113,7 @@ function CustomHotkeys.prototype.____constructor(self)
             end
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 function CustomHotkeys.prototype.checkIfTriggered(self, keyboard, triggerFunc)
     local isPressed = isKeyboardPressed(nil, keyboard)
@@ -35177,7 +37292,7 @@ function CustomItemPools.prototype.____constructor(self)
         end
         self.v.run.customItemPools = copyMap(nil, self.customItemPoolMap)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_GAME_STARTED_REORDERED, {self.postGameStartedReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_GAME_STARTED_REORDERED, self.postGameStartedReordered}}
 end
 function CustomItemPools.prototype.registerCustomItemPool(self, itemPoolTypeCustom, collectibles)
     if self.customItemPoolMap:has(itemPoolTypeCustom) then
@@ -35293,7 +37408,7 @@ function CustomPickups.prototype.____constructor(self)
             effect:Remove()
         end
     end
-    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, {self.prePickupCollision}}, {ModCallback.POST_EFFECT_RENDER, {self.postEffectRenderPickupEffect, PICKUP_EFFECT_VARIANT}}}
+    self.callbacksUsed = {{ModCallback.PRE_PICKUP_COLLISION, self.prePickupCollision}, {ModCallback.POST_EFFECT_RENDER, self.postEffectRenderPickupEffect, {PICKUP_EFFECT_VARIANT}}}
 end
 function CustomPickups.prototype.registerCustomPickup(self, pickupVariantCustom, subType, collectFunc, collisionFunc)
     if collisionFunc == nil then
@@ -35931,8 +38046,10 @@ function movePlayerAndTheirFamiliars(self, player, position)
         familiar.Position = position
     end
 end
-local CIRCLE_RADIUS_BETWEEN_PLAYERS = 50
-function ____exports.movePlayersToCenter(self)
+function ____exports.movePlayersToCenter(self, radius)
+    if radius == nil then
+        radius = 10
+    end
     local isGreedMode = game:IsGreedMode()
     local startingPosition = isGreedMode and NEW_FLOOR_STARTING_POSITION_GREED_MODE or NEW_FLOOR_STARTING_POSITION_NORMAL_MODE
     local players = getAllPlayers(nil)
@@ -35947,7 +38064,7 @@ function ____exports.movePlayersToCenter(self)
     local circlePoints = getCircleDiscretizedPoints(
         nil,
         startingPosition,
-        CIRCLE_RADIUS_BETWEEN_PLAYERS,
+        radius,
         #players,
         1,
         1,
@@ -36006,7 +38123,7 @@ function DisableInputs.prototype.____constructor(self)
     self.isActionPressed = function(____, _entity, _inputHook, buttonAction) return self:getReturnValue(buttonAction, true) end
     self.isActionTriggered = function(____, _entity, _inputHook, buttonAction) return self:getReturnValue(buttonAction, true) end
     self.getActionValue = function(____, _entity, _inputHook, buttonAction) return self:getReturnValue(buttonAction, false) end
-    self.callbacksUsed = {{ModCallback.INPUT_ACTION, {self.isActionPressed, InputHook.IS_ACTION_PRESSED}}, {ModCallback.INPUT_ACTION, {self.isActionTriggered, InputHook.IS_ACTION_TRIGGERED}}, {ModCallback.INPUT_ACTION, {self.getActionValue, InputHook.GET_ACTION_VALUE}}}
+    self.callbacksUsed = {{ModCallback.INPUT_ACTION, self.isActionPressed, {InputHook.IS_ACTION_PRESSED}}, {ModCallback.INPUT_ACTION, self.isActionTriggered, {InputHook.IS_ACTION_TRIGGERED}}, {ModCallback.INPUT_ACTION, self.getActionValue, {InputHook.GET_ACTION_VALUE}}}
 end
 function DisableInputs.prototype.getReturnValue(self, buttonAction, booleanCallback)
     local ____booleanCallback_0
@@ -36125,7 +38242,7 @@ function PonyDetection.prototype.____constructor(self)
             setDeletePlayer(nil, self.v.run.playersIsPonyActive, player)
         end
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
 function PonyDetection.prototype.isPlayerUsingPony(self, player)
     return setHasPlayer(nil, self.v.run.playersIsPonyActive, player)
@@ -36169,7 +38286,7 @@ function RoomClearFrame.prototype.____constructor(self)
         self.v.room.roomClearGameFrame = gameFrameCount
         self.v.room.roomClearRoomFrame = roomFrameCount
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_ROOM_CLEAR_CHANGED, {self.postRoomClearChangedTrue}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_ROOM_CLEAR_CHANGED, self.postRoomClearChangedTrue}}
 end
 function RoomClearFrame.prototype.getRoomClearGameFrame(self)
     return self.v.room.roomClearGameFrame
@@ -36208,7 +38325,7 @@ function RunNextRoom.prototype.____constructor(self)
         end
         emptyArray(nil, self.v.run.queuedFunctions)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
 end
 function RunNextRoom.prototype.runNextRoom(self, func)
     local ____self_v_run_queuedFunctions_0 = self.v.run.queuedFunctions
@@ -36384,7 +38501,7 @@ function StageHistory.prototype.____constructor(self)
         local ____self_v_run_stageHistory_0 = self.v.run.stageHistory
         ____self_v_run_stageHistory_0[#____self_v_run_stageHistory_0 + 1] = {stage, stageType}
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_LEVEL_REORDERED, {self.postNewLevelReordered}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_LEVEL_REORDERED, self.postNewLevelReordered}}
 end
 function StageHistory.prototype.getNextStageTypeWithHistory(self, upwards)
     if upwards == nil then
@@ -36707,8 +38824,8 @@ function CustomTrapdoors.prototype.____constructor(self, customGridEntities, dis
         ISCFeature.RUN_NEXT_ROOM,
         ISCFeature.STAGE_HISTORY
     }
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE, {self.postGridEntityCustomUpdateTrapdoor, GridEntityTypeCustom.TRAPDOOR_CUSTOM}}, {ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, {self.postPEffectUpdateReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE, self.postGridEntityCustomUpdateTrapdoor, {GridEntityTypeCustom.TRAPDOOR_CUSTOM}}, {ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
     self.customGridEntities = customGridEntities
     self.disableInputs = disableInputs
     self.ponyDetection = ponyDetection
@@ -39079,7 +41196,7 @@ function DisableAllSound.prototype.____constructor(self)
         end
         stopAllSoundEffects(nil)
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 function DisableAllSound.prototype.enableAllSound(self, key)
     if not self.v.run.disableSoundSet:has(key) then
@@ -39169,7 +41286,7 @@ function Pause.prototype.____constructor(self, disableInputs)
         self.v.run.shouldUnpause = false
         return 1
     end
-    self.callbacksUsed = {{ModCallback.POST_UPDATE, {self.postUpdate}}, {ModCallback.INPUT_ACTION, {self.inputActionGetActionValue, InputHook.GET_ACTION_VALUE}}}
+    self.callbacksUsed = {{ModCallback.POST_UPDATE, self.postUpdate}, {ModCallback.INPUT_ACTION, self.inputActionGetActionValue, {InputHook.GET_ACTION_VALUE}}}
     self.disableInputs = disableInputs
 end
 function Pause.prototype.stopTearsAndProjectilesFromMoving(self)
@@ -39730,8 +41847,8 @@ function CustomStages.prototype.____constructor(self, customGridEntities, custom
         ISCFeature.PAUSE,
         ISCFeature.RUN_IN_N_FRAMES
     }
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}, {ModCallback.POST_CURSE_EVAL, {self.postCurseEval}}, {ModCallback.GET_SHADER_PARAMS, {self.getShaderParams}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_GRID_ENTITY_BROKEN, {self.postGridEntityBrokenRockAlt, GridEntityType.ROCK_ALT}}, {ModCallbackCustom.POST_GRID_ENTITY_INIT, {self.postGridEntityInit}}, {ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}, {ModCallback.POST_CURSE_EVAL, self.postCurseEval}, {ModCallback.GET_SHADER_PARAMS, self.getShaderParams}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_GRID_ENTITY_BROKEN, self.postGridEntityBrokenRockAlt, {GridEntityType.ROCK_ALT}}, {ModCallbackCustom.POST_GRID_ENTITY_INIT, self.postGridEntityInit}, {ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.customGridEntities = customGridEntities
     self.customTrapdoors = customTrapdoors
     self.disableAllSound = disableAllSound
@@ -39945,7 +42062,7 @@ function DebugDisplayBomb.prototype.____constructor(self)
         local text = self:textCallback(bomb)
         renderTextOnEntity(nil, bomb, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_BOMB_RENDER, {self.postBombRender}}}
+    self.callbacksUsed = {{ModCallback.POST_BOMB_RENDER, self.postBombRender}}
 end
 return ____exports
  end,
@@ -39972,7 +42089,7 @@ function DebugDisplayDoor.prototype.____constructor(self)
         local text = self:textCallback(door)
         renderTextOnEntity(nil, door, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_DOOR_RENDER, {self.postDoorRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_DOOR_RENDER, self.postDoorRender}}
 end
 return ____exports
  end,
@@ -39999,7 +42116,7 @@ function DebugDisplayEffect.prototype.____constructor(self)
         local text = self:textCallback(effect)
         renderTextOnEntity(nil, effect, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_EFFECT_RENDER, {self.postEffectRender}}}
+    self.callbacksUsed = {{ModCallback.POST_EFFECT_RENDER, self.postEffectRender}}
 end
 return ____exports
  end,
@@ -40026,7 +42143,7 @@ function DebugDisplayFamiliar.prototype.____constructor(self)
         local text = self:textCallback(familiar)
         renderTextOnEntity(nil, familiar, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_RENDER, {self.postFamiliarRender}}}
+    self.callbacksUsed = {{ModCallback.POST_FAMILIAR_RENDER, self.postFamiliarRender}}
 end
 return ____exports
  end,
@@ -40053,7 +42170,7 @@ function DebugDisplayKnife.prototype.____constructor(self)
         local text = self:textCallback(knife)
         renderTextOnEntity(nil, knife, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_KNIFE_RENDER, {self.postKnifeRender}}}
+    self.callbacksUsed = {{ModCallback.POST_KNIFE_RENDER, self.postKnifeRender}}
 end
 return ____exports
  end,
@@ -40080,7 +42197,7 @@ function DebugDisplayLaser.prototype.____constructor(self)
         local text = self:textCallback(laser)
         renderTextOnEntity(nil, laser, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_LASER_RENDER, {self.postLaserRender}}}
+    self.callbacksUsed = {{ModCallback.POST_LASER_RENDER, self.postLaserRender}}
 end
 return ____exports
  end,
@@ -40107,7 +42224,7 @@ function DebugDisplayNPC.prototype.____constructor(self)
         local text = self:textCallback(npc)
         renderTextOnEntity(nil, npc, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_RENDER, {self.postNPCRender}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_RENDER, self.postNPCRender}}
 end
 return ____exports
  end,
@@ -40134,7 +42251,7 @@ function DebugDisplayPickup.prototype.____constructor(self)
         local text = self:textCallback(pickup)
         renderTextOnEntity(nil, pickup, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_PICKUP_RENDER, {self.postPickupRender}}}
+    self.callbacksUsed = {{ModCallback.POST_PICKUP_RENDER, self.postPickupRender}}
 end
 return ____exports
  end,
@@ -40161,7 +42278,7 @@ function DebugDisplayPit.prototype.____constructor(self)
         local text = self:textCallback(pit)
         renderTextOnEntity(nil, pit, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PIT_RENDER, {self.postPitRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PIT_RENDER, self.postPitRender}}
 end
 return ____exports
  end,
@@ -40188,7 +42305,7 @@ function DebugDisplayPlayer.prototype.____constructor(self)
         local text = self:textCallback(player)
         renderTextOnEntity(nil, player, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_PLAYER_RENDER, {self.postPlayerRender}}}
+    self.callbacksUsed = {{ModCallback.POST_PLAYER_RENDER, self.postPlayerRender}}
 end
 return ____exports
  end,
@@ -40215,7 +42332,7 @@ function DebugDisplayPoop.prototype.____constructor(self)
         local text = self:textCallback(poop)
         renderTextOnEntity(nil, poop, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_POOP_RENDER, {self.postPoopRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_POOP_RENDER, self.postPoopRender}}
 end
 return ____exports
  end,
@@ -40242,7 +42359,7 @@ function DebugDisplayPressurePlate.prototype.____constructor(self)
         local text = self:textCallback(pressurePlate)
         renderTextOnEntity(nil, pressurePlate, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PRESSURE_PLATE_RENDER, {self.postPressurePlateRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PRESSURE_PLATE_RENDER, self.postPressurePlateRender}}
 end
 return ____exports
  end,
@@ -40269,7 +42386,7 @@ function DebugDisplayProjectile.prototype.____constructor(self)
         local text = self:textCallback(projectile)
         renderTextOnEntity(nil, projectile, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_PROJECTILE_RENDER, {self.postProjectileRender}}}
+    self.callbacksUsed = {{ModCallback.POST_PROJECTILE_RENDER, self.postProjectileRender}}
 end
 return ____exports
  end,
@@ -40296,7 +42413,7 @@ function DebugDisplayRock.prototype.____constructor(self)
         local text = self:textCallback(rock)
         renderTextOnEntity(nil, rock, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_ROCK_RENDER, {self.postRockRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_ROCK_RENDER, self.postRockRender}}
 end
 return ____exports
  end,
@@ -40323,7 +42440,7 @@ function DebugDisplaySlot.prototype.____constructor(self)
         local text = self:textCallback(slot)
         renderTextOnEntity(nil, slot, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_SLOT_RENDER, {self.postSlotRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_SLOT_RENDER, self.postSlotRender}}
 end
 return ____exports
  end,
@@ -40350,7 +42467,7 @@ function DebugDisplaySpikes.prototype.____constructor(self)
         local text = self:textCallback(spikes)
         renderTextOnEntity(nil, spikes, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_SPIKES_RENDER, {self.postSpikesRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_SPIKES_RENDER, self.postSpikesRender}}
 end
 return ____exports
  end,
@@ -40377,7 +42494,7 @@ function DebugDisplayTear.prototype.____constructor(self)
         local text = self:textCallback(tear)
         renderTextOnEntity(nil, tear, text)
     end
-    self.callbacksUsed = {{ModCallback.POST_TEAR_RENDER, {self.postTearRender}}}
+    self.callbacksUsed = {{ModCallback.POST_TEAR_RENDER, self.postTearRender}}
 end
 return ____exports
  end,
@@ -40404,7 +42521,7 @@ function DebugDisplayTNT.prototype.____constructor(self)
         local text = self:textCallback(tnt)
         renderTextOnEntity(nil, tnt, text)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_TNT_RENDER, {self.postTNTRender}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_TNT_RENDER, self.postTNTRender}}
 end
 return ____exports
  end,
@@ -41364,8 +43481,8 @@ function PreventGridEntityRespawn.prototype.____constructor(self, runInNFrames)
         self:setDecorationsInvisible()
     end
     self.featuresUsed = {ISCFeature.RUN_IN_N_FRAMES}
-    self.callbacksUsed = {{ModCallback.PRE_USE_ITEM, {self.preUseItemWeNeedToGoDeeper, CollectibleType.WE_NEED_TO_GO_DEEPER}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.PRE_USE_ITEM, self.preUseItemWeNeedToGoDeeper, {CollectibleType.WE_NEED_TO_GO_DEEPER}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.runInNFrames = runInNFrames
 end
 function PreventGridEntityRespawn.prototype.setDecorationsInvisible(self)
@@ -41517,7 +43634,7 @@ function PreventCollectibleRotation.prototype.____constructor(self)
         local collectible = pickup
         self:checkCollectibleRotated(collectible)
     end
-    self.callbacksUsed = {{ModCallback.POST_USE_CARD, {self.useCardSoulOfIsaac, CardType.SOUL_ISAAC}}, {ModCallback.POST_PICKUP_UPDATE, {self.postPickupUpdateCollectible, PickupVariant.COLLECTIBLE}}}
+    self.callbacksUsed = {{ModCallback.POST_USE_CARD, self.useCardSoulOfIsaac, {CardType.SOUL_ISAAC}}, {ModCallback.POST_PICKUP_UPDATE, self.postPickupUpdateCollectible, {PickupVariant.COLLECTIBLE}}}
 end
 function PreventCollectibleRotation.prototype.checkCollectibleRotated(self, collectible)
     if collectible.SubType == CollectibleType.NULL then
@@ -41953,718 +44070,6 @@ function DeployJSONRoom.prototype.deployJSONRoom(self, jsonRoom, seedOrRNG, verb
     self.preventGridEntityRespawn:preventGridEntityRespawn()
 end
 __TS__Decorate({Exported}, DeployJSONRoom.prototype, "deployJSONRoom", true)
-return ____exports
- end,
-["src.enums.SerializationType"] = function(...) 
-local ____exports = {}
-____exports.SerializationType = {}
-____exports.SerializationType.NONE = 0
-____exports.SerializationType[____exports.SerializationType.NONE] = "NONE"
-____exports.SerializationType.SERIALIZE = 1
-____exports.SerializationType[____exports.SerializationType.SERIALIZE] = "SERIALIZE"
-____exports.SerializationType.DESERIALIZE = 2
-____exports.SerializationType[____exports.SerializationType.DESERIALIZE] = "DESERIALIZE"
-return ____exports
- end,
-["src.classes.features.other.saveDataManager.constants"] = function(...) 
-local ____exports = {}
-____exports.SAVE_DATA_MANAGER_DEBUG = false
-return ____exports
- end,
-["src.types.AnyClass"] = function(...) 
-local ____exports = {}
-return ____exports
- end,
-["src.objects.isaacAPIClassTypeToBrand"] = function(...) 
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local CopyableIsaacAPIClassType = ____isaac_2Dtypescript_2Ddefinitions.CopyableIsaacAPIClassType
-local ____SerializationBrand = require("src.enums.SerializationBrand")
-local SerializationBrand = ____SerializationBrand.SerializationBrand
-____exports.ISAAC_API_CLASS_TYPE_TO_BRAND = {
-    [CopyableIsaacAPIClassType.BIT_SET_128] = SerializationBrand.BIT_SET_128,
-    [CopyableIsaacAPIClassType.COLOR] = SerializationBrand.COLOR,
-    [CopyableIsaacAPIClassType.K_COLOR] = SerializationBrand.K_COLOR,
-    [CopyableIsaacAPIClassType.RNG] = SerializationBrand.RNG,
-    [CopyableIsaacAPIClassType.VECTOR] = SerializationBrand.VECTOR
-}
-return ____exports
- end,
-["src.functions.serialization"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local Set = ____lualib.Set
-local __TS__New = ____lualib.__TS__New
-local __TS__TypeOf = ____lualib.__TS__TypeOf
-local __TS__ObjectEntries = ____lualib.__TS__ObjectEntries
-local __TS__ObjectValues = ____lualib.__TS__ObjectValues
-local __TS__ArrayMap = ____lualib.__TS__ArrayMap
-local __TS__ArraySome = ____lualib.__TS__ArraySome
-local ____exports = {}
-local getSerializedTableType
-local ____SerializationBrand = require("src.enums.SerializationBrand")
-local SerializationBrand = ____SerializationBrand.SerializationBrand
-local ____isaacAPIClassTypeToBrand = require("src.objects.isaacAPIClassTypeToBrand")
-local ISAAC_API_CLASS_TYPE_TO_BRAND = ____isaacAPIClassTypeToBrand.ISAAC_API_CLASS_TYPE_TO_BRAND
-local ____isaacAPIClassTypeToFunctions = require("src.objects.isaacAPIClassTypeToFunctions")
-local ISAAC_API_CLASS_TYPE_TO_FUNCTIONS = ____isaacAPIClassTypeToFunctions.ISAAC_API_CLASS_TYPE_TO_FUNCTIONS
-local ____enums = require("src.functions.enums")
-local getEnumValues = ____enums.getEnumValues
-local ____isaacAPIClass = require("src.functions.isaacAPIClass")
-local getIsaacAPIClassName = ____isaacAPIClass.getIsaacAPIClassName
-local ____types = require("src.functions.types")
-local isString = ____types.isString
-local isTable = ____types.isTable
-local isUserdata = ____types.isUserdata
-function getSerializedTableType(self, serializedIsaacAPIClass)
-    for ____, ____value in ipairs(__TS__ObjectEntries(ISAAC_API_CLASS_TYPE_TO_BRAND)) do
-        local copyableIsaacAPIClassType = ____value[1]
-        local serializationBrand = ____value[2]
-        if serializedIsaacAPIClass[serializationBrand] ~= nil then
-            return copyableIsaacAPIClassType
-        end
-    end
-    return nil
-end
-local SERIALIZATION_BRANDS = getEnumValues(nil, SerializationBrand)
-local SERIALIZATION_BRAND_SET = __TS__New(Set, SERIALIZATION_BRANDS)
-function ____exports.copyIsaacAPIClass(self, isaacAPIClass)
-    if not isUserdata(nil, isaacAPIClass) then
-        error("Failed to copy an Isaac API class since the provided object was of type: " .. __TS__TypeOf(isaacAPIClass))
-    end
-    local isaacAPIClassType = getIsaacAPIClassName(nil, isaacAPIClass)
-    if isaacAPIClassType == nil then
-        error("Failed to copy an Isaac API class since it does not have a class type.")
-    end
-    local copyableIsaacAPIClassType = isaacAPIClassType
-    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
-    if functions == nil then
-        error("Failed to copy an Isaac API class since the associated functions were not found for Isaac API class type: " .. copyableIsaacAPIClassType)
-    end
-    return functions:copy(isaacAPIClass)
-end
-function ____exports.deserializeIsaacAPIClass(self, serializedIsaacAPIClass)
-    if not isTable(nil, serializedIsaacAPIClass) then
-        error("Failed to deserialize an Isaac API class since the provided object was of type: " .. __TS__TypeOf(serializedIsaacAPIClass))
-    end
-    local copyableIsaacAPIClassType = getSerializedTableType(nil, serializedIsaacAPIClass)
-    if copyableIsaacAPIClassType == nil then
-        error("Failed to deserialize an Isaac API class since a valid class type brand was not found.")
-    end
-    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
-    if functions == nil then
-        error("Failed to deserialize an Isaac API class since the associated functions were not found for class type: " .. copyableIsaacAPIClassType)
-    end
-    return functions:deserialize(serializedIsaacAPIClass)
-end
-function ____exports.isCopyableIsaacAPIClass(self, object)
-    local allFunctions = __TS__ObjectValues(ISAAC_API_CLASS_TYPE_TO_FUNCTIONS)
-    local isFunctions = __TS__ArrayMap(
-        allFunctions,
-        function(____, functions) return functions.is end
-    )
-    return __TS__ArraySome(
-        isFunctions,
-        function(____, identityFunction) return identityFunction(nil, object) end
-    )
-end
-function ____exports.isSerializationBrand(self, key)
-    if not isString(nil, key) then
-        return false
-    end
-    return SERIALIZATION_BRAND_SET:has(key)
-end
-function ____exports.isSerializedIsaacAPIClass(self, object)
-    local allFunctions = __TS__ObjectValues(ISAAC_API_CLASS_TYPE_TO_FUNCTIONS)
-    local isSerializedFunctions = __TS__ArrayMap(
-        allFunctions,
-        function(____, functions) return functions.isSerialized end
-    )
-    return __TS__ArraySome(
-        isSerializedFunctions,
-        function(____, identityFunction) return identityFunction(nil, object) end
-    )
-end
-function ____exports.serializeIsaacAPIClass(self, isaacAPIClass)
-    if not isUserdata(nil, isaacAPIClass) then
-        error("Failed to serialize an Isaac API class since the provided object was of type: " .. __TS__TypeOf(isaacAPIClass))
-    end
-    local isaacAPIClassType = getIsaacAPIClassName(nil, isaacAPIClass)
-    if isaacAPIClassType == nil then
-        error("Failed to serialize an Isaac API class since it does not have a class type.")
-    end
-    local copyableIsaacAPIClassType = isaacAPIClassType
-    local functions = ISAAC_API_CLASS_TYPE_TO_FUNCTIONS[copyableIsaacAPIClassType]
-    if functions == nil then
-        error("Failed to serialize an Isaac API class since the associated functions were not found for class type: " .. copyableIsaacAPIClassType)
-    end
-    return functions:serialize(isaacAPIClass)
-end
-return ____exports
- end,
-["src.functions.deepCopy"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__New = ____lualib.__TS__New
-local Map = ____lualib.Map
-local Set = ____lualib.Set
-local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__ArraySort = ____lualib.__TS__ArraySort
-local __TS__ArraySome = ____lualib.__TS__ArraySome
-local ____exports = {}
-local deepCopyTable, deepCopyDefaultMap, getNewDefaultMap, deepCopyMap, deepCopySet, deepCopyTSTLClass, deepCopyArray, deepCopyNormalLuaTable, getCopiedEntries, checkMetatable, deepCopyUserdata
-local ____DefaultMap = require("src.classes.DefaultMap")
-local DefaultMap = ____DefaultMap.DefaultMap
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-local ____SerializationBrand = require("src.enums.SerializationBrand")
-local SerializationBrand = ____SerializationBrand.SerializationBrand
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____array = require("src.functions.array")
-local isArray = ____array.isArray
-local ____isaacAPIClass = require("src.functions.isaacAPIClass")
-local getIsaacAPIClassName = ____isaacAPIClass.getIsaacAPIClassName
-local ____log = require("src.functions.log")
-local log = ____log.log
-local ____serialization = require("src.functions.serialization")
-local copyIsaacAPIClass = ____serialization.copyIsaacAPIClass
-local deserializeIsaacAPIClass = ____serialization.deserializeIsaacAPIClass
-local isCopyableIsaacAPIClass = ____serialization.isCopyableIsaacAPIClass
-local isSerializationBrand = ____serialization.isSerializationBrand
-local isSerializedIsaacAPIClass = ____serialization.isSerializedIsaacAPIClass
-local serializeIsaacAPIClass = ____serialization.serializeIsaacAPIClass
-local ____tstlClass = require("src.functions.tstlClass")
-local getTSTLClassName = ____tstlClass.getTSTLClassName
-local isDefaultMap = ____tstlClass.isDefaultMap
-local isTSTLMap = ____tstlClass.isTSTLMap
-local isTSTLSet = ____tstlClass.isTSTLSet
-local newTSTLClass = ____tstlClass.newTSTLClass
-local ____types = require("src.functions.types")
-local asString = ____types.asString
-local isNumber = ____types.isNumber
-local isPrimitive = ____types.isPrimitive
-local ____utils = require("src.functions.utils")
-local getTraversalDescription = ____utils.getTraversalDescription
-local twoDimensionalSort = ____utils.twoDimensionalSort
-function ____exports.deepCopy(self, value, serializationType, traversalDescription, classConstructors, insideMap)
-    if serializationType == nil then
-        serializationType = SerializationType.NONE
-    end
-    if traversalDescription == nil then
-        traversalDescription = ""
-    end
-    if classConstructors == nil then
-        classConstructors = {}
-    end
-    if insideMap == nil then
-        insideMap = false
-    end
-    if SAVE_DATA_MANAGER_DEBUG then
-        local logString = "deepCopy is operating on: " .. traversalDescription
-        if serializationType == SerializationType.SERIALIZE then
-            logString = logString .. " (serializing)"
-        elseif serializationType == SerializationType.DESERIALIZE then
-            logString = logString .. " (deserializing)"
-        end
-        logString = logString .. ": " .. tostring(value)
-        log(nil, logString)
-    end
-    local valueType = type(value)
-    repeat
-        local ____switch6 = valueType
-        local ____cond6 = ____switch6 == "nil" or ____switch6 == "boolean" or ____switch6 == "number" or ____switch6 == "string"
-        if ____cond6 then
-            do
-                return value
-            end
-        end
-        ____cond6 = ____cond6 or (____switch6 == "function" or ____switch6 == "thread")
-        if ____cond6 then
-            do
-                if serializationType == SerializationType.SERIALIZE then
-                    error((("The deep copy function does not support serialization of \"" .. traversalDescription) .. "\", since it is type: ") .. valueType)
-                end
-                if serializationType == SerializationType.DESERIALIZE then
-                    error((("The deep copy function does not support deserialization of \"" .. traversalDescription) .. "\", since it is type: ") .. valueType)
-                end
-                return value
-            end
-        end
-        ____cond6 = ____cond6 or ____switch6 == "table"
-        if ____cond6 then
-            do
-                local luaMap = value
-                return deepCopyTable(
-                    nil,
-                    luaMap,
-                    serializationType,
-                    traversalDescription,
-                    classConstructors,
-                    insideMap
-                )
-            end
-        end
-        ____cond6 = ____cond6 or ____switch6 == "userdata"
-        if ____cond6 then
-            do
-                return deepCopyUserdata(nil, value, serializationType, traversalDescription)
-            end
-        end
-    until true
-end
-function deepCopyTable(self, luaMap, serializationType, traversalDescription, classConstructors, insideMap)
-    if isDefaultMap(nil, luaMap) or luaMap[SerializationBrand.DEFAULT_MAP] ~= nil then
-        return deepCopyDefaultMap(
-            nil,
-            luaMap,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-    end
-    if isTSTLMap(nil, luaMap) or luaMap[SerializationBrand.MAP] ~= nil then
-        return deepCopyMap(
-            nil,
-            luaMap,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-    end
-    if isTSTLSet(nil, luaMap) or luaMap[SerializationBrand.SET] ~= nil then
-        return deepCopySet(
-            nil,
-            luaMap,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-    end
-    local className = getTSTLClassName(nil, luaMap)
-    if className == "WeakMap" then
-        error("The deep copy function does not support copying the \"WeakMap\" class for: " .. traversalDescription)
-    end
-    if className == "WeakSet" then
-        error("The deep copy function does not support copying the \"WeakSet\" class for: " .. traversalDescription)
-    end
-    if className ~= nil or luaMap[SerializationBrand.TSTL_CLASS] ~= nil then
-        return deepCopyTSTLClass(
-            nil,
-            luaMap,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-    end
-    checkMetatable(nil, luaMap, traversalDescription)
-    if isSerializedIsaacAPIClass(nil, luaMap) and serializationType == SerializationType.DESERIALIZE then
-        return deserializeIsaacAPIClass(nil, luaMap)
-    end
-    if isArray(nil, luaMap) then
-        return deepCopyArray(
-            nil,
-            luaMap,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-    end
-    return deepCopyNormalLuaTable(
-        nil,
-        luaMap,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-end
-function deepCopyDefaultMap(self, defaultMap, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying a DefaultMap.")
-    end
-    local ____isDefaultMap_result_0
-    if isDefaultMap(nil, defaultMap) then
-        ____isDefaultMap_result_0 = defaultMap:getConstructorArg()
-    else
-        ____isDefaultMap_result_0 = nil
-    end
-    local constructorArg = ____isDefaultMap_result_0
-    if serializationType == SerializationType.SERIALIZE and not isPrimitive(nil, constructorArg) then
-        if insideMap then
-            error("Failed to deep copy a DefaultMap because it was instantiated with a factory function and was also inside of an array, map, or set. For more information, see: https://isaacscript.github.io/main/gotchas#failed-to-deep-copy-a-defaultmap")
-        else
-            return deepCopyMap(
-                nil,
-                defaultMap,
-                serializationType,
-                traversalDescription,
-                classConstructors,
-                insideMap
-            )
-        end
-    end
-    local newDefaultMap = getNewDefaultMap(
-        nil,
-        defaultMap,
-        serializationType,
-        traversalDescription,
-        constructorArg
-    )
-    insideMap = true
-    local ____getCopiedEntries_result_1 = getCopiedEntries(
-        nil,
-        defaultMap,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-    local entries = ____getCopiedEntries_result_1.entries
-    local convertedNumberKeysToStrings = ____getCopiedEntries_result_1.convertedNumberKeysToStrings
-    if convertedNumberKeysToStrings then
-        if isDefaultMap(nil, newDefaultMap) then
-            newDefaultMap:set(SerializationBrand.OBJECT_WITH_NUMBER_KEYS, "")
-        else
-            newDefaultMap[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
-        end
-    end
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        local value = ____value[2]
-        if isDefaultMap(nil, newDefaultMap) then
-            newDefaultMap:set(key, value)
-        else
-            newDefaultMap[key] = value
-        end
-    end
-    insideMap = false
-    return newDefaultMap
-end
-function getNewDefaultMap(self, defaultMap, serializationType, traversalDescription, constructorArg)
-    repeat
-        local ____switch35 = serializationType
-        local ____cond35 = ____switch35 == SerializationType.NONE
-        if ____cond35 then
-            do
-                return __TS__New(DefaultMap, constructorArg)
-            end
-        end
-        ____cond35 = ____cond35 or ____switch35 == SerializationType.SERIALIZE
-        if ____cond35 then
-            do
-                local newDefaultMap = {}
-                newDefaultMap[SerializationBrand.DEFAULT_MAP] = ""
-                newDefaultMap[SerializationBrand.DEFAULT_MAP_VALUE] = constructorArg
-                return newDefaultMap
-            end
-        end
-        ____cond35 = ____cond35 or ____switch35 == SerializationType.DESERIALIZE
-        if ____cond35 then
-            do
-                if isDefaultMap(nil, defaultMap) then
-                    error(("Failed to deserialize a default map of \"" .. traversalDescription) .. "\", since it was not a Lua table.")
-                end
-                local defaultMapValue = defaultMap[SerializationBrand.DEFAULT_MAP_VALUE]
-                if defaultMapValue == nil then
-                    error((("Failed to deserialize a default map of \"" .. traversalDescription) .. "\", since there was no serialization brand of: ") .. SerializationBrand.DEFAULT_MAP_VALUE)
-                end
-                return __TS__New(DefaultMap, defaultMapValue)
-            end
-        end
-    until true
-end
-function deepCopyMap(self, map, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying a Map.")
-    end
-    local newMap
-    if serializationType == SerializationType.SERIALIZE then
-        newMap = {}
-        newMap[SerializationBrand.MAP] = ""
-    else
-        newMap = __TS__New(Map)
-    end
-    insideMap = true
-    local ____getCopiedEntries_result_2 = getCopiedEntries(
-        nil,
-        map,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-    local entries = ____getCopiedEntries_result_2.entries
-    local convertedNumberKeysToStrings = ____getCopiedEntries_result_2.convertedNumberKeysToStrings
-    if convertedNumberKeysToStrings then
-        if isTSTLMap(nil, newMap) then
-            newMap:set(SerializationBrand.OBJECT_WITH_NUMBER_KEYS, "")
-        else
-            newMap[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
-        end
-    end
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        local value = ____value[2]
-        if isTSTLMap(nil, newMap) then
-            newMap:set(key, value)
-        else
-            newMap[key] = value
-        end
-    end
-    insideMap = false
-    return newMap
-end
-function deepCopySet(self, set, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying a Set.")
-    end
-    local newSet
-    if serializationType == SerializationType.SERIALIZE then
-        newSet = {}
-        newSet[SerializationBrand.SET] = ""
-    else
-        newSet = __TS__New(Set)
-    end
-    local ____getCopiedEntries_result_3 = getCopiedEntries(
-        nil,
-        set,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-    local entries = ____getCopiedEntries_result_3.entries
-    local convertedNumberKeysToStrings = ____getCopiedEntries_result_3.convertedNumberKeysToStrings
-    if convertedNumberKeysToStrings then
-        if isTSTLSet(nil, newSet) then
-            error("The deep copy function cannot convert number keys to strings for a Set.")
-        else
-            newSet[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
-        end
-    end
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        if isTSTLSet(nil, newSet) then
-            newSet:add(key)
-        else
-            newSet[key] = ""
-        end
-    end
-    return newSet
-end
-function deepCopyTSTLClass(self, tstlClass, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying a TSTL class.")
-    end
-    local newClass
-    repeat
-        local ____switch65 = serializationType
-        local ____cond65 = ____switch65 == SerializationType.NONE
-        if ____cond65 then
-            do
-                newClass = newTSTLClass(nil, tstlClass)
-                break
-            end
-        end
-        ____cond65 = ____cond65 or ____switch65 == SerializationType.SERIALIZE
-        if ____cond65 then
-            do
-                newClass = {}
-                local tstlClassName = getTSTLClassName(nil, tstlClass)
-                if tstlClassName ~= nil then
-                    newClass[SerializationBrand.TSTL_CLASS] = tstlClassName
-                end
-                break
-            end
-        end
-        ____cond65 = ____cond65 or ____switch65 == SerializationType.DESERIALIZE
-        if ____cond65 then
-            do
-                local tstlClassName = tstlClass[SerializationBrand.TSTL_CLASS]
-                if tstlClassName == nil then
-                    error("Failed to deserialize a TSTL class since the brand did not contain the class name.")
-                end
-                local classConstructor = classConstructors[tstlClassName]
-                if classConstructor == nil then
-                    error(("Failed to deserialize a TSTL class since there was no constructor registered for a class name of \"" .. tstlClassName) .. "\". If this mod is using the save data manager, it must register the class constructor with the \"saveDataManagerRegisterClass\" method.")
-                end
-                newClass = __TS__New(classConstructor)
-            end
-            break
-        end
-    until true
-    local ____getCopiedEntries_result_4 = getCopiedEntries(
-        nil,
-        tstlClass,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-    local entries = ____getCopiedEntries_result_4.entries
-    local convertedNumberKeysToStrings = ____getCopiedEntries_result_4.convertedNumberKeysToStrings
-    if convertedNumberKeysToStrings then
-        newClass[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
-    end
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        local value = ____value[2]
-        newClass[key] = value
-    end
-    return newClass
-end
-function deepCopyArray(self, array, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying an array.")
-    end
-    local newArray = {}
-    for ____, value in ipairs(array) do
-        local newValue = ____exports.deepCopy(
-            nil,
-            value,
-            serializationType,
-            traversalDescription,
-            classConstructors,
-            insideMap
-        )
-        newArray[#newArray + 1] = newValue
-    end
-    return newArray
-end
-function deepCopyNormalLuaTable(self, luaMap, serializationType, traversalDescription, classConstructors, insideMap)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "deepCopy is copying a normal Lua table.")
-    end
-    local newTable = {}
-    local ____getCopiedEntries_result_5 = getCopiedEntries(
-        nil,
-        luaMap,
-        serializationType,
-        traversalDescription,
-        classConstructors,
-        insideMap
-    )
-    local entries = ____getCopiedEntries_result_5.entries
-    local convertedNumberKeysToStrings = ____getCopiedEntries_result_5.convertedNumberKeysToStrings
-    if convertedNumberKeysToStrings then
-        newTable[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] = ""
-    end
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        local value = ____value[2]
-        newTable[key] = value
-    end
-    return newTable
-end
-function getCopiedEntries(self, object, serializationType, traversalDescription, classConstructors, insideMap)
-    local entries = {}
-    if isTSTLMap(nil, object) or isTSTLSet(nil, object) or isDefaultMap(nil, object) then
-        for ____, ____value in __TS__Iterator(object:entries()) do
-            local key = ____value[1]
-            local value = ____value[2]
-            entries[#entries + 1] = {key, value}
-        end
-    else
-        for key, value in pairs(object) do
-            entries[#entries + 1] = {key, value}
-        end
-    end
-    if SAVE_DATA_MANAGER_DEBUG then
-        __TS__ArraySort(entries, twoDimensionalSort)
-    end
-    local convertStringKeysToNumbers = serializationType == SerializationType.DESERIALIZE and __TS__ArraySome(
-        entries,
-        function(____, ____bindingPattern0)
-            local key
-            key = ____bindingPattern0[1]
-            return key == asString(nil, SerializationBrand.OBJECT_WITH_NUMBER_KEYS)
-        end
-    )
-    local hasNumberKeys = __TS__ArraySome(
-        entries,
-        function(____, ____bindingPattern0)
-            local key
-            key = ____bindingPattern0[1]
-            return isNumber(nil, key)
-        end
-    )
-    local convertNumberKeysToStrings = serializationType == SerializationType.SERIALIZE and hasNumberKeys
-    local copiedEntries = {}
-    for ____, ____value in ipairs(entries) do
-        local key = ____value[1]
-        local value = ____value[2]
-        do
-            if isSerializationBrand(nil, key) then
-                goto __continue93
-            end
-            traversalDescription = getTraversalDescription(nil, key, traversalDescription)
-            local newValue = ____exports.deepCopy(
-                nil,
-                value,
-                serializationType,
-                traversalDescription,
-                classConstructors,
-                insideMap
-            )
-            local keyToUse = key
-            if convertStringKeysToNumbers then
-                local numberKey = tonumber(key)
-                if numberKey ~= nil then
-                    keyToUse = numberKey
-                end
-            end
-            if convertNumberKeysToStrings then
-                keyToUse = tostring(key)
-            end
-            copiedEntries[#copiedEntries + 1] = {keyToUse, newValue}
-        end
-        ::__continue93::
-    end
-    return {entries = copiedEntries, convertedNumberKeysToStrings = convertNumberKeysToStrings}
-end
-function checkMetatable(self, luaMap, traversalDescription)
-    local metatable = getmetatable(luaMap)
-    if metatable == nil then
-        return
-    end
-    local tableDescription = traversalDescription == "" and "the table to copy" or ("\"" .. traversalDescription) .. "\""
-    error(("The deepCopy function detected that " .. tableDescription) .. " has a metatable. Copying tables with metatables is not supported, unless they are explicitly handled by the save data manager. (e.g. TypeScriptToLua Maps, TypeScriptToLua Sets, etc.)")
-end
-function deepCopyUserdata(self, value, serializationType, traversalDescription)
-    local classType = getIsaacAPIClassName(nil, value)
-    if classType == nil then
-        error("The deep copy function was not able to derive the Isaac API class type for: " .. traversalDescription)
-    end
-    if not isCopyableIsaacAPIClass(nil, value) then
-        error((("The deep copy function does not support serializing \"" .. traversalDescription) .. "\", since it is an Isaac API class of type: ") .. classType)
-    end
-    repeat
-        local ____switch104 = serializationType
-        local ____cond104 = ____switch104 == SerializationType.NONE
-        if ____cond104 then
-            do
-                return copyIsaacAPIClass(nil, value)
-            end
-        end
-        ____cond104 = ____cond104 or ____switch104 == SerializationType.SERIALIZE
-        if ____cond104 then
-            do
-                return serializeIsaacAPIClass(nil, value)
-            end
-        end
-        ____cond104 = ____cond104 or ____switch104 == SerializationType.DESERIALIZE
-        if ____cond104 then
-            do
-                error(("The deep copy function can not deserialize \"" .. traversalDescription) .. "\", since it is userdata.")
-            end
-            break
-        end
-    until true
-end
 return ____exports
  end,
 ["src.functions.deepCopyTests"] = function(...) 
@@ -43321,184 +44726,6 @@ function ____exports.roomGridIndexToXY(self, roomGridIndex)
     local x = roomGridIndex % LEVEL_GRID_ROW_WIDTH
     local y = math.floor(roomGridIndex / LEVEL_GRID_ROW_WIDTH)
     return {x, y}
-end
-return ____exports
- end,
-["src.functions.merge"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local Set = ____lualib.Set
-local Map = ____lualib.Map
-local ____exports = {}
-local mergeSerializedArray, mergeSerializedTSTLObject, mergeSerializedTable
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-local ____SerializationBrand = require("src.enums.SerializationBrand")
-local SerializationBrand = ____SerializationBrand.SerializationBrand
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____array = require("src.functions.array")
-local isArray = ____array.isArray
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
-local ____log = require("src.functions.log")
-local log = ____log.log
-local ____serialization = require("src.functions.serialization")
-local deserializeIsaacAPIClass = ____serialization.deserializeIsaacAPIClass
-local isSerializationBrand = ____serialization.isSerializationBrand
-local isSerializedIsaacAPIClass = ____serialization.isSerializedIsaacAPIClass
-local ____table = require("src.functions.table")
-local clearTable = ____table.clearTable
-local iterateTableInOrder = ____table.iterateTableInOrder
-local ____tstlClass = require("src.functions.tstlClass")
-local isDefaultMap = ____tstlClass.isDefaultMap
-local isTSTLMap = ____tstlClass.isTSTLMap
-local isTSTLSet = ____tstlClass.isTSTLSet
-local ____types = require("src.functions.types")
-local isTable = ____types.isTable
-local ____utils = require("src.functions.utils")
-local getTraversalDescription = ____utils.getTraversalDescription
-function ____exports.merge(self, oldObject, newTable, traversalDescription, classConstructors)
-    if classConstructors == nil then
-        classConstructors = {}
-    end
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "merge is traversing: " .. traversalDescription)
-    end
-    if not isTable(nil, oldObject) then
-        error("The first argument given to the merge function is not a table.")
-    end
-    if not isTable(nil, newTable) then
-        error("The second argument given to the merge function is not a table.")
-    end
-    if isArray(nil, oldObject) and isArray(nil, newTable) then
-        mergeSerializedArray(
-            nil,
-            oldObject,
-            newTable,
-            traversalDescription,
-            classConstructors
-        )
-        return
-    end
-    if isTSTLMap(nil, oldObject) or isTSTLSet(nil, oldObject) or isDefaultMap(nil, oldObject) then
-        mergeSerializedTSTLObject(
-            nil,
-            oldObject,
-            newTable,
-            traversalDescription,
-            classConstructors
-        )
-    else
-        mergeSerializedTable(
-            nil,
-            oldObject,
-            newTable,
-            traversalDescription,
-            classConstructors
-        )
-    end
-end
-function mergeSerializedArray(self, oldArray, newArray, traversalDescription, classConstructors)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "merge encountered an array: " .. traversalDescription)
-    end
-    clearTable(nil, oldArray)
-    iterateTableInOrder(
-        nil,
-        newArray,
-        function(____, key, value)
-            local deserializedValue = deepCopy(
-                nil,
-                value,
-                SerializationType.DESERIALIZE,
-                traversalDescription,
-                classConstructors
-            )
-            oldArray[key] = deserializedValue
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-end
-function mergeSerializedTSTLObject(self, oldObject, newTable, traversalDescription, classConstructors)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "merge encountered a TSTL object: " .. traversalDescription)
-    end
-    oldObject:clear()
-    local convertStringKeysToNumbers = newTable[SerializationBrand.OBJECT_WITH_NUMBER_KEYS] ~= nil
-    iterateTableInOrder(
-        nil,
-        newTable,
-        function(____, key, value)
-            if isSerializationBrand(nil, key) then
-                return
-            end
-            local keyToUse = key
-            if convertStringKeysToNumbers then
-                local numberKey = tonumber(key)
-                if numberKey == nil then
-                    return
-                end
-                keyToUse = numberKey
-            end
-            if isTSTLMap(nil, oldObject) or isDefaultMap(nil, oldObject) then
-                local deserializedValue = deepCopy(
-                    nil,
-                    value,
-                    SerializationType.DESERIALIZE,
-                    traversalDescription,
-                    classConstructors
-                )
-                oldObject:set(keyToUse, deserializedValue)
-            elseif isTSTLSet(nil, oldObject) then
-                oldObject:add(keyToUse)
-            end
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-end
-function mergeSerializedTable(self, oldTable, newTable, traversalDescription, classConstructors)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "merge encountered a Lua table: " .. traversalDescription)
-    end
-    iterateTableInOrder(
-        nil,
-        newTable,
-        function(____, key, value)
-            if SAVE_DATA_MANAGER_DEBUG then
-                local valueToPrint = value == "" and "(empty string)" or tostring(value)
-                log(nil, (("merge is merging: " .. traversalDescription) .. " --> ") .. valueToPrint)
-            end
-            if isSerializationBrand(nil, key) then
-                return
-            end
-            if isSerializedIsaacAPIClass(nil, value) then
-                if SAVE_DATA_MANAGER_DEBUG then
-                    log(nil, "merge found a serialized Isaac API class.")
-                end
-                local deserializedObject = deserializeIsaacAPIClass(nil, value)
-                oldTable[key] = deserializedObject
-                return
-            end
-            if isTable(nil, value) then
-                local oldValue = oldTable[key]
-                if not isTable(nil, oldValue) then
-                    oldValue = {}
-                    oldTable[key] = oldValue
-                end
-                traversalDescription = getTraversalDescription(nil, key, traversalDescription)
-                ____exports.merge(
-                    nil,
-                    oldValue,
-                    value,
-                    traversalDescription,
-                    classConstructors
-                )
-            else
-                oldTable[key] = value
-            end
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
 end
 return ____exports
  end,
@@ -46162,12 +47389,13 @@ local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CacheFlag = ____isaac_2Dtypescript_2Ddefinitions.CacheFlag
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
-local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
 local LevelCurse = ____isaac_2Dtypescript_2Ddefinitions.LevelCurse
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
 local TearVariant = ____isaac_2Dtypescript_2Ddefinitions.TearVariant
 local ____decorators = require("src.decorators")
 local Exported = ____decorators.Exported
+local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
+local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____flag = require("src.functions.flag")
 local addFlag = ____flag.addFlag
 local bitFlags = ____flag.bitFlags
@@ -46214,12 +47442,6 @@ function ExtraConsoleCommands.prototype.____constructor(self)
         if self.v.persistent.flight then
             player.CanFly = true
         end
-    end
-    self.entityTakeDmgPlayer = function(____, _entity, _damageAmount, _damageFlags, _damageSource, _damageCountdownFrames)
-        if self.v.persistent.spamBloodRights then
-            return false
-        end
-        return nil
     end
     self.postCurseEval = function(____, curses)
         if self.v.persistent.disableCurses then
@@ -46273,17 +47495,23 @@ function ExtraConsoleCommands.prototype.____constructor(self)
             tear:ChangeVariant(TearVariant.CHAOS_CARD)
         end
     end
+    self.entityTakeDmgPlayer = function(____, _player, _damageAmount, _damageFlags, _damageSource, _damageCountdownFrames)
+        if self.v.persistent.spamBloodRights then
+            return false
+        end
+        return nil
+    end
     self.callbacksUsed = {
-        {ModCallback.POST_UPDATE, {self.postUpdate}},
-        {ModCallback.EVALUATE_CACHE, {self.evaluateCacheDamage, CacheFlag.DAMAGE}},
-        {ModCallback.EVALUATE_CACHE, {self.evaluateCacheFireDelay, CacheFlag.FIRE_DELAY}},
-        {ModCallback.EVALUATE_CACHE, {self.evaluateCacheSpeed, CacheFlag.SPEED}},
-        {ModCallback.EVALUATE_CACHE, {self.evaluateCacheFlying, CacheFlag.FLYING}},
-        {ModCallback.ENTITY_TAKE_DMG, {self.entityTakeDmgPlayer, EntityType.PLAYER}},
-        {ModCallback.POST_CURSE_EVAL, {self.postCurseEval}},
-        {ModCallback.EXECUTE_CMD, {self.executeCmd}},
-        {ModCallback.POST_FIRE_TEAR, {self.postFireTear}}
+        {ModCallback.POST_UPDATE, self.postUpdate},
+        {ModCallback.EVALUATE_CACHE, self.evaluateCacheDamage, {CacheFlag.DAMAGE}},
+        {ModCallback.EVALUATE_CACHE, self.evaluateCacheFireDelay, {CacheFlag.FIRE_DELAY}},
+        {ModCallback.EVALUATE_CACHE, self.evaluateCacheSpeed, {CacheFlag.SPEED}},
+        {ModCallback.EVALUATE_CACHE, self.evaluateCacheFlying, {CacheFlag.FLYING}},
+        {ModCallback.POST_CURSE_EVAL, self.postCurseEval},
+        {ModCallback.EXECUTE_CMD, self.executeCmd},
+        {ModCallback.POST_FIRE_TEAR, self.postFireTear}
     }
+    self.customCallbacksUsed = {{ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER, self.entityTakeDmgPlayer}}
     for ____, ____value in ipairs(__TS__ObjectEntries(commands)) do
         local funcName = ____value[1]
         local func = ____value[2]
@@ -46336,7 +47564,7 @@ function FadeInRemover.prototype.____constructor(self)
             game:Fadein(FADE_IN_SPEED)
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_GAME_STARTED, {self.postGameStarted}}}
+    self.callbacksUsed = {{ModCallback.POST_GAME_STARTED, self.postGameStarted}}
 end
 function FadeInRemover.prototype.removeFadeIn(self)
     self.enabled = true
@@ -46397,7 +47625,7 @@ function FastReset.prototype.____constructor(self)
         end
         checkResetInput(nil)
     end
-    self.callbacksUsed = {{ModCallback.POST_RENDER, {self.postRender}}}
+    self.callbacksUsed = {{ModCallback.POST_RENDER, self.postRender}}
 end
 function FastReset.prototype.enableFastReset(self)
     self.enabled = true
@@ -46504,7 +47732,7 @@ function PressInput.prototype.____constructor(self)
         end
         return nil
     end
-    self.callbacksUsed = {{ModCallback.INPUT_ACTION, {self.isActionTriggered, InputHook.IS_ACTION_TRIGGERED}}}
+    self.callbacksUsed = {{ModCallback.INPUT_ACTION, self.isActionTriggered, {InputHook.IS_ACTION_TRIGGERED}}}
 end
 function PressInput.prototype.pressInput(self, player, buttonAction)
     local playerIndex = getPlayerIndex(nil, player)
@@ -46716,7 +47944,7 @@ function NoSirenSteal.prototype.____constructor(self)
     self.postNPCInitSirenHelper = function(____, npc)
         self:checkReturnFamiliarToPlayer(npc)
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, {self.postNPCInitSirenHelper, EntityType.SIREN_HELPER}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, self.postNPCInitSirenHelper, {EntityType.SIREN_HELPER}}}
 end
 function NoSirenSteal.prototype.checkReturnFamiliarToPlayer(self, npc)
     if npc.Target == nil then
@@ -46830,8 +48058,8 @@ function PersistentEntities.prototype.____constructor(self, roomHistory)
         end
     end
     self.featuresUsed = {ISCFeature.ROOM_HISTORY}
-    self.callbacksUsed = {{ModCallback.POST_ENTITY_REMOVE, {self.postEntityRemove}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, {self.postNewRoomReordered}}}
+    self.callbacksUsed = {{ModCallback.POST_ENTITY_REMOVE, self.postEntityRemove}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_REORDERED, self.postNewRoomReordered}}
     self.roomHistory = roomHistory
 end
 function PersistentEntities.prototype.trackDespawningPickupPosition(self, entity, index)
@@ -46950,7 +48178,7 @@ function PlayerInventory.prototype.____constructor(self)
         local inventory = defaultMapGetPlayer(nil, self.v.run.playersInventory, player, player)
         arrayRemoveInPlace(nil, inventory, collectibleType)
     end
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED, {self.postCollectibleAdded}}, {ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED, {self.postCollectibleRemoved}}}
+    self.customCallbacksUsed = {{ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED, self.postCollectibleAdded}, {ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED, self.postCollectibleRemoved}}
 end
 function PlayerInventory.prototype.getPlayerInventory(self, player, includeActiveCollectibles)
     if includeActiveCollectibles == nil then
@@ -47001,937 +48229,13 @@ function PreventChildEntities.prototype.____constructor(self)
             npc:Remove()
         end
     end
-    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, {self.postNPCInit}}}
+    self.callbacksUsed = {{ModCallback.POST_NPC_INIT, self.postNPCInit}}
 end
 function PreventChildEntities.prototype.preventChildEntities(self, entity)
     local ptrHash = GetPtrHash(entity)
     self.v.room.preventingEntities:add(ptrHash)
 end
 __TS__Decorate({Exported}, PreventChildEntities.prototype, "preventChildEntities", true)
-return ____exports
- end,
-["src.enums.SaveDataKey"] = function(...) 
-local ____exports = {}
-____exports.SaveDataKey = {}
-____exports.SaveDataKey.PERSISTENT = "persistent"
-____exports.SaveDataKey.RUN = "run"
-____exports.SaveDataKey.LEVEL = "level"
-____exports.SaveDataKey.ROOM = "room"
-return ____exports
- end,
-["src.classes.features.other.saveDataManager.glowingHourGlass"] = function(...) 
-local ____exports = {}
-local ____SaveDataKey = require("src.enums.SaveDataKey")
-local SaveDataKey = ____SaveDataKey.SaveDataKey
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
-local ____merge = require("src.functions.merge")
-local merge = ____merge.merge
-local ____table = require("src.functions.table")
-local iterateTableInOrder = ____table.iterateTableInOrder
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-local GLOWING_HOUR_GLASS_BACKUP_KEYS = {SaveDataKey.RUN, SaveDataKey.LEVEL}
-local IGNORE_GLOWING_HOUR_GLASS_KEY = "__ignoreGlowingHourGlass"
-function ____exports.makeGlowingHourGlassBackup(self, saveDataMap, saveDataConditionalFuncMap, saveDataGlowingHourGlassMap)
-    iterateTableInOrder(
-        nil,
-        saveDataMap,
-        function(____, subscriberName, saveData)
-            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
-            if conditionalFunc ~= nil then
-                local shouldSave = conditionalFunc(nil)
-                if not shouldSave then
-                    return
-                end
-            end
-            for ____, saveDataKey in ipairs(GLOWING_HOUR_GLASS_BACKUP_KEYS) do
-                do
-                    local childTable = saveData[saveDataKey]
-                    if childTable == nil then
-                        goto __continue6
-                    end
-                    local childTableLuaMap = childTable
-                    if childTableLuaMap[IGNORE_GLOWING_HOUR_GLASS_KEY] ~= nil then
-                        goto __continue6
-                    end
-                    local saveDataGlowingHourGlass = saveDataGlowingHourGlassMap[subscriberName]
-                    if saveDataGlowingHourGlass == nil then
-                        saveDataGlowingHourGlass = {}
-                        saveDataGlowingHourGlassMap[subscriberName] = saveDataGlowingHourGlass
-                    end
-                    local copiedChildTable = deepCopy(nil, childTable, SerializationType.SERIALIZE)
-                    saveDataGlowingHourGlass[saveDataKey] = copiedChildTable
-                end
-                ::__continue6::
-            end
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-end
-function ____exports.restoreGlowingHourGlassBackup(self, saveDataMap, saveDataConditionalFuncMap, saveDataGlowingHourGlassMap, classConstructors)
-    iterateTableInOrder(
-        nil,
-        saveDataMap,
-        function(____, subscriberName, saveData)
-            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
-            if conditionalFunc ~= nil then
-                local shouldSave = conditionalFunc(nil)
-                if not shouldSave then
-                    return
-                end
-            end
-            for ____, saveDataKey in ipairs(GLOWING_HOUR_GLASS_BACKUP_KEYS) do
-                do
-                    local childTable = saveData[saveDataKey]
-                    if childTable == nil then
-                        goto __continue15
-                    end
-                    local childTableLuaMap = childTable
-                    if childTableLuaMap[IGNORE_GLOWING_HOUR_GLASS_KEY] ~= nil then
-                        goto __continue15
-                    end
-                    local saveDataGlowingHourGlass = saveDataGlowingHourGlassMap[subscriberName]
-                    if saveDataGlowingHourGlass == nil then
-                        goto __continue15
-                    end
-                    local childTableBackup = saveDataGlowingHourGlass[saveDataKey]
-                    if childTableBackup == nil then
-                        goto __continue15
-                    end
-                    merge(
-                        nil,
-                        childTable,
-                        childTableBackup,
-                        subscriberName .. "__glowingHourGlass",
-                        classConstructors
-                    )
-                end
-                ::__continue15::
-            end
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-end
-return ____exports
- end,
-["src.functions.jsonHelpers"] = function(...) 
-local ____exports = {}
-local jsonLua = require("src.lib.jsonLua")
-local ____logMisc = require("src.functions.logMisc")
-local logError = ____logMisc.logError
-local function tryDecode(jsonString)
-    return jsonLua.decode(jsonString)
-end
-local function tryEncode(luaTable)
-    return jsonLua.encode(luaTable)
-end
-function ____exports.jsonDecode(self, jsonString)
-    local ok, luaTableOrErrMsg = pcall(tryDecode, jsonString)
-    if not ok then
-        logError(nil, "Failed to convert the JSON string to a Lua table: " .. jsonString)
-        return {}
-    end
-    return luaTableOrErrMsg
-end
-function ____exports.jsonEncode(self, luaTable)
-    local ok, jsonStringOrErrMsg = pcall(tryEncode, luaTable)
-    if not ok then
-        error("Failed to convert the Lua table to JSON: " .. jsonStringOrErrMsg)
-    end
-    return jsonStringOrErrMsg
-end
-return ____exports
- end,
-["src.lib.jsonLua"] = function(...) 
--- cspell:disable
-
---
--- json.lua
---
--- Copyright (c) 2020 rxi
---
--- Permission is hereby granted, free of charge, to any person obtaining a copy of
--- this software and associated documentation files (the "Software"), to deal in
--- the Software without restriction, including without limitation the rights to
--- use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
--- of the Software, and to permit persons to whom the Software is furnished to do
--- so, subject to the following conditions:
---
--- The above copyright notice and this permission notice shall be included in all
--- copies or substantial portions of the Software.
---
--- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
--- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
--- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
--- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
--- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
--- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
--- SOFTWARE.
---
-
-local json = { _version = "0.1.2" }
-
--------------------------------------------------------------------------------
--- Encode
--------------------------------------------------------------------------------
-
-local encode
-
-local escape_char_map = {
-  [ "\\" ] = "\\",
-  [ "\"" ] = "\"",
-  [ "\b" ] = "b",
-  [ "\f" ] = "f",
-  [ "\n" ] = "n",
-  [ "\r" ] = "r",
-  [ "\t" ] = "t",
-}
-
-local escape_char_map_inv = { [ "/" ] = "/" }
-for k, v in pairs(escape_char_map) do
-  escape_char_map_inv[v] = k
-end
-
-
-local function escape_char(c)
-  return "\\" .. (escape_char_map[c] or string.format("u%04x", c:byte()))
-end
-
-
-local function encode_nil(val)
-  return "null"
-end
-
-
-local function encode_table(val, stack)
-  local res = {}
-  stack = stack or {}
-
-  -- Circular reference?
-  if stack[val] then error("circular reference") end
-
-  stack[val] = true
-
-  if rawget(val, 1) ~= nil or next(val) == nil then
-    -- Treat as array -- check keys are valid and it is not sparse
-    local n = 0
-    for k in pairs(val) do
-      if type(k) ~= "number" then
-        error("invalid table: mixed or invalid key types")
-      end
-      n = n + 1
-    end
-    if n ~= #val then
-      error("invalid table: sparse array")
-    end
-    -- Encode
-    for i, v in ipairs(val) do
-      table.insert(res, encode(v, stack))
-    end
-    stack[val] = nil
-    return "[" .. table.concat(res, ",") .. "]"
-
-  else
-    -- Treat as an object
-    for k, v in pairs(val) do
-      if type(k) ~= "string" then
-        error("invalid table: mixed or invalid key types")
-      end
-      table.insert(res, encode(k, stack) .. ":" .. encode(v, stack))
-    end
-    stack[val] = nil
-    return "{" .. table.concat(res, ",") .. "}"
-  end
-end
-
-
-local function encode_string(val)
-  return '"' .. val:gsub('[%z\1-\31\\"]', escape_char) .. '"'
-end
-
-
-local function encode_number(val)
-  -- Check for NaN, -inf and inf
-  if val ~= val or val <= -math.huge or val >= math.huge then
-    error("unexpected number value '" .. tostring(val) .. "'")
-  end
-  return string.format("%.14g", val)
-end
-
-
-local type_func_map = {
-  [ "nil"     ] = encode_nil,
-  [ "table"   ] = encode_table,
-  [ "string"  ] = encode_string,
-  [ "number"  ] = encode_number,
-  [ "boolean" ] = tostring,
-}
-
-
-encode = function(val, stack)
-  local t = type(val)
-  local f = type_func_map[t]
-  if f then
-    return f(val, stack)
-  end
-  error("unexpected type '" .. t .. "'")
-end
-
-
-function json.encode(val)
-  return ( encode(val) )
-end
-
-
--------------------------------------------------------------------------------
--- Decode
--------------------------------------------------------------------------------
-
-local parse
-
-local function create_set(...)
-  local res = {}
-  for i = 1, select("#", ...) do
-    res[ select(i, ...) ] = true
-  end
-  return res
-end
-
-local space_chars   = create_set(" ", "\t", "\r", "\n")
-local delim_chars   = create_set(" ", "\t", "\r", "\n", "]", "}", ",")
-local escape_chars  = create_set("\\", "/", '"', "b", "f", "n", "r", "t", "u")
-local literals      = create_set("true", "false", "null")
-
-local literal_map = {
-  [ "true"  ] = true,
-  [ "false" ] = false,
-  [ "null"  ] = nil,
-}
-
-
-local function next_char(str, idx, set, negate)
-  for i = idx, #str do
-    if set[str:sub(i, i)] ~= negate then
-      return i
-    end
-  end
-  return #str + 1
-end
-
-
-local function decode_error(str, idx, msg)
-  local line_count = 1
-  local col_count = 1
-  for i = 1, idx - 1 do
-    col_count = col_count + 1
-    if str:sub(i, i) == "\n" then
-      line_count = line_count + 1
-      col_count = 1
-    end
-  end
-  error( string.format("%s at line %d col %d", msg, line_count, col_count) )
-end
-
-
-local function codepoint_to_utf8(n)
-  -- http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=iws-appendixa
-  local f = math.floor
-  if n <= 0x7f then
-    return string.char(n)
-  elseif n <= 0x7ff then
-    return string.char(f(n / 64) + 192, n % 64 + 128)
-  elseif n <= 0xffff then
-    return string.char(f(n / 4096) + 224, f(n % 4096 / 64) + 128, n % 64 + 128)
-  elseif n <= 0x10ffff then
-    return string.char(f(n / 262144) + 240, f(n % 262144 / 4096) + 128,
-                       f(n % 4096 / 64) + 128, n % 64 + 128)
-  end
-  error( string.format("invalid unicode codepoint '%x'", n) )
-end
-
-
-local function parse_unicode_escape(s)
-  local n1 = tonumber( s:sub(1, 4),  16 )
-  local n2 = tonumber( s:sub(7, 10), 16 )
-   -- Surrogate pair?
-  if n2 then
-    return codepoint_to_utf8((n1 - 0xd800) * 0x400 + (n2 - 0xdc00) + 0x10000)
-  else
-    return codepoint_to_utf8(n1)
-  end
-end
-
-
-local function parse_string(str, i)
-  local res = ""
-  local j = i + 1
-  local k = j
-
-  while j <= #str do
-    local x = str:byte(j)
-
-    if x < 32 then
-      decode_error(str, j, "control character in string")
-
-    elseif x == 92 then -- `\`: Escape
-      res = res .. str:sub(k, j - 1)
-      j = j + 1
-      local c = str:sub(j, j)
-      if c == "u" then
-        local hex = str:match("^[dD][89aAbB]%x%x\\u%x%x%x%x", j + 1)
-                 or str:match("^%x%x%x%x", j + 1)
-                 or decode_error(str, j - 1, "invalid unicode escape in string")
-        res = res .. parse_unicode_escape(hex)
-        j = j + #hex
-      else
-        if not escape_chars[c] then
-          decode_error(str, j - 1, "invalid escape char '" .. c .. "' in string")
-        end
-        res = res .. escape_char_map_inv[c]
-      end
-      k = j + 1
-
-    elseif x == 34 then -- `"`: End of string
-      res = res .. str:sub(k, j - 1)
-      return res, j + 1
-    end
-
-    j = j + 1
-  end
-
-  decode_error(str, i, "expected closing quote for string")
-end
-
-
-local function parse_number(str, i)
-  local x = next_char(str, i, delim_chars)
-  local s = str:sub(i, x - 1)
-  local n = tonumber(s)
-  if not n then
-    decode_error(str, i, "invalid number '" .. s .. "'")
-  end
-  return n, x
-end
-
-
-local function parse_literal(str, i)
-  local x = next_char(str, i, delim_chars)
-  local word = str:sub(i, x - 1)
-  if not literals[word] then
-    decode_error(str, i, "invalid literal '" .. word .. "'")
-  end
-  return literal_map[word], x
-end
-
-
-local function parse_array(str, i)
-  local res = {}
-  local n = 1
-  i = i + 1
-  while 1 do
-    local x
-    i = next_char(str, i, space_chars, true)
-    -- Empty / end of array?
-    if str:sub(i, i) == "]" then
-      i = i + 1
-      break
-    end
-    -- Read token
-    x, i = parse(str, i)
-    res[n] = x
-    n = n + 1
-    -- Next token
-    i = next_char(str, i, space_chars, true)
-    local chr = str:sub(i, i)
-    i = i + 1
-    if chr == "]" then break end
-    if chr ~= "," then decode_error(str, i, "expected ']' or ','") end
-  end
-  return res, i
-end
-
-
-local function parse_object(str, i)
-  local res = {}
-  i = i + 1
-  while 1 do
-    local key, val
-    i = next_char(str, i, space_chars, true)
-    -- Empty / end of object?
-    if str:sub(i, i) == "}" then
-      i = i + 1
-      break
-    end
-    -- Read key
-    if str:sub(i, i) ~= '"' then
-      decode_error(str, i, "expected string for key")
-    end
-    key, i = parse(str, i)
-    -- Read ':' delimiter
-    i = next_char(str, i, space_chars, true)
-    if str:sub(i, i) ~= ":" then
-      decode_error(str, i, "expected ':' after key")
-    end
-    i = next_char(str, i + 1, space_chars, true)
-    -- Read value
-    val, i = parse(str, i)
-    -- Set
-    res[key] = val
-    -- Next token
-    i = next_char(str, i, space_chars, true)
-    local chr = str:sub(i, i)
-    i = i + 1
-    if chr == "}" then break end
-    if chr ~= "," then decode_error(str, i, "expected '}' or ','") end
-  end
-  return res, i
-end
-
-
-local char_func_map = {
-  [ '"' ] = parse_string,
-  [ "0" ] = parse_number,
-  [ "1" ] = parse_number,
-  [ "2" ] = parse_number,
-  [ "3" ] = parse_number,
-  [ "4" ] = parse_number,
-  [ "5" ] = parse_number,
-  [ "6" ] = parse_number,
-  [ "7" ] = parse_number,
-  [ "8" ] = parse_number,
-  [ "9" ] = parse_number,
-  [ "-" ] = parse_number,
-  [ "t" ] = parse_literal,
-  [ "f" ] = parse_literal,
-  [ "n" ] = parse_literal,
-  [ "[" ] = parse_array,
-  [ "{" ] = parse_object,
-}
-
-
-parse = function(str, idx)
-  local chr = str:sub(idx, idx)
-  local f = char_func_map[chr]
-  if f then
-    return f(str, idx)
-  end
-  decode_error(str, idx, "unexpected character '" .. chr .. "'")
-end
-
-
-function json.decode(str)
-  if type(str) ~= "string" then
-    error("expected argument of type string, got " .. type(str))
-  end
-  local res, idx = parse(str, next_char(str, 1, space_chars, true))
-  idx = next_char(str, idx, space_chars, true)
-  if idx <= #str then
-    decode_error(str, idx, "trailing garbage")
-  end
-  return res
-end
-
-
-return json
- end,
-["src.classes.features.other.saveDataManager.loadFromDisk"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__StringTrim = ____lualib.__TS__StringTrim
-local ____exports = {}
-local readSaveDatFile, tryLoadModData, DEFAULT_MOD_DATA
-local ____jsonHelpers = require("src.functions.jsonHelpers")
-local jsonDecode = ____jsonHelpers.jsonDecode
-local ____log = require("src.functions.log")
-local log = ____log.log
-local ____logMisc = require("src.functions.logMisc")
-local logError = ____logMisc.logError
-local ____merge = require("src.functions.merge")
-local merge = ____merge.merge
-local ____table = require("src.functions.table")
-local iterateTableInOrder = ____table.iterateTableInOrder
-local ____types = require("src.functions.types")
-local isString = ____types.isString
-local isTable = ____types.isTable
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-function readSaveDatFile(self, mod)
-    local renderFrameCount = Isaac.GetFrameCount()
-    local ok, jsonStringOrErrMsg = pcall(tryLoadModData, mod)
-    if not ok then
-        logError(
-            nil,
-            (("Failed to read from the \"save#.dat\" file on render frame " .. tostring(renderFrameCount)) .. ": ") .. jsonStringOrErrMsg
-        )
-        return DEFAULT_MOD_DATA
-    end
-    if jsonStringOrErrMsg == nil then
-        return DEFAULT_MOD_DATA
-    end
-    local jsonStringTrimmed = __TS__StringTrim(jsonStringOrErrMsg)
-    if jsonStringTrimmed == "" then
-        return DEFAULT_MOD_DATA
-    end
-    return jsonStringTrimmed
-end
-function tryLoadModData(mod)
-    return mod:LoadData()
-end
-DEFAULT_MOD_DATA = "{}"
-function ____exports.loadFromDisk(self, mod, oldSaveData, classConstructors)
-    if not mod:HasData() then
-        return
-    end
-    local jsonString = readSaveDatFile(nil, mod)
-    local newSaveData = jsonDecode(nil, jsonString)
-    if SAVE_DATA_MANAGER_DEBUG then
-        log(nil, "Converted data from the \"save#.dat\" to a Lua table.")
-    end
-    iterateTableInOrder(
-        nil,
-        newSaveData,
-        function(____, subscriberName, saveData)
-            if not isString(nil, subscriberName) then
-                return
-            end
-            if not isTable(nil, saveData) then
-                return
-            end
-            local oldSaveDataForSubscriber = oldSaveData[subscriberName]
-            if oldSaveDataForSubscriber == nil then
-                return
-            end
-            if SAVE_DATA_MANAGER_DEBUG then
-                log(nil, "Merging in stored data for feature: " .. subscriberName)
-            end
-            merge(
-                nil,
-                oldSaveDataForSubscriber,
-                saveData,
-                subscriberName,
-                classConstructors
-            )
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-    log(nil, "The save data manager loaded data from the \"save#.dat\" file.")
-end
-return ____exports
- end,
-["src.classes.features.other.saveDataManager.restoreDefaults"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local Set = ____lualib.Set
-local __TS__New = ____lualib.__TS__New
-local __TS__Iterator = ____lualib.__TS__Iterator
-local ____exports = {}
-local clearAndCopyAllElements, RESETTABLE_SAVE_DATA_KEYS
-local ____SaveDataKey = require("src.enums.SaveDataKey")
-local SaveDataKey = ____SaveDataKey.SaveDataKey
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
-local ____logMisc = require("src.functions.logMisc")
-local logError = ____logMisc.logError
-local ____table = require("src.functions.table")
-local clearTable = ____table.clearTable
-local iterateTableInOrder = ____table.iterateTableInOrder
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-function ____exports.restoreDefaultsForAllFeaturesKey(self, saveDataMap, saveDataDefaultsMap, saveDataKey)
-    iterateTableInOrder(
-        nil,
-        saveDataMap,
-        function(____, subscriberName, saveData)
-            ____exports.restoreDefaultForFeatureKey(
-                nil,
-                saveDataDefaultsMap,
-                subscriberName,
-                saveData,
-                saveDataKey
-            )
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-end
-function ____exports.restoreDefaultForFeatureKey(self, saveDataDefaultsMap, subscriberName, saveData, saveDataKey)
-    if not RESETTABLE_SAVE_DATA_KEYS:has(saveDataKey) then
-        error(("Failed to restore default values for a save data key of \"" .. saveDataKey) .. "\", since it is not on the allowed list of resettable save data keys.")
-    end
-    local childTable = saveData[saveDataKey]
-    if childTable == nil then
-        return
-    end
-    local saveDataDefaults = saveDataDefaultsMap[subscriberName]
-    if saveDataDefaults == nil then
-        logError(nil, "Failed to find the default copy of the save data for subscriber: " .. subscriberName)
-        return
-    end
-    local childTableDefaults = saveDataDefaults[saveDataKey]
-    if childTableDefaults == nil then
-        logError(nil, ((("Failed to find the default copy of the child table \"" .. saveDataKey) .. "\" for subscriber \"") .. subscriberName) .. "\". This error usually means that your save data is out of date. You can try purging all of your save data by deleting the following directory: C:\\Program Files (x86)\\Steam\\steamapps\\common\\The Binding of Isaac Rebirth\\data")
-        return
-    end
-    local childTableDefaultsCopy = deepCopy(nil, childTableDefaults, SerializationType.NONE, (subscriberName .. " --> ") .. saveDataKey)
-    clearAndCopyAllElements(nil, childTable, childTableDefaultsCopy)
-end
-function clearAndCopyAllElements(self, oldTable, newTable)
-    clearTable(nil, oldTable)
-    for key, value in pairs(newTable) do
-        oldTable[key] = value
-    end
-end
-RESETTABLE_SAVE_DATA_KEYS = __TS__New(Set, {SaveDataKey.RUN, SaveDataKey.LEVEL, SaveDataKey.ROOM})
-function ____exports.restoreDefaultsForAllFeaturesAndKeys(self, saveDataMap, saveDataDefaultsMap)
-    for ____, saveDataKey in __TS__Iterator(RESETTABLE_SAVE_DATA_KEYS:values()) do
-        ____exports.restoreDefaultsForAllFeaturesKey(nil, saveDataMap, saveDataDefaultsMap, saveDataKey)
-    end
-end
-return ____exports
- end,
-["src.classes.features.other.saveDataManager.saveToDisk"] = function(...) 
-local ____exports = {}
-local getAllSaveDataToWriteToDisk
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
-local ____jsonHelpers = require("src.functions.jsonHelpers")
-local jsonEncode = ____jsonHelpers.jsonEncode
-local ____log = require("src.functions.log")
-local log = ____log.log
-local ____table = require("src.functions.table")
-local isTableEmpty = ____table.isTableEmpty
-local iterateTableInOrder = ____table.iterateTableInOrder
-local ____constants = require("src.classes.features.other.saveDataManager.constants")
-local SAVE_DATA_MANAGER_DEBUG = ____constants.SAVE_DATA_MANAGER_DEBUG
-function getAllSaveDataToWriteToDisk(self, saveDataMap, saveDataConditionalFuncMap)
-    local allSaveData = {}
-    iterateTableInOrder(
-        nil,
-        saveDataMap,
-        function(____, subscriberName, saveData)
-            local conditionalFunc = saveDataConditionalFuncMap[subscriberName]
-            if conditionalFunc ~= nil then
-                local shouldSave = conditionalFunc(nil)
-                if not shouldSave then
-                    return
-                end
-            end
-            local saveDataWithoutRoom = {persistent = saveData.persistent, run = saveData.run, level = saveData.level}
-            if isTableEmpty(nil, saveDataWithoutRoom) then
-                return
-            end
-            local saveDataCopy = deepCopy(nil, saveDataWithoutRoom, SerializationType.SERIALIZE, subscriberName)
-            allSaveData[subscriberName] = saveDataCopy
-        end,
-        SAVE_DATA_MANAGER_DEBUG
-    )
-    return allSaveData
-end
-function ____exports.saveToDisk(self, mod, saveDataMap, saveDataConditionalFuncMap)
-    local allSaveData = getAllSaveDataToWriteToDisk(nil, saveDataMap, saveDataConditionalFuncMap)
-    local jsonString = jsonEncode(nil, allSaveData)
-    mod:SaveData(jsonString)
-    log(nil, "The save data manager wrote data to the \"save#.dat\" file.")
-end
-return ____exports
- end,
-["src.classes.features.other.SaveDataManager"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local Set = ____lualib.Set
-local __TS__New = ____lualib.__TS__New
-local __TS__Class = ____lualib.__TS__Class
-local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__TypeOf = ____lualib.__TS__TypeOf
-local __TS__ObjectKeys = ____lualib.__TS__ObjectKeys
-local __TS__Decorate = ____lualib.__TS__Decorate
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
-local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
-local ____cachedClasses = require("src.core.cachedClasses")
-local game = ____cachedClasses.game
-local ____decorators = require("src.decorators")
-local Exported = ____decorators.Exported
-local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
-local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
-local ____SaveDataKey = require("src.enums.SaveDataKey")
-local SaveDataKey = ____SaveDataKey.SaveDataKey
-local ____SerializationType = require("src.enums.SerializationType")
-local SerializationType = ____SerializationType.SerializationType
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
-local ____stage = require("src.functions.stage")
-local onFirstFloor = ____stage.onFirstFloor
-local ____tstlClass = require("src.functions.tstlClass")
-local getTSTLClassName = ____tstlClass.getTSTLClassName
-local ____types = require("src.functions.types")
-local isString = ____types.isString
-local isTable = ____types.isTable
-local ____Feature = require("src.classes.private.Feature")
-local Feature = ____Feature.Feature
-local ____glowingHourGlass = require("src.classes.features.other.saveDataManager.glowingHourGlass")
-local makeGlowingHourGlassBackup = ____glowingHourGlass.makeGlowingHourGlassBackup
-local restoreGlowingHourGlassBackup = ____glowingHourGlass.restoreGlowingHourGlassBackup
-local ____loadFromDisk = require("src.classes.features.other.saveDataManager.loadFromDisk")
-local loadFromDisk = ____loadFromDisk.loadFromDisk
-local ____restoreDefaults = require("src.classes.features.other.saveDataManager.restoreDefaults")
-local restoreDefaultForFeatureKey = ____restoreDefaults.restoreDefaultForFeatureKey
-local restoreDefaultsForAllFeaturesAndKeys = ____restoreDefaults.restoreDefaultsForAllFeaturesAndKeys
-local restoreDefaultsForAllFeaturesKey = ____restoreDefaults.restoreDefaultsForAllFeaturesKey
-local ____saveToDisk = require("src.classes.features.other.saveDataManager.saveToDisk")
-local saveToDisk = ____saveToDisk.saveToDisk
-local NON_USER_DEFINED_CLASS_NAMES = __TS__New(Set, {"Map", "Set", "DefaultMap"})
-____exports.SaveDataManager = __TS__Class()
-local SaveDataManager = ____exports.SaveDataManager
-SaveDataManager.name = "SaveDataManager"
-__TS__ClassExtends(SaveDataManager, Feature)
-function SaveDataManager.prototype.____constructor(self, mod)
-    Feature.prototype.____constructor(self)
-    self.saveDataMap = {}
-    self.saveDataDefaultsMap = {}
-    self.saveDataConditionalFuncMap = {}
-    self.saveDataGlowingHourGlassMap = {}
-    self.classConstructors = {}
-    self.loadedDataOnThisRun = false
-    self.restoreGlowingHourGlassDataOnNextRoom = false
-    self.postUseItemGlowingHourGlass = function(____, _collectibleType, _rng, _player, _useFlags, _activeSlot, _customVarData)
-        self.restoreGlowingHourGlassDataOnNextRoom = true
-        return nil
-    end
-    self.postPlayerInit = function(____, _player)
-        if self.loadedDataOnThisRun then
-            return
-        end
-        self.loadedDataOnThisRun = true
-        self.restoreGlowingHourGlassDataOnNextRoom = false
-        loadFromDisk(nil, self.mod, self.saveDataMap, self.classConstructors)
-        local gameFrameCount = game:GetFrameCount()
-        local isContinued = gameFrameCount ~= 0
-        if not isContinued then
-            restoreDefaultsForAllFeaturesAndKeys(nil, self.saveDataMap, self.saveDataDefaultsMap)
-        end
-    end
-    self.preGameExit = function()
-        saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
-        restoreDefaultsForAllFeaturesAndKeys(nil, self.saveDataMap, self.saveDataDefaultsMap)
-        self.loadedDataOnThisRun = false
-    end
-    self.postNewLevel = function()
-        restoreDefaultsForAllFeaturesKey(nil, self.saveDataMap, self.saveDataDefaultsMap, SaveDataKey.LEVEL)
-        if not onFirstFloor(nil) then
-            saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
-        end
-    end
-    self.postNewRoomEarly = function()
-        restoreDefaultsForAllFeaturesKey(nil, self.saveDataMap, self.saveDataDefaultsMap, SaveDataKey.ROOM)
-        if self.restoreGlowingHourGlassDataOnNextRoom then
-            self.restoreGlowingHourGlassDataOnNextRoom = false
-            restoreGlowingHourGlassBackup(
-                nil,
-                self.saveDataMap,
-                self.saveDataConditionalFuncMap,
-                self.saveDataGlowingHourGlassMap,
-                self.classConstructors
-            )
-        else
-            makeGlowingHourGlassBackup(nil, self.saveDataMap, self.saveDataConditionalFuncMap, self.saveDataGlowingHourGlassMap)
-        end
-    end
-    self.callbacksUsed = {{ModCallback.POST_USE_ITEM, {self.postUseItemGlowingHourGlass, CollectibleType.GLOWING_HOUR_GLASS}}, {ModCallback.POST_PLAYER_INIT, {self.postPlayerInit}}, {ModCallback.PRE_GAME_EXIT, {self.preGameExit}}, {ModCallback.POST_NEW_LEVEL, {self.postNewLevel}}}
-    self.customCallbacksUsed = {{ModCallbackCustom.POST_NEW_ROOM_EARLY, {self.postNewRoomEarly}}}
-    self.mod = mod
-end
-function SaveDataManager.prototype.saveDataManager(self, key, v, conditionalFunc)
-    if not isString(nil, key) then
-        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
-    end
-    if self.saveDataMap[key] ~= nil then
-        error("The save data manager is already managing save data for a key of: " .. key)
-    end
-    self:storeClassConstructorsFromObject(v)
-    self.saveDataMap[key] = v
-    if conditionalFunc == false then
-        conditionalFunc = function() return false end
-    end
-    local saveDataKeys = __TS__ObjectKeys(v)
-    if #saveDataKeys == 1 and saveDataKeys[1] == "room" then
-        conditionalFunc = function() return false end
-    end
-    local saveDataCopy = deepCopy(nil, v, SerializationType.NONE, key)
-    self.saveDataDefaultsMap[key] = saveDataCopy
-    if conditionalFunc ~= nil then
-        self.saveDataConditionalFuncMap[key] = conditionalFunc
-    end
-end
-function SaveDataManager.prototype.storeClassConstructorsFromObject(self, luaMap)
-    local tstlClassName = getTSTLClassName(nil, luaMap)
-    if tstlClassName ~= nil and not NON_USER_DEFINED_CLASS_NAMES:has(tstlClassName) then
-        self.classConstructors[tstlClassName] = luaMap
-    end
-    for _key, value in pairs(luaMap) do
-        if isTable(nil, value) then
-            self:storeClassConstructorsFromObject(value)
-        end
-    end
-end
-function SaveDataManager.prototype.saveDataManagerLoad(self)
-    loadFromDisk(nil, self.mod, self.saveDataMap, self.classConstructors)
-end
-function SaveDataManager.prototype.saveDataManagerSave(self)
-    saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
-end
-function SaveDataManager.prototype.saveDataManagerSetGlobal(self)
-    g = self.saveDataMap
-end
-function SaveDataManager.prototype.saveDataManagerRegisterClass(self, ...)
-    local tstlClasses = {...}
-    for ____, tstlClass in ipairs(tstlClasses) do
-        local name = tstlClass.name
-        if name == nil then
-            error("Failed to register a class with the save data manager due to not being able to derive the name of the class.")
-        end
-        self.classConstructors[name] = tstlClass
-    end
-end
-function SaveDataManager.prototype.saveDataManagerRemove(self, key)
-    if not isString(nil, key) then
-        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
-    end
-    if not (self.saveDataMap[key] ~= nil) then
-        error("The save data manager is not managing save data for a key of: " .. key)
-    end
-    self.saveDataMap[key] = nil
-    self.saveDataDefaultsMap[key] = nil
-    self.saveDataConditionalFuncMap[key] = nil
-    self.saveDataGlowingHourGlassMap[key] = nil
-end
-function SaveDataManager.prototype.saveDataManagerReset(self, key, childObjectKey)
-    if not isString(nil, key) then
-        error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
-    end
-    local saveData = self.saveDataMap[key]
-    if saveData == nil then
-        error("The save data manager is not managing save data for a key of: " .. key)
-    end
-    restoreDefaultForFeatureKey(
-        nil,
-        self.saveDataDefaultsMap,
-        key,
-        saveData,
-        childObjectKey
-    )
-end
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManager", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerLoad", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSave", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSetGlobal", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRegisterClass", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRemove", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerReset", true)
 return ____exports
  end,
 ["src.functions.projectiles"] = function(...) 
@@ -48549,7 +48853,7 @@ function TaintedLazarusPlayers.prototype.____constructor(self)
         end
         self:checkDequeue()
     end
-    self.callbacksUsed = {{ModCallback.POST_PLAYER_INIT, {self.postPlayerInit}}}
+    self.callbacksUsed = {{ModCallback.POST_PLAYER_INIT, self.postPlayerInit}}
 end
 function TaintedLazarusPlayers.prototype.checkDequeue(self)
     if #self.v.run.queuedTaintedLazarus == 0 or #self.v.run.queuedDeadTaintedLazarus == 0 then
@@ -48691,7 +48995,6 @@ local ISCFeature = ____ISCFeature.ISCFeature
 local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
 local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
 local ____utils = require("src.functions.utils")
-local newObjectWithEnumKeys = ____utils.newObjectWithEnumKeys
 local validateInterfaceMatchesEnum = ____utils.validateInterfaceMatchesEnum
 validateInterfaceMatchesEnum(nil)
 function ____exports.getFeatures(self, mod, callbacks)
@@ -48712,12 +49015,13 @@ function ____exports.getFeatures(self, mod, callbacks)
     local roomHistory = __TS__New(RoomHistory)
     local runInNFrames = __TS__New(RunInNFrames)
     local runNextRoom = __TS__New(RunNextRoom)
+    local saveDataManager = __TS__New(SaveDataManager, mod)
     local stageHistory = __TS__New(StageHistory)
     local customGridEntities = __TS__New(CustomGridEntities, runInNFrames)
     local moddedElementSets = __TS__New(ModdedElementSets, moddedElementDetection)
     local itemPoolDetection = __TS__New(ItemPoolDetection, moddedElementSets)
     local pause = __TS__New(Pause, disableInputs)
-    local pickupIndexCreation = __TS__New(PickupIndexCreation, roomHistory)
+    local pickupIndexCreation = __TS__New(PickupIndexCreation, roomHistory, saveDataManager)
     local preventGridEntityRespawn = __TS__New(PreventGridEntityRespawn, runInNFrames)
     local spawnCollectible = __TS__New(SpawnCollectible, preventCollectibleRotation)
     local customTrapdoors = __TS__New(
@@ -48730,97 +49034,90 @@ function ____exports.getFeatures(self, mod, callbacks)
         runNextRoom,
         stageHistory
     )
-    return newObjectWithEnumKeys(
-        nil,
-        ISCFeature,
-        {
-            [ISCFeature.CUSTOM_REVIVE] = __TS__New(CustomRevive, callbacks[ModCallbackCustom.PRE_CUSTOM_REVIVE], callbacks[ModCallbackCustom.POST_CUSTOM_REVIVE], runInNFrames),
-            [ISCFeature.ESAU_JR_DETECTION] = __TS__New(EsauJrDetection, callbacks[ModCallbackCustom.POST_ESAU_JR], callbacks[ModCallbackCustom.POST_FIRST_ESAU_JR]),
-            [ISCFeature.FLIP_DETECTION] = __TS__New(FlipDetection, callbacks[ModCallbackCustom.POST_FLIP], callbacks[ModCallbackCustom.POST_FIRST_FLIP]),
-            [ISCFeature.GRID_ENTITY_COLLISION_DETECTION] = __TS__New(GridEntityCollisionDetection, callbacks[ModCallbackCustom.POST_GRID_ENTITY_COLLISION], callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_COLLISION], customGridEntities),
-            [ISCFeature.GRID_ENTITY_UPDATE_DETECTION] = __TS__New(
-                GridEntityUpdateDetection,
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_INIT],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_INIT],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_UPDATE],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_REMOVE],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_REMOVE],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_STATE_CHANGED],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_BROKEN],
-                callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_BROKEN],
-                customGridEntities
-            ),
-            [ISCFeature.GRID_ENTITY_RENDER_DETECTION] = __TS__New(GridEntityRenderDetection, callbacks[ModCallbackCustom.POST_GRID_ENTITY_RENDER], callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_RENDER], customGridEntities),
-            [ISCFeature.GAME_REORDERED_CALLBACKS] = gameReorderedCallbacks,
-            [ISCFeature.ITEM_PICKUP_DETECTION] = __TS__New(ItemPickupDetection, callbacks[ModCallbackCustom.POST_ITEM_PICKUP], callbacks[ModCallbackCustom.PRE_ITEM_PICKUP]),
-            [ISCFeature.PLAYER_COLLECTIBLE_DETECTION] = __TS__New(
-                PlayerCollectibleDetection,
-                callbacks[ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED],
-                callbacks[ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED],
-                moddedElementSets,
-                runInNFrames
-            ),
-            [ISCFeature.PLAYER_REORDERED_CALLBACKS] = __TS__New(PlayerReorderedCallbacks, callbacks[ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED], callbacks[ModCallbackCustom.POST_PLAYER_RENDER_REORDERED], callbacks[ModCallbackCustom.POST_PLAYER_UPDATE_REORDERED]),
-            [ISCFeature.SLOT_RENDER_DETECTION] = __TS__New(SlotRenderDetection, callbacks[ModCallbackCustom.POST_SLOT_RENDER], callbacks[ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED]),
-            [ISCFeature.SLOT_UPDATE_DETECTION] = __TS__New(SlotUpdateDetection, callbacks[ModCallbackCustom.POST_SLOT_INIT], callbacks[ModCallbackCustom.POST_SLOT_UPDATE]),
-            [ISCFeature.CHARACTER_HEALTH_CONVERSION] = __TS__New(CharacterHealthConversion),
-            [ISCFeature.CHARACTER_STATS] = __TS__New(CharacterStats),
-            [ISCFeature.COLLECTIBLE_ITEM_POOL_TYPE] = __TS__New(CollectibleItemPoolType, pickupIndexCreation),
-            [ISCFeature.CUSTOM_GRID_ENTITIES] = customGridEntities,
-            [ISCFeature.CUSTOM_ITEM_POOLS] = __TS__New(CustomItemPools),
-            [ISCFeature.CUSTOM_HOTKEYS] = __TS__New(CustomHotkeys),
-            [ISCFeature.CUSTOM_PICKUPS] = __TS__New(CustomPickups),
-            [ISCFeature.CUSTOM_STAGES] = __TS__New(
-                CustomStages,
-                customGridEntities,
-                customTrapdoors,
-                disableAllSound,
-                gameReorderedCallbacks,
-                pause,
-                runInNFrames
-            ),
-            [ISCFeature.CUSTOM_TRAPDOORS] = customTrapdoors,
-            [ISCFeature.DEBUG_DISPLAY] = __TS__New(DebugDisplay, mod),
-            [ISCFeature.DEPLOY_JSON_ROOM] = __TS__New(DeployJSONRoom, preventGridEntityRespawn, spawnCollectible),
-            [ISCFeature.DISABLE_ALL_SOUND] = disableAllSound,
-            [ISCFeature.DISABLE_INPUTS] = disableInputs,
-            [ISCFeature.FADE_IN_REMOVER] = __TS__New(FadeInRemover),
-            [ISCFeature.FAST_RESET] = __TS__New(FastReset),
-            [ISCFeature.FLYING_DETECTION] = __TS__New(FlyingDetection, moddedElementSets),
-            [ISCFeature.FORGOTTEN_SWITCH] = __TS__New(ForgottenSwitch, pressInput),
-            [ISCFeature.EXTRA_CONSOLE_COMMANDS] = __TS__New(ExtraConsoleCommands),
-            [ISCFeature.ITEM_POOL_DETECTION] = itemPoolDetection,
-            [ISCFeature.MODDED_ELEMENT_DETECTION] = moddedElementDetection,
-            [ISCFeature.MODDED_ELEMENT_SETS] = moddedElementSets,
-            [ISCFeature.NO_SIREN_STEAL] = __TS__New(NoSirenSteal),
-            [ISCFeature.PAUSE] = pause,
-            [ISCFeature.PERSISTENT_ENTITIES] = __TS__New(PersistentEntities, roomHistory),
-            [ISCFeature.PICKUP_INDEX_CREATION] = pickupIndexCreation,
-            [ISCFeature.PLAYER_INVENTORY] = __TS__New(PlayerInventory),
-            [ISCFeature.PONY_DETECTION] = ponyDetection,
-            [ISCFeature.PRESS_INPUT] = pressInput,
-            [ISCFeature.PREVENT_CHILD_ENTITIES] = __TS__New(PreventChildEntities),
-            [ISCFeature.PREVENT_COLLECTIBLE_ROTATION] = preventCollectibleRotation,
-            [ISCFeature.PREVENT_GRID_ENTITY_RESPAWN] = preventGridEntityRespawn,
-            [ISCFeature.ROOM_CLEAR_FRAME] = roomClearFrame,
-            [ISCFeature.ROOM_HISTORY] = roomHistory,
-            [ISCFeature.RUN_IN_N_FRAMES] = runInNFrames,
-            [ISCFeature.RUN_NEXT_ROOM] = runNextRoom,
-            [ISCFeature.SAVE_DATA_MANAGER] = __TS__New(SaveDataManager, mod),
-            [ISCFeature.SPAWN_ALT_ROCK_REWARDS] = __TS__New(SpawnRockAltRewards, itemPoolDetection),
-            [ISCFeature.SPAWN_COLLECTIBLE] = spawnCollectible,
-            [ISCFeature.STAGE_HISTORY] = stageHistory,
-            [ISCFeature.START_AMBUSH] = __TS__New(StartAmbush, runInNFrames),
-            [ISCFeature.TAINTED_LAZARUS_PLAYERS] = __TS__New(TaintedLazarusPlayers)
-        }
-    )
+    local features = {
+        [ISCFeature.CUSTOM_REVIVE] = __TS__New(CustomRevive, callbacks[ModCallbackCustom.PRE_CUSTOM_REVIVE], callbacks[ModCallbackCustom.POST_CUSTOM_REVIVE], runInNFrames),
+        [ISCFeature.ESAU_JR_DETECTION] = __TS__New(EsauJrDetection, callbacks[ModCallbackCustom.POST_ESAU_JR], callbacks[ModCallbackCustom.POST_FIRST_ESAU_JR]),
+        [ISCFeature.FLIP_DETECTION] = __TS__New(FlipDetection, callbacks[ModCallbackCustom.POST_FLIP], callbacks[ModCallbackCustom.POST_FIRST_FLIP]),
+        [ISCFeature.GRID_ENTITY_COLLISION_DETECTION] = __TS__New(GridEntityCollisionDetection, callbacks[ModCallbackCustom.POST_GRID_ENTITY_COLLISION], callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_COLLISION], customGridEntities),
+        [ISCFeature.GRID_ENTITY_UPDATE_DETECTION] = __TS__New(
+            GridEntityUpdateDetection,
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_INIT],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_INIT],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_UPDATE],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_UPDATE],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_REMOVE],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_REMOVE],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_STATE_CHANGED],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_BROKEN],
+            callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_BROKEN],
+            customGridEntities
+        ),
+        [ISCFeature.GRID_ENTITY_RENDER_DETECTION] = __TS__New(GridEntityRenderDetection, callbacks[ModCallbackCustom.POST_GRID_ENTITY_RENDER], callbacks[ModCallbackCustom.POST_GRID_ENTITY_CUSTOM_RENDER], customGridEntities),
+        [ISCFeature.GAME_REORDERED_CALLBACKS] = gameReorderedCallbacks,
+        [ISCFeature.ITEM_PICKUP_DETECTION] = __TS__New(ItemPickupDetection, callbacks[ModCallbackCustom.POST_ITEM_PICKUP], callbacks[ModCallbackCustom.PRE_ITEM_PICKUP]),
+        [ISCFeature.PLAYER_COLLECTIBLE_DETECTION] = __TS__New(
+            PlayerCollectibleDetection,
+            callbacks[ModCallbackCustom.POST_PLAYER_COLLECTIBLE_ADDED],
+            callbacks[ModCallbackCustom.POST_PLAYER_COLLECTIBLE_REMOVED],
+            moddedElementSets,
+            runInNFrames
+        ),
+        [ISCFeature.PLAYER_REORDERED_CALLBACKS] = __TS__New(PlayerReorderedCallbacks, callbacks[ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED], callbacks[ModCallbackCustom.POST_PLAYER_RENDER_REORDERED], callbacks[ModCallbackCustom.POST_PLAYER_UPDATE_REORDERED]),
+        [ISCFeature.SLOT_RENDER_DETECTION] = __TS__New(SlotRenderDetection, callbacks[ModCallbackCustom.POST_SLOT_RENDER], callbacks[ModCallbackCustom.POST_SLOT_ANIMATION_CHANGED]),
+        [ISCFeature.SLOT_UPDATE_DETECTION] = __TS__New(SlotUpdateDetection, callbacks[ModCallbackCustom.POST_SLOT_INIT], callbacks[ModCallbackCustom.POST_SLOT_UPDATE]),
+        [ISCFeature.CHARACTER_HEALTH_CONVERSION] = __TS__New(CharacterHealthConversion),
+        [ISCFeature.CHARACTER_STATS] = __TS__New(CharacterStats),
+        [ISCFeature.COLLECTIBLE_ITEM_POOL_TYPE] = __TS__New(CollectibleItemPoolType, pickupIndexCreation),
+        [ISCFeature.CUSTOM_GRID_ENTITIES] = customGridEntities,
+        [ISCFeature.CUSTOM_ITEM_POOLS] = __TS__New(CustomItemPools),
+        [ISCFeature.CUSTOM_HOTKEYS] = __TS__New(CustomHotkeys),
+        [ISCFeature.CUSTOM_PICKUPS] = __TS__New(CustomPickups),
+        [ISCFeature.CUSTOM_STAGES] = __TS__New(
+            CustomStages,
+            customGridEntities,
+            customTrapdoors,
+            disableAllSound,
+            gameReorderedCallbacks,
+            pause,
+            runInNFrames
+        ),
+        [ISCFeature.CUSTOM_TRAPDOORS] = customTrapdoors,
+        [ISCFeature.DEBUG_DISPLAY] = __TS__New(DebugDisplay, mod),
+        [ISCFeature.DEPLOY_JSON_ROOM] = __TS__New(DeployJSONRoom, preventGridEntityRespawn, spawnCollectible),
+        [ISCFeature.DISABLE_ALL_SOUND] = disableAllSound,
+        [ISCFeature.DISABLE_INPUTS] = disableInputs,
+        [ISCFeature.FADE_IN_REMOVER] = __TS__New(FadeInRemover),
+        [ISCFeature.FAST_RESET] = __TS__New(FastReset),
+        [ISCFeature.FLYING_DETECTION] = __TS__New(FlyingDetection, moddedElementSets),
+        [ISCFeature.FORGOTTEN_SWITCH] = __TS__New(ForgottenSwitch, pressInput),
+        [ISCFeature.EXTRA_CONSOLE_COMMANDS] = __TS__New(ExtraConsoleCommands),
+        [ISCFeature.ITEM_POOL_DETECTION] = itemPoolDetection,
+        [ISCFeature.MODDED_ELEMENT_DETECTION] = moddedElementDetection,
+        [ISCFeature.MODDED_ELEMENT_SETS] = moddedElementSets,
+        [ISCFeature.NO_SIREN_STEAL] = __TS__New(NoSirenSteal),
+        [ISCFeature.PAUSE] = pause,
+        [ISCFeature.PERSISTENT_ENTITIES] = __TS__New(PersistentEntities, roomHistory),
+        [ISCFeature.PICKUP_INDEX_CREATION] = pickupIndexCreation,
+        [ISCFeature.PLAYER_INVENTORY] = __TS__New(PlayerInventory),
+        [ISCFeature.PONY_DETECTION] = ponyDetection,
+        [ISCFeature.PRESS_INPUT] = pressInput,
+        [ISCFeature.PREVENT_CHILD_ENTITIES] = __TS__New(PreventChildEntities),
+        [ISCFeature.PREVENT_COLLECTIBLE_ROTATION] = preventCollectibleRotation,
+        [ISCFeature.PREVENT_GRID_ENTITY_RESPAWN] = preventGridEntityRespawn,
+        [ISCFeature.ROOM_CLEAR_FRAME] = roomClearFrame,
+        [ISCFeature.ROOM_HISTORY] = roomHistory,
+        [ISCFeature.RUN_IN_N_FRAMES] = runInNFrames,
+        [ISCFeature.RUN_NEXT_ROOM] = runNextRoom,
+        [ISCFeature.SAVE_DATA_MANAGER] = saveDataManager,
+        [ISCFeature.SPAWN_ALT_ROCK_REWARDS] = __TS__New(SpawnRockAltRewards, itemPoolDetection),
+        [ISCFeature.SPAWN_COLLECTIBLE] = spawnCollectible,
+        [ISCFeature.STAGE_HISTORY] = stageHistory,
+        [ISCFeature.START_AMBUSH] = __TS__New(StartAmbush, runInNFrames),
+        [ISCFeature.TAINTED_LAZARUS_PLAYERS] = __TS__New(TaintedLazarusPlayers)
+    }
+    return features
 end
-return ____exports
- end,
-["src.types.AnyFunction"] = function(...) 
-local ____exports = {}
 return ____exports
  end,
 ["src.functions.debugFunctions"] = function(...) 
@@ -49054,19 +49351,21 @@ function ModUpgradedBase.prototype.initFeature(self, feature)
     end
     if feature.callbacksUsed ~= nil then
         for ____, callbackTuple in ipairs(feature.callbacksUsed) do
-            local modCallback, callbackArgs = table.unpack(callbackTuple)
+            local modCallback, callbackFunc, optionalArgs = table.unpack(callbackTuple)
             self:AddCallback(
                 modCallback,
-                table.unpack(callbackArgs)
+                callbackFunc,
+                table.unpack(optionalArgs or ({}))
             )
         end
     end
     if feature.customCallbacksUsed ~= nil then
         for ____, callbackTuple in ipairs(feature.customCallbacksUsed) do
-            local modCallback, callbackArgs = table.unpack(callbackTuple)
+            local modCallback, callbackFunc, optionalArgs = table.unpack(callbackTuple)
             self:AddCallbackCustom(
                 modCallback,
-                table.unpack(callbackArgs)
+                callbackFunc,
+                table.unpack(optionalArgs or ({}))
             )
         end
     end
@@ -49101,16 +49400,14 @@ function ModUpgradedBase.prototype.uninitFeature(self, feature)
     end
     if feature.callbacksUsed ~= nil then
         for ____, callbackTuple in ipairs(feature.callbacksUsed) do
-            local modCallback, callbackArgs = table.unpack(callbackTuple)
-            local callback = callbackArgs[1]
-            self:RemoveCallback(modCallback, callback)
+            local modCallback, callbackFunc = table.unpack(callbackTuple)
+            self:RemoveCallback(modCallback, callbackFunc)
         end
     end
     if feature.customCallbacksUsed ~= nil then
         for ____, callbackTuple in ipairs(feature.customCallbacksUsed) do
-            local modCallback, callbackArgs = table.unpack(callbackTuple)
-            local callback = callbackArgs[1]
-            self:RemoveCallbackCustom(modCallback, callback)
+            local modCallback, callbackFunc = table.unpack(callbackTuple)
+            self:RemoveCallbackCustom(modCallback, callbackFunc)
         end
     end
     if feature.v ~= nil then
@@ -49155,8 +49452,6 @@ local ____exports = {}
 local initDecoratedCallbacks, addCallback, removeCallback, initSaveDataManager, WRAPPED_CALLBACK_METHODS_KEY, WRAPPED_CUSTOM_CALLBACK_METHODS_KEY
 local ____array = require("src.functions.array")
 local isArray = ____array.isArray
-local ____deepCopy = require("src.functions.deepCopy")
-local deepCopy = ____deepCopy.deepCopy
 local ____tstlClass = require("src.functions.tstlClass")
 local getTSTLClassConstructor = ____tstlClass.getTSTLClassConstructor
 local getTSTLClassName = ____tstlClass.getTSTLClassName
@@ -49166,26 +49461,29 @@ local isNumber = ____types.isNumber
 local isTable = ____types.isTable
 function initDecoratedCallbacks(self, modFeature, constructor, tstlClassName, vanilla, init)
     local modFeatureConstructor = constructor
-    local argsKey = vanilla and ____exports.ADD_CALLBACK_ARGS_KEY or ____exports.ADD_CALLBACK_CUSTOM_ARGS_KEY
-    local addCallbackArgs = modFeatureConstructor[argsKey]
-    if addCallbackArgs == nil then
+    local callbackTuplesKey = vanilla and ____exports.MOD_FEATURE_CALLBACKS_KEY or ____exports.MOD_FEATURE_CUSTOM_CALLBACKS_KEY
+    local callbackTuples = modFeatureConstructor[callbackTuplesKey]
+    if callbackTuples == nil then
         return
     end
-    if not isArray(nil, addCallbackArgs) then
-        error(("Failed to initialize/uninitialize the decorated callbacks on a mod feature since the callback arguments on the key of \"" .. argsKey) .. "\" was not an array.")
+    if not isArray(nil, callbackTuples) then
+        error((("Failed to initialize/uninitialize the decorated callbacks on a mod feature since the callback arguments on the key of \"" .. callbackTuplesKey) .. "\" was not an array and was instead of type: ") .. type(callbackTuples))
     end
-    for ____, args in ipairs(addCallbackArgs) do
-        if not isArray(nil, args) then
-            error("Failed to initialize/uninitialize the decorated callbacks on a mod feature since one of the callback arguments was not an array.")
+    for ____, callbackTuple in ipairs(callbackTuples) do
+        if not isArray(nil, callbackTuple) then
+            error((("Failed to initialize/uninitialize the decorated callbacks on a mod feature since one of the callback arguments on the key of \"" .. callbackTuplesKey) .. "\" was not an array and was instead of type: ") .. type(callbackTuple))
         end
-        local parameters = deepCopy(nil, args)
-        local modCallback = table.remove(parameters, 1)
+        local modCallback = callbackTuple[1]
         if not isNumber(nil, modCallback) then
-            error("Failed to get the callback number from the parameters for class: " .. tstlClassName)
+            error("Failed to get the callback number from the callback tuple for class: " .. tstlClassName)
         end
-        local callback = table.remove(parameters, 1)
+        local callback = callbackTuple[2]
         if not isFunction(nil, callback) then
-            error("Failed to get the callback function from the parameters for class: " .. tstlClassName)
+            error("Failed to get the callback function from the callback tuple for class: " .. tstlClassName)
+        end
+        local parameters = callbackTuple[3]
+        if not isArray(nil, parameters, false) then
+            error("Failed to get the callback parameters from the callback tuple for class: " .. tstlClassName)
         end
         local mod = modFeature.mod
         if init then
@@ -49214,7 +49512,7 @@ function addCallback(self, modFeature, modFeatureConstructor, mod, modCallback, 
     local function wrappedCallback(____, ...)
         local conditionalFunc = modFeature.callbackConditionalFunc
         if conditionalFunc ~= nil then
-            local shouldRun = conditionalFunc(nil)
+            local shouldRun = conditionalFunc(nil, vanilla, modCallback, ...)
             if not shouldRun then
                 return nil
             end
@@ -49296,8 +49594,8 @@ function initSaveDataManager(self, modFeature, tstlClassName, init)
         saveDataManagerMethod(nil, tstlClassName)
     end
 end
-____exports.ADD_CALLBACK_ARGS_KEY = "__addCallbackArgs"
-____exports.ADD_CALLBACK_CUSTOM_ARGS_KEY = "__addCallbackCustomArgs"
+____exports.MOD_FEATURE_CALLBACKS_KEY = "__callbacks"
+____exports.MOD_FEATURE_CUSTOM_CALLBACKS_KEY = "__customCallbacks"
 WRAPPED_CALLBACK_METHODS_KEY = "__wrappedCallbackMethods"
 WRAPPED_CUSTOM_CALLBACK_METHODS_KEY = "__wrappedCustomCallbacksMethods"
 ____exports.ModFeature = __TS__Class()
@@ -49731,17 +50029,11 @@ function ____exports.hasCurse(self, curse)
 end
 return ____exports
  end,
-["src.types.AllButFirst"] = function(...) 
-local ____exports = {}
-return ____exports
- end,
 ["src.functions.decorators"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__Spread = ____lualib.__TS__Spread
 local ____exports = {}
 local ____ModFeature = require("src.classes.ModFeature")
-local ADD_CALLBACK_ARGS_KEY = ____ModFeature.ADD_CALLBACK_ARGS_KEY
-local ADD_CALLBACK_CUSTOM_ARGS_KEY = ____ModFeature.ADD_CALLBACK_CUSTOM_ARGS_KEY
+local MOD_FEATURE_CALLBACKS_KEY = ____ModFeature.MOD_FEATURE_CALLBACKS_KEY
+local MOD_FEATURE_CUSTOM_CALLBACKS_KEY = ____ModFeature.MOD_FEATURE_CUSTOM_CALLBACKS_KEY
 local ____tstlClass = require("src.functions.tstlClass")
 local getTSTLClassName = ____tstlClass.getTSTLClassName
 function ____exports.Callback(self, modCallback, ...)
@@ -49749,21 +50041,17 @@ function ____exports.Callback(self, modCallback, ...)
     return function(____, target, propertyKey, _descriptor)
         local methodName = propertyKey
         local method = target[methodName]
-        local addCallbackArgs = {
-            modCallback,
-            method,
-            __TS__Spread(optionalArgs)
-        }
+        local callbackTuple = {modCallback, method, optionalArgs}
         local constructor = target.constructor
         if constructor == nil then
             local tstlClassName = getTSTLClassName(nil, target) or "Unknown"
             error(("Failed to get the constructor for class \"" .. tstlClassName) .. "\". Did you decorate a static method? You can only decorate non-static class methods, because the \"Mod\" object is not present before the class is instantiated.")
         end
-        if not (constructor[ADD_CALLBACK_ARGS_KEY] ~= nil) then
-            constructor[ADD_CALLBACK_ARGS_KEY] = {}
+        if not (constructor[MOD_FEATURE_CALLBACKS_KEY] ~= nil) then
+            constructor[MOD_FEATURE_CALLBACKS_KEY] = {}
         end
-        local callbackTuples = constructor[ADD_CALLBACK_ARGS_KEY]
-        callbackTuples[#callbackTuples + 1] = addCallbackArgs
+        local callbackTuples = constructor[MOD_FEATURE_CALLBACKS_KEY]
+        callbackTuples[#callbackTuples + 1] = callbackTuple
     end
 end
 function ____exports.CallbackCustom(self, modCallbackCustom, ...)
@@ -49771,21 +50059,17 @@ function ____exports.CallbackCustom(self, modCallbackCustom, ...)
     return function(____, target, propertyKey, _descriptor)
         local methodName = propertyKey
         local method = target[methodName]
-        local addCallbackArgs = {
-            modCallbackCustom,
-            method,
-            __TS__Spread(optionalArgs)
-        }
+        local callbackTuple = {modCallbackCustom, method, optionalArgs}
         local constructor = target.constructor
         if constructor == nil then
             local tstlClassName = getTSTLClassName(nil, target) or "Unknown"
             error(("Failed to get the constructor for class \"" .. tstlClassName) .. "\". Did you decorate a static method? You can only decorate non-static class methods, because the \"Mod\" object is not present before the class is instantiated.")
         end
-        if not (constructor[ADD_CALLBACK_CUSTOM_ARGS_KEY] ~= nil) then
-            constructor[ADD_CALLBACK_CUSTOM_ARGS_KEY] = {}
+        if not (constructor[MOD_FEATURE_CUSTOM_CALLBACKS_KEY] ~= nil) then
+            constructor[MOD_FEATURE_CUSTOM_CALLBACKS_KEY] = {}
         end
-        local callbackTuples = constructor[ADD_CALLBACK_CUSTOM_ARGS_KEY]
-        callbackTuples[#callbackTuples + 1] = addCallbackArgs
+        local callbackTuples = constructor[MOD_FEATURE_CUSTOM_CALLBACKS_KEY]
+        callbackTuples[#callbackTuples + 1] = callbackTuple
     end
 end
 return ____exports
