@@ -63,22 +63,29 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat
  ]]
 function wakaba:FamiliarUpdate_VintageThreat(familiar)
 	if not familiar.Player then return end
-	if not familiar.Player:GetData().wakaba then return end
-	if not familiar.Player:GetData().wakaba.vintagethreat then return end
-
 	local player = familiar.Player
 	local data = player:GetData().wakaba
-	if data.vintagethreat then
+
+	if data and data.vintagethreat then
 		if not familiar:GetData().vintagethreat then
 			familiar:GetSprite():ReplaceSpritesheet(0, "gfx/familiar/vintage_damocles.png")
 			familiar:GetSprite():LoadGraphics()
 			familiar:GetData().vintagethreat = true
 		end
-	end
-	if player:GetData().wakaba.vintagekill == true then
-		familiar.State = 2
-		player:GetData().wakaba.vintagekill = false
-		player:GetData().wakaba.vintagegameover = true
+		if player:GetData().wakaba.vintagekill == true then
+			familiar.State = 2
+			player:GetData().wakaba.vintagekill = false
+			player:GetData().wakaba.vintagegameover = true
+		end
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) and familiar.State == 2 then
+		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
+		and player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
+		and player:GetActiveItem(ActiveSlot.SLOT_POCKET2) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
+		and not (player:GetPlayerType == wakaba.Enums.Players.SHIORI and data.books and data.books[data.bookindex] == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
+		else
+			player:RemoveCollectible(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
+			player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_VintageThreat, FamiliarVariant.DAMOCLES)
