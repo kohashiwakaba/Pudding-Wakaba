@@ -551,7 +551,7 @@ function wakaba:pickupinit(pickup)
 		end
 	end
 	
-	if wakaba.runstate.hasnemesis then
+	if wakaba.runstate.hasnemesis and not (isc:anyPlayerIs(PlayerType.PLAYER_KEEPER) or isc:anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) then
 		if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and pickup:IsShopItem() and pickup.Price ~= -1000 then
 			local player = isc:getClosestPlayer(pickup.Position) or Isaac.GetPlayer()
 			local config = Isaac.GetItemConfig():GetCollectible(pickup.SubType)
