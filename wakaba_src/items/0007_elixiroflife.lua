@@ -22,7 +22,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) then
 			goto KeeperSkip
 		end
-		if player:GetHearts() < 1 then -- Do this again to check non-red hearts character
+		if player:GetHearts() < 1 and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN then -- Do this again to check non-red hearts character
 			data.wakaba.elixirnonredhearts = true
 			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts or 0
 			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts >= player:GetSoulHearts() and data.wakaba.elixirmaxsoulhearts or player:GetSoulHearts()
@@ -69,7 +69,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 					and (not player:CanPickRedHearts() and player:GetHearts() ~= player:GetEffectiveMaxHearts())
 					and player:GetSoulHearts() < 6) 
 				or 
-				(data.wakaba.elixirmaxsoulhearts and player:GetSoulHearts() < data.wakaba.elixirmaxsoulhearts) 
+				(player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and data.wakaba.elixirmaxsoulhearts and player:GetSoulHearts() < data.wakaba.elixirmaxsoulhearts) 
 				then
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				player:AddSoulHearts(1)
