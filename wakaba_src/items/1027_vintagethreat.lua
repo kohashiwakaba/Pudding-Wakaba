@@ -1,7 +1,7 @@
 function wakaba:AfterRevival_VintageThreat(player)
 	--print("AfterVThreatInit")
 	local data = player:GetData()
-  data.wakaba = data.wakaba or {}
+	data.wakaba = data.wakaba or {}
 	--player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
 	local Poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector.Zero, player):ToEffect()
 	Poof.SpriteScale = Vector(1.5, 1.5)
@@ -28,7 +28,7 @@ end
 
 function wakaba:PlayerUpdate_VintageThreat()
 	for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
+		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
 			player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)

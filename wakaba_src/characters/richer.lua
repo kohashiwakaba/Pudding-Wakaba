@@ -16,46 +16,46 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RicherTakeDmg) ]]
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
 local RicherChar = { 
-    DAMAGE = 1.0,
-    SPEED = 0.1,
-    SHOTSPEED = 1.0,
-    TEARRANGE = 100,
+		DAMAGE = 1.0,
+		SPEED = 0.1,
+		SHOTSPEED = 1.0,
+		TEARRANGE = 100,
 		TEARS = 0,
-    LUCK = 1,
-    FLYING = false,                                 
-    TEARFLAG = TearFlags.TEAR_NORMAL,
-    TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)  -- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
+		LUCK = 1,
+		FLYING = false,																 
+		TEARFLAG = TearFlags.TEAR_NORMAL,
+		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
  
 function wakaba:onRicherCache(player, cacheFlag)
-  if player:GetPlayerType() == playerType then
+	if player:GetPlayerType() == playerType then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage * RicherChar.DAMAGE
-  	end
-  	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-  	  player.ShotSpeed = player.ShotSpeed * RicherChar.SHOTSPEED
-  	end
-  	if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-  	  player.TearRange = player.TearRange + RicherChar.TEARRANGE
-  	end
-  	if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-  	  player.MoveSpeed = player.MoveSpeed + RicherChar.SPEED
-  	end
-  	if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-  	  player.Luck = player.Luck + RicherChar.LUCK
-  	end
-  	if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and RicherChar.FLYING then
-  	  player.CanFly = true
-  	end
-  	if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-  	  player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, RicherChar.TEARS)
-  	end
-  	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-  	  player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
-  	end
-  	if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-  	  player.TearColor = RicherChar.TEARCOLOR
-  	end
+			player.Damage = player.Damage * RicherChar.DAMAGE
+		end
+		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+			player.ShotSpeed = player.ShotSpeed * RicherChar.SHOTSPEED
+		end
+		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+			player.TearRange = player.TearRange + RicherChar.TEARRANGE
+		end
+		if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
+			player.MoveSpeed = player.MoveSpeed + RicherChar.SPEED
+		end
+		if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
+			player.Luck = player.Luck + RicherChar.LUCK
+		end
+		if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and RicherChar.FLYING then
+			player.CanFly = true
+		end
+		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, RicherChar.TEARS)
+		end
+		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
+		end
+		if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
+			player.TearColor = RicherChar.TEARCOLOR
+		end
 	end
 	
 end
@@ -65,12 +65,12 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRi
 
 function wakaba:AfterRicherInit(player)
 	--print("Richer event passed")
-  player = player or Isaac.GetPlayer()
+	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
 		player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_PRIMARY)
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()
-      --player:ClearCostumes()
+			--player:ClearCostumes()
 		else
 			wakaba.costumecurrframe = 0
 			wakaba:GetRicherCostume(player)
@@ -95,22 +95,22 @@ end
 
 
 function wakaba:PostRicherInit(player)
-  if not isRicherContinue then
-    wakaba:AfterRicherInit(player)
-  end
+	if not isRicherContinue then
+		wakaba:AfterRicherInit(player)
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostRicherInit)
 
 function wakaba:RicherInit(continue)
-  if (not continue) then
-    isRicherContinue = false
-    wakaba:AfterRicherInit()
-  end
+	if (not continue) then
+		isRicherContinue = false
+		wakaba:AfterRicherInit()
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.RicherInit)
 
 function wakaba:RicherExit()
-  isRicherContinue = true
+	isRicherContinue = true
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.RicherExit)
 

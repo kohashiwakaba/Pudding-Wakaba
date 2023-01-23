@@ -10,256 +10,256 @@ wakaba.Enums.BalanceModes = {
 
 --플레이어 타입
 wakaba.Enums.Players = {
-  WAKABA = Isaac.GetPlayerTypeByName("Wakaba", false),
-  WAKABA_B = Isaac.GetPlayerTypeByName("WakabaB", true),
-  --WAKABA_T = Isaac.GetPlayerTypeByName("WakabaT", false),
-  SHIORI = Isaac.GetPlayerTypeByName("Shiori", false),
-  SHIORI_B = Isaac.GetPlayerTypeByName("ShioriB", true),
-  TSUKASA = Isaac.GetPlayerTypeByName("Tsukasa", false),
-  TSUKASA_B = Isaac.GetPlayerTypeByName("TsukasaB", true),
-  RICHER = Isaac.GetPlayerTypeByName("Richer", false),
-  RICHER_B = Isaac.GetPlayerTypeByName("RicherB", true),
+	WAKABA = Isaac.GetPlayerTypeByName("Wakaba", false),
+	WAKABA_B = Isaac.GetPlayerTypeByName("WakabaB", true),
+	--WAKABA_T = Isaac.GetPlayerTypeByName("WakabaT", false),
+	SHIORI = Isaac.GetPlayerTypeByName("Shiori", false),
+	SHIORI_B = Isaac.GetPlayerTypeByName("ShioriB", true),
+	TSUKASA = Isaac.GetPlayerTypeByName("Tsukasa", false),
+	TSUKASA_B = Isaac.GetPlayerTypeByName("TsukasaB", true),
+	RICHER = Isaac.GetPlayerTypeByName("Richer", false),
+	RICHER_B = Isaac.GetPlayerTypeByName("RicherB", true),
 }
 
 -- 와카바 모드 아이템
 wakaba.Enums.Collectibles = {
-  -- Core items
-  WAKABAS_BLESSING = Isaac.GetItemIdByName("Wakaba's Blessing"),
-  WAKABAS_NEMESIS = Isaac.GetItemIdByName("Wakaba's Nemesis"),
-  WAKABA_DUALITY = Isaac.GetItemIdByName("Wakaba Duality"),
-  EATHEART = Isaac.GetItemIdByName("Eat Heart"),
-  EATHEART_WAKABA = Isaac.GetItemIdByName("Eat Heart"),
-  BOOK_OF_SHIORI = Isaac.GetItemIdByName("Book of Shiori"),
-  BOOK_OF_CONQUEST = Isaac.GetItemIdByName("Book of Conquest"),
-  MINERVA_AURA = Isaac.GetItemIdByName("Minerva's Aura"),
-  LUNAR_STONE = Isaac.GetItemIdByName("Lunar Stone"),
-  ELIXIR_OF_LIFE = Isaac.GetItemIdByName("Elixir of Life"),
-  FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift"),
-  CONCENTRATION = Isaac.GetItemIdByName("Concentration"),
-  RABBIT_RIBBON = Isaac.GetItemIdByName("Rabbit Ribbon"),
-  SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
+	-- Core items
+	WAKABAS_BLESSING = Isaac.GetItemIdByName("Wakaba's Blessing"),
+	WAKABAS_NEMESIS = Isaac.GetItemIdByName("Wakaba's Nemesis"),
+	WAKABA_DUALITY = Isaac.GetItemIdByName("Wakaba Duality"),
+	EATHEART = Isaac.GetItemIdByName("Eat Heart"),
+	EATHEART_WAKABA = Isaac.GetItemIdByName("Eat Heart"),
+	BOOK_OF_SHIORI = Isaac.GetItemIdByName("Book of Shiori"),
+	BOOK_OF_CONQUEST = Isaac.GetItemIdByName("Book of Conquest"),
+	MINERVA_AURA = Isaac.GetItemIdByName("Minerva's Aura"),
+	LUNAR_STONE = Isaac.GetItemIdByName("Lunar Stone"),
+	ELIXIR_OF_LIFE = Isaac.GetItemIdByName("Elixir of Life"),
+	FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift"),
+	CONCENTRATION = Isaac.GetItemIdByName("Concentration"),
+	RABBIT_RIBBON = Isaac.GetItemIdByName("Rabbit Ribbon"),
+	SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
 
-  -- Regular items
-  MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD"),
-  D6_PLUS = Isaac.GetItemIdByName("D6 Plus"),
-  D6_CHAOS = Isaac.GetItemIdByName("D6 Chaos"),
-  LIL_MOE = Isaac.GetItemIdByName("Lil Moe"),
-  MAIJIMA_MYTHOLOGY = Isaac.GetItemIdByName("Maijima Mythology"),
-  LIL_SHIVA = Isaac.GetItemIdByName("Lil Shiva"),
-  DEJA_VU = Isaac.GetItemIdByName("Deja Vu"),
-  MOE_MUFFIN = Isaac.GetItemIdByName("Moe's Muffin"),
-  SYRUP = Isaac.GetItemIdByName("Syrup"),
-  CLENSING_FOAM = Isaac.GetItemIdByName("Clensing Foam"),
-  CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2"),
-  SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs"),
-  JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
-  CRISIS_BOOST = Isaac.GetItemIdByName("Crisis Boost"),
-  ONSEN_TOWEL = Isaac.GetItemIdByName("Onsen Towel"),
+	-- Regular items
+	MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD"),
+	D6_PLUS = Isaac.GetItemIdByName("D6 Plus"),
+	D6_CHAOS = Isaac.GetItemIdByName("D6 Chaos"),
+	LIL_MOE = Isaac.GetItemIdByName("Lil Moe"),
+	MAIJIMA_MYTHOLOGY = Isaac.GetItemIdByName("Maijima Mythology"),
+	LIL_SHIVA = Isaac.GetItemIdByName("Lil Shiva"),
+	DEJA_VU = Isaac.GetItemIdByName("Deja Vu"),
+	MOE_MUFFIN = Isaac.GetItemIdByName("Moe's Muffin"),
+	SYRUP = Isaac.GetItemIdByName("Syrup"),
+	CLENSING_FOAM = Isaac.GetItemIdByName("Clensing Foam"),
+	CURSE_OF_THE_TOWER_2 = Isaac.GetItemIdByName("Curse of The Tower 2"),
+	SEE_DES_BISCHOFS = Isaac.GetItemIdByName("See des Bischofs"),
+	JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
+	CRISIS_BOOST = Isaac.GetItemIdByName("Crisis Boost"),
+	ONSEN_TOWEL = Isaac.GetItemIdByName("Onsen Towel"),
 
-  -- Wakaba items
-  BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),
-  D_CUP_ICECREAM = Isaac.GetItemIdByName("D-Cup Ice Cream"),
-  WAKABAS_PENDANT = Isaac.GetItemIdByName("Wakaba's Pendant"),
-  SECRET_CARD = Isaac.GetItemIdByName("Secret Card"),
-  EXECUTIONER = Isaac.GetItemIdByName("Executioner"),
-  REVENGE_FRUIT = Isaac.GetItemIdByName("Revenge Fruit"),
-  UNIFORM = Isaac.GetItemIdByName("Wakaba's Uniform"),
-  LIL_WAKABA = Isaac.GetItemIdByName("Lil Wakaba"),
-  COUNTER = Isaac.GetItemIdByName("Counter"),
-  RETURN_POSTAGE = Isaac.GetItemIdByName("Return Postage"),
+	-- Wakaba items
+	BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),
+	D_CUP_ICECREAM = Isaac.GetItemIdByName("D-Cup Ice Cream"),
+	WAKABAS_PENDANT = Isaac.GetItemIdByName("Wakaba's Pendant"),
+	SECRET_CARD = Isaac.GetItemIdByName("Secret Card"),
+	EXECUTIONER = Isaac.GetItemIdByName("Executioner"),
+	REVENGE_FRUIT = Isaac.GetItemIdByName("Revenge Fruit"),
+	UNIFORM = Isaac.GetItemIdByName("Wakaba's Uniform"),
+	LIL_WAKABA = Isaac.GetItemIdByName("Lil Wakaba"),
+	COUNTER = Isaac.GetItemIdByName("Counter"),
+	RETURN_POSTAGE = Isaac.GetItemIdByName("Return Postage"),
 	PRESTIGE_PASS = Isaac.GetItemIdByName("Prestige Pass"),
 	--HEALTH_REVERSAL = Isaac.GetItemIdByName("Health Reversal"),
 
-  -- Shiori items
-  BOOK_OF_FOCUS = Isaac.GetItemIdByName("Book of Focus"),
-  DECK_OF_RUNES = Isaac.GetItemIdByName("Shiori's Bottle of Runes"),
-  MICRO_DOPPELGANGER = Isaac.GetItemIdByName("Micro Doppelganger"),
-  BOOK_OF_SILENCE = Isaac.GetItemIdByName("Book of Silence"),
-  VINTAGE_THREAT = Isaac.GetItemIdByName("Vintage Threat"),
-  BOOK_OF_THE_GOD = Isaac.GetItemIdByName("Book of The God"),
-  GRIMREAPER_DEFENDER = Isaac.GetItemIdByName("Grimreaper Defender"),
-  BOOK_OF_TRAUMA = Isaac.GetItemIdByName("Book of Trauma"),
-  BOOK_OF_THE_FALLEN = Isaac.GetItemIdByName("Book of The Fallen"),
+	-- Shiori items
+	BOOK_OF_FOCUS = Isaac.GetItemIdByName("Book of Focus"),
+	DECK_OF_RUNES = Isaac.GetItemIdByName("Shiori's Bottle of Runes"),
+	MICRO_DOPPELGANGER = Isaac.GetItemIdByName("Micro Doppelganger"),
+	BOOK_OF_SILENCE = Isaac.GetItemIdByName("Book of Silence"),
+	VINTAGE_THREAT = Isaac.GetItemIdByName("Vintage Threat"),
+	BOOK_OF_THE_GOD = Isaac.GetItemIdByName("Book of The God"),
+	GRIMREAPER_DEFENDER = Isaac.GetItemIdByName("Grimreaper Defender"),
+	BOOK_OF_TRAUMA = Isaac.GetItemIdByName("Book of Trauma"),
+	BOOK_OF_THE_FALLEN = Isaac.GetItemIdByName("Book of The Fallen"),
 
-  -- Tsukasa items
-  NEW_YEAR_BOMB = Isaac.GetItemIdByName("New Year's Eve Bomb"),
-  MURASAME = Isaac.GetItemIdByName("Murasame"),
-  NASA_LOVER = Isaac.GetItemIdByName("Nasa Lover"),
-  ARCANE_CRYSTAL = Isaac.GetItemIdByName("Arcane Crystal"),
-  ADVANCED_CRYSTAL = Isaac.GetItemIdByName("Advanced Crystal"),
-  MYSTIC_CRYSTAL = Isaac.GetItemIdByName("Mystic Crystal"),
-  POWER_BOMB = Isaac.GetItemIdByName("Power Bomb"),
-  PHANTOM_CLOAK = Isaac.GetItemIdByName("Phantom Cloak"),
-  QUESTION_BLOCK = Isaac.GetItemIdByName("Question Block"),
-  BEETLEJUICE = Isaac.GetItemIdByName("Beetlejuice"),
-  MAGMA_BLADE = Isaac.GetItemIdByName("Magma Blade"),
-  --HYDRA = Isaac.GetItemIdByName("Hydra"),
-  RED_CORRUPTION = Isaac.GetItemIdByName("Red Corruption"),
-  PLASMA_BEAM = Isaac.GetItemIdByName("Plasma Beam"),
-  LUNAR_DAMOCLES = Isaac.GetItemIdByName("Lunar Damocles"),
+	-- Tsukasa items
+	NEW_YEAR_BOMB = Isaac.GetItemIdByName("New Year's Eve Bomb"),
+	MURASAME = Isaac.GetItemIdByName("Murasame"),
+	NASA_LOVER = Isaac.GetItemIdByName("Nasa Lover"),
+	ARCANE_CRYSTAL = Isaac.GetItemIdByName("Arcane Crystal"),
+	ADVANCED_CRYSTAL = Isaac.GetItemIdByName("Advanced Crystal"),
+	MYSTIC_CRYSTAL = Isaac.GetItemIdByName("Mystic Crystal"),
+	POWER_BOMB = Isaac.GetItemIdByName("Power Bomb"),
+	PHANTOM_CLOAK = Isaac.GetItemIdByName("Phantom Cloak"),
+	QUESTION_BLOCK = Isaac.GetItemIdByName("Question Block"),
+	BEETLEJUICE = Isaac.GetItemIdByName("Beetlejuice"),
+	MAGMA_BLADE = Isaac.GetItemIdByName("Magma Blade"),
+	--HYDRA = Isaac.GetItemIdByName("Hydra"),
+	RED_CORRUPTION = Isaac.GetItemIdByName("Red Corruption"),
+	PLASMA_BEAM = Isaac.GetItemIdByName("Plasma Beam"),
+	LUNAR_DAMOCLES = Isaac.GetItemIdByName("Lunar Damocles"),
 	EASTER_EGG = Isaac.GetItemIdByName("Easter Egg"),
 
-  -- Richer items
-  WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo"),
-  CARAMELLO_PANCAKE = Isaac.GetItemIdByName("Caramello Pancake"),
-  _3D_PRINTER = Isaac.GetItemIdByName("3D Printer"),
-  VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation"),
-  FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),
-  DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader"),
-  ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
-  RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
-  CHIERI = Isaac.GetItemIdByName("Chieri"),
+	-- Richer items
+	WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo"),
+	CARAMELLO_PANCAKE = Isaac.GetItemIdByName("Caramello Pancake"),
+	_3D_PRINTER = Isaac.GetItemIdByName("3D Printer"),
+	VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation"),
+	FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),
+	DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader"),
+	ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
+	RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
+	CHIERI = Isaac.GetItemIdByName("Chieri"),
 	CUNNING_PAPER = Isaac.GetItemIdByName("Cunning Paper"),
-  LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
-  LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
-  BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
-  WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
-  TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
+	LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
+	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
+	BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
+	WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
+	TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
 
-  -- Challenge items
-  PLUMY = Isaac.GetItemIdByName("Plumy"),
-  EYE_OF_CLOCK = Isaac.GetItemIdByName("Eye of Clock"),
-  APOLLYON_CRISIS = Isaac.GetItemIdByName("Apollyon Crisis"),
-  NEKO_FIGURE = Isaac.GetItemIdByName("Neko Figure"),
-  LIL_MAO = Isaac.GetItemIdByName("Lil Mao"),
-  ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition"),
-  BALANCE = Isaac.GetItemIdByName("Balance ecnalaB"),
-  CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
-  DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
+	-- Challenge items
+	PLUMY = Isaac.GetItemIdByName("Plumy"),
+	EYE_OF_CLOCK = Isaac.GetItemIdByName("Eye of Clock"),
+	APOLLYON_CRISIS = Isaac.GetItemIdByName("Apollyon Crisis"),
+	NEKO_FIGURE = Isaac.GetItemIdByName("Neko Figure"),
+	LIL_MAO = Isaac.GetItemIdByName("Lil Mao"),
+	ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition"),
+	BALANCE = Isaac.GetItemIdByName("Balance ecnalaB"),
+	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
+	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 
-  -- Misc items
-  EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
-  WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
-  WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
+	-- Misc items
+	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
+	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
+	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
 
 }
 
 -- 와카바 모드 패밀리어 : FamiliarVariant 위치에서 사용
 wakaba.Enums.Familiars = {
-  PLUMY = Isaac.GetEntityVariantByName("Plumy"),
-  LIL_WAKABA = Isaac.GetEntityVariantByName("Lil Wakaba"),
-  LIL_MOE = Isaac.GetEntityVariantByName("Lil Moe"),
-  LIL_SHIVA = Isaac.GetEntityVariantByName("Lil Shiva"),
-  MURASAME = Isaac.GetEntityVariantByName("Murasame"),
-  LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa"),
-  LUNAR_DAMOCLES = Isaac.GetEntityVariantByName("Lunar Damocles"),
+	PLUMY = Isaac.GetEntityVariantByName("Plumy"),
+	LIL_WAKABA = Isaac.GetEntityVariantByName("Lil Wakaba"),
+	LIL_MOE = Isaac.GetEntityVariantByName("Lil Moe"),
+	LIL_SHIVA = Isaac.GetEntityVariantByName("Lil Shiva"),
+	MURASAME = Isaac.GetEntityVariantByName("Murasame"),
+	LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa"),
+	LUNAR_DAMOCLES = Isaac.GetEntityVariantByName("Lunar Damocles"),
 	EASTER_EGG = Isaac.GetEntityVariantByName("Easter Egg Orbital"),
-  --LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
-  --LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
-  --BLACK_RIBBON = Isaac.GetEntityVariantByName("Black Ribbon Particle"),
-  --CHIERI = Isaac.GetEntityVariantByName("Chieri"),
+	--LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
+	--LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
+	--BLACK_RIBBON = Isaac.GetEntityVariantByName("Black Ribbon Particle"),
+	--CHIERI = Isaac.GetEntityVariantByName("Chieri"),
 
 }
 
 -- 와카바 모드 장신구
 wakaba.Enums.Trinkets = {
-  BRING_ME_THERE = Isaac.GetTrinketIdByName("Bring me there"),
-  BITCOIN = Isaac.GetTrinketIdByName("Bitcoin II"),
-  CLOVER = Isaac.GetTrinketIdByName("Clover"),
-  MAGNET_HEAVEN = Isaac.GetTrinketIdByName("Magnet Heaven"),
-  HARD_BOOK = Isaac.GetTrinketIdByName("Hard Book"),
-  DETERMINATION_RIBBON = Isaac.GetTrinketIdByName("Determination Ribbon"),
-  BOOKMARK_BAG = Isaac.GetTrinketIdByName("Bookmark Bag"),
-  RING_OF_JUPITER = Isaac.GetTrinketIdByName("Ring of Jupiter"),
-  DIMENSION_CUTTER = Isaac.GetTrinketIdByName("Dimension Cutter"),
-  DELIMITER = Isaac.GetTrinketIdByName("Delimiter"),
-  RANGE_OS = Isaac.GetTrinketIdByName("Range OS"),
-  SIREN_BADGE = Isaac.GetTrinketIdByName("Siren's Badge"),
-  ISAAC_CARTRIDGE = Isaac.GetTrinketIdByName("Isaac Cartridge"),
-  AFTERBIRTH_CARTRIDGE = Isaac.GetTrinketIdByName("Afterbirth Cartridge"),
-  REPENTANCE_CARTRIDGE = Isaac.GetTrinketIdByName("Repentance Cartridge"),
-  STAR_REVERSAL = Isaac.GetTrinketIdByName("Star Reversal"),
-  AURORA_GEM = Isaac.GetTrinketIdByName("Aurora Gem"),
-  MISTAKE = Isaac.GetTrinketIdByName("Mistake"),
+	BRING_ME_THERE = Isaac.GetTrinketIdByName("Bring me there"),
+	BITCOIN = Isaac.GetTrinketIdByName("Bitcoin II"),
+	CLOVER = Isaac.GetTrinketIdByName("Clover"),
+	MAGNET_HEAVEN = Isaac.GetTrinketIdByName("Magnet Heaven"),
+	HARD_BOOK = Isaac.GetTrinketIdByName("Hard Book"),
+	DETERMINATION_RIBBON = Isaac.GetTrinketIdByName("Determination Ribbon"),
+	BOOKMARK_BAG = Isaac.GetTrinketIdByName("Bookmark Bag"),
+	RING_OF_JUPITER = Isaac.GetTrinketIdByName("Ring of Jupiter"),
+	DIMENSION_CUTTER = Isaac.GetTrinketIdByName("Dimension Cutter"),
+	DELIMITER = Isaac.GetTrinketIdByName("Delimiter"),
+	RANGE_OS = Isaac.GetTrinketIdByName("Range OS"),
+	SIREN_BADGE = Isaac.GetTrinketIdByName("Siren's Badge"),
+	ISAAC_CARTRIDGE = Isaac.GetTrinketIdByName("Isaac Cartridge"),
+	AFTERBIRTH_CARTRIDGE = Isaac.GetTrinketIdByName("Afterbirth Cartridge"),
+	REPENTANCE_CARTRIDGE = Isaac.GetTrinketIdByName("Repentance Cartridge"),
+	STAR_REVERSAL = Isaac.GetTrinketIdByName("Star Reversal"),
+	AURORA_GEM = Isaac.GetTrinketIdByName("Aurora Gem"),
+	MISTAKE = Isaac.GetTrinketIdByName("Mistake"),
 
 }
 
 -- 와카바 모드 특수효과
 wakaba.Enums.Effects = {
-  POWER_BOMB = Isaac.GetEntityVariantByName("Wakaba Power Bomb Explosion"),
-  MURASAME_SHIFT = Isaac.GetEntityVariantByName("Murasame Shift Effect"),
-  --MAGMA_BLADE = Isaac.GetEntityVariantByName("Magma Blade Effect"),
+	POWER_BOMB = Isaac.GetEntityVariantByName("Wakaba Power Bomb Explosion"),
+	MURASAME_SHIFT = Isaac.GetEntityVariantByName("Murasame Shift Effect"),
+	--MAGMA_BLADE = Isaac.GetEntityVariantByName("Magma Blade Effect"),
 
 }
 
 -- 와카바 모드 기타 픽업
 wakaba.Enums.Pickups = {
-  CLOVER_CHEST = Isaac.GetEntityVariantByName("Clover Chest"),
+	CLOVER_CHEST = Isaac.GetEntityVariantByName("Clover Chest"),
 
 }
 
 -- 와카바 모드 코인 타입 : CoinSubType 위치에 사용
 wakaba.Enums.Coins = {
-  EASTER_EGG = 401,
+	EASTER_EGG = 401,
 }
 
 -- 와카바 모드 카드/룬/영혼석
 wakaba.Enums.Cards = {
-  CARD_CRANE_CARD = Isaac.GetCardIdByName("wakaba_Crane Card"),
-  CARD_CONFESSIONAL_CARD = Isaac.GetCardIdByName("wakaba_Confessional Card"),
-  CARD_BLACK_JOKER = Isaac.GetCardIdByName("wakaba_Black Joker"),
-  CARD_WHITE_JOKER = Isaac.GetCardIdByName("wakaba_White Joker"),
-  CARD_COLOR_JOKER = Isaac.GetCardIdByName("wakaba_Color Joker"),
-  CARD_DREAM_CARD = Isaac.GetCardIdByName("Wakaba's Dream Card"),
-  CARD_UNKNOWN_BOOKMARK = Isaac.GetCardIdByName("wakaba_Unknown Bookmark"),
-  CARD_QUEEN_OF_SPADES = Isaac.GetCardIdByName("wakaba_Queen of Spades"),
-  CARD_RETURN_TOKEN = Isaac.GetCardIdByName("Return Token"),
-  CARD_MINERVA_TICKET = Isaac.GetCardIdByName("Minerva Ticket"),
-  SOUL_WAKABA = Isaac.GetCardIdByName("Soul of Wakaba"),
-  SOUL_WAKABA2 = Isaac.GetCardIdByName("Soul of Wakaba?"),
-  SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
-  SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
-  CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
-  CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
+	CARD_CRANE_CARD = Isaac.GetCardIdByName("wakaba_Crane Card"),
+	CARD_CONFESSIONAL_CARD = Isaac.GetCardIdByName("wakaba_Confessional Card"),
+	CARD_BLACK_JOKER = Isaac.GetCardIdByName("wakaba_Black Joker"),
+	CARD_WHITE_JOKER = Isaac.GetCardIdByName("wakaba_White Joker"),
+	CARD_COLOR_JOKER = Isaac.GetCardIdByName("wakaba_Color Joker"),
+	CARD_DREAM_CARD = Isaac.GetCardIdByName("Wakaba's Dream Card"),
+	CARD_UNKNOWN_BOOKMARK = Isaac.GetCardIdByName("wakaba_Unknown Bookmark"),
+	CARD_QUEEN_OF_SPADES = Isaac.GetCardIdByName("wakaba_Queen of Spades"),
+	CARD_RETURN_TOKEN = Isaac.GetCardIdByName("Return Token"),
+	CARD_MINERVA_TICKET = Isaac.GetCardIdByName("Minerva Ticket"),
+	SOUL_WAKABA = Isaac.GetCardIdByName("Soul of Wakaba"),
+	SOUL_WAKABA2 = Isaac.GetCardIdByName("Soul of Wakaba?"),
+	SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
+	SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
+	CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
+	CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 
 }
 
 -- 와카바 모드 알약효과
 wakaba.Enums.Pills = {
-  DAMAGE_MULTIPLIER_UP = Isaac.GetPillEffectByName("Damage Multiplier Up"),
-  DAMAGE_MULTIPLIER_DOWN = Isaac.GetPillEffectByName("Damage Multiplier Down"),
-  ALL_STATS_UP = Isaac.GetPillEffectByName("All Stats Up"),
-  ALL_STATS_DOWN = Isaac.GetPillEffectByName("All Stats Down"),
-  TROLLED = Isaac.GetPillEffectByName("Trolled!"),
-  TO_THE_START = Isaac.GetPillEffectByName("To the Start!"),
-  EXPLOSIVE_DIARRHEA_2 = Isaac.GetPillEffectByName("Explosive Diarrhea 2!"),
-  EXPLOSIVE_DIARRHEA_2_NOT = Isaac.GetPillEffectByName("Hellish Vomit"),
-  SOCIAL_DISTANCE = Isaac.GetPillEffectByName("Social Distance"),
-  DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders"),
-  FLAME_PRINCESS = Isaac.GetPillEffectByName("Flame Princess!"),
-  FIREY_TOUCH = Isaac.GetPillEffectByName("Firey Touch"),
-  PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing"),
-  UNHOLY_CURSE = Isaac.GetPillEffectByName("Unholy Curse"),
+	DAMAGE_MULTIPLIER_UP = Isaac.GetPillEffectByName("Damage Multiplier Up"),
+	DAMAGE_MULTIPLIER_DOWN = Isaac.GetPillEffectByName("Damage Multiplier Down"),
+	ALL_STATS_UP = Isaac.GetPillEffectByName("All Stats Up"),
+	ALL_STATS_DOWN = Isaac.GetPillEffectByName("All Stats Down"),
+	TROLLED = Isaac.GetPillEffectByName("Trolled!"),
+	TO_THE_START = Isaac.GetPillEffectByName("To the Start!"),
+	EXPLOSIVE_DIARRHEA_2 = Isaac.GetPillEffectByName("Explosive Diarrhea 2!"),
+	EXPLOSIVE_DIARRHEA_2_NOT = Isaac.GetPillEffectByName("Hellish Vomit"),
+	SOCIAL_DISTANCE = Isaac.GetPillEffectByName("Social Distance"),
+	DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders"),
+	FLAME_PRINCESS = Isaac.GetPillEffectByName("Flame Princess!"),
+	FIREY_TOUCH = Isaac.GetPillEffectByName("Firey Touch"),
+	PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing"),
+	UNHOLY_CURSE = Isaac.GetPillEffectByName("Unholy Curse"),
 }
 
 -- 와카바 모드 사운드
 wakaba.Enums.SoundEffects = {
-  AEION_CHARGE = Isaac.GetSoundIdByName("aeion_charged"), 
-  POWER_BOMB_EXPLOSION = Isaac.GetSoundIdByName("pb_explosion"),
-  POWER_BOMB_CHARGE = Isaac.GetSoundIdByName("pb_charge"),
-  POWER_BOMB_LOOP = Isaac.GetSoundIdByName("pb_loop"),
-  POWER_BOMB_AFTER_EXPLOSION_1 = Isaac.GetSoundIdByName("pb_after_explosion1"),
-  POWER_BOMB_AFTER_EXPLOSION_2 = Isaac.GetSoundIdByName("pb_after_explosion2"),
-  POWER_BOMB_AFTER_EXPLOSION_3 = Isaac.GetSoundIdByName("pb_after_explosion3"),
-  POWER_BOMB_AFTER_EXPLOSION_4 = Isaac.GetSoundIdByName("pb_after_explosion4"),
-  POWER_BOMB_AFTER_EXPLOSION_5 = Isaac.GetSoundIdByName("pb_after_explosion5"),
+	AEION_CHARGE = Isaac.GetSoundIdByName("aeion_charged"), 
+	POWER_BOMB_EXPLOSION = Isaac.GetSoundIdByName("pb_explosion"),
+	POWER_BOMB_CHARGE = Isaac.GetSoundIdByName("pb_charge"),
+	POWER_BOMB_LOOP = Isaac.GetSoundIdByName("pb_loop"),
+	POWER_BOMB_AFTER_EXPLOSION_1 = Isaac.GetSoundIdByName("pb_after_explosion1"),
+	POWER_BOMB_AFTER_EXPLOSION_2 = Isaac.GetSoundIdByName("pb_after_explosion2"),
+	POWER_BOMB_AFTER_EXPLOSION_3 = Isaac.GetSoundIdByName("pb_after_explosion3"),
+	POWER_BOMB_AFTER_EXPLOSION_4 = Isaac.GetSoundIdByName("pb_after_explosion4"),
+	POWER_BOMB_AFTER_EXPLOSION_5 = Isaac.GetSoundIdByName("pb_after_explosion5"),
 }
 
 -- 와카바 모드 거지/슬롯류 : SlotVariant 위치에 사용
 wakaba.Enums.Slots = {
-  SHIORI_VALUT = Isaac.GetEntityVariantByName("Shiori Valut"),
-  --SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
+	SHIORI_VALUT = Isaac.GetEntityVariantByName("Shiori Valut"),
+	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
 }
 
 -- 행운 관련 상수
 wakaba.Enums.Chances = {
 
-  LUCK_TYPE_SCALE = 1, -- 럭비례 : 비례형
-  LUCK_TYPE_REVERSE = 2, -- 럭비례 : 반비례형
+	LUCK_TYPE_SCALE = 1, -- 럭비례 : 비례형
+	LUCK_TYPE_REVERSE = 2, -- 럭비례 : 반비례형
 
-  AURORA_DEFAULT = 6.66, -- 오로라 : 동전을 이스터에그로 바꿀 기본 확률
-  AURORA_LUCK = 1, -- 오로라 : 럭 1당 동전을 이스터에그로 바꿀 추가 확률
-  AURORA_MAX = 100, -- 오로라 : 동전을 이스터에그로 바꿀 최대 확률
+	AURORA_DEFAULT = 6.66, -- 오로라 : 동전을 이스터에그로 바꿀 기본 확률
+	AURORA_LUCK = 1, -- 오로라 : 럭 1당 동전을 이스터에그로 바꿀 추가 확률
+	AURORA_MAX = 100, -- 오로라 : 동전을 이스터에그로 바꿀 최대 확률
 }
 
 wakaba.Enums.Constants = {
@@ -324,24 +324,24 @@ wakaba.curses = {
 }
 
 wakaba.challenges = {
-  CHALLENGE_ELEC = Isaac.GetChallengeIdByName("[w01] Electric Disorder"), --w01
-  CHALLENGE_PLUM = Isaac.GetChallengeIdByName("[w02] Berry Best Friend"), --w02
-  CHALLENGE_PULL = Isaac.GetChallengeIdByName("[w03] Pull and Pull"), --w03
-  CHALLENGE_MINE = Isaac.GetChallengeIdByName("[w04] Mine stuff"), --w04
-  CHALLENGE_GUPP = Isaac.GetChallengeIdByName("[w05] Black neko dreams"), --w05
-  CHALLENGE_DOPP = Isaac.GetChallengeIdByName("[w06] Doppelganger"), --w06
-  CHALLENGE_DELI = Isaac.GetChallengeIdByName("[w07] Delirium"), --w07
-  CHALLENGE_SIST = Isaac.GetChallengeIdByName("[w08] Sisters from Beyond"), --w08
-  CHALLENGE_DRAW = Isaac.GetChallengeIdByName("[w09] Draw Five"), --w09
-  CHALLENGE_HUSH = Isaac.GetChallengeIdByName("[w10] Rush Rush Hush"), --w10
-  CHALLENGE_APPL = Isaac.GetChallengeIdByName("[w11] Apollyon Crisis"), --w11
-  CHALLENGE_BIKE = Isaac.GetChallengeIdByName("[w12] Delivery System"), --w12
-  CHALLENGE_CALC = Isaac.GetChallengeIdByName("[w13] Calculation"), --w13
-  CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
+	CHALLENGE_ELEC = Isaac.GetChallengeIdByName("[w01] Electric Disorder"), --w01
+	CHALLENGE_PLUM = Isaac.GetChallengeIdByName("[w02] Berry Best Friend"), --w02
+	CHALLENGE_PULL = Isaac.GetChallengeIdByName("[w03] Pull and Pull"), --w03
+	CHALLENGE_MINE = Isaac.GetChallengeIdByName("[w04] Mine stuff"), --w04
+	CHALLENGE_GUPP = Isaac.GetChallengeIdByName("[w05] Black neko dreams"), --w05
+	CHALLENGE_DOPP = Isaac.GetChallengeIdByName("[w06] Doppelganger"), --w06
+	CHALLENGE_DELI = Isaac.GetChallengeIdByName("[w07] Delirium"), --w07
+	CHALLENGE_SIST = Isaac.GetChallengeIdByName("[w08] Sisters from Beyond"), --w08
+	CHALLENGE_DRAW = Isaac.GetChallengeIdByName("[w09] Draw Five"), --w09
+	CHALLENGE_HUSH = Isaac.GetChallengeIdByName("[w10] Rush Rush Hush"), --w10
+	CHALLENGE_APPL = Isaac.GetChallengeIdByName("[w11] Apollyon Crisis"), --w11
+	CHALLENGE_BIKE = Isaac.GetChallengeIdByName("[w12] Delivery System"), --w12
+	CHALLENGE_CALC = Isaac.GetChallengeIdByName("[w13] Calculation"), --w13
+	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
 	
-  CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
-  CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99
-  CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
+	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
+	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99
+	CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
 }
 
 wakaba.useflag = {

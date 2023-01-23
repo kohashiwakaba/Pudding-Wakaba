@@ -11,39 +11,39 @@ wakaba.playerstats.WAKABA_T = {
 }
 
 local function AddInvisibleWispEffect(player, collectible)
-  if player:GetCollectibleNum(collectible) < 1 then
+	if player:GetCollectibleNum(collectible) < 1 then
 		Epiphany.DIW_Add(player, collectible)
 	end
-  if player:GetCollectibleNum(collectible) == 1 then
+	if player:GetCollectibleNum(collectible) == 1 then
 		player:RemoveCostume(Epiphany.config:GetCollectible(collectible))
 	end
 end
 
 function wakaba:Update_CheckTRWakabaAbilities()
-  if not Epiphany or not Epiphany.API then return end
-  local num_players = Game():GetNumPlayers()
+	if not Epiphany or not Epiphany.API then return end
+	local num_players = Game():GetNumPlayers()
 	for i=0,(num_players-1) do
-    local player = Isaac.GetPlayer(i)
-    if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_T then
-    	AddInvisibleWispEffect(player, CollectibleType.COLLECTIBLE_DUALITY)
-    	AddInvisibleWispEffect(player, wakaba.Enums.Collectibles.WAKABA_DUALITY)
-    end
-  end
+		local player = Isaac.GetPlayer(i)
+		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_T then
+			AddInvisibleWispEffect(player, CollectibleType.COLLECTIBLE_DUALITY)
+			AddInvisibleWispEffect(player, wakaba.Enums.Collectibles.WAKABA_DUALITY)
+		end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_CheckTRWakabaAbilities)
 
 local function SauceLazerAnim(_,player)
-  if not Epiphany or not Epiphany.API then return end
-  if player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_T then return end
+	if not Epiphany or not Epiphany.API then return end
+	if player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_T then return end
 
-  local controllerIndex = GetPlayerNumber(player)
-  
-  if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, controllerIndex)
-  or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, controllerIndex)
-  or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, controllerIndex)
-  or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, controllerIndex) then
-    player.HeadFrameDelay = 30
-  end
+	local controllerIndex = GetPlayerNumber(player)
+	
+	if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, controllerIndex)
+	or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, controllerIndex)
+	or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, controllerIndex)
+	or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, controllerIndex) then
+		player.HeadFrameDelay = 30
+	end
 
 end
 --Mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, SauceLazerAnim)

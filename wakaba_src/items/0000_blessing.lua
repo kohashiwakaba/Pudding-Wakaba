@@ -38,7 +38,7 @@ local ignorelist = {}
 local hidelist = {}
 local duped = {}
 function wakaba:onNemesisCache(player, cacheFlag)
-  if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABA_DUALITY))
+	if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABA_DUALITY))
 	and not player:HasCurseMistEffect()
 	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND 
 	then
@@ -68,8 +68,8 @@ function wakaba:onNemesisCache(player, cacheFlag)
 
 		if nemesisbonuses > 0 then
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-        player.Damage = player.Damage + nemesisbonuses
-    	end
+				player.Damage = player.Damage + nemesisbonuses
+			end
 		end
 		if nemesiscount > 0 then
 			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREEDIER then
@@ -125,7 +125,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
 				end
 			end
 		end
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onNemesisCache)
 
@@ -280,7 +280,7 @@ end
 
 function wakaba:ReadDejaVuCandidates()
 	local TotalDejaVuCandidates = {}
-  for i = 1, wakaba.G:GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba and player:GetData().wakaba.DejaVuCandidates then
 			local DejaVuItems = player:GetData().wakaba.DejaVuCandidates
@@ -320,7 +320,7 @@ end
 function wakaba:HasBless(player, includeWakaba)
 	includeWakaba = includeWakaba or true
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		return true
 	else
@@ -352,7 +352,7 @@ function wakaba:HasNemesis(player, includeWakaba)
 	includeWakaba = includeWakaba or true
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
 		wakaba:ReEvaluateNemesisStats(player)
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		wakaba:ReEvaluateNemesisStats(player)
 		return true
@@ -363,7 +363,7 @@ end
 
 function wakaba:TaintedWakabaBirthright(player)
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-    return true
+		return true
 	else
 		return false
 	end
@@ -386,13 +386,13 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()
-  ignorelist = {}
-  hidelist = {}  
+	ignorelist = {}
+	hidelist = {}	
 	
 	local bless = false
 	local nemesis = false
 	local duality = false
-  for i = 1, wakaba.G:GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.blessmantle = nil
@@ -428,16 +428,16 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	end ]]
 	
 	
-  if room:IsFirstVisit() then
-    local items = Isaac.FindByType(5, 100, -1, false, false)
-    for i, e in ipairs(items) do
+	if room:IsFirstVisit() then
+		local items = Isaac.FindByType(5, 100, -1, false, false)
+		for i, e in ipairs(items) do
 			if (wakaba.runstate.hasbless and wakaba.runstate.hasnemesis) and wakaba:ShouldRemoveIndex() then
 				e:ToPickup().OptionsPickupIndex = 0
 			end
-    end
+		end
 		wakaba.runstate.spent = false
-  end
-  
+	end
+	
 end)
 
 function wakaba:blessDetectD6(usedItem, rng)
@@ -463,8 +463,8 @@ function wakaba:blessnemesis()
 	local blesscount = 0
 	local nemesiscount = 0
 	local wakababrcount = 0
-  for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
 		if wakaba:HasBless(player) then
 			blesscount = blesscount + 1
 		end
@@ -484,7 +484,7 @@ function wakaba:blessnemesis()
 	local items = Isaac.FindByType(5, 100, -1, false, false)
 	for i, e in ipairs(items) do
 		if wakaba.runstate.hasbless and wakaba.runstate.hasnemesis then
-			if wakaba:ShouldRemoveIndex()  then
+			if wakaba:ShouldRemoveIndex()	then
 				e:ToPickup().OptionsPickupIndex = 0
 			end
 		elseif (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis) and (e.SubType == CollectibleType.COLLECTIBLE_POLAROID or e.SubType == CollectibleType.COLLECTIBLE_NEGATIVE) then
@@ -538,8 +538,8 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.TakeDmg_BlessNemesis
 function wakaba:pickupinit(pickup)
 	local haslost = false
 	local steamcount = 0
-  for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
 		--[[ if player:GetPlayerType() == 10
 		or player:GetPlayerType() == 31
 		or player:GetPlayerType() == 39
@@ -572,7 +572,7 @@ function wakaba:pickupinit(pickup)
 				end
 			end
 		end
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.pickupinit)
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.pickupinit)

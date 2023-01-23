@@ -32,7 +32,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Display_Maijima)
 
 
 function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
-	local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	local books = wakaba.runstate.cachedmaijimabooks
 	if books then
 		wakaba:GetPlayerEntityData(player)
 		local subrandom = wakaba.RNG:RandomInt(#books) + 1

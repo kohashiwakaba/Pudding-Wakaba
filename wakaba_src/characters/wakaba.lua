@@ -128,48 +128,48 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.WakabaTakeDmg)
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
 local WakabaChar = { 
-    DAMAGE = 1.1,
-    SPEED = 0.1,
-    SHOTSPEED = 0.95,
-    TEARRANGE = 100,
+		DAMAGE = 1.1,
+		SPEED = 0.1,
+		SHOTSPEED = 0.95,
+		TEARRANGE = 100,
 		TEARS = 0,
-    LUCK = 3,
-    FLYING = false,                                 
-    TEARFLAG = TearFlags.TEAR_HOMING,
-    TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)  -- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
+		LUCK = 3,
+		FLYING = false,																 
+		TEARFLAG = TearFlags.TEAR_HOMING,
+		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
  
 function wakaba:onWakabaCache(player, cacheFlag)
-  if player:GetPlayerType() == playerType then
+	if player:GetPlayerType() == playerType then
 		--wakaba:GetWakabaCostume(player)
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
-    	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-    	    player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
-    	end
+			if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+					player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
+			end
 		else
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-        player.Damage = player.Damage * WakabaChar.DAMAGE
+				player.Damage = player.Damage * WakabaChar.DAMAGE
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS) then
 					player.Damage = player.Damage * 1.5
 				end
-    	end
-    	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-    	    player.ShotSpeed = player.ShotSpeed * WakabaChar.SHOTSPEED
-    	end
-    	if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-    	    player.TearRange = player.TearRange + WakabaChar.TEARRANGE
-    	end
-    	if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-    	    player.MoveSpeed = player.MoveSpeed + WakabaChar.SPEED
-    	end
-    	if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-    	    player.Luck = player.Luck + WakabaChar.LUCK
-    	end
-    	if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and WakabaChar.FLYING then
-    	    player.CanFly = true
-    	end
-    	if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-    	    player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, WakabaChar.TEARS)
+			end
+			if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+					player.ShotSpeed = player.ShotSpeed * WakabaChar.SHOTSPEED
+			end
+			if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+					player.TearRange = player.TearRange + WakabaChar.TEARRANGE
+			end
+			if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
+					player.MoveSpeed = player.MoveSpeed + WakabaChar.SPEED
+			end
+			if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
+					player.Luck = player.Luck + WakabaChar.LUCK
+			end
+			if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and WakabaChar.FLYING then
+					player.CanFly = true
+			end
+			if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+					player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, WakabaChar.TEARS)
 					if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) then
 						if player.MaxFireDelay < 0 then
 							player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (player.MaxFireDelay * -0.25))
@@ -177,15 +177,15 @@ function wakaba:onWakabaCache(player, cacheFlag)
 							player.MaxFireDelay = player.MaxFireDelay * 0.75
 						end
 					end
-    	end
-    	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-    	    player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
-    	end
-    	if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-    	    player.TearColor = WakabaChar.TEARCOLOR
-    	end
+			end
+			if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+					player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
+			end
+			if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
+					player.TearColor = WakabaChar.TEARCOLOR
+			end
 		end
-  end
+	end
 	
 end
  
@@ -194,12 +194,12 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onWa
 
 function wakaba:AfterWakabaInit(player)
 	--print("Wakaba event passed")
-  player = player or Isaac.GetPlayer()
+	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
 		--player:UsePill(PillEffect.PILLEFFECT_TEARS_DOWN, 0, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME | UseFlag.USE_NOANNOUNCER) 
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()
-      --player:ClearCostumes()
+			--player:ClearCostumes()
 		else
 			InitWakabaPlayer()
 			wakaba.costumecurrframe = 0
@@ -228,21 +228,21 @@ function wakaba:PostWakabaInit(player)
 	if player:GetPlayerType() == playerType then
 		wakaba:GetWakabaCostume(player)
 	end
-  if not isWakabaContinue then
-    wakaba:AfterWakabaInit(player)
-  end
+	if not isWakabaContinue then
+		wakaba:AfterWakabaInit(player)
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostWakabaInit)
 
 function wakaba:WakabaInit(continue)
-  if (not continue) then
-    isWakabaContinue = false
-    wakaba:AfterWakabaInit()
-  end
+	if (not continue) then
+		isWakabaContinue = false
+		wakaba:AfterWakabaInit()
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.WakabaInit)
 
 function wakaba:WakabaExit()
-  isWakabaContinue = true
+	isWakabaContinue = true
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.WakabaExit)

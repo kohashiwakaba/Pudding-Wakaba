@@ -489,6 +489,7 @@ local richer_saved_recipies = {
 		-- Shiori modes
 		currentshiorimode = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
 		shioridropped = {},
+		cachedmaijimabooks = {},
 
 		storedplayers = 0,
 		playersavedata = {
@@ -1018,25 +1019,25 @@ wakaba.ItemConfig = Isaac.GetItemConfig()
 
 function wakaba:has_value (tab, val)
 	if tab == nil then return false end
-  for index, value in ipairs(tab) do
-    if value == val then
-      return true
-    end
-  end
-  return false
+	for index, value in ipairs(tab) do
+		if value == val then
+			return true
+		end
+	end
+	return false
 end
 
 function wakaba:GetScreenSize()
-    local room = wakaba.G:GetRoom()
-    local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - wakaba.G.ScreenShakeOffset
-    
-    local rx = pos.X + 60 * 26 / 40
-    local ry = pos.Y + 140 * (26 / 40)
-    
-    return Vector(rx*2 + 13*26, ry*2 + 7*26)
+		local room = wakaba.G:GetRoom()
+		local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - wakaba.G.ScreenShakeOffset
+		
+		local rx = pos.X + 60 * 26 / 40
+		local ry = pos.Y + 140 * (26 / 40)
+		
+		return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 function wakaba:GetScreenCenter()
-    return wakaba:GetScreenSize()/2
+		return wakaba:GetScreenSize()/2
 end
 function wakaba:GetGridCenter() --returns Vector
 	local room = wakaba.G:GetRoom()
@@ -1070,30 +1071,30 @@ function wakaba:WhitelistTag(tag)
 	local items = wakaba.G:GetItemPool()
 	local itemID = 0
 	local maxID = wakaba:GetMaxCollectibleID()
-  local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
-  repeat
-    itemID = itemID + 1
-    lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
+	local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
+	repeat
+		itemID = itemID + 1
+		lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
 		if lastItem ~= nil and not lastItem:HasTags(tag) then
 			--Isaac.ConsoleOutput("Removed : "..itemID.."/"..maxID.. "\n")
 			wakaba.G:GetItemPool():RemoveCollectible(itemID)
 		end
-  until itemID > maxID
+	until itemID > maxID
 end
 
 function wakaba:BlacklistTag(tag)
 	local items = wakaba.G:GetItemPool()
 	local itemID = 0
 	local maxID = wakaba:GetMaxCollectibleID()
-  local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
-  repeat
-    itemID = itemID + 1
-    lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
+	local lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
+	repeat
+		itemID = itemID + 1
+		lastItem = Isaac.GetItemConfig():GetCollectible(itemID)
 		if lastItem ~= nil and lastItem:HasTags(tag) then
 			--Isaac.ConsoleOutput("Removed : "..itemID.."/"..maxID.. "\n")
 			wakaba.G:GetItemPool():RemoveCollectible(itemID)
 		end
-  until itemID > maxID
+	until itemID > maxID
 end
 
 
@@ -1108,16 +1109,16 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.PostWakabaRender)
 
 --reset currframe when use an active item
 function wakaba.ItemUseCostumeReset()
-  wakaba.costumecurrframe = 0
+	wakaba.costumecurrframe = 0
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUseCostumeReset)
 
 --[[
 	Get Offset by Peachee
-  @param {int} notches - the number of notches filled in on hud offset (default inwakaba.G is between 0-10)
-  @param {float} x - original x coordinate
-  @param {float} y - original y coordinate
-  @param {string} anchor - the anchoring position of the element: "topleft", "topright", "bottomleft", "bottomright" IE. stats are "topleft", minimap is "topright"
+	@param {int} notches - the number of notches filled in on hud offset (default inwakaba.G is between 0-10)
+	@param {float} x - original x coordinate
+	@param {float} y - original y coordinate
+	@param {string} anchor - the anchoring position of the element: "topleft", "topright", "bottomleft", "bottomright" IE. stats are "topleft", minimap is "topright"
 ]]
 function wakaba.hudoffset(notches, x, y, anchor)
 	local xoffset = (notches*2)
@@ -1144,11 +1145,11 @@ end
 local activePendingPapers = false
 
 function wakaba:activePapers()
-  local game = wakaba.G
-  local room = wakaba.G:GetRoom()
-  local level = wakaba.G:GetLevel()
-  local CurStage = level:GetAbsoluteStage()
-  local CurRoom = level:GetCurrentRoomIndex()
+	local game = wakaba.G
+	local room = wakaba.G:GetRoom()
+	local level = wakaba.G:GetLevel()
+	local CurStage = level:GetAbsoluteStage()
+	local CurRoom = level:GetCurrentRoomIndex()
 	if room:IsFirstVisit() and isc:inStartingRoom() then
 		if #wakaba.state.pendingunlock > 0 then
 			activePendingPapers = true
@@ -1372,14 +1373,14 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat
 function wakaba:init(continue)
 	wakaba.eidHideInBattle = EID.Config["HideInBattle"]
 	wakaba.RNG:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
-  --Isaac.DebugString(wakaba.state)
-  if wakaba:HasData() then
+	--Isaac.DebugString(wakaba.state)
+	if wakaba:HasData() then
 		--Isaac.DebugString(wakaba:LoadData())
 		--wakaba.state = json.decode(wakaba:LoadData())
 		--wakaba:reinitStates()
-  end
+	end
 	--wakaba.runstate.HIDDEN_ITEM_DATA = {}
-  if (not continue) then
+	if (not continue) then
 		-- Starting new run
 
 		--wakaba.runstate.HIDDEN_ITEM_DATA = {}
@@ -1390,6 +1391,9 @@ function wakaba:init(continue)
 		if wakaba.state.achievementPopupShown then
 			wakaba:LockItems()
 		end
+
+		-- Caching Books for Maijima
+		wakaba.runstate.cachedmaijimabooks = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 
 		if not wakaba.state.achievementPopupShown then
 			DeadSeaScrollsMenu.QueueMenuOpen("Pudding n wakaba", "unlockspopup", 1, true)
@@ -1407,18 +1411,18 @@ function wakaba:init(continue)
 			for i = 1, #tempplayerdatas do
 				--print(tempplayerdatas[i].hash , player:GetData().wakaba_lhash)
 				if wakaba:getstoredhash(player) == tempplayerdatas[i].hash 
-        or player:GetData().wakaba_lhash == tempplayerdatas[i].hash then
+				or player:GetData().wakaba_lhash == tempplayerdatas[i].hash then
 					player:GetData().wakaba = tempplayerdatas[i]
 					table.insert(reservedplayerdatas, tempplayerdatas[i])
-          player:AddCacheFlags(CacheFlag.CACHE_ALL)
-          player:EvaluateItems()
+					player:AddCacheFlags(CacheFlag.CACHE_ALL)
+					player:EvaluateItems()
 					break
 				end
 			end
 		end
 		wakaba.runstate.playersavedata = reservedplayerdatas
 		wakaba:LoadHiddenItemData()
-  end
+	end
 	-- Run this whether continue or not
 	if EID then
 		wakaba:UpdateWakabaDescriptions()
@@ -1436,7 +1440,7 @@ end
 
 
 function wakaba:getUnlockState()
-  if wakaba:HasData() then
+	if wakaba:HasData() then
 		local tempstate = json.decode(wakaba:LoadData())
 		if tempstate.unlock ~= nil then
 			for k, v in pairs(wakaba.state.unlock) do
@@ -1459,7 +1463,7 @@ function wakaba:getUnlockState()
 end
 
 function wakaba:reinitStates()
-  if wakaba:HasData() then
+	if wakaba:HasData() then
 		local tempstate = json.decode(wakaba:LoadData())
 		if tempstate ~= nil then
 			-- Importing from old saves
@@ -1514,11 +1518,11 @@ function wakaba:reinitStates()
 end
 
 function wakaba:luamodInit()
-  if wakaba:HasData() then
+	if wakaba:HasData() then
 		Isaac.DebugString(wakaba:LoadData())
 
 		wakaba:reinitStates()
-  end
+	end
 end
 
 function wakaba:GetEntityData(entity)
@@ -1564,26 +1568,26 @@ end
 
 function wakaba:PostGlobalPlayerInit(player)
 	wakaba:luamodInit() -- MC_POST_GAME_STARTED calls later than here. Init Loadfile from here to preserve unlock status
-  local TotPlayers = #Isaac.FindByType(EntityType.ENTITY_PLAYER)
+	local TotPlayers = #Isaac.FindByType(EntityType.ENTITY_PLAYER)
 	local phash = wakaba:getstoredhash(player)
 	--print(phash)
-  
-  if TotPlayers == 0 then
-    wakaba.runstate.storedplayers = 0
-    
-    if wakaba.G:GetFrameCount() == 0 then
-      --print("Game Started")
+	
+	if TotPlayers == 0 then
+		wakaba.runstate.storedplayers = 0
+		
+		if wakaba.G:GetFrameCount() == 0 then
+			--print("Game Started")
 			wakaba.runstate.playersavedata = {}
-    else
-      --print("Continue")
-    end
-  end
-  
-  wakaba.runstate.storedplayers = wakaba.runstate.storedplayers + 1
+		else
+			--print("Continue")
+		end
+	end
+	
+	wakaba.runstate.storedplayers = wakaba.runstate.storedplayers + 1
 	--print(wakaba.runstate.storedplayers, #wakaba.runstate.playersavedata)
 
-  if wakaba.runstate.storedplayers - 1 == #wakaba.runstate.playersavedata then
-    -- run player init code
+	if wakaba.runstate.storedplayers - 1 == #wakaba.runstate.playersavedata then
+		-- run player init code
 		-- Persistent Player Data
 		player:GetData().wakaba = {
 			hash = phash,
@@ -1617,12 +1621,12 @@ function wakaba:PostGlobalPlayerInit(player)
 				shotspeed = 0,
 			},
 		}
-    wakaba.runstate.playersavedata[wakaba.runstate.storedplayers] = {
+		wakaba.runstate.playersavedata[wakaba.runstate.storedplayers] = {
 			hashindex = phash,
 			index = wakaba.runstate.storedplayers,
-    }
+		}
 		--print("assign")
-  end
+	end
 	player:GetData().wakaba_lhash = phash
 	Isaac.DebugString("[wakaba]Wakaba - Persistent Data registered.")
 
@@ -1635,71 +1639,71 @@ function wakaba:PostGlobalPlayerInit(player)
 	end
 --[[ 
 
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.WAKABA,
-    "gfx/characters/costumes/character_wakaba.png",
-    67, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_wakaba.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_WAKABA --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeNullWhiteList)
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.WAKABA,
+		"gfx/characters/costumes/character_wakaba.png",
+		67, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_wakaba.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_WAKABA --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeNullWhiteList)
 
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.WAKABA_B,
-    "gfx/characters/costumes/character_wakabab.png",
-    40, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_wakabab.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_WAKABA_B --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeNullWhiteList)
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.WAKABA_B,
+		"gfx/characters/costumes/character_wakabab.png",
+		40, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_wakabab.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_WAKABA_B --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeNullWhiteList)
 
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.SHIORI,
-    "gfx/characters/costumes/character_shiori.png",
-    67, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_shiori.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_SHIORI --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeNullWhiteList)
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.SHIORI_B,
-    "gfx/characters/costumes/character_shiorib.png",
-    wakaba.COSTUME_SHIORI_B_BODY, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_shiorib.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_SHIORI_B --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeNullWhiteList)
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.SHIORI,
+		"gfx/characters/costumes/character_shiori.png",
+		67, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_shiori.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_SHIORI --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeNullWhiteList)
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.SHIORI_B,
+		"gfx/characters/costumes/character_shiorib.png",
+		wakaba.COSTUME_SHIORI_B_BODY, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_shiorib.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_SHIORI_B --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeNullWhiteList)
 
-  
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.TSUKASA,
-    "gfx/characters/costumes/character_tsukasa.png",
-    67, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_tsukasa.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_TSUKASA --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeNullWhiteList)
+	
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.TSUKASA,
+		"gfx/characters/costumes/character_tsukasa.png",
+		67, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_tsukasa.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_TSUKASA --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeNullWhiteList)
 
-  costumeProtector:AddPlayer(
-    player,
-    wakaba.Enums.Players.TSUKASA_B,
-    "gfx/characters/costumes/character_tsukasab.png",
-    67, --A separate costume that is added for all cases that you ever gain flight.
-    "gfx/characters/costumes/character_tsukasab.png", --Your character's spritesheet, but customized to have your flight costume.
-    wakaba.COSTUME_TSUKASA_B --Your character's additional costume. Hair, ears, whatever.
-  )
-  costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeCollectibleWhiteList)
-  costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeNullWhiteList) ]]
+	costumeProtector:AddPlayer(
+		player,
+		wakaba.Enums.Players.TSUKASA_B,
+		"gfx/characters/costumes/character_tsukasab.png",
+		67, --A separate costume that is added for all cases that you ever gain flight.
+		"gfx/characters/costumes/character_tsukasab.png", --Your character's spritesheet, but customized to have your flight costume.
+		wakaba.COSTUME_TSUKASA_B --Your character's additional costume. Hair, ears, whatever.
+	)
+	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeCollectibleWhiteList)
+	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeNullWhiteList) ]]
 	--print(player:GetPlayerType(), #costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()], costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()][CollectibleType.COLLECTIBLE_LUNA])
 	
 	--wakaba:save(true)
@@ -1751,7 +1755,7 @@ function wakaba:getstoredindex(player)
 	if player:GetData().wakaba and player:GetData().wakaba.sindex then 
 		return player:GetData().wakaba.sindex
 	end
-  return false
+	return false
 end
 
 function wakaba:getstoredhash(player)
@@ -1759,9 +1763,9 @@ function wakaba:getstoredhash(player)
 	local playerType = player:GetPlayerType()
 	local refItem = CollectibleType.COLLECTIBLE_SAD_ONION
 	if playerType == PlayerType.PLAYER_LAZARUS2_B then refItem = CollectibleType.COLLECTIBLE_INNER_EYE end
-  local collectibleRNG = player:GetCollectibleRNG(refItem)
-  local seed = collectibleRNG:GetSeed()
-  local seedString = tostring(seed)
+	local collectibleRNG = player:GetCollectibleRNG(refItem)
+	local seed = collectibleRNG:GetSeed()
+	local seedString = tostring(seed)
 
 	return seedString
 end
@@ -1808,7 +1812,7 @@ function wakaba:save(shouldSave)
 			end
 		end
 		wakaba.runstate.playersavedata = reservedplayersavedata
-    --wakaba:SaveData(json.encode(wakaba.state))
+		--wakaba:SaveData(json.encode(wakaba.state))
 		--Isaac.DebugString("[wakaba]Wakaba - Data Saving end")
 		wakaba:SaveHiddenItemData()
 		wakaba:saveDataManagerSave()
@@ -2022,7 +2026,7 @@ function wakaba:RandomInt(min, max, customRNG) --This and GetRandomElem were wri
 	if not max then
 			max = min
 			min = 0
-	end  
+	end	
 	if min > max then 
 			local temp = min
 			min = max
@@ -2066,10 +2070,10 @@ end
 
 function wakaba:Shuffle(tbl)
 	for i = #tbl, 2, -1 do
-    local j = wakaba:RandomInt(1, i)
-    tbl[i], tbl[j] = tbl[j], tbl[i]
-  end
-  return tbl
+		local j = wakaba:RandomInt(1, i)
+		tbl[i], tbl[j] = tbl[j], tbl[i]
+	end
+	return tbl
 end
 
 
