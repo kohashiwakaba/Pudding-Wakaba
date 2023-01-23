@@ -265,6 +265,10 @@ wakaba.Enums.Chances = {
 wakaba.Enums.Constants = {
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
+
+	ELIXIR_MAX_COOLDOWN = 16,
+	ELIXIR_MAX_COOLDOWN_DMG = 50,
+
 	MAX_ISEKAI_CLOTS = 10,
 	ISEKAI_CERTIFICATE_CHANCE = 50,
 	ISEKAI_SHIORI_BONUS = 400,

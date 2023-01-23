@@ -1,5 +1,4 @@
-wakaba.elixirmaxcooldown = 16
-wakaba.elixirmaxcooldowndamage = 50
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 
 function wakaba:hasElixir(player)
@@ -7,7 +6,7 @@ function wakaba:hasElixir(player)
 		return false 
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B and not (player:IsDead() and not player:WillPlayerRevive()) then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE) then
 		return true
 	else
@@ -19,20 +18,22 @@ end
 function wakaba:PlayerUpdate_Elixir(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
-	if wakaba:hasElixir(player) then
-		if player:GetMaxHearts() < 2 and not data.wakaba.elixirtempcheck then
-			player:AddMaxHearts(2)
-			data.wakaba.elixirtempcheck = true
+	if wakaba:hasElixir(player) and not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
+		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) then
+			goto KeeperSkip
 		end
-		if player:GetMaxHearts() < 2 and (data.wakaba.elixirtempcheck or data.wakaba.elixirnonredhearts) then -- Do this again to check non-red hearts character
+		if player:GetHearts() < 1 then -- Do this again to check non-red hearts character
 			data.wakaba.elixirnonredhearts = true
 			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts or 0
 			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts >= player:GetSoulHearts() and data.wakaba.elixirmaxsoulhearts or player:GetSoulHearts()
+		elseif data.wakaba.elixirnonredhearts and (player:GetHearts() > 0) then
+			data.wakaba.elixirnonredhearts = false
 		end
 		if (player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) and not data.wakaba.elixirnonredhearts then
 			player:AddSoulHearts(-2)
 			player:AddBoneHearts(1)
 		end
+		::KeeperSkip::
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 		if player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
 			if data.wakaba.elixirinvframes and data.wakaba.elixirinvframes >= 0 then
@@ -51,7 +52,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 				end
 			end
 		end
-		data.wakaba.elixircooldown = data.wakaba.elixircooldown or wakaba.elixirmaxcooldown
+		data.wakaba.elixircooldown = data.wakaba.elixircooldown or wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 		if not player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS) then
 			if data.wakaba.elixircooldown > 0 then
 				data.wakaba.elixircooldown = data.wakaba.elixircooldown - 1
@@ -62,20 +63,25 @@ function wakaba:PlayerUpdate_Elixir(player)
 				if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) < thresholdmantlecount then
 					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOHUD)
-					data.wakaba.elixircooldown = wakaba.elixirmaxcooldown
+					data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 				end
-			elseif (player:GetEffectiveMaxHearts() < 2 and not player:CanPickRedHearts() and player:GetSoulHearts() < 6) or (data.wakaba.elixirmaxsoulhearts and player:GetSoulHearts() < data.wakaba.elixirmaxsoulhearts) then
+			elseif (player:GetEffectiveMaxHearts() < 2 
+					and (not player:CanPickRedHearts() and player:GetHearts() ~= player:GetEffectiveMaxHearts())
+					and player:GetSoulHearts() < 6) 
+				or 
+				(data.wakaba.elixirmaxsoulhearts and player:GetSoulHearts() < data.wakaba.elixirmaxsoulhearts) 
+				then
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				player:AddSoulHearts(1)
-				data.wakaba.elixircooldown = wakaba.elixirmaxcooldown
+				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 			elseif player:CanPickRedHearts() then
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				player:AddHearts(1)
-				data.wakaba.elixircooldown = wakaba.elixirmaxcooldown
+				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 			elseif (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) and player:GetHearts() < player:GetMaxHearts() then
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				player:AddHearts(1)
-				data.wakaba.elixircooldown = wakaba.elixirmaxcooldown
+				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 			end
 		end
 	else
@@ -92,18 +98,25 @@ function wakaba:TakeDamage_Elixir(entity, amount, flags, source, cooldown)
 	local player = entity:ToPlayer()
 	if wakaba:hasElixir(player) and player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
 		wakaba:GetPlayerEntityData(player)
-    local data = player:GetData()
-		data.wakaba.elixircooldown = wakaba.elixirmaxcooldowndamage
+		local data = player:GetData()
+		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_DMG
 		if (source.Type == EntityType.ENTITY_SLOT and source.Variant == 2)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 5)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 15)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 17)
 		or flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
 		then
-			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
-			local chance = rng:RandomInt(1000000)
-			if chance <= 350000 then
-				player:AddMaxHearts(-2)
+			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown or 0
+			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown + 1
+			if data.wakaba.elixirblooddonationcooldown >= 4 then
+				if player:GetBoneHearts() > 0 then
+					player:AddBoneHearts(-1)
+				elseif player:GetMaxHearts() > 0 then
+					player:AddMaxHearts(-2)
+				elseif data.wakaba.elixirmaxsoulhearts > 0 then
+					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 2
+				end
+				data.wakaba.elixirblooddonationcooldown = 0
 			end
 		end
 	end
