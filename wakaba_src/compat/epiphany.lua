@@ -5,8 +5,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:Epiphany_AddTarnishedDatas()
   -- DO NOT RUN IF THE API IS NOT LOADED
   if not Epiphany or not Epiphany.API then return end
-  
-  -- ADD THE ACTUAL CHARACTER
+  --[[ 
+  -- Was trying to add TR Wakaba, but no time sadly
   Epiphany.API.AddCharacter({
     charName = "WakabaT", --Internal character name (REQUIRED)
     charID = wakaba.Enums.Players.WAKABA_T, -- Character ID (REQUIRED)
@@ -23,7 +23,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
     end, -- function that returns whether the character is unlocked. Defaults to always returning true.
     floorTutorial = "gfx/grid/tutorial_wakaba.anm2"
   })
-
+ ]]
   wakaba:Epiphany_AddThrowingBagSynergies()
 
   Epiphany.API:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
