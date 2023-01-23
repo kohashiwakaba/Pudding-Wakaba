@@ -3,7 +3,7 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 	local fam = isc:getPlayerFamiliars(player)
 	local count = 0
 	for _,f in ipairs(fam) do
-		if f.Variant == FamiliarVariant.BLOOD_BABY and v.SubType == isc.BloodClotSubType.RED_NO_SUMPTORIUM then
+		if f.Variant == FamiliarVariant.BLOOD_BABY and f.SubType == isc.BloodClotSubType.RED_NO_SUMPTORIUM then
 			count = count + 1
 		end
 	end
