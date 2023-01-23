@@ -7,9 +7,14 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 			count = count + 1
 		end
 	end
+	local base = wakaba.Enums.Constants.ISEKAI_CERTIFICATE_CHANCE
+	base = (base + (wakaba.Enums.Constants.ISEKAI_OVER_CLOT_BONUS * (count - wakaba.Enums.Constants.MAX_ISEKAI_CLOTS + 1)))
+	if wakaba:HasShiori(player) then
+		base = base + wakaba.Enums.Constants.ISEKAI_SHIORI_BONUS
+	end
 
 	local chance = rng:RandomFloat() * 10000
-	if not isc:inDeathCertificateArea() and (50 + (250 * (count - 9))) >= chance and not wakaba:HasBeast() then
+	if not isc:inDeathCertificateArea() and base >= chance and not wakaba:HasBeast() then
 		local pentagram = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HERETIC_PENTAGRAM, 0, player.Position, Vector.Zero, player):ToEffect()
 		pentagram.Parent = player
 		pentagram:FollowParent(player)
@@ -21,14 +26,14 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 		pentagram:SetColor(Color(0.5, 0, 1, 1, 1, 0, 1), 200, 2, true, false)
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)
 	else
-		if count < 10 then
+		if count < wakaba.Enums.Constants.MAX_ISEKAI_CLOTS then
 			local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.RED_NO_SUMPTORIUM, player.Position, Vector.Zero, player):ToFamiliar()
-			SFXManager():Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT, 0.4, 0, false, 1.65)
 		end
 
+		SFXManager():Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT, 0.4, 0, false, 1.65)
 		local clots = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, -1)
 		for i, p in ipairs(clots) do
-			if count < 10 then
+			if count < wakaba.Enums.Constants.MAX_ISEKAI_CLOTS then
 				p.HitPoints = p.HitPoints + 5
 			elseif p.HitPoints < p.MaxHitPoints then
 				p.HitPoints = p.MaxHitPoints
