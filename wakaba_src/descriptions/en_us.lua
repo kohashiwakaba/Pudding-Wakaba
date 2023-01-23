@@ -473,7 +473,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		itemName = "Isekai Definition",
 		description = ""
-		.. "#Spawns a blue Lil Clot"
+		.. "#Spawns a Lil Clot (max 10)"
 		.. "#Heals all spawned Lil Clots' health by 2"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",

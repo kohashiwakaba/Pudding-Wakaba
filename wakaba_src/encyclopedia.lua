@@ -2289,9 +2289,10 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	ISEKAI_DEFINITION = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, Spawns a Soul Heart type Lil clot for 99.5% chance."},
-			{str = "- Isaac will be teleported into Death Certificate room if the spawn fails."},
+			{str = "Upon use, Spawns a Lil clot."},
+			{str = "- Isaac will be teleported into Death Certificate room for 0.5% chance instead."},
 			{str = "Heals all spawned Lil Clots' health by 2."},
+			{str = "If spawned clot count is 10 or more, no more clots will be spawn. Instead, DC Teleportation chance will be increased into 3%, and fully heals all spawned clots."},
 			{str = "This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm."},
 		},
 		{ -- Trivia

@@ -518,6 +518,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#사용 시 캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사하는 꼬마 클롯을 소환합니다."
 		.. "#소환된 모든 꼬마 클롯의 체력을 2 회복합니다."
+		.. "#최대 10마리까지 소환할 수 있으며 이후 사용 시 꼬마 클롯의 체력을 전부 회복합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "슬라임 소환",
