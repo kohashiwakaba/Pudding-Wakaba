@@ -26,54 +26,54 @@ function wakaba:cardUnlockCheck(card)
 
 	if card == wakaba.Enums.Cards.CARD_DREAM_CARD and wakaba.state.unlock.donationcard < 1 then
 		isUnlocked = false
-  end
+	end
 	if card == wakaba.Enums.Cards.CARD_COLOR_JOKER and wakaba.state.unlock.colorjoker < 1 then
 		isUnlocked = false
-  end
+	end
 	if card == wakaba.Enums.Cards.CARD_WHITE_JOKER and wakaba.state.unlock.whitejoker < 1 then
 		isUnlocked = false
-  end
+	end
 	if card == wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD and wakaba.state.unlock.confessionalcard < 1 then
 		isUnlocked = false
-  end
+	end
 	if card == wakaba.Enums.Cards.CARD_CRANE_CARD and wakaba.state.unlock.cranecard < 1 then
 		isUnlocked = false
-  end
+	end
 	
 	if card == wakaba.Enums.Cards.CARD_BLACK_JOKER and wakaba.state.unlock.blackjoker < 2 then
 		isUnlocked = false
-  end
+	end
 	
 	if card == wakaba.Enums.Cards.SOUL_WAKABA and not wakaba.state.unlock.wakabasoul then
 		isUnlocked = false
-  end
+	end
 	if card == wakaba.Enums.Cards.SOUL_WAKABA2 and not wakaba.state.unlock.wakabasoul then
 		isUnlocked = false
-  end
+	end
 
 	if card == wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK and wakaba.state.unlock.unknownbookmark < 1 then
 		isUnlocked = false
-  end
+	end
 	
 	if card == wakaba.Enums.Cards.CARD_VALUT_RIFT and wakaba.state.unlock.shiorivalut < 1 then
 		isUnlocked = false
-  end
+	end
 
 	if card == wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES and wakaba.state.unlock.queenofspades < 2 then
 		isUnlocked = false
-  end
+	end
 	
 	if card == wakaba.Enums.Cards.SOUL_SHIORI and not wakaba.state.unlock.shiorisoul then
 		isUnlocked = false
-  end
+	end
 
 	if card == wakaba.Enums.Cards.CARD_RETURN_TOKEN and wakaba.state.unlock.returntoken < 2 then
 		isUnlocked = false
-  end
+	end
 	
 	if card == wakaba.Enums.Cards.SOUL_TSUKASA and not wakaba.state.unlock.tsukasasoul then
 		isUnlocked = false
-  end
+	end
 
 	return isUnlocked
 end
@@ -84,52 +84,52 @@ function wakaba:trinketUnlockCheck(trinket)
 
 	if trinket == wakaba.Enums.Trinkets.BITCOIN and wakaba.state.unlock.bitcoin < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.CLOVER and wakaba.state.unlock.clover < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.MAGNET_HEAVEN and wakaba.state.unlock.magnetheaven < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.DETERMINATION_RIBBON and wakaba.state.unlock.determinationribbon < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.HARD_BOOK and wakaba.state.unlock.hardbook < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.BOOKMARK_BAG and not wakaba.state.unlock.bookmarkbag then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.RING_OF_JUPITER and wakaba.state.unlock.ringofjupiter < 1 then
 		isUnlocked = false
-  end
+	end
 	if trinket == wakaba.Enums.Trinkets.RANGE_OS and wakaba.state.unlock.rangeos < 1 then
 		isUnlocked = false
-  end
+	end
 	
 	if trinket == wakaba.Enums.Trinkets.SIREN_BADGE and wakaba.state.unlock.sirenbadge < 1 then
 		isUnlocked = false
-  end
+	end
 	
 	if trinket == wakaba.Enums.Trinkets.ISAAC_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
 		isUnlocked = false
-  end
+	end
 	
 	if trinket == wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
 		isUnlocked = false
-  end
+	end
 	
 	if trinket == wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE and not wakaba.state.unlock.isaaccartridge then
 		isUnlocked = false
-  end
+	end
 
 	if trinket == wakaba.Enums.Trinkets.DIMENSION_CUTTER and not wakaba.state.unlock.delirium then
 		isUnlocked = false
-  end
+	end
 
 	if trinket == wakaba.Enums.Trinkets.DELIMITER and not wakaba.state.unlock.delimiter then
 		isUnlocked = false
-  end
+	end
 
 	return isUnlocked
 end
@@ -228,163 +228,163 @@ function wakaba:unlockCheck(item, pool)
 
 	if item == wakaba.Enums.Collectibles.WAKABAS_BLESSING and wakaba.state.unlock.blessing ~= true then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_SHIORI and wakaba.state.unlock.bookofshiori ~= true then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.PLUMY and wakaba.state.unlock.plumy ~= true then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.EXECUTIONER and wakaba.state.unlock.executioner ~= true then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN and wakaba.state.unlock.bookofforgotten ~= true then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.EYE_OF_CLOCK and wakaba.state.unlock.eyeofclock ~= true then
 		isUnlocked = false
-  end
+	end
 	
 	if item == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER and wakaba.state.unlock.microdoppelganger ~= true then
 		isUnlocked = false
-  end
+	end
 	
 	if item == wakaba.Enums.Collectibles.APOLLYON_CRISIS and wakaba.state.unlock.apollyoncrisis ~= true then
 		isUnlocked = false
-  end
+	end
 	
 	if item == wakaba.Enums.Collectibles.NEKO_FIGURE and wakaba.state.unlock.nekodoll ~= true then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.LIL_WAKABA and wakaba.state.unlock.lilwakaba ~= true then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.ISEKAI_DEFINITION and wakaba.state.unlock.deliverysystem ~= true then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.BALANCE and wakaba.state.unlock.calculation ~= true then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.DOUBLE_DREAMS and wakaba.state.unlock.doubledreams ~= true then
 		isUnlocked = false
-  end
+	end
 	
 	if item == wakaba.Enums.Collectibles.WAKABAS_NEMESIS and wakaba.state.unlock.nemesis < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.EATHEART and wakaba.state.unlock.eatheart < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.D_CUP_ICECREAM and wakaba.state.unlock.dcupicecream < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.WAKABAS_PENDANT and wakaba.state.unlock.pendant < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.SECRET_CARD and wakaba.state.unlock.secretcard < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.NEW_YEAR_BOMB and wakaba.state.unlock.newyearbomb < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.UNIFORM and wakaba.state.unlock.wakabauniform < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.COUNTER and wakaba.state.unlock.counter < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.RETURN_POSTAGE and wakaba.state.unlock.returnpostage < 1 then
 		isUnlocked = false
-  end
+	end
 
 
 	if item == wakaba.Enums.Collectibles.BOOK_OF_FOCUS and wakaba.state.unlock.bookoffocus < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.DECK_OF_RUNES and wakaba.state.unlock.deckofrunes < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER and wakaba.state.unlock.grimreaperdefender < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN and wakaba.state.unlock.bookoffallen < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_TRAUMA and wakaba.state.unlock.bookoftrauma < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_SILENCE and wakaba.state.unlock.bookofsilence < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.VINTAGE_THREAT and wakaba.state.unlock.vintagethreat < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BOOK_OF_THE_GOD and wakaba.state.unlock.bookofthegod < 1 then
 		isUnlocked = false
-  end
+	end
 
 
 	if item == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST and wakaba.state.unlock.bookofconquest < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.MINERVA_AURA and wakaba.state.unlock.minervaaura < 1 then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.MURASAME and wakaba.state.unlock.murasame < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.NASA_LOVER and wakaba.state.unlock.nasalover < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.RED_CORRUPTION and wakaba.state.unlock.redcorruption < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.BEETLEJUICE and wakaba.state.unlock.beetlejuice < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.POWER_BOMB and wakaba.state.unlock.powerbomb < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.CONCENTRATION and wakaba.state.unlock.concentration < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.PLASMA_BEAM and wakaba.state.unlock.plasmabeam < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.PHANTOM_CLOAK and wakaba.state.unlock.phantomcloak < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.MAGMA_BLADE and wakaba.state.unlock.magmablade < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.ARCANE_CRYSTAL and wakaba.state.unlock.arcanecrystal < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.ADVANCED_CRYSTAL and wakaba.state.unlock.arcanecrystal < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.MYSTIC_CRYSTAL and wakaba.state.unlock.arcanecrystal < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.QUESTION_BLOCK and wakaba.state.unlock.queenofspades < 1 then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.LUNAR_STONE and wakaba.state.unlock.lunarstone ~= true then
 		isUnlocked = false
-  end
+	end
 
 	if item == wakaba.Enums.Collectibles.FLASH_SHIFT and wakaba.state.unlock.flashshift < 1 then
 		isUnlocked = false
-  end
+	end
 	if item == wakaba.Enums.Collectibles.ELIXIR_OF_LIFE and wakaba.state.unlock.elixiroflife < 1 then
 		isUnlocked = false
-  end
+	end
 
 
 
@@ -435,6 +435,8 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	if selected and selected <= 0 then
 		return
 	end
+	-- Library Expanded : Do not check reroll in Library Certifiate area
+	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then return end
 	
 	if (wakaba.G.Challenge == wakaba.challenges.CHALLENGE_HOLD) then
 		return wakaba.Enums.Collectibles.CLOVER_SHARD
@@ -447,7 +449,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local room = wakaba.G:GetRoom()
 	local config = Isaac.GetItemConfig()
 	local AllowActives = wakaba.roomstate.allowactives
-  local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
+	local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
 
 	local hasDejaVu = false
 	local hasSacredOrb = false
@@ -503,8 +505,8 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	end
 
 	if wakaba.roomstate.allowactives == nil then
-    AllowActives = true
-  end
+		AllowActives = true
+	end
 	if wakaba.fullreroll then
 		AllowActives = false
 	end
@@ -696,30 +698,30 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.rerollCooltime)
 
 --[[
 local function GetRoomItem(defaultPool, AllowActives, MinQuality, MaxQuality)
-  defaultPool = defaultPool or ItemPoolType.POOL_TREASURE
-  MinQuality = MinQuality or 0
-  if AllowActives == nil then
-    AllowActives = true
-  end
+	defaultPool = defaultPool or ItemPoolType.POOL_TREASURE
+	MinQuality = MinQuality or 0
+	if AllowActives == nil then
+		AllowActives = true
+	end
 
-  local itemType = pool:GetPoolForRoom(room:GetType(), room:GetAwardSeed())
-  itemType = itemType > - 1 and itemType or defaultPool
-  local collectible = pool:GetCollectible(itemType)
+	local itemType = pool:GetPoolForRoom(room:GetType(), room:GetAwardSeed())
+	itemType = itemType > - 1 and itemType or defaultPool
+	local collectible = pool:GetCollectible(itemType)
 
-  if (not AllowActives or MinQuality > 0) then
-    local itemConfig = config:GetCollectible(collectible)
-    local active = (AllowActives == true) and true or itemConfig.Type == ItemType.ITEM_PASSIVE
-    local quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
-    while not (quality and active) do
-      collectible = pool:GetCollectible(itemType)
-      itemConfig = config:GetCollectible(collectible)
-      active = (AllowActives == true) and true or itemConfig.Type == ItemType.ITEM_PASSIVE
-      quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
-    end
-    print(itemConfig.Quality, itemConfig.Type == ItemType.ITEM_PASSIVE)
-  end
+	if (not AllowActives or MinQuality > 0) then
+		local itemConfig = config:GetCollectible(collectible)
+		local active = (AllowActives == true) and true or itemConfig.Type == ItemType.ITEM_PASSIVE
+		local quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
+		while not (quality and active) do
+			collectible = pool:GetCollectible(itemType)
+			itemConfig = config:GetCollectible(collectible)
+			active = (AllowActives == true) and true or itemConfig.Type == ItemType.ITEM_PASSIVE
+			quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
+		end
+		print(itemConfig.Quality, itemConfig.Type == ItemType.ITEM_PASSIVE)
+	end
 
-  return collectible
+	return collectible
 end
 ]]
 
