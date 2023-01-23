@@ -33,6 +33,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
     [wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
     [wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
     [wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
+    [wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
   })
 
   Epiphany.API:AddCardsToCardGroup("PlayingCard", {
