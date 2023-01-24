@@ -240,7 +240,7 @@ function wakaba:SetShioriCharge(player, amount, slot)
 		else
 			player:SetActiveCharge(0, slot)
 		end
-	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local reqconsume = maxCharges // 2
 		amount = amount + (maxCharges - reqconsume)
 		player:SetActiveCharge(amount, slot)
@@ -250,7 +250,7 @@ function wakaba:SetShioriCharge(player, amount, slot)
 end
 
 function wakaba:PostShioriPlayerUpdate(player)
-	if player:GetPlayerType() == playerType then
+	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
 		local keys = player:GetNumKeys()
 		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_PRIMARY)
 		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_SECONDARY)
@@ -312,10 +312,10 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 	if wakaba.shioriblacklisted[useditem] then return end
 	if useflag | UseFlag.USE_VOID == UseFlag.USE_VOID then return end
 	if slot == ActiveSlot.SLOT_POCKET2 then return end
-	if player:GetPlayerType() == playerType and slot ~= -1 then
+	if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) and slot ~= -1 then
 		local item = Isaac.GetItemConfig():GetCollectible(useditem)
 		local charge = item.MaxCharges
-		local chargeType = item.chargeType --does not work
+		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
 		if ((item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL) 
@@ -333,10 +333,14 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 			consume = consume - 1
 		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			consume = consume // 2
+			if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
+				consume = consume // 2
+			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B and consume > 1 then
+				consume = consume - 1
+			end
 		end
 		player:AddKeys(-consume)
-		if wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR then
+		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR then
 			local data = player:GetData()
 			data.wakaba = data.wakaba or {}
 			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
@@ -436,7 +440,7 @@ end
 function wakaba:PostShioriPickupCollision(pickup, collider, low)
 	if collider:ToPlayer() ~= nil then
 		local player = collider:ToPlayer()
-		if player:GetPlayerType() == playerType then
+		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
 			if pickup.Variant == PickupVariant.PICKUP_LIL_BATTERY then
 				if player:GetNumKeys() < 99 and not player:IsHoldingItem() then
 					if pickup.SubType == BatterySubType.BATTERY_NORMAL then
@@ -506,7 +510,8 @@ function wakaba:PostShioriPickupCollision(pickup, collider, low)
 					player:AddKeys(3)
 				end
 			elseif pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE
-			and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_PURE_BODY then
+			and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_PURE_BODY
+			and player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
 				if pickup.Wait > 0 then return false end
 				local itemID = pickup.SubType
 				local config = Isaac.GetItemConfig():GetCollectible(itemID)
@@ -584,7 +589,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PostShioriPickup
 function wakaba:PostNPCDeathShiori(entity)
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:GetPlayerType() == playerType then
+		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
 			local data = player:GetData()
 			data.wakaba = data.wakaba or {}
 			data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
@@ -618,7 +623,7 @@ function wakaba:PreTakeDamageShiori(entity, amount, flags, source, countdown)
 			player = source.Entity:ToPlayer()
 		end
 		if player ~= nil then
-			if (player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false) and player:HasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT))
+			if ((player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) and player:HasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT))
 			--or (player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT))
 			then
 				local data = player:GetData()
@@ -645,7 +650,7 @@ function wakaba:PreRoomClearShiori(rng, spawnPosition)
 	local shioriluck = 0
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:GetPlayerType() == playerType then
+		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
 			hasshiori = true
 			shioriluck = shioriluck + player.Luck
 			local rng = wakaba.PickupRNG
