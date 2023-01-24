@@ -85,6 +85,14 @@ function wakaba:FamiliarUpdate_VintageThreat(familiar)
 		else
 			player:RemoveCollectible(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+			wakaba.G:ShakeScreen(10)
+			local mantlebreak = Isaac.Spawn(EntityType.ENTITY_EFFECT, 16, 11, familiar.Position, Vector.Zero, familiar)
+			local skull = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.DEATH_SKULL, 0, Vector(player.Position.X, player.Position.Y - 50), Vector.Zero, player)
+			local halo = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALO, 9, player.Position - Vector(0, 22), Vector.Zero, player)
+			SFXManager():Play(SoundEffect.SOUND_TOOTH_AND_NAIL, 1, 0, false, 1.1, 0)
+			SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
+			SFXManager():Play(SoundEffect.SOUND_DEATH_CARD)
+			SFXManager():Play(SoundEffect.SOUND_STATIC)
 		end
 	end
 end
