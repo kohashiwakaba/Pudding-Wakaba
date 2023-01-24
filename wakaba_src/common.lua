@@ -454,6 +454,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.ForceVoidRenderCheck)
 
 function wakaba:findNearestEntity(entity, partition)
 	local entities = Isaac.FindInRadius(entity.Position,2000,partition)
+	local nearest = nil
 	local nx, ny, nd = 2000, 2000, 2000
 	local nv = nil
   for index, value in ipairs(entities) do
@@ -467,6 +468,7 @@ function wakaba:findNearestEntity(entity, partition)
     	local dx, dy = (entity.Position.X - x), (entity.Position.Y - y)
 			local distance = math.sqrt((dx ^ 2) + (dy ^ 2))
 			if distance < nd then
+				nearest = value
 				nx, ny, nd = dx, dy, distance
 				nv = Vector(-nx, -ny)
 			end
@@ -478,6 +480,7 @@ function wakaba:findNearestEntity(entity, partition)
 		ny = (nv.Y) * -1
 	end
 	local ret = {
+		Entity = nearest,
 		Vector = nv,
 		X = nx,
 		Y = ny,

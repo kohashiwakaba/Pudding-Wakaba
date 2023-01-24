@@ -1,3 +1,4 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
 wakaba.SUBTYPE_LIL_MAO = 93
 
 function wakaba:InitMaoLaser(player, familiar, multiplier)
@@ -74,6 +75,15 @@ function wakaba:updateLilMao(familiar)
 		local velocity = familiar:GetData().wakaba.recall
 		familiar.Velocity = (playerpos - pos):Normalized():Resized(velocity)
 		--print(pos, playerpos, (playerpos - pos), familiar.Velocity)
+	elseif player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
+		local target = wakaba:findNearestEntity(familiar, EntityPartition.ENEMY)
+		if target and target.Entity then
+
+			local targpos = target.Entity.Position
+			local velocity = (targpos - familiar.Position) / 2
+			velocity = velocity:Resized(math.min(velocity:Length(), 10))
+			familiar.Velocity = isc:lerp(familiar.Velocity, velocity, 0.05)
+		end
 	end
 end
 

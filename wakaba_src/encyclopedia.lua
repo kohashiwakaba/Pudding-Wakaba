@@ -2149,6 +2149,11 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "A small circle laser will be around her, which can deal 40% of Isaac's Damage per tick."},
 			{str = "This item belongs to the Conjoined set. Collecting three items from this set will transform Isaac into a three-faced version of himself."},
 		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Baby Bender", clr = 3, halign = 0},
+			{str = "Her circle laser becomes homing. In addition, Lil Mao herself also chases into nearby enemy."},
+		},
 		{ -- Trivia
 				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 				{str = "Mao's true name in Wakaba Girl is 'Kurokawa Mao'."},
