@@ -9,17 +9,17 @@ wakaba.bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = function(player, rng, useflag, slot, vardata)
 		--print("Bible used")
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-  	local dat = player:GetData().wakaba.shioribiblecount
-  	player:GetData().wakaba.shioribiblecount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BIBLE
+		local dat = player:GetData().wakaba.shioribiblecount
+		player:GetData().wakaba.shioribiblecount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BIBLE
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = function(player, rng, useflag, slot, vardata)
 		--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_BLOOD_OF_THE_MARTYR, false, 1)
-  	local dat = player:GetData().wakaba.shioribelialcount
-  	player:GetData().wakaba.shioribelialcount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL
+		local dat = player:GetData().wakaba.shioribelialcount
+		player:GetData().wakaba.shioribelialcount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -39,44 +39,44 @@ wakaba.bookofshiori = {
 		local laser5 = player:SpawnMawOfVoid(130)
 		laser5.CollisionDamage = player.Damage * 0.64
 		laser5.Radius = 200
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_NECRONOMICON
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_NECRONOMICON
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = function(player, rng, useflag, slot, vardata)
 		--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_PYROMANIAC, false, 1)
-  	local dat = player:GetData().wakaba.shioritrollbombcount
-  	player:GetData().wakaba.shioritrollbombcount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK
+		local dat = player:GetData().wakaba.shioritrollbombcount
+		player:GetData().wakaba.shioritrollbombcount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shiorirevelcount
-  	player:GetData().wakaba.shiorirevelcount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS
+		local dat = player:GetData().wakaba.shiorirevelcount
+		player:GetData().wakaba.shiorirevelcount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SIN
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SIN
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_MONSTER_MANUAL
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_MONSTER_MANUAL
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shioridummycount
-  	player:GetData().wakaba.shioridummycount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_TELEPATHY_BOOK
+		local dat = player:GetData().wakaba.shioridummycount
+		player:GetData().wakaba.shioridummycount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_TELEPATHY_BOOK
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -85,14 +85,14 @@ wakaba.bookofshiori = {
 		wakaba.G:GetLevel():ApplyCompassEffect(true)
 		wakaba.G:GetLevel():ApplyBlueMapEffect()
 		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS | LevelCurse.CURSE_OF_THE_LOST)
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shiorisatancount
-  	player:GetData().wakaba.shiorisatancount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_SATANIC_BIBLE
+		local dat = player:GetData().wakaba.shiorisatancount
+		player:GetData().wakaba.shiorisatancount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_SATANIC_BIBLE
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -101,7 +101,7 @@ wakaba.bookofshiori = {
 		local bony2 = Isaac.Spawn(EntityType.ENTITY_BONY, -1, -1, Isaac.GetFreeNearPosition(player.Position, 32.0), Vector.Zero, player)
 		bony:AddCharmed(EntityRef(player), -1)
 		bony2:AddCharmed(EntityRef(player), -1)
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -133,45 +133,45 @@ wakaba.bookofshiori = {
 			player:AddCollectible(item)
 		end
 
-  	player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_LEMEGETON
+		player:GetData().wakaba.nextshioriflag = CollectibleType.COLLECTIBLE_LEMEGETON
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shioribonecount
-  	player:GetData().wakaba.shioribonecount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN
+		local dat = player:GetData().wakaba.shioribonecount
+		player:GetData().wakaba.shioribonecount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shiorifocuscount
-  	player:GetData().wakaba.shiorifocuscount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FOCUS
+		local dat = player:GetData().wakaba.shiorifocuscount
+		player:GetData().wakaba.shiorifocuscount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_FOCUS
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.DECK_OF_RUNES
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.DECK_OF_RUNES
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = function(player, rng, useflag, slot, vardata)
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.MICRO_DOPPELGANGER
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.MICRO_DOPPELGANGER
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shiorisilencecount
-  	player:GetData().wakaba.shiorisilencecount = (dat and dat + 60) or 60
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_SILENCE
+		local dat = player:GetData().wakaba.shiorisilencecount
+		player:GetData().wakaba.shiorisilencecount = (dat and dat + 60) or 60
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.BOOK_OF_SILENCE
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = function(player, rng, useflag, slot, vardata)
-  	local dat = player:GetData().wakaba.shiorigrimcount
-  	player:GetData().wakaba.shiorigrimcount = (dat and dat + 1) or 1
-  	player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
+		local dat = player:GetData().wakaba.shiorigrimcount
+		player:GetData().wakaba.shiorigrimcount = (dat and dat + 1) or 1
+		player:GetData().wakaba.nextshioriflag = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
 	end,
@@ -230,7 +230,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_BookOfShiori)
 
 function wakaba:ItemUse_BookOfShiori(useditem, rng, player, useflag, slot, vardata)
-  if wakaba:HasShiori(player) then
+	if wakaba:HasShiori(player) then
 		if wakaba.bookofshiori ~= nil
 		and wakaba.bookofshiori[useditem] ~= nil
 		and useflag & UseFlag.USE_OWNED == UseFlag.USE_OWNED then
@@ -279,8 +279,8 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_BookofShiori)
 
 function wakaba:NewRoom_BookofShiori()
-  for i = 0, wakaba.G:GetNumPlayers()-1 do
-    local player = Isaac.GetPlayer(i)
+	for i = 0, wakaba.G:GetNumPlayers()-1 do
+		local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba then
 			player:GetData().wakaba.shioribiblecount = 0 -- The Bible
 			player:GetData().wakaba.shioribelialcount = 0
@@ -297,7 +297,7 @@ function wakaba:NewRoom_BookofShiori()
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()
 		end
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BookofShiori)
 
@@ -313,32 +313,32 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 	local satan = player:GetData().wakaba.shiorisatancount or 0
 	local bone = player:GetData().wakaba.shioribonecount or 0
 	local troll = player:GetData().wakaba.shioritrollbombcount or 0
-  if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+	if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 		if bible > 0 then player.Damage = player.Damage * (1.2 * (bible + 1)) end
 		if belial > 0 then player.Damage = player.Damage + (1.5 * (belial + 1)) end
 		if satan > 0 then player.Damage = player.Damage + (1.0 * (satan + 1)) end
-    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.Damage = player.Damage * 0.6 end
-  end
-  if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-    if bible > 0 then player.ShotSpeed = player.ShotSpeed * 0.8 end
-    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.ShotSpeed = player.ShotSpeed * 3 end
-  end
-  --[[ if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-    player.TearHeight = player.TearHeight - ShioriChar.TEARHEIGHT
-    player.TearFallingSpeed = player.TearFallingSpeed + ShioriChar.TEARFALLINGSPEED
-  end ]]
-  if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-    --[[ player.MoveSpeed = player.MoveSpeed + ShioriChar.SPEED ]]
-  end
-  if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-    --[[ player.Luck = player.Luck + ShioriChar.LUCK ]]
-  end
-  --[[ if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and ShioriChar.FLYING then
-    player.CanFly = true
-  end ]]
-  if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-    --[[ player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ShioriChar.TEARS) ]]
-    if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
+		if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.Damage = player.Damage * 0.6 end
+	end
+	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+		if bible > 0 then player.ShotSpeed = player.ShotSpeed * 0.8 end
+		if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.ShotSpeed = player.ShotSpeed * 3 end
+	end
+	--[[ if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+		player.TearHeight = player.TearHeight - ShioriChar.TEARHEIGHT
+		player.TearFallingSpeed = player.TearFallingSpeed + ShioriChar.TEARFALLINGSPEED
+	end ]]
+	if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
+		--[[ player.MoveSpeed = player.MoveSpeed + ShioriChar.SPEED ]]
+	end
+	if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
+		--[[ player.Luck = player.Luck + ShioriChar.LUCK ]]
+	end
+	--[[ if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and ShioriChar.FLYING then
+		player.CanFly = true
+	end ]]
+	if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		--[[ player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ShioriChar.TEARS) ]]
+		if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
 			if player.MaxFireDelay < -0.33 then
 				player.MaxFireDelay = -0.99
 			elseif player.MaxFireDelay < 0 then
@@ -347,14 +347,14 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 				player.MaxFireDelay = player.MaxFireDelay / 3 
 			end
 		end
-  end
-  if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+	end
+	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 		if dummy > 0 then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_CONTINUUM end
 		
-    if nextflag == CollectibleType.COLLECTIBLE_BIBLE then 
+		if nextflag == CollectibleType.COLLECTIBLE_BIBLE then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_GLOW end
-    if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL then 
+		if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING | TearFlags.TEAR_BELIAL end
 		if nextflag == CollectibleType.COLLECTIBLE_NECRONOMICON then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_ROCK end
@@ -366,16 +366,16 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_JACOBS end
 		if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_BAIT end
-    if nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then 
+		if nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_GROW | TearFlags.TEAR_FEAR end
 		if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING end
-    if nextflag == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then 
+		if nextflag == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then 
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_BONE end
-  end
-  if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-    --[[ player.TearColor = ShioriChar.TEARCOLOR ]]
-  end
+	end
+	if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
+		--[[ player.TearColor = ShioriChar.TEARCOLOR ]]
+	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local seven = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_7_SEALS)
 		if revel > 0 then player:CheckFamiliar(FamiliarVariant.LIL_HARBINGERS, (revel * 2) + seven, player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)) end
@@ -409,19 +409,19 @@ function wakaba:KnifeUpdate_BookofShiori(knife)
 	if not knife.Parent then return end
 	if not knife.Parent:ToPlayer() then return end
 	if not knife.Parent:ToPlayer():GetData().wakaba then return end
-  local player = knife.Parent:ToPlayer()
-  local sprite = knife:GetSprite()
+	local player = knife.Parent:ToPlayer()
+	local sprite = knife:GetSprite()
 	local nextflag = player:GetData().wakaba.nextshioriflag 
 	local isgrim = player:GetData().wakaba.shiorigrimreaper
 
-  if isgrim and nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
-    sprite:ReplaceSpritesheet(0,"gfx/grimreapersword.png")
+	if isgrim and nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
+		sprite:ReplaceSpritesheet(0,"gfx/grimreapersword.png")
 		sprite:ReplaceSpritesheet(1,"gfx/grimreapersword.png")
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_BERSERK) then 
 			return 
 		end
-    sprite:LoadGraphics()
-  end 
+		sprite:LoadGraphics()
+	end 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_BookofShiori)
 
@@ -518,8 +518,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, wakaba.TearUpdate_BookofSh
 
 function wakaba:ProjectileUpdate_BookofShiori(tear)
 
-  for i = 0, wakaba.G:GetNumPlayers()-1 do
-    local player = Isaac.GetPlayer(i)
+	for i = 0, wakaba.G:GetNumPlayers()-1 do
+		local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba then
 			local nextflag = player:GetData().wakaba.nextshioriflag 
 			local silence = player:GetData().wakaba.shiorisilencecount or 0
@@ -527,7 +527,7 @@ function wakaba:ProjectileUpdate_BookofShiori(tear)
 				tear:Remove()
 			end
 		end
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, wakaba.ProjectileUpdate_BookofShiori)
 
@@ -557,7 +557,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_BookofShiori)
 
 function wakaba:NPCDeath_BookofShiori(entity)
-  for i = 1, wakaba.G:GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba then
 			local luck = player.Luck
@@ -572,8 +572,8 @@ function wakaba:NPCDeath_BookofShiori(entity)
 			and random <= (4 + (0.25 * luck)) then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LIL_BATTERY, 0, Isaac.GetFreeNearPosition(entity.Position, 0.0), Vector.Zero, player)
 			end
-    end
-  end
+		end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCDeath_BookofShiori)
 
