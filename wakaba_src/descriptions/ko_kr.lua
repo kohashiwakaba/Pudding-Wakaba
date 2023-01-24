@@ -61,7 +61,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다.(Wakaba 제외)"
 		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
-		.. "#!!! {{Quality4}}등급 아이템이 등장하지 않습니다."
+		.. "#!!! {{Quality4}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
 		.. "#모든 피격에 대한 패널티에 면역"

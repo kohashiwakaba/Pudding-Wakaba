@@ -48,7 +48,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Armor-piercing tears (Except Wakaba)"
 		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
-		.. "#↓ Prevents {{Quality4}} items from spawning"
+		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#Cards and runes has chance to be replaced into {{Card78}}Cracked Key"
 		.. "#{{DevilRoom}} Price of Devil room items are set to 6 coins"
 		.. "#All damage taken will be non-penalty damage"

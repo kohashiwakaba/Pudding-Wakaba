@@ -495,9 +495,6 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE) then
 			hasNeko = true
 		end
-		--[[ if player:HasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) then
-			hasAntiBalance = true
-		end ]]
 		if pData.wakaba and pData.wakaba.eatheartused then
 			eatHeartUsed = true
 			eatHeartCharges = pData.wakaba.eatheartcharges
@@ -544,16 +541,18 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	elseif hasNeko and wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
 		MinQuality = 3
 	elseif not eatHeartUsed and wakaba.runstate.hasnemesis and not wakaba.runstate.hasbless and not wakaba.state.options.blessnemesisqualityignore and not hasSacredOrb then
+		local rng = RNG()
+		rng:SetSeed(seed, 35)
+		local chance = rng:RandomFloat()
 		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET or itemType == ItemPoolType.POOL_ULTRA_SECRET then
 			MinQuality = 3
+		elseif chance < 0.5 then
+			MaxQuality = 2
 		else
 			MaxQuality = 3
 		end
 	elseif not eatHeartUsed and not wakaba.runstate.hasnemesis and wakaba.runstate.hasbless and not wakaba.state.options.blessnemesisqualityignore then
 		MinQuality = 2
-	end
-	if hasAntiBalance then
-		validQuality["2"] = false
 	end
 
 	local itemConfig = config:GetCollectible(selected)
