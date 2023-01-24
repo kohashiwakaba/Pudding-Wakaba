@@ -1392,6 +1392,8 @@ function wakaba:init(continue)
 			wakaba:LockItems()
 		end
 
+		wakaba.runstate.currentshiorimode = wakaba.state.options.shiorimodes
+
 		-- Caching Books for Maijima
 		wakaba.runstate.cachedmaijimabooks = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 
