@@ -18,7 +18,7 @@ function wakaba:hasRibbon(player)
 		return false 
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON) then
 		return true
 	elseif player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.RABBIT_RIBBON) then
@@ -41,15 +41,15 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_RabbitRibbon)
 
 function wakaba:Cache_RabbitRibbon(player, cacheFlag)
-  if isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+	if isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage * 1.25
-  	end
-  	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+			player.Damage = player.Damage * 1.25
+		end
+		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 			if player.ShotSpeed < 1.7 then
 				player.ShotSpeed = 1.7
 			end
-  	end
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
