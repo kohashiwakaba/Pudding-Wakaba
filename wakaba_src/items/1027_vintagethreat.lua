@@ -81,7 +81,7 @@ function wakaba:FamiliarUpdate_VintageThreat(familiar)
 		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
 		and player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
 		and player:GetActiveItem(ActiveSlot.SLOT_POCKET2) ~= wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
-		and not (player:GetPlayerType() == wakaba.Enums.Players.SHIORI and data.books and data.books[data.bookindex] == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
+		and (player:GetPlayerType() == wakaba.Enums.Players.SHIORI and data.books and data.books[data.bookindex] == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		else
 			player:RemoveCollectible(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
