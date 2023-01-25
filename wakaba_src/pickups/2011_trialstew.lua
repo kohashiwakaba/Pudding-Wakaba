@@ -7,6 +7,8 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:UseCard_TrialStew(_, player, flags)
+	wakaba:GetPlayerEntityData(player)
+	player:GetData().wakaba.trialstewtimer = 25
 	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW)
 	if flags & UseFlag.USE_CARBATTERY == 0 then
 		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
@@ -79,6 +81,17 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_TrialStew)
 
 function wakaba:PlayerUpdate_TrialStew(player)
+	wakaba:GetPlayerEntityData(player)
+	local data = player:GetData()
+	if data.wakaba and data.wakaba.trialstewtimer and data.wakaba.trialstewtimer > 0 then
+		if data.wakaba.trialstewtimer % 5 == 0 then
+			SFXManager():Play(SoundEffect.SOUND_EXPLOSION_WEAK, 0.5)
+		end
+		data.wakaba.trialstewtimer = data.wakaba.trialstewtimer - 1
+		if data.wakaba.trialstewtimer == 0 then
+			data.wakaba.trialstewtimer = nil
+		end
+	end
 	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
 		local redHearts = player:GetHearts() - player:GetRottenHearts()
 		local soulHearts = player:GetSoulHearts()
