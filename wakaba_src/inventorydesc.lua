@@ -90,6 +90,7 @@ INVDESC:LinkCollectibleForCharacter(wakaba.Enums.Players.TSUKASA, wakaba.Enums.C
 INVDESC:LinkCollectibleForCharacter(wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.FLASH_SHIFT)
 INVDESC:LinkCollectibleForCharacter(wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
 INVDESC:LinkCollectibleForCharacter(wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.MURASAME)
+INVDESC:LinkCollectibleForCharacter(wakaba.Enums.Players.RICHER, wakaba.Enums.Collectibles.RABBIT_RIBBON)
 
 
 local offset = (REPENTANCE and Options.HUDOffset) or 1
