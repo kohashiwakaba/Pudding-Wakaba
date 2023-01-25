@@ -1,3 +1,118 @@
+
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102", 
+[[{FSIZE2}general stuff
+added semi-compability 
+for library expanded. 
+not mainly compatible yet, 
+but shouldn't trouble too much.
+
+tweaked some elixir of life 
+conversion conditions.
+
+updated general isaacscript module.
+
+{FSIZE2}new items n stuff
+trial stew
+magma blade (for real)
+
+{FSIZE2}tweaks + fixes
+blacklisted some items 
+from shiori (for now)
+-empty book 
+-my story 
+(fiend folio)
+
+-blank book 
+-kindling book 
+-electromagnetism explained 
+-cursed book 
+(library expanded)
+
+wakaba's nemesis now has a 
+50% chance to reroll q3 items
+
+all batteries in shop now will 
+be replaced by golden keys, 
+and key into 1+1 key 
+if playing as shiori.
+each golden key 
+for shiori costs 5.
+
+obtaining golden keys for shiori 
+now converts into 6 keys.
+
+isekai definition no longer 
+spawns lil clot if spawned count 
+is 10 or more. 
+(the count is seperated 
+from sumptorium/t.eve, 
+but shares with lil clot trinket) 
+using it while 10 sets their hp 
+into max and increase chance for 
+hidden effect from i.d.
+
+removed 'nogreed' tag for 
+dimension cutter. 
+delirious boss can be spawned 
+in greed mode wave by 5%, 
+scales with luck, max 25%
+
+aurora gem's purple coin 
+drop rate is also affected by 
+current held easter eggs
+
+grimreaper defender 
+now defends damocles
+(not vintage threat) 
+while held. 
+if the sword falls, 
+it immediately disappeares 
+with grimreaper defender. 
+this ignores charges, 
+and grimreaper defender 
+is also removed by process. 
+this does not apply 
+for shiori's book.
+
+changed grimreaper defender's 
+defensive effect from 
+custom one to wafer effect.
+
+elixir of life no longer removes 
+heart containers by chances, 
+instead donating 4 times 
+will remove max hearts.
+
+lil mao now chases enemies 
+automatically with baby bender.
+
+reapplied curse of blind in 
+[w98] hyper random challenge.
+
+fixed crashes in multiplayer 
+if co-op ghost appears.
+
+fixed wakaba's nemesis 
+making collectibles 
+on sale requiring 
+heart containers for keeper.
+
+fixed crashes 
+for epiphany characters 
+selection screen 
+due to leftover codes
+
+cached maijima mythology
+book selections,
+hopefully using it
+doesn't do lagfest
+
+fixed elixir of life 
+not converting soul hearts 
+if isaac has no heart containers
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101a", 
 [[{FSIZE2}fixes
 Fixed Wakaba's Pendant 
