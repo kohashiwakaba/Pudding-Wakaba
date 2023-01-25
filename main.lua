@@ -490,6 +490,7 @@ local richer_saved_recipies = {
 		currentshiorimode = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
 		shioridropped = {},
 		cachedmaijimabooks = {},
+		persistentPickupData = {},
 
 		storedplayers = 0,
 		playersavedata = {

@@ -2254,6 +2254,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "Shiori is a librarian from {{ColorBookofConquest}}The World God only Knows{{CR}} from Wakagi Tamaki"
 		.. "#Low damage but shoots directional tears"
 		.. "#{{Key}} Shiori requires keys to use active items. Lil' Batteries recover Shiori's Keys"
+		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Shiori starts with Book of Shiori"
 		--.. "#"
 		.. "",
@@ -2265,6 +2266,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#She is little girl, but her wings allow her to fly"
 		.. "#Low damage but shoots directional tears"
 		.. "#{{Key}} Minerva requires keys to use active items. Lil' Batteries recover Minerva's Keys"
+		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Minerva starts with Book of Shiori"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Minerva starts with Minerva's Aura"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Minerva starts with Book of Conquest"

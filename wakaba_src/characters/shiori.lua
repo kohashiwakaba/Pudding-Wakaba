@@ -251,6 +251,10 @@ end
 
 function wakaba:PostShioriPlayerUpdate(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+		if player:HasGoldenKey() then
+			player:RemoveGoldenKey()
+			player:AddKeys(6)
+		end
 		local keys = player:GetNumKeys()
 		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_PRIMARY)
 		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_SECONDARY)
@@ -683,6 +687,64 @@ function wakaba:NewLevel_Shiori()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
+
+function wakaba:PickupUpdate_Shiori(pickup)
+	if isc:anyPlayerIs(wakaba.Enums.Players.SHIORI) or isc:anyPlayerIs(wakaba.Enums.Players.SHIORI_B) then
+		if pickup:IsShopItem() then
+			
+			-- Pickup Price modification from Retribution, need to move to common functions though....
+			local persistentData = wakaba:GetPersistentPickupData(pickup)
+
+			if persistentData then
+				persistentData.discount = persistentData.discount or 0
+			
+				if persistentData.updateDefaultPrice then
+					persistentData.updateDefaultPrice = false
+					pickup.AutoUpdatePrice = true
+					pickup:Update()
+					return
+				elseif persistentData.updatePrice then
+					if persistentData.discount > 0 then
+						local oldPrice = pickup.Price
+						pickup.Price = math.max(pickup.Price - persistentData.discount, 0)
+					
+						if pickup.Price == 0 and oldPrice ~= 0 then
+							pickup.Price = PickupPrice.PRICE_FREE
+						end
+					
+						pickup.AutoUpdatePrice = false
+						persistentData.didModifyPrice = true
+					elseif persistentData.didModifyPrice then
+						pickup.AutoUpdatePrice = true
+						persistentData.didModifyPrice = false
+					end
+				
+					persistentData.updatePrice = false
+				end
+			end
+			-- Pickup Price modification end
+
+			if pickup.Variant == PickupVariant.PICKUP_KEY and pickup.SubType == KeySubType.KEY_NORMAL then
+				if pickup.SubType == KeySubType.KEY_DOUBLEPACK then
+					persistentData.discount = 3
+					persistentData.updatePrice = true
+				elseif pickup.SubType == KeySubType.KEY_GOLDEN then
+					persistentData.discount = 5
+					persistentData.updatePrice = true
+				elseif pickup.SubType == KeySubType.KEY_NORMAL then
+					pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK, true, true, true)
+					persistentData.discount = 3
+					persistentData.updatePrice = true
+				end
+			elseif pickup.Variant == PickupVariant.PICKUP_LIL_BATTERY then
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN, true, true, true)
+				persistentData.discount = 5
+				persistentData.updatePrice = true
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_Shiori)
 
 local ShioriChar = { 
 	DAMAGE = 0.5,

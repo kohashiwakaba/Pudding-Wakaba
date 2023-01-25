@@ -2393,6 +2393,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만의 아는 세계{{CR}}의 히로인 중 한명입니다."
 		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
 		.. "#{{Key}} 시오리는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
+		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
 		--.. "#"
 		.. "",
@@ -2404,6 +2405,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#작지만 유피테르 자매의 날개로 날 수 있습니다."
 		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
 		.. "#{{Key}} 미네르바는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
+		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 고유 능력 : 미네르바의 오라"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} 고유 능력 : 함락의 책"

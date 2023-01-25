@@ -1498,3 +1498,14 @@ function wakaba:isSuperpositionedPlayer(player)
 	end
 	return false
 end
+
+-- GetPersistentPickupData from Retribution
+function wakaba:GetPersistentPickupData(pickup)
+	if wakaba.runstate and wakaba.runstate.persistentPickupData then
+		local tableIndex = tostring(pickup.InitSeed)
+		wakaba.runstate.persistentPickupData[tableIndex] = wakaba.runstate.persistentPickupData[tableIndex] or {}
+		return wakaba.runstate.persistentPickupData[tableIndex]
+	end
+end
+
+
