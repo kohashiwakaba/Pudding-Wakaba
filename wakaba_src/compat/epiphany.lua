@@ -4,7 +4,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 -- INITIALIZE EPIPHANY MENU CHARACTER
 function wakaba:Epiphany_AddTarnishedDatas()
 	-- DO NOT RUN IF THE API IS NOT LOADED
-	if Epiphany or not Epiphany.API then
+	if Epiphany and Epiphany.API then
 		
 		--[[ 
 		-- Was trying to add TR Wakaba, but no time sadly
