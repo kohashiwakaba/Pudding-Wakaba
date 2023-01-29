@@ -1,4 +1,9 @@
 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102a", 
+[[{FSIZE2}fixes
+Fixed some compability issues with some mods deactivated
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102", 
 [[{FSIZE2}general stuff
 added semi-compability 
