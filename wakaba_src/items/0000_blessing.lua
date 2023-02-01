@@ -212,7 +212,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		local writableRoomDesc = wakaba.G:GetLevel():GetRoomByIdx(-1)
 		if writableRoomDesc then
 			if writableRoomDesc.SurpriseMiniboss then
-				print("writableRoomDesc.SurpriseMiniboss")
+				--print("writableRoomDesc.SurpriseMiniboss")
 			end
 			writableRoomDesc.SurpriseMiniboss = false
 		end

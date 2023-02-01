@@ -443,7 +443,7 @@ end
     isc:useActiveItemTemp(player, CollectibleType.COLLECTIBLE_DULL_RAZOR)
     return false
   elseif data.wakaba.shioriangel and not (player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) or isc:willReviveFromSpiritShackles(player)) then 
-    print("data.wakaba.shioriangel")
+    --print("data.wakaba.shioriangel")
     isc:useActiveItemTemp(player, CollectibleType.COLLECTIBLE_DULL_RAZOR)
     player:AddBrokenHearts(1)
     return false

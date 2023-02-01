@@ -625,7 +625,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if EID then
 			if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL or itemPoolType == ItemPoolType.POOL_CRANE_GAME then
 				for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
-					print(tostring(crane.InitSeed), crane.DropSeed, EID.CraneItemType[tostring(crane.InitSeed)], EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed])
+					--print(tostring(crane.InitSeed), crane.DropSeed, EID.CraneItemType[tostring(crane.InitSeed)], EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed])
 					if not crane:GetSprite():IsPlaying("Broken") then
 						if EID.CraneItemType[tostring(crane.InitSeed)] then
 							if EID.CraneItemType[tostring(crane.InitSeed)] == lastSelected then

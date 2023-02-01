@@ -87,7 +87,7 @@ wakaba:AddCallbackCustom(isc.ModCallbackCustom.PRE_CUSTOM_REVIVE, wakaba.CheckRe
 
 function wakaba:AfterRevival(player, revivalType)
   if revivalType and customRevivalFunc[revivalType] then
-    print("revivalData found:", revivalType)
+    --print("revivalData found:", revivalType)
     customRevivalFunc[revivalType](player)
     player:AnimateCollectible(revivalType)
   end

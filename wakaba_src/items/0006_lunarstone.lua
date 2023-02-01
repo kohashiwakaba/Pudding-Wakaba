@@ -119,7 +119,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 					data.wakaba.nolunarrefill = true
 					local revivaldata = wakaba:CanRevive(player)
 					if not player:WillPlayerRevive() and revivaldata then
-						print("Lunar remains")
+						--print("Lunar remains")
 						data.wakaba.lunargauge = -50000
 						if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
 							player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
