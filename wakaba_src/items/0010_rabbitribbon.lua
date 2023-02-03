@@ -41,7 +41,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_RabbitRibbon)
 
 function wakaba:Cache_RabbitRibbon(player, cacheFlag)
-	if isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * 1.25
 		end
@@ -55,7 +55,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
 
 function wakaba:TearUpdate_RabbitRibbon(tear)
-	if isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		if tear.FrameCount <= 7 then
 			tear.Color = Color(1, 1, 1, (1 * tear.FrameCount / 7), 0, 0, 0)
 		elseif tear.FrameCount <= 8 then
@@ -66,7 +66,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRibbon)
 
 function wakaba:TearCollision_RabbitRibbon(tear, entity, low)
-	if entity:IsEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and entity:IsEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
 		if tear.FrameCount <= 7 then return false end
 		--[[ local parent = tear.Parent
 		local distance = entity.Position:Distance(tear.Parent.Position)
