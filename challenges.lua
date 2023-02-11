@@ -106,7 +106,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.challengeItemCheck)
 
 function wakaba:PostChallengePlayerInit(player)
-  local player = player or Isaac.GetPlayer()
+  player = player or Isaac.GetPlayer()
 	wakaba:GetPlayerEntityData(player)
 
 	if wakaba.G.Challenge == Challenges.CHALLENGE_ELEC and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", false) then
@@ -167,6 +167,8 @@ function wakaba:PostChallengePlayerInit(player)
 		--player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Richer", false))
+		player:AddSoulHearts(4)
+		wakaba:AfterRicherInit(player)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RAND and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", randtainted) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
