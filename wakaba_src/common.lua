@@ -630,17 +630,17 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				wakaba.state.unlock.donationcard = difficulty + 1 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.dreamcard)
 			end
-			if hastaintedwakaba and wakaba.state.unlock.wakabasoul1 < 2 thenwakaba.state.unlock.wakabasoul1 = difficulty + 1 end
+			if hastaintedwakaba and wakaba.state.unlock.wakabasoul1 < 2 then wakaba.state.unlock.wakabasoul1 = difficulty + 1 end
 			if hasshiori and wakaba.state.unlock.unknownbookmark < 2 then 
 				wakaba.state.unlock.unknownbookmark = difficulty + 1 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.unknownbookmark)
 			end
-			if hastaintedshiori and wakaba.state.unlock.shiorisoul1 < 2 thenwakaba.state.unlock.shiorisoul1 = difficulty + 1 end
+			if hastaintedshiori and wakaba.state.unlock.shiorisoul1 < 2 then wakaba.state.unlock.shiorisoul1 = difficulty + 1 end
 			if hastsukasa and wakaba.state.unlock.concentration < 2 then 
 				wakaba.state.unlock.concentration = difficulty + 1 
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.concentration)
 			end
-			if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul1 < 2 thenwakaba.state.unlock.tsukasasoul1 = difficulty + 1 end
+			if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul1 < 2 then wakaba.state.unlock.tsukasasoul1 = difficulty + 1 end
 			wakaba:CheckWakabaChecklist()
 		elseif type1 == RoomType.ROOM_BOSS then
 			if difficulty < 2 then
@@ -649,33 +649,33 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.clover = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.clover)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.taintedwakabamomsheart < 2 thenwakaba.state.unlock.taintedwakabamomsheart = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.taintedwakabamomsheart < 2 then wakaba.state.unlock.taintedwakabamomsheart = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.hardbook < 2 then 
 						wakaba.state.unlock.hardbook = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.hardbook)
 					end
-					if hastaintedshiori and wakaba.state.unlock.taintedshiorimomsheart < 2 thenwakaba.state.unlock.taintedshiorimomsheart = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.taintedshiorimomsheart < 2 then wakaba.state.unlock.taintedshiorimomsheart = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.murasame < 2 then 
 						wakaba.state.unlock.murasame = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.murasame)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.taintedtsukasamomsheart < 2 thenwakaba.state.unlock.taintedtsukasamomsheart = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.taintedtsukasamomsheart < 2 then wakaba.state.unlock.taintedtsukasamomsheart = difficulty + 1 end
 				elseif bossID == 39 and currentStage == LevelStage.STAGE5 then -- Isaac
 					if haswakaba and wakaba.state.unlock.counter < 2 then 
 						wakaba.state.unlock.counter = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.counter)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten1 < 2 thenwakaba.state.unlock.bookofforgotten1 = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten1 < 2 then wakaba.state.unlock.bookofforgotten1 = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.shiorid6plus < 2 then 
 						wakaba.state.unlock.shiorid6plus = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.shiorid6plus)
 					end
-					if hastaintedshiori and wakaba.state.unlock.bookmarkbag1 < 2 thenwakaba.state.unlock.bookmarkbag1 = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.bookmarkbag1 < 2 then wakaba.state.unlock.bookmarkbag1 = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.nasalover < 2 then 
 						wakaba.state.unlock.nasalover = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.nasalover)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge1 < 2 thenwakaba.state.unlock.isaaccartridge1 = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge1 < 2 then wakaba.state.unlock.isaaccartridge1 = difficulty + 1 end
 
 
 
@@ -685,17 +685,17 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.dcupicecream = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.dcupicecream)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten2 < 2 thenwakaba.state.unlock.bookofforgotten2 = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten2 < 2 then wakaba.state.unlock.bookofforgotten2 = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.bookoffocus < 2 then 
 						wakaba.state.unlock.bookoffocus = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookoffocus)
 					end
-					if hastaintedshiori and wakaba.state.unlock.bookmarkbag2 < 2 thenwakaba.state.unlock.bookmarkbag2 = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.bookmarkbag2 < 2 then wakaba.state.unlock.bookmarkbag2 = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.beetlejuice < 2 then 
 						wakaba.state.unlock.beetlejuice = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.beetlejuice)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge2 < 2 thenwakaba.state.unlock.isaaccartridge2 = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge2 < 2 then wakaba.state.unlock.isaaccartridge2 = difficulty + 1 end
 
 
 
@@ -705,17 +705,17 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.pendant = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.pendant)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten3 < 2 thenwakaba.state.unlock.bookofforgotten3 = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten3 < 2 then wakaba.state.unlock.bookofforgotten3 = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.deckofrunes < 2 then 
 						wakaba.state.unlock.deckofrunes = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.deckofrunes)
 					end
-					if hastaintedshiori and wakaba.state.unlock.bookmarkbag3 < 2 thenwakaba.state.unlock.bookmarkbag3 = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.bookmarkbag3 < 2 then wakaba.state.unlock.bookmarkbag3 = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.redcorruption < 2 then 
 						wakaba.state.unlock.redcorruption = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.redcorruption)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge3 < 2 thenwakaba.state.unlock.isaaccartridge3 = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge3 < 2 then wakaba.state.unlock.isaaccartridge3 = difficulty + 1 end
 
 
 
@@ -725,17 +725,17 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.revengefruit = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.revengefruit)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten4 < 2 thenwakaba.state.unlock.bookofforgotten4 = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.bookofforgotten4 < 2 then wakaba.state.unlock.bookofforgotten4 = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.grimreaperdefender < 2 then
 						wakaba.state.unlock.grimreaperdefender = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.grimreaperdefender)
 					end
-					if hastaintedshiori and wakaba.state.unlock.bookmarkbag4 < 2 thenwakaba.state.unlock.bookmarkbag4 = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.bookmarkbag4 < 2 then wakaba.state.unlock.bookmarkbag4 = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.powerbomb < 2 then 
 						wakaba.state.unlock.powerbomb = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.powerbomb)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge4 < 2 thenwakaba.state.unlock.isaaccartridge4 = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge4 < 2 then wakaba.state.unlock.isaaccartridge4 = difficulty + 1 end
 
 
 
@@ -776,17 +776,17 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.colorjoker = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.colorjoker)
 					end
-					if hastaintedwakaba and wakaba.state.unlock.wakabasoul2 < 2 thenwakaba.state.unlock.wakabasoul2 = difficulty + 1 end
+					if hastaintedwakaba and wakaba.state.unlock.wakabasoul2 < 2 then wakaba.state.unlock.wakabasoul2 = difficulty + 1 end
 					if hasshiori and wakaba.state.unlock.bookoftrauma < 2 then 
 						wakaba.state.unlock.bookoftrauma = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookoftrauma)
 					end
-					if hastaintedshiori and wakaba.state.unlock.shiorisoul2 < 2 thenwakaba.state.unlock.shiorisoul2 = difficulty + 1 end
+					if hastaintedshiori and wakaba.state.unlock.shiorisoul2 < 2 then wakaba.state.unlock.shiorisoul2 = difficulty + 1 end
 					if hastsukasa and wakaba.state.unlock.rangeos < 2 then 
 						wakaba.state.unlock.rangeos = difficulty + 1 
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.rangeos)
 					end
-					if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul2 < 2 thenwakaba.state.unlock.tsukasasoul2 = difficulty + 1 end
+					if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul2 < 2 then wakaba.state.unlock.tsukasasoul2 = difficulty + 1 end
 
 
 
