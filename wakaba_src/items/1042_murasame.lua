@@ -153,7 +153,7 @@ function wakaba:updateMurasame(familiar)
 					autoaim = true 
 				end
 				if autoaim then
-					local enemy = wakaba:findNearestEntity(familiar, EntityPartition.ENEMY)
+					local enemy = wakaba:findNearestEntityByPartition(familiar, EntityPartition.ENEMY)
 					if enemy ~= nil and enemy.Vector ~= nil then
 						tear_vector = enemy.Vector
 					end

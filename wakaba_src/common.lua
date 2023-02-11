@@ -452,7 +452,7 @@ function wakaba:ForceVoidRenderCheck()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.ForceVoidRenderCheck)
 
-function wakaba:findNearestEntity(entity, partition)
+function wakaba:findNearestEntityByPartition(entity, partition)
 	local entities = Isaac.FindInRadius(entity.Position,2000,partition)
 	local nearest = nil
 	local nx, ny, nd = 2000, 2000, 2000

@@ -76,7 +76,7 @@ function wakaba:updateLilMao(familiar)
 		familiar.Velocity = (playerpos - pos):Normalized():Resized(velocity)
 		--print(pos, playerpos, (playerpos - pos), familiar.Velocity)
 	elseif player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
-		local target = wakaba:findNearestEntity(familiar, EntityPartition.ENEMY)
+		local target = wakaba:findNearestEntityByPartition(familiar, EntityPartition.ENEMY)
 		if target and target.Entity then
 
 			local targpos = target.Entity.Position
