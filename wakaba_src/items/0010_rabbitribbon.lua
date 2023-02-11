@@ -55,7 +55,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
 
 function wakaba:TearUpdate_RabbitRibbon(tear)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		if tear.FrameCount <= 7 then
 			tear.Color = Color(1, 1, 1, (1 * tear.FrameCount / 7), 0, 0, 0)
 		elseif tear.FrameCount <= 8 then
