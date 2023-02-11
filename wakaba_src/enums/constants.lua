@@ -346,6 +346,8 @@ wakaba.challenges = {
 	CHALLENGE_BIKE = Isaac.GetChallengeIdByName("[w12] Delivery System"), --w12
 	CHALLENGE_CALC = Isaac.GetChallengeIdByName("[w13] Calculation"), --w13
 	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
+	CHALLENGE_EVEN = Isaac.GetChallengeIdByName("[w15] Even or Odd"), --w15
+	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w16] Universe of Goom"), --w15
 	
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99

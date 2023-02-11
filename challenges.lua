@@ -157,21 +157,6 @@ function wakaba:PostChallengePlayerInit(player)
 		--print("esau spawn cont")
 		player:GetData().wakaba.pendingesauspawn = true
 		--player:AddCollectible(wakaba.Enums.Collectibles.MINERVA_AURA)
-	--[[ elseif wakaba.G.Challenge == Challenges.CHALLENGE_GURD and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) then
-		player:ChangePlayerType(Isaac.GetPlayerTypeByName("ShioriB", true))
-		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_shiori.anm2"))
-    wakaba:AfterShioriInit_b(player)
-		player:AddKeys(12)
-		player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
-		player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
-		player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
-		player:GetData().wakaba.vintagethreat = true
-		local bishop = Isaac.Spawn(EntityType.ENTITY_BISHOP, 0, 0, Isaac.GetFreeNearPosition(player.Position, 64), Vector.Zero, player)
-		bishop:AddCharmed(EntityRef(player), -1)
-		bishop:AddEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_NO_SPIKE_DAMAGE | EntityFlag.FLAG_DONT_OVERWRITE)
-		bishop.HitPoints = bishop.MaxHitPoints * 100
-		player:SetPocketActiveItem(wakaba.Enums.Collectibles.LAKE_OF_BISHOP, ActiveSlot.SLOT_POCKET, true) ]]
-		
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_CALC and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("ShioriB", true))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_shiori_b.anm2"))
@@ -180,6 +165,8 @@ function wakaba:PostChallengePlayerInit(player)
 		player:AddKeys(99)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_HOLD then
 		--player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
+		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Richer", false))
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RAND and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", randtainted) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -198,18 +185,6 @@ function wakaba:PostChallengePlayerInit(player)
 		wakaba.G:GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
 		Isaac.ExecuteCommand("goto s.boss.3414")
 	end
-
-	--[[ if wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then
-		local sti = player:GetData().wakaba.sindex
-		
-		wakaba.state.indexes[sti] = {
-			storeindex = wakaba.runstate.storedplayers,
-			playertype = player:GetPlayerType(),
-			name = player:GetName(),
-			controllerindex = player.ControllerIndex, -- controllerindex is available this point
-		}
-	end ]]
-
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostChallengePlayerInit)
 
@@ -469,7 +444,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Delivery)
 
 
-function wakaba:ProjectileUpdate_Challenge(tear)
+--[[ function wakaba:ProjectileUpdate_Challenge(tear)
 
 	if wakaba.G.Challenge == Challenges.CHALLENGE_SLNT then
 		tear:GetData().wakabaInit = true
@@ -486,28 +461,8 @@ function wakaba:ProjectileUpdate_Challenge(tear)
 		
 	end
 
-end
+end ]]
 --wakaba:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, wakaba.ProjectileUpdate_Challenge)
-
---[[ function wakaba:ItemUse_LakeOfBishop(_, rng, player, useFlags, activeSlot, varData)
-	local ent = Isaac.FindByType(EntityType.ENTITY_BISHOP, -1, -1, true, false)
-	local bishop = nil
-	for i, e in ipairs(ent) do
-		if bishop == nil and e.Parent == player or e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-			bishop = e
-		end
-	end
-
-	if bishop ~= nil then
-		player:AnimateTeleport(true)
-		player.Position = Isaac.GetFreeNearPosition(bishop.Position, 16)
-		player.Position = bishop.Position
-		player:AnimateTeleport(false)
-	end
-
-end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_LakeOfBishop, wakaba.Enums.Collectibles.LAKE_OF_BISHOP) ]]
-
 
 function wakaba:ChallengePostLevel()
 	local level = wakaba.G:GetLevel()
@@ -534,15 +489,6 @@ function wakaba:checkChallengeDest()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.checkChallengeDest)
-
-function wakaba.DreamAdd()
-	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS then
-		return 1
-	else
-		return 0
-	end
-end
---CCO.DamoclesAPI.AddDamoclesCallback(wakaba.DreamAdd)
 
 --CacheFlags for Challenges
 function wakaba:cacheChallenges(player, cacheFlag)
@@ -894,53 +840,6 @@ function wakaba:plumItemPedestal(itemPoolType, decrease, seed)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.plumItemPedestal)
-
-
-function wakaba:toDelirium2()
-	--print("toDelirium called")
-	local level = wakaba.G:GetLevel()
-	local stage = level:GetAbsoluteStage()
-	local curse = level:GetCurseName()
-	local room = wakaba.G:GetRoom()
-	local type1 = room:GetType()
-	--print("isBoss = ".. type1 == RoomType.ROOM_BOSS)
-	--print("stage = ".. stage)
-	if type1 == RoomType.ROOM_BOSS 
-	and (stage == 8 or stage == 9 or (stage == 7 and curse == "Curse of the Labyrinth")) 
-	and (wakaba:isDelirium()) then
-		if room:IsClear() then
-			local items = Isaac.FindByType(5, PickupVariant.PICKUP_TROPHY, -1, false, false)
-			for i, e in ipairs(items) do
-				e:Remove()
-			end
-			
-			
-			for i=1, room:GetGridSize() do
-				local gridEnt = room:GetGridEntity(i)
-				if gridEnt then
-					if gridEnt:GetType() == GridEntityType.GRID_TRAPDOOR  then
-						--print(gridEnt:GetType(), " ",gridEnt:GetVariant())
-						if gridEnt:GetVariant() == 1 then
-							hasVoid = true
-						end
-					end
-				end
-			end
-			
-			if not hasVoid then
-				--print("toDelirium checked")
-				local i = math.floor(room:GetGridSize() / 4)
-				local gridEnt = room:GetGridEntity()
-				room:SpawnGridEntity(i, GridEntityType.GRID_TRAPDOOR, 0, 0, 1)
-			end
-			
-		end
-		return false
-	end
-	
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.toDelirium2)
-
 
 function wakaba:PreUseItem_NoGenesis(item, rng, player, flag, slot, varData)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND then

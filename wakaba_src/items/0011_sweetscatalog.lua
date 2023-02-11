@@ -1,13 +1,8 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
---[[ 
-local catalog_data = {
-	run = {
+local collectible = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
-	},
-}
-wakaba:saveDataManager("Sweets Catalog", catalog_data)
-local catalogDatas = catalog_data.run
- ]]
+local pending_collectibles = {}
+
 wakaba.CatalogItems = {
 	["TEMP"] = {
 		Weight = 0, -- Chance to be appeared, set to 0 to prevent to be chosen
@@ -92,63 +87,86 @@ wakaba.CatalogItems = {
 		RicherRecipe = true,
 	},
 }
---[[ 
-function wakaba:PlayerUpdate_SweetsCatalog(player)
+local function TryCancelCatalog(player)
 	local playerIndex = isc:getPlayerIndex(player)
-	if catalogDatas[playerIndex] then
-		for i, itemID in ipairs(catalogDatas[playerIndex]) do
-			wakaba.HiddenItemManager:CheckStack(player, itemID, 1, "RICHER_CATALOG_PERSISTENT")
-		end
+	if player:GetData().wakaba.usingCatalog then
+		player:GetData().wakaba.usingCatalog = false
+		player:AnimateCollectible(collectible, "HideItem", "PlayerPickup")
+	end
+	if pending_collectibles[playerIndex] then
+		pending_collectibles[playerIndex] = nil
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_SweetsCatalog)
- ]]
+
 function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varData)
 	local playerIndex = isc:getPlayerIndex(player)
-	-- get random 
-	local catalog = wakaba.CatalogItems
-	local totalweight = 0
-	local tempCatalog = {}
-	for k, v in pairs(catalog) do
-		if v.Weight then
-			v.Name = k
-			totalweight = totalweight + v.Weight
-			v.Range = totalweight
-			table.insert(tempCatalog, v)
-		end
-	end
 
-	local chosenVal = ""
-	local prevRange = 0
-	local val = rng:RandomFloat() * totalweight
-	for i, v in ipairs(tempCatalog) do
-		--print("calculating:",prevRange,"[",val,"]",v.Range,"/",totalweight,"max",v.Name)
-		if val >= prevRange and val < v.Range then
-			chosenVal = v.Name
-
-			--print(chosenVal.." chosen, ranged", prevRange, "to", v.Range, "val:", val)
-			break
-		end
-		prevRange = v.Range
-	end
-	--print("chosenVal:",chosenVal)
-
-	local previewItem = wakaba.Enums.Collectibles.SWEETS_CATALOG
-
-	if wakaba.CatalogItems[chosenVal] then
-		previewItem = wakaba.CatalogItems[chosenVal].MainItem
-		--print("CatalogItems found for:",chosenVal)
-		wakaba.HiddenItemManager:Add(player, 1, -1, 1, "RICHER_CATALOG")
-		if wakaba.HiddenItemManager:GetStacks(player, "RICHER_CATALOG") then
-			wakaba.HiddenItemManager:RemoveAll(player, "RICHER_CATALOG")
-		end
-		if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
-				wakaba.HiddenItemManager:Add(player, itemID, -1, 1, "RICHER_CATALOG")
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
+		if not player:GetData().wakaba.usingCatalog then
+			local nearest = wakaba:findNearestEntity(player.Position, 5, 100)
+			if nearest then
+				player:GetData().wakaba.usingCatalog = true -- VERY IMPORTANT! Make the name of your GetData something more specific than "wakaba.usingCatalog" so that other mods don't overwrite it!!
+				player:GetData().throwableActiveSlot = activeSlot -- store what slot the active item was used from (primary, secondary, or pocket?)
+				player:AnimateCollectible(collectible, "LiftItem", "PlayerPickup")
+	
+				pending_collectibles[playerIndex] = nearest
+			else
+				player:AnimateSad()
 			end
 		else
-			for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
-				wakaba.HiddenItemManager:AddForRoom(player, itemID, -1, 1, "RICHER_CATALOG")
+			TryCancelCatalog(player)
+		end
+		return {Discharge = false, Remove = false, ShowAnim = false} -- stops the item from discharging unless something actually shoots out
+	else
+		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then 
+			return 
+		end
+		-- get random 
+		local catalog = wakaba.CatalogItems
+		local totalweight = 0
+		local tempCatalog = {}
+		for k, v in pairs(catalog) do
+			if v.Weight then
+				v.Name = k
+				totalweight = totalweight + v.Weight
+				v.Range = totalweight
+				table.insert(tempCatalog, v)
+			end
+		end
+
+		local chosenVal = ""
+		local prevRange = 0
+		local val = rng:RandomFloat() * totalweight
+		for i, v in ipairs(tempCatalog) do
+			--print("calculating:",prevRange,"[",val,"]",v.Range,"/",totalweight,"max",v.Name)
+			if val >= prevRange and val < v.Range then
+				chosenVal = v.Name
+
+				--print(chosenVal.." chosen, ranged", prevRange, "to", v.Range, "val:", val)
+				break
+			end
+			prevRange = v.Range
+		end
+		--print("chosenVal:",chosenVal)
+
+		local previewItem = wakaba.Enums.Collectibles.SWEETS_CATALOG
+
+		if wakaba.CatalogItems[chosenVal] then
+			previewItem = wakaba.CatalogItems[chosenVal].MainItem
+			--print("CatalogItems found for:",chosenVal)
+			wakaba.HiddenItemManager:Add(player, 1, -1, 1, "RICHER_CATALOG")
+			if wakaba.HiddenItemManager:GetStacks(player, "RICHER_CATALOG") then
+				wakaba.HiddenItemManager:RemoveAll(player, "RICHER_CATALOG")
+			end
+			if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
+					wakaba.HiddenItemManager:Add(player, itemID, -1, 1, "RICHER_CATALOG")
+				end
+			else
+				for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
+					wakaba.HiddenItemManager:AddForRoom(player, itemID, -1, 1, "RICHER_CATALOG")
+				end
 			end
 		end
 	end
@@ -159,9 +177,71 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_SweetsCatalog, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
+function wakaba:PlayerRender_Catalog(player)
+	wakaba:GetPlayerEntityData(player)
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_Catalog)
 
 
+function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon shooting
+	if player:GetData().wakaba.usingCatalog and player:GetFireDirection() ~= Direction.NO_DIRECTION then
+		player:GetData().wakaba.usingCatalog = false
 
+		-- PLACE THE ACTUAL EFFECT OF YOUR THROWABLE ACTIVE HERE --
+		local playerIndex = isc:getPlayerIndex(player)
+		local pending = pending_collectibles[playerIndex]
+		local quality = isc:getCollectibleQuality(pending.SubType)
+		if player:GetFireDirection() == Direction.LEFT or player:GetFireDirection() == Direction.UP then
+			if quality == 1 or quality == 3 then
+				player:AddCollectible(pending.SubType)
+			else
+				player:AnimateSad()
+			end
+		elseif player:GetFireDirection() == Direction.RIGHT or player:GetFireDirection() == Direction.DOWN then
+			if quality == 2 or quality == 4 then
+				player:AddCollectible(pending.SubType)
+			else
+				player:AnimateSad()
+			end
+		end
+		if pending and pending:Exists() then
+			pending:Remove()
+		end
 
+		local slot = player:GetData().throwableActiveSlot
+		if slot == ActiveSlot.SLOT_PRIMARY then -- Prevent possible cheese with Schoolbag
+			if player:GetActiveItem(slot) ~= collectible then
+				slot = ActiveSlot.SLOT_SECONDARY
+			else
+				if player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) < Isaac.GetItemConfig():GetCollectible(collectible).MaxCharges then
+					slot = ActiveSlot.SLOT_SECONDARY
+				end
+			end
+		end
+		player:DischargeActiveItem(slot) -- Since the item was used successfully, actually discharge the item
+		player:AnimateCollectible(collectible, "HideItem", "PlayerPickup")
 
+		-- prevent other players still holding catalog
+		for num = 1, wakaba.G:GetNumPlayers() do
+			local pl = wakaba.G:GetPlayer(num - 1)
+			TryCancelCatalog(pl)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Catalog)
 
+function wakaba:TakeDamage_Catalog(entity, _, _, _, _) -- Terminate the holding up of your throwable active upon taking damage. This function can be omitted if you want, but I added it to be closer to vanilla behavior.
+	local player = entity:ToPlayer()
+	if not player then return end
+	
+	TryCancelCatalog(player)
+end
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Catalog)
+
+function wakaba:NewRoom_Catalog() -- Terminate the holding up of your throwable active upon entering a new room. This function can also be omitted if you want.
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		TryCancelCatalog(player)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Catalog)
