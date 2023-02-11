@@ -18,7 +18,7 @@ function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varDa
 	wakaba.G:BombExplosionEffects(player.Position, player.Damage * 8 + 20, TearFlags.TEAR_BRIMSTONE_BOMB, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA, "HideItem", "PlayerPickup")
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTrauma, wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
