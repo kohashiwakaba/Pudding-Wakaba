@@ -452,6 +452,39 @@ function wakaba:ForceVoidRenderCheck()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.ForceVoidRenderCheck)
 
+-- DistanceCompare, GetNearestEntity by Guwah(from Fiend Folio)
+function wakaba:DistanceCompare(nearDist, nearest, new, position)
+	local furthest = new
+	if new then
+		nearDist = nearDist or 10000
+		local newDist = new.Position:Distance(position)
+		if newDist and newDist < nearDist then
+			nearDist = newDist
+			furthest = nearest
+			nearest = new
+		end
+	end
+	return nearest, nearDist
+end
+
+function wakaba:findNearestEntity(position, type, variant, subtype, condition)
+	local nearest = nil
+	local nearDist = 10000
+	variant = variant or -1
+	subtype = subtype or -1
+	for _, entity in ipairs(Isaac.FindByType(type, variant, subtype, false, false)) do
+		if condition then
+			if not condition(position, entity) then
+				goto GetNearestThingContinue
+			end
+		end
+		nearest = mod:DistanceCompare(nearDist, nearest, entity, position)
+		nearDist = nearest.Position:Distance(position)
+		::GetNearestThingContinue::
+	end
+	return nearest
+end
+
 function wakaba:findNearestEntityByPartition(entity, partition)
 	local entities = Isaac.FindInRadius(entity.Position,2000,partition)
 	local nearest = nil
