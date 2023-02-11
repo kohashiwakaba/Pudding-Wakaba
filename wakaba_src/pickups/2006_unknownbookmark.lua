@@ -1,5 +1,5 @@
 function wakaba:onUseCard2006(_, player, flags)
-	local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	local books = wakaba.runstate.cachedmaijimabooks
 	if books then
 		local subrandom = player:GetCardRNG(wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK):RandomInt(#books) + 1
 		local selected = books[subrandom]
