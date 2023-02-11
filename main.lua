@@ -1773,25 +1773,6 @@ function wakaba:getstoredhash(player)
 	return seedString
 end
 
---no empty pedestals code from Nato Potato. Only active when potatopack2 is not active
-if potatopack2 == nil then
-	function wakaba:removePedestal(pickup)
-		local hasflip = false
-		for i = 1, wakaba.G:GetNumPlayers() do
-			local player = Isaac.GetPlayer(i - 1)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_FLIP) then
-				hasflip = true
-			end
-		end
-		if not hasflip and pickup.SubType == 0 then
-			pickup:Remove()
-		end
-	end
-	--wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE , wakaba.removePedestal, 100);
-end
-
-
-
 function wakaba:save(shouldSave)
 	if shouldSave then
 		--Isaac.DebugString("[wakaba]Wakaba - Data Saving start")
