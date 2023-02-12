@@ -111,7 +111,7 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
 		if not player:GetData().wakaba.usingCatalog then
 			local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
-			local nearest = isc:getClosestEntityTo(player, collectibles)
+			local nearest = isc:getClosestEntityTo(player, collectibles, function(_, e) return not isc:isQuestCollectible(e.SubType) end)
 			if nearest then
 				player:GetData().wakaba.usingCatalog = true -- VERY IMPORTANT! Make the name of your GetData something more specific than "wakaba.usingCatalog" so that other mods don't overwrite it!!
 				player:GetData().throwableActiveSlot = activeSlot -- store what slot the active item was used from (primary, secondary, or pocket?)
