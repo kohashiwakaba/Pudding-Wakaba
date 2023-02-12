@@ -2,6 +2,9 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local collectible = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
 local pending_collectibles = {}
+local last_type
+local last_collectible
+local last_success
 
 wakaba.CatalogItems = {
 	["TEMP"] = {
@@ -95,6 +98,9 @@ local function TryCancelCatalog(player)
 	end
 	if pending_collectibles[playerIndex] then
 		pending_collectibles[playerIndex] = nil
+	end
+	if EID then
+		EID:hidePermanentText()
 	end
 end
 
@@ -192,20 +198,35 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 		local playerIndex = isc:getPlayerIndex(player)
 		local pending = pending_collectibles[playerIndex]
 		local quality = isc:getCollectibleQuality(pending.SubType)
+		last_collectible = pending.SubType
 		if player:GetFireDirection() == Direction.LEFT or player:GetFireDirection() == Direction.UP then
+			last_type = 1
 			if quality == 1 or quality == 3 then
+				last_success = true
+				SFXManager():Play(SoundEffect.SOUND_POWERUP3)
 				player:AddCollectible(pending.SubType)
+				wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(pending.SubType))
+				player:AnimateCollectible(pending.SubType, "Pickup", "PlayerPickupSparkle")
 			else
+				last_success = false
 				player:AnimateSad()
 			end
 		elseif player:GetFireDirection() == Direction.RIGHT or player:GetFireDirection() == Direction.DOWN then
+			last_type = 2
 			if quality == 2 or quality == 4 then
+				last_success = true
+				SFXManager():Play(SoundEffect.SOUND_POWERUP3)
 				player:AddCollectible(pending.SubType)
+				wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(pending.SubType))
+				player:AnimateCollectible(pending.SubType, "Pickup", "PlayerPickupSparkle")
 			else
+				last_success = false
 				player:AnimateSad()
 			end
 		end
 		if pending and pending:Exists() then
+			pending:ToPickup().OptionsPickupIndex = 720
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pending.Position, Vector.Zero, nil)
 			pending:Remove()
 		end
 
@@ -219,8 +240,8 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 				end
 			end
 		end
-		player:DischargeActiveItem(slot) -- Since the item was used successfully, actually discharge the item
-		player:AnimateCollectible(collectible, "HideItem", "PlayerPickup")
+		--player:DischargeActiveItem(slot) -- Since the item was used successfully, actually discharge the item
+		--player:AnimateCollectible(collectible, "HideItem", "PlayerPickup")
 
 		-- prevent other players still holding catalog
 		for num = 1, wakaba.G:GetNumPlayers() do
@@ -244,5 +265,60 @@ function wakaba:NewRoom_Catalog() -- Terminate the holding up of your throwable 
 		local player = Isaac.GetPlayer(i)
 		TryCancelCatalog(player)
 	end
+	last_type = nil
+	last_collectible = nil
+	last_success = nil
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Catalog)
+
+if EID then
+	local function EvenOddCondition(descObj)
+		return wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN
+			and descObj.ObjType == 5 
+			and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE 
+			and descObj.ObjSubType == wakaba.Enums.Collectibles.SWEETS_CATALOG
+	end
+	local function EvenOddCallback(descObj)
+		descObj.Description = EID:getDescriptionEntry("SweetsChallenge")
+		return descObj
+	end
+	EID:addDescriptionModifier("Wakaba Challenge Even Odd", EvenOddCondition, EvenOddCallback)
+end
+
+function wakaba:Render_Catalog()
+	local hasCatalog = false
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:GetData().wakaba and player:GetData().wakaba.usingCatalog then
+			hasCatalog = true
+			break
+		end
+	end
+	if hasCatalog then
+		local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.Enums.Collectibles.SWEETS_CATALOG)
+		demoDescObj.Description = EID:getDescriptionEntry("SweetsFlipFlop")
+		EID:displayPermanentText(demoDescObj)
+	elseif last_collectible and last_type and last_success ~= nil then
+		local demoDescObj = EID:getDescriptionObj(5, 100, last_collectible)
+		local qtext = ""
+		local text = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} "
+		if last_type == 1 then
+			qtext = "{{Quality1}}or{{Quality3}}"
+		elseif last_type == 2 then
+			qtext = "{{Quality2}}or{{Quality4}}"
+		end
+		if last_success == true then
+			text = text .. EID:getDescriptionEntry("SweetsChallengeSuccess") .. qtext .. "={{Quality" .. isc:getCollectibleQuality(last_collectible) .. "}}{{CR}}"
+		elseif last_success == false then
+			text = text .. EID:getDescriptionEntry("SweetsChallengeFailed") .. qtext .. "≠{{Quality" .. isc:getCollectibleQuality(last_collectible) .. "}}{{CR}}"
+		end
+		demoDescObj.Description = text .. "#" .. demoDescObj.Description
+		EID:displayPermanentText(demoDescObj)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_Catalog)
+
+function wakaba:Damocles_Catalog()
+	return wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and 1 or 0
+end
+CCO.DamoclesAPI.AddDamoclesCallback(wakaba.Damocles_Catalog)

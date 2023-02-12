@@ -2319,5 +2319,11 @@ if EID then
 
 	EID.descriptions[desclang].TaintedTsukasaWarningTitle = "{{ColorYellow}}!!! Locked !!!"
 	EID.descriptions[desclang].TaintedTsukasaWarningText = "Have to unlock this character first#Howto : Use Red Key to open the hidden closet in Home as Tsukasa#Entering the right door will exit the game"
+	
+	EID.descriptions[desclang].SweetsChallenge = "On use, shows prompt for quality#If the quality matches, get the item"
+	EID.descriptions[desclang].SweetsFlipFlop = "Use item again to cancel#{{ButtonY}}/{{ButtonX}}:{{Quality1}}or{{Quality3}}#{{ButtonA}}/{{ButtonB}}:{{Quality2}}or{{Quality4}}#If the selected quality matches with item's one, get the item, else disappear otherwise"
+
+	EID.descriptions[desclang].SweetsChallengeFailed = "{{ColorOrange}}Failed for mismatching quality : "
+	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}Succeed for matching quality : "
 
 end

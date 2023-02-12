@@ -581,7 +581,9 @@ function wakaba:RevealItemImage(pickup, offset)
 	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 
 	local itemData = Isaac.GetItemConfig():GetCollectible(pickup.SubType)
-	if not pickup:GetData().wakaba.removequestion
+	if not wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND)
+	and not (wakaba.G:GetSeeds():IsCustomRun() and isc:hasCurse(LevelCurse.CURSE_OF_BLIND))
+	and not pickup:GetData().wakaba.removequestion
 	and pickup.SubType > 0 and itemData then
 		local hasbless = false
 		for i = 1, wakaba.G:GetNumPlayers() do

@@ -45,7 +45,7 @@ See this community post for more details. It's not mine, but it's still very use
 	<challenge name="[w12] Delivery System" endstage="11" canshoot="false" roomfilter="4" startingitems="205,619"/>
 	<challenge name="[w13] Calculation" endstage="11" megasatan="true" canshoot="false" roomfilter="4" startingitems=""/>
 	<challenge name="[w14] Hold Me" playertype="23" endstage="8" secretpath="true" canshoot="false" roomfilter="2,4" startingitems="626,627,619,714,-710"/>
-	<challenge name="[w15] Even or Odd" playertype="3" endstage="8" secretpath="true" roomfilter="2" startingitems="-34,656" getcurse="64" cursefilter="63"/>
+	<challenge name="[w15] Even or Odd" playertype="3" endstage="8" secretpath="true" roomfilter="2" startingitems="-34" getcurse="64" cursefilter="63"/>
 	
 	<challenge name="[w98] Hyper Random" endstage="11" megasatan="true" roomfilter="2" getcurse="102" cursefilter="8" startingitems="633,721,669,12" />
 	<challenge name="[w99] True Purist Girl" endstage="13" secretpath="true" roomfilter="2,4,7,8,9,10,11,12,13,14,15,18,19,20,21" startingitems="626,627,619"/>

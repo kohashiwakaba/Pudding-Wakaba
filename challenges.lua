@@ -168,7 +168,7 @@ function wakaba:PostChallengePlayerInit(player)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Richer", false))
 		player:AddSoulHearts(4)
-		wakaba:AfterRicherInit(player)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RAND and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", randtainted) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -440,6 +440,11 @@ function wakaba:PlayerUpdate_Delivery(player)
 			}
 		end
 		wakaba:SetChargeBarData(player, chargeno, chargestate)
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
+		if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.SWEETS_CATALOG then
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
+		end
+		player:SetActiveCharge(12, ActiveSlot.SLOT_POCKET)
 	end
 
 end
@@ -706,7 +711,13 @@ function wakaba:prePickupCollisionChallenge_Delivery(pickup, colliders, low)
 				end
 				pickup.Price = 0
 			end
-			return false
+			return pickup:IsShopItem()
+		end
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
+		local id = pickup.SubType
+		local config = Isaac.GetItemConfig():GetCollectible(id)
+		if not config or not config:HasTags(ItemConfig.TAG_QUEST) then
+			return pickup:IsShopItem()
 		end
 	end
 end

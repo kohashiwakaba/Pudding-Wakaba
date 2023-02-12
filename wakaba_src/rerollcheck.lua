@@ -508,6 +508,10 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	if wakaba.fullreroll then
 		AllowActives = false
 	end
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+		AllowActives = false
+		validQuality["0"] = false
+	end
 
 	local itemType = defaultPool
 	
