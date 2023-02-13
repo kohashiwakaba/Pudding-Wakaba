@@ -166,6 +166,7 @@ wakaba.eidextradesc.bettervoiding = {}
 
 include("wakaba_src.wakaba_deadseascrolls.wakabadss")
 include("wakaba_src.wakaba_deadseascrolls.dss_characters")
+include("wakaba_src.wakaba_deadseascrolls.dss_credits")
 include("wakaba_src.wakaba_deadseascrolls.changelogs")
 
 

@@ -136,6 +136,11 @@ local wakabadirectory = {
 					{str = 'settings', dest = 'settings'},
 					--[[ {str = 'characters', dest = 'characters'}, ]]
 					{str = "completion notes", dest = "completionnotes", cursoroff = Vector(6, 0), tooltip = {strset = {"check out", "your progress!"}}},
+					{
+						str = 'credits',
+						dest = 'credits',
+						tooltip = {strset = {'various','thanks','for creating','the mod'}}
+					},
 
 					-- A few default buttons are provided in the table returned from DSSInitializerFunction.
 					-- They're buttons that handle generic menu features, like changelogs, palette, and the menu opening keybind
