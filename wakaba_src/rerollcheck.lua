@@ -406,6 +406,25 @@ local function IsRangeCorrect(selected, isaacOnly, aftOnly, repOnly)
 	end
 end
 
+local function TagCheck(selected, tagBlackList, tagWhiteList, ignoreActives)
+	if not selected then return true end
+	if ignoreActives and isc:isActiveCollectible(selected) then return true end
+	local skip = false
+	for tag, _ in pairs(tagWhiteList) do
+		if tag then skip = true end
+		if isc:collectibleHasTag(selected, tag) then
+			return true
+		end
+	end
+	if skip then return false end
+	for tag, _ in pairs(tagBlackList) do
+		if isc:collectibleHasTag(selected, tag) then
+			return false
+		end
+	end
+	return true
+end
+
 local lastSelected = nil
 local initialItemNext = false
 local flipItemNext = false
@@ -463,6 +482,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local hasIsaacCartridge = false
 	local hasAftCartridge = false
 	local hasRepCartridge = false
+
+	local tagWhiteList = {}
+	local tagBlackList = {}
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER) then
@@ -512,6 +534,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		AllowActives = false
 		validQuality["0"] = false
 	end
+	if wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
+		tagWhiteList[ItemConfig.TAG_SUMMONABLE] = true
+	end
 
 	local itemType = defaultPool
 	
@@ -532,6 +557,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local isPoolCorrect = (itemPoolType == itemType) or randselected
 	local isRangeCorrect = selected and IsRangeCorrect(selected, hasIsaacCartridge, hasAftCartridge, hasRepCartridge)
+	local hasTagLimit = selected and TagCheck(selected, tagBlackList, tagWhiteList)
 	local isUnlocked = selected and wakaba:unlockCheck(selected)
 	local MinQuality = 0
 	local MaxQuality = 4
@@ -596,7 +622,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 
 	-- Print time
-	local isConditionMet = (isPoolCorrect and isRangeCorrect and active and isUnlocked and min_quality and max_quality and valid_quality)
+	local isConditionMet = (isPoolCorrect and isRangeCorrect and hasTagLimit and active and isUnlocked and min_quality and max_quality and valid_quality)
 	local str_ispassed = (isConditionMet and "passed") or "not passed"
 	Isaac.DebugString("[wakaba] Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
 	--print("[wakaba] Rerolling items - seed "..seed.."#"..wakaba.state.rerollloopcount..", Item No."..selected.." is "..str_ispassed,itemType,decrease)

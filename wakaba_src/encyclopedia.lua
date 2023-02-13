@@ -11,6 +11,17 @@ end
 wakaba.encyclopediadesc.class = "Pudding n Wakaba"
 wakaba.encyclopediadesc.desc = {}
 
+wakaba.encyclopediadesc.desc.char_sorted_keys = {
+	wakaba.Enums.Players.WAKABA,
+	wakaba.Enums.Players.WAKABA_B,
+	wakaba.Enums.Players.SHIORI,
+	wakaba.Enums.Players.SHIORI_B,
+	wakaba.Enums.Players.TSUKASA,
+	wakaba.Enums.Players.TSUKASA_B,
+	wakaba.Enums.Players.RICHER,
+	wakaba.Enums.Players.RICHER_B,
+}
+
 wakaba.encyclopediadesc.desc.characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		ID = wakaba.Enums.Players.WAKABA,
@@ -145,18 +156,17 @@ wakaba.encyclopediadesc.desc.characters = {
 						{str = "Traits", fsize = 2, clr = 3, halign = 0},
 						{str = "Tainted Wakaba starts with Continum and Piercing tears."},
 						{str = "Tainted Wakaba is unable to find Luck Up pills."},
-						{str = "All Heart Containers and Bone Hearts are converted into Black Hearts."},
+						{str = "All Heart Containers are converted into Black Hearts."},
 						{str = "Worst Items, Furious Destiny - Wakaba's Nemesis", clr = 3, halign = 0},
 						{str = "Tainted Wakaba cannot find 3+ quality items."},
 						{str = "- Tainted Wakaba is guarenteed to find 3+ quality items in Ultra Secret Rooms."},
 						{str = "All collectibles give Tainted Wakaba +3.6 temporary damage up, and small permanent all stat downs."},
 						{str = "Guarentees the Devil/Angel Room encountered to be an Devil Room."},
-						{str = "All Devil deals requires 6 coins."},
+						{str = "All collectibles on sale requires soul hearts."},
 						{str = "All penalties by taking damage are removed."},
 				},
 				{ -- Birthright
 						{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-						{str = "- Note that Tainted Wakaba cannot get Birthright through normal ."},
 						{str = "Immune to all explosions and shockwaves."},
 						{str = "Reduce Temporary damage reduction rate."},
 				},
@@ -331,7 +341,7 @@ wakaba.encyclopediadesc.desc.characters = {
 			},
 			{ -- Traits
 					{str = "Traits", fsize = 2, clr = 3, halign = 0},
-					{str = "All Heart Containers and Bone Hearts are converted into Soul Hearts."},
+					{str = "All Heart Containers are converted into Soul Hearts."},
 					{str = "Tainted Shiori requires Keys to use active items. This applies for all 3 Active item slots."},
 					{str = "Tainted Shiori has a chance to get the Key when room clears."},
 					{str = "Picking up Batteries as Tainted Shiori will give equivalent amount of Keys."},
@@ -650,14 +660,86 @@ wakaba.encyclopediadesc.desc.characters = {
 		Description = "The Miko",
 		Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RicherB", 0),
 		UnlockFunc = function(self) -- Again this is in case your tainted is "unlockable"
-				if true then
+				if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.taintedricher then
 						self.Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RicherB",1)
-						self.Desc = "Not available yet"
+						self.Desc = "Use Red Key on the hidden door in the Final Chapter as Richer."
 						self.TargetColor = Encyclopedia.VanillaColor
 						
 						return self
 				end
 		end,
+		CompletionTrackerFuncs = { -- You can skip this one if your mod doesn't have custom unlocks.
+		 function()
+			 local UnlocksTab = {
+				 MomsHeart = {Unlock = (wakaba.state.unlock.taintedrichermomsheart >= 1), Hard = (wakaba.state.unlock.taintedrichermomsheart == 2)},
+				 Isaac = {Unlock = (wakaba.state.unlock.isaaccartridge1 >= 1), Hard = (wakaba.state.unlock.isaaccartridge1 == 2)},
+				 Satan = {Unlock = (wakaba.state.unlock.isaaccartridge2 >= 1), Hard = (wakaba.state.unlock.isaaccartridge2 == 2)},
+				 BlueBaby = {Unlock = (wakaba.state.unlock.isaaccartridge3 >= 1), Hard = (wakaba.state.unlock.isaaccartridge3 == 2)},
+				 Lamb = {Unlock = (wakaba.state.unlock.isaaccartridge4 >= 1), Hard = (wakaba.state.unlock.isaaccartridge4 == 2)},
+				 BossRush = {Unlock = (wakaba.state.unlock.tsukasasoul1 >= 1), Hard = (wakaba.state.unlock.tsukasasoul1 == 2)},
+				 Hush = {Unlock = (wakaba.state.unlock.tsukasasoul2 >= 1), Hard = (wakaba.state.unlock.tsukasasoul2 == 2)},
+				 MegaSatan = {Unlock = (wakaba.state.unlock.easteregg >= 1), Hard = (wakaba.state.unlock.easteregg == 2)},
+				 Delirium = {Unlock = (wakaba.state.unlock.flashshift >= 1), Hard = (wakaba.state.unlock.flashshift == 2)},
+				 Mother = {Unlock = (wakaba.state.unlock.sirenbadge >= 1), Hard = (wakaba.state.unlock.sirenbadge == 2)},
+				 Beast = {Unlock = (wakaba.state.unlock.elixiroflife >= 1), Hard = (wakaba.state.unlock.elixiroflife == 2)},
+				 GreedMode = {Unlock = (wakaba.state.unlock.returntoken >= 1), Hard = (wakaba.state.unlock.returntoken == 2)},
+			 }
+			 return UnlocksTab
+		 end
+	 },
+		WikiDesc = {
+			{ -- Start Data
+					{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+					{str = "Items", clr = 3, halign = 0},
+					{str = "- Rabbit Ribbon"},
+					{str = "- The Winter Albireo"},
+					{str = "- Water-Flame"},
+					{str = "Stats", clr = 3, halign = 0},
+					{str = "- HP: 3 Soul Hearts"},
+					{str = "- Extra: 2 Keys"},
+					{str = "- Speed: 1.08"},
+					{str = "- Tear Rate: 3.33"},
+					{str = "- Damage: 3.50"},
+					{str = "- Range: 6.50"},
+					{str = "- Shot Speed: 0.90"},
+					{str = "- Luck: 0.00"},
+			},
+			{ -- Traits
+					{str = "Traits", fsize = 2, clr = 3, halign = 0},
+					{str = "All Heart Containers are converted into Soul Hearts."},
+					{str = "Curse of Flames", clr = 3, halign = 0},
+					{str = "All passive pedestals are converted into spiritual items."},
+					{str = "Tainted Richer cannot obtain items for normal method. Touching the collectible as Tainted Richer will convert into Item Wisp."},
+					{str = "Actives can be obtained through normal ways."},
+					{str = "Plot-critical items are immune to this effect, thus can be obtained normally."},
+					{str = "The Winter Albireo", clr = 3, halign = 0},
+					{str = "If possible, her own version of rabbey-planetarium appears."},
+					{str = "Rabbey-planetarium contains a spiritual planetarium item."},
+					{str = "Water-Flame", clr = 3, halign = 0},
+					{str = "Her magical body allows absorbing the item wisps."},
+					{str = "Tainted Richer can select which wisp to absorb into passive item."},
+			},
+			{ -- Birthright
+					{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+					{str = "Converted items will be doubled."},
+					{str = "Drops Flame Princess pill on pickup."},
+			},
+			{ -- Notes
+					{str = "Notes", fsize = 2, clr = 3, halign = 0},
+					{str = "Rabbit Ribbon, The Winter Albireo for Tainted Richer is intrinsic to the character, and it can't be rerolled."},
+			},
+			{ -- Unlockables
+					{str = "Unlockables", fsize = 2, clr = 3, halign = 0},
+					{str = "- Star Reversal : Defeat Isaac, Satan, ???, The Lamb as Tainted Richer"},
+					{str = "- Spiritual Items : Defeat Mega Satan as Tainted Richer"},
+					{str = "- Soul of Richer : Defeat Boss Rush, Hush as Tainted Richer"},
+					{str = "- Trial Stew : Defeat Ultra Greedier as Tainted Richer"},
+					{str = "- Water-Flame : Defeat Delirium as Tainted Richer"},
+					{str = "- Mistake : Defeat Mother as Tainted Richer"},
+					{str = "- The Winter Albireo : Defeat The Beast as Tainted Richer"},
+			},
+	
+		},
 	},
 }
 wakaba.encyclopediadesc.desc.collectibles = {
@@ -2418,8 +2500,9 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	},
 }
 
-for playerType, desc in pairs(wakaba.encyclopediadesc.desc.characters) do
-	if desc.Tainted then
+for _, playerType in ipairs(wakaba.encyclopediadesc.desc.char_sorted_keys) do
+	local desc = wakaba.encyclopediadesc.desc.characters[playerType]
+	if desc and desc.Tainted then
 		Encyclopedia.AddCharacterTainted({
 			ModName = wakaba.encyclopediadesc.class,
 			Class = wakaba.encyclopediadesc.class,
@@ -2431,7 +2514,7 @@ for playerType, desc in pairs(wakaba.encyclopediadesc.desc.characters) do
 			UnlockFunc = desc.UnlockFunc,
 			WikiDesc = desc.WikiDesc,
 		})
-	else
+	elseif desc then
 		Encyclopedia.AddCharacter({
 			ModName = wakaba.encyclopediadesc.class,
 			Class = wakaba.encyclopediadesc.class,

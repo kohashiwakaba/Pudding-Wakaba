@@ -68,8 +68,8 @@
 	nameimage="playername_richer.png"
 	skin="character_richer.png" skinColor="-1" costumeSuffix="richer" />
 	
-	<player name="RicherB" bSkinParent="Richer"
-	armor="6" keys="1" birthright="Recipe Selection" 
+	<player name="RicherB" bSkinParent="Richer" costume="52"
+	armor="6" keys="1" birthright="Dual Flames" 
 	portrait="RicherPortrait_b.png"
 	nameimage="playername_richer.png"
 	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b" />

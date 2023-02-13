@@ -19,7 +19,7 @@ local RicherChar = {
 		SPEED = 0.1,
 		SHOTSPEED = 1.0,
 		TEARRANGE = 40 * 6.5,
-		TEARS = 0,
+		TEARS = 0.6,
 		LUCK = -1,
 		FLYING = false,																 
 		TEARFLAG = TearFlags.TEAR_NORMAL | TearFlags.TEAR_HOMING,
@@ -66,14 +66,7 @@ function wakaba:AfterRicherInit_b(player)
 	--print("Richer event passed")
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-		player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_PRIMARY)
-		if wakaba.state.options.cp_wakaba_b then
-			player:EvaluateItems()
-			--player:ClearCostumes()
-		else
-			wakaba.costumecurrframe = 0
-			wakaba:GetRicherCostume(player)
-		end
+		--player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_POCKET)
 	end
 	
 	--[[ if Poglite then
