@@ -31,7 +31,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_refreshWispSize)
 
 
 function wakaba:PostGetCollectible_BlackCandle(player, item)
-	if isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
+	if isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) and not isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B) then
 		wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_FLAMES)
 	end
 	if isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
@@ -66,23 +66,29 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_BlackCandleCheck)
 
 function wakaba:Curse_Evaluate(curse)
-	--if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
-	--[[ print(wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR)
-	print(wakaba.G:GetLevel():GetAbsoluteStage())
-	print(wakaba.G.TimeCounter) ]]
+	local skip = false
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
+		if wakaba.curses.CURSE_OF_SATYR > 0 
+		and player:GetPlayerType() == wakaba.Enums.Players.SHIORI
 		and ((wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and wakaba.G.TimeCounter == 0)
 		or wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR) then
-			curse = wakaba.curses.CURSE_OF_SATYR
-			return curse
+			curse = curse | wakaba.curses.CURSE_OF_SATYR
+			skip = true
+			goto wakabaCurseSkip
+		end
+		if wakaba.curses.CURSE_OF_FLAMES > 0 and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+			curse = curse | wakaba.curses.CURSE_OF_FLAMES
+			skip = true
+			goto wakabaCurseSkip
 		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE) then
-			return curse
+			skip = true
+			goto wakabaCurseSkip
 		end
 		if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			return 0
+			skip = true
+			goto wakabaCurseSkip
 		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
 		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) then
@@ -119,8 +125,10 @@ function wakaba:Curse_Evaluate(curse)
 				curse = isc:addFlag(curse, wakaba.curses.CURSE_OF_MAGICAL_GIRL)
 			end
 		end
+		::wakabaCurseSkip::
 
 	end
+	if skip then return curse end
 	if wakaba.curses.CURSE_OF_FLAMES <= LevelCurse.CURSE_OF_GIANT or wakaba.state.options.flamescurserate == 0 then return curse end
 	if wakaba.state.options.flamesoverride then
 		local newflamescurserate = wakaba.state.options.flamescurserate * 1
