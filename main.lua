@@ -45,14 +45,18 @@ include("wakaba_src.libs.postgetcollectible") -- temp library for post get colle
 --require("wakaba_src.libs.item_display_library")
 
 
-
+---@type Game
 wakaba.G = Game() -- Cache game object
+---@type Font
 wakaba.f = Font() -- init font object
 wakaba.f:Load("font/pftempestasevencondensed.fnt") -- load a font into the font object
+---@type Font
 wakaba.cf = Font() -- init font object
 wakaba.cf:Load("font/luaminioutlined.fnt") -- load a font into the font object
+---@type Sprite
 wakaba.pickupdisplaySptite = Sprite()
 wakaba.pickupdisplaySptite:Load("gfx/ui/wakaba/hudpickups.anm2", true)
+---@type Sprite
 wakaba.MiniMapAPISprite = Sprite()
 wakaba.MiniMapAPISprite:Load("gfx/ui/wakaba/minimapapi.anm2", true)
 

@@ -168,9 +168,16 @@ function wakaba:Curse_PlayerRender(player)
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_UNKNOWN)
 		end
 	end
+	-- Force add curse for Black Candle/Sol
+	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
+		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
+	end
+	if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.RICHER and not isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
+		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES, false)
+	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		wakaba.G:GetLevel():RemoveCurses(127 - (LevelCurse.CURSE_OF_LABYRINTH | LevelCurse.CURSE_OF_THE_CURSED))
-	elseif wakaba:hasRibbon(player) then
+	elseif wakaba:hasRibbon(player) and wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 		if isc:hasCurse(LevelCurse.CURSE_OF_DARKNESS) then
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS)
 			wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SNIPER, false)
@@ -221,8 +228,10 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					if familiar then
 						familiar.Parent = collider
 						familiar.Player = player
-						familiar.CollisionDamage = familiar.CollisionDamage * 16
-						familiar.MaxHitPoints = familiar.MaxHitPoints * 16
+						if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then
+							familiar.CollisionDamage = familiar.CollisionDamage * 16
+							familiar.MaxHitPoints = familiar.MaxHitPoints * 16
+						end
 						familiar.HitPoints = familiar.MaxHitPoints
 					end
 		
