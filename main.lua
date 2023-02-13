@@ -1314,6 +1314,7 @@ include('wakaba_src.characters.shiori_b')
 include('wakaba_src.characters.tsukasa')
 include('wakaba_src.characters.tsukasa_b')
 include('wakaba_src.characters.richer')
+include('wakaba_src.characters.richer_b')
 include('wakaba_src.common')
 
 include('wakaba_src.items.0002_bookofshiori_func')
