@@ -38,6 +38,7 @@ local iFeatures = {
 wakaba = isc:upgradeMod(_wakaba, iFeatures)
 
 --include("wakaba_src.libs.filepathhelper")
+include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include('wakaba_src.libs.achievement_display_api')
 include("wakaba_src.libs.pause_screen_completion_marks_api")
@@ -1202,6 +1203,7 @@ include('wakaba_src.items.0008_flashshift')
 include('wakaba_src.items.0009_concentration')
 include('wakaba_src.items.0010_rabbitribbon')
 include('wakaba_src.items.0011_sweetscatalog')
+include('wakaba_src.items.0012_waterflame')
 include('wakaba_src.items.1001_eatheart')
 
 include('wakaba_src.items.1002_bookofforgotten')

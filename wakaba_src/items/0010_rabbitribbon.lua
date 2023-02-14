@@ -19,6 +19,8 @@ function wakaba:hasRibbon(player)
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 		return true
+	elseif player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON) then
 		return true
 	elseif player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.RABBIT_RIBBON) then

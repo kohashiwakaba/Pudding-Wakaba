@@ -1,6 +1,19 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 
+function wakaba:hasAlbireo(player)
+	if not player then 
+		return false 
+	end
+	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+    return true
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) then
+		return true
+	else
+		return false
+	end
+end
+
 function wakaba:NewLevel_WinterAlbireo()
 	local level = wakaba.G:GetLevel()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO)[1] or Isaac.GetPlayer()

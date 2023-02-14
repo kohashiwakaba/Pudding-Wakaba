@@ -5,6 +5,10 @@ if EID then
 		print("Pudding and Wakaba no longer supports EID Korean. Use Original External Item Descriptions mod.")
   else
 
+		wakaba.TextOffset = {
+			[wakaba.Enums.Players.RICHER_B] = 20,
+		}
+
 		wakaba.TargetIcons = Sprite()
 		wakaba.TargetIcons:Load("gfx/ui/eid_wakaba_bosses.anm2", true)
 
@@ -939,3 +943,19 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
 	end
 	t_queueLastFrame = t_queueNow
 end)
+
+function wakaba:EIDPos()
+	local target_offset_y=0
+  local player_type = EID.player:GetPlayerType()
+  if wakaba.TextOffset[player_type] then
+    target_offset_y=math.max(wakaba.TextOffset[player_type] or 0)
+  end
+	if target_offset_y > 0 then
+		EID:addTextPosModifier("Pudding n Wakaba Pos", Vector(0,target_offset_y))
+	else
+		EID:removeTextPosModifier("Pudding n Wakaba Poss")
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER,wakaba.EIDPos)
+
+

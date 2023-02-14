@@ -483,6 +483,8 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local hasAftCartridge = false
 	local hasRepCartridge = false
 
+	local ignoreActiveFilter = true
+
 	local tagWhiteList = {}
 	local tagBlackList = {}
 	for i = 1, wakaba.G:GetNumPlayers() do
@@ -522,6 +524,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 			eatHeartUsed = true
 			eatHeartCharges = pData.wakaba.eatheartcharges
 		end
+		if wakaba:hasWaterFlame(player) then
+			tagWhiteList[ItemConfig.TAG_SUMMONABLE] = true
+		end
 	end
 
 	if wakaba.roomstate.allowactives == nil then
@@ -533,9 +538,6 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
 		AllowActives = false
 		validQuality["0"] = false
-	end
-	if wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
-		tagWhiteList[ItemConfig.TAG_SUMMONABLE] = true
 	end
 
 	local itemType = defaultPool
@@ -557,7 +559,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local isPoolCorrect = (itemPoolType == itemType) or randselected
 	local isRangeCorrect = selected and IsRangeCorrect(selected, hasIsaacCartridge, hasAftCartridge, hasRepCartridge)
-	local hasTagLimit = selected and TagCheck(selected, tagBlackList, tagWhiteList)
+	local hasTagLimit = selected and TagCheck(selected, tagBlackList, tagWhiteList, ignoreActiveFilter)
 	local isUnlocked = selected and wakaba:unlockCheck(selected)
 	local MinQuality = 0
 	local MaxQuality = 4

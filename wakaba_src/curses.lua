@@ -91,7 +91,7 @@ function wakaba:Curse_Evaluate(curse)
 			goto wakabaCurseSkip
 		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
-		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) then
+		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) or wakaba:hasWaterFlame(player) or wakaba:hasAlbireo(player) then
 			if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
 				curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_BLIND)
 			end

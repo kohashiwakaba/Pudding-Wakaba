@@ -161,7 +161,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Gives one of following weapons for current room:"
 		.. "{{CR}}",
 	},
-	[wakaba.Enums.Collectibles.THE_WINTER_ALBIREO] = {
+	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "The Winter Albireo",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
@@ -2347,7 +2347,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#She cannot get any passives normally, any attempt to get one will change it into item Wisp"
 		.. "#Actives can be collected normally"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Tainted Richer starts with Rabbit Ribbon"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.THE_WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Tainted Richer starts with Water-Flame"
 		--.. "#"
 		.. "",

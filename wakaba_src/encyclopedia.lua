@@ -3266,7 +3266,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.Enums.Collectibles.THE_WINTER_ALBIREO,
+		ID = wakaba.Enums.Collectibles.WINTER_ALBIREO,
 		Hide = true,
 		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
 		--WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MOE_MUFFIN,

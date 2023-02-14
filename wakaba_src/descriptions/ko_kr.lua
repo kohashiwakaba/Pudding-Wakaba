@@ -182,7 +182,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "맛집은 못 참지",
 	},
-	[wakaba.Enums.Collectibles.THE_WINTER_ALBIREO] = {
+	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "겨울의 알비레오",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
@@ -2488,7 +2488,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#일반적인 방법으로 패시브 아이템을 획득할 수 없으며 획득을 시도할 경우 아이템이 불꽃으로 변합니다."
 		.. "#액티브 아이템은 기존과 같은 방식으로 획득할 수 있습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.THE_WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} 고유 능력 : 워터 플레임"
 		--.. "#"
 		.. "",
