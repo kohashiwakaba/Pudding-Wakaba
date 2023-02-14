@@ -145,8 +145,8 @@ local RicherChar = {
 		TEARRANGE = 40 * 0,
 		TEARS = 0.6,
 		LUCK = -1,
-		FLYING = false,																 
-		TEARFLAG = TearFlags.TEAR_NORMAL | TearFlags.TEAR_QUADSPLIT,
+		FLYING = false,
+		TEARFLAG = TearFlags.TEAR_NORMAL,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
  
