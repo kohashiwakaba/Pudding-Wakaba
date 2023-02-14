@@ -127,7 +127,7 @@ function wakaba:PreTakeDamage_EatHeart(entity, amount, flags, source, countdown)
 		then
 			player = source.Entity:ToPlayer()
 		end
-		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then
+		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) and entity:IsVulnerableEnemy() then
 			if entity.HitPoints < amount then
 				amount = entity.HitPoints
 			end
