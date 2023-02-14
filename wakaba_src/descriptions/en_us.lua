@@ -30,6 +30,10 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "Richer",
 		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible260}} Grants immunity to curses",
 	},
+	[wakaba.Enums.Players.RICHER_B] = {
+		playerName = "Tainted Richer",
+		description = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame Grants additional passive per absorbed flame",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -155,6 +159,20 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Sweets Catalog",
 		description = ""
 		.. "#Gives one of following weapons for current room:"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.THE_WINTER_ALBIREO] = {
+		itemName = "The Winter Albireo",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{PlanetariumChance}} Planetariums always appear if possible"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		itemName = "Water-Flame",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
+		.. "#On use, absorbs the nearest passive pedestal and spawns copy wisp of the absorbed one."
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
@@ -954,6 +972,18 @@ wakaba.descriptions[desclang].tsukasa = {
 }
 wakaba.descriptions[desclang].tsukasa_b = {
 	
+}
+wakaba.descriptions[desclang].richer = {
+	
+}
+wakaba.descriptions[desclang].richer_b = {
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#On use, absorb selected Wisp"
+		.. "#Can be change selection by {{ButtonRT}}"
+		.. "{{CR}}",
+	},
 }
 wakaba.descriptions[desclang].bless = {
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -2307,6 +2337,18 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#She can improve her destiny with her ribbon"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"
+		--.. "#"
+		.. "",
+	},
+	[wakaba.Enums.Players.RICHER_B] = {
+		-- icon = "",
+		name = "Tainted Richer",
+		description = "Tainted Richer has a sweet body that is too delicate"
+		.. "#She cannot get any passives normally, any attempt to get one will change it into item Wisp"
+		.. "#Actives can be collected normally"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Tainted Richer starts with Rabbit Ribbon"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.THE_WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Tainted Richer starts with Water-Flame"
 		--.. "#"
 		.. "",
 	},

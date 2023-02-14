@@ -42,6 +42,11 @@ wakaba.descriptions[desclang].birthright = {
 		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible260}} 스테이지에 입장할 때 저주에 걸리지 않습니다.#{{CurseCursedSmall}} 획득 시 Labyrinth/챌린지/특수 시드를 제외한 모든 저주를 제거합니다.",
 		queueDesc = "저주 면역 + 지속성 달콤달콤",
 	},
+	[wakaba.Enums.Players.RICHER_B] = {
+		playerName = "Tainted Richer",
+		description = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
+		queueDesc = "점점 따뜻해져가는 달콤함",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -176,6 +181,22 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 무기 효과를 얻습니다:"
 		.. "{{CR}}",
 		queueDesc = "맛집은 못 참지",
+	},
+	[wakaba.Enums.Collectibles.THE_WINTER_ALBIREO] = {
+		itemName = "겨울의 알비레오",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{PlanetariumChance}} 가능한 경우, 천체관이 반드시 등장합니다."
+		.. "{{CR}}",
+		queueDesc = "저 너머로 이어져 있어",
+	},
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		itemName = "워터 플레임",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
+		.. "#사용 시 가장 가까이에 있는 패시브 아이템을 흡수하며, 흡수한 패시브의 불꽃을 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "역시 리셰쨩은 달콤해",
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		itemName = "사랑을 먹자",
@@ -1039,6 +1060,18 @@ wakaba.descriptions[desclang].tsukasa = {
 }
 wakaba.descriptions[desclang].tsukasa_b = {
 	
+}
+wakaba.descriptions[desclang].richer = {
+	
+}
+wakaba.descriptions[desclang].richer_b = {
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
+		.. "#사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다."
+		.. "#{{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다."
+		.. "{{CR}}",
+	},
 }
 wakaba.descriptions[desclang].bless = {
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -2445,6 +2478,18 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#그녀의 달콤한 걸 좋아하는 특성 덕분에 위기를 살짝 넘길 수 있게 되었습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 기본 소지 아이템 : 달콤달콤 카탈로그"
+		--.. "#"
+		.. "",
+	},
+	[wakaba.Enums.Players.RICHER_B] = {
+		-- icon = "",
+		name = "리셰(알트)",
+		description = "The Miko: 무척이나 달콤한 몸을 가진 그녀는 결국 민감해지기 마련입니다."
+		.. "#일반적인 방법으로 패시브 아이템을 획득할 수 없으며 획득을 시도할 경우 아이템이 불꽃으로 변합니다."
+		.. "#액티브 아이템은 기존과 같은 방식으로 획득할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.THE_WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} 고유 능력 : 워터 플레임"
 		--.. "#"
 		.. "",
 	},

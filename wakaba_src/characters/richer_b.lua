@@ -15,14 +15,14 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RicherTakeDmg) ]]
 
 
 local RicherChar = { 
-		DAMAGE = 1.0,
+		DAMAGE = 0.75,
 		SPEED = 0.1,
 		SHOTSPEED = 1.0,
-		TEARRANGE = 40 * 6.5,
+		TEARRANGE = 40 * 0,
 		TEARS = 0.6,
 		LUCK = -1,
 		FLYING = false,																 
-		TEARFLAG = TearFlags.TEAR_NORMAL | TearFlags.TEAR_HOMING,
+		TEARFLAG = TearFlags.TEAR_NORMAL | TearFlags.TEAR_QUADSPLIT,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
  
@@ -53,7 +53,7 @@ function wakaba:onRicherCache_b(player, cacheFlag)
 			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-			player.TearColor = RicherChar.TEARCOLOR
+			--player.TearColor = RicherChar.TEARCOLOR
 		end
 	end
 	
@@ -61,12 +61,12 @@ end
  
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRicherCache_b)
 
-
+---@param player EntityPlayer
 function wakaba:AfterRicherInit_b(player)
 	--print("Richer event passed")
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-		--player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_POCKET)
+		player:AddCollectible(wakaba.Enums.Collectibles.WATER_FLAME, 6, true, ActiveSlot.SLOT_POCKET)
 	end
 	
 	--[[ if Poglite then
@@ -105,23 +105,3 @@ function wakaba:RicherExit_b()
 	isRicherContinue = true
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.RicherExit_b)
-
--- Pause Screen Completion Marks API
---[[ PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.Enums.Players.WAKABA, function()
-	local wakabaCompletionTable = {
-		["MOMSHEART"] = wakaba.state.unlock.clover,
-		["ISAAC"] = wakaba.state.unlock.counter,
-		["SATAN"] = wakaba.state.unlock.dcupicecream,
-		["BLUEBABY"] = wakaba.state.unlock.pendant,
-		["LAMB"] = wakaba.state.unlock.revengefruit,
-		["BOSSRUSH"] = wakaba.state.unlock.donationcard,
-		["MEGASATAN"] = wakaba.state.unlock.whitejoker,
-		["HUSH"] = wakaba.state.unlock.colorjoker,
-		["DELIRIUM"] = wakaba.state.unlock.wakabauniform,
-		["MOTHER"] = wakaba.state.unlock.confessionalcard,
-		["BEAST"] = wakaba.state.unlock.returnpostage,
-		["ULTRAGREED"] = wakaba.state.unlock.secretcard,
-	}
-	return wakabaCompletionTable
-end) ]]
-

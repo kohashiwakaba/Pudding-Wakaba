@@ -129,7 +129,7 @@
 
 	<passive id="91" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="999" persistent="true" />
 	
-	<active id="92" description="Curse of Flames" gfx="waterflame.png" maxcharges="6" name="Water-Flame" tags="offensive nocantrip" quality="3"/>
+	<active id="92" description="Richer-chan is tasty" gfx="waterflame.png" maxcharges="6" name="Water-Flame" tags="offensive nocantrip" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true" achievement="999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" cache="all" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" />
