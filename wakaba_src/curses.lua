@@ -221,16 +221,16 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 				SFXManager():Stop(SoundEffect.SOUND_POWERUP2)
 				SFXManager():Stop(SoundEffect.SOUND_POWERUP3)
 				SFXManager():Stop(SoundEffect.SOUND_DEVILROOM_DEAL)
-				if player:FlushQueueItem() then
-					player:RemoveCollectible(heldItem.ID)
+				if isc:dequeueItem(player) then
+					--player:RemoveCollectible(heldItem.ID)
 					local familiar
 					familiar = player:AddItemWisp(heldItem.ID, player.Position, true)
 					if familiar then
 						familiar.Parent = collider
 						familiar.Player = player
 						if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then
-							familiar.CollisionDamage = familiar.CollisionDamage * 16
-							familiar.MaxHitPoints = familiar.MaxHitPoints * 16
+							familiar.CollisionDamage = familiar.CollisionDamage * 2
+							familiar.MaxHitPoints = familiar.MaxHitPoints * 2
 						end
 						familiar.HitPoints = familiar.MaxHitPoints
 					end

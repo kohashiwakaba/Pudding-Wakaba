@@ -6,6 +6,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 wakaba.TotalWisps = {}
 local totalwisps = wakaba.TotalWisps
+local hudLimit = wakaba.Enums.Constants.RICHER_B_HUD_LIMIT
 
 --[[ wakaba.TaintedRicherSelectionSprite=Sprite()
 wakaba.TaintedRicherSelectionSprite:Load("gfx/ui/wakaba/ui_richer_b.anm2",true)
@@ -15,7 +16,7 @@ wakaba.TaintedRicherSelectionSprite:SetFrame("HUD",0) ]]
 local function getRenderList(player)
 	local renderList = {}
 	local playerIndex = isc:getPlayerIndex(player)
-	local limit = 6
+	local limit = hudLimit
 	if totalwisps[playerIndex] then
 		local current = totalwisps[playerIndex]
 		local list = current.list
@@ -35,8 +36,8 @@ local function getRenderList(player)
 			limit = limit - 1
 		end
 	end
-	if #renderList < 6 then
-		for i = 1, 6 - #renderList do
+	if #renderList < hudLimit then
+		for i = 1, hudLimit - #renderList do
 			table.insert(renderList, 0)
 		end
 	end

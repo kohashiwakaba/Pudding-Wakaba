@@ -6,7 +6,7 @@ if EID then
   else
 
 		wakaba.TextOffset = {
-			[wakaba.Enums.Players.RICHER_B] = 20,
+			[wakaba.Enums.Players.RICHER_B] = wakaba.Enums.Constants.RICHER_B_HUD_OFFSET,
 		}
 
 		wakaba.TargetIcons = Sprite()
