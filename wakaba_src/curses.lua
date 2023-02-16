@@ -172,7 +172,7 @@ function wakaba:Curse_PlayerRender(player)
 	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
-	if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.RICHER and not isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
+	if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES, false)
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
