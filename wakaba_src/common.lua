@@ -139,19 +139,6 @@ function wakaba:GetPedestals(includeShop)
 	return Pedestals
 end
 
---[[ function wakaba:CustomStrawman(PlayerType, ControllerIndex)
-		PlayerType=PlayerType or 0
-		ControllerIndex=ControllerIndex or 0
-		local LastPlayerIndex=wakaba.G:GetNumPlayers()-1
-		if LastPlayerIndex>=63 then return nil else
-				Isaac.ExecuteCommand('addplayer '..PlayerType..' '..ControllerIndex)		--spawn the dude
-				local Strawman=Isaac.GetPlayer(LastPlayerIndex+1)
-				Strawman.Parent=Isaac.GetPlayer(0)																			--required for strawman hud
-				wakaba.G:GetHUD():AssignPlayerHUDs()
-				return Strawman
-		end
-end
- ]]
 --[[
 	Helper functions from Cadaver Mod
 ]]
