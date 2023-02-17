@@ -2,11 +2,6 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local voidentered = false
 
-
-wakaba.UniqueBirthrightSprites = {
-	[wakaba.Enums.Players.WAKABA] = "gfx/items/collectibles/birthright/wakaba_birthright.png",
-}
-
 local hasBeast = false
 local idle_timer = 0
 local timerfreeze = 0
@@ -1208,24 +1203,6 @@ function wakaba:Effect_TaintedWakabaReady()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Effect_TaintedWakabaReady)
-
---[[ 
-	Birthright code from "Unique Birthright Sprites" @Gouchnox
-	https://steamcommunity.com/sharedfiles/filedetails/?id=2690434875
-	Temporarily added for support Wakaba characters
- ]]
-function wakaba:UniqueBirthrightUpdate(e)
-	local player = Isaac.GetPlayer(0)
-	if e.Type == EntityType.ENTITY_PICKUP and e.Variant == PickupVariant.PICKUP_COLLECTIBLE and e.SubType == CollectibleType.COLLECTIBLE_BIRTHRIGHT 
-	and wakaba.G:GetLevel():GetCurses() & LevelCurse.CURSE_OF_BLIND ~= LevelCurse.CURSE_OF_BLIND 
-	and wakaba.UniqueBirthrightSprites[player:GetPlayerType()] then
-		local sprite = e:GetSprite()
-		sprite:ReplaceSpritesheet(1, wakaba.UniqueBirthrightSprites[player:GetPlayerType()])
-		sprite:LoadGraphics()
-	end
-end
-
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.UniqueBirthrightUpdate)
 
 -- Roll function from manaphoenix
 

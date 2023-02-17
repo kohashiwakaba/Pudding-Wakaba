@@ -509,6 +509,19 @@ wakaba.achievementsprite = {
 	doubledreams = "gfx/ui/achievement_wakaba/achievement_doubledreams.png", -- 99w
 }
 
+wakaba.Enums.UniqueItemsAppend = {
+	"Wakaba",
+	"Shiori",
+	"Tsukasa",
+	"Richer",
+}
+wakaba.Enums.UniqueItemsAppendTainted = {
+	"Wakaba",
+	"Shiori",
+	"Tsukasa",
+	"Richer",
+}
+
 wakaba.VoidFlags = {
 	NONE = 0,
 	VOID = 1,
