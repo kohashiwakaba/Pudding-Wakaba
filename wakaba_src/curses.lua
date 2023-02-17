@@ -5,30 +5,6 @@ if Isaac.GetCurseIdByName("Curse of Blight") > 0 then
 	wakaba.curses.CURSE_OF_BLIGHT = 1 << (Isaac.GetCurseIdByName("Curse of Blight") - 1)
 end
 
-function wakaba:Update_refreshWispSize()
-	if wakaba.wispupdaterequired then
-		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
-		for i, e in ipairs(wisps) do
-			if e.HitPoints > e.MaxHitPoints then
-				e.MaxHitPoints = e.MaxHitPoints * 16
-			end
-			--print("Wisp", e.SubType, "Updated!")
-		end
-		local iwisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
-		for i, e in ipairs(iwisps) do
-			if e.HitPoints > e.MaxHitPoints then
-				e.MaxHitPoints = e.MaxHitPoints * 16
-			end
-			--print("Item Wisp", e.SubType, "Updated!")
-		end
-
-	end
-	
-	wakaba.wispupdaterequired = false
-end
-
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_refreshWispSize)
-
 
 function wakaba:PostGetCollectible_BlackCandle(player, item)
 	if isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) and not isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B) then
@@ -228,11 +204,9 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					if familiar then
 						familiar.Parent = collider
 						familiar.Player = player
-						if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then
-							familiar.CollisionDamage = familiar.CollisionDamage * 2
-							familiar.MaxHitPoints = familiar.MaxHitPoints * 2
+						if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+							familiar.HitPoints = familiar.MaxHitPoints * 2
 						end
-						familiar.HitPoints = familiar.MaxHitPoints
 					end
 		
 					wakaba.G:GetLevel():UpdateVisibility()

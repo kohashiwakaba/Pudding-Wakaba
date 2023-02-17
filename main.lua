@@ -140,7 +140,6 @@ wakaba.costumecurrframe = 0
 wakaba.fullreroll = false
 wakaba.pedestalreroll = false
 
-wakaba.wispupdaterequired = false
 wakaba.unlockdisplaytimer = -(30*30)
 
 wakaba.playerstats = {}
@@ -1446,8 +1445,6 @@ function wakaba:init(continue)
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
 	--wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.HYDRA)
-
-	wakaba.wispupdaterequired = true
 end
 
 
