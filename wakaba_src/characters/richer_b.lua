@@ -51,8 +51,8 @@ function wakaba:Render_WaterFlame()
 		return
 	end
 
-	for i = 0, Game():GetNumPlayers() - 1 do
-		local player=Game():GetPlayer(i)
+	for i, player in ipairs(isc:getPlayers(true)) do
+		--local player=Game():GetPlayer(i)
 		if player:GetPlayerType() ~= playerType then goto skipWFRender end
 		local playerIndex = isc:getPlayerIndex(player)
 		local list = getRenderList(player)
