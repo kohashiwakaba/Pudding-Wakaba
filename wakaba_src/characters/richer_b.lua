@@ -3,6 +3,7 @@ local playerType = wakaba.Enums.Players.RICHER_B
 local removed = false
 local isRicherContinue = true
 local isc = require("wakaba_src.libs.isaacscript-common")
+wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RICHER_B, isc.HeartSubType.SOUL)
 
 wakaba.TotalWisps = {}
 local totalwisps = wakaba.TotalWisps
