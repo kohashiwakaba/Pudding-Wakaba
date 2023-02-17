@@ -41,7 +41,7 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 		if recent then
 			SFXManager():Play(SoundEffect.SOUND_POWERUP1)
 			player:AddCollectible(recent)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and  useFlags & UseFlag.USE_CARBATTERY ~= UseFlag.USE_CARBATTERY then
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and useFlags & UseFlag.USE_CARBATTERY ~= UseFlag.USE_CARBATTERY then
 				player:AddCollectible(recent)
 			end
 			wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(recent))
