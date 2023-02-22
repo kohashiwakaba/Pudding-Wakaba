@@ -840,6 +840,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "영혼 재생 + 체력 증가",
 	},
+	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
+		itemName = "서큐버스의 망토",
+		description = ""
+		.. "#↑ {{BlackHeart}}블랙하트 +1"
+		.. "#타이머가 1분 00초가 될 때마다 45%의 확률로 {{HalfBlackHeart}}블랙하트 반 칸을 회복합니다."
+		.. "{{CR}}",
+		queueDesc = "타락한 영혼 재생 + 체력 증가",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "커닝 페이퍼",
 		description = ""

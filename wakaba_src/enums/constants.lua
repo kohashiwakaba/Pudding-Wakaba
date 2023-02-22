@@ -55,6 +55,7 @@ wakaba.Enums.Collectibles = {
 	JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
 	CRISIS_BOOST = Isaac.GetItemIdByName("Crisis Boost"),
 	ONSEN_TOWEL = Isaac.GetItemIdByName("Onsen Towel"),
+	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
 
 	-- Wakaba items
 	BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),
@@ -108,13 +109,15 @@ wakaba.Enums.Collectibles = {
 	DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader"),
 	ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
 	RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
-	CHIERI = Isaac.GetItemIdByName("Chieri"),
 	CUNNING_PAPER = Isaac.GetItemIdByName("Cunning Paper"),
 	LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
-	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
 	BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
-	WATER_FLAME = Isaac.GetItemIdByName("Water Flame"),
+	WATER_FLAME = Isaac.GetItemIdByName("Water-Flame"),
 	TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
+
+	-- Rira items
+	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
+	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
 
 	-- Challenge items
 	PLUMY = Isaac.GetItemIdByName("Plumy"),
@@ -147,7 +150,7 @@ wakaba.Enums.Familiars = {
 	--LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
 	--LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
 	--BLACK_RIBBON = Isaac.GetEntityVariantByName("Black Ribbon Particle"),
-	--CHIERI = Isaac.GetEntityVariantByName("Chieri"),
+	--CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
 
 }
 

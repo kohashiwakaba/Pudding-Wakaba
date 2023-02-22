@@ -112,14 +112,14 @@
 	<active id="79" cache="all" description="Temporary Random Weapon" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="6" quality="3" tags="offensive book" hidden="true" achievement="999"/>
 	<active id="80" description="Room organize" gfx="caramellopancake.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive" hidden="true" achievement="999"/>
 
-	<familiar id="81" description="" gfx="chieri_placeholder.png" name="Chieri" devilprice="2" tags="offensive baby" quality="4" hidden="true" achievement="999"/>
+	<familiar id="81" description="" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby" quality="4" hidden="true" achievement="999"/>
 
-	<familiar id="82" description="" gfx="chieri_placeholder.png" name="Lil Richer" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
-	<familiar id="83" description="" gfx="chieri_placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
+	<familiar id="82" description="" gfx="chimaki_placeholder.png" name="Lil Richer" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
+	<familiar id="83" description="" gfx="chimaki_placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
 
-	<familiar id="84" description="" gfx="chieri_placeholder.png" name="Black Ribbon" tags="offensive baby stars" quality="3" hidden="true" achievement="999"/>
+	<familiar id="84" description="" gfx="chimaki_placeholder.png" name="Black Ribbon" tags="offensive baby stars" quality="3" hidden="true" achievement="999"/>
 
-	<active id="85" description="Richer-chan is tasty" gfx="waterflame.png" name="Water Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
+	<active id="85" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
 
 	<familiar id="86" description="???" gfx="easteregg.png" name="Easter Egg" tags="nogreed quest" quality="4" hidden="true" achievement="999"/>
 	<passive id="87" description="Less health, More strength" gfx="crisisboost.png" name="Crisis Boost" cache="damage firedelay" tags="offensive" quality="3" craftquality="2"/>
@@ -128,6 +128,8 @@
 	<active id="90" description="Don't Cheating!" gfx="cunningpaper.png" maxcharges="2" name="Cunning Paper" tags="offensive nocantrip" quality="1"/>
 
 	<passive id="91" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="999" persistent="true" />
+	
+	<passive id="92" description="Regeneration + HP up" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr" quality="1"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true" achievement="999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" cache="all" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" />

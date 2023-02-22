@@ -758,6 +758,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{HalfSoulHeart}} 45% Chance to heal half a soul heart every minute"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
+		itemName = "Succubus Blanket",
+		description = ""
+		.. "#↑ {{BlackHeart}} +1 Black Heart"
+		.. "#{{HalfBlackHeart}} 45% Chance to heal half a black heart every minute"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "Cunning Paper",
 		description = ""

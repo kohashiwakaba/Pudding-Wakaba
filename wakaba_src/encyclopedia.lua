@@ -4353,7 +4353,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.Enums.Collectibles.CHIERI,
+		ID = wakaba.Enums.Collectibles.CHIMAKI,
 		Hide = true,
 	})
 
