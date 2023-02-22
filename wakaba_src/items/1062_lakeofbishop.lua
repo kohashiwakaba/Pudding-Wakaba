@@ -79,7 +79,7 @@ end
 
  
 
-function wakaba:AfterRevival_CaramelloPancake(player)
+function wakaba:AfterRevival_CaramellaPancake(player)
 	if true --[[ player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B ]] then
 		player:ChangePlayerType(wakaba.Enums.Players.RICHER)
 		wakaba:AfterRicherInit(player)
@@ -91,7 +91,7 @@ function wakaba:AfterRevival_CaramelloPancake(player)
 		player:AddHearts(4)
 		player:AddSoulHearts(2)
 	end
-	player:RemoveCollectible(wakaba.Enums.Collectibles.CARAMELLO_PANCAKE)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
 end
 
 

@@ -2148,7 +2148,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Grants Curse of Darkenss immunity"},
 		},
 	},
-	CARAMELLO_PANCAKE = {
+	CARAMELLA_PANCAKE = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an extra life."},
@@ -4326,7 +4326,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.Enums.Collectibles.CARAMELLO_PANCAKE,
+		ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,
 		Hide = true,
 	})
 

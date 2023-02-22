@@ -102,7 +102,7 @@ wakaba.Enums.Collectibles = {
 
 	-- Richer items
 	WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo"),
-	CARAMELLO_PANCAKE = Isaac.GetItemIdByName("Caramello Pancake"),
+	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
 	_3D_PRINTER = Isaac.GetItemIdByName("3D Printer"),
 	VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation"),
 	FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),

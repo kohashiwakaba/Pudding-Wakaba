@@ -815,7 +815,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
 	},
-	[wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = {
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "카라멜로 팬케이크",
 		description = ""
 		.. "#↑ 목숨 +1"
@@ -889,7 +889,7 @@ wakaba.descriptions[desclang].bingeeater = {
 	--[[ [wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		description = "+1.0 Damage Up",
 	}, ]]
-	--[[ [wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = {
+	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		description = "+1.0 Damage Up",
 	}, ]]
 }

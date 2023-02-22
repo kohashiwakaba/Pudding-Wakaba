@@ -6,7 +6,7 @@ local customRevivalFunc = {
   [wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = function(player) wakaba:AfterRevival_GrimreaperDefender(player) end,
   [wakaba.Enums.Collectibles.SEE_DES_BISCHOFS] = function(player) wakaba:AfterRevival_LakeOfBishop(player) end,
   [wakaba.Enums.Collectibles.JAR_OF_CLOVER] = function(player) wakaba:AfterRevival_JarOfClover(player) end,
-  [wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = function(player) wakaba:AfterRevival_CaramelloPancake(player) end,
+  [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = function(player) wakaba:AfterRevival_CaramellaPancake(player) end,
   [wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = function(player) wakaba:AfterRevival_BookOfTheGod(player) end,
   [wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = function(player) wakaba:AfterRevival_BookOfTheFallen(player) end,
   [wakaba.Enums.Collectibles.VINTAGE_THREAT] = function(player) wakaba:AfterRevival_VintageThreat(player) end,
@@ -25,8 +25,8 @@ function wakaba:GetRevivalData(player)
     return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
   elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
     return {ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
-  elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLO_PANCAKE) then
-    return {ID = wakaba.Enums.Collectibles.CARAMELLO_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramelloPancake(player) end}
+  elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
+    return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end}
   elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
     return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
   elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
@@ -231,11 +231,11 @@ if DetailedRespawnGlobalAPI then
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("See Des Bischofs"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Caramello Pancake",
-    itemId = wakaba.Enums.Collectibles.CARAMELLO_PANCAKE,
+    name = "Caramella Pancake",
+    itemId = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,
     condition = function(_, player)
       local canRevive = wakaba:GetRevivalData(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.CARAMELLO_PANCAKE
+      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.CARAMELLA_PANCAKE
     end,
   }, DetailedRespawnGlobalAPI.RespawnPosition:After("Jar of Clover"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
@@ -245,7 +245,7 @@ if DetailedRespawnGlobalAPI then
       local canRevive = wakaba:GetRevivalData(player)
       return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN
     end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Caramello Pancake"))
+  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Caramella Pancake"))
   DetailedRespawnGlobalAPI:AddCustomRespawn({
     name = "Vintage Threat",
     itemId = wakaba.Enums.Collectibles.VINTAGE_THREAT,

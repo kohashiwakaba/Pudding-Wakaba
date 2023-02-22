@@ -22,8 +22,8 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
 		return {ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLO_PANCAKE) then
-		return {ID = wakaba.Enums.Collectibles.CARAMELLO_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramelloPancake(player) end}
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
+		return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
 		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then

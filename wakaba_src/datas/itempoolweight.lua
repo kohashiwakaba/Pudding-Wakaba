@@ -21,7 +21,7 @@ wakaba.ItemPoolWeights = {
     [wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = 1.0,
     [wakaba.Enums.Collectibles.JAR_OF_CLOVER] = 1.0,
     [wakaba.Enums.Collectibles.SEE_DES_BISCHOFS] = 1.0,
-    [wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = 1.0,
+    [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = 1.0,
   },
   [ItemPoolType.POOL_SHOP] = {
     [wakaba.Enums.Collectibles.WAKABAS_BLESSING] = 0.5,

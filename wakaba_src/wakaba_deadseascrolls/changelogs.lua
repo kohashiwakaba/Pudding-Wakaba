@@ -240,7 +240,7 @@ power bomb
 magma blade
 jar of clover
 see des bichofs
-caramello pancake
+caramella pancake
 isaac cartridge
 afterbirth cartridge
 repentance cartridge

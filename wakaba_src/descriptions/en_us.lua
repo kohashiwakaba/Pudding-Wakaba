@@ -737,8 +737,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Spawns restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
 		.. "{{CR}}",
 	},
-	[wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = {
-		itemName = "Caramello Pancake",
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
+		itemName = "Caramella Pancake",
 		description = ""
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} Respawn as Richer on death"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives"
@@ -804,7 +804,7 @@ wakaba.descriptions[desclang].bingeeater = {
 	--[[ [wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		description = "+1.0 {{Damage}}Damage Up",
 	}, ]]
-	--[[ [wakaba.Enums.Collectibles.CARAMELLO_PANCAKE] = {
+	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		description = "+1.0 {{Damage}}Damage Up",
 	}, ]]
 }

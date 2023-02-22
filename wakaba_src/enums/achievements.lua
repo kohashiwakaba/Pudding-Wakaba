@@ -35,7 +35,7 @@ wakaba.Achievements = {
 		Name = "richer",
 		Tags = {"Richer"},
 		NoInsertTags = {"Richer"},
-		Tooltip = {"the maid girl from caramello appears"}
+		Tooltip = {"the maid girl from caramella appears"}
 	},
 	-- Flipped side Character
 	{
