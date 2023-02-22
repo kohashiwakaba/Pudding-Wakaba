@@ -55,7 +55,6 @@ wakaba.Enums.Collectibles = {
 	JAR_OF_CLOVER = Isaac.GetItemIdByName("Jar of Clover"),
 	CRISIS_BOOST = Isaac.GetItemIdByName("Crisis Boost"),
 	ONSEN_TOWEL = Isaac.GetItemIdByName("Onsen Towel"),
-	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
 
 	-- Wakaba items
 	BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),
@@ -118,6 +117,10 @@ wakaba.Enums.Collectibles = {
 	-- Rira items
 	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
 	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
+
+	-- Tainted Items
+	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
+	MINT_CHOCO_ICECREAM = Isaac.GetItemIdByName("Mint Chocolate Ice-cream"),
 
 	-- Challenge items
 	PLUMY = Isaac.GetItemIdByName("Plumy"),

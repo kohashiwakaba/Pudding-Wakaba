@@ -204,6 +204,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
+		itemName = "Mint-Chocolate Ice Cream",
+		description = ""
+		.. "#↑ {{Tears}} +100% Fire rate Multiplier (Does not stack)"
+		.. "#↑ {{Tears}} +0.2 additional Fire rate per stack"
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "Mysterious game CD",
 		description = ""

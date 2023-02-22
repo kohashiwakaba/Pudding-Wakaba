@@ -1,15 +1,10 @@
 function wakaba:cacheUpdate24(player, cacheFlag)
-	if player:HasCollectible(wakaba.Enums.Collectibles.D_CUP_ICECREAM) then
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_SPEED then
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
-				player.MoveSpeed = player.MoveSpeed - (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM))
-			end
-		end
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = (player.Damage + (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM))) * 1.8
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
-				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM))
-			end
+	if player:HasCollectible(wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM) then
+		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM)
+		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+			local oldTears = wakaba:getTearsStat(player.MaxFireDelay)
+			player.MaxFireDelay = wakaba:getFireDelay(oldTears * 2)
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.2 * (count - 1))
 		end
 	end
 end

@@ -230,6 +230,15 @@ wakaba.descriptions[desclang].collectibles = {
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
 	},
+	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
+		itemName = "민트초코 아이스크림",
+		description = ""
+		.. "#↑ {{TearsSmall}}연사 +0.2"
+		.. "#↑ {{TearsSmall}}연사 배율 x2 (중첩 불가)"
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "연사 대폭 증가",
+	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "정체불명의 게임 CD",
 		description = ""

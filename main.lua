@@ -1069,6 +1069,14 @@ function wakaba:TearsUp(firedelay, val, ignoreNegative)
 	end
 end
 
+function wakaba:getTearsStat(firedelay)
+	return 30 / (firedelay + 1)
+end
+
+function wakaba:getFireDelay(tearsStat)
+	return math.max((30 / tearsStat) - 1, -0.75)
+end
+
 function wakaba:GetMaxCollectibleID()
 	return Isaac.GetItemConfig():GetCollectibles().Size -1
 end

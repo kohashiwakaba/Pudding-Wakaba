@@ -1557,6 +1557,12 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- D-Cup Ice-cream will be appeared in the food section even it is not unlocked."},
 		},
 	},
+	MINT_CHOCO_ICECREAM = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "x2 fire rate multiplier."},
+		},
+	},
 	WAKABAS_PENDANT = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2210,6 +2216,27 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Using Trial Stew in PM : TTYD reduces player's HP to 1, and FP to 0, but refills all star powers, which allows to use special moves."},
 		},
 	},
+
+	-----------------------------------------------------------------------------
+	------------------------------- Tainted Items -------------------------------
+	-----------------------------------------------------------------------------
+
+	--Mint Choco Icecream
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
+		Pools = {
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.dcupicecream < 1 then
+				self.Desc = "Defeat Satan as Wakaba"
+				
+				return self
+			end
+		end,
+	})
 
 	
 	-----------------------------------------------------------------------------
