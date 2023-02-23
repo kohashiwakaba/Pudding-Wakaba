@@ -1568,6 +1568,7 @@ function wakaba:GetPlayerEntityData(player)
 				tears = 0,
 				range = 0,
 				luck = 0,
+				hairpinluck = 0,
 				speed = 0,
 				shotspeed = 0,
 			},

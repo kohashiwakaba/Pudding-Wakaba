@@ -235,6 +235,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		itemName = "Wakaba's Hairpin",
+		description = ""
+		.. "#↑ {{Luck}} +0.25 Luck per pill consumed"
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "Secret Card",
 		description = ""
@@ -970,6 +978,9 @@ wakaba.descriptions[desclang].wakaba = {
 wakaba.descriptions[desclang].wakaba_b = {
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		description = "↑ {{Damage}} +4 Damage Up#↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		description = "↑ {{Damage}} +0.35 Damage per pill consumed#↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
 	},
 }
 wakaba.descriptions[desclang].shiori = {

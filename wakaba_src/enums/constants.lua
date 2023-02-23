@@ -121,6 +121,7 @@ wakaba.Enums.Collectibles = {
 	-- Tainted Items
 	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
 	MINT_CHOCO_ICECREAM = Isaac.GetItemIdByName("Mint Chocolate Ice-cream"),
+	WAKABAS_HAIRPIN = Isaac.GetItemIdByName("Wakaba's Hairpin"),
 
 	-- Challenge items
 	PLUMY = Isaac.GetItemIdByName("Plumy"),

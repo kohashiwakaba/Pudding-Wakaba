@@ -264,6 +264,15 @@ wakaba.descriptions[desclang].collectibles = {
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "공격력 증가 + 엄청난 강운",
 	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		itemName = "와카바의 헤어핀",
+		description = ""
+		.. "#↑ {{LuckSmall}}알약 사용 시마다 행운 +0.35"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "{{CR}}",
+		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "기분 좋은 느낌",
+	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "극비 카드",
 		description = ""
@@ -1060,6 +1069,9 @@ wakaba.descriptions[desclang].wakaba = {
 wakaba.descriptions[desclang].wakaba_b = {
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		description = "{{DamageSmall}}공격력 +4#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		description = "{{DamageSmall}}알약 사용 시마다 공격력 +0.35#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
 	},
 }
 wakaba.descriptions[desclang].shiori = {

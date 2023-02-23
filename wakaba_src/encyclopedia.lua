@@ -1578,6 +1578,17 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Wakaba's Pendant Locust deals 1.7x faster than normal locust."},
 		},
 	},
+	WAKABAS_HAIRPIN = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.25 Luck up per pill use."},
+			{str = "+1 Damage."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Tainted Wakaba will not grant any of luck ups. +0.25 Damage up per pill usage will be applied instead."},
+		},
+	},
 	SECRET_CARD = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2237,7 +2248,23 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			end
 		end,
 	})
-
+	
+	--Wakaba's Hairpin
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.WAKABAS_HAIRPIN,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_HAIRPIN,
+		Pools = {
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
+				self.Desc = "Defeat ??? as Wakaba"
+				
+				return self
+			end
+		end,
+	})
 	
 	-----------------------------------------------------------------------------
 	------------------------------- Challenge Unlocks ---------------------------
