@@ -22,7 +22,7 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
@@ -53,7 +53,7 @@
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="D-Cup Ice Cream" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>
+		<Item Name="D-Cup Ice Cream" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -113,7 +113,7 @@
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Prestige Pass" Weight="1" DecreaseBy="1" RemoveOn="0.05"/>
+		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -176,7 +176,7 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -276,7 +276,7 @@
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
@@ -360,7 +360,7 @@
 		<Item Name="Concentration" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Caramello Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
