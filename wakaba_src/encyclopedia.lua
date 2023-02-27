@@ -2242,6 +2242,12 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
 		},
 	},
+	RICHERS_UNIFORM = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, Different effects occur depending on room types."},
+		},
+	},
 	CUNNING_PAPER = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -4467,7 +4473,11 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.RICHERS_UNIFORM,
-		Hide = true,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_UNIFORM,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		},
 	})
 
 	Encyclopedia.AddItem({

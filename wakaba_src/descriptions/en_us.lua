@@ -795,6 +795,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{HalfBlackHeart}} 45% Chance to heal half a black heart every minute"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
+		itemName = "Richer's Uniform",
+		description = ""
+		.. "#{{SacrificeRoom}} Sets Sacrifice room spike counter to 6th"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "Cunning Paper",
 		description = ""

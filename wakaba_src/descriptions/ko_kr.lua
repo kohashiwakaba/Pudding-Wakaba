@@ -882,6 +882,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "타락한 영혼 재생 + 체력 증가",
 	},
+	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
+		itemName = "리셰쨩의 제복",
+		description = ""
+		.. "#{{SacrificeRoom}} 사용 시 희생방 가시의 희생 카운터를 6으로 설정합니다."
+		.. "{{CR}}",
+		queueDesc = "귀여운 건 최고!",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "커닝 페이퍼",
 		description = ""
