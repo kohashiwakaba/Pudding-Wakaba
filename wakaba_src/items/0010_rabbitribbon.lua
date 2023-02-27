@@ -69,7 +69,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRib
 
 function wakaba:TearCollision_RabbitRibbon(tear, entity, low)
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and entity:IsEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
-		if tear.FrameCount <= 7 then return false end
+		if tear.FrameCount <= 7 then 
+			entity:AddSlowing(EntityRef(tear), 30, 0.2, entity:GetSprite().Color)
+			--entity:TakeDamage(tear.FrameCount / 7, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(tear), 0)
+			return false 
+		end
 		--[[ local parent = tear.Parent
 		local distance = entity.Position:Distance(tear.Parent.Position)
 		print(distance)
