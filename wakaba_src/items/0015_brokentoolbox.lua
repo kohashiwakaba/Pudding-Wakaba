@@ -53,9 +53,10 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_BrokenToolbox)
 
 
-function wakaba:Update_BrokenToolbox()
+function wakaba:RoomClear_BrokenToolbox()
 	local count = isc:getTotalPlayerCollectibles(wakaba.Enums.Collectibles.BROKEN_TOOLBOX)
 	if count > 0 then
+		local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
 		for _, pickup in ipairs(pickups) do
 			if pickup.Variant ~= PickupVariant.PICKUP_BIGCHEST 
 			and pickup.Variant ~= PickupVariant.PICKUP_TROPHY then
