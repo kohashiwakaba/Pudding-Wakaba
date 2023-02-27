@@ -198,6 +198,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "역시 리셰쨩은 달콤해",
 	},
+	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
+		itemName = "망가진 도시락",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#클리어하지 않은 방에서 1초마다 픽업을 드랍합니다."
+		.. "#방 안에 픽업 및 아이템이 15개 이상 있으면 그 방의 픽업 및 아이템이 폭발합니다."
+		.. "{{CR}}",
+		queueDesc = "흘리지 않게 조심해!",
+	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		itemName = "사랑을 먹자",
 		description = ""

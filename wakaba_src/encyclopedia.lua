@@ -750,6 +750,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	WAKABAS_BLESSING = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Guarantees the Devil/Angel Room encountered to be an Angel Room."},
 			{str = "- Devil Rooms will no longer appear unless Isaac has Duality, Wakaba's Nemesis, or Black Joker."},
 			{str = "Prevents low-quality items from spawning. Greatly increasing quality of items received from all item pools."},
@@ -795,6 +797,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	WAKABAS_NEMESIS = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Armor-piercing tears"},
 			{str = "- some enemies like Hush have armor, taking less damage than regular enemies"},
 			{str = "All stats downs per item Isaac have."},
@@ -808,8 +812,9 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Angel Rooms will not appear even when using Sacrifice Room or Confessional."},
 			{str = "- If Confessional or a Sacrifice Room would give an Angel Room item, it will instead spawn Redemption if it is unlocked. NOTE: This is not 100% consistent."},
 			{str = "Prevents high-quality items from spawning. Greatly decreasing quality of items recieved from all item pools."},
-			{str = "- Items with a quality of 3+ are automatically rerolled."},
-			{str = "All Devil deals requires 6 coins."},
+			{str = "- Items with a quality of 4 are automatically rerolled."},
+			{str = "- Items with a quality of 3 have 50% chance to be rerolled."},
+			{str = "All collectibles on sale require soul hearts corresponding original devil price."},
 			{str = "All penalties by taking damage are removed. See synergies."},
 		},
 		{ -- Notes
@@ -848,6 +853,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	WAKABA_DUALITY = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Armor-piercing tears"},
 			{str = "- some enemies like Hush have armor, taking less damage than regular enemies"},
 			{str = "Upon picking up an item, Isaac gains a +3.6 temporary damage boost."},
@@ -857,8 +864,9 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Guarenteed Devil/Angel rooms. An Devil/Angel Room Door will always spawn after every boss fight."},
 			{str = "- The spawned door will not disappear when leaving and re-entering the boss room (except in Greed Mode)"},
 			{str = "- If Confessional or a Sacrifice Room would give an Angel Room item, it will instead spawn Redemption if it is unlocked. NOTE: This is not 100% consistent."},
-			{str = "All Devil deals requires 6 coins."},
+			{str = "All collectibles on sale require soul hearts corresponding original devil price."},
 			{str = "All collectibles can be picked up without removing other items."},
+			{str = "- To prevent softlock, Options in Death Certificate rooms will not be removed."},
 			{str = "All penalties by taking damage are removed. See synergies."},
 		},
 		{ -- Notes
@@ -888,6 +896,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	BOOK_OF_SHIORI = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Activates additional effect when book active items are being used."},
 			{str = "Shiori also gains extra tear effect when book active items are being used."},
 			{str = "extra tear effect changes on next book usage."},
@@ -1056,6 +1066,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	LUNAR_STONE = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Grants Extra life."},
 			{str = "- Extra lives are not limited as long as Isaac has Lunar Stone."},
 			{str = "Reduces max heart limit to 8."},
@@ -1140,6 +1152,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	ELIXIR_OF_LIFE = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind and Unknown immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Removes invincibility frames."},
 			{str = "Regenerates health for fast time if Isaac did not get hit for brief time."},
 			{str = "All soul hearts are converted into bone hearts if Isaac can get Heart containers."},
@@ -1237,6 +1251,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	RABBIT_RIBBON = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "If any curse is applied, replaces it into new curse."},
 			{str = "Curse of Sniper : Replaces Curse of Darkenss, Richer cannot damage enemies in point blank range."},
 			{str = "Curse of Labyrinth : Spawns extra special rooms"},
@@ -1282,6 +1298,46 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		}, ]]
 	},
 
+	WATER_FLAME = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
+			{str = "On use, consumes nearby passive collectible and spawns extra item wisp that consumed."},
+		},
+	},
+
+	WINTER_ALBIREO = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Planetariums always appear."},
+		},
+	},
+
+	CHIMAKI = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "ssssssssssssssss"},
+			{str = "ssssssssssssssss"},
+		},
+	},
+	SYNCRO_CANDY = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "ssssssssssssssss"},
+			{str = "ssssssssssssssss"},
+		},
+	},
+
+	BROKEN_TOOLBOX = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
+			{str = "While in uncleared room, Spawns a pickup per second."},
+			{str = "All pickups explode if 15 or more on the room."},
+		},
+	},
 	
 	-----------------------------------------------------------------------------
 	----------------------------- Default Collectibles --------------------------
@@ -2228,44 +2284,18 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		},
 	},
 
+	
+	-----------------------------------------------------------------------------
+	-------------------------------- Rira Unlocks -------------------------------
+	-----------------------------------------------------------------------------
+
+
+
 	-----------------------------------------------------------------------------
 	------------------------------- Tainted Items -------------------------------
 	-----------------------------------------------------------------------------
 
-	--Mint Choco Icecream
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
-		ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
-		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
-		Pools = {
-		},
-		UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.dcupicecream < 1 then
-				self.Desc = "Defeat Satan as Wakaba"
-				
-				return self
-			end
-		end,
-	})
-	
-	--Wakaba's Hairpin
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
-		ID = wakaba.Enums.Collectibles.WAKABAS_HAIRPIN,
-		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_HAIRPIN,
-		Pools = {
-		},
-		UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
-				self.Desc = "Defeat ??? as Wakaba"
-				
-				return self
-			end
-		end,
-	})
-	
+
 	-----------------------------------------------------------------------------
 	------------------------------- Challenge Unlocks ---------------------------
 	-----------------------------------------------------------------------------
@@ -3281,6 +3311,9 @@ if Encyclopedia then
 				if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 					hasRicher = true
 				end
+				if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+					hasRicher = true
+				end
 			end
 			if not hasRicher then
 				self.Desc = "Only available for Richer"
@@ -3321,14 +3354,20 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WINTER_ALBIREO,
-		Hide = true,
-		--ID = wakaba.Enums.Collectibles.MOE_MUFFIN,
-		--WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MOE_MUFFIN,
-		Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
-		},
+		UnlockFunc = function(self)
+			local hasRicher = false
+			for i = 1, wakaba.G:GetNumPlayers() do
+				local player = Isaac.GetPlayer(i - 1)
+				if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+					hasRicher = true
+				end
+			end
+			if not hasRicher then
+				self.Desc = "Only available for Tainted Richer"
+				
+				return self
+			end
+		end,
 	})
 	
 
@@ -3336,9 +3375,40 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WATER_FLAME,
-		Hide = true,
+		UnlockFunc = function(self)
+			local hasRicher = false
+			for i = 1, wakaba.G:GetNumPlayers() do
+				local player = Isaac.GetPlayer(i - 1)
+				if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+					hasRicher = true
+				end
+			end
+			if not hasRicher then
+				self.Desc = "Only available for Tainted Richer"
+				
+				return self
+			end
+		end,
 	})
 
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.CHIMAKI,
+		Hide = true,
+	})
+	
+	--Broken Toolbox
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.BROKEN_TOOLBOX,
+		Hide = true,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BROKEN_TOOLBOX,
+		Pools = {
+		},
+	})
 	
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4407,21 +4477,7 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.Enums.Collectibles.CHIMAKI,
-		Hide = true,
-	})
-
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
 		ID = wakaba.Enums.Collectibles.LIL_RICHER,
-		Hide = true,
-	})
-
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
-		ID = wakaba.Enums.Collectibles.LIL_RIRA,
 		Hide = true,
 	})
 
@@ -4450,6 +4506,65 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.TRIAL_STEW,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
 	})
+
+
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.LIL_RIRA,
+		Hide = true,
+	})
+
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+	---------------------------------------------------------------------
+
+	--Mint Choco Icecream
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
+		Pools = {
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.dcupicecream < 1 then
+				self.Desc = "Defeat Satan as Wakaba"
+				
+				return self
+			end
+		end,
+	})
+	
+	--Wakaba's Hairpin
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.WAKABAS_HAIRPIN,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_HAIRPIN,
+		Pools = {
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
+				self.Desc = "Defeat ??? as Wakaba"
+				
+				return self
+			end
+		end,
+	})
+	
 
 	
 	---------------------------------------------------------------------

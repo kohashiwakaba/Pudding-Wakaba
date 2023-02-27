@@ -101,7 +101,6 @@ wakaba.Enums.Collectibles = {
 
 	-- Richer items
 	WINTER_ALBIREO = Isaac.GetItemIdByName("The Winter Albireo"),
-	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
 	_3D_PRINTER = Isaac.GetItemIdByName("3D Printer"),
 	VENOM_INCANTATION = Isaac.GetItemIdByName("Venom Incantation"),
 	FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),
@@ -115,8 +114,23 @@ wakaba.Enums.Collectibles = {
 	TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
 
 	-- Rira items
+	--BLACK_BEAN_MOCHI = Isaac.GetItemIdByName("Chimaki"),
+	--SAKURA_MONT_BLANC = Isaac.GetItemIdByName("Chimaki"),
+	--NERF_GUN = Isaac.GetItemIdByName("Chimaki"),
+	--RIRAS_BENTO = Isaac.GetItemIdByName("Chimaki"),
+	--CHEWY_ROLLY_CAKE = Isaac.GetItemIdByName("Chimaki"),
+	--CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
+	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
+	--SECRET_DOOR = Isaac.GetItemIdByName("Chimaki"),
+	--RIRAS_BANDAGE = Isaac.GetItemIdByName("Chimaki"),
 	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
 	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
+	--SAKURA_CAPSULE = Isaac.GetItemIdByName("Chimaki"),
+	--MAID_DUET = Isaac.GetItemIdByName("Chimaki"),
+	--SYNCRO_CANDY = Isaac.GetItemIdByName("Chimaki"),
+	
+	--CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
+	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
 
 	-- Tainted Items
 	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
@@ -131,6 +145,7 @@ wakaba.Enums.Collectibles = {
 	LIL_MAO = Isaac.GetItemIdByName("Lil Mao"),
 	ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition"),
 	BALANCE = Isaac.GetItemIdByName("Balance ecnalaB"),
+	RICHERS_FLIPPER = Isaac.GetItemIdByName("Richer's Flipper"),
 	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 

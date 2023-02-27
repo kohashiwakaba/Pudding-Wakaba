@@ -175,6 +175,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#On use, absorbs the nearest passive pedestal and spawns copy wisp of the absorbed one."
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
+		itemName = "Broken Toolbox",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#While in uncleared room, Spawns a pickup per second"
+		.. "#All pickups explode if 15 or more on the room."
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		itemName = "Eat Heart",
 		description = ""
