@@ -582,6 +582,13 @@ wakaba.descriptions[desclang].collectibles = {
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "소모품 교환소 + 동전 10개",
 	},
+	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
+		itemName = "리셰의 뒤집개",
+		description = ""
+		.. "#사용 시 {{Bomb}}/{{Key}} 및 {{Card}}/{{Pill}} 픽업을 각각 반대 타입으로 바꿉니다."
+		.. "{{CR}}",
+		queueDesc = "소모품 뒤집기",
+	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "모에의 머핀",
 		description = ""

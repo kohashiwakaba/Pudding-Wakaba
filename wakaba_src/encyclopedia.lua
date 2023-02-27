@@ -2492,6 +2492,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm."},
 		},
 	},
+	
+	RICHERS_FLIPPER = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, flips a group of pickups each other."},
+			{str = "- Bombs and Keys"},
+			{str = "- Cards/Runes and Pills"},
+		},
+	},
 
 
 	EDEN_STICKY_NOTE = {
@@ -4793,6 +4802,26 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.lilmao and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_HOLD then
 				self.Desc = "Complete Hold Me (challenge No.14w)"
+				
+				return self
+			end
+		end,
+	})
+	
+	--Richer's Flipper
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RICHERS_FLIPPER,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_FLIPPER,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.richerflipper then
+				self.Desc = "Complete Even or Odd (challenge No.15w)"
 				
 				return self
 			end

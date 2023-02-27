@@ -2559,6 +2559,24 @@ if MCM then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
+				return wakaba.state.unlock.richerflipper
+			end,
+			Display = function()
+				local p = 1
+				if wakaba.state.unlock.richerflipper then p = 2 end
+				return "Richer's Flipper : " .. booleanunlockstats[p]
+			end,
+			Info = {
+				"Complete 'Even or Odd' (Challenge w15)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Unlock",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
 				return wakaba.state.unlock.edensticky
 			end,
 			Display = function()

@@ -460,6 +460,7 @@ local richer_saved_recipies = {
 			deliverysystem = false,--12w Isekai Definition
 			calculation = false,--13w Calculation
 			lilmao = false,--14w Hold Me!
+			richerflipper = false,--15w Even or Odd
 		
 			edensticky = false,--98w T.Eden Starts with Sticky Note
 			doubledreams = false, -- 99w Wakaba's Double Dreams
@@ -782,6 +783,7 @@ wakaba.unlocks = {
 	deliverysystem = false,--12w Isekai Definition
 	calculation = false,--13w Calculation
 	lilmao = false,--14w Hold Me!
+	richerflipper = false,--15w Even or Odd
 
 	edensticky = false,--98w T.Eden Starts with Sticky Note
 	doubledreams = false, -- 99w Wakaba's Double Dreams
@@ -1278,6 +1280,8 @@ include('wakaba_src.items.1066_richeruniform')
 include('wakaba_src.items.1067_magmablade')
 include('wakaba_src.items.1068_onsentowel')
 include('wakaba_src.items.1069_cunningpaper')
+--include('wakaba_src.items.1070_lilricher')
+include('wakaba_src.items.1071_richerflipper')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')
@@ -1967,7 +1971,8 @@ function wakaba:unlockChallenge(bool)
 	wakaba.state.unlock.apollyoncrisis = true--11w Apollyon Crisis
 	wakaba.state.unlock.deliverysystem = true--12w Isekai Definition
 	wakaba.state.unlock.calculation = true--13w Calculation
-	wakaba.state.unlock.lilmao = true--13w Calculation
+	wakaba.state.unlock.lilmao = true--14w Hold Me
+	wakaba.state.unlock.richerflipper = true--15w Even or Odd
 	wakaba.state.unlock.edensticky = true--98w T.Eden Starts with Sticky Note
 	wakaba.state.unlock.doubledreams = true -- 99w Wakaba's Double Dreams
 

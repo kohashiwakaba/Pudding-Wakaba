@@ -951,6 +951,12 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lilmao)
 			end
 			wakaba:CheckWakabaChecklist()
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and bossID == 88 then
+			if not wakaba.state.unlock.richerflipper then 
+				wakaba.state.unlock.richerflipper = true 
+				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.richerflipper)
+			end
+			wakaba:CheckWakabaChecklist()
 		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND and bossID == 70 then
 			if not wakaba.state.unlock.edensticky then 
 				wakaba.state.unlock.edensticky = true 

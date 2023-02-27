@@ -530,6 +530,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
+	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
+		itemName = "Richer's Flipper",
+		description = ""
+		.. "#Converts {{Bomb}}/{{Key}} and {{Card}}/{{Pill}} each other"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "Moe's Muffin",
 		description = ""
