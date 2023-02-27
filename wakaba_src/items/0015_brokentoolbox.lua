@@ -56,6 +56,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_BrokenToolbox)
 function wakaba:RoomClear_BrokenToolbox()
 	local count = isc:getTotalPlayerCollectibles(wakaba.Enums.Collectibles.BROKEN_TOOLBOX)
 	if count > 0 then
+		local players = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.BROKEN_TOOLBOX)
+		for _, player in ipairs(players) do
+			player:SetMinDamageCooldown(2)
+		end
 		local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
 		for _, pickup in ipairs(pickups) do
 			if pickup.Variant ~= PickupVariant.PICKUP_BIGCHEST 
@@ -63,10 +67,6 @@ function wakaba:RoomClear_BrokenToolbox()
 				ToolboxExplode(pickup, false)
 				pickup:Remove()
 			end
-		end
-		local players = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.BROKEN_TOOLBOX)
-		for _, player in ipairs(players) do
-			player:SetMinDamageCooldown(2)
 		end
 	end
 end
