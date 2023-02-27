@@ -40,11 +40,11 @@ function wakaba:Update_BrokenToolbox()
 		else
 			local players = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.BROKEN_TOOLBOX)
 			for _, player in ipairs(players) do
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, 0, player.Position, Vector.Zero, player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, isc.PickupNullSubType.EXCLUDE_COLLECTIBLES, player.Position, Vector.Zero, player)
 			end
 			--[[ local riraPlayers = isc:getPlayersOfType()
 			for _, player in ipairs(riraPlayers) do
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, 0, player.Position, Vector.Zero, player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, 0, isc.PickupNullSubType.EXCLUDE_COLLECTIBLES, player.Position, Vector.Zero, player)
 			end ]]
 		end
 	end
