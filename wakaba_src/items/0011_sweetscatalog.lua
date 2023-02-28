@@ -106,6 +106,7 @@ end
 
 function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varData)
 	local playerIndex = isc:getPlayerIndex(player)
+	local previewItem = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
 		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
@@ -157,7 +158,6 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 		end
 		--print("chosenVal:",chosenVal)
 
-		local previewItem = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
 		if wakaba.CatalogItems[chosenVal] then
 			previewItem = wakaba.CatalogItems[chosenVal].MainItem
