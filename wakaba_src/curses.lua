@@ -5,6 +5,13 @@ if Isaac.GetCurseIdByName("Curse of Blight") > 0 then
 	wakaba.curses.CURSE_OF_BLIGHT = 1 << (Isaac.GetCurseIdByName("Curse of Blight") - 1)
 end
 
+local function IsExtraRoom(idx)
+	local isExtraRoom = false
+	if SamaelMod and SamaelMod.IsFragmentRoom and SamaelMod.IsDeathDealRoom then
+		isExtraRoom = SamaelMod:IsFragmentRoom(idx) or SamaelMod:IsDeathDealRoom(idx)
+	end
+	return isExtraRoom
+end
 
 function wakaba:PostGetCollectible_BlackCandle(player, item)
 	if isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) and not isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B) then
@@ -158,7 +165,7 @@ function wakaba:Curse_PlayerRender(player)
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS)
 			wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SNIPER, false)
 		end
-		if isc:hasCurse(LevelCurse.CURSE_OF_THE_LOST) then
+		if isc:hasCurse(LevelCurse.CURSE_OF_THE_LOST) and not IsExtraRoom() then
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_LOST)
 			wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_FAIRY, false)
 		end
@@ -174,7 +181,7 @@ function wakaba:Curse_PlayerRender(player)
 	if player:HasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then
 		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS | wakaba.curses.CURSE_OF_SNIPER)
 	end
-	if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.RED_CORRUPTION) and not IsExtraRoom() then
 		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_LOST | wakaba.curses.CURSE_OF_FAIRY)
 	end
 end
