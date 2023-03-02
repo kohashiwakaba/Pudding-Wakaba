@@ -26,9 +26,9 @@
 	- 침대방 : 
 	- 출구방 : 
 
-	- 관측소(갓모드) : 
-	- 썩은 보물방(Tainted Treasure) : 
-	- 버려진 천체관(안드로메다) : 
+	- 관측소(갓모드) : 가장 가까이에 있는 장신구 흡수
+	- 썩은 보물방(Tainted Treasure) : 제시된 아이템을 소모하지 않고 해당 알트 아이템 획득
+	- 버려진 천체관(안드로메다) : 해당 방을 천체관으로 교체
 	- 천체보스방(Heaven's Call) : 
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
