@@ -302,6 +302,7 @@ wakaba.Enums.Constants = {
 	DIMENSION_CUTTER_GREED_MIN_RATE = 5,
 	DIMENSION_CUTTER_GREED_LUCK_RATE = 2,
 	DIMENSION_CUTTER_GREED_MAX_RATE = 25,
+	SSRC_ALLOW_FLAMES = 8,
 }
 
 -- 시오리/알트시오리 배터리 획득 시 충전량
@@ -377,6 +378,7 @@ wakaba.challenges = {
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99
 	CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
+	CHALLENGE_SSRC = Isaac.GetChallengeIdByName("[wb2] Super Sensitive Richer-chan"), --wb2
 }
 
 wakaba.useflag = {

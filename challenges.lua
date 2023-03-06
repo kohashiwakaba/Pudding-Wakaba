@@ -54,6 +54,7 @@ end
 function wakaba:isBeast()
 	local beast = false
 	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS 
+	or wakaba.G.Challenge == Challenges.CHALLENGE_SSRC
 	then
 		beast = true
 	end
@@ -100,6 +101,15 @@ function wakaba:challengeItemCheck(player)
 			player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
 		elseif wakaba.G.Challenge == Challenges.CHALLENGE_DRMS and player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.DOUBLE_DREAMS then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS, ActiveSlot.SLOT_POCKET, true)
+		elseif wakaba.G.Challenge == Challenges.CHALLENGE_SSRC then
+			if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.WATER_FLAME then
+				player:SetPocketActiveItem(wakaba.Enums.Collectibles.WATER_FLAME, ActiveSlot.SLOT_POCKET, true)
+			end
+			if player:GetData().wakaba and player:GetData().wakaba.flamecnt > 0 then
+				player:SetActiveCharge(200000, ActiveSlot.SLOT_POCKET)
+			else
+				player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
+			end
 		end
 	end
 end
@@ -186,6 +196,11 @@ function wakaba:PostChallengePlayerInit(player)
 		player:AddKeys(6)
 		wakaba.G:GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
 		Isaac.ExecuteCommand("goto s.boss.3414")
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_SSRC then
+		player:GetData().wakaba.flamecnt = wakaba.Enums.Constants.SSRC_ALLOW_FLAMES
+		player:AddMaxHearts(-6)
+		player:AddSoulHearts(6)
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.WATER_FLAME, ActiveSlot.SLOT_POCKET, true)
 	end
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostChallengePlayerInit)
@@ -451,26 +466,6 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Delivery)
 
 
---[[ function wakaba:ProjectileUpdate_Challenge(tear)
-
-	if wakaba.G.Challenge == Challenges.CHALLENGE_SLNT then
-		tear:GetData().wakabaInit = true
-		tear:AddProjectileFlags(ProjectileFlags.SLOWED)
-		tear:ClearProjectileFlags(ProjectileFlags.GHOST)
-		tear:ClearProjectileFlags(ProjectileFlags.NO_WALL_COLLIDE)
-		tear:AddProjectileFlags(ProjectileFlags.ANY_HEIGHT_ENTITY_HIT)
-		tear:AddFallingSpeed((tear.FallingSpeed * -1))
-		tear:AddFallingAccel((tear.FallingAccel * -1))
-		if tear.Acceleration > 1.3 then
-			tear.Acceleration = 1.3
-		end
-		tear.Height = -10
-		
-	end
-
-end ]]
---wakaba:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, wakaba.ProjectileUpdate_Challenge)
-
 function wakaba:ChallengePostLevel()
 	local level = wakaba.G:GetLevel()
 	
@@ -544,6 +539,46 @@ function wakaba:cacheChallenges(player, cacheFlag)
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.cacheChallenges)
 
+---와카바 뒤집기
+---@param prevTainted boolean
+local function TryFlipWakaba(prevTainted)
+	player:GetData().wakaba.maxitemnum = player:GetData().wakaba.maxitemnum or -1
+	player:ChangePlayerType(prevTainted and wakaba.Enums.Players.WAKABA or wakaba.Enums.Players.WAKABA_B)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_D6, false, false, false, false, -1)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, false, false, false, false, -1)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, false, false, false, false, -1)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_D12, false, false, false, false, -1)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_D20, false, false, false, false, -1)
+					
+	local removedcount = 0
+	local maxnum = -1
+	local itemcount = wakaba:GetMinTMTRAINERNumCount(player)
+	while removedcount < itemcount do
+		local config = Isaac.GetItemConfig():GetCollectible(maxnum)
+		if config and player:HasCollectible(maxnum) then
+			player:RemoveCollectible(maxnum)
+			removedcount = removedcount + 1
+		end
+		maxnum = maxnum - 1
+	end
+	local addedcount = 0
+	while addedcount < itemcount do
+		local id = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE)
+		local config = Isaac.GetItemConfig():GetCollectible(id)
+		Isaac.DebugString(config.Type .. " " .. player:GetActiveItem() .. " ")
+		if config.Type ~= ItemType.ITEM_ACTIVE or player:GetActiveItem() == 0 then
+			player:AddCollectible(id)
+			addedcount = addedcount + 1
+		end
+	end
+
+	player:AnimateSad()
+	randtainted = prevTainted
+	player:SetPocketActiveItem(prevTainted and wakaba.Enums.Collectibles.WAKABAS_CURFEW or wakaba.Enums.Collectibles.WAKABAS_CURFEW2, ActiveSlot.SLOT_POCKET, false)
+	SFXManager():Play(prevTainted and SoundEffect.SOUND_LAZARUS_FLIP_DEAD or SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
+
+end
+
 function wakaba:PostWakabaChallengeUpdate()
 	if wakaba.G.Challenge == Challenges.CHALLENGE_PULL then
 		local player = Isaac.GetPlayer()
@@ -594,98 +629,10 @@ function wakaba:PostWakabaChallengeUpdate()
 			
 			if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 900 or player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) > 0 then
 				wakaba.roomstate.allowactives = false
-				player:TryRemoveNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-				player:TryRemoveNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_b.anm2"))
-				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-					player:GetData().wakaba.maxitemnum = player:GetData().wakaba.maxitemnum or -1
-					player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D6, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D12, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D20, false, false, false, false, -1)
-					
-					
-					local removedcount = 0
-					local maxnum = -1
-					local itemcount = wakaba:GetMinTMTRAINERNumCount(player)
-					while removedcount < itemcount do
-						local config = Isaac.GetItemConfig():GetCollectible(maxnum)
-						if config and player:HasCollectible(maxnum) then
-							player:RemoveCollectible(maxnum)
-							removedcount = removedcount + 1
-						end
-						maxnum = maxnum - 1
-					end
-					local addedcount = 0
-					while addedcount < itemcount do
-						local id = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE)
-						local config = Isaac.GetItemConfig():GetCollectible(id)
-						Isaac.DebugString(config.Type .. " " .. player:GetActiveItem() .. " ")
-						if config.Type ~= ItemType.ITEM_ACTIVE or player:GetActiveItem() == 0 then
-							player:AddCollectible(id)
-							addedcount = addedcount + 1
-						end
-					end
-					--player:UseActiveItem(CollectibleType.COLLECTIBLE_D4, false, false, false, false, -1)
-
-
-					newhealth = player:GetSoulHearts()
-					player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
-					player:AnimateSad()
-					randtainted = false
-					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, false)
-					--randinterval = 300
-					SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
-				else
-					player:GetData().wakaba.maxitemnum = player:GetData().wakaba.maxitemnum or -1
-					player:ChangePlayerType(Isaac.GetPlayerTypeByName("WakabaB", true))
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D6, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D12, false, false, false, false, -1)
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_D20, false, false, false, false, -1)
-
-					local removedcount = 0
-					local maxnum = -1
-					local itemcount = wakaba:GetMinTMTRAINERNumCount(player)
-					Isaac.DebugString("[wakaba]Rem Start " .. maxnum .. " " .. removedcount .. " " .. itemcount)
-					--print(itemcount)
-					while removedcount < itemcount do
-						local config = Isaac.GetItemConfig():GetCollectible(maxnum)
-						if config and player:HasCollectible(maxnum) then
-							player:RemoveCollectible(maxnum)
-							Isaac.DebugString("[wakaba]Removed " .. config.Name .. " " .. removedcount .. " " .. itemcount)
-							removedcount = removedcount + 1
-						end
-						maxnum = maxnum - 1
-					end
-					local addedcount = 0
-					Isaac.DebugString("[wakaba]Adding items...")
-					while addedcount < itemcount do
-						local id = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE)
-						local config = Isaac.GetItemConfig():GetCollectible(id)
-						Isaac.DebugString(config.Type .. " " .. player:GetActiveItem() .. " ")
-						if config.Type ~= ItemType.ITEM_ACTIVE or player:GetActiveItem() == 0 then
-							player:AddCollectible(id)
-							addedcount = addedcount + 1
-						end
-					end
-					--player:UseActiveItem(CollectibleType.COLLECTIBLE_D4, false, false, false, false, -1)
-
-					player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_b.anm2"))
-					player:AnimateSad()
-					randtainted = true
-					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW2, ActiveSlot.SLOT_POCKET, false)
-					--randinterval = 300
-					SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
-				end
+				TryFlipWakaba(false)
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_RESTOCK) then
 					player:RemoveCollectible(CollectibleType.COLLECTIBLE_RESTOCK)
 					player:AddCollectible(CollectibleType.COLLECTIBLE_BREAKFAST)
-				end
-				if player:HasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) then
-					player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
 				end
 				player:DischargeActiveItem(ActiveSlot.SLOT_POCKET)
 				player:EvaluateItems()
@@ -697,7 +644,7 @@ function wakaba:PostWakabaChallengeUpdate()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostWakabaChallengeUpdate)
 
-function wakaba:prePickupCollisionChallenge_Delivery(pickup, colliders, low)
+function wakaba:prePickupCollision_Challenge(pickup, colliders, low)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_APPL then
 		local id = pickup.SubType
 		local config = Isaac.GetItemConfig():GetCollectible(id)
@@ -722,7 +669,7 @@ function wakaba:prePickupCollisionChallenge_Delivery(pickup, colliders, low)
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollisionChallenge_Delivery, PickupVariant.PICKUP_COLLECTIBLE)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_Challenge, PickupVariant.PICKUP_COLLECTIBLE)
 
 function wakaba:pullDamage(target, damage, flags, source, cooldown)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_PULL then
@@ -791,21 +738,6 @@ function wakaba:toDelirium(rng, spawnPosition)
 	local curse = level:GetCurses()
 	local room = wakaba.G:GetRoom()
 	local type1 = room:GetType()
-	--[[ if room:GetBossID() == 6 and wakaba.G.Challenge == wakaba.challenges.CHALLENGE_ELEC then
-		wakaba.G:GetRoom():TrySpawnSecretExit(true, true)
-		local dealdoor=nil
-		local doorcount=0
-		for i=0,8 do
-			if wakaba.G:GetRoom():GetDoor(i) and wakaba.G:GetRoom():GetDoor(i).TargetRoomIndex == GridRooms.ROOM_SECRET_EXIT_IDX then
-				dealdoor=wakaba.G:GetRoom():GetDoor(i)
-				break
-			end
-		end
-    if dealdoor then
-			dealdoor:Open()
-		end
-
-	end ]]
 	if type1 == RoomType.ROOM_BOSS 
 	and (wakaba:isDelirium() or wakaba:isHush()) then
 		if (stage == 9) then
@@ -855,10 +787,11 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.plumItemPedestal)
 
 function wakaba:PreUseItem_NoGenesis(item, rng, player, flag, slot, varData)
-	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND then
+	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND and player:GetActiveItem(slot) ~= item then
 		return true
 	end
 end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_GENESIS)
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_DAMOCLES)
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)

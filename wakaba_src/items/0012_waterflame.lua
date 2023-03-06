@@ -39,6 +39,9 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 		end
 
 		if recent then
+			if wakaba.G.Challenge == Challenges.CHALLENGE_SSRC then
+				player:GetData().wakaba.flamecnt = player:GetData().wakaba.flamecnt - 1
+			end
 			SFXManager():Play(SoundEffect.SOUND_POWERUP1)
 			player:AddCollectible(recent)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and useFlags & UseFlag.USE_CARBATTERY ~= UseFlag.USE_CARBATTERY then
