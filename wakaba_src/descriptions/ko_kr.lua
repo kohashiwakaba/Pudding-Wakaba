@@ -1705,6 +1705,9 @@ wakaba.descriptions[desclang].uniform = {
 	pullsubfix = "번 슬롯{{CR}}에 있는 {{Pill}}/{{Card}}/{{Rune}}을 꺼냅니다.",
 	useprefix = "액티브 아이템 사용 시 {{ColorGold}}",
 	usesubfix = "번 슬롯{{CR}}과 들고 있는 {{Pill}}/{{Card}}/{{Rune}}을 서로 맞바꿉니다.",
+	pickupprefix = "와카바의 교복 사용 시 {{ColorGold}}",
+	pickupmidfix = "의 교복 슬롯 ",
+	pickupsubfix = "번{{CR}}에 해당 픽업을 보관 및 교체합니다.",
 }
 wakaba.descriptions[desclang].bookofconquest = {
 	selectstr = "선택",

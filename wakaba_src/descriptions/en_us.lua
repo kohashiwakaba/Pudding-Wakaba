@@ -1610,6 +1610,9 @@ wakaba.descriptions[desclang].uniform = {
 	pullsubfix = "{{CR}}",
 	useprefix = "Using this item will swap {{ColorGold}}slot ",
 	usesubfix = "{{CR}} and current held {{Pill}}/{{Card}}/{{Rune}}",
+	pickupprefix = "Using Uniform will store/swap this into {{ColorGold}}",
+	pickupmidfix = "'s uniform slot ",
+	pickupsubfix = ".{{CR}}",
 }
 wakaba.descriptions[desclang].bookofconquest = {
 	selectstr = "Select",
