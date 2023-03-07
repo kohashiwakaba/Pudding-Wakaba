@@ -239,7 +239,7 @@ wakaba.descriptions[desclang].collectibles = {
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
 	},
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
+	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "민트초코 아이스크림",
 		description = ""
 		.. "#↑ {{TearsSmall}}연사 +0.2"

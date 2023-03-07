@@ -175,40 +175,46 @@ if EID then
 		local preservedslotstate = false
 		local itemConfig = Isaac.GetItemConfig()
 		for i,item in pairs(player:GetData().wakaba.uniform.items) do
-			local c = ""
-			if player:GetData().wakaba.uniform.cursor == i then
-				c = "> "
-				eidstring = eidstring .. "#{{CoinHeart}} {{ColorGold}}"
-			else
-				eidstring = eidstring .. "#{{Blank}} "
+			if i > wakaba.Enums.Constants.WAKABA_UNIFORM_MAX_SLOTS then
+				goto wakabaUniformEIDSkip
 			end
-			if item.type == "card" then
-				local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or itemConfig:GetCard(item.cardpill).Name
-				eidstring = eidstring .. "{{Card" .. item.cardpill .. "}} " .. str
+			do
+				local c = ""
 				if player:GetData().wakaba.uniform.cursor == i then
-					preservedslotstate = true
+					c = "> "
+					eidstring = eidstring .. "#{{CoinHeart}} {{ColorGold}}"
+				else
+					eidstring = eidstring .. "#{{Blank}} "
 				end
-			elseif item.type == "pill" then
-				if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
-					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
-					if item.pilleffect == 14 then 
-						str = "Gold Pill" 
+				if item.type == "card" then
+					local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or itemConfig:GetCard(item.cardpill).Name
+					eidstring = eidstring .. "{{Card" .. item.cardpill .. "}} " .. str
+					if player:GetData().wakaba.uniform.cursor == i then
+						preservedslotstate = true
 					end
-					if item.cardpill > 2048 then 
-						str = str .. "[!]" 
-						eidstring = eidstring .. "{{Pill" .. item.cardpill-2048 .. "}} {{ColorYellow}}" .. str
+				elseif item.type == "pill" then
+					if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
+						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
+						if item.pilleffect == 14 then 
+							str = "Gold Pill" 
+						end
+						if item.cardpill > 2048 then 
+							str = str .. "[!]" 
+							eidstring = eidstring .. "{{Pill" .. item.cardpill-2048 .. "}} {{ColorYellow}}" .. str
+						else
+							eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}} " ..str
+						end
 					else
-						eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}} " ..str
+						eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}}{{WakabaUniformUnknownPill}}"
+					end
+					if player:GetData().wakaba.uniform.cursor == i then
+						preservedslotstate = true
 					end
 				else
-					eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}}{{WakabaUniformUnknownPill}}"
+					eidstring = eidstring .. "{{WakabaUniformEmpty}}"
 				end
-				if player:GetData().wakaba.uniform.cursor == i then
-					preservedslotstate = true
-				end
-			else
-				eidstring = eidstring .. "{{WakabaUniformEmpty}}"
 			end
+			::wakabaUniformEIDSkip::
 		end
 		--demoDescObj.ObjVariant = 350
 		local prefix = unistr.changeslot .. " : {{ButtonRT}}"
@@ -228,7 +234,51 @@ if EID then
 		descObj.Description = eidstring
 		return descObj
 	end
+
+	local function UniformCondition_CardPill(descObj)
+		if EID.InsideItemReminder then return false end
+		if not descObj.Entity or not descObj.Entity:ToPickup() then return false end
+		if not (descObj.ObjType == 5 and (descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD or descObj.ObjVariant == PickupVariant.PICKUP_PILL)) then return false end
+		
+		local isCard = descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD
+		local isPill = descObj.ObjVariant == PickupVariant.PICKUP_PILL
+		local isShopItem = descObj.Entity:ToPickup():IsShopItem()
+
+		isCard = isCard and not wakaba:has_value(wakaba.Blacklists.Uniform.Cards, descObj.ObjSubType)
+
+		isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillColor, descObj.ObjSubType & PillColor.PILL_COLOR_MASK)
+		isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillEffect, wakaba.G:GetItemPool():GetPillEffect(descObj.ObjSubType, player))
+
+		return (isCard or isPill) and not isShopItem
+	end
+
+	local function UniformCallback_CardPill(descObj)
+		local player = EID.player
+		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
+		local eidstring = ""
+		for _, player in ipairs(EID.coopAllPlayers) do
+			if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) then
+				local playerID = player:GetPlayerType()
+				local birthrightDesc = EID:getDescriptionEntry("birthright", playerID+1)
+				local playerName = birthrightDesc and birthrightDesc[1] or player:GetName()
+				local playerStr = "" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "") .. ""..playerName..""
+
+				descObj.Description = 
+					descObj.Description 
+					.. "#{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}} "
+					.. unistr.pickupprefix
+					.. playerStr
+					.. unistr.pickupmidfix
+					.. player:GetData().wakaba.uniform.cursor
+					.. unistr.pickupsubfix
+			end
+		end
+		return descObj
+	end
+
+
 	EID:addDescriptionModifier("Wakaba's Uniform", UniformCondition, UniformCallback)
+	EID:addDescriptionModifier("Wakaba's Uniform_CardPill", UniformCondition_CardPill, UniformCallback_CardPill)
 else
 	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.render32)
 end
