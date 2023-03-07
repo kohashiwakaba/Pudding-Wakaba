@@ -197,6 +197,7 @@ function wakaba:PostChallengePlayerInit(player)
 		wakaba.G:GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
 		Isaac.ExecuteCommand("goto s.boss.3414")
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_SSRC then
+		player:ChangePlayerType(wakaba.Enums.Players.RICHER_B)
 		player:GetData().wakaba.flamecnt = wakaba.Enums.Constants.SSRC_ALLOW_FLAMES
 		player:AddMaxHearts(-6)
 		player:AddSoulHearts(6)
@@ -540,8 +541,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.cacheChallenges)
 
 ---와카바 뒤집기
+---@param player EntityPlayer
 ---@param prevTainted boolean
-local function TryFlipWakaba(prevTainted)
+local function TryFlipWakaba(player, prevTainted)
 	player:GetData().wakaba.maxitemnum = player:GetData().wakaba.maxitemnum or -1
 	player:ChangePlayerType(prevTainted and wakaba.Enums.Players.WAKABA or wakaba.Enums.Players.WAKABA_B)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_D6, false, false, false, false, -1)
@@ -629,7 +631,13 @@ function wakaba:PostWakabaChallengeUpdate()
 			
 			if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 900 or player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) > 0 then
 				wakaba.roomstate.allowactives = false
-				TryFlipWakaba(false)
+				local tainted
+				if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
+					tainted = false
+				elseif player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B then
+					tainted = true
+				end
+				TryFlipWakaba(player, tainted)
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_RESTOCK) then
 					player:RemoveCollectible(CollectibleType.COLLECTIBLE_RESTOCK)
 					player:AddCollectible(CollectibleType.COLLECTIBLE_BREAKFAST)

@@ -39,7 +39,7 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 		end
 
 		if recent then
-			if wakaba.G.Challenge == Challenges.CHALLENGE_SSRC then
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
 				player:GetData().wakaba.flamecnt = player:GetData().wakaba.flamecnt - 1
 			end
 			SFXManager():Play(SoundEffect.SOUND_POWERUP1)
