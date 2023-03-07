@@ -285,6 +285,8 @@ wakaba.Enums.Chances = {
 }
 
 wakaba.Enums.Constants = {
+	WAKABA_UNIFORM_MAX_SLOTS = 3, --와카바의 교복 최대 슬롯 수
+
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
 
@@ -336,16 +338,19 @@ wakaba.ClubOptions = {
 		tearFlags = TearFlags.TEAR_BURN | TearFlags.TEAR_ACID,
 	},
 }
-
-
-
-
-
-
-
-
-
-
+wakaba.Blacklists = {}
+wakaba.Blacklists.Uniform = {}
+wakaba.Blacklists.Uniform.Cards = {
+	Card.CARD_ANCIENT_RECALL,
+	Card.CARD_WILD,
+	Card.CARD_QUESTIONMARK,
+}
+wakaba.Blacklists.Uniform.PillEffect = {
+	PillEffect.PILLEFFECT_VURP,
+}
+wakaba.Blacklists.Uniform.PillColor = {
+	PillColor.PILL_GOLD,
+}
 
 
 wakaba.curses = {

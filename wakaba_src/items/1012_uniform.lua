@@ -1,21 +1,7 @@
 local usinguniform = false
 local displayuniformslot = false
 --wakaba.f:DrawString("droid",60,50,KColor(1,1,1,1,0,0,0),0,true) -- render string with loaded font on position 60x50y
-
-
---[[
-wakaba.state.uniform[player] = {
-	cursor = i,
-	items = {
-		i = {type, cardpill}, -- example
-		1 = {type = card, cardpill = Card.CARD_NULL},
-		2 = {type = pill, pilleffect = PillEffect.PILLEFFECT_NULL, cardpill = PillColor.PILL_GIANT_FLAG},
-		3 = {type = nil, cardpill = nil},
-		4 = {type = nil, cardpill = nil},
-		5 = {type = nil, cardpill = nil},
-	}
-}
-]]
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 -- wakaba_compat_check : Fiend Folio
 local isFFPill = {}
@@ -26,12 +12,6 @@ if FiendFolio then
     end
   end
 end
-
-function wakaba:inputcheck32(entity, hook, action)
-	
-end
-
---wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.inputcheck32, InputHook.IS_ACTION_TRIGGERED)
 
 function wakaba:Render_Uniform()
   for i = 1, wakaba.G:GetNumPlayers() do
@@ -44,7 +24,7 @@ function wakaba:Render_Uniform()
 					index = 1
 				end
 				index = index + 1
-				if index > 5 then
+				if index > wakaba.Enums.Constants.WAKABA_UNIFORM_MAX_SLOTS then
 					index = 1
 				end
 				player:GetData().wakaba.uniform.cursor = index
@@ -65,7 +45,7 @@ function wakaba:render32()
 					index = 1
 				end
 				index = index + 1
-				if index > 5 then
+				if index > wakaba.Enums.Constants.WAKABA_UNIFORM_MAX_SLOTS then
 					index = 1
 				end
 				player:GetData().wakaba.uniform.cursor = index
@@ -253,6 +233,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffect_Uniform)
 
 function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
+	local discharge = false
 	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
 	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) 
 	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC) 
@@ -260,123 +241,72 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 	then 
 		usinguniform = true
 		wakaba:useUniform(player)
-		return 
+		goto WakabaUniformUseSkip
 	end
-	local discharge = false
-	local err = 0
-	local index = player:GetData().wakaba.uniform.cursor
-	local item = player:GetData().wakaba.uniform.items[index]
-	local oldItemType = player:GetData().wakaba.uniform.items[index].type
-	local oldItemData = player:GetData().wakaba.uniform.items[index].cardpill
-	local card = player:GetCard(0)
-	local pill = player:GetPill(0)
-	--print("card ", card, "pill ", pill)
---[[
-	if card ~= 0 and pill == 0 then
-		player:GetData().wakaba.uniform.items[index].type = "card"
-		player:GetData().wakaba.uniform.items[index].cardpill = card
-		player:GetData().wakaba.uniform.items[index].pilleffect = nil
-	elseif card == 0 and pill ~= 0 then
-		player:GetData().wakaba.uniform.items[index].type = "pill"
-		player:GetData().wakaba.uniform.items[index].cardpill = pill
-		player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(pill, player)
-	elseif card == 0 and pill == 0 then
-		player:GetData().wakaba.uniform.items[index].type = nil
-		player:GetData().wakaba.uniform.items[index].cardpill = nil
-		player:GetData().wakaba.uniform.items[index].pilleffect = nil
-	end
-]]
-	--[[
-	print("Old Type = .", oldItemType) 
-	print("Old Card/Pill = .", oldItemData) 
+	do
+		local err = 0
+		local index = player:GetData().wakaba.uniform.cursor
+		local item = player:GetData().wakaba.uniform.items[index]
+		local oldItemType = player:GetData().wakaba.uniform.items[index].type
+		local oldItemData = player:GetData().wakaba.uniform.items[index].cardpill
+		local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
+		local nearest = isc:getClosestEntityTo(player, pickups, 
+			function(_, e) 
+				local isCard = e.Variant == PickupVariant.PICKUP_TAROTCARD
+				local isPill = e.Variant == PickupVariant.PICKUP_PILL
+				local isShopItem = e:ToPickup():IsShopItem()
 	
-	print("Saved Index = .", index) 
-	print("Saved Type = .", player:GetData().wakaba.uniform.items[index].type) 
-	if player:GetData().wakaba.uniform.items[index].type == "pill" then
-		print("Saved Card/Pill = .", player:GetData().wakaba.uniform.items[index].pilleffect) 
-	else
-		print("Saved Card/Pill = .", player:GetData().wakaba.uniform.items[index].cardpill) 
-	end
-	]]
-	if oldItemType ~= nil then
-		if player:GetActiveItem(ActiveSlot.SLOT_POCKET) > 0 then
-			if oldItemType == "card" then
-				if player:GetCard(0) == 0 and not (index == 1 and player:GetCard(0) == Card.CARD_WILD) then --Handle PocketActiveItem check
-					if player:GetCard(1) == 0 and not (index == 1 and player:GetCard(1) == Card.CARD_WILD) then
-						player:SetCard(1,oldItemData)
-					elseif player:GetCard(2) == 0 and not (index == 1 and player:GetCard(2) == Card.CARD_WILD) then
-						player:SetCard(2,oldItemData)
-					else
-						err = err + 1
-					end
-				elseif not (index == 1 and player:GetCard(0) == Card.CARD_WILD) then
-					player:SetCard(0,oldItemData)
-				else
-					err = err + 1
-				end
-			elseif oldItemType == "pill" then
-				if player:GetPill(0) == 0 then --Handle PocketActiveItem check
-					if player:GetPill(1) == 0 then
-						player:SetPill(1,oldItemData)
-					elseif player:GetPill(2) == 0 then
-						player:SetPill(2,oldItemData)
-					else
-						err = err + 1
-					end
-				else
-					player:SetPill(0,oldItemData)
-				end
+				isCard = isCard and not wakaba:has_value(wakaba.Blacklists.Uniform.Cards, e.SubType)
+	
+				isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillColor, e.SubType & PillColor.PILL_COLOR_MASK)
+				isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillEffect, wakaba.G:GetItemPool():GetPillEffect(e.SubType, player))
+	
+				return (isCard or isPill) and not isShopItem
 			end
-		else
-			if oldItemType == "card" then
-				if index == 1 and player:GetCard(0) == Card.CARD_WILD then
-					err = err + 1
-				else
-					player:SetCard(0,oldItemData)
-				end
-			elseif oldItemType == "pill" then
-				player:SetPill(0,oldItemData)
-			end
+		)
+		local tempPickupVariant = nearest and nearest.Variant
+		local tempPickupSubType = nearest and nearest.SubType
+		local eraseOld = false
+		if oldItemType == "pill" then
+			local dummyPickup = (nearest and nearest:ToPickup()) or Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 0, Vector(320,280), Vector(0,0), nil):ToPickup()
+			local newPickup = dummyPickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, oldItemData, false, true, true)
+			eraseOld = true
+		elseif oldItemType == "card" then
+			local dummyPickup = (nearest and nearest:ToPickup()) or Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, 0, Vector(320,280), Vector(0,0), nil):ToPickup()
+			local newPickup = dummyPickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, oldItemData, false, true, true)
+			eraseOld = true
+		elseif nearest then
+			nearest:Remove()
 		end
-	elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) > 0 then
-		if (card ~= 0 and not (index == 1 and card == Card.CARD_WILD)) and pill == 0 then
-			player:SetCard(0,0)
-		elseif card == 0 and pill ~= 0 then
-			player:SetPill(0,0)
-		else
-			err = err + 1
-		end
-	elseif index == 1 and card == Card.CARD_WILD then
-		err = err + 1
-	else
-		player:SetCard(0,0)
-	end
-	if err <= 0 then
-		if card ~= 0 and pill == 0 then
-			player:GetData().wakaba.uniform.items[index].type = "card"
-			player:GetData().wakaba.uniform.items[index].cardpill = card
-			player:GetData().wakaba.uniform.items[index].pilleffect = nil
-		elseif card == 0 and pill ~= 0 then
-			player:GetData().wakaba.uniform.items[index].type = "pill"
-			player:GetData().wakaba.uniform.items[index].cardpill = pill
-			player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(pill, player)
-		elseif card == 0 and pill == 0 then
+	
+		if eraseOld then
 			player:GetData().wakaba.uniform.items[index].type = nil
 			player:GetData().wakaba.uniform.items[index].cardpill = nil
 			player:GetData().wakaba.uniform.items[index].pilleffect = nil
 		end
+	
+		if tempPickupVariant == PickupVariant.PICKUP_TAROTCARD then
+			player:GetData().wakaba.uniform.items[index].type = "card"
+			player:GetData().wakaba.uniform.items[index].cardpill = tempPickupSubType
+			player:GetData().wakaba.uniform.items[index].pilleffect = nil
+		elseif tempPickupVariant == PickupVariant.PICKUP_PILL then
+			player:GetData().wakaba.uniform.items[index].type = "pill"
+			player:GetData().wakaba.uniform.items[index].cardpill = tempPickupSubType
+			player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(tempPickupSubType, player)
+		end
+	
+		if tempPickupVariant or oldItemType then
+			player:AnimateCollectible(wakaba.Enums.Collectibles.UNIFORM, "UseItem", "PlayerPickup")
+			SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
+			discharge = true
+		else
+			player:AnimateSad()
+		end
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
+			discharge = false
+		end
 	end
-	if err > 0 then
-		player:AnimateSad()
-		--SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
-	elseif card ~= 0 or pill ~= 0 or oldItemType ~= nil then
-		player:AnimateCollectible(wakaba.Enums.Collectibles.UNIFORM, "UseItem", "PlayerPickup")
-		SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
-		discharge = true
-	end
-	if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
-		discharge = false
-	end
+	::WakabaUniformUseSkip::
 	return {Discharge = discharge}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Uniform, wakaba.Enums.Collectibles.UNIFORM)
