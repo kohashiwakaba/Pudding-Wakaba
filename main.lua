@@ -1370,6 +1370,8 @@ include('wakaba_src.console_commands')
 
 include('wakaba_src.compat.fiendfolio')
 include('wakaba_src.compat.epiphany')
+include('wakaba_src.compat.samael')
+include('wakaba_src.compat.taintedtreasure')
 include('wakaba_src.compat.stageapi')
 
 --require 'monster'
@@ -1455,6 +1457,14 @@ function wakaba:init(continue)
 	end
 	if FiendFolio then
 		wakaba:GameStart_FiendFolioCompat()
+	end
+
+	if SamaelMod then
+		wakaba:GameStart_SamaelCompat()
+	end
+
+	if TaintedTreasure then
+		wakaba:GameStart_TaintedTreasureCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)

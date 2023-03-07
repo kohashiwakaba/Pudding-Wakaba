@@ -13,6 +13,23 @@ if FiendFolio then
   end
 end
 
+
+function wakaba:BlacklistUniform(pickuptype, effect)
+	if pickuptype == "card" then
+		if not wakaba:has_value(wakaba.Blacklists.Uniform.Cards, effect) then
+			table.insert(wakaba.Blacklists.Uniform.Cards, effect)
+		end
+	elseif pickuptype == "pilleffect" or pickuptype == "pill" then
+		if not wakaba:has_value(wakaba.Blacklists.Uniform.PillEffect, effect) then
+			table.insert(wakaba.Blacklists.Uniform.PillEffect, effect)
+		end
+	elseif pickuptype == "pillcolor" then
+		if not wakaba:has_value(wakaba.Blacklists.Uniform.PillColor, effect) then
+			table.insert(wakaba.Blacklists.Uniform.PillColor, effect)
+		end
+	end
+end
+
 function wakaba:Render_Uniform()
   for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)

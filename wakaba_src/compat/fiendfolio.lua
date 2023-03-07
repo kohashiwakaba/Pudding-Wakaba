@@ -1,6 +1,10 @@
 local ffReplaced = false
 function wakaba:GameStart_FiendFolioCompat()
 	if FiendFolio and not ffReplaced then
+		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.CHRISTMAS_CRACKER)
+		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.POT_OF_GREED)
+		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.SMALL_CONTRABAND)
+
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.EMPTY_BOOK, wakaba.bookstate.BOOKSHELF_SHIORI)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_2, wakaba.bookstate.BOOKSHELF_SHIORI)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_4, wakaba.bookstate.BOOKSHELF_SHIORI)
