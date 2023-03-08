@@ -135,6 +135,20 @@ if EID then
 				(animTime % (colorFractions + 1)) / colorFractions
 			)
 		end)
+
+		local function LastPoolCondition(descObj)
+			if EID.InsideItemReminder then return false end
+			if not descObj.Entity then return false end
+			return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE
+		end
+
+		local function LastPoolCallback(descObj)
+			local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en_us"].doubledreams
+			local current = wakaba.G:GetItemPool():GetLastPool()
+			local currentPoolData = wakaba.VanillaPoolDatas[current]
+			descObj.Description = "{{ColorSilver}}"..ddstr.lastpool.. ": " ..(currentPoolData.Icon or "{{SuperSecretRoom}}") .. "" .. (ddstr[(currentPoolData.StringID or "Default")] or "???").."{{CR}}#"..descObj.Description
+			return descObj
+		end
 		
 	  -- Handle Wakaba description addition
 	  local function WakabaCondition(descObj)
@@ -696,6 +710,7 @@ if EID then
 			end
 
 
+			EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
 			EID:addDescriptionModifier("Wakaba", WakabaCondition, WakabaCallback)
 			EID:addDescriptionModifier("Tainted Wakaba", WakabaCondition_b, WakabaCallback_b)
 			EID:addDescriptionModifier("Wakaba's Blessing", BlessingCondition, BlessingCallback)
