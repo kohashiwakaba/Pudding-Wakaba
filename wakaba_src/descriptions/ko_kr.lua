@@ -1718,6 +1718,13 @@ wakaba.descriptions[desclang].bookofconquest = {
 	selecterr = "{{ColorError}}함락 불가 :#{{Blank}} {{ColorError}}{{Key}} 혹은 {{Bomb}}이 부족합니다.",
 	selectexit = "공격 키를 눌러 취소할 수 있습니다.",
 }
+wakaba.descriptions[desclang].waterflame = {
+	taintedricher = "사용 시 현재 선택된 아이템 불꽃을 흡수합니다.#{{ButtonRT}}버튼으로 선택할 수 있습니다.",
+	titleprefix = "흡수할 아이템",
+	supersensitiveprefix = "남은 흡수 횟수 : ",
+	supersensitivesubfix = "",
+	supersensitivefinal = "횟수 소진, 더 이상 사용할 수 없음",
+}
 
 wakaba.descriptions[desclang].entities = {
 	{

@@ -67,3 +67,49 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_WaterFlame, wakaba.Enums.Collectibles.WATER_FLAME)
+
+
+if EID then
+	local function WFCondition(descObj)
+		if not EID.InsideItemReminder then return false end
+		if EID.holdTabPlayer == nil then return false end
+		if EID.holdTabPlayer:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then return false end
+		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.WATER_FLAME
+	end
+	local function WFCallback(descObj)
+		local player = EID.holdTabPlayer
+		local wfstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].waterflame) or wakaba.descriptions["en_us"].waterflame
+		local eidstring = ""
+
+		local playerIndex = isc:getPlayerIndex(player)
+		local current = wakaba.TotalWisps[playerIndex]
+		if #current.list > 0 then
+			local wisp = current.list[current.index]
+			itemID = wisp.SubType
+			local demoDescObj = EID:getDescriptionObj(5, 100, itemID)
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
+				if player:GetData().wakaba.flamecnt == 0 then
+					descObj.Description = "{{ColorError}}"..wfstr.supersensitivefinal
+				else
+					descObj.Name = "{{ColorOrange}}"..wfstr.supersensitiveprefix..player:GetData().wakaba.flamecnt .. " >{{ColorEIDObjName}}".. "{{Collectible"..itemID.."}} " .. demoDescObj.Name
+					descObj.Description = demoDescObj.Description
+				end
+			else
+				descObj.Name = wfstr.titleprefix .. " >".. "{{Collectible"..itemID.."}} " .. demoDescObj.Name
+				descObj.Description = demoDescObj.Description
+			end
+		else
+			descObj.Description = wfstr.taintedricher
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
+				if player:GetData().wakaba.flamecnt == 0 then
+					descObj.Description = "{{ColorError}}"..wfstr.supersensitivefinal
+				else
+					descObj.Description = descObj.Description .. "#{{ColorOrange}}"..wfstr.supersensitiveprefix..player:GetData().wakaba.flamecnt.."{{CR}}"
+				end
+			end
+		end
+		return descObj
+	end
+
+	EID:addDescriptionModifier("Tainted Richer Water-Flame", WFCondition, WFCallback)
+end

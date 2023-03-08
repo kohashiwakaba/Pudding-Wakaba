@@ -1623,6 +1623,13 @@ wakaba.descriptions[desclang].bookofconquest = {
 	selecterr = "{{ColorError}}Cannot conquer :#{{Blank}} {{ColorError}}Not enough {{Key}} or {{Bomb}}",
 	selectexit = "Press attack button to exit selection",
 }
+wakaba.descriptions[desclang].waterflame = {
+	taintedricher = "Absorbs selected Item Wisp and grant as passive collectible item#Can be selected with {{ButtonRT}}",
+	titleprefix = "Selection",
+	supersensitiveprefix = "Remaning count : ",
+	supersensitivesubfix = "",
+	supersensitivefinal = "Can no longer be used",
+}
 
 wakaba.descriptions[desclang].entities = {
 	{
