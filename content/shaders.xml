@@ -29,7 +29,7 @@
 			}
 		]]></fragment>
 	</shader>
-  <shader name="WakabaUiChallengeDest">
+  <shader name="wakaba_ChallengeDest_DummyShader">
     <vertex><![CDATA[
       attribute vec3 Position;                                        
       attribute vec4 Color;                                           
