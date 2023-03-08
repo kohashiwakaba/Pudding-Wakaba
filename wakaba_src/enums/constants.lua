@@ -352,6 +352,40 @@ wakaba.Blacklists.Uniform.PillColor = {
 	PillColor.PILL_GOLD,
 }
 
+wakaba.VanillaPoolDatas = {
+	[-1] = {Icon = "{{TreasureRoom}}", StringID = "Default"},
+	[0] = {Icon = "{{TreasureRoom}}", StringID = "Treasure"},
+	[1] = {Icon = "{{Shop}}", StringID = "Shop"},
+	[2] = {Icon = "{{BossRoom}}", StringID = "Boss"},
+	[3] = {Icon = "{{DevilRoom}}", StringID = "Devil"},
+	[4] = {Icon = "{{AngelRoom}}", StringID = "Angel"},
+	[5] = {Icon = "{{SecretRoom}}", StringID = "Secret"},
+	[6] = {Icon = "{{Library}}", StringID = "Library"},
+	[7] = {Icon = "{{Beggar}}{{MiniBossRoom}}", StringID = "ShellGame"},
+	[8] = {Icon = "{{GoldenChest}}", StringID = "GoldenChest"},
+	[9] = {Icon = "{{RedChest}}", StringID = "RedChest"},
+	[10] = {Icon = "{{Beggar}}", StringID = "Beggar"},
+	[11] = {Icon = "{{DemonBeggar}}", StringID = "DemonBeggar"},
+	[12] = {Icon = "{{CurseRoom}}", StringID = "Curse"},
+	[13] = {Icon = "{{KeyBeggar}}", StringID = "KeyMaster"},
+	[14] = {Icon = "{{BatteryBeggar}}", StringID = "BatteryBum"},
+	[15] = {Icon = "{{MomBossSmall}}", StringID = "MomChest"},
+	[16] = {Icon = "{{GreedModeSmall}}{{TreasureRoom}}", StringID = "GreedTreasure"},
+	[17] = {Icon = "{{GreedModeSmall}}{{BossRoom}}", StringID = "GreedBoss"},
+	[18] = {Icon = "{{GreedModeSmall}}{{Shop}}", StringID = "GreedShop"},
+	[19] = {Icon = "{{GreedModeSmall}}{{DevilRoom}}", StringID = "GreedDevil"},
+	[20] = {Icon = "{{GreedModeSmall}}{{AngelRoom}}", StringID = "GreedAngel"},
+	[21] = {Icon = "{{GreedModeSmall}}{{CurseRoom}}", StringID = "GreedCurse"},
+	[22] = {Icon = "{{GreedModeSmall}}{{SecretRoom}}", StringID = "GreedSecret"},
+	[23] = {Icon = "{{CraneGame}}", StringID = "CraneGame"},
+	[24] = {Icon = "{{UltraSecretRoom}}", StringID = "UltraSecret"},
+	[25] = {Icon = "{{BombBeggar}}", StringID = "BombBum"},
+	[26] = {Icon = "{{Planetarium}}", StringID = "Planetarium"},
+	[27] = {Icon = "{{DirtyChest}}", StringID = "OldChest"},
+	[28] = {Icon = "{{Shop}}", StringID = "BabyShop"},
+	[29] = {Icon = "{{WoodenChest}}", StringID = "WoodenChest"},
+	[30] = {Icon = "{{RottenBeggar}}", StringID = "RottenBeggar"},
+}
 
 wakaba.curses = {
 	CURSE_OF_FLAMES = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1),
@@ -428,7 +462,7 @@ wakaba.pickupSpriteIndex = {
 }
 
 wakaba.FIRST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABAS_BLESSING
-wakaba.LAST_WAKABA_ITEM = wakaba.Enums.Collectibles.CUNNING_PAPER
+wakaba.LAST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABA_DUALITY
 wakaba.FIRST_WAKABA_TRINKET = wakaba.Enums.Trinkets.CLOVER
 wakaba.LAST_WAKABA_TRINKET = wakaba.Enums.Trinkets.MISTAKE
 
