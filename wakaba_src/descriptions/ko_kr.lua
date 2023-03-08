@@ -1726,6 +1726,42 @@ wakaba.descriptions[desclang].waterflame = {
 	supersensitivefinal = "횟수 소진, 더 이상 사용할 수 없음",
 }
 
+wakaba.descriptions[desclang].doubledreams = {
+	currenttitle = "와카바의 현재 꿈",
+	Default = "기본 배열",
+	Treasure = "보물방 배열",
+	Shop = "상점 배열",
+	Boss = "보스방 배열",
+	Devil = "악마방 배열",
+	Angel = "천사방 배열",
+	Secret = "비밀방 배열",
+	Library = "책방 배열",
+	ShellGame = "야바위꾼 배열",
+	GoldenChest = "황금상자 배열",
+	RedChest = "빨간상자 배열",
+	Beggar = "거지 배열",
+	DemonBeggar = "악마거지 배열",
+	Curse = "저주방 배열",
+	KeyMaster = "열쇠거지 배열",
+	BatteryBum = "배터리거지 배열",
+	MomChest = "엄마상자 배열",
+	GreedTreasure = "그리드-보물방 배열",
+	GreedBoss = "그리드-보스방 배열",
+	GreedShop = "그리드-상점 배열",
+	GreedDevil = "그리드-악마방 배열",
+	GreedAngel = "그리드-천사방 배열",
+	GreedCurse = "그리드-저주방 배열",
+	GreedSecret = "그리드-비밀방 배열",
+	CraneGame = "크레인 게임 배열",
+	UltraSecret = "특급비밀방 배열",
+	BombBum = "폭탄거지 배열",
+	Planetarium = "천체관 배열",
+	OldChest = "낡은상자 배열",
+	BabyShop = "패밀리어 상점 배열",
+	WoodenChest = "나무상자 배열",
+	RottenBeggar = "썩은거지 배열",
+}
+
 wakaba.descriptions[desclang].entities = {
 	{
 		type = EntityType.ENTITY_SLOT,

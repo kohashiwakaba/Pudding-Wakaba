@@ -180,3 +180,29 @@ function wakaba:dreamsCardBonus(rng, spawnPosition)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.dreamsCardBonus)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.dreamsCardBonus)
+
+if EID then
+	local function DDCondition(descObj)
+		if not wakaba.hasdreams then return false end
+		if not EID.InsideItemReminder then return false end
+		--if not descObj.Entity then return false end
+		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.DOUBLE_DREAMS
+	end
+	
+	local function DDCallback(descObj)
+		local player = EID.player
+		local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en_us"].doubledreams
+		local eidstring = ""
+		local current = wakaba.runstate.dreampool
+		local currentPoolData = wakaba.VanillaPoolDatas[current]
+		descObj.Name = ddstr.currenttitle
+		if isc:hasCurse(LevelCurse.CURSE_OF_THE_UNKNOWN) then
+			descObj.Description = "{{CurseBlind}}???"
+		else
+			descObj.Description = (currentPoolData.Icon or "{{SuperSecretRoom}}") .. "" .. (ddstr[(currentPoolData.StringID or "Default")] or "???")
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Wakaba's Double Dreams", DDCondition, DDCallback)
+end
+
