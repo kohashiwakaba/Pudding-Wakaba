@@ -494,12 +494,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "타천사의 책",
 		description = ""
-		--.. "#!!! 타천사로 부활 전까지 아이템 사용 불가"
+		.. "#사용 시 캐릭터의 공격력 x0.4의 연옥의 유령 3마리를 소환합니다."
 		.. "#피격 시 하트가 없을 경우 타천사로 변신하며 블랙하트 6개를 획득합니다."
 		.. "#!!! {{ColorSilver}}타천사 상태로 돌입 시 이하 효과 발동:"
-		.. "#{{ColorSilver}}사용 시 임의의 적의 위치에 캐릭터의 공격력 +35의 피해를 주는 불꽃을 소환합니다."
+		.. "#{{ColorSilver}}사용 시 캐릭터의 공격력 +35의 적을 추적하는 유령 11마리를 소환합니다."
 		.. "#↓ {{ColorSilver}}눈물 발사 불가능"
-		.. "#↑ {{DamageSmall}}{{ColorSilver}}공격력 배율 x16.0"
+		.. "#↑ {{DamageSmall}}{{ColorSilver}}공격력 배율 7.0"
 		.. "#!!! {{ColorYellow}}더 이상 액티브 아이템을 바꿀 수 없습니다{{ColorReset}}"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.LEVIATHAN .. "," ..EID.TRANSFORMATION.BOOKWORM .. "",

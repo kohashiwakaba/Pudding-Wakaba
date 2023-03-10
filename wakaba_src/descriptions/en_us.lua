@@ -447,11 +447,12 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Book of The Fallen",
 		description = ""
 		--.. "#!!! This item cannot be used before reviving into Fallen Angel"
-		.. "#If damage is lethal while having this item, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
+		.. "#On use, Spawns 3 Putagory ghosts that deals 0.4x of Isaac's Damage"
+		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
-		.. "#{{ColorSilver}}On use, Spawns fires at random enemies which deal Isaac's Damage + 35"
+		.. "#{{ColorSilver}}On use, Spawns 11 Hungry Souls that deals Isaac's Damage + 35"
 		.. "#↓ {{ColorSilver}}Can no longer shoot tears"
-		.. "#↑ {{Damage}} {{ColorSilver}}+1500% Damage Multiplier"
+		.. "#↑ {{Damage}} {{ColorSilver}}+600% Damage Multiplier"
 		.. "#!!! {{ColorYellow}}Isaac can no longer swap active items{{ColorReset}}"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM .. "",
