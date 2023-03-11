@@ -8,7 +8,7 @@ function wakaba:hasWaterFlame(player)
 		return false 
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WATER_FLAME) then
 		return true
 	else
