@@ -270,7 +270,15 @@ wakaba.Enums.SoundEffects = {
 -- 와카바 모드 거지/슬롯류 : SlotVariant 위치에 사용
 wakaba.Enums.Slots = {
 	SHIORI_VALUT = Isaac.GetEntityVariantByName("Shiori Valut"),
+	CRYSTAL_RESTOCK = Isaac.GetEntityVariantByName("Richer's Crystal Restock"),
 	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
+}
+
+wakaba.Enums.CrystalRestockTypes = {
+	[0] = 3,
+	[1] = 4,
+	[2] = 2,
+	[3] = 2,
 }
 
 -- 행운 관련 상수

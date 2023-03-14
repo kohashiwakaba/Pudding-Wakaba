@@ -1322,6 +1322,7 @@ include('wakaba_src.items.3015_mistake')
 include('wakaba_src.pickups.4000_cloverchest')
 
 include('wakaba_src.entities.anotherfortune')
+include('wakaba_src.entities.crystalrestock')
 
 include('wakaba_src.characters.locked')
 include('wakaba_src.characters.wakaba')
