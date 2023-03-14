@@ -30,7 +30,7 @@ function wakaba:RoomClearAwards_PrestigePass(rng, pos)
 		for i = 1, isc:getTotalPlayerCollectibles(wakaba.Enums.Collectibles.PRESTIGE_PASS) do
 			local freeSpawnPos = room:FindFreePickupSpawnPosition(Vector(120, 120))
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, freeSpawnPos, Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_SLOT, isc.SlotVariant.SHOP_RESTOCK_MACHINE, 0, freeSpawnPos, Vector.Zero, nil)
+			Isaac.Spawn(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.CRYSTAL_RESTOCK, 3, freeSpawnPos, Vector.Zero, nil)
 			SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
 		end
 	end

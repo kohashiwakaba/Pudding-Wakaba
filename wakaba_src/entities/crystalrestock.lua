@@ -80,8 +80,9 @@ function wakaba:SlotUpdate_CrystalRestock(slot)
 	
 	if restockData.restockCount <= 0 and not (slotSprite:IsPlaying("Death") or slotSprite:IsFinished("Death") or slotSprite:IsPlaying("Broken") or slotSprite:IsFinished("Broken")) then
 		SFXManager():Play(SoundEffect.SOUND_BOSS1_EXPLOSIONS)
-		slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
-		wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 0.0001, false, false, 0)
+		SFXManager():Play(SoundEffect.SOUND_MIRROR_BREAK)
+		local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, slot.Position, Vector.Zero, nil)
+		wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 0.00001, false, false, 0)
 		slot:GetSprite():Play("Death")
 	end
 end

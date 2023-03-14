@@ -764,8 +764,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "Prestige Pass",
 		description = ""
-		.. "#{{BossRoom}} Spawns restock machine on boss room clears"
-		.. "#Spawns restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
+		.. "#{{BossRoom}} Spawns Richer's restock machine on boss room clears"
+		.. "#Spawns Richer's restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
+		.. "#Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 2 rerolls"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {

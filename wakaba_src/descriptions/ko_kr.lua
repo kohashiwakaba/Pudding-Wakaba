@@ -844,8 +844,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "프리스티지 패스",
 		description = ""
-		.. "#{{BossRoom}}보스방 클리어 시 재입고 기계를 생성합니다."
-		.. "#{{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 재입고 기계를 생성합니다."
+		.. "#{{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
+		.. "#{{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
+		.. "#리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 2회 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
 	},
