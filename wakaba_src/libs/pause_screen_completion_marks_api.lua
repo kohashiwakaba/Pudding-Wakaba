@@ -12,7 +12,7 @@
 -- Email: ghostbroster@gmail.com
 -- Twitter: @Ghostbroster
 
-local VERSION = 2
+local VERSION = 4
 
 local CACHED_CHARACTER_CALLBACKS
 local CACHED_MOD_MARK_CALLBACKS
@@ -45,6 +45,7 @@ local kDefaultShader = "PauseScreenCompletionMarks"
 local game = Game()
 local kZeroVector = Vector(0,0)
 local kNormalVector = Vector(1,1)
+local kDefaultColor = Color(1,1,1,1)
 
 --Stolen from PROAPI
 local function Lerp(first,second,percent)
@@ -209,6 +210,8 @@ local function IsTaintedChar(player)
 	return player:GetPlayerType() == Isaac.GetPlayerTypeByName(player:GetName(), true)
 end
 
+local completionMarks
+
 -- Collect the completion marks to render for player 1.
 local function GetCompletionMarks()
 	completionMarks = nil
@@ -301,7 +304,7 @@ local function PrepareVanillaMarks()
 	if not vanillaMarksSprite then
 		vanillaMarksSprite = Sprite()
 		vanillaMarksSprite:Load("gfx/ui/completion_widget.anm2", false)
-		for i=0, 9 do
+		for i=0, 11 do
 			vanillaMarksSprite:ReplaceSpritesheet(i,"gfx/ui/completion_widget_pause.png")
 		end
 		vanillaMarksSprite:LoadGraphics()
@@ -446,7 +449,7 @@ end
 -- MODDED COMPLETION MARKS HANDLING
 --------------------------------------------------
 
-local kMinPageWidth = 3
+local kMinPageWidth = 2
 local kMaxPageWidth = 4
 local kMaxPageHeight = 6
 
@@ -578,7 +581,7 @@ local function PrepareModMarks()
 	LOG("...Done.")
 end
 
-local function RenderModPostItPiece(pos, anim, frame, row, col, mark)
+local function RenderModPostItPiece(pos, anim, frame, row, col, mark, centerMark)
 	modPaperSprite:SetFrame(anim, frame)
 	local rot = modPaperSprite.Rotation
 	local scale = modPaperSprite.Scale
@@ -596,6 +599,9 @@ local function RenderModPostItPiece(pos, anim, frame, row, col, mark)
 		sprite.Rotation = rot
 		sprite.Scale = scale
 		sprite.Offset = offset + kNormalVector
+		if centerMark then
+			sprite.Offset = sprite.Offset - Vector(9, 0)
+		end
 		sprite:Render(pos, kZeroVector, kZeroVector)
 	end
 end
@@ -604,7 +610,7 @@ local function RenderModMarks(pos, posOffset, scale)
 	if not modMarkPages or #modMarkPages == 0 then return end
 	
 	if MiniPauseMenu_Mod or MiniPauseMenuPlus_Mod then
-		posOffset = posOffset * Vector(1, -1)
+		posOffset = posOffset * Vector(1, -0.2)
 	end
 	
 	pos =  pos + posOffset * scale + GetModMarksRenderOffset() * scale
@@ -643,6 +649,8 @@ local function RenderModMarks(pos, posOffset, scale)
 			local anim
 			local frame = 0
 			local mark
+			local singleMark = false
+			
 			if row == 0 then
 				if col == 0 then
 					anim = "TopLeft"
@@ -670,11 +678,16 @@ local function RenderModMarks(pos, posOffset, scale)
 			else
 				anim = "Middle"
 				if not needToWriteModName and markIterator and row > 0 then
-					mark = mods[currentMod].Marks[markIterator]
-					markIterator = next(mods[currentMod].Marks, markIterator)
+					if #mods[currentMod].Marks == 1 and (numColumns == 2 or numColumns == 3) then
+						singleMark = true
+					end
+					if not (singleMark and col == 1) then 
+						mark = mods[currentMod].Marks[markIterator]
+						markIterator = next(mods[currentMod].Marks, markIterator)
+					end
 				end
 			end
-			RenderModPostItPiece(pos, anim, frame, row, col, mark)
+			RenderModPostItPiece(pos, anim, frame, row, col, mark, singleMark and numColumns == 2)
 		end
 		
 		if currentMod and row > 0 and needToWriteModName then
@@ -723,7 +736,7 @@ local function RenderModMarks(pos, posOffset, scale)
 		if currentModMarkPage == 1 then
 			modPaperSprite.Color = kFadedColor
 			modPaperSprite:Render(pos, kZeroVector, kZeroVector)
-			modPaperSprite.Color = Color.Default
+			modPaperSprite.Color = kDefaultColor
 		else
 			modPaperSprite:Render(pos, kZeroVector, kZeroVector)
 		end
@@ -734,7 +747,7 @@ local function RenderModMarks(pos, posOffset, scale)
 		if currentModMarkPage == #modMarkPages then
 			modPaperSprite.Color = kFadedColor
 			modPaperSprite:Render(pos, kZeroVector, kZeroVector)
-			modPaperSprite.Color = Color.Default
+			modPaperSprite.Color = kDefaultColor
 		else
 			modPaperSprite:Render(pos, kZeroVector, kZeroVector)
 		end
