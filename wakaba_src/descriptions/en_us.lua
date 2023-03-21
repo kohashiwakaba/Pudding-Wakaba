@@ -813,6 +813,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Trial Stew",
 		description = "!!! While Isaac has only half heart and no shields:#↑ {{Tears}}+8 Fire rate#↑ {{Damage}}+100% Damage Multiplier",
 	},
+	[wakaba.Enums.Collectibles.POW_BLOCK] = {
+		itemName = "POW Block",
+		description = "Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
+	},
+	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
+		itemName = "MOd Block",
+		description = "Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

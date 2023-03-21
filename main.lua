@@ -1282,6 +1282,7 @@ include('wakaba_src.items.1068_onsentowel')
 include('wakaba_src.items.1069_cunningpaper')
 --include('wakaba_src.items.1070_lilricher')
 include('wakaba_src.items.1071_richerflipper')
+include('wakaba_src.items.1075_powblock')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')

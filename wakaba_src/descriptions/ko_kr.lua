@@ -901,6 +901,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "시련의 국",
 		description = "!!! 캐릭터의 전체 체력이 반칸 + 보호막이 없을 때:#↑ {{TearsSmall}}연사(+상한) +8#↑ {{DamageSmall}}공격력 배율 x2",
 	},
+	[wakaba.Enums.Collectibles.POW_BLOCK] = {
+		itemName = "POW 블럭",
+		description = "사용 시 폭탄 2개를 소모하여 지상 적에게 275 분산 피해를 줍니다.",
+	},
+	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
+		itemName = "MOd 블럭",
+		description = "사용 시 폭탄 2개를 소모하여 공중의 적에게 333 분산 피해를 줍니다.",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""
