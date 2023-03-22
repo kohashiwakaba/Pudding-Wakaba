@@ -4503,13 +4503,6 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
-		ID = wakaba.Enums.Collectibles.BLACK_RIBBON,
-		Hide = true,
-	})
-
-	Encyclopedia.AddItem({
-		Class = class,
-		ModName = class,
 		ID = wakaba.Enums.Collectibles.CUNNING_PAPER,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CUNNING_PAPER,
 		Pools = {

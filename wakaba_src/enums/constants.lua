@@ -109,7 +109,7 @@ wakaba.Enums.Collectibles = {
 	RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
 	CUNNING_PAPER = Isaac.GetItemIdByName("Cunning Paper"),
 	LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
-	BLACK_RIBBON = Isaac.GetItemIdByName("Black Ribbon"),
+	SELF_BURNING = Isaac.GetItemIdByName("Self Burning"),
 	WATER_FLAME = Isaac.GetItemIdByName("Water-Flame"),
 	TRIAL_STEW = Isaac.GetItemIdByName("Trial Stew"),
 
@@ -170,7 +170,6 @@ wakaba.Enums.Familiars = {
 	EASTER_EGG = Isaac.GetEntityVariantByName("Easter Egg Orbital"),
 	--LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
 	--LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
-	--BLACK_RIBBON = Isaac.GetEntityVariantByName("Black Ribbon Particle"),
 	--CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
 
 }
