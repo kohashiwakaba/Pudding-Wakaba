@@ -813,6 +813,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Trial Stew",
 		description = "!!! While Isaac has only half heart and no shields:#↑ {{Tears}}+8 Fire rate#↑ {{Damage}}+100% Damage Multiplier",
 	},
+	[wakaba.Enums.Collectibles.SELF_BURNING] = {
+		itemName = "Self Burning",
+		description = "{{Burning}} Burns YOU on use",
+		.. "#{{Burning}} While burning, immune to all damage except for projectiles, but drains a half heart per 20 seconds#getting hit by projectile cancels burn effect"
+		.. "#Blood Donation machine (or similar), or Sacrifice rooms works normally"
+		.. "#Can only be used once per floor"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW Block",
 		description = "Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
