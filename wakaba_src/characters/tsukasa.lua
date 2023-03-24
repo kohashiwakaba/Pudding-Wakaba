@@ -3,8 +3,6 @@ local playerType = Isaac.GetPlayerTypeByName("Tsukasa", false)
 local removed = false
 local isWakabaContinue = true
 
-
-
 --some mods force the players cache update to happen every frame, triggering costume application
 --this prevents costume from being applied repeatedly
 function wakaba:GetTsukasaCostume(player)
@@ -16,14 +14,9 @@ function wakaba:GetTsukasaCostume(player)
 	end
 end
 
---[[ if Poglite then
-	local pogCostume = Isaac.GetCostumeIdByPath("gfx/characters/wakaba_pog.anm2")
-	Poglite:AddPogCostume("TsukasaPog",playerType,pogCostume)
-end ]]
-
 --Costume currently not working in Knife Piece 2 area. Needs to be fixed.
 function wakaba:PostTsukasaUpdate(player)
-	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA	then
+	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not (player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then
 		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_TECHNOLOGY, 1, "WAKABA_I_TSUKASA")
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
@@ -35,45 +28,16 @@ function wakaba:PostTsukasaUpdate(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostTsukasaUpdate)
 
---Broken Heart Rendering
-function wakaba:PostTsukasaRender()
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.PostTsukasaRender)
-
-
-function wakaba:TakeDamage_Tsukasa(entity, amount, flags, source, cooldown)
-	-- If the player is Wakaba
-	--print(entity.Type)
-	local player = entity:ToPlayer()
-	if player and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Tsukasa, EntityType.ENTITY_PLAYER)
---[[ 
-function wakaba:TearUpdate_Tsukasa(tear)
-	local parent = tear.SpawnerEntity
-	if not parent or not parent:ToPlayer() then return end
-	local player = parent:ToPlayer()
-	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
-		local laser = player:FireTechLaser(player.Position, LaserOffset.LASER_TECH1_OFFSET, player:GetAimDirection(), false, true, player, 1)
-		tear:Remove()
-		laser:SetMaxDistance(player.TearRange)
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_Tsukasa)
- ]]
 function wakaba:LaserUpdate_Tsukasa(laser)
-	if laser.SubType ~= LaserSubType.LASER_SUBTYPE_LINEAR then return end
-	local parent = laser.SpawnerEntity
-	if not parent or not parent:ToPlayer() then return end
-	local player = parent:ToPlayer()
-	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
-		--print("laser", laser.LaserLength, laser.MaxDistance)
-		--laser.LaserLength = 5000
-		laser:SetMaxDistance(105 + (player.TearRange / 5.85))
+	if laser.SubType == LaserSubType.LASER_SUBTYPE_LINEAR then 
+		local parent = laser.SpawnerEntity
+		if not parent or not parent:ToPlayer() then return end
+		local player = parent:ToPlayer()
+		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not (player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then
+			--print("laser", laser.LaserLength, laser.MaxDistance)
+			--laser.LaserLength = 5000
+			laser:SetMaxDistance(105 + (player.TearRange / 5.85))
+		end
 	end
 end
 
