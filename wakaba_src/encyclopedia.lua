@@ -3012,9 +3012,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
-			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.blessing and not wakaba.runstate.hasbless then
@@ -3038,7 +3036,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_RED_CHEST,
 			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
@@ -3106,7 +3103,6 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.EATHEART,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_DEVIL,
-			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
@@ -3141,7 +3137,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookofconquest < 1 and not wakaba.hastaintedshiori then
@@ -3207,7 +3202,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
-			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
@@ -3237,7 +3231,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_ROTTEN_BEGGAR,
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 		UnlockFunc = function(self)
@@ -3453,12 +3446,10 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MAIJIMA_MYTHOLOGY,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_LIBRARY,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
-			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		},
 	})
 	
@@ -3660,7 +3651,6 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.D_CUP_ICECREAM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_BOSS,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
@@ -3687,9 +3677,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
-			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
@@ -3754,7 +3742,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
@@ -3810,14 +3797,8 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_DEVIL,
-			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_LIBRARY,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
-			Encyclopedia.ItemPools.POOL_KEY_MASTER,
-			Encyclopedia.ItemPools.POOL_ROTTEN_BEGGAR,
 			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 		ActiveCharge = 6,
