@@ -71,7 +71,6 @@
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -87,7 +86,6 @@
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -123,7 +121,6 @@
 		<Item Name="Double Invader" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Red Corruption" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -284,7 +281,6 @@
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -315,7 +311,6 @@
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="redChest">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

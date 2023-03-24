@@ -3307,11 +3307,11 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.RABBIT_RIBBON,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RABBIT_RIBBON,
-		--[[ Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
-		}, ]]
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		},
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do
@@ -3323,7 +3323,7 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not hasRicher then
+			if not wakaba.state.options.allowlockeditems --[[ and wakaba.state.unlock.rabbitribbon < 2 ]] and not hasRicher then
 				self.Desc = "Only available for Richer"
 				
 				return self
