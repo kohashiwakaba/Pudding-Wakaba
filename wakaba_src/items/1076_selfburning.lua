@@ -63,6 +63,7 @@ function wakaba:NewLevel_SelfBurning()
 			end
 		end
 	end
+end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_SelfBurning)
 
 function wakaba:PlayerCollision_SelfBurning(player, collider, low)
@@ -77,3 +78,11 @@ function wakaba:PlayerCollision_SelfBurning(player, collider, low)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_SelfBurning)
+
+function wakaba:TakeDmg_SelfBurning(player, amount, flag, source, countdownFrames)
+	player = player:ToPlayer()
+	if player and player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
+		return false
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_SelfBurning, EntityType.ENTITY_PLAYER)

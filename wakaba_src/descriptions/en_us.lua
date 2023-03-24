@@ -815,7 +815,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "Self Burning",
-		description = "{{Burning}} Burns YOU on use",
+		description = "{{Burning}} Burns YOU on use"
 		.. "#{{Burning}} While burning, immune to all damage except for projectiles, but drains a half heart per 20 seconds#getting hit by projectile cancels burn effect"
 		.. "#Blood Donation machine (or similar), or Sacrifice rooms works normally"
 		.. "#Can only be used once per floor"
