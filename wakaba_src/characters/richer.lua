@@ -3,10 +3,18 @@ local playerType = wakaba.Enums.Players.RICHER
 local removed = false
 local isRicherContinue = true
 
---[[ function wakaba:PostRicherUpdate(player)
-
+function wakaba:PostRicherUpdate(player)
+	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
+		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_WAFER, 1, "WAKABA_I_RICHER")
+		wakaba:GetPlayerEntityData(player)
+		local data = player:GetData()
+	else
+		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_WAFER, "WAKABA_I_RICHER") then
+			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_WAFER, "WAKABA_I_RICHER")
+		end
+	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostRicherUpdate) ]]
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostRicherUpdate)
 
 --[[ function wakaba:RicherTakeDmg(entity, amount, flag, source, countdownFrames)
 
