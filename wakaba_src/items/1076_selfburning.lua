@@ -72,6 +72,9 @@ function wakaba:PlayerCollision_SelfBurning(player, collider, low)
 	if collider:ToProjectile() then
 		player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING)
 	else
+		if collider:ToNPC() then
+			collider:TakeDamage(1, DamageFlag.DAMAGE_FIRE | DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(player), 3)
+		end
 		player:SetMinDamageCooldown(1)
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 		return true

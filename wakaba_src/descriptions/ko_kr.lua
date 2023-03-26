@@ -907,14 +907,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Burning}} 버닝 상태일 때 탄환 피격을 제외한 모든 피해를 받지 않으나 20초마다 체력 반칸이 깎이며 탄환 피격 시 효과가 사라집니다."
 		.. "#체력 소모 아이템, 헌혈기, 희생방 피격은 그대로 적용됩니다.#!!! 스테이지 당 한번 사용할수 있으며 배터리나 방 클리어로 충전되지 않습니다."
 		.. "{{CR}}",
+		queueDesc = "달아오르기 시작",
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW 블럭",
 		description = "사용 시 폭탄 2개를 소모하여 지상 적에게 275 분산 피해를 줍니다.",
+		queueDesc = "지면 터트리기",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd 블럭",
 		description = "사용 시 폭탄 2개를 소모하여 공중의 적에게 333 분산 피해를 줍니다.",
+		queueDesc = "공기 터트리기",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",

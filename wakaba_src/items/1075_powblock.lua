@@ -22,21 +22,22 @@ function wakaba:ItemUse_PowMod(usedItem, rng, player, useFlags, activeSlot, varD
 		end
 	end
 	wakaba.G:ShakeScreen(10)
+	SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE)
 	local targetDamage = 320
 	if usedItem == wakaba.Enums.Collectibles.POW_BLOCK then
 		targetDamage = 275
 		if #targetNpcs > 0 then
-			targetDamage = targetDamage / targetNpcs
+			targetDamage = targetDamage / #targetNpcs
 		end
 	elseif usedItem == wakaba.Enums.Collectibles.MOD_BLOCK then
 		targetDamage = 333
 		if #targetNpcs > 0 then
-			targetDamage = targetDamage / targetNpcs
+			targetDamage = targetDamage / #targetNpcs
 		end
 	end
 
 	for _, entity in ipairs(targetNpcs) do
-		entity:TakeDamage(targetDamage, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_CRUSH | DamageFlag.DAMAGE_IGNORE_ARMOR, player, 0)
+		entity:TakeDamage(targetDamage, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_CRUSH | DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(player), 0)
 	end
 
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then

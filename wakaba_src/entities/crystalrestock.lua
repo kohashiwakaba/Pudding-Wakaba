@@ -12,7 +12,7 @@ wakaba:saveDataManager("Crystal Restock", restock_data)
 wakaba.restockdatas = restock_data
 
 function wakaba:InitCrystalRestock(slot)
-	if slot.GridCollisionClass ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
+	if slot.GridCollisionClass ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER and not slot:GetSprite():IsPlaying("Broken") then
 		local sprite = slot:GetSprite()
 		local rng = RNG()
 		rng:SetSeed(slot.InitSeed, 35)
@@ -117,7 +117,8 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, CallbackPriority.
 
 
 function wakaba:PickupUpdate_CrystalRestock(pickup)
-	if not pickup:IsShopItem() and pickup.Variant ~= 100 and pickup.FrameCount < 9 and pickup.FrameCount < Game():GetRoom():GetFrameCount() then
+	if (pickup.Type == EntityType.ENTITY_BOMB or (pickup.Type == EntityType.ENTITY_PICKUP and not pickup:IsShopItem() and pickup.Variant ~= 100))
+	and pickup.FrameCount < 9 and pickup.FrameCount < Game():GetRoom():GetFrameCount() then
 		local slots = Isaac.FindByType(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.CRYSTAL_RESTOCK, -1, false, true)
 		for _, slot in ipairs(slots) do
 			local restockData = restock_data.floor[tostring(slot.InitSeed)]

@@ -2255,6 +2255,20 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Each card has a 2 room charge."},
 		},
 	},
+	SELF_BURNING = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, burns Isaac himself, making burning status."},
+			{str = "During burn, Isaac is immune to take any damage except projectiles."},
+			{str = "Isaac's health is drained per 20 seconds, but won't kill him."},
+			{str = "Taking damage from projectiles removes burning status."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "Self Burning is one of Mega Man's weapon from a romhack 'Rockman 7 EP'."},
+			{str = "Self Burning allows Mega Man invincible except projectiles, and damages enemies if inside in water."},
+		},
+	},
 	PRESTIGE_PASS = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2295,7 +2309,30 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	-------------------------------- Rira Unlocks -------------------------------
 	-----------------------------------------------------------------------------
 
+	POW_BLOCK = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Deals 275 split damage for all ground enemies."},
+			{str = "Costs 2 Bombs on use"},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "POW Block is one of very first element from entire Mario series."},
+			{str = "Mario can use POW block to flip enemies on the ground."},
+		},
+	},
 
+	MOD_BLOCK = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Deals 333 split damage for all floating enemies."},
+			{str = "Costs 2 Bombs on use"},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "MOd Block is one fan elements from fangame from Mario franchise, 'Super Mario War'."},
+		},
+	},
 
 	-----------------------------------------------------------------------------
 	------------------------------- Tainted Items -------------------------------
@@ -4496,6 +4533,13 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
+		ID = wakaba.Enums.Collectibles.SELF_BURNING,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SELF_BURNING,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
 		ID = wakaba.Enums.Collectibles.TRIAL_STEW,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
 	})
@@ -4508,6 +4552,20 @@ if Encyclopedia then
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.POW_BLOCK,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.POW_BLOCK,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.MOD_BLOCK,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MOD_BLOCK,
+	})
 
 	Encyclopedia.AddItem({
 		Class = class,
