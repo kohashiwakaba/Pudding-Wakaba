@@ -1579,6 +1579,24 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Gnawed Leaf: Allows Isaac to safely regenerate in any room."},
 		},
 	},
+	SUCCUBUS_BLANKET = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants one Black Heart when picked up."},
+			{str = "Isaac has a chance to regenerate a Half Black Heart every time the in-game timer hits a new minute (00:01:00, 00:02:00, etc)."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The regeneration can happen multiple times in the same room, so there is no need to move between rooms to continue regeneration."},
+			{str = "- However, regeneration does not occur when standing in a Crawl Space."},
+			{str = "Regeneration will only occur when Isaac can have Soul hearts:"},
+			{str = "- Keeper's and Tainted Keeper's coin hearts will not regenerate, instead, a blue fly will be spawned instead."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Gnawed Leaf: Allows Isaac to safely regenerate in any room."},
+		},
+	},
 	
 	-----------------------------------------------------------------------------
 	------------------------------- Wakaba Unlocks ------------------------------
@@ -3373,11 +3391,13 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.SWEETS_CATALOG,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SWEETS_CATALOG,
-		--[[ Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
-		}, ]]
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_LIBRARY,
+			Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		},
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do
@@ -4460,10 +4480,8 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
-			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
-			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
 	
@@ -4494,7 +4512,6 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_UNIFORM,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
-			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		},
 	})
 
@@ -4535,6 +4552,11 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.SELF_BURNING,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SELF_BURNING,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_BOMB_BUM,
+		},
 	})
 
 	Encyclopedia.AddItem({
@@ -4558,6 +4580,11 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.POW_BLOCK,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.POW_BLOCK,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BOMB_BUM,
+		},
 	})
 
 	Encyclopedia.AddItem({
@@ -4565,6 +4592,11 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.MOD_BLOCK,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MOD_BLOCK,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+		},
 	})
 
 	Encyclopedia.AddItem({
@@ -4588,6 +4620,7 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
+		Hide = true,
 		Pools = {
 		},
 		UnlockFunc = function(self)
@@ -4605,6 +4638,25 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WAKABAS_HAIRPIN,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_HAIRPIN,
+		Hide = true,
+		Pools = {
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
+				self.Desc = "Defeat ??? as Wakaba"
+				
+				return self
+			end
+		end,
+	})
+	
+	--Wakaba's Hairpin
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.SUCCUBUS_BLANKET,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SUCCUBUS_BLANKET,
+		Hide = true,
 		Pools = {
 		},
 		UnlockFunc = function(self)
@@ -4858,7 +4910,7 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_FLIPPER,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
-			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
 		UnlockFunc = function(self)
