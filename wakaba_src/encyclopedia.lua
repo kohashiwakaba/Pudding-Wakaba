@@ -3671,6 +3671,13 @@ if Encyclopedia then
 		},
 	})
 	
+	--Rira's Bra
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RIRAS_BRA,
+	})
+	
 	
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
