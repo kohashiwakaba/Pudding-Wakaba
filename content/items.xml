@@ -117,7 +117,7 @@
 	<familiar id="82" description="" gfx="__placeholder.png" name="Lil Richer" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
 	<familiar id="83" description="" gfx="__placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
 
-	<active id="84" description="Getting Hotter" gfx="__placeholder.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="2" persistent="true"/>
+	<active id="84" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="2" persistent="true"/>
 
 	<active id="85" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
 
@@ -132,7 +132,7 @@
 	<passive id="92" description="Regeneration + HP up" gfx="__placeholder.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
 	<passive id="93" description="Tears Way up" gfx="__placeholder.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable" quality="4"/>
 	<passive id="94" cache="damage luck" description="Feeling Fine!" gfx="__placeholder.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
-	<active id="95" description="Flip pickups" gfx="__placeholder.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="2"/>
+	<active id="95" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="2"/>
 	<passive id="96" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
 	<active id="97" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
 	<active id="98" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
