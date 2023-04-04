@@ -5,6 +5,7 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varData)
+	local discharge = false
 	local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
 	for _, pickup in ipairs(pickups) do
 		if pickup.Variant == PickupVariant.PICKUP_BOMB then
@@ -17,11 +18,17 @@ function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varD
 			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
 		end
 	end
+	if #pickups > 0 then
+		discharge = true
+		SFXManager():Play(SoundEffect.SOUND_DIMEDROP)
+	else
+		player:AnimateSad()
+	end
 
 	return {
-		Discharge = true,
+		Discharge = discharge,
 		Remove = false,
-		ShowAnim = true,
+		ShowAnim = not discharge,
 	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_RicherFlipper, wakaba.Enums.Collectibles.RICHERS_FLIPPER)
