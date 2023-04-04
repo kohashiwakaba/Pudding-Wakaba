@@ -7,19 +7,25 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varData)
 	local discharge = false
 	local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
-	for _, pickup in ipairs(pickups) do
-		if pickup.Variant == PickupVariant.PICKUP_BOMB then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, false, false, true)
-		elseif pickup.Variant == PickupVariant.PICKUP_KEY then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, 0, false, false, true)
-		elseif pickup.Variant == PickupVariant.PICKUP_TAROTCARD then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, false, false, true)
-		elseif pickup.Variant == PickupVariant.PICKUP_PILL then
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
+	for _, prePickup in ipairs(pickups) do
+		local pickup = prePickup:ToPickup()
+		if pickup then
+			if pickup.Variant == PickupVariant.PICKUP_BOMB then
+				discharge = true
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, false, false, true)
+			elseif pickup.Variant == PickupVariant.PICKUP_KEY then
+				discharge = true
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, 0, false, false, true)
+			elseif pickup.Variant == PickupVariant.PICKUP_TAROTCARD then
+				discharge = true
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, false, false, true)
+			elseif pickup.Variant == PickupVariant.PICKUP_PILL then
+				discharge = true
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
+			end
 		end
 	end
-	if #pickups > 0 then
-		discharge = true
+	if discharge then
 		SFXManager():Play(SoundEffect.SOUND_DIMEDROP)
 	else
 		player:AnimateSad()
@@ -28,7 +34,7 @@ function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varD
 	return {
 		Discharge = discharge,
 		Remove = false,
-		ShowAnim = not discharge,
+		ShowAnim = discharge,
 	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_RicherFlipper, wakaba.Enums.Collectibles.RICHERS_FLIPPER)
