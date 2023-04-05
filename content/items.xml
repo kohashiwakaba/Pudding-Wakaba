@@ -103,40 +103,42 @@
 	
 	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2"/>
 	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2"/>
-	<passive id="75" cache="damage" description="Forgotten recipies" gfx="__placeholder.png" name="Caramella Pancake" quality="2" hidden="true"/>
-	<active id="76" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" chargetype="special" bombs="10" maxcharges="10" quality="3" tags="offensive nocantrip" craftquality="4"/>
+	<passive id="75" cache="damage" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="2"/>
+	<passive id="76" cache="damage" description="Forgotten recipies" gfx="__placeholder.png" name="Caramella Pancake" quality="2" hidden="true"/>
+	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" chargetype="special" bombs="10" maxcharges="10" quality="3" tags="offensive nocantrip" craftquality="4"/>
 
-	<familiar id="77" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="999"/>
+	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="999"/>
 
-	<passive id="78" cache="all" description="Sweet Curses, Blind Immunity" gfx="rabbitribbon.png" name="Rabbit Ribbon" quality="4" tags="offensive lazarusshared" hidden="true" achievement="999"/>
-	<active id="79" cache="all" description="Temporary Random Weapon" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="6" quality="3" tags="offensive book" hidden="true" achievement="999"/>
-	<active id="80" description="Room organize" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive" hidden="true" achievement="999"/>
+	<passive id="79" cache="all" description="Sweet Curses, Blind Immunity" gfx="rabbitribbon.png" name="Rabbit Ribbon" quality="4" tags="offensive lazarusshared" hidden="true" achievement="999"/>
+	<active id="80" cache="all" description="Temporary Random Weapon" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="6" quality="3" tags="offensive book" hidden="true" achievement="999"/>
+	<active id="81" description="Room organize" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive" hidden="true" achievement="999"/>
 
-	<familiar id="81" description="" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby" quality="4" hidden="true" achievement="999"/>
+	<familiar id="82" description="" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby" quality="4" hidden="true" achievement="999"/>
 
-	<familiar id="82" description="" gfx="__placeholder.png" name="Lil Richer" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
-	<familiar id="83" description="" gfx="__placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
+	<familiar id="83" description="" gfx="__placeholder.png" name="Lil Richer" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
+	<familiar id="84" description="" gfx="__placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
 
-	<active id="84" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="2" persistent="true"/>
+	<active id="85" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="2" persistent="true"/>
 
-	<active id="85" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
+	<active id="86" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
 
-	<familiar id="86" description="???" gfx="easteregg.png" name="Easter Egg" tags="nogreed quest" quality="4" hidden="true" achievement="999"/>
-	<passive id="87" description="Less health, More strength" gfx="__placeholder.png" name="Crisis Boost" cache="damage firedelay" tags="offensive" quality="3" craftquality="2"/>
-	<passive id="88" description="Richer-chan's magic" gfx="prestigepass.png" name="Prestige Pass" tags="offensive" shopprice="69" devilprice="2" quality="4" craftquality="-1"/>
-	<passive id="89" description="Regeneration + HP up" gfx="onsentowel.png" name="Onsen Towel" soulhearts="2" cache="" tags="nolostbr" quality="1"/>
-	<active id="90" description="Don't Cheating!" gfx="cunningpaper.png" maxcharges="2" name="Cunning Paper" tags="offensive nocantrip" quality="1"/>
+	<familiar id="87" description="???" gfx="easteregg.png" name="Easter Egg" tags="nogreed quest" quality="4" hidden="true" achievement="999"/>
+	<passive id="88" description="Less health, More strength" gfx="__placeholder.png" name="Crisis Boost" cache="damage firedelay" tags="offensive" quality="3" craftquality="2"/>
+	<passive id="89" description="Richer-chan's magic" gfx="prestigepass.png" name="Prestige Pass" tags="offensive" shopprice="69" devilprice="2" quality="4" craftquality="-1"/>
+	<passive id="90" description="Regeneration + HP up" gfx="onsentowel.png" name="Onsen Towel" soulhearts="2" cache="" tags="nolostbr" quality="1"/>
+	<active id="91" description="Don't Cheating!" gfx="cunningpaper.png" maxcharges="2" name="Cunning Paper" tags="offensive nocantrip" quality="1"/>
 
-	<passive id="91" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="999" persistent="true" />
+	<passive id="92" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="999" persistent="true" />
 	
-	<passive id="92" description="Regeneration + HP up" gfx="__placeholder.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
-	<passive id="93" description="Tears Way up" gfx="__placeholder.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable" quality="4"/>
-	<passive id="94" cache="damage luck" description="Feeling Fine!" gfx="__placeholder.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
-	<active id="95" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="2"/>
-	<passive id="96" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
-	<active id="97" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
-	<active id="98" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
-	<active id="99" description="Temporary Random tears + Critical Flavors" gfx="__placeholder.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
+	<passive id="93" description="Regeneration + HP up" gfx="__placeholder.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
+	<passive id="94" description="Tears Way up" gfx="__placeholder.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable" quality="4"/>
+	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="__placeholder.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
+	<active id="96" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="2"/>
+	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
+	<active id="98" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
+	<active id="99" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
+	<active id="100" description="Temporary Random tears + Critical Flavors" gfx="__placeholder.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
+	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true" achievement="999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" cache="all" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" />
