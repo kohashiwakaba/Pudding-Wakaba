@@ -1486,7 +1486,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "This item is inspired from 'Crisis Boost' from 'Rabi-Ribi'."},
 			{str = "In Rabi-Ribi, Crisis Boost is activated if health is less than 20% of max."},
 		},
-	}
+	},
 	SEE_DES_BISCHOFS = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
