@@ -6,7 +6,7 @@ function wakaba:Cache_CrisisBoost(player, cacheFlag)
 		local currHearts = player:GetHearts() + player:GetSoulHearts()
 		local bonus = math.max(math.min(0, (26 - currHearts) / 18), 1.5)
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + ((1 + bonus) * count)
+			player.Damage = player.Damage * ((1 + bonus) * count)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 1.0 * count)

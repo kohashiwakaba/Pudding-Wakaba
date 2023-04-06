@@ -53,6 +53,7 @@
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -214,6 +215,7 @@
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="POW Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -280,6 +282,7 @@
 		<Item Name="POW Block" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="MOd Block" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Crisis Boost" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>

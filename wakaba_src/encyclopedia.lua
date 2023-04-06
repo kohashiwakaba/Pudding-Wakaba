@@ -1465,19 +1465,28 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	WINTER_ALBIREO = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Removes Jupiter from Item pool."},
-			{str = "Add a chance to replace Treasure rooms to planetariums."},
-			{str = "If there are no treasure rooms, a random room will be replaced into planetarium."},
-			{str = "Planetariums and Treasure rooms are free to enter."},
-			{str = "+0.1 Tears, +0.3 Damage up per Planetarium unlock item."},
+			{str = "Spawns Planetariums every floor until Womb/Corpse."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Saya with this item and is intrinsic to the character, and it can't be rerolled"},
-			{str = "- Saya can still find this item on a pedestal. Picking the item gives her additional bonus for Planetarium unlock item and increases chance for Planetariums."},
-			--{str = "Abyss Locust from this item deals 5X of Isaac's Damage."},
+			{str = "Tainted Richer starts with this item and is intrinsic to the character, and it can't be rerolled"},
+			--{str = "- Tainted Richer can still find this item on a pedestal. Picking the item does nothing currently."},
 		},
 	},
+	CRISIS_BOOST = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "+1 Tears Up"},
+			{str = "Grants Damage Multiplier for less hearts."},
+			{str = "- formula : (26 - currentheart) / 18"},
+			{str = "- Maximum multiplier is +150% for 1 or less total hearts."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "This item is inspired from 'Crisis Boost' from 'Rabi-Ribi'."},
+			{str = "In Rabi-Ribi, Crisis Boost is activated if health is less than 20% of max."},
+		},
+	}
 	SEE_DES_BISCHOFS = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3558,7 +3567,12 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.CRISIS_BOOST,
-		Hide = true,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CRISIS_BOOST,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+		},
 	})
 	
 	--See Des Bischofs

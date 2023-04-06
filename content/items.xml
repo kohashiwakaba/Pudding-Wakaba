@@ -123,21 +123,21 @@
 	<active id="86" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" hidden="true" achievement="999" />
 
 	<familiar id="87" description="???" gfx="easteregg.png" name="Easter Egg" tags="nogreed quest" quality="4" hidden="true" achievement="999"/>
-	<passive id="88" description="Less health, More strength" gfx="__placeholder.png" name="Crisis Boost" cache="damage firedelay" tags="offensive tearsup" quality="3" craftquality="2"/>
+	<passive id="88" description="Less health, More strength" gfx="crisisboost.png" name="Crisis Boost" cache="damage firedelay" tags="offensive tearsup" quality="3" craftquality="2"/>
 	<passive id="89" description="Richer-chan's magic" gfx="prestigepass.png" name="Prestige Pass" tags="offensive" shopprice="69" devilprice="2" quality="4" craftquality="-1"/>
 	<passive id="90" description="Regeneration + HP up" gfx="onsentowel.png" name="Onsen Towel" soulhearts="2" cache="" tags="nolostbr" quality="1"/>
 	<active id="91" description="Don't Cheating!" gfx="cunningpaper.png" maxcharges="2" name="Cunning Paper" tags="offensive nocantrip" quality="1"/>
 
 	<passive id="92" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="999" persistent="true" />
 	
-	<passive id="93" description="Regeneration + HP up" gfx="__placeholder.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
-	<passive id="94" description="Tears Way up" gfx="__placeholder.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4"/>
-	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="__placeholder.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
+	<passive id="93" description="Regeneration + HP up" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
+	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4"/>
+	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="wakabahairpin.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
 	<active id="96" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="2"/>
 	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
 	<active id="98" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
 	<active id="99" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
-	<active id="100" description="Temporary Random tears + Critical Flavors" gfx="__placeholder.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
+	<active id="100" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
 	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true" achievement="999"/>
