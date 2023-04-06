@@ -3428,6 +3428,7 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WINTER_ALBIREO,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WINTER_ALBIREO,
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do
@@ -3449,6 +3450,7 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WATER_FLAME,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WATER_FLAME,
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do
@@ -4641,7 +4643,6 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
-		Hide = true,
 		Pools = {
 		},
 		UnlockFunc = function(self)
@@ -4677,7 +4678,6 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.SUCCUBUS_BLANKET,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SUCCUBUS_BLANKET,
-		Hide = true,
 		Pools = {
 		},
 		UnlockFunc = function(self)
