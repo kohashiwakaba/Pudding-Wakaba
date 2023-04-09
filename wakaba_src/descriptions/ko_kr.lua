@@ -919,6 +919,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "사용 시 폭탄 2개를 소모하여 공중의 적에게 333 분산 피해를 줍니다.",
 		queueDesc = "공기 터트리기",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
+		itemName = "리라의 속옷",
+		description = "{{Collectible191}} 사용 시 그 방에서 랜덤 눈물 효과를 얻으며;#상태이상의 걸린 적에게 25%p의 추가 피해를 줍니다.",
+		queueDesc = "일시적 눈물 효과 + 치명타 소스",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

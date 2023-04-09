@@ -829,6 +829,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "MOd Block",
 		description = "Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
+		itemName = "Rira's Bra",
+		description = "{{Collectible191}} Grants random tear effects for current room#Enemies with status effects take 25% more damage for current room",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

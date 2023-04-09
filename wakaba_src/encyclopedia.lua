@@ -1606,6 +1606,18 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Gnawed Leaf: Allows Isaac to safely regenerate in any room."},
 		},
 	},
+	RIRAS_BRA = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, Grants Isaac 3-Dollar Bill effect for current room."},
+			{str = "Enemies with status effects take 25% more damage under effect."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Stop Watch", clr = 3, halign = 0},
+			{str = "Enemies always take more damage when Rira's Bra is in effect."},
+		},
+	},
 	
 	-----------------------------------------------------------------------------
 	------------------------------- Wakaba Unlocks ------------------------------
@@ -3692,6 +3704,11 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.RIRAS_BRA,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_BRA,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		},
 	})
 	
 	
