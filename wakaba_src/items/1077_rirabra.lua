@@ -7,6 +7,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:ItemUse_RiraBra(usedItem, rng, player, useFlags, activeSlot, varData)
 
+	wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_3_DOLLAR_BILL, -1, 1, "RIRAS_BRA")
+
 	return {
 		Discharge = true,
 		Remove = false,
@@ -14,3 +16,47 @@ function wakaba:ItemUse_RiraBra(usedItem, rng, player, useFlags, activeSlot, var
 	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_RiraBra, wakaba.Enums.Collectibles.RIRAS_BRA)
+
+function wakaba:HasStatusEffects(entity)
+	if not entity then return false end
+	local hasEffect = false
+	for _, flag in ipairs(wakaba.Checks.VanillaStatusEffects) do
+		hasEffect = hasEffect or entity:HasEntityFlags(flag)
+		if hasEffect then 
+			break 
+		end
+	end
+	local data = entity:GetData()
+	if FiendFolio then
+		--hasEffect = hasEffect or (data.hasFFStatusIcon ~= nil)
+		hasEffect = hasEffect or (data.FFDoomCountdown ~= nil)
+		hasEffect = hasEffect or (data.FFBerserkDuration ~= nil)
+		hasEffect = hasEffect or (data.FFBruiseInstances ~= nil and #data.FFBruiseInstances > 0)
+		hasEffect = hasEffect or (data.FFDoomDuration ~= nil and data.FFDoomDuration > 0)
+		hasEffect = hasEffect or (data.FFDrowsyDuration ~= nil and data.FFDrowsyDuration > 0)
+		hasEffect = hasEffect or (data.FFSleepDuration ~= nil and data.FFSleepDuration > 0)
+		hasEffect = hasEffect or (data.FFBleedDuration ~= nil and data.FFBleedDuration > 0)
+		hasEffect = hasEffect or (data.FFSewnDuration ~= nil and data.FFSewnDuration > 0)
+		hasEffect = hasEffect or (data.FFMultiEuclideanDuration ~= nil and data.FFMultiEuclideanDuration > 0)
+	end
+	return hasEffect
+end
+
+function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
+	local returndata = {}
+	local num = 0
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		num = num + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.RIRAS_BRA)
+	end
+	local hasStopWatch = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STOP_WATCH)
+	if num > 0 and (wakaba:HasStatusEffects(entity) or hasStopWatch) then
+		if hasStopWatch then 
+			num = num + 1 
+		end
+		returndata.newDamage = newDamage * (1 + (num * 0.2))
+		returndata.sendNewDamage = true
+		--returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
+	end
+	return returndata
+end

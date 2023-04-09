@@ -1032,7 +1032,7 @@ function wakaba:getPlayerFromKnife(knife)
 
 		if familiar.Variant == FamiliarVariant.INCUBUS or familiar.Variant == FamiliarVariant.SPRINKLER or
 				familiar.Variant == FamiliarVariant.TWISTED_BABY or familiar.Variant == FamiliarVariant.BLOOD_BABY or
-				familiar.Variant == FamiliarVariant.UMBILICAL_BABY then
+				familiar.Variant == FamiliarVariant.UMBILICAL_BABY or familiar.Variant == FamiliarVariant.CAINS_OTHER_EYE then
 			return familiar.Player
 		else
 			return nil

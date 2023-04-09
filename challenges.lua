@@ -679,19 +679,6 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_Challenge, PickupVariant.PICKUP_COLLECTIBLE)
 
-function wakaba:pullDamage(target, damage, flags, source, cooldown)
-	if wakaba.G.Challenge == Challenges.CHALLENGE_PULL then
-		if source.Entity ~= nil and source.Entity.Type == 2 then
-			local player = source.Entity.SpawnerEntity:ToPlayer()
-			if player ~= nil then
-				return false
-			end
-		end
-	end
-end
-
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.pullDamage)
-
 function wakaba:playerDamageChallenge(target, damage, flags, source, cooldown)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND then
 			local player = target:ToPlayer()
@@ -721,24 +708,22 @@ function wakaba:playerDamageChallenge_Delivery(target, damage, flags, source, co
 				else
 				end
 			end
-		elseif source.Type == EntityType.ENTITY_DARK_ESAU then
-			if target:IsEnemy() and damage > 0 
-			-- Dark Esau ignores armor by default, but left it just in case
-			and not (flags & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR and flags & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
-			then
-				local collisionMultiplier = source.Entity.CollisionDamage
-				damage = damage * collisionMultiplier
-				flags = flags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
-				--Isaac.DebugString("[wakaba]Estimated Damage : " .. damage .. "(" .. collisionMultiplier .."x Damage Multiplier")
-				target:TakeDamage(damage, flags, source, cooldown)
-				return false
-			end
 		end
 	end
 end
 
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.playerDamageChallenge_Delivery)
 
+function wakaba:DeliveryOnDamage(source, newDamage, newFlags)
+	local returndata = {}
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
+		local collisionMultiplier = source.Entity.CollisionDamage
+		returndata.newDamage = newDamage * collisionMultiplier
+		returndata.sendNewDamage = true
+		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
+	end
+	return returndata
+end
 
 function wakaba:toDelirium(rng, spawnPosition)
 	local level = wakaba.G:GetLevel()

@@ -353,6 +353,7 @@ wakaba.ClubOptions = {
 		tearFlags = TearFlags.TEAR_BURN | TearFlags.TEAR_ACID,
 	},
 }
+
 wakaba.Blacklists = {}
 wakaba.Blacklists.Uniform = {}
 wakaba.Blacklists.Uniform.Cards = {
@@ -365,6 +366,26 @@ wakaba.Blacklists.Uniform.PillEffect = {
 }
 wakaba.Blacklists.Uniform.PillColor = {
 	PillColor.PILL_GOLD,
+}
+
+wakaba.Checks = {}
+wakaba.Checks.VanillaStatusEffects = {
+	EntityFlag.FLAG_FREEZE,
+	EntityFlag.FLAG_POISON,
+	EntityFlag.FLAG_SLOW,
+	EntityFlag.FLAG_CHARM,
+	EntityFlag.FLAG_CONFUSION,
+	EntityFlag.FLAG_MIDAS_FREEZE,
+	EntityFlag.FLAG_FEAR,
+	EntityFlag.FLAG_BURN,
+	EntityFlag.FLAG_SHRINK,
+	EntityFlag.FLAG_CONTAGIOUS,
+	EntityFlag.FLAG_BLEED_OUT,
+	EntityFlag.FLAG_ICE,
+	EntityFlag.FLAG_MAGNETIZED,
+	EntityFlag.FLAG_BAITED,
+	EntityFlag.FLAG_WEAKNESS,
+	EntityFlag.FLAG_BRIMSTONE_MARKED,
 }
 
 wakaba.VanillaPoolDatas = {

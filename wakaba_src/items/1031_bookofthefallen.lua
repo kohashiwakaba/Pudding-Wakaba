@@ -133,3 +133,15 @@ function wakaba:prePickupCollision_BookOfTheFallen(pickup, collider, low)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_BookOfTheFallen, PickupVariant.PICKUP_COLLECTIBLE)
+
+function wakaba:BookofTheFallenOnDamage_Pugartory(player, ent, source, newDamage, newFlags)
+	local returndata = {}
+	if player and source.Entity:GetData().wakaba and source.Entity:GetData().wakaba.isFallenGhost then
+		returndata.newDamage = player.Damage
+		returndata.sendNewDamage = true
+		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
+	end
+	return returndata
+end
+
+--wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, ent, damage, flags, source, countdown) print(source.Type, source.Variant, source.SpawnerType, source.SpawnerVariant, (source.Entity and source.Entity.Type), (source.Entity and source.Entity.Variant), (source.Entity and source.Entity.SubType)) end)
