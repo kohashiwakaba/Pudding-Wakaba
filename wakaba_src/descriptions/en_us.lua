@@ -769,6 +769,19 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 2 rerolls"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
+		itemName = "Bunny Parfait",
+		description = ""
+		.. "#!!! Grants different tear effects depending of last digit of room no.:"
+		.. "#0/5 : {{Collectible3}}"
+		.. "#{{Blank}} 1/6 : {{Collectible224}}"
+		.. "#{{Blank}} 2/7 : {{Collectible618}}"
+		.. "#{{Blank}} 3/8 : {{Collectible374}}"
+		.. "#{{Blank}} 4/9 : {{Collectible494}}"
+		--[[ .. "#{{Player"..wakaba.Enums.Players.RIRA.."}} Respawn as Rira on death"
+		.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives" ]]
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "Caramella Pancake",
 		description = ""
@@ -828,6 +841,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd Block",
 		description = "Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
+	},
+	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
+		itemName = "Secret Door",
+		description = "Teleports to Starting room"
+		.. "#!!! Other effects may occur in certain situations"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
 		itemName = "Rira's Bra",

@@ -1287,6 +1287,8 @@ include('wakaba_src.items.1071_richerflipper')
 include('wakaba_src.items.1075_powblock')
 include('wakaba_src.items.1076_selfburning')
 include('wakaba_src.items.1077_rirabra')
+include('wakaba_src.items.1078_secretdoor')
+include('wakaba_src.items.1079_bunnyparfait')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')

@@ -103,7 +103,7 @@
 	
 	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2"/>
 	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2"/>
-	<passive id="75" cache="damage" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="2"/>
+	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3"/>
 	<passive id="76" cache="damage" description="Forgotten recipies" gfx="__placeholder.png" name="Caramella Pancake" quality="2" hidden="true"/>
 	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" chargetype="special" bombs="10" maxcharges="10" quality="3" tags="offensive nocantrip" craftquality="4"/>
 
@@ -137,7 +137,7 @@
 	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
 	<active id="98" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
 	<active id="99" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
-	<active id="100" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
+	<active id="100" cache="tearflag" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="999"/>
 	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest" quality="3" hidden="true" achievement="999"/>

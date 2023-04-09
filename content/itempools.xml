@@ -21,9 +21,11 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -54,6 +56,7 @@
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -113,6 +116,7 @@
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -174,6 +178,7 @@
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -276,6 +281,7 @@
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -283,6 +289,7 @@
 		<Item Name="MOd Block" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Secret Door" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -352,6 +359,7 @@
 		<Item Name="Book of The God" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">

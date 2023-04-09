@@ -7,7 +7,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:ItemUse_RiraBra(usedItem, rng, player, useFlags, activeSlot, varData)
 
-	wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_3_DOLLAR_BILL, -1, 1, "RIRAS_BRA")
+	wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_3_DOLLAR_BILL, -1, 1, "WAKABA_RIRAS_BRA")
 
 	return {
 		Discharge = true,

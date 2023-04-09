@@ -850,6 +850,20 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
 	},
+	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
+		itemName = "토끼 파르페",
+		description = ""
+		.. "#!!! 방 번호의 일의 자리에 따라 랜덤 아이템 효과를 얻습니다:"
+		.. "#0/5 : {{Collectible3}}"
+		.. "#{{Blank}} 1/6 : {{Collectible224}}"
+		.. "#{{Blank}} 2/7 : {{Collectible618}}"
+		.. "#{{Blank}} 3/8 : {{Collectible374}}"
+		.. "#{{Blank}} 4/9 : {{Collectible494}}"
+		--[[ .. "#{{Player"..wakaba.Enums.Players.RIRA.."}} 사망 시 전 방에서 Rira로 부활합니다."
+		.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira의 경우 Rira 캐릭터로 변경되지 않습니다." ]]
+		.. "{{CR}}",
+		queueDesc = "잊혀진 레시피",
+	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "카라멜로 팬케이크",
 		description = ""
@@ -923,6 +937,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리라의 속옷",
 		description = "{{Collectible191}} 사용 시 그 방에서 랜덤 눈물 효과를 얻으며;#상태이상의 걸린 적에게 25%p의 추가 피해를 줍니다.",
 		queueDesc = "일시적 눈물 효과 + 치명타 소스",
+	},
+	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
+		itemName = "어디로든 문",
+		description = "사용 시 시작 방으로 이동합니다."
+		.. "#!!! 특정 조건에서 사용 시 다른 효과가 발동됩니다."
+		.. "{{CR}}",
+		queueDesc = "긴급 탈출구",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",

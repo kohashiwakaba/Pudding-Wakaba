@@ -106,6 +106,7 @@ wakaba.Enums.Collectibles = {
 	FIREFLY_LIGHTER = Isaac.GetItemIdByName("Firefly Lighter"),
 	DOUBLE_INVADER = Isaac.GetItemIdByName("Double Invader"),
 	ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
+	BUNNY_PARFAIT = Isaac.GetItemIdByName("Bunny Parfait"),
 	RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
 	CUNNING_PAPER = Isaac.GetItemIdByName("Cunning Paper"),
 	LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),

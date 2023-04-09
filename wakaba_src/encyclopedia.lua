@@ -2260,6 +2260,34 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Grants Curse of Darkenss immunity"},
 		},
 	},
+	BUNNY_PARFAIT = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants accelerating tears."},
+			{str = "Grants different tear effects depending of last digit of room number."},
+			{str = "0/5 - Homing Tears (Spoon Bender)"},
+			{str = "1/6 - Split Tears (Cricket's Body)"},
+			{str = "2/7 - Mark Tears (Rotten Tomato)"},
+			{str = "3/8 - Holy Tears (Holy Light)"},
+			{str = "4/9 - Electric Tears (Jacob's Ladder)"},
+			--{str = "Grants an extra life."},
+			--{str = "- Isaac will respawn as Rira in the previous room."},
+		},
+		--[[ { -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Tainted Rira", clr = 3, halign = 0},
+			{str = "Revives as herself, rather than normal Rira. Effectively acts as 1up!"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Resurrection items activate in a set order."},
+			{str = "Because characters are respawned as Rira, The abilities for their original character will be lost."},
+			{str = "- Azazel will also lose his short-ranged Brimstone."},
+			{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
+			{str = "- Shiori will also lose all of her books."},
+			{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
+		}, ]]
+	},
 	CARAMELLA_PANCAKE = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2370,6 +2398,21 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "MOd Block is one fan elements from fangame from Mario franchise, 'Super Mario War'."},
+		},
+	},
+
+	SECRET_DOOR = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Teleports to starting room."},
+			{str = "For following conditions, different effect will occur:"},
+			{str = "In Mom's Room, Opens Boss Rush Door."},
+			{str = "In Shop, Opens Membership Shop Door."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "Secret Door is the key item for finding hidden items from 'Paper Mario Sticker Star'."},
+			{str = "Most special attacks for PMSS, which is called 'Things' requires Secret Door to find."},
 		},
 	},
 
@@ -4541,6 +4584,19 @@ if Encyclopedia then
 	Encyclopedia.AddItem({
 		Class = class,
 		ModName = class,
+		ID = wakaba.Enums.Collectibles.BUNNY_PARFAIT,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BUNNY_PARFAIT,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
+		},
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
 		ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,
 		Hide = true,
 	})
@@ -4635,6 +4691,19 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BEGGAR,
+		},
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.SECRET_DOOR,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SECRET_DOOR,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
 	})
