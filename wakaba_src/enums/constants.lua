@@ -169,7 +169,7 @@ wakaba.Enums.Familiars = {
 	LIL_NASA = Isaac.GetEntityVariantByName("Lil Nasa"),
 	LUNAR_DAMOCLES = Isaac.GetEntityVariantByName("Lunar Damocles"),
 	EASTER_EGG = Isaac.GetEntityVariantByName("Easter Egg Orbital"),
-	--LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
+	LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
 	--LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
 	--CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
 
