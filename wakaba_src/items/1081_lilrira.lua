@@ -1,19 +1,9 @@
 --[[ 
-	Lil Richer (리틀 리셰) - 패밀리어(Familiar) - 유니크
+	Lil Rira (리틀 리라) - 패밀리어(Familiar) - 유니크
 	지형 관통, 특수 유도 눈물 발사
-	방 클리어 시마다 액티브 게이지 추가 충전
-	완충 시 최대 16회분까지 보존	
+	액티브 아이템 충전량을 흡수하여 공격력 (or 랜덤 스탯) 증가
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
-
-local richer_saved_recipies = {
-	run = {
-
-	},
-}
-wakaba:saveDataManager("PnW_LilRicher", richer_saved_recipies)
-
-local richerCharges = richer_saved_recipies.run
 
 local function fireTearRicher(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
@@ -33,7 +23,6 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	end
 	tearDamage = 4
 	tear.CollisionDamage = tearDamage * multiplier
-	tear.Color = Color(0.82, 0.8, 0.96, 1, 0, 0, 0)
 	
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
@@ -60,23 +49,15 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 
-	local playerIndex = isc:getPlayerIndex(player)
-	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
-
 	if familiar.RoomClearCount > 0 then
-		richerCharges[playerIndex] = richerCharges[playerIndex] + familiar.RoomClearCount
-		familiar.RoomClearCount = 0
-	end
-
-	if richerCharges[playerIndex] > 0 then
 		for i = 0, 2 do
 			if player:NeedsCharge(i) then
 				isc:addCharge(player, i, 1)
-				richerCharges[playerIndex] = richerCharges[playerIndex] - 1
+				familiar.RoomClearCount = familiar.RoomClearCount - 1
 			end
 		end
-		if richerCharges[playerIndex] > 16 then
-			richerCharges[playerIndex] = 16
+		if familiar.RoomClearCount > 16 then
+			familiar.RoomClearCount = 16
 		end
 	end
 
@@ -125,27 +106,6 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	end
 end
 
-function wakaba:FamiliarRender_LilRicher(familiar)
-  if wakaba.G:GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
-	local player = familiar.Player
-
-	local playerIndex = isc:getPlayerIndex(player)
-	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
-	
-	if wakaba.G:GetHUD():IsVisible() and Options.ChargeBars and richerCharges[playerIndex] > 0 then
-		local fpos = Isaac.WorldToScreen(familiar.Position) + Vector(1, -11) + Vector(8, -8)
-		local boxwidth = 0
-		local center = true
-		local charges = richerCharges[playerIndex]
-		if wakaba.state.options.leftchargebardigits then
-			fpos = Isaac.WorldToScreen(familiar.Position) + Vector(-18, -11) + Vector(8, -8)
-			boxwidth = 1
-			center = false
-		end
-		wakaba.cf:DrawStringScaledUTF8("x" .. charges, fpos.X, fpos.Y, 1.0, 1.0, KColor(1,1,1,1.0,0,0,0), boxwidth ,center)
-	end
-end
-
 function wakaba:Cache_LilRicher(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
@@ -161,4 +121,3 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRicher)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
-wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)

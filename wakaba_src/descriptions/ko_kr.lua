@@ -904,6 +904,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "귀여운 건 최고!",
 	},
+	[wakaba.Enums.Collectibles.LIL_RICHER] = {
+		itemName = "리틀 리셰",
+		description = ""
+		.. "#공격하는 방향으로 틱 당 공격력 4의 추적 눈물을 발사합니다."
+		.. "#{{Battery}} 방 클리어 시 충전량을 하나 보존합니다. (최대 16)"
+		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
+		.. "{{CR}}",
+		queueDesc = "이거 떼면 곤란해요...",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "커닝 페이퍼",
 		description = ""

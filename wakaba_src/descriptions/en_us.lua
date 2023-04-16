@@ -816,6 +816,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{SacrificeRoom}} Sets Sacrifice room spike counter to 6th"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.LIL_RICHER] = {
+		itemName = "Lil Richer",
+		description = ""
+		.. "#Shoots chasing tears"
+		.. "#Deals 4 damage per tick"
+		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
+		.. "#Automatically consumes stored ones for uncharged actives"
+		.. "{{CR}}",
+	transformations = EID.TRANSFORMATION.CONJOINED .. "",
+	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "Cunning Paper",
 		description = ""

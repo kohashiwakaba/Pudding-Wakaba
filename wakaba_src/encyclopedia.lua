@@ -2315,6 +2315,17 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "On use, Different effects occur depending on room types."},
 		},
 	},
+	LIL_RICHER = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns a familiar that follows Isaac around shooting chasing tears that deal 4 damage each tick."},
+			{str = "Lil Richer shoots once per second."},
+			{str = "Stores a charge for active items after every room."},
+			{str = "- Lil Richer can store maximum of 16 charges."},
+			{str = "Automatically consumes stored charges if Isaac's active is not fully charged."},
+			{str = "This item belongs to the Conjoined set. Collecting three items from this set will transform Isaac into a three-faced version of himself."},
+		},
+	},
 	CUNNING_PAPER = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -4628,7 +4639,14 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.LIL_RICHER,
-		Hide = true,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.LIL_RICHER,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_ANGEL,
+			Encyclopedia.ItemPools.POOL_SECRET,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		},
 	})
 
 	Encyclopedia.AddItem({
