@@ -71,8 +71,10 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	if richerCharges[playerIndex] > 0 then
 		for i = 0, 2 do
 			if player:NeedsCharge(i) then
-				isc:addCharge(player, i, 1)
-				richerCharges[playerIndex] = richerCharges[playerIndex] - 1
+				while player:NeedsCharge(i) and richerCharges[playerIndex] > 0 do
+					isc:addCharge(player, i, 1)
+					richerCharges[playerIndex] = richerCharges[playerIndex] - 1
+				end
 			end
 		end
 		if richerCharges[playerIndex] > 16 then
