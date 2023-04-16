@@ -5,6 +5,7 @@
 	완충 시 최대 16회분까지 보존	
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
+local c = wakaba.Enums.Constants
 
 local richer_saved_recipies = {
 	run = {
@@ -31,7 +32,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
 		multiplier = multiplier * 2
 	end
-	local tearDamage = (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER) + 1) * 2
+	local tearDamage = (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER) + 1) * c.LIL_RICHER_BASIC_DMG
 	tear.CollisionDamage = tearDamage * multiplier
 	tear.Color = Color(0.82, 0.8, 0.96, 1, 0, 0, 0)
 	
@@ -62,6 +63,7 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 
 	local playerIndex = isc:getPlayerIndex(player)
 	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
+	local limit = c.LIL_RICHER_BASIC_CHARGES + (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)) * c.LIL_RICHER_EXTRA_CHARGES
 
 	if familiar.RoomClearCount > 0 then
 		richerCharges[playerIndex] = richerCharges[playerIndex] + familiar.RoomClearCount
@@ -77,8 +79,8 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 				end
 			end
 		end
-		if richerCharges[playerIndex] > 16 then
-			richerCharges[playerIndex] = 16
+		if richerCharges[playerIndex] > limit then
+			richerCharges[playerIndex] = limit
 		end
 	end
 
@@ -95,9 +97,9 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 			if familiar.FireCooldown <= 0 then
 				fireTearRicher(player, familiar, tear_vector, 0)
 				if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-					familiar.FireCooldown = 15
+					familiar.FireCooldown = c.LIL_RICHER_BASIC_COOLDOWN // 2
 				else
-					familiar.FireCooldown = 30
+					familiar.FireCooldown = c.LIL_RICHER_BASIC_COOLDOWN
 				end
 			end
 		end
