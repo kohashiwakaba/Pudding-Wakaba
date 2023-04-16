@@ -16,7 +16,7 @@ end
 
 --Costume currently not working in Knife Piece 2 area. Needs to be fixed.
 function wakaba:PostTsukasaUpdate(player)
-	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not (player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then
+	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_TECHNOLOGY, 1, "WAKABA_I_TSUKASA")
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
@@ -33,7 +33,7 @@ function wakaba:LaserUpdate_Tsukasa(laser)
 		local parent = laser.SpawnerEntity
 		if not parent or not parent:ToPlayer() then return end
 		local player = parent:ToPlayer()
-		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not (player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then
+		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not (player:GetCollectibleNum(CollectibleType.COLLECTIBLE_TECHNOLOGY, true) > 0 or player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE)) then
 			--print("laser", laser.LaserLength, laser.MaxDistance)
 			--laser.LaserLength = 5000
 			laser:SetMaxDistance(105 + (player.TearRange / 5.85))

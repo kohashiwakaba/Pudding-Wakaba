@@ -139,6 +139,7 @@ function wakaba:FamiliarRender_LilRicher(familiar)
 		local boxwidth = 0
 		local center = true
 		local charges = richerCharges[playerIndex]
+		local isMirror = wakaba.G:GetRoom():IsMirrorWorld()
 		if wakaba.state.options.leftchargebardigits then
 			fpos = Isaac.WorldToScreen(familiar.Position) + Vector(-18, -11) + Vector(8, -8)
 			boxwidth = 1
