@@ -31,7 +31,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
 		multiplier = multiplier * 2
 	end
-	tearDamage = 4
+	local tearDamage = (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER) + 1) * 2
 	tear.CollisionDamage = tearDamage * multiplier
 	tear.Color = Color(0.82, 0.8, 0.96, 1, 0, 0, 0)
 	
