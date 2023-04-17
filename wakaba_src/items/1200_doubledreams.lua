@@ -70,6 +70,26 @@ function wakaba:GetNextPool(current)
 end
 
 
+local bookSprite = Sprite()
+bookSprite:Load("gfx/005.100_collectible.anm2", false)
+bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[-1]..".png")
+bookSprite:LoadGraphics()
+bookSprite:Play("ShopIdle", true)
+
+wakaba:addActiveRender({
+	Sprite = bookSprite,
+	Offset = Vector(16, 32),
+	RenderAbove = false,
+	Condition = function(player, activeSlot)
+		local data = player:GetData().wakaba
+		local item = player:GetActiveItem(activeSlot)
+		
+		return item == wakaba.Enums.Collectibles.DOUBLE_DREAMS
+	end,
+})
+
+-- Replaced by renderactive from ff
+--[[ 
 function wakaba:renderDreams()
 	wakaba.hasdreams = false
   for i = 1, wakaba.G:GetNumPlayers() do
@@ -103,7 +123,7 @@ function wakaba:renderDreams()
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.renderDreams)
-
+ ]]
 function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 	if (useFlags & UseFlag.USE_OWNED == UseFlag.USE_OWNED)
 	and not (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) then

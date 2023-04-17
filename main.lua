@@ -1201,6 +1201,22 @@ include('wakaba_src.enums.players')
 include('wakaba_src.enums.costumes')
 include('wakaba_src.enums.wakabachargebar')
 
+local renderActive = include("wakaba_src.functions.render_active_base")
+
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, renderActive.OnRender)
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, renderActive.OnUpdate)
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, renderActive.ResetOnGameStart)
+
+wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
+	if shaderName == "wakaba_ChallengeDest_DummyShader" and wakaba.G:GetHUD():IsVisible() then
+		renderActive:OnGetShaderParams()
+	end
+end)
+
+function wakaba:addActiveRender(tab)
+	return renderActive:Add(tab)
+end
+
 include('wakaba_src.items.0000_blessing')
 include('wakaba_src.items.0001_bookofshiori')
 include('wakaba_src.items.0003_bookofconquest')
