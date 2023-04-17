@@ -2318,7 +2318,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	LIL_RICHER = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Spawns a familiar that follows Isaac around shooting chasing tears that deal 4 damage each tick."},
+			{str = "Spawns a familiar that follows Isaac around shooting chasing tears that deal 2 damage each tick."},
 			{str = "Lil Richer shoots once per second."},
 			{str = "Stores a charge for active items after every room."},
 			{str = "- Lil Richer can store maximum of 16 charges."},

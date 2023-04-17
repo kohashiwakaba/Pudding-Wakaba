@@ -820,7 +820,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Lil Richer",
 		description = ""
 		.. "#Shoots chasing tears"
-		.. "#Deals 4 damage per tick"
+		.. "#Deals 2 damage per tick"
 		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",

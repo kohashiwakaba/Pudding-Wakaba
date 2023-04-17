@@ -115,7 +115,7 @@
 
 	<familiar id="82" description="" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby" quality="4" hidden="true" achievement="999"/>
 
-	<familiar id="83" description="I wanna this ear" gfx="lilricher.png" name="Lil Richer" devilprice="2" shopprice="20" tags="offensive baby" quality="3"/>
+	<familiar id="83" description="I wanna this ear" gfx="lilricher.png" name="Lil Richer" devilprice="2" shopprice="20" tags="offensive baby uniquefamiliar" quality="3"/>
 	<familiar id="84" description="" gfx="__placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="999"/>
 
 	<active id="85" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="2" persistent="true"/>

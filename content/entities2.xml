@@ -29,7 +29,7 @@
 
 	<entity anm2path="wakaba_plumy.anm2" baseHP="2000" boss="0" champion="0" collisionDamage="25" collisionInterval="10" collisionMass="20" collisionRadius="26" friction="1" id="3" name="Plumy" numGridCollisionPoints="12" shadowSize="30" stageHP="0" tags="fly" variant="4105"/>
 
-	<entity anm2path="lilricher.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Richer" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="cansacrifice" variant="4106">
+	<entity anm2path="lilricher.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Richer" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="4106">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
 
