@@ -71,14 +71,15 @@ end
 
 
 local bookSprite = Sprite()
+local bookSpritePool = ItemPoolType.POOL_NULL
 bookSprite:Load("gfx/005.100_collectible.anm2", false)
-bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[-1]..".png")
+bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/".. wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
 bookSprite:LoadGraphics()
 bookSprite:Play("ShopIdle", true)
 
 wakaba:addActiveRender({
 	Sprite = bookSprite,
-	Offset = Vector(16, 32),
+	Offset = Vector(16, 24),
 	RenderAbove = false,
 	Condition = function(player, activeSlot)
 		local data = player:GetData().wakaba
@@ -131,6 +132,9 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 		local current = AnIndexOf(list, wakaba.runstate.dreampool)
 		wakaba.runstate.dreampool = wakaba:GetNextPool(current)
 		wakaba.runstate.dreamroom = wakaba.ItemPoolRoomType[AnIndexOf(list, wakaba.runstate.dreampool)]
+		bookSpritePool = wakaba.runstate.dreampool
+		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
+		bookSprite:LoadGraphics()
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_ENTER)
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
 	else
@@ -145,6 +149,11 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.Enums
 
 
 function wakaba:dreamsUpdate(player)
+	if wakaba.runstate.dreampool and wakaba.runstate.dreampool ~= bookSpritePool then
+		bookSpritePool = wakaba.runstate.dreampool
+		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
+		bookSprite:LoadGraphics()
+	end
 	if wakaba.hasdreams then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CHAOS, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_CHAOS)
