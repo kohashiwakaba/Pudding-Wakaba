@@ -276,6 +276,7 @@ wakaba.Enums.Slots = {
 	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
 }
 
+-- 크리스탈 리스톡 타입, 값은 리롤 가능 횟수
 wakaba.Enums.CrystalRestockTypes = {
 	[0] = 3,
 	[1] = 4,
@@ -299,33 +300,35 @@ wakaba.Enums.Constants = {
 
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
-	FALLEN_AFTER_TIMER = 10,
-	FALLEN_AFTER_BASE_COUNT = 10,
-	FALLEN_AFTER_DMG_THRESHOLD = 5,
-	FALLEN_BEFORE_BASE_COUNT = 3,
+	FALLEN_AFTER_TIMER = 10, -- 부활 후 타락책 유령 지속시간
+	FALLEN_AFTER_BASE_COUNT = 10, -- 부활 후 타락책 유령 소환 수
+	FALLEN_AFTER_DMG_THRESHOLD = 5, 
+	FALLEN_BEFORE_BASE_COUNT = 3, -- 부활 전 타락책 유령 소환 수
 
-	ELIXIR_MAX_COOLDOWN = 16,
-	ELIXIR_MAX_COOLDOWN_DMG = 50,
+	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
+	ELIXIR_MAX_COOLDOWN_DMG = 50, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수
 
-	LIL_RICHER_BASIC_CHARGES = 12,
-	LIL_RICHER_EXTRA_CHARGES = 4,
-	LIL_RICHER_BASIC_DMG = 1,
-	LIL_RICHER_BASIC_COOLDOWN = 36,
+	LIL_RICHER_BASIC_CHARGES = 12, -- 리틀 리셰 기본 보존 충전량
+	LIL_RICHER_EXTRA_CHARGES = 4, -- 리틀 리셰 중첩 당 추가 보존 충전량
+	LIL_RICHER_BASIC_DMG = 1, -- 리틀 리셰 기본 눈물 배수
+	LIL_RICHER_BASIC_COOLDOWN = 36, -- 리틀 리셰 눈물 쿨타임(프레임)
 
-	SELF_BURNING_DAMAGE_TIMER = 300,
+	SELF_BURNING_DAMAGE_TIMER = 300, -- 셀프 버닝 체력 차감 쿨타임
 
-	RICHER_B_HUD_LIMIT = 6,
-	RICHER_B_HUD_OFFSET = 20,
+	RICHER_B_HUD_LIMIT = 6, -- 알트 리셰 표시 아이템 수
+	RICHER_B_HUD_OFFSET = 20, -- 알트 리셰 HUD 오프셋 (EID 지원용)
 
-	MAX_ISEKAI_CLOTS = 10,
-	ISEKAI_CERTIFICATE_CHANCE = 50,
-	ISEKAI_SHIORI_BONUS = 400,
-	ISEKAI_OVER_CLOT_BONUS = 250,
-	DIMENSION_CUTTER_RATE = 15,
-	DIMENSION_CUTTER_GREED_MIN_RATE = 5,
-	DIMENSION_CUTTER_GREED_LUCK_RATE = 2,
-	DIMENSION_CUTTER_GREED_MAX_RATE = 25,
-	SSRC_ALLOW_FLAMES = 8,
+	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한
+	ISEKAI_CERTIFICATE_CHANCE = 50, -- 이세계 사증 이스터에그 확률 (0.1% 단위)
+	ISEKAI_SHIORI_BONUS = 400, -- 이세계 사증 시오리 확률 보너스
+	ISEKAI_OVER_CLOT_BONUS = 250, -- 이세계 사증 최대 소환 확률 보너스
+
+	DIMENSION_CUTTER_RATE = 15, -- 차원검 장신구 델리 보스 소환 확률
+	DIMENSION_CUTTER_GREED_MIN_RATE = 5, -- 차원검 장신구 델리 보스 소환 확률 (그리드 최소)
+	DIMENSION_CUTTER_GREED_LUCK_RATE = 2, -- 차원검 장신구 델리 보스 소환 확률 (그리드 럭 1당 추가 확률)
+	DIMENSION_CUTTER_GREED_MAX_RATE = 25, -- 차원검 장신구 델리 보스 소환 확률 (그리드 최대)
+
+	SSRC_ALLOW_FLAMES = 8, -- 초민감 리셰 챌린지 최대 흡수 제한
 }
 
 -- 시오리/알트시오리 배터리 획득 시 충전량
