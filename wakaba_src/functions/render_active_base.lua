@@ -290,7 +290,7 @@ local function UpdateSpriteColor(playerIndex, activeSlot, params)
 	local fadeData = params.FadeData[activeSlot]
 	
 	local target
-	if currentPauseState == "UNPAUSED" or currentPauseState == "UNPAUSING" then
+	if currentPauseState == "UNPAUSED" or currentPauseState == "UNPAUSING" or UNINTRUSIVEPAUSEMENU then
 		target = 1.0
 	else
 		target = 0.5
