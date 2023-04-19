@@ -90,7 +90,6 @@ wakaba:addActiveRender({
 })
 
 -- Replaced by renderactive from ff
---[[ 
 function wakaba:renderDreams()
 	wakaba.hasdreams = false
   for i = 1, wakaba.G:GetNumPlayers() do
@@ -99,7 +98,7 @@ function wakaba:renderDreams()
 			wakaba.hasdreams = true
 		end
 	end
-	
+	--[[ 
 	if wakaba.hasdreams
 	and wakaba.G:GetHUD():IsVisible()
 	then
@@ -115,7 +114,7 @@ function wakaba:renderDreams()
 		end
 		
 		--Isaac.RenderText("Sample text", 155, 20, 1, 1, 1, 255)
-	end
+	end ]]
 	if not wakaba.hasdreams then
 		wakaba.runstate.dreampool = ItemPoolType.POOL_NULL
 	end
@@ -124,7 +123,7 @@ function wakaba:renderDreams()
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.renderDreams)
- ]]
+
 function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 	if (useFlags & UseFlag.USE_OWNED == UseFlag.USE_OWNED)
 	and not (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) then
