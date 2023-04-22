@@ -331,6 +331,22 @@ wakaba.Enums.Constants = {
 	SSRC_ALLOW_FLAMES = 8, -- 초민감 리셰 챌린지 최대 흡수 제한
 }
 
+wakaba.RoomIDs = {
+	-- Angel rooms replaced by Wakaba Rooms
+
+	-- Planetariums replaced by Duet Rooms
+	MIN_DUET_ROOM_ID = 41701,
+	MAX_DUET_ROOM_ID = 41701,
+
+	-- Planetariums replaced by Richer Rooms
+	MIN_RICHER_ROOM_ID = 41001,
+	MAX_RICHER_ROOM_ID = 41001,
+
+	-- Dice Rooms replaced by Rira Rooms
+	MIN_RIRA_ROOM_ID = 41201,
+	MAX_RIRA_ROOM_ID = 41201,
+}
+
 -- 시오리/알트시오리 배터리 획득 시 충전량
 wakaba.Enums.ShioriBatteries = {
 	[BatterySubType.BATTERY_NORMAL] = 3,

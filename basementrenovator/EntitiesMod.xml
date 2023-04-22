@@ -1,0 +1,17 @@
+<data>
+  <!-- Pickups -->
+	<entity Kind="wakaba" Group="Coins" ID="5" Variant="20" Subtype="401" Image="wakaba/easter_penny.png" Name="Easter Egg Penny"/>
+  <!-- Clover Chests -->
+	<entity Kind="wakaba" Group="Chests" ID="5" Variant="4101" Subtype="1" Image="wakaba/clover_chest.png" Name="Clover Chest"/>
+  <!-- Valuts -->
+	<entity Kind="wakaba" Group="Valuts" ID="6" Variant="41" Subtype="0" Image="wakaba/shiori_valut.png" Name="Shiori's Valut"/>
+  <!-- Crystal Restocks -->
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="0" Image="wakaba/crystal_restock.png" Name="Richer's Crystal Restock"/>
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="1" Image="wakaba/crystal_restock_red.png" Name="Richer's Crystal Restock (red)"/>
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="2" Image="wakaba/crystal_restock_green.png" Name="Richer's Crystal Restock (green)"/>
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="3" Image="wakaba/crystal_restock_richer.png" Name="Richer's Crystal Restock (prestige)"/>
+  <!-- Collectibles -->
+  <!-- Trinkets -->
+  <!-- Cards -->
+  <!-- Wakaba Tickets -->
+</data>
