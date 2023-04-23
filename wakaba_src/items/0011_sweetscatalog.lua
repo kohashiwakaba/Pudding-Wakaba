@@ -287,7 +287,7 @@ end
 
 function wakaba:Render_Catalog()
 	local hasCatalog = false
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if player:GetData().wakaba and player:GetData().wakaba.usingCatalog then
 			hasCatalog = true
