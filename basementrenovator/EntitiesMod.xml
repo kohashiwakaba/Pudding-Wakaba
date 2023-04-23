@@ -10,6 +10,8 @@
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="1" Image="wakaba/crystal_restock_red.png" Name="Richer's Crystal Restock (red)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="2" Image="wakaba/crystal_restock_green.png" Name="Richer's Crystal Restock (green)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="3" Image="wakaba/crystal_restock_richer.png" Name="Richer's Crystal Restock (prestige)"/>
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="4" Image="wakaba/crystal_restock_rira.png" Name="Richer's Crystal Restock (rira)"/>
+	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="5" Image="wakaba/crystal_restock_yellow.png" Name="Richer's Crystal Restock (yellow)"/>
   <!-- Collectibles -->
   <!-- Trinkets -->
   <!-- Cards -->

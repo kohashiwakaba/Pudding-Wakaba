@@ -276,12 +276,25 @@ wakaba.Enums.Slots = {
 	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
 }
 
+-- 크리스탈 리스톡 타입
+wakaba.Enums.CrystalRestockSubType = {
+	NORMAL = 0, -- 일반형 (3회)
+	RED = 1, -- 빨간색 (4회)
+	GREEN = 2, -- 초록색 (2회)
+	PRESTIGE = 3, -- Prestige Pass 아이템으로 소환 (2회)
+	RICHER = 3, -- 리셰 타입, PRESTIGE 값과 동일 (2회)
+	RIRA = 4, -- 리라 타입 (5회)
+	YELLOW = 5, -- 노란색 (5회)
+}
+
 -- 크리스탈 리스톡 타입, 값은 리롤 가능 횟수
 wakaba.Enums.CrystalRestockTypes = {
-	[0] = 3,
-	[1] = 4,
-	[2] = 2,
-	[3] = 2,
+	[wakaba.Enums.CrystalRestockSubType.NORMAL] = 3,
+	[wakaba.Enums.CrystalRestockSubType.RED] = 4,
+	[wakaba.Enums.CrystalRestockSubType.GREEN] = 2,
+	[wakaba.Enums.CrystalRestockSubType.PRESTIGE] = 2,
+	[wakaba.Enums.CrystalRestockSubType.RIRA] = 5,
+	[wakaba.Enums.CrystalRestockSubType.YELLOW] = 5,
 }
 
 -- 행운 관련 상수

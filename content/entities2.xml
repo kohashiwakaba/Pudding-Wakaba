@@ -56,13 +56,19 @@
 	<entity anm2path="006.4103_crystal_restock.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="0">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
 	</entity>
-	<entity anm2path="006.4103_crystal_restock.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (red)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="1">
+	<entity anm2path="006.4103_crystal_restock_red.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (red)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="1">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
 	</entity>
-	<entity anm2path="006.4103_crystal_restock.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (green)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="2">
+	<entity anm2path="006.4103_crystal_restock_green.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (green)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="2">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
 	</entity>
-	<entity anm2path="006.4103_crystal_restock.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (prestige)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="3">
+	<entity anm2path="006.4103_crystal_restock_richer.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (prestige)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="3">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+	</entity>
+	<entity anm2path="006.4103_crystal_restock_rira.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (rira)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="4">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+	</entity>
+	<entity anm2path="006.4103_crystal_restock_yellow.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="6" name="Richer's Crystal Restock (yellow)" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="42" subtype="5">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
 	</entity>
 
