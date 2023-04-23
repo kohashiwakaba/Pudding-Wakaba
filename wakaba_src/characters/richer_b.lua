@@ -13,6 +13,13 @@ local hudLimit = wakaba.Enums.Constants.RICHER_B_HUD_LIMIT
 wakaba.TaintedRicherSelectionSprite:Load("gfx/ui/wakaba/ui_richer_b.anm2",true)
 wakaba.TaintedRicherSelectionSprite:SetFrame("HUD",0) ]]
 
+local forceReset = false
+function wakaba:ResetWispStatus()
+	wakaba.TotalWisps = {}
+	totalwisps = wakaba.TotalWisps
+	forceReset = true
+end
+
 ---@param player EntityPlayer
 local function getRenderList(player)
 	local renderList = {}
@@ -110,9 +117,10 @@ function wakaba:PlayerUpdate_Richer_b(player)
 		local changed = false
 		current.list = current.list or {}
 		current.index = current.index or 1
-		if #wisps ~= #current.list then
+		if (#wisps ~= #current.list) or forceReset then
 			current.list = wisps
 			changed = true
+			forceReset = false
 		end
 		if #current.list > 0 then
 			if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then

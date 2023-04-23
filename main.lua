@@ -1475,6 +1475,7 @@ function wakaba:init(continue)
 		end
 		wakaba.runstate.playersavedata = reservedplayerdatas
 		wakaba:LoadHiddenItemData()
+		wakaba:ResetWispStatus()
 	end
 	-- Run this whether continue or not
 	if EID then
