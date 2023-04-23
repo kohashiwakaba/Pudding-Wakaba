@@ -338,13 +338,25 @@ wakaba.RoomIDs = {
 	MIN_DUET_ROOM_ID = 41701,
 	MAX_DUET_ROOM_ID = 41701,
 
-	-- Planetariums replaced by Richer Rooms
+	--[[ 
+		Planetariums replaced by Richer Rooms
+		Subtype 41 : normal
+		Subtype 42 : double 
+	]]
 	MIN_RICHER_ROOM_ID = 41001,
 	MAX_RICHER_ROOM_ID = 41001,
+	MIN_CHOICE_RICHER_ROOM_ID = 41101,
+	MAX_CHOICE_RICHER_ROOM_ID = 41101,
 
-	-- Dice Rooms replaced by Rira Rooms
+	--[[ 
+		Dice Rooms replaced by Rira Rooms
+		Subtype 41 : normal
+		Subtype 42 : double 
+	]]
 	MIN_RIRA_ROOM_ID = 41201,
 	MAX_RIRA_ROOM_ID = 41201,
+	MIN_CHOICE_RIRA_ROOM_ID = 41301,
+	MAX_CHOICE_RIRA_ROOM_ID = 41301,
 }
 
 -- 시오리/알트시오리 배터리 획득 시 충전량
