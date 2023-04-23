@@ -261,7 +261,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Catalog)
 
 function wakaba:NewRoom_Catalog() -- Terminate the holding up of your throwable active upon entering a new room. This function can also be omitted if you want.
-	for i = 0, game:GetNumPlayers() - 1 do
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		TryCancelCatalog(player)
 	end
