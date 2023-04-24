@@ -165,7 +165,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "The Winter Albireo",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#{{PlanetariumChance}} Planetariums always appear if possible"
+		.. "#{{PlanetariumChance}} Richer's special Planetariums appear per stage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {

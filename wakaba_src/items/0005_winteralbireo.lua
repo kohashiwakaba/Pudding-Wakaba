@@ -15,6 +15,16 @@ function wakaba:hasAlbireo(player)
 	end
 end
 
+function wakaba:IsValidWakabaRoom(roomdesc)
+	-- Richer Planetariums for Winter Albireo
+	if roomdesc and roomdesc.Data and roomdesc.Data.Type == RoomType.ROOM_PLANETARIUM then
+		if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) --[[ or mod.savedata.TaintedLuarooms[roomdesc.GridIndex] ]] then
+			return true
+		end
+	end
+	return false
+end
+
 function wakaba:GetRicherRooms(roomType, rng)
 	if not rng then
 		local seeds = wakaba.G:GetSeeds()
@@ -36,6 +46,7 @@ function wakaba:GetRicherRooms(roomType, rng)
 	return result
 end
 
+wakaba.minimapRooms = {}
 function wakaba:NewLevel_WinterAlbireo()
 	local level = wakaba.G:GetLevel()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO)[1] or Isaac.GetPlayer()
@@ -55,9 +66,10 @@ function wakaba:NewLevel_WinterAlbireo()
 			
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO)
 			local newRoomPoint = isc:newRoom(rng)
-			print(newRoomPoint)
+			--print(newRoomPoint)
 			if newRoomPoint then
 				isc:setRoomData(newRoomPoint, roomData)
+				table.insert(wakaba.minimapRooms, newRoomPoint)
 			end
 		else
 			local roomNo = wakaba:GetRicherRooms(nil, srng)
@@ -65,13 +77,31 @@ function wakaba:NewLevel_WinterAlbireo()
 			
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO)
 			local newRoomPoint = isc:newRoom(rng)
-			print(newRoomPoint)
+			--print(newRoomPoint)
 			if newRoomPoint then
 				isc:setRoomData(newRoomPoint, roomData)
+				table.insert(wakaba.minimapRooms, newRoomPoint)
 			end
 		end
 		if MinimapAPI then
 			MinimapAPI:LoadDefaultMap()
+	
+			if #wakaba.minimapRooms > 0 then
+				for i, roomidx in pairs(wakaba.minimapRooms) do
+					local minimaproom = MinimapAPI:GetRoomByIdx(roomidx)
+					wakaba:scheduleForUpdate(function()
+						if minimaproom then
+							minimaproom.Color = Color(MinimapAPI.Config.DefaultRoomColorR, MinimapAPI.Config.DefaultRoomColorG, MinimapAPI.Config.DefaultRoomColorB, 1, 0, 0, 0)
+							if wakaba:IsValidWakabaRoom(minimaproom.Descriptor) then
+								minimaproom.PermanentIcons = {"wakaba_RicherPlanetariumIcon"}
+							end
+							wakaba.minimapRooms[i] = nil
+						end
+					end, 0)
+				end
+			else
+				wakaba.minimapRooms = {}
+			end
 		end
 	end
 

@@ -186,7 +186,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "겨울의 알비레오",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{PlanetariumChance}} 가능한 경우, 천체관이 반드시 등장합니다."
+		.. "#{{PlanetariumChance}} 가능한 경우, 스테이지 진입 시 리셰의 전용 천체방이 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "저 너머로 이어져 있어",
 	},

@@ -69,9 +69,19 @@ if MinimapAPI then
 	  "Curses",
 	  wakaba.curseAnimFrames[wakaba.curses.CURSE_OF_MAGICAL_GIRL]
 	)
+
+	MinimapAPI:AddIcon("wakaba_RicherPlanetariumIcon", wakaba.MiniMapAPISprite, "Rooms", 0)
+
 	MinimapAPI:AddIcon("wakaba_CloverChestIcon", wakaba.MiniMapAPISprite, "Extra", 0)
 	MinimapAPI:AddIcon("wakaba_ShioriValutIcon", wakaba.MiniMapAPISprite, "Extra", 1)
 	MinimapAPI:AddIcon("wakaba_EasterCoinIcon", wakaba.MiniMapAPISprite, "Extra", 2)
+
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon", wakaba.MiniMapAPISprite, "Extra", 3)
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Red", wakaba.MiniMapAPISprite, "Extra", 4)
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Green", wakaba.MiniMapAPISprite, "Extra", 5)
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Richer", wakaba.MiniMapAPISprite, "Extra", 6)
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Rira", wakaba.MiniMapAPISprite, "Extra", 7)
+	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Yellow", wakaba.MiniMapAPISprite, "Extra", 8)
 
 	MinimapAPI:AddIcon("wakaba_SilverCardIcon", wakaba.MiniMapAPISprite, "Cards", 0)
 	MinimapAPI:AddIcon("wakaba_CraneCardIcon", wakaba.MiniMapAPISprite, "Cards", 1)
@@ -94,10 +104,18 @@ if MinimapAPI then
 	MinimapAPI:AddPickup("ShioriValut", "wakaba_ShioriValutIcon", 6, wakaba.Enums.Slots.SHIORI_VALUT, wakaba.ChestSubType.CLOSED, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1500)
 	--Easter Coin render
 	MinimapAPI:AddPickup("EasterCoin", "wakaba_EasterCoinIcon", 5, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, MinimapAPI.PickupNotCollected, "coins", 4100)
+	--Crystal Restock render
+	MinimapAPI:AddPickup("wakaba_CrystalRestock", "wakaba_CrystalRestockIcon", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Red", "wakaba_CrystalRestockIcon_Red", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RED, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Green", "wakaba_CrystalRestockIcon_Green", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.GREEN, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Richer", "wakaba_CrystalRestockIcon_Richer", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RICHER, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Rira", "wakaba_CrystalRestockIcon_Rira", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RIRA, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Yellow", "wakaba_CrystalRestockIcon_Yellow", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.YELLOW, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
 
 	MinimapAPI:AddPickup("wakaba_DreamCard", "wakaba_DreamCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_MinervaTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_MINERVA_TICKET, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_ValutTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_VALUT_RIFT, MinimapAPI.PickupNotCollected, "cards", 9050)
+	MinimapAPI:AddPickup("wakaba_TrialStew", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_TRIAL_STEW, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_CraneCard", "wakaba_CraneCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_CRANE_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_UnknownBookmark", "wakaba_UnknownBookmarkIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_ConfessionalCard", "wakaba_ConfessionalCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)

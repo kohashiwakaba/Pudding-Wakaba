@@ -130,7 +130,11 @@ function wakaba:NewRoom_RabbitRibbon()
 	if isc:inDeathCertificateArea() then return end
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
 	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
-		isc:clearFloorDisplayFlags()
+		for _, room in ipairs(isc:getRoomsInsideGrid()) do
+			if room.Data and room.Data.Type == RoomType.ROOM_DEFAULT then
+				isc:clearRoomDisplayFlags(room.SafeGridIndex)
+			end
+		end
 		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, 1, "WAKABA_RABBIT_RIBBON")
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_SPELUNKER_HAT) then
 			isc:removeCollectibleCostume(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT)
@@ -151,7 +155,7 @@ function wakaba:NewRoom_RabbitRibbon()
 						end
 					end
 				end
-				v:UpdateType()
+				--v:UpdateType()
 			end
 			--MinimapAPI:LoadDefaultMap()
 		end
