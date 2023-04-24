@@ -110,6 +110,28 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_WinterAlbireo)
 
 
+function wakaba:NewRoom_WinterAlbireo()
+	local level = wakaba.G:GetLevel()
+	local roomidx = level:GetCurrentRoomIndex()
+	local roomdesc = level:GetCurrentRoomDesc()
+	local roomdata = roomdesc.Data
+	local room = wakaba.G:GetRoom()
+	local roomtype = room:GetType()
+	if wakaba:IsValidWakabaRoom(roomdesc) then
+		if room:IsFirstVisit() then
+			if isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+				local slots = Isaac.FindByType(6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL)
+				for _, slot in ipairs(slots) do
+					local position = Vector(slot.Position.X, slot.Position.Y)
+					slot:Remove()
+					Isaac.Spawn(6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.YELLOW, position, Vector.Zero, nil)
+				end
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
+
 --[[ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, function(_, fam)
 	print("[wakaba] Familiar Init : "..fam.Variant.."."..fam.SubType)
 end) ]]
