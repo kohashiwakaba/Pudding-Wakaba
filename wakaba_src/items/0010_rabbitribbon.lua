@@ -131,7 +131,7 @@ function wakaba:NewRoom_RabbitRibbon()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
 	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
 		for _, room in ipairs(isc:getRoomsInsideGrid()) do
-			if room.Data and room.Data.Type == RoomType.ROOM_DEFAULT then
+			if room.Data --[[ and room.Data.Type == RoomType.ROOM_DEFAULT ]] then
 				isc:clearRoomDisplayFlags(room.SafeGridIndex)
 			end
 		end
