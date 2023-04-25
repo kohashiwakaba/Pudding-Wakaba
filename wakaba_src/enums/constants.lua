@@ -357,7 +357,7 @@ wakaba.RoomIDs = {
 		Subtype 42 : double 
 	]]
 	MIN_RICHER_ROOM_ID = 41001,
-	MAX_RICHER_ROOM_ID = 41029,
+	MAX_RICHER_ROOM_ID = 41031,
 
 	--[[ 
 		Dice Rooms replaced by Rira Rooms
