@@ -24,7 +24,7 @@
 			<entity type="5" variant="20" subtype="401" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41001" name="[wakaba] a Basic Planetarium" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41001" name="[wakaba] a Basic Planetarium" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -39,7 +39,7 @@
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41002" name="[wakaba] Surprise!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41002" name="[wakaba] Surprise!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -60,7 +60,7 @@
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41003" name="[wakaba] another Basic Planetarium" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41003" name="[wakaba] another Basic Planetarium" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -81,7 +81,7 @@
 			<entity type="5" variant="301" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41004" name="[wakaba] watch your step!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-23T16:17+00:00">
+	<room variant="41004" name="[wakaba] watch your step!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -126,7 +126,7 @@
 			<entity type="5" variant="301" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41005" name="[wakaba] you have to pay for this" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41005" name="[wakaba] you have to pay for this" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -147,7 +147,7 @@
 			<entity type="5" variant="301" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41006" name="[wakaba] I don't think that this is supposed to be here..." type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41006" name="[wakaba] I don't think that this is supposed to be here..." type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -165,7 +165,7 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41007" name="[wakaba] Rira-chan's small present" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41007" name="[wakaba] Rira-chan's small present" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -189,7 +189,7 @@
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41008" name="[wakaba] Too Bad!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41008" name="[wakaba] Too Bad!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -210,7 +210,7 @@
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41009" name="[wakaba] Angel's Gift" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41009" name="[wakaba] Angel's Gift" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -243,7 +243,7 @@
 			<entity type="1498" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41010" name="[wakaba] Saya's Shop" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41010" name="[wakaba] Saya's Shop" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -273,7 +273,7 @@
 			<entity type="5" variant="150" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41011" name="[wakaba] No Treasures, but I can give these" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41011" name="[wakaba] No Treasures, but I can give these" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -305,7 +305,7 @@
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41012" name="[wakaba] Find a Shop, and you will win" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41012" name="[wakaba] Find a Shop, and you will win" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -354,7 +354,7 @@
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41013" name="[wakaba] Catch me if you can!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41013" name="[wakaba] Catch me if you can!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -432,7 +432,7 @@
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41014" name="[wakaba] Dark and Darker" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41014" name="[wakaba] Dark and Darker" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -486,7 +486,7 @@
 			<entity type="6000" variant="10" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41015" name="[wakaba] Unstable" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41015" name="[wakaba] Unstable" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -513,7 +513,7 @@
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41016" name="[wakaba] Ultimate Choice" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41016" name="[wakaba] Ultimate Choice" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -525,7 +525,7 @@
 			<entity type="5" variant="100" subtype="628" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41017" name="[wakaba] Basketball" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41017" name="[wakaba] Basketball" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -612,7 +612,7 @@
 			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="6" y="3">
-			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="7" y="3">
 			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
@@ -645,7 +645,7 @@
 			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="6" y="4">
-			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="7" y="4">
 			<entity type="10000" variant="0" subtype="0" weight="1.0"/>
@@ -663,7 +663,7 @@
 			<entity type="809" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
-	<room variant="41018" name="[wakaba] a free bomb!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0">
+	<room variant="41018" name="[wakaba] a free bomb!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
 		<door exists="True" x="-1" y="3"/>
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
@@ -691,6 +691,582 @@
 		</spawn>
 		<spawn x="12" y="6">
 			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41019" name="[wakaba] Kuromi's Wish" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="1497" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="6" variant="5" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="1497" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="360" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="360" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="1497" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="0" variant="20" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="1497" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41020" name="[wakaba] Flip-Flop" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="5" variant="300" subtype="31" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="300" subtype="51" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="5" variant="300" subtype="31" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="0" variant="10" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41021" name="[wakaba] Shortcut to dakeness" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="2">
+			<entity type="4000" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="4000" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="9100" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="4000" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="4">
+			<entity type="4000" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="0" variant="10" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41022" name="[wakaba] Unstable 2" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="1">
+			<entity type="291" variant="1" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="2">
+			<entity type="291" variant="1" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="4">
+			<entity type="291" variant="1" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="4">
+			<entity type="291" variant="1" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="5">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="0" variant="10" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="4" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41023" name="[wakaba] Free reroll" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="999" variant="76" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="0" variant="10" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41024" name="[wakaba] Sorry, Kuromi already took your precious thing..." type="24" subtype="41" shape="1" width="13" height="7" difficulty="20" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="5" variant="0" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="5" variant="0" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="1">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="1">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="2">
+			<entity type="5" variant="30" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="2">
+			<entity type="5" variant="350" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="2">
+			<entity type="5" variant="70" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="10" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="5" variant="301" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="0" variant="10" subtype="0" weight="1.0"/>
+			<entity type="5" variant="150" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="5" variant="69" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="20" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="4">
+			<entity type="5" variant="90" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="4">
+			<entity type="5" variant="300" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="4">
+			<entity type="5" variant="70" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="5">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="5">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="5" variant="0" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="5" variant="0" subtype="2" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41025" name="[wakaba] Donation time!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="5" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="5" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="1">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="5" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="7" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="6" variant="11" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="2" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+			<entity type="5" variant="20" subtype="4" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="5">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41026" name="[wakaba] Seems Familiar" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="4" y="0">
+			<entity type="960" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="0">
+			<entity type="960" variant="1" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="3">
+			<entity type="5" variant="380" subtype="10" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="5" variant="390" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41027" name="[wakaba] We love Baby Plum" type="24" subtype="41" shape="1" width="13" height="7" difficulty="20" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="3" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="5" variant="100" subtype="650" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="5" variant="100" subtype="649" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="908" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="33" variant="2" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41028" name="[wakaba] Stop Stealing!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="0" y="0">
+			<entity type="4500" variant="9" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="0">
+			<entity type="6" variant="42" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="2">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="2">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="2">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="3">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="916" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="3">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="3">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="2" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="4" y="4">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="4">
+			<entity type="1901" variant="0" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="9" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="4">
+			<entity type="5" variant="20" subtype="1" weight="1.0"/>
+		</spawn>
+		<spawn x="0" y="6">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="12" y="6">
+			<entity type="4500" variant="9" subtype="0" weight="1.0"/>
+		</spawn>
+	</room>
+	<room variant="41029" name="[wakaba] Another Surprise!" type="24" subtype="41" shape="1" width="13" height="7" difficulty="1" weight="0.0" lastTestTime="2023-04-25T06:12+00:00">
+		<door exists="True" x="-1" y="3"/>
+		<door exists="True" x="6" y="-1"/>
+		<door exists="True" x="6" y="7"/>
+		<door exists="True" x="13" y="3"/>
+		<spawn x="2" y="0">
+			<entity type="6" variant="42" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="10" y="0">
+			<entity type="61" variant="5" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="3" y="3">
+			<entity type="61" variant="5" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="5" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="6" y="3">
+			<entity type="969" variant="9" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="7" y="3">
+			<entity type="5" variant="100" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="8" y="4">
+			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 </rooms>

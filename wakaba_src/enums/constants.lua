@@ -357,9 +357,7 @@ wakaba.RoomIDs = {
 		Subtype 42 : double 
 	]]
 	MIN_RICHER_ROOM_ID = 41001,
-	MAX_RICHER_ROOM_ID = 41016,
-	MIN_CHOICE_RICHER_ROOM_ID = 41101,
-	MAX_CHOICE_RICHER_ROOM_ID = 41101,
+	MAX_RICHER_ROOM_ID = 41029,
 
 	--[[ 
 		Dice Rooms replaced by Rira Rooms
@@ -368,8 +366,6 @@ wakaba.RoomIDs = {
 	]]
 	MIN_RIRA_ROOM_ID = 41201,
 	MAX_RIRA_ROOM_ID = 41201,
-	MIN_CHOICE_RIRA_ROOM_ID = 41301,
-	MAX_CHOICE_RIRA_ROOM_ID = 41301,
 }
 
 wakaba.ManaOffsets = {
