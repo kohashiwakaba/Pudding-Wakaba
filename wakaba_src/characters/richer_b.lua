@@ -59,11 +59,12 @@ function wakaba:Render_WaterFlame()
 		return
 	end
 
-	for i, player in ipairs(isc:getPlayers(true)) do
+	for i, player in ipairs(wakaba:getAllMainPlayers()) do
 		--local player=Game():GetPlayer(i)
 		if player:GetPlayerType() ~= playerType then goto skipWFRender end
 		local playerIndex = isc:getPlayerIndex(player)
 		local list = getRenderList(player)
+		local offset = wakaba.ManaOffsets[i]
 		local spr_table = {}
 		for i, id in ipairs(list) do
 			spr_table[i] = Sprite()
@@ -77,8 +78,12 @@ function wakaba:Render_WaterFlame()
 			else
 				spr_table[i]:SetFrame("Idle",1)
 			end
-			local offset=Vector(45,40) + ScreenHelper.GetScreenTopLeft(Options.HUDOffset*10)
-			spr_table[i]:Render(offset + Vector(12*(i-1), 0),Vector(0,0),Vector(0,0))
+			local position= offset.Offset + offset.AnchorOffset() + wakaba.G.ScreenShakeOffset
+			if offset.Direction == Direction.RIGHT then
+				spr_table[i]:Render(position + Vector(12*(i-1), 0),Vector(0,0),Vector(0,0))
+			elseif offset.Direction == Direction.LEFT then
+				spr_table[i]:Render(position - Vector(12*(i-1), 0),Vector(0,0),Vector(0,0))
+			end
 
 		end
 

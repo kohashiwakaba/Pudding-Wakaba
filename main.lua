@@ -1217,6 +1217,10 @@ function wakaba:addActiveRender(tab)
 	return renderActive:Add(tab)
 end
 
+function wakaba:getAllMainPlayers()
+	return renderActive:GetAllMainPlayers()
+end
+
 include('wakaba_src.items.0000_blessing')
 include('wakaba_src.items.0001_bookofshiori')
 include('wakaba_src.items.0003_bookofconquest')

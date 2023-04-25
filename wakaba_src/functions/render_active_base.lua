@@ -55,6 +55,10 @@ local function GetAllMainPlayers()
 	return mainPlayers
 end
 
+function renderActive:GetAllMainPlayers()
+	return GetAllMainPlayers()
+end
+
 local function IsJudasBirthrightActive(player)
 	local playerType = player:GetPlayerType()
 	return (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and

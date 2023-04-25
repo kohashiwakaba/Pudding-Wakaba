@@ -372,6 +372,37 @@ wakaba.RoomIDs = {
 	MAX_CHOICE_RIRA_ROOM_ID = 41301,
 }
 
+wakaba.ManaOffsets = {
+	[1] = {
+		Offset = Vector(45, 40),
+		AnchorOffset = function()
+			return ScreenHelper.GetScreenTopLeft(Options.HUDOffset*10)
+		end,
+		Direction = Direction.RIGHT,
+	},
+	[2] = {
+		Offset = Vector(-88, 62),
+		AnchorOffset = function()
+			return ScreenHelper.GetScreenTopRight(Options.HUDOffset*10)
+		end,
+		Direction = Direction.LEFT,
+	},
+	[3] = {
+		Offset = Vector(45, -40),
+		AnchorOffset = function()
+			return ScreenHelper.GetScreenBottomLeft(Options.HUDOffset*10)
+		end,
+		Direction = Direction.RIGHT,
+	},
+	[4] = {
+		Offset = Vector(-80, -40),
+		AnchorOffset = function()
+			return ScreenHelper.GetScreenBottomRight(Options.HUDOffset*10)
+		end,
+		Direction = Direction.LEFT,
+	},
+}
+
 -- 시오리/알트시오리 배터리 획득 시 충전량
 wakaba.Enums.ShioriBatteries = {
 	[BatterySubType.BATTERY_NORMAL] = 3,
