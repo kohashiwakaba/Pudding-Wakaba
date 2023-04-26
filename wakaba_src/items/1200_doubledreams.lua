@@ -155,6 +155,13 @@ function wakaba:dreamsUpdate(player)
 		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
 		bookSprite:LoadGraphics()
 	end
+	if Deliverance then
+		if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.runstate.dreampool ~= deliveranceData.temporary.lawfulPool then
+			deliveranceData.temporary.lawfulPool = wakaba.runstate.dreampool
+		elseif wakaba.runstate.dreampool == ItemPoolType.POOL_NULL then
+			deliveranceData.temporary.lawfulPool = nil -- to allow reset lauful pool
+		end
+	end
 	if wakaba.hasdreams then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CHAOS, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_CHAOS)

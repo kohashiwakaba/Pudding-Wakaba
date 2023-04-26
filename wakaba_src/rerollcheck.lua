@@ -431,6 +431,28 @@ local flipItemNext = false
 local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 local lastFrameGridChecked = 0
 
+function wakaba:preRollCheck(itemPoolType, decrease, seed)
+
+	if wakaba.G:GetFrameCount() == 0 then return end
+	-- Unlock check and Flip interaction for External Item Description
+	if seed == 1 then return end 
+	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
+	if selected and selected <= 0 then
+		return
+	end
+	-- Library Expanded : Do not check reroll in Library Certifiate area
+	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then return end
+
+	if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL or wakaba.runstate.dreampool == itemPoolType then
+		return
+	end
+	if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
+		local newItem = wakaba.G:GetItemPool():GetCollectible(wakaba.runstate.dreampool, decrease, seed+2)
+		return newItem
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.preRollCheck)
+
 function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local validQuality = {
