@@ -131,6 +131,7 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 		local current = AnIndexOf(list, wakaba.runstate.dreampool)
 		wakaba.runstate.dreampool = wakaba:GetNextPool(current)
 		wakaba.runstate.dreamroom = wakaba.ItemPoolRoomType[AnIndexOf(list, wakaba.runstate.dreampool)]
+		wakaba.G:GetRoom():InvalidatePickupVision()
 		bookSpritePool = wakaba.runstate.dreampool
 		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
 		bookSprite:LoadGraphics()
@@ -149,6 +150,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.Enums
 
 function wakaba:dreamsUpdate(player)
 	if wakaba.runstate.dreampool and wakaba.runstate.dreampool ~= bookSpritePool then
+		wakaba.G:GetRoom():InvalidatePickupVision()
 		bookSpritePool = wakaba.runstate.dreampool
 		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
 		bookSprite:LoadGraphics()
