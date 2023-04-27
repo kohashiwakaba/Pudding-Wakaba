@@ -44,10 +44,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_RabbitRibbo
 
 function wakaba:Cache_RabbitRibbon(player, cacheFlag)
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * 1.25
 		end
-		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+		if cacheFlag == CacheFlag.CACHE_RANGE then
+			player.TearRange = player.TearRange * 2
+		end
+		if cacheFlag == CacheFlag.CACHE_SHOTSPEED then
 			if player.ShotSpeed < 1.7 then
 				player.ShotSpeed = 1.7
 			end
@@ -68,9 +71,10 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRibbon)
 
 function wakaba:TearCollision_RabbitRibbon(tear, entity, low)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and entity:IsEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and entity:IsVulnerableEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
 		if tear.FrameCount <= 7 then 
-			entity:AddSlowing(EntityRef(tear), 30, 0.2, entity:GetSprite().Color)
+			entity:AddFreeze(EntityRef(tear), 30)
+			--entity:AddSlowing(EntityRef(tear), 30, 0.2, entity:GetSprite().Color)
 			--entity:TakeDamage(tear.FrameCount / 7, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(tear), 0)
 			return false 
 		end
@@ -82,8 +86,6 @@ function wakaba:TearCollision_RabbitRibbon(tear, entity, low)
 		end ]]
 	end
 end
-
-
 wakaba:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, wakaba.TearCollision_RabbitRibbon)
 
 
@@ -167,20 +169,28 @@ function wakaba:NewRoom_RabbitRibbon()
 		if result <= 46 then
 			local rooms = isc:getRooms()
 			local roomdesc = rooms[rng:RandomInt(#rooms)]
-			if roomdesc and roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT then
+			if roomdesc and roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.SafeGridIndex ~= 84 then
+				local RECOMMENDED_SHIFT_IDX = 35
+				local game = Game()
+				local seeds = game:GetSeeds()
+				local startSeed = seeds:GetStartSeed()
+				local roomRng = RNG()
+				roomRng:SetSeed(roomdesc.AwardSeed, RECOMMENDED_SHIFT_IDX)
 				roomdesc.Clear = false
 				roomdesc.NoReward = false
-				roomdesc.AwardSeed = roomdesc.DecorationSeed
+				roomdesc.AwardSeed = roomRng:Next()
 				roomdesc.VisitedCount = 0
 				roomdesc.PressurePlatesTriggered = false
 				roomdesc.DisplayFlags = 5
 				if MinimapAPI then
 					local mRoom = MinimapAPI:GetRoomByIdx(roomdesc.GridIndex)
-					mRoom.Clear = false
-					mRoom.Visited = false
-					--mRoom:SetDisplayFlags(roomdesc.DisplayFlags)
-					--mRoom:SyncRoomDescriptor()
-					--MinimapAPI:LoadDefaultMap()
+					if mRoom then
+						mRoom.Clear = false
+						mRoom.Visited = false
+						--mRoom:SetDisplayFlags(roomdesc.DisplayFlags)
+						--mRoom:SyncRoomDescriptor()
+						--MinimapAPI:LoadDefaultMap()
+					end
 				end
 			end
 		end

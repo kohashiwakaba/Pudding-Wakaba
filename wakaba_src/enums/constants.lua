@@ -750,7 +750,7 @@ wakaba.pickupSpriteIndex = {
 wakaba.FIRST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABAS_BLESSING
 wakaba.LAST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABA_DUALITY
 wakaba.FIRST_WAKABA_TRINKET = wakaba.Enums.Trinkets.CLOVER
-wakaba.LAST_WAKABA_TRINKET = wakaba.Enums.Trinkets.MISTAKE
+wakaba.LAST_WAKABA_TRINKET = wakaba.Enums.Trinkets.KUROMI_CARD
 
 -- Reserved for popup image
 wakaba.achievementsprite = {

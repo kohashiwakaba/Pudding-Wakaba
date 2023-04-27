@@ -60,11 +60,6 @@ function wakaba:Curse_Evaluate(curse)
 			skip = true
 			goto wakabaCurseSkip
 		end
-		if wakaba.curses.CURSE_OF_FLAMES > 0 and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
-			curse = curse | wakaba.curses.CURSE_OF_FLAMES
-			skip = true
-			goto wakabaCurseSkip
-		end
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BLACK_CANDLE) then
 			skip = true
 			goto wakabaCurseSkip
@@ -155,9 +150,6 @@ function wakaba:Curse_PlayerRender(player)
 	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
-	if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) then
-		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_FLAMES, false)
-	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		wakaba.G:GetLevel():RemoveCurses(127 - (LevelCurse.CURSE_OF_LABYRINTH | LevelCurse.CURSE_OF_THE_CURSED))
 	elseif wakaba:hasRibbon(player) and wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
@@ -185,18 +177,29 @@ function wakaba:Curse_PlayerRender(player)
 		wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_THE_LOST | wakaba.curses.CURSE_OF_FAIRY)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.Curse_PlayerRender)
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_PlayerRender)
 
 if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 	function wakaba:PlayerUpdate_Curse(player)
 		if isc:inDeathCertificateArea() or isc:inGenesisRoom() then return end
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
 		local curse = wakaba.G:GetLevel():GetCurses() 
-		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES
-		--[[ and (wakaba.G:GetRoom():GetType() == RoomType.ROOM_CHALLENGE or wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSSRUSH) ]] then
+		local isTaintedRicher = false
+		local onlyTaintedRicher = true
+		for i, player in ipairs(wakaba:getAllMainPlayers()) do
+			if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+				isTaintedRicher = true
+			else
+				onlyTaintedRicher = false
+			end
+		end
+		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES or isTaintedRicher then
 			if not player:IsItemQueueEmpty() and player.QueuedItem.Item:IsCollectible() then
 				local heldItem = player.QueuedItem.Item
-				if not heldItem:HasTags(ItemConfig.TAG_SUMMONABLE) or heldItem:HasTags(ItemConfig.TAG_QUEST) or heldItem.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+				if not heldItem:HasTags(ItemConfig.TAG_SUMMONABLE) 
+				or heldItem:HasTags(ItemConfig.TAG_QUEST) 
+				or heldItem.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT 
+				then
 					return
 				end
 				SFXManager():Stop(SoundEffect.SOUND_CHOIR_UNLOCK)
@@ -211,7 +214,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					if familiar then
 						familiar.Parent = collider
 						familiar.Player = player
-						if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+						if not isTaintedRicher and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 							familiar.HitPoints = familiar.MaxHitPoints * 2
 						end
 					end
