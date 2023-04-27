@@ -1332,10 +1332,18 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Taking damage makes explosion on random enemy."
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.KUROMI_CARD] = {
+		itemName = "Kuromi Card",
+		description = ""
+		.. "#Using an active item will not consume its charge or item.#!!! 90% chance to remove the trinket on use!"
+		.. "{{CR}}",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {
-	
+	[wakaba.Enums.Trinkets.CLOVER] = { "↑ Further increase chance for Lucky Penny" },
+	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books" },
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {

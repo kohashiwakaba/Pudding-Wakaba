@@ -158,6 +158,7 @@
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
 	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" />
+	<trinket name="Kuromi Card" description="She made it for us" gfx="kuromicard.png" />
 	
 	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />
 	<trinket name="Afterbirth Cartridge" description="Only Isaac to Afterbirth+" gfx="afterbirthcartridge.png" />

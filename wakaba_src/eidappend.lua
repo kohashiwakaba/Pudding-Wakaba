@@ -622,6 +622,12 @@ if EID then
 			for playerType, anim in pairs(wakaba.PlayerSpriteAnimName) do
 				EID:addIcon("Player"..playerType, anim, 0, 12, 12, -1, 1, wakaba.PlayerIconSprite)
 			end
+
+			for id, dataTable in pairs(wakaba.GoldenTrinketData) do
+				EID:addGoldenTrinketTable(id, dataTable)
+			end
+
+
 			EID:addIcon("WakabaCurseFlames", "EID_Curses", 0, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseSatyr", "EID_Curses", 10, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaCurseSniper", "EID_Curses", 11, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
@@ -661,6 +667,9 @@ if EID then
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("trinket", itemID, itemdesc.transformations)
 					end
+				end
+				for itemID, appendText in pairs(wakabaDescTables.goldtrinkets) do
+					EID.descriptions[lang].goldenTrinketEffects[itemID] = { appendText[1], appendText[2], appendText[3] }
 				end
 				for playerType, birthrightdesc in pairs(wakabaDescTables.birthright) do
 					EID:addBirthright(playerType, birthrightdesc.description, birthrightdesc.playerName, lang)

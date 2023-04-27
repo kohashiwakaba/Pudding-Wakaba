@@ -1449,24 +1449,20 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "리셰쨩이라도 실패할 때가 있다구",
 	},
+	[wakaba.Enums.Trinkets.KUROMI_CARD] = {
+		itemName = "쿠로미 카드",
+		description = ""
+		.. "#액티브 아이템 사용 시 충전량 및 해당 아이템을 소모하지 않습니다."
+		.. "#!!! 90%의 확률로 장신구가 사라집니다."
+		.. "{{CR}}",
+		queueDesc = "그녀가 만들어줬어",
+	},
 	
 }
 wakaba.descriptions[desclang].goldtrinkets = {
-	[wakaba.Enums.Trinkets.CLOVER] = {
-		mode = "prepend",
-	},
-	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = {
-		mode = "prepend",
-	},
-	[wakaba.Enums.Trinkets.BRING_ME_THERE] = {
-		mode = "prepend",
-	},
-	[wakaba.Enums.Trinkets.HARD_BOOK] = {
-		mode = "number",
-		origin = "책 아이템 하나",
-		double = "책 아이템 두개",
-		triple = "책 아이템 세개",
-	},
+	[wakaba.Enums.Trinkets.CLOVER] = { "↑ 행운의 동전 등장 확률 추가 증가" },
+	[wakaba.Enums.Trinkets.HARD_BOOK] = { "책 아이템 하나", "책 아이템 2개", "책 아이템 3개" },
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}천체관 아이템", "{{Planetarium}}천체관 아이템 2개" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {

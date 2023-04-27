@@ -19,6 +19,7 @@ function wakaba:Trigger_Mistake(player)
 	local enemy = enemies[rand+1]
 	local bombdmg = 100
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_MR_MEGA) then bombdmg = 185 end
+	bombdmg = bombdmg * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.MISTAKE)
 	if enemy:IsVulnerableEnemy() then
 		wakaba.G:BombExplosionEffects(enemy.Position, bombdmg, player:GetBombFlags(), Color.Default, player, 1, false, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
 	end

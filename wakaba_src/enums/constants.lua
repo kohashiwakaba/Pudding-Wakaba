@@ -195,6 +195,7 @@ wakaba.Enums.Trinkets = {
 	STAR_REVERSAL = Isaac.GetTrinketIdByName("Star Reversal"),
 	AURORA_GEM = Isaac.GetTrinketIdByName("Aurora Gem"),
 	MISTAKE = Isaac.GetTrinketIdByName("Mistake"),
+	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
 
 }
 
@@ -342,6 +343,21 @@ wakaba.Enums.Constants = {
 	DIMENSION_CUTTER_GREED_MAX_RATE = 25, -- 차원검 장신구 델리 보스 소환 확률 (그리드 최대)
 
 	SSRC_ALLOW_FLAMES = 8, -- 초민감 리셰 챌린지 최대 흡수 제한
+}
+
+wakaba.GoldenTrinketData = {
+	[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1.5,
+	[wakaba.Enums.Trinkets.CLOVER] = {t={0.3, 2}, append = true},
+	[wakaba.Enums.Trinkets.HARD_BOOK] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {t={2}, mults={0.5}},
+	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = 9999,
+	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = 1,
+	--[wakaba.Enums.Trinkets.DELIMITER] = 1,
+	[wakaba.Enums.Trinkets.RANGE_OS] = 1,
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.AURORA_GEM] = 6.66,
+	[wakaba.Enums.Trinkets.MISTAKE] = {t={100,185}},
+	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
 }
 
 wakaba.RoomIDs = {

@@ -1345,6 +1345,7 @@ include('wakaba_src.items.3012_isaaccartridge')
 include('wakaba_src.items.3013_starreversal')
 include('wakaba_src.items.3014_auroragem')
 include('wakaba_src.items.3015_mistake')
+include('wakaba_src.items.3016_kuromicard')
 
 include('wakaba_src.pickups.4000_cloverchest')
 

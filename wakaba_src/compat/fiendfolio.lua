@@ -66,6 +66,7 @@ function wakaba:GameStart_FiendFolioCompat()
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.RING_OF_JUPITER, Reference = "The World Only God Knows"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.RANGE_OS, Reference = "Last Origin"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.MISTAKE, Reference = "Paper Mario"})
+		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.KUROMI_CARD, Reference = "Onegai My Melody"})
 
 		wakaba:addSilenceTarget("FF_Fire", 1000, 7005)
 		wakaba:addSilenceTarget("FF_Spider", 85, 962)
