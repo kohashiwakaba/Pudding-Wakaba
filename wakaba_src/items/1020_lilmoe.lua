@@ -1,20 +1,15 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
+
 local function fireTearMoe(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
 	local tear_vector = nil
-	local randomTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
-	while (randomTearFlag == 12 or randomTearFlag == 0 or randomTearFlag == 61 or randomTearFlag == 22 or randomTearFlag == 69 or randomTearFlag == 80
-			or randomTearFlag == 28 or randomTearFlag == 29 or randomTearFlag == 35 or randomTearFlag == 36 or randomTearFlag == 37 or randomTearFlag == 45 
-			or randomTearFlag == 72 or randomTearFlag == 75 or randomTearFlag == 78) do
-		randomTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
-	end
-	local randomTearVariant = wakaba.RNG:RandomInt(49)
-	while (randomTearVariant == 4 or randomTearVariant == 5 or randomTearVariant == 9 or randomTearVariant == 19 or randomTearVariant == 45) do
-		randomTearVariant = wakaba.RNG:RandomInt(49)
-	end
+	local randomTearFlag1 = isc:getRandomFromWeightedArray(wakaba.Weights.LilMoeTearFlags)
+	local randomTearFlag2 = isc:getRandomFromWeightedArray(wakaba.Weights.LilMoeTearFlags)
+	local randomTearVariant = isc:getRandomFromWeightedArray(wakaba.Weights.LilMoeTearVariants)
 	local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, randomTearVariant, 0, Vector(familiar.Position.X, familiar.Position.Y), vector, familiar)
 	tear = entity:ToTear()
 	tear.Scale = 0.9
-	tear.TearFlags = TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_ORBIT_ADVANCED | wakaba.TEARFLAG(randomTearFlag)
+	tear.TearFlags = TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_ORBIT_ADVANCED | randomTearFlag1 | randomTearFlag2
 	tear.FallingSpeed = 0
 	tear.FallingAcceleration = -0.1
 
@@ -22,10 +17,7 @@ local function fireTearMoe(player, familiar, vector, rotation)
 	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
 		multiplier = multiplier * 2
 	end
-	local tearDamage = player.Damage
-	if tearDamage < 4 then
-		tearDamage = 4
-	end
+	local tearDamage = 2
 	tear.CollisionDamage = tearDamage * multiplier
 	
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
@@ -40,18 +32,14 @@ local function fireTearMoe(player, familiar, vector, rotation)
 		local secondTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
 		if Sewn_API:IsSuper(fData) then
 			tear.CollisionDamage = tear.CollisionDamage * 2
-			while (secondTearFlag == 12 or secondTearFlag == 0 or secondTearFlag == 61 or secondTearFlag == 22 or secondTearFlag == randomTearFlag) do
-				secondTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
-			end
-			tear.TearFlags = tear.TearFlags | wakaba.TEARFLAG(secondTearFlag)
+			local randomTearFlag3 = isc:getRandomFromWeightedArray(wakaba.Weights.LilMoeTearFlags)
+			tear.TearFlags = tear.TearFlags | randomTearFlag3
 		end
 		if Sewn_API:IsUltra(fData) then
 			tear.CollisionDamage = tear.CollisionDamage * 2
 			local thirdTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
-			while (thirdTearFlag == 12 or thirdTearFlag == 0 or thirdTearFlag == 61 or thirdTearFlag == 22 or thirdTearFlag == randomTearFlag or thirdTearFlag == secondTearFlag) do
-				thirdTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
-			end
-			tear.TearFlags = tear.TearFlags | wakaba.TEARFLAG(thirdTearFlag)
+			local randomTearFlag4 = isc:getRandomFromWeightedArray(wakaba.Weights.LilMoeTearFlags)
+			tear.TearFlags = tear.TearFlags | randomTearFlag4
 			tear.Color = Color(1, 2, 2, 1, 1, 1, 1)
 			--laser:SetColor(Color(2, 2, 2, 1, 1, 1, 1), 0, 1, false, false)
 		end
