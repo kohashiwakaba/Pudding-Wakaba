@@ -7,8 +7,12 @@ end
 
 local function IsExtraRoom(idx)
 	local isExtraRoom = false
-	if SamaelMod and SamaelMod.IsFragmentRoom and SamaelMod.IsDeathDealRoom then
-		isExtraRoom = SamaelMod:IsFragmentRoom(idx) or SamaelMod:IsDeathDealRoom(idx)
+	if SamaelMod then
+		if SamaelMod.IsFragmentRoom and SamaelMod.IsDeathDealRoom then
+			isExtraRoom = SamaelMod:IsFragmentRoom(idx) or SamaelMod:IsDeathDealRoom(idx)
+		else
+			isExtraRoom = wakaba.G:GetRoom():GetFrameCount() < 2
+		end
 	end
 	return isExtraRoom
 end
