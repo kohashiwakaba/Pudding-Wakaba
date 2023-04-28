@@ -8,8 +8,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:UseItem_KuromiCard(item, rng, player, useFlags, activeSlot, varData)
 	if player:GetTrinketMultiplier(wakaba.Enums.Trinkets.KUROMI_CARD) > 0 then
 		local removeChance = 1
-		for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.KUROMI_CARD) do
-			removeChance = removeChance * 0.5
+		for i = 1, math.min(player:GetTrinketMultiplier(wakaba.Enums.Trinkets.KUROMI_CARD), 5) do
+			removeChance = removeChance - 0.1
 		end
 		if rng:RandomFloat() < removeChance then
 			player:TryRemoveTrinket(wakaba.Enums.Trinkets.KUROMI_CARD)
