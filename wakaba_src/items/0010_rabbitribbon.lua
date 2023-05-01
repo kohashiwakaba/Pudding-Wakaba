@@ -144,16 +144,18 @@ function wakaba:NewRoom_RabbitRibbon()
 		if MinimapAPI then
 			for _,v in ipairs(MinimapAPI:GetLevel()) do
 				--print(v.Descriptor.Data.Type, v.Descriptor.DisplayFlags, v.Descriptor.Clear, v.Descriptor.VisitedCount > 0)
-				if v.Descriptor.DisplayFlags == 0 then
-					v.DisplayFlags = 0
-					--v.Visited = false
-					--v.Hidden = 1
-				else
-					v.Clear = v.Descriptor.Clear
-					v.Visited = v.Descriptor.VisitedCount > 0
-					if v.Descriptor.Data.Type == RoomType.ROOM_SECRET or v.Descriptor.Data.Type == RoomType.ROOM_SUPERSECRET then
-						if not v.Visited then
-							v:SyncRoomDescriptor()
+				if v.Descriptor then
+					if v.Descriptor.DisplayFlags == 0 then
+						v.DisplayFlags = 0
+						--v.Visited = false
+						--v.Hidden = 1
+					else
+						v.Clear = v.Descriptor.Clear
+						v.Visited = v.Descriptor.VisitedCount > 0
+						if v.Descriptor.Data.Type == RoomType.ROOM_SECRET or v.Descriptor.Data.Type == RoomType.ROOM_SUPERSECRET then
+							if not v.Visited then
+								v:SyncRoomDescriptor()
+							end
 						end
 					end
 				end
