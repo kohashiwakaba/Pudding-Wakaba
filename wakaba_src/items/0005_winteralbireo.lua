@@ -23,7 +23,7 @@ end
 function wakaba:IsValidWakabaRoom(roomdesc)
 	-- Richer Planetariums for Winter Albireo
 	if roomdesc and roomdesc.Data and roomdesc.Data.Type == RoomType.ROOM_PLANETARIUM then
-		if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) or wakaba.runstate.luarooms[roomdesc.GridIndex] then
+		if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) or (wakaba.runstate.luarooms and wakaba.runstate.luarooms[roomdesc.GridIndex]) then
 			return true
 		end
 	end
