@@ -813,7 +813,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
 		itemName = "Richer's Uniform",
 		description = ""
-		.. "#{{SacrificeRoom}} Sets Sacrifice room spike counter to 6th"
+		.. "#Activates different effects depending on current room's type"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.LIL_RICHER] = {
@@ -1757,7 +1757,25 @@ wakaba.descriptions[desclang].entities = {
 		.. "#{{Luck}} {{ColorSilver}}Luck-related collectible"
 	},
 }
-
+wakaba.descriptions[desclang].richeruniform = {
+	default = "#{{Room}} {{ColorCyan}}Default#Activates restock machine once",
+	beast = "#{{Room}} {{ColorCyan}}Beast Room#!!! ONE TIME USE#{{Collectible633}} Grants Dogma once more ({{Heart}}min6/{{Damage}}+2/{{HolyMantle}})",
+	startroom = "#{{RedRoom}} {{ColorCyan}}Starting Room#Spawns one of portals from Card Reading",
+	regular = "#{{Room}} {{ColorCyan}}Normal Room#{{Collectible285}} Devolves all enemies in the room 2 times",
+	shop = "#{{Shop}} {{ColorCyan}}Shop#{{Collectible64}} Shop items cost 50% less for current room",
+	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
+	treasure = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
+	planetarium = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room",
+	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}+1/{{Tears}}+2/Homing tears for current room",
+	devil = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers",
+	angel = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Grants {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
+	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
+	arcade = "#{{ArcadeRoom}} {{ColorCyan}}Arcade Room#Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{Collectible46}} Better chance to win while gambling for current room",
+	curse = "#{{CursedRoom}} {{ColorCyan}}Curse Room#{{RedChest}}	Spawns 2 red chests#!!! Takes 1 full heart of damage",
+	challenge = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} Duplicates any pedestals and consumables in the current room",
+	bossrush = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected",
+	chestroom = "#{{ChestRoom}} {{ColorCyan}}Valut Room#{{GoldenChest}}	Spans 3 golden chests",
+}
 
 
 wakaba.descriptions[desclang].curses = {

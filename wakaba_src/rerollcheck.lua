@@ -456,11 +456,11 @@ end
 function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	local validQuality = {
-		["0"] = true,
-		["1"] = true,
-		["2"] = true,
-		["3"] = true,
-		["4"] = true,
+		["0"] = wakaba.runstate.rerollquality["0"] ~= false,
+		["1"] = wakaba.runstate.rerollquality["1"] ~= false,
+		["2"] = wakaba.runstate.rerollquality["2"] ~= false,
+		["3"] = wakaba.runstate.rerollquality["3"] ~= false,
+		["4"] = wakaba.runstate.rerollquality["4"] ~= false,
 	}
 
 	local preConditionMet = false

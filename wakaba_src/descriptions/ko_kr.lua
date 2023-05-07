@@ -900,7 +900,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
 		itemName = "리셰쨩의 제복",
 		description = ""
-		.. "#{{SacrificeRoom}} 사용 시 희생방 가시의 희생 카운터를 6으로 설정합니다."
+		.. "#사용 시 그 방의 종류에 따라 다른 효과를 발동합니다."
 		.. "{{CR}}",
 		queueDesc = "귀여운 건 최고!",
 	},
@@ -1820,7 +1820,7 @@ wakaba.descriptions[desclang].entities = {
 		subtype = 0,
 		name = "시오리의 점술기계",
 		description = ""
-		.. "{{Key}} 열쇠 5개를 소모하여 작동"
+		.. "{{Key}} 열쇠 12개를 소모하여 작동"
 		.. "#{{Warning}} 작동 시 이하의 아이템 중 하나를 드랍합니다 :"
 		.. "#{{BlendedHeart}} {{ColorSilver}}혼합 하트"
 		.. "#{{Card}} {{ColorSilver}}카드"
@@ -1843,6 +1843,25 @@ wakaba.descriptions[desclang].entities = {
 		.. "#{{Coin}} {{ColorSilver}}행운 코인 2개"
 		.. "#{{LuckSmall}} {{ColorSilver}}운 관련 아이템"
 	},
+}
+wakaba.descriptions[desclang].richeruniform = {
+	default = "#{{Room}} {{ColorCyan}}기본#사용 시 재입고 기계 효과를 1회 발동합니다.",
+	beast = "#{{Room}} {{ColorCyan}}비스트#!!! 일회용#{{Collectible633}} 사용 시 Dogma 아이템을 한 번 더 획득합니다. ({{Heart}}최소6/{{Damage}}+2/{{HolyMantle}})",
+	startroom = "#{{RedRoom}} {{ColorCyan}}시작방#사용 시 색상에 따라 특정한 장소로 이동할 수 있는 포탈이 하나 생성됩니다.",
+	regular = "#{{Room}} {{ColorCyan}}일반방#{{Collectible285}} 사용 시 그 방의 적을 2회 약화시킵니다.",
+	shop = "#{{Shop}} {{ColorCyan}}상점#{{Collectible64}} 사용 시 그 방에서 판매하는 물품의 가격을 50% 할인합니다.",
+	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#사용 시 그 방의 모든 아이템 및 픽업과 함께 시작방으로 이동합니다.",
+	treasure = "#{{TreasureRoom}} {{ColorCyan}}보물방#{{Card90}} 방 안의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다.",
+	planetarium = "#{{Planetarium}} {{ColorCyan}}천체관#{{Collectible105}} 사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다.",
+	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}+1/{{TearsSmall}}+2/공격이 적에게 유도됩니다.",
+	devil = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.",
+	angel = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
+	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",
+	arcade = "#{{ArcadeRoom}} {{ColorCyan}}오락실#사용 시 {{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 소환하며;#{{Collectible46}} 그 방에서 야바위와 도박기계의 성공 확률이 증가합니다.",
+	curse = "#{{CursedRoom}} {{ColorCyan}}저주방#{{RedChest}}	빨간하트 1칸을 소모하여 빨간상자 2개를 소환합니다.",
+	challenge = "#{{ChallengeRoom}} {{ColorCyan}}도전방#{{Collectible347}} 사용 시 방 안의 모든 아이템과 픽업을 2배로 복사합니다.",
+	bossrush = "#{{BossRushRoom}} {{ColorCyan}}보스러시#사용 시 그 방의 모든 선택형 상태를 제거합니다.",
+	chestroom = "#{{ChestRoom}} {{ColorCyan}}금고방#{{GoldenChest}}	사용 시 황금상자 3개를 소환합니다.",
 }
 
 

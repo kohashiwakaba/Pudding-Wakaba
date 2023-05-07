@@ -503,6 +503,8 @@ local richer_saved_recipies = {
 
 		},
 
+		rerollquality = {},
+		pendingCurseImmunityCount = 0,
 	},
 	level = {
 		wakabaangelshops = {},

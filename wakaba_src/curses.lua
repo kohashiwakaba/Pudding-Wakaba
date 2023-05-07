@@ -107,9 +107,16 @@ function wakaba:Curse_Evaluate(curse)
 				curse = isc:addFlag(curse, wakaba.curses.CURSE_OF_MAGICAL_GIRL)
 			end
 		end
-		::wakabaCurseSkip::
+		if not skip and wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~wakaba.curses.CURSE_OF_SATYR > 0 then
+			Isaac.DebugString("[wakaba] Curse "..curse.." found! Preventing from Richer's Uniform...")
+			wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount - 1
+			curse = isc:removeFlag(curse, curse & ~wakaba.curses.CURSE_OF_SATYR)
+			skip = true
+			goto wakabaCurseSkip
+		end
 
 	end
+	::wakabaCurseSkip::
 	if skip then return curse end
 	if wakaba.curses.CURSE_OF_FLAMES <= LevelCurse.CURSE_OF_GIANT or wakaba.state.options.flamescurserate == 0 then return curse end
 	if wakaba.state.options.flamesoverride then
@@ -156,6 +163,10 @@ function wakaba:Curse_PlayerRender(player)
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		wakaba.G:GetLevel():RemoveCurses(127 - (LevelCurse.CURSE_OF_LABYRINTH | LevelCurse.CURSE_OF_THE_CURSED))
+	elseif wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR) > 0 and not IsExtraRoom() then
+		Isaac.DebugString("[wakaba] Curse "..curse.." found! Preventing from Richer's Uniform...")
+		wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount - 1
+		wakaba.G:GetLevel():RemoveCurses(curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR))
 	elseif wakaba:hasRibbon(player) and wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 		if isc:hasCurse(LevelCurse.CURSE_OF_DARKNESS) then
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_DARKNESS)
