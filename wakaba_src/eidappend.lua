@@ -719,7 +719,7 @@ if EID then
 			end
 
 
-			EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
+			--EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
 			EID:addDescriptionModifier("Wakaba", WakabaCondition, WakabaCallback)
 			EID:addDescriptionModifier("Tainted Wakaba", WakabaCondition_b, WakabaCallback_b)
 			EID:addDescriptionModifier("Wakaba's Blessing", BlessingCondition, BlessingCallback)
