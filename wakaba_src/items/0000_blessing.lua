@@ -154,7 +154,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) -- Define combined item
 		if player:FlushQueueItem() then -- Skip current queued item animation, This will add item B in Isaac's inventory.
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle") -- Manually animate pickup animation
-			wakaba.G:GetHUD():ShowItemText(newName, newDesc, false) -- Show item name and descriptions to HUD
+			wakaba:DisplayHUDItemText(player, wakaba.Enums.Collectibles.WAKABA_DUALITY) -- Show item name and descriptions to HUD
 			player:QueueItem(newItemConfig) -- Queue combined item. Finishing animation will add the combined one.
 		end
 		-- Then remove both items which were supposed to be combined. Must call after player:FlushQueueItem() is called
@@ -164,7 +164,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		local newItemConfig = Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:FlushQueueItem() then
 			player:AnimateCollectible(newItem, "Pickup", "PlayerPickupSparkle")
-			wakaba.G:GetHUD():ShowItemText(newName, newDesc, false)
+			wakaba:DisplayHUDItemText(player, wakaba.Enums.Collectibles.WAKABA_DUALITY)
 			player:QueueItem(newItemConfig)
 		end
 		player:RemoveCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)

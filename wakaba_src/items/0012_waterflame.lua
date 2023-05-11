@@ -47,7 +47,7 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and useFlags & UseFlag.USE_CARBATTERY ~= UseFlag.USE_CARBATTERY then
 				player:AddCollectible(recent)
 			end
-			wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(recent))
+			wakaba:DisplayHUDItemText(player, recent)
 			player:AnimateCollectible(recent, "Pickup", "PlayerPickupSparkle")
 		end
 
@@ -56,9 +56,9 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 		local nearest = isc:getClosestEntityTo(player, collectibles, function(_, e) return isc:collectibleHasTag(e.SubType, ItemConfig.TAG_SUMMONABLE) end)
 		if nearest then
 			SFXManager():Play(SoundEffect.SOUND_POWERUP1)
-			player:AddCollectible(pending.SubType)
-			wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(pending.SubType))
-			player:AnimateCollectible(pending.SubType, "Pickup", "PlayerPickupSparkle")
+			--player:AddCollectible(nearest.SubType)
+			wakaba:DisplayHUDItemText(player, nearest.SubType)
+			--player:AnimateCollectible(nearest.SubType, "Pickup", "PlayerPickupSparkle")
 
 			player:AddItemWisp(nearest.SubType, player.Position, true)
 		else

@@ -1478,4 +1478,18 @@ function wakaba:GetPersistentPickupData(pickup)
 	end
 end
 
-
+function wakaba:DisplayHUDItemText(player, id)
+	if Options.Language ~= "en" and id then
+		lang = EID:getLanguage() or "en_us"
+		local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
+		local fallbackEntry = wakaba.descriptions["en_us"][id]
+		local entry = entrytables[id] or fallbackEntry
+		local name = entry.itemName or fallbackEntry.itemName
+		local queueDesc = entry.queueDesc or fallbackEntry.queueDesc
+		if entry then
+			wakaba.G:GetHUD():ShowItemText(name, queueDesc)
+		else
+			wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(id))
+		end
+	end
+end
