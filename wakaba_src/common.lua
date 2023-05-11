@@ -15,6 +15,133 @@ local function isRep(stype)
 	end
 end
 
+-- getEstimatedDamageMult from Retribution
+function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
+	local mult = 1
+	local effects = player:GetEffects()
+	level = level or 0
+
+	player = player:ToPlayer()
+
+	-- Modded items normally returns here
+
+	if level > 10 then return mult end
+
+	-- [Missing] L10 D8 xRand
+
+	-- [Missing] L10 Succubus x1.5
+
+	-- [Missing] L10 Star of Bethlehem x1.5
+
+	-- [Missing] L10 Dead Eye
+
+	if level > 9 then return mult end
+
+	-- L9 20/20 x0.8
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) and not (
+		player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_C_SECTION)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS)
+	) then
+		mult = mult * 0.8
+	end
+
+	-- L9 Almond x0.3 or Soy x0.2
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK) then
+		mult = mult * 0.3
+	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_SOY_MILK) then
+		mult = mult * 0.2
+	end
+
+	-- L9 Eve's Mascara
+	if not negativeOnly and player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA) then
+		mult = mult * 2
+	end
+
+	-- L9 Magic Mushroom or Cricket's Head or Martyt+Belial x1.5
+	if not negativeOnly and (
+			player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) or
+			player:HasCollectible(CollectibleType.COLLECTIBLE_CRICKETS_HEAD) or (
+				player:HasCollectible(CollectibleType.COLLECTIBLE_BLOOD_OF_THE_MARTYR) and
+				effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL)
+	)) then -- This multiplier is fucking stupid garbage and I hate it
+		mult = mult * 1.5
+	end
+
+	if level > 8 then return mult end
+
+	-- L8 Haemolacria or Brim+Tech x1.5
+	if not negativeOnly and 
+		(player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA) or 
+		(player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) and player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY)))
+	then
+		mult = mult * 1.5
+	end
+
+	-- [Missing] L8 Azazel + Ludovico x0.5
+
+	if level > 7 then return mult end
+
+	-- [Missing] L7 Star of Bethlehem or Hallowed Ground or Immaculate Heart x1.2
+	if not negativeOnly and player:HasCollectible(CollectibleType.COLLECTIBLE_IMMACULATE_HEART) then
+		mult = mult * 1.2
+	end
+
+	if level > 6 then return mult end
+
+	-- L6 Crown of Light x2
+	if not negativeOnly and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) then
+		mult = mult * 2
+	end
+
+	if level > 5 then return mult end
+
+	-- L5 2+ Brimstones x1.2
+	if not negativeOnly and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) >= 2
+	then
+		mult = mult * 1.2
+	end
+
+	-- L5 Sacred Heart x2.3
+	if not negativeOnly and player:HasCollectible(CollectibleType.COLLECTIBLE_SACRED_HEART) then
+		mult = mult * 2.3
+	end
+
+	if level > 4 then return mult end
+
+	-- L4 Mega Mush x4
+	if not negativeOnly and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) then
+		mult = mult * 4
+	end
+
+	if level > 3 then return mult end
+
+	-- L3 Polyphemus x2
+	if not negativeOnly and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS)
+	and not (
+		player:HasCollectible(CollectibleType.COLLECTIBLE_20_20)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_C_SECTION)
+	) then
+		mult = mult * 2
+	end
+
+	if level > 2 then return mult end
+
+	-- [Missing] L2 Character Multiplier
+
+	if level > 1 then return mult end
+
+	-- L1 Odd Mushroom x0.9
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_ODD_MUSHROOM_RATE) then
+		mult = mult * 0.9
+	end
+	-- [Missing] L1 Cracked Crown: I'm honestly not even sure how its stat boosts work
+	return mult
+end
+
 --[[ 
 	와카바 모드의 ForceVoid 옵션에 따른 플래그값 처리
  ]]
@@ -1478,18 +1605,23 @@ function wakaba:GetPersistentPickupData(pickup)
 	end
 end
 
-function wakaba:DisplayHUDItemText(player, id)
+function wakaba:DisplayHUDItemText(player, tableName, id)
 	if Options.Language ~= "en" and id then
-		lang = EID:getLanguage() or "en_us"
+		tableName = tableName or "collectibles"
+		lang = EID.LanguageMap[Options.Language] or "en_us"
 		local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
-		local fallbackEntry = wakaba.descriptions["en_us"][id]
-		local entry = entrytables[id] or fallbackEntry
-		local name = entry.itemName or fallbackEntry.itemName
-		local queueDesc = entry.queueDesc or fallbackEntry.queueDesc
-		if entry then
-			wakaba.G:GetHUD():ShowItemText(name, queueDesc)
-		else
-			wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(id))
+		if entrytables and entrytables[tableName] then
+			local config = Isaac.GetItemConfig()
+			local iConf = config:GetCollectible(id)
+			local fallbackEntry = wakaba.descriptions["en_us"][tableName][id]
+			local entry = entrytables[tableName][id] or fallbackEntry
+			local name = (entry and entry.itemName) or (fallbackEntry and fallbackEntry.itemName) or iConf.Name
+			local queueDesc = (entry and entry.queueDesc) or (fallbackEntry and fallbackEntry.itemName) or iConf.Description
+			if entry then
+				wakaba.G:GetHUD():ShowItemText(name, queueDesc)
+			else
+				wakaba.G:GetHUD():ShowItemText(player, Isaac.GetItemConfig():GetCollectible(id))
+			end
 		end
 	end
 end

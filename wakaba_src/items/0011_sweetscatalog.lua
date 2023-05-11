@@ -205,7 +205,7 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 				last_success = true
 				SFXManager():Play(SoundEffect.SOUND_POWERUP3)
 				player:AddCollectible(pending.SubType)
-				wakaba:DisplayHUDItemText(player, pending.SubType)
+				wakaba:DisplayHUDItemText(player, "collectibles", pending.SubType)
 				player:AnimateCollectible(pending.SubType, "Pickup", "PlayerPickupSparkle")
 			else
 				last_success = false
@@ -217,7 +217,7 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 				last_success = true
 				SFXManager():Play(SoundEffect.SOUND_POWERUP3)
 				player:AddCollectible(pending.SubType)
-				wakaba:DisplayHUDItemText(player, pending.SubType)
+				wakaba:DisplayHUDItemText(player, "collectibles", pending.SubType)
 				player:AnimateCollectible(pending.SubType, "Pickup", "PlayerPickupSparkle")
 			else
 				last_success = false
