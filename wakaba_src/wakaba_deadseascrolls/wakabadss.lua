@@ -889,6 +889,9 @@ local wakabadirectory = {
 					wakaba:LockItems()
 					if not wakaba:IsWakabaCharacterUnlocked(Isaac.GetPlayer()) then
 						wakaba.G:FinishChallenge()
+					elseif Isaac.GetPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER then
+						Isaac.GetPlayer():RemoveCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG)
+						Isaac.GetPlayer():AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_POCKET)
 					end
 
 					--Retribution.RemoveLockedItemsAndTrinkets()

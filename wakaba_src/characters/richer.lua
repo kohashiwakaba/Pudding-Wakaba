@@ -75,7 +75,7 @@ function wakaba:AfterRicherInit(player)
 	--print("Richer event passed")
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-		local slot = wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and ActiveSlot.SLOT_POCKET or ActiveSlot.SLOT_PRIMARY
+		local slot = ((wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN or wakaba.state.unlock.sweetscatalog or wakaba.state.options.allowlockeditems) and ActiveSlot.SLOT_POCKET) or ActiveSlot.SLOT_PRIMARY
 		player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, slot)
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()
