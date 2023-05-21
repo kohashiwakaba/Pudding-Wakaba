@@ -134,7 +134,18 @@ function wakaba:NewRoom_RabbitRibbon()
 	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
 		for _, room in ipairs(isc:getRoomsInsideGrid()) do
 			if room.Data --[[ and room.Data.Type == RoomType.ROOM_DEFAULT ]] then
-				isc:clearRoomDisplayFlags(room.SafeGridIndex)
+				local roomGridIndex = room.SafeGridIndex
+				if MinimapAPI == nil then
+					local roomDescriptor = isc:getRoomDescriptor(nil, roomGridIndex)
+					roomDescriptor.DisplayFlags = 0
+					local level = wakaba.G:GetLevel()
+					level:UpdateVisibility()
+				else
+					local minimapAPIRoomDescriptor = MinimapAPI:GetRoomByIdx(roomGridIndex)
+					if minimapAPIRoomDescriptor then
+						minimapAPIRoomDescriptor:SetDisplayFlags(0)
+					end
+				end
 			end
 		end
 		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, 1, "WAKABA_RABBIT_RIBBON")
