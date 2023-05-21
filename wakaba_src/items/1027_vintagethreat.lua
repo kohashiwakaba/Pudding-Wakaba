@@ -30,6 +30,11 @@ function wakaba:PlayerUpdate_VintageThreat()
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
+		if player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT, true) then
+			if Input.IsButtonTriggered((wakaba.state.options.vintagetriggerkey or Keyboard.KEY_9), 0) then
+				wakaba:AfterRevival_VintageThreat(player)
+			end
+		end
 		if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
 			player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
 			player:GetData().wakaba.vintagethreatremovecnt = player:GetData().wakaba.vintagethreatremovecnt - 1
@@ -45,22 +50,7 @@ function wakaba:PlayerUpdate_VintageThreat()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PlayerUpdate_VintageThreat)
---LagCheck
---[[ 
-function wakaba:TakeDmg_VintageThreat(entity, amount, flag, source, countdownFrames)
-	if entity.Type == EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES)
-	then
-		local player = entity:ToPlayer()
-		if not player:GetData().wakaba or (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES) then return end
-		if player:GetData().wakaba.vintagethreat then
-			print(flag)
-			player:GetData().wakaba.vintagekill = true
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat)
- ]]
+
 function wakaba:FamiliarUpdate_VintageThreat(familiar)
 	if not familiar.Player then return end
 	local player = familiar.Player
@@ -107,3 +97,8 @@ function wakaba:DEBUG_FallDamocles()
 		end
 	end
 end
+
+-- quick lua commands to fall damocles immediately
+--[[ 
+l local entities = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.DAMOCLES, -1, false, false); for i, e in ipairs(entities) do local fam = e:ToFamiliar() if fam then fam.State = 2 end end end;
+ ]]
