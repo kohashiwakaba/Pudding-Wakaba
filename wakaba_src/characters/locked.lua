@@ -10,8 +10,8 @@ local lockedChars = {
 		unlockCheck = "taintedricher",
 		targetPlayerType = wakaba.Enums.Players.RICHER,
 		EIDWarningTitle = "TaintedTsukasaWarningTitle",
-		EIDWarningDesc = "TaintedTsukasaWarningText",
-		lockedSprite = "gfx/characters/costumes/character_tsukasab.png",
+		EIDWarningDesc = "TaintedRicherWarningText",
+		lockedSprite = "gfx/characters/costumes/character_richerb.png",
 	},
 }
 
@@ -49,6 +49,7 @@ local function GoToHomeCloset()
  ]]
 	level:ChangeRoom(CLOSET_GRIDINDEX)
 	Isaac.GetPlayer().Position = wakaba.G:GetRoom():GetCenterPos()
+	game:GetSeeds():AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_LOST)
 end
 
 local function MakeDoorInvisible()
@@ -134,10 +135,13 @@ if EID then
 	local hasShownWarning
 	function wakaba:Render_LockedTsukasa()
 		if not EID.Config["DisableStartOfRunWarnings"] and done and not hasShownWarning then
+			local player = Isaac.GetPlayer()
+			local title = lockedChars[player:GetPlayerType()].EIDWarningTitle
+			local desc = lockedChars[player:GetPlayerType()].EIDWarningDesc
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-			demoDescObj.Name = EID:getDescriptionEntry("TaintedTsukasaWarningTitle") or ""
-			demoDescObj.Description = EID:getDescriptionEntry("TaintedTsukasaWarningText") or ""
-			EID:displayPermanentText(demoDescObj, "TaintedTsukasaWarningTitle")
+			demoDescObj.Name = EID:getDescriptionEntry(title) or ""
+			demoDescObj.Description = EID:getDescriptionEntry(desc) or ""
+			EID:displayPermanentText(demoDescObj, title)
 			hasShownStartWarning = true
 			hasShownWarning = true
 		else

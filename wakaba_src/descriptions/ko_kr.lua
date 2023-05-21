@@ -2674,6 +2674,7 @@ if EID then
 
 	EID.descriptions[desclang].TaintedTsukasaWarningTitle = "{{ColorYellow}}!!! 잠김 !!!"
 	EID.descriptions[desclang].TaintedTsukasaWarningText = "해당 캐릭터는 해금되지 않았습니다.#해금 이후에 사용하실 수 있습니다.#해금 방법 : Tsukasa 캐릭터로 Red Key를 갖고 Home 스테이지 돌입#우측 문으로 이동 시 게임 종료"
+	EID.descriptions[desclang].TaintedRicherWarningText = "해당 캐릭터는 해금되지 않았습니다.#해금 이후에 사용하실 수 있습니다.#해금 방법 : Richer 캐릭터로 Red Key를 갖고 Home 스테이지 돌입#우측 문으로 이동 시 게임 종료"
 	
 	EID.descriptions[desclang].SweetsChallenge = "사용 시 가장 가까이 있는 아이템의 예상 등급을 선택합니다.#선택한 등급과 아이템의 등급이 일치할 경우 해당 아이템을 획득하며 틀릴 경우 아이템이 사라집니다."
 	EID.descriptions[desclang].SweetsFlipFlop = "아이템 사용 버튼으로 취소#{{ButtonY}}/{{ButtonX}}:{{Quality1}}or{{Quality3}}#{{ButtonA}}/{{ButtonB}}:{{Quality2}}or{{Quality4}}#선택한 등급과 아이템의 등급이 일치할 경우 해당 아이템을 획득하며 틀릴 경우 아이템이 사라집니다."

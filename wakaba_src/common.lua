@@ -1260,6 +1260,8 @@ wakaba.validtainted = {
 	wakaba.Enums.Players.SHIORI_B,
 	wakaba.Enums.Players.TSUKASA,
 	wakaba.Enums.Players.TSUKASA_B,
+	wakaba.Enums.Players.RICHER,
+	wakaba.Enums.Players.RICHER_B,
 }
 wakaba.taintedsprite = {
 	[wakaba.Enums.Players.WAKABA] = "gfx/characters/costumes/character_wakabab.png",
@@ -1268,6 +1270,8 @@ wakaba.taintedsprite = {
 	[wakaba.Enums.Players.SHIORI_B] = "gfx/characters/costumes/character_shiori.png",
 	[wakaba.Enums.Players.TSUKASA] = "gfx/characters/costumes/character_tsukasab.png",
 	[wakaba.Enums.Players.TSUKASA_B] = "gfx/characters/costumes/character_tsukasa.png",
+	[wakaba.Enums.Players.RICHER] = "gfx/characters/costumes/character_richerb.png",
+	[wakaba.Enums.Players.RICHER_B] = "gfx/characters/costumes/character_richer.png",
 }
 
 
@@ -1309,6 +1313,10 @@ function wakaba:Effect_TaintedWakabaReady()
 								if not wakaba.state.unlock.taintedtsukasa and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.TSUKASA then
 									wakaba.state.unlock.taintedtsukasa = true
 									CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedtsukasa)
+									wakaba:CheckWakabaChecklist()
+								elseif not wakaba.state.unlock.taintedricher and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.RICHER then
+									wakaba.state.unlock.taintedricher = true
+									CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedricher)
 									wakaba:CheckWakabaChecklist()
 								else
 									for i = 0, wakaba.G:GetNumPlayers() - 1 do

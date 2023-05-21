@@ -797,6 +797,7 @@ function wakaba:IsWakabaCharacterUnlocked(player)
   player = player or Isaac.GetPlayer()
   local type = player:GetPlayerType()
   if type == wakaba.Enums.Players.TSUKASA_B and not wakaba.state.unlock.taintedtsukasa then return false end
+  if type == wakaba.Enums.Players.RICHER_B and not wakaba.state.unlock.taintedricher then return false end
   return true
 end
 
