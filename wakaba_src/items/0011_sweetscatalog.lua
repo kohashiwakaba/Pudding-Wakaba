@@ -193,13 +193,21 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_Catal
 function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon shooting
 	if player:GetData().wakaba.usingCatalog and player:GetFireDirection() ~= Direction.NO_DIRECTION then
 		player:GetData().wakaba.usingCatalog = false
+		local direction = player:GetFireDirection()
+		if wakaba.G:GetRoom():IsMirrorWorld() then
+			if direction == Direction.LEFT then 
+				direction = Direction.RIGHT
+			elseif direction == Direction.RIGHT then 
+				direction = Direction.LEFT
+			end
+		end
 
 		-- PLACE THE ACTUAL EFFECT OF YOUR THROWABLE ACTIVE HERE --
 		local playerIndex = isc:getPlayerIndex(player)
 		local pending = pending_collectibles[playerIndex]
 		local quality = isc:getCollectibleQuality(pending.SubType)
 		last_collectible = pending.SubType
-		if player:GetFireDirection() == Direction.LEFT or player:GetFireDirection() == Direction.UP then
+		if direction == Direction.LEFT or direction == Direction.UP then
 			last_type = 1
 			if quality == 1 or quality == 3 then
 				last_success = true
@@ -211,7 +219,7 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 				last_success = false
 				player:AnimateSad()
 			end
-		elseif player:GetFireDirection() == Direction.RIGHT or player:GetFireDirection() == Direction.DOWN then
+		elseif direction == Direction.RIGHT or direction == Direction.DOWN then
 			last_type = 2
 			if quality == 2 or quality == 4 then
 				last_success = true
