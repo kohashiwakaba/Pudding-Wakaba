@@ -606,8 +606,108 @@ if MCM then
 		)
 	end
 	MCM.AddSpace("Pudding & Wakaba", "General")
+	MCM.AddText("Pudding & Wakaba", "General", function() return "Items" end)
 
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.vintagetriggerkey
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.vintagetriggerkey
+				local displayString = "Vintage Trigger key : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.vintagetriggerkey
+	
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+	
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+	
+				end
+	
+				local keepSettingString = ""
+				if currentValue > -2 then
+	
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+	
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+	
+				end
+	
+				local deviceString = ""
+				deviceString = "keyboard"
+	
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+	
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.vintagetriggerkey = current
+				end
+			end,
+			Info = {
+				"Press to activate Vintage Threat immediately(Default = O key)",
+			}
+		}
+	)
+
+	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Starting Items" end)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.richersweetscatalog
+			end,
+			Minimum = 0,
+			Maximum = 100,
+			Display = function()
+				local onOff = "Normal"
+				if wakaba.state.options.richersweetscatalog then
+					onOff = "Pocket"
+				end
+				return "Richer - Sweets Catalog: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.richersweetscatalog = currentBool
+				
+			end,
+			Info = {
+				"Change behavior whether Richer's Starting Item",
+				"Applies after Sweets Catalog is unlocked",
+			}
+		}
+	)
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",

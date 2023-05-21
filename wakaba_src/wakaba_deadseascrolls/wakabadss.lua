@@ -239,6 +239,27 @@ local wakabadirectory = {
 			},
 			{str = '', fsize = 1, nosel = true},
 			{
+					str = '-items-',
+					nosel = true,
+					glowcolor = 3
+			},
+			{
+				str = 'instant vintage',
+				-- A keybind option lets you bind a key!
+				keybind = true,
+				-- -1 means no key set, otherwise use the Keyboard enum!
+				setting = Keyboard.KEY_F5,
+				variable = "VintageTriggerKey",
+				load = function()
+						return wakaba.state.options.vintagetriggerkey or Keyboard.KEY_9
+				end,
+				store = function(var)
+						wakaba.state.options.vintagetriggerkey = var
+				end,
+				tooltip = {strset = {'press to','activate','vintage','threat','immediately','default = 9'}},
+			},
+			{str = '', fsize = 1, nosel = true},
+			{
 					str = '-stackable mantle-',
 					nosel = true,
 					glowcolor = 3
@@ -509,6 +530,28 @@ local wakabadirectory = {
 	characters_setting = {
 		title = 'characters',
 		buttons = {
+
+			-- Richer starts Sweets Catalog : POCKET/normal
+			{
+				str = 'catalog for richer',
+				choices = {'pocket', 'normal'},
+				setting = 1,
+				variable = 'RicherSweetsCatalog',
+				load = function()
+					if wakaba.state.options.richersweetscatalog then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.richersweetscatalog = (var == 1)
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.unlock.sweetscatalog
+				end,
+				tooltip = {strset = {'richer','starts with',"sweets",'catalog'}}
+			},
 			
 			-- T.Lost starts Wakaba's Uniform : TRUE/false
 			{

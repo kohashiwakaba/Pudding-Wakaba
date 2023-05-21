@@ -219,6 +219,7 @@ local richer_saved_recipies = {
 			uniformscale = 100,
 		
 			-- Starting items control options
+			richersweetscatalog = true,
 			lostuniform = true,
 			edensticky = true,
 		
@@ -239,6 +240,7 @@ local richer_saved_recipies = {
 			shioriakasicbooks = 3,
 			shioriakasicminquality = 0,
 			shioriakasicmaxquality = 4,
+			vintagetriggerkey = Keyboard.KEY_9,
 		
 			-- Tsukasa options
 			concentrationkeyboard = Keyboard.KEY_LEFT_CONTROL,
@@ -565,6 +567,7 @@ wakaba.optiondefaults = {
 	uniformscale = 100,
 
 	-- Starting items control options
+	richersweetscatalog = true,
 	lostuniform = true,
 	edensticky = true,
 
@@ -584,6 +587,7 @@ wakaba.optiondefaults = {
 	shioriakasicbooks = 3,
 	shioriakasicminquality = 0,
 	shioriakasicmaxquality = 4,
+	vintagetriggerkey = Keyboard.KEY_9,
 
 	-- Tsukasa options
 	concentrationkeyboard = Keyboard.KEY_LEFT_CONTROL,
