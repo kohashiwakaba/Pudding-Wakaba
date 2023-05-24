@@ -111,7 +111,13 @@ function wakaba:EffectUpdate_Minerva(effect)
 	effect.LifeSpan = 108000000
 	--effect:FollowParent(effect.Parent)
 	for _, ent in ipairs(Isaac.FindInRadius(effect.Position, 88, EntityPartition.FAMILIAR)) do
-		if ent.Variant ~= FamiliarVariant.ITEM_WISP or not (wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES)) then
+		if ent.Variant ~= FamiliarVariant.ITEM_WISP 
+			or not (
+				(wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES)) 
+				or 
+				(effect.Parent:ToPlayer() ~= nil and effect.Parent:ToPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER_B )
+			) 
+		then
 			if ent.HitPoints < (ent.MaxHitPoints * 2) then
 				ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 1, 1, true, false)
 				ent.HitPoints = ent.HitPoints + (ent.MaxHitPoints * 0.04)
