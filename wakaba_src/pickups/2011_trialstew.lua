@@ -58,7 +58,7 @@ function wakaba:Cache_TrialStew(player, cacheFlag)
 		local boneHearts = player:GetBoneHearts()
 		local totalHearts = redHearts + soulHearts + boneHearts
 		if Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
-			totalHearts = player:GetCoins() // 20
+			totalHearts = player:GetNumCoins() // 20
 		end
 		local mantleConuts = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
 
