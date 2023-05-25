@@ -1372,6 +1372,7 @@ include('wakaba_src.common')
 
 include('wakaba_src.items.0002_bookofshiori_func')
 
+include('wakaba_src.functions.aqua_trinkets')
 include('wakaba_src.functions.unlock')
 include('wakaba_src.functions.charge')
 include('wakaba_src.functions.revival')
