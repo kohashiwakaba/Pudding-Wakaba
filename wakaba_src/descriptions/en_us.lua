@@ -2538,4 +2538,6 @@ if EID then
 	EID.descriptions[desclang].SweetsChallengeFailed = "{{ColorOrange}}Failed for mismatching quality : "
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}Succeed for matching quality : "
 
+	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
+
 end
