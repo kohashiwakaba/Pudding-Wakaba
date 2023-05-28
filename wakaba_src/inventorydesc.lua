@@ -38,7 +38,14 @@ wakaba._InventoryDesc.defaultItems = {
 	[PlayerType.PLAYER_AZAZEL_B] = {CollectibleType.COLLECTIBLE_HEMOPTYSIS},
 	[PlayerType.PLAYER_LILITH_B] = {CollectibleType.COLLECTIBLE_GELLO},
 }
+wakaba._InventoryDesc.defaultTrinkets = {
+	[PlayerType.PLAYER_BLUEBABY] = {TrinketType.TRINKET_LIL_LARVA},
+}
 wakaba._InventoryDesc.collectibleBlacklist = {
+
+}
+wakaba._InventoryDesc.trinketBlacklist = {
+
 }
 
 function wakaba:LinkCollectibleForCharacter(playerType, collectibleType)
@@ -48,6 +55,16 @@ function wakaba:LinkCollectibleForCharacter(playerType, collectibleType)
 	end
 	if not wakaba:has_value(wakaba._InventoryDesc.defaultItems[playerType], collectibleType) then
 		table.insert(	wakaba._InventoryDesc.defaultItems[playerType], collectibleType)
+	end
+end
+
+function wakaba:LinkTrinketForCharacter(playerType, collectibleType)
+	if not playerType or not collectibleType then return end
+	if not wakaba._InventoryDesc.defaultTrinkets[playerType] then
+		wakaba._InventoryDesc.defaultTrinkets[playerType] = {}
+	end
+	if not wakaba:has_value(wakaba._InventoryDesc.defaultTrinkets[playerType], collectibleType) then
+		table.insert(	wakaba._InventoryDesc.defaultTrinkets[playerType], collectibleType)
 	end
 end
 
@@ -65,10 +82,19 @@ idesc.IconBgSprite:SetFrame("ItemIcon",0)
 function INVDESC:LinkCollectibleForCharacter(playerType, collectibleType)
 	wakaba:LinkCollectibleForCharacter(playerType, collectibleType)
 end
+function INVDESC:LinkTrinketForCharacter(playerType, collectibleType)
+	wakaba:LinkTrinketForCharacter(playerType, collectibleType)
+end
 function INVDESC:AddCollectibleBlacklist(collectibleType)
 	if not collectibleType then return end
 	if not wakaba:has_value(wakaba._InventoryDesc.collectibleBlacklist, collectibleType) then
 		table.insert(wakaba._InventoryDesc.collectibleBlacklist, collectibleType)
+	end
+end
+function INVDESC:AddTrinketBlacklist(trinkettype)
+	if not trinkettype then return end
+	if not wakaba:has_value(wakaba._InventoryDesc.trinketBlacklist, trinkettype) then
+		table.insert(wakaba._InventoryDesc.trinketBlacklist, trinkettype)
 	end
 end
 function INVDESC:RemoveCollectibleBlacklist(collectibleType)
@@ -76,6 +102,14 @@ function INVDESC:RemoveCollectibleBlacklist(collectibleType)
 	for i = 1, #wakaba._InventoryDesc.collectibleBlacklist do
 		if wakaba._InventoryDesc.collectibleBlacklist[i] == collectibleType then
 			table.remove(wakaba._InventoryDesc.collectibleBlacklist, i)
+		end
+	end
+end
+function INVDESC:RemoveTrinketBlacklist(trinkettype)
+	if not trinkettype then return end
+	for i = 1, #wakaba._InventoryDesc.trinketBlacklist do
+		if wakaba._InventoryDesc.trinketBlacklist[i] == trinkettype then
+			table.remove(wakaba._InventoryDesc.trinketBlacklist, i)
 		end
 	end
 end
@@ -210,6 +244,8 @@ end
 
 function idesc:SetCurrentItemLists()
 	local playernotes = {}
+	local impitems = {}
+	local imptrinkets = {}
 	local items = {}
 	local currCurse = wakaba.G:GetLevel():GetCurses()
 	local curses = {}
@@ -229,6 +265,32 @@ function idesc:SetCurrentItemLists()
 				variant = wakaba.INVDESC_VARIANT,
 				subtype = playerType,
 			})
+		end
+		if wakaba._InventoryDesc.defaultItems[playerType] then
+			for i, e in ipairs(wakaba._InventoryDesc.defaultItems[playerType]) do
+				table.insert(impitems, e)
+				table.insert(collectibles, e)
+				table.insert(items, {
+					type = 5,
+					variant = 100,
+					subtype = e,
+				})
+			end
+		end
+	end
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		local playerType = player:GetPlayerType()
+		if wakaba._InventoryDesc.defaultTrinkets[playerType] then
+			for i, e in ipairs(wakaba._InventoryDesc.defaultTrinkets[playerType]) do
+				table.insert(imptrinkets, e)
+				table.insert(trinkets, e)
+				table.insert(items, {
+					type = 5,
+					variant = 350,
+					subtype = e,
+				})
+			end
 		end
 	end
 	for curseId = 0, getMaxCurseId(currCurse) do
@@ -283,8 +345,9 @@ function idesc:SetCurrentItemLists()
 			local player = Isaac.GetPlayer(i)
 			local playerType = player:GetPlayerType()
 			if not wakaba:has_value(collectibles, itemId) 
+			and not wakaba:has_value(impitems, itemId)
 			and not wakaba:has_value(wakaba._InventoryDesc.collectibleBlacklist, itemId)
-			and (player:HasCollectible(itemId, true) or (wakaba._InventoryDesc.defaultItems[playerType] and wakaba:has_value(wakaba._InventoryDesc.defaultItems[playerType], itemId))) then
+			and player:HasCollectible(itemId, true) then
 				table.insert(collectibles, itemId)
 				table.insert(items, {
 					type = 5,
@@ -297,7 +360,10 @@ function idesc:SetCurrentItemLists()
 	for itemId = 1, Isaac.GetItemConfig():GetTrinkets().Size - 1 do
 		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
-			if not wakaba:has_value(trinkets) and player:HasTrinket(itemId) then
+			if not wakaba:has_value(trinkets)
+			and not wakaba:has_value(wakaba._InventoryDesc.trinketBlacklist, itemId)
+			and not wakaba:has_value(imptrinkets, itemId)
+			and player:HasTrinket(itemId) then
 				table.insert(trinkets, itemId)
 				table.insert(items, {
 					type = 5,
@@ -323,6 +389,7 @@ function idesc:SetCurrentItemLists()
 		end
 	end
 
+	idesc.state.lists.impitems = impitems
 	idesc.state.lists.items = items
 	--idesc.state.lists.cards = cards
 	--idesc.state.lists.pills = pills
