@@ -83,6 +83,7 @@ function wakaba:FamiliarUpdate_VintageThreat(familiar)
 			SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
 			SFXManager():Play(SoundEffect.SOUND_DEATH_CARD)
 			SFXManager():Play(SoundEffect.SOUND_STATIC)
+			familiar:Remove()
 		end
 	end
 end
