@@ -13,8 +13,16 @@ local aqua_trinkets_data = {
 wakaba:saveDataManager("Aqua Trinkets", aqua_trinkets_data)
 wakaba.aquatrinkets = aqua_trinkets_data
 
+function wakaba:TryTurnAquaTrinket(trinket)
+	local currentRoomIndex = isc:getRoomListIndex()
+	table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
+	pickup:GetData().wakaba.isAquaTrinket = true
+end
+
 function wakaba:PickupInit_AquaTrinkets(pickup)
-	if --[[ wakaba.state.unlock.aquatrinkets > 0 and  ]] true then
+	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched
+	and (--[[not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local currentRoomIndex = isc:getRoomListIndex()
 		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
 			aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
@@ -23,16 +31,16 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		local rand = RNG()
 		rand:SetSeed(pickup.InitSeed, 35)
 		local ran = rand:RandomFloat()
-		print(ran)
+		--print(ran, pickup:CanReroll(), pickup.Touched)
 		if ran < wakaba.state.options.fortunereplacechance / 100 then
 			if not isAquaTrinket then
-				print("Aqua Trinket Registered! ID :"..pickup.SubType)
+				--print("Aqua Trinket Registered! ID :"..pickup.SubType)
 				table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 				isAquaTrinket = true
 			end
 		end
 		if isAquaTrinket then
-			print("Aqua Trinket spawned! ID :"..pickup.SubType)
+			--print("Aqua Trinket spawned! ID :"..pickup.SubType)
 			pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 			pickup:GetData().wakaba.isAquaTrinket = true
 		end

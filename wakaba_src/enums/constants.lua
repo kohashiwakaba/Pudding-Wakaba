@@ -460,6 +460,9 @@ wakaba.Blacklists.Uniform.PillEffect = {
 wakaba.Blacklists.Uniform.PillColor = {
 	PillColor.PILL_GOLD,
 }
+wakaba.Blacklists.AquaTrinkets = {
+	TrinketType.TRINKET_PERFECTION,
+}
 
 wakaba.Weights = {}
 wakaba.Weights.LilMoeTearFlags = {
