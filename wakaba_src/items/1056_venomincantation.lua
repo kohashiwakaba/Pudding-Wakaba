@@ -45,7 +45,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_VenomIncan
 function wakaba:Cache_VenomIncantation(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.VENOM_INCANTATION) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + 1
+			player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.VENOM_INCANTATION) * wakaba:getEstimatedDamageMult(player))
 		end
 	end
 end

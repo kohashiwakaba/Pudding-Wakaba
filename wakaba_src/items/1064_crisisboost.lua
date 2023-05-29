@@ -9,7 +9,7 @@ function wakaba:Cache_CrisisBoost(player, cacheFlag)
 			player.Damage = player.Damage * ((1 + bonus) * count)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 1.0 * count)
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 1.0 * count * wakaba:getEstimatedTearsMult(player))
 		end
 	end
 end

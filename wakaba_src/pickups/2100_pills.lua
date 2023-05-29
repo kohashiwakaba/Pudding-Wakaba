@@ -388,9 +388,9 @@ function wakaba:onPillCache(player, cacheFlag)
   local sti = player:GetData().wakaba
   if sti and sti.statmodify then
     if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage + sti.statmodify.damage
+      player.Damage = player.Damage + (sti.statmodify.damage * wakaba:getEstimatedDamageMult(player))
       if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
-        player.Damage = player.Damage + sti.statmodify.falsedamage
+        player.Damage = player.Damage + (sti.statmodify.falsedamage * wakaba:getEstimatedDamageMult(player))
       end
       player.Damage = player.Damage * (1 + sti.statmultiplier.damage)
     end
@@ -411,7 +411,7 @@ function wakaba:onPillCache(player, cacheFlag)
       player.Luck = player.Luck + sti.statmodify.luck
     end
     if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-      player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, sti.statmodify.tears)
+      player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, sti.statmodify.tears * wakaba:getEstimatedTearsMult(player))
     end
   end
 	

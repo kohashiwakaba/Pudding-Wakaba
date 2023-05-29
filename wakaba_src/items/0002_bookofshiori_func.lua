@@ -315,8 +315,8 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 	local troll = player:GetData().wakaba.shioritrollbombcount or 0
 	if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 		if bible > 0 then player.Damage = player.Damage * (1.2 * (bible + 1)) end
-		if belial > 0 then player.Damage = player.Damage + (1.5 * (belial + 1)) end
-		if satan > 0 then player.Damage = player.Damage + (1.0 * (satan + 1)) end
+		if belial > 0 then player.Damage = player.Damage + ((1.5 * (belial + 1)) * wakaba:getEstimatedDamageMult(player)) end
+		if satan > 0 then player.Damage = player.Damage + ((1.0 * (satan + 1)) * wakaba:getEstimatedDamageMult(player)) end
 		if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then player.Damage = player.Damage * 0.6 end
 	end
 	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then

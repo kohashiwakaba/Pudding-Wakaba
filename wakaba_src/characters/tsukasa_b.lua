@@ -49,7 +49,7 @@ function wakaba:PostGetCollectible_TsukasaB(player, item)
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
 		isc:setBlindfold(player, false)
 		local sprite = player:GetSprite()
-		sprite:ReplaceSpritesheet(0, "gfx/characters/costumes/character_tsukasa.png") 
+		sprite:ReplaceSpritesheet(0, "gfx/characters/costumes/character_tsukasa.png")
 		sprite:LoadGraphics()
 	end
 end
@@ -65,7 +65,7 @@ function wakaba:PostTsukasaUpdate_b(player)
 				if player:IsCoopGhost() then
 				else
 					local sprite = player:GetSprite()
-					sprite:ReplaceSpritesheet(0, "gfx/characters/costumes/character_tsukasa.png") 
+					sprite:ReplaceSpritesheet(0, "gfx/characters/costumes/character_tsukasa.png")
 					sprite:LoadGraphics()
 				end
 			end
@@ -78,7 +78,7 @@ function wakaba:PostTsukasaUpdate_b(player)
 		if not player:CanShoot() and wakaba:IsFireTriggered(player) then
 			data.wakaba.flashshifttrigger = wakaba.dashflags.FLASH_SHIFT_TSUKASA_B
 			player:UseActiveItem(wakaba.Enums.Collectibles.FLASH_SHIFT, UseFlag.USE_OWNED | UseFlag.USE_CUSTOMVARDATA, -1)
-		end 
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PostTsukasaUpdate_b)
@@ -89,7 +89,7 @@ end
 --wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.PostTsukasaRender)
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
-local TsukasaChar_b = { 
+local TsukasaChar_b = {
     DAMAGE = 0.65,
     SPEED = 0.1,
     SHOTSPEED = 1.0,
@@ -124,7 +124,7 @@ function wakaba:onTsukasaCache_b(player, cacheFlag)
     end
     if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) then
-        player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, TsukasaChar_b.TEARS)
+        player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (TsukasaChar_b.TEARS * wakaba:getEstimatedTearsMult(player)))
 			else
         player.MaxFireDelay = player.MaxFireDelay * 1.5
 			end

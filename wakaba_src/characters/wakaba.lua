@@ -169,7 +169,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
 					player.CanFly = true
 			end
 			if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-					player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, WakabaChar.TEARS)
+					player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (WakabaChar.TEARS * wakaba:getEstimatedTearsMult(player)))
 					if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) then
 						if player.MaxFireDelay < 0 then
 							player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (player.MaxFireDelay * -0.25))

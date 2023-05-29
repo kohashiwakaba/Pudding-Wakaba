@@ -4,7 +4,7 @@ function wakaba:cacheUpdate24(player, cacheFlag)
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			local oldTears = wakaba:getTearsStat(player.MaxFireDelay)
 			player.MaxFireDelay = wakaba:getFireDelay(oldTears * 2)
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.2 * (count - 1))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.2 * (count - 1) * wakaba:getEstimatedTearsMult(player))
 		end
 	end
 end

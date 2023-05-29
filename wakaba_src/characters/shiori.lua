@@ -780,7 +780,7 @@ function wakaba:onShioriCache(player, cacheFlag)
 			player.CanFly = true
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ShioriChar.TEARS)
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (ShioriChar.TEARS * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | ShioriChar.TEARFLAG

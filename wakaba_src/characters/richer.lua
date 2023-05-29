@@ -23,14 +23,14 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RicherTakeDmg) ]]
 
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
-local RicherChar = { 
+local RicherChar = {
 		DAMAGE = 1.0,
 		SPEED = 0.1,
 		SHOTSPEED = 1.0,
 		TEARRANGE = 100,
 		TEARS = 0,
 		LUCK = 1,
-		FLYING = false,																 
+		FLYING = false,
 		TEARFLAG = TearFlags.TEAR_NORMAL,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
@@ -56,7 +56,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 			player.CanFly = true
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, RicherChar.TEARS)
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RicherChar.TEARS * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG

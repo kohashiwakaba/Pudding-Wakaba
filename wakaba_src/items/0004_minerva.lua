@@ -22,8 +22,8 @@ function wakaba:hasAura(player)
 end
 
 function wakaba:auraCount(player)
-	if not player then 
-		return 0 
+	if not player then
+		return 0
 	end
 	local count = 0
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
@@ -111,12 +111,12 @@ function wakaba:EffectUpdate_Minerva(effect)
 	effect.LifeSpan = 108000000
 	--effect:FollowParent(effect.Parent)
 	for _, ent in ipairs(Isaac.FindInRadius(effect.Position, 88, EntityPartition.FAMILIAR)) do
-		if ent.Variant ~= FamiliarVariant.ITEM_WISP 
+		if ent.Variant ~= FamiliarVariant.ITEM_WISP
 			or not (
-				(wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES)) 
-				or 
+				(wakaba.curses.CURSE_OF_FLAMES > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES))
+				or
 				(effect.Parent:ToPlayer() ~= nil and effect.Parent:ToPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER_B )
-			) 
+			)
 		then
 			if ent.HitPoints < (ent.MaxHitPoints * 2) then
 				ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 1, 1, true, false)
@@ -132,7 +132,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 	for _, ent in ipairs(Isaac.FindInRadius(effect.Position, 88, EntityPartition.ENEMY)) do
 		if ent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
 			--ent:SetColor(Color(1, 1, 1, 1, 0.4, 0.1, 0.2), 1, 1, true, false)
-			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then 
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 				if ent.HitPoints < (ent.MaxHitPoints * 2) then
 					ent.HitPoints = ent.HitPoints + (ent.MaxHitPoints * 0.04)
 					if ent.HitPoints > (ent.MaxHitPoints * 2) then
@@ -141,7 +141,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 				else
 				end
 			elseif effect.Parent:ToPlayer() ~= nil
-			and effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
+			and effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true)
 			and effect.Parent:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 			then
 				if ent.HitPoints < (ent.MaxHitPoints * 3) then
@@ -166,10 +166,10 @@ function wakaba:EffectUpdate_Minerva(effect)
 			end
 		end
 	end
-	
+
   --[[ for i = 1, wakaba.G:GetNumPlayers() do
     local pl = Isaac.GetPlayer(i - 1)
-		
+
 		pl:GetData().wakaba = pl:GetData().wakaba or {}
 		pl:GetData().wakaba.minervalevel = 1
 	end ]]
@@ -186,7 +186,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 		if (effect.Parent ~= nil and effect.Parent:ToPlayer() ~= nil) or wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
 			if  wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_BIKE
 			and GetPtrHash(effect.Parent:ToPlayer()) == GetPtrHash(ent:ToPlayer())
-			and (effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
+			and (effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true)
 			and not effect.Parent:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 			then
 				ent:GetData().wakaba.minervalevel[psti][sti] = 0
@@ -202,7 +202,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 					ent:GetData().wakaba.minervalevel[psti][sti] = wakaba:auraCount(effect.Parent:ToPlayer())
 					ent:GetData().wakaba.insideminerva = true
 					if effect.Parent:ToPlayer() ~= nil
-					and effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
+					and effect.Parent:ToPlayer():GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true)
 					and effect.Parent:ToPlayer():HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 					then
 						ent:GetData().wakaba.minervacount = 7
@@ -237,7 +237,7 @@ function wakaba:PlayerUpdate_Minerva(player)
 	if wakaba:hasAura(player) and not (auraDatas[playerIndex] and auraDatas[playerIndex].AuraEntity and auraDatas[playerIndex].AuraEntity:Exists()) then
 		local aura = wakaba:initAura(player)
 	end
-	
+
 	player:GetData().wakaba.minervacount = player:GetData().wakaba.minervacount or 0
 	player:GetData().wakaba.hasminerva = player:GetData().wakaba.hasminerva or 0
 	player:GetData().wakaba.minervalevel = player:GetData().wakaba.minervalevel or {}
@@ -270,7 +270,7 @@ function wakaba:PlayerUpdate_Minerva(player)
 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Minerva)
---[[ 
+--[[
 function wakaba:TestRender_Minerva()
   for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
@@ -298,7 +298,7 @@ end ]]
 
 function wakaba:Cache_Minerva(player, cacheFlag)
 	if not player:GetData().wakaba then return end
-	
+
 	local sti = wakaba:getstoredindex(player)
 	player:GetData().wakaba.minervacount = player:GetData().wakaba.minervacount or 0 -- for birthright check
 	local minervalevel = 0
@@ -323,16 +323,16 @@ function wakaba:Cache_Minerva(player, cacheFlag)
       player.Luck = player.Luck + (minervalevel * additional * 0.1)
     end
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (1.5 * minervalevel) + (additional * 0.03)
+			player.Damage = player.Damage + ((1.5 * minervalevel) + (additional * 0.03) * wakaba:getEstimatedDamageMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + (60 * minervalevel) + (additional * 0.5)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			for i = 1, minervalevel do
-				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 2.0)
+				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (2.0 * wakaba:getEstimatedTearsMult(player)))
 			end
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (additional * 0.005))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (additional * 0.005 * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 			player.ShotSpeed = player.ShotSpeed - 0.08

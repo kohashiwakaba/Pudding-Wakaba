@@ -2,14 +2,14 @@
 local playerType = wakaba.Enums.Players.WAKABA_B
 local removed = false
 local collectibleCount_b
-local costumeEquipped_b 
+local costumeEquipped_b
 local isWakabaContinue = true
 local isc = require("wakaba_src.libs.isaacscript-common")
 wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.WAKABA_B, isc.HeartSubType.BLACK)
 
 local function InitWakabaPlayer_b()
-	collectibleCount_b = 0 
-	costumeEquipped_b = false 
+	collectibleCount_b = 0
+	costumeEquipped_b = false
 end
 
 --some mods force the players cache update to happen every frame, triggering costume application
@@ -87,7 +87,7 @@ wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_Wakaba_b, CollectibleTyp
 function wakaba:OnWakabaUpdate_b(player)
 	-- If the player is Wakaba
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-		
+
 		player:AddNullCostume(wakaba.COSTUME_WAKABA_B)
 		costumeEquipped_b = true
 	end
@@ -95,7 +95,7 @@ end
 
 --wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.OnWakabaUpdate_b)
 
-local WakabaChar_b = { 
+local WakabaChar_b = {
     DAMAGE = 0.7,
     SPEED = 0.25,
     SHOTSPEED = 1.1,
@@ -108,7 +108,7 @@ local WakabaChar_b = {
 }
  
 function wakaba:onWakabaCache_b(player, cacheFlag)
-  if player:GetPlayerType() == playerType 
+  if player:GetPlayerType() == playerType
 	then
 		--wakaba:GetWakabaCostume_b(player)
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
@@ -135,7 +135,7 @@ function wakaba:onWakabaCache_b(player, cacheFlag)
 					player.CanFly = true
 			end
 			if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-					player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, WakabaChar_b.TEARS)
+					player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (WakabaChar_b.TEARS * wakaba:getEstimatedTearsMult(player)))
 			end
 			if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 					player.TearFlags = player.TearFlags | WakabaChar_b.TEARFLAG

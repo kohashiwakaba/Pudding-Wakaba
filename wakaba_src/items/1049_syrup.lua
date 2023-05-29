@@ -1,7 +1,7 @@
 function wakaba:Cache_Syrup(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.SYRUP) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + 1.25
+			player.Damage = player.Damage + (1.25 * wakaba:getEstimatedDamageMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed * 0.9

@@ -3,7 +3,7 @@
 local playerType = wakaba.Enums.Players.SHIORI_B
 local removed = false
 local collectibleCount
-local costumeEquipped 
+local costumeEquipped
 local isShioriContinue = true
 local iskeyinit = false
 local isc = require("wakaba_src.libs.isaacscript-common")
@@ -24,7 +24,7 @@ end ]]
 
 --Costume currently not working in Knife Piece 2 area. Needs to be fixed.
 function wakaba:PostShioriUpdate_b()
-	
+
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostShioriUpdate_b)
 
@@ -35,14 +35,14 @@ function wakaba:PostGetCollectible_Shiori_b(player, item)
 end
 wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_Shiori_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
-local ShioriChar_b = { 
+local ShioriChar_b = {
 	DAMAGE = 0.2,
 	SPEED = 0.0,
 	SHOTSPEED = 1.0,
 	TEARRANGE = -20,
 	TEARS = 0.27,
 	LUCK = 1,
-	FLYING = true,																 
+	FLYING = true,
 	TEARFLAG = TearFlags.TEAR_TURN_HORIZONTAL,
 	TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
@@ -73,8 +73,8 @@ function wakaba:onShioriCache_b(player, cacheFlag)
 			player.CanFly = true
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ShioriChar_b.TEARS)
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (additional * 0.06))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (ShioriChar_b.TEARS * wakaba:getEstimatedTearsMult(player)))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (additional * 0.06 * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | ShioriChar_b.TEARFLAG
@@ -104,7 +104,7 @@ function wakaba:AfterShioriInit_b(player)
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end
-		
+
 		if not player:HasTrinket(TrinketType.TRINKET_OLD_CAPACITOR, false) then
 			player:AddTrinket(TrinketType.TRINKET_OLD_CAPACITOR)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
@@ -114,7 +114,7 @@ function wakaba:AfterShioriInit_b(player)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end
 
-		
+
 		if wakaba.state.options.cp_shiori_b then
 			player:EvaluateItems()
 			--player:ClearCostumes()

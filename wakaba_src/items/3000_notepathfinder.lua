@@ -1,9 +1,9 @@
 
 local function isRep(stype)
 	if (stype == StageType.STAGETYPE_REPENTANCE or stype == StageType.STAGETYPE_REPENTANCE_B) then
-		return true	
-	else 
-		return false 
+		return true
+	else
+		return false
 	end
 end
 
@@ -18,7 +18,7 @@ function wakaba:checkMausoleumDest()
 			--wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true)
 		end
 	end
-	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL 
+	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 	-- Mines/Ashpit XL to Mausoleum/Gehenna XL
 	and ((st == LevelStage.STAGE2_1 and level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH == LevelCurse.CURSE_OF_LABYRINTH and isRep(level:GetStageType()))
 	-- Mines/Ashpit 2 to Mausoleum/Gehenna XL
@@ -79,7 +79,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.startMausoleumRoomCheck
 
 function wakaba:dadNoteCache(player, cacheFlag)
 	if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) and cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.5 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.BRING_ME_THERE)))
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.5 * player:GetTrinketMultiplier(wakaba.Enums.Trinkets.BRING_ME_THERE) * wakaba:getEstimatedTearsMult(player)))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.dadNoteCache)

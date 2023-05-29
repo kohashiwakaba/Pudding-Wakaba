@@ -68,7 +68,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
 
 		if nemesisbonuses > 0 then
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + nemesisbonuses
+				player.Damage = player.Damage + (nemesisbonuses * wakaba:getEstimatedDamageMult(player))
 			end
 		end
 		if nemesiscount > 0 then

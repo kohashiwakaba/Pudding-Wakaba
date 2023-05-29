@@ -9,10 +9,57 @@ local usagetime = -1 -- stores the last time the effect was called.
 
 local function isRep(stype)
 	if (stype == StageType.STAGETYPE_REPENTANCE or stype == StageType.STAGETYPE_REPENTANCE_B) then
-		return true	
-	else 
-		return false 
+		return true
+	else
+		return false
 	end
+end
+
+function wakaba:getEstimatedTearsMult(player, negativeOnly)
+	local mult = 1
+	local effects = player:GetEffects()
+
+	-- [Missing] Star of Bethlehem / Hallowed Ground x2.5
+
+	if player:HasWeaponType(WeaponType.WEAPON_BOMBS) then
+		if player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) then
+			mult = mult / 4.3
+		else
+			mult = mult * 0.4
+		end
+	elseif player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) then
+		mult = mult / 3
+	elseif player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) then
+		mult = mult / 4.3
+	end
+
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) then
+		mult = (mult * 2) / 3
+	end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA) then
+		mult = (mult * 2) / 3
+	end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
+		mult = mult / 3
+	end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) then
+		mult = mult
+	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE) or effects:HasCollectibleEffect(NullItemID.ID_REVERSE_HANGED_MAN) then
+		mult = mult * 0.51
+	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER) then
+		mult = mult * 0.42
+	end
+
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK) then
+		mult = mult * 4
+	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_SOY_MILK) then
+		mult = mult * 5.5
+	end
+
+	if effects:HasCollectibleEffect(NullItemID.ID_REVERSE_CHARIOT) or effects:HasCollectibleEffect(NullItemID.ID_REVERSE_CHARIOT_ALT) then
+		mult = mult * 4
+	end
+
 end
 
 -- getEstimatedDamageMult from Retribution
@@ -21,7 +68,6 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	local effects = player:GetEffects()
 	level = level or 0
 
-	player = player:ToPlayer()
 
 	-- Modded items normally returns here
 
@@ -72,14 +118,18 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	if level > 8 then return mult end
 
 	-- L8 Haemolacria or Brim+Tech x1.5
-	if not negativeOnly and 
-		(player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA) or 
+	if not negativeOnly and
+		(player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA) or
 		(player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) and player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY)))
 	then
 		mult = mult * 1.5
 	end
 
-	-- [Missing] L8 Azazel + Ludovico x0.5
+	-- L8 Azazel + Ludovico x0.5
+	if (player:GetPlayerType(PlayerType.PLAYER_AZAZEL) or player:GetPlayerType(PlayerType.PLAYER_AZAZEL_B))
+	and player:HasCollectible(CollectibleType.COLLECTIBLE_LUDOVICO_TECHNIQUE) then
+		mult = mult * 0.5
+	end
 
 	if level > 7 then return mult end
 
@@ -89,6 +139,13 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	end
 
 	if level > 6 then return mult end
+
+	-- L6 Judas BR Damocles
+	if player:GetPlayerType(PlayerType.PLAYER_JUDAS)
+	and player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE)
+	and player:HasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) then
+		mult = mult * 1.4
+	end
 
 	-- L6 Crown of Light x2
 	if not negativeOnly and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) then
@@ -131,6 +188,31 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	if level > 2 then return mult end
 
 	-- [Missing] L2 Character Multiplier
+	if player:GetPlayerType(PlayerType.PLAYER_BLACKJUDAS) then
+		mult = mult * 2
+	elseif player:GetPlayerType(PlayerType.PLAYER_THELOST_B) then
+		mult = mult * 1.3
+	elseif player:GetPlayerType(PlayerType.PLAYER_AZAZEL)
+	or player:GetPlayerType(PlayerType.PLAYER_AZAZEL_B)
+	or player:GetPlayerType(PlayerType.PLAYER_THEFORGOTTEN)
+	or player:GetPlayerType(PlayerType.PLAYER_THEFORGOTTEN_B)
+	or player:GetPlayerType(PlayerType.PLAYER_LAZARUS2_B) then
+		mult = mult * 1.5
+	elseif player:GetPlayerType(PlayerType.PLAYER_LAZARUS2) then
+		mult = mult * 1.4
+	elseif player:GetPlayerType(PlayerType.PLAYER_JUDAS) then
+		mult = mult * 1.35
+	elseif player:GetPlayerType(PlayerType.PLAYER_CAIN)
+	or player:GetPlayerType(PlayerType.PLAYER_CAIN_B)
+	or player:GetPlayerType(PlayerType.PLAYER_KEEPER)
+	or player:GetPlayerType(PlayerType.PLAYER_EVE_B) then
+		mult = mult * 1.2
+	elseif player:GetPlayerType(PlayerType.PLAYER_BLUEBABY) then
+		mult = mult * 1.05
+	elseif player:GetPlayerType(PlayerType.PLAYER_BETHANY_B)
+	or player:GetPlayerType(PlayerType.PLAYER_BLACKJUDAS) and not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
+		mult = mult * 0.75
+	end
 
 	if level > 1 then return mult end
 
@@ -139,10 +221,11 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 		mult = mult * 0.9
 	end
 	-- [Missing] L1 Cracked Crown: I'm honestly not even sure how its stat boosts work
+
 	return mult
 end
 
---[[ 
+--[[
 	와카바 모드의 ForceVoid 옵션에 따른 플래그값 처리
  ]]
 local function isFinalStage(stage, stageType, bossID)
@@ -231,7 +314,7 @@ function wakaba:HasJudasBr(player)
 		end
 	end
 
-	return false 
+	return false
 end
 
 function wakaba:GetPedestals(includeShop)
@@ -296,7 +379,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectD4)
 
 --[[
 wakaba.state.forcevoid
-Forces Void portals when defeating beyond Chapter 4. 
+Forces Void portals when defeating beyond Chapter 4.
 default is false since reutrning anything in MC_PRE_SPAWN_CLEAN_AWARD refuses grant completion marks
 
 Trapdoor and Cathedral lights were planned to be added in Mother boss fight which is from
@@ -305,39 +388,39 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665
 ]]
 function wakaba:CanOpenMother()
 	local c = Isaac.GetItemConfig()
-	return c:GetCollectible(CollectibleType.COLLECTIBLE_MEAT_CLEAVER):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_YUCK_HEART):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_GUPPYS_EYE):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_AKELDAMA):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_ETERNAL_D6):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_BIRD_CAGE):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_BLOODY_GUST):IsAvailable() 
-			or c:GetTrinket(TrinketType.TRINKET_DEVILS_CROWN):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_TINYTOMA):IsAvailable() 
-			or c:GetTrinket(TrinketType.TRINKET_M):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_LOST_SOUL):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_BLOOD_PUPPY):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_KEEPERS_SACK):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_LIL_PORTAL):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_BONE_SPURS):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_REVELATION):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_MAGIC_SKIN):IsAvailable() 
+	return c:GetCollectible(CollectibleType.COLLECTIBLE_MEAT_CLEAVER):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_YUCK_HEART):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_GUPPYS_EYE):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_AKELDAMA):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_ETERNAL_D6):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_BIRD_CAGE):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_BLOODY_GUST):IsAvailable()
+			or c:GetTrinket(TrinketType.TRINKET_DEVILS_CROWN):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_TINYTOMA):IsAvailable()
+			or c:GetTrinket(TrinketType.TRINKET_M):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_LOST_SOUL):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_BLOOD_PUPPY):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_KEEPERS_SACK):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_LIL_PORTAL):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_BONE_SPURS):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_REVELATION):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_MAGIC_SKIN):IsAvailable()
 end
 
 function wakaba:CanOpenBeast()
 	local c = Isaac.GetItemConfig()
-	return c:GetCollectible(CollectibleType.COLLECTIBLE_RED_KEY):IsAvailable() 
+	return c:GetCollectible(CollectibleType.COLLECTIBLE_RED_KEY):IsAvailable()
 end
 
 function wakaba:CanOpenMegaSatan()
 	local c = Isaac.GetItemConfig()
-	return c:GetCollectible(CollectibleType.COLLECTIBLE_DADS_KEY):IsAvailable() 
+	return c:GetCollectible(CollectibleType.COLLECTIBLE_DADS_KEY):IsAvailable()
 end
 
 function wakaba:CanOpenDeli()
 	local c = Isaac.GetItemConfig()
-	return c:GetCollectible(CollectibleType.COLLECTIBLE_DELIRIOUS):IsAvailable() 
-			or c:GetCollectible(CollectibleType.COLLECTIBLE_LIL_DELIRIUM):IsAvailable() 
+	return c:GetCollectible(CollectibleType.COLLECTIBLE_DELIRIOUS):IsAvailable()
+			or c:GetCollectible(CollectibleType.COLLECTIBLE_LIL_DELIRIUM):IsAvailable()
 end
 
 function wakaba:ForceVoid(rng, spawnPosition)
@@ -350,9 +433,9 @@ function wakaba:ForceVoid(rng, spawnPosition)
 	local bossID = room:GetBossID() -- 55:Mega Satan, 70:Delirium, 88:Mother
 	local finalcheck = isFinalStage(stage, stageType, bossID)
 	--print("finalcheck ", finalcheck)
-	if type1 == RoomType.ROOM_BOSS 
+	if type1 == RoomType.ROOM_BOSS
 	and finalcheck ~= wakaba.VoidFlags.NONE
-	and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL) then 
+	and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL) then
 	-- -------------------------------
 	-- Challenge.CHALLENGE_NULL must be set
 	-- This is because Some Wakaba's Challenges requires to beat Hush, Delirium, or even The Beast
@@ -433,15 +516,15 @@ function wakaba:ForceVoid(rng, spawnPosition)
 	-- Fool card for Mom fight. does not return true to give reward as normal
 	-- Only check for Mom fight and will not check for stage nor challenge to fix softlock when using Reverse Emperor card
 	-- -------------------------------
-	elseif type1 == RoomType.ROOM_BOSS 
-	and bossID == 6 
-	--and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL) 
-	then 
+	elseif type1 == RoomType.ROOM_BOSS
+	and bossID == 6
+	--and (wakaba.G.Challenge == Challenge.CHALLENGE_NULL)
+	then
 		-- -------------------------------
 		-- Knife Piece check for Mausoleum/Gehenna II
 		-- -------------------------------
 		if wakaba.state.forcevoid.knifepiece > 0
-		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B) 
+		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
 		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 		and wakaba:CanOpenMother() then
 			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
@@ -494,7 +577,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			end
 		end
 	end
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.ForceVoid)
 
@@ -504,7 +587,7 @@ function wakaba:ForceVoidNewRoomCheck()
 	local stage = level:GetAbsoluteStage()
 	local stageType = level:GetStageType()
 	local room = wakaba.G:GetRoom()
-	
+
 	if wakaba.state.forcevoid.crackedkey == 1
 	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 	and wakaba:CanOpenBeast()
@@ -570,8 +653,8 @@ function wakaba:findNearestEntityByPartition(entity, partition)
 		if value.Type ~= EntityType.ENTITY_FIREPLACE
 		and value:IsEnemy()
 		and not value:IsInvincible()
-		and not value:HasEntityFlags(EntityFlag.FLAG_ICE_FROZEN) 
-		and not value:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) 
+		and not value:HasEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
+		and not value:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 		then
 			local x, y = value.Position.X, value.Position.Y
 			local dx, dy = (entity.Position.X - x), (entity.Position.Y - y)
@@ -600,7 +683,7 @@ function wakaba:findNearestEntityByPartition(entity, partition)
 end
 
 -- Removes all spawned NPC entities when activating the function
---[[ function wakaba:onFriendlyInit(npc) 
+--[[ function wakaba:onFriendlyInit(npc)
 		if wakaba.G.TimeCounter-usagetime == 0 then -- only remove enemies that spawned when the effect was called!
 				npc:Remove()
 		end
@@ -610,11 +693,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.onFriendlyInit)
 function wakaba:ForceOpenDoor(player, roomType)
 	if not roomType then return end
 	player = player or Isaac.GetPlayer()
-	
+
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 		local doorR = wakaba.G:GetRoom():GetDoor(i)
 		--print(i, (doorR and doorR.TargetRoomType), roomType)
-		if doorR and doorR.TargetRoomType == roomType then 
+		if doorR and doorR.TargetRoomType == roomType then
 			doorR:TryUnlock(player, true)
 		end
 	end
@@ -776,10 +859,10 @@ function wakaba:Roll(rng, Luck, MinRoll, LuckPerc, MaxPerc)
 		if MinRoll + (Luck * LuckPerc) > MaxPerc then
 			Luck = (MaxPerc - MinRoll) / LuckPerc
 		end
-	end 
+	end
 	local roll = rng:RandomFloat() * 100
 	local offset = 100 - (roll + Luck * LuckPerc)
---[[ 
+--[[
 	print(Luck, MinRoll, LuckPerc, MaxPerc)
 	print(roll)
 	print(Luck * LuckPerc)

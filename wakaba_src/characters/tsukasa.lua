@@ -29,7 +29,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostTsukasaUpdate)
 
 function wakaba:LaserUpdate_Tsukasa(laser)
-	if laser.SubType == LaserSubType.LASER_SUBTYPE_LINEAR then 
+	if laser.SubType == LaserSubType.LASER_SUBTYPE_LINEAR then
 		local parent = laser.SpawnerEntity
 		if not parent or not parent:ToPlayer() then return end
 		local player = parent:ToPlayer()
@@ -46,7 +46,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, wakaba.LaserUpdate_Tsukasa
 
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
-local TsukasaChar = { 
+local TsukasaChar = {
     DAMAGE = 0.65,
     SPEED = 0.1,
     SHOTSPEED = 1.0,
@@ -81,7 +81,7 @@ function wakaba:onTsukasaCache(player, cacheFlag)
     end
     if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) then
-        player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, TsukasaChar.TEARS)
+        player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (TsukasaChar.TEARS * wakaba:getEstimatedTearsMult(player)))
 			else
         player.MaxFireDelay = player.MaxFireDelay * 1.5
 			end
@@ -95,7 +95,7 @@ function wakaba:onTsukasaCache(player, cacheFlag)
 	else
 		--player:TryRemoveNullCostume(wakaba.COSTUME_TSUKASA)
   end
-	
+
 end
  
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onTsukasaCache)
@@ -109,7 +109,7 @@ function wakaba:NewRoom_Tsukasa()
 			player:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY))
 		end
 	end
-	--[[ if isTreasure and isTsukasa then 
+	--[[ if isTreasure and isTsukasa then
 		wakaba.G:ShowHallucination(0, BackdropType.PLANETARIUM)
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 	end ]]

@@ -5,7 +5,7 @@ function wakaba:Cache_GameCD(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			--player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (30 / (player.MaxFireDelay + 1)) * 0.4)
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.7 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.7 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD) * wakaba:getEstimatedTearsMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + (34 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD))
@@ -14,7 +14,7 @@ function wakaba:Cache_GameCD(player, cacheFlag)
 			player.ShotSpeed = player.ShotSpeed + (0.1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD))
 		end
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (0.5 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD))
+			player.Damage = player.Damage + (0.5 * player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD) * wakaba:getEstimatedDamageMult(player))
 		end
 	end
 

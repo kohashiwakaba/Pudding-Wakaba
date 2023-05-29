@@ -72,7 +72,7 @@ function wakaba:Cache_TrialStew(player, cacheFlag)
 				player.Damage = player.Damage * (2 + (0.25 * (num - 1)))
 			end
 			if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 7 + num)
+				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (7 + num) * wakaba:getEstimatedTearsMult(player))
 			end
 		end
 	end

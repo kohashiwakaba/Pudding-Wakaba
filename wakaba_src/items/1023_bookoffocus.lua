@@ -1,5 +1,5 @@
 function wakaba:ItemUse_BookOfFocus(_, rng, player, useFlags, activeSlot, varData)
-	
+
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.Enums.Collectibles.BOOK_OF_FOCUS, "UseItem", "PlayerPickup")
 	end
@@ -37,7 +37,7 @@ function wakaba:PostShiori_BookofFocus(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShiori_BookofFocus)
 
-function wakaba:NpcUpcate_BookofFocus(entity) 
+function wakaba:NpcUpcate_BookofFocus(entity)
   for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		local playerEffects = player:GetEffects()
@@ -53,7 +53,7 @@ function wakaba:PreTakeDamage_BookofFocus(entity, amount, flags, source, countdo
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	then
 		local player = nil
-		if 
+		if
 			(source ~= nil
 			and source.Entity ~= nil
 			and source.Entity.SpawnerEntity ~= nil
@@ -74,7 +74,7 @@ function wakaba:PreTakeDamage_BookofFocus(entity, amount, flags, source, countdo
 	and amount < 4 then
 		local player = entity:ToPlayer()
 		if not player then return end
-	
+
 		local playerEffects = player:GetEffects()
 		local focus = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
 		if focus > 0
@@ -96,12 +96,12 @@ function wakaba:Cache_BookofFocus(player, cacheFlag)
 	local playerEffects = player:GetEffects()
 	local focus = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
 	local isnotmoving = player:GetData().wakaba.isnotmoving or false
-	if focus > 0 and isnotmoving then 
+	if focus > 0 and isnotmoving then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (1.4 * focus)
+			player.Damage = player.Damage + (1.4 * focus * wakaba:getEstimatedDamageMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.0 * focus))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (1.0 * focus) * wakaba:getEstimatedTearsMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + (80 * focus)
