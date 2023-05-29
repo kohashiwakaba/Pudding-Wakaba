@@ -59,35 +59,39 @@ function wakaba:Cache_RabbitRibbon(player, cacheFlag)
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
 
-function wakaba:TearUpdate_RabbitRibbon(tear)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
-		if tear.FrameCount <= 7 then
-			tear.Color = Color(1, 1, 1, (1 * tear.FrameCount / 7), 0, 0, 0)
-		elseif tear.FrameCount <= 8 then
-			tear.CollisionDamage = tear.CollisionDamage * 3
+function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFlags)
+	local returndata = {}
+	local num = 0
+	local player = wakaba:getPlayerFromTear(source.Entity)
+	if player then
+		local playerPos = player.Position
+		local targetPos = target.Position
+		local dist = playerPos:Distance(targetPos)
+		if dist >= 160 then
+			returndata.newDamage = newDamage * (dist * 2 / 160)
+		else
+			returndata.newDamage = newDamage * (dist / 480)
 		end
+		returndata.sendNewDamage = true
 	end
+	return returndata
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRibbon)
-
-function wakaba:TearCollision_RabbitRibbon(tear, entity, low)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and entity:IsVulnerableEnemy() and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and (tear.FrameCount == 0 or isc:isTearFromPlayer(tear)) then
-		if tear.FrameCount <= 7 then 
-			entity:AddFreeze(EntityRef(tear), 30)
-			--entity:AddSlowing(EntityRef(tear), 30, 0.2, entity:GetSprite().Color)
-			--entity:TakeDamage(tear.FrameCount / 7, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(tear), 0)
-			return false 
+function wakaba:RabbitSniperOnDamage_Knife(source, target, data, newDamage, newFlags)
+	local returndata = {}
+	local num = 0
+	local player = wakaba:getPlayerFromKnife(source.Entity)
+	local knife = source.Entity:ToKnife()
+	if player and knife then
+		local dist = knife:GetKnifeDistance()
+		if dist >= 160 then
+			returndata.newDamage = newDamage * (dist * 2 / 160)
+		else
+			returndata.newDamage = newDamage * (dist / 480)
 		end
-		--[[ local parent = tear.Parent
-		local distance = entity.Position:Distance(tear.Parent.Position)
-		print(distance)
-		if distance <= 120 then
-			return false
-		end ]]
+		returndata.sendNewDamage = true
 	end
+	return returndata
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, wakaba.TearCollision_RabbitRibbon)
-
 
 function wakaba:NewLevel_RabbitRibbon()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
@@ -176,7 +180,11 @@ function wakaba:NewRoom_RabbitRibbon()
 		end
 	end
 	if wakaba.curses.CURSE_OF_AMNESIA > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_AMNESIA) then
-		if StageAPI and StageAPI.InOverriddenStage() then return end
+		if StageAPI and StageAPI.InOverriddenStage() then
+			return
+		else
+
+		end
 		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBIT_RIBBON)
 		local result = rng:RandomFloat() * 100
 		if result <= 46 then

@@ -1,4 +1,4 @@
---[[ 
+--[[
 Fire Club function by J.D
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
@@ -102,7 +102,7 @@ end)
 
 --For testing!
 --[[ wakaba:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-	local player = wakaba:GetPlayerFromTear(tear)
+	local player = wakaba:getPlayerFromTear(tear)
 	tear:Remove()
 	wakaba:FireClub(player, player:GetFireDirection())
 end) ]]

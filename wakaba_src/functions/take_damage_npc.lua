@@ -32,11 +32,20 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 			(source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.ROCKET)
 		then
 			local data = source.Entity:GetData()
+
+			local returndata = wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFlags)
+			newDamage = returndata.newDamage or newDamage
+			sendNewDamage = returndata.sendNewDamage or sendNewDamage
+
 		elseif source.Type == EntityType.ENTITY_KNIFE and (source.Variant == 0 or source.Variant == 5) then
 			local player = wakaba:getPlayerFromKnife(source.Entity)
 			if player ~= nil then
 				local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND) + 1
 			end
+
+			local returndata = wakaba:RabbitSniperOnDamage_Knife(source, target, data, newDamage, newFlags)
+			newDamage = returndata.newDamage or newDamage
+			sendNewDamage = returndata.sendNewDamage or sendNewDamage
 		elseif source.Type == EntityType.ENTITY_PLAYER and flags == flags | DamageFlag.DAMAGE_LASER then
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.DARK_SNARE then
 			if source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER then

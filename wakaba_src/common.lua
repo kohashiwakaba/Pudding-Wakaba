@@ -720,7 +720,7 @@ function wakaba:GetPtrHashEntity(entity)
 	return nil
 end
 
-function wakaba:GetPlayerFromTear(tear)
+function wakaba:getPlayerFromTear(tear)
 	for i=1, 3 do
 			local check = nil
 			if i == 1 then
