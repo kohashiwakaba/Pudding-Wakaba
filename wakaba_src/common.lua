@@ -60,6 +60,7 @@ function wakaba:getEstimatedTearsMult(player, negativeOnly)
 		mult = mult * 4
 	end
 
+	return mult
 end
 
 -- getEstimatedDamageMult from Retribution
