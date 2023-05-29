@@ -11,8 +11,10 @@ function wakaba:ItemUse_SecretDoor(usedItem, rng, player, useFlags, activeSlot, 
 
 	if room:GetType() == RoomType.ROOM_BOSS and room:GetBossID() == 6 and wakaba.G:GetFrameCount() > wakaba.G.BossRushParTime then
 		room:TrySpawnBossRushDoor(true)
+		SFXManager():Play(SoundEffect.SOUND_GOLDENKEY, 2, 0, false, 1)
 	elseif room:GetType() == RoomType.ROOM_SHOP then
 		room:TrySpawnSecretShop(true)
+		SFXManager():Play(SoundEffect.SOUND_GOLDENKEY, 2, 0, false, 1)
 	else
 		player:UseCard(Card.CARD_FOOL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 	end
