@@ -63,7 +63,7 @@ function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFl
 	local returndata = {}
 	local num = 0
 	local player = wakaba:getPlayerFromTear(source.Entity)
-	if player then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player then
 		local playerPos = player.Position
 		local targetPos = target.Position
 		local dist = playerPos:Distance(targetPos)
@@ -81,7 +81,7 @@ function wakaba:RabbitSniperOnDamage_Knife(source, target, data, newDamage, newF
 	local num = 0
 	local player = wakaba:getPlayerFromKnife(source.Entity)
 	local knife = source.Entity:ToKnife()
-	if player and knife then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and knife then
 		local dist = knife:GetKnifeDistance()
 		if dist >= 160 then
 			returndata.newDamage = newDamage * (dist * 2 / 160)
