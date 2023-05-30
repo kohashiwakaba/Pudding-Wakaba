@@ -5,7 +5,7 @@ function wakaba:PickupUpdate_Magnet(pickup)
 	local coinlimit = 99
 	local pooplimit = 9
 	local attplayer = nil
-	
+
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if not attplayer and player:GetPlayerType() ~= PlayerType.PLAYER_CAIN_B and player:HasTrinket(wakaba.Enums.Trinkets.MAGNET_HEAVEN, false) then
@@ -19,6 +19,7 @@ function wakaba:PickupUpdate_Magnet(pickup)
 			pooplimit = 29
 		end
 		if pickup.Variant == PickupVariant.PICKUP_COIN and player:GetNumCoins() >= coinlimit then return end
+		if Retribution and pickup.Variant == Retribution.PICKUPS.SPOILS_COIN and player:GetNumCoins() >= coinlimit then return end
 		if pickup.Variant == PickupVariant.PICKUP_BOMB and player:GetNumBombs() >= 99 then return end
 		if pickup.Variant == PickupVariant.PICKUP_KEY and player:GetNumKeys() >= 99 then return end
 		if pickup.Variant == PickupVariant.PICKUP_POOP and player:GetPoopMana() >= pooplimit then return end

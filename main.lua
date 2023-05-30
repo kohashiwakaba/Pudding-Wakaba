@@ -2,8 +2,8 @@
 -- Pudding and Wakaba is Repentance only.
 if not REPENTANCE then
 	print("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
-	Isaac.DebugString("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.") 
-	return 
+	Isaac.DebugString("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
+	return
 end
 _wakaba = RegisterMod("Pudding and Wakaba", 1)
 if EIDKR then
@@ -20,7 +20,7 @@ if EIDKR then
 	wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 		printCounter = 600
 	end)
-	return 
+	return
 end
 
 
@@ -193,13 +193,13 @@ local richer_saved_recipies = {
 			keypiece = 1,
 			knifepiece = 0,
 			crackedkey = 0,
-		
+
 			isaacsatan = 0,
 			bblamb = 0,
 			megasatan = 0,
 			mother = 0,
 			delirium = 0,
-		
+
 			ignoretmtrainer = false,
 		},
 		options = {
@@ -209,20 +209,20 @@ local richer_saved_recipies = {
 			kud_wafu = false,
 			nepu = true,
 			fortunereplacechance = 10,
-		
+
 			-- Reroll function threshold. Change this value if getting items are too laggy.
 			rerolltreasurethreshold = 120,
 			rerollbreakfastthreshold = 160,
-		
+
 			-- HUD for Pudding and Wakaba items options
 			uniformalpha = 20,
 			uniformscale = 100,
-		
+
 			-- Starting items control options
 			richersweetscatalog = true,
 			lostuniform = true,
 			edensticky = true,
-		
+
 			-- Costume Protector
 			cp_wakaba = true,
 			cp_wakaba_b = true,
@@ -231,7 +231,7 @@ local richer_saved_recipies = {
 			cp_tsukasa = true,
 			cp_tsukasa_b = true,
 			cp_richer = true,
-		
+
 			-- Shiori options
 			shiorimodes = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
 			shioridreams = false,
@@ -241,30 +241,30 @@ local richer_saved_recipies = {
 			shioriakasicminquality = 0,
 			shioriakasicmaxquality = 4,
 			vintagetriggerkey = Keyboard.KEY_9,
-		
+
 			-- Tsukasa options
 			concentrationkeyboard = Keyboard.KEY_LEFT_CONTROL,
 			concentrationcontroller = (Controller and Controller.BUMPER_RIGHT) or ButtonAction.ACTION_DROP,
 			lunarpercent = true,
 			leftchargebardigits = true,
-		
+
 			mindonationcount = 5,
-		
+
 			-- Wakaba Duality options
 			blessnemesisindexed = false,
 			blessnemesisqualityignore = false,
 			startingroomindexed = false,
 			firsttreasureroomindexed = false,
-		
+
 			-- Curse of Flames options
 			flamesoverride = false,
 			flamescurserate = 0,
-		
+
 			-- Curse of Vampire options
 			--flamesoverride = false,
 			--flamescurserate = 0,
-		
-			--[[ 
+
+			--[[
 			Stackable Holy Mantle options
 			-1 : Disabled
 			 0 : Infinite
@@ -275,15 +275,15 @@ local richer_saved_recipies = {
 			stackableblessing = 0,
 			stackableholycard = 5,
 			stackablewoodencross = 0,
-		
+
 			-- Dogma/Beast Blanket options
 			dogmablanket = true,
 			beastblanket = true,
-		
+
 			-- Dead Wisp Notification options
 			deadwispnotif = false,
 			deadwispnotifsound = false,
-			
+
 			-- Inventory Descriptions options
 			listoffset = 200,
 			listkey = Keyboard.KEY_F5,
@@ -301,7 +301,7 @@ local richer_saved_recipies = {
 			invactives = true,
 			invtrinkets = true,
 			invpocketitems = true,
-		
+
 		},
 		--wakabaoptions = wakaba.wakabaoptiondefaults,
 		pog = true,
@@ -315,15 +315,15 @@ local richer_saved_recipies = {
 			counter = 0, -- Isaac
 			returnpostage = 0, --The Beast
 			donationcard = 0, -- Boss Rush
-			whitejoker = 0, -- 
+			whitejoker = 0, --
 			revengefruit = 0, --
 			wakabauniform = 0, -- Delirium
-			colorjoker = 0, -- 
+			colorjoker = 0, --
 			cranecard = 0, -- Ultra Greedier
 			confessionalcard = 0, -- Mother
-			
+
 			blessing = false,
-			
+
 			-- Tainted Wakaba Unlocks
 			taintedwakabamomsheart = 0,
 			blackjoker = 0, -- Ultra Greedier
@@ -337,10 +337,10 @@ local richer_saved_recipies = {
 			eatheart = 0, -- Delirium
 			bitcoin = 0, -- Mother
 			nemesis = 0, -- The Beast
-			
+
 			wakabasoul = false,
 			bookofforgotten = false,
-		
+
 			-- Shiori Unlocks
 			hardbook = 0, -- Mom's Heart Hard
 			shiorid6plus = 0, -- Isaac
@@ -348,16 +348,16 @@ local richer_saved_recipies = {
 			deckofrunes = 0, -- ???
 			grimreaperdefender = 0, -- The Lamb
 			unknownbookmark = 0, -- Boss Rush
-			bookoffallen = 0, -- 
+			bookoffallen = 0, --
 			bookoftrauma = 0, -- Hush
 			magnetheaven = 0, -- Ultra Greed
 			determinationribbon = 0, -- Ultra Greedier
 			bookofsilence = 0, -- Delirium
 			vintagethreat = 0, -- Mother
 			bookofthegod = 0, --The Beast
-			
+
 			bookofshiori = false,
-			
+
 			-- Tainted Shiori Unlocks
 			taintedshiorimomsheart = 0,
 			queenofspades = 0, -- Ultra Greedier
@@ -371,10 +371,10 @@ local richer_saved_recipies = {
 			bookofconquest = 0, -- Delirium
 			ringofjupiter = 0, -- Mother
 			minervaaura = 0, -- The Beast
-		
+
 			shiorisoul = false,
 			bookmarkbag = false,
-		
+
 			-- Tsukasa Unlocks
 			murasame = 0, -- Mom's Heart Hard
 			nasalover = 0, -- Isaac
@@ -389,10 +389,10 @@ local richer_saved_recipies = {
 			questionblock = 0, -- Ultra Greedier
 			phantomcloak = 0, -- Mother
 			magmablade = 0, -- The Beast
-		
+
 			lunarstone = false,
 			taintedtsukasa = false, -- Tainted Tsukasa
-		
+
 			-- Tainted Tsukasa Unlocks
 			taintedtsukasamomsheart = 0,
 			isaaccartridge1 = 0, -- Isaac
@@ -406,7 +406,7 @@ local richer_saved_recipies = {
 			returntoken = 0, -- Ultra Greedier
 			sirenbadge = 0, -- Mother
 			elixiroflife = 0, -- The Beast
-			
+
 			isaaccartridge = false,
 			tsukasasoul = false,
 
@@ -441,12 +441,12 @@ local richer_saved_recipies = {
 			trialstew = 0, -- Ultra Greedier
 			mistake = 0, -- Mother
 			winteralbireo = 0, -- The Beast
-			
+
 			starreversal = false,
 			richersoul = false,
 
 
-			
+
 			--Challenge Unlocks
 			eyeofclock = false, --01w Eye of Clock
 			plumy = false, --02w Plumy
@@ -463,11 +463,11 @@ local richer_saved_recipies = {
 			calculation = false,--13w Calculation
 			lilmao = false,--14w Hold Me!
 			richerflipper = false,--15w Even or Odd
-		
+
 			edensticky = false,--98w T.Eden Starts with Sticky Note
 			doubledreams = false, -- 99w Wakaba's Double Dreams
 		},
-		
+
 		storedplayers = 0,
 		playersavedata = {},
 		dss_menu = {},
@@ -611,7 +611,7 @@ wakaba.optiondefaults = {
 	--flamesoverride = false,
 	--flamescurserate = 0,
 
-	--[[ 
+	--[[
 	Stackable Holy Mantle options
 	-1 : Disabled
 	 0 : Infinite
@@ -630,7 +630,7 @@ wakaba.optiondefaults = {
 	-- Dead Wisp Notification options
 	deadwispnotif = false,
 	deadwispnotifsound = false,
-	
+
 	-- Inventory Descriptions options
 	listoffset = 200,
 	listkey = Keyboard.KEY_F5,
@@ -657,14 +657,14 @@ wakaba.KeyboardToString = {}
 for key,num in pairs(Keyboard) do
 
 	local keyString = key
-	
+
 	local keyStart, keyEnd = string.find(keyString, "KEY_")
 	keyString = string.sub(keyString, keyEnd+1, string.len(keyString))
-	
+
 	keyString = string.gsub(keyString, "_", " ")
-	
+
 	wakaba.KeyboardToString[num] = keyString
-	
+
 end
 
 -- Persistent Settings - Unlocks
@@ -677,15 +677,15 @@ wakaba.unlocks = {
 	counter = 0, -- Isaac
 	returnpostage = 0, --The Beast
 	donationcard = 0, -- Boss Rush
-	whitejoker = 0, -- 
+	whitejoker = 0, --
 	revengefruit = 0, --
 	wakabauniform = 0, -- Delirium
-	colorjoker = 0, -- 
+	colorjoker = 0, --
 	cranecard = 0, -- Ultra Greedier
 	confessionalcard = 0, -- Mother
-	
+
 	blessing = false,
-	
+
 	-- Tainted Wakaba Unlocks
 	taintedwakabamomsheart = 0,
 	blackjoker = 0, -- Ultra Greedier
@@ -699,7 +699,7 @@ wakaba.unlocks = {
 	eatheart = 0, -- Delirium
 	bitcoin = 0, -- Mother
 	nemesis = 0, -- The Beast
-	
+
 	wakabasoul = false,
 	bookofforgotten = false,
 
@@ -710,16 +710,16 @@ wakaba.unlocks = {
 	deckofrunes = 0, -- ???
 	grimreaperdefender = 0, -- The Lamb
 	unknownbookmark = 0, -- Boss Rush
-	bookoffallen = 0, -- 
+	bookoffallen = 0, --
 	bookoftrauma = 0, -- Hush
 	magnetheaven = 0, -- Ultra Greed
 	determinationribbon = 0, -- Ultra Greedier
 	bookofsilence = 0, -- Delirium
 	vintagethreat = 0, -- Mother
 	bookofthegod = 0, --The Beast
-	
+
 	bookofshiori = false,
-	
+
 	-- Tainted Shiori Unlocks
 	taintedshiorimomsheart = 0,
 	queenofspades = 0, -- Ultra Greedier
@@ -756,7 +756,7 @@ wakaba.unlocks = {
 	taintedtsukasa = false, -- Tainted Tsukasa
 
 
-	
+
 	-- Tainted Tsukasa Unlocks
 	taintedtsukasamomsheart = 0,
 	isaaccartridge1 = 0, -- Isaac
@@ -770,10 +770,10 @@ wakaba.unlocks = {
 	returntoken = 0, -- Ultra Greedier
 	sirenbadge = 0, -- Mother
 	elixiroflife = 0, -- The Beast
-	
+
 	isaaccartridge = false,
 	tsukasasoul = false,
-	
+
 	--Challenge Unlocks
 	eyeofclock = false, --01w Eye of Clock
 	plumy = false, --02w Plumy
@@ -836,7 +836,7 @@ if not wakaba.state then
 		pog = true,
 		--- Unlock State
 		unlock = wakaba.unlocks,
-		
+
 		storedplayers = 0,
 		playersavedata = {},
 		dss_menu = {},
@@ -852,7 +852,7 @@ if not wakaba.state then
 
 		HIDDEN_ITEM_DATA = {},
 
-	}	
+	}
 end
 --Settings Here. Modify this area to change settings
 
@@ -886,7 +886,7 @@ wakaba.defaultstate = {
 	pog = true,
 	--- Unlock State
 	unlock = wakaba.unlocks,
-	
+
 	storedplayers = 0,
 	indexes = {},
 	playersavedata = {},
@@ -933,7 +933,7 @@ function wakaba:CheckWakabaChecklist()
 		wakaba.state.unlock.bookofforgotten = true
 		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookofforgotten)
 	end
-	
+
 	if wakaba.state.unlock.bookofshiori == false
 	and wakaba.state.unlock.hardbook >= 2 -- Mom's Heart
 	and wakaba.state.unlock.shiorid6plus >= 2 -- Isaac
@@ -956,7 +956,7 @@ function wakaba:CheckWakabaChecklist()
 			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookofshiori)
 		end
 	end
-	
+
 	if wakaba.state.unlock.shiorisoul == false
 	and wakaba.state.unlock.shiorisoul1 > 0
 	and wakaba.state.unlock.shiorisoul2 > 0
@@ -973,8 +973,8 @@ function wakaba:CheckWakabaChecklist()
 		wakaba.state.unlock.bookmarkbag = true
 		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookmarkbag)
 	end
-	
-	
+
+
 	if wakaba.state.unlock.lunarstone == false
 	and wakaba.state.unlock.murasame >= 2 -- Mom's Heart
 	and wakaba.state.unlock.nasalover >= 2 -- Isaac
@@ -997,7 +997,7 @@ function wakaba:CheckWakabaChecklist()
 			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lunarstone)
 		end
 	end
-	
+
 	if wakaba.state.unlock.tsukasasoul == false
 	and wakaba.state.unlock.tsukasasoul1 > 0
 	and wakaba.state.unlock.tsukasasoul2 > 0
@@ -1044,10 +1044,10 @@ end
 function wakaba:GetScreenSize()
 		local room = wakaba.G:GetRoom()
 		local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - wakaba.G.ScreenShakeOffset
-		
+
 		local rx = pos.X + 60 * 26 / 40
 		local ry = pos.Y + 140 * (26 / 40)
-		
+
 		return Vector(rx*2 + 13*26, ry*2 + 7*26)
 end
 function wakaba:GetScreenCenter()
@@ -1055,12 +1055,12 @@ function wakaba:GetScreenCenter()
 end
 function wakaba:GetGridCenter() --returns Vector
 	local room = wakaba.G:GetRoom()
-	
+
 	local topleft = room:GetTopLeftPos()
 	local bottomright = room:GetBottomRightPos()
 	local topright = Vector(bottomright.X, topleft.Y)
 	local bottomleft = Vector(topleft.X, bottomright.Y)
-	
+
 	local centerX = topleft.X + ((bottomright.X - topleft.X) / 2)
 	local centerY = topleft.Y + ((bottomright.Y - topleft.Y) / 2)
 	return Vector(centerX, centerY)
@@ -1408,6 +1408,7 @@ include('wakaba_src.config')
 include('wakaba_src.console_commands')
 
 include('wakaba_src.compat.fiendfolio')
+include('wakaba_src.compat.retribution')
 include('wakaba_src.compat.epiphany')
 include('wakaba_src.compat.samael')
 include('wakaba_src.compat.taintedtreasure')
@@ -1476,7 +1477,7 @@ function wakaba:init(continue)
 			local player = Isaac.GetPlayer(i - 1)
 			for i = 1, #tempplayerdatas do
 				--print(tempplayerdatas[i].hash , player:GetData().wakaba_lhash)
-				if wakaba:getstoredhash(player) == tempplayerdatas[i].hash 
+				if wakaba:getstoredhash(player) == tempplayerdatas[i].hash
 				or player:GetData().wakaba_lhash == tempplayerdatas[i].hash then
 					player:GetData().wakaba = tempplayerdatas[i]
 					table.insert(reservedplayerdatas, tempplayerdatas[i])
@@ -1497,6 +1498,10 @@ function wakaba:init(continue)
 	end
 	if FiendFolio then
 		wakaba:GameStart_FiendFolioCompat()
+	end
+
+	if Retribution then
+		wakaba:GameStart_RetributionCompat()
 	end
 
 	if SamaelMod then
@@ -1547,14 +1552,14 @@ function wakaba:reinitStates()
 			wakaba.state.intversion = 10000
 
 			for k, v in pairs(wakaba.state) do
-				if tempstate[k] == nil 
+				if tempstate[k] == nil
 				or type(tempstate[k]) ~= type(wakaba.state[k]) then
 					--print("[wakaba]resetting state value :", k)
 					Isaac.DebugString("[wakaba]resetting state value : ".. k)
 					tempstate[k] = wakaba.state[k]
 				end
 			end
-			
+
 		if tempstate.unlock ~= nil then
 			for k, v in pairs(wakaba.state.unlock) do
 				if tempstate.unlock[k] == nil then
@@ -1645,10 +1650,10 @@ function wakaba:PostGlobalPlayerInit(player)
 	local TotPlayers = #Isaac.FindByType(EntityType.ENTITY_PLAYER)
 	local phash = wakaba:getstoredhash(player)
 	--print(phash)
-	
+
 	if TotPlayers == 0 then
 		wakaba.runstate.storedplayers = 0
-		
+
 		if wakaba.G:GetFrameCount() == 0 then
 			--print("Game Started")
 			wakaba.runstate.playersavedata = {}
@@ -1656,7 +1661,7 @@ function wakaba:PostGlobalPlayerInit(player)
 			--print("Continue")
 		end
 	end
-	
+
 	wakaba.runstate.storedplayers = wakaba.runstate.storedplayers + 1
 	--print(wakaba.runstate.storedplayers, #wakaba.runstate.playersavedata)
 
@@ -1711,7 +1716,7 @@ function wakaba:PostGlobalPlayerInit(player)
 			player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
 		end
 	end
---[[ 
+--[[
 
 	costumeProtector:AddPlayer(
 		player,
@@ -1756,7 +1761,7 @@ function wakaba:PostGlobalPlayerInit(player)
 	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeCollectibleWhiteList)
 	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeNullWhiteList)
 
-	
+
 	costumeProtector:AddPlayer(
 		player,
 		wakaba.Enums.Players.TSUKASA,
@@ -1779,13 +1784,13 @@ function wakaba:PostGlobalPlayerInit(player)
 	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeCollectibleWhiteList)
 	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeNullWhiteList) ]]
 	--print(player:GetPlayerType(), #costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()], costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()][CollectibleType.COLLECTIBLE_LUNA])
-	
+
 	--wakaba:save(true)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostGlobalPlayerInit)
 
 local changeCostume = false
---[[ 
+--[[
 function wakaba:PlayerUpdate_Costume(player)
 	if wakaba:has_value(wakaba.cpmanagedplayertype, player:GetPlayerType()) then
 		local mmcount = player:GetData().wakaba.megamush or 0
@@ -1818,7 +1823,7 @@ end
 
 function wakaba:getcurrentindex(player)
 	for num = 0, wakaba.G:GetNumPlayers()-1 do
-		if GetPtrHash(player) == GetPtrHash(Isaac.GetPlayer(num)) then 
+		if GetPtrHash(player) == GetPtrHash(Isaac.GetPlayer(num)) then
 			return num + 1
 		end
 	end
@@ -1826,7 +1831,7 @@ end
 
 function wakaba:getstoredindex(player)
 	if not player then return end
-	if player:GetData().wakaba and player:GetData().wakaba.sindex then 
+	if player:GetData().wakaba and player:GetData().wakaba.sindex then
 		return player:GetData().wakaba.sindex
 	end
 	return false
@@ -1883,14 +1888,14 @@ function wakaba:unlockWakaba(bool)
 	wakaba.state.unlock.counter = 2 -- Isaac
 	wakaba.state.unlock.returnpostage = 2 --The Beast
 	wakaba.state.unlock.donationcard = 2 -- Boss Rush
-	wakaba.state.unlock.whitejoker = 2 -- 
+	wakaba.state.unlock.whitejoker = 2 --
 	wakaba.state.unlock.revengefruit = 2 --
 	wakaba.state.unlock.wakabauniform = 2 -- Delirium
-	wakaba.state.unlock.colorjoker = 2 -- 
+	wakaba.state.unlock.colorjoker = 2 --
 	wakaba.state.unlock.cranecard = 2 -- Ultra Greedier
 	wakaba.state.unlock.confessionalcard = 2 -- Mother
 	wakaba.state.unlock.blessing = true
-	
+
 	print("Cheating Wakaba unlocks complete.")
 	Isaac.DebugString("[wakaba]Cheating Wakaba unlocks complete.")
 	--wakaba:save(true)
@@ -1926,7 +1931,7 @@ function wakaba:unlockShiori(bool)
 	wakaba.state.unlock.deckofrunes = 2 -- ???
 	wakaba.state.unlock.grimreaperdefender = 2 -- The Lamb
 	wakaba.state.unlock.unknownbookmark = 2 -- Boss Rush
-	wakaba.state.unlock.bookoffallen = 2 -- 
+	wakaba.state.unlock.bookoffallen = 2 --
 	wakaba.state.unlock.bookoftrauma = 2 -- Hush
 	wakaba.state.unlock.magnetheaven = 2 -- Ultra Greed
 	wakaba.state.unlock.determinationribbon = 2 -- Ultra Greedier
@@ -1970,7 +1975,7 @@ function wakaba:unlockTsukasa(bool)
 	wakaba.state.unlock.redcorruption = 2 -- ???
 	wakaba.state.unlock.powerbomb = 2 -- The Lamb
 	wakaba.state.unlock.concentration = 2 -- Boss Rush
-	wakaba.state.unlock.plasmabeam = 2 -- 
+	wakaba.state.unlock.plasmabeam = 2 --
 	wakaba.state.unlock.rangeos = 2 -- Hush
 	wakaba.state.unlock.arcanecrystal = 2 -- Ultra Greed
 	wakaba.state.unlock.questionblock = 2 -- Ultra Greedier
@@ -2051,7 +2056,7 @@ function wakaba:OnGameExit(shouldSave)
 		--print(player:GetData().wakaba.pendingmantlestack)
 		--player:GetData().wakaba.istransition = true
 	end
-	
+
 	--local hiddenItemData = wakaba.HiddenItemManager:GetSaveData()
 	--hidden_item_datas.run.HIDDEN_ITEM_DATA = hiddenItemData
 
@@ -2082,8 +2087,8 @@ function wakaba:RandomInt(min, max, customRNG) --This and GetRandomElem were wri
 	if not max then
 			max = min
 			min = 0
-	end	
-	if min > max then 
+	end
+	if min > max then
 			local temp = min
 			min = max
 			max = temp
