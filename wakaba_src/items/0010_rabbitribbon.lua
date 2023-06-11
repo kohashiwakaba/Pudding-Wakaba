@@ -59,6 +59,14 @@ function wakaba:Cache_RabbitRibbon(player, cacheFlag)
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
 
+function wakaba:TearUpdate_RabbitRibbon(tear)
+	local player = wakaba:getPlayerFromTear(tear)
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player then
+		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRibbon)
+
 function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFlags)
 	local returndata = {}
 	local num = 0
@@ -70,7 +78,7 @@ function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFl
 		if dist >= 160 then
 			returndata.newDamage = newDamage * (dist * 2 / 160)
 		else
-			returndata.newDamage = newDamage * (dist / 480)
+			returndata.newDamage = newDamage * (dist / 240)
 		end
 		returndata.sendNewDamage = true
 	end
