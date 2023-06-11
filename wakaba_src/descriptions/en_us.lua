@@ -900,25 +900,25 @@ wakaba.descriptions[desclang].belial = {
 		description = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
 	},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform", 
+		description = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance", 
+		description = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles", 
+		description = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles",
 	},
 	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "Summons Black Heart type Lil Clot instead of Soul Heart type", 
+		description = "Summons Black Heart type Lil Clot instead of Soul Heart type",
 	}, ]]
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "↑ +4% chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used", 
+		description = "↑ +4% chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "↑ {{Damage}} +25% Damage multiplier while in cloaked state", 
+		description = "↑ {{Damage}} +25% Damage multiplier while in cloaked state",
 	},
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "Spawns {{DevilRoom}}Devil room items instead of current pool", 
+		description = "Spawns {{DevilRoom}}Devil room items instead of current pool",
 	},
 }
 wakaba.descriptions[desclang].bookofvirtues = {
@@ -1065,13 +1065,13 @@ wakaba.descriptions[desclang].shiori_b = {
 	},
 }
 wakaba.descriptions[desclang].tsukasa = {
-	
+
 }
 wakaba.descriptions[desclang].tsukasa_b = {
-	
+
 }
 wakaba.descriptions[desclang].richer = {
-	
+
 }
 wakaba.descriptions[desclang].richer_b = {
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -1087,16 +1087,16 @@ wakaba.descriptions[desclang].bless = {
 		description = "{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaBless}}Can get all items with selection",
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "Spawns two collectible items instead of one", 
+		description = "Spawns two collectible items instead of one",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "↑ {{Luck}} Additional +0.15 Luck up per Luck affect items#{{Luck}} {{ColorWakabaBless}}Sets to 10 Luck if Luck is lower than 10", 
+		description = "↑ {{Luck}} Additional +0.15 Luck up per Luck affect items#{{Luck}} {{ColorWakabaBless}}Sets to 10 Luck if Luck is lower than 10",
 	},
 	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "Plumy can replicate Isaac's tears", 
+		description = "Plumy can replicate Isaac's tears",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "↑ 1.2x chance for Eraser tears", 
+		description = "↑ 1.2x chance for Eraser tears",
 	},
 }
 wakaba.descriptions[desclang].nemesis = {
@@ -1104,82 +1104,82 @@ wakaba.descriptions[desclang].nemesis = {
 		description = "#{{AngelDevilChance}} 100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaNemesis}}Can get all items with selection",
 	},
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
-		description = "↑ 2x chance for Lasers, Grants Homing Lasers", 
+		description = "↑ 2x chance for Lasers, Grants Homing Lasers",
 	},
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
-		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use", 
+		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
-		description = "Adds additional {{Damage}} +1.5 Damage up for current room#{{ColorBookofShiori}}Gives Eye of Belial Tears({{Collectible462}}) until next book use", 
+		description = "Adds additional {{Damage}} +1.5 Damage up for current room#{{ColorBookofShiori}}Gives Eye of Belial Tears({{Collectible462}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
-		description = "Spawns 5 Maw of Void lasers dealing 64% of Shiori's Damage per tick#{{ColorBookofShiori}}Gives Rock Tears({{Collectible592}}) until next book use", 
+		description = "Spawns 5 Maw of Void lasers dealing 64% of Shiori's Damage per tick#{{ColorBookofShiori}}Gives Rock Tears({{Collectible592}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
-		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Shielded Tears({{Collectible213}}) until next book use", 
+		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Shielded Tears({{Collectible213}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
-		description = "Troll bombs and explosions deal double damage to enemies for current room#{{ColorBookofShiori}}Gives Explosive Tears and Shiori is immune to explosions until next book use", 
+		description = "Troll bombs and explosions deal double damage to enemies for current room#{{ColorBookofShiori}}Gives Explosive Tears and Shiori is immune to explosions until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
-		description = "Spawns 2 Lil Harbringers for current floor#{{ColorBookofShiori}}Gives chance to fire Holy Light Tears({{Collectible374}}) until next book use", 
+		description = "Spawns 2 Lil Harbringers for current floor#{{ColorBookofShiori}}Gives chance to fire Holy Light Tears({{Collectible374}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = {
-		description = "No Extra temporary effect#{{ColorBookofShiori}}Adds chance to drop a random pickup when enemies are killed until next book use", 
+		description = "No Extra temporary effect#{{ColorBookofShiori}}Adds chance to drop a random pickup when enemies are killed until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
-		description = "No Extra temporary effect#↑ {{ColorBookofShiori}}Familiars deal 3x Damage until next book use", 
+		description = "No Extra temporary effect#↑ {{ColorBookofShiori}}Familiars deal 3x Damage until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
-		description = "Gives Spectral and Continnum Tears({{Collectible369}}) for current room#{{ColorBookofShiori}}Gives Homing and Electric Tears({{Collectible494}}) until next book use", 
+		description = "Gives Spectral and Continnum Tears({{Collectible369}}) for current room#{{ColorBookofShiori}}Gives Homing and Electric Tears({{Collectible494}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = {
-		description = "Fully reveals the map and removes {{WakabaAntiCurseDarkness}}Curse of Darkness and {{WakabaAntiCurseLost}}Curse of the Lost#{{ColorBookofShiori}}Gives Mark({{Collectible618}}) tears until next book use", 
+		description = "Fully reveals the map and removes {{WakabaAntiCurseDarkness}}Curse of Darkness and {{WakabaAntiCurseLost}}Curse of the Lost#{{ColorBookofShiori}}Gives Mark({{Collectible618}}) tears until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
-		description = "Adds additional {{Damage}} +1.0 Damage up for current floor#{{ColorBookofShiori}}Gives Dark matter tears({{Collectible259}}) until next book use", 
+		description = "Adds additional {{Damage}} +1.0 Damage up for current floor#{{ColorBookofShiori}}Gives Dark matter tears({{Collectible259}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
-		description = "Spawns additional friendly Bonies#{{ColorBookofShiori}}Gives Death's Touch Tears({{Collectible237}}) until next book use", 
+		description = "Spawns additional friendly Bonies#{{ColorBookofShiori}}Gives Death's Touch Tears({{Collectible237}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
-		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Gives Chance to drop batteries when enemies are killed until next book use", 
+		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Gives Chance to drop batteries when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
-		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm", 
+		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Bone Tears({{Collectible453}}) until next book use", 
+		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Bone Tears({{Collectible453}}) until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		description = "Ignores Enemy's armor when not moving#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "No Extra temporary effect#{{Rune}} {{ColorBookofShiori}}Adds chance to drop a rune when enemies are killed until next book use", 
+		description = "No Extra temporary effect#{{Rune}} {{ColorBookofShiori}}Adds chance to drop a rune when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "Damage taken for Minissac is greatly reduced#{{ColorBookofShiori}}Minissac Copies Most of Isaac's tear effects until next book use", 
+		description = "Damage taken for Minissac is greatly reduced#{{ColorBookofShiori}}Minissac Copies Most of Isaac's tear effects until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "Prevents all enemy projectiles for extra 2 seconds#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses", 
+		description = "Prevents all enemy projectiles for extra 2 seconds#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
-		description = "No extra Temporary effect #{{Collectible579}} {{ColorBookofShiori}}Gives Temporary Black Spirit Sword. The Scythe tears will be fired instead of sword projectile", 
+		description = "No extra Temporary effect #{{Collectible579}} {{ColorBookofShiori}}Gives Temporary Black Spirit Sword. The Scythe tears will be fired instead of sword projectile",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)", 
+		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)",
 	},
 }
 wakaba.descriptions[desclang].murasame = {
-	
+
 }
 wakaba.descriptions[desclang].flashshift = {
-	
+
 }
 wakaba.descriptions[desclang].flashmurasame = {
-	
+
 }
 
 
@@ -1274,7 +1274,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Delimiter",
 		description = ""
 		.. "#!!! When entering new room :"
-		.. "#Destroys Tinted, Super-Secret, and Fools Gold rocks"
+		.. "#Destroys Tinted, and Fools Gold rocks"
 		.. "#Turns Pillars, Metal blocks, Spiked rocks into normal rocks"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -1338,7 +1338,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Using an active item will not consume its charge or item.#!!! 90% chance to remove the trinket on use!"
 		.. "{{CR}}",
 	},
-	
+
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ Further increase chance for Lucky Penny" },
@@ -1448,7 +1448,7 @@ wakaba.descriptions[desclang].tarotcloth = {
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
-	
+
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -2531,7 +2531,7 @@ if EID then
 	EID.descriptions[desclang].TaintedTsukasaWarningTitle = "{{ColorYellow}}!!! Locked !!!"
 	EID.descriptions[desclang].TaintedTsukasaWarningText = "Have to unlock this character first#Howto : Use Red Key to open the hidden closet in Home as Tsukasa#Entering the right door will exit the game"
 	EID.descriptions[desclang].TaintedRicherWarningText = "Have to unlock this character first#Howto : Use Red Key to open the hidden closet in Home as Richer#Entering the right door will exit the game"
-	
+
 	EID.descriptions[desclang].SweetsChallenge = "On use, shows prompt for quality#If the quality matches, get the item"
 	EID.descriptions[desclang].SweetsFlipFlop = "Use item again to cancel#{{ButtonY}}/{{ButtonX}}:{{Quality1}}or{{Quality3}}#{{ButtonA}}/{{ButtonB}}:{{Quality2}}or{{Quality4}}#If the selected quality matches with item's one, get the item, else disappear otherwise"
 

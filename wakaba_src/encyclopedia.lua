@@ -3010,7 +3010,7 @@ if Encyclopedia then
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
 				{str = "When entering new room :", clr = 3},
-				{str = "Destroys Tinted, Super-Secret, and Fools Gold rocks."},
+				{str = "Destroys Tinted rocks, and Fools Gold rocks."},
 				{str = "Turns Pillars, Metal blocks, Spiked rocks into normal rocks."},
 			},
 		},

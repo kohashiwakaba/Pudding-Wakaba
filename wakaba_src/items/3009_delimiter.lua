@@ -25,7 +25,7 @@ function wakaba:NewRoom_Delimiter()
 				end
 				if rock then 
 					if (rock:GetType() == GridEntityType.GRID_ROCKT 
-					or rock:GetType() == GridEntityType.GRID_ROCK_SS
+					--or rock:GetType() == GridEntityType.GRID_ROCK_SS
 					or rock:GetType() == GridEntityType.GRID_ROCK_GOLD
 					) then
 						rock:Destroy()
@@ -45,4 +45,4 @@ function wakaba:NewRoom_Delimiter()
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Delimiter)
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.IMPORTANT, wakaba.NewRoom_Delimiter)
