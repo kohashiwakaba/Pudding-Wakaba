@@ -720,28 +720,38 @@ function wakaba:GetPtrHashEntity(entity)
 	return nil
 end
 
+-- getPlayerFromTear from fiend folio
 function wakaba:getPlayerFromTear(tear)
 	for i=1, 3 do
-			local check = nil
-			if i == 1 then
-					check = tear.Parent
-			elseif i == 2 then
-					check = mod:GetSpawner(tear)
-			elseif i == 3 then
-					check = tear.SpawnerEntity
+		local check = nil
+		if i == 1 then
+			check = tear.Parent
+		elseif i == 2 then
+			check = tear.SpawnerEntity
+		elseif i == 3 then
+			local spawnData = tear:GetData().wakaba and tear:GetData().wakaba.SpawnData
+			if spawnData then
+				check = spawnData.SpawnerEntity
 			end
-			if check then
-					if check.Type == EntityType.ENTITY_PLAYER then
-							return wakaba:GetPtrHashEntity(check):ToPlayer()
-					elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
-							local data = mod:GetData(tear)
-							data.IsIncubusTear = true
-							return check:ToFamiliar().Player:ToPlayer()
-					end
+		end
+		if check then
+			if check.Type == EntityType.ENTITY_PLAYER then
+				return wakaba:GetPtrHashEntity(check):ToPlayer()
+			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
+				local data = mod:GetData(tear)
+				data.IsIncubusTear = true
+				return check:ToFamiliar().Player:ToPlayer()
 			end
+		end
 	end
 	return nil
 end
+
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_TEAR_INIT, CallbackPriority.IMPORTANT, function(_, tear)
+	local data = tear:GetData()
+	tear:GetData().wakaba = tear:GetData().wakaba or {}
+	data.wakaba.SpawnData = tear:GetData()
+end)
 
 function wakaba:getPlayerFromKnife(knife)
 	if knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer() then
