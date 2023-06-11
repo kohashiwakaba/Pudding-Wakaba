@@ -136,6 +136,7 @@ idesc.state = {
 	showList = false,
 	maxCollectibleID = Isaac.GetItemConfig():GetCollectibles().Size - 1,
 	maxTrinketID = Isaac.GetItemConfig():GetTrinkets().Size - 1,
+	allowmodifiers = false,
 	lists = {
 		playernotes = {},
 		items = {},
@@ -152,6 +153,7 @@ idesc.state = {
 		max = 1,
 		current = 1,
 		offset = 0,
+		allowmodifiers = false,
 	},
 	savedtimer = nil,
 }
@@ -167,7 +169,7 @@ local function getMaxCurseId(curse)
 end
 
 
-function wakaba:TestCollectibles(min, max)
+function wakaba:TestCollectibles(min, max, allow_mod)
 	local items = {}
 	for i = min, max do
 		local config = Isaac.GetItemConfig()
@@ -180,6 +182,7 @@ function wakaba:TestCollectibles(min, max)
 		end
 	end
 	idesc.state.showList = true
+	idesc.state.allowmodifiers = allow_mod
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	idesc.state.listprops.screenx = x
 	idesc.state.listprops.screeny = y
@@ -591,7 +594,7 @@ local function onRender()
 			currentlist[i] = idesc.state.lists.items[listprops.offset + i]
 			if listprops.offset + i == listprops.current then
 				currentcursor = i
-				desc = EID:getDescriptionObj(currentlist[i].type, currentlist[i].variant, currentlist[i].subtype, nil, (currentlist[i].type == 5 and currentlist[i].variant == 100 and currentlist[i].subtype == CollectibleType.COLLECTIBLE_BIRTHRIGHT))
+				desc = EID:getDescriptionObj(currentlist[i].type, currentlist[i].variant, currentlist[i].subtype, nil, idesc.state.allowmodifiers or (currentlist[i].type == 5 and currentlist[i].variant == 100 and currentlist[i].subtype == CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 				if currentlist[i].type == wakaba.INVDESC_TYPE_PLAYER then
 					lang = EID:getLanguage() or "en_us"
 					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en_us"].playernotes
