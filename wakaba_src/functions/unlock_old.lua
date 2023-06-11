@@ -26,6 +26,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 	local hastaintedshiori = false
 	local hastsukasa = false
 	local hastaintedtsukasa = false
+	local hasricher = false
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
@@ -40,6 +41,8 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 			hastsukasa = true
 		elseif player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
 			hastaintedtsukasa = true
+		elseif player:GetPlayerType() == wakaba.Enums.Players.RICHER then
+			hasricher = true
 		end
 	end
 	local shouldShowPopup = Options.DisplayPopups and not wakaba.state.options.allowlockeditems
