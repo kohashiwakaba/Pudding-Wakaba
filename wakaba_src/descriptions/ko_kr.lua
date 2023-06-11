@@ -993,25 +993,25 @@ wakaba.descriptions[desclang].belial = {
 		description = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
 	},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - 악마 카드 효과를 같이 발동합니다.", 
+		description = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - 악마 카드 효과를 같이 발동합니다.",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "{{Card41}}블랙 룬을 획득할 확률이 50%로 증가합니다.#{{ColorWakabaNemesis}}10%의 확률로 {{Card41}}블랙 룬의 효과를 발동합니다.", 
+		description = "{{Card41}}블랙 룬을 획득할 확률이 50%로 증가합니다.#{{ColorWakabaNemesis}}10%의 확률로 {{Card41}}블랙 룬의 효과를 발동합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}흑마술의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.", 
+		description = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}흑마술의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.",
 	},
 	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "블랙 하트 타입의 꼬마 클롯을 소환합니다.", 
+		description = "블랙 하트 타입의 꼬마 클롯을 소환합니다.",
 	}, ]]
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%", 
+		description = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25", 
+		description = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25",
 	},
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "아이템 소환 시 악마방 배열의 아이템이 소환됩니다.", 
+		description = "아이템 소환 시 악마방 배열의 아이템이 소환됩니다.",
 	},
 }
 wakaba.descriptions[desclang].bookofvirtues = {
@@ -1091,7 +1091,7 @@ wakaba.descriptions[desclang].bookofvirtues = {
 
 
 
-	
+
 }
 wakaba.descriptions[desclang].abyss = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -1162,13 +1162,13 @@ wakaba.descriptions[desclang].shiori_b = {
 	},
 }
 wakaba.descriptions[desclang].tsukasa = {
-	
+
 }
 wakaba.descriptions[desclang].tsukasa_b = {
-	
+
 }
 wakaba.descriptions[desclang].richer = {
-	
+
 }
 wakaba.descriptions[desclang].richer_b = {
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -1184,16 +1184,16 @@ wakaba.descriptions[desclang].bless = {
 		description = "{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다.#↑ {{ColorWakabaBless}}선택형 아이템을 모두 획득할 수 있습니다.",
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "아이템을 2개 소환합니다.", 
+		description = "아이템을 2개 소환합니다.",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "{{LuckSmall}}행운을 최소 10 이상으로 설정#↑ {{ColorWakabaBless}}행운에 영향을 주는 아이템의 갯수만큼 {{LuckSmall}}행운 + 0.5", 
+		description = "{{LuckSmall}}행운을 최소 10 이상으로 설정#↑ {{ColorWakabaBless}}행운에 영향을 주는 아이템의 갯수만큼 {{LuckSmall}}행운 + 0.5",
 	},
 	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "플럼이가 캐릭터의 눈물을 발사할 수 있게 됩니다.", 
+		description = "플럼이가 캐릭터의 눈물을 발사할 수 있게 됩니다.",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "지우개 눈물 발사 확률 10x", 
+		description = "지우개 눈물 발사 확률 10x",
 	},
 }
 wakaba.descriptions[desclang].nemesis = {
@@ -1201,82 +1201,82 @@ wakaba.descriptions[desclang].nemesis = {
 		description = "{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다.#↑ {{ColorWakabaNemesis}}선택형 아이템을 모두 획득할 수 있습니다.",
 	},
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
-		description = "혈사포 발사확률 x2#{{ColorWakabaNemesis}}혈사포에 유도 기능이 생깁니다.", 
+		description = "혈사포 발사확률 x2#{{ColorWakabaNemesis}}혈사포에 유도 기능이 생깁니다.",
 	},
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
-		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.", 
+		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
-		description = "현재 방에서 {{DamageSmall}}추가 공격력 +1.5#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible462}}벨리알의 눈효과가 적용됩니다.", 
+		description = "현재 방에서 {{DamageSmall}}추가 공격력 +1.5#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible462}}벨리알의 눈효과가 적용됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
-		description = "캐릭터 공격력 64%의 위력의 검은 고리를 5개를 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible592}}눈물이 돌이 됩니다.", 
+		description = "캐릭터 공격력 64%의 위력의 검은 고리를 5개를 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible592}}눈물이 돌이 됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
-		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible213}}눈물이 적의 투사체를 막아줍니다.", 
+		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible213}}눈물이 적의 투사체를 막아줍니다.",
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
-		description = "현재 방에서 적들이 폭발 피해를 2배로 받으며 처치 시 낮은 확률로 {{BlackHeart}}블랙하트를 드랍합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 폭발성 눈물을 발사하며 폭발에 면역이 됩니다.", 
+		description = "현재 방에서 적들이 폭발 피해를 2배로 받으며 처치 시 낮은 확률로 {{BlackHeart}}블랙하트를 드랍합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 폭발성 눈물을 발사하며 폭발에 면역이 됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
-		description = "현재 층에서 4기사 패밀리어 2마리 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 일정 확률로 적에게 맞으면 빛줄기가 내려오는{{Collectible374}} 눈물을 발사합니다.", 
+		description = "현재 층에서 4기사 패밀리어 2마리 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 일정 확률로 적에게 맞으면 빛줄기가 내려오는{{Collectible374}} 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = {
-		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 픽업 아이템을 드랍합니다.", 
+		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 픽업 아이템을 드랍합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
-		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 패밀리어의 공격력 x3", 
+		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 패밀리어의 공격력 x3",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
-		description = "현재 방에서 벽을 넘나드는{{Collectible369}} 눈물을 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible3}}유도 + {{Collectible494}}전기 눈물을 발사합니다.", 
+		description = "현재 방에서 벽을 넘나드는{{Collectible369}} 눈물을 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible3}}유도 + {{Collectible494}}전기 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = {
-		description = "Darkness 및 Lost 저주를 해제하며 3종류의 지도 효과를 전부 발동합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible618}}표식을 박는 눈물을 발사합니다.", 
+		description = "Darkness 및 Lost 저주를 해제하며 3종류의 지도 효과를 전부 발동합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible618}}표식을 박는 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
-		description = "현재 층에서 {{DamageSmall}}추가 공격력 +1.0#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible259}}공포를 거는 눈물을 발사합니다.", 
+		description = "현재 층에서 {{DamageSmall}}추가 공격력 +1.0#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible259}}공포를 거는 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
-		description = "아군 Bony를 추가로 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible237}}낫을 발사합니다.", 
+		description = "아군 Bony를 추가로 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible237}}낫을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
-		description = "일정 확률로 켜져 있는 아이템 위습 하나를 흡수합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Battery}}배터리류 픽업을 드랍합니다.", 
+		description = "일정 확률로 켜져 있는 아이템 위습 하나를 흡수합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Battery}}배터리류 픽업을 드랍합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
-		description = "아군으로 만들 적을 선택할 수 있습니다.#{{ColorBookofShiori}}일반 적은 {{Key}}열쇠를, 보스는 추가로 {{Bomb}}폭탄을 소모합니다.", 
+		description = "아군으로 만들 적을 선택할 수 있습니다.#{{ColorBookofShiori}}일반 적은 {{Key}}열쇠를, 보스는 추가로 {{Bomb}}폭탄을 소모합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible453}}뼈 눈물을 발사합니다.", 
+		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible453}}뼈 눈물을 발사합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		description = "캐릭터가 움직이지 않을 경우 공격이 적의 방어력을 무시합니다.#!!! {{ColorBookofShiori}}시오리의 책 지속 효과를 초기화합니다.",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Rune}}룬을 드랍합니다.", 
+		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Rune}}룬을 드랍합니다.",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "작은 아이작 패밀리어가 받는 피해량이 매우 크게 줄어듭니다.#{{ColorBookofShiori}}다음 책 사용 시까지 작은 아이작 패밀리어가 캐릭터의 공격 일부분을 복사합니다.", 
+		description = "작은 아이작 패밀리어가 받는 피해량이 매우 크게 줄어듭니다.#{{ColorBookofShiori}}다음 책 사용 시까지 작은 아이작 패밀리어가 캐릭터의 공격 일부분을 복사합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "2초동안 추가로 투사체를 제거합니다.#!!! {{ColorBookofShiori}}시오리의 책 지속 효과를 초기화합니다.", 
+		description = "2초동안 추가로 투사체를 제거합니다.#!!! {{ColorBookofShiori}}시오리의 책 지속 효과를 초기화합니다.",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
-		description = "(부가효과 없음) #{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible579}}검은 영혼의 검을 사용할 수 있습니다.", 
+		description = "(부가효과 없음) #{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible579}}검은 영혼의 검을 사용할 수 있습니다.",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "은폐 상태일 때 캐릭터를 향해 공격하던 적들은 추가로 둔화에 걸립니다.#{{ColorBookofShiori}}(이전 눈물 효과 유지)", 
+		description = "은폐 상태일 때 캐릭터를 향해 공격하던 적들은 추가로 둔화에 걸립니다.#{{ColorBookofShiori}}(이전 눈물 효과 유지)",
 	},
 }
 wakaba.descriptions[desclang].murasame = {
-	
+
 }
 wakaba.descriptions[desclang].flashshift = {
-	
+
 }
 wakaba.descriptions[desclang].flashmurasame = {
-	
+
 }
 
 
@@ -1457,7 +1457,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "그녀가 만들어줬어",
 	},
-	
+
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ 행운의 동전 등장 확률 추가 증가" },
@@ -1511,7 +1511,7 @@ wakaba.descriptions[desclang].cards = {
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
 	},
-	
+
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",
 		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 {{AngelRoom}}천사 상점을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
@@ -1555,7 +1555,7 @@ wakaba.descriptions[desclang].tarotcloth = {
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
-	
+
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -1965,8 +1965,8 @@ wakaba.descriptions[desclang].curses = {
 		name = "저격수의 저주",
 		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
 		.. "#{{CurseDarkness}} Darkness 저주를 교체하여 등장합니다."
-		.. "#눈물 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
-		.. "#멀리 있는 적에게 3배의 피해를 줍니다."
+		.. "#눈물의 모습이 사라지며 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
+		.. "#멀리 있는 적에게 2배의 피해를 줍니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -2392,7 +2392,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{PoopPickup}} " -- 돌
 		.. "#{{PoopPickup}} 사용 시 1.5초 후 폭발하는 폭탄입니다." -- 폭탄
 		.. "#{{PoopPickup}} Butter Bean 아이템 효과와 동일" -- 방귀
-		.. "#{{PoopPickup}} Explosive Diarrhea 알약과 동일" -- 
+		.. "#{{PoopPickup}} Explosive Diarrhea 알약과 동일" --
 		.. "#{{PoopPickup}} 바닥에 설사 장판을 깝니다. 설사 장판 위에서 {{DamageSmall}}공격력 +1.5 {{TearsSmall}}연사 +1" ]]
 		.. "#{{Collectible715}} 고유 능력 : 고정"
 		.. "",
@@ -2675,7 +2675,7 @@ if EID then
 	EID.descriptions[desclang].TaintedTsukasaWarningTitle = "{{ColorYellow}}!!! 잠김 !!!"
 	EID.descriptions[desclang].TaintedTsukasaWarningText = "해당 캐릭터는 해금되지 않았습니다.#해금 이후에 사용하실 수 있습니다.#해금 방법 : Tsukasa 캐릭터로 Red Key를 갖고 Home 스테이지 돌입#우측 문으로 이동 시 게임 종료"
 	EID.descriptions[desclang].TaintedRicherWarningText = "해당 캐릭터는 해금되지 않았습니다.#해금 이후에 사용하실 수 있습니다.#해금 방법 : Richer 캐릭터로 Red Key를 갖고 Home 스테이지 돌입#우측 문으로 이동 시 게임 종료"
-	
+
 	EID.descriptions[desclang].SweetsChallenge = "사용 시 가장 가까이 있는 아이템의 예상 등급을 선택합니다.#선택한 등급과 아이템의 등급이 일치할 경우 해당 아이템을 획득하며 틀릴 경우 아이템이 사라집니다."
 	EID.descriptions[desclang].SweetsFlipFlop = "아이템 사용 버튼으로 취소#{{ButtonY}}/{{ButtonX}}:{{Quality1}}or{{Quality3}}#{{ButtonA}}/{{ButtonB}}:{{Quality2}}or{{Quality4}}#선택한 등급과 아이템의 등급이 일치할 경우 해당 아이템을 획득하며 틀릴 경우 아이템이 사라집니다."
 

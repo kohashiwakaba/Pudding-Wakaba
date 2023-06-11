@@ -1881,8 +1881,8 @@ wakaba.descriptions[desclang].curses = {
 		name = "Curse of Sniper",
 		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
 		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
-		.. "#Tears cannot damage enemies for a short time"
-		.. "#Deals 3x damage to enemies after 0.5 seconds"
+		.. "#Tears are invisible and deal less damage enemies for a short time"
+		.. "#Deals 2x damage to enemies after 4 tiles"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
