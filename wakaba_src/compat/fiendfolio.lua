@@ -13,12 +13,12 @@ function wakaba:GameStart_FiendFolioCompat()
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_2, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_4, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_6, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		
+
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.EMPTY_BOOK, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_2, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_4, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_6, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		
+
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.EMPTY_BOOK, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_2, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_4, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
@@ -74,10 +74,37 @@ function wakaba:GameStart_FiendFolioCompat()
 		wakaba:addSilenceTarget("FF_Stinger", 150, 6)
 		wakaba:addSilenceTarget("FF_Spore", 150, 15)
 
+		FiendFolio:AddStackableItems({
+			wakaba.Enums.Collectibles.MINERVA_AURA,
+			wakaba.Enums.Collectibles.LUNAR_STONE,
+			wakaba.Enums.Collectibles.RABBIT_RIBBON,
+			wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD,
+			wakaba.Enums.Collectibles.LIL_MOE,
+			wakaba.Enums.Collectibles.LIL_SHIVA,
+			wakaba.Enums.Collectibles.MOE_MUFFIN,
+			wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
+			wakaba.Enums.Collectibles.JAR_OF_CLOVER,
+			wakaba.Enums.Collectibles.CRISIS_BOOST,
+			wakaba.Enums.Collectibles.ONSEN_TOWEL,
+			wakaba.Enums.Collectibles.D_CUP_ICECREAM,
+			wakaba.Enums.Collectibles.WAKABAS_PENDANT,
+			wakaba.Enums.Collectibles.SECRET_CARD,
+			wakaba.Enums.Collectibles.LIL_WAKABA,
+			wakaba.Enums.Collectibles.PRESTIGE_PASS,
+			wakaba.Enums.Collectibles.DOUBLE_INVADER,
+			wakaba.Enums.Collectibles.PLUMY,
+			wakaba.Enums.Collectibles.EYE_OF_CLOCK,
+			wakaba.Enums.Collectibles.NEKO_FIGURE,
+		})
+
+		FiendFolio.AddItemsToContrabandPool({
+
+		})
+
 		--[[ wakaba:addSilenceTarget("FF_Waiting_spider", 150, 10)
 		wakaba:addSilenceTarget("FF_Waiting_worm", 150, 16) ]]
 
---[[ 
+--[[
 		wakaba.CatalogItems["FF_FIEND"] = {
 			Weight = 1,
 			Items = {
