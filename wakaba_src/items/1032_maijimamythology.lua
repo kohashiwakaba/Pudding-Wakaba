@@ -50,8 +50,8 @@ function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
 			eidlang = "en_us"
 		end
 		EID.Config.Language = eidlang
-		local bookstring = 
-				 (EID and EID:getObjectName(5, PickupVariant.PICKUP_COLLECTIBLE, selected)) 
+		local bookstring =
+				 (EID and EID:getObjectName(5, PickupVariant.PICKUP_COLLECTIBLE, selected))
 			or Isaac.GetItemConfig():GetCollectible(selected).Name
 		table.insert(player:GetData().wakaba.pendingmaijima, bookstring)
 		EID.Config.Language = tempeidlang
@@ -62,3 +62,25 @@ function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
 
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Maijima, wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY)
+
+if EID then
+	local function MaijimaCondition(descObj)
+		if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY then
+			return true
+		end
+		return false
+	end
+	local function MaijimaCallback(descObj)
+		local availableMaijimaItems = wakaba.runstate.cachedmaijimabooks
+		if availableMaijimaItems then
+			local description = ""
+			for i, e in ipairs(availableMaijimaItems) do
+				description = description .. "{{Collectible".. e .. "}} "
+			end
+			local iconStr = "#!!! "
+			EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+		end
+		return descObj
+	end
+	EID:addDescriptionModifier("Wakaba Maijima", MaijimaCondition, MaijimaCallback)
+end

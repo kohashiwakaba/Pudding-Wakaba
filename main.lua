@@ -1460,7 +1460,16 @@ function wakaba:init(continue)
 		wakaba.runstate.currentshiorimode = wakaba.state.options.shiorimodes
 
 		-- Caching Books for Maijima
-		wakaba.runstate.cachedmaijimabooks = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+		local tempMaijimaBooks = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+		local maijimaBooksToAdd = {}
+		local maijimaRng = RNG()
+		maijimaRng:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
+		for i = 0, 4 do
+			local index = maijimaRng:RandomInt(#tempMaijimaBooks) + 1
+			table.insert(maijimaBooksToAdd, tempMaijimaBooks[index])
+			table.remove(tempMaijimaBooks, index)
+		end
+		wakaba.runstate.cachedmaijimabooks = maijimaBooksToAdd
 
 		if not wakaba.state.achievementPopupShown then
 			DeadSeaScrollsMenu.QueueMenuOpen("Pudding n wakaba", "unlockspopup", 1, true)
