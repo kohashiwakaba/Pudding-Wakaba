@@ -83,6 +83,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					wakaba.state.unlock.elixiroflife = difficulty + 1
 					table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.elixiroflife)
 				end
+				if hasricher and wakaba.state.unlock.selfburning < 2 then
+					wakaba.state.unlock.selfburning = difficulty + 1
+					table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.selfburning)
+				end
 				wakaba:CheckWakabaChecklist()
 			end
 		elseif type1 == RoomType.ROOM_BOSSRUSH then
@@ -101,6 +105,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.concentration)
 			end
 			if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul1 < 2 then wakaba.state.unlock.tsukasasoul1 = difficulty + 1 end
+			if hasricher and wakaba.state.unlock.bunnyparfait < 2 then
+				wakaba.state.unlock.bunnyparfait = difficulty + 1
+				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bunnyparfait)
+			end
 			wakaba:CheckWakabaChecklist()
 		elseif type1 == RoomType.ROOM_BOSS then
 			if difficulty < 2 then
@@ -120,6 +128,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.murasame)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.taintedtsukasamomsheart < 2 then wakaba.state.unlock.taintedtsukasamomsheart = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.fireflylighter < 2 then
+						wakaba.state.unlock.fireflylighter = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.fireflylighter)
+					end
 				elseif bossID == 39 and currentStage == LevelStage.STAGE5 then -- Isaac
 					if haswakaba and wakaba.state.unlock.counter < 2 then
 						wakaba.state.unlock.counter = difficulty + 1
@@ -136,6 +148,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.nasalover)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge1 < 2 then wakaba.state.unlock.isaaccartridge1 = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.sweetscatalog < 2 then
+						wakaba.state.unlock.sweetscatalog = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.sweetscatalog)
+					end
 
 
 
@@ -156,6 +172,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.beetlejuice)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge2 < 2 then wakaba.state.unlock.isaaccartridge2 = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.antibalance < 2 then
+						wakaba.state.unlock.antibalance = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.antibalance)
+					end
 
 
 
@@ -176,6 +196,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.redcorruption)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge3 < 2 then wakaba.state.unlock.isaaccartridge3 = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.doubleinvader < 2 then
+						wakaba.state.unlock.doubleinvader = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.doubleinvader)
+					end
 
 
 
@@ -196,6 +220,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.powerbomb)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.isaaccartridge4 < 2 then wakaba.state.unlock.isaaccartridge4 = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.venomincantation < 2 then
+						wakaba.state.unlock.venomincantation = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.venomincantation)
+					end
 
 
 
@@ -227,6 +255,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.easteregg = difficulty + 1
 						table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.easteregg)
 					end
+					if hasricher and wakaba.state.unlock.printer < 2 then
+						wakaba.state.unlock.printer = difficulty + 1
+						table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.printer)
+					end
 
 
 
@@ -247,6 +279,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.rangeos)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.tsukasasoul2 < 2 then wakaba.state.unlock.tsukasasoul2 = difficulty + 1 end
+					if hasricher and wakaba.state.unlock.richeruniform < 2 then
+						wakaba.state.unlock.richeruniform = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.richeruniform)
+					end
 
 
 
@@ -275,6 +311,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					if hastaintedtsukasa and wakaba.state.unlock.flashshift < 2 then
 						wakaba.state.unlock.flashshift = difficulty + 1
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.flashshift)
+					end
+					if hasricher and wakaba.state.unlock.prestigepass < 2 then
+						wakaba.state.unlock.prestigepass = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.prestigepass)
 					end
 
 
@@ -305,6 +345,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.sirenbadge = difficulty + 1
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.sirenbadge)
 					end
+					if hasricher and wakaba.state.unlock.cunningpaper < 2 then
+						wakaba.state.unlock.cunningpaper = difficulty + 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.cunningpaper)
+					end
 
 
 
@@ -328,6 +372,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.arcanecrystal)
 					end
 					if hastaintedtsukasa and wakaba.state.unlock.returntoken < 1	then wakaba.state.unlock.returntoken = 1 end
+					if hasricher and wakaba.state.unlock.clensingfoam < 2 then
+						wakaba.state.unlock.clensingfoam = 1
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.clensingfoam)
+					end
 
 
 
@@ -371,6 +419,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					if hastaintedtsukasa and wakaba.state.unlock.returntoken < 2 then
 						wakaba.state.unlock.returntoken = 2
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.returntoken)
+					end
+					if hasricher and wakaba.state.unlock.lilricher < 2 then
+						wakaba.state.unlock.lilricher = 2
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lilricher)
 					end
 
 

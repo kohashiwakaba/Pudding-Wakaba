@@ -417,13 +417,13 @@ local richer_saved_recipies = {
 			doubleinvader = 0,
 			venomincantation = 0,
 			printer = 0,
-			caramellapancake = 0,
+			bunnyparfait = 0,
 			richeruniform = 0,
 			prestigepass = 0,
-			chimaki = 0,
+			clensingfoam = 0,
 			lilricher = 0,
 			cunningpaper = 0,
-			blackribbon = 0,
+			selfburning = 0,
 
 			rabbitribbon = false,
 			taintedricher = false, -- Tainted Richer

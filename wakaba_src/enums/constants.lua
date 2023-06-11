@@ -131,7 +131,7 @@ wakaba.Enums.Collectibles = {
 	--SAKURA_CAPSULE = Isaac.GetItemIdByName("Chimaki"),
 	--MAID_DUET = Isaac.GetItemIdByName("Chimaki"),
 	--SYNCRO_CANDY = Isaac.GetItemIdByName("Chimaki"),
-	
+
 	--CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
 
@@ -259,7 +259,7 @@ wakaba.Enums.Pills = {
 
 -- 와카바 모드 사운드
 wakaba.Enums.SoundEffects = {
-	AEION_CHARGE = Isaac.GetSoundIdByName("aeion_charged"), 
+	AEION_CHARGE = Isaac.GetSoundIdByName("aeion_charged"),
 	POWER_BOMB_EXPLOSION = Isaac.GetSoundIdByName("pb_explosion"),
 	POWER_BOMB_CHARGE = Isaac.GetSoundIdByName("pb_charge"),
 	POWER_BOMB_LOOP = Isaac.GetSoundIdByName("pb_loop"),
@@ -316,7 +316,7 @@ wakaba.Enums.Constants = {
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
 	FALLEN_AFTER_TIMER = 10, -- 부활 후 타락책 유령 지속시간
 	FALLEN_AFTER_BASE_COUNT = 10, -- 부활 후 타락책 유령 소환 수
-	FALLEN_AFTER_DMG_THRESHOLD = 5, 
+	FALLEN_AFTER_DMG_THRESHOLD = 5,
 	FALLEN_BEFORE_BASE_COUNT = 3, -- 부활 전 타락책 유령 소환 수
 
 	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
@@ -367,18 +367,18 @@ wakaba.RoomIDs = {
 	MIN_DUET_ROOM_ID = 41701,
 	MAX_DUET_ROOM_ID = 41701,
 
-	--[[ 
+	--[[
 		Planetariums replaced by Richer Rooms
 		Subtype 41 : normal
-		Subtype 42 : double 
+		Subtype 42 : double
 	]]
 	MIN_RICHER_ROOM_ID = 41001,
 	MAX_RICHER_ROOM_ID = 41031,
 
-	--[[ 
+	--[[
 		Dice Rooms replaced by Rira Rooms
 		Subtype 41 : normal
-		Subtype 42 : double 
+		Subtype 42 : double
 	]]
 	MIN_RIRA_ROOM_ID = 41201,
 	MAX_RIRA_ROOM_ID = 41201,
@@ -521,7 +521,7 @@ wakaba.Weights.LilMoeTearVariants = {
 	{TearVariant.BLUE, 00.00}, -- example
 
 	{TearVariant.BLUE, 13.00},
-	
+
 	{TearVariant.BLOOD, 01.00},
 	{TearVariant.TOOTH, 01.00},
 	{TearVariant.METALLIC, 01.00},
@@ -618,7 +618,7 @@ wakaba.Weights.CloverChest = {
 }
 
 wakaba.Weights.ShioriValut = {
-	
+
 }
 
 wakaba.Checks = {}
@@ -702,7 +702,7 @@ wakaba.challenges = {
 	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
 	CHALLENGE_EVEN = Isaac.GetChallengeIdByName("[w15] Even or Odd"), --w15
 	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w16] Universe of Goom"), --w15
-	
+
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99
 	CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
@@ -773,15 +773,15 @@ wakaba.achievementsprite = {
 	cranecard = "gfx/ui/achievement_wakaba/achievement_cranecard.png",
 	confessionalcard = "gfx/ui/achievement_wakaba/achievement_confessionalcard.png",
 	returnpostage = "gfx/ui/achievement_wakaba/achievement_returnpostage.png",
-	
+
 	blessing = "gfx/ui/achievement_wakaba/achievement_blessing.png",
-	
+
 	blackjoker = "gfx/ui/achievement_wakaba/achievement_blackjoker.png", -- Ultra Greedier
 	cloverchest = "gfx/ui/achievement_wakaba/achievement_cloverchest.png", -- Mega Satan
 	eatheart = "gfx/ui/achievement_wakaba/achievement_eatheart.png", -- Delirium
 	bitcoin = "gfx/ui/achievement_wakaba/achievement_bitcoin.png", -- Mother
 	nemesis = "gfx/ui/achievement_wakaba/achievement_nemesis.png", -- The Beast
-	
+
 	wakabasoul = "gfx/ui/achievement_wakaba/achievement_wakabasoul.png",
 	bookofforgotten = "gfx/ui/achievement_wakaba/achievement_bookofforgotten.png",
 
@@ -792,16 +792,16 @@ wakaba.achievementsprite = {
 	deckofrunes = "gfx/ui/achievement_wakaba/achievement_deckofrunes.png", -- ???
 	grimreaperdefender = "gfx/ui/achievement_wakaba/achievement_grimreaperdefender.png", -- The Lamb
 	unknownbookmark = "gfx/ui/achievement_wakaba/achievement_unknownbookmark.png", -- Boss Rush
-	bookoffallen = "gfx/ui/achievement_wakaba/achievement_bookoffallen.png", -- 
+	bookoffallen = "gfx/ui/achievement_wakaba/achievement_bookoffallen.png", --
 	bookoftrauma = "gfx/ui/achievement_wakaba/achievement_bookoftrauma.png", -- Hush
 	magnetheaven = "gfx/ui/achievement_wakaba/achievement_magnetheaven.png", -- Ultra Greed
 	determinationribbon = "gfx/ui/achievement_wakaba/achievement_determinationribbon.png", -- Ultra Greedier
 	bookofsilence = "gfx/ui/achievement_wakaba/achievement_bookofsilence.png", -- Delirium
 	vintagethreat = "gfx/ui/achievement_wakaba/achievement_vintagethreat.png", -- Mother
 	bookofthegod = "gfx/ui/achievement_wakaba/achievement_bookofthegod.png", --The Beast
-	
+
 	bookofshiori = "gfx/ui/achievement_wakaba/achievement_bookofshiori.png",
-	
+
 	-- Tainted Shiori Unlocks
 	queenofspades = "gfx/ui/achievement_wakaba/achievement_queenofspades.png", -- Ultra Greedier
 	shiorivalut = "gfx/ui/achievement_wakaba/achievement_anotherfortunemachine.png", -- Mega Satan
@@ -813,14 +813,14 @@ wakaba.achievementsprite = {
 	bookmarkbag = "gfx/ui/achievement_wakaba/achievement_bookmarkbag.png",
 
 	-- Tsukasa Unlocks
-	
+
 	murasame = "gfx/ui/achievement_wakaba/achievement_murasame.png", -- Mom's Heart Hard
 	nasalover = "gfx/ui/achievement_wakaba/achievement_nasalover.png", -- Isaac
 	beetlejuice = "gfx/ui/achievement_wakaba/achievement_beetlejuice.png", --Satan
 	redcorruption = "gfx/ui/achievement_wakaba/achievement_redcorruption.png", -- ???
 	powerbomb = "gfx/ui/achievement_wakaba/achievement_powerbomb.png", -- The Lamb
 	concentration = "gfx/ui/achievement_wakaba/achievement_concentration.png", -- Boss Rush
-	plasmabeam = "gfx/ui/achievement_wakaba/achievement_plasmabeam.png", -- 
+	plasmabeam = "gfx/ui/achievement_wakaba/achievement_plasmabeam.png", --
 	rangeos = "gfx/ui/achievement_wakaba/achievement_rangeos.png", -- Hush
 	arcanecrystal = "gfx/ui/achievement_wakaba/achievement_arcanecrystal.png", -- Ultra Greed
 	questionblock = "gfx/ui/achievement_wakaba/achievement_questionblock.png", -- Ultra Greedier
@@ -841,7 +841,29 @@ wakaba.achievementsprite = {
 
 	tsukasasoul = "gfx/ui/achievement_wakaba/achievement_tsukasasoul.png",
 	isaaccartridge = "gfx/ui/achievement_wakaba/achievement_isaaccartridge.png",
-	
+
+
+	-- Richer Unlocks
+	fireflylighter = "gfx/ui/achievement_wakaba/achievement_fireflylighter.png",
+	sweetscatalog = "gfx/ui/achievement_wakaba/achievement_sweetscatalog.png",
+	antibalance = "gfx/ui/achievement_wakaba/achievement_antibalance.png",
+	doubleinvader = "gfx/ui/achievement_wakaba/achievement_doubleinvader.png",
+	venomincantation = "gfx/ui/achievement_wakaba/achievement_venomincantation.png",
+	printer = "gfx/ui/achievement_wakaba/achievement_3dprinter.png",
+	bunnyparfait = "gfx/ui/achievement_wakaba/achievement_bunnyparfait.png",
+	richeruniform = "gfx/ui/achievement_wakaba/achievement_richeruniform.png",
+	prestigepass = "gfx/ui/achievement_wakaba/achievement_prestigepass.png",
+	clensingfoam = "gfx/ui/achievement_wakaba/achievement_clensingfoam.png",
+	lilricher = "gfx/ui/achievement_wakaba/achievement_lilricher.png",
+	cunningpaper = "gfx/ui/achievement_wakaba/achievement_cunningpaper.png",
+	selfburning = "gfx/ui/achievement_wakaba/achievement_selfburning.png",
+
+	rabbitribbon = "gfx/ui/achievement_wakaba/achievement_rabbitribbon.png",
+	taintedricher = "gfx/ui/achievement_wakaba/achievement_taintedricher.png", -- Tainted Richer
+
+
+
+
 	eyeofclock = "gfx/ui/achievement_wakaba/achievement_eyeofclock.png", --01w
 	plumy = "gfx/ui/achievement_wakaba/achievement_plumy.png", --02w
 	--ultrablackhole = false, --03w
@@ -856,7 +878,7 @@ wakaba.achievementsprite = {
 	deliverysystem = "gfx/ui/achievement_wakaba/achievement_isekaidefinition.png", -- 12w
 	calculation = "gfx/ui/achievement_wakaba/achievement_balance.png", -- 13w
 	lilmao = "gfx/ui/achievement_wakaba/achievement_lilmao.png", -- 13w
-	
+
 	edensticky = "gfx/ui/achievement_wakaba/achievement_edensticky.png", -- 99w
 	doubledreams = "gfx/ui/achievement_wakaba/achievement_doubledreams.png", -- 99w
 }
@@ -893,12 +915,12 @@ wakaba.shiorimodes = {
 
 wakaba.shiorimodestrings = {
 	[wakaba.shiorimodes.SHIORI_LIBRARIAN] = {
-		name = "Librarian", 
+		name = "Librarian",
 		configdesc = "Shiori starts with most books",
 		dssdesc1 = "shiori starts with most books",
 	},
 	[wakaba.shiorimodes.SHIORI_COLLECTOR] = {
-		name = "Collector", 
+		name = "Collector",
 		configdesc = "Shiori starts with a random book, and must be collected manually. Most book actives will be moved into pocket slot automatically",
 		dssdesc1 = "shiori starts with a random book,",
 		dssdesc2 = "and must be collected manually.",
@@ -906,13 +928,13 @@ wakaba.shiorimodestrings = {
 		dssdesc4 = "into pocket slot automatically",
 	},
 	[wakaba.shiorimodes.SHIORI_AKASIC_RECORDS] = {
-		name = "Akasic Records", 
+		name = "Akasic Records",
 		configdesc = "Shiori can use only 3 books per floor(Default)",
 		dssdesc1 = "shiori can use only 3 books",
 		dssdesc2 = "per floor(default)",
 	},
 	[wakaba.shiorimodes.SHIORI_PURE_BODY] = {
-		name = "Pure Body", 
+		name = "Pure Body",
 		configdesc = "Shiori starts with most books, but cannot collect any collectibles. Touching the collectible will dissolved into keys",
 		dssdesc1 = "shiori starts with most books,",
 		dssdesc2 = "but cannot collect any collectibles",
@@ -921,7 +943,7 @@ wakaba.shiorimodestrings = {
 	},
 	--[wakaba.shiorimodes.SHIORI_MINERVA] = {name = "Minerva?", configdesc = "Unimplemented",},
 	[wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR] = {
-		name = "Curse of Saytr", 
+		name = "Curse of Saytr",
 		configdesc = "Shiori cannot switch books manually, books will be randomized on active item usage.",
 		dssdesc1 = "shiori cannot switch books manually",
 		dssdesc2 = "books will be randomized",
