@@ -2473,7 +2473,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "x0.9 Damage Multiplier."},
-			{str = "Isaac's attacks now ignore armor."},
+			{str = "Isaac's non-explosive attacks now ignore armor."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

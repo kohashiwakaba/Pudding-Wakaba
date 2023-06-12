@@ -5,7 +5,6 @@ function wakaba:NewYearBombDamage(source, target, data, newDamage, newFlags, isA
 		local player = Isaac.GetPlayer(i)
 		num = num + player:GetCollectibleNum(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEW_YEAR_BOMB)
 	end
-	print(num, newDamage)
 	if num > 0 then
 		if isAlreadyIgnoredArmor then
 			returndata.newDamage = newDamage * (2 ^ num)

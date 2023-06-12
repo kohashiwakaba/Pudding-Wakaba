@@ -539,7 +539,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "고양이 피규어",
 		description = ""
 		.. "#↓ {{DamageSmall}}공격력 배율 x0.9"
-		.. "#캐릭터의 공격이 적의 방어력을 무시합니다."
+		.. "#폭발을 제외한 캐릭터의 공격이 적의 방어력을 무시합니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.GUPPY .. "",

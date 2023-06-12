@@ -493,7 +493,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Neko Figure",
 		description = ""
 		.. "#↓ {{Damage}} -10% Damage"
-		.. "#Isaac's attacks now ignores armor"
+		.. "#Isaac's non-explosive attacks now ignores armor"
 		.. "#↑ Guarantees {{Quality3}}/{{Quality4}} items in {{UltraSecretRoom}}Ultra Secret Room"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.GUPPY .. "",

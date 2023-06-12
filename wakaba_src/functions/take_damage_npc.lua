@@ -29,6 +29,11 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 			newDamage = returndata.newDamage or newDamage
 			sendNewDamage = returndata.sendNewDamage or sendNewDamage
 			newFlags = returndata.newFlags or newFlags
+		else
+			local returndata = wakaba:NekoFigureDamage(source, target, data, newDamage, newFlags)
+			newDamage = returndata.newDamage or newDamage
+			sendNewDamage = returndata.sendNewDamage or sendNewDamage
+			newFlags = returndata.newFlags or newFlags
 		end
 
 		if source == nil then
