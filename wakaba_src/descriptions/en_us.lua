@@ -282,9 +282,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "New Year's Eve Bomb",
 		description = ""
 		.. "#↑ {{Bomb}} +9 Bombs"
-		.. "#↑ {{PoopPickup}}+2 Poops per new room for {{Player25}} Tainted ???"
-		.. "#Enemies' Health hit by explosion of Isaac's attack will set to 1"
-		.. "#↓ Enemies no longer be killed from this explosion"
+		.. "#All explosions ignore enemies' armor"
+		.. "#Explosions already ignored armor deal 2x damage"
+		.. "#{{Player25}} Using Hold as Tainted ??? consumes 3 {{PoopPickup}}Poops and holds a bomb"
+		.. "#!!! Can use Hold only when less than 3 Poops"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},

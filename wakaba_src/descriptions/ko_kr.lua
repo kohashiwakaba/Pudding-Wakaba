@@ -316,8 +316,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "새해 이브 폭탄",
 		description = ""
 		.. "#↑ {{Bomb}}폭탄 +9"
-		.. "#↑ {{PoopPickup}}알트 ??? 한정으로 방마다 똥 +2"
-		.. "#캐릭터의 폭발 공격에 맞은 적은 HP가 1로 줄어들지만 더 이상 캐릭터의 폭발로 죽지 않습니다"
+		.. "#모든 폭발이 적의 방어를 무시합니다."
+		.. "#기존 방어 무시 폭발의 위력이 2배로 증가합니다."
+		.. "#{{Player25}} Hold 사용 시 {{PoopPickup}}똥 3개를 소모하여 폭탄을 대신 사용합니다."
+		.. "#!!! 똥이 3개 이하인 경우에만 Hold 사용 가능"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "공허해지는 폭탄 + 폭탄 9개",

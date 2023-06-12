@@ -184,7 +184,7 @@ wakaba.encyclopediadesc.desc.characters = {
 						{str = "- Bitcoin II : Defeat Mother as Tainted Wakaba"},
 						{str = "- Wakaba's Nemesis : Defeat The Beast as Tainted Wakaba"},
 				},
-	
+
 		},
 	},
 
@@ -285,7 +285,7 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "- Vintage Threat : Defeat Mother as Shiori"},
 					{str = "- Book of the God : Defeat The Beast as Shiori"},
 					{str = "- Book of Shiori : Earn all 12 completion Marks on Hard Mode as Shiori"},
-			}, 
+			},
 			{ -- Trivia
 					{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 					{str = "The original character 'Shiomiya Shiori' is from manga 'The world only god knows'(or 'TWOGK'), from Wakagi Tamaki."},
@@ -295,7 +295,7 @@ wakaba.encyclopediadesc.desc.characters = {
 
 		},
 	},
-	
+
 	[wakaba.Enums.Players.SHIORI_B] = {
 		ID = wakaba.Enums.Players.SHIORI_B,
 		Tainted = true,
@@ -483,7 +483,7 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "- Phantom Cloak : Defeat Mother as Tsukasa"},
 					{str = "- Hydra : Defeat The Beast as Tsukasa"},
 					{str = "- Lunar Stone : Earn all 12 completion Marks on Hard Mode as Tsukasa"},
-			},	
+			},
 			{ -- Trivia
 					{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 					{str = "The original character 'Yuzaki Tsukasa' is from manga 'Tonikaku Kawaii', from Hata Kenjiro."},
@@ -491,7 +491,7 @@ wakaba.encyclopediadesc.desc.characters = {
 
 		},
 	},
-	
+
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		ID = wakaba.Enums.Players.TSUKASA_B,
 		Tainted = true,
@@ -522,7 +522,7 @@ wakaba.encyclopediadesc.desc.characters = {
 						self.Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "TsukasaB",1)
 						self.Desc = "Use Red Key on the hidden door in the Final Chapter as Tsukasa."
 						self.TargetColor = Encyclopedia.VanillaColor
-						
+
 						return self
 				end
 		end,
@@ -583,7 +583,7 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "The true name of tsukasa is unknown. The name 'Tsukasa' is given by a stranger called 'Umaya', who later became prince Shotoku."},
 					{str = "After being immortal, Shotoku asked her to watch his history, with his challenge for humanity reaching the moon."},
 			},
-	
+
 		},
 	},
 
@@ -652,7 +652,7 @@ wakaba.encyclopediadesc.desc.characters = {
 			},
 		},
 	},
-	
+
 	[wakaba.Enums.Players.RICHER_B] = {
 		ID = wakaba.Enums.Players.RICHER_B,
 		Tainted = true,
@@ -664,7 +664,7 @@ wakaba.encyclopediadesc.desc.characters = {
 						self.Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RicherB",1)
 						self.Desc = "Use Red Key on the hidden door in the Final Chapter as Richer."
 						self.TargetColor = Encyclopedia.VanillaColor
-						
+
 						return self
 				end
 		end,
@@ -738,7 +738,7 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "- Mistake : Defeat Mother as Tainted Richer"},
 					{str = "- The Winter Albireo : Defeat The Beast as Tainted Richer"},
 			},
-	
+
 		},
 	},
 }
@@ -849,7 +849,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Completely nullifies reroll effect when damaged"},
 		},
 	},
-	
+
 	WAKABA_DUALITY = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -892,7 +892,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Completely nullifies reroll effect when damaged"},
 		},
 	},
-	
+
 	BOOK_OF_SHIORI = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -940,7 +940,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Book of Trauma : No effect / Currently unimplemented."},
 		},
 	},
-	
+
 	EATHEART = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -1338,7 +1338,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "All pickups explode if 15 or more on the room."},
 		},
 	},
-	
+
 	-----------------------------------------------------------------------------
 	----------------------------- Default Collectibles --------------------------
 	-----------------------------------------------------------------------------
@@ -1609,7 +1609,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Enemies always take more damage when Rira's Bra is in effect."},
 		},
 	},
-	
+
 	-----------------------------------------------------------------------------
 	------------------------------- Wakaba Unlocks ------------------------------
 	-----------------------------------------------------------------------------
@@ -1776,8 +1776,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "The included enemies are the mostly hated enemies among the players, especially as The Lost, as they pop up out of nowhere, easily being killed by them."},
 		},
 	},
-	
-	
+
+
 	-----------------------------------------------------------------------------
 	------------------------------- Shiori Unlocks ------------------------------
 	-----------------------------------------------------------------------------
@@ -1953,7 +1953,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	},
 
 
-	
+
 	-----------------------------------------------------------------------------
 	------------------------------- Tsukasa Unlocks -----------------------------
 	-----------------------------------------------------------------------------
@@ -2024,15 +2024,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "+9 Bombs."},
-			{str = "Enemies' Health hit by explosion of this bomb will set to 1."},
-			{str = "- Enemies no longer be killed from this explosion."},
-			{str = "-- This also includes Shopkeepers."},
+			{str = "All explosions ignore enemies' armor."},
+			{str = "Explosions already ignored armor deal 2x damage."},
 		},
 		{ -- Notes
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Dr.Fetus, Epic Fetus", clr = 3, halign = 0},
-			{str = "Enemies will be immune to fetus bombs."},
-			{str = "- As Isaac can no longer kill any enemies, Isaac must find another attack method to finish the enemy."},
+			{str = "Tainted ???", clr = 3, halign = 0},
+			{str = "Using Hold as Tainted ??? consumes 3 Poops and holds a bomb."},
+			{str = "- This allows Tainted ??? using bombs more reliably. However, this will also make Hold relatively useless."},
+			{str = "- Tainted ??? can use Hold only if his poops are less than 3."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -2183,12 +2183,12 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		},
 	},
 
-	
+
 	-----------------------------------------------------------------------------
 	------------------------------- Richer Unlocks ------------------------------
 	-----------------------------------------------------------------------------
 
-	
+
 	DOUBLE_INVADER = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2588,8 +2588,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Using Void will cause both items to be absorbed."},
 		},
 	},
-	
-	
+
+
 	ISEKAI_DEFINITION = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2608,7 +2608,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Unlike previous era which mostly based off from current world, many Japanese began making many 'isekai' genre manga or anime, flooding the culture, eventually started to generate backlash."},
 		},
 	},
-	
+
 	BALANCE = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2619,7 +2619,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm."},
 		},
 	},
-	
+
 	RICHERS_FLIPPER = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2801,7 +2801,7 @@ if Encyclopedia then
 				{str = "- Color Joker in Onecard makes next person to force draw at least 8 cards (Simply 'Wild +8 Card'), while Black Joker only draws 5."},
 			},
 		},
-		
+
 		CARD_DREAM_CARD = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2874,7 +2874,7 @@ if Encyclopedia then
 				{str = "Removes all of Isaac's health, consumables, card/pills, and trinkets."},
 			},
 		},
-		
+
 		BRING_ME_THERE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2892,7 +2892,7 @@ if Encyclopedia then
 				{str = "This trinket also appears on the staring room in Mines/Ashpit II and Mausoleum/Gehenna I, for those who accidentally entered wrong path."},
 			},
 		},
-		
+
 		TRINKET_BITCOIN = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2905,7 +2905,7 @@ if Encyclopedia then
 				{str = "As consumables completely randomized, Isaac has effectively infinite bombs, keys, and coins."},
 			},
 		},
-		
+
 		TRINKET_CLOVER = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2916,7 +2916,7 @@ if Encyclopedia then
 				{str = "Increased chance for Lucky Pennies"},
 			},
 		},
-		
+
 		TRINKET_MAGNET_HEAVEN = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2924,7 +2924,7 @@ if Encyclopedia then
 				{str = "Converts Sticky Nickel into normal Nickel"},
 			},
 		},
-		
+
 		TRINKET_HARD_BOOK = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2934,7 +2934,7 @@ if Encyclopedia then
 				{str = "The trinket gets disappeared when book drop"},
 			},
 		},
-		
+
 		TRINKET_DETERMINATION_RIBBON = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2943,7 +2943,7 @@ if Encyclopedia then
 				{str = "The effect of the trinket will not work on Sacrifice rooms Spikes!"},
 			},
 		},
-		
+
 		TRINKET_BOOKMARK_BAG = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3019,7 +3019,7 @@ if Encyclopedia then
 				{str = "Many players overused this equipment to control main skills for each unit, to only use stronger skills, which was not available in normal automatic playthrough."},
 			},
 		},
-		
+
 		TRINKET_SIREN_BADGE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3033,7 +3033,7 @@ if Encyclopedia then
 				{str = "Pure Love prevents any collision damage from bosses"},
 			},
 		},
-		
+
 		TRINKET_ISAAC_CARTRIDGE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3049,7 +3049,7 @@ if Encyclopedia then
 				{str = "Overrides Isaac Cartridge."},
 			},
 		},
-		
+
 		TRINKET_AFTERBIRTH_CARTRIDGE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3065,7 +3065,7 @@ if Encyclopedia then
 				{str = "Overrides Afterbirth Cartridge."},
 			},
 		},
-		
+
 		TRINKET_REPENTANCE_CARTRIDGE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3079,7 +3079,7 @@ if Encyclopedia then
 				{str = "Overridden by Repentance Cartridge."},
 			},
 		},
-		
+
 		TRINKET_STAR_REVERSAL = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3087,7 +3087,7 @@ if Encyclopedia then
 				{str = "The trinket disappears on exchange."},
 			},
 		},
-		
+
 		TRINKET_AURORA_GEM = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3098,7 +3098,7 @@ if Encyclopedia then
 				{str = "Picking multiple purple coins make rainbow sphere deal more damage, and shoot tears more frequently."},
 			},
 		},
-		
+
 		TRINKET_MISTAKE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -3107,8 +3107,8 @@ if Encyclopedia then
 		},
 
 
-		
-		
+
+
 
 	}
 	
@@ -3138,7 +3138,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.blessing and not wakaba.runstate.hasbless then
 				self.Desc = "Earn all 12 completion marks on Hard mode as Wakaba"
-				
+
 				return self
 			end
 		end,
@@ -3162,12 +3162,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.nemesis < 1 and not wakaba.runstate.hasnemesis then
 				self.Desc = "Defeat The Beast as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Wakaba Duality
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3179,12 +3179,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not (wakaba.runstate.hasbless and wakaba.runstate.hasnemesis) then
 				self.Desc = "???"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Book of Shiori
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3201,12 +3201,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.bookofshiori and not wakaba.hasshiori then
 				self.Desc = "Earn all 12 completion marks on Hard mode as Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Winter Albireo
 	--[[ Encyclopedia.AddItem({
 		Class = class,
@@ -3215,7 +3215,7 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WINTER_ALBIREO,
 		Hide = true,
 	}) ]]
-	
+
 	--Eat Heart
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3240,12 +3240,12 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.eatheart < 1 and not hastaintedwakaba then
 				self.Desc = "Defeat Delirium as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Book of Conquest
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3262,12 +3262,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookofconquest < 1 and not wakaba.hastaintedshiori then
 				self.Desc = "Defeat Delirium as Tainted Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Minerva's Aura
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3282,7 +3282,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.minervaaura < 1 and not wakaba.hastaintedshiori then
 				self.Desc = "Defeat The Beast as Tainted Shiori"
-				
+
 				return self
 			end
 		end,
@@ -3308,7 +3308,7 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.lunarstone and not haslunarstone then
 				self.Desc = "Earn all 12 completion marks on Hard mode as Tsukasa"
-				
+
 				return self
 			end
 		end,
@@ -3335,12 +3335,12 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.concentration < 1 and not haslunarstone then
 				self.Desc = "Complete Boss Rush as Tsukasa"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Elixir of Life
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3364,7 +3364,7 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.elixiroflife < 1 and not haslunarstone then
 				self.Desc = "Defeat The Beast as Tainted Tsukasa"
-				
+
 				return self
 			end
 		end,
@@ -3391,7 +3391,7 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.flashshift < 1 and not haslunarstone then
 				self.Desc = "Defeat Delirium as Tainted Tsukasa"
-				
+
 				return self
 			end
 		end,
@@ -3417,7 +3417,7 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.murasame < 2 and not haslunarstone then
 				self.Desc = "Defeat MomsHeart as Tsukasa on Hard"
-				
+
 				return self
 			end
 		end,
@@ -3446,7 +3446,7 @@ if Encyclopedia then
 			end
 			if not wakaba.state.options.allowlockeditems --[[ and wakaba.state.unlock.rabbitribbon < 2 ]] and not hasRicher then
 				self.Desc = "Only available for Richer"
-				
+
 				return self
 			end
 		end,
@@ -3474,12 +3474,12 @@ if Encyclopedia then
 			end
 			if not hasRicher then
 				self.Desc = "Only available for Richer"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--The Winter Albireo
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3496,12 +3496,12 @@ if Encyclopedia then
 			end
 			if not hasRicher then
 				self.Desc = "Only available for Tainted Richer"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3518,7 +3518,7 @@ if Encyclopedia then
 			end
 			if not hasRicher then
 				self.Desc = "Only available for Tainted Richer"
-				
+
 				return self
 			end
 		end,
@@ -3542,7 +3542,7 @@ if Encyclopedia then
 		Pools = {
 		},
 	})
-	
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -3563,7 +3563,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 		},
 	})
-	
+
 	--Maijima Mythology
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3577,7 +3577,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		},
 	})
-	
+
 	--Moe's Muffin
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3590,7 +3590,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
 	})
-	
+
 	--Syrup
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3633,7 +3633,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
 	})
-	
+
 	--See Des Bischofs
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3647,7 +3647,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		},
 	})
-	
+
 	--Jar of Clover
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3687,7 +3687,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
-	
+
 	--Lil Moe
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3703,7 +3703,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
-	
+
 	--Lil Shiva
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3719,7 +3719,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 	})
-	
+
 	--Deja Vu
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3731,7 +3731,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		},
 	})
-	
+
 	--Onsen Towel
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3743,7 +3743,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 		},
 	})
-	
+
 	--Rira's Bra
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3755,8 +3755,8 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		},
 	})
-	
-	
+
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -3779,12 +3779,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.counter < 1 then
 				self.Desc = "Defeat Isaac as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--D Cup Icecream
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3802,12 +3802,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.dcupicecream < 1 then
 				self.Desc = "Defeat Satan as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Wakaba's Pendant
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3825,12 +3825,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
 				self.Desc = "Defeat ??? as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Revenge Fruit
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3845,12 +3845,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.revengefruit < 1 then
 				self.Desc = "Defeat The Lamb as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Wakaba's Uniform
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3865,7 +3865,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.wakabauniform < 1 and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRAW then
 				self.Desc = "Defeat Delirium as Wakaba"
-				
+
 				return self
 			end
 		end,
@@ -3892,7 +3892,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.secretcard < 1 then
 				self.Desc = "Defeat Ultra Greed as Wakaba"
-				
+
 				return self
 			end
 		end,
@@ -3908,12 +3908,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.cranecard < 1 then
 				self.Desc = "Defeat Ultra Greedier as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Confessional Card
 	Encyclopedia.AddCard({
 		Class = class,
@@ -3924,12 +3924,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.confessionalcard < 1 then
 				self.Desc = "Defeat Mother as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Book of Forgotten
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3947,12 +3947,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.bookofforgotten then
 				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Black Joker
 	Encyclopedia.AddCard({
 		Class = class,
@@ -3963,12 +3963,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.blackjoker < 2 then
 				self.Desc = "Defeat Ultra Greedier as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--White Joker
 	Encyclopedia.AddCard({
 		Class = class,
@@ -3979,12 +3979,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.whitejoker < 1 then
 				self.Desc = "Defeat Mega Satan as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Color Joker
 	Encyclopedia.AddCard({
 		Class = class,
@@ -3995,12 +3995,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.colorjoker < 1 then
 				self.Desc = "Defeat Hush as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Return Postage
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4016,14 +4016,14 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.returnpostage < 1 then
 				self.Desc = "Defeat The Beast as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
 
-	
+
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4048,7 +4048,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookoffocus < 1 and not wakaba.hasshiori then
 				self.Desc = "Defeat Satan as Shiori"
-				
+
 				return self
 			end
 		end,
@@ -4072,7 +4072,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.deckofrunes < 1 and not wakaba.hasshiori then
 				self.Desc = "Defeat ??? as Shiori"
-				
+
 				return self
 			end
 		end,
@@ -4092,12 +4092,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.grimreaperdefender < 1 and not wakaba.hasshiori then
 				self.Desc = "Defeat The Lamb as Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Book of The Fallen
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4116,12 +4116,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookoffallen < 1 then
 				self.Desc = "Defeat The Mega Satan as Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 
 	--Book of Trauma
 	Encyclopedia.AddItem({
@@ -4138,7 +4138,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookoftrauma < 1 and not wakaba.hasshiori then
 				self.Desc = "Defeat Hush as Shiori"
-				
+
 				return self
 			end
 		end,
@@ -4157,7 +4157,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookofsilence < 1 and not wakaba.hasshiori then
 				self.Desc = "Defeat Delirium as Shiori"
-				
+
 				return self
 			end
 		end,
@@ -4179,7 +4179,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.vintagethreat < 1 then
 				self.Desc = "Defeat Mother as Shiori"
-				
+
 				return self
 			end
 		end,
@@ -4202,14 +4202,14 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookofthegod < 1 then
 				self.Desc = "Defeat The Beast as Shiori"
-				
+
 				return self
 			end
 		end,
 	})
 
 
-	
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4259,7 +4259,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 	--Red Corruption
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4319,7 +4319,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 	--New Year Eve's Bomb
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4337,7 +4337,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.newyearbomb < 1 then
 				self.Desc = "Defeat Delirium as Tsukasa"
-				
+
 				return self
 			end
 		end,
@@ -4488,9 +4488,9 @@ if Encyclopedia then
 		end,
 	})
 
-	
 
-	
+
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4569,7 +4569,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 		},
 	})
-	
+
 	--3D Printer
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4743,12 +4743,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.dcupicecream < 1 then
 				self.Desc = "Defeat Satan as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Wakaba's Hairpin
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4761,12 +4761,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
 				self.Desc = "Defeat ??? as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Wakaba's Hairpin
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4778,14 +4778,14 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.pendant < 1 then
 				self.Desc = "Defeat ??? as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
 
-	
+
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -4808,12 +4808,12 @@ if Encyclopedia then
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.eyeofclock and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_ELEC then
 				self.Desc = "Complete Electric Disorder (challenge No.01w)"
 				self.WikiDesc = wakaba.encyclopediadesc.desc.collectibles.EYE_OF_CLOCK
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Plumy
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4831,12 +4831,12 @@ if Encyclopedia then
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.plumy and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_PLUM then
 				self.Desc = "Complete Berry Best Friend (challenge No.02w)"
 				self.WikiDesc = wakaba.encyclopediadesc.desc.collectibles.PLUMY
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Neko Figure
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4854,13 +4854,13 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.nekodoll then
 				self.Desc = "Complete Black Neko Dreams (challenge No.05w)"
-				
+
 				return self
 			end
 		end,
 	})
 
-	
+
 	--Micro Doppelganger
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4876,7 +4876,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.microdoppelganger and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DOPP then
 				self.Desc = "Complete Doppelganger (challenge No.06w)"
-				
+
 				return self
 			end
 		end,
@@ -4901,12 +4901,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.lilwakaba and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_SIST then
 				self.Desc = "Complete Sisters From Beyond (challenge No.08w)"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Executioner
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4921,12 +4921,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.executioner then
 				self.Desc = "Complete Rush Rush Hush (challenge No.10w)"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Apollyon Crisis
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4943,12 +4943,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.apollyoncrisis then
 				self.Desc = "Complete Apollyon Crisis (challenge No.11w)"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Isekai Definition
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4969,13 +4969,13 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.deliverysystem then
 				self.Desc = "Complete Delivery System (challenge No.12w)"
-				
+
 				return self
 			end
 		end,
 	})
 
-	
+
 	--Balance
 	Encyclopedia.AddItem({
 		Class = class,
@@ -4989,12 +4989,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.calculation then
 				self.Desc = "Complete Calculation (challenge No.13w)"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Lil Mao
 	Encyclopedia.AddItem({
 		Class = class,
@@ -5012,12 +5012,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.lilmao and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_HOLD then
 				self.Desc = "Complete Hold Me (challenge No.14w)"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Richer's Flipper
 	Encyclopedia.AddItem({
 		Class = class,
@@ -5032,7 +5032,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.richerflipper then
 				self.Desc = "Complete Even or Odd (challenge No.15w)"
-				
+
 				return self
 			end
 		end,
@@ -5044,7 +5044,7 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.CLOVER_SHARD,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CLOVER_SHARD,
 	})
-	
+
 	--Wakaba's Curfew
 	Encyclopedia.AddItem({
 		Class = class,
@@ -5089,7 +5089,7 @@ if Encyclopedia then
 		ID = Isaac.GetItemIdByName("Shiori's Yellow Bookmark"),
 		Hide = true,
 	})
-	
+
 	--Wakaba's Double Dreams
 	Encyclopedia.AddItem({
 		Class = class,
@@ -5119,14 +5119,14 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.donationcard < 1 and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
 				self.Desc = "Complete Boss Rush as Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
-	
-	
+
+
+
 	--Unknown Bookmark
 	Encyclopedia.AddCard({
 		Class = class,
@@ -5137,12 +5137,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.unknownbookmark < 1 then
 				self.Desc = "Complete Boss Rush as Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Queen of Spades
 	Encyclopedia.AddCard({
 		Class = class,
@@ -5153,7 +5153,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.queenofspades < 1 then
 				self.Desc = "Complete Ultra Greedier as Tainted Shiori"
-				
+
 				return self
 			end
 		end,
@@ -5169,12 +5169,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.queenofspades < 1 then
 				self.Desc = "Complete Mega Satan as Tainted Shiori"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Minerva Ticket
 	Encyclopedia.AddCard({
 		Class = class,
@@ -5185,12 +5185,12 @@ if Encyclopedia then
 		--[[ UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.queenofspades < 1 then
 				self.Desc = "Complete Ultra Greedier as Tainted Shiori"
-				
+
 				return self
 			end
 		end, ]]
 	})
-	
+
 	--Soul of Wakaba
 	Encyclopedia.AddSoul({
 		Class = class,
@@ -5201,7 +5201,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.wakabasoul then
 				self.Desc = "Defeat Boss Rush, Hush as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
@@ -5216,12 +5216,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.wakabasoul then
 				self.Desc = "Defeat Boss Rush, Hush as Tainted Wakaba"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Soul of Shiori
 	Encyclopedia.AddSoul({
 		Class = class,
@@ -5232,7 +5232,7 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.shiorisoul then
 				self.Desc = "Defeat Boss Rush, Hush as Tainted Shiori"
-				
+
 				return self
 			end
 		end,
@@ -5248,12 +5248,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.tsukasasoul then
 				self.Desc = "Defeat Boss Rush, Hush as Tainted Tsukasa"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Return Token
 	Encyclopedia.AddCard({
 		Class = class,
@@ -5264,12 +5264,12 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.returntoken then
 				self.Desc = "Defeat Ultra Greedier as Tainted Tsukasa"
-				
+
 				return self
 			end
 		end,
 	})
-	
+
 	--Trial Stew
 	Encyclopedia.AddCard({
 		Class = class,
@@ -5280,15 +5280,15 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.trialstew then
 				self.Desc = "Defeat Ultra Greedier as Tainted Richer"
-				
+
 				return self
 			end
 		end,
 	})
-	
 
 
-	
+
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -5296,8 +5296,8 @@ if Encyclopedia then
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
-	
-	
+
+
 	--Bring Me There
 	Encyclopedia.AddTrinket({
 		Class = class,
@@ -5305,8 +5305,8 @@ if Encyclopedia then
 		ID = wakaba.Enums.Trinkets.BRING_ME_THERE,
 		WikiDesc = Wiki.BRING_ME_THERE,
 	})
-	
-	
+
+
 	--Bitcoin II
 	Encyclopedia.AddTrinket({
 		Class = class,
@@ -5320,7 +5320,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 	--Clover
 	Encyclopedia.AddTrinket({
 		Class = class,
@@ -5362,7 +5362,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 
 	--Ribbon of Determination
 	Encyclopedia.AddTrinket({
@@ -5433,7 +5433,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 	--Isaac Cartridges
 	Encyclopedia.AddTrinket({
 		Class = class,
@@ -5552,11 +5552,11 @@ if Encyclopedia then
 
 
 
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 end

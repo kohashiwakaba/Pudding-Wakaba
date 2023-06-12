@@ -1,30 +1,28 @@
-function wakaba:NewRoom_NewYearBomb()
-	if wakaba.G:GetRoom():IsFirstVisit() then
-		for i = 1, wakaba.G:GetNumPlayers() do
-			local player = Isaac.GetPlayer(i - 1)
-			if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B and player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) then
-				player:AddPoopMana(2)
-			end
-		end
+function wakaba:NewYearBombDamage(source, target, data, newDamage, newFlags, isAlreadyIgnoredArmor)
+	local returndata = {}
+	local num = 0
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		num = num + player:GetCollectibleNum(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEW_YEAR_BOMB)
 	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_NewYearBomb)
-
-function wakaba:newYearBombDamage(target, damage, flags, source, cooldown)
-	if source.Entity ~= nil and (flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION) and target.Type ~= EntityType.ENTITY_PLAYER then
-		if source.Entity.SpawnerEntity ~= nil then
-			local player = source.Entity.SpawnerEntity:ToPlayer()
-			--print(player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB))
-			if player ~= nil and player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) then
-				if not wakaba.G:HasHallucination() then
-					wakaba.G:ShowHallucination(30)
-				end
-				target.HitPoints = 1
-				return false
-			end
+	print(num, newDamage)
+	if num > 0 then
+		if isAlreadyIgnoredArmor then
+			returndata.newDamage = newDamage * (2 ^ num)
 		end
+		returndata.sendNewDamage = true
+		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		SFXManager():Play(SoundEffect.SOUND_BONE_SNAP)
 	end
+	return returndata
 end
 
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.newYearBombDamage)
 
+function wakaba:PreUseItem_Hold_NewYearBomb(item, rng, player, flag, slot, varData)
+	if player:HasCollectible(wakaba.Enums.Collectibles.NEW_YEAR_BOMB) and player:GetPoopMana() >= 3 then
+		player:UsePoopSpell(PoopSpellType.SPELL_BOMB)
+		player:AddPoopMana(-3)
+		return true
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_Hold_NewYearBomb, CollectibleType.COLLECTIBLE_HOLD)

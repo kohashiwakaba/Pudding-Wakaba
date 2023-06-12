@@ -1,4 +1,4 @@
---[[ 
+--[[
 	Base damage function from Fiend Folio
  ]]
 
@@ -7,8 +7,8 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PULL then
 		if source ~= nil and source.Type == EntityType.ENTITY_TEAR then
 			local player = source.Entity.SpawnerEntity:ToPlayer()
-			if player then 
-				return false 
+			if player then
+				return false
 			end
 		end
 	end
@@ -23,7 +23,14 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		local returndata = wakaba:RiraBraOnDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
-		
+
+		if flags == flags | DamageFlag.DAMAGE_EXPLOSION then
+			local returndata = wakaba:NewYearBombDamage(source, target, data, newDamage, newFlags, flags == flags | DamageFlag.DAMAGE_IGNORE_ARMOR)
+			newDamage = returndata.newDamage or newDamage
+			sendNewDamage = returndata.sendNewDamage or sendNewDamage
+			newFlags = returndata.newFlags or newFlags
+		end
+
 		if source == nil then
 			-- do nothing
 		elseif source.Type == EntityType.ENTITY_TEAR or
@@ -98,7 +105,7 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 				sendNewDamage = returndata.sendNewDamage or sendNewDamage
 			end
 		end
-		
+
 
 		if sendNewDamage and not hasRerolled and flags & DamageFlag.DAMAGE_FIRE == 0 then
 			data.wakaba_ignoreDuplicateDamage = true
