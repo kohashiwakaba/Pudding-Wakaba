@@ -3,6 +3,68 @@ local collectible = wakaba.Enums.Collectibles.WATER_FLAME
 
 local flames = {}
 
+local wandSprite = Sprite()
+wandSprite:Load("gfx/ui/wakaba/waterflame_mask.anm2", false)
+wandSprite:ReplaceSpritesheet(0, "gfx/ui/wakaba/empty_placeholder.png")
+wandSprite:LoadGraphics()
+wandSprite:Play("Idle", true)
+
+local function canDisplayWaterFlame(player)
+	local playerIndex = isc:getPlayerIndex(player)
+	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+		local current = wakaba.TotalWisps[playerIndex]
+		if #current.list > 0 then
+			local wisp = current.list[current.index]
+			itemID = wisp.SubType
+			return itemID
+		end
+	else
+		local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+		local nearest = isc:getClosestEntityTo(player, collectibles, function(_, e) return isc:collectibleHasTag(e.SubType, ItemConfig.TAG_SUMMONABLE) end)
+		return nearest and nearest.SubType
+	end
+end
+
+wakaba:addActiveRender({
+	Sprite = wandSprite,
+	Offset = Vector(16, 30),
+	RenderAbove = true,
+	Condition = function(player, activeSlot)
+		local data = player:GetData().wakaba
+		local item = player:GetActiveItem(activeSlot)
+		if item ~= wakaba.Enums.Collectibles.WATER_FLAME then return false end
+
+		return canDisplayWaterFlame(player) ~= nil
+	end,
+	Update = function(player, slot, data)
+		local playerIndex = isc:getPlayerIndex(player)
+		if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+			local current = wakaba.TotalWisps[playerIndex]
+			if #current.list > 0 then
+				local wisp = current.list[current.index]
+				itemID = wisp.SubType
+				local conf = Isaac.GetItemConfig():GetCollectible(itemID)
+				if conf then
+					local spr = data.Sprite
+					spr:ReplaceSpritesheet(0, conf.GfxFileName)
+					spr:LoadGraphics()
+				end
+			end
+		else
+			local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+			local nearest = isc:getClosestEntityTo(player, collectibles, function(_, e) return isc:collectibleHasTag(e.SubType, ItemConfig.TAG_SUMMONABLE) end)
+			if nearest then
+				local conf = Isaac.GetItemConfig():GetCollectible(nearest.SubType)
+				if conf then
+					local spr = data.Sprite
+					spr:ReplaceSpritesheet(0, conf.GfxFileName)
+					spr:LoadGraphics()
+				end
+			end
+		end
+	end,
+})
+
 function wakaba:hasWaterFlame(player)
 	if not player then 
 		return false 
