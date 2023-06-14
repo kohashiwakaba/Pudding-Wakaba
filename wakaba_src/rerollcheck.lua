@@ -611,10 +611,11 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	end
 
 	local itemConfig = config:GetCollectible(selected)
+	local itemQuality = isc:clamp(itemConfig.Quality, 0, 4)
 	local active = (AllowActives == true) and true or (itemConfig.Type == ItemType.ITEM_PASSIVE or itemConfig.Type == ItemType.ITEM_FAMILIAR)
-	local min_quality = MinQuality == 0 and true or itemConfig.Quality >= MinQuality
-	local max_quality = MaxQuality == 4 and true or (itemConfig.Quality <= MaxQuality or selected == wakaba.Enums.Collectibles.WAKABAS_BLESSING or selected == CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-	local valid_quality = validQuality[tostring(itemConfig.Quality)]
+	local min_quality = MinQuality == 0 and true or itemQuality >= MinQuality
+	local max_quality = MaxQuality == 4 and true or (itemQuality <= MaxQuality or selected == wakaba.Enums.Collectibles.WAKABAS_BLESSING or selected == CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+	local valid_quality = validQuality[tostring(itemQuality)]
 
 	--check time
 	-- No reroll when should not change Fair Options at the Start? mod
@@ -628,7 +629,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 	-- Check Deja Vu spawn after Fair Options at the Start? mod check
 	-- Don't check Deja Vu again if conditions are not met
-	if wakaba.state.rerollloopcount == 0 and hasDejaVu and itemConfig.Quality <= 2 then
+	if wakaba.state.rerollloopcount == 0 and hasDejaVu and itemQuality <= 2 then
 		local candidates = wakaba:ReadDejaVuCandidates()
 		
 		local rng = RNG()
