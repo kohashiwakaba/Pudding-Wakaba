@@ -3128,12 +3128,9 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.WAKABAS_BLESSING,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_BLESSING,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_SECRET,
-			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.blessing and not wakaba.runstate.hasbless then
@@ -3151,13 +3148,10 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_NEMESIS,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_DEVIL,
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
-			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.nemesis < 1 and not wakaba.runstate.hasnemesis then
@@ -3226,7 +3220,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_DEVIL,
 			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 		},
 		ActiveCharge = 7500,
@@ -3323,7 +3316,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
 			local haslunarstone = false
@@ -3617,7 +3609,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
-			Encyclopedia.ItemPools.POOL_BOMB_BUM,
 		},
 	})
 
@@ -3643,7 +3634,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		},
 	})
@@ -3657,7 +3647,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		},
 	})
@@ -3697,8 +3686,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -3712,7 +3699,6 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.LIL_SHIVA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
@@ -3796,7 +3782,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
@@ -3815,7 +3800,6 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.WAKABAS_PENDANT,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_PENDANT,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_BOSS,
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
@@ -3885,7 +3869,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
-			Encyclopedia.ItemPools.POOL_OLD_CHEST,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -3937,7 +3920,6 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BOOK_OF_FORGOTTEN,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_DEVIL,
 			Encyclopedia.ItemPools.POOL_LIBRARY,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
@@ -4063,9 +4045,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_SECRET,
-			Encyclopedia.ItemPools.POOL_LIBRARY,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		},
@@ -4110,8 +4089,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
-			Encyclopedia.ItemPools.POOL_RED_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookoffallen < 1 then
@@ -4174,7 +4151,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.vintagethreat < 1 then
@@ -4195,9 +4171,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_LIBRARY,
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_KEY_MASTER,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bookofthegod < 1 then
@@ -4228,8 +4202,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
-			Encyclopedia.ItemPools.POOL_KEY_MASTER,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -4268,7 +4240,6 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RED_CORRUPTION,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
-			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_CURSE,
 			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
@@ -4330,9 +4301,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 			Encyclopedia.ItemPools.POOL_BOMB_BUM,
-			Encyclopedia.ItemPools.POOL_MOMS_CHEST,
-			Encyclopedia.ItemPools.POOL_SECRET,
-			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.newyearbomb < 1 then
@@ -4637,6 +4605,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 		},
 	})
 
@@ -4850,6 +4819,7 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
+			Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.nekodoll then
@@ -4890,11 +4860,8 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.LIL_WAKABA,
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
-			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
-			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -4956,13 +4923,9 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.ISEKAI_DEFINITION,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ISEKAI_DEFINITION,
 		Pools = {
-			Encyclopedia.ItemPools.POOL_SHOP,
 			Encyclopedia.ItemPools.POOL_DEVIL,
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
-			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -5004,8 +4967,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
-			Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
@@ -5099,7 +5060,6 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SECRET,
 			Encyclopedia.ItemPools.POOL_LIBRARY,
-			Encyclopedia.ItemPools.POOL_GREED_CURSE,
 		},
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.doubledreams and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_DRMS then
