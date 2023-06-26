@@ -36,6 +36,11 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 			newFlags = returndata.newFlags or newFlags
 		end
 
+		local returndata = wakaba:PlasmaBeamDamage(source, target, data, newDamage, newFlags, flags == flags | DamageFlag.DAMAGE_LASER)
+		newDamage = returndata.newDamage or newDamage
+		sendNewDamage = returndata.sendNewDamage or sendNewDamage
+		newFlags = returndata.newFlags or newFlags
+
 		if source == nil then
 			-- do nothing
 		elseif source.Type == EntityType.ENTITY_TEAR or

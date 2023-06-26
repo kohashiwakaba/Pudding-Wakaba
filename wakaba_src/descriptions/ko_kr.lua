@@ -691,10 +691,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
 		itemName = "플라즈마 빔",
 		description = ""
-		.. "#↑ {{RangeSmall}}사거리 +2"
-		.. "#↓ {{DamageSmall}}공격력 배율 x0.6"
-		.. "#{{Burning}} 공격이 적을 관통하며 화상을 입힙니다.",
-		queueDesc = "초강력 관통 공격",
+		.. "#캐릭터의 모든 공격이 적에게 1.25배의 레이저 피해를 줍니다."
+		.. "#기존 레이저 공격은 적의 방어를 무시합니다.",
+		queueDesc = "초강력 정전기 공격",
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "파워 봄",

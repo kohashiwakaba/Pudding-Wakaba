@@ -628,9 +628,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
 		itemName = "Plasma Beam",
 		description = ""
-		.. "#↑ {{Range}} +2 Range"
-		.. "#↓ {{Damage}} -40% Damage"
-		.. "#{{Burning}} Piercing tears that can hit enemies multiple times and light enemies on fire"
+		.. "#↑ All Isaac's attack now deal 1.25x laser damage"
+		.. "#↑ Prior laser damage now ignore enemies' armor"
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "Power Bomb",

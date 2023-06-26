@@ -2044,16 +2044,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	PLASMA_BEAM = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "+2 Range"},
-			{str = "-40% Damage"},
-			{str = "Grants piercing tears that travel through enemies (but not obstacles) instead of breaking on impact with them."},
-			{str = "Tears can hit the same enemy multiple times."},
-			{str = "Tears inflict burn to enemies."},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Since the tears can strike one enemy multiple times, low shot speed can be very beneficial whereas high shot speed may lower effective damage."},
-			{str = "Walking backward while firing can allow tears to move slower, making it useful for increasing damage output."},
+			{str = "All enemies now take 1.25x laser damage from all player's damage source."},
+			{str = "All damage type that was already laser ignore enemies' armor."},
 		},
 		--[[ { -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
