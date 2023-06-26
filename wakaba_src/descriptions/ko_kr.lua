@@ -1544,10 +1544,10 @@ wakaba.descriptions[desclang].tarotcloth = {
 		description = "사용 시 임의의 책 효과 2개를 발동합니다.#같은 효과가 발동할 수 있습니다.",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
-		description = "#시오리의 창고를 2대 소환합니다.",
+		description = "시오리의 창고를 2대 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "#{{TearsSmall}}추가 연사 +1, {{DamageSmall}}추가 공격력 +25%",
+		description = "{{TearsSmall}}추가 연사 +1, {{DamageSmall}}추가 공격력 +25%",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
