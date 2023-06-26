@@ -298,6 +298,28 @@ wakaba.Enums.CrystalRestockTypes = {
 	[wakaba.Enums.CrystalRestockSubType.YELLOW] = 5,
 }
 
+wakaba.Magnet = {}
+wakaba.Magnet.PB = {
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_COIN end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_BOMB end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_KEY end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_HEART end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_CHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_ETERNALCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_GRAB_BAG end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_LIL_BATTERY end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_LOCKEDCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_MIMICCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_OLDCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_PILL end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_POOP end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_REDCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_SPIKEDCHEST end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_TAROTCARD end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_TRINKET end,
+	function(pickup) return pickup.Variant == PickupVariant.PICKUP_WOODENCHEST end,
+}
+
 -- 행운 관련 상수
 wakaba.Enums.Chances = {
 

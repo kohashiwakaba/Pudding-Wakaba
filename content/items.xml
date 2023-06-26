@@ -102,7 +102,7 @@
 	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2"/>
 	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3"/>
 	<passive id="76" cache="damage" description="Forgotten recipies" gfx="__placeholder.png" name="Caramella Pancake" quality="2" hidden="true" tags="noeden" achievement="9999"/>
-	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" chargetype="timed" maxcharges="300" quality="4" tags="offensive nocantrip" />
+	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" maxcharges="4" quality="3" tags="offensive nocantrip" />
 
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="9999"/>
 

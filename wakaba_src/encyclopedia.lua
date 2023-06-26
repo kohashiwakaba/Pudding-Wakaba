@@ -2089,15 +2089,10 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	POWER_BOMB = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "While held", clr = 3, halign = 0},
-			{str = "Isaac cannot use normal bombs."},
-			{str = "Killing enemies have 7% chance to drop bombs that disappears after 1.5 seconds."},
-			{str = "Isaac must have 10 or more bombs to use the item."},
-			{str = "On use", clr = 3, halign = 0},
-			{str = "Consumes half of Isaac's bombs and Makes an explosion in entire room."},
-			{str = "- Bombs are less consumed when Isaac has golden bombs."},
-			{str = "All enemies take damage 0.2 x consumed bomb count per tick."},
-			{str = "All doors and rock obstacles also destroyed during this process."},
+			{str = "On use, Makes an explosion in entire room."},
+			{str = "- All enemies take damage 2 per tick."},
+			{str = "- All doors and rock obstacles also destroyed during this process."},
+			{str = "- All pickups is pulled towards explosion point on fading."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},

@@ -1,9 +1,9 @@
 local sfx = SFXManager()
 
-function wakaba:UsePowerBomb(player, position, bombs)
+function wakaba:UsePowerBomb(player, position)
   player = player or Isaac.GetPlayer()
   position = position or player.Position
-  bombs = bombs or player:GetNumBombs()
+  local bombs = 5
   local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, wakaba.Enums.Effects.POWER_BOMB, 0, position, Vector.Zero, nil):ToEffect()
   explosion:GetData().wakaba = {}
   explosion:GetData().wakaba.damage = bombs
@@ -78,66 +78,9 @@ function wakaba:EffectRender_PowerBomb(effect)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_RENDER, wakaba.EffectRender_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
-function wakaba:NPCDeath_PowerBomb(entity)
-  for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-    if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
-      local rng = RNG()
-      rng:SetSeed(entity.DropSeed, 35)
-      local luck = player.Luck
-      luck = math.max(math.min(luck, 0), 7)
-      local number = (rng:RandomInt(10000) / 100)
-      if (8+luck) >= number then
-        local bomb = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, 0, entity.Position, wakaba:RandomVelocity(), nil):ToPickup()
-        bomb.Timeout = 45
-      end
-    end
-  end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCDeath_PowerBomb)
-
-function wakaba:PlayerUpdate_PowerBomb(player)
-  --wakaba:GetPlayerEntityData(player)
-  --local data = player:GetData()
-	if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
-    local bombs = player:GetNumBombs()
-    if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.POWER_BOMB then
-      player:SetActiveCharge(bombs, ActiveSlot.SLOT_PRIMARY)
-    end
-    if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.POWER_BOMB then
-      player:SetActiveCharge(bombs, ActiveSlot.SLOT_SECONDARY)
-    end
-    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.POWER_BOMB then
-      player:SetActiveCharge(bombs, ActiveSlot.SLOT_POCKET)
-    end
-  else
-    --[[ if data.wakaba.haspb then 
-      data.wakaba.haspb = nil 
-    end ]]
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_PowerBomb)
-
-
-function wakaba:InputAction_PowerBomb(entity, hook, action)
-	if not entity then return end
-  if not entity:ToPlayer() then return end
-  local player = entity:ToPlayer()
-	if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
-    if action == ButtonAction.ACTION_BOMB then return false end
-  end
-end
-wakaba:AddCallback(ModCallbacks.MC_INPUT_ACTION, wakaba.InputAction_PowerBomb)
-
 function wakaba:ItemUse_PowerBomb(_, rng, player, useFlags, activeSlot, varData)
-  local bombs = player:GetNumBombs()
-  bombs = bombs // 2
 
-  wakaba:UsePowerBomb(player, player.Position, bombs)
-  if player:HasGoldenBomb() then
-    bombs = bombs // 1.75
-  end
-  player:AddBombs(-bombs)
+  wakaba:UsePowerBomb(player, player.Position)
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.Enums.Collectibles.POWER_BOMB, "UseItem", "PlayerPickup")
 	end

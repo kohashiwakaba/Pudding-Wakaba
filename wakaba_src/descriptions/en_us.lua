@@ -634,13 +634,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "Power Bomb",
 		description = ""
-		.. "#{{Bomb}} +10 Bombs"
-		.. "#!!! Cannot use normal bombs"
-		.. "#!!! Consumes half of current held bombs"
 		.. "#Makes giant explosion that destroys all objects, opens all doors, and damages all enemies in the current room"
-		.. "#!!! Explosion damage : 0.2 * consumed bombs per tick"
-		.. "#{{Bomb}} Killing enemies has chance to drop bombs that despawns after 1.5 seconds"
-		.. "#{{LuckSmall}} :8+({{LuckSmall}})%/max10%"
+		.. "#Pulls all pickups to explosion point on fading"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
@@ -1044,7 +1039,7 @@ wakaba.descriptions[desclang].wakaba = {
 	[CollectibleType.COLLECTIBLE_URANUS] = {
 		description = "↑ {{Damage}} +50% Damage Multiplier#{{ColorWakabaBless}}Armor-Piercing Tears",
 	},
-	
+
 }
 wakaba.descriptions[desclang].wakaba_b = {
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
@@ -2414,12 +2409,12 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible722}} Unique ability : Anima Sola"
 		.. "#{{Blank}} Using Anima Sola when used in a room with no enemies will immediately spawn Dark Esau without exhausting the item's charge"
 		.. "#{{Blank}} Anima Sola always affects Dark Esau if he is on screen"
-	
-	
+
+
 	},
 
 
-	
+
 	-- wakaba
 	[wakaba.Enums.Players.WAKABA] = {
 		-- icon = "",
