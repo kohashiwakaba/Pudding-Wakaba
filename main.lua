@@ -1412,6 +1412,7 @@ include('wakaba_src.compat.retribution')
 include('wakaba_src.compat.epiphany')
 include('wakaba_src.compat.samael')
 include('wakaba_src.compat.taintedtreasure')
+include('wakaba_src.compat.thefuture')
 include('wakaba_src.compat.stageapi')
 
 --require 'monster'
@@ -1519,6 +1520,10 @@ function wakaba:init(continue)
 
 	if TaintedTreasure then
 		wakaba:GameStart_TaintedTreasureCompat()
+	end
+
+	if TheFuture then
+		wakaba:GameStart_TheFutureCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
