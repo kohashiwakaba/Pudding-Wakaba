@@ -65,6 +65,18 @@ function wakaba:EffectUpdate_PowerBomb(effect)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
+function wakaba:NewRoom_PowerBomb()
+  if sfx:IsPlaying(wakaba.Enums.SoundEffects.POWER_BOMB_LOOP) then
+    sfx:Stop(wakaba.Enums.SoundEffects.POWER_BOMB_LOOP)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_1)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_2)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_3)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_4)
+    sfx:Play(wakaba.Enums.SoundEffects.POWER_BOMB_AFTER_EXPLOSION_5)
+  end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_PowerBomb)
+
 function wakaba:EffectRender_PowerBomb(effect)
   if sfx:IsPlaying(SoundEffect.SOUND_UNLOCK00) then
     sfx:Stop(SoundEffect.SOUND_UNLOCK00)
