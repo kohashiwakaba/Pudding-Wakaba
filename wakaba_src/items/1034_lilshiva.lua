@@ -44,13 +44,23 @@ function wakaba:initLilShiva(familiar)
 	familiar:AddToFollowers()
 	familiar.FireCooldown = 3
 
+	familiar:GetData().wakaba = familiar:GetData().wakaba or {}
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
 	
 end
 
+local function resetShivaCooldown(familiar, player)
+	if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
+		familiar.FireCooldown = 12
+	else
+		familiar.FireCooldown = 24
+	end
+end
+
 function wakaba:updateLilShiva(familiar)
 	local fData = familiar:GetData()
+	local wData = familiar:GetData().wakaba
 	local player = familiar.Player
 	local move_dir = player:GetMovementDirection()
 	local sprite = familiar:GetSprite()
@@ -67,23 +77,27 @@ function wakaba:updateLilShiva(familiar)
 		end
 	end
 
-	if player_fire_direction == Direction.NO_DIRECTION then
+	if familiar.Coins > 0 then
+		resetShivaCooldown(familiar, player)
+		local shootDir = wData.TempShootDir
+		local tear_vector = wakaba.DIRECTION_VECTOR[shootDir]:Normalized()
+		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[shootDir], false)
+
+		fireTearShiva(player, familiar, tear_vector, 0)
+		familiar.Coins = familiar.Coins - 1
+	else
+		wData.TempShootDir = nil
+	end
+
+	if player_fire_direction == Direction.NO_DIRECTION and familiar.Coins == 0 then
 		sprite:Play(wakaba.DIRECTION_FLOAT_ANIM[move_dir], false)
 		if familiar.FireCooldown <= 0 then
 			familiar.FireCooldown = 0
 		end
 	else
-		local tear_vector = wakaba.DIRECTION_VECTOR[player_fire_direction]:Normalized()
-		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
 		if familiar.FireCooldown <= 0 then
-			fireTearShiva(player, familiar, tear_vector, 0)
-			if familiar.FireCooldown <= (targetoffset * -1) then
-				if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-					familiar.FireCooldown = 12
-				else
-					familiar.FireCooldown = 24
-				end
-			end
+			familiar.Coins = targetoffset
+			wData.TempShootDir = player_fire_direction
 		end
 	end
 
