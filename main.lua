@@ -774,6 +774,41 @@ wakaba.unlocks = {
 	isaaccartridge = false,
 	tsukasasoul = false,
 
+	-- Richer Unlocks
+	fireflylighter = 0,
+	sweetscatalog = 0,
+	antibalance = 0,
+	doubleinvader = 0,
+	venomincantation = 0,
+	printer = 0,
+	bunnyparfait = 0,
+	richeruniform = 0,
+	prestigepass = 0,
+	clensingfoam = 0,
+	lilricher = 0,
+	cunningpaper = 0,
+	selfburning = 0,
+
+	rabbitribbon = false,
+	taintedricher = false, -- Tainted Richer
+
+	-- Tainted Richer Unlocks
+	taintedrichermomsheart = 0,
+	starreversal1 = 0, -- Isaac
+	starreversal2 = 0, -- Satan
+	starreversal3 = 0, -- ???
+	starreversal4 = 0, -- The Lamb
+	richersoul1 = 0, -- Boss Rush
+	richersoul2 = 0, -- Hush
+	waterflame = 0, -- Delirium
+	spirititems = 0, -- Mega Satan
+	trialstew = 0, -- Ultra Greedier
+	mistake = 0, -- Mother
+	winteralbireo = 0, -- The Beast
+
+	starreversal = false,
+	richersoul = false,
+
 	--Challenge Unlocks
 	eyeofclock = false, --01w Eye of Clock
 	plumy = false, --02w Plumy
@@ -1013,6 +1048,29 @@ function wakaba:CheckWakabaChecklist()
 	then
 		wakaba.state.unlock.isaaccartridge = true
 		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.isaaccartridge)
+	end
+
+	if wakaba.state.unlock.rabbitribbon == false
+	and wakaba.state.unlock.fireflylighter >= 2 -- Mom's Heart
+	and wakaba.state.unlock.sweetscatalog >= 2 -- Isaac
+	and wakaba.state.unlock.antibalance >= 2 -- Satan
+	and wakaba.state.unlock.doubleinvader >= 2 -- ???
+	and wakaba.state.unlock.venomincantation >= 2 -- The Lamb
+	and wakaba.state.unlock.printer >= 2 -- Mega Satan
+	and wakaba.state.unlock.bunnyparfait >= 2 -- Boss Rush
+	and wakaba.state.unlock.richeruniform >= 2 -- Hush
+	and wakaba.state.unlock.prestigepass >= 2 -- Delirium
+	and wakaba.state.unlock.cunningpaper >= 2 -- Mother
+	and wakaba.state.unlock.clensingfoam >= 2 -- The Beast
+	and wakaba.state.unlock.lilricher >= 2 -- Ultra Greed
+	and wakaba.state.unlock.selfburning >= 2 -- Ultra Greedier
+	then
+		wakaba.state.unlock.rabbitribbon = true
+		if #wakaba.state.pendingunlock > 0 then
+			table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.rabbitribbon)
+		else
+			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.rabbitribbon)
+		end
 	end
 
 	wakaba:SaveData(json.encode(wakaba.state))
@@ -1527,7 +1585,6 @@ function wakaba:init(continue)
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
-	--wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.HYDRA)
 end
 
 
@@ -2022,6 +2079,28 @@ function wakaba:unlockTaintedTsukasa(bool)
 
 	print("Cheating Tainted Tsukasa unlocks complete.")
 	Isaac.DebugString("[wakaba]Cheating Tainted Tsukasa unlocks complete.")
+	--wakaba:save(true)
+end
+
+function wakaba:unlockRicher(bool)
+	bool = bool or true
+	wakaba.state.unlock.fireflylighter = 2 -- Mom's Heart Hard
+	wakaba.state.unlock.sweetscatalog = 2 -- Isaac
+	wakaba.state.unlock.antibalance = 2 --Satan
+	wakaba.state.unlock.doubleinvader = 2 -- ???
+	wakaba.state.unlock.venomincantation = 2 -- The Lamb
+	wakaba.state.unlock.bunnyparfait = 2 -- Boss Rush
+	wakaba.state.unlock.printer = 2 --
+	wakaba.state.unlock.richeruniform = 2 -- Hush
+	wakaba.state.unlock.clensingfoam = 2 -- Ultra Greed
+	wakaba.state.unlock.lilricher = 2 -- Ultra Greedier
+	wakaba.state.unlock.prestigepass = 2 -- Delirium
+	wakaba.state.unlock.cunningpaper = 2 -- Mother
+	wakaba.state.unlock.selfburning = 2 --The Beast
+	wakaba.state.unlock.rabbitribbon = true
+
+	print("Cheating Richer unlocks complete.")
+	Isaac.DebugString("[wakaba]Cheating Richer unlocks complete.")
 	--wakaba:save(true)
 end
 
