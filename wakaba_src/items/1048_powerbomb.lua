@@ -22,6 +22,9 @@ function wakaba:EffectUpdate_PowerBomb(effect)
   local damage = effect:GetData().wakaba.damage or 5
   local state = 0
   local effectsprite = effect:GetSprite()
+  if effect.FrameCount % 8 == 0 then
+    Game():MakeShockwave(effect.Position, 0.008 + 0.004 * (effect.FrameCount / 4), 0.002 * (effect.FrameCount / 2), 100)
+  end
   if effectsprite:IsFinished("Explode") then
     local room = wakaba.G:GetRoom()
     for i = 0, room:GetGridSize() do
