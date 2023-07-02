@@ -59,7 +59,7 @@ function wakaba:NewLevel_SelfBurning()
 		local player = Isaac.GetPlayer(i - 1)
 		for i = 0, 2 do
 			if player:GetActiveItem(i) == wakaba.Enums.Collectibles.SELF_BURNING then
-				player:SetActiveCharge(1 + (player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY and 1 or 0)), i)
+				player:SetActiveCharge(1 + (player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY) and 1 or 0), i)
 			end
 		end
 	end
