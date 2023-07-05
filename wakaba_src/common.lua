@@ -1143,3 +1143,28 @@ function wakaba:DisplayHUDItemText(player, tableName, id)
 		end
 	end
 end
+
+
+
+function wakaba:GetRoomPlayers()
+	if not wakaba.roomPlayersCache then
+		wakaba.roomPlayersCache = {}
+		for i = 0, game:GetNumPlayers() - 1 do
+			table.insert(wakaba.roomPlayersCache, Isaac.GetPlayer(i))
+		end
+	end
+
+	return wakaba.roomPlayersCache
+end
+
+function wakaba:ForAllPlayers(func, typeFilter)
+	for _, player in pairs(wakaba:GetRoomPlayers()) do
+		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
+			local returnValue = func(player)
+
+			if returnValue ~= nil then
+				return returnValue
+			end
+		end
+	end
+end

@@ -1,15 +1,18 @@
+--[[
+	Winter Albireo (겨울의 알비레오) - 패시브, 알트 리셰 고유 능력
+	매 스테이지마다 가능한 경우, 리셰 전용 천체관 생성,
+	알트 리셰 플레이 시 기존 보물방을 천체관으로 대체
+
+	Based off on Retribution Tainted Mammon Shop
+ ]]
+
 local isc = require("wakaba_src.libs.isaacscript-common")
-
-local RECOMMENDED_SHIFT_IDX = 35
-
-if StageAPI then
-	wakaba.luarooms = {}
-	wakaba.luarooms.WINTER_ALBIREO = StageAPI.RoomsList("wakaba_WinterAlbireoRooms", require("resources.wakaba_luarooms.winteralbireo"))
-end
+wakaba.minimapRooms = {}
+local game = wakaba.G
 
 function wakaba:hasAlbireo(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
     return true
@@ -20,97 +23,167 @@ function wakaba:hasAlbireo(player)
 	end
 end
 
-function wakaba:IsValidWakabaRoom(roomdesc)
-	-- Richer Planetariums for Winter Albireo
-	if roomdesc and roomdesc.Data and roomdesc.Data.Type == RoomType.ROOM_PLANETARIUM then
-		if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) or (wakaba.runstate.luarooms and wakaba.runstate.luarooms[roomdesc.GridIndex]) then
-			return true
+function wakaba:anyPlayerHasAlbireo()
+	local hasAlbireo = false
+	local onlyTaintedRicher = true
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i-1)
+		hasAlbireo = player.Variant == 0 and wakaba:hasAlbireo(player)
+		onlyTaintedRicher = onlyTaintedRicher and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
+	end
+	return hasAlbireo, onlyTaintedRicher
+end
+
+local function countVisibleConnections(originIndex)
+	local level = game:GetLevel()
+	local connections = 0
+
+	for _, index in pairs({originIndex - 1, originIndex + 1, originIndex - 13, originIndex + 13}) do
+		local desc = level:GetRoomByIdx(index)
+		if desc.Data and desc.Data.Type ~= RoomType.ROOM_SECRET then
+			connections = connections + 1
 		end
 	end
+
+	return connections
+end
+
+function wakaba:GetDeadEnd(rng)
+	local deadEnds = {}
+	local level = game:GetLevel()
+	local roomsList = level:GetRooms()
+
+	for i = 0, #roomsList - 1 do
+		local desc = roomsList:Get(i)
+		if desc.Data.Type == RoomType.ROOM_DEFAULT and desc.Data.Shape == RoomShape.ROOMSHAPE_1x1 and countVisibleConnections(desc.SafeGridIndex) == 1 then
+			table.insert(deadEnds, desc)
+		end
+	end
+
+	if #deadEnds > 0 then
+		return deadEnds[rng:RandomInt(#deadEnds) + 1].SafeGridIndex
+	end
+end
+
+local albireoRooms = {}
+
+for i = wakaba.RoomIDs.MIN_RICHER_ROOM_ID, wakaba.RoomIDs.MAX_RICHER_ROOM_ID do
+	table.insert(albireoRooms, i)
+end
+
+local spawnerEntityPositions = {}
+local resetEntityPositions = true
+
+local function getExpectedRoomDisplayFlags()
+	local level = game:GetLevel()
+	local flags = RoomDescriptor.DISPLAY_NONE
+
+	if level:GetStateFlag(LevelStateFlag.STATE_MAP_EFFECT) then flags = RoomDescriptor.DISPLAY_BOX end
+	if level:GetStateFlag(LevelStateFlag.STATE_COMPASS_EFFECT) then flags = RoomDescriptor.DISPLAY_ALL end
+	if level:GetStateFlag(LevelStateFlag.STATE_FULL_MAP_EFFECT) then flags = RoomDescriptor.DISPLAY_ALL end
+
+	return flags
+end
+
+local function hasCachedAlbireoRooms()
+	return wakaba.RoomConfigs and wakaba.RoomConfigs.WinterAlbireo
+end
+
+function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
+	local roomPool = wakaba.RoomConfigs.WinterAlbireo["Standard"]
+	local level = game:GetLevel()
+	local roomIndex = level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng)
+	local config = roomPool[rng:RandomInt(#roomPool) + 1]
+	local targetDesc = level:GetRoomByIdx(roomIndex)
+
+	if game:GetFrameCount() == 0 or not onlyTaintedRicher or not roomIndex then
+		local index = wakaba:GetDeadEnd(rng)
+		if index then
+			targetDesc = level:GetRoomByIdx(index)
+			targetDesc.Data = config
+			targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
+			table.insert(wakaba.minimapRooms, index)
+		else
+		end
+	elseif targetDesc.Data.Type == RoomType.ROOM_TREASURE then
+		targetDesc.Data = config
+		table.insert(wakaba.minimapRooms, roomIndex)
+	end
+
+	if StageAPI then
+		StageAPI.PreviousBaseLevelLayout[targetDesc.ListIndex] = targetDesc
+
+		if StageAPI.LevelRooms[0] then
+			StageAPI.LevelRooms[0][targetDesc.ListIndex] = nil -- If this fucks something I'm so sorry
+		end
+	end
+
+	wakaba:TrySetAlbireoRoomDoor()
+	level:UpdateVisibility()
+end
+
+function wakaba:IsValidWakabaRoom(roomdesc)
+	local level = game:GetLevel()
+	roomDesc = roomdesc or level:GetCurrentRoomDesc()
+
+	if roomdesc and roomdesc.Data and roomDesc.Data.Type == RoomType.ROOM_PLANETARIUM then
+		if hasCachedAlbireoRooms() then
+			for _, index in pairs(albireoRooms) do
+				if index == roomDesc.Data.Variant then
+					return true
+				end
+			end
+		else
+			-- Richer Planetariums for Winter Albireo
+			if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) then
+				return true
+			end
+		end
+	end
+
 	return false
 end
 
-function wakaba:GetRicherRooms(roomType, rng)
-	if not rng then
-		local seeds = wakaba.G:GetSeeds()
-		--local startSeed = seeds:GetStageSeed(wakaba.G:GetLevel():GetAbsoluteStage())
-		local startSeed = seeds:GetStartSeed()
-		rng = RNG()
-		rng:SetSeed(startSeed, RECOMMENDED_SHIFT_IDX)
-	end
-	local candidates = {}
-	local min = wakaba.RoomIDs.MIN_RICHER_ROOM_ID
-	local max = wakaba.RoomIDs.MAX_RICHER_ROOM_ID
-	local result = wakaba.RoomIDs.MIN_RICHER_ROOM_ID
+local catchDebugRoom
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPORTANT, function()
+	local level = game:GetLevel()
+	local hasAlbireo, onlyTaintedRicher = wakaba:anyPlayerHasAlbireo()
+	if hasAlbireo then
+		if not hasCachedAlbireoRooms() then
+			wakaba.RoomConfigs = wakaba.RoomConfigs or {}
+			wakaba.RoomConfigs.WinterAlbireo = wakaba.RoomConfigs.WinterAlbireo or {}
 
-	for i = min, max do
-		table.insert(candidates, i)
-	end
-	
-	result = candidates[rng:RandomInt(#candidates) + 1]
-	return result
-end
+			wakaba.RoomConfigs.WinterAlbireo.Standard = {}
 
-wakaba.minimapRooms = {}
-function wakaba:NewLevel_WinterAlbireo()
-	local level = wakaba.G:GetLevel()
-	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO)[1] or Isaac.GetPlayer()
-	if (isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) or isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B))
-	and level:GetAbsoluteStage() <= LevelStage.STAGE4_2
-	and wakaba.G:GetFrameCount() > 0
-	and not level:IsAscent() then
-			
-		local seeds = wakaba.G:GetSeeds()
-		local startSeed = seeds:GetStageSeed(level:GetAbsoluteStage())
-		srng = RNG()
-		srng:SetSeed(startSeed, RECOMMENDED_SHIFT_IDX)
-
-		if --[[ wakaba.luarooms ]] StageAPI and StageAPI.InOverriddenStage() then
-			local roomNo = wakaba:GetRicherRooms(nil, srng)
-			
-			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO)
-			local newRoomPoint = isc:newRoom(rng)
-			--print(newRoomPoint)
-			if newRoomPoint then
-				local newroomdesc = isc:getRoomDescriptor(newRoomPoint)
-				--newroomdesc.Data = data
-				local data = StageAPI.GetGotoDataForTypeShape(RoomType.ROOM_PLANETARIUM, RoomShape.ROOMSHAPE_1x1)
-
-				newroomdesc.Data = data
-				local luaroom = StageAPI.LevelRoom{
-					RoomType = RoomType.ROOM_DEFAULT,
-					RequireRoomType = false,
-					RoomsList = wakaba.luarooms.WINTER_ALBIREO,
-					RoomDescriptor = newroomdesc
-				}
-				StageAPI.SetLevelRoom(luaroom, newroomdesc.ListIndex)
-				newroomdesc.Flags = 0
-				wakaba:UpdateRoomDisplayFlags(newroomdesc)
-				level:UpdateVisibility()
-
-				wakaba.runstate.luarooms = wakaba.runstate.luarooms or {}
-				wakaba.runstate.luarooms[newRoomPoint] = true
-
-				table.insert(wakaba.minimapRooms, newRoomPoint)
+			for _, index in pairs(albireoRooms) do
+				Isaac.ExecuteCommand("goto s.planetarium." .. index)
+				table.insert(wakaba.RoomConfigs.WinterAlbireo.Standard, level:GetRoomByIdx(-3).Data)
 			end
-		else
-			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO)
-			local newRoomPoint = isc:newRoom(rng)
-			--print(newRoomPoint)
-			if newRoomPoint then
-				local roomNo = wakaba:GetRicherRooms(nil, srng)
-				local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_PLANETARIUM, roomNo)
-				isc:setRoomData(newRoomPoint, roomData)
-				table.insert(wakaba.minimapRooms, newRoomPoint)
-			end
+
+			catchDebugRoom = {
+				ReturnIndex = level:GetCurrentRoomIndex(),
+				Positions = {},
+			}
+
+			wakaba:ForAllPlayers(function(player)
+				table.insert(catchDebugRoom.Positions, {
+					Player = player,
+					Position = Vector(player.Position.X, player.Position.Y),
+				})
+			end)
 		end
+
+		local stage = level:GetStage()
+		local rng = RNG()
+		rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
+		wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 		if MinimapAPI then
 			MinimapAPI:LoadDefaultMap()
-	
+
 			if #wakaba.minimapRooms > 0 then
-				for i, roomidx in pairs(wakaba.minimapRooms) do
-					local minimaproom = MinimapAPI:GetRoomByIdx(roomidx)
-					wakaba:scheduleForUpdate(function()
+				wakaba:scheduleForUpdate(function()
+					for i, roomidx in pairs(wakaba.minimapRooms) do
+						local minimaproom = MinimapAPI:GetRoomByIdx(roomidx)
 						if minimaproom then
 							minimaproom.Color = Color(MinimapAPI.Config.DefaultRoomColorR, MinimapAPI.Config.DefaultRoomColorG, MinimapAPI.Config.DefaultRoomColorB, 1, 0, 0, 0)
 							if wakaba:IsValidWakabaRoom(minimaproom.Descriptor) then
@@ -118,24 +191,40 @@ function wakaba:NewLevel_WinterAlbireo()
 							end
 							wakaba.minimapRooms[i] = nil
 						end
-					end, 0)
-				end
+					end
+				end, 0)
 			else
 				wakaba.minimapRooms = {}
 			end
 		end
 	end
+end)
 
-end
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+	if catchDebugRoom then
+		catchDebugRoom = nil
+	end
+end)
 
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_WinterAlbireo)
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+	if catchDebugRoom then
+		if game:GetLevel():GetCurrentRoomIndex() == -3 then
+			game:ChangeRoom(catchDebugRoom.ReturnIndex)
+		else
+			for _, data in pairs(catchDebugRoom.Positions) do
+				data.Player.Position = data.Position
+			end
+			catchDebugRoom = nil
+		end
+	end
+end)
 
 --[[ 
 	Door sprite replacement, from Tainted Treasure rooms
 	customRoomType is for future usage
 	possible types planned : richer(winter albireo), rira(???), trwakaba(???)
  ]]
-function wakaba:ApplyDoorGraphics(door, customRoomType)
+ function wakaba:ApplyDoorGraphics(door, customRoomType)
 	local doorSprite = door:GetSprite()
 
 	local iscustomstage = StageAPI and StageAPI.InOverriddenStage()
@@ -169,26 +258,28 @@ function wakaba:NewRoom_WinterAlbireo()
 		end
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
-			if door then
+			if door and door.TargetRoomType ~= RoomType.ROOM_SECRET then
 				local doorSprite = door:GetSprite()
 				wakaba:ApplyDoorGraphics(door)
 				doorSprite:Play("Opened")
 			end
 		end
 	else
-		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
-			local door = room:GetDoor(i)
-			if door then
-				local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
-				if wakaba:IsValidWakabaRoom(targetroomdesc) then
-					wakaba:ApplyDoorGraphics(door)
-				end
-			end
-		end
+		wakaba:TrySetAlbireoRoomDoor()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
 
---[[ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, function(_, fam)
-	print("[wakaba] Familiar Init : "..fam.Variant.."."..fam.SubType)
-end) ]]
+function wakaba:TrySetAlbireoRoomDoor()
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+		local door = room:GetDoor(i)
+		if door then
+			local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
+			if wakaba:IsValidWakabaRoom(targetroomdesc) then
+				wakaba:ApplyDoorGraphics(door)
+			end
+		end
+	end
+end
