@@ -103,17 +103,17 @@ wakaba.UnlockTables = {
 
 		All 		= {"rabbitribbon", "collectible",	wakaba.Enums.Collectibles.RABBIT_RIBBON,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 	},
-	--[[ [wakaba.Enums.Players.RICHER_B] = {
+	[wakaba.Enums.Players.RICHER_B] = {
 		istainted = true,
 		Heart 		= {"taintedrichermomsheart"},
-		Quartet 		= {"starreversal", "null",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Duet 		= {"richersoul", "null",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Delirium	= {"waterflame", "null",	wakaba.Enums.Collectibles.UNIFORM,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		MegaSatan	= {"spirititems", "null",		wakaba.Enums.Cards.CARD_WHITE_JOKER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Mother		= {"mistake", "null",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Beast		= {"winteralbireo", "null",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Greedier	= {"trialstew", "null",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-	}, ]]
+		Quartet 		= {"starreversal", "trinket",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Duet 		= {"richersoul", "card",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Delirium	= {"waterflame", "collectible",	wakaba.Enums.Collectibles.UNIFORM,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		MegaSatan	= {"crystalrestock", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
+		Mother		= {"mistake", "trinket",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Beast		= {"winteralbireo", "collectible",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
+		Greedier	= {"trialstew", "card",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+	},
 }
 
 local playertype_cache =  wakaba.CACHED_PLAYERTYPE_CACHE or {}
