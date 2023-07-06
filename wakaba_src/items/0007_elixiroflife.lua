@@ -18,7 +18,7 @@ end
 function wakaba:PlayerUpdate_Elixir(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
-	if wakaba:hasElixir(player) and not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
+	if wakaba:hasElixir(player) then
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) then
 			goto KeeperSkip
 		end

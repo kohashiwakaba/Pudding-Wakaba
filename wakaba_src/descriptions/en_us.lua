@@ -829,7 +829,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "Trial Stew",
-		description = "!!! While Isaac has only half heart and no shields:#↑ {{Tears}}+8 Fire rate#↑ {{Damage}}+100% Damage Multiplier",
+		description = "!!! While active:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge on room clears.",
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "Self Burning",
@@ -1421,7 +1421,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "Trial Stew",
-		description = "Removes all health and Holy Mantle shields and fully charges active items.#+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields.",
+		description = "Removes all health and Holy Mantle shields#Adds 8 stacks of effect for:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge, decreases a stack on room clears.",
 		mimiccharge = 8,
 	},
 }
@@ -1439,7 +1439,7 @@ wakaba.descriptions[desclang].tarotcloth = {
 		description = "Spawns 2 valuts",
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "Additional +1 Fire rate, +25% Damage",
+		description = "Additional 3 stacks",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

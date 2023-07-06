@@ -1,15 +1,15 @@
---[[ 
+--[[
 	Trial Stew (시련의 국물) - 카드, Blank Card 쿨타임 12칸
 	사용 시 전체 체력을 반칸으로 깎고 Holy Mantle 보호막을 전부 제거, 액티브 아이템을 전부 완충(강제, Blank Card 제외)
-	방 3개 클리어까지 하트 줍기 불가능 및 Holy Card 사용 불가, 
-	사용 직후 하트나 Holy Mantle 보호막이 채워지기 전까지 연사 +8, 공격력 x2 (중첩 당 연사 +1, 공격력 +25%)
+	사용 시 연사 +1, 공격력 x2 (중첩 당 연사 +1, 공격력 +25%), 8중첩(타로천 11중첨)
+	방 클리어 시 즉시 액티브 충전(시간제 제외), 중첩 1개분 해제
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:UseCard_TrialStew(_, player, flags)
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.trialstewtimer = 25
-	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW)
+	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, true, 8)
 	if flags & UseFlag.USE_CARBATTERY == 0 then
 		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
 		player:GetEffects():RemoveNullEffect(NullItemID.ID_HOLY_CARD, -1)
@@ -46,6 +46,8 @@ function wakaba:UseCard_TrialStew(_, player, flags)
 		elseif Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
 			player:AddCoins(-999)
 		end
+	else
+		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, true, 3)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_TrialStew, wakaba.Enums.Cards.CARD_TRIAL_STEW)
@@ -53,27 +55,11 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_TrialStew, wakaba.En
 function wakaba:Cache_TrialStew(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.TRIAL_STEW) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.TRIAL_STEW) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.TRIAL_STEW)
-		local redHearts = player:GetHearts() - player:GetRottenHearts()
-		local soulHearts = player:GetSoulHearts()
-		local boneHearts = player:GetBoneHearts()
-		local totalHearts = redHearts + soulHearts + boneHearts
-		if Epiphany and player:GetPlayerType() == Epiphany.table_type_id["KEEPER"] then
-			totalHearts = player:GetNumCoins() // 20
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
+			player.Damage = player.Damage * (2 + (0.25 * (num - 1)))
 		end
-		local mantleConuts = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
-
-		local target = 1
-		if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
-			target = 2
-		end
-
-		if totalHearts + mantleConuts <= target then
-			if cacheFlag == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage * (2 + (0.25 * (num - 1)))
-			end
-			if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (7 + num) * wakaba:getEstimatedTearsMult(player))
-			end
+		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (num) * wakaba:getEstimatedTearsMult(player))
 		end
 	end
 
@@ -93,13 +79,33 @@ function wakaba:PlayerUpdate_TrialStew(player)
 		end
 	end
 	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
-		local redHearts = player:GetHearts() - player:GetRottenHearts()
-		local soulHearts = player:GetSoulHearts()
-		local boneHearts = player:GetBoneHearts()
-		local mantleConuts = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) + player:GetEffects():GetNullEffectNum(NullItemID.ID_HOLY_CARD)
-		if redHearts + soulHearts + boneHearts + mantleConuts > 1 then
-			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, -1)
+		for i = 0, 2 do
+			local activeItem = player:GetActiveItem(i)
+			if (player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and (activeItem > 1) or (activeItem > 0))  then
+				local itemConfig = Isaac.GetItemConfig()
+				local activeConfig = itemConfig:GetCollectible(activeItem)
+				if activeConfig then
+					local maxCharges = activeConfig.MaxCharges
+					local chargeType = activeConfig.ChargeType
+					local currCharges = player:GetActiveCharge(i)
+					if chargeType ~= ItemConfig.CHARGE_TIMED and currCharges > 0 and currCharges < (maxCharges * 2) then
+						player:FullCharge(i, true)
+					end
+				end
+			end
 		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_TrialStew)
+
+function wakaba:RoomClear_TrialStew(rng, spawnPosition)
+  for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
+		local playerEffects = player:GetEffects()
+		if playerEffects:HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
+			playerEffects:RemoveCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, 1)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_TrialStew)
+wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_TrialStew)

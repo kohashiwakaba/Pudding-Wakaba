@@ -918,7 +918,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "시련의 국",
-		description = "!!! 캐릭터의 전체 체력이 반칸 + 보호막이 없을 때:#↑ {{TearsSmall}}연사(+상한) +8#↑ {{DamageSmall}}공격력 배율 x2",
+		description = "!!! 효과 유지 중일 때:#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충, 스택 1개가 제거됨",
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "셀프 버닝",
@@ -1530,7 +1530,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",
-		description = "#사용 시 체력과 보호막을 전부 제거하며 액티브 아이템을 전부 충전합니다.#사용 직후 해당 상태를 유지하는 동안 {{TearsSmall}}연사 +8, {{DamageSmall}}공격력 배율 x2",
+		description = "#사용 시 체력과 보호막을 전부 제거하며 시련 스택을 8개 충전합니다.#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충하며 시련 스택을 1개 제거합니다.",
 	},
 }
 wakaba.descriptions[desclang].tarotcloth = {
@@ -1547,7 +1547,7 @@ wakaba.descriptions[desclang].tarotcloth = {
 		description = "시오리의 창고를 2대 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "{{TearsSmall}}추가 연사 +1, {{DamageSmall}}추가 공격력 +25%",
+		description = "시련 스택이 11로 증가",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

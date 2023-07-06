@@ -2336,8 +2336,9 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "This item can be only activated through cards, it doesn't appear in any item pools or death certificate rooms."},
-			{str = "On use, Removes all health and Holy Mantle shields and fully charges active items."},
-			{str = "+8 Fire rate, +100% Damage as long as Isaac has only half heart and no shields."},
+			{str = "On use, Removes all health and Holy Mantle shields, fully charges active items and adds 8 trial stacks."},
+			{str = "+1 Fire rate, +25% Damage per trial stack, +100% Damage during active."},
+			{str = "Clearing a room will decrease a trial stack"},
 		},
 		{ -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
@@ -2351,7 +2352,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Tarot Card", clr = 3, halign = 0},
-			{str = "Additional +1 Fire rate, and +25% damage bonus is granted."},
+			{str = "Additional 3 trial stacks are granted."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
