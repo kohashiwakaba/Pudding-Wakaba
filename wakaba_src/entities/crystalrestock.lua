@@ -27,6 +27,11 @@ function wakaba:InitCrystalRestock(slot)
 			sprite:Play("Idle")
 		end
 		slot:AddEntityFlags(EntityFlag.FLAG_NO_REWARD | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK | EntityFlag.FLAG_NO_DEATH_TRIGGER)
+		local restockData = restock_data.floor[tostring(slot.InitSeed)]
+		--print(tostring(slot.InitSeed), restockData.restockCount, restockData.dead)
+		if restockData.dead then
+			slot:Remove()
+		end
 	end
 end
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
@@ -47,9 +52,11 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.convertRestockM
 function wakaba:SlotCollision_CrystalRestock(slot, player)
 	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and player:GetNumCoins() >= 5 then
 		local restockData = restock_data.floor[tostring(slot.InitSeed)]
-		player:AddCoins(-5)
-		--restockData.restockCount = restockData.restockCount - 1
-		slot:GetSprite():PlayOverlay("CoinInsert")
+		if not restockData.dead then
+			player:AddCoins(-5)
+			--restockData.restockCount = restockData.restockCount - 1
+			slot:GetSprite():PlayOverlay("CoinInsert")
+		end
 	end
 end
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)

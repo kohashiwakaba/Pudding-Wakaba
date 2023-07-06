@@ -96,7 +96,10 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	local config = roomPool[rng:RandomInt(#roomPool) + 1]
 	local targetDesc = level:GetRoomByIdx(roomIndex)
 
-	if game:GetFrameCount() == 0 or not onlyTaintedRicher or not roomIndex then
+	local stage = level:GetStage()
+	local isWombStage = stage >= LevelStage.STAGE4_1 and stage ~= LevelStage.STAGE4_3 and stage <= LevelStage.STAGE5
+
+	if game:GetFrameCount() == 0 or not onlyTaintedRicher or isWombStage then
 		local index = wakaba:GetDeadEnd(rng)
 		if index then
 			targetDesc = level:GetRoomByIdx(index)
@@ -176,7 +179,9 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 		local stage = level:GetStage()
 		local rng = RNG()
 		rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
-		wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
+		if stage <= LevelStage.STAGE5 and not level:IsAscent() then
+			wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
+		end
 		if MinimapAPI then
 			MinimapAPI:LoadDefaultMap()
 
