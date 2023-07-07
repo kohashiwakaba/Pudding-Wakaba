@@ -42,10 +42,18 @@ function wakaba:PlayerUpdate_VintageThreat()
 		if player:IsDead() and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:GetData().wakaba.vintagethreat then
 			--player:GetData().wakaba.vintagegameover = true
 		end
-		if player:GetData().wakaba.vintagegameover and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:IsExtraAnimationFinished() then
-			MusicManager():Play(Music.MUSIC_JINGLE_GAME_OVER, Options.MusicVolume)
-			MusicManager():Queue(Music.MUSIC_GAME_OVER)
-			wakaba.G:End(1)
+		if player:GetData().wakaba.vintagegameover then
+			if not player:HasCurseMistEffect() then
+				player:AddCurseMistEffect()
+			end
+			if player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+				player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE, -1)
+			end
+			if (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:IsExtraAnimationFinished() then
+				MusicManager():Play(Music.MUSIC_JINGLE_GAME_OVER, Options.MusicVolume)
+				MusicManager():Queue(Music.MUSIC_GAME_OVER)
+				wakaba.G:End(1)
+			end
 		end
 	end
 end
