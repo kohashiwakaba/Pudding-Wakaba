@@ -420,6 +420,10 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						wakaba.state.unlock.returntoken = 2
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.returntoken)
 					end
+					if hasricher and wakaba.state.unlock.clensingfoam < 2 then
+						wakaba.state.unlock.clensingfoam = 2
+						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.clensingfoam)
+					end
 					if hasricher and wakaba.state.unlock.lilricher < 2 then
 						wakaba.state.unlock.lilricher = 2
 						CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lilricher)
