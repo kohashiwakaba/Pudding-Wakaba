@@ -82,7 +82,9 @@ function wakaba:FamiliarUpdate_VintageThreat(familiar)
 		and (player:GetPlayerType() == wakaba.Enums.Players.SHIORI and data.books and data.books[data.bookindex] == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		else
 			player:RemoveCollectible(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
-			player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+			for i = 1, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) do
+				player:RemoveCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+			end
 			wakaba.G:ShakeScreen(10)
 			local mantlebreak = Isaac.Spawn(EntityType.ENTITY_EFFECT, 16, 11, familiar.Position, Vector.Zero, familiar)
 			local skull = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.DEATH_SKULL, 0, Vector(player.Position.X, player.Position.Y - 50), Vector.Zero, player)
