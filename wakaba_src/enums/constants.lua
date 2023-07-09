@@ -899,7 +899,8 @@ wakaba.achievementsprite = {
 	apollyoncrisis = "gfx/ui/achievement_wakaba/achievement_apollyoncrisis.png", -- 11w
 	deliverysystem = "gfx/ui/achievement_wakaba/achievement_isekaidefinition.png", -- 12w
 	calculation = "gfx/ui/achievement_wakaba/achievement_balance.png", -- 13w
-	lilmao = "gfx/ui/achievement_wakaba/achievement_lilmao.png", -- 13w
+	lilmao = "gfx/ui/achievement_wakaba/achievement_lilmao.png", -- 14w
+	richerflipper = "gfx/ui/achievement_wakaba/achievement_richerflipper.png", -- 15w
 
 	edensticky = "gfx/ui/achievement_wakaba/achievement_edensticky.png", -- 99w
 	doubledreams = "gfx/ui/achievement_wakaba/achievement_doubledreams.png", -- 99w
