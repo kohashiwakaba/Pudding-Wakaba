@@ -1,6 +1,6 @@
 --[[
 
-isaacscript-common 30.11.1
+isaacscript-common 30.12.2
 
 This is the "isaacscript-common" library, which was created with the IsaacScript tool.
 
@@ -910,6 +910,25 @@ local function __TS__CloneDescriptor(____bindingPattern0)
     return descriptor
 end
 
+local function __TS__Decorate(self, originalValue, decorators, context)
+    local result = originalValue
+    do
+        local i = #decorators
+        while i >= 0 do
+            local decorator = decorators[i + 1]
+            if decorator ~= nil then
+                local ____decorator_result_0 = decorator(self, result, context)
+                if ____decorator_result_0 == nil then
+                    ____decorator_result_0 = result
+                end
+                result = ____decorator_result_0
+            end
+            i = i - 1
+        end
+    end
+    return result
+end
+
 local function __TS__ObjectAssign(target, ...)
     local sources = {...}
     for i = 1, #sources do
@@ -1011,7 +1030,7 @@ do
     end
 end
 
-local function __TS__Decorate(decorators, target, key, desc)
+local function __TS__DecorateLegacy(decorators, target, key, desc)
     local result = target
     do
         local i = #decorators
@@ -1625,7 +1644,7 @@ local function __TS__ParseFloat(numberString)
     if infinityMatch ~= nil then
         return __TS__StringAccess(infinityMatch, 0) == "-" and -math.huge or math.huge
     end
-    local number = tonumber(__TS__Match(numberString, "^%s*(-?%d+%.?%d*)"))
+    local number = tonumber((__TS__Match(numberString, "^%s*(-?%d+%.?%d*)")))
     return number or 0 / 0
 end
 
@@ -1656,7 +1675,7 @@ do
             local hexMatch = __TS__Match(numberString, "^%s*-?0[xX]")
             if hexMatch ~= nil then
                 base = 16
-                numberString = __TS__Match(hexMatch, "-") and "-" .. __TS__StringSubstring(numberString, #hexMatch) or __TS__StringSubstring(numberString, #hexMatch)
+                numberString = (__TS__Match(hexMatch, "-")) and "-" .. __TS__StringSubstring(numberString, #hexMatch) or __TS__StringSubstring(numberString, #hexMatch)
             end
         end
         if base < 2 or base > 36 then
@@ -1664,10 +1683,7 @@ do
         end
         local allowedDigits = base <= 10 and __TS__StringSubstring(parseIntBasePattern, 0, base) or __TS__StringSubstring(parseIntBasePattern, 0, 10 + 2 * (base - 10))
         local pattern = ("^%s*(-?[" .. allowedDigits) .. "]*)"
-        local number = tonumber(
-            __TS__Match(numberString, pattern),
-            base
-        )
+        local number = tonumber((__TS__Match(numberString, pattern)), base)
         if number == nil then
             return 0 / 0
         end
@@ -2121,7 +2137,7 @@ local function __TS__SourceMapTraceBack(fileName, sourceMap)
             local function stringReplacer(____, file, line)
                 local fileSourceMap = _G.__TS__sourcemap[file]
                 if fileSourceMap ~= nil and fileSourceMap[line] ~= nil then
-                    local chunkName = __TS__Match(file, "%[string \"([^\"]+)\"%]")
+                    local chunkName = (__TS__Match(file, "%[string \"([^\"]+)\"%]"))
                     local sourceName = string.gsub(chunkName, ".lua$", ".ts")
                     local data = fileSourceMap[line]
                     if type(data) == "number" then
@@ -2452,6 +2468,7 @@ return {
   __TS__CloneDescriptor = __TS__CloneDescriptor,
   __TS__CountVarargs = __TS__CountVarargs,
   __TS__Decorate = __TS__Decorate,
+  __TS__DecorateLegacy = __TS__DecorateLegacy,
   __TS__DecorateParam = __TS__DecorateParam,
   __TS__Delete = __TS__Delete,
   __TS__DelegatedYield = __TS__DelegatedYield,
@@ -2952,6 +2969,14 @@ do
 end
 do
     local ____export = require("lua_modules.isaac-typescript-definitions.dist.src.enums.ButtonAction")
+    for ____exportKey, ____exportValue in pairs(____export) do
+        if ____exportKey ~= "default" then
+            ____exports[____exportKey] = ____exportValue
+        end
+    end
+end
+do
+    local ____export = require("lua_modules.isaac-typescript-definitions.dist.src.enums.CallbackPriority")
     for ____exportKey, ____exportValue in pairs(____export) do
         if ____exportKey ~= "default" then
             ____exports[____exportKey] = ____exportValue
@@ -15152,6 +15177,19 @@ ____exports.Challenge.DELETE_THIS = 45
 ____exports.Challenge[____exports.Challenge.DELETE_THIS] = "DELETE_THIS"
 return ____exports
  end,
+["lua_modules.isaac-typescript-definitions.dist.src.enums.CallbackPriority"] = function(...) 
+local ____exports = {}
+____exports.CallbackPriority = {}
+____exports.CallbackPriority.IMPORTANT = -200
+____exports.CallbackPriority[____exports.CallbackPriority.IMPORTANT] = "IMPORTANT"
+____exports.CallbackPriority.EARLY = -100
+____exports.CallbackPriority[____exports.CallbackPriority.EARLY] = "EARLY"
+____exports.CallbackPriority.DEFAULT = 0
+____exports.CallbackPriority[____exports.CallbackPriority.DEFAULT] = "DEFAULT"
+____exports.CallbackPriority.LATE = 100
+____exports.CallbackPriority[____exports.CallbackPriority.LATE] = "LATE"
+return ____exports
+ end,
 ["lua_modules.isaac-typescript-definitions.dist.src.enums.ButtonAction"] = function(...) 
 local ____exports = {}
 ____exports.ButtonAction = {}
@@ -21065,9 +21103,6 @@ function ____exports.removeAllMatchingEntities(self, entityType, entityVariant, 
     if entitySubType == nil then
         entitySubType = -1
     end
-    if cap == nil then
-        cap = nil
-    end
     local entities = ____exports.getEntities(nil, entityType, entityVariant, entitySubType)
     return ____exports.removeEntities(nil, entities, cap)
 end
@@ -21109,12 +21144,6 @@ function ____exports.spawn(self, entityType, variant, subType, positionOrGridInd
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
-    end
     local room = game:GetRoom()
     if positionOrGridIndex == nil then
         local entityID = ____exports.getEntityIDFromConstituents(nil, entityType, variant, subType)
@@ -21146,12 +21175,6 @@ function ____exports.spawnEntityID(self, entityID, positionOrGridIndex, velocity
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
-    end
     local entityType, variant, subType = table.unpack(____exports.getConstituentsFromEntityID(nil, entityID))
     return ____exports.spawn(
         nil,
@@ -21167,9 +21190,6 @@ end
 function ____exports.spawnWithSeed(self, entityType, variant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
     end
     return ____exports.spawn(
         nil,
@@ -23869,12 +23889,6 @@ function ____exports.spawnBomb(self, bombVariant, subType, positionOrGridIndex, 
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
-    end
     local entity = spawn(
         nil,
         EntityType.BOMB,
@@ -23895,9 +23909,6 @@ function ____exports.spawnBombWithSeed(self, bombVariant, subType, positionOrGri
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnBomb(
         nil,
         bombVariant,
@@ -23911,12 +23922,6 @@ end
 function ____exports.spawnEffect(self, effectVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -23938,9 +23943,6 @@ function ____exports.spawnEffectWithSeed(self, effectVariant, subType, positionO
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnEffect(
         nil,
         effectVariant,
@@ -23954,12 +23956,6 @@ end
 function ____exports.spawnFamiliar(self, familiarVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -23981,9 +23977,6 @@ function ____exports.spawnFamiliarWithSeed(self, familiarVariant, subType, posit
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnFamiliar(
         nil,
         familiarVariant,
@@ -23997,12 +23990,6 @@ end
 function ____exports.spawnKnife(self, knifeVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24024,9 +24011,6 @@ function ____exports.spawnKnifeWithSeed(self, knifeVariant, subType, positionOrG
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnKnife(
         nil,
         knifeVariant,
@@ -24040,12 +24024,6 @@ end
 function ____exports.spawnLaser(self, laserVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24067,9 +24045,6 @@ function ____exports.spawnLaserWithSeed(self, laserVariant, subType, positionOrG
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnLaser(
         nil,
         laserVariant,
@@ -24083,12 +24058,6 @@ end
 function ____exports.spawnNPC(self, entityType, variant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24110,9 +24079,6 @@ function ____exports.spawnNPCWithSeed(self, entityType, variant, subType, positi
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnNPC(
         nil,
         entityType,
@@ -24127,12 +24093,6 @@ end
 function ____exports.spawnPickup(self, pickupVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24154,9 +24114,6 @@ function ____exports.spawnPickupWithSeed(self, pickupVariant, subType, positionO
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnPickup(
         nil,
         pickupVariant,
@@ -24170,12 +24127,6 @@ end
 function ____exports.spawnProjectile(self, projectileVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24197,9 +24148,6 @@ function ____exports.spawnProjectileWithSeed(self, projectileVariant, subType, p
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnProjectile(
         nil,
         projectileVariant,
@@ -24213,12 +24161,6 @@ end
 function ____exports.spawnSlot(self, slotVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawn(
         nil,
@@ -24235,9 +24177,6 @@ function ____exports.spawnSlotWithSeed(self, slotVariant, subType, positionOrGri
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnSlot(
         nil,
         slotVariant,
@@ -24251,12 +24190,6 @@ end
 function ____exports.spawnTear(self, tearVariant, subType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     local entity = spawn(
         nil,
@@ -24277,9 +24210,6 @@ end
 function ____exports.spawnTearWithSeed(self, tearVariant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
     end
     return ____exports.spawnTear(
         nil,
@@ -29501,7 +29431,7 @@ function ____exports.logMap(map, name)
         return
     end
     local suffix = name == nil and (" \"" .. tostring(name)) .. "\"" or ""
-    log(("Printing out a TSTL map" .. suffix) .. ":")
+    log(("Logging a TSTL map" .. suffix) .. ":")
     local mapKeys = {__TS__Spread(map:keys())}
     __TS__ArraySort(mapKeys)
     for ____, key in ipairs(mapKeys) do
@@ -29609,7 +29539,7 @@ function ____exports.logSet(set, name)
         return
     end
     local suffix = name == nil and (" \"" .. tostring(name)) .. "\"" or ""
-    log(("Printing out a TSTL set" .. suffix) .. ":")
+    log(("Logging a TSTL set" .. suffix) .. ":")
     local setValues = getSortedSetValues(nil, set)
     for ____, value in ipairs(setValues) do
         log("  Value: " .. tostring(value))
@@ -29631,7 +29561,7 @@ function ____exports.logTable(luaTable, parentTables)
         parentTables = 0
     end
     if parentTables == 0 then
-        log("Printing out a Lua table:", false)
+        log("Logging a Lua table:", false)
     elseif parentTables > 10 then
         return
     end
@@ -29695,7 +29625,7 @@ function ____exports.logTableDifferences(table1, table2)
     end
 end
 function ____exports.logTableKeys(luaTable)
-    log("Printing out the keys of a Lua table:")
+    log("Logging the keys of a Lua table:")
     if not isTable(nil, luaTable) then
         log(("  n/a (encountered a variable of type \"" .. __TS__TypeOf(luaTable)) .. "\" instead of a table)")
         return
@@ -29710,6 +29640,33 @@ function ____exports.logTableKeys(luaTable)
         end
     )
     log("  The size of the table was: " .. tostring(numElements))
+end
+function ____exports.logTableShallow(luaTable)
+    log("Logging a Lua table (shallow):", false)
+    if not isTable(nil, luaTable) then
+        log(
+            ("n/a (encountered a variable of type \"" .. __TS__TypeOf(luaTable)) .. "\" instead of a table)",
+            false
+        )
+        return
+    end
+    local numElements = 0
+    local indentation = "  "
+    iterateTableInOrder(
+        nil,
+        luaTable,
+        function(____, key, value)
+            log(
+                ((indentation .. tostring(key)) .. " --> ") .. tostring(value),
+                false
+            )
+            numElements = numElements + 1
+        end
+    )
+    log(
+        (indentation .. "The size of the table was: ") .. tostring(numElements),
+        false
+    )
 end
 function ____exports.logTearFlags(flags)
     ____exports.logFlags(flags, TearFlag, "tear")
@@ -32329,6 +32286,363 @@ ____exports.PocketItemType.UNDETERMINABLE = 5
 ____exports.PocketItemType[____exports.PocketItemType.UNDETERMINABLE] = "UNDETERMINABLE"
 return ____exports
  end,
+["src.maps.PHDPillConversions"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__New = ____lualib.__TS__New
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
+local ____ReadonlyMap = require("src.types.ReadonlyMap")
+local ReadonlyMap = ____ReadonlyMap.ReadonlyMap
+____exports.PHD_PILL_CONVERSIONS = __TS__New(ReadonlyMap, {
+    {PillEffect.BAD_TRIP, PillEffect.BALLS_OF_STEEL},
+    {PillEffect.HEALTH_DOWN, PillEffect.HEALTH_UP},
+    {PillEffect.RANGE_DOWN, PillEffect.RANGE_UP},
+    {PillEffect.SPEED_DOWN, PillEffect.SPEED_UP},
+    {PillEffect.TEARS_DOWN, PillEffect.TEARS_UP},
+    {PillEffect.LUCK_DOWN, PillEffect.LUCK_UP},
+    {PillEffect.PARALYSIS, PillEffect.PHEROMONES},
+    {PillEffect.AMNESIA, PillEffect.I_CAN_SEE_FOREVER},
+    {PillEffect.R_U_A_WIZARD, PillEffect.POWER},
+    {PillEffect.ADDICTED, PillEffect.PERCS},
+    {PillEffect.QUESTION_MARKS, PillEffect.TELEPILLS},
+    {PillEffect.RETRO_VISION, PillEffect.I_CAN_SEE_FOREVER},
+    {PillEffect.X_LAX, PillEffect.SOMETHINGS_WRONG},
+    {PillEffect.IM_EXCITED, PillEffect.IM_DROWSY},
+    {PillEffect.HORF, PillEffect.GULP},
+    {PillEffect.SHOT_SPEED_DOWN, PillEffect.SHOT_SPEED_UP}
+})
+return ____exports
+ end,
+["src.maps.falsePHDPillConversions"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__New = ____lualib.__TS__New
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
+local ____ReadonlyMap = require("src.types.ReadonlyMap")
+local ReadonlyMap = ____ReadonlyMap.ReadonlyMap
+____exports.FALSE_PHD_PILL_CONVERSIONS = __TS__New(ReadonlyMap, {
+    {PillEffect.BAD_GAS, PillEffect.HEALTH_DOWN},
+    {PillEffect.BALLS_OF_STEEL, PillEffect.BAD_TRIP},
+    {PillEffect.BOMBS_ARE_KEYS, PillEffect.TEARS_DOWN},
+    {PillEffect.EXPLOSIVE_DIARRHEA, PillEffect.RANGE_DOWN},
+    {PillEffect.FULL_HEALTH, PillEffect.BAD_TRIP},
+    {PillEffect.HEALTH_UP, PillEffect.HEALTH_DOWN},
+    {PillEffect.PRETTY_FLY, PillEffect.LUCK_DOWN},
+    {PillEffect.RANGE_UP, PillEffect.RANGE_DOWN},
+    {PillEffect.SPEED_UP, PillEffect.SPEED_DOWN},
+    {PillEffect.TEARS_UP, PillEffect.TEARS_DOWN},
+    {PillEffect.LUCK_UP, PillEffect.LUCK_DOWN},
+    {PillEffect.TELEPILLS, PillEffect.QUESTION_MARKS},
+    {PillEffect.FORTY_EIGHT_HOUR_ENERGY, PillEffect.SPEED_DOWN},
+    {PillEffect.HEMATEMESIS, PillEffect.BAD_TRIP},
+    {PillEffect.I_CAN_SEE_FOREVER, PillEffect.AMNESIA},
+    {PillEffect.PHEROMONES, PillEffect.PARALYSIS},
+    {PillEffect.LEMON_PARTY, PillEffect.AMNESIA},
+    {PillEffect.PERCS, PillEffect.ADDICTED},
+    {PillEffect.ONE_MAKES_YOU_LARGER, PillEffect.RANGE_DOWN},
+    {PillEffect.ONE_MAKES_YOU_SMALL, PillEffect.SPEED_DOWN},
+    {PillEffect.INFESTED_EXCLAMATION, PillEffect.TEARS_DOWN},
+    {PillEffect.INFESTED_QUESTION, PillEffect.LUCK_DOWN},
+    {PillEffect.POWER, PillEffect.R_U_A_WIZARD},
+    {PillEffect.FRIENDS_TILL_THE_END, PillEffect.HEALTH_DOWN},
+    {PillEffect.SOMETHINGS_WRONG, PillEffect.X_LAX},
+    {PillEffect.IM_DROWSY, PillEffect.IM_EXCITED},
+    {PillEffect.GULP, PillEffect.HORF},
+    {PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE, PillEffect.RETRO_VISION},
+    {PillEffect.VURP, PillEffect.HORF},
+    {PillEffect.SHOT_SPEED_UP, PillEffect.SHOT_SPEED_DOWN}
+})
+return ____exports
+ end,
+["src.objects.pillEffectClasses"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ItemConfigPillEffectClass = ____isaac_2Dtypescript_2Ddefinitions.ItemConfigPillEffectClass
+local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
+____exports.DEFAULT_PILL_EFFECT_CLASS = ItemConfigPillEffectClass.MODDED
+____exports.PILL_EFFECT_CLASSES = {
+    [PillEffect.BAD_GAS] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.BAD_TRIP] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.BALLS_OF_STEEL] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.BOMBS_ARE_KEYS] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.EXPLOSIVE_DIARRHEA] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.FULL_HEALTH] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.HEALTH_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.HEALTH_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.I_FOUND_PILLS] = ItemConfigPillEffectClass.JOKE,
+    [PillEffect.PUBERTY] = ItemConfigPillEffectClass.JOKE,
+    [PillEffect.PRETTY_FLY] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.RANGE_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.RANGE_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.SPEED_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.SPEED_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.TEARS_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.TEARS_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.LUCK_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.LUCK_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.TELEPILLS] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.HEMATEMESIS] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.PARALYSIS] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.I_CAN_SEE_FOREVER] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.PHEROMONES] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.AMNESIA] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.LEMON_PARTY] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.R_U_A_WIZARD] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.PERCS] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.ADDICTED] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.RELAX] = ItemConfigPillEffectClass.JOKE,
+    [PillEffect.QUESTION_MARKS] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.ONE_MAKES_YOU_LARGER] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.ONE_MAKES_YOU_SMALL] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.INFESTED_EXCLAMATION] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.INFESTED_QUESTION] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.POWER] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.RETRO_VISION] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.FRIENDS_TILL_THE_END] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.X_LAX] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.SOMETHINGS_WRONG] = ItemConfigPillEffectClass.JOKE,
+    [PillEffect.IM_DROWSY] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.IM_EXCITED] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.GULP] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.HORF] = ItemConfigPillEffectClass.JOKE,
+    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = ItemConfigPillEffectClass.MINOR,
+    [PillEffect.VURP] = ItemConfigPillEffectClass.MEDIUM,
+    [PillEffect.SHOT_SPEED_DOWN] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.SHOT_SPEED_UP] = ItemConfigPillEffectClass.MAJOR,
+    [PillEffect.EXPERIMENTAL] = ItemConfigPillEffectClass.MAJOR
+}
+return ____exports
+ end,
+["src.objects.pillEffectNames"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
+____exports.DEFAULT_PILL_EFFECT_NAME = "Unknown"
+____exports.PILL_EFFECT_NAMES = {
+    [PillEffect.BAD_GAS] = "Bad Gas",
+    [PillEffect.BAD_TRIP] = "Bad Trip",
+    [PillEffect.BALLS_OF_STEEL] = "Balls of Steel",
+    [PillEffect.BOMBS_ARE_KEYS] = "Bombs Are Key",
+    [PillEffect.EXPLOSIVE_DIARRHEA] = "Explosive Diarrhea",
+    [PillEffect.FULL_HEALTH] = "Full Health",
+    [PillEffect.HEALTH_DOWN] = "Health Down",
+    [PillEffect.HEALTH_UP] = "Health Up",
+    [PillEffect.I_FOUND_PILLS] = "I Found Pills",
+    [PillEffect.PUBERTY] = "Puberty",
+    [PillEffect.PRETTY_FLY] = "Pretty Fly",
+    [PillEffect.RANGE_DOWN] = "Range Down",
+    [PillEffect.RANGE_UP] = "Range Up",
+    [PillEffect.SPEED_DOWN] = "Speed Down",
+    [PillEffect.SPEED_UP] = "Speed Up",
+    [PillEffect.TEARS_DOWN] = "Tears Down",
+    [PillEffect.TEARS_UP] = "Tears Up",
+    [PillEffect.LUCK_DOWN] = "Luck Down",
+    [PillEffect.LUCK_UP] = "Luck Up",
+    [PillEffect.TELEPILLS] = "Telepills",
+    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = "48 Hour Energy",
+    [PillEffect.HEMATEMESIS] = "Hematemesis",
+    [PillEffect.PARALYSIS] = "Paralysis",
+    [PillEffect.I_CAN_SEE_FOREVER] = "I can see forever!",
+    [PillEffect.PHEROMONES] = "Pheromones",
+    [PillEffect.AMNESIA] = "Amnesia",
+    [PillEffect.LEMON_PARTY] = "Lemon Party",
+    [PillEffect.R_U_A_WIZARD] = "R U a Wizard?",
+    [PillEffect.PERCS] = "Percs!",
+    [PillEffect.ADDICTED] = "Addicted!",
+    [PillEffect.RELAX] = "Re-Lax",
+    [PillEffect.QUESTION_MARKS] = "???",
+    [PillEffect.ONE_MAKES_YOU_LARGER] = "One makes you larger",
+    [PillEffect.ONE_MAKES_YOU_SMALL] = "One makes you small",
+    [PillEffect.INFESTED_EXCLAMATION] = "Infested!",
+    [PillEffect.INFESTED_QUESTION] = "Infested?",
+    [PillEffect.POWER] = "Power Pill!",
+    [PillEffect.RETRO_VISION] = "Retro Vision",
+    [PillEffect.FRIENDS_TILL_THE_END] = "Friends Till The End!",
+    [PillEffect.X_LAX] = "X-Lax",
+    [PillEffect.SOMETHINGS_WRONG] = "Something's wrong...",
+    [PillEffect.IM_DROWSY] = "I'm Drowsy...",
+    [PillEffect.IM_EXCITED] = "I'm Excited!!!",
+    [PillEffect.GULP] = "Gulp!",
+    [PillEffect.HORF] = "Horf!",
+    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = "Feels like I'm walking on sunshine!",
+    [PillEffect.VURP] = "Vurp!",
+    [PillEffect.SHOT_SPEED_DOWN] = "Shot Speed Down",
+    [PillEffect.SHOT_SPEED_UP] = "Shot Speed Up",
+    [PillEffect.EXPERIMENTAL] = "Experimental Pill"
+}
+return ____exports
+ end,
+["src.objects.pillEffectTypes"] = function(...) 
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local ItemConfigPillEffectType = ____isaac_2Dtypescript_2Ddefinitions.ItemConfigPillEffectType
+local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
+____exports.DEFAULT_PILL_EFFECT_TYPE = ItemConfigPillEffectType.MODDED
+____exports.PILL_EFFECT_TYPES = {
+    [PillEffect.BAD_GAS] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.BAD_TRIP] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.BALLS_OF_STEEL] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.BOMBS_ARE_KEYS] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.EXPLOSIVE_DIARRHEA] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.FULL_HEALTH] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.HEALTH_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.HEALTH_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.I_FOUND_PILLS] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.PUBERTY] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.PRETTY_FLY] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.RANGE_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.RANGE_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.SPEED_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.SPEED_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.TEARS_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.TEARS_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.LUCK_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.LUCK_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.TELEPILLS] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.HEMATEMESIS] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.PARALYSIS] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.I_CAN_SEE_FOREVER] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.PHEROMONES] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.AMNESIA] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.LEMON_PARTY] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.R_U_A_WIZARD] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.PERCS] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.ADDICTED] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.RELAX] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.QUESTION_MARKS] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.ONE_MAKES_YOU_LARGER] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.ONE_MAKES_YOU_SMALL] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.INFESTED_EXCLAMATION] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.INFESTED_QUESTION] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.POWER] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.RETRO_VISION] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.FRIENDS_TILL_THE_END] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.X_LAX] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.SOMETHINGS_WRONG] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.IM_DROWSY] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.IM_EXCITED] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.GULP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.HORF] = ItemConfigPillEffectType.NEUTRAL,
+    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.VURP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.SHOT_SPEED_DOWN] = ItemConfigPillEffectType.NEGATIVE,
+    [PillEffect.SHOT_SPEED_UP] = ItemConfigPillEffectType.POSITIVE,
+    [PillEffect.EXPERIMENTAL] = ItemConfigPillEffectType.NEUTRAL
+}
+return ____exports
+ end,
+["src.functions.pills"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local __TS__ArraySlice = ____lualib.__TS__ArraySlice
+local ____exports = {}
+local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
+local PillColor = ____isaac_2Dtypescript_2Ddefinitions.PillColor
+local ____cachedEnumValues = require("src.arrays.cachedEnumValues")
+local PILL_COLOR_VALUES = ____cachedEnumValues.PILL_COLOR_VALUES
+local ____cachedClasses = require("src.core.cachedClasses")
+local game = ____cachedClasses.game
+local itemConfig = ____cachedClasses.itemConfig
+local ____constantsFirstLast = require("src.core.constantsFirstLast")
+local FIRST_HORSE_PILL_COLOR = ____constantsFirstLast.FIRST_HORSE_PILL_COLOR
+local FIRST_PILL_COLOR = ____constantsFirstLast.FIRST_PILL_COLOR
+local FIRST_PILL_EFFECT = ____constantsFirstLast.FIRST_PILL_EFFECT
+local LAST_HORSE_PILL_COLOR = ____constantsFirstLast.LAST_HORSE_PILL_COLOR
+local LAST_NORMAL_PILL_COLOR = ____constantsFirstLast.LAST_NORMAL_PILL_COLOR
+local LAST_VANILLA_PILL_EFFECT = ____constantsFirstLast.LAST_VANILLA_PILL_EFFECT
+local ____PHDPillConversions = require("src.maps.PHDPillConversions")
+local PHD_PILL_CONVERSIONS = ____PHDPillConversions.PHD_PILL_CONVERSIONS
+local ____falsePHDPillConversions = require("src.maps.falsePHDPillConversions")
+local FALSE_PHD_PILL_CONVERSIONS = ____falsePHDPillConversions.FALSE_PHD_PILL_CONVERSIONS
+local ____pillEffectClasses = require("src.objects.pillEffectClasses")
+local DEFAULT_PILL_EFFECT_CLASS = ____pillEffectClasses.DEFAULT_PILL_EFFECT_CLASS
+local PILL_EFFECT_CLASSES = ____pillEffectClasses.PILL_EFFECT_CLASSES
+local ____pillEffectNames = require("src.objects.pillEffectNames")
+local DEFAULT_PILL_EFFECT_NAME = ____pillEffectNames.DEFAULT_PILL_EFFECT_NAME
+local PILL_EFFECT_NAMES = ____pillEffectNames.PILL_EFFECT_NAMES
+local ____pillEffectTypes = require("src.objects.pillEffectTypes")
+local DEFAULT_PILL_EFFECT_TYPE = ____pillEffectTypes.DEFAULT_PILL_EFFECT_TYPE
+local PILL_EFFECT_TYPES = ____pillEffectTypes.PILL_EFFECT_TYPES
+local ____types = require("src.functions.types")
+local asNumber = ____types.asNumber
+local asPillColor = ____types.asPillColor
+local ____utils = require("src.functions.utils")
+local iRange = ____utils.iRange
+function ____exports.isVanillaPillEffect(self, pillEffect)
+    return pillEffect <= LAST_VANILLA_PILL_EFFECT
+end
+local HORSE_PILL_ADJUSTMENT = 2048
+function ____exports.getAllPillColors(self)
+    return __TS__ArraySlice(PILL_COLOR_VALUES, 1)
+end
+function ____exports.getFalsePHDPillEffect(self, pillEffect)
+    local convertedPillEffect = FALSE_PHD_PILL_CONVERSIONS:get(pillEffect)
+    return convertedPillEffect == nil and pillEffect or convertedPillEffect
+end
+function ____exports.getHorsePillColor(self, pillColor)
+    return asNumber(nil, pillColor) + HORSE_PILL_ADJUSTMENT
+end
+function ____exports.getHorsePillColors(self)
+    return iRange(nil, FIRST_HORSE_PILL_COLOR, LAST_HORSE_PILL_COLOR)
+end
+function ____exports.getNormalPillColorFromHorse(self, pillColor)
+    local normalPillColor = asPillColor(
+        nil,
+        asNumber(nil, pillColor) - HORSE_PILL_ADJUSTMENT
+    )
+    return normalPillColor > PillColor.NULL and normalPillColor or pillColor
+end
+function ____exports.getNormalPillColors(self)
+    return iRange(nil, FIRST_PILL_COLOR, LAST_NORMAL_PILL_COLOR)
+end
+function ____exports.getPHDPillEffect(self, pillEffect)
+    local convertedPillEffect = PHD_PILL_CONVERSIONS:get(pillEffect)
+    return convertedPillEffect == nil and pillEffect or convertedPillEffect
+end
+function ____exports.getPillColorFromEffect(self, pillEffect)
+    local itemPool = game:GetItemPool()
+    local normalPillColors = ____exports.getNormalPillColors(nil)
+    for ____, normalPillColor in ipairs(normalPillColors) do
+        local normalPillEffect = itemPool:GetPillEffect(normalPillColor)
+        if normalPillEffect == pillEffect then
+            return normalPillColor
+        end
+    end
+    return PillColor.NULL
+end
+function ____exports.getPillEffectClass(self, pillEffect)
+    local pillEffectClass = PILL_EFFECT_CLASSES[pillEffect]
+    return pillEffectClass == nil and DEFAULT_PILL_EFFECT_CLASS or pillEffectClass
+end
+function ____exports.getPillEffectName(self, pillEffect)
+    local pillEffectName = PILL_EFFECT_NAMES[pillEffect]
+    if pillEffectName ~= nil then
+        return pillEffectName
+    end
+    local itemConfigPillEffect = itemConfig:GetPillEffect(pillEffect)
+    if itemConfigPillEffect ~= nil then
+        return itemConfigPillEffect.Name
+    end
+    return DEFAULT_PILL_EFFECT_NAME
+end
+function ____exports.getPillEffectType(self, pillEffect)
+    local pillEffectClass = PILL_EFFECT_TYPES[pillEffect]
+    return pillEffectClass == nil and DEFAULT_PILL_EFFECT_TYPE or pillEffectClass
+end
+function ____exports.getVanillaPillEffects(self)
+    return iRange(nil, FIRST_PILL_EFFECT, LAST_VANILLA_PILL_EFFECT)
+end
+function ____exports.isHorsePill(self, pillColor)
+    return asNumber(nil, pillColor) > HORSE_PILL_ADJUSTMENT
+end
+function ____exports.isModdedPillEffect(self, pillEffect)
+    return not ____exports.isVanillaPillEffect(nil, pillEffect)
+end
+return ____exports
+ end,
 ["src.interfaces.PocketItemDescription"] = function(...) 
 local ____exports = {}
 return ____exports
@@ -32337,6 +32651,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__ArrayFind = ____lualib.__TS__ArrayFind
 local __TS__ArraySome = ____lualib.__TS__ArraySome
+local __TS__ObjectKeys = ____lualib.__TS__ObjectKeys
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ActiveSlot = ____isaac_2Dtypescript_2Ddefinitions.ActiveSlot
@@ -32433,6 +32748,26 @@ function ____exports.isFirstSlotPocketActiveItem(self, player)
     end
     return firstPocketItem.type == PocketItemType.ACTIVE_ITEM
 end
+function ____exports.pocketItemsEquals(self, pocketItems1, pocketItems2)
+    if #pocketItems1 ~= #pocketItems2 then
+        return false
+    end
+    do
+        local i = 0
+        while i < #pocketItems1 do
+            local pocketItem1 = pocketItems1[i + 1]
+            local pocketItem2 = pocketItems2[i + 1]
+            local keys = __TS__ObjectKeys(pocketItem1)
+            for ____, key in ipairs(keys) do
+                if pocketItem1[key] ~= pocketItem2[key] then
+                    return false
+                end
+            end
+            i = i + 1
+        end
+    end
+    return true
+end
 return ____exports
  end,
 ["src.classes.callbacks.PostUsePillFilter"] = function(...) 
@@ -32441,21 +32776,29 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local __TS__ArrayFind = ____lualib.__TS__ArrayFind
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
-local PillColor = ____isaac_2Dtypescript_2Ddefinitions.PillColor
+local PocketItemSlot = ____isaac_2Dtypescript_2Ddefinitions.PocketItemSlot
 local ____ModCallbackCustom = require("src.enums.ModCallbackCustom")
 local ModCallbackCustom = ____ModCallbackCustom.ModCallbackCustom
+local ____PocketItemType = require("src.enums.PocketItemType")
+local PocketItemType = ____PocketItemType.PocketItemType
+local ____pills = require("src.functions.pills")
+local getPillColorFromEffect = ____pills.getPillColorFromEffect
 local ____playerDataStructures = require("src.functions.playerDataStructures")
-local mapDeletePlayer = ____playerDataStructures.mapDeletePlayer
 local mapGetPlayer = ____playerDataStructures.mapGetPlayer
 local mapSetPlayer = ____playerDataStructures.mapSetPlayer
 local ____pocketItems = require("src.functions.pocketItems")
-local getFirstPill = ____pocketItems.getFirstPill
+local getPocketItems = ____pocketItems.getPocketItems
+local pocketItemsEquals = ____pocketItems.pocketItemsEquals
 local ____CustomCallback = require("src.classes.private.CustomCallback")
 local CustomCallback = ____CustomCallback.CustomCallback
-local v = {run = {playerFirstPill = __TS__New(Map)}}
+local v = {run = {
+    pillColorToPillEffect = __TS__New(Map),
+    playerPocketItems = __TS__New(Map)
+}}
 ____exports.PostUsePillFilter = __TS__Class()
 local PostUsePillFilter = ____exports.PostUsePillFilter
 PostUsePillFilter.name = "PostUsePillFilter"
@@ -32464,23 +32807,34 @@ function PostUsePillFilter.prototype.____constructor(self)
     CustomCallback.prototype.____constructor(self)
     self.v = v
     self.postUsePill = function(____, pillEffect, player, useFlags)
-        local firstPill = mapGetPlayer(nil, v.run.playerFirstPill, player)
-        local pillColor = firstPill == nil and PillColor.NULL or firstPill.subType
+        local pillColor = self:getPillColorOfCurrentlyUsedPill(player, pillEffect)
         self:fire(pillEffect, pillColor, player, useFlags)
     end
     self.postPEffectUpdateReordered = function(____, player)
-        self:updateCurrentHeldPills(player)
+        self:updateCurrentPocketItems(player)
     end
     self.callbacksUsed = {{ModCallback.POST_USE_PILL, self.postUsePill}}
     self.customCallbacksUsed = {{ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, self.postPEffectUpdateReordered}}
 end
-function PostUsePillFilter.prototype.updateCurrentHeldPills(self, player)
-    local firstPill = getFirstPill(nil, player)
-    if firstPill == nil then
-        mapDeletePlayer(nil, v.run.playerFirstPill, player)
-    else
-        mapSetPlayer(nil, v.run.playerFirstPill, player, firstPill)
+function PostUsePillFilter.prototype.getPillColorOfCurrentlyUsedPill(self, player, pillEffect)
+    local oldPocketItems = mapGetPlayer(nil, v.run.playerPocketItems, player)
+    if oldPocketItems ~= nil then
+        local pocketItems = getPocketItems(nil, player)
+        if not pocketItemsEquals(nil, oldPocketItems, pocketItems) then
+            local oldPocketItemSlot1 = __TS__ArrayFind(
+                oldPocketItems,
+                function(____, pocketItem) return pocketItem.slot == PocketItemSlot.SLOT_1 end
+            )
+            if oldPocketItemSlot1 ~= nil and oldPocketItemSlot1.type == PocketItemType.PILL then
+                return oldPocketItemSlot1.subType
+            end
+        end
     end
+    return getPillColorFromEffect(nil, pillEffect)
+end
+function PostUsePillFilter.prototype.updateCurrentPocketItems(self, player)
+    local pocketItems = getPocketItems(nil, player)
+    mapSetPlayer(nil, v.run.playerPocketItems, player, pocketItems)
 end
 return ____exports
  end,
@@ -33785,7 +34139,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
@@ -33853,12 +34207,15 @@ end
 function RoomHistory.prototype.deleteLastRoomDescription(self)
     table.remove(v.run.roomHistory)
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "deleteLastRoomDescription", true)
 function RoomHistory.prototype.getNumRoomsEntered(self)
     return #v.run.roomHistory
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "getNumRoomsEntered", true)
 function RoomHistory.prototype.getRoomHistory(self)
     return v.run.roomHistory
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "getRoomHistory", true)
 function RoomHistory.prototype.getPreviousRoomDescription(self)
     local previousRoomDescription = v.run.roomHistory[#v.run.roomHistory - 2 + 1]
     if previousRoomDescription ~= nil then
@@ -33870,12 +34227,15 @@ function RoomHistory.prototype.getPreviousRoomDescription(self)
     end
     error("Failed to find a room description for any rooms thus far on this run.")
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "getPreviousRoomDescription", true)
 function RoomHistory.prototype.getLatestRoomDescription(self)
     return getLastElement(nil, v.run.roomHistory)
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "getLatestRoomDescription", true)
 function RoomHistory.prototype.inFirstRoom(self)
     return #v.run.roomHistory == 1
 end
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "inFirstRoom", true)
 function RoomHistory.prototype.isLeavingRoom(self)
     local level = game:GetLevel()
     local stage = level:GetStage()
@@ -33890,20 +34250,14 @@ function RoomHistory.prototype.isLeavingRoom(self)
     end
     return startSeedString ~= latestRoomDescription.startSeedString or stage ~= latestRoomDescription.stage or stageType ~= latestRoomDescription.stageType or roomListIndex ~= latestRoomDescription.roomListIndex or roomVisitedCount ~= latestRoomDescription.roomVisitedCount
 end
-__TS__Decorate({Exported}, RoomHistory.prototype, "deleteLastRoomDescription", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "getNumRoomsEntered", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "getRoomHistory", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "getPreviousRoomDescription", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "getLatestRoomDescription", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "inFirstRoom", true)
-__TS__Decorate({Exported}, RoomHistory.prototype, "isLeavingRoom", true)
+__TS__DecorateLegacy({Exported}, RoomHistory.prototype, "isLeavingRoom", true)
 return ____exports
  end,
 ["src.classes.features.other.RunInNFrames"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
 local ____exports = {}
 local checkExecuteQueuedFunctions, checkExecuteIntervalFunctions
@@ -34001,6 +34355,7 @@ function RunInNFrames.prototype.restartNextRenderFrame(self, character)
         restart(nil, character)
     end)
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "restartNextRenderFrame", true)
 function RunInNFrames.prototype.runInNGameFrames(self, func, numGameFrames, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
@@ -34012,6 +34367,7 @@ function RunInNFrames.prototype.runInNGameFrames(self, func, numGameFrames, canc
     local ____v_run_queuedGameFunctions_0 = v.run.queuedGameFunctions
     ____v_run_queuedGameFunctions_0[#____v_run_queuedGameFunctions_0 + 1] = queuedFunction
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "runInNGameFrames", true)
 function RunInNFrames.prototype.runInNRenderFrames(self, func, numRenderFrames, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
@@ -34023,18 +34379,21 @@ function RunInNFrames.prototype.runInNRenderFrames(self, func, numRenderFrames, 
     local ____v_run_queuedRenderFunctions_1 = v.run.queuedRenderFunctions
     ____v_run_queuedRenderFunctions_1[#____v_run_queuedRenderFunctions_1 + 1] = queuedFunction
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "runInNRenderFrames", true)
 function RunInNFrames.prototype.runNextGameFrame(self, func, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
     end
     self:runInNGameFrames(func, 1, cancelIfRoomChanges)
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "runNextGameFrame", true)
 function RunInNFrames.prototype.runNextRenderFrame(self, func, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
     end
     self:runInNRenderFrames(func, 1, cancelIfRoomChanges)
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "runNextRenderFrame", true)
 function RunInNFrames.prototype.setIntervalGameFrames(self, func, numGameFrames, runImmediately, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
@@ -34057,6 +34416,7 @@ function RunInNFrames.prototype.setIntervalGameFrames(self, func, numGameFrames,
     local ____v_run_intervalGameFunctions_2 = v.run.intervalGameFunctions
     ____v_run_intervalGameFunctions_2[#____v_run_intervalGameFunctions_2 + 1] = intervalFunction
 end
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "setIntervalGameFrames", true)
 function RunInNFrames.prototype.setIntervalRenderFrames(self, func, numRenderFrames, runImmediately, cancelIfRoomChanges)
     if cancelIfRoomChanges == nil then
         cancelIfRoomChanges = false
@@ -34079,13 +34439,7 @@ function RunInNFrames.prototype.setIntervalRenderFrames(self, func, numRenderFra
     local ____v_run_intervalRenderFunctions_3 = v.run.intervalRenderFunctions
     ____v_run_intervalRenderFunctions_3[#____v_run_intervalRenderFunctions_3 + 1] = intervalFunction
 end
-__TS__Decorate({Exported}, RunInNFrames.prototype, "restartNextRenderFrame", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "runInNGameFrames", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "runInNRenderFrames", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "runNextGameFrame", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "runNextRenderFrame", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "setIntervalGameFrames", true)
-__TS__Decorate({Exported}, RunInNFrames.prototype, "setIntervalRenderFrames", true)
+__TS__DecorateLegacy({Exported}, RunInNFrames.prototype, "setIntervalRenderFrames", true)
 return ____exports
  end,
 ["src.classes.features.callbackLogic.CustomGridEntities"] = function(...) 
@@ -34096,7 +34450,7 @@ local Set = ____lualib.Set
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
@@ -34237,6 +34591,7 @@ function CustomGridEntities.prototype.spawnCustomGridEntity(self, gridEntityType
     roomCustomGridEntities:set(gridIndex, customGridEntityData)
     return customGridEntity
 end
+__TS__DecorateLegacy({Exported}, CustomGridEntities.prototype, "spawnCustomGridEntity", true)
 function CustomGridEntities.prototype.removeCustomGridEntity(self, gridIndexOrPositionOrGridEntity, updateRoom)
     if updateRoom == nil then
         updateRoom = true
@@ -34271,6 +34626,7 @@ function CustomGridEntities.prototype.removeCustomGridEntity(self, gridIndexOrPo
     removeGridEntity(nil, decoration, updateRoom)
     return decoration
 end
+__TS__DecorateLegacy({Exported}, CustomGridEntities.prototype, "removeCustomGridEntity", true)
 function CustomGridEntities.prototype.getCustomGridEntities(self)
     local roomListIndex = getRoomListIndex(nil)
     local roomCustomGridEntities = v.level.customGridEntities:get(roomListIndex)
@@ -34289,6 +34645,7 @@ function CustomGridEntities.prototype.getCustomGridEntities(self)
     end
     return customGridEntities
 end
+__TS__DecorateLegacy({Exported}, CustomGridEntities.prototype, "getCustomGridEntities", true)
 function CustomGridEntities.prototype.getCustomGridEntityType(self, gridEntityOrGridIndex)
     if not self.initialized then
         return nil
@@ -34308,15 +34665,12 @@ function CustomGridEntities.prototype.getCustomGridEntityType(self, gridEntityOr
     end
     return nil
 end
+__TS__DecorateLegacy({Exported}, CustomGridEntities.prototype, "getCustomGridEntityType", true)
 function CustomGridEntities.prototype.isCustomGridEntity(self, gridEntityOrGridIndex)
     local gridEntityTypeCustom = self:getCustomGridEntityType(gridEntityOrGridIndex)
     return gridEntityTypeCustom ~= nil
 end
-__TS__Decorate({Exported}, CustomGridEntities.prototype, "spawnCustomGridEntity", true)
-__TS__Decorate({Exported}, CustomGridEntities.prototype, "removeCustomGridEntity", true)
-__TS__Decorate({Exported}, CustomGridEntities.prototype, "getCustomGridEntities", true)
-__TS__Decorate({Exported}, CustomGridEntities.prototype, "getCustomGridEntityType", true)
-__TS__Decorate({Exported}, CustomGridEntities.prototype, "isCustomGridEntity", true)
+__TS__DecorateLegacy({Exported}, CustomGridEntities.prototype, "isCustomGridEntity", true)
 return ____exports
  end,
 ["src.classes.features.callbackLogic.CustomRevive"] = function(...) 
@@ -34581,7 +34935,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
@@ -34691,16 +35045,16 @@ end
 function GameReorderedCallbacks.prototype.forceNewLevelCallback(self)
     self.forceNewLevel = true
 end
+__TS__DecorateLegacy({Exported}, GameReorderedCallbacks.prototype, "forceNewLevelCallback", true)
 function GameReorderedCallbacks.prototype.forceNewRoomCallback(self)
     self.forceNewRoom = true
 end
+__TS__DecorateLegacy({Exported}, GameReorderedCallbacks.prototype, "forceNewRoomCallback", true)
 function GameReorderedCallbacks.prototype.reorderedCallbacksSetStage(self, stage, stageType)
     self.currentStage = stage
     self.currentStageType = stageType
 end
-__TS__Decorate({Exported}, GameReorderedCallbacks.prototype, "forceNewLevelCallback", true)
-__TS__Decorate({Exported}, GameReorderedCallbacks.prototype, "forceNewRoomCallback", true)
-__TS__Decorate({Exported}, GameReorderedCallbacks.prototype, "reorderedCallbacksSetStage", true)
+__TS__DecorateLegacy({Exported}, GameReorderedCallbacks.prototype, "reorderedCallbacksSetStage", true)
 return ____exports
  end,
 ["src.classes.features.callbackLogic.GridEntityCollisionDetection"] = function(...) 
@@ -36643,7 +36997,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__TypeOf = ____lualib.__TS__TypeOf
 local __TS__ObjectKeys = ____lualib.__TS__ObjectKeys
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__ArraySort = ____lualib.__TS__ArraySort
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -36775,6 +37129,7 @@ function SaveDataManager.prototype.saveDataManager(self, key, v, conditionalFunc
         self.saveDataConditionalFuncMap[key] = conditionalFunc
     end
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManager", true)
 function SaveDataManager.prototype.storeClassConstructorsFromObject(self, luaMap)
     local tstlClassName = getTSTLClassName(nil, luaMap)
     if tstlClassName ~= nil and not NON_USER_DEFINED_CLASS_NAMES:has(tstlClassName) then
@@ -36789,12 +37144,15 @@ end
 function SaveDataManager.prototype.saveDataManagerLoad(self)
     loadFromDisk(nil, self.mod, self.saveDataMap, self.classConstructors)
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerLoad", true)
 function SaveDataManager.prototype.saveDataManagerSave(self)
     saveToDisk(nil, self.mod, self.saveDataMap, self.saveDataConditionalFuncMap)
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerSave", true)
 function SaveDataManager.prototype.saveDataManagerSetGlobal(self)
     g = self.saveDataMap
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerSetGlobal", true)
 function SaveDataManager.prototype.saveDataManagerRegisterClass(self, ...)
     local tstlClasses = {...}
     for ____, tstlClass in ipairs(tstlClasses) do
@@ -36805,6 +37163,7 @@ function SaveDataManager.prototype.saveDataManagerRegisterClass(self, ...)
         self.classConstructors[name] = tstlClass
     end
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerRegisterClass", true)
 function SaveDataManager.prototype.saveDataManagerRemove(self, key)
     if not isString(nil, key) then
         error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
@@ -36817,6 +37176,7 @@ function SaveDataManager.prototype.saveDataManagerRemove(self, key)
     self.saveDataConditionalFuncMap[key] = nil
     self.saveDataGlowingHourGlassMap[key] = nil
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerRemove", true)
 function SaveDataManager.prototype.saveDataManagerReset(self, key, childObjectKey)
     if not isString(nil, key) then
         error("The save data manager requires that keys are strings. You tried to use a key of type: " .. __TS__TypeOf(key))
@@ -36833,9 +37193,11 @@ function SaveDataManager.prototype.saveDataManagerReset(self, key, childObjectKe
         childObjectKey
     )
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerReset", true)
 function SaveDataManager.prototype.saveDataManagerInMenu(self)
     return not self.inARun
 end
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerInMenu", true)
 function SaveDataManager.prototype.saveDataManagerLogSubscribers(self)
     log("List of save data manager subscribers:")
     local keys = __TS__ObjectKeys(self.saveDataMap)
@@ -36844,15 +37206,7 @@ function SaveDataManager.prototype.saveDataManagerLogSubscribers(self)
         log("- " .. key)
     end
 end
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManager", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerLoad", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSave", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerSetGlobal", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRegisterClass", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerRemove", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerReset", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerInMenu", true)
-__TS__Decorate({Exported}, SaveDataManager.prototype, "saveDataManagerLogSubscribers", true)
+__TS__DecorateLegacy({Exported}, SaveDataManager.prototype, "saveDataManagerLogSubscribers", true)
 return ____exports
  end,
 ["src.classes.features.other.PickupIndexCreation"] = function(...) 
@@ -36861,7 +37215,7 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__Iterator = ____lualib.__TS__Iterator
 local ____exports = {}
 local getStoredPickupIndex
@@ -37049,7 +37403,7 @@ function PickupIndexCreation.prototype.getPickupIndex(self, pickup)
     local entityID = getEntityID(nil, pickup)
     error("Failed to generate a new pickup index for pickup: " .. entityID)
 end
-__TS__Decorate({Exported}, PickupIndexCreation.prototype, "getPickupIndex", true)
+__TS__DecorateLegacy({Exported}, PickupIndexCreation.prototype, "getPickupIndex", true)
 return ____exports
  end,
 ["src.classes.features.callbackLogic.PickupChangeDetection"] = function(...) 
@@ -37436,7 +37790,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -37498,10 +37852,12 @@ function ModdedElementDetection.prototype.getFirstModdedCollectibleType(self)
     end
     return ____temp_0
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getFirstModdedCollectibleType", true)
 function ModdedElementDetection.prototype.getLastCollectibleType(self)
     self:errorIfNoCallbacksFired("collectible")
     return itemConfig:GetCollectibles().Size - 1
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getLastCollectibleType", true)
 function ModdedElementDetection.prototype.getModdedCollectibleTypes(self)
     self:errorIfNoCallbacksFired("collectible")
     local firstModdedCollectibleType = self:getFirstModdedCollectibleType()
@@ -37511,16 +37867,19 @@ function ModdedElementDetection.prototype.getModdedCollectibleTypes(self)
     local lastCollectibleType = self:getLastCollectibleType()
     return iRange(nil, firstModdedCollectibleType, lastCollectibleType)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getModdedCollectibleTypes", true)
 function ModdedElementDetection.prototype.getNumCollectibleTypes(self)
     self:errorIfNoCallbacksFired("collectible")
     local numModdedCollectibleTypes = self:getNumModdedCollectibleTypes()
     return NUM_VANILLA_COLLECTIBLE_TYPES + numModdedCollectibleTypes
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumCollectibleTypes", true)
 function ModdedElementDetection.prototype.getNumModdedCollectibleTypes(self)
     self:errorIfNoCallbacksFired("collectible")
     local lastCollectibleType = self:getLastCollectibleType()
     return lastCollectibleType - LAST_VANILLA_COLLECTIBLE_TYPE
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumModdedCollectibleTypes", true)
 function ModdedElementDetection.prototype.getFirstModdedTrinketType(self)
     self:errorIfNoCallbacksFired("trinket")
     local firstModdedTrinketType = asTrinketType(
@@ -37536,11 +37895,13 @@ function ModdedElementDetection.prototype.getFirstModdedTrinketType(self)
     end
     return ____temp_1
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getFirstModdedTrinketType", true)
 function ModdedElementDetection.prototype.getLastTrinketType(self)
     self:errorIfNoCallbacksFired("trinket")
     local numTrinketTypes = self:getNumTrinketTypes()
     return asTrinketType(nil, numTrinketTypes)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getLastTrinketType", true)
 function ModdedElementDetection.prototype.getModdedTrinketTypes(self)
     self:errorIfNoCallbacksFired("trinket")
     local firstModdedTrinketType = self:getFirstModdedTrinketType()
@@ -37550,25 +37911,30 @@ function ModdedElementDetection.prototype.getModdedTrinketTypes(self)
     local lastTrinketType = self:getLastTrinketType()
     return iRange(nil, firstModdedTrinketType, lastTrinketType)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getModdedTrinketTypes", true)
 function ModdedElementDetection.prototype.getNumTrinketTypes(self)
     self:errorIfNoCallbacksFired("trinket")
     return itemConfig:GetTrinkets().Size - 1
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumTrinketTypes", true)
 function ModdedElementDetection.prototype.getNumModdedTrinketTypes(self)
     self:errorIfNoCallbacksFired("trinket")
     local numTrinketTypes = self:getNumTrinketTypes()
     return numTrinketTypes - NUM_VANILLA_TRINKET_TYPES
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumModdedTrinketTypes", true)
 function ModdedElementDetection.prototype.getTrinketTypes(self)
     self:errorIfNoCallbacksFired("trinket")
     local lastTrinketType = self:getLastTrinketType()
     return iRange(nil, FIRST_TRINKET_TYPE, lastTrinketType)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getTrinketTypes", true)
 function ModdedElementDetection.prototype.getAllCardTypes(self)
     self:errorIfNoCallbacksFired("card")
     local lastCardType = self:getLastCardType()
     return iRange(nil, FIRST_CARD_TYPE, lastCardType)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getAllCardTypes", true)
 function ModdedElementDetection.prototype.getFirstModdedCardType(self)
     self:errorIfNoCallbacksFired("card")
     local firstModdedCardType = asCardType(
@@ -37584,11 +37950,13 @@ function ModdedElementDetection.prototype.getFirstModdedCardType(self)
     end
     return ____temp_2
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getFirstModdedCardType", true)
 function ModdedElementDetection.prototype.getLastCardType(self)
     self:errorIfNoCallbacksFired("card")
     local numCards = self:getNumCardTypes()
     return asCardType(nil, numCards)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getLastCardType", true)
 function ModdedElementDetection.prototype.getModdedCardTypes(self)
     self:errorIfNoCallbacksFired("card")
     local firstModdedCardType = self:getFirstModdedCardType()
@@ -37598,20 +37966,24 @@ function ModdedElementDetection.prototype.getModdedCardTypes(self)
     local lastCardType = self:getLastCardType()
     return iRange(nil, firstModdedCardType, lastCardType)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getModdedCardTypes", true)
 function ModdedElementDetection.prototype.getNumCardTypes(self)
     self:errorIfNoCallbacksFired("card")
     return itemConfig:GetCards().Size - 1
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumCardTypes", true)
 function ModdedElementDetection.prototype.getNumModdedCardTypes(self)
     self:errorIfNoCallbacksFired("card")
     local numCardTypes = self:getNumCardTypes()
     return numCardTypes - NUM_VANILLA_CARD_TYPES
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumModdedCardTypes", true)
 function ModdedElementDetection.prototype.getAllPillEffects(self)
     self:errorIfNoCallbacksFired("pill")
     local lastPillEffect = self:getLastPillEffect()
     return iRange(nil, FIRST_PILL_EFFECT, lastPillEffect)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getAllPillEffects", true)
 function ModdedElementDetection.prototype.getFirstModdedPillEffect(self)
     self:errorIfNoCallbacksFired("pill")
     local firstModdedPillEffect = asPillEffect(
@@ -37627,11 +37999,13 @@ function ModdedElementDetection.prototype.getFirstModdedPillEffect(self)
     end
     return ____temp_3
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getFirstModdedPillEffect", true)
 function ModdedElementDetection.prototype.getLastPillEffect(self)
     self:errorIfNoCallbacksFired("pill")
     local numPillEffects = self:getNumPillEffects()
     return asPillEffect(nil, numPillEffects)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getLastPillEffect", true)
 function ModdedElementDetection.prototype.getModdedPillEffects(self)
     self:errorIfNoCallbacksFired("pill")
     local firstModdedPillEffect = self:getFirstModdedPillEffect()
@@ -37641,38 +38015,18 @@ function ModdedElementDetection.prototype.getModdedPillEffects(self)
     local lastPillEffect = self:getLastPillEffect()
     return iRange(nil, firstModdedPillEffect, lastPillEffect)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getModdedPillEffects", true)
 function ModdedElementDetection.prototype.getNumPillEffects(self)
     self:errorIfNoCallbacksFired("pill")
     return itemConfig:GetPillEffects().Size
 end
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumPillEffects", true)
 function ModdedElementDetection.prototype.getNumModdedPillEffects(self)
     self:errorIfNoCallbacksFired("pill")
     local numPillEffects = self:getNumPillEffects()
     return numPillEffects - NUM_VANILLA_PILL_EFFECTS
 end
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getFirstModdedCollectibleType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getLastCollectibleType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getModdedCollectibleTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumCollectibleTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumModdedCollectibleTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getFirstModdedTrinketType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getLastTrinketType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getModdedTrinketTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumTrinketTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumModdedTrinketTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getTrinketTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getAllCardTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getFirstModdedCardType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getLastCardType", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getModdedCardTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumCardTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumModdedCardTypes", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getAllPillEffects", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getFirstModdedPillEffect", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getLastPillEffect", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getModdedPillEffects", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumPillEffects", true)
-__TS__Decorate({Exported}, ModdedElementDetection.prototype, "getNumModdedPillEffects", true)
+__TS__DecorateLegacy({Exported}, ModdedElementDetection.prototype, "getNumModdedPillEffects", true)
 return ____exports
  end,
 ["src.classes.features.other.ModdedElementSets"] = function(...) 
@@ -37683,7 +38037,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Set = ____lualib.Set
 local Map = ____lualib.Map
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CacheFlag = ____isaac_2Dtypescript_2Ddefinitions.CacheFlag
@@ -38036,10 +38390,12 @@ function ModdedElementSets.prototype.getCardArray(self)
     self:lazyInitModdedCardTypes()
     return self.allCardTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCardArray", true)
 function ModdedElementSets.prototype.getCardSet(self)
     self:lazyInitModdedCardTypes()
     return self.allCardTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCardSet", true)
 function ModdedElementSets.prototype.getCardTypesOfType(self, ...)
     local itemConfigCardTypes = {...}
     if self.itemConfigCardTypeToCardTypeMap.size == 0 then
@@ -38057,14 +38413,17 @@ function ModdedElementSets.prototype.getCardTypesOfType(self, ...)
     end
     return matchingCardTypes
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCardTypesOfType", true)
 function ModdedElementSets.prototype.getCollectibleArray(self)
     self:lazyInitModdedCollectibleTypes()
     return self.allCollectibleTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCollectibleArray", true)
 function ModdedElementSets.prototype.getCollectibleSet(self)
     self:lazyInitModdedCollectibleTypes()
     return self.allCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCollectibleSet", true)
 function ModdedElementSets.prototype.getCollectiblesForTransformation(self, playerForm)
     local itemConfigTag = TRANSFORMATION_TO_TAG_MAP:get(playerForm)
     if itemConfigTag == nil then
@@ -38072,6 +38431,7 @@ function ModdedElementSets.prototype.getCollectiblesForTransformation(self, play
     end
     return self:getCollectiblesWithTag(itemConfigTag)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCollectiblesForTransformation", true)
 function ModdedElementSets.prototype.getCollectiblesWithCacheFlag(self, cacheFlag)
     self:lazyInitCacheFlagToCollectibleTypesMap()
     local collectiblesSet = self.cacheFlagToCollectibleTypesMap:get(cacheFlag)
@@ -38080,6 +38440,7 @@ function ModdedElementSets.prototype.getCollectiblesWithCacheFlag(self, cacheFla
     end
     return collectiblesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCollectiblesWithCacheFlag", true)
 function ModdedElementSets.prototype.getCollectiblesWithTag(self, itemConfigTag)
     self:lazyInitTagToCollectibleTypesMap()
     local collectibleTypes = self.tagToCollectibleTypesMap:get(itemConfigTag)
@@ -38088,46 +38449,57 @@ function ModdedElementSets.prototype.getCollectiblesWithTag(self, itemConfigTag)
     end
     return collectibleTypes
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getCollectiblesWithTag", true)
 function ModdedElementSets.prototype.getEdenActiveCollectibles(self)
     self:lazyInitEdenCollectibleTypesSet()
     return self.edenActiveCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getEdenActiveCollectibles", true)
 function ModdedElementSets.prototype.getEdenPassiveCollectibles(self)
     self:lazyInitEdenCollectibleTypesSet()
     return self.edenPassiveCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getEdenPassiveCollectibles", true)
 function ModdedElementSets.prototype.getFlyingCollectibles(self, includeConditionalItems)
     self:lazyInitFlyingCollectibleTypesSet()
     return includeConditionalItems and self.flyingCollectibleTypesSet or self.permanentFlyingCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getFlyingCollectibles", true)
 function ModdedElementSets.prototype.getFlyingTrinkets(self)
     self:lazyInitFlyingTrinketTypesSet()
     return self.flyingTrinketTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getFlyingTrinkets", true)
 function ModdedElementSets.prototype.getModdedCardArray(self)
     self:lazyInitModdedCardTypes()
     return self.moddedCardTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedCardArray", true)
 function ModdedElementSets.prototype.getModdedCardSet(self)
     self:lazyInitModdedCardTypes()
     return self.moddedCardTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedCardSet", true)
 function ModdedElementSets.prototype.getModdedCollectibleArray(self)
     self:lazyInitModdedCollectibleTypes()
     return self.moddedCollectibleTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedCollectibleArray", true)
 function ModdedElementSets.prototype.getModdedCollectibleSet(self)
     self:lazyInitModdedCollectibleTypes()
     return self.moddedCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedCollectibleSet", true)
 function ModdedElementSets.prototype.getModdedTrinketArray(self)
     self:lazyInitModdedTrinketTypes()
     return self.moddedTrinketTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedTrinketArray", true)
 function ModdedElementSets.prototype.getModdedTrinketSet(self)
     self:lazyInitModdedTrinketTypes()
     return self.moddedTrinketTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getModdedTrinketSet", true)
 function ModdedElementSets.prototype.getPlayerCollectibleMap(self, player)
     local collectibleArray = self:getCollectibleArray()
     local collectibleMap = __TS__New(Map)
@@ -38155,6 +38527,7 @@ function ModdedElementSets.prototype.getPlayerCollectibleMap(self, player)
     end
     return collectibleMap
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getPlayerCollectibleMap", true)
 function ModdedElementSets.prototype.getPlayerCollectiblesWithCacheFlag(self, player, cacheFlag)
     local collectiblesWithCacheFlag = self:getCollectiblesWithCacheFlag(cacheFlag)
     local playerCollectibles = {}
@@ -38170,6 +38543,7 @@ function ModdedElementSets.prototype.getPlayerCollectiblesWithCacheFlag(self, pl
     end
     return playerCollectibles
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesWithCacheFlag", true)
 function ModdedElementSets.prototype.getPlayerCollectiblesWithTag(self, player, itemConfigTag)
     local collectiblesWithTag = self:getCollectiblesWithTag(itemConfigTag)
     local playerCollectibles = {}
@@ -38185,6 +38559,7 @@ function ModdedElementSets.prototype.getPlayerCollectiblesWithTag(self, player, 
     end
     return playerCollectibles
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesWithTag", true)
 function ModdedElementSets.prototype.getPlayerCollectiblesForTransformation(self, player, playerForm)
     local collectibleForTransformation = self:getCollectiblesForTransformation(playerForm)
     local playerCollectibles = {}
@@ -38200,6 +38575,7 @@ function ModdedElementSets.prototype.getPlayerCollectiblesForTransformation(self
     end
     return playerCollectibles
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesForTransformation", true)
 function ModdedElementSets.prototype.getPlayerTrinketsWithCacheFlag(self, player, cacheFlag)
     local trinketsWithCacheFlag = self:getTrinketsWithCacheFlag(cacheFlag)
     local playerTrinkets = __TS__New(Map)
@@ -38211,6 +38587,7 @@ function ModdedElementSets.prototype.getPlayerTrinketsWithCacheFlag(self, player
     end
     return playerTrinkets
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getPlayerTrinketsWithCacheFlag", true)
 function ModdedElementSets.prototype.getRandomCard(self, seedOrRNG, exceptions)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -38220,6 +38597,7 @@ function ModdedElementSets.prototype.getRandomCard(self, seedOrRNG, exceptions)
     end
     return getRandomSetElement(nil, self.cardSet, seedOrRNG, exceptions)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getRandomCard", true)
 function ModdedElementSets.prototype.getRandomCardTypeOfType(self, itemConfigCardType, seedOrRNG, exceptions)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -38230,6 +38608,7 @@ function ModdedElementSets.prototype.getRandomCardTypeOfType(self, itemConfigCar
     local cardTypeSet = self:getCardTypesOfType(itemConfigCardType)
     return getRandomSetElement(nil, cardTypeSet, seedOrRNG, exceptions)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getRandomCardTypeOfType", true)
 function ModdedElementSets.prototype.getRandomRune(self, seedOrRNG, exceptions)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -38241,6 +38620,7 @@ function ModdedElementSets.prototype.getRandomRune(self, seedOrRNG, exceptions)
     runesSet:delete(CardType.RUNE_SHARD)
     return getRandomSetElement(nil, runesSet, seedOrRNG, exceptions)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getRandomRune", true)
 function ModdedElementSets.prototype.getRandomEdenActiveCollectible(self, seedOrRNG, exceptions)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -38251,6 +38631,7 @@ function ModdedElementSets.prototype.getRandomEdenActiveCollectible(self, seedOr
     self:lazyInitEdenCollectibleTypesSet()
     return getRandomSetElement(nil, self.edenPassiveCollectibleTypesSet, seedOrRNG, exceptions)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getRandomEdenActiveCollectible", true)
 function ModdedElementSets.prototype.getRandomEdenPassiveCollectible(self, seedOrRNG, exceptions)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -38261,14 +38642,17 @@ function ModdedElementSets.prototype.getRandomEdenPassiveCollectible(self, seedO
     self:lazyInitEdenCollectibleTypesSet()
     return getRandomSetElement(nil, self.edenPassiveCollectibleTypesSet, seedOrRNG, exceptions)
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getRandomEdenPassiveCollectible", true)
 function ModdedElementSets.prototype.getTrinketArray(self)
     self:lazyInitModdedTrinketTypes()
     return self.allTrinketTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getTrinketArray", true)
 function ModdedElementSets.prototype.getTrinketSet(self)
     self:lazyInitModdedTrinketTypes()
     return self.allTrinketTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getTrinketSet", true)
 function ModdedElementSets.prototype.getTrinketsWithCacheFlag(self, cacheFlag)
     self:lazyInitCacheFlagToTrinketTypesMap()
     local trinketsSet = self.cacheFlagToTrinketTypesMap:get(cacheFlag)
@@ -38277,67 +38661,37 @@ function ModdedElementSets.prototype.getTrinketsWithCacheFlag(self, cacheFlag)
     end
     return trinketsSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getTrinketsWithCacheFlag", true)
 function ModdedElementSets.prototype.getVanillaCardArray(self)
     self:lazyInitVanillaCardTypes()
     return self.vanillaCardTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaCardArray", true)
 function ModdedElementSets.prototype.getVanillaCardSet(self)
     self:lazyInitVanillaCardTypes()
     return self.vanillaCardTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaCardSet", true)
 function ModdedElementSets.prototype.getVanillaCollectibleArray(self)
     self:lazyInitVanillaCollectibleTypes()
     return self.vanillaCollectibleTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaCollectibleArray", true)
 function ModdedElementSets.prototype.getVanillaCollectibleSet(self)
     self:lazyInitVanillaCollectibleTypes()
     return self.vanillaCollectibleTypesSet
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaCollectibleSet", true)
 function ModdedElementSets.prototype.getVanillaTrinketArray(self)
     self:lazyInitVanillaTrinketTypes()
     return self.vanillaTrinketTypesArray
 end
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaTrinketArray", true)
 function ModdedElementSets.prototype.getVanillaTrinketSet(self)
     self:lazyInitVanillaTrinketTypes()
     return self.vanillaTrinketTypesSet
 end
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCardArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCardSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCardTypesOfType", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCollectibleArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCollectibleSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCollectiblesForTransformation", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCollectiblesWithCacheFlag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getCollectiblesWithTag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getEdenActiveCollectibles", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getEdenPassiveCollectibles", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getFlyingCollectibles", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getFlyingTrinkets", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedCardArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedCardSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedCollectibleArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedCollectibleSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedTrinketArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getModdedTrinketSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getPlayerCollectibleMap", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesWithCacheFlag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesWithTag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getPlayerCollectiblesForTransformation", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getPlayerTrinketsWithCacheFlag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getRandomCard", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getRandomCardTypeOfType", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getRandomRune", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getRandomEdenActiveCollectible", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getRandomEdenPassiveCollectible", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getTrinketArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getTrinketSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getTrinketsWithCacheFlag", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaCardArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaCardSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaCollectibleArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaCollectibleSet", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaTrinketArray", true)
-__TS__Decorate({Exported}, ModdedElementSets.prototype, "getVanillaTrinketSet", true)
+__TS__DecorateLegacy({Exported}, ModdedElementSets.prototype, "getVanillaTrinketSet", true)
 return ____exports
  end,
 ["src.classes.features.callbackLogic.PlayerCollectibleDetection"] = function(...) 
@@ -38953,12 +39307,6 @@ function ____exports.spawnBattery(self, batterySubType, positionOrGridIndex, vel
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
-    end
     return spawnPickup(
         nil,
         PickupVariant.LIL_BATTERY,
@@ -38973,9 +39321,6 @@ function ____exports.spawnBatteryWithSeed(self, batterySubType, positionOrGridIn
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnBattery(
         nil,
         batterySubType,
@@ -38988,12 +39333,6 @@ end
 function ____exports.spawnBombPickup(self, bombSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39009,9 +39348,6 @@ function ____exports.spawnBombPickupWithSeed(self, bombSubType, positionOrGridIn
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnBombPickup(
         nil,
         bombSubType,
@@ -39024,12 +39360,6 @@ end
 function ____exports.spawnCard(self, cardType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39045,9 +39375,6 @@ function ____exports.spawnCardWithSeed(self, cardType, positionOrGridIndex, seed
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnCard(
         nil,
         cardType,
@@ -39060,12 +39387,6 @@ end
 function ____exports.spawnCoin(self, coinSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39081,9 +39402,6 @@ function ____exports.spawnCoinWithSeed(self, coinSubType, positionOrGridIndex, s
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnCoin(
         nil,
         coinSubType,
@@ -39096,12 +39414,6 @@ end
 function ____exports.spawnHeart(self, heartSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39117,9 +39429,6 @@ function ____exports.spawnHeartWithSeed(self, heartSubType, positionOrGridIndex,
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnHeart(
         nil,
         heartSubType,
@@ -39132,12 +39441,6 @@ end
 function ____exports.spawnKey(self, keySubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39153,9 +39456,6 @@ function ____exports.spawnKeyWithSeed(self, keySubType, positionOrGridIndex, see
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnKey(
         nil,
         keySubType,
@@ -39168,12 +39468,6 @@ end
 function ____exports.spawnPill(self, pillColor, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39189,9 +39483,6 @@ function ____exports.spawnPillWithSeed(self, pillColor, positionOrGridIndex, see
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnPill(
         nil,
         pillColor,
@@ -39204,12 +39495,6 @@ end
 function ____exports.spawnSack(self, sackSubType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39225,9 +39510,6 @@ function ____exports.spawnSackWithSeed(self, sackSubType, positionOrGridIndex, s
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
     return ____exports.spawnSack(
         nil,
         sackSubType,
@@ -39240,12 +39522,6 @@ end
 function ____exports.spawnTrinket(self, trinketType, positionOrGridIndex, velocity, spawner, seedOrRNG)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
     end
     return spawnPickup(
         nil,
@@ -39260,9 +39536,6 @@ end
 function ____exports.spawnTrinketWithSeed(self, trinketType, positionOrGridIndex, seedOrRNG, velocity, spawner)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
     end
     return ____exports.spawnTrinket(
         nil,
@@ -39325,7 +39598,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local convertRedHeartContainers, removeRedHearts
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -39410,7 +39683,7 @@ function CharacterHealthConversion.prototype.registerCharacterHealthConversion(s
     end
     self.characterHealthReplacementMap:set(playerType, conversionHeartSubType)
 end
-__TS__Decorate({Exported}, CharacterHealthConversion.prototype, "registerCharacterHealthConversion", true)
+__TS__DecorateLegacy({Exported}, CharacterHealthConversion.prototype, "registerCharacterHealthConversion", true)
 return ____exports
  end,
 ["src.functions.tears"] = function(...) 
@@ -39560,7 +39833,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -39597,7 +39870,7 @@ end
 function CharacterStats.prototype.registerCharacterStats(self, playerType, statMap)
     self.charactersStatMap:set(playerType, statMap)
 end
-__TS__Decorate({Exported}, CharacterStats.prototype, "registerCharacterStats", true)
+__TS__DecorateLegacy({Exported}, CharacterStats.prototype, "registerCharacterStats", true)
 return ____exports
  end,
 ["src.classes.features.other.CollectibleItemPoolType"] = function(...) 
@@ -39606,7 +39879,7 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -39652,7 +39925,7 @@ function CollectibleItemPoolType.prototype.getCollectibleItemPoolType(self, coll
     local itemPoolType = v.run.collectibleItemPoolTypeMap:get(pickupIndex)
     return itemPoolType == nil and getRoomItemPoolType(nil) or itemPoolType
 end
-__TS__Decorate({Exported}, CollectibleItemPoolType.prototype, "getCollectibleItemPoolType", true)
+__TS__DecorateLegacy({Exported}, CollectibleItemPoolType.prototype, "getCollectibleItemPoolType", true)
 return ____exports
  end,
 ["src.classes.features.other.CustomHotkeys"] = function(...) 
@@ -39662,7 +39935,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local Keyboard = ____isaac_2Dtypescript_2Ddefinitions.Keyboard
@@ -39715,28 +39988,28 @@ function CustomHotkeys.prototype.setConditionalHotkey(self, getKeyFunc, triggerF
     end
     self.dynamicHotkeyFunctionMap:set(getKeyFunc, triggerFunc)
 end
+__TS__DecorateLegacy({Exported}, CustomHotkeys.prototype, "setConditionalHotkey", true)
 function CustomHotkeys.prototype.setHotkey(self, keyboard, triggerFunc)
     if self.staticHotkeyFunctionMap:has(keyboard) then
         error(((("Failed to register a hotkey due to a hotkey already being defined for: Keyboard." .. Keyboard[keyboard]) .. " (") .. tostring(keyboard)) .. ")")
     end
     self.staticHotkeyFunctionMap:set(keyboard, triggerFunc)
 end
+__TS__DecorateLegacy({Exported}, CustomHotkeys.prototype, "setHotkey", true)
 function CustomHotkeys.prototype.unsetConditionalHotkey(self, getKeyFunc)
     if not self.dynamicHotkeyFunctionMap:has(getKeyFunc) then
         error("Failed to unregister a hotkey since there is no existing hotkey defined for the submitted function.")
     end
     self.dynamicHotkeyFunctionMap:delete(getKeyFunc)
 end
+__TS__DecorateLegacy({Exported}, CustomHotkeys.prototype, "unsetConditionalHotkey", true)
 function CustomHotkeys.prototype.unsetHotkey(self, keyboard)
     if not self.staticHotkeyFunctionMap:has(keyboard) then
         error(((("Failed to unregister a hotkey since there is no existing hotkey defined for: Keyboard." .. Keyboard[keyboard]) .. " (") .. tostring(keyboard)) .. ")")
     end
     self.staticHotkeyFunctionMap:delete(keyboard)
 end
-__TS__Decorate({Exported}, CustomHotkeys.prototype, "setConditionalHotkey", true)
-__TS__Decorate({Exported}, CustomHotkeys.prototype, "setHotkey", true)
-__TS__Decorate({Exported}, CustomHotkeys.prototype, "unsetConditionalHotkey", true)
-__TS__Decorate({Exported}, CustomHotkeys.prototype, "unsetHotkey", true)
+__TS__DecorateLegacy({Exported}, CustomHotkeys.prototype, "unsetHotkey", true)
 return ____exports
  end,
 ["src.functions.map"] = function(...) 
@@ -39858,7 +40131,7 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
@@ -39896,6 +40169,7 @@ function CustomItemPools.prototype.registerCustomItemPool(self, itemPoolTypeCust
     end
     customItemPoolMap:set(itemPoolTypeCustom, collectibles)
 end
+__TS__DecorateLegacy({Exported}, CustomItemPools.prototype, "registerCustomItemPool", true)
 function CustomItemPools.prototype.getCustomItemPoolCollectible(self, itemPoolTypeCustom, decrease, seedOrRNG, defaultItem)
     if decrease == nil then
         decrease = false
@@ -39923,8 +40197,7 @@ function CustomItemPools.prototype.getCustomItemPoolCollectible(self, itemPoolTy
     end
     return tuple[1]
 end
-__TS__Decorate({Exported}, CustomItemPools.prototype, "registerCustomItemPool", true)
-__TS__Decorate({Exported}, CustomItemPools.prototype, "getCustomItemPoolCollectible", true)
+__TS__DecorateLegacy({Exported}, CustomItemPools.prototype, "getCustomItemPoolCollectible", true)
 return ____exports
  end,
 ["src.enums.LadderSubTypeCustom"] = function(...) 
@@ -39946,7 +40219,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local EffectVariant = ____isaac_2Dtypescript_2Ddefinitions.EffectVariant
@@ -40017,7 +40290,7 @@ function CustomPickups.prototype.registerCustomPickup(self, pickupVariantCustom,
     local customPickupFunctions = {collectFunc = collectFunc, collisionFunc = collisionFunc}
     self.customPickupFunctionsMap:set(entityID, customPickupFunctions)
 end
-__TS__Decorate({Exported}, CustomPickups.prototype, "registerCustomPickup", true)
+__TS__DecorateLegacy({Exported}, CustomPickups.prototype, "registerCustomPickup", true)
 return ____exports
  end,
 ["src.customStageMetadata"] = function(...) 
@@ -40598,7 +40871,7 @@ local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local InputHook = ____isaac_2Dtypescript_2Ddefinitions.InputHook
@@ -40658,15 +40931,18 @@ end
 function DisableInputs.prototype.areInputsEnabled(self)
     return v.run.disableInputs.size == 0 and v.run.enableAllInputsWithBlacklistMap.size == 0 and v.run.disableAllInputsWithWhitelistMap.size == 0
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "areInputsEnabled", true)
 function DisableInputs.prototype.enableAllInputs(self, key)
     v.run.disableAllInputsWithWhitelistMap:delete(key)
     v.run.enableAllInputsWithBlacklistMap:delete(key)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "enableAllInputs", true)
 function DisableInputs.prototype.disableInputs(self, key, ...)
     local buttonActions = {...}
     local buttonActionsSet = __TS__New(ReadonlySet, buttonActions)
     v.run.disableInputs:set(key, buttonActionsSet)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "disableInputs", true)
 function DisableInputs.prototype.disableAllInputs(self, key)
     v.run.disableAllInputsWithWhitelistMap:set(
         key,
@@ -40674,30 +40950,27 @@ function DisableInputs.prototype.disableAllInputs(self, key)
     )
     v.run.enableAllInputsWithBlacklistMap:delete(key)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "disableAllInputs", true)
 function DisableInputs.prototype.enableAllInputsExceptFor(self, key, blacklist)
     v.run.disableAllInputsWithWhitelistMap:delete(key)
     v.run.enableAllInputsWithBlacklistMap:set(key, blacklist)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "enableAllInputsExceptFor", true)
 function DisableInputs.prototype.disableAllInputsExceptFor(self, key, whitelist)
     v.run.disableAllInputsWithWhitelistMap:set(key, whitelist)
     v.run.enableAllInputsWithBlacklistMap:delete(key)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "disableAllInputsExceptFor", true)
 function DisableInputs.prototype.disableMovementInputs(self, key)
     local moveActions = getMoveActions(nil)
     self:enableAllInputsExceptFor(key, moveActions)
 end
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "disableMovementInputs", true)
 function DisableInputs.prototype.disableShootingInputs(self, key)
     local shootActions = getShootActions(nil)
     self:enableAllInputsExceptFor(key, shootActions)
 end
-__TS__Decorate({Exported}, DisableInputs.prototype, "areInputsEnabled", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "enableAllInputs", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "disableInputs", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "disableAllInputs", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "enableAllInputsExceptFor", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "disableAllInputsExceptFor", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "disableMovementInputs", true)
-__TS__Decorate({Exported}, DisableInputs.prototype, "disableShootingInputs", true)
+__TS__DecorateLegacy({Exported}, DisableInputs.prototype, "disableShootingInputs", true)
 return ____exports
  end,
 ["src.classes.features.other.PonyDetection"] = function(...) 
@@ -40706,7 +40979,7 @@ local Set = ____lualib.Set
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__ArraySome = ____lualib.__TS__ArraySome
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -40757,6 +41030,7 @@ end
 function PonyDetection.prototype.isPlayerUsingPony(self, player)
     return setHasPlayer(nil, v.run.playersIsPonyActive, player)
 end
+__TS__DecorateLegacy({Exported}, PonyDetection.prototype, "isPlayerUsingPony", true)
 function PonyDetection.prototype.anyPlayerUsingPony(self)
     local players = getPlayers(nil)
     return __TS__ArraySome(
@@ -40764,15 +41038,14 @@ function PonyDetection.prototype.anyPlayerUsingPony(self)
         function(____, player) return self:isPlayerUsingPony(player) end
     )
 end
-__TS__Decorate({Exported}, PonyDetection.prototype, "isPlayerUsingPony", true)
-__TS__Decorate({Exported}, PonyDetection.prototype, "anyPlayerUsingPony", true)
+__TS__DecorateLegacy({Exported}, PonyDetection.prototype, "anyPlayerUsingPony", true)
 return ____exports
  end,
 ["src.classes.features.other.RoomClearFrame"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
@@ -40802,18 +41075,18 @@ end
 function RoomClearFrame.prototype.getRoomClearGameFrame(self)
     return v.room.roomClearGameFrame
 end
+__TS__DecorateLegacy({Exported}, RoomClearFrame.prototype, "getRoomClearGameFrame", true)
 function RoomClearFrame.prototype.getRoomClearRoomFrame(self)
     return v.room.roomClearGameFrame
 end
-__TS__Decorate({Exported}, RoomClearFrame.prototype, "getRoomClearGameFrame", true)
-__TS__Decorate({Exported}, RoomClearFrame.prototype, "getRoomClearRoomFrame", true)
+__TS__DecorateLegacy({Exported}, RoomClearFrame.prototype, "getRoomClearRoomFrame", true)
 return ____exports
  end,
 ["src.classes.features.other.RunNextRoom"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____decorators = require("src.decorators")
 local Exported = ____decorators.Exported
@@ -40844,7 +41117,7 @@ function RunNextRoom.prototype.runNextRoom(self, func)
     local ____v_run_queuedFunctions_0 = v.run.queuedFunctions
     ____v_run_queuedFunctions_0[#____v_run_queuedFunctions_0 + 1] = func
 end
-__TS__Decorate({Exported}, RunNextRoom.prototype, "runNextRoom", true)
+__TS__DecorateLegacy({Exported}, RunNextRoom.prototype, "runNextRoom", true)
 return ____exports
  end,
 ["src.functions.nextStage"] = function(...) 
@@ -40982,7 +41255,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__ArraySome = ____lualib.__TS__ArraySome
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -41084,6 +41357,7 @@ function StageHistory.prototype.getNextStageTypeWithHistory(self, upwards)
     local nextStage = self:getNextStageWithHistory()
     return calculateStageType(nil, nextStage)
 end
+__TS__DecorateLegacy({Exported}, StageHistory.prototype, "getNextStageTypeWithHistory", true)
 function StageHistory.prototype.getNextStageWithHistory(self)
     local backwardsPath = game:GetStateFlag(GameStateFlag.BACKWARDS_PATH)
     if not backwardsPath then
@@ -41150,9 +41424,11 @@ function StageHistory.prototype.getNextStageWithHistory(self)
     end
     return asNumber(nil, stage) - 1
 end
+__TS__DecorateLegacy({Exported}, StageHistory.prototype, "getNextStageWithHistory", true)
 function StageHistory.prototype.getStageHistory(self)
     return v.run.stageHistory
 end
+__TS__DecorateLegacy({Exported}, StageHistory.prototype, "getStageHistory", true)
 function StageHistory.prototype.hasVisitedStage(self, stage, stageType)
     if stageType == nil then
         return __TS__ArraySome(
@@ -41165,10 +41441,7 @@ function StageHistory.prototype.hasVisitedStage(self, stage, stageType)
         function(____, stageHistoryEntry) return stageHistoryEntry.stage == stage and stageHistoryEntry.stageType == stageType end
     )
 end
-__TS__Decorate({Exported}, StageHistory.prototype, "getNextStageTypeWithHistory", true)
-__TS__Decorate({Exported}, StageHistory.prototype, "getNextStageWithHistory", true)
-__TS__Decorate({Exported}, StageHistory.prototype, "getStageHistory", true)
-__TS__Decorate({Exported}, StageHistory.prototype, "hasVisitedStage", true)
+__TS__DecorateLegacy({Exported}, StageHistory.prototype, "hasVisitedStage", true)
 return ____exports
  end,
 ["src.classes.features.other.customStages.constants"] = function(...) 
@@ -41191,7 +41464,7 @@ local Map = ____lualib.Map
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local __TS__ArraySome = ____lualib.__TS__ArraySome
 local ____exports = {}
 local anyPlayerPlayingExtraAnimation, shouldBeClosedFromStartingInRoomWithEnemies, openCustomTrapdoor, canPlayerInteractWithTrapdoor, setPlayerAttributes, dropTaintedForgotten, goToVanillaStage, ANIMATIONS_THAT_PREVENT_STAGE_TRAVEL
@@ -41630,6 +41903,7 @@ function CustomTrapdoors.prototype.registerCustomTrapdoorDestination(self, desti
     end
     self.destinationFuncMap:set(destinationName, destinationFunc)
 end
+__TS__DecorateLegacy({Exported}, CustomTrapdoors.prototype, "registerCustomTrapdoorDestination", true)
 function CustomTrapdoors.prototype.spawnCustomTrapdoor(self, gridIndexOrPosition, destinationName, destinationStage, destinationStageType, anm2Path, spawnOpen)
     if anm2Path == nil then
         anm2Path = "gfx/grid/door_11_trapdoor.anm2"
@@ -41676,8 +41950,7 @@ function CustomTrapdoors.prototype.spawnCustomTrapdoor(self, gridIndexOrPosition
     sprite:Play(animation, true)
     return gridEntity
 end
-__TS__Decorate({Exported}, CustomTrapdoors.prototype, "registerCustomTrapdoorDestination", true)
-__TS__Decorate({Exported}, CustomTrapdoors.prototype, "spawnCustomTrapdoor", true)
+__TS__DecorateLegacy({Exported}, CustomTrapdoors.prototype, "spawnCustomTrapdoor", true)
 return ____exports
  end,
 ["src.classes.features.other.DisableAllSound"] = function(...) 
@@ -41686,7 +41959,7 @@ local Set = ____lualib.Set
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -41725,6 +41998,7 @@ function DisableAllSound.prototype.enableAllSound(self, key)
     end
     stopAllSoundEffects(nil)
 end
+__TS__DecorateLegacy({Exported}, DisableAllSound.prototype, "enableAllSound", true)
 function DisableAllSound.prototype.disableAllSound(self, key)
     if v.run.disableSoundSet.size == 0 then
         self.musicWasEnabled = musicManager:IsEnabled()
@@ -41732,8 +42006,7 @@ function DisableAllSound.prototype.disableAllSound(self, key)
     v.run.disableSoundSet:add(key)
     stopAllSoundEffects(nil)
 end
-__TS__Decorate({Exported}, DisableAllSound.prototype, "enableAllSound", true)
-__TS__Decorate({Exported}, DisableAllSound.prototype, "disableAllSound", true)
+__TS__DecorateLegacy({Exported}, DisableAllSound.prototype, "disableAllSound", true)
 return ____exports
  end,
 ["src.classes.features.other.Pause"] = function(...) 
@@ -41745,7 +42018,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__SparseArrayNew = ____lualib.__TS__SparseArrayNew
 local __TS__SparseArrayPush = ____lualib.__TS__SparseArrayPush
 local __TS__SparseArraySpread = ____lualib.__TS__SparseArraySpread
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ButtonAction = ____isaac_2Dtypescript_2Ddefinitions.ButtonAction
@@ -41839,6 +42112,7 @@ end
 function Pause.prototype.isPaused(self)
     return v.run.isPseudoPaused
 end
+__TS__DecorateLegacy({Exported}, Pause.prototype, "isPaused", true)
 function Pause.prototype.pause(self)
     if v.run.isPseudoPaused then
         logError("Failed to pseudo-pause the game, since it was already pseudo-paused.")
@@ -41878,6 +42152,7 @@ function Pause.prototype.pause(self)
     end
     self:stopTearsAndProjectilesFromMoving()
 end
+__TS__DecorateLegacy({Exported}, Pause.prototype, "pause", true)
 function Pause.prototype.unpause(self)
     if not v.run.isPseudoPaused then
         logError("Failed to pseudo-unpause the game, since it was not already pseudo-paused.")
@@ -41896,9 +42171,7 @@ function Pause.prototype.unpause(self)
     removeAllTears(nil)
     removeAllProjectiles(nil)
 end
-__TS__Decorate({Exported}, Pause.prototype, "isPaused", true)
-__TS__Decorate({Exported}, Pause.prototype, "pause", true)
-__TS__Decorate({Exported}, Pause.prototype, "unpause", true)
+__TS__DecorateLegacy({Exported}, Pause.prototype, "unpause", true)
 return ____exports
  end,
 ["src.classes.features.other.customStages.backdrop"] = function(...) 
@@ -43650,12 +43923,6 @@ function ____exports.spawnBoss(self, entityType, variant, subType, positionOrGri
     if velocity == nil then
         velocity = VectorZero
     end
-    if spawner == nil then
-        spawner = nil
-    end
-    if seedOrRNG == nil then
-        seedOrRNG = nil
-    end
     local seed = isRNG(nil, seedOrRNG) and seedOrRNG:Next() or seedOrRNG
     local npc = spawnNPC(
         nil,
@@ -43692,9 +43959,6 @@ end
 function ____exports.spawnBossWithSeed(self, entityType, variant, subType, positionOrGridIndex, seedOrRNG, velocity, spawner, numSegments)
     if velocity == nil then
         velocity = VectorZero
-    end
-    if spawner == nil then
-        spawner = nil
     end
     local seed = isRNG(nil, seedOrRNG) and seedOrRNG:Next() or seedOrRNG
     return ____exports.spawnBoss(
@@ -44373,7 +44637,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local getRoomTypeMap
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -44741,11 +45005,11 @@ function CustomStages.prototype.setCustomStage(self, name, firstFloor, streakTex
         MUSIC_DELAY_RENDER_FRAMES
     )
 end
+__TS__DecorateLegacy({Exported}, CustomStages.prototype, "setCustomStage", true)
 function CustomStages.prototype.disableCustomStage(self)
     v.run.currentCustomStage = nil
 end
-__TS__Decorate({Exported}, CustomStages.prototype, "setCustomStage", true)
-__TS__Decorate({Exported}, CustomStages.prototype, "disableCustomStage", true)
+__TS__DecorateLegacy({Exported}, CustomStages.prototype, "disableCustomStage", true)
 return ____exports
  end,
 ["src.sets.consoleCommandsSet"] = function(...) 
@@ -45349,7 +45613,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__New = ____lualib.__TS__New
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____decorators = require("src.decorators")
 local Exported = ____decorators.Exported
@@ -45422,159 +45686,159 @@ end
 function DebugDisplay.prototype.setPlayerDisplay(self, textCallback)
     self.player.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setPlayerDisplay", true)
 function DebugDisplay.prototype.setTearDisplay(self, textCallback)
     self.tear.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setTearDisplay", true)
 function DebugDisplay.prototype.setFamiliarDisplay(self, textCallback)
     self.familiar.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setFamiliarDisplay", true)
 function DebugDisplay.prototype.setBombDisplay(self, textCallback)
     self.bomb.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setBombDisplay", true)
 function DebugDisplay.prototype.setPickupDisplay(self, textCallback)
     self.pickup.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setPickupDisplay", true)
 function DebugDisplay.prototype.setSlotDisplay(self, textCallback)
     self.slot.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setSlotDisplay", true)
 function DebugDisplay.prototype.setLaserDisplay(self, textCallback)
     self.laser.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setLaserDisplay", true)
 function DebugDisplay.prototype.setKnifeDisplay(self, textCallback)
     self.knife.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setKnifeDisplay", true)
 function DebugDisplay.prototype.setProjectileDisplay(self, textCallback)
     self.projectile.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setProjectileDisplay", true)
 function DebugDisplay.prototype.setEffectDisplay(self, textCallback)
     self.effect.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setEffectDisplay", true)
 function DebugDisplay.prototype.setNPCDisplay(self, textCallback)
     self.npc.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setNPCDisplay", true)
 function DebugDisplay.prototype.setRockDisplay(self, textCallback)
     self.rock.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setRockDisplay", true)
 function DebugDisplay.prototype.setPitDisplay(self, textCallback)
     self.pit.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setPitDisplay", true)
 function DebugDisplay.prototype.setSpikesDisplay(self, textCallback)
     self.spikes.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setSpikesDisplay", true)
 function DebugDisplay.prototype.setTNTDisplay(self, textCallback)
     self.tnt.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setTNTDisplay", true)
 function DebugDisplay.prototype.setPoopDisplay(self, textCallback)
     self.poop.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setPoopDisplay", true)
 function DebugDisplay.prototype.setDoorDisplay(self, textCallback)
     self.door.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setDoorDisplay", true)
 function DebugDisplay.prototype.setPressurePlateDisplay(self, textCallback)
     self.pressurePlate.textCallback = textCallback
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "setPressurePlateDisplay", true)
 function DebugDisplay.prototype.toggleFeature(self, feature, featureName, force)
     local shouldInit = not feature.initialized
     if force ~= nil then
         shouldInit = force
     end
     if shouldInit then
-        self.mod:uninitFeature(feature)
-    else
         self.mod:initFeature(feature)
+    else
+        self.mod:uninitFeature(feature)
     end
     printEnabled(nil, feature.initialized, featureName .. " display")
 end
 function DebugDisplay.prototype.togglePlayerDisplay(self, force)
     self:toggleFeature(self.player, "player", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "togglePlayerDisplay", true)
 function DebugDisplay.prototype.toggleTearDisplay(self, force)
     self:toggleFeature(self.tear, "tear", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleTearDisplay", true)
 function DebugDisplay.prototype.toggleFamiliarDisplay(self, force)
     self:toggleFeature(self.familiar, "familiar", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleFamiliarDisplay", true)
 function DebugDisplay.prototype.toggleBombDisplay(self, force)
     self:toggleFeature(self.bomb, "bomb", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleBombDisplay", true)
 function DebugDisplay.prototype.togglePickupDisplay(self, force)
     self:toggleFeature(self.pickup, "pickup", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "togglePickupDisplay", true)
 function DebugDisplay.prototype.toggleSlotDisplay(self, force)
     self:toggleFeature(self.slot, "slot", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleSlotDisplay", true)
 function DebugDisplay.prototype.toggleLaserDisplay(self, force)
     self:toggleFeature(self.laser, "laser", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleLaserDisplay", true)
 function DebugDisplay.prototype.toggleKnifeDisplay(self, force)
     self:toggleFeature(self.knife, "knife", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleKnifeDisplay", true)
 function DebugDisplay.prototype.toggleProjectileDisplay(self, force)
     self:toggleFeature(self.projectile, "projectile", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleProjectileDisplay", true)
 function DebugDisplay.prototype.toggleEffectDisplay(self, force)
     self:toggleFeature(self.effect, "effect", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleEffectDisplay", true)
 function DebugDisplay.prototype.toggleNPCDisplay(self, force)
     self:toggleFeature(self.npc, "NPC", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleNPCDisplay", true)
 function DebugDisplay.prototype.toggleRockDisplay(self, force)
     self:toggleFeature(self.rock, "rock", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleRockDisplay", true)
 function DebugDisplay.prototype.togglePitDisplay(self, force)
     self:toggleFeature(self.pit, "pit", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "togglePitDisplay", true)
 function DebugDisplay.prototype.toggleSpikesDisplay(self, force)
     self:toggleFeature(self.spikes, "spikes", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleSpikesDisplay", true)
 function DebugDisplay.prototype.toggleTNTDisplay(self, force)
     self:toggleFeature(self.tnt, "tnt", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleTNTDisplay", true)
 function DebugDisplay.prototype.togglePoopDisplay(self, force)
     self:toggleFeature(self.poop, "poop", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "togglePoopDisplay", true)
 function DebugDisplay.prototype.toggleDoorDisplay(self, force)
     self:toggleFeature(self.door, "door", force)
 end
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "toggleDoorDisplay", true)
 function DebugDisplay.prototype.togglePressurePlateDisplay(self, force)
     self:toggleFeature(self.pressurePlate, "pressure plate", force)
 end
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setPlayerDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setTearDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setFamiliarDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setBombDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setPickupDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setSlotDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setLaserDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setKnifeDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setProjectileDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setEffectDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setNPCDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setRockDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setPitDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setSpikesDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setTNTDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setPoopDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setDoorDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "setPressurePlateDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "togglePlayerDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleTearDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleFamiliarDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleBombDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "togglePickupDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleSlotDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleLaserDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleKnifeDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleProjectileDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleEffectDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleNPCDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleRockDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "togglePitDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleSpikesDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleTNTDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "togglePoopDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "toggleDoorDisplay", true)
-__TS__Decorate({Exported}, DebugDisplay.prototype, "togglePressurePlateDisplay", true)
+__TS__DecorateLegacy({Exported}, DebugDisplay.prototype, "togglePressurePlateDisplay", true)
 return ____exports
  end,
 ["src.functions.gridIndex"] = function(...) 
@@ -46220,7 +46484,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CollectibleType = ____isaac_2Dtypescript_2Ddefinitions.CollectibleType
@@ -46339,7 +46603,7 @@ function PreventGridEntityRespawn.prototype.preventGridEntityRespawn(self)
         ::__continue20::
     end
 end
-__TS__Decorate({Exported}, PreventGridEntityRespawn.prototype, "preventGridEntityRespawn", true)
+__TS__DecorateLegacy({Exported}, PreventGridEntityRespawn.prototype, "preventGridEntityRespawn", true)
 return ____exports
  end,
 ["src.functions.spawnCollectible"] = function(...) 
@@ -46413,7 +46677,7 @@ local __TS__New = ____lualib.__TS__New
 local Map = ____lualib.Map
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CardType = ____isaac_2Dtypescript_2Ddefinitions.CardType
@@ -46453,7 +46717,7 @@ ____exports.PreventCollectibleRotation = __TS__Class()
 local PreventCollectibleRotation = ____exports.PreventCollectibleRotation
 PreventCollectibleRotation.name = "PreventCollectibleRotation"
 __TS__ClassExtends(PreventCollectibleRotation, Feature)
-function PreventCollectibleRotation.prototype.____constructor(self, pickupIndexCreation)
+function PreventCollectibleRotation.prototype.____constructor(self, pickupIndexCreation, runInNFrames)
     Feature.prototype.____constructor(self)
     self.v = v
     self.preUseItem = function(____, collectibleType)
@@ -46495,30 +46759,36 @@ function PreventCollectibleRotation.prototype.____constructor(self, pickupIndexC
             setCollectibleSubType(nil, pickup, trackedCollectibleType)
         end
     end
-    self.featuresUsed = {ISCFeature.PICKUP_INDEX_CREATION}
+    self.featuresUsed = {ISCFeature.PICKUP_INDEX_CREATION, ISCFeature.RUN_IN_N_FRAMES}
     self.callbacksUsed = {{ModCallback.POST_USE_CARD, self.postUseCardSoulOfIsaac, {CardType.SOUL_ISAAC}}, {ModCallback.PRE_USE_ITEM, self.preUseItem}}
     self.customCallbacksUsed = {{ModCallbackCustom.POST_DICE_ROOM_ACTIVATED, self.postDiceRoomActivated}, {ModCallbackCustom.POST_PICKUP_CHANGED, self.postPickupChanged}}
     self.pickupIndexCreation = pickupIndexCreation
+    self.runInNFrames = runInNFrames
 end
 function PreventCollectibleRotation.prototype.preventCollectibleRotation(self, collectible, collectibleType)
     if not isCollectible(nil, collectible) then
         local entityID = getEntityID(nil, collectible)
-        error("The \"preventCollectibleRotate\" function was given a non-collectible: " .. entityID)
+        error("The \"preventCollectibleRotation\" function was given a non-collectible: " .. entityID)
     end
     local pickupIndex = self.pickupIndexCreation:getPickupIndex(collectible)
     v.run.trackedCollectibles:set(pickupIndex, collectibleType)
     if collectible.SubType ~= collectibleType then
         setCollectibleSubType(nil, collectible, collectibleType)
     end
+    self.runInNFrames:runNextGameFrame(function()
+        if collectible:Exists() and collectible.SubType ~= collectibleType then
+            setCollectibleSubType(nil, collectible, collectibleType)
+        end
+    end)
 end
-__TS__Decorate({Exported}, PreventCollectibleRotation.prototype, "preventCollectibleRotation", true)
+__TS__DecorateLegacy({Exported}, PreventCollectibleRotation.prototype, "preventCollectibleRotation", true)
 return ____exports
  end,
 ["src.classes.features.other.SpawnCollectible"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
@@ -46567,6 +46837,7 @@ function SpawnCollectible.prototype.spawnCollectible(self, collectibleType, posi
     end
     return collectible
 end
+__TS__DecorateLegacy({Exported}, SpawnCollectible.prototype, "spawnCollectible", true)
 function SpawnCollectible.prototype.spawnCollectibleFromPool(self, itemPoolType, positionOrGridIndex, seedOrRNG, options, forceFreeItem, spawner)
     if seedOrRNG == nil then
         seedOrRNG = getRandomSeed(nil)
@@ -46588,8 +46859,7 @@ function SpawnCollectible.prototype.spawnCollectibleFromPool(self, itemPoolType,
         spawner
     )
 end
-__TS__Decorate({Exported}, SpawnCollectible.prototype, "spawnCollectible", true)
-__TS__Decorate({Exported}, SpawnCollectible.prototype, "spawnCollectibleFromPool", true)
+__TS__DecorateLegacy({Exported}, SpawnCollectible.prototype, "spawnCollectibleFromPool", true)
 return ____exports
  end,
 ["src.classes.features.other.DeployJSONRoom"] = function(...) 
@@ -46597,7 +46867,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local Map = ____lualib.Map
 local __TS__Iterator = ____lualib.__TS__Iterator
 local ____exports = {}
@@ -46918,7 +47188,7 @@ function DeployJSONRoom.prototype.deployJSONRoom(self, jsonRoom, seedOrRNG, verb
     fixPitGraphics(nil)
     self.preventGridEntityRespawn:preventGridEntityRespawn()
 end
-__TS__Decorate({Exported}, DeployJSONRoom.prototype, "deployJSONRoom", true)
+__TS__DecorateLegacy({Exported}, DeployJSONRoom.prototype, "deployJSONRoom", true)
 return ____exports
  end,
 ["src.classes.features.other.EdenStartingStats"] = function(...) 
@@ -46927,7 +47197,7 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -46970,11 +47240,11 @@ function EdenStartingStats.prototype.getEdenStartingStat(self, player, playerSta
     end
     return playerStats[playerStat]
 end
+__TS__DecorateLegacy({Exported}, EdenStartingStats.prototype, "getEdenStartingStat", true)
 function EdenStartingStats.prototype.getEdenStartingStats(self, player)
     return mapGetPlayer(nil, v.run.edenPlayerStats, player)
 end
-__TS__Decorate({Exported}, EdenStartingStats.prototype, "getEdenStartingStat", true)
-__TS__Decorate({Exported}, EdenStartingStats.prototype, "getEdenStartingStats", true)
+__TS__DecorateLegacy({Exported}, EdenStartingStats.prototype, "getEdenStartingStats", true)
 return ____exports
  end,
 ["src.functions.deepCopyTests"] = function(...) 
@@ -47894,352 +48164,6 @@ function ____exports.runMergeTests(self)
     oldTableHasRNGSerialized(nil)
     local successText = "All merge tests passed!"
     logAndPrint(nil, successText)
-end
-return ____exports
- end,
-["src.maps.PHDPillConversions"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__New = ____lualib.__TS__New
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
-local ____ReadonlyMap = require("src.types.ReadonlyMap")
-local ReadonlyMap = ____ReadonlyMap.ReadonlyMap
-____exports.PHD_PILL_CONVERSIONS = __TS__New(ReadonlyMap, {
-    {PillEffect.BAD_TRIP, PillEffect.BALLS_OF_STEEL},
-    {PillEffect.HEALTH_DOWN, PillEffect.HEALTH_UP},
-    {PillEffect.RANGE_DOWN, PillEffect.RANGE_UP},
-    {PillEffect.SPEED_DOWN, PillEffect.SPEED_UP},
-    {PillEffect.TEARS_DOWN, PillEffect.TEARS_UP},
-    {PillEffect.LUCK_DOWN, PillEffect.LUCK_UP},
-    {PillEffect.PARALYSIS, PillEffect.PHEROMONES},
-    {PillEffect.AMNESIA, PillEffect.I_CAN_SEE_FOREVER},
-    {PillEffect.R_U_A_WIZARD, PillEffect.POWER},
-    {PillEffect.ADDICTED, PillEffect.PERCS},
-    {PillEffect.QUESTION_MARKS, PillEffect.TELEPILLS},
-    {PillEffect.RETRO_VISION, PillEffect.I_CAN_SEE_FOREVER},
-    {PillEffect.X_LAX, PillEffect.SOMETHINGS_WRONG},
-    {PillEffect.IM_EXCITED, PillEffect.IM_DROWSY},
-    {PillEffect.HORF, PillEffect.GULP},
-    {PillEffect.SHOT_SPEED_DOWN, PillEffect.SHOT_SPEED_UP}
-})
-return ____exports
- end,
-["src.maps.falsePHDPillConversions"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__New = ____lualib.__TS__New
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
-local ____ReadonlyMap = require("src.types.ReadonlyMap")
-local ReadonlyMap = ____ReadonlyMap.ReadonlyMap
-____exports.FALSE_PHD_PILL_CONVERSIONS = __TS__New(ReadonlyMap, {
-    {PillEffect.BAD_GAS, PillEffect.HEALTH_DOWN},
-    {PillEffect.BALLS_OF_STEEL, PillEffect.BAD_TRIP},
-    {PillEffect.BOMBS_ARE_KEYS, PillEffect.TEARS_DOWN},
-    {PillEffect.EXPLOSIVE_DIARRHEA, PillEffect.RANGE_DOWN},
-    {PillEffect.FULL_HEALTH, PillEffect.BAD_TRIP},
-    {PillEffect.HEALTH_UP, PillEffect.HEALTH_DOWN},
-    {PillEffect.PRETTY_FLY, PillEffect.LUCK_DOWN},
-    {PillEffect.RANGE_UP, PillEffect.RANGE_DOWN},
-    {PillEffect.SPEED_UP, PillEffect.SPEED_DOWN},
-    {PillEffect.TEARS_UP, PillEffect.TEARS_DOWN},
-    {PillEffect.LUCK_UP, PillEffect.LUCK_DOWN},
-    {PillEffect.TELEPILLS, PillEffect.QUESTION_MARKS},
-    {PillEffect.FORTY_EIGHT_HOUR_ENERGY, PillEffect.SPEED_DOWN},
-    {PillEffect.HEMATEMESIS, PillEffect.BAD_TRIP},
-    {PillEffect.I_CAN_SEE_FOREVER, PillEffect.AMNESIA},
-    {PillEffect.PHEROMONES, PillEffect.PARALYSIS},
-    {PillEffect.LEMON_PARTY, PillEffect.AMNESIA},
-    {PillEffect.PERCS, PillEffect.ADDICTED},
-    {PillEffect.ONE_MAKES_YOU_LARGER, PillEffect.RANGE_DOWN},
-    {PillEffect.ONE_MAKES_YOU_SMALL, PillEffect.SPEED_DOWN},
-    {PillEffect.INFESTED_EXCLAMATION, PillEffect.TEARS_DOWN},
-    {PillEffect.INFESTED_QUESTION, PillEffect.LUCK_DOWN},
-    {PillEffect.POWER, PillEffect.R_U_A_WIZARD},
-    {PillEffect.FRIENDS_TILL_THE_END, PillEffect.HEALTH_DOWN},
-    {PillEffect.SOMETHINGS_WRONG, PillEffect.X_LAX},
-    {PillEffect.IM_DROWSY, PillEffect.IM_EXCITED},
-    {PillEffect.GULP, PillEffect.HORF},
-    {PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE, PillEffect.RETRO_VISION},
-    {PillEffect.VURP, PillEffect.HORF},
-    {PillEffect.SHOT_SPEED_UP, PillEffect.SHOT_SPEED_DOWN}
-})
-return ____exports
- end,
-["src.objects.pillEffectClasses"] = function(...) 
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local ItemConfigPillEffectClass = ____isaac_2Dtypescript_2Ddefinitions.ItemConfigPillEffectClass
-local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
-____exports.DEFAULT_PILL_EFFECT_CLASS = ItemConfigPillEffectClass.MODDED
-____exports.PILL_EFFECT_CLASSES = {
-    [PillEffect.BAD_GAS] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.BAD_TRIP] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.BALLS_OF_STEEL] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.BOMBS_ARE_KEYS] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.EXPLOSIVE_DIARRHEA] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.FULL_HEALTH] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.HEALTH_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.HEALTH_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.I_FOUND_PILLS] = ItemConfigPillEffectClass.JOKE,
-    [PillEffect.PUBERTY] = ItemConfigPillEffectClass.JOKE,
-    [PillEffect.PRETTY_FLY] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.RANGE_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.RANGE_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.SPEED_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.SPEED_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.TEARS_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.TEARS_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.LUCK_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.LUCK_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.TELEPILLS] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.HEMATEMESIS] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.PARALYSIS] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.I_CAN_SEE_FOREVER] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.PHEROMONES] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.AMNESIA] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.LEMON_PARTY] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.R_U_A_WIZARD] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.PERCS] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.ADDICTED] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.RELAX] = ItemConfigPillEffectClass.JOKE,
-    [PillEffect.QUESTION_MARKS] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.ONE_MAKES_YOU_LARGER] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.ONE_MAKES_YOU_SMALL] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.INFESTED_EXCLAMATION] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.INFESTED_QUESTION] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.POWER] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.RETRO_VISION] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.FRIENDS_TILL_THE_END] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.X_LAX] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.SOMETHINGS_WRONG] = ItemConfigPillEffectClass.JOKE,
-    [PillEffect.IM_DROWSY] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.IM_EXCITED] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.GULP] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.HORF] = ItemConfigPillEffectClass.JOKE,
-    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = ItemConfigPillEffectClass.MINOR,
-    [PillEffect.VURP] = ItemConfigPillEffectClass.MEDIUM,
-    [PillEffect.SHOT_SPEED_DOWN] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.SHOT_SPEED_UP] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.EXPERIMENTAL] = ItemConfigPillEffectClass.MAJOR,
-    [PillEffect.EXPERIMENTAL] = ItemConfigPillEffectClass.MAJOR
-}
-return ____exports
- end,
-["src.objects.pillEffectNames"] = function(...) 
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
-____exports.DEFAULT_PILL_EFFECT_NAME = "Unknown"
-____exports.PILL_EFFECT_NAMES = {
-    [PillEffect.BAD_GAS] = "Bad Gas",
-    [PillEffect.BAD_TRIP] = "Bad Trip",
-    [PillEffect.BALLS_OF_STEEL] = "Balls of Steel",
-    [PillEffect.BOMBS_ARE_KEYS] = "Bombs Are Key",
-    [PillEffect.EXPLOSIVE_DIARRHEA] = "Explosive Diarrhea",
-    [PillEffect.FULL_HEALTH] = "Full Health",
-    [PillEffect.HEALTH_DOWN] = "Health Down",
-    [PillEffect.HEALTH_UP] = "Health Up",
-    [PillEffect.I_FOUND_PILLS] = "I Found Pills",
-    [PillEffect.PUBERTY] = "Puberty",
-    [PillEffect.PRETTY_FLY] = "Pretty Fly",
-    [PillEffect.RANGE_DOWN] = "Range Down",
-    [PillEffect.RANGE_UP] = "Range Up",
-    [PillEffect.SPEED_DOWN] = "Speed Down",
-    [PillEffect.SPEED_UP] = "Speed Up",
-    [PillEffect.TEARS_DOWN] = "Tears Down",
-    [PillEffect.TEARS_UP] = "Tears Up",
-    [PillEffect.LUCK_DOWN] = "Luck Down",
-    [PillEffect.LUCK_UP] = "Luck Up",
-    [PillEffect.TELEPILLS] = "Telepills",
-    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = "48 Hour Energy",
-    [PillEffect.HEMATEMESIS] = "Hematemesis",
-    [PillEffect.PARALYSIS] = "Paralysis",
-    [PillEffect.I_CAN_SEE_FOREVER] = "I can see forever!",
-    [PillEffect.PHEROMONES] = "Pheromones",
-    [PillEffect.AMNESIA] = "Amnesia",
-    [PillEffect.LEMON_PARTY] = "Lemon Party",
-    [PillEffect.R_U_A_WIZARD] = "R U a Wizard?",
-    [PillEffect.PERCS] = "Percs!",
-    [PillEffect.ADDICTED] = "Addicted!",
-    [PillEffect.RELAX] = "Re-Lax",
-    [PillEffect.QUESTION_MARKS] = "???",
-    [PillEffect.ONE_MAKES_YOU_LARGER] = "One makes you larger",
-    [PillEffect.ONE_MAKES_YOU_SMALL] = "One makes you small",
-    [PillEffect.INFESTED_EXCLAMATION] = "Infested!",
-    [PillEffect.INFESTED_QUESTION] = "Infested?",
-    [PillEffect.POWER] = "Power Pill!",
-    [PillEffect.RETRO_VISION] = "Retro Vision",
-    [PillEffect.FRIENDS_TILL_THE_END] = "Friends Till The End!",
-    [PillEffect.X_LAX] = "X-Lax",
-    [PillEffect.SOMETHINGS_WRONG] = "Something's wrong...",
-    [PillEffect.IM_DROWSY] = "I'm Drowsy...",
-    [PillEffect.IM_EXCITED] = "I'm Excited!!!",
-    [PillEffect.GULP] = "Gulp!",
-    [PillEffect.HORF] = "Horf!",
-    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = "Feels like I'm walking on sunshine!",
-    [PillEffect.VURP] = "Vurp!",
-    [PillEffect.SHOT_SPEED_DOWN] = "Shot Speed Down",
-    [PillEffect.SHOT_SPEED_UP] = "Shot Speed Up",
-    [PillEffect.EXPERIMENTAL] = "Experimental Pill"
-}
-return ____exports
- end,
-["src.objects.pillEffectTypes"] = function(...) 
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local ItemConfigPillEffectType = ____isaac_2Dtypescript_2Ddefinitions.ItemConfigPillEffectType
-local PillEffect = ____isaac_2Dtypescript_2Ddefinitions.PillEffect
-____exports.DEFAULT_PILL_EFFECT_TYPE = ItemConfigPillEffectType.MODDED
-____exports.PILL_EFFECT_TYPES = {
-    [PillEffect.BAD_GAS] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.BAD_TRIP] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.BALLS_OF_STEEL] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.BOMBS_ARE_KEYS] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.EXPLOSIVE_DIARRHEA] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.FULL_HEALTH] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.HEALTH_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.HEALTH_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.I_FOUND_PILLS] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.PUBERTY] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.PRETTY_FLY] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.RANGE_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.RANGE_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.SPEED_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.SPEED_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.TEARS_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.TEARS_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.LUCK_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.LUCK_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.TELEPILLS] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.FORTY_EIGHT_HOUR_ENERGY] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.HEMATEMESIS] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.PARALYSIS] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.I_CAN_SEE_FOREVER] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.PHEROMONES] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.AMNESIA] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.LEMON_PARTY] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.R_U_A_WIZARD] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.PERCS] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.ADDICTED] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.RELAX] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.QUESTION_MARKS] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.ONE_MAKES_YOU_LARGER] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.ONE_MAKES_YOU_SMALL] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.INFESTED_EXCLAMATION] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.INFESTED_QUESTION] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.POWER] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.RETRO_VISION] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.FRIENDS_TILL_THE_END] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.X_LAX] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.SOMETHINGS_WRONG] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.IM_DROWSY] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.IM_EXCITED] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.GULP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.HORF] = ItemConfigPillEffectType.NEUTRAL,
-    [PillEffect.FEELS_LIKE_IM_WALKING_ON_SUNSHINE] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.VURP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.SHOT_SPEED_DOWN] = ItemConfigPillEffectType.NEGATIVE,
-    [PillEffect.SHOT_SPEED_UP] = ItemConfigPillEffectType.POSITIVE,
-    [PillEffect.EXPERIMENTAL] = ItemConfigPillEffectType.NEUTRAL
-}
-return ____exports
- end,
-["src.functions.pills"] = function(...) 
-local ____lualib = require("lualib_bundle")
-local __TS__ArraySlice = ____lualib.__TS__ArraySlice
-local ____exports = {}
-local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
-local PillColor = ____isaac_2Dtypescript_2Ddefinitions.PillColor
-local ____cachedEnumValues = require("src.arrays.cachedEnumValues")
-local PILL_COLOR_VALUES = ____cachedEnumValues.PILL_COLOR_VALUES
-local ____cachedClasses = require("src.core.cachedClasses")
-local itemConfig = ____cachedClasses.itemConfig
-local ____constantsFirstLast = require("src.core.constantsFirstLast")
-local FIRST_HORSE_PILL_COLOR = ____constantsFirstLast.FIRST_HORSE_PILL_COLOR
-local FIRST_PILL_COLOR = ____constantsFirstLast.FIRST_PILL_COLOR
-local FIRST_PILL_EFFECT = ____constantsFirstLast.FIRST_PILL_EFFECT
-local LAST_HORSE_PILL_COLOR = ____constantsFirstLast.LAST_HORSE_PILL_COLOR
-local LAST_NORMAL_PILL_COLOR = ____constantsFirstLast.LAST_NORMAL_PILL_COLOR
-local LAST_VANILLA_PILL_EFFECT = ____constantsFirstLast.LAST_VANILLA_PILL_EFFECT
-local ____PHDPillConversions = require("src.maps.PHDPillConversions")
-local PHD_PILL_CONVERSIONS = ____PHDPillConversions.PHD_PILL_CONVERSIONS
-local ____falsePHDPillConversions = require("src.maps.falsePHDPillConversions")
-local FALSE_PHD_PILL_CONVERSIONS = ____falsePHDPillConversions.FALSE_PHD_PILL_CONVERSIONS
-local ____pillEffectClasses = require("src.objects.pillEffectClasses")
-local DEFAULT_PILL_EFFECT_CLASS = ____pillEffectClasses.DEFAULT_PILL_EFFECT_CLASS
-local PILL_EFFECT_CLASSES = ____pillEffectClasses.PILL_EFFECT_CLASSES
-local ____pillEffectNames = require("src.objects.pillEffectNames")
-local DEFAULT_PILL_EFFECT_NAME = ____pillEffectNames.DEFAULT_PILL_EFFECT_NAME
-local PILL_EFFECT_NAMES = ____pillEffectNames.PILL_EFFECT_NAMES
-local ____pillEffectTypes = require("src.objects.pillEffectTypes")
-local DEFAULT_PILL_EFFECT_TYPE = ____pillEffectTypes.DEFAULT_PILL_EFFECT_TYPE
-local PILL_EFFECT_TYPES = ____pillEffectTypes.PILL_EFFECT_TYPES
-local ____types = require("src.functions.types")
-local asNumber = ____types.asNumber
-local asPillColor = ____types.asPillColor
-local ____utils = require("src.functions.utils")
-local iRange = ____utils.iRange
-function ____exports.isVanillaPillEffect(self, pillEffect)
-    return pillEffect <= LAST_VANILLA_PILL_EFFECT
-end
-local HORSE_PILL_ADJUSTMENT = 2048
-function ____exports.getAllPillColors(self)
-    return __TS__ArraySlice(PILL_COLOR_VALUES, 1)
-end
-function ____exports.getFalsePHDPillEffect(self, pillEffect)
-    local convertedPillEffect = FALSE_PHD_PILL_CONVERSIONS:get(pillEffect)
-    return convertedPillEffect == nil and pillEffect or convertedPillEffect
-end
-function ____exports.getHorsePillColor(self, pillColor)
-    return asNumber(nil, pillColor) + HORSE_PILL_ADJUSTMENT
-end
-function ____exports.getHorsePillColors(self)
-    return iRange(nil, FIRST_HORSE_PILL_COLOR, LAST_HORSE_PILL_COLOR)
-end
-function ____exports.getNormalPillColorFromHorse(self, pillColor)
-    local normalPillColor = asPillColor(
-        nil,
-        asNumber(nil, pillColor) - HORSE_PILL_ADJUSTMENT
-    )
-    return normalPillColor > PillColor.NULL and normalPillColor or pillColor
-end
-function ____exports.getNormalPillColors(self)
-    return iRange(nil, FIRST_PILL_COLOR, LAST_NORMAL_PILL_COLOR)
-end
-function ____exports.getPHDPillEffect(self, pillEffect)
-    local convertedPillEffect = PHD_PILL_CONVERSIONS:get(pillEffect)
-    return convertedPillEffect == nil and pillEffect or convertedPillEffect
-end
-function ____exports.getPillEffectClass(self, pillEffect)
-    local pillEffectClass = PILL_EFFECT_CLASSES[pillEffect]
-    return pillEffectClass == nil and DEFAULT_PILL_EFFECT_CLASS or pillEffectClass
-end
-function ____exports.getPillEffectName(self, pillEffect)
-    local pillEffectName = PILL_EFFECT_NAMES[pillEffect]
-    if pillEffectName ~= nil then
-        return pillEffectName
-    end
-    local itemConfigPillEffect = itemConfig:GetPillEffect(pillEffect)
-    if itemConfigPillEffect ~= nil then
-        return itemConfigPillEffect.Name
-    end
-    return DEFAULT_PILL_EFFECT_NAME
-end
-function ____exports.getPillEffectType(self, pillEffect)
-    local pillEffectClass = PILL_EFFECT_TYPES[pillEffect]
-    return pillEffectClass == nil and DEFAULT_PILL_EFFECT_TYPE or pillEffectClass
-end
-function ____exports.getVanillaPillEffects(self)
-    return iRange(nil, FIRST_PILL_EFFECT, LAST_VANILLA_PILL_EFFECT)
-end
-function ____exports.isHorsePill(self, pillColor)
-    return asNumber(nil, pillColor) > HORSE_PILL_ADJUSTMENT
-end
-function ____exports.isModdedPillEffect(self, pillEffect)
-    return not ____exports.isVanillaPillEffect(nil, pillEffect)
 end
 return ____exports
  end,
@@ -50267,7 +50191,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ObjectEntries = ____lualib.__TS__ObjectEntries
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CacheFlag = ____isaac_2Dtypescript_2Ddefinitions.CacheFlag
@@ -50408,21 +50332,21 @@ function ExtraConsoleCommands.prototype.addConsoleCommand(self, commandName, com
     end
     self.commandFunctionMap:set(commandName, commandFunction)
 end
+__TS__DecorateLegacy({Exported}, ExtraConsoleCommands.prototype, "addConsoleCommand", true)
 function ExtraConsoleCommands.prototype.removeConsoleCommand(self, commandName)
     if not self.commandFunctionMap:has(commandName) then
         error(("Failed to remove the console command of \"" .. commandName) .. "\", since it does not already exist in the map.")
     end
     self.commandFunctionMap:delete(commandName)
 end
-__TS__Decorate({Exported}, ExtraConsoleCommands.prototype, "addConsoleCommand", true)
-__TS__Decorate({Exported}, ExtraConsoleCommands.prototype, "removeConsoleCommand", true)
+__TS__DecorateLegacy({Exported}, ExtraConsoleCommands.prototype, "removeConsoleCommand", true)
 return ____exports
  end,
 ["src.classes.features.other.FadeInRemover"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____cachedClasses = require("src.core.cachedClasses")
 local game = ____cachedClasses.game
@@ -50450,18 +50374,18 @@ end
 function FadeInRemover.prototype.removeFadeIn(self)
     self.enabled = true
 end
+__TS__DecorateLegacy({Exported}, FadeInRemover.prototype, "removeFadeIn", true)
 function FadeInRemover.prototype.restoreFadeIn(self)
     self.enabled = false
 end
-__TS__Decorate({Exported}, FadeInRemover.prototype, "removeFadeIn", true)
-__TS__Decorate({Exported}, FadeInRemover.prototype, "restoreFadeIn", true)
+__TS__DecorateLegacy({Exported}, FadeInRemover.prototype, "restoreFadeIn", true)
 return ____exports
  end,
 ["src.classes.features.other.FastReset"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local checkResetInput
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
@@ -50511,11 +50435,11 @@ end
 function FastReset.prototype.enableFastReset(self)
     self.enabled = true
 end
+__TS__DecorateLegacy({Exported}, FastReset.prototype, "enableFastReset", true)
 function FastReset.prototype.disableFastReset(self)
     self.enabled = false
 end
-__TS__Decorate({Exported}, FastReset.prototype, "enableFastReset", true)
-__TS__Decorate({Exported}, FastReset.prototype, "disableFastReset", true)
+__TS__DecorateLegacy({Exported}, FastReset.prototype, "disableFastReset", true)
 return ____exports
  end,
 ["src.classes.features.other.FlyingDetection"] = function(...) 
@@ -50523,7 +50447,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local NullItemID = ____isaac_2Dtypescript_2Ddefinitions.NullItemID
@@ -50545,7 +50469,7 @@ function FlyingDetection.prototype.____constructor(self, moddedElementSets)
 end
 function FlyingDetection.prototype.hasFlyingTemporaryEffect(self, player)
     local effects = player:GetEffects()
-    local flyingCollectibles = self.moddedElementSets:getFlyingCollectibles(false)
+    local flyingCollectibles = self.moddedElementSets:getFlyingCollectibles(true)
     for ____, collectibleType in __TS__Iterator(flyingCollectibles) do
         if effects:HasCollectibleEffect(collectibleType) then
             return true
@@ -50564,7 +50488,7 @@ function FlyingDetection.prototype.hasFlyingTemporaryEffect(self, player)
     end
     return false
 end
-__TS__Decorate({Exported}, FlyingDetection.prototype, "hasFlyingTemporaryEffect", true)
+__TS__DecorateLegacy({Exported}, FlyingDetection.prototype, "hasFlyingTemporaryEffect", true)
 return ____exports
  end,
 ["src.classes.features.other.PressInput"] = function(...) 
@@ -50572,7 +50496,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArraySplice = ____lualib.__TS__ArraySplice
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local InputHook = ____isaac_2Dtypescript_2Ddefinitions.InputHook
@@ -50620,14 +50544,14 @@ function PressInput.prototype.pressInput(self, player, buttonAction)
     local ____v_run_buttonActionPairs_0 = v.run.buttonActionPairs
     ____v_run_buttonActionPairs_0[#____v_run_buttonActionPairs_0 + 1] = {playerIndex = playerIndex, buttonAction = buttonAction}
 end
-__TS__Decorate({Exported}, PressInput.prototype, "pressInput", true)
+__TS__DecorateLegacy({Exported}, PressInput.prototype, "pressInput", true)
 return ____exports
  end,
 ["src.classes.features.other.ForgottenSwitch"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ButtonAction = ____isaac_2Dtypescript_2Ddefinitions.ButtonAction
@@ -50650,7 +50574,7 @@ end
 function ForgottenSwitch.prototype.forgottenSwitch(self, player)
     self.pressInput:pressInput(player, ButtonAction.DROP)
 end
-__TS__Decorate({Exported}, ForgottenSwitch.prototype, "forgottenSwitch", true)
+__TS__DecorateLegacy({Exported}, ForgottenSwitch.prototype, "forgottenSwitch", true)
 return ____exports
  end,
 ["src.classes.features.other.ItemPoolDetection"] = function(...) 
@@ -50658,7 +50582,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local ____exports = {}
@@ -50758,6 +50682,7 @@ function ItemPoolDetection.prototype.getCollectiblesInItemPool(self, itemPoolTyp
         function(____, collectibleType) return self:isCollectibleInItemPool(collectibleType, itemPoolType) end
     )
 end
+__TS__DecorateLegacy({Exported}, ItemPoolDetection.prototype, "getCollectiblesInItemPool", true)
 function ItemPoolDetection.prototype.isCollectibleInItemPool(self, collectibleType, itemPoolType)
     if collectibleType == COLLECTIBLE_TYPE_THAT_IS_NOT_IN_ANY_POOLS then
         return false
@@ -50791,22 +50716,21 @@ function ItemPoolDetection.prototype.isCollectibleInItemPool(self, collectibleTy
     end
     return collectibleUnlocked
 end
+__TS__DecorateLegacy({Exported}, ItemPoolDetection.prototype, "isCollectibleInItemPool", true)
 function ItemPoolDetection.prototype.isCollectibleUnlocked(self, collectibleType, itemPoolType)
     if anyPlayerHasCollectible(nil, collectibleType) then
         return true
     end
     return self:isCollectibleInItemPool(collectibleType, itemPoolType)
 end
-__TS__Decorate({Exported}, ItemPoolDetection.prototype, "getCollectiblesInItemPool", true)
-__TS__Decorate({Exported}, ItemPoolDetection.prototype, "isCollectibleInItemPool", true)
-__TS__Decorate({Exported}, ItemPoolDetection.prototype, "isCollectibleUnlocked", true)
+__TS__DecorateLegacy({Exported}, ItemPoolDetection.prototype, "isCollectibleUnlocked", true)
 return ____exports
  end,
 ["src.classes.features.other.NoSirenSteal"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local EntityType = ____isaac_2Dtypescript_2Ddefinitions.EntityType
@@ -50860,7 +50784,7 @@ function NoSirenSteal.prototype.setFamiliarNoSirenSteal(self, familiarVariant, f
     local ____v_run_familiarBlacklist_0 = v.run.familiarBlacklist
     ____v_run_familiarBlacklist_0[#____v_run_familiarBlacklist_0 + 1] = {familiarVariant, familiarSubType}
 end
-__TS__Decorate({Exported}, NoSirenSteal.prototype, "setFamiliarNoSirenSteal", true)
+__TS__DecorateLegacy({Exported}, NoSirenSteal.prototype, "setFamiliarNoSirenSteal", true)
 return ____exports
  end,
 ["src.classes.features.other.PersistentEntities"] = function(...) 
@@ -50872,7 +50796,7 @@ local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Spread = ____lualib.__TS__Spread
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
 local __TS__Iterator = ____lualib.__TS__Iterator
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local EntityFlag = ____isaac_2Dtypescript_2Ddefinitions.EntityFlag
@@ -51003,6 +50927,7 @@ function PersistentEntities.prototype.removePersistentEntity(self, persistentEnt
         ::__continue16::
     end
 end
+__TS__DecorateLegacy({Exported}, PersistentEntities.prototype, "removePersistentEntity", true)
 function PersistentEntities.prototype.spawnPersistentEntity(self, entityType, variant, subType, position)
     local ____v_run_0, ____persistentEntityIndexCounter_1 = v.run, "persistentEntityIndexCounter"
     ____v_run_0[____persistentEntityIndexCounter_1] = ____v_run_0[____persistentEntityIndexCounter_1] + 1
@@ -51015,8 +50940,7 @@ function PersistentEntities.prototype.spawnPersistentEntity(self, entityType, va
     )
     return {entity = entity, persistentIndex = v.run.persistentEntityIndexCounter}
 end
-__TS__Decorate({Exported}, PersistentEntities.prototype, "removePersistentEntity", true)
-__TS__Decorate({Exported}, PersistentEntities.prototype, "spawnPersistentEntity", true)
+__TS__DecorateLegacy({Exported}, PersistentEntities.prototype, "spawnPersistentEntity", true)
 return ____exports
  end,
 ["src.classes.features.other.PlayerInventory"] = function(...) 
@@ -51025,7 +50949,7 @@ local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____decorators = require("src.decorators")
 local Exported = ____decorators.Exported
@@ -51077,12 +51001,12 @@ function PlayerInventory.prototype.getPlayerInventory(self, player, includeActiv
         function(____, collectibleType) return not isActiveCollectible(nil, collectibleType) end
     )
 end
+__TS__DecorateLegacy({Exported}, PlayerInventory.prototype, "getPlayerInventory", true)
 function PlayerInventory.prototype.getPlayerLastPassiveCollectible(self, player)
     local inventory = self:getPlayerInventory(player, false)
     return getLastElement(nil, inventory)
 end
-__TS__Decorate({Exported}, PlayerInventory.prototype, "getPlayerInventory", true)
-__TS__Decorate({Exported}, PlayerInventory.prototype, "getPlayerLastPassiveCollectible", true)
+__TS__DecorateLegacy({Exported}, PlayerInventory.prototype, "getPlayerLastPassiveCollectible", true)
 return ____exports
  end,
 ["src.classes.features.other.PreventChildEntities"] = function(...) 
@@ -51091,7 +51015,7 @@ local Set = ____lualib.Set
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -51120,7 +51044,7 @@ function PreventChildEntities.prototype.preventChildEntities(self, entity)
     local ptrHash = GetPtrHash(entity)
     v.room.preventingEntities:add(ptrHash)
 end
-__TS__Decorate({Exported}, PreventChildEntities.prototype, "preventChildEntities", true)
+__TS__DecorateLegacy({Exported}, PreventChildEntities.prototype, "preventChildEntities", true)
 return ____exports
  end,
 ["src.functions.projectiles"] = function(...) 
@@ -51178,7 +51102,7 @@ return ____exports
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local CardType = ____isaac_2Dtypescript_2Ddefinitions.CardType
@@ -51289,6 +51213,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltReward(self, positionOrGridIn
         end
     until true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltReward", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardUrn(self, position, rng)
     local room = game:GetRoom()
     local chance = getRandom(nil, rng)
@@ -51350,6 +51275,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardUrn(self, position, rng
     )
     return true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardUrn", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardMushroom(self, position, rng)
     local room = game:GetRoom()
     local roomType = room:GetType()
@@ -51403,6 +51329,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardMushroom(self, position
     game:ButterBeanFart(position, FART_RADIUS, nil)
     return true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardMushroom", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardSkull(self, position, rng)
     local chance = getRandom(nil, rng)
     local totalChance = 0
@@ -51450,6 +51377,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardSkull(self, position, r
     )
     return true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardSkull", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardPolyp(self, position, rng)
     local chance = getRandom(nil, rng)
     local totalChance = 0
@@ -51503,6 +51431,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardPolyp(self, position, r
     )
     return true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardPolyp", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardBucketDownpour(self, position, rng)
     local room = game:GetRoom()
     local chance = getRandom(nil, rng)
@@ -51569,6 +51498,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardBucketDownpour(self, po
     )
     return true
 end
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardBucketDownpour", true)
 function SpawnRockAltRewards.prototype.spawnRockAltRewardBucketDross(self, position, rng)
     local room = game:GetRoom()
     local chance = getRandom(nil, rng)
@@ -51633,13 +51563,7 @@ function SpawnRockAltRewards.prototype.spawnRockAltRewardBucketDross(self, posit
     )
     return true
 end
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltReward", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardUrn", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardMushroom", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardSkull", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardPolyp", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardBucketDownpour", true)
-__TS__Decorate({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardBucketDross", true)
+__TS__DecorateLegacy({Exported}, SpawnRockAltRewards.prototype, "spawnRockAltRewardBucketDross", true)
 return ____exports
  end,
 ["src.classes.features.other.StartAmbush"] = function(...) 
@@ -51647,7 +51571,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local SackSubType = ____isaac_2Dtypescript_2Ddefinitions.SackSubType
@@ -51693,7 +51617,7 @@ function StartAmbush.prototype.startAmbush(self)
         removeEntities(nil, coinsFromSack)
     end)
 end
-__TS__Decorate({Exported}, StartAmbush.prototype, "startAmbush", true)
+__TS__DecorateLegacy({Exported}, StartAmbush.prototype, "startAmbush", true)
 return ____exports
  end,
 ["src.classes.features.other.TaintedLazarusPlayers"] = function(...) 
@@ -51702,7 +51626,7 @@ local Map = ____lualib.Map
 local __TS__New = ____lualib.__TS__New
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
-local __TS__Decorate = ____lualib.__TS__Decorate
+local __TS__DecorateLegacy = ____lualib.__TS__DecorateLegacy
 local ____exports = {}
 local ____isaac_2Dtypescript_2Ddefinitions = require("lua_modules.isaac-typescript-definitions.dist.src.index")
 local ModCallback = ____isaac_2Dtypescript_2Ddefinitions.ModCallback
@@ -51763,7 +51687,7 @@ function TaintedLazarusPlayers.prototype.getTaintedLazarusSubPlayer(self, player
     local ptrHash = GetPtrHash(player)
     return v.run.subPlayerMap:get(ptrHash)
 end
-__TS__Decorate({Exported}, TaintedLazarusPlayers.prototype, "getTaintedLazarusSubPlayer", true)
+__TS__DecorateLegacy({Exported}, TaintedLazarusPlayers.prototype, "getTaintedLazarusSubPlayer", true)
 return ____exports
  end,
 ["src.features"] = function(...) 
@@ -51909,7 +51833,7 @@ function ____exports.getFeatures(self, mod, callbacks)
     local stageHistory = __TS__New(StageHistory)
     local runInNFrames = __TS__New(RunInNFrames, roomHistory)
     local pickupIndexCreation = __TS__New(PickupIndexCreation, roomHistory, saveDataManager)
-    local preventCollectibleRotation = __TS__New(PreventCollectibleRotation, pickupIndexCreation)
+    local preventCollectibleRotation = __TS__New(PreventCollectibleRotation, pickupIndexCreation, runInNFrames)
     local customGridEntities = __TS__New(CustomGridEntities, runInNFrames)
     local moddedElementSets = __TS__New(ModdedElementSets, moddedElementDetection)
     local itemPoolDetection = __TS__New(ItemPoolDetection, moddedElementSets)
@@ -52318,19 +52242,6 @@ function ModUpgraded.prototype.initOptionalFeature(self, feature)
     self:initFeature(featureClass)
     return getExportedMethodsFromFeature(nil, featureClass)
 end
-return ____exports
- end,
-["lua_modules.isaac-typescript-definitions.dist.src.enums.CallbackPriority"] = function(...) 
-local ____exports = {}
-____exports.CallbackPriority = {}
-____exports.CallbackPriority.IMPORTANT = -200
-____exports.CallbackPriority[____exports.CallbackPriority.IMPORTANT] = "IMPORTANT"
-____exports.CallbackPriority.EARLY = -100
-____exports.CallbackPriority[____exports.CallbackPriority.EARLY] = "EARLY"
-____exports.CallbackPriority.DEFAULT = 0
-____exports.CallbackPriority[____exports.CallbackPriority.DEFAULT] = "DEFAULT"
-____exports.CallbackPriority.LATE = 100
-____exports.CallbackPriority[____exports.CallbackPriority.LATE] = "LATE"
 return ____exports
  end,
 ["src.classes.ModFeature"] = function(...) 
@@ -53551,6 +53462,48 @@ function ____exports.initModFeatures(self, mod, modFeatures)
 end
 return ____exports
  end,
+["src.functions.npcDataStructures"] = function(...) 
+local ____lualib = require("lualib_bundle")
+local Map = ____lualib.Map
+local Set = ____lualib.Set
+local ____exports = {}
+function ____exports.mapSetNPC(self, map, npc, value)
+    local ptrHash = GetPtrHash(npc)
+    map:set(ptrHash, value)
+end
+function ____exports.defaultMapGetNPC(self, map, npc, ...)
+    local ptrHash = GetPtrHash(npc)
+    return map:getAndSetDefault(ptrHash, ...)
+end
+function ____exports.defaultMapSetNPC(self, map, npc, value)
+    ____exports.mapSetNPC(nil, map, npc, value)
+end
+function ____exports.mapDeleteNPC(self, map, npc)
+    local ptrHash = GetPtrHash(npc)
+    return map:delete(ptrHash)
+end
+function ____exports.mapGetNPC(self, map, npc)
+    local ptrHash = GetPtrHash(npc)
+    return map:get(ptrHash)
+end
+function ____exports.mapHasNPC(self, map, npc)
+    local ptrHash = GetPtrHash(npc)
+    return map:has(ptrHash)
+end
+function ____exports.setAddNPC(self, set, npc)
+    local ptrHash = GetPtrHash(npc)
+    return set:add(ptrHash)
+end
+function ____exports.setDeleteNPC(self, set, npc)
+    local ptrHash = GetPtrHash(npc)
+    return set:delete(ptrHash)
+end
+function ____exports.setHasNPC(self, set, npc)
+    local ptrHash = GetPtrHash(npc)
+    return set:has(ptrHash)
+end
+return ____exports
+ end,
 ["src.functions.pressurePlate"] = function(...) 
 local ____lualib = require("lualib_bundle")
 local __TS__ArrayEvery = ____lualib.__TS__ArrayEvery
@@ -54457,6 +54410,14 @@ do
 end
 do
     local ____export = require("src.functions.nextStage")
+    for ____exportKey, ____exportValue in pairs(____export) do
+        if ____exportKey ~= "default" then
+            ____exports[____exportKey] = ____exportValue
+        end
+    end
+end
+do
+    local ____export = require("src.functions.npcDataStructures")
     for ____exportKey, ____exportValue in pairs(____export) do
         if ____exportKey ~= "default" then
             ____exports[____exportKey] = ____exportValue
@@ -55565,6 +55526,14 @@ do
 end
 do
     local ____export = require("src.functions.nextStage")
+    for ____exportKey, ____exportValue in pairs(____export) do
+        if ____exportKey ~= "default" then
+            ____exports[____exportKey] = ____exportValue
+        end
+    end
+end
+do
+    local ____export = require("src.functions.npcDataStructures")
     for ____exportKey, ____exportValue in pairs(____export) do
         if ____exportKey ~= "default" then
             ____exports[____exportKey] = ____exportValue
