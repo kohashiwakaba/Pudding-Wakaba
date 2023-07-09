@@ -2055,6 +2055,8 @@ function wakaba:unlockTsukasa(bool)
 	wakaba.state.unlock.magmablade = 2 --The Beast
 	wakaba.state.unlock.lunarstone = true
 
+	wakaba.state.unlock.taintedtsukasa = true
+
 	print("Cheating Tsukasa unlocks complete.")
 	Isaac.DebugString("[wakaba]Cheating Tsukasa unlocks complete.")
 	--wakaba:save(true)
@@ -2098,6 +2100,8 @@ function wakaba:unlockRicher(bool)
 	wakaba.state.unlock.cunningpaper = 2 -- Mother
 	wakaba.state.unlock.selfburning = 2 --The Beast
 	wakaba.state.unlock.rabbitribbon = true
+
+	wakaba.state.unlock.taintedricher = true
 
 	print("Cheating Richer unlocks complete.")
 	Isaac.DebugString("[wakaba]Cheating Richer unlocks complete.")

@@ -78,7 +78,7 @@ function wakaba:AfterRicherInit(player)
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN or ((wakaba.state.unlock.sweetscatalog or wakaba.state.options.allowlockeditems) and wakaba.state.achievementPopupShown) then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		else
-			player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 6, true, ActiveSlot.SLOT_PRIMARY)
+			player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 4, true, ActiveSlot.SLOT_PRIMARY)
 		end
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()

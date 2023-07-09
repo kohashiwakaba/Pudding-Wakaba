@@ -932,9 +932,6 @@ local wakabadirectory = {
 					wakaba:LockItems()
 					if not wakaba:IsWakabaCharacterUnlocked(Isaac.GetPlayer()) then
 						wakaba.G:FinishChallenge()
-					elseif Isaac.GetPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER then
-						Isaac.GetPlayer():RemoveCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG)
-						Isaac.GetPlayer():SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 					end
 
 					--Retribution.RemoveLockedItemsAndTrinkets()
@@ -950,6 +947,10 @@ local wakabadirectory = {
 					wakaba.state.options.allowlockeditems = true
 					wakaba.state.achievementPopupShown = true
 					wakaba.showPersistentUnlockText = false
+					if Isaac.GetPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER then
+						Isaac.GetPlayer():RemoveCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG)
+						Isaac.GetPlayer():SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
+					end
 
 					--Retribution.RemoveLockedItemsAndTrinkets()
 					--Retribution.BuildCustomItemPools()
