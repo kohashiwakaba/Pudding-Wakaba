@@ -37,10 +37,17 @@ end
 -- Curse of the Maze → Curse of Amnesia : Sometimes cleared rooms are randomly be uncleared / 방 입장 시 확률적으로 클리어한 방을 다시 클리어해야 함
 
 
-function wakaba:Curse_RabbitRibbon(player)
-
+---comment
+---@param player EntityPlayer
+function wakaba:PlayerUpdate_RabbitRibbon(player)
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+		local weapon = player:GetActiveWeaponEntity()
+		if weapon then
+			weapon.Visible = false
+		end
+	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Curse_RabbitRibbon)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_RabbitRibbon)
 
 function wakaba:Cache_RabbitRibbon(player, cacheFlag)
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
@@ -67,6 +74,15 @@ function wakaba:TearUpdate_RabbitRibbon(tear)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRibbon)
+
+function wakaba:BombUpdate_RabbitRibbon(tear)
+	local player = wakaba:getPlayerFromTear(tear)
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player then
+		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
+		--tear.Visible = false
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombUpdate_RabbitRibbon)
 
 function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFlags)
 	local returndata = {}
