@@ -34,7 +34,7 @@ wakaba:addActiveRender({
 		local item = player:GetActiveItem(activeSlot)
 		if item ~= wakaba.Enums.Collectibles.WATER_FLAME then return false end
 
-		return canDisplayWaterFlame(player) ~= nil
+		return canDisplayWaterFlame(player) ~= nil and not player:HasCurseMistEffect()
 	end,
 	Update = function(player, slot, data)
 		local playerIndex = isc:getPlayerIndex(player)
