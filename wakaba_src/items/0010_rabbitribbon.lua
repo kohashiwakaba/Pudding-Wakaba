@@ -205,37 +205,39 @@ function wakaba:NewRoom_RabbitRibbon()
 		end
 	end
 	if wakaba.curses.CURSE_OF_AMNESIA > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_AMNESIA) then
-		if StageAPI and StageAPI.InOverriddenStage() then
-			return
-		else
-
-		end
 		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBIT_RIBBON)
 		local result = rng:RandomFloat() * 100
-		if result <= 46 then
-			local rooms = isc:getRooms()
-			local roomdesc = rooms[rng:RandomInt(#rooms)]
-			if roomdesc and roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.SafeGridIndex ~= 84 then
-				local RECOMMENDED_SHIFT_IDX = 35
-				local game = Game()
-				local seeds = game:GetSeeds()
-				local startSeed = seeds:GetStartSeed()
-				local roomRng = RNG()
-				roomRng:SetSeed(roomdesc.AwardSeed, RECOMMENDED_SHIFT_IDX)
-				roomdesc.Clear = false
-				roomdesc.NoReward = false
-				roomdesc.AwardSeed = roomRng:Next()
-				roomdesc.VisitedCount = 0
-				roomdesc.PressurePlatesTriggered = false
-				roomdesc.DisplayFlags = 5
-				if MinimapAPI then
-					local mRoom = MinimapAPI:GetRoomByIdx(roomdesc.GridIndex)
-					if mRoom then
-						mRoom.Clear = false
-						mRoom.Visited = false
-						--mRoom:SetDisplayFlags(roomdesc.DisplayFlags)
-						--mRoom:SyncRoomDescriptor()
-						--MinimapAPI:LoadDefaultMap()
+		if StageAPI and StageAPI.InOverriddenStage() then
+			local roomdesc = wakaba.G:GetLevel():GetCurrentRoomDesc()
+			if roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.SafeGridIndex ~= 84 and result <= 22 then
+				player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, UseFlag.USE_CARBATTERY | UseFlag.USE_NOANIM, -1)
+			end
+		else
+			if result <= 46 then
+				local rooms = isc:getRooms()
+				local roomdesc = rooms[rng:RandomInt(#rooms)]
+				if roomdesc and roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.SafeGridIndex ~= 84 then
+					local RECOMMENDED_SHIFT_IDX = 35
+					local game = Game()
+					local seeds = game:GetSeeds()
+					local startSeed = seeds:GetStartSeed()
+					local roomRng = RNG()
+					roomRng:SetSeed(roomdesc.AwardSeed, RECOMMENDED_SHIFT_IDX)
+					roomdesc.Clear = false
+					roomdesc.NoReward = false
+					roomdesc.AwardSeed = roomRng:Next()
+					roomdesc.VisitedCount = 0
+					roomdesc.PressurePlatesTriggered = false
+					roomdesc.DisplayFlags = 5
+					if MinimapAPI then
+						local mRoom = MinimapAPI:GetRoomByIdx(roomdesc.GridIndex)
+						if mRoom then
+							mRoom.Clear = false
+							mRoom.Visited = false
+							--mRoom:SetDisplayFlags(roomdesc.DisplayFlags)
+							--mRoom:SyncRoomDescriptor()
+							--MinimapAPI:LoadDefaultMap()
+						end
 					end
 				end
 			end
