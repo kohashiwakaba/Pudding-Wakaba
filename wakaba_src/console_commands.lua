@@ -176,6 +176,8 @@ function wakaba:ConsoleCommands(cmd, param)
 			wakaba:unlockTsukasa(true)
 		elseif param == "tsukasa_b" then
 			wakaba:unlockTaintedTsukasa(true)
+		elseif param == "richer" then
+			wakaba:unlockRicher(true)
 		elseif param == "challenge" then
 			wakaba:unlockChallenge(true)
 		elseif param == "all" then
@@ -185,6 +187,7 @@ function wakaba:ConsoleCommands(cmd, param)
 			wakaba:unlockTaintedShiori(true)
 			wakaba:unlockTsukasa(true)
 			wakaba:unlockTaintedTsukasa(true)
+			wakaba:unlockRicher(true)
 			wakaba:unlockChallenge(true)
 		else
 			print("")
@@ -203,10 +206,22 @@ function wakaba:ConsoleCommands(cmd, param)
 			print("wakaba_cheat shiori_b - Unlock all Tainted Shiori unlocks")
 			print("wakaba_cheat tsukasa - Unlock all Tsukasa unlocks")
 			print("wakaba_cheat tsukasa_b - Unlock all Tainted Tsukasa unlocks")
+			print("wakaba_cheat richer - Unlock all Richer unlocks")
 			print("wakaba_cheat challenge - Unlock all Challenge unlocks")
 			print("wakaba_cheat all - Unlock all above")
 		end
 	end
+
+	if wakaba.debug then
+		if cmd == "wd" then
+			if param == "aquatrinket" then
+				local player = Isaac.GetPlayer()
+				local trinket = Isaac.Spawn(5, 350, -1, Isaac.GetFreeNearPosition(player.Position, 0), Vector.Zero, nil)
+				wakaba:TryTurnAquaTrinket(trinket)
+			end
+		end
+	end
+
 
 end
 

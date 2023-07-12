@@ -20,8 +20,20 @@ function wakaba:TryTurnAquaTrinket(trinket)
 	pickup:GetData().wakaba.isAquaTrinket = true
 end
 
+local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
-	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched
+	local hasTrinketDropped = false
+
+	wakaba:ForAllPlayers(function(player)
+		local lastTrigger = player:GetLastActionTriggers()
+		if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
+			hasTrinketDropped = true
+		end
+		if player:GetData().wakaba.blockAquaSpawn then
+			hasTrinketDropped = true
+		end
+	end)
+	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local currentRoomIndex = isc:getRoomListIndex()
 		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
@@ -76,6 +88,16 @@ function wakaba:TrinketCollision_AquaTrinkets(pickup, collider)
 		pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 		if player and pickup:GetData().wakaba.isAquaTrinket then
 			player:GetData().wakaba.tryAquaTrinket = pickup.SubType
+			player:GetData().wakaba.prevTrinketPrimary = player:GetTrinket(0)
+			player:GetData().wakaba.prevTrinketSecondary = player:GetTrinket(1)
+			if player:GetTrinket(0) > 0 then
+				player:TryRemoveTrinket(player:GetTrinket(0))
+			end
+			if player:GetTrinket(1) > 0 then
+				player:TryRemoveTrinket(player:GetTrinket(1))
+			end
+		elseif player then
+			player:GetData().wakaba.blockAquaSpawn = true
 		end
 	end
 end
@@ -90,7 +112,18 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 		if queue:IsTrinket() and queue.ID == data.wakaba.tryAquaTrinket then
 			player:AnimateTrinket(data.wakaba.tryAquaTrinket, "UseItem")
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM | UseFlag.USE_VOID, -1)
+			if data.wakaba.prevTrinketPrimary > 0 then
+				player:AddTrinket(data.wakaba.prevTrinketPrimary)
+			end
+			if data.wakaba.prevTrinketSecondary > 0 then
+				player:AddTrinket(data.wakaba.prevTrinketSecondary)
+			end
+			data.wakaba.prevTrinketPrimary = nil
+			data.wakaba.prevTrinketSecondary = nil
 			data.wakaba.tryAquaTrinket = nil
+		end
+		if data.wakaba.blockAquaSpawn then
+			data.wakaba.blockAquaSpawn = nil
 		end
 	end
 end
