@@ -26,38 +26,35 @@ function wakaba:AfterRevival_VintageThreat(player)
 	data.wakaba.vintagethreatremovecnt = 1
 end
 
-function wakaba:PlayerUpdate_VintageThreat()
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		wakaba:GetPlayerEntityData(player)
-		if player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT, true) then
-			if Input.IsButtonTriggered((wakaba.state.options.vintagetriggerkey or Keyboard.KEY_9), 0) then
-				wakaba:AfterRevival_VintageThreat(player)
-			end
+function wakaba:PlayerUpdate_VintageThreat(player)
+	wakaba:GetPlayerEntityData(player)
+	if player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT, true) then
+		if Input.IsButtonTriggered((wakaba.state.options.vintagetriggerkey or Keyboard.KEY_9), 0) then
+			wakaba:AfterRevival_VintageThreat(player)
 		end
-		if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
-			player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
-			player:GetData().wakaba.vintagethreatremovecnt = player:GetData().wakaba.vintagethreatremovecnt - 1
+	end
+	if player:GetData().wakaba.vintagethreatremovecnt and player:GetData().wakaba.vintagethreatremovecnt > 0 then
+		player:RemoveCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
+		player:GetData().wakaba.vintagethreatremovecnt = player:GetData().wakaba.vintagethreatremovecnt - 1
+	end
+	if player:IsDead() and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:GetData().wakaba.vintagethreat then
+		--player:GetData().wakaba.vintagegameover = true
+	end
+	if player:GetData().wakaba.vintagegameover then
+		if player:IsDead() and not player:HasCurseMistEffect() then
+			player:AddCurseMistEffect()
 		end
-		if player:IsDead() and (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:GetData().wakaba.vintagethreat then
-			--player:GetData().wakaba.vintagegameover = true
+		if player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+			player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE, -1)
 		end
-		if player:GetData().wakaba.vintagegameover then
-			if not player:HasCurseMistEffect() then
-				player:AddCurseMistEffect()
-			end
-			if player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
-				player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE, -1)
-			end
-			if (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:IsExtraAnimationFinished() then
-				MusicManager():Play(Music.MUSIC_JINGLE_GAME_OVER, Options.MusicVolume)
-				MusicManager():Queue(Music.MUSIC_GAME_OVER)
-				wakaba.G:End(1)
-			end
+		if (player:GetSprite():GetAnimation() == "Death" or player:GetSprite():GetAnimation() == "LostDeath") and player:IsExtraAnimationFinished() then
+			MusicManager():Play(Music.MUSIC_JINGLE_GAME_OVER, Options.MusicVolume)
+			MusicManager():Queue(Music.MUSIC_GAME_OVER)
+			wakaba.G:End(1)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PlayerUpdate_VintageThreat)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_VintageThreat, 0)
 
 function wakaba:FamiliarUpdate_VintageThreat(familiar)
 	if not familiar.Player then return end
