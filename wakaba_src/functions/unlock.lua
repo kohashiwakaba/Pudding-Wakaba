@@ -1,6 +1,9 @@
+-- main unlock related functions mixed from Fiend Folio, Retribution
+
 local game = Game()
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+---@type table
 wakaba.UnlockTables = {
 	[wakaba.Enums.Players.WAKABA] = {
 		Heart 		= {"clover", "trinket", 		wakaba.Enums.Trinkets.CLOVER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_clover.png") end},
@@ -106,14 +109,33 @@ wakaba.UnlockTables = {
 	[wakaba.Enums.Players.RICHER_B] = {
 		istainted = true,
 		Heart 		= {"taintedrichermomsheart"},
-		Quartet 		= {"starreversal", "trinket",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Duet 		= {"richersoul", "card",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Delirium	= {"waterflame", "collectible",	wakaba.Enums.Collectibles.UNIFORM,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Quartet 		= {"starreversal", "trinket",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Duet 		= {"richersoul", "card",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Delirium	= {"waterflame", "collectible",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 		MegaSatan	= {"crystalrestock", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Mother		= {"mistake", "trinket",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Beast		= {"winteralbireo", "collectible",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Greedier	= {"trialstew", "card",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Mother		= {"mistake", "trinket",	nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Beast		= {"winteralbireo", "collectible",	nil,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
+		Greedier	= {"trialstew", "card",		nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 	},
+	[-999] = {
+		["w01"] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w02"] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		--["w03"] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w04"] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w05"] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w06"] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w07"] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w08"] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w09"] = {"lostuniform", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w10"] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w11"] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w12"] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w13"] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w14"] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w15"] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w98"] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		["w99"] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+	}
 }
 
 local playertype_cache =  wakaba.CACHED_PLAYERTYPE_CACHE or {}
@@ -259,7 +281,31 @@ function wakaba:GetUnlocksTemplate(playerType)
 		GreedMode = {Unlock = false, Hard = false},
 	}
 end
---[[ 
+
+
+function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
+	typeString = typeString or "collectible"
+	for playerType, unlocksTable in pairs(wakaba.UnlockTables) do
+		for k, v in pairs(unlocksTable) do
+			if type(v) == "table" then
+				if v[2] ~= nil and v[2] == typeString then
+					if v[3] == itemID then
+						local unlockStateVal = wakaba.state.unlock[v[1]]
+						if type(unlockStateVal) == "boolean" then
+							return unlockStateVal
+						elseif type(unlockStateVal) == "number" then
+							return unlockStateVal > 0
+						end
+					end
+				end
+			end
+		end
+	end
+	return true
+end
+
+
+--[[
 function wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
 	for key, dataset in pairs(wakaba.state.completion) do
 		if playertype_cache[key] == playerType then
@@ -281,7 +327,7 @@ function wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
 	end
 end
  ]]
---[[ 
+--[[
 function wakaba:InitCharacterCompletion(playername, tainted, forceTaintedCompletion)
 	local lookup = string.lower(playername)
 	if tainted then lookup = lookup .. "B" end
@@ -335,19 +381,19 @@ function wakaba:InitCharacterCompletionMarks()
 
 	wakaba:InitCharacterCompletion("Wakaba", true)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.WAKABA_B, wakaba.UnlockTables[wakaba.Enums.Players.WAKABA_B])
-	
+
 	wakaba:InitCharacterCompletion("Shiori", false)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.SHIORI, wakaba.UnlockTables[wakaba.Enums.Players.SHIORI])
 
 	wakaba:InitCharacterCompletion("Shiori", true)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.SHIORI_B, wakaba.UnlockTables[wakaba.Enums.Players.SHIORI_B])
-	
+
 	wakaba:InitCharacterCompletion("Tsukasa", false)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.TSUKASA, wakaba.UnlockTables[wakaba.Enums.Players.TSUKASA])
 
 	wakaba:InitCharacterCompletion("Tsukasa", true)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.TSUKASA_B, wakaba.UnlockTables[wakaba.Enums.Players.TSUKASA_B])
-	
+
 	wakaba:InitCharacterCompletion("Richer", false)
 	wakaba:AssociateCompletionUnlocks(wakaba.Enums.Players.RICHER, wakaba.UnlockTables[wakaba.Enums.Players.RICHER])
 
@@ -356,7 +402,7 @@ function wakaba:InitCharacterCompletionMarks()
 end
  ]]
 
---[[ 
+--[[
 
 local function HasPlayerAchievedQuartet(playerKey)
 	return (
@@ -397,7 +443,7 @@ local function TestUnlock(playerKey, unlockType)
 	end
 end
  ]]
---[[ 
+--[[
 function wakaba.IsCompletionMarkUnlocked(playerKey, unlockType)
 	return TestUnlock(string.lower(playerKey), unlockType)
 end
@@ -526,7 +572,7 @@ local function CheckOnCompletionFunctions(playerKey, unlockKey, newValue, skipAl
 	end
 end
 
---[[ 
+--[[
 local antiRecursion = false
 wakaba:AddCallback(ModCallbacks.MC_GET_TRINKET, function(_, trinket, rng)
 	if not antiRecursion and not wakaba.IsCompletionTrinketUnlocked(trinket) then
@@ -564,7 +610,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
 				if value > check.beast then
 					CheckOnCompletionFunctions(check.lookupstr, "Beast", value, check.istainted)
 				end
-	
+
 				check.beast = math.max(check.beast, value)
 			elseif roomtype == RoomType.ROOM_BOSS then
 				local boss = room:GetBossID()
@@ -714,7 +760,7 @@ end)
 
 
 -- from retribution
---[[ 
+--[[
 function wakaba.GetCompletionNoteLayerDataFromPlayerType(playerType)
 	if wakaba.state and wakaba.state.completion then
 		for key, dataset in pairs(wakaba.state.completion) do
