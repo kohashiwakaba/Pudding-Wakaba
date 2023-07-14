@@ -3,6 +3,84 @@
 local game = Game()
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+local playertype_cache =  wakaba.CACHED_PLAYERTYPE_CACHE or {}
+wakaba.CACHED_PLAYERTYPE_CACHE = playertype_cache
+
+local unlocksHolder = {}
+local unlocksHolder2 = {}
+
+local DifficultyToCompletionMap = {
+	[Difficulty.DIFFICULTY_NORMAL]	 = 1,
+	[Difficulty.DIFFICULTY_HARD]	 = 2,
+	[Difficulty.DIFFICULTY_GREED]	 = 1,
+	[Difficulty.DIFFICULTY_GREEDIER] = 2,
+}
+
+local BossID = { -- Only the relevant ones
+	MOM 		= 6,
+	HEART 		= 8,
+	SATAN 		= 24,
+	IT_LIVES	= 25,
+	ISAAC		= 39,
+	BLUE_BABY	= 40,
+	LAMB		= 54,
+	MEGA_SATAN	= 55,
+	GREED		= 62,
+	HUSH		= 63,
+	DELIRIUM	= 70,
+	GREEDIER	= 71,
+	MOTHER		= 88,
+	MAUS_HEART	= 90,
+	BEAST		= 100,
+}
+
+local noteLayer = {
+	DELI 	= 0,
+	HEART	= 1,
+	ISAAC	= 2,
+	SATAN	= 3,
+	RUSH 	= 4,
+	BBABY 	= 5,
+	LAMB 	= 6,
+	MEGA 	= 7,
+	GREED 	= 8,
+	HUSH 	= 9,
+	MOTHER 	= 10,
+	BEAST 	= 11,
+}
+
+local associationToValueMap = {
+	Heart 		= "heart",
+	Isaac 		= "isaac",
+	BlueBaby 	= "bbaby",
+	Satan 		= "satan",
+	Lamb		= "lamb",
+	BossRush 	= "rush",
+	Hush 		= "hush",
+	Delirium 	= "deli",
+	MegaSatan 	= "mega",
+	Mother		= "mother",
+	Beast		= "beast",
+	Greed 		= "greed",
+	Greedier 	= "greed",
+}
+
+local associationTestValue = {
+	Heart 		= 2,
+	Isaac 		= 1,
+	BlueBaby 	= 1,
+	Satan 		= 1,
+	Lamb		= 1,
+	BossRush 	= 1,
+	Hush 		= 1,
+	Delirium 	= 1,
+	MegaSatan 	= 1,
+	Mother 		= 1,
+	Beast 		= 1,
+	Greed 		= 1,
+	Greedier 	= 2,
+}
+
 ---@type table
 wakaba.UnlockTables = {
 	[wakaba.Enums.Players.WAKABA] = {
@@ -118,101 +196,24 @@ wakaba.UnlockTables = {
 		Greedier	= {"trialstew", "card",		nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
 	},
 	[-999] = {
-		["w01"] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w02"] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		--["w03"] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w04"] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w05"] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w06"] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w07"] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w08"] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w09"] = {"lostuniform", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w10"] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w11"] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w12"] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w13"] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w14"] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w15"] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w98"] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		["w99"] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOM},
+		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
+		--[wakaba.challenges.CHALLENGE_PULL] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOM},
+		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HEART},
+		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
+		[wakaba.challenges.CHALLENGE_DELI] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_SIST] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.LAMB},
+		[wakaba.challenges.CHALLENGE_DRAW] = {"lostuniform", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end}, BossID.BLUE_BABY,
+		[wakaba.challenges.CHALLENGE_HUSH] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
+		[wakaba.challenges.CHALLENGE_APPL] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.LAMB},
+		[wakaba.challenges.CHALLENGE_BIKE] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MEGA_SATAN},
+		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.BEAST},
 	}
-}
-
-local playertype_cache =  wakaba.CACHED_PLAYERTYPE_CACHE or {}
-wakaba.CACHED_PLAYERTYPE_CACHE = playertype_cache
-
-local unlocksHolder = {}
-local unlocksHolder2 = {}
-
-local DifficultyToCompletionMap = {
-	[Difficulty.DIFFICULTY_NORMAL]	 = 1,
-	[Difficulty.DIFFICULTY_HARD]	 = 2,
-	[Difficulty.DIFFICULTY_GREED]	 = 1,
-	[Difficulty.DIFFICULTY_GREEDIER] = 2,
-}
-
-local BossID = { -- Only the relevant ones
-	HEART 		= 8,
-	SATAN 		= 24,
-	IT_LIVES	= 25,
-	ISAAC		= 39,
-	BLUE_BABY	= 40,
-	LAMB		= 54,
-	MEGA_SATAN	= 55,
-	GREED		= 62,
-	HUSH		= 63,
-	DELIRIUM	= 70,
-	GREEDIER	= 71,
-	MOTHER		= 88,
-	MAUS_HEART	= 90,
-	BEAST		= 100,
-}
-
-local noteLayer = {
-	DELI 	= 0,
-	HEART	= 1,
-	ISAAC	= 2,
-	SATAN	= 3,
-	RUSH 	= 4,
-	BBABY 	= 5,
-	LAMB 	= 6,
-	MEGA 	= 7,
-	GREED 	= 8,
-	HUSH 	= 9,
-	MOTHER 	= 10,
-	BEAST 	= 11,
-}
-
-local associationToValueMap = {
-	Heart 		= "heart",
-	Isaac 		= "isaac",
-	BlueBaby 	= "bbaby",
-	Satan 		= "satan",
-	Lamb		= "lamb",
-	BossRush 	= "rush",
-	Hush 		= "hush",
-	Delirium 	= "deli",
-	MegaSatan 	= "mega",
-	Mother		= "mother",
-	Beast		= "beast",
-	Greed 		= "greed",
-	Greedier 	= "greed",
-}
-
-local associationTestValue = {
-	Heart 		= 2,
-	Isaac 		= 1,
-	BlueBaby 	= 1,
-	Satan 		= 1,
-	Lamb		= 1,
-	BossRush 	= 1,
-	Hush 		= 1,
-	Delirium 	= 1,
-	MegaSatan 	= 1,
-	Mother 		= 1,
-	Beast 		= 1,
-	Greed 		= 1,
-	Greedier 	= 2,
 }
 
 function wakaba:CanRunUnlockAchievements(forceNew) -- Made in conjunction with Thicco Catto
@@ -282,6 +283,32 @@ function wakaba:GetUnlocksTemplate(playerType)
 	}
 end
 
+function wakaba:GetUnlockEntry(playerType, unlockType)
+	if wakaba.UnlockTables[playerType] then
+		local unlockCheckStr = ""
+		local unlockTable = wakaba.UnlockTables[playerType]
+		if unlockTable.istainted then
+			if unlockType == "BossRush" then
+				unlockCheckStr = unlockTable.Duet[1].."1"
+			elseif unlockType == "Hush" then
+				unlockCheckStr = unlockTable.Duet[1].."2"
+			elseif unlockType == "Isaac" then
+				unlockCheckStr = unlockTable.Quartet[1].."1"
+			elseif unlockType == "Satan" then
+				unlockCheckStr = unlockTable.Quartet[1].."2"
+			elseif unlockType == "BlueBaby" then
+				unlockCheckStr = unlockTable.Quartet[1].."3"
+			elseif unlockType == "Lamb" then
+				unlockCheckStr = unlockTable.Quartet[1].."4"
+			else
+				unlockCheckStr = unlockTable[unlockType][1]
+			end
+		else
+			unlockCheckStr = unlockTable[unlockType][1]
+		end
+		return unlockCheckStr
+	end
+end
 
 function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
 	typeString = typeString or "collectible"
@@ -303,6 +330,400 @@ function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
 	end
 	return true
 end
+
+local function HasPlayerAchievedQuartetTemp(playerType)
+	local unlockTable = wakaba.UnlockTables[playerType]
+	if not unlockTable then
+		return
+	end
+	local unlockCheckStr = unlockTable.Quartet[1]
+
+	return (
+		wakaba.state.unlock[unlockCheckStr.."1"] >= 1 and
+		wakaba.state.unlock[unlockCheckStr.."2"] >= 1 and
+		wakaba.state.unlock[unlockCheckStr.."3"] >= 1 and
+		wakaba.state.unlock[unlockCheckStr.."4"] >= 1 
+	)
+end
+
+local function HasPlayerAchievedDuetTemp(playerType)
+	local unlockTable = wakaba.UnlockTables[playerType]
+	if not unlockTable then
+		return
+	end
+	local unlockCheckStr = unlockTable.Duet[1]
+
+	return (
+		wakaba.state.unlock[unlockCheckStr.."1"] >= 1 and
+		wakaba.state.unlock[unlockCheckStr.."2"] >= 1
+	)
+end
+
+local function TestUnlock(playerType, unlockType)
+	if unlockType == "All" then
+		local allHard = true
+
+		for key, value in pairs(wakaba.UnlockTables[playerType]) do
+			if type(value) == "table" then
+				if type(wakaba.state.unlock[value[1]]) == "number" then
+					if wakaba.state.unlock[value[1]] < 2 then
+						allHard = false
+						break
+					end
+				end
+			end
+		end
+
+		return allHard
+	elseif unlockType == "Quartet" then
+		return HasPlayerAchievedQuartetTemp(playerType)
+	elseif unlockType == "Duet" then
+		return HasPlayerAchievedDuetTemp(playerType)
+	else
+		return wakaba.state.unlock[wakaba.UnlockTables[playerType][unlockType][1]] >= associationTestValue[unlockType]
+	end
+end
+
+local function CheckOnCompletionFunctions(playerKey, unlockKey, newValue, skipAll)
+	if unlocksHolder[playerKey] and unlocksHolder[playerKey][unlockKey] then
+		if unlockKey ~= "All" and wakaba.state.completion[playerKey][associationToValueMap[unlockKey]] < associationTestValue[unlockKey] and newValue >= associationTestValue[unlockKey] then
+			if unlocksHolder[playerKey][unlockKey] then
+				unlocksHolder[playerKey][unlockKey][4]()
+			end
+		end
+
+		if unlockKey ~= "Greed" and not skipAll then
+			local allHard = true
+			local oldAllHard
+
+			for key, value in pairs(wakaba.state.completion[playerKey]) do
+				if type(value) == "number" then
+					local num = value
+					if num < 2 then
+						oldAllHard = false
+					end
+
+					if key == associationToValueMap[unlockKey] then
+						num = newValue
+					end
+
+					if num < 2 then
+						allHard = false
+						break
+					end
+				end
+			end
+
+			if allHard and not oldAllHard and unlocksHolder[playerKey].All then
+				unlocksHolder[playerKey].All[4]()
+			end
+		end
+	end
+end
+
+function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShowPopup)
+	local unlockTable = wakaba.UnlockTables[playerType]
+	if not unlockTable then
+		return
+	end
+	local unlockKeyToCheck = bossEntry
+	local skipAll = false
+	local unlockKeyAppend = ""
+	if unlockTable.istainted then
+		if bossEntry == "Isaac" then
+			unlockKeyToCheck = "Quartet"
+			unlockKeyAppend = "1"
+		elseif bossEntry == "Satan" then
+			unlockKeyToCheck = "Quartet"
+			unlockKeyAppend = "2"
+		elseif bossEntry == "BlueBaby" then
+			unlockKeyToCheck = "Quartet"
+			unlockKeyAppend = "3"
+		elseif bossEntry == "Lamb" then
+			unlockKeyToCheck = "Quartet"
+			unlockKeyAppend = "4"
+		elseif bossEntry == "BossRush" then
+			unlockKeyToCheck = "Duet"
+			unlockKeyAppend = "1"
+		elseif bossEntry == "Hush" then
+			unlockKeyToCheck = "Duet"
+			unlockKeyAppend = "2"
+		end
+	end
+	local unlockKey = unlockTable[unlockKeyToCheck][1]
+	if wakaba.state.unlock[unlockKey..unlockKeyAppend] < associationTestValue[bossEntry] and newValue > associationTestValue[bossEntry] then
+		if unlockTable[unlockKeyToCheck][4] then
+			unlockTable[unlockKeyToCheck][4]()
+		end
+	end
+
+	if unlockKey ~= "Greed" and not skipAll then
+		local allHard = true
+		local oldAllHard = TestUnlock(playerType, "All")
+		
+
+		for key, valTable in pairs(unlockTable) do
+			if type(valTable) == "table" then
+				local value = wakaba.state.unlock[v[1]]
+				if type(value) == "number" then
+					local num = value
+					if num < 2 then
+						oldAllHard = false
+					end
+
+					if key == associationToValueMap[bossEntry] then
+						num = newValue
+					end
+
+					if num < 2 then
+						allHard = false
+						break
+					end
+				end
+			end
+		end
+
+		if allHard and not oldAllHard and unlockTable.All then
+			unlockTable.All[4]()
+		end
+	end
+
+end
+
+function wakaba:TestAchievement(id)
+	CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite[id])
+end
+
+local function TryUnlock(playerType, unlockType, value, shouldShowPopup)
+	local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+	local oldValue = wakaba.state.unlock[saveEntry]
+	if value > oldValue then
+		wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+	end
+
+	wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+end
+
+local validPlayerCheck = {
+	wakaba.Enums.Players.WAKABA,
+	wakaba.Enums.Players.WAKABA_B,
+	wakaba.Enums.Players.SHIORI,
+	wakaba.Enums.Players.SHIORI_B,
+	wakaba.Enums.Players.TSUKASA,
+	wakaba.Enums.Players.TSUKASA_B,
+	wakaba.Enums.Players.RICHER,
+	--wakaba.Enums.Players.RICHER_B,
+	--wakaba.Enums.Players.RIRA,
+	--wakaba.Enums.Players.RIRA_B,
+	--wakaba.Enums.Players.WAKABA_T,
+	--wakaba.Enums.Players.SHIORI_T,
+	--wakaba.Enums.Players.TSUKASA_T,
+	--wakaba.Enums.Players.RICHER_T,
+	--wakaba.Enums.Players.RIRA_T,
+}
+function wakaba:UnlockCheck(rng, spawnPosition)
+	local playersToCheck = {}
+
+	wakaba:ForAllPlayers(function(player)
+		if wakaba:has_value(validPlayerCheck, player:GetPlayerType()) then
+			if not wakaba:has_value(playersToCheck, player:GetPlayerType()) then
+				table.insert(playersToCheck, player:GetPlayerType())
+			end
+		end
+	end)
+
+	local shouldShowPopup = Options.DisplayPopups and not wakaba.state.options.allowlockeditems
+	local value = DifficultyToCompletionMap[wakaba.G.Difficulty]
+
+	local level = wakaba.G:GetLevel()
+	local currentStage = level:GetAbsoluteStage()
+	local currentStageType = level:GetStageType()
+	local difficulty = wakaba.G.Difficulty
+	local room = wakaba.G:GetRoom()
+	local type1 = room:GetType()
+	local boss = room:GetBossID()
+
+	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
+		for _, playerType in ipairs(playersToCheck) do
+			local taintedCompletion = wakaba.UnlockTables[playerType].istainted
+
+			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 then
+				local unlockType = "Beast"
+				local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+				local oldValue = wakaba.state.unlock[saveEntry]
+				if value > oldValue then
+					wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+				end
+	
+				wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+			elseif type1 == RoomType.ROOM_BOSSRUSH then
+				local unlockType = "BossRush"
+				local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+				local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
+
+				if value > oldValue and not taintedCompletion then
+					wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+				end
+
+				wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+				local isDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
+				if isDuetAchieved and not wasDuetAchieved then
+					wakaba.UnlockTables[playerType].Duet[4]()
+				end
+			elseif type1 == RoomType.ROOM_BOSS then
+				if currentStage == LevelStage.STAGE7 then -- Void
+					if boss == BossID.DELIRIUM then
+						local unlockType = "Delirium"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
+						if value > oldValue then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+			
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+					end
+				else
+					if boss == BossID.HEART or boss == BossID.IT_LIVES or boss == BossID.MAUS_HEART then
+						local unlockType = "Heart"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+			
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+					elseif boss == BossID.ISAAC then
+						local unlockType = "Isaac"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+						if isQuartetAchieved and not wasQuartetAchieved then
+							wakaba.UnlockTables[playerType].Quartet[4]()
+						end
+					elseif boss == BossID.BLUE_BABY then
+						local unlockType = "BlueBaby"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+						if isQuartetAchieved and not wasQuartetAchieved then
+							wakaba.UnlockTables[playerType].Quartet[4]()
+						end
+					elseif boss == BossID.SATAN then
+						local unlockType = "Satan"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+						if isQuartetAchieved and not wasQuartetAchieved then
+							wakaba.UnlockTables[playerType].Quartet[4]()
+						end
+					elseif boss == BossID.LAMB then
+						local unlockType = "Lamb"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
+						if isQuartetAchieved and not wasQuartetAchieved then
+							wakaba.UnlockTables[playerType].Quartet[4]()
+						end
+					elseif boss == BossID.HUSH then
+						local unlockType = "Hush"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
+
+						if value > oldValue and not taintedCompletion then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local isDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
+						if isDuetAchieved and not wasDuetAchieved then
+							wakaba.UnlockTables[playerType].Duet[4]()
+						end
+					elseif boss == BossID.MEGA_SATAN then
+						local unlockType = "MegaSatan"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
+						if value > oldValue then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+			
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+					elseif boss == BossID.GREED or boss == BossID.GREEDIER then
+						if difficulty == Difficulty.DIFFICULTY_GREED and not taintedCompletion then
+							local unlockType = "Greed"
+							local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+							local oldValue = wakaba.state.unlock[saveEntry]
+							if value > oldValue then
+								wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							end
+				
+							wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						end
+						if difficulty == Difficulty.DIFFICULTY_GREEDIER and then
+							local unlockType = "Greedier"
+							local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+							local oldValue = wakaba.state.unlock[saveEntry]
+							if value > oldValue then
+								wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							end
+				
+							wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						end
+					elseif boss == BossID.MOTHER then
+						local unlockType = "Mother"
+						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
+						if value > oldValue then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+						end
+			
+						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+					end
+				end
+			end
+		end
+	elseif wakaba.G.Challenge >= wakaba.challenges.CHALLENGE_ELEC then
+		local unlocksTable = wakaba.UnlockTables[-999]
+		if unlocksTable[wakaba.G.Challenge] then
+			local unlockTableEntry = unlocksTable[wakaba.G.Challenge]
+			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 and unlockTableEntry[5] == BossID.BEAST then
+				if wakaba.state.unlock[unlockTableEntry[1]] == false then
+					wakaba.state.unlock[unlockTableEntry[1]] = true
+					unlockTableEntry[4]()
+				end
+			elseif type1 == RoomType.ROOM_BOSS and unlockTableEntry[5] == boss then
+				if wakaba.state.unlock[unlockTableEntry[1]] == false then
+					wakaba.state.unlock[unlockTableEntry[1]] = true
+					unlockTableEntry[4]()
+				end
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.UnlockCheck)
 
 
 --[[
@@ -535,42 +956,7 @@ function wakaba.RemoveLockedTrinkets()
 end
 
  ]]
-local function CheckOnCompletionFunctions(playerKey, unlockKey, newValue, skipAll)
-	if unlocksHolder[playerKey] and unlocksHolder[playerKey][unlockKey] then
-		if unlockKey ~= "All" and wakaba.state.completion[playerKey][associationToValueMap[unlockKey]] < associationTestValue[unlockKey] and newValue >= associationTestValue[unlockKey] then
-			if unlocksHolder[playerKey][unlockKey] then
-				unlocksHolder[playerKey][unlockKey][4]()
-			end
-		end
 
-		if unlockKey ~= "Greed" and not skipAll then
-			local allHard = true
-			local oldAllHard
-
-			for key, value in pairs(wakaba.state.completion[playerKey]) do
-				if type(value) == "number" then
-					local num = value
-					if num < 2 then
-						oldAllHard = false
-					end
-
-					if key == associationToValueMap[unlockKey] then
-						num = newValue
-					end
-
-					if num < 2 then
-						allHard = false
-						break
-					end
-				end
-			end
-
-			if allHard and not oldAllHard and unlocksHolder[playerKey].All then
-				unlocksHolder[playerKey].All[4]()
-			end
-		end
-	end
-end
 
 --[[
 local antiRecursion = false
@@ -589,8 +975,8 @@ wakaba:AddCallback(ModCallbacks.MC_GET_TRINKET, function(_, trinket, rng)
 	end
 end)
 
-
-
+]]
+--[[
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
 	if wakaba:CanRunUnlockAchievements() then
 		local room = game:GetRoom()
@@ -759,46 +1145,6 @@ end)
 
 
 
--- from retribution
---[[
-function wakaba.GetCompletionNoteLayerDataFromPlayerType(playerType)
-	if wakaba.state and wakaba.state.completion then
-		for key, dataset in pairs(wakaba.state.completion) do
-			if playertype_cache[key] == playerType then
-				return {
-					[noteLayer.DELI] 	= dataset.deli + (dataset.istainted and 3 or 0),
-					[noteLayer.HEART] 	= dataset.heart,
-					[noteLayer.ISAAC] 	= dataset.isaac,
-					[noteLayer.SATAN] 	= dataset.satan,
-					[noteLayer.RUSH] 	= dataset.rush,
-					[noteLayer.BBABY] 	= dataset.bbaby,
-					[noteLayer.LAMB] 	= dataset.lamb,
-					[noteLayer.MEGA] 	= dataset.mega,
-					[noteLayer.GREED] 	= dataset.greed,
-					[noteLayer.HUSH] 	= dataset.hush,
-					[noteLayer.MOTHER] 	= dataset.mother,
-					[noteLayer.BEAST] 	= dataset.beast,
-				}
-			end
-		end
-	else
-		return {
-			[noteLayer.DELI] 	= 0,
-			[noteLayer.HEART] 	= 0,
-			[noteLayer.ISAAC] 	= 0,
-			[noteLayer.SATAN] 	= 0,
-			[noteLayer.RUSH] 	= 0,
-			[noteLayer.BBABY] 	= 0,
-			[noteLayer.LAMB] 	= 0,
-			[noteLayer.MEGA] 	= 0,
-			[noteLayer.GREED] 	= 0,
-			[noteLayer.HUSH] 	= 0,
-			[noteLayer.MOTHER] 	= 0,
-			[noteLayer.BEAST] 	= 0,
-		}
-	end
-end
- ]]
 function wakaba:LockItems()
   for i = wakaba.FIRST_WAKABA_ITEM, wakaba.LAST_WAKABA_ITEM do
     local isUnlocked = wakaba:unlockCheck(i)
