@@ -81,138 +81,146 @@ local associationTestValue = {
 	Greedier 	= 2,
 }
 
+local function TryPlayAchievementPaper(sprite)
+	if #wakaba.state.pendingunlock > 0 then
+		table.insert(wakaba.state.pendingunlock, sprite)
+	else
+		CCO.AchievementDisplayAPI.PlayAchievement(sprite)
+	end
+end
+
 ---@type table
 wakaba.UnlockTables = {
 	[wakaba.Enums.Players.WAKABA] = {
-		Heart 		= {"clover", "trinket", 		wakaba.Enums.Trinkets.CLOVER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_clover.png") end},
-		Isaac 		= {"counter", "collectible",	wakaba.Enums.Collectibles.COUNTER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_counter.png") end},
-		BlueBaby 	= {"pendant", "collectible",	wakaba.Enums.Collectibles.WAKABAS_PENDANT,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_pendant.png") end},
-		Satan 		= {"dcupicecream", "collectible",	wakaba.Enums.Collectibles.D_CUP_ICECREAM,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_dcupicecream.png") end},
-		Lamb		= {"revengefruit", "collectible",	wakaba.Enums.Collectibles.REVENGE_FRUIT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_revengefruit.png") end},
-		BossRush	= {"donationcard", "card",	wakaba.Enums.Cards.CARD_DREAM_CARD,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_dreamcard.png") end},
-		Hush		= {"colorjoker", "card",	wakaba.Enums.Cards.CARD_COLOR_JOKER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_colorjoker.png") end},
-		Delirium	= {"wakabauniform", "collectible",	wakaba.Enums.Collectibles.UNIFORM,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_uniform.png") end},
-		MegaSatan	= {"whitejoker", "card",		wakaba.Enums.Cards.CARD_WHITE_JOKER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_whitejoker.png") end},
-		Mother		= {"confessionalcard", "card",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_confessionalcard.png") end},
-		Beast		= {"returnpostage", "collectible",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_returnpostage.png") end},
-		Greed		= {"secretcard", "collectible",	wakaba.Enums.Collectibles.SECRET_CARD,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_secretcard.png") end},
-		Greedier	= {"cranecard", "card",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_cranecard.png") end},
+		Heart 		= {"clover", "trinket", 		wakaba.Enums.Trinkets.CLOVER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_clover.png") end},
+		Isaac 		= {"counter", "collectible",	wakaba.Enums.Collectibles.COUNTER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_counter.png") end},
+		BlueBaby 	= {"pendant", "collectible",	wakaba.Enums.Collectibles.WAKABAS_PENDANT,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_pendant.png") end},
+		Satan 		= {"dcupicecream", "collectible",	wakaba.Enums.Collectibles.D_CUP_ICECREAM,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_dcupicecream.png") end},
+		Lamb		= {"revengefruit", "collectible",	wakaba.Enums.Collectibles.REVENGE_FRUIT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_revengefruit.png") end},
+		BossRush	= {"donationcard", "card",	wakaba.Enums.Cards.CARD_DREAM_CARD,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_dreamcard.png") end},
+		Hush		= {"colorjoker", "card",	wakaba.Enums.Cards.CARD_COLOR_JOKER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_colorjoker.png") end},
+		Delirium	= {"wakabauniform", "collectible",	wakaba.Enums.Collectibles.UNIFORM,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_uniform.png") end},
+		MegaSatan	= {"whitejoker", "card",		wakaba.Enums.Cards.CARD_WHITE_JOKER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_whitejoker.png") end},
+		Mother		= {"confessionalcard", "card",	wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_confessionalcard.png") end},
+		Beast		= {"returnpostage", "collectible",	wakaba.Enums.Collectibles.RETURN_POSTAGE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_returnpostage.png") end},
+		Greed		= {"secretcard", "collectible",	wakaba.Enums.Collectibles.SECRET_CARD,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_secretcard.png") end},
+		Greedier	= {"cranecard", "card",		wakaba.Enums.Cards.CARD_CRANE_CARD,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_cranecard.png") end},
 
-		All 		= {"blessing", "collectible",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blessing.png") end},
+		All 		= {"blessing", "collectible",	wakaba.Enums.Collectibles.WAKABAS_BLESSING,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_blessing.png") end},
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		istainted = true,
 		Heart 		= {"taintedwakabamomsheart"},
-		Quartet 		= {"bookofforgotten", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookofforgotten.png") end},
-		Duet 		= {"wakabasoul", "card",	wakaba.Enums.Cards.SOUL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_wakabasoul.png") end},
-		Delirium	= {"eatheart", "collectible",	wakaba.Enums.Collectibles.EATHEART,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_eatheart.png") end},
-		MegaSatan	= {"cloverchest", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_cloverchest.png") end},
-		Mother		= {"bitcoin", "trinket",	wakaba.Enums.Trinkets.BITCOIN,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bitcoin.png") end},
-		Beast		= {"nemesis", "collectible",	wakaba.Enums.Collectibles.WAKABAS_NEMESIS,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_nemesis.png") end},
-		Greedier	= {"blackjoker", "card",		wakaba.Enums.Cards.CARD_BLACK_JOKER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blackjoker.png") end},
+		Quartet 		= {"bookofforgotten", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookofforgotten.png") end},
+		Duet 		= {"wakabasoul", "card",	wakaba.Enums.Cards.SOUL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_wakabasoul.png") end},
+		Delirium	= {"eatheart", "collectible",	wakaba.Enums.Collectibles.EATHEART,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_eatheart.png") end},
+		MegaSatan	= {"cloverchest", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_cloverchest.png") end},
+		Mother		= {"bitcoin", "trinket",	wakaba.Enums.Trinkets.BITCOIN,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bitcoin.png") end},
+		Beast		= {"nemesis", "collectible",	wakaba.Enums.Collectibles.WAKABAS_NEMESIS,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_nemesis.png") end},
+		Greedier	= {"blackjoker", "card",		wakaba.Enums.Cards.CARD_BLACK_JOKER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blackjoker.png") end},
 	},
 	[wakaba.Enums.Players.SHIORI] = {
-		Heart 		= {"hardbook", "trinket", 		wakaba.Enums.Trinkets.HARD_BOOK,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_hardbook.png") end},
-		Isaac 		= {"shiorid6plus", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_shiorid6plus.png") end},
-		BlueBaby 	= {"deckofrunes", "collectible",	wakaba.Enums.Collectibles.BOTTLE_OF_RUNES,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_deckofrunes.png") end},
-		Satan 		= {"bookoffocus", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_FOCUS,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookoffocus.png") end},
-		Lamb		= {"grimreaperdefender", "collectible",	wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_grimreaperdefender.png") end},
-		BossRush	= {"unknownbookmark", "card",	wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_unknownbookmark.png") end},
-		Hush		= {"bookoftrauma", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookoftrauma.png") end},
-		Delirium	= {"bookofsilence", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_SILENCE,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookofsilence.png") end},
-		MegaSatan	= {"bookoffallen", "collectible",		wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_bookoffallen.png") end},
-		Mother		= {"vintagethreat", "collectible",	wakaba.Enums.Collectibles.VINTAGE_THREAT,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_vintagethreat.png") end},
-		Beast		= {"bookofthegod", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_bookofthegod.png") end},
-		Greed		= {"magnetheaven", "trinket",	wakaba.Enums.Trinkets.MAGNET_HEAVEN,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_magnetheaven.png") end},
-		Greedier	= {"determinationribbon", "trinket",		wakaba.Enums.Trinkets.DETERMINATION_RIBBON,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_determinationribbon.png") end},
+		Heart 		= {"hardbook", "trinket", 		wakaba.Enums.Trinkets.HARD_BOOK,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_hardbook.png") end},
+		Isaac 		= {"shiorid6plus", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_shiorid6plus.png") end},
+		BlueBaby 	= {"deckofrunes", "collectible",	wakaba.Enums.Collectibles.BOTTLE_OF_RUNES,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_deckofrunes.png") end},
+		Satan 		= {"bookoffocus", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_FOCUS,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookoffocus.png") end},
+		Lamb		= {"grimreaperdefender", "collectible",	wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_grimreaperdefender.png") end},
+		BossRush	= {"unknownbookmark", "card",	wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_unknownbookmark.png") end},
+		Hush		= {"bookoftrauma", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookoftrauma.png") end},
+		Delirium	= {"bookofsilence", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_SILENCE,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookofsilence.png") end},
+		MegaSatan	= {"bookoffallen", "collectible",		wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_bookoffallen.png") end},
+		Mother		= {"vintagethreat", "collectible",	wakaba.Enums.Collectibles.VINTAGE_THREAT,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_vintagethreat.png") end},
+		Beast		= {"bookofthegod", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_bookofthegod.png") end},
+		Greed		= {"magnetheaven", "trinket",	wakaba.Enums.Trinkets.MAGNET_HEAVEN,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_magnetheaven.png") end},
+		Greedier	= {"determinationribbon", "trinket",		wakaba.Enums.Trinkets.DETERMINATION_RIBBON,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_determinationribbon.png") end},
 
-		All 		= {"bookofshiori", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_SHIORI,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookofshiori.png") end},
+		All 		= {"bookofshiori", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_SHIORI,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_bookofshiori.png") end},
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		istainted = true,
 		Heart 		= {"taintedshiorimomsheart"},
-		Quartet 		= {"bookmarkbag", "trinket",	wakaba.Enums.Trinkets.BOOKMARK_BAG,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookmarkbag.png") end},
-		Duet 		= {"shiorisoul", "card",	wakaba.Enums.Cards.SOUL_SHIORI,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_shiorisoul.png") end},
-		Delirium	= {"bookofconquest", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_CONQUEST,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bookofconquest.png") end},
-		MegaSatan	= {"shiorivalut", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_anotherfortunemachine.png") end},
-		Mother		= {"ringofjupiter", "trinket",	wakaba.Enums.Trinkets.RING_OF_JUPITER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_ringofjupiter.png") end},
-		Beast		= {"minervaaura", "collectible",	wakaba.Enums.Collectibles.MINERVA_AURA,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_minervaaura.png") end},
-		Greedier	= {"queenofspades", "card",		wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_queenofspades.png") end},
+		Quartet 		= {"bookmarkbag", "trinket",	wakaba.Enums.Trinkets.BOOKMARK_BAG,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookmarkbag.png") end},
+		Duet 		= {"shiorisoul", "card",	wakaba.Enums.Cards.SOUL_SHIORI,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_shiorisoul.png") end},
+		Delirium	= {"bookofconquest", "collectible",	wakaba.Enums.Collectibles.BOOK_OF_CONQUEST,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bookofconquest.png") end},
+		MegaSatan	= {"shiorivalut", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_anotherfortunemachine.png") end},
+		Mother		= {"ringofjupiter", "trinket",	wakaba.Enums.Trinkets.RING_OF_JUPITER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_ringofjupiter.png") end},
+		Beast		= {"minervaaura", "collectible",	wakaba.Enums.Collectibles.MINERVA_AURA,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_minervaaura.png") end},
+		Greedier	= {"queenofspades", "card",		wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_queenofspades.png") end},
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
-		Heart 		= {"murasame", "collectible", 		wakaba.Enums.Collectibles.MURASAME,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_murasame.png") end},
-		Isaac 		= {"nasalover", "collectible",	wakaba.Enums.Collectibles.NASA_LOVER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_nasalover.png") end},
-		BlueBaby 	= {"redcorruption", "collectible",	wakaba.Enums.Collectibles.RED_CORRUPTION,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_totalcorruption.png") end},
-		Satan 		= {"beetlejuice", "collectible",	wakaba.Enums.Collectibles.BEETLEJUICE,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_beetlejuice.png") end},
-		Lamb		= {"powerbomb", "collectible",	wakaba.Enums.Collectibles.POWER_BOMB,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_powerbomb.png") end},
-		BossRush	= {"concentration", "collectible",	wakaba.Enums.Collectibles.CONCENTRATION,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_concentration.png") end},
-		Hush		= {"rangeos", "trinket",	wakaba.Enums.Trinkets.RANGE_OS,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_rangeos.png") end},
-		Delirium	= {"newyearbomb", "collectible",	wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_newyearbomb.png") end},
-		MegaSatan	= {"plasmabeam", "collectible",		wakaba.Enums.Collectibles.PLASMA_BEAM,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_plasmabeam.png") end},
-		Mother		= {"phantomcloak", "collectible",	wakaba.Enums.Collectibles.PHANTOM_CLOAK,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_phantomcloak.png") end},
-		Beast		= {"magmablade", "collectible",	wakaba.Enums.Collectibles.MAGMA_BLADE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_magmablade.png") end},
-		Greed		= {"arcanecrystal", "collectible",	wakaba.Enums.Collectibles.ARCANE_CRYSTAL,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_arcanecrystal.png") end},
-		Greedier	= {"questionblock", "collectible",		wakaba.Enums.Collectibles.QUESTION_BLOCK,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_questionblock.png") end},
+		Heart 		= {"murasame", "collectible", 		wakaba.Enums.Collectibles.MURASAME,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_murasame.png") end},
+		Isaac 		= {"nasalover", "collectible",	wakaba.Enums.Collectibles.NASA_LOVER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_nasalover.png") end},
+		BlueBaby 	= {"redcorruption", "collectible",	wakaba.Enums.Collectibles.RED_CORRUPTION,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_totalcorruption.png") end},
+		Satan 		= {"beetlejuice", "collectible",	wakaba.Enums.Collectibles.BEETLEJUICE,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_beetlejuice.png") end},
+		Lamb		= {"powerbomb", "collectible",	wakaba.Enums.Collectibles.POWER_BOMB,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_powerbomb.png") end},
+		BossRush	= {"concentration", "collectible",	wakaba.Enums.Collectibles.CONCENTRATION,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_concentration.png") end},
+		Hush		= {"rangeos", "trinket",	wakaba.Enums.Trinkets.RANGE_OS,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_rangeos.png") end},
+		Delirium	= {"newyearbomb", "collectible",	wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_newyearbomb.png") end},
+		MegaSatan	= {"plasmabeam", "collectible",		wakaba.Enums.Collectibles.PLASMA_BEAM,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_plasmabeam.png") end},
+		Mother		= {"phantomcloak", "collectible",	wakaba.Enums.Collectibles.PHANTOM_CLOAK,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_phantomcloak.png") end},
+		Beast		= {"magmablade", "collectible",	wakaba.Enums.Collectibles.MAGMA_BLADE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_magmablade.png") end},
+		Greed		= {"arcanecrystal", "collectible",	wakaba.Enums.Collectibles.ARCANE_CRYSTAL,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_arcanecrystal.png") end},
+		Greedier	= {"questionblock", "collectible",		wakaba.Enums.Collectibles.QUESTION_BLOCK,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_questionblock.png") end},
 
-		All 		= {"lunarstone", "collectible",	wakaba.Enums.Collectibles.LUNAR_STONE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_lunarstone.png") end},
+		All 		= {"lunarstone", "collectible",	wakaba.Enums.Collectibles.LUNAR_STONE,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_lunarstone.png") end},
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		istainted = true,
 		Heart 		= {"taintedtsukasamomsheart"},
-		Quartet 		= {"isaaccartridge", "trinket",	wakaba.Enums.Trinkets.ISAAC_CARTRIDGE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_isaaccartridge.png") end},
-		Duet 		= {"tsukasasoul", "card",	wakaba.Enums.Cards.SOUL_TSUKASA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_tsukasasoul.png") end},
-		Delirium	= {"flashshift", "collectible",	wakaba.Enums.Collectibles.FLASH_SHIFT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_flashshift.png") end},
-		MegaSatan	= {"easteregg", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_easteregg.png") end},
-		Mother		= {"sirenbadge", "trinket",	wakaba.Enums.Trinkets.SIREN_BADGE,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_sirenbadge.png") end},
-		Beast		= {"elixiroflife", "collectible",	wakaba.Enums.Collectibles.ELIXIR_OF_LIFE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_elixiroflife.png") end},
-		Greedier	= {"returntoken", "card",		wakaba.Enums.Cards.CARD_RETURN_TOKEN,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_returntoken.png") end},
+		Quartet 		= {"isaaccartridge", "trinket",	wakaba.Enums.Trinkets.ISAAC_CARTRIDGE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_isaaccartridge.png") end},
+		Duet 		= {"tsukasasoul", "card",	wakaba.Enums.Cards.SOUL_TSUKASA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_tsukasasoul.png") end},
+		Delirium	= {"flashshift", "collectible",	wakaba.Enums.Collectibles.FLASH_SHIFT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_flashshift.png") end},
+		MegaSatan	= {"easteregg", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_easteregg.png") end},
+		Mother		= {"sirenbadge", "trinket",	wakaba.Enums.Trinkets.SIREN_BADGE,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_sirenbadge.png") end},
+		Beast		= {"elixiroflife", "collectible",	wakaba.Enums.Collectibles.ELIXIR_OF_LIFE,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_elixiroflife.png") end},
+		Greedier	= {"returntoken", "card",		wakaba.Enums.Cards.CARD_RETURN_TOKEN,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_returntoken.png") end},
 	},
 	[wakaba.Enums.Players.RICHER] = {
-		Heart 		= {"fireflylighter", "collectible", 		wakaba.Enums.Collectibles.FIREFLY_LIGHTER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_fireflylighter.png") end},
-		Isaac 		= {"sweetscatalog", "collectible",	wakaba.Enums.Collectibles.SWEETS_CATALOG,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_sweetscatalog.png") end},
-		BlueBaby 	= {"doubleinvader", "collectible",	wakaba.Enums.Collectibles.DOUBLE_INVADER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_doubleinvader.png") end},
-		Satan 		= {"antibalance", "collectible",	wakaba.Enums.Collectibles.ANTI_BALANCE,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_antibalance.png") end},
-		Lamb		= {"venomincantation", "collectible",	wakaba.Enums.Collectibles.VENOM_INCANTATION,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_venomincantation.png") end},
-		BossRush	= {"bunnyparfait", "collectible",	wakaba.Enums.Collectibles.BUNNY_PARFAIT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_bunnyparfait.png") end},
-		Hush		= {"richeruniform", "collectible",	wakaba.Enums.Collectibles.RICHERS_UNIFORM,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_richeruniform.png") end},
-		Delirium	= {"prestigepass", "collectible",	wakaba.Enums.Collectibles.PRESTIGE_PASS,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_prestigepass.png") end},
-		MegaSatan	= {"printer", "collectible",		wakaba.Enums.Collectibles._3D_PRINTER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_printer.png") end},
-		Mother		= {"cunningpaper", "collectible",	wakaba.Enums.Collectibles.CUNNING_PAPER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_cunningpaper.png") end},
-		Beast		= {"selfburning", "collectible",	wakaba.Enums.Collectibles.SELF_BURNING,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_selfburning.png") end},
-		Greed		= {"clensingfoam", "collectible",	wakaba.Enums.Collectibles.CLENSING_FOAM,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_clensingfoam.png") end},
-		Greedier	= {"lilricher", "collectible",		wakaba.Enums.Collectibles.LIL_RICHER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_lilricher.png") end},
+		Heart 		= {"fireflylighter", "collectible", 		wakaba.Enums.Collectibles.FIREFLY_LIGHTER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_fireflylighter.png") end},
+		Isaac 		= {"sweetscatalog", "collectible",	wakaba.Enums.Collectibles.SWEETS_CATALOG,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_sweetscatalog.png") end},
+		BlueBaby 	= {"doubleinvader", "collectible",	wakaba.Enums.Collectibles.DOUBLE_INVADER,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_doubleinvader.png") end},
+		Satan 		= {"antibalance", "collectible",	wakaba.Enums.Collectibles.ANTI_BALANCE,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_antibalance.png") end},
+		Lamb		= {"venomincantation", "collectible",	wakaba.Enums.Collectibles.VENOM_INCANTATION,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_venomincantation.png") end},
+		BossRush	= {"bunnyparfait", "collectible",	wakaba.Enums.Collectibles.BUNNY_PARFAIT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bunnyparfait.png") end},
+		Hush		= {"richeruniform", "collectible",	wakaba.Enums.Collectibles.RICHERS_UNIFORM,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richeruniform.png") end},
+		Delirium	= {"prestigepass", "collectible",	wakaba.Enums.Collectibles.PRESTIGE_PASS,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_prestigepass.png") end},
+		MegaSatan	= {"printer", "collectible",		wakaba.Enums.Collectibles._3D_PRINTER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_printer.png") end},
+		Mother		= {"cunningpaper", "collectible",	wakaba.Enums.Collectibles.CUNNING_PAPER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_cunningpaper.png") end},
+		Beast		= {"selfburning", "collectible",	wakaba.Enums.Collectibles.SELF_BURNING,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_selfburning.png") end},
+		Greed		= {"clensingfoam", "collectible",	wakaba.Enums.Collectibles.CLENSING_FOAM,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_clensingfoam.png") end},
+		Greedier	= {"lilricher", "collectible",		wakaba.Enums.Collectibles.LIL_RICHER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilricher.png") end},
 
-		All 		= {"rabbitribbon", "collectible",	wakaba.Enums.Collectibles.RABBIT_RIBBON,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		All 		= {"rabbitribbon", "collectible",	wakaba.Enums.Collectibles.RABBIT_RIBBON,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_blank.png") end},
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		istainted = true,
 		Heart 		= {"taintedrichermomsheart"},
-		Quartet 		= {"starreversal", "trinket",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Duet 		= {"richersoul", "card",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Delirium	= {"waterflame", "collectible",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		MegaSatan	= {"crystalrestock", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Mother		= {"mistake", "trinket",	nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
-		Beast		= {"winteralbireo", "collectible",	nil,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement/achievement_blank.png") end},
-		Greedier	= {"trialstew", "card",		nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end},
+		Quartet 		= {"starreversal", "trinket",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		Duet 		= {"richersoul", "card",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		Delirium	= {"waterflame", "collectible",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		MegaSatan	= {"crystalrestock", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		Mother		= {"mistake", "trinket",	nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		Beast		= {"winteralbireo", "collectible",	nil,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		Greedier	= {"trialstew", "card",		nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end},
 	},
 	[-999] = {
-		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOM},
-		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
-		--[wakaba.challenges.CHALLENGE_PULL] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOM},
-		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HEART},
-		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
-		[wakaba.challenges.CHALLENGE_DELI] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_SIST] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.LAMB},
-		[wakaba.challenges.CHALLENGE_DRAW] = {"lostuniform", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end}, BossID.BLUE_BABY,
-		[wakaba.challenges.CHALLENGE_HUSH] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.HUSH},
-		[wakaba.challenges.CHALLENGE_APPL] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.LAMB},
-		[wakaba.challenges.CHALLENGE_BIKE] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MEGA_SATAN},
-		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement/achievement_blank.png") end, BossID.BEAST},
+		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_eyeofclock.png") end, BossID.MOM},
+		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_plumy.png") end, BossID.HUSH},
+		--[wakaba.challenges.CHALLENGE_PULL] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_blank.png") end, BossID.MOM},
+		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_delimiter.png") end, BossID.HEART},
+		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_nekofigure.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_microdoppelganger.png") end, BossID.HUSH},
+		[wakaba.challenges.CHALLENGE_DELI] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_dimensioncutter.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_SIST] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilwakaba.png") end, BossID.LAMB},
+		[wakaba.challenges.CHALLENGE_DRAW] = {"lostuniform", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lostuniform.png") end}, BossID.BLUE_BABY,
+		[wakaba.challenges.CHALLENGE_HUSH] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_executioner.png") end, BossID.HUSH},
+		[wakaba.challenges.CHALLENGE_APPL] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_apollyoncrisis.png") end, BossID.LAMB},
+		[wakaba.challenges.CHALLENGE_BIKE] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_isekaidefinition.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_balance.png") end, BossID.MEGA_SATAN},
+		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilmao.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richerflipper.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_edensticky.png") end, BossID.DELIRIUM},
+		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_doubledreams.png") end, BossID.BEAST},
 	}
 }
 
@@ -342,7 +350,7 @@ local function HasPlayerAchievedQuartetTemp(playerType)
 		wakaba.state.unlock[unlockCheckStr.."1"] >= 1 and
 		wakaba.state.unlock[unlockCheckStr.."2"] >= 1 and
 		wakaba.state.unlock[unlockCheckStr.."3"] >= 1 and
-		wakaba.state.unlock[unlockCheckStr.."4"] >= 1 
+		wakaba.state.unlock[unlockCheckStr.."4"] >= 1
 	)
 end
 
@@ -451,7 +459,7 @@ function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShow
 		end
 	end
 	local unlockKey = unlockTable[unlockKeyToCheck][1]
-	if wakaba.state.unlock[unlockKey..unlockKeyAppend] < associationTestValue[bossEntry] and newValue > associationTestValue[bossEntry] then
+	if wakaba.state.unlock[unlockKey..unlockKeyAppend] < associationTestValue[bossEntry] and newValue >= associationTestValue[bossEntry] then
 		if unlockTable[unlockKeyToCheck][4] then
 			unlockTable[unlockKeyToCheck][4]()
 		end
@@ -460,11 +468,11 @@ function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShow
 	if unlockKey ~= "Greed" and not skipAll then
 		local allHard = true
 		local oldAllHard = TestUnlock(playerType, "All")
-		
+
 
 		for key, valTable in pairs(unlockTable) do
 			if type(valTable) == "table" then
-				local value = wakaba.state.unlock[v[1]]
+				local value = wakaba.state.unlock[valTable[1]]
 				if type(value) == "number" then
 					local num = value
 					if num < 2 then
@@ -545,7 +553,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 
 	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
 		for _, playerType in ipairs(playersToCheck) do
-			local taintedCompletion = wakaba.UnlockTables[playerType].istainted
+			local taintedCompletion = wakaba.UnlockTables[playerType].istainted ~= nil
 
 			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 then
 				local unlockType = "Beast"
@@ -554,11 +562,12 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				if value > oldValue then
 					wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 				end
-	
+
 				wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 			elseif type1 == RoomType.ROOM_BOSSRUSH then
 				local unlockType = "BossRush"
 				local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+				local oldValue = wakaba.state.unlock[saveEntry]
 				local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 
 				if value > oldValue and not taintedCompletion then
@@ -579,7 +588,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						if value > oldValue then
 							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
-			
+
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 					end
 				else
@@ -590,11 +599,12 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						if value > oldValue and not taintedCompletion then
 							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
-			
+
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 					elseif boss == BossID.ISAAC then
 						local unlockType = "Isaac"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
@@ -609,6 +619,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					elseif boss == BossID.BLUE_BABY then
 						local unlockType = "BlueBaby"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
@@ -616,6 +627,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 						if isQuartetAchieved and not wasQuartetAchieved then
 							wakaba.UnlockTables[playerType].Quartet[4]()
@@ -623,6 +635,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					elseif boss == BossID.SATAN then
 						local unlockType = "Satan"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
@@ -637,6 +650,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					elseif boss == BossID.LAMB then
 						local unlockType = "Lamb"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
@@ -651,6 +665,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 					elseif boss == BossID.HUSH then
 						local unlockType = "Hush"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
+						local oldValue = wakaba.state.unlock[saveEntry]
 						local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
@@ -669,29 +684,28 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						if value > oldValue then
 							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
-			
+
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 					elseif boss == BossID.GREED or boss == BossID.GREEDIER then
-						if difficulty == Difficulty.DIFFICULTY_GREED and not taintedCompletion then
+						if not taintedCompletion then
 							local unlockType = "Greed"
 							local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 							local oldValue = wakaba.state.unlock[saveEntry]
 							if value > oldValue then
 								wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 							end
-				
+
 							wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 						end
-						if difficulty == Difficulty.DIFFICULTY_GREEDIER and then
-							local unlockType = "Greedier"
-							local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
-							local oldValue = wakaba.state.unlock[saveEntry]
-							if value > oldValue then
-								wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
-							end
-				
-							wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
+
+						local unlockType2 = "Greedier"
+						local saveEntry2 = wakaba:GetUnlockEntry(playerType, unlockType2)
+						local oldValue2 = wakaba.state.unlock[saveEntry2]
+						if value > oldValue2 then
+							wakaba:UnlockWithPopupsTemp(playerType, unlockType2, value, shouldShowPopup)
 						end
+
+						wakaba.state.unlock[saveEntry2] = math.max(oldValue2, value)
 					elseif boss == BossID.MOTHER then
 						local unlockType = "Mother"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
@@ -699,7 +713,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						if value > oldValue then
 							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
-			
+
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 					end
 				end

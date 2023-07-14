@@ -151,7 +151,7 @@ local catchDebugRoom
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPORTANT, function()
 	local level = game:GetLevel()
 	local hasAlbireo, onlyTaintedRicher = wakaba:anyPlayerHasAlbireo()
-	if hasAlbireo then
+	if hasAlbireo and (wakaba.state.unlock.taintedricher or wakaba.state.options.allowlockeditems or not wakaba.state.achievementPopupShown) then
 		if not hasCachedAlbireoRooms() then
 			wakaba.RoomConfigs = wakaba.RoomConfigs or {}
 			wakaba.RoomConfigs.WinterAlbireo = wakaba.RoomConfigs.WinterAlbireo or {}
