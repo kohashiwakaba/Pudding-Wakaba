@@ -73,4 +73,50 @@
 	portrait="RicherPortrait_b.png"
 	nameimage="playername_richer.png"
 	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b" />
+
+	<player name="Rira" costume="52" hidden="true"
+	hp="4" armor="2" birthright="Better deals, Recipe Selection" 
+	portrait="null.png"
+	extraportrait="RicherPortraitExtra.anm2"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="rira" />
+	
+	<player name="RiraB" bSkinParent="Rira" hidden="true"
+	hp="4" armor="2" birthright="Recipe Selection" 
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richerb.png" skinColor="-1" costumeSuffix="rira_b" />
+
+
+
+	<player name="WakabaT" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="WakabaPortrait.png"
+	nameimage="playername_wakaba.png"
+	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba_t" />
+
+	<player name="ShioriT" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="WakabaPortrait.png"
+	nameimage="playername_shiori.png"
+	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori_t" />
+
+	<player name="TsukasaT" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="TsukasaPortrait.png"
+	nameimage="playername_tsukasa.png"
+	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa_t" />
+
+	<player name="RicherT" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t" />
+
+	<player name="RiraT" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="WakabaPortrait.png"
+	nameimage="playername_rira.png"
+	skin="character_rira.png" skinColor="-1" costumeSuffix="rira_t" />
+
 </players>
