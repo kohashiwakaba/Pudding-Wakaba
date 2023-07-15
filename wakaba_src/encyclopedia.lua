@@ -3396,7 +3396,7 @@ if Encyclopedia then
 				end
 			end
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.murasame < 2 and not haslunarstone then
-				self.Desc = "Defeat MomsHeart as Tsukasa on Hard"
+				self.Desc = "Defeat Mom's Heart as Tsukasa on Hard"
 
 				return self
 			end
@@ -3424,8 +3424,8 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not wakaba.state.options.allowlockeditems --[[ and wakaba.state.unlock.rabbitribbon < 2 ]] and not hasRicher then
-				self.Desc = "Only available for Richer"
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.rabbitribbon  and not hasRicher then
+				self.Desc = "Earn all 12 completion marks on Hard mode as Richer"
 
 				return self
 			end
@@ -3452,8 +3452,8 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not hasRicher then
-				self.Desc = "Only available for Richer"
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.sweetscatalog  and not hasRicher then
+				self.Desc = "Defeat Isaac as Richer"
 
 				return self
 			end
@@ -4435,7 +4435,6 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_BOSS,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
-		Hide = true,
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.magmablade < 1 then
 				self.Desc = "Defeat The Beast as Tsukasa"
@@ -4468,6 +4467,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_KEY_MASTER,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.fireflylighter < 2 then
+				self.Desc = "Defeat Mom's Heart as Richer on Hard"
+				return self
+			end
+		end,
 	})
 
 	--Anti Balance
@@ -4482,6 +4487,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.antibalance < 1 then
+				self.Desc = "Defeat Satan as Richer"
+				return self
+			end
+		end,
 	})
 
 	--Clensing Foam
@@ -4495,6 +4506,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.clensingfoam < 1 then
+				self.Desc = "Defeat Ultra Greed as Richer"
+				return self
+			end
+		end,
 	})
 
 	--Double Invader
@@ -4509,6 +4526,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 			Encyclopedia.ItemPools.POOL_CRANE_GAME,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.doubleinvader < 1 then
+				self.Desc = "Defeat ??? as Richer"
+				return self
+			end
+		end,
 	})
 	--Venom Incantation
 	Encyclopedia.AddItem({
@@ -4524,6 +4547,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 			Encyclopedia.ItemPools.POOL_RED_CHEST,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.venomincantation < 1 then
+				self.Desc = "Defeat The Lamb as Richer"
+				return self
+			end
+		end,
 	})
 
 	--3D Printer
@@ -4537,6 +4566,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.printer < 1 then
+				self.Desc = "Defeat Mega Satan as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4550,6 +4585,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 			Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.bunnyparfait < 1 then
+				self.Desc = "Complete Boss Rush as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4567,6 +4608,12 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_SHOP,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.richeruniform < 1 then
+				self.Desc = "Defeat Hush as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4580,6 +4627,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_ANGEL,
 			Encyclopedia.ItemPools.POOL_SECRET,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.prestigepass < 1 then
+				self.Desc = "Defeat Delirium as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4595,6 +4648,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_SHOP,
 			Encyclopedia.ItemPools.POOL_BABY_SHOP,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.lilricher < 1 then
+				self.Desc = "Defeat Ultra Greedier as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4607,6 +4666,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BEGGAR,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.cunningpaper < 1 then
+				self.Desc = "Defeat Mother as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4619,6 +4684,12 @@ if Encyclopedia then
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 			Encyclopedia.ItemPools.POOL_BOMB_BUM,
 		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.selfburning < 1 then
+				self.Desc = "Defeat The Beast as Richer"
+				return self
+			end
+		end,
 	})
 
 	Encyclopedia.AddItem({
@@ -4704,6 +4775,7 @@ if Encyclopedia then
 				return self
 			end
 		end,
+		Hide = true,
 	})
 
 	--Wakaba's Hairpin
@@ -4722,6 +4794,7 @@ if Encyclopedia then
 				return self
 			end
 		end,
+		Hide = true,
 	})
 
 	--Wakaba's Hairpin
@@ -4739,6 +4812,7 @@ if Encyclopedia then
 				return self
 			end
 		end,
+		Hide = true,
 	})
 
 
