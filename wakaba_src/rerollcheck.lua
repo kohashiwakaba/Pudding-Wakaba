@@ -32,8 +32,8 @@ function wakaba:trinketUnlockCheck(trinket)
 end
 
 function wakaba:GetTrinket_UnlockCheck(selected, rng)
-	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then 
-		
+	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then
+
 	elseif not wakaba:trinketUnlockCheck(selected) then
 		return wakaba.G:GetItemPool():GetTrinket()
 	end
@@ -99,7 +99,7 @@ function wakaba:GetCard_UnlockCheck(_, card, canSuit, canRune, onlyRune)
 	end
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_GET_CARD, CallbackPriority.LATE, wakaba.GetCard_UnlockCheck)
---[[ 
+--[[
 function wakaba:GetCard_UnlockCheck(rng, currentCard, playing, runes, onlyRunes)
 	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then return currentCard end
 	local hasDreams = false
@@ -163,28 +163,70 @@ local initialItemNext = false
 local flipItemNext = false
 local lastGetItemResult = {nil, nil, nil, nil} -- itemID, Frame, gridIndex, InitSeed
 local lastFrameGridChecked = 0
+local preGetCollectibleAntiRecursive = false
 
 function wakaba:preRollCheck(itemPoolType, decrease, seed)
 
-	if wakaba.G:GetFrameCount() == 0 then return end
-	-- Unlock check and Flip interaction for External Item Description
-	if seed == 1 then return end 
-	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
-	if selected and selected <= 0 then
-		return
-	end
-	-- Library Expanded : Do not check reroll in Library Certifiate area
-	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then return end
+	if preGetCollectibleAntiRecursive then goto cont end
 
-	if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL or wakaba.runstate.dreampool == itemPoolType then
-		return
-	end
+	if wakaba.G:GetFrameCount() == 0 then goto cont end
+	-- Unlock check and Flip interaction for External Item Description
+	if seed == 1 then goto cont end
+	-- Library Expanded : Do not check reroll in Library Certifiate area
+	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then goto cont end
+
 	if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
-		local newItem = wakaba.G:GetItemPool():GetCollectible(wakaba.runstate.dreampool, decrease, seed+2)
-		return newItem
+		if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.runstate.dreampool ~= itemPoolType then
+			preGetCollectibleAntiRecursive = true
+			local newItem = wakaba.G:GetItemPool():GetCollectible(wakaba.runstate.dreampool, decrease, seed+2)
+			preGetCollectibleAntiRecursive = false
+			return newItem
+		end
 	end
+	if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then
+		local level = wakaba.G:GetLevel()
+		local stage = level:GetAbsoluteStage()
+		local stageType = level:GetStageType()
+
+		if wakaba.G:IsGreedMode() then
+			if stage % 2 ~= 0 and itemPoolType ~= ItemPoolType.POOL_TREASURE then
+				preGetCollectibleAntiRecursive = true
+				local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE, decrease, seed)
+				preGetCollectibleAntiRecursive = false
+				return newItem
+			end
+		else
+			if stage <= LevelStage.STAGE4_2 then
+				if stage % 2 ~= 0 and itemPoolType == ItemPoolType.POOL_PLANETARIUM then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE, decrease, seed)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				end
+			elseif stage == LevelStage.STAGE4_3 and itemPoolType ~= ItemPoolType.POOL_SECRET then
+				preGetCollectibleAntiRecursive = true
+				local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_SECRET, decrease, seed)
+				preGetCollectibleAntiRecursive = false
+				return newItem
+			elseif stage == LevelStage.STAGE5 then
+				if stageType == StageType.STAGETYPE_ORIGINAL and itemPoolType ~= ItemPoolType.POOL_DEVIL then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, decrease, seed)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				elseif itemPoolType ~= ItemPoolType.POOL_ANGEL then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, decrease, seed)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				end
+
+			end
+		end
+	end
+	::cont::
 end
---wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.preRollCheck)
+wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.preRollCheck)
 
 function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
@@ -200,19 +242,19 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	if wakaba.state.rerollloopcount == 0 then
 		lastSelected = selected
 	end
-	
+
 	--if not decrease then return end
 
 	if wakaba.G:GetFrameCount() == 0 then return end
 	-- Unlock check and Flip interaction for External Item Description
-	if seed == 1 then return end 
+	if seed == 1 then return end
 	-- Reverie - Touhou Combinations loads item pool from startup to generate item pool cache, which crashes the game if selected is -1, which is for TMTRAINER items.
 	if selected and selected <= 0 then
 		return
 	end
 	-- Library Expanded : Do not check reroll in Library Certifiate area
 	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then return end
-	
+
 	if (wakaba.G.Challenge == wakaba.challenges.CHALLENGE_HOLD) then
 		return wakaba.Enums.Collectibles.CLOVER_SHARD
 	end
@@ -253,7 +295,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if player.Variant == 0 then
 			estimatedPlayerCount = estimatedPlayerCount + 1
 			-- not implemented yet
-			if player:HasTrinket(wakaba.Enums.Trinkets.ISAAC_CARTRIDGE) or 
+			if player:HasTrinket(wakaba.Enums.Trinkets.ISAAC_CARTRIDGE) or
 			(player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 			then
 				hasIsaacCartridge = true
@@ -296,7 +338,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	end
 
 	local itemType = defaultPool
-	
+
 	if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.state.rerollloopcount <= 5 then
 		itemType = wakaba.runstate.dreampool
 		AllowActives = false
@@ -306,7 +348,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL and level:GetCurrentRoomDesc().Flags & RoomDescriptor.FLAG_DEVIL_TREASURE == RoomDescriptor.FLAG_DEVIL_TREASURE then
 		itemType = ItemPoolType.POOL_DEVIL
 	end
-	
+
 	if (wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND) then
 		itemType = randPool[math.random(1,#randPool)]
 		randselected = true
@@ -364,7 +406,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	-- Don't check Deja Vu again if conditions are not met
 	if wakaba.state.rerollloopcount == 0 and hasDejaVu and itemQuality <= 2 then
 		local candidates = wakaba:ReadDejaVuCandidates()
-		
+
 		local rng = RNG()
 		rng:SetSeed(Random(), 35)
 		local chance = rng:RandomInt(10000)
@@ -407,7 +449,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if wakaba.state.rerollloopcount >= wakaba.state.options.rerollbreakfastthreshold then
 			selected = CollectibleType.COLLECTIBLE_BREAKFAST
 		end
-		
+
 		randselected = false
 		-- TODO : also Flip data for EID
 		table.insert(selecteditems, selected)
@@ -419,7 +461,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 						if EID.CraneItemType[tostring(crane.InitSeed)] then
 							if EID.CraneItemType[tostring(crane.InitSeed)] == lastSelected then
 								EID.CraneItemType[tostring(crane.InitSeed)] = selected
-							end--[[ 
+							end--[[
 							if not EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] or EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] == lastSelected then
 								EID.CraneItemType[tostring(crane.InitSeed).."Drop"..crane.DropSeed] = selected
 							end ]]
@@ -430,9 +472,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 
 			local curRoomIndex = wakaba.G:GetLevel():GetCurrentRoomDesc().ListIndex
 			for _, item in ipairs(Isaac.FindByType(5, 100, -1, true, false)) do
-				if EID.flipItemPositions[curRoomIndex] 
+				if EID.flipItemPositions[curRoomIndex]
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed]
-				and EID.flipItemPositions[curRoomIndex][item.InitSeed][1] == lastSelected 
+				and EID.flipItemPositions[curRoomIndex][item.InitSeed][1] == lastSelected
 				and EID.flipItemPositions[curRoomIndex][item.InitSeed][2] == wakaba.G:GetRoom():GetGridIndex(item.Position)
 				then
 					EID.flipItemPositions[curRoomIndex][item.InitSeed][1] = selected
@@ -472,7 +514,7 @@ function wakaba:rerollCooltime()
 	end
 	if wakaba.rerollcooltime < 0 and wakaba.rerollcooltime > -2 then
 		--print("nemesis check reset")
-		
+
 		wakaba.fullreroll = false
 		if FairOptionsConfig and FairOptionsConfig.Disabled then
 			FairOptionsConfig.Disabled = false

@@ -320,6 +320,10 @@ wakaba.Magnet.PB = {
 	function(pickup) return pickup.Variant == PickupVariant.PICKUP_WOODENCHEST end,
 }
 
+wakaba.RoomTypes = {
+	WINTER_ALBIREO = 0,
+}
+
 -- 행운 관련 상수
 wakaba.Enums.Chances = {
 

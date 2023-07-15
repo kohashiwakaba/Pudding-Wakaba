@@ -125,24 +125,28 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	level:UpdateVisibility()
 end
 
-function wakaba:IsValidWakabaRoom(roomdesc)
+function wakaba:IsValidWakabaRoom(roomdesc, wakabaRoomType)
 	local level = game:GetLevel()
-	roomDesc = roomdesc or level:GetCurrentRoomDesc()
+	local roomDesc = roomdesc or level:GetCurrentRoomDesc()
+	wakabaRoomType = wakabaRoomType or wakaba.RoomTypes.WINTER_ALBIREO
 
-	if roomdesc and roomdesc.Data and roomDesc.Data.Type == RoomType.ROOM_PLANETARIUM then
-		if hasCachedAlbireoRooms() then
-			for _, index in pairs(albireoRooms) do
-				if index == roomDesc.Data.Variant then
+	if roomDesc and roomDesc.Data then
+		if wakabaRoomType == wakaba.RoomTypes.WINTER_ALBIREO and roomDesc.Data.Type == RoomType.ROOM_PLANETARIUM then
+			if hasCachedAlbireoRooms() then
+				for _, index in ipairs(albireoRooms) do
+					if index == roomDesc.Data.Variant then
+						return true
+					end
+				end
+			else
+				-- Richer Planetariums for Winter Albireo
+				if (roomDesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomDesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) then
 					return true
 				end
 			end
-		else
-			-- Richer Planetariums for Winter Albireo
-			if (roomdesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomdesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) then
-				return true
-			end
 		end
 	end
+
 
 	return false
 end
@@ -278,12 +282,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
 function wakaba:TrySetAlbireoRoomDoor()
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
-		local door = room:GetDoor(i)
-		if door then
-			local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
-			if wakaba:IsValidWakabaRoom(targetroomdesc) then
-				wakaba:ApplyDoorGraphics(door)
+	if room:GetType() ~= RoomType.ROOM_SECRET then
+		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+			local door = room:GetDoor(i)
+			if door then
+				local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
+				if wakaba:IsValidWakabaRoom(targetroomdesc) then
+					wakaba:ApplyDoorGraphics(door)
+				end
 			end
 		end
 	end
