@@ -183,6 +183,9 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 			return newItem
 		end
 	end
+	if isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_CHAOS) then
+		goto cont
+	end
 	if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then
 		local level = wakaba.G:GetLevel()
 		local stage = level:GetAbsoluteStage()
@@ -203,18 +206,18 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 					preGetCollectibleAntiRecursive = false
 					return newItem
 				end
-			elseif stage == LevelStage.STAGE4_3 and itemPoolType ~= ItemPoolType.POOL_SECRET then
+			elseif stage == LevelStage.STAGE4_3 and (itemPoolType == ItemPoolType.POOL_PLANETARIUM or itemPoolType == ItemPoolType.POOL_TREASURE) then
 				preGetCollectibleAntiRecursive = true
 				local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_SECRET, decrease, seed)
 				preGetCollectibleAntiRecursive = false
 				return newItem
-			elseif stage == LevelStage.STAGE5 then
-				if stageType == StageType.STAGETYPE_ORIGINAL and itemPoolType ~= ItemPoolType.POOL_DEVIL then
+			elseif stage == LevelStage.STAGE5 and (itemPoolType == ItemPoolType.POOL_PLANETARIUM or itemPoolType == ItemPoolType.POOL_TREASURE) then
+				if stageType == StageType.STAGETYPE_ORIGINAL then
 					preGetCollectibleAntiRecursive = true
 					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, decrease, seed)
 					preGetCollectibleAntiRecursive = false
 					return newItem
-				elseif itemPoolType ~= ItemPoolType.POOL_ANGEL then
+				else
 					preGetCollectibleAntiRecursive = true
 					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, decrease, seed)
 					preGetCollectibleAntiRecursive = false
