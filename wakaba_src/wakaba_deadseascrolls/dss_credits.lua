@@ -2,6 +2,8 @@ local wakabadirectory = wakaba.DSS_DIRECTORY
 local dssmod = wakaba.DSS_MOD
 
 local credits = {
+	"general mod development",
+	{"kohashiwahaba",				""},
 	"original character desingers",
 	{"wakaba",				"hara yui"},
 	{"shiori",				"wakagi tamaki"},
@@ -10,11 +12,13 @@ local credits = {
 	"special thanks",
 	{"_kilburn",				"various snippets"},
 	{"xalum",				"various snippets"},
+	{"",				"majority of functions from retribution"},
 	{"zamiel",				"isaacscript"},
 	{"agentcucco",				"various snippets"},
 	{"",				"achievement api"},
 	{"",				"damocles api"},
 	{"deadinfinity",				"various snippets"},
+	{"",				"dss achievement viewer"},
 	{"mana",				"item reroll snippet"},
 	{"meloonicscorp",				""},
 	{"",				"glitched item snippet"},
@@ -24,7 +28,7 @@ local credits = {
 	{"",				"pseudo-dark arts trail"},
 	{"cadever mod",				"various snippets"},
 	{"connor",				"hidden item manager"},
-	{"bogdanrudyka",				"custom callback"},
+	{"bogdanrudyka",				"custom callbacks"},
 	{"sanio",				""},
 	{"",				"character costume protector"},
 	{"iristeru",				""},
