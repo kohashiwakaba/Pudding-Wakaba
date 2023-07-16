@@ -1,5 +1,4 @@
 local hastower = false
-local haspb = false
 local rolledPickup = {
   PickupVariant.PICKUP_COIN,
   PickupVariant.PICKUP_GRAB_BAG,
@@ -13,7 +12,6 @@ local rolledPickup = {
 
 function wakaba:Update_CurseOfTower2()
   hastower = false
-  haspb = false
   for num = 1, wakaba.G:GetNumPlayers() do
     local player = wakaba.G:GetPlayer(num - 1)
     if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
@@ -22,16 +20,13 @@ function wakaba:Update_CurseOfTower2()
         player:AddGoldenBomb()
       end
     end
-    if player:HasCollectible(wakaba.Enums.Collectibles.POWER_BOMB) then
-      haspb = true
-    end
   end
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_CurseOfTower2)
 
 function wakaba:PickupSelect_CurseOfTower2(pickup)
-  if not hastower or haspb then return end
+  if not hastower then return end
   local variant = pickup.Variant
   local subtype = pickup.SubType
   local savedpos = pickup.Position + Vector.Zero
