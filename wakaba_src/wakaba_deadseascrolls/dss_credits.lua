@@ -18,7 +18,7 @@ local credits = {
 	{"",				"achievement api"},
 	{"",				"damocles api"},
 	{"deadinfinity",				"various snippets"},
-	{"",				"dss achievement viewer"},
+	--{"",				"dss achievement viewer"},
 	{"mana",				"item reroll snippet"},
 	{"meloonicscorp",				""},
 	{"",				"glitched item snippet"},
