@@ -493,6 +493,7 @@ function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShow
 
 		if allHard and not oldAllHard and unlockTable.All then
 			unlockTable.All[4]()
+			return "All"
 		end
 	end
 
@@ -553,6 +554,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 
 	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
 		for _, playerType in ipairs(playersToCheck) do
+			local pendingUnlockEntry = nil
 			local taintedCompletion = wakaba.UnlockTables[playerType].istainted ~= nil
 
 			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 then
@@ -560,7 +562,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 				local oldValue = wakaba.state.unlock[saveEntry]
 				if value > oldValue then
-					wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+					pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 				end
 
 				wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
@@ -571,13 +573,14 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 
 				if value > oldValue and not taintedCompletion then
-					wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+					pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 				end
 
 				wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 				local isDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 				if isDuetAchieved and not wasDuetAchieved then
 					wakaba.UnlockTables[playerType].Duet[4]()
+					pendingUnlockEntry = "Duet"
 				end
 			elseif type1 == RoomType.ROOM_BOSS then
 				if currentStage == LevelStage.STAGE7 then -- Void
@@ -586,7 +589,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 						local oldValue = wakaba.state.unlock[saveEntry]
 						if value > oldValue then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
@@ -597,7 +600,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 						local oldValue = wakaba.state.unlock[saveEntry]
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
@@ -608,13 +611,14 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 						if isQuartetAchieved and not wasQuartetAchieved then
 							wakaba.UnlockTables[playerType].Quartet[4]()
+							pendingUnlockEntry = "Quartet"
 						end
 					elseif boss == BossID.BLUE_BABY then
 						local unlockType = "BlueBaby"
@@ -623,7 +627,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
@@ -631,6 +635,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 						if isQuartetAchieved and not wasQuartetAchieved then
 							wakaba.UnlockTables[playerType].Quartet[4]()
+							pendingUnlockEntry = "Quartet"
 						end
 					elseif boss == BossID.SATAN then
 						local unlockType = "Satan"
@@ -639,13 +644,14 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 						if isQuartetAchieved and not wasQuartetAchieved then
 							wakaba.UnlockTables[playerType].Quartet[4]()
+							pendingUnlockEntry = "Quartet"
 						end
 					elseif boss == BossID.LAMB then
 						local unlockType = "Lamb"
@@ -654,13 +660,14 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local wasQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 						local isQuartetAchieved = taintedCompletion and HasPlayerAchievedQuartetTemp(playerType)
 						if isQuartetAchieved and not wasQuartetAchieved then
 							wakaba.UnlockTables[playerType].Quartet[4]()
+							pendingUnlockEntry = "Quartet"
 						end
 					elseif boss == BossID.HUSH then
 						local unlockType = "Hush"
@@ -669,20 +676,21 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local wasDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 
 						if value > oldValue and not taintedCompletion then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 						local isDuetAchieved = taintedCompletion and HasPlayerAchievedDuetTemp(playerType)
 						if isDuetAchieved and not wasDuetAchieved then
 							wakaba.UnlockTables[playerType].Duet[4]()
+							pendingUnlockEntry = "Duet"
 						end
 					elseif boss == BossID.MEGA_SATAN then
 						local unlockType = "MegaSatan"
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 						local oldValue = wakaba.state.unlock[saveEntry]
 						if value > oldValue then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
@@ -702,7 +710,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local saveEntry2 = wakaba:GetUnlockEntry(playerType, unlockType2)
 						local oldValue2 = wakaba.state.unlock[saveEntry2]
 						if value > oldValue2 then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType2, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType2, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry2] = math.max(oldValue2, value)
@@ -711,12 +719,16 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						local saveEntry = wakaba:GetUnlockEntry(playerType, unlockType)
 						local oldValue = wakaba.state.unlock[saveEntry]
 						if value > oldValue then
-							wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
+							pendingUnlockEntry = wakaba:UnlockWithPopupsTemp(playerType, unlockType, value, shouldShowPopup)
 						end
 
 						wakaba.state.unlock[saveEntry] = math.max(oldValue, value)
 					end
 				end
+			end
+			if pendingUnlockEntry then
+				local saveEntry = wakaba:GetUnlockEntry(playerType, pendingUnlockEntry)
+				wakaba.state.unlock[saveEntry] = true
 			end
 		end
 	elseif wakaba.G.Challenge >= wakaba.challenges.CHALLENGE_ELEC then
