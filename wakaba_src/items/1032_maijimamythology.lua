@@ -67,6 +67,8 @@ if EID then
 	local function MaijimaCondition(descObj)
 		if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY then
 			return true
+		elseif descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD and descObj.ObjSubType == wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK then
+			return true
 		end
 		return false
 	end
