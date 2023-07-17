@@ -407,7 +407,7 @@ wakaba.descriptions[desclang].collectibles = {
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
-		itemName = "{{ColorRed}}Vintage Threat",
+		itemName = "Vintage Threat",
 		description = ""
 		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room"
 		.. "#Reviving into Tainted Shiori resets keys count to 0, and activates 4 {{Collectible656}}Damocles swords"
@@ -2533,6 +2533,8 @@ if EID then
 
 	EID.descriptions[desclang].SweetsChallengeFailed = "{{ColorOrange}}Failed for mismatching quality : "
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}Succeed for matching quality : "
+
+	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! Press {1} to activate immediately"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 

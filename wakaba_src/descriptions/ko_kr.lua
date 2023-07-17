@@ -2678,6 +2678,8 @@ if EID then
 	EID.descriptions[desclang].SweetsChallengeFailed = "{{ColorOrange}}획득 실패 : "
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}획득 성공 : "
 
+	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! {1} 버튼을 누르면 즉시 발동"
+
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
 end

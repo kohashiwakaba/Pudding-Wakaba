@@ -7,7 +7,7 @@ function wakaba:AfterRevival_VintageThreat(player)
 	Poof.SpriteScale = Vector(1.5, 1.5)
 	player:ChangePlayerType(wakaba.Enums.Players.SHIORI_B)
 	wakaba:AfterShioriInit_b(player)
-	wakaba:GetShioriCostume_b(player) 
+	wakaba:GetShioriCostume_b(player)
 	wakaba:initAura(player)
 	wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS, UseFlag.USE_NOANIM)
@@ -107,6 +107,23 @@ function wakaba:DEBUG_FallDamocles()
 end
 
 -- quick lua commands to fall damocles immediately
---[[ 
+--[[
 l local entities = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.DAMOCLES, -1, false, false); for i, e in ipairs(entities) do local fam = e:ToFamiliar() if fam then fam.State = 2 end end end;
  ]]
+
+
+if EID then
+	local function VintageCondition(descObj)
+		if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.VINTAGE_THREAT then
+			return true
+		end
+		return false
+	end
+	local function VintageCallback(descObj)
+		local append = EID:getDescriptionEntry("WakabaVintageHotkey") or EID:getDescriptionEntryEnglish("WakabaVintageHotkey")
+		descObj.Name = "{{ColorRed}}"..descObj.Name.."{{CR}}"
+		EID:appendToDescription(descObj, "!!! ".. append:gsub("{1}", InputHelper.KeyboardToString[wakaba.state.options.vintagetriggerkey]) .. "{{CR}}")
+		return descObj
+	end
+	EID:addDescriptionModifier("Wakaba Vintage Hotkey", VintageCondition, VintageCallback)
+end
