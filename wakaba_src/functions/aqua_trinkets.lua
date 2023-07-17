@@ -23,16 +23,18 @@ end
 local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	local hasTrinketDropped = false
+	if wakaba.G:GetRoom():GetFrameCount() >= 0 then
+		wakaba:ForAllPlayers(function(player)
+			local lastTrigger = player:GetLastActionTriggers()
+			if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
+				hasTrinketDropped = true
+			end
+			if player:GetData().wakaba.blockAquaSpawn then
+				hasTrinketDropped = true
+			end
+		end)
+	end
 
-	wakaba:ForAllPlayers(function(player)
-		local lastTrigger = player:GetLastActionTriggers()
-		if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
-			hasTrinketDropped = true
-		end
-		if player:GetData().wakaba.blockAquaSpawn then
-			hasTrinketDropped = true
-		end
-	end)
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local currentRoomIndex = isc:getRoomListIndex()
