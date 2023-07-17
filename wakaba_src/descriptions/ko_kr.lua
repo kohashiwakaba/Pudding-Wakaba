@@ -832,8 +832,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "크라이시스 부스트",
 		description = ""
 		.. "#↑ {{TearsSmall}}연사 +1"
-		.. "#↑ 전체 체력이 적을수록 {{DamageSmall}}공격력 배율 증가"
-		.. "#{{Blank}} (체력 1칸일 때 최대 x2.5)"
+		.. "#↑ 전체 체력 및 {{HolyMantleSmall}}보호막의 수가 적을수록 {{DamageSmall}}공격력 배율 증가"
+		.. "#{{Blank}} 체력 1칸일 때 최대 x1.75/{{HalfHeart}}일 때 x3.0"
 		.. "{{CR}}",
 		queueDesc = "위기에 빠질수록 강해지다",
 	},

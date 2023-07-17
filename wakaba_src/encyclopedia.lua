@@ -1470,9 +1470,10 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "+1 Tears Up"},
-			{str = "Grants Damage Multiplier for less hearts."},
-			{str = "- formula : (26 - currentheart) / 18"},
-			{str = "- Maximum multiplier is +150% for 1 or less total hearts."},
+			{str = "Grants Damage Multiplier for less hearts and Holy Mantle Shields."},
+			{str = "- formula : (26 - currentheart) / 32"},
+			{str = "- Maximum multiplier is +75% for 1 or less total hearts."},
+			{str = "- Grants +200% damage for total of half heart and no Holy shields."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
