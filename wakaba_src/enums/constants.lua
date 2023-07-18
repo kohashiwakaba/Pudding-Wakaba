@@ -12,13 +12,20 @@ wakaba.Enums.BalanceModes = {
 wakaba.Enums.Players = {
 	WAKABA = Isaac.GetPlayerTypeByName("Wakaba", false),
 	WAKABA_B = Isaac.GetPlayerTypeByName("WakabaB", true),
-	--WAKABA_T = Isaac.GetPlayerTypeByName("WakabaT", false),
 	SHIORI = Isaac.GetPlayerTypeByName("Shiori", false),
 	SHIORI_B = Isaac.GetPlayerTypeByName("ShioriB", true),
 	TSUKASA = Isaac.GetPlayerTypeByName("Tsukasa", false),
 	TSUKASA_B = Isaac.GetPlayerTypeByName("TsukasaB", true),
 	RICHER = Isaac.GetPlayerTypeByName("Richer", false),
 	RICHER_B = Isaac.GetPlayerTypeByName("RicherB", true),
+	RIRA = Isaac.GetPlayerTypeByName("Rira", false),
+	RIRA_B = Isaac.GetPlayerTypeByName("RiraB", true),
+
+	WAKABA_T = Isaac.GetPlayerTypeByName("WakabaT", false),
+	SHIORI_T = Isaac.GetPlayerTypeByName("ShioriT", false),
+	TSUKASA_T = Isaac.GetPlayerTypeByName("TsukasaT", false),
+	RICHER_T = Isaac.GetPlayerTypeByName("RicherT", false),
+	RIRA_T = Isaac.GetPlayerTypeByName("RiraT", false),
 }
 
 -- 와카바 모드 아이템
