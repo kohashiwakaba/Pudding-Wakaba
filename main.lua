@@ -1285,6 +1285,8 @@ function wakaba:getAllMainPlayers()
 	return renderActive:GetAllMainPlayers()
 end
 
+include('wakaba_src.functions.callbacks_wakaba')
+
 include('wakaba_src.items.0000_blessing')
 include('wakaba_src.items.0001_bookofshiori')
 include('wakaba_src.items.0003_bookofconquest')
@@ -1710,6 +1712,9 @@ function wakaba:GetPlayerEntityData(player)
 				luck = 0,
 				speed = 0,
 				shotspeed = 0,
+			},
+			shioribuffs = {
+
 			},
 		}
 	end

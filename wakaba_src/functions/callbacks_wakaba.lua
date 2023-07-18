@@ -18,7 +18,7 @@ wakaba.Callback = {
 
 	-- Extra callbacks exclusive to Pudding & Wakaba
 
-	
+
 	-- ---
 	-- PRE_GET_SHIORI_BOOKS
 	-- ---
@@ -73,6 +73,23 @@ mod.SetCallbackMatchTest(mod.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TM
 	return not a or not b or a == b
 end)
 
+local function hasShioriCallbacks(collectibleType)
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_CHANGE_SHIORI_EFFECT)) do
+		if callback.Param == collectibleType then
+			return true
+		end
+	end
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT)) do
+		if callback.Param == collectibleType then
+			return true
+		end
+	end
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT)) do
+		if callback.Param == collectibleType then
+			return true
+		end
+	end
+end
 
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, useditem, rng, player, useflag, slot, vardata)
 	if wakaba:HasShiori(player) and useflag & UseFlag.USE_OWNED == UseFlag.USE_OWNED then
@@ -83,23 +100,30 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, useditem, rng, player, 
 			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_CHANGE_SHIORI_EFFECT)) do
 				local returnedFlag = nextFlag
 				if not callback.Param or callback.Param == useditem then
-					returnedFlag = callback.Function(callback.Mod, useditem, rng, player, useflag, slot, vardata)
+					returnedFlag = callback.Function(callback.Mod, useditem, useditem, rng, player, useflag, slot, vardata)
 				end
 				if returnedFlag ~= nil then
 					if type(returnedFlag) == "boolean" then
-						nextFlag = returnedFlag and nil or prevFlag
+						if returnedFlag == true then
+							nextFlag = nil
+						else
+							nextFlag = prevFlag
+						end
 						break
 					elseif type(returnedFlag) == "number" and Isaac.GetItemConfig():GetCollectible(returnedFlag) then
 						nextFlag = returnedFlag
 					end
 				end
 			end
-			player:GetData().wakaba.nextshioriflag = nextFlag
-			if nextFlag ~= nil then
-				Isaac.RunCallbackWithParam(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT, nextFlag, rng, player, useflag, slot, vardata)
+			if nextFlag == nil or hasShioriCallbacks(nextFlag) then
+				player:GetData().wakaba.nextshioriflag = nextFlag
 			end
-			Isaac.RunCallbackWithParam(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, useditem, rng, player, useflag, slot, vardata)
+			if nextFlag ~= nil then
+				Isaac.RunCallbackWithParam(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT, nextFlag, nextFlag, rng, player, useflag, slot, vardata)
+			end
+			Isaac.RunCallbackWithParam(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, useditem, useditem, rng, player, useflag, slot, vardata)
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()
 		end
+	end
 end)

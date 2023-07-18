@@ -3,6 +3,21 @@ local roomWispTypes = {
 
 }
 
+function wakaba:HealWisps(player, amount, canExceedMax)
+	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, collectibleType, false, false)
+	for i, wisp in ipairs(wisps) do
+		if wisp:ToFamiliar() and GetPtrHash(wisp:ToFamiliar().Player) == GetPtrHash(player) then
+			local oldHealth = wisp.HitPoints
+			local newHealth = wisp.HitPoints + amount
+			local newAmount = amount
+			if newHealth < wisp.MaxHitPoints and not canExceedMax then
+				newAmount = wisp.MaxHitPoints - oldHealth
+			end
+			wisp.HitPoints = wisp.HitPoints + newAmount
+		end
+	end
+end
+
 function wakaba:HasWisp(player, collectibleType)
 	if not player then return end
 	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, collectibleType, false, false)

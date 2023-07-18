@@ -42,7 +42,7 @@
 	<active id="26" cache="damage firedelay range tearflag" description="Use with Caution" gfx="bookoffocus.png" maxcharges="6" name="Book of Focus" tags="book offensive tearsup" quality="3" />
 	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="6" name="Shiori's Bottle of Runes" tags="book offensive nocantrip" quality="2" />
 	<active id="28" description="Split yourself" gfx="microdoppelganger.png" maxcharges="8" name="Micro Doppelganger" tags="book offensive" quality="2" />
-	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="180" name="Book of Silence" tags="book offensive" quality="2" />
+	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="180" name="Book of Silence" cooldown="60" tags="book offensive" quality="2" />
 	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="nochallenge" quality="2"/>
 	<active id="31" description="Guide book for the lost lambs" gfx="bookofconquest.png" maxcharges="12" name="Book of Conquest" devilprice="2" tags="book offensive" quality="3" />
 	<passive id="32" description="Comback Stronger" gfx="bookofthegod.png" name="Book of The God" tags="book angel nocantrip" quality="2"/>
