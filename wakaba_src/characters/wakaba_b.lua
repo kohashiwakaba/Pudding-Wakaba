@@ -82,7 +82,7 @@ function wakaba:PostGetCollectible_Wakaba_b(player, item)
 	player:AddSoulHearts(player:GetSoulHearts() * -1)
 	player:AddMaxHearts(2)
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
 function wakaba:OnWakabaUpdate_b(player)
 	-- If the player is Wakaba

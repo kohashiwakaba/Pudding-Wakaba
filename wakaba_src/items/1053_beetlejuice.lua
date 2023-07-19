@@ -75,4 +75,4 @@ function wakaba:PostGetCollectible_Beetlejuice(player, item)
 		end
 	end
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_Beetlejuice, wakaba.Enums.Collectibles.BEETLEJUICE)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Beetlejuice, wakaba.Enums.Collectibles.BEETLEJUICE)

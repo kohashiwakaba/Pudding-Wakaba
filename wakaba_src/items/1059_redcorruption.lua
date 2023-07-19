@@ -104,4 +104,4 @@ function wakaba:PostGetCollectible_RedCorruption(player, item)
 	end
 	level:RemoveCurses(LevelCurse.CURSE_OF_THE_LOST | wakaba.curses.CURSE_OF_FAIRY)
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_RedCorruption, wakaba.Enums.Collectibles.RED_CORRUPTION)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_RedCorruption, wakaba.Enums.Collectibles.RED_CORRUPTION)

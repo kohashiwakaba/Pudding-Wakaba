@@ -33,7 +33,7 @@ function wakaba:PostGetCollectible_Shiori_b(player, item)
 	player:AddSoulHearts(player:GetSoulHearts() * -1)
 	player:AddMaxHearts(2)
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_Shiori_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Shiori_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
 local ShioriChar_b = {
 	DAMAGE = 0.2,

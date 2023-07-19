@@ -53,7 +53,7 @@ function wakaba:PostGetCollectible_TsukasaB(player, item)
 		sprite:LoadGraphics()
 	end
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_TsukasaB, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_TsukasaB, CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 
 function wakaba:PostTsukasaUpdate_b(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then

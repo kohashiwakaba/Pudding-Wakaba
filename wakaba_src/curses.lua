@@ -41,7 +41,7 @@ function wakaba:PostGetCollectible_BlackCandle(player, item)
 		wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_BLIGHT)
 	end
 end
-wakaba:addPostItemGetFunction(wakaba.PostGetCollectible_BlackCandle, CollectibleType.COLLECTIBLE_BLACK_CANDLE)
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_BlackCandle, CollectibleType.COLLECTIBLE_BLACK_CANDLE)
 
 function wakaba:Curse_BlackCandleCheck(player)
 	local curse = wakaba.G:GetLevel():GetCurses() 
