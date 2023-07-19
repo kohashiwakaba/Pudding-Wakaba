@@ -42,7 +42,6 @@ include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include('wakaba_src.libs.achievement_display_api')
 include("wakaba_src.libs.pause_screen_completion_marks_api")
-include("wakaba_src.libs.postgetcollectible") -- temp library for post get collectible
 --require("wakaba_src.libs.item_display_library")
 
 

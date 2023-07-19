@@ -1,7 +1,7 @@
 
-local mod = wakaba
+local game = Game()
 
-function mod.SetCallbackMatchTest(callbackID, func)
+function wakaba.SetCallbackMatchTest(callbackID, func)
 	local callbacks = Isaac.GetCallbacks(callbackID, true)
 	setmetatable(callbacks, {
 		__index = getmetatable(callbacks),
@@ -13,11 +13,17 @@ end
 ---@display wakaba.Callback
 wakaba.Callback = {
 
-	--
+	-- ---
+	-- POST_GET_COLLECTIBLE
+	-- ---
+	-- Original callback code from bogdanrudyka
+	-- Called from POST_PEFFECT_UPDATE, when item quantity changed, and player picks it from the first time.
+	-- - `EntityPlayer` - player that got an item.
+	-- - `collectibleType` - Acquired collectible.
+	-- ---
 	POST_GET_COLLECTIBLE = {},
 
 	-- Extra callbacks exclusive to Pudding & Wakaba
-
 
 	-- ---
 	-- PRE_GET_SHIORI_BOOKS
@@ -78,9 +84,59 @@ wakaba.Callback = {
 	POST_ACTIVATE_SHIORI_EFFECT = {},
 }
 
-mod.SetCallbackMatchTest(mod.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
+wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
 	return not a or not b or a == b
 end)
+
+function wakaba:addNemesisDamage(player, count)
+	count = count or 1
+	player:GetData().wakaba.nemesisdmg = (player:GetData().wakaba.nemesisdmg or 0) + (10.8 * count)
+	
+	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+	player:EvaluateItems()
+end
+
+--Legacy function
+function wakaba.addPostItemGetFunction(self, _func, _item)
+	wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, _func, _item)
+end
+
+--Post Get Collectible
+function wakaba:playerItemsArrayInit(player)
+	local data = player:GetData()
+	data.w_heldItems = {}
+	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
+	for item = 1, itemSize do
+		data.w_heldItems[item] = 0
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.playerItemsArrayInit)
+
+function wakaba:playerItemsArrayUpdate(player)
+	if player:IsCoopGhost() then return end
+	local data = player:GetData()
+	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
+  local queuedItem = player.QueuedItem
+	if data.w_heldItems then
+		for item = 1, itemSize do
+      local beforeHeld = queuedItem.Touched
+			if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
+				if player.FrameCount > 7 and not beforeHeld then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
+					Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
+				end
+				--increase by 1
+				data.w_heldItems[item] = data.w_heldItems[item] + 1
+			elseif (data.w_heldItems[item] > player:GetCollectibleNum(item, true)) then
+				data.w_heldItems[item] = player:GetCollectibleNum(item, true)
+			end
+		end
+	else
+		--if not initialized for some reason
+		--inventoryDataSet(player)
+    data.w_heldItems = {}
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)
 
 local function hasShioriCallbacks(collectibleType)
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_CHANGE_SHIORI_EFFECT)) do
