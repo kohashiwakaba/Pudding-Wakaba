@@ -195,7 +195,7 @@ function wakaba:getSoulofShioriCandidates()
 	local newCandidates = {}
 	for k, v in pairs(candidates) do
 		if v then
-			print(k)
+			--print(k)
 			table.insert(newCandidates, k)
 		end
 	end
