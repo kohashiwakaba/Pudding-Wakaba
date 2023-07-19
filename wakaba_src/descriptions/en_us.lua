@@ -1141,7 +1141,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 		description = "Spawns additional friendly Bonies#{{ColorBookofShiori}}Gives Death's Touch Tears({{Collectible237}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
-		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Gives Chance to drop batteries when enemies are killed until next book use",
+		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Chance to heal item wisps when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm",

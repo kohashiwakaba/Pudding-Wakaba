@@ -4,7 +4,7 @@ local roomWispTypes = {
 }
 
 function wakaba:HealWisps(player, amount, canExceedMax)
-	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, collectibleType, false, false)
+	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, collectibleType, false, false)
 	for i, wisp in ipairs(wisps) do
 		if wisp:ToFamiliar() and GetPtrHash(wisp:ToFamiliar().Player) == GetPtrHash(player) then
 			local oldHealth = wisp.HitPoints

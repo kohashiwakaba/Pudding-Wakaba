@@ -1238,7 +1238,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 		description = "아군 Bony를 추가로 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible237}}낫을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
-		description = "일정 확률로 켜져 있는 아이템 위습 하나를 흡수합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Battery}}배터리류 픽업을 드랍합니다.",
+		description = "일정 확률로 켜져 있는 아이템 위습 하나를 흡수합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 아이템 위습을 회복합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		description = "아군으로 만들 적을 선택할 수 있습니다.#{{ColorBookofShiori}}일반 적은 {{Key}}열쇠를, 보스는 추가로 {{Bomb}}폭탄을 소모합니다.",
