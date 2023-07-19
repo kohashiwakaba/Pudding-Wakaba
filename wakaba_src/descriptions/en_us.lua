@@ -602,7 +602,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +16% Damage Multiplier"
 		.. "#Glowing tears"
-		.. "#{{Card" .. Card.CARD_HOLY .."}}Getting soul hearts beyond limit activatesHoly Card effect (Max 5)"
+		.. "#{{Card" .. Card.CARD_HOLY .."}}Getting soul hearts beyond limit activates Holy Card effect (Max 5)"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
