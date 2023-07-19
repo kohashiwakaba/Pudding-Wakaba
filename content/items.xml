@@ -36,7 +36,7 @@
 
 	<familiar id="21" cache="firedelay" description="Buddy for cooking" gfx="lilmoe.png" name="Lil Moe" tags="stars offensive baby summonable monstermanual" quality="2" />
 	<passive id="22" name="Book of Shiori" description="Knowledge Expansion" gfx="bookofshiori.png" devilprice="1" tags="book nocantrip offensive summonable lazarusshared" quality="3" />
-	<passive id="23" name="Shiori's Red Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
+	<passive id="23" name="Shiori's Red Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" hidden="true" quality="0" achievement="9999" persistent="true"/>
 	<passive id="24" name="Shiori's Blue Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<passive id="25" name="Shiori's Yellow Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active id="26" cache="damage firedelay range tearflag" description="Use with Caution" gfx="bookoffocus.png" maxcharges="6" name="Book of Focus" tags="book offensive tearsup" quality="3" />

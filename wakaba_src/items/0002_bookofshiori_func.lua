@@ -13,11 +13,26 @@ function wakaba:addShioriBuff(player, colllectibleType)
 	end
 end
 
+function wakaba:addShioriFloorBuff(player, colllectibleType)
+	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.BOOK_OF_SHIORI_FLOOR)
+	if colllectibleType then
+		player:GetData().wakaba.shiorifloorbuffs = player:GetData().wakaba.shiorifloorbuffs or {}
+		player:GetData().wakaba.shiorifloorbuffs[colllectibleType] = (player:GetData().wakaba.shiorifloorbuffs[colllectibleType] or 0) + 1
+	end
+end
+
 function wakaba:getShioriBuffs(player, colllectibleType)
 	if colllectibleType and player:GetData().wakaba.shioribuffs then
 		return player:GetData().wakaba.shioribuffs[colllectibleType] or 0
 	end
 	return player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+end
+
+function wakaba:getShioriFloorBuffs(player, colllectibleType)
+	if colllectibleType and player:GetData().wakaba.shiorifloorbuffs then
+		return player:GetData().wakaba.shiorifloorbuffs[colllectibleType] or 0
+	end
+	return player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_SHIORI_FLOOR)
 end
 
 function wakaba:getShioriFlag(player)
@@ -311,9 +326,10 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_JACOBS
 		end
 	elseif current == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then
-		if buffs > 0 then
+		local floorBuffs = wakaba:getShioriFloorBuffs(player, CollectibleType.COLLECTIBLE_SATANIC_BIBLE)
+		if floorBuffs > 0 then
 			if cacheFlag == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + ((1.0 * (buffs + 1)) * wakaba:getEstimatedDamageMult(player))
+				player.Damage = player.Damage + ((1.0 * (floorBuffs + 1)) * wakaba:getEstimatedDamageMult(player))
 			end
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then

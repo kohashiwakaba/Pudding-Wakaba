@@ -1715,6 +1715,9 @@ function wakaba:GetPlayerEntityData(player)
 			shioribuffs = {
 
 			},
+			shiorifloorbuffs = {
+
+			},
 		}
 	end
 	return data.wakaba
