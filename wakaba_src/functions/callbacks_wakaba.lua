@@ -105,12 +105,12 @@ function wakaba:getSoulofShioriCandidates()
 	
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT)) do
 		if callback.Param then
-			candidates.[callback.Param] = true
+			candidates[callback.Param] = true
 		end
 	end
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT)) do
 		if callback.Param then
-			candidates.[callback.Param] = true
+			candidates[callback.Param] = true
 		end
 	end
 
@@ -139,7 +139,8 @@ function wakaba:getSoulofShioriCandidates()
 	local newCandidates = {}
 	for k, v in pairs(candidates) do
 		if v then
-			table.insert(newCandidates)
+			print(k)
+			table.insert(newCandidates, k)
 		end
 	end
 

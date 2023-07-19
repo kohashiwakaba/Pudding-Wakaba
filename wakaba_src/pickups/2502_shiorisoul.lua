@@ -15,12 +15,8 @@ end
 
 function wakaba:UseCard_SoulOfShiori(_, player, flags)
 	local rng = player:GetCardRNG(wakaba.Enums.Cards.SOUL_SHIORI)
-	local candidates = wakaba:getSoulofShioriCandidates()
+	local keys = wakaba:getSoulofShioriCandidates()
 	local selected = -1
-	local keys = {}
-	for key, value in pairs(candidates) do
-			keys[#keys+1] = key --Store keys in another table
-	end
 	while not (selected > 0 and not (wakaba.shioribookblacklisted[selected] and wakaba.shioribookblacklisted[selected][wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI])) do
 		--print(selected)
 		selected = keys[rng:RandomInt(#keys) + 1]
