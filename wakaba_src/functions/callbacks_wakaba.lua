@@ -31,6 +31,15 @@ wakaba.Callback = {
 	POST_GET_SHIORI_BOOKS = {},
 
 	-- ---
+	-- PRE_EVALUATE_SOUL_OF_SHIORI
+	-- ---
+	-- Called from MC_USE_CARD, right player using Soul of Shiori.
+	-- - `collectibleType` - used active item.
+	-- - `EntityPlayer` - used player. Mostly Shiori.
+	-- ---
+	-- - Return non-nil values other than `false` will prevent the collectible to be selected.
+	PRE_EVALUATE_SOUL_OF_SHIORI = {},
+	-- ---
 	-- PRE_CHANGE_SHIORI_EFFECT
 	-- ---
 	-- Called from MC_USE_ITEM, right before Shiori, or player with Book of Shiori uses an active item. returned values does NOT affect any callbacks from POST_ACTIVATE_SHIORI_EFFECT.
@@ -89,6 +98,52 @@ local function hasShioriCallbacks(collectibleType)
 			return true
 		end
 	end
+end
+
+function wakaba:getSoulofShioriCandidates()
+	local candidates = {}
+	
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT)) do
+		if callback.Param then
+			candidates.[callback.Param] = true
+		end
+	end
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT)) do
+		if callback.Param then
+			candidates.[callback.Param] = true
+		end
+	end
+
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_CHANGE_SHIORI_EFFECT)) do
+		if callback.Param then
+			local returnedFlag = callback.Function(callback.Mod, callback.Param)
+			if returnedFlag then
+				candidates[callback.Param] = false
+			else
+				candidates[callback.Param] = true
+			end
+		end
+	end
+
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_EVALUATE_SOUL_OF_SHIORI)) do
+		if callback.Param then
+			local returnedFlag = callback.Function(callback.Mod, callback.Param)
+			if returnedFlag then
+				candidates[callback.Param] = false
+			else
+				candidates[callback.Param] = true
+			end
+		end
+	end
+
+	local newCandidates = {}
+	for k, v in pairs(candidates) do
+		if v then
+			table.insert(newCandidates)
+		end
+	end
+
+	return newCandidates
 end
 
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, useditem, rng, player, useflag, slot, vardata)

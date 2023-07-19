@@ -15,7 +15,7 @@ end
 
 function wakaba:UseCard_SoulOfShiori(_, player, flags)
 	local rng = player:GetCardRNG(wakaba.Enums.Cards.SOUL_SHIORI)
-	local candidates = wakaba.bookofshiori
+	local candidates = wakaba:getSoulofShioriCandidates()
 	local selected = -1
 	local keys = {}
 	for key, value in pairs(candidates) do
