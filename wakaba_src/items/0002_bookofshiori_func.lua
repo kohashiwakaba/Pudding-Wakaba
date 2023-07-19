@@ -86,7 +86,7 @@ wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_An
 
 function wakaba:Shiori_Revelations(_, rng, player, useflag, slot, vardata)
 	wakaba:addShioriBuff(player)
-	wakaba.HiddenItemManager:AddForFloor(player, CollectibleType.COLLECTIBLE_7_SEALS, 2, "WAKABA_BOS_REVEL")
+	wakaba.HiddenItemManager:AddForFloor(player, CollectibleType.COLLECTIBLE_7_SEALS, -1, 2, "WAKABA_BOS_REVEL")
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Revelations, CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS)
 
