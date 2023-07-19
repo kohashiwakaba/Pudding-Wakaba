@@ -1,4 +1,265 @@
 
+
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v103",
+[[{FSIZE2}general stuff
+
+added tainted richer. (wip)
+
+added birthright sprites for
+pnw characters.
+(requires unique items api)
+
+changed rabbit ribbon
+curses icon color.
+
+wakaba's double dreams
+no longer shows
+current pool within hud text,
+instead is shown
+on the book itself,
+wakaba's current dream
+from double dreams
+is also shown in
+eid's item reminder.
+(special thanks for
+connor for the code)
+
+destiantions now show
+correctly for pnw challenges.
+(hush, delirium, the beast)
+
+added reference table entries
+for fiend folio.
+
+updated isaacscript-common,
+hidden item manager,
+pause screen completion marks api.
+
+added achievement papers for richer.
+
+completion marks for richer
+now can be recorded.
+
+all pnw characters now have own
+steven dialouge for the future.
+
+book of shiori code refactor.
+
+{FSIZE2}curse of flames changes
+
+while in curse of flames,
+only 'summonable' tag will be
+selected from item pool.
+
+actives and non-summonable items
+now can be taken normally.
+
+death certificate, and genesis rooms
+are not affected by curse of flames.
+
+item wisp from curse of flames
+no longer have increased health.
+
+tainted richer is being considered
+as curse of flames always active.
+
+{FSIZE2}new challenges
+[w15] even or odd
+[wb2] super-sensitive richer-chan
+
+{FSIZE2}new items n stuff
+the winter albireo
+water-flame
+richer's flipper
+crisis boost
+richer's uniform
+self burning
+pow block
+mod block
+kuromi card
+crystal restock machines
+
+{FSIZE2}balance
+vintage threat now can be
+activated immediately
+by using '0' key
+(can be configured)
+
+maijima mythology now only activates
+from 5 books per run.
+the books are selected
+depending on game's seed.
+
+tsukasa no longer shoots
+short range of lasers
+if she has technology
+or brimstone.
+
+richer now has innate
+the wafer effect.
+
+richer's sweets catalog
+can be moved into pocket active slot
+if richer defeats isaac.
+
+adjusted lil moe's
+random tear effect selection.
+
+wakaba's uniform now collects
+nearest pocket item
+instead of held ones.
+
+wakaba's double dreams is
+no longer ignored by lawful
+(deliverance),
+lawful only works if
+wakaba's dreams from dd is not set.
+
+wakaba's uniform can no longer
+store following cards or pills:
+- ancient recall
+- wild card (temporary)
+- ? card
+- vurp!
+- any gold pills
+- pot of greed (fiend folio)
+- small contraband (fiend folio)
+- christmas cracker (fiend folio)
+- denial dice (samael)
+
+minerva's aura no longer
+heals item wisps
+if curse of flames is active.
+
+book of the fallen now spawns
+hungry soul ghosts
+instead of flames.
+ow can be used before revival,
+but only spawns
+3 purgatory ghosts instead of 10.
+
+damage multiplier from
+book of the fallen's revival
+reduced from 16x to 7x.
+
+power bomb is 4-room charge,
+no longer uses/drops bombs
+and deal fixed amount of damage.
+
+power bomb also pulls
+pickup towards explosion point.
+
+curse of sniper now gives
+x2 range multiplier,
+x3 damage multiplier,
+and can damage enemies at any range,
+but richer cannot see her weapons.
+
+curse of amnesia now chance to
+force-activates d7
+in custom stages
+from custom stage api.
+
+prestige pass now spawns
+its own(nerfed) crystal restock
+that only gives 2 rerolls.
+
+delimiter no longer breaks
+super secret rocks,
+to fix conflict with
+rune rocks for retribution.
+
+neko figure no longer grants
+pierce armor for explosion damage.
+
+new year eve's bomb no longer
+sets enemy's health to 1,
+instead armor-piercing damage
+for explosion is granted.
+pre-existing armor-piercing
+explosions deals 2x damage for enemies.
+
+new year eve's bomb now allows
+tainted ??? to use bombs
+for 3 poop manas,
+but no longer gives poop manas.
+
+plasma beam now deals
+1.25x laser damage,
+pre-laser attack
+pierces enemies' armor.
+previous effect was
+removed entirely.
+
+trial stew now gives
+8 stacks of unique 'trial stack.
+each stack gives +1 fire rate,
++25% damage, and bonus +100% damage
+if trial stacks remain.
+each room clear fully charges
+active item and remove 1 trial stack.
+
+return token sets time counter
+to 1 sec instead of 0.
+
+various item quality,
+charges, item pool changes
+
+{FSIZE2}tweaks + fixes
+
+fixed possible bug within
+irregular quality value.
+(-1, or 5+)
+
+rabbit ribbon no longer converts
+curse of the lost
+while in samael's extra rooms.
+
+fixed lil shiva shooting
+wave of tears infinitely
+on rapid attack button presses.
+
+fixed eat heart charging
+with invincible enemies.
+
+fixed some trinket reroll mechanics,
+or rock trinket spawning
+outside of golem for fiend folio.
+
+fixed some custom special rooms
+for minimapi resetting
+while in curse of fairy.
+
+fixed wakaba's double dreams
+not updating guppy's eye
+expectation on use.
+
+fixed curse of amnesia
+turning starting room
+as uncleared state.
+
+fixed curse of amnesia
+using same award seed,
+resulting room clear drop
+being same per room.
+
+fixed power bomb loop sound
+not stopping on room move
+before the effect ends.
+
+grimreaper defender now
+removes all of damocles
+passives instead of 1.
+
+fixed lil mao achievement
+paper missing.
+
+fixed see des bischofs,
+jar of clover
+appearing in challenges.
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102a", 
 [[{FSIZE2}fixes
 Fixed some compability issues with some mods deactivated
@@ -345,10 +606,6 @@ into Wakaba's Dream Card
 Fixed Lunar Stone, Elixir of Life 
 not revealing blind alt-path 
 treasure room items
-
-
-
-
 
 ]])
 

@@ -3,22 +3,38 @@
     <name>!~Pudding And Wakaba [REP]</name>
     <directory>pudding and wakaba</directory>
     <id>2543118811</id>
-    <description>The Lucky Character from anime 'Wakaba Girl', and Bookworm Character from 'The World only god knows' are here.
+    <description>The various uncommon girls arrived to basement!
 
 [h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
 [b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean compatible)
 [b]HIGHLY[/b] recommended to use Encyclopedia, or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2503022727] Completion Marks for ALL Modded Characters [/url].
 
 Mod Includes : 
+[img]https://i.imgur.com/OQHAgwc.png[/img]
+
+[img]https://i.imgur.com/7gwsfJ9.png[/img]
+
+[img]https://i.imgur.com/gVblMFh.png[/img]
+
+[img]https://i.imgur.com/UJqMlrm.png[/img]
+
+[img]https://i.imgur.com/1Fwrl3h.png[/img]
+
+[img]https://i.imgur.com/wcCLH8g.png[/img]
+
+[img]https://i.imgur.com/oFjYytb.png[/img]
+
+[img]https://i.imgur.com/N3qYvBr.png[/img]
+
 A new Curse!(Must be enabled manually)
 7 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
-13 (+65 unlockable) new Items
-1 (+17 unlockable) new Trinkets
-1 (+14 unlockable) new Card/Runes
-12 new Pills - [spoiler]Damage Multiplier Up/Down, All Stats Up/Down, Trolled!, To the Start!, Explosive Diarrhea 2!, Social Distance, Flame Princess, Firey Touch, Priest's Blessing, Unholy Curse[/spoiler]
-16 new Challenges
+80+ new Items
+15+ new Trinkets
+15+ new Card/Runes
+10+ new Pills - [spoiler]Damage Multiplier Up/Down, All Stats Up/Down, Trolled!, To the Start!, Explosive Diarrhea 2!, Social Distance, Flame Princess, Firey Touch, Priest's Blessing, Unholy Curse[/spoiler]
+19 new Challenges
 
-[h1]Items and Characters[/h1]
+[h1]Items[/h1]
 [b][url=https://kohashiwakaba.notion.site/4e87f1c646524283896401a270750755?v=b0de151aac874afa8aec361b255110f9]Item Guides are finally here[/url], but Using External Item Description, or Encyclopedia Wiki is strongly recommended!. [/b] old mini item guide is in discussion.
 
 [b][strike][url=https://steamcommunity.com/workshop/filedetails/discussion/2543118811/5183064363533361286]Character Informations under construction[/url][/strike], Using Encyclopedia Wiki is strongly recommended. [/b]
@@ -43,11 +59,8 @@ This mod also gives multiple shields for Blanket item if you entered a Boss Room
  [*] As this is my very first mod, this mod is does not have many items as almost all items requires to be unlocked. More items and challenges coming soon.
  [*] [b]Like other mods, you MUST restart the game if you installed, enabled/disabled, or updated the mod.[/b]
  [*] Some tweaks can be activated via Mod Config Menu. 
- [*] Synergizes with Abyss item (Incomplete but most items work)
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362] Encyclopedia [/url]
- [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued is not tested, but will work without major issues.)
- [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2490515687] POG for Good Items [/url] (Only for Wakaba/Shiori)
- [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2516781344] Old Wardrobe + [/url]
+ [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued no longer works.)
  [*] Wakaba's Mega Mush costume requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2697721144]Unique MEGAIsaacs[/url]
 [/list]
 
@@ -56,10 +69,10 @@ True co-op not tested, but most items should work. except for certain items whic
 [h1] Special Thanks [/h1]
 - _Kilburn - Tearsup function
 - AgentCucco - Various code snippets, Achievement Papers, [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2520695034]Damocles API[/url]
-- Mana - Item reroll function snippet
-- Nato Potato - for Modded costume handling and empty Pedestal removal
-- meloonicscorp - Glitched item spawn function snippet
-- Xalum, DeadInfinity - getting current dimension snippet
+- Mana - Item reroll function
+- meloonicscorp - Glitched item spawn function
+- Xalum (Retribution) - Major mechanics for custom rooms(for implementation for Tainted Richer planetariums), base format for custom callbacks
+- DeadInfinity - getting current dimension snippet
 - Zamiel, (+ NeoDement) - Isaacscript (+ for player identifier logic)
 - im_tem - Pseudo-Lilith Birtrhright position 
 - Wofsauge - Pseudo-Dark Arts trails snippet
@@ -67,7 +80,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>102.1</version>
+    <version>103.2</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
