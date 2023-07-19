@@ -3,10 +3,10 @@
 An anime mod that contains characters from the creator's favorite.
 **Pudding & Wakaba contains:**
 - A new Curse!(Must be enabled manually)
-- 7 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
-- 13 (+65 unlockable) new Items
-- 1 (+17 unlockable) new Trinkets
-- 1 (+14 unlockable) new Card/Runes
+- 8 New Characters(Wakaba, Shiori, Tsukasa, and Richér, with both tainted forms)
+- 80+ new Items
+- 20+ new Trinkets
+- 20+ new Card/Runes
 - 12 new Pills 
    - Damage Multiplier Up/Down
    - All Stats Up/Down
@@ -15,9 +15,9 @@ An anime mod that contains characters from the creator's favorite.
    - Social Distance
    - Flame Princess/Firey Touch
    - Priest's Blessing/Unholy Curse
-- 16 new Challenges
+- 19 new Challenges
 
-**Current Version : v102-Richer**(updated time : 2023-01-26)
+**Current Version : v103-Richer**(updated time : 2023-07-20)
 
 ## Characters
 
@@ -67,13 +67,14 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
 ## Special Thanks
 - _Kilburn - Tearsup function
 - AgentCucco - Various code snippets, Achievement Papers, Damocles API
-- Mana - Item reroll function snippet
-- Nato Potato - for Modded costume handling and empty Pedestal removal
-- meloonicscorp - Glitched item spawn function snippet
-- Xalum, DeadInfinity - getting current dimension snippet
+- Mana - Item reroll function
+- meloonicscorp - Glitched item spawn function
+- Xalum (Retribution) - Major mechanics for custom rooms(for implementation for Tainted Richer planetariums), base format for custom callbacks
+- DeadInfinity - getting current dimension snippet
 - Zamiel, (+ NeoDement) - Isaacscript (+ for player identifier logic)
-- im_tem - Pseudo-Lilith Birtrhright position
+- im_tem - Pseudo-Lilith Birtrhright position 
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
+- Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - Sanio - Character Costume Protector library / PnW uses modified version of Costume Protector.
