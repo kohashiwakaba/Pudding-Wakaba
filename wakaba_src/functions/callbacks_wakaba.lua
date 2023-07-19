@@ -128,7 +128,7 @@ function wakaba:getSoulofShioriCandidates()
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_EVALUATE_SOUL_OF_SHIORI)) do
 		if callback.Param then
 			local returnedFlag = callback.Function(callback.Mod, callback.Param)
-			if returnedFlag then
+			if returnedFlag or (candidates[callback.Param] and candidates[callback.Param] == false) then
 				candidates[callback.Param] = false
 			else
 				candidates[callback.Param] = true
