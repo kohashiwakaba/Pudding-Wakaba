@@ -224,6 +224,14 @@ wakaba.UnlockTables = {
 	}
 }
 
+wakaba.LinkedCompletionUnlocks = {
+	{wakaba.Enums.Cards.SOUL_WAKABA2, "card", wakaba.Enums.Cards.SOUL_WAKABA, "card"},
+	{wakaba.Enums.Collectibles.ADVANCED_CRYSTAL, "collectible", wakaba.Enums.Collectibles.ARCANE_CRYSTAL, "collectible"},
+	{wakaba.Enums.Collectibles.MYSTIC_CRYSTAL, "collectible", wakaba.Enums.Collectibles.ARCANE_CRYSTAL, "collectible"},
+	{wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
+	{wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
+}
+
 function wakaba:CanRunUnlockAchievements(forceNew) -- Made in conjunction with Thicco Catto
 	if wakaba.CurrentRunCanGrantUnlocks ~= nil and not forceNew then return wakaba.CurrentRunCanGrantUnlocks end
 
@@ -320,11 +328,20 @@ end
 
 function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
 	typeString = typeString or "collectible"
+	for _, linkedTable in ipairs(wakaba.LinkedCompletionUnlocks) do
+		if linkedTable[1] == itemID and linkedTable[2] == typeString and linkedTable[3] ~= nil then
+			itemID = linkedTable[3]
+			typeString = linkedTable[4]
+			break
+		end
+	end
+	--print("trying to find :", itemID, typeString)
 	for playerType, unlocksTable in pairs(wakaba.UnlockTables) do
 		for k, v in pairs(unlocksTable) do
 			if type(v) == "table" then
 				if v[2] ~= nil and v[2] == typeString then
 					if v[3] == itemID then
+						--print("found key :", v[1])
 						local unlockStateVal = wakaba.state.unlock[v[1]]
 						if type(unlockStateVal) == "boolean" then
 							return unlockStateVal
