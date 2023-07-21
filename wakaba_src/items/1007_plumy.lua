@@ -203,6 +203,7 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 	local recovertime = 10
+	local mark = wakaba:GetMarkedTarget(player)
 	recovertime = (Sewn_API and Sewn_API:IsSuper(fData)) and 8 or recovertime
 	recovertime = (Sewn_API and Sewn_API:IsUltra(fData)) and 5 or recovertime
 
@@ -253,9 +254,13 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
 			or Input.IsMouseBtnPressed(0)
+			or mark
 		) then
 			familiar:RemoveFromFollowers()
 			dirVec = player:GetAimDirection()
+			if mark then
+				dirVec = Vector(mark.Position.X - familiar.Position.X, mark.Position.Y - familiar.Position.Y):Normalized()
+			end
 			sprite:Play(getPlumShootFrame(dirVec:GetAngleDegrees()).Frame, false)
 			local playerpos = player.Position
 			local oldpos = familiar.Position

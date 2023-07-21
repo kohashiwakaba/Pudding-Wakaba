@@ -60,6 +60,7 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local sprite = familiar:GetSprite()
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
+	local mark = wakaba:GetMarkedTarget(player)
 
 	local playerIndex = isc:getPlayerIndex(player)
 	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
@@ -94,6 +95,9 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 		if familiar.FireCooldown <= 0 then
 			local tear_vector = wakaba.DIRECTION_VECTOR[player_fire_direction]:Normalized()
 			sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
+			if not autoaim and mark then
+				tear_vector = Vector(mark.Position.X - familiar.Position.X, mark.Position.Y - familiar.Position.Y):Normalized()
+			end
 			if familiar.FireCooldown <= 0 then
 				fireTearRicher(player, familiar, tear_vector, 0)
 				if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then

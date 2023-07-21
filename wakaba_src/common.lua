@@ -1168,3 +1168,21 @@ function wakaba:ForAllPlayers(func, typeFilter)
 		end
 	end
 end
+
+function wakaba:GetMarkedTarget(player)
+	local occults = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.OCCULT_TARGET)
+	for _, target in ipairs(occults) do
+		if target.SpawnerEntity and GetPtrHash(player) == GetPtrHash(target.SpawnerEntity) then
+			return target
+		end
+	end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) then
+		local marks = Isaac.FindByType(EntityType.ENTITY_EFFECT, 30)
+		for _, target in ipairs(marks) do
+			if target.SpawnerEntity and GetPtrHash(player) == GetPtrHash(target.SpawnerEntity) then
+				return target
+			end
+		end
+	end
+
+end

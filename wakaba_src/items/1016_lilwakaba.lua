@@ -42,6 +42,7 @@ local function fireTechWakaba(player, familiar, vector, direction)
 	local fData = familiar:GetData()
 	local multiplier = 0.4
 	local tear_movement_vector = Vector.Zero
+	local tear_vector = Vector.Zero
 	if vector ~= nil then
 		tear_vector = vector
 	else
@@ -102,6 +103,7 @@ function wakaba:updateLilWakaba(familiar)
 	local sprite = familiar:GetSprite()
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
+	local mark = wakaba:GetMarkedTarget(player)
 
 	if player_fire_direction == Direction.NO_DIRECTION then
 		sprite:Play(wakaba.DIRECTION_FLOAT_ANIM[move_dir], false)
@@ -125,6 +127,9 @@ function wakaba:updateLilWakaba(familiar)
 						tear_vector = enemy.Vector
 					end
 				end
+			end
+			if not autoaim and mark then
+				tear_vector = Vector(mark.Position.X - familiar.Position.X, mark.Position.Y - familiar.Position.Y):Resized(10)
 			end
 			--[[local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, Vector(familiar.Position.X, familiar.Position.Y), tear_vector, familiar)
 			tear = entity:ToTear()

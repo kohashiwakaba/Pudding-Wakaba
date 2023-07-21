@@ -67,6 +67,7 @@ function wakaba:updateLilShiva(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 	local targetoffset = 5
+	local mark = wakaba:GetMarkedTarget(player)
 	
 	if Sewn_API then
 		if Sewn_API:IsSuper(fData) then
@@ -83,6 +84,9 @@ function wakaba:updateLilShiva(familiar)
 		local tear_vector = wakaba.DIRECTION_VECTOR[shootDir]:Normalized()
 		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[shootDir], false)
 
+		if not autoaim and mark then
+			tear_vector = Vector(mark.Position.X - familiar.Position.X, mark.Position.Y - familiar.Position.Y):Normalized()
+		end
 		fireTearShiva(player, familiar, tear_vector, 0)
 		familiar.Coins = familiar.Coins - 1
 	else

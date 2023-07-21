@@ -52,7 +52,7 @@ function wakaba:PlayerCollision_ShioriValut(player, slot, low)
 		if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
 			player:AddKeys(-12)
 			wakaba:RollSlot_ShioriValut(slot, player)
-			
+
 		end
 	end
 end
@@ -62,7 +62,7 @@ end
 
 
 function wakaba:ResetFortuneStatus()
-	
+
 	local slots = Isaac.FindByType(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.SHIORI_VALUT)
 	for _, slot in pairs(slots) do
 		slot:GetSprite():Play("Idle")
@@ -77,7 +77,7 @@ function wakaba:Update_ShioriValut()
 		--if slot:GetSprite():IsFinished("Wiggle") then slot:GetSprite():Play("Prize") end
 		if slot:GetSprite():IsFinished("Death") then slot:GetSprite():Play("Broken") end
 		if slot:GetSprite():IsPlaying("Wiggle") then
-			slot:GetData().prizethreshold = slot:GetData().prizethreshold or 20 
+			slot:GetData().prizethreshold = slot:GetData().prizethreshold or 20
 			if slot:GetData().prizethreshold then
 				if slot:GetData().prizethreshold > 0 then
 					slot:GetData().prizethreshold = slot:GetData().prizethreshold - 1
@@ -93,14 +93,15 @@ function wakaba:Update_ShioriValut()
 		end
 		if slot:GetSprite():IsEventTriggered("Explosion") then
 			slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
-			wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
+			local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, slot.Position, Vector.Zero, nil)
+			--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
 		end
 		if slot:GetSprite():IsEventTriggered("Prize") then
 			local rewardCount = 3
 			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD then
 				rewardCount = 2
 			end
-			--[[ 
+			--[[
 				wakaba.afspool = {
 					BLEND_HEART = 20,
 					CARD = 20,
@@ -117,12 +118,12 @@ function wakaba:Update_ShioriValut()
 					end
 					local itemID = valut_data.floor.valutitemtype[tostring(slot.InitSeed)]
 					local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, slot.Position, Vector.Zero, nil):ToPickup()
-	
-					item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
+
+					item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 					item:GetSprite():SetOverlayFrame("Alternates", 1)
 					item:GetSprite():LoadGraphics()
 					--print(slot.InitSeed, slot.DropSeed, entry, itemID)
-	
+
 					table.insert(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(item))
 					item.Wait = 10
 					--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
@@ -204,7 +205,7 @@ function wakaba:ReplaceValutLate(pickup)
   local currentRoomIndex = isc:getRoomListIndex()
   if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then return end
   if wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
-		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
+		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 		pickup:GetSprite():SetOverlayFrame("Alternates", 1)
 		pickup:GetSprite():LoadGraphics()
   end
@@ -243,8 +244,8 @@ function wakaba:TearUpdate_ShioriValut(tear)
 			else
 				player = Isaac.GetPlayer()
 			end
-	
-			
+
+
 			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
 				wakaba:RollSlot_ShioriValut(slot, player)
 			end
@@ -265,7 +266,7 @@ function wakaba:PlayerUpdate_ShioriValut(player)
 			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
 				player:AddKeys(-12)
 				wakaba:RollSlot_ShioriValut(slot, player)
-				
+
 			end
 		end
 	end
