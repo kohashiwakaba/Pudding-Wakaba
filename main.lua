@@ -43,7 +43,7 @@ include("wakaba_src.enums.constants")
 include('wakaba_src.libs.achievement_display_api')
 include("wakaba_src.libs.pause_screen_completion_marks_api")
 --require("wakaba_src.libs.item_display_library")
-
+PauseScreenCompletionMarksAPI:SetShader("wakaba_ChallengeDest_DummyShader")
 
 ---@type Game
 wakaba.G = Game() -- Cache game object
