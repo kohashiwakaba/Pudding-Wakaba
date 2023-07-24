@@ -26,6 +26,7 @@
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -181,6 +182,7 @@
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
