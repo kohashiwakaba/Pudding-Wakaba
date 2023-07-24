@@ -11,9 +11,9 @@ local isChallengeContinue = true
 
 function wakaba:isSpeed()
 	local speed = false
-	if wakaba.G.Challenge == Challenges.CHALLENGE_ELEC 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_ELEC
 	--or wakaba.G.Challenge == Challenges.CHALLENGE_SLNT
-	--or wakaba.G.Challenge == Challenges.CHALLENGE_PLUM 
+	--or wakaba.G.Challenge == Challenges.CHALLENGE_PLUM
 	then
 		speed = true
 	end
@@ -21,7 +21,7 @@ function wakaba:isSpeed()
 end
 function wakaba:isSlow()
 	local speed = false
-	if wakaba.G.Challenge == Challenges.CHALLENGE_SLNT 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_SLNT
 	then
 		speed = true
 	end
@@ -30,9 +30,9 @@ end
 
 function wakaba:isHush()
 	local hush = false
-	if wakaba.G.Challenge == Challenges.CHALLENGE_HUSH 
-	or wakaba.G.Challenge == Challenges.CHALLENGE_PLUM 
-	or wakaba.G.Challenge == Challenges.CHALLENGE_DOPP 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_HUSH
+	or wakaba.G.Challenge == Challenges.CHALLENGE_PLUM
+	or wakaba.G.Challenge == Challenges.CHALLENGE_DOPP
 	then
 		hush = true
 	end
@@ -41,10 +41,11 @@ end
 
 function wakaba:isDelirium()
 	local delirium = false
-	if wakaba.G.Challenge == Challenges.CHALLENGE_DELI 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_DELI
 	or wakaba.G.Challenge == Challenges.CHALLENGE_RAND
 	or wakaba.G.Challenge == Challenges.CHALLENGE_SLNT
 	or wakaba.G.Challenge == Challenges.CHALLENGE_BIKE
+	or wakaba.G.Challenge == Challenges.CHALLENGE_RNPR
 	then
 		delirium = true
 	end
@@ -53,7 +54,7 @@ end
 
 function wakaba:isBeast()
 	local beast = false
-	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS
 	or wakaba.G.Challenge == Challenges.CHALLENGE_SSRC
 	then
 		beast = true
@@ -63,7 +64,7 @@ end
 
 function wakaba:isDevilAngelAllowed()
 	local devil = true
-	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS 
+	if wakaba.G.Challenge == Challenges.CHALLENGE_DRMS
 	then
 		devil = false
 	end
@@ -180,6 +181,11 @@ function wakaba:PostChallengePlayerInit(player)
 		player:AddSoulHearts(4)
 		player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
+		--player:AddCollectible(wakaba.Enums.Collectibles.LIL_MAO)
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RNPR then
+		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Richer", false))
+		player:AddSoulHearts(4)
+		wakaba.G:GetItemPool():RemoveCollectible(wakaba.Enums.Collectibles.CLENSING_FOAM)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_RAND and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Wakaba", randtainted) then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Wakaba", false))
 		player:AddNullCostume(Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba.anm2"))
@@ -332,7 +338,7 @@ function wakaba:ChallengeSpeedUp()
 			end
 		end
 	end
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.ChallengeSpeedUp)
 
@@ -351,7 +357,7 @@ function wakaba:PlayerUpdate_Delivery(player)
 		elseif player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 2 then
 			player:GetData().wakaba.ponycurrframe = wakaba.Enums.Constants.PONY_COOLDOWN
 		end
-		if not wakaba.sprites.WhitePonySprite then 
+		if not wakaba.sprites.WhitePonySprite then
 			wakaba.sprites.WhitePonySprite = Sprite()
 			wakaba.sprites.WhitePonySprite:Load("gfx/chargebar_pony.anm2", true)
 			wakaba.sprites.WhitePonySprite.Color = Color(1,1,1,1)
@@ -433,7 +439,7 @@ function wakaba:PlayerUpdate_Delivery(player)
 				end
 			end
 		end
-		if not wakaba.sprites.DeliveryMinervaSprite then 
+		if not wakaba.sprites.DeliveryMinervaSprite then
 			wakaba.sprites.DeliveryMinervaSprite = Sprite()
 			wakaba.sprites.DeliveryMinervaSprite:Load("gfx/chargebar_clover.anm2", true)
 			wakaba.sprites.DeliveryMinervaSprite.Color = Color(1,1,1,1)
@@ -470,16 +476,16 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Deliv
 
 function wakaba:ChallengePostLevel()
 	local level = wakaba.G:GetLevel()
-	
+
 	if wakaba:isDevilAngelAllowed() == false then
 		level:DisableDevilRoom()
 	end
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.ChallengePostLevel)
 
 function wakaba:checkChallengeDest()
-	if wakaba:isBeast() and 
+	if wakaba:isBeast() and
 	(wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE3_1
 		or wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE2_1
 		or wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE2_2
@@ -552,7 +558,7 @@ local function TryFlipWakaba(player, prevTainted)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, false, false, false, false, -1)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_D12, false, false, false, false, -1)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_D20, false, false, false, false, -1)
-					
+
 	local removedcount = 0
 	local maxnum = -1
 	local itemcount = wakaba:GetMinTMTRAINERNumCount(player)
@@ -629,7 +635,7 @@ function wakaba:PostWakabaChallengeUpdate()
 		for num = 1, wakaba.G:GetNumPlayers() do
 			local player = wakaba.G:GetPlayer(num - 1)
 			player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)
-			
+
 			if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 900 or player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) > 0 then
 				wakaba.roomstate.allowactives = false
 				local tainted
@@ -701,8 +707,8 @@ function wakaba:playerDamageChallenge_Delivery(target, damage, flags, source, co
 			if target:GetData().wakaba
 			and target:GetData().wakaba.minervadeathcount > 0 then
 				if not (
-					flags & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS 
-					and flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG 
+					flags & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS
+					and flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
 					and flags & DamageFlag.DAMAGE_INVINCIBLE == DamageFlag.DAMAGE_INVINCIBLE
 				) then
 					return false
@@ -732,7 +738,7 @@ function wakaba:toDelirium(rng, spawnPosition)
 	local curse = level:GetCurses()
 	local room = wakaba.G:GetRoom()
 	local type1 = room:GetType()
-	if type1 == RoomType.ROOM_BOSS 
+	if type1 == RoomType.ROOM_BOSS
 	and (wakaba:isDelirium() or wakaba:isHush()) then
 		if (stage == 9) then
 			if wakaba:isDelirium() then
@@ -765,7 +771,7 @@ function wakaba:toDelirium(rng, spawnPosition)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.toDelirium)
 
-function wakaba:plumItemPedestal(itemPoolType, decrease, seed) 
+function wakaba:plumItemPedestal(itemPoolType, decrease, seed)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_PLUM then
 		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
 			if wakaba.G:GetLevel():GetAbsoluteStage() == 2 then
@@ -789,3 +795,27 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_GENESIS)
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_DAMOCLES)
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
+
+---@param tear EntityProjectile
+function wakaba:ProjectileUpdate_RunawayPheromones(tear)
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
+		if not tear:HasProjectileFlags(ProjectileFlags.LASER_SHOT) then
+			tear:AddProjectileFlags(ProjectileFlags.LASER_SHOT)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, wakaba.ProjectileUpdate_RunawayPheromones)
+
+---@param npc EntityNPC
+function wakaba:NPCInit_RunawayPheromones(npc)
+	if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RNPR then return end
+	if npc.Type ~= EntityType.ENTITY_FIREPLACE
+	and npc:IsEnemy()
+	and not npc:IsBoss()
+	and not npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
+	and npc:GetChampionColorIdx() ~= ChampionColor.PINK
+	then
+		npc:MakeChampion(npc.InitSeed, ChampionColor.PINK, true)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCInit_RunawayPheromones)

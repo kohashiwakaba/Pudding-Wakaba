@@ -136,6 +136,7 @@
 	<active id="99" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
 	<active id="100" cache="tearflag" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="9999"/>
 	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="2" hidden="true" achievement="9999"/>
+	<passive id="102" description="Itch taste" gfx="richernecklace.png" name="Richer's Necklace" tags="tech summonable offensive" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" achievement="9999"/>

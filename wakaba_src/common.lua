@@ -319,8 +319,7 @@ function wakaba:HasJudasBr(player)
 end
 
 function wakaba:GetPedestals(includeShop)
-	local game = game or wakaba.G
-	local pool = pool or game:GetItemPool()
+	local pool = pool or wakaba.G:GetItemPool()
 	local config = config or Isaac.GetItemConfig()
 	local Pedestals = {}
 	includeShop = includeShop or true
@@ -683,6 +682,34 @@ function wakaba:findNearestEntityByPartition(entity, partition)
 	return ret
 end
 
+function wakaba:findRandomEnemy(rng, ignoreFriendly)
+	if rng == nil then
+		rng = RNG()
+		rng:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
+	end
+	local entities = Isaac.FindInRadius(entity.Position,2000,partition)
+	local entries = {}
+	local target = nil
+	for index, entity in ipairs(entities) do
+		if entity.Type ~= EntityType.ENTITY_FIREPLACE
+		and entity:IsEnemy()
+		and not entity:IsInvincible()
+		and not entity:HasEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
+		and not entity:HasEntityFlags(EntityFlag.FLAG_NO_TARGET)
+		and not (ignoreFriendly and entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
+		then
+			if entity.EntityCollisionClass > 0 and not badent and entity.Type ~= 4 then
+				table.insert(entries, entity)
+			end
+		end
+	end
+
+	if #entries > 0 then
+		target = entries[rng:RandomInt(#entries) + 1]
+	end
+	return target
+end
+
 -- Removes all spawned NPC entities when activating the function
 --[[ function wakaba:onFriendlyInit(npc)
 		if wakaba.G.TimeCounter-usagetime == 0 then -- only remove enemies that spawned when the effect was called!
@@ -734,15 +761,18 @@ function wakaba:getPlayerFromTear(tear)
 				check = spawnData.SpawnerEntity
 			end
 		end
-		if check then
-			if check.Type == EntityType.ENTITY_PLAYER then
+		if check ~= nil and check:Exists() then
+			if check.Type == EntityType.ENTITY_PLAYER and check:ToPlayer() then
 				return wakaba:GetPtrHashEntity(check):ToPlayer()
-			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
-				local data = mod:GetData(tear)
-				data.IsIncubusTear = true
-				return check:ToFamiliar().Player:ToPlayer()
+			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS and check:ToFamiliar() then
+				familiar = check:ToFamiliar()
+				local player = familiar.Player
+				if player ~= nil and player:Exists() and player.Type == EntityType.ENTITY_PLAYER and player:ToPlayer() then
+					return wakaba:GetPtrHashEntity(player):ToPlayer()
+				end
 			end
 		end
+
 	end
 	return nil
 end
@@ -1149,7 +1179,7 @@ end
 function wakaba:GetRoomPlayers()
 	if not wakaba.roomPlayersCache then
 		wakaba.roomPlayersCache = {}
-		for i = 0, game:GetNumPlayers() - 1 do
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			table.insert(wakaba.roomPlayersCache, Isaac.GetPlayer(i))
 		end
 	end

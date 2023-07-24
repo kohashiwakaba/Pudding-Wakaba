@@ -75,7 +75,9 @@ function wakaba:AfterRicherInit(player)
 	--print("Richer event passed")
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN or ((wakaba.state.unlock.sweetscatalog or wakaba.state.options.allowlockeditems) and wakaba.state.achievementPopupShown) then
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
+
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN or ((wakaba.state.unlock.sweetscatalog or wakaba.state.options.allowlockeditems) and wakaba.state.achievementPopupShown) then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		else
 			player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 4, true, ActiveSlot.SLOT_PRIMARY)
@@ -125,23 +127,3 @@ function wakaba:RicherExit()
 	isRicherContinue = true
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.RicherExit)
-
--- Pause Screen Completion Marks API
---[[ PauseScreenCompletionMarksAPI:AddModCharacterCallback(wakaba.Enums.Players.WAKABA, function()
-	local wakabaCompletionTable = {
-		["MOMSHEART"] = wakaba.state.unlock.clover,
-		["ISAAC"] = wakaba.state.unlock.counter,
-		["SATAN"] = wakaba.state.unlock.dcupicecream,
-		["BLUEBABY"] = wakaba.state.unlock.pendant,
-		["LAMB"] = wakaba.state.unlock.revengefruit,
-		["BOSSRUSH"] = wakaba.state.unlock.donationcard,
-		["MEGASATAN"] = wakaba.state.unlock.whitejoker,
-		["HUSH"] = wakaba.state.unlock.colorjoker,
-		["DELIRIUM"] = wakaba.state.unlock.wakabauniform,
-		["MOTHER"] = wakaba.state.unlock.confessionalcard,
-		["BEAST"] = wakaba.state.unlock.returnpostage,
-		["ULTRAGREED"] = wakaba.state.unlock.secretcard,
-	}
-	return wakabaCompletionTable
-end) ]]
-

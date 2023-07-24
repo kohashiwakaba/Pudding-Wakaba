@@ -159,6 +159,7 @@ wakaba.Enums.Collectibles = {
 	ISEKAI_DEFINITION = Isaac.GetItemIdByName("Isekai Definition"),
 	BALANCE = Isaac.GetItemIdByName("Balance ecnalaB"),
 	RICHERS_FLIPPER = Isaac.GetItemIdByName("Richer's Flipper"),
+	RICHERS_NECKLACE = Isaac.GetItemIdByName("Richer's Necklace"),
 	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 
@@ -737,7 +738,8 @@ wakaba.challenges = {
 	CHALLENGE_CALC = Isaac.GetChallengeIdByName("[w13] Calculation"), --w13
 	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
 	CHALLENGE_EVEN = Isaac.GetChallengeIdByName("[w15] Even or Odd"), --w15
-	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w16] Universe of Goom"), --w15
+	CHALLENGE_RNPR = Isaac.GetChallengeIdByName("[w16] Runaway Pheromones"), --w16
+	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w17] Universe of Goom"), --w17
 
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99

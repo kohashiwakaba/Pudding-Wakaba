@@ -29,10 +29,6 @@ function wakaba:PlayerUpdate_Elixir(player)
 		elseif data.wakaba.elixirnonredhearts and (player:GetHearts() > 0) then
 			data.wakaba.elixirnonredhearts = false
 		end
-		if (player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) and not data.wakaba.elixirnonredhearts then
-			player:AddSoulHearts(-2)
-			player:AddBoneHearts(1)
-		end
 		::KeeperSkip::
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 		if player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then

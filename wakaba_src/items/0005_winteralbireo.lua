@@ -18,6 +18,8 @@ function wakaba:hasAlbireo(player)
     return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) then
 		return true
+	elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
+		return true
 	else
 		return false
 	end

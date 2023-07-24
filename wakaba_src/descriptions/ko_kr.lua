@@ -141,10 +141,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#↓ {{ColorOrange}}피격 무적 시간이 제거됩니다."
-		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 보정 상태에 따라 체력을 빠른 속도로 회복합니다."
-		.. "#{{Heart}} {{ColorRed}}빨간 하트를 회복하며 모든 소울 하트가 뼈 하트로 전환됩니다."
-		.. "#{{SoulHeart}} {{ColorSoul}}캐릭터가 획득한 최대치까지 소울 하트를 회복합니다."
-		.. "#{{Card"..Card.CARD_SOUL_LOST.."}} {{ColorSilver}}최대 5회까지 피격을 막아주는 {{HolyMantle}}신성한 보호막이 회복됩니다."
+		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 빠른 속도로 회복합니다."
 		.. "{{CR}}",
 		queueDesc = "무적 시간 제거 + 초고속 회복",
 	},
@@ -590,6 +587,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 {{Bomb}}/{{Key}} 및 {{Card}}/{{Pill}} 픽업을 각각 반대 타입으로 바꿉니다."
 		.. "{{CR}}",
 		queueDesc = "소모품 뒤집기",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_NECKLACE] = {
+		itemName = "리셰의 목걸이",
+		description = ""
+		.. "#적을 놓친 눈물에 도그마 레이저가 생깁니다."
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "모에의 머핀",

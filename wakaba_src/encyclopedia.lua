@@ -1158,8 +1158,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Removes invincibility frames."},
 			{str = "Regenerates health for fast time if Isaac did not get hit for brief time."},
-			{str = "All soul hearts are converted into bone hearts if Isaac can get Heart containers."},
-			{str = "If Isaac cannot get Heart containers, Soul Hearts will be recovered until his maximum soul heart count he gotten."},
+			{str = "Soul Hearts will be recovered until his maximum soul heart count he gotten."},
 			{str = "If Stackable Holy Card is applied, Isaac will be given Holy shields as recovery if The Lost, or Lost Curse is applied."},
 		},
 		{ -- Notes
@@ -2615,6 +2614,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Upon use, flips a group of pickups each other."},
 			{str = "- Bombs and Keys"},
 			{str = "- Cards/Runes and Pills"},
+		},
+	},
+
+	RICHERS_NECKLACE = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "If a tear misses enemy, The leftover of the tear emits white laser, similarly with Dogma's laser tears."},
+			{str = "- Emitted lasers targets random enemy, and deals 8 damage per tick, maximum 40."},
+			{str = "- Can control laser emit timing by holding, or canceling shoot button."},
 		},
 	},
 
@@ -5056,6 +5064,25 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.richerflipper then
 				self.Desc = "Complete Even or Odd (challenge No.15w)"
+
+				return self
+			end
+		end,
+	})
+
+	--Richer's Necklace
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RICHERS_NECKLACE,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_NECKLACE,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		},
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.richernecklace then
+				self.Desc = "Complete Runaway Pheromones (challenge No.16w)"
 
 				return self
 			end

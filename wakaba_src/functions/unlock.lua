@@ -219,6 +219,7 @@ wakaba.UnlockTables = {
 		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_balance.png") end, BossID.MEGA_SATAN},
 		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilmao.png") end, BossID.MOTHER},
 		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richerflipper.png") end, BossID.MOTHER},
+		[wakaba.challenges.CHALLENGE_RNPR] = {"richernecklace", "collectible",	wakaba.Enums.Collectibles.RICHERS_NECKLACE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richernecklace.png") end, BossID.DELIRIUM},
 		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_edensticky.png") end, BossID.DELIRIUM},
 		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_doubledreams.png") end, BossID.BEAST},
 	}

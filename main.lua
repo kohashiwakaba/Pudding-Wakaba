@@ -462,6 +462,7 @@ local richer_saved_recipies = {
 			calculation = false,--13w Calculation
 			lilmao = false,--14w Hold Me!
 			richerflipper = false,--15w Even or Odd
+			richernecklace = false,--16w Runaway Pheromones
 
 			edensticky = false,--98w T.Eden Starts with Sticky Note
 			doubledreams = false, -- 99w Wakaba's Double Dreams
@@ -824,6 +825,7 @@ wakaba.unlocks = {
 	calculation = false,--13w Calculation
 	lilmao = false,--14w Hold Me!
 	richerflipper = false,--15w Even or Odd
+	richernecklace = false,--16w Runaway Pheromones
 
 	edensticky = false,--98w T.Eden Starts with Sticky Note
 	doubledreams = false, -- 99w Wakaba's Double Dreams
@@ -1374,6 +1376,7 @@ include('wakaba_src.items.1076_selfburning')
 include('wakaba_src.items.1077_rirabra')
 include('wakaba_src.items.1078_secretdoor')
 include('wakaba_src.items.1079_bunnyparfait')
+include('wakaba_src.items.1086_richernecklace')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')
@@ -2132,6 +2135,7 @@ function wakaba:unlockChallenge(bool)
 	wakaba.state.unlock.calculation = true--13w Calculation
 	wakaba.state.unlock.lilmao = true--14w Hold Me
 	wakaba.state.unlock.richerflipper = true--15w Even or Odd
+	wakaba.state.unlock.richernecklace = true--16w Runaway Pheromones
 	wakaba.state.unlock.edensticky = true--98w T.Eden Starts with Sticky Note
 	wakaba.state.unlock.doubledreams = true -- 99w Wakaba's Double Dreams
 

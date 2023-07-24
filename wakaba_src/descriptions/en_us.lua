@@ -124,10 +124,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
 		.. "#↓ {{ColorOrange}}Removes invincibility frames"
-		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character is:"
-		.. "#{{Heart}} {{ColorRed}}All soul hearts are converted into bone hearts. Regenerates Red Hearts"
-		.. "#{{SoulHeart}} {{ColorSoul}}Regenerates Soul hearts until maximum count Isaac have gotten"
-		.. "#{{Card"..Card.CARD_SOUL_LOST.."}} {{ColorSilver}}Regenerates {{Collectible313}}Holy Mantle shields up to 5"
+		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character is"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
@@ -536,6 +533,12 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Richer's Flipper",
 		description = ""
 		.. "#Converts {{Bomb}}/{{Key}} and {{Card}}/{{Pill}} each other"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_NECKLACE] = {
+		itemName = "Richer's Necklace",
+		description = ""
+		.. "#Missed tears make Dogma's static lasers"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
