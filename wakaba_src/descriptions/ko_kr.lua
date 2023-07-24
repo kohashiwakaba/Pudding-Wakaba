@@ -2659,6 +2659,8 @@ wakaba.descriptions[desclang].playernotes = {
 	},
 
 }
+wakaba.descriptions[desclang].extracollectibles = {}
+wakaba.descriptions[desclang].extratrinkets = {}
 
 
 
