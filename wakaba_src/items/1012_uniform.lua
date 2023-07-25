@@ -240,6 +240,7 @@ if EID then
 		if not descObj.Entity then return false end
 		if not (descObj.ObjType == 5 and (descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD or descObj.ObjVariant == PickupVariant.PICKUP_PILL)) then return false end
 		
+		local player = EID.player
 		local isCard = descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD
 		local isPill = descObj.ObjVariant == PickupVariant.PICKUP_PILL
 		local isShopItem = descObj.Entity:ToPickup():IsShopItem()
