@@ -24,13 +24,15 @@ local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	local hasTrinketDropped = false
 	if wakaba.G:GetRoom():GetFrameCount() >= 0 then
-		wakaba:ForAllPlayers(function(player)
-			local lastTrigger = player:GetLastActionTriggers()
-			if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
-				hasTrinketDropped = true
-			end
-			if player:GetData().wakaba.blockAquaSpawn then
-				hasTrinketDropped = true
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+			if not player:IsCoopGhost() then
+				local lastTrigger = player:GetLastActionTriggers()
+				if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
+					hasTrinketDropped = true
+				end
+				if player:GetData().wakaba.blockAquaSpawn then
+					hasTrinketDropped = true
+				end
 			end
 		end)
 	end
