@@ -48,6 +48,7 @@ end
 function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	if wakaba:getRabbitCharges(player) <= 0 then return end
 	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
+	local playerIndex = isc:getPlayerIndex(player)
 	if player:NeedsCharge(activeSlot) then
 		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 do
 			isc:addCharge(player, activeSlot, 1)
@@ -61,7 +62,7 @@ end
 ---@return integer
 function wakaba:getRabbitCharges(player)
 	local playerIndex = isc:getPlayerIndex(player)
-	return richerCharges[playerIndex]
+	return richerCharges[playerIndex] or 0
 end
 
 ---@param player EntityPlayer

@@ -41,9 +41,10 @@ end
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RabbitRibbon(player)
 	if wakaba:ShouldChargeRabbitRibbon(player) then
-		wakaba:addRabbitCharge(player, familiar.RoomClearCount)
+		print("addRabbitCharge", wakaba:getRabbitCharges(player), wakaba:getMaxRabbitCharges(player))
 		if wakaba:getRabbitCharges(player) > 0 then
 			for i = 0, 2 do
+				print("tryTransferRabbitCharge", i)
 				wakaba:tryTransferRabbitCharge(player, i)
 			end
 		end
@@ -273,7 +274,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbitRibbon)
 ---@param player EntityPlayer
 function wakaba:ShouldChargeRabbitRibbon(player)
 	return wakaba:hasRibbon(player)
-	and (player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON))
+	and not (player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON))
 	and not (player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RICHER))
 end
 
