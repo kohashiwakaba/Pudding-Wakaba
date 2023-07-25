@@ -7,7 +7,7 @@ function wakaba:PickupUpdate_Magnet(pickup)
 	local attplayer = nil
 	local velocityMode = nil
 	local isLast = false
-	local allow = true
+	local allow = false
 
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
