@@ -150,6 +150,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{CurseCursed}} Changes other curses"
+		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
+		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
@@ -820,7 +822,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
-		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
+		.. "#{{Battery}} Stores extra charge after clearing a room (max 12)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
