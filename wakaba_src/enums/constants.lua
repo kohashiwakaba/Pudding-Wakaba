@@ -359,6 +359,9 @@ wakaba.Enums.Constants = {
 	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
 	ELIXIR_MAX_COOLDOWN_DMG = 50, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수
 
+	RABBIT_RIBBON_BASIC_CHARGES = 12, -- 토끼 리본 기본 보존 충전량
+	RABBIT_RIBBON_EXTRA_CHARGES = 4, -- 토끼 리본 중첩 당 추가 보존 충전량
+
 	LIL_RICHER_BASIC_CHARGES = 8, -- 리틀 리셰 기본 보존 충전량
 	LIL_RICHER_EXTRA_CHARGES = 4, -- 리틀 리셰 중첩 당 추가 보존 충전량
 	LIL_RICHER_BASIC_DMG = 1, -- 리틀 리셰 기본 눈물 배수

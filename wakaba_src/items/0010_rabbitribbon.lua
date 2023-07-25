@@ -40,6 +40,15 @@ end
 ---comment
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RabbitRibbon(player)
+	if wakaba:ShouldChargeRabbitRibbon(player) then
+		wakaba:addRabbitCharge(player, familiar.RoomClearCount)
+		if wakaba:getRabbitCharges(player) > 0 then
+			for i = 0, 2 do
+				wakaba:tryTransferRabbitCharge(player, i)
+			end
+		end
+	end
+
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		local weapon = player:GetActiveWeaponEntity()
 		if weapon then
@@ -260,3 +269,22 @@ function wakaba:NewRoom_RabbitRibbon()
 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbitRibbon)
+
+---@param player EntityPlayer
+function wakaba:ShouldChargeRabbitRibbon(player)
+	return wakaba:hasRibbon(player)
+	and (player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON))
+	and not (player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RICHER))
+end
+
+function wakaba:RoomClear_RabbitRibbon(rng, pos)
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if not player:IsCoopGhost() then
+			if wakaba:ShouldChargeRabbitRibbon(player) then
+				wakaba:addRabbitCharge(player)
+			end
+		end
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_RabbitRibbon)
+wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_RabbitRibbon)

@@ -16,6 +16,67 @@ wakaba:saveDataManager("PnW_LilRicher", richer_saved_recipies)
 
 local richerCharges = richer_saved_recipies.run
 
+---@param player EntityPlayer
+---@param count integer
+---@param ignoreMax boolean
+---@return integer
+function wakaba:addRabbitCharge(player, count, ignoreMax)
+	count = count or 1
+
+	local playerIndex = isc:getPlayerIndex(player)
+	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
+
+	if count < 0 and richerCharges[playerIndex] < count * -1 then
+		count = richerCharges[playerIndex] * -1
+	end
+
+	richerCharges[playerIndex] = richerCharges[playerIndex] + count
+
+	if not ignoreMax then
+		local maxCharges = wakaba:getMaxRabbitCharges(player)
+
+		if richerCharges[playerIndex] > maxCharges then
+			richerCharges[playerIndex] = maxCharges
+		end
+	end
+
+	return richerCharges[playerIndex]
+end
+
+---@param player EntityPlayer
+---@param activeSlot ActiveSlot
+function wakaba:tryTransferRabbitCharge(player, activeSlot)
+	if wakaba:getRabbitCharges(player) <= 0 then return end
+	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
+	if player:NeedsCharge(activeSlot) then
+		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 do
+			isc:addCharge(player, activeSlot, 1)
+			richerCharges[playerIndex] = richerCharges[playerIndex] - 1
+		end
+	end
+end
+
+
+---@param player EntityPlayer
+---@return integer
+function wakaba:getRabbitCharges(player)
+	local playerIndex = isc:getPlayerIndex(player)
+	return richerCharges[playerIndex]
+end
+
+---@param player EntityPlayer
+---@return integer
+function wakaba:getMaxRabbitCharges(player)
+	local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.RABBIT_RIBBON)
+	count = player:GetPlayerType() == wakaba.Enums.Players.RICHER and (count + 1) or count
+	local lilCount =  player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)
+
+	local rabbitMaxCharges = count > 0 and wakaba.Enums.Constants.RABBIT_RIBBON_BASIC_CHARGES + (count * wakaba.Enums.Constants.RABBIT_RIBBON_EXTRA_CHARGES) or 0
+	local lilRicherMaxCharges = lilCount > 0 and wakaba.Enums.Constants.LIL_RICHER_BASIC_CHARGES + (lilCount * wakaba.Enums.Constants.LIL_RICHER_EXTRA_CHARGES) or 0
+
+	return rabbitMaxCharges + lilRicherMaxCharges
+end
+
 local function fireTearRicher(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
 	local tear_vector = nil
@@ -67,21 +128,13 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local limit = c.LIL_RICHER_BASIC_CHARGES + (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)) * c.LIL_RICHER_EXTRA_CHARGES
 
 	if familiar.RoomClearCount > 0 then
-		richerCharges[playerIndex] = richerCharges[playerIndex] + familiar.RoomClearCount
+		wakaba:addRabbitCharge(player, familiar.RoomClearCount)
 		familiar.RoomClearCount = 0
 	end
 
-	if richerCharges[playerIndex] > 0 then
+	if wakaba:getRabbitCharges(player) > 0 then
 		for i = 0, 2 do
-			if player:NeedsCharge(i) then
-				while player:NeedsCharge(i) and richerCharges[playerIndex] > 0 do
-					isc:addCharge(player, i, 1)
-					richerCharges[playerIndex] = richerCharges[playerIndex] - 1
-				end
-			end
-		end
-		if richerCharges[playerIndex] > limit then
-			richerCharges[playerIndex] = limit
+			wakaba:tryTransferRabbitCharge(player, i)
 		end
 	end
 
