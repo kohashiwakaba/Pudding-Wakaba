@@ -266,6 +266,10 @@ function wakaba:NewRoom_WinterAlbireo()
 					Isaac.Spawn(6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.YELLOW, position, Vector.Zero, nil)
 				end
 			end
+			local items = Isaac.FindByType(5, 100, -1, false, false)
+			for i, e in ipairs(items) do
+				e:ToPickup().OptionsPickupIndex = 0
+			end
 		end
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
