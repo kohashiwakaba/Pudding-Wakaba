@@ -12,8 +12,8 @@ wakaba.concentrationspeed = {
 
 
 function wakaba:hasConcentration(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
     return true
@@ -25,35 +25,41 @@ function wakaba:hasConcentration(player)
 end
 local function IsConcentrationButtonHeld(player)
 	if not player then
-		return 
+		return
 	end
 	if Input.IsActionPressed(wakaba.state.options.concentrationcontroller, player.ControllerIndex) then return true end
 	if Input.IsButtonPressed(wakaba.state.options.concentrationkeyboard, player.ControllerIndex) then return true end
 end
 
 
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_Concentration(player)
+	if not wakaba:getRoundChargeBar(player, "Concentration") then
+		local sprite = Sprite()
+		sprite:Load("gfx/chargebar_concentration.anm2", true)
+
+		wakaba:registerRoundChargeBar(player, "Concentration", {
+			Sprite = sprite,
+		}):UpdateSpritePercent(-1)
+	end
+	local chargeBar = wakaba:getRoundChargeBar(player, "Concentration")
+	if IsConcentrationButtonHeld(player) and not player:GetData().wakaba.concentrationtriggered then
+		local current = player:GetData().wakaba.concentrationframes or 0
+		local maxval = 6000
+		chargeBar:UpdateSprite(current, 0, maxval)
+		chargeBar:UpdateText((player:GetData().wakaba.concentrationcount or 0), "-", "")
+	else
+		chargeBar:UpdateSpritePercent(-1)
+		chargeBar:UpdateText("")
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_Concentration)
+
 function wakaba:PlayerUpdate_Concentration(player)
 	if wakaba:hasConcentration(player) then
-		if not wakaba.sprites.ConcentrationSprite then
-			wakaba.sprites.ConcentrationSprite = Sprite()
-			wakaba.sprites.ConcentrationSprite:Load("gfx/chargebar_concentration.anm2", true)
-			wakaba.sprites.ConcentrationSprite.Color = Color(1,1,1,1)
-		end
-		if not wakaba.sprites.ConcentrationDangerSprite then
-			wakaba.sprites.ConcentrationDangerSprite = Sprite()
-			wakaba.sprites.ConcentrationDangerSprite:Load("gfx/chargebar_concentration_heart.anm2", true)
-			wakaba.sprites.ConcentrationDangerSprite.Color = Color(1,0.2,0.2,1)
-		end
-		if not wakaba.sprites.ConcentrationLunarSprite then
-			wakaba.sprites.ConcentrationLunarSprite = Sprite()
-			wakaba.sprites.ConcentrationLunarSprite:Load("gfx/chargebar_concentration_lunar.anm2", true)
-			wakaba.sprites.ConcentrationLunarSprite.Color = Color(0.4,0.2,1,1)
-		end
-
 		wakaba:GetPlayerEntityData(player)
     local data = player:GetData()
-		local chargeno = wakaba:GetChargeBarIndex(player, "Concentration")
-		local chargestate = wakaba:GetChargeState(player, "Concentration")
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
 				local mode = wakaba.concentrationmodes.NORMAL
@@ -136,30 +142,6 @@ function wakaba:PlayerUpdate_Concentration(player)
 				data.wakaba.concentrationframes = 0
 				data.wakaba.concentrationtriggered = true
 			end
-
-			if chargestate then
-				chargestate.CurrentValue = player:GetData().wakaba.concentrationframes
-				chargestate.Count = data.wakaba.concentrationcount or 0
-			else
-				chargestate = {
-					Index = chargeno,
-					Profile = "Concentration",
-					IncludeFinishAnim = true,
-					Sprite = "Concentration",
-					MaxValue = 6000,
-					MinValue = 0,
-					CurrentValue = data.wakaba.concentrationframes or 6000,
-					Count = data.wakaba.concentrationcount or 0,
-					CountPrefix = "-",
-					Reverse = false,
-				}
-				if data.wakaba.concentrationmode == wakaba.concentrationmodes.LOW_HEALTH then
-					chargestate.Sprite = "ConcentrationDanger"
-				elseif data.wakaba.concentrationmode == wakaba.concentrationmodes.LOW_LUNAR then
-					chargestate.Sprite = "ConcentrationLunar"
-				end
-			end
-			wakaba:SetChargeBarData(player, chargeno, chargestate)
 		else
 			if SFXManager():IsPlaying(SoundEffect.SOUND_LIGHTBOLT_CHARGE) then
 				SFXManager():Stop(SoundEffect.SOUND_LIGHTBOLT_CHARGE)
@@ -171,14 +153,9 @@ function wakaba:PlayerUpdate_Concentration(player)
 				data.wakaba.concentrationtriggered = nil
 			end
 			data.wakaba.concentrationmode = nil
-			if (chargestate and IsConcentrationButtonHeld(player) and data.wakaba.concentrationtriggered)
-			or (chargestate and data.wakaba.concentrationframes and data.wakaba.concentrationframes > 0) then
+			if (IsConcentrationButtonHeld(player) and data.wakaba.concentrationtriggered)
+			or (data.wakaba.concentrationframes and data.wakaba.concentrationframes > 0) then
 				data.wakaba.concentrationframes = nil
-				chargestate.CurrentValue = player:GetData().wakaba.concentrationframes
-				wakaba:SetChargeBarData(player, chargeno, chargestate)
-			end
-			if chargestate and data.wakaba.chargestate[chargeno].checkremove then
-				wakaba:RemoveChargeBarData(player, wakaba:GetChargeBarIndex(player, "Concentration"))
 			end
 		end
 	end

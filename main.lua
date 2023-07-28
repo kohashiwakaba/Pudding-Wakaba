@@ -1434,10 +1434,11 @@ include('wakaba_src.common')
 
 include('wakaba_src.items.0002_bookofshiori_func')
 
+include('wakaba_src.functions.charge_richer')
 include('wakaba_src.functions.unlock_old')
 include('wakaba_src.functions.aqua_trinkets')
 include('wakaba_src.functions.unlock')
-include('wakaba_src.functions.charge')
+--include('wakaba_src.functions.charge')
 include('wakaba_src.functions.revival')
 include('wakaba_src.functions.revival2')
 include('wakaba_src.functions.hidden_items')

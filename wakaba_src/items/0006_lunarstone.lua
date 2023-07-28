@@ -1,8 +1,8 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:hasLunarStone(player, includeDead)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	includeDead = includeDead or false
 	local sti = wakaba:getstoredindex(player)
@@ -14,6 +14,29 @@ function wakaba:hasLunarStone(player, includeDead)
 		return false
 	end
 end
+
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_LunarStone(player)
+	if not wakaba:getRoundChargeBar(player, "LunarGauge") then
+		local sprite = Sprite()
+		sprite:Load("gfx/chargebar_lunarstone.anm2", true)
+
+		wakaba:registerRoundChargeBar(player, "LunarGauge", {
+			Sprite = sprite,
+		})
+	end
+	local chargeBar = wakaba:getRoundChargeBar(player, "LunarGauge")
+	if wakaba:hasLunarStone(player, false) then
+		local percent = player:GetData().wakaba.lunargauge and ((player:GetData().wakaba.lunargauge // 1000) / 10) or 100
+		chargeBar:UpdateSpritePercent(percent // 1)
+		chargeBar:UpdateText(percent, "", "%")
+	else
+		chargeBar:UpdateSpritePercent(-1)
+		chargeBar:UpdateText("")
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_LunarStone)
 
 
 function wakaba:PlayerUpdate_LunarStone(player)
@@ -55,9 +78,9 @@ function wakaba:PlayerUpdate_LunarStone(player)
 				data.wakaba.lunargastimeout = 0
 				data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate
 			elseif data.wakaba.lunarregenrate < 0 then
-				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER 
+				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER
 				and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B
-				and (data.wakaba.lunarregenrate < (player:GetHearts() * -1)) 
+				and (data.wakaba.lunarregenrate < (player:GetHearts() * -1))
 				and player:CanPickSoulHearts()
 				then
 					data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate + player:GetHearts()
@@ -78,9 +101,9 @@ function wakaba:PlayerUpdate_LunarStone(player)
 		if (player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) or player:GetSoulHearts() > 2
 		then
 			if data.wakaba.lunarregenrate < 0
-			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 2000000) 
-			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 1000000) 
-			or ((player:GetPlayerType() ~= wakaba.Enums.Players.TSUKASA) and data.wakaba.lunargauge < 1000000) 
+			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 2000000)
+			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 1000000)
+			or ((player:GetPlayerType() ~= wakaba.Enums.Players.TSUKASA) and data.wakaba.lunargauge < 1000000)
 			then
 				data.wakaba.lunargauge = data.wakaba.lunargauge + 30000
 				if data.wakaba.lunarregenrate < 0 then
@@ -141,60 +164,19 @@ function wakaba:PlayerUpdate_LunarStone(player)
 						data.wakaba.lunarregenrate = nil
 					end
 					player:Die()
-					if data.wakaba.chargestate[wakaba:GetChargeBarIndex(player, "LunarGauge")].checkremove then
-						wakaba:RemoveChargeBarData(player, wakaba:GetChargeBarIndex(player, "LunarGauge"))
-					end
 				end
 				data.wakaba.lunargauge = nil
 				data.wakaba.lunarregenrate = nil
 			end
-			wakaba:SetLunarChargeBar(player)
 		end
 	else
 		wakaba:GetPlayerEntityData(player)
     local data = player:GetData()
 		data.wakaba.lunargauge = nil
 		data.wakaba.lunarregenrate = nil
-		if data.wakaba.chargestate
-		and wakaba:GetChargeState(player, "LunarGauge") then
-			if data.wakaba.chargestate[wakaba:GetChargeBarIndex(player, "LunarGauge")] then
-				wakaba:RemoveChargeBarData(player, wakaba:GetChargeBarIndex(player, "LunarGauge"))
-			end
-		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_LunarStone)
-
-function wakaba:SetLunarChargeBar(player)
-	wakaba:GetPlayerEntityData(player)
-	local data = player:GetData()
-	if not wakaba.sprites.LunarChargeSprite then
-		wakaba.sprites.LunarChargeSprite = Sprite()
-		wakaba.sprites.LunarChargeSprite:Load("gfx/chargebar_lunarstone.anm2", true)
-		wakaba.sprites.LunarChargeSprite.Color = Color(1,1,1,1)
-	end
-
-	local chargeno = wakaba:GetChargeBarIndex(player, "LunarGauge")
-	local chargestate = wakaba:GetChargeState(player, "LunarGauge")
-	local percent = data.wakaba.lunargauge and ((data.wakaba.lunargauge // 1000) / 10) or nil
-	if chargestate then
-		chargestate.Count = wakaba.state.options.lunarpercent and percent or nil
-		chargestate.CurrentValue = player:GetData().wakaba.lunargauge
-	else
-		chargestate = {
-			Index = chargeno,
-			Profile = "LunarGauge",
-			IncludeFinishAnim = true,
-			MaxValue = 1000000,
-			MinValue = 1,
-			CurrentValue = data.wakaba.lunargauge or 0,
-			Count = wakaba.state.options.lunarpercent and percent or nil,
-			CountSubfix = "%",
-			Reverse = true,
-		}
-	end
-	wakaba:SetChargeBarData(player, chargeno, chargestate)
-end
 
 function wakaba:EffectUpdate_LunarStone(effect)
 	if effect:GetData().wakaba and effect:GetData().wakaba.lunarstone then
@@ -269,9 +251,9 @@ function wakaba:Cache_LunarStone(player, cacheFlag)
       player.TearColor = newTearColor
     end ]]
   end
-	
+
 end
- 
+
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
 
 
@@ -301,6 +283,5 @@ function wakaba:AfterRevival_LunarStone(player)
 	if data.wakaba.tsukasa1up then
 		data.wakaba.lunargauge = data.wakaba.tsukasa1up
 		data.wakaba.tsukasa1up = nil
-		wakaba:SetLunarChargeBar(player)
 	end
 end

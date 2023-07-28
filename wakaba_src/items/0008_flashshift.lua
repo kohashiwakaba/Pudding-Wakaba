@@ -5,8 +5,8 @@ local flashcooldown = 8
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:hasFlashShift(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
     return true
@@ -17,53 +17,55 @@ function wakaba:hasFlashShift(player)
 	end
 end
 
+function wakaba:getFlashShiftTimer(player)
+	local timer = 0
+	if player:GetData().wakaba and player:GetData().wakaba.fstimer then
+		timer =  player:GetData().wakaba.fstimer
+	end
+	return timer
+end
+
+function wakaba:getMaxFlashShiftTimer(player)
+	local maxval = (120 * player.MaxFireDelay / 7) // 1
+	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
+		maxval = (120 * player.MaxFireDelay / 15) // 1
+	end
+	return maxval
+end
+
+function wakaba:getFlashShiftCounter(player)
+	return player:GetData().wakaba and player:GetData().wakaba.fscounter or 0
+end
+
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_FlashShift(player)
+	if not wakaba:getRoundChargeBar(player, "FlashShift") then
+		local sprite = Sprite()
+		sprite:Load("gfx/chargebar_flashshift.anm2", true)
+
+		wakaba:registerRoundChargeBar(player, "FlashShift", {
+			Sprite = sprite,
+		}):UpdateSpritePercent(-1)
+	end
+	local chargeBar = wakaba:getRoundChargeBar(player, "FlashShift")
+	if wakaba:hasFlashShift(player) and wakaba:getFlashShiftTimer(player) > 0 then
+		local current = wakaba:getFlashShiftTimer(player)
+		local maxval = wakaba:getMaxFlashShiftTimer(player)
+		chargeBar:UpdateSprite(current, 0, maxval)
+		chargeBar:UpdateText(wakaba:getFlashShiftCounter(player), "x", "")
+	else
+		chargeBar:UpdateSpritePercent(-1)
+		chargeBar:UpdateText("")
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_FlashShift)
 
 function wakaba:PlayerUpdate_FlashShift(player)
 	pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
 	if wakaba:hasFlashShift(player) then
-		local maxval = (120 * player.MaxFireDelay / 7) // 1
-		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
-			maxval = (120 * player.MaxFireDelay / 15) // 1
-		end
-		
-		if not wakaba.sprites.FlashShiftSprite then
-			wakaba.sprites.FlashShiftSprite = Sprite()
-			wakaba.sprites.FlashShiftSprite:Load("gfx/chargebar_flashshift.anm2", true)
-			wakaba.sprites.FlashShiftSprite.Color = Color(1,1,1,1)
-		end
-		local chargeno = wakaba:GetChargeBarIndex(player, "FlashShift")
-		local chargestate = wakaba:GetChargeState(player, "FlashShift")
-
-		if pData.wakaba.fstimer and pData.wakaba.fstimer > 0 then
-			if chargestate then
-				chargestate.CurrentValue = pData.wakaba.fstimer
-				chargestate.Count = pData.wakaba.fscounter
-				chargestate.MaxValue = maxval
-			else
-				chargestate = {
-					Index = chargeno,
-					Profile = "FlashShift",
-					IncludeFinishAnim = true,
-					MaxValue = maxval,
-					MinValue = 1,
-					CurrentValue = pData.wakaba.fstimer or 0,
-					Count = pData.wakaba.fscounter,
-					CountPrefix = "x",
-					Reverse = true,
-				}
-			end
-			--chargestate.CurrentValue = pData.wakaba.fstimer
-			wakaba:SetChargeBarData(player, chargeno, chargestate)
-		else
-			--print(chargestate and pData.wakaba.chargestate[chargeno].CurrentValue, chargestate and pData.wakaba.chargestate[chargeno].MinValue)
-			if chargestate and pData.wakaba.chargestate[chargeno].checkremove then
-				wakaba:RemoveChargeBarData(player, wakaba:GetChargeBarIndex(player, "FlashShift"))
-			elseif chargestate and pData.wakaba.chargestate[chargeno].CurrentValue > 0 then
-				chargestate.CurrentValue = 0
-				wakaba:SetChargeBarData(player, chargeno, chargestate)
-			end
-		end
+		local maxval = wakaba:getMaxFlashShiftTimer(player)
 
 		if not pData.wakaba.fscounter then
 			pData.wakaba.fscounter = 3
@@ -115,7 +117,7 @@ function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData
 	pData.wakaba = pData.wakaba or {}
 	if player:GetMovementDirection() ~= Direction.NO_DIRECTION and pData.wakaba.fscounter and pData.wakaba.fscounter > 0 then
 		--player:UseActiveItem(CollectibleType.COLLECTIBLE_MARS, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME, -1)
-		
+
 		local trail = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, 0, player.Position, Vector.Zero, nil):ToEffect()
 		trail:GetData().wakaba = {}
 		trail:GetData().wakaba.flashshift = true
@@ -124,7 +126,7 @@ function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData
 		trail.MinRadius = 0.05 -- fade rate, lower values yield a longer trail
 		trail:SetTimeout(20)
 		trail:Update()
-		
+
 		local oldpos = player.Position + Vector.Zero
 		local direction = player:GetMovementDirection()
 		if pData.wakaba.flashshifttrigger and pData.wakaba.flashshifttrigger & wakaba.dashflags.FLASH_SHIFT_TSUKASA_B == wakaba.dashflags.FLASH_SHIFT_TSUKASA_B and player:GetFireDirection() ~= Direction.NO_DIRECTION then
@@ -227,7 +229,7 @@ wakaba:AddCallback(ModCallbacks.MC_INPUT_ACTION, wakaba.Input_FlashShift)
 
 
 function wakaba:TakeDmg_FlashShift_Wisp(wisp, amount, flag, source, countdown)
-	if wisp.Variant == FamiliarVariant.ITEM_WISP 
+	if wisp.Variant == FamiliarVariant.ITEM_WISP
 	or wisp.Variant == FamiliarVariant.WISP then
 		local player = wisp:ToFamiliar().Player
 		local pData = player:GetData()

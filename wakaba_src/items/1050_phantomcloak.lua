@@ -20,17 +20,37 @@ function wakaba:NewRoom_PhantomCloak()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_PhantomCloak)
 
+
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_PhantomCloak(player)
+	if not wakaba:getRoundChargeBar(player, "PhantomCloak") then
+		local sprite = Sprite()
+		sprite:Load("gfx/chargebar_phantomcloak.anm2", true)
+
+		wakaba:registerRoundChargeBar(player, "PhantomCloak", {
+			Sprite = sprite,
+		}):UpdateSpritePercent(-1)
+	end
+	local chargeBar = wakaba:getRoundChargeBar(player, "PhantomCloak")
+	local phantom = player:GetData().wakaba.phantomcloak
+	if phantom and phantom.timer and phantom.timer > 1 then
+		local timer = phantom.timer
+		local count = ((phantom.timer // 12) / 10)
+		chargeBar:UpdateSpritePercent(timer, 0, 12000)
+		chargeBar:UpdateText(count, "", "%")
+	else
+		chargeBar:UpdateSpritePercent(-1)
+		chargeBar:UpdateText("")
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_PhantomCloak)
+
+
 function wakaba:PlayerUpdate_PhantomCloak(player)
 	pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
 	if pData.wakaba.phantomcloak then
-		if not wakaba.sprites.PhantomCloakSprite then
-			wakaba.sprites.PhantomCloakSprite = Sprite()
-			wakaba.sprites.PhantomCloakSprite:Load("gfx/chargebar_phantomcloak.anm2", true)
-			wakaba.sprites.PhantomCloakSprite.Color = Color(1,1,1,1)
-		end
-		local chargeno = wakaba:GetChargeBarIndex(player, "PhantomCloak")
-		local chargestate = wakaba:GetChargeState(player, "PhantomCloak")
 		if pData.wakaba.phantomcloak.active then
 			if pData.wakaba.phantomcloak.timer and pData.wakaba.phantomcloak.timer > 1 then
 				player:SetColor(Color(1, 1, 1, 0.3, 0.03, 0, 0.1), 2, 1, true, false)
@@ -67,35 +87,6 @@ function wakaba:PlayerUpdate_PhantomCloak(player)
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 			end
 		end
-		if pData.wakaba.phantomcloak.timer then
-			local count = ((pData.wakaba.phantomcloak.timer // 12) / 10)
-			if chargestate then
-				chargestate.CurrentValue = pData.wakaba.phantomcloak.timer
-				chargestate.Count = count
-				chargestate.MaxValue = 12000
-			else
-				chargestate = {
-					Index = chargeno,
-					Profile = "PhantomCloak",
-					IncludeFinishAnim = true,
-					MaxValue = 12000,
-					MinValue = 1,
-					CurrentValue = pData.wakaba.phantomcloak.timer or 0,
-					Count = count,
-					CountSubfix = "%",
-					Reverse = true,
-				}
-				wakaba:SetChargeBarData(player, chargeno, chargestate)
-			end
-		else
-			if chargestate and pData.wakaba.chargestate[chargeno].checkremove then
-				wakaba:RemoveChargeBarData(player, wakaba:GetChargeBarIndex(player, "PhantomCloak"))
-			elseif chargestate and pData.wakaba.chargestate[chargeno].CurrentValue > 0 then
-				chargestate.CurrentValue = 0
-				wakaba:SetChargeBarData(player, chargeno, chargestate)
-			end
-		end
-		--chargestate.CurrentValue = pData.wakaba.fstimer
 	end
 
 end

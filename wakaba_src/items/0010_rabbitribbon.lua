@@ -14,8 +14,8 @@ local ribbon_data = {
 wakaba:saveDataManager("Rabbit Ribbon", ribbon_data)
 
 function wakaba:hasRibbon(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 		return true
@@ -37,14 +37,36 @@ end
 -- Curse of the Maze → Curse of Amnesia : Sometimes cleared rooms are randomly be uncleared / 방 입장 시 확률적으로 클리어한 방을 다시 클리어해야 함
 
 
+
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_RabbitRibbon(player)
+	if not wakaba:getRoundChargeBar(player, "RabbitRibbon") then
+		local sprite = Sprite()
+		sprite:Load("gfx/chargebar_rabbitribbon.anm2", true)
+
+		wakaba:registerRoundChargeBar(player, "RabbitRibbon", {
+			Sprite = sprite,
+		}):UpdateSpritePercent(-1)
+	end
+	local chargeBar = wakaba:getRoundChargeBar(player, "RabbitRibbon")
+	if wakaba:ShouldChargeRabbitRibbon(player) then
+		local percent = ((wakaba:getRabbitCharges(player) / wakaba:getMaxRabbitCharges(player)) * 100) // 1
+		chargeBar:UpdateSpritePercent(percent)
+		chargeBar:UpdateText(wakaba:getRabbitCharges(player), "x", "")
+	else
+		chargeBar:UpdateSpritePercent(-1)
+		chargeBar:UpdateText("")
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_RabbitRibbon)
+
 ---comment
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RabbitRibbon(player)
 	if wakaba:ShouldChargeRabbitRibbon(player) then
-		print("addRabbitCharge", wakaba:getRabbitCharges(player), wakaba:getMaxRabbitCharges(player))
 		if wakaba:getRabbitCharges(player) > 0 then
 			for i = 0, 2 do
-				print("tryTransferRabbitCharge", i)
 				wakaba:tryTransferRabbitCharge(player, i)
 			end
 		end

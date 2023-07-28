@@ -274,7 +274,7 @@ function wakaba:ChallengeSpeedUp()
   local CurStage = level:GetAbsoluteStage()
   local CurRoom = level:GetCurrentRoomIndex()
 	local type1 = room:GetType()
-	
+
 	if wakaba:isSpeed() then
 		room:SetBrokenWatchState(2)
 	elseif wakaba:isSlow() then
@@ -357,36 +357,6 @@ function wakaba:PlayerUpdate_Delivery(player)
 		elseif player:GetActiveCharge(ActiveSlot.SLOT_POCKET) >= 2 then
 			player:GetData().wakaba.ponycurrframe = wakaba.Enums.Constants.PONY_COOLDOWN
 		end
-		if not wakaba.sprites.WhitePonySprite then
-			wakaba.sprites.WhitePonySprite = Sprite()
-			wakaba.sprites.WhitePonySprite:Load("gfx/chargebar_pony.anm2", true)
-			wakaba.sprites.WhitePonySprite.Color = Color(1,1,1,1)
-		end
-
-		local chargeno = wakaba:GetChargeBarIndex(player, "RushPony")
-		local chargestate = wakaba:GetChargeState(player, "RushPony")
-		local count = (player:GetData().wakaba.ponycurrframe // 6) / 10
-		local currval = player:GetData().wakaba.ponycurrframe ~= wakaba.Enums.Constants.PONY_COOLDOWN and count or nil
-
-		if chargestate then
-			chargestate.CurrentValue = player:GetData().wakaba.ponycurrframe
-			chargestate.Count = currval
-		else
-			chargestate = {
-				Index = chargeno,
-				Profile = "RushPony",
-				IncludeFinishAnim = true,
-				MaxValue = wakaba.Enums.Constants.PONY_COOLDOWN,
-				MinValue = 0,
-				Count = currval,
-				CurrentValue = player:GetData().wakaba.ponycurrframe,
-				Reverse = false,
-			}
-		end
-		wakaba:SetChargeBarData(player, chargeno, chargestate)
-
-
-
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_BIKE then
 		local game = wakaba.G
 		local room = wakaba.G:GetRoom()
@@ -405,11 +375,6 @@ function wakaba:PlayerUpdate_Delivery(player)
 			esau:Update()
 		end
 		player:GetData().wakaba.minervadeathcount = player:GetData().wakaba.minervadeathcount or 600
-		player:GetData().wakaba.chargedframe = player:GetData().wakaba.chargedframe or 0
-		player:GetData().wakaba.chargedframe = player:GetData().wakaba.chargedframe + 1
-		if player:GetData().wakaba.chargedframe > 5 then
-			player:GetData().wakaba.chargedframe = 0
-		end
 		if room:IsFirstVisit() and isc:inStartingRoom() then
 			player:GetData().wakaba.minervacount = 7
 			player:GetData().wakaba.minervadeathcount = 600
@@ -429,40 +394,11 @@ function wakaba:PlayerUpdate_Delivery(player)
 			else
 				player:TakeDamage(1,0,EntityRef(player),0)
 				player:Die()
-				local chargebarindex = wakaba:GetChargeBarIndex(player, "DeliveryMinerva")
-				local chargestate = player:GetData().wakaba.chargestate[chargebarindex]
-				if chargestate and chargestate.checkremove then
-					wakaba:RemoveChargeBarData(player, chargebarindex)
-				end
 				if player:WillPlayerRevive() then
 					player:GetData().wakaba.minervadeathcount = 600
 				end
 			end
 		end
-		if not wakaba.sprites.DeliveryMinervaSprite then
-			wakaba.sprites.DeliveryMinervaSprite = Sprite()
-			wakaba.sprites.DeliveryMinervaSprite:Load("gfx/chargebar_clover.anm2", true)
-			wakaba.sprites.DeliveryMinervaSprite.Color = Color(1,1,1,1)
-		end
-
-		local chargeno = wakaba:GetChargeBarIndex(player, "DeliveryMinerva")
-		local chargestate = wakaba:GetChargeState(player, "DeliveryMinerva")
-		if chargestate then
-			chargestate.CurrentValue = player:GetData().wakaba.minervadeathcount
-			chargestate.Count = ((player:GetData().wakaba.minervadeathcount // 6 )/ 10)
-		else
-			chargestate = {
-				Index = chargeno,
-				Profile = "DeliveryMinerva",
-				IncludeFinishAnim = false,
-				MaxValue = 600,
-				MinValue = 1,
-				Count = ((player:GetData().wakaba.minervadeathcount // 6 )/ 10),
-				CurrentValue = player:GetData().wakaba.minervadeathcount,
-				Reverse = true,
-			}
-		end
-		wakaba:SetChargeBarData(player, chargeno, chargestate)
 	elseif wakaba.G.Challenge == Challenges.CHALLENGE_EVEN then
 		if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.SWEETS_CATALOG then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
@@ -819,3 +755,64 @@ function wakaba:NPCInit_RunawayPheromones(npc)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCInit_RunawayPheromones)
+
+
+
+
+
+
+
+
+
+
+---@param player EntityPlayer
+function wakaba:ChargeBarUpdate_Challenge(player)
+	if wakaba.G.Challenge == Challenges.CHALLENGE_HUSH then
+		if not wakaba:getRoundChargeBar(player, "RushPony") then
+			local sprite = Sprite()
+			sprite:Load("gfx/chargebar_pony.anm2", true)
+
+			wakaba:registerRoundChargeBar(player, "RushPony", {
+				Sprite = sprite,
+			}):UpdateSpritePercent(-1)
+		end
+		local chargeBar = wakaba:getRoundChargeBar(player, "RushPony")
+
+		local current = player:GetData().wakaba.ponycurrframe or wakaba.Enums.Constants.PONY_COOLDOWN
+		local count = (current // 6) / 10
+		local currval = current ~= wakaba.Enums.Constants.PONY_COOLDOWN and count or -1
+		local percent = 100 - (((current / wakaba.Enums.Constants.PONY_COOLDOWN) * 100) // 1)
+		if currval == -1 then
+			chargeBar:UpdateSpritePercent(-1)
+			chargeBar:UpdateText("")
+		else
+			chargeBar:UpdateSpritePercent(percent)
+			chargeBar:UpdateText(currval)
+		end
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_BIKE then
+		if not wakaba:getRoundChargeBar(player, "DeliveryMinerva") then
+			local sprite = Sprite()
+			sprite:Load("gfx/chargebar_clover.anm2", true)
+
+			wakaba:registerRoundChargeBar(player, "DeliveryMinerva", {
+				Sprite = sprite,
+			}):UpdateSpritePercent(-1)
+		end
+		local chargeBar = wakaba:getRoundChargeBar(player, "DeliveryMinerva")
+
+		local current = player:GetData().wakaba.minervadeathcount
+		local count = (current // 6) / 10
+		local currval = pcurrent ~= wakaba.Enums.Constants.PONY_COOLDOWN and count or -1
+		local percent = ((current / 600) * 100) // 1
+		if player:IsDead() then
+			chargeBar:UpdateSpritePercent(-1)
+			chargeBar:UpdateText("")
+		else
+			chargeBar:UpdateSpritePercent(percent)
+			chargeBar:UpdateText(currval)
+		end
+	elseif wakaba.G.Challenge == Challenges.CHALLENGE_CALC then
+	end
+
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_Challenge)

@@ -29,6 +29,7 @@ local credits = {
 	{"cadever mod",				"various snippets"},
 	{"connor",				"hidden item manager"},
 	{"bogdanrudyka",				"custom callbacks"},
+	{"nfrost",				"charge meter library"},
 	{"sanio",				""},
 	{"",				"character costume protector"},
 	{"iristeru",				""},
