@@ -17,10 +17,14 @@ function wakaba:InitCrystalRestock(slot)
 		local rng = RNG()
 		rng:SetSeed(slot.InitSeed, 35)
 		if not restock_data.floor[tostring(slot.InitSeed)] then
+			local extraCount = 0
+			if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then
+				extraCount = 2
+			end
 			local reservedPos = Vector(slot.Position.X, slot.Position.Y)
 			restock_data.floor[tostring(slot.InitSeed)] = {
 				restockType = slot.Variant,
-				restockCount = wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3,
+				restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
 				reservedX = reservedPos.X,
 				reservedY = reservedPos.Y,
 			}
