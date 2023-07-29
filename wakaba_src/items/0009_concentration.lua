@@ -63,7 +63,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
 				local mode = wakaba.concentrationmodes.NORMAL
-				if wakaba:hasLunarStone(player) and data.wakaba.lunargauge <= 100000 then
+				if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge <= 100000 then
 					mode = wakaba.concentrationmodes.LOW_LUNAR
 				elseif not wakaba:hasLunarStone(player) and player:GetHearts() + player:GetSoulHearts() < 6 then
 					mode = wakaba.concentrationmodes.LOW_HEALTH

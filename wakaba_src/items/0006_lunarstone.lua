@@ -36,7 +36,7 @@ function wakaba:ChargeBarUpdate_LunarStone(player)
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_LunarStone)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.ChargeBarUpdate_LunarStone)
 
 
 function wakaba:PlayerUpdate_LunarStone(player)

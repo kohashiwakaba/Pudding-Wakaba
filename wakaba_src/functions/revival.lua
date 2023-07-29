@@ -136,6 +136,19 @@ function wakaba:PlayerUpdate_Revival(player)
 		if damageTriggered[wakaba.Enums.Collectibles.LUNAR_STONE] then
 			--data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
 			data.wakaba.lunargauge = data.wakaba.lunargauge - 40000
+      if data.wakaba.lunargauge < 0 then
+        local hasLaz = false
+        for i = 0, 3 do
+          if player:GetCard(i) == Card.CARD_SOUL_LAZARUS then
+            hasLaz = true
+            break
+          end
+        end
+        player:Die()
+        if not hasLaz and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+          player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+        end
+      end
 			data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
 			if data.wakaba.lunarregenrate >= 0 then
 				data.wakaba.lunarregenrate = -25
