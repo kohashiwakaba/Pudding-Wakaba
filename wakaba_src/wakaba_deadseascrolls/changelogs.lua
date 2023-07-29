@@ -1,5 +1,68 @@
 
 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v104",
+[[{FSIZE2}tainted richer changes
+crystal restocks in
+winter albireo planetariums
+grants more reroll counts
+if any player has
+more options.
+
+all pedestals in
+winter albireo planetariums
+can be picked up
+without selection.
+
+{FSIZE2}new challenges
+[w16] runaway pheromones
+
+{FSIZE2}new items n stuff
+richer's necklace
+
+{FSIZE2}balance
+rabbit ribbon preserves
+charges like lil richer
+(max 20)
+
+extra rabbit ribbon
+adds 4 extra max charges.
+
+reduced lil richer
+max charge counter
+from 16 to 12.
+
+{FSIZE2}tweaks + fixes
+fix eid korean descs
+for modded items
+not working properly.
+
+korean names for items
+now displayed correctly
+for multiple players
+like j/e.
+
+fix p&w familiars
+not synergized with
+marked
+(or simmilar synergy).
+
+fix explosions from
+valut rift
+destroying nearby machines.
+
+fix wakaba's uniform
+crashing the game
+when showing
+pill descriptions.
+
+fix tsukasa reviving
+temporarily if
+she got damage on
+less than 4 perc.
+
+]])
+
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v103",
 [[{FSIZE2}general stuff
 

@@ -24,10 +24,10 @@ Mod Includes :
 
 [img]https://i.imgur.com/oFjYytb.png[/img]
 
-[img]https://i.imgur.com/N3qYvBr.png[/img]
+[img]https://i.imgur.com/In7yTCH.png[/img]
 
 A new Curse!(Must be enabled manually)
-7 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
+8 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
 80+ new Items
 15+ new Trinkets
 15+ new Card/Runes
@@ -79,8 +79,9 @@ True co-op not tested, but most items should work. except for certain items whic
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
+- NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>103.2</version>
+    <version>104.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
