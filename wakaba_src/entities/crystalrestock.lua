@@ -18,7 +18,7 @@ function wakaba:InitCrystalRestock(slot)
 		rng:SetSeed(slot.InitSeed, 35)
 		if not restock_data.floor[tostring(slot.InitSeed)] then
 			local extraCount = 0
-			if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then
+			if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) and wakaba:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
 				extraCount = 2
 			end
 			local reservedPos = Vector(slot.Position.X, slot.Position.Y)

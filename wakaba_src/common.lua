@@ -1199,6 +1199,9 @@ function wakaba:ForAllPlayers(func, typeFilter)
 	end
 end
 
+---gets a target used by Marked, or Eye of Occult for certain synergies
+---@param player EntityPlayer
+---@return Entity
 function wakaba:GetMarkedTarget(player)
 	local occults = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.OCCULT_TARGET)
 	for _, target in ipairs(occults) do
@@ -1215,4 +1218,16 @@ function wakaba:GetMarkedTarget(player)
 		end
 	end
 
+end
+
+---Check any player has certain collectible
+---@param itemID CollectibleType
+---@return boolean
+function wakaba:anyPlayerHasCollectible(itemID)
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if player:HasCollectible(itemID) then
+			return true
+		end
+	end)
+	return false
 end
