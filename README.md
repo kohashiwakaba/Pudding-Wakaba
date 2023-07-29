@@ -17,7 +17,7 @@ An anime mod that contains characters from the creator's favorite.
    - Priest's Blessing/Unholy Curse
 - 19 new Challenges
 
-**Current Version : v103-Richer**(updated time : 2023-07-20)
+**Current Version : v104-Richer**(updated time : 2023-07-29)
 
 ## Characters
 
