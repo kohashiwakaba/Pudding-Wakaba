@@ -44,7 +44,7 @@ if EID then
 			[wakaba.Enums.Players.RICHER] = "Richer",
 			[wakaba.Enums.Players.RICHER_B] = "RicherB",
 		}
---[[ 
+--[[
 		wakaba.EIDBlankCardCooldowns = {
 			-- Blank Card
 			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 5,
@@ -149,7 +149,7 @@ if EID then
 			descObj.Description = "{{ColorSilver}}"..ddstr.lastpool.. ": " ..(currentPoolData.Icon or "{{SuperSecretRoom}}") .. "" .. (ddstr[(currentPoolData.StringID or "Default")] or "???").."{{CR}}#"..descObj.Description
 			return descObj
 		end
-		
+
 	  -- Handle Wakaba description addition
 	  local function WakabaCondition(descObj)
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -163,7 +163,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function WakabaCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("wakaba", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -187,7 +187,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function WakabaCallback_b(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("wakaba_b", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -211,7 +211,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function BlessingCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("bless", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -235,7 +235,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function NemesisCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("nemesis", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -259,7 +259,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function ShioriCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("shiori", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -283,7 +283,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function ShioriCallback_b(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("shiori_b", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -293,7 +293,7 @@ if EID then
 	  	end
 	  	return descObj
 	  end
-		
+
 	  -- Handle Book of Shiori description addition
 	  local function ShioriBookCondition(descObj)
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -307,7 +307,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function ShioriBookCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -331,7 +331,7 @@ if EID then
 	  	end
 	  	return false
 	  end
-  
+
 	  local function JudasCallback(descObj)
 	  	local wakabaBuff = wakaba:getWakabaDesc("belial", descObj.ObjSubType)
 	  	if wakabaBuff then
@@ -370,7 +370,7 @@ if EID then
 	  	end
 	  	return descObj
 	  end
-  
+
 	  -- Handle Better Voiding description addition
 	  local function BetterVoidingCondition(descObj)
 	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -381,7 +381,7 @@ if EID then
 			end
 	  	return false
 	  end
-  
+
 	  local function BetterVoidingCallback(descObj)
 	  	local betterVoidingBuff = wakaba.eidextradesc.bettervoiding[descObj.ObjSubType]
 	  	if betterVoidingBuff ~= nil then
@@ -391,7 +391,7 @@ if EID then
 	  	end
 	  	return descObj
 	  end
-		
+
 		-- Handle Bingeeater description addition
 		local function BingeeaterCondition(descObj)
 			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -433,7 +433,7 @@ if EID then
 			end
 			return descObj
 		end
-		
+
 		-- Handle Abyss description addition
 		local function AbyssCondition(descObj)
 			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -444,7 +444,7 @@ if EID then
 			end
 			return false
 		end
-		
+
 		local function AbyssCallback(descObj)
 			local wakabaBuff = wakaba:getWakabaDesc("abyss", descObj.ObjSubType)
 			if wakabaBuff then
@@ -456,8 +456,8 @@ if EID then
 		end
 
 		local function ValutCondition(descObj)
-			if EID.Config["DisplayCraneInfo"] 
-			and descObj.ObjType == 6 
+			if EID.Config["DisplayCraneInfo"]
+			and descObj.ObjType == 6
 			and descObj.ObjVariant == wakaba.Enums.Slots.SHIORI_VALUT
 			and not (descObj.Entity:GetSprite():IsPlaying("Death") or descObj.Entity:GetSprite():IsPlaying("Broken"))
 			and wakaba.slotdatas.floor.valutitemtype[tostring(descObj.Entity.InitSeed)] then
@@ -465,7 +465,7 @@ if EID then
 			end
 			return false
 		end
-		
+
 		local function ValutCallback(descObj)
 			local entity = descObj.Entity
 			local collectibleID = wakaba.slotdatas.floor.valutitemtype[tostring(entity.InitSeed)]
@@ -484,7 +484,7 @@ if EID then
 			end
 			return false
 		end
-		
+
 		local function CatalogCallback(descObj)
 			local availableCatalogItems = wakaba.CatalogItems
 			if availableCatalogItems then
@@ -504,13 +504,13 @@ if EID then
 			wakaba.Enums.Collectibles.WAKABAS_BLESSING,
 			wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
 			wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
-			CollectibleType.COLLECTIBLE_BINGE_EATER, 
+			CollectibleType.COLLECTIBLE_BINGE_EATER,
 			CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES,
-			CollectibleType.COLLECTIBLE_TAROT_CLOTH, 
-			CollectibleType.COLLECTIBLE_BLANK_CARD, 
-			CollectibleType.COLLECTIBLE_CLEAR_RUNE, 
-			CollectibleType.COLLECTIBLE_PLACEBO, 
-			CollectibleType.COLLECTIBLE_FALSE_PHD, 
+			CollectibleType.COLLECTIBLE_TAROT_CLOTH,
+			CollectibleType.COLLECTIBLE_BLANK_CARD,
+			CollectibleType.COLLECTIBLE_CLEAR_RUNE,
+			CollectibleType.COLLECTIBLE_PLACEBO,
+			CollectibleType.COLLECTIBLE_FALSE_PHD,
 			CollectibleType.COLLECTIBLE_ABYSS,
 		}
 		local playersCheck = {
@@ -657,12 +657,22 @@ if EID then
 			for lang, wakabaDescTables in pairs(wakaba.descriptions) do
 				--print(lang)
 				for itemID, itemdesc in pairs(wakabaDescTables.collectibles) do
+					if not itemdesc.targetMod then
+						EID._currentMod = "Pudding and Wakaba"
+					elseif itemdesc.targetMod ~= EID._currentMod then
+						EID._currentMod = itemdesc.targetMod
+					end
 					EID:addCollectible(itemID, itemdesc.description, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("collectible", itemID, itemdesc.transformations)
 					end
 				end
 				for itemID, itemdesc in pairs(wakabaDescTables.trinkets) do
+					if not itemdesc.targetMod then
+						EID._currentMod = "Pudding and Wakaba"
+					elseif itemdesc.targetMod ~= EID._currentMod then
+						EID._currentMod = itemdesc.targetMod
+					end
 					EID:addTrinket(itemID, itemdesc.description, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("trinket", itemID, itemdesc.transformations)
@@ -675,9 +685,19 @@ if EID then
 					EID:addBirthright(playerType, birthrightdesc.description, birthrightdesc.playerName, lang)
 				end
 				for cardid, carddesc in pairs(wakabaDescTables.cards) do
+					if not carddesc.targetMod then
+						EID._currentMod = "Pudding and Wakaba"
+					elseif carddesc.targetMod ~= EID._currentMod then
+						EID._currentMod = carddesc.targetMod
+					end
 					EID:addCard(cardid, carddesc.description, carddesc.itemName, lang)
 				end
 				for pillid, pilldesc in pairs(wakabaDescTables.pills) do
+					if not pilldesc.targetMod then
+						EID._currentMod = "Pudding and Wakaba"
+					elseif pilldesc.targetMod ~= EID._currentMod then
+						EID._currentMod = pilldesc.targetMod
+					end
 					EID:addPill(pillid, pilldesc.description, pilldesc.itemName, lang)
 				end
 				--EID:addHorsePill doesn't exist lol
@@ -685,6 +705,7 @@ if EID then
 				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
 				end ]]
+				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
 					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, entitydesc.description, lang)
 				end
@@ -737,36 +758,36 @@ if EID then
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
 	
-			
+
 			--EID:addDescriptionModifier("Pudding and Wakaba", EIDWakabaConditions, nil)
 			wakaba:ReplaceEIDBagWeight()
-			
+
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end
 
 		--wakaba:UpdateWakabaDescriptions()
 	  --EID:addDescriptionModifier("Wakaba's Horse Pills", WakabaPillCondition, WakabaPillCallback)
-		
+
 		local checkedWakabaAchievement = false
 
 		local function getmarkup(val)
-			if val == 2 then 
+			if val == 2 then
 				return "{{IconRedTint}}"
-			elseif val == 1 then 
-				return "" 
-			else 
+			elseif val == 1 then
+				return ""
+			else
 				return "{{IconBlack}}"
 			end
 		end
 
 		local function getboolup(val)
-			if val then 
+			if val then
 				return ""
-			else 
+			else
 				return "{{IconBlack}}"
 			end
 		end
-		
+
 		function wakaba:CheckWakabaAchievementString()
 			local str = "#Colored:Normal/Red:Hard"
 			-- Wakaba
@@ -871,7 +892,7 @@ if EID then
 
 			return str
 		end
-		
+
 		function wakaba:RenderWakabaAchievement()
 			if wakaba.G:GetFrameCount() > wakaba.unlockdisplaytimer and wakaba.G:GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
 				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
@@ -918,56 +939,71 @@ wakaba.LanguageMap = {
 }
 local languageMap = wakaba.LanguageMap
 
-local i_queueLastFrame
-local i_queueNow
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
+local i_queueLastFrame = {}
+local i_queueNow = {}
+
+
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
 	if Options.Language == "en" then return end
 	local descTable = wakaba.descriptions[languageMap[Options.Language]]
 	if not descTable then return end
 
-	i_queueNow = player.QueuedItem.Item
-	if (i_queueNow ~= nil) then
-		if i_queueNow.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+	local initSeed = tostring(player.InitSeed)
+
+	i_queueNow[initSeed] = player.QueuedItem.Item
+	if (i_queueNow[initSeed] ~= nil) then
+		if i_queueNow[initSeed].ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 			local playerType = player:GetPlayerType()
 			for playerID, itemdesc in pairs(descTable.birthright) do
-				if (playerType == playerID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
+				if (playerType == playerID and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil) then
 					local itemName = descTable.birthrightName
-					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
+					local queueDesc = itemdesc.queueDesc or i_queueNow[initSeed].Description
 					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
+					goto skipExtra
 				end
 			end
+
+			::skipExtra::
 		else
 			for itemID, itemdesc in pairs(descTable.collectibles) do
-				if (i_queueNow.ID == itemID and i_queueNow:IsCollectible() and i_queueLastFrame == nil) then
-					local itemName = itemdesc.itemName or i_queueNow.Name
-					local queueDesc = itemdesc.queueDesc or i_queueNow.Description
+				if (i_queueNow[initSeed].ID == itemID and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil) then
+					local itemName = itemdesc.itemName or i_queueNow[initSeed].Name
+					local queueDesc = itemdesc.queueDesc or i_queueNow[initSeed].Description
 					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
+					goto skipExtra
 				end
 			end
+
+			::skipExtra::
 		end
 	end
-	i_queueLastFrame = i_queueNow
+	i_queueLastFrame[initSeed] = i_queueNow[initSeed]
 end)
 
 
-local t_queueLastFrame
-local t_queueNow
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player)
+local t_queueLastFrame = {}
+local t_queueNow = {}
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
 	if Options.Language == "en" then return end
 	local descTable = wakaba.descriptions[languageMap[Options.Language]]
 	if not descTable then return end
 
-	t_queueNow = player.QueuedItem.Item
-	if (t_queueNow ~= nil) then
+	local initSeed = tostring(player.InitSeed)
+
+	t_queueNow[initSeed] = player.QueuedItem.Item
+	if (t_queueNow[initSeed] ~= nil) then
 		for itemID, itemdesc in pairs(descTable.trinkets) do
-			if (t_queueNow.ID == itemID and t_queueNow:IsTrinket() and t_queueLastFrame == nil) then
-				local itemName = itemdesc.itemName or t_queueNow.Name
-				local queueDesc = itemdesc.queueDesc or t_queueNow.Description
+			if (t_queueNow[initSeed].ID == itemID and t_queueNow[initSeed]:IsTrinket() and t_queueLastFrame[initSeed] == nil) then
+				local itemName = itemdesc.itemName or t_queueNow[initSeed].Name
+				local queueDesc = itemdesc.queueDesc or t_queueNow[initSeed].Description
 				wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
+				goto skipExtra
 			end
 		end
+
+		::skipExtra::
 	end
-	t_queueLastFrame = t_queueNow
+	t_queueLastFrame[initSeed] = t_queueNow[initSeed]
 end)
 
 function wakaba:EIDPos()

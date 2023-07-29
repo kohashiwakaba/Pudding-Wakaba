@@ -1142,7 +1142,7 @@ wakaba.descriptions[desclang].wakaba = {
 	[CollectibleType.COLLECTIBLE_URANUS] = {
 		description = "{{DamageSmall}}공격력 배율 x1.5#{{ColorWakabaBless}}와카바의 공격이 적의 방어력을 무시합니다.",
 	},
-	
+
 }
 wakaba.descriptions[desclang].wakaba_b = {
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
@@ -2557,7 +2557,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Blank}} 아니마 솔라가 항상 다크 에사우만을 노립니다."
 		.. "",
 	
-	
+
 	},
 
 
@@ -2664,6 +2664,7 @@ wakaba.descriptions[desclang].playernotes = {
 	},
 
 }
+wakaba.descriptions[desclang].extrabirthright = {}
 wakaba.descriptions[desclang].extracollectibles = {}
 wakaba.descriptions[desclang].extratrinkets = {}
 
