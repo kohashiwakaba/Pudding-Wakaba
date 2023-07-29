@@ -43,7 +43,7 @@ function wakaba:ChargeBarUpdate_Concentration(player)
 		}):UpdateSpritePercent(-1)
 	end
 	local chargeBar = wakaba:getRoundChargeBar(player, "Concentration")
-	if IsConcentrationButtonHeld(player) and not player:GetData().wakaba.concentrationtriggered then
+	if wakaba:hasConcentration(player) and IsConcentrationButtonHeld(player) and not player:GetData().wakaba.concentrationtriggered then
 		local current = player:GetData().wakaba.concentrationframes or 0
 		local maxval = 6000
 		chargeBar:UpdateSprite(current, 0, maxval)
