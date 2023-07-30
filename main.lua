@@ -59,6 +59,9 @@ wakaba.pickupdisplaySptite:Load("gfx/ui/wakaba/hudpickups.anm2", true)
 ---@type Sprite
 wakaba.MiniMapAPISprite = Sprite()
 wakaba.MiniMapAPISprite:Load("gfx/ui/wakaba/minimapapi.anm2", true)
+---@type Sprite
+wakaba.globalHUDSprite = Sprite()
+wakaba.globalHUDSprite:Load("gfx/ui/wakaba/hudstats2.anm2", true)
 
 -- Repair difficulty check
 wakaba.__REPAIR = false
@@ -1287,6 +1290,9 @@ function wakaba:getAllMainPlayers()
 end
 
 include('wakaba_src.functions.callbacks_wakaba')
+include('wakaba_src.functions.hudstats')
+include('wakaba_src.functions.hit_counter')
+include('wakaba_src.functions.room_name_display')
 
 include('wakaba_src.items.0000_blessing')
 include('wakaba_src.items.0001_bookofshiori')
@@ -1590,6 +1596,7 @@ function wakaba:init(continue)
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
+	wakaba:updateHUDPosition()
 end
 
 

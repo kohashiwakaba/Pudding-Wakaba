@@ -14,6 +14,15 @@ function wakaba:GameStart_RetributionCompat()
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.FLAME_PRINCESS)
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.FIREY_TOUCH)
 
+		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -20000, function(_)
+			if mod.savedata.icarusCurseIndicator % 2 == 0 then
+				local player = Isaac.GetPlayer()
+				if player:GetPlayerType() == mod.PLAYER_TYPE.ICARUS then
+					return {Skip = true}
+				end
+			end
+		end)
+
 
 
 		rtReplaced = true

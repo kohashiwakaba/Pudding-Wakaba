@@ -76,8 +76,8 @@ function wakaba:SetConquestCharge(player, slot)
 end
 
 function wakaba:PlayerUpdate_Conquest(player)
-	if player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Shiori", false) 
-	and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true) 
+	if player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("Shiori", false)
+	and player:GetPlayerType() ~= Isaac.GetPlayerTypeByName("ShioriB", true)
 	and player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
 	and player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 	then
@@ -101,18 +101,18 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ, 1, 0, false, 1)
 		return {Discharge = false}
 	end
-	if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end 
+	if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
 	wakaba:GetPlayerEntityData(player)
 	if not wakaba.conquestmode then
-		if (player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false) 
-		or player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) 
+		if (player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false)
+		or player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true)
 		or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI))
 		and useFlags & UseFlag.USE_VOID == 0
 		and activeSlot ~= ActiveSlot.SLOT_POCKET2 then
 			--Isaac.GetPlayer(0):UseActiveItem(CollectibleType.COLLECTIBLE_PAUSE, UseFlag.USE_NOANIM)
 			local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 			for _, entity in ipairs(entities) do
-				if entity:IsEnemy() 
+				if entity:IsEnemy()
 				and not entity:IsInvincible()
 				and not (wakaba:has_value(wakaba.conquestblacklist, entity.Type) or entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY))
 				and not (entity:IsBoss() and wakaba:has_value(wakaba.conquestsegmentwhitelist, entity.Type) and entity.Parent)
@@ -142,7 +142,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 		else
 			local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 			for _, entity in ipairs(entities) do
-				if entity:IsEnemy() 
+				if entity:IsEnemy()
 				and not entity:IsInvincible()
 				and (not entity:IsBoss() or (entity:IsBoss() and player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)))
 				and not wakaba:has_value(wakaba.conquestblacklist, entity.Type)
@@ -297,7 +297,7 @@ function wakaba:Render_BookOfConquest()
 		if entity.Type == EntityType.ENTITY_PITFALL and entity.SpawnerEntity and wakaba.conqueredSeed[tostring(entity.SpawnerEntity.InitSeed)] then
 			entity:Remove()
 		end
-		
+
 		if entity:GetData().wakaba and entity:GetData().wakaba.conquered then
 			entity:AddCharmed(EntityRef(player), -1)
 			entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
@@ -440,7 +440,7 @@ function wakaba:Render_BookOfConquest()
 						eidstring = eidstring .. "#!!! {{ColorError}}"..conqstr.selecterr..""
 					end
 					eidstring = eidstring .. "#"..conqstr.selectexit..""
-					
+
 					target:SetColor(Color(1, 1, 1, 1, 0.3, 0.2, 0.7), 1, 1, true, false)
 				end
 			end
@@ -451,7 +451,7 @@ function wakaba:Render_BookOfConquest()
 			EID:displayPermanentText(demoDescObj)
 		end
 	else
-		
+
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_BookOfConquest)
@@ -498,9 +498,38 @@ function wakaba:preEntitySpawn_Conquest(type, variant, subType, pos, velocity, s
 		end
 	end
 end
-EID:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_Conquest)
+wakaba:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_Conquest)
 
 function wakaba:NewLevel_Conquest()
 	wakaba.conqueredSeed = {}
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Conquest)
+
+function wakaba:HUD_BookOfConquest()
+	local hasConquest = false
+	wakaba:ForAllPlayers(function(player)
+		hasConquest = hasConquest or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+		--[[ local books = player:GetData().wakaba and player:GetData().wakaba.books
+		if books and type(books) == "table" then
+			hasConquest = hasConquest or wakaba:has_value(books, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+		end ]]
+	end)
+	if hasConquest then
+		wakaba.globalHUDSprite:SetFrame("BookOfConquest", 0)
+		local tab = {
+			Sprite = wakaba.globalHUDSprite,
+			Text = math.floor(wakaba.killcount) .. "/160",
+		}
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_CALC then
+			wakaba.globalHUDSprite:SetFrame("BookOfConquest", 1)
+			if wakaba.killcount >= 60 then
+				tab.TextColor = KColor(1,0.2,0.2,1,0,0,0)
+			end
+			local res = (100 - math.floor(wakaba.killcount))
+			if res <= 0 then res = 0 end
+			tab.Text = res .. "/100"
+		end
+		return tab
+	end
+end
+wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_BookOfConquest)

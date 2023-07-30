@@ -17,11 +17,28 @@ wakaba.Callback = {
 	-- POST_GET_COLLECTIBLE
 	-- ---
 	-- Original callback code from bogdanrudyka
+	--
 	-- Called from POST_PEFFECT_UPDATE, when item quantity changed, and player picks it from the first time.
 	-- - `EntityPlayer` - player that got an item.
 	-- - `collectibleType` - Acquired collectible.
 	-- ---
 	POST_GET_COLLECTIBLE = {},
+
+	-- ---
+	-- RENDER_GLOBAL_FOUND_HUD
+	-- ---
+	-- Original code from Peachee(Planetarium chance), Xalum(Retribution)
+	--
+	-- Called from POST_RENDER, rendering Found HUD Elements
+	--
+	-- If returned value is a table that contains with both elements, HUD will render with character stats
+	--
+	--
+	--
+	-- - `Sprite` : `Sprite` - Sprite to render
+	-- - `Text` : `String` - Text to render next to sprite
+	-- ---
+	RENDER_GLOBAL_FOUND_HUD = {},
 
 	-- Extra callbacks exclusive to Pudding & Wakaba
 
