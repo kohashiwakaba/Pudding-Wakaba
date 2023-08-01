@@ -187,7 +187,7 @@ function wakaba:AlterPlayerDamage_LunarStone(player, amount, flags, source, cool
 		and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
 			data.wakaba.reducelunargauge = true
 		else
-			if wakaba.WillDamageBeFatal(player, amount, flags) then
+			if wakaba:WillDamageBeFatal(player, amount, flags) then
 				data.wakaba.reducelunargauge = true
 				data.wakaba.nolunarreduction = true
 			end

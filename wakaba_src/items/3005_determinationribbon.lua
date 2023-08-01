@@ -1,7 +1,7 @@
 
 
 function wakaba:AlterPlayerDamage_DeterminationRibbon(player, amount, flags, source, countdown)
-	if player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and wakaba.WillDamageBeFatal(player, amount, flags) then
+	if player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and wakaba:WillDamageBeFatal(player, amount, flags) then
     local data = player:GetData()
 		data.wakaba.trydropribbon = true
 		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
