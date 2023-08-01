@@ -23,3 +23,10 @@ function wakaba:AfterRevival_GrimreaperDefender(player)
 		wisp:Kill()
 	end
 end
+
+function wakaba:AlterDamage_GrimreaperDefender(player, amount, flags, source, countdown)
+	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
+		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_GrimreaperDefender)

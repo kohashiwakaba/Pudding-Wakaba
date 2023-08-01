@@ -108,3 +108,17 @@ function wakaba:EnemyTakeDmg_BookOfTheGod(target, damage, flags, source, cooldow
 end
 
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.EnemyTakeDmg_BookOfTheGod)
+
+function wakaba:AlterDamage_BookOfTheGod(player, amount, flags, source, countdown)
+	if data.wakaba.shioriangel and not (player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_BookOfTheGod)
+
+function wakaba:PostTakeDamage_BookOfTheGod(player, amount, flags, source, countdown)
+	if data.wakaba.shioriangel and not (player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+		player:AddBrokenHearts(1)
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.PostTakeDamage_BookOfTheGod)

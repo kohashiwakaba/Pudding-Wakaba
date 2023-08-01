@@ -70,25 +70,18 @@ function wakaba:PreTakeDamage_BookofFocus(entity, amount, flags, source, countdo
 			local playerEffects = player:GetEffects()
 			local focusnum = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
 		end
-	elseif entity.Type == EntityType.ENTITY_PLAYER
-	and amount < 4 then
-		local player = entity:ToPlayer()
-		if not player then return end
-
-		local playerEffects = player:GetEffects()
-		local focus = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
-		if focus > 0
-		and not (flags & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
-		then
-			amount = 4
-			flags = flags | DamageFlag.DAMAGE_CLONES
-			entity:TakeDamage(amount, flags, source, countdown)
-			return false
-		end
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamage_BookofFocus)
 
+function wakaba:AlterDamage_BookofFocus(player, amount, flags, source, countdown)
+	local playerEffects = player:GetEffects()
+	local focus = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
+	if focus > 0 and amount < 4 then
+		return 4
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_BookofFocus)
 
 function wakaba:Cache_BookofFocus(player, cacheFlag)
 	if not player:GetData().wakaba then return end

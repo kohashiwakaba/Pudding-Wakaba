@@ -523,16 +523,15 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.blessnemesis)
 --LagCheck
 
 
-function wakaba:TakeDmg_BlessNemesis(player, amount, flag, source, countdownFrames)
-	player = player:ToPlayer()
-	if player and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
+function wakaba:PostTakeDamage_BlessNemesis(player, amount, flag, source, countdownFrames)
+	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
 		if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= (2 + amount) then
 			player:GetData().wakaba.blessmantlenum = wakaba:GetBlessNum(player)
 			player:GetData().wakaba.blessmantle = true
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.TakeDmg_BlessNemesis, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_BlessNemesis)
 
 
 function wakaba:pickupinit(pickup)

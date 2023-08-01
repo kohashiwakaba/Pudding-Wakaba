@@ -82,10 +82,9 @@ function wakaba:PlayerCollision_SelfBurning(player, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_SelfBurning)
 
-function wakaba:TakeDmg_SelfBurning(player, amount, flag, source, countdownFrames)
-	player = player:ToPlayer()
-	if player and player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
+function wakaba:NegateDamage_SelfBurning(player, amount, flag, source, countdownFrames)
+	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
 		return false
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_SelfBurning, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_SelfBurning)

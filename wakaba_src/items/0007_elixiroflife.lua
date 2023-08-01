@@ -89,9 +89,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Elixir)
 
-function wakaba:TakeDamage_Elixir(entity, amount, flags, source, cooldown)
-	if not entity:ToPlayer() then return end
-	local player = entity:ToPlayer()
+function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 	if wakaba:hasElixir(player) and player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
@@ -117,3 +115,4 @@ function wakaba:TakeDamage_Elixir(entity, amount, flags, source, cooldown)
 		end
 	end
 end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Elixir)

@@ -260,13 +260,10 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Catalog)
 
-function wakaba:TakeDamage_Catalog(entity, _, _, _, _) -- Terminate the holding up of your throwable active upon taking damage. This function can be omitted if you want, but I added it to be closer to vanilla behavior.
-	local player = entity:ToPlayer()
-	if not player then return end
-	
+function wakaba:PostTakeDamage_Catalog(player, _, _, _, _) -- Terminate the holding up of your throwable active upon taking damage. This function can be omitted if you want, but I added it to be closer to vanilla behavior.
 	TryCancelCatalog(player)
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Catalog)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Catalog)
 
 function wakaba:NewRoom_Catalog() -- Terminate the holding up of your throwable active upon entering a new room. This function can also be omitted if you want.
 	for i = 0, wakaba.G:GetNumPlayers() - 1 do

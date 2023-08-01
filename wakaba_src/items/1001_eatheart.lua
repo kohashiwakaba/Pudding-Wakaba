@@ -138,14 +138,12 @@ end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamage_EatHeart)
 
 
-function wakaba:TakeDamage_EatHeart(entity, amount, flags, source, cooldown)
-	-- If the player is Wakaba
-	--print(entity.Type)
-	local player = entity:ToPlayer()
-	if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART)	then
-		wakaba:RegisterHeart(player, wakaba.Enums.Collectibles.EATHEART)
+function wakaba:PostTakeDamage_EatHeart(player, amount, flags, source, cooldown)
+	if player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) then
+		wakaba:ChargeEatHeart(player, 1, "PlayerDamage")
 	end
 end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_EatHeart)
 
 
 function wakaba:PlayerUpdate_EatHeart(player)

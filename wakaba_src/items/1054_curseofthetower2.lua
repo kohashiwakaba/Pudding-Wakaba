@@ -94,24 +94,24 @@ function wakaba:EntitySelect_CurseOfTower2(entitybomb)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTower2)
 
-function wakaba:TakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
-	local player = entity:ToPlayer()
-	if player then
-		if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) 
-    and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
-    and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
-      wakaba:RegisterHeart(player, wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2)
-			--[[ if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
-				entity:ToPlayer():SetMinDamageCooldown(1)
-				return false
-			end
-			if flags & DamageFlag.DAMAGE_CRUSH == DamageFlag.DAMAGE_CRUSH then
-				entity:ToPlayer():SetMinDamageCooldown(1)
-				return false
-			end ]]
-      --Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(entity), Vector.Zero, nil)
+function wakaba:AlterDamage_CurseOfTower2(player, amount, flags, source, cooldown)
+	if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2)
+	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
+  and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
+    local data = player:GetData()
+		data.wakaba.dropgoldentroll = true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakaba.AlterDamage_CurseOfTower2)
+
+function wakaba:PostTakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
+	if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
+    local data = player:GetData()
+		if data.wakaba.dropgoldentroll then
+			Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_GOLDENTROLL, 0, wakaba:RandomNearbyPosition(player), Vector.Zero, nil)
+			data.wakaba.dropgoldentroll = false
 		end
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CurseOfTower2, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_CurseOfTower2)
 

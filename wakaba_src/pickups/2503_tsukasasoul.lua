@@ -18,16 +18,16 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfTsukasa, wakaba.Enums.Cards.SOUL_TSUKASA)
 
 
-function wakaba:TakeDamage_LunarDamocles(entity, amount, flags, source, cooldown)
-	local player = entity:ToPlayer()
-	if player then
-		if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) 
-    and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
-    and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
-      wakaba:RegisterHeart(player, wakaba.Enums.Collectibles.LUNAR_DAMOCLES)
+function wakaba:PostTakeDamage_LunarDamocles(player, amount, flags, source, cooldown)
+	if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) 
+	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
+	and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
+		if not player:HasCurseMistEffect() then
+			data.wakaba.lunardamotriggered = true
 		end
 	end
 end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_LunarDamocles)
 
 function wakaba:GetDamoclesTimer(collectibleNum, familiar, framesPerCheck, dropChance)
 	if not familiar then return end

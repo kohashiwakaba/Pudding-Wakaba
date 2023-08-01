@@ -48,19 +48,14 @@ function wakaba:TearUpdate_RevengeFruit(tear)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RevengeFruit)
 
-function wakaba:RevengeFruitTakeDmg(entity, amount, flag, source, countdownFrames)
-	if entity.Type == EntityType.ENTITY_PLAYER
-	and entity:ToPlayer():HasCollectible(wakaba.Enums.Collectibles.REVENGE_FRUIT)
-	then
-		local player = entity:ToPlayer()
-		wakaba:GetPlayerEntityData(player)
-		player:GetData().wakaba.revengecount = player:GetData().wakaba.revengecount or 7
-		if player:GetData().wakaba.revengecount <= 14 then
-			player:GetData().wakaba.revengecount = player:GetData().wakaba.revengecount + 1
-		end
+function wakaba:PostTakeDamage_RevengeFruit(player, amount, flag, source, countdownFrames)
+	wakaba:GetPlayerEntityData(player)
+	player:GetData().wakaba.revengecount = player:GetData().wakaba.revengecount or 7
+	if player:GetData().wakaba.revengecount <= 14 then
+		player:GetData().wakaba.revengecount = player:GetData().wakaba.revengecount + 1
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RevengeFruitTakeDmg)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_RevengeFruit)
 
 function wakaba:RevengeFruitPostLevel()
 	for i = 1, wakaba.G:GetNumPlayers() do

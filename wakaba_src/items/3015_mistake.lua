@@ -2,16 +2,14 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 
-function wakaba:TakeDamage_Mistake(entity, amount, flags, source, cooldown)
-	local player = entity:ToPlayer()
-	if player then
-		if player:HasTrinket(wakaba.Enums.Trinkets.MISTAKE) then
-      wakaba:RegisterHeart(player, wakaba.Enums.Trinkets.MISTAKE + 65535)
-		end
+function wakaba:PostTakeDamage_Mistake(player, amount, flags, source, cooldown)
+	if player:HasTrinket(wakaba.Enums.Trinkets.MISTAKE) then
+		wakaba:Trigger_Mistake(player, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.MISTAKE))
 	end
 end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Mistake)
 
-function wakaba:Trigger_Mistake(player)
+function wakaba:Trigger_Mistake(player, amount)
 	local enemies = isc:getNPCs()
 	if #enemies <= 0 then return end
 	local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.MISTAKE)

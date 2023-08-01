@@ -38,6 +38,43 @@ function wakaba:ChargeBarUpdate_LunarStone(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.ChargeBarUpdate_LunarStone)
 
+function wakaba:getMaxLunarGauge(player)
+	local max = 1000000
+	if wakaba:hasLunarStone(player) then
+		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			max = max + 1000000
+		end
+	end
+	return max
+end
+
+function wakaba:getCurrentLunarGauge(player)
+	local data = player:GetData()
+	if player.FrameCount > 7 then
+		return player:GetData().wakaba.lunargauge
+	end
+	return 1000000
+end
+
+function wakaba:setCurrentLunarGauge(player, amount)
+	if player.FrameCount > 7 then
+		player:GetData().wakaba.lunargauge = amount
+	end
+end
+
+function wakaba:getLunarGaugeSpeed(player)
+	local data = player:GetData()
+	if player.FrameCount > 7 then
+		return player:GetData().wakaba.lunarregenrate
+	end
+	return 0
+end
+
+function wakaba:setLunarGaugeSpeed(player, amount)
+	if player.FrameCount > 7 then
+		player:GetData().wakaba.lunarregenrate = amount
+	end
+end
 
 function wakaba:PlayerUpdate_LunarStone(player)
 	wakaba:GetPlayerEntityData(player)
@@ -47,43 +84,20 @@ function wakaba:PlayerUpdate_LunarStone(player)
 	end
 
 	if wakaba:hasLunarStone(player) and not data.wakaba.nolunarrefill then
-		--player:ResetDamageCooldown()
 		data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
 		data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
 		data.wakaba.lunargastimeout = data.wakaba.lunargastimeout or 0
-		--[[ if wakaba:IsHeartDifferent(player) then
-			wakaba:RemoveRegisteredHeart(player)
-			data.wakaba.lunargauge = data.wakaba.lunargauge or 1000000
-			data.wakaba.lunargauge = data.wakaba.lunargauge - 40000
-			data.wakaba.lunarregenrate = data.wakaba.lunarregenrate or 0
-			if data.wakaba.lunarregenrate >= 0 then
-				data.wakaba.lunarregenrate = -25
-			else
-				data.wakaba.lunarregenrate = data.wakaba.lunarregenrate - 5
-			end
-			SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
-			player:AddCacheFlags(CacheFlag.CACHE_ALL)
-			player:EvaluateItems()
-		end ]]
-		if wakaba:IsHeartEmpty(player) and not wakaba:IsPlayerDying(player) then
-			if player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B then
-				player:AddMaxHearts(2)
-				player:AddHearts(2)
-			else
-				player:AddSoulHearts(1)
-			end
-		end
 		if player:AreControlsEnabled() then
-			if data.wakaba.lunarregenrate >= 0 then
+			if wakaba:getLunarGaugeSpeed(player) >= 0 then
 				data.wakaba.lunargastimeout = 0
-				data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate
-			elseif data.wakaba.lunarregenrate < 0 then
+				wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + wakaba:getLunarGaugeSpeed(player))
+			elseif wakaba:getLunarGaugeSpeed(player) < 0 then
 				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER
 				and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B
-				and (data.wakaba.lunarregenrate < (player:GetHearts() * -1))
+				and (wakaba:getLunarGaugeSpeed(player) < (player:GetHearts() * -1))
 				and player:CanPickSoulHearts()
 				then
-					data.wakaba.lunargauge = data.wakaba.lunargauge + data.wakaba.lunarregenrate + player:GetHearts()
+					wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + wakaba:getLunarGaugeSpeed(player) + player:GetHearts())
 				end
 				data.wakaba.lunargastimeout = data.wakaba.lunargastimeout + 1
 				if data.wakaba.lunargastimeout >= 15 then
@@ -98,37 +112,8 @@ function wakaba:PlayerUpdate_LunarStone(player)
 				end
 			end
 		end
-		if (player:GetEffectiveMaxHearts() >= 2 and player:GetSoulHearts() > 0) or player:GetSoulHearts() > 2
-		then
-			if data.wakaba.lunarregenrate < 0
-			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 2000000)
-			or ((player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge < 1000000)
-			or ((player:GetPlayerType() ~= wakaba.Enums.Players.TSUKASA) and data.wakaba.lunargauge < 1000000)
-			then
-				data.wakaba.lunargauge = data.wakaba.lunargauge + 30000
-				if data.wakaba.lunarregenrate < 0 then
-					data.wakaba.lunarregenrate = 0
-				end
-				data.wakaba.lunarregenrate = data.wakaba.lunarregenrate + 85
-				player:AddSoulHearts(-1)
-				player:AddCacheFlags(CacheFlag.CACHE_ALL)
-				player:EvaluateItems()
-			end
-		elseif player:GetEffectiveMaxHearts() > 16 then
-			if player:GetBoneHearts() > 0 then
-				player:AddBoneHearts(-1)
-			else
-				player:AddMaxHearts(-2)
-			end
-		end
-		if (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge > 2000000 then
-			data.wakaba.lunargauge = 2000000
-			player:AddCacheFlags(CacheFlag.CACHE_ALL)
-			player:EvaluateItems()
-		elseif not (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) and data.wakaba.lunargauge > 1000000 then
-			data.wakaba.lunargauge = 1000000
-			player:AddCacheFlags(CacheFlag.CACHE_ALL)
-			player:EvaluateItems()
+		if wakaba:getCurrentLunarGauge(player) > wakaba:getMaxLunarGauge(player) then
+			wakaba:setCurrentLunarGauge(player, wakaba:getMaxLunarGauge(player))
 		end
 
 		if data.wakaba.lunargauge then
@@ -190,15 +175,39 @@ function wakaba:EffectUpdate_LunarStone(effect)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_LunarStone, EffectVariant.SMOKE_CLOUD)
 
-function wakaba:TakeDamage_LunarStone(entity, amount, flags, source, cooldown)
-	-- If the player is Wakaba
-	--print(entity.Type)
-	local player = entity:ToPlayer()
+function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldown)
 	if wakaba:hasLunarStone(player)	then
-		wakaba:RegisterHeart(player, wakaba.Enums.Collectibles.LUNAR_STONE)
+		wakaba:setCurrentLunarGauge(player, -40000)
+
+		if wakaba:getCurrentLunarGauge(player) < 0 then
+			local stones = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
+
+			if stones == 0 and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+				local hasLaz = false
+				for i = 0, 3 do
+					if player:GetCard(i) == Card.CARD_SOUL_LAZARUS then
+						hasLaz = true
+						break
+					end
+				end
+				player:Die()
+				if not hasLaz and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+					player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+				end
+			end
+
+		end
+		if wakaba:getLunarGaugeSpeed(player) >= 0 then
+			wakaba:setLunarGaugeSpeed(player, -25)
+		else
+			wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) -5)
+		end
+		SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
+		player:AddCacheFlags(CacheFlag.CACHE_ALL)
+		player:EvaluateItems()
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_LunarStone, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_LunarStone)
 
 function wakaba:Cache_LunarStone(player, cacheFlag)
   if wakaba:hasLunarStone(player) then
