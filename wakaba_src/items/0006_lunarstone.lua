@@ -181,11 +181,17 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_LunarStone, EffectVariant.SMOKE_CLOUD)
 
 function wakaba:AlterPlayerDamage_LunarStone(player, amount, flags, source, cooldown)
-	if wakaba:hasLunarStone(player)
-	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
-  and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
-    local data = player:GetData()
-		data.wakaba.reducelunargauge = true
+	if wakaba:hasLunarStone(player) then
+		local data = player:GetData()
+		if flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
+		and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
+			data.wakaba.reducelunargauge = true
+		else
+			if wakaba.WillDamageBeFatal(player, amount, flags) then
+				data.wakaba.reducelunargauge = true
+				data.wakaba.nolunarreduction = true
+			end
+		end
 	end
 end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakaba.AlterPlayerDamage_LunarStone)
@@ -213,14 +219,17 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 			end
 
 		end
-		if wakaba:getLunarGaugeSpeed(player) >= 0 then
-			wakaba:setLunarGaugeSpeed(player, -25)
-		else
-			wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) -5)
+		if not data.wakaba.nolunarreduction then
+			if wakaba:getLunarGaugeSpeed(player) >= 0 then
+				wakaba:setLunarGaugeSpeed(player, -25)
+			else
+				wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) -5)
+			end
 		end
 		SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
+		data.wakaba.nolunarreduction = false
 		data.wakaba.reducelunargauge = false
 	end
 end
