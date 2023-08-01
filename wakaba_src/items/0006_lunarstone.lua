@@ -5,7 +5,6 @@ function wakaba:hasLunarStone(player, includeDead)
 		return false
 	end
 	includeDead = includeDead or false
-	local sti = wakaba:getstoredindex(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and (includeDead or not (player:IsDead() and not player:WillPlayerRevive())) then
     return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
@@ -59,6 +58,12 @@ end
 function wakaba:setCurrentLunarGauge(player, amount)
 	if player.FrameCount > 7 then
 		player:GetData().wakaba.lunargauge = amount
+	end
+end
+
+function wakaba:addCurrentLunarGauge(player, amount)
+	if player.FrameCount > 7 then
+		player:GetData().wakaba.lunargauge = (player:GetData().wakaba.lunargauge or 1000000) + amount
 	end
 end
 
@@ -177,7 +182,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Lunar
 
 function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldown)
 	if wakaba:hasLunarStone(player)	then
-		wakaba:setCurrentLunarGauge(player, -40000)
+		wakaba:addCurrentLunarGauge(player, -40000)
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
 			local stones = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
@@ -256,7 +261,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
 
 function wakaba:RoomClear_LunarStone(rng, pos)
 	local roomType = wakaba.G:GetRoom():GetType()
-	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+	wakaba.ForAllPlayers(function (player)---@param player EntityPlayer
 		if wakaba:hasLunarStone(player) then
 			wakaba:GetPlayerEntityData(player)
 			local data = player:GetData()

@@ -174,7 +174,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 				Positions = {},
 			}
 
-			wakaba:ForAllPlayers(function(player)
+			wakaba.ForAllPlayers(function(player)
 				table.insert(catchDebugRoom.Positions, {
 					Player = player,
 					Position = Vector(player.Position.X, player.Position.Y),
@@ -230,7 +230,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	end
 end)
 
---[[ 
+--[[
 	Door sprite replacement, from Tainted Treasure rooms
 	customRoomType is for future usage
 	possible types planned : richer(winter albireo), rira(???), trwakaba(???)
@@ -239,7 +239,7 @@ end)
 	local doorSprite = door:GetSprite()
 
 	local iscustomstage = StageAPI and StageAPI.InOverriddenStage()
-	
+
 	--if not iscustomstage then
 		doorSprite:Load("gfx/grid/wakaba_richer_room_door.anm2", true)
 		doorSprite:ReplaceSpritesheet(0, "gfx/grid/wakaba_richer_room_door.png")
@@ -302,7 +302,7 @@ function wakaba:TrySetAlbireoRoomDoor()
 end
 
 function wakaba:InitCrystalRestock_WinterAlbireo(slot)
-	if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) and wakaba:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+	if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) and wakaba.AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
 		return {extraCount = 2}
 	end
 end

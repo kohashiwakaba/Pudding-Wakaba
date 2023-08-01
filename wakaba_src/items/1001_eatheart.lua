@@ -109,31 +109,24 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 end
 
 function wakaba:PreTakeDamage_EatHeart(entity, amount, flags, source, countdown)
-	if entity.Type == EntityType.ENTITY_PLAYER then
-		local player = entity:ToPlayer()
-		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) and flags & DamageFlag.DAMAGE_NOKILL == DamageFlag.DAMAGE_NOKILL then
-			wakaba:ChargeEatHeart(player, amount, "PlayerDamage")
+	if entity:IsInvincible() then return end
+	if entity.Type == EntityType.ENTITY_FIREPLACE then return end
+	local player = nil
+	if
+		(source and source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER )
+	then
+		player = source.Entity.SpawnerEntity:ToPlayer()
+	elseif
+		(source and source.Type == EntityType.ENTITY_PLAYER)
+	then
+		player = source.Entity:ToPlayer()
+	end
+	if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) and entity:IsVulnerableEnemy() then
+		if entity.HitPoints < amount then
+			amount = entity.HitPoints
 		end
-	else
-		if entity:IsInvincible() then return end
-		if entity.Type == EntityType.ENTITY_FIREPLACE then return end
-		local player = nil
-		if 
-			(source and source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER )
-		then
-			player = source.Entity.SpawnerEntity:ToPlayer()
-		elseif
-			(source and source.Type == EntityType.ENTITY_PLAYER)
-		then
-			player = source.Entity:ToPlayer()
-		end
-		if player and player:HasCollectible(wakaba.Enums.Collectibles.EATHEART) and entity:IsVulnerableEnemy() then
-			if entity.HitPoints < amount then
-				amount = entity.HitPoints
-			end
-			wakaba:ChargeEatHeart(player, amount, "EnemyDamage")
-		end
-  end
+		wakaba:ChargeEatHeart(player, amount, "EnemyDamage")
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamage_EatHeart)
 

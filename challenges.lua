@@ -622,40 +622,33 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_Challenge, PickupVariant.PICKUP_COLLECTIBLE)
 
-function wakaba:playerDamageChallenge(target, damage, flags, source, cooldown)
+function wakaba:PostTakeDamage_Challenge(player, amount, flag, source, countdownFrames)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND then
-			local player = target:ToPlayer()
-			if player then
-				if player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW and player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW2 then
-					player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
-				end
-				player:FullCharge(ActiveSlot.SLOT_POCKET, true)
-				player:AddBrokenHearts(-1)
-			end
+		if player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW and player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW2 then
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
+		end
+		player:FullCharge(ActiveSlot.SLOT_POCKET, true)
+		player:AddBrokenHearts(-1)
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.playerDamageChallenge, 1)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Challenge)
 
-function wakaba:playerDamageChallenge_Delivery(target, damage, flags, source, cooldown)
+function wakaba:NegateDamage_Challenge(player, amount, flag, source, countdownFrames)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_BIKE then
-		if target.Type == EntityType.ENTITY_PLAYER then
-			if target:GetData().wakaba
-			and target:GetData().wakaba.minervadeathcount > 0 then
-				if not (
-					flags & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS
-					and flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
-					and flags & DamageFlag.DAMAGE_INVINCIBLE == DamageFlag.DAMAGE_INVINCIBLE
-				) then
-					return false
-				else
-				end
+		if player:GetData().wakaba
+		and player:GetData().wakaba.minervadeathcount > 0 then
+			if not (
+				flags & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS
+				and flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
+				and flags & DamageFlag.DAMAGE_INVINCIBLE == DamageFlag.DAMAGE_INVINCIBLE
+			) then
+				return false
 			end
 		end
 	end
 end
-
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.playerDamageChallenge_Delivery)
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_Challenge)
 
 function wakaba:DeliveryOnDamage(source, newDamage, newFlags)
 	local returndata = {}

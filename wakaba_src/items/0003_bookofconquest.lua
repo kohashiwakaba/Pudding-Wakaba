@@ -429,7 +429,7 @@ function wakaba:Render_BookOfConquest()
 					wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.KEY)
 					wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 25) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
 					wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumKeys() .. "/" .. (keycost // 1), Isaac.WorldToScreen(target.Position).X - wakaba.G.ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 25 - wakaba.G.ScreenShakeOffset.Y, 1, 1, kcolor,0,true)
-					
+
 					if target:IsBoss() then
 						eidstring = eidstring .. "#!!! {{ColorCyan}}"..conqstr.selectboss.."{{CR}}"
 					end
@@ -507,12 +507,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Conquest)
 
 function wakaba:HUD_BookOfConquest()
 	local hasConquest = false
-	wakaba:ForAllPlayers(function(player)
-		hasConquest = hasConquest or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-		--[[ local books = player:GetData().wakaba and player:GetData().wakaba.books
-		if books and type(books) == "table" then
-			hasConquest = hasConquest or wakaba:has_value(books, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-		end ]]
+	wakaba.ForAllPlayers(function(player)
+		if player.FrameCount > 7 then
+			hasConquest = hasConquest or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+			--[[ local books = player:GetData().wakaba and player:GetData().wakaba.books
+			if books and type(books) == "table" then
+				hasConquest = hasConquest or wakaba:has_value(books, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+			end ]]
+		end
 	end)
 	if hasConquest then
 		wakaba.globalHUDSprite:SetFrame("BookOfConquest", 0)

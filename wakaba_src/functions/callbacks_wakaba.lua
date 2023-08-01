@@ -359,11 +359,7 @@ local didModifyDamage
 -- Evaluate Damage Amount
 local function canModifyDamageAmount(player, flags)
 	return (
-		flags & DamageFlag.DAMAGE_NO_MODIFIERS == 0 and
-		not (
-			player:HasCollectible(CollectibleType.COLLECTIBLE_WAFER) or
-			player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_WAFER)
-		)
+		flags & DamageFlag.DAMAGE_NO_MODIFIERS == 0
 	)
 end
 
@@ -422,7 +418,6 @@ local function postTakeDamage(_, entity, amount, flags, source, cooldown)
 	Isaac.RunCallback(wakaba.Callback.POST_TAKE_DAMAGE, entity:ToPlayer(), amount, flags, source, cooldown)
 
 	if didModifyDamage then
---[[ 
 		if wakaba.IsDamageSacrificeSpikes(flags, source) then
 			local grid = game:GetRoom():GetGridEntityFromPos(entity.Position)
 			wakaba.GrantNextSacrificePayout(grid)
@@ -431,7 +426,6 @@ local function postTakeDamage(_, entity, amount, flags, source, cooldown)
 		if wakaba.IsDamageSanguineSpikes(player, flags, source) then
 			wakaba.GrantSanguineBondPayout(player)
 		end
-		 ]]
 	end
 end
 

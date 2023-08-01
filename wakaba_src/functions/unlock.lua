@@ -553,7 +553,7 @@ local validPlayerCheck = {
 function wakaba:UnlockCheck(rng, spawnPosition)
 	local playersToCheck = {}
 
-	wakaba:ForAllPlayers(function(player)
+	wakaba.ForAllPlayers(function(player)
 		if wakaba:has_value(validPlayerCheck, player:GetPlayerType()) then
 			if not wakaba:has_value(playersToCheck, player:GetPlayerType()) then
 				table.insert(playersToCheck, player:GetPlayerType())

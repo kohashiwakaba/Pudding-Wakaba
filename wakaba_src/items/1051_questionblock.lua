@@ -45,24 +45,27 @@ function wakaba:ItemUse_QuestionBlock(_, rng, player, useFlags, activeSlot, varD
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_QuestionBlock, wakaba.Enums.Collectibles.QUESTION_BLOCK)
 
-function wakaba:TakeDmg_QuestionBlock(entity, amount, flag, source, countdownFrames)
-	if not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS)
-	then
-		local player = entity:ToPlayer()
-		--Double check just in case
-    if not player:HasCollectible(wakaba.Enums.Collectibles.QUESTION_BLOCK) then return end
-		if (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS) then return end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) then
-			player:RemoveCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM)
-    elseif not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
+function wakaba:PostTakeDamage_QuestionBlock(player, amount, flag, source, countdownFrames)
+  if player:HasCollectible(wakaba.Enums.Collectibles.QUESTION_BLOCK) then
+    if not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS) then
+      if player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) then
+        player:RemoveCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM)
+      end
+    end
+  end
+end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_QuestionBlock)
+
+
+function wakaba:NegateDamage_QuestionBlock(player, amount, flag, source, countdownFrames)
+  if player:HasCollectible(wakaba.Enums.Collectibles.QUESTION_BLOCK) then
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM) and not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) then
       player:UseCard(Card.CARD_SOUL_LOST, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
       return false
-		end
-	end
+    end
+  end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_QuestionBlock, EntityType.ENTITY_PLAYER)
-
-
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_QuestionBlock)
 
 
 function wakaba:AfterRevival_QuestionBlock(player)

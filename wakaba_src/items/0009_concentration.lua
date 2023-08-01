@@ -177,7 +177,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Concentration)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_Concentration)
 
-function wakaba:AlterDamage_Concentration(player, amount, flags, source, cooldown)
+function wakaba:AlterPlayerDamage_Concentration(player, amount, flags, source, cooldown)
 	if wakaba:hasConcentration(player) then
     local data = player:GetData()
 		if data.wakaba.concentrationframes and data.wakaba.concentrationframes <= 5000 then
@@ -185,7 +185,7 @@ function wakaba:AlterDamage_Concentration(player, amount, flags, source, cooldow
 		end
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_Concentration)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_Concentration)
 
 function wakaba:PostTakeDamage_Concentration(entity, amount, flags, source, cooldown)
 	if wakaba:hasConcentration(player) then

@@ -423,26 +423,31 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCChange_Minerva)
 end ]]
 --wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_Minerva)
 
-function wakaba:PlayerTakeDmg_Minerva(entity, amount, flag, source, countdownFrames)
-	if (entity:GetData().wakaba and entity:GetData().wakaba.hasminerva > 0) then
-		local rng = entity:ToPlayer():GetCollectibleRNG(wakaba.Enums.Collectibles.MINERVA_AURA)
+function wakaba:NegateDamage_Minerva(player, amount, flag, source, countdownFrames)
+	local data = player:GetData()
+	if data.wakaba.hasminerva > 0 then
+		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.MINERVA_AURA)
 		local rand = rng:RandomFloat() * 100
 		--Isaac.DebugString(rng)
-		if rand <= 16 or entity:GetData().wakaba.minervadmgprotect > 0 then
+		if rand <= 16 or player:GetData().wakaba.minervadmgprotect > 0 then
 			--entity:SetColor(Color(1, 1, 1, 1, 0.3, 0.1, 0.6), 5, 2, true, false)
 			--Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALO, 9, Isaac.GetPlayer().Position, Vector.Zero, Isaac.GetPlayer())
-			local halo = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALO, 9, entity.Position - Vector(0, 22), Vector.Zero, entity)
+			local halo = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALO, 9, player.Position - Vector(0, 22), Vector.Zero, player)
 			--halo.SpriteOffset = Vector(0, -40)
 			SFXManager():Play(SoundEffect.SOUND_TOOTH_AND_NAIL, 1, 0, false, 1.1, 0)
-			entity:ToPlayer():SetMinDamageCooldown(30)
-			return false
-		end
-		if flag & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS) == 0 then
-			flag = flag | DamageFlag.DAMAGE_NO_PENALTIES
-			entity:TakeDamage(amount, flag, source, countdownFrames)
+			player:SetMinDamageCooldown(30)
 			return false
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.PlayerTakeDmg_Minerva, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_Minerva)
 
+
+
+function wakaba:AlterPlayerDamage_Minerva(player, amount, flags, source, countdown)
+	local data = player:GetData()
+	if data.wakaba.hasminerva > 0 then
+		return 1, flags | DamageFlag.DAMAGE_NO_PENALTIES
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_Minerva)

@@ -57,24 +57,19 @@ end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PostWakabaRenderUpdate_b, 0) ]]
 
-function wakaba:OnWakabaDamage_b(entity, amount, flags, source, cooldown)
-	-- If the player is Wakaba
-	--print(entity.Type)
-	local player = entity:ToPlayer()
-	if player ~= nil and player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
-				entity:ToPlayer():SetMinDamageCooldown(1)
-				return false
-			end
-			if flags & DamageFlag.DAMAGE_CRUSH == DamageFlag.DAMAGE_CRUSH then
-				entity:ToPlayer():SetMinDamageCooldown(1)
-				return false
-			end
+function wakaba:NegateDamage_TaintedWakabaBirthright(player, amount, flags, source, cooldown)
+	if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		if flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION then
+			player:SetMinDamageCooldown(1)
+			return false
+		end
+		if flags & DamageFlag.DAMAGE_CRUSH == DamageFlag.DAMAGE_CRUSH then
+			player:SetMinDamageCooldown(1)
+			return false
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.OnWakabaDamage_b, EntityType.ENTITY_PLAYER)
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_TaintedWakabaBirthright)
 
 
 function wakaba:PostGetCollectible_Wakaba_b(player, item)

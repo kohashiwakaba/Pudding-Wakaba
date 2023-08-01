@@ -77,7 +77,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_
 
 
 
- 
+
 function wakaba:Cache_BookOfTheGod(player, cacheFlag)
 	if not player:GetData().wakaba then return end
   if player:GetData().wakaba.shioriangel then
@@ -109,16 +109,18 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.EnemyTakeDmg_BookOfTheGod)
 
-function wakaba:AlterDamage_BookOfTheGod(player, amount, flags, source, countdown)
-	if data.wakaba.shioriangel and not (player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+function wakaba:AlterPlayerDamage_BookOfTheGod(player, amount, flags, source, countdown)
+	local data = player:GetData()
+	if data.wakaba.shioriangel and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
 		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_BookOfTheGod)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_BookOfTheGod)
 
 function wakaba:PostTakeDamage_BookOfTheGod(player, amount, flags, source, countdown)
-	if data.wakaba.shioriangel and not (player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+	local data = player:GetData()
+	if data.wakaba.shioriangel and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
 		player:AddBrokenHearts(1)
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.PostTakeDamage_BookOfTheGod)
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_BookOfTheGod)

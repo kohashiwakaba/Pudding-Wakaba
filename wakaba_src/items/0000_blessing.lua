@@ -40,7 +40,7 @@ local duped = {}
 function wakaba:onNemesisCache(player, cacheFlag)
 	if (wakaba:HasNemesis(player) or (not player:IsItemQueueEmpty() and player.QueuedItem.Item.ID == wakaba.Enums.Collectibles.WAKABA_DUALITY))
 	and not player:HasCurseMistEffect()
-	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND 
+	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND
 	then
 		wakaba:GetPlayerEntityData(player)
 		local nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
@@ -76,7 +76,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
 				if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 					player.ShotSpeed = player.ShotSpeed - (collectibleNum * 0.02)
 				end
-				if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then 
+				if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 					player.TearRange = player.TearRange - (collectibleNum * 4)
 					if player.TearRange < 200 then
 						player.TearRange = 200
@@ -104,7 +104,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
 				if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 					player.ShotSpeed = player.ShotSpeed * statpenalties
 				end
-				if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then 
+				if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 					player.TearRange = player.TearRange * statpenalties
 				end
 				if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
@@ -141,8 +141,8 @@ function wakaba:PlayerUpdate_Nemesis(player)
 			newDesc = descTable.collectibles[newItem].queueDesc or newDesc
 		end
 	end
-	--[[ 
-		In order to combine two items, You must check 3 conditions 
+	--[[
+		In order to combine two items, You must check 3 conditions
 		0. If the combined item should not be in Death Certificate rooms, Item pools, or Spindown Dice, then you must add 'hidden="true"' for the combined item in items.xml.
 		1. player has item A -> player:HasCollectible(itemID.A, true) << MUST SET 'IgnoreModifiers' ARGUMENT (the second one) AS 'true'
 		2. player's queue is not empty -> not player:IsItemQueueEmpty()
@@ -190,7 +190,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		wakaba:AddBlessDevilRoomChance(player)
 		player:GetData().wakaba.tempbless = false
 	end ]]
-	
+
 	if player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU) --[[ or player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) ]] then
 		if player:GetCollectibleCount() ~= player:GetData().wakaba.dejavuItemNum and not player:IsHoldingItem() then
 			player:GetData().wakaba.dejavuItemNum = player:GetCollectibleCount()
@@ -255,7 +255,7 @@ function wakaba:CheckItemCandidates(player)
 	-- Item tables. Used Job mod as Reference.
 	for itemId = 1, wakaba:GetMaxCollectibleID() do
 		local targetItem = wakaba.ItemConfig:GetCollectible(itemId)
-		
+
 		if targetItem and not targetItem:HasTags(ItemConfig.TAG_QUEST)
 		and (targetItem.Type == ItemType.ITEM_PASSIVE or targetItem.Type == ItemType.ITEM_FAMILIAR)
 		and itemId ~= wakaba.Enums.Collectibles.DEJA_VU
@@ -300,7 +300,7 @@ function wakaba:ShouldRemoveIndex()
 
 	if isc:inDeathCertificateArea() then return false end
 
-	if wakaba.state.options.blessnemesisindexed 
+	if wakaba.state.options.blessnemesisindexed
 	then return false end
 
 	if room:GetType() == RoomType.ROOM_TREASURE
@@ -308,9 +308,9 @@ function wakaba:ShouldRemoveIndex()
 	and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 	and wakaba.state.options.firsttreasureroomindexed
 	then return false end
-	
-	if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() 
-	and level:GetAbsoluteStage() == LevelStage.STAGE1_1 
+
+	if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex()
+	and level:GetAbsoluteStage() == LevelStage.STAGE1_1
 	and wakaba.state.options.startingroomindexed
 	then return false end
 
@@ -387,8 +387,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()
 	ignorelist = {}
-	hidelist = {}	
-	
+	hidelist = {}
+
 	local bless = false
 	local nemesis = false
 	local duality = false
@@ -416,7 +416,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 			duality = true
 		end
 	end
-	
+
 	--[[ if not duality
 	and room:GetType() == RoomType.ROOM_BOSS
 	and not wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
@@ -426,8 +426,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 			level:InitializeDevilAngelRoom(false, true)
 		end
 	end ]]
-	
-	
+
+
 	if room:IsFirstVisit() then
 		local items = Isaac.FindByType(5, 100, -1, false, false)
 		for i, e in ipairs(items) do
@@ -491,7 +491,7 @@ function wakaba:blessnemesis()
 			e:ToPickup().OptionsPickupIndex = 0
 		end
 	end
-	
+
 	--collectible end
 	if wakaba.runstate.hasbless and not wakaba.runstate.hasnemesis then
 		if wakaba.G:GetLevel():GetAngelRoomChance() < 1 then
@@ -509,15 +509,15 @@ function wakaba:blessnemesis()
 		end
 	end
 
-	
+
 	--[[ if removesatanwisp then
-		
+
 		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			wakaba:CleanupContinueSatanWisps(_, player)
 		end
 	end ]]
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.blessnemesis)
 --LagCheck
@@ -549,7 +549,7 @@ function wakaba:pickupinit(pickup)
 			steamcount = steamcount + 1
 		end
 	end
-	
+
 	if wakaba.runstate.hasnemesis and not (isc:anyPlayerIs(PlayerType.PLAYER_KEEPER) or isc:anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) then
 		if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and pickup:IsShopItem() and pickup.Price ~= -1000 then
 			local player = isc:getClosestPlayer(pickup.Position) or Isaac.GetPlayer()
@@ -593,7 +593,7 @@ function wakaba:RevealItemImage(pickup, offset)
 		end
 		if hasbless and wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
 			local sprite = pickup:GetSprite()
-			
+
 			sprite:ReplaceSpritesheet(1, itemData.GfxFileName)
 			sprite:LoadGraphics()
 			pickup:GetData().wakaba.removequestion = true
@@ -602,6 +602,13 @@ function wakaba:RevealItemImage(pickup, offset)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
+
+function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, countdown)
+	if (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
+		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_BlessNemesis)
 
 --[[ function wakaba:OnGameExit_BlessNemesis(shouldSave)
 	removesatanwisp = true

@@ -16,12 +16,6 @@ function wakaba:PostRicherUpdate(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostRicherUpdate)
 
---[[ function wakaba:RicherTakeDmg(entity, amount, flag, source, countdownFrames)
-
-end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RicherTakeDmg) ]]
-
-
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
 local RicherChar = {
 		DAMAGE = 1.0,
@@ -90,7 +84,7 @@ function wakaba:AfterRicherInit(player)
 			wakaba:GetRicherCostume(player)
 		end
 	end
-	
+
 	--[[ if Poglite then
 		if wakaba.state.pog ~= nil then
 			if wakaba.state.pog then

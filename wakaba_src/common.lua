@@ -2,6 +2,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local voidentered = false
 
+local game = Game()
+
 local hasBeast = false
 local idle_timer = 0
 local timerfreeze = 0
@@ -452,7 +454,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			-- -------------------------------
 			-- Currently bottom of Mother's Boss room will be blocked when room is reentered
 			-- Because of this Void portal and end chest will be moved to top
-			-- RoomShape Check is for Larger Mother Boss room mod
+			-- RoomShape Check is for Larger Mother Boss room Mod
 			-- -------------------------------
 			if room:GetRoomShape() == RoomShape.ROOMSHAPE_2x2 then
 				chestfinals =	room:GetGridPosition(238)
@@ -1178,31 +1180,6 @@ function wakaba:DisplayHUDItemText(player, tableName, id)
 	end
 end
 
-
-
-function wakaba:GetRoomPlayers()
-	if not wakaba.roomPlayersCache then
-		wakaba.roomPlayersCache = {}
-		for i = 0, wakaba.G:GetNumPlayers() - 1 do
-			table.insert(wakaba.roomPlayersCache, Isaac.GetPlayer(i))
-		end
-	end
-
-	return wakaba.roomPlayersCache
-end
-
-function wakaba:ForAllPlayers(func, typeFilter)
-	for _, player in pairs(wakaba:GetRoomPlayers()) do
-		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
-			local returnValue = func(player)
-
-			if returnValue ~= nil then
-				return returnValue
-			end
-		end
-	end
-end
-
 ---gets a target used by Marked, or Eye of Occult for certain synergies
 ---@param player EntityPlayer
 ---@return Entity
@@ -1222,16 +1199,4 @@ function wakaba:GetMarkedTarget(player)
 		end
 	end
 
-end
-
----Check any player has certain collectible
----@param itemID CollectibleType
----@return boolean
-function wakaba:anyPlayerHasCollectible(itemID)
-	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
-		if player:HasCollectible(itemID) then
-			return true
-		end
-	end)
-	return false
 end

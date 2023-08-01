@@ -1,20 +1,20 @@
 
 
-function wakaba:AlterDamage_DeterminationRibbon(player, amount, flags, source, countdown)
-	if player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and wakaba:WillDamageBeFatal(player, amount, flags) then
+function wakaba:AlterPlayerDamage_DeterminationRibbon(player, amount, flags, source, countdown)
+	if player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and wakaba.WillDamageBeFatal(player, amount, flags) then
     local data = player:GetData()
 		data.wakaba.trydropribbon = true
 		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterDamage_DeterminationRibbon)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_DeterminationRibbon)
 
 function wakaba:PostTakeDamage_DeterminationRibbon(player, amount, flags, source, cooldown)
 	if player:HasTrinket(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) and player:GetTrinketMultiplier(wakaba.Enums.Trinkets.DETERMINATION_RIBBON) < 5 then
     local data = player:GetData()
 		if data.wakaba.trydropribbon then
 			local chance = player:GetTrinketRNG(wakaba.Enums.Trinkets.DETERMINATION_RIBBON):RandomInt(1000000)
-			local threshold = 20000
+			local threshold = 80000
 			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
 				threshold = threshold / 4
 			end

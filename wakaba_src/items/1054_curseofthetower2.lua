@@ -94,7 +94,7 @@ function wakaba:EntitySelect_CurseOfTower2(entitybomb)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, wakaba.EntitySelect_CurseOfTower2)
 
-function wakaba:AlterDamage_CurseOfTower2(player, amount, flags, source, cooldown)
+function wakaba:AlterPlayerDamage_CurseOfTower2(player, amount, flags, source, cooldown)
 	if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2)
 	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
   and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
@@ -102,9 +102,9 @@ function wakaba:AlterDamage_CurseOfTower2(player, amount, flags, source, cooldow
 		data.wakaba.dropgoldentroll = true
 	end
 end
-wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakaba.AlterDamage_CurseOfTower2)
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakaba.AlterPlayerDamage_CurseOfTower2)
 
-function wakaba:PostTakeDamage_CurseOfTower2(entity, amount, flags, source, cooldown)
+function wakaba:PostTakeDamage_CurseOfTower2(player, amount, flags, source, cooldown)
 	if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
     local data = player:GetData()
 		if data.wakaba.dropgoldentroll then

@@ -617,21 +617,6 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 				end
 			end
 		end
-
-	elseif entity.Type == EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
-	then
-		local player = entity:ToPlayer()
-		if not player:GetData().wakaba then return end
-		local nextflag = wakaba:getShioriFlag(player)
-
-		local troll = wakaba:getShioriBuffs(player)
-		if (troll > 0 or nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
-		and flag & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION
-		then
-			return false
-		end
-
 	elseif entity.Type == EntityType.ENTITY_FAMILIAR
 	and entity:ToFamiliar() ~= nil
 	and not (flag & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
@@ -654,6 +639,18 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_BookofShiori)
+
+
+function wakaba:NegateDamage_BookOfShiori(player, amount, flags, source, countdown)
+	local nextflag = wakaba:getShioriFlag(player)
+	local troll = wakaba:getShioriBuffs(player)
+	if (troll > 0 or nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
+	and flag & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION
+	then
+		return false
+	end
+end
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_BookOfShiori)
 
 function wakaba:updateDopp(familiar)
 	local fData = familiar:GetData()

@@ -31,9 +31,9 @@ local function getRenderList(player)
 		local index = current.index
 		local tmp_index = index
 		local empty = 0
-		if #list < limit then 
+		if #list < limit then
 			empty = #list - limit
-			limit = #list 
+			limit = #list
 		end
 		while limit > 0 do
 			if tmp_index > #list then
@@ -135,8 +135,8 @@ function wakaba:PlayerUpdate_Richer_b(player)
 					current.index = current.index + 1
 				end
 			end
-			if current.index > #current.list then 
-				current.index = 1 
+			if current.index > #current.list then
+				current.index = 1
 			elseif current.index <= 0 then
 				current.index = #current.list
 			end
@@ -147,13 +147,7 @@ function wakaba:PlayerUpdate_Richer_b(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Richer_b)
 
---[[ function wakaba:RicherTakeDmg(entity, amount, flag, source, countdownFrames)
-
-end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.RicherTakeDmg) ]]
-
-
-local RicherChar = { 
+local RicherChar = {
 		DAMAGE = 0.75,
 		SPEED = 0.1,
 		SHOTSPEED = 1.0,
@@ -164,7 +158,7 @@ local RicherChar = {
 		TEARFLAG = TearFlags.TEAR_NORMAL,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onRicherCache_b(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
@@ -195,9 +189,9 @@ function wakaba:onRicherCache_b(player, cacheFlag)
 			--player.TearColor = RicherChar.TEARCOLOR
 		end
 	end
-	
+
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRicherCache_b)
 
 ---@param player EntityPlayer
@@ -207,7 +201,7 @@ function wakaba:AfterRicherInit_b(player)
 	if player:GetPlayerType() == playerType then
 		player:SetPocketActiveItem(wakaba.Enums.Collectibles.WATER_FLAME, ActiveSlot.SLOT_POCKET, true)
 	end
-	
+
 	--[[ if Poglite then
 		if wakaba.state.pog ~= nil then
 			if wakaba.state.pog then

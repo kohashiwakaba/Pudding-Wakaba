@@ -24,7 +24,7 @@ local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	local hasTrinketDropped = false
 	if wakaba.G:GetRoom():GetFrameCount() >= 0 then
-		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+		wakaba.ForAllPlayers(function(player) ---@param player EntityPlayer
 			if not player:IsCoopGhost() then
 				local lastTrigger = player:GetLastActionTriggers()
 				if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
@@ -137,7 +137,7 @@ if EID then
 	local function AquaTrinketCondition(descObj)
 		if not descObj.Entity then return false end
 		local pickup = descObj.Entity
-		return descObj.ObjType == 5 
+		return descObj.ObjType == 5
 			and descObj.ObjVariant == PickupVariant.PICKUP_TRINKET
 			and pickup:GetData().wakaba and pickup:GetData().wakaba.isAquaTrinket
 	end

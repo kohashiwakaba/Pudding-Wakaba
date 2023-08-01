@@ -3,13 +3,13 @@ local playerType = Isaac.GetPlayerTypeByName("Wakaba", false)
 local removed = false
 local isWakabaContinue = true
 local collectibleCount
-local costumeEquipped 
+local costumeEquipped
 local broken
 local damaged
 local function InitWakabaPlayer()
 	broken = 9
-	collectibleCount = 0 
-	costumeEquipped = false 
+	collectibleCount = 0
+	costumeEquipped = false
 	damaged = false
 end
 
@@ -37,13 +37,13 @@ function wakaba:PostWakabaUpdate()
 	if #conf > 0 then
 		hasconf = true
 	end
-	
+
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false)
 		then
 			wakaba:GetPlayerEntityData(player)
-			if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND 
+			if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND
 			and not player:GetData().wakaba.shioriangel then
 				if hasconf then
 					broken = 0
@@ -56,7 +56,7 @@ function wakaba:PostWakabaUpdate()
 					player:AddBrokenHearts(-(player:GetBrokenHearts()-broken))
 				end
 			end
-			
+
 		end
 	end
 end
@@ -81,11 +81,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Waka
 function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
 	--Isaac.DebugString("[wakaba] TookDmg flag:"..flag.."")
 	if entity.Type ~= EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR) 
+	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR)
 	then
 		local player = nil
-		if 
-			(source ~= nil 
+		if
+			(source ~= nil
 			and source.Entity ~= nil
 			and source.Entity.SpawnerEntity ~= nil
 			and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER )
@@ -107,38 +107,22 @@ function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
 				return false
 			end
 		end
-	elseif entity.Type == EntityType.ENTITY_PLAYER
-	-- DAMAGE_RED_HEARTS flag is same as DAMAGE_NO_PENALTIES flag. Only difference is DAMAGE_RED_HEARTS takes red hearts first
-	-- Sharp Plug, Blood Oath do NOT have DAMAGE_NO_PENALTIES flag, so must also check DAMAGE_RED_HEARTS flag
-	-- Do NOT give DAMAGE_NO_PENALTIES flag, or return false when being damaged with DAMAGE_RED_HEARTS flag, otherwise Sharp Plug, Blood Oath becomes unusable (Both deal half heart damage, but will do nothing)
-	-- Crow Heart does NOT have DAMAGE_RED_HEARTS flag. So ignore that trinket
-	and flag & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES 
-	and flag & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
-	and (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(entity:ToPlayer()))
-	then
-		flag = flag | DamageFlag.DAMAGE_NO_PENALTIES
-		-- flag = flag | DamageFlag.DAMAGE_RED_HEARTS -- red heart damage with devil room chance protection does not need DAMAGE_NO_PENALTIES flag
-		entity:TakeDamage(amount, flag, source, countdownFrames)
-		--entity:ToPlayer():SetMinDamageCooldown(1)
-		return false
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.WakabaTakeDmg)
 
-
--- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
-local WakabaChar = { 
+local WakabaChar = {
 		DAMAGE = 1.1,
 		SPEED = 0.1,
 		SHOTSPEED = 0.95,
 		TEARRANGE = 100,
 		TEARS = 0,
 		LUCK = 3,
-		FLYING = false,																 
+		FLYING = false,
 		TEARFLAG = TearFlags.TEAR_HOMING,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onWakabaCache(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
 		--wakaba:GetWakabaCostume(player)
@@ -188,7 +172,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
 	end
 	
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onWakabaCache)
 
 
@@ -196,7 +180,7 @@ function wakaba:AfterWakabaInit(player)
 	--print("Wakaba event passed")
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-		--player:UsePill(PillEffect.PILLEFFECT_TEARS_DOWN, 0, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME | UseFlag.USE_NOANNOUNCER) 
+		--player:UsePill(PillEffect.PILLEFFECT_TEARS_DOWN, 0, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME | UseFlag.USE_NOANNOUNCER)
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()
 			--player:ClearCostumes()

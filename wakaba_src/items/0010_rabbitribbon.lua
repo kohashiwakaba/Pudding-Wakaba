@@ -301,7 +301,7 @@ function wakaba:ShouldChargeRabbitRibbon(player)
 end
 
 function wakaba:RoomClear_RabbitRibbon(rng, pos)
-	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+	wakaba.ForAllPlayers(function (player)---@param player EntityPlayer
 		if not player:IsCoopGhost() then
 			if wakaba:ShouldChargeRabbitRibbon(player) then
 				wakaba:addRabbitCharge(player)
