@@ -682,12 +682,16 @@ function wakaba:findNearestEntityByPartition(entity, partition)
 	return ret
 end
 
-function wakaba:findRandomEnemy(rng, ignoreFriendly)
+function wakaba:findRandomEnemy(rootEntity, rng, ignoreFriendly)
 	if rng == nil then
 		rng = RNG()
 		rng:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
 	end
-	local entities = Isaac.FindInRadius(entity.Position,2000,partition)
+	local position = Vector(0, 0)
+	if rootEntity then
+		position = rootEntity.Position
+	end
+	local entities = Isaac.FindInRadius(position,2000,partition)
 	local entries = {}
 	local target = nil
 	for index, entity in ipairs(entities) do

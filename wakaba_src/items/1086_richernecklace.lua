@@ -10,7 +10,7 @@ function wakaba:TearDeath_RicherNecklace(tear)
 		local player = wakaba:getPlayerFromTear(tear)
 		if player and player:HasCollectible(wakaba.Enums.Collectibles.RICHERS_NECKLACE) then
 			local projectile = Isaac.Spawn(EntityType.ENTITY_PROJECTILE, ProjectileVariant.PROJECTILE_TEAR, 0, tear.Position, Vector.Zero, player):ToProjectile()
-			local enemy = wakaba:findRandomEnemy(player:GetCollectibleRNG(wakaba.Enums.Collectibles.RICHERS_NECKLACE), true)
+			local enemy = wakaba:findRandomEnemy(tear, player:GetCollectibleRNG(wakaba.Enums.Collectibles.RICHERS_NECKLACE), true)
 			if enemy then
 				projectile.Target = enemy
 			end
