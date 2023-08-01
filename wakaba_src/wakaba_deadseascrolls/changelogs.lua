@@ -1,5 +1,56 @@
 
 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v105",
+[[{FSIZE2}general stuff
+added some hud stuff
+- room name display
+- simple hit count
+
+{FSIZE2}balance
+lunar stone no longer use
+soul heart to heal
+and also no longer
+is affected by
+self damage.
+dying through
+self damage
+still affects
+lunar stone
+
+lunar stone gauge is
+recovered by room clears,
+more room clears
+decreases reduction speed
+
+clearing boss rooms
+now recovers lunar stone
+completely, and
+no longer reduces gauge
+
+d6 plus/chaos reverts
+item pedestal state
+to untouched
+
+increases d6 plus
+cooldown from 4 to 6
+
+increase determination ribbon
+force-drop rate to
+2% > 8% (hard),
+0.5% > 2% (normal)
+
+{FSIZE2}tweaks + fixes
+blacklisted cursed trinkets
+from retribution
+to be changed into
+aqua trinkets
+
+fix richer's necklace
+damaging player
+due to errors
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v104",
 [[{FSIZE2}tainted richer changes
 crystal restocks in
