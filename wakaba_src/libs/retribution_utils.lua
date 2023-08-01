@@ -2319,3 +2319,30 @@ function mod:SetFamiliarFireCooldown(familiar, delay)
 		familiar.FireCooldown = delay
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local function clearCaches()
+	mod.roomEntitiesCache = nil
+	mod.roomPlayersCache = nil
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, clearCaches)
+mod:AddCallback(ModCallbacks.MC_POST_GAME_END, clearCaches)
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, clearCaches)
