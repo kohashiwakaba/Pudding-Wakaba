@@ -300,3 +300,10 @@ function wakaba:TrySetAlbireoRoomDoor()
 		end
 	end
 end
+
+function wakaba:InitCrystalRestock_WinterAlbireo(slot)
+	if wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) and wakaba:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+		return {extraCount = 2}
+	end
+end
+wakaba:AddCallback(wakaba.Callback.PRE_EVALUATE_CRYSTAL_RESTOCK, wakaba.InitCrystalRestock_WinterAlbireo)
