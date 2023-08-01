@@ -180,8 +180,19 @@ function wakaba:EffectUpdate_LunarStone(effect)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_LunarStone, EffectVariant.SMOKE_CLOUD)
 
+function wakaba:AlterPlayerDamage_LunarStone(player, amount, flags, source, cooldown)
+	if wakaba:hasLunarStone(player)
+	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
+  and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
+    local data = player:GetData()
+		data.wakaba.reducelunargauge = true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakaba.AlterPlayerDamage_LunarStone)
+
 function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldown)
-	if wakaba:hasLunarStone(player)	then
+	local data = player:GetData()
+	if wakaba:hasLunarStone(player)	and data.wakaba.reducelunargauge then
 		wakaba:addCurrentLunarGauge(player, -40000)
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
@@ -210,6 +221,7 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 		SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)
 		player:EvaluateItems()
+		data.wakaba.reducelunargauge = false
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_LunarStone)
@@ -268,8 +280,10 @@ function wakaba:RoomClear_LunarStone(rng, pos)
 			if data.wakaba.lunargauge < 1000000 then
 				if roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_BOSSRUSH then
 					data.wakaba.lunargauge = 1000000
+					wakaba:setLunarGaugeSpeed(player, 0)
 				else
 					data.wakaba.lunargauge = data.wakaba.lunargauge + 30000
+					wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 3)
 				end
 			end
 		end
