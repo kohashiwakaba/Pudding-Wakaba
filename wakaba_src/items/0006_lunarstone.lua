@@ -200,18 +200,6 @@ function wakaba:TakeDamage_LunarStone(entity, amount, flags, source, cooldown)
 end
 --wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_LunarStone, EntityType.ENTITY_PLAYER)
 
-
-function wakaba:PlayerRender_LunarStone(player)
-	wakaba:GetPlayerEntityData(player)
-	local data = player:GetData()
-	if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and wakaba.G:GetHUD():IsVisible() then
-		local x = Isaac.WorldToScreen(player.Position).X - 5 - wakaba.G.ScreenShakeOffset.X
-		local y = Isaac.WorldToScreen(player.Position).Y - 60 - wakaba.G.ScreenShakeOffset.Y
-		wakaba.f:DrawString(((data.wakaba.lunargauge // 1000) / 10), x, y ,KColor(0.9,0.8,1,1,0,0,0),0,true)
-	end
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_LunarStone)
-
 function wakaba:Cache_LunarStone(player, cacheFlag)
   if wakaba:hasLunarStone(player) then
 		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
@@ -258,18 +246,20 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
 
 
 function wakaba:RoomClear_LunarStone(rng, pos)
-	if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
-		for i = 0, wakaba.G:GetNumPlayers() - 1 do
-			local player = wakaba.G:GetPlayer(i)
-			if wakaba:hasLunarStone(player) then
-				wakaba:GetPlayerEntityData(player)
-				local data = player:GetData()
-				if data.wakaba.lunargauge < 1000000 then
+	local roomType = wakaba.G:GetRoom():GetType()
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if wakaba:hasLunarStone(player) then
+			wakaba:GetPlayerEntityData(player)
+			local data = player:GetData()
+			if data.wakaba.lunargauge < 1000000 then
+				if roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_BOSSRUSH then
 					data.wakaba.lunargauge = 1000000
+				else
+					data.wakaba.lunargauge = data.wakaba.lunargauge + 30000
 				end
 			end
 		end
-	end
+	end)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_LunarStone)
 
