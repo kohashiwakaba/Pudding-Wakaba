@@ -23,7 +23,7 @@ function wakaba:GameStart_RetributionCompat()
 			end
 		end)
 
-
+		wakaba:BulkAppend(wakaba.Blacklists.AquaTrinkets, mod.CursedTrinketPool)
 
 		rtReplaced = true
 	end

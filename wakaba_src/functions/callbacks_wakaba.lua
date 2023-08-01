@@ -193,6 +193,20 @@ wakaba.Callback = {
 	-- - `ExtraCount` : `integer` - extra counts for rerolls
 	-- - `SubType` : `CrystalRestockSubtype` - subType to change into
 	PRE_EVALUATE_CRYSTAL_RESTOCK = {},
+
+	-- ---
+	-- PRE_EVALUATE_AQUA_TRINKET
+	-- ---
+	-- Called from MC_POST_PICKUP_INIT, right before initializing Aqua Trinkets should be set
+	--
+	-- ---
+	-- Parameters :
+	-- - `TrinketType` -
+	--
+	-- ---
+	-- Returned values : Retruns with table with following elements
+	-- - `shouldPreventAqua` : `boolean` -
+	PRE_EVALUATE_AQUA_TRINKET = {},
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
