@@ -507,13 +507,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Conquest)
 
 function wakaba:HUD_BookOfConquest()
 	local hasConquest = false
-	wakaba.ForAllPlayers(function(player)
+	wakaba:ForAllPlayers(function(player)
 		if player.FrameCount > 7 then
 			hasConquest = hasConquest or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-			--[[ local books = player:GetData().wakaba and player:GetData().wakaba.books
+			local books = player:GetData().wakaba and player:GetData().wakaba.books
 			if books and type(books) == "table" then
 				hasConquest = hasConquest or wakaba:has_value(books, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-			end ]]
+			end
 		end
 	end)
 	if hasConquest then
@@ -534,4 +534,4 @@ function wakaba:HUD_BookOfConquest()
 		return tab
 	end
 end
-wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_BookOfConquest)
+--wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_BookOfConquest)

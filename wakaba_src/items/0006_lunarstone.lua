@@ -261,7 +261,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
 
 function wakaba:RoomClear_LunarStone(rng, pos)
 	local roomType = wakaba.G:GetRoom():GetType()
-	wakaba.ForAllPlayers(function (player)---@param player EntityPlayer
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 		if wakaba:hasLunarStone(player) then
 			wakaba:GetPlayerEntityData(player)
 			local data = player:GetData()

@@ -24,7 +24,7 @@ local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	local hasTrinketDropped = false
 	if wakaba.G:GetRoom():GetFrameCount() >= 0 then
-		wakaba.ForAllPlayers(function(player) ---@param player EntityPlayer
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 			if not player:IsCoopGhost() then
 				local lastTrigger = player:GetLastActionTriggers()
 				if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
@@ -79,7 +79,7 @@ function wakaba:PickupRender_AquaTrinkets(pickup, offset)
 		rc = 1 - (math.sin(Game():GetFrameCount() / 6)/5)-0.2
 		rb = 1 - math.sin(Game():GetFrameCount() / 6)
 		ntcolor.A = rt
-	
+
 		sprite.Color = ntcolor
 	end
 end

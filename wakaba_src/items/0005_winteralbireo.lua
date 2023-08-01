@@ -174,7 +174,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 				Positions = {},
 			}
 
-			wakaba.ForAllPlayers(function(player)
+			wakaba:ForAllPlayers(function(player)
 				table.insert(catchDebugRoom.Positions, {
 					Player = player,
 					Position = Vector(player.Position.X, player.Position.Y),

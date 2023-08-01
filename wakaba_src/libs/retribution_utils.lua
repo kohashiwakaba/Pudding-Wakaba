@@ -1,15 +1,19 @@
 --[[
   Retribtion core utilities from Xalum
+  changed 'retribution' naming into 'richer' to prevent confusion
  ]]
 
 local mod = wakaba
 local game = Game()
 
-function mod.Bound(value, lower, upper) 	return math.max(lower, math.min(upper, value)) end
-function mod.LuckBonus(luck, max, bonus) 	return (mod.Bound(luck, 0, max) / max) * bonus end
-function mod.Lerp(init, target, percentage)	return init + (target - init) * percentage end
-function mod.Round(value, step)				return math.floor((value / step) + 0.5) * step end
-function mod.Any(v, ...)
+function mod:Bound(value, lower, upper) 	return math.max(lower, math.min(upper, value)) end
+function mod:LuckBonus(luck, max, bonus) 	return (mod:Bound(luck, 0, max) / max) * bonus end
+function mod:StackChance(chance, amount)	return 1 - (1 - chance) ^ amount end
+function mod:Lerp(init, target, percentage)	return init + (target - init) * percentage end
+function mod:Round(value, step)				return math.floor((value / step) + 0.5) * step end
+function mod:RoundVector(vec, step)			return Vector(mod:Round(vec.X, step or 1), mod:Round(vec.Y, step or 1)) end
+function mod:VectorModulo(vec, modValue)	return Vector(vec.X % modValue, vec.Y % modValue) end
+function mod:Any(v, ...)
 	local options = {...}
 	for _, o in pairs(options) do
 		if o == v then return true end
@@ -17,7 +21,7 @@ function mod.Any(v, ...)
 	return false
 end
 
-function mod.CountBits(mask)
+function mod:CountBits(mask)
 	local count = 0
 	while mask ~= 0 do
 		count = count + 1
@@ -27,24 +31,24 @@ function mod.CountBits(mask)
 	return count
 end
 
-function mod.GetRoomEntities()
+function mod:GetRoomEntities()
 	mod.roomEntitiesCache = mod.roomEntitiesCache or Isaac.GetRoomEntities()
 	return mod.roomEntitiesCache
 end
 
-function mod.GetRoomPlayers()
+function mod:GetRoomPlayers()
 	if not mod.roomPlayersCache then
 		mod.roomPlayersCache = {}
-		for _, player in pairs(Isaac.FindByType(1)) do
-			table.insert(mod.roomPlayersCache, player:ToPlayer())
+		for i = 0, game:GetNumPlayers() - 1 do
+			table.insert(mod.roomPlayersCache, Isaac.GetPlayer(i))
 		end
 	end
 
 	return mod.roomPlayersCache
 end
 
-function mod.ForAllPlayers(func, typeFilter)
-	for _, player in pairs(mod.GetRoomPlayers()) do
+function mod:ForAllPlayers(func, typeFilter)
+	for _, player in pairs(mod:GetRoomPlayers()) do
 		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
 			local returnValue = func(player)
 
@@ -55,41 +59,62 @@ function mod.ForAllPlayers(func, typeFilter)
 	end
 end
 
-function mod.ForAllEntities(func)
-	for _, entity in pairs(mod.GetRoomEntities()) do
-		func(entity)
+function mod:ForAllEntities(func, invalidate)
+	for _, entity in pairs(mod:GetRoomEntities()) do
+		if entity:Exists() then
+			func(entity)
+		end
+	end
+
+	if invalidate then
+		mod.roomEntitiesCache = nil
 	end
 end
 
-function mod.AnyPlayerHasTrinket(id)
-	local returnValue = mod.ForAllPlayers(function(player)
+function mod:AnyPlayerHasTrinket(id)
+	local returnValue = mod:ForAllPlayers(function(player)
 		if player:HasTrinket(id) then
-			return true
+			return player
 		end
 	end)
 
 	return returnValue or false
 end
 
-function mod.AnyPlayerHasCollectible(id)
-	local returnValue = mod.ForAllPlayers(function(player)
+function mod:AnyPlayerHasCollectible(id)
+	local returnValue = mod:ForAllPlayers(function(player)
 		if player:HasCollectible(id) then
-			return true
+			return player
 		end
 	end)
 
 	return returnValue or false
 end
 
-function mod.InitFamiliarRNG(familiar, item)
-	local data = familiar:GetData()
-	data.rng = RNG()
-	data.rng:SetSeed(familiar.InitSeed, 42)
+function mod:GetGlobalTrinketMultiplier(id)
+	local power = 0
+	mod:ForAllPlayers(function(player)
+		power = power + player:GetTrinketMultiplier(id)
+	end)
 
+	return power
+end
+
+function mod:GetGlobalCollectibleNum(id)
+	local power = 0
+	mod:ForAllPlayers(function(player)
+		power = power + player:GetCollectibleNum(id)
+	end)
+
+	return power
+end
+
+function mod:InitFamiliarRNG(familiar, item)
+	familiar:GetData().rng = mod:RNG(familiar.InitSeed)
 	familiar.Player:GetCollectibleRNG(item):Next()
 end
 
-function mod.GridAlignPosition(pos)
+function mod:GridAlignPosition(pos)
 	local x = pos.X
 	local y = pos.Y
 
@@ -111,40 +136,46 @@ local function ShouldGetNewTargetPosition(entity)
 	)
 end
 
-function mod.TofuPathfind(entity, targetPosition, speedLimit)
-	local data = entity:GetData()
+function mod:GetRoomTileValues(targetPosition)
+	local valueByTile = {}
+	local room = game:GetRoom()
+	local loopingPositions = {targetPosition}
+	local targetPosition = mod:GridAlignPosition(targetPosition)
+	local index = 0
 
-	if ShouldGetNewTargetPosition(entity) then
-		local room = game:GetRoom()
-		local entityPosition = mod.GridAlignPosition(entity.Position)
-		local targetPosition = mod.GridAlignPosition(targetPosition)
+	while #loopingPositions > 0 do
+		local temporaryLoop = {}
 
-		local loopingPositions = {targetPosition}
-		local indexedGrids = {}
+		for _, position in pairs(loopingPositions) do
+			if room:IsPositionInRoom(position, 0) then
+				if room:GetGridCollisionAtPos(position) == GridCollisionClass.COLLISION_NONE or index == 0 then
+					local gridIndex = room:GetGridIndex(position)
+					if not valueByTile[gridIndex] then
+						valueByTile[gridIndex] = index
 
-		local index = 0
-		while #loopingPositions > 0 do
-			local temporaryLoop = {}
-
-			for _, position in pairs(loopingPositions) do
-				if room:IsPositionInRoom(position, 0) then
-					if room:GetGridCollisionAtPos(position) == GridCollisionClass.COLLISION_NONE or index == 0 then
-						local gridIndex = room:GetGridIndex(position)
-						if not indexedGrids[gridIndex] then
-							indexedGrids[gridIndex] = index
-
-							for i = 1, 4 do
-								table.insert(temporaryLoop, position + Vector(40, 0):Rotated(i * 90))
-							end
+						for i = 1, 4 do
+							table.insert(temporaryLoop, position + Vector(40, 0):Rotated(i * 90))
 						end
 					end
 				end
 			end
-			
-			index = index + 1
-			loopingPositions = temporaryLoop
 		end
 
+		index = index + 1
+		loopingPositions = temporaryLoop
+	end
+
+	return valueByTile
+end
+
+--[[
+function mod:TofuPathfind(entity, targetPosition, speedLimit)
+	local data = entity:GetData()
+
+	if ShouldGetNewTargetPosition(entity) then
+		local room = game:GetRoom()
+		local entityPosition = mod:GridAlignPosition(entity.Position)
+		local indexedGrids = mod:GetRoomTileValues(targetPosition)
 		local entityIndex = room:GetGridIndex(entityPosition)
 		local index = indexedGrids[entityIndex] or 99999
 		local choice = entityPosition
@@ -165,25 +196,59 @@ function mod.TofuPathfind(entity, targetPosition, speedLimit)
 
 	if data.targetGridPosition then
 		local targetVelocity = (data.targetGridPosition - entity.Position):Resized(speedLimit)
-		entity.Velocity = mod.Lerp(entity.Velocity, targetVelocity, 0.4)
+		entity.Velocity = mod:Lerp(entity.Velocity, targetVelocity, 0.4)
 	else
-		entity.Velocity = mod.Lerp(entity.Velocity, Vector.Zero, 0.8)
+		entity.Velocity = mod:Lerp(entity.Velocity, Vector.Zero, 0.8)
+	end
+end
+ ]]
+
+function mod:RandomPathfind(entity, speedLimit)
+	local data = entity:GetData()
+
+	if entity.FrameCount % 60 == 0 or not data.direction or entity:CollidesWithGrid() then
+		local room = game:GetRoom()
+
+		local i = 0
+		repeat
+			data.direction = RandomVector():Resized(speedLimit)
+			i = i + 1
+
+			local testPosition = entity.Position + data.direction:Resized(entity.Size * 2)
+		until (room:IsPositionInRoom(testPosition, 0) and room:GetGridCollisionAtPos(testPosition) == GridCollisionClass.COLLISION_NONE) or i >= 32
+
+		if i >= 32 then
+			data.direction = (room:GetCenterPos() - entity.Position):Resized(speedLimit)
+		end
+	end
+
+	local targetPosition = entity.Position + data.direction
+	local targetVelocity = (targetPosition - entity.Position):Resized(speedLimit)
+
+	entity.Velocity = mod:Lerp(entity.Velocity, targetVelocity, 0.1)
+end
+
+function mod:HasLineOfSight(position1, position2, checkMode)
+	return game:GetRoom():CheckLine(position1, position2, checkMode or 0, 900)
+end
+
+function mod:GenericPathfind(npc, speedLimit, target, lerpStrengthOverride)
+	local data = npc:GetData()
+	local targetPosition = target or npc:GetPlayerTarget().Position
+
+	if npc:CollidesWithGrid() then
+		data.lastGridCollision = npc.FrameCount
+	end
+
+	if not (data.lastGridCollision and data.lastGridCollision + 15 > npc.FrameCount) and mod:HasLineOfSight(npc.Position, targetPosition) then
+		local targetVelocity = (targetPosition - npc.Position):Resized(speedLimit)
+		npc.Velocity = mod:Lerp(npc.Velocity, targetVelocity, lerpStrengthOverride or 0.2)
+	else
+		npc.Pathfinder:FindGridPath(targetPosition, speedLimit / 8, 1, false)
 	end
 end
 
-mod.KnifeVariant = {
-	MOMS_KNIFE = 0,
-	BONE_CLUB = 1,
-	BONE_SCYTHE = 2,
-	DONKEY_JAWBONE = 3,
-	BAG_OF_CRAFTING = 4,
-	SUMPTORIUM = 5,
-	NOTCHED_AXE = 9,
-	SPIRIT_SWORD = 10,
-	TECH_SWORD = 11,
-}
-
-function mod.IsKnifeSwingable(knife)
+function mod:IsKnifeSwingable(knife)
 	return (
 		knife.Variant == mod.KnifeVariant.BONE_CLUB or
 		knife.Variant == mod.KnifeVariant.BONE_SCYTHE or
@@ -195,7 +260,7 @@ function mod.IsKnifeSwingable(knife)
 	)
 end
 
-function mod.IsKnifeSwinging(knife)
+function mod:IsKnifeSwinging(knife)
 	local animation = knife:GetSprite():GetAnimation()
 
 	return (
@@ -215,7 +280,7 @@ function mod.IsKnifeSwinging(knife)
 	)
 end
 
-function mod.GetEntityFromRef(reference)
+function mod:GetEntityFromRef(reference)
 	if reference.Entity then
 		for _, entity in pairs(Isaac.FindByType(reference.Type, reference.Variant, -1)) do
 			if entity.InitSeed == reference.Entity.InitSeed then return entity end
@@ -224,7 +289,7 @@ function mod.GetEntityFromRef(reference)
 	return nil
 end
 
-function mod.CalcPlayerDamageMult(player, negativeOnly)
+function mod:CalcPlayerDamageMult(player, negativeOnly)
 	local mult = 1
 	local effects = player:GetEffects()
 
@@ -285,17 +350,22 @@ function mod.CalcPlayerDamageMult(player, negativeOnly)
 	return mult
 end
 
-function mod.GetExpectedFamiliarNum(player, item)
+function mod:GetExpectedFamiliarNum(player, item)
 	if not player or not item then return 0 end
 	return player:GetCollectibleNum(item) + player:GetEffects():GetCollectibleEffectNum(item)
 end
 
-function mod.GetItem(id)
+function mod:GetItem(id)
 	local config = Isaac.GetItemConfig()
 	return config:GetCollectible(id)
 end
 
-function mod.CalcPlayerHealth(player, lite)
+function mod:GetTrinketConfig(id)
+	local config = Isaac.GetItemConfig()
+	return config:GetTrinket(id)
+end
+
+function mod:CalcPlayerHealth(player, lite)
 	if lite then
 		return player:GetHearts() + player:GetSoulHearts()
 	else
@@ -303,7 +373,7 @@ function mod.CalcPlayerHealth(player, lite)
 	end
 end
 
-function mod.IsDamageOnBlackHeart(player, damage, flags)
+function mod:IsDamageOnBlackHeart(player, damage, flags)
 	if flags & DamageFlag.DAMAGE_RED_HEARTS > 0 and player:GetHearts() > 0 then
 		return false
 	end
@@ -331,7 +401,7 @@ function mod.IsDamageOnBlackHeart(player, damage, flags)
 	return black
 end
 
-function mod.GetTearPlayer(tear, strict)
+function mod:GetTearPlayer(tear, strict)
 	local parent = tear.SpawnerEntity or tear.Parent or Isaac.GetPlayer()
 	local familiar = parent:ToFamiliar()
 
@@ -341,8 +411,9 @@ function mod.GetTearPlayer(tear, strict)
 
 	return parent:ToPlayer() or ((not strict) and Isaac.GetPlayer())
 end
+
 --[[
-function mod.GetCrutchIgnoredFlags()
+function mod:GetCrutchIgnoredFlags()
 	return (
 		mod.TEARFLAG.CATARACT |
 		mod.TEARFLAG.BOOSTER_SHOT |
@@ -354,16 +425,19 @@ function mod.GetCrutchIgnoredFlags()
 		mod.TEARFLAG.REFLUX_DEFUSED |
 		mod.TEARFLAG.TECH_OMICRON |
 		mod.TEARFLAG.EVES_NAIL_POLISH |
-		mod.TEARFLAG.CONJUNCTIVITIS
+		mod.TEARFLAG.CONJUNCTIVITIS |
+		mod.TEARFLAG.GLORIOSA
 	)
 end
+ ]]
 
-function mod.TearHasCustomEffect(tear, isCrutchCheck)
+--[[
+function mod:TearHasCustomEffect(tear, isCrutchCheck)
 	local testFlags = mod.TEARFLAG.ALL
-	local myFlags = mod.GetRicherTearFlags(tear)
+	local myFlags = mod:GetRicherTearFlags(tear)
 
 	if isCrutchCheck then
-		testFlags = testFlags - mod.GetCrutchIgnoredFlags()
+		testFlags = testFlags - mod:GetCrutchIgnoredFlags()
 
 		if myFlags & mod.TEARFLAG.FORCE_CRUTCH > 0 then
 			return true
@@ -373,32 +447,33 @@ function mod.TearHasCustomEffect(tear, isCrutchCheck)
 	return myFlags & testFlags > 0
 end
 
-function mod.AddRicherTearFlags(tear, flags)
+function mod:AddRicherTearFlags(tear, flags)
 	local data = tear:GetData()
 	data.richer_TearFlags = data.richer_TearFlags and data.richer_TearFlags | flags or flags
 end
 
-function mod.ClearRicherTearFlags(tear, flags)
+function mod:ClearRicherTearFlags(tear, flags)
 	local data = tear:GetData()
 	data.richer_TearFlags = data.richer_TearFlags and data.richer_TearFlags & ~ flags or 0
 end
 
-function mod.HasRicherTearFlags(tear, flags)
+function mod:HasRicherTearFlags(tear, flags)
 	local data = tear:GetData()
 	return (data.richer_TearFlags or 0) & flags > 0
 end
 
-function mod.GetRicherTearFlags(tear)
+function mod:GetRicherTearFlags(tear)
 	return tear:GetData().richer_TearFlags or 0
 end
 
-function mod.ClearCustomTearEffects(tear)
+function mod:ClearCustomTearEffects(tear)
 	tear:GetData().richer_TearFlags = 0
 end
 
-function mod.WipeRicherTearFlags(tear)
-	mod.ClearCustomTearEffects(tear)
+function mod:WipeRicherTearFlags(tear)
+	mod:ClearCustomTearEffects(tear)
 end
+ ]]
 
 mod.PlayerMimickingFamiliars = {
 	[FamiliarVariant.INCUBUS] 			= true,
@@ -407,7 +482,7 @@ mod.PlayerMimickingFamiliars = {
 	[FamiliarVariant.UMBILICAL_BABY] 	= true,
 }
 
-function mod.WasTearFiredByPlayerMimic(tear, explicit)
+function mod:WasTearFiredByPlayerMimic(tear, explicit)
 	if not tear.SpawnerEntity then
 		return false
 	end
@@ -425,26 +500,29 @@ function mod.WasTearFiredByPlayerMimic(tear, explicit)
 	return false
 end
 
-function mod.ShouldTearGetEffects(tear)
+--[[
+function mod:ShouldTearGetEffects(tear)
 	local data = tear:GetData()
 	local priority = mod.TEAR_VARIANT_PRIORITY[tear.Variant] or 0
 
 	return (
-		mod.WasTearFiredByPlayerMimic(tear) and
+		mod:WasTearFiredByPlayerMimic(tear) and
 		priority < mod.TEAR_VARIANT_PRIORITY.TEAR_EFFECTS_THRESHOLD and
-		not tear:HasTearFlags(TearFlags.TEAR_CHAIN)
+		not tear:HasTearFlags(TearFlags.TEAR_CHAIN) and
+		not data.richer_Detoxified and
+		not data.richer_IsMadOnion
 	)
 end
 
-function mod.CanTearBecomeVariant(current, target)
+function mod:CanTearBecomeVariant(current, target)
 	return (
 		current ~= target and
 		(mod.TEAR_VARIANT_PRIORITY[target] or 0) > (mod.TEAR_VARIANT_PRIORITY[current] or 0)
 	)
 end
 
-function mod.IsRicherTearVariant(variant)
-	for _, testVariant in pairs(mod.TEARS) do
+function mod:IsRicherTearVariant(variant)
+	for _, testVariant in pairs(mod.TearVariant) do
 		if variant == testVariant then
 			return true
 		end
@@ -453,17 +531,30 @@ end
  ]]
 
 --[[
-function mod.IsTearBloody(tear)
-	return mod.BLOODY_TEAR_VARIANTS[tear.Variant]
+function mod:IsTearBloody(tear)
+	return mod.BloodyTearVariants[tear.Variant]
 end
- ]]
 
---[[
-function mod.TryChangeTearVariant(tear, variant, ignorePriority)
-	if mod.CanTearBecomeVariant(tear.Variant, variant) or (ignorePriority and tear.Variant ~= variant) then 
+function mod:TryMakeTearBloody(tear, defaultTargetVariant)
+	if defaultTargetVariant then
+		if mod:TryChangeTearVariant(tear, defaultTargetVariant) then
+			return true
+		end
+	end
+
+	local bloodyVariant = mod.BloodyTearVariants[tear.Variant]
+	if bloodyVariant and mod:TryChangeTearVariant(tear, bloodyVariant) then
+		return true
+	end
+
+	return false
+end
+
+function mod:TryChangeTearVariant(tear, variant, ignorePriority)
+	if mod:CanTearBecomeVariant(tear.Variant, variant) or (ignorePriority and tear.Variant ~= variant) then
 		tear:ChangeVariant(variant)
 
-		if mod.IsRicherTearVariant(variant) then
+		if mod:IsRicherTearVariant(variant) then
 			tear:Update()
 		end
 
@@ -473,11 +564,11 @@ function mod.TryChangeTearVariant(tear, variant, ignorePriority)
 	return false
 end
 
-function mod.TryMultipleTearVariants(tear, variants)
+function mod:TryMultipleTearVariants(tear, variants)
 	for i = 1, #variants do
 		local variant = variants[i]
 
-		if mod.TryChangeTearVariant(tear, variant) then
+		if mod:TryChangeTearVariant(tear, variant) then
 			break
 		end
 	end
@@ -487,13 +578,13 @@ mod.TearAnimScaleThresholds 		= {0, 0.3, 0.55, 0.675, 0.80, 0.925, 1.05, 1.175, 
 mod.StoneTearAnimScaleThresholds 	= {0, 0.675, 0.925, 1.175, 1.675, 2.175}
 mod.ThornTearAnimScaleThresholds	= {0, 0.675, 0.925, 1.425, 2.175}
 
-function mod.GetTearAnimationNumber(tear)
+function mod:GetTearAnimationNumber(tear)
 	local size = 1
 	local list = mod.TearAnimScaleThresholds
 
-	if mod.STONE_TEAR_VARIANTS[tear.Variant] then
+	if mod.StoneTearVariants[tear.Variant] then
 		list = mod.StoneTearAnimScaleThresholds
-	elseif mod.THORN_TEAR_VARIANTS[tear.Variant] then
+	elseif mod.ThornTearVariants[tear.Variant] then
 		list = mod.ThornTearAnimScaleThresholds
 	end
 
@@ -509,67 +600,41 @@ end
 
 --[[
 mod.TearSplashes = {
-	[mod.TEARS.ARROW_OF_LIGHT]				= "gfx/effects/arrowoflight_tearpoof.png",
-	[mod.TEARS.ARROW_OF_LIGHT_BLOOD]		= "gfx/effects/arrowoflight_blood_tearpoof.png",
-	[mod.TEARS.ARROW_OF_LIGHT_CUPID]		= "gfx/effects/arrowoflight_tearpoof.png",
-	[mod.TEARS.ARROW_OF_LIGHT_CUPID_BLOOD]	= "gfx/effects/arrowoflight_blood_tearpoof.png",
-	[mod.TEARS.TOOL]			= "gfx/effects/tool_tearpoof.png",
-	[mod.TEARS.TOOL_CUPID]		= "gfx/effects/tool_tearpoof.png",
-	[mod.TEARS.EARWAX]			= "gfx/effects/earwax_tearpoof.png",
-	[mod.TEARS.CATARACT]		= "gfx/effects/cataract_tearpoof.png",
-	[mod.TEARS.TOFU]			= "gfx/effects/tofu_tearpoof.png",
-	[mod.TEARS.REFLUX]			= "gfx/effects/reflux_tearpoof.png",
-	[mod.TEARS.REFLUX_BLOOD]	= "gfx/effects/reflux_blood_tearpoof.png",
-	[mod.TEARS.BAPTISMAL_SHELL]	= "gfx/effects/baptism_tearpoof.png",
-	[mod.TEARS.CHOLERA]		 	= "gfx/effects/cholera_tearpoof.png",
-	[mod.TEARS.MELITODES]		= "gfx/effects/honey_tearpoof.png",
-	[mod.TEARS.MAD_ONION]		= "gfx/effects/redonion_tearpoof.png",
-	[mod.TEARS.EVES_NAIL_POLISH]		= "gfx/effects/evesnailpolish_tearpoof.png",
-	[mod.TEARS.EVES_NAIL_POLISH_CUPID]	= "gfx/effects/evesnailpolish_tearpoof.png",
+	[mod.TearVariant.ARROW_OF_LIGHT]			= "gfx/effects/arrowoflight_tearpoof.png",
+	[mod.TearVariant.ARROW_OF_LIGHT_BLOOD]		= "gfx/effects/arrowoflight_blood_tearpoof.png",
+	[mod.TearVariant.ARROW_OF_LIGHT_CUPID]		= "gfx/effects/arrowoflight_tearpoof.png",
+	[mod.TearVariant.ARROW_OF_LIGHT_CUPID_BLOOD]= "gfx/effects/arrowoflight_blood_tearpoof.png",
+	[mod.TearVariant.TOOL]				= "gfx/effects/tool_tearpoof.png",
+	[mod.TearVariant.TOOL_CUPID]		= "gfx/effects/tool_tearpoof.png",
+	[mod.TearVariant.EARWAX]			= "gfx/effects/earwax_tearpoof.png",
+	[mod.TearVariant.CATARACT]			= "gfx/effects/cataract_tearpoof.png",
+	[mod.TearVariant.TOFU]				= "gfx/effects/tofu_tearpoof.png",
+	[mod.TearVariant.REFLUX]			= "gfx/effects/reflux_tearpoof.png",
+	[mod.TearVariant.REFLUX_BLOOD]		= "gfx/effects/reflux_blood_tearpoof.png",
+	[mod.TearVariant.BAPTISMAL_SHELL]	= "gfx/effects/baptism_tearpoof.png",
+	[mod.TearVariant.CHOLERA]		 	= "gfx/effects/cholera_tearpoof.png",
+	[mod.TearVariant.MELITODES]			= "gfx/effects/honey_tearpoof.png",
+	[mod.TearVariant.MAD_ONION]			= "gfx/effects/redonion_tearpoof.png",
+	[mod.TearVariant.EVES_NAIL_POLISH]			= "gfx/effects/evesnailpolish_tearpoof.png",
+	[mod.TearVariant.EVES_NAIL_POLISH_CUPID]	= "gfx/effects/evesnailpolish_tearpoof.png",
 }
 
-for variant, graphics in pairs(mod.TearSplashes) do
-	mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, function(_, tear)
-		if tear:IsDead() then
-			tear.Visible = false
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, entity)
+	if mod.TearSplashes[entity.Variant] then
+		local poof = Isaac.Spawn(1000, 12, 0, entity.Position, Vector.Zero, entity)
+		poof.Color = entity.Color
 
-			local poof = Isaac.Spawn(1000, 12, 0, tear.Position, Vector.Zero, tear)
-			poof.Color = tear.Color
+		local sprite = poof:GetSprite()
+		sprite:Load("gfx/effect_tearpoof_legacy.anm2", true)
+		sprite:ReplaceSpritesheet(0, mod.TearSplashes[entity.Variant])
+		sprite:LoadGraphics()
+		sprite:Play("Poof")
+		sprite.Offset = entity.PositionOffset / 1.5
 
-			local sprite = poof:GetSprite()
-			sprite:Load("gfx/effect_tearpoof_legacy.anm2", true)
-			sprite:ReplaceSpritesheet(0, graphics)
-			sprite:LoadGraphics()
-			sprite:Play("Poof")
-			sprite.Offset = tear.PositionOffset / 1.5
-
-			sfx:Play(SoundEffect.SOUND_TEARIMPACTS)
-		end
-	end, variant)
-
-	mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, function(_, tear, collider)
-		if mod.ShouldTearSpawnPoofOnEntityCollision(tear, collider) then
-			local poof = Isaac.Spawn(1000, 12, 0, tear.Position, Vector.Zero, tear)
-			poof.Color = tear.Color
-
-			local sprite = poof:GetSprite()
-			sprite:Load("gfx/effect_tearpoof_legacy.anm2", true)
-			sprite:ReplaceSpritesheet(0, graphics)
-			sprite:LoadGraphics()
-			sprite:Play("Poof")
-			sprite.Offset = tear.PositionOffset / 1.5
-
-			sfx:Play(SoundEffect.SOUND_TEARIMPACTS)
-		end
-	end, variant)
-end
+		sfx:Play(SoundEffect.SOUND_TEARIMPACTS)
+	end
+end, EntityType.ENTITY_TEAR)
  ]]
---[[
-mod.EFFECT_VARIANTS	= {}
-mod.EFFECT_SUBTYPES = {}
-mod.EFFECTS 		= {} -- Don't ask
-
-SoundEffect.SOUND_ERROR_BUZZ = SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ -- Fuck you
 
 mod.UnlockBlockingSeedEffects = {
 	SeedEffect.SEED_INFINITE_BASEMENT,
@@ -598,7 +663,8 @@ mod.UnlockBlockingSeedEffects = {
 	SeedEffect.SEED_SUPER_HOT,
 }
 
-function mod.IsSlotCustom(slot)
+--[[
+function mod:IsSlotCustom(slot)
 	for _, variant in pairs(mod.SLOTS) do
 		if slot.Variant == variant then
 			return true
@@ -631,35 +697,37 @@ mod.DirectionToString2 = {
 }
 
 local redhearts = {
-	[HeartSubType.HEART_FULL] = true,
-	[HeartSubType.HEART_HALF] = true,
-	[HeartSubType.HEART_DOUBLEPACK] = true,
-	[HeartSubType.HEART_SCARED] = true,
+	[HeartSubType.HEART_FULL] = 2,
+	[HeartSubType.HEART_HALF] = 1,
+	[HeartSubType.HEART_DOUBLEPACK] = 4,
+	[HeartSubType.HEART_SCARED] = 2,
 }
 
-function mod.CanPickHeart(player, heart)
-	if not player:HasCollectible(mod.ITEMS.BOOTLICKER) then
-		if heart.SubType == HeartSubType.HEART_BLENDED then -- Red + Soul
-			return player:CanPickRedHearts() and player:CanPickSoulHearts()
-		elseif redhearts[heart.SubType] then -- Red
-			return player:CanPickRedHearts()
-		elseif heart.SubType == HeartSubType.HEART_SOUL or heart.SubType == HeartSubType.HEART_HALF_SOUL then
-			return player:CanPickSoulHearts()
-		elseif heart.SubType == HeartSubType.HEART_BLACK then
-			return player:CanPickBlackHearts()
-		elseif heart.SubType == HeartSubType.HEART_GOLDEN then
-			return player:CanPickGoldenHearts()
-		elseif heart.SubType == HeartSubType.HEART_BONE then
-			return player:CanPickBoneHearts()
-		elseif heart.SubType == HeartSubType.HEART_ROTTEN then
-			return player:CanPickRottenHearts()
-		elseif heart.SubType == HeartSubType.HEART_ETERNAL then
-			return true
-		end
-	end
+function mod:IsRedHeart(heartSub)
+	return redhearts[heartSub] -- Returns healAmount
 end
 
-function mod.SetCollectibleEffectNum(player, item, amount)
+function mod:CanPickHeart(player, heart)
+  if heart.SubType == HeartSubType.HEART_BLENDED then -- Red + Soul
+    return player:CanPickRedHearts() and player:CanPickSoulHearts()
+  elseif mod:IsRedHeart(heart.SubType) then -- Red
+    return player:CanPickRedHearts()
+  elseif heart.SubType == HeartSubType.HEART_SOUL or heart.SubType == HeartSubType.HEART_HALF_SOUL then
+    return player:CanPickSoulHearts()
+  elseif heart.SubType == HeartSubType.HEART_BLACK then
+    return player:CanPickBlackHearts()
+  elseif heart.SubType == HeartSubType.HEART_GOLDEN then
+    return player:CanPickGoldenHearts()
+  elseif heart.SubType == HeartSubType.HEART_BONE then
+    return player:CanPickBoneHearts()
+  elseif heart.SubType == HeartSubType.HEART_ROTTEN then
+    return player:CanPickRottenHearts()
+  elseif heart.SubType == HeartSubType.HEART_ETERNAL then
+    return true
+  end
+end
+
+function mod:SetCollectibleEffectNum(player, item, amount)
 	local effects = player:GetEffects()
 	local current = effects:GetCollectibleEffectNum(item)
 
@@ -669,14 +737,19 @@ function mod.SetCollectibleEffectNum(player, item, amount)
 	end
 end
 
-function mod.IncrementCollectibleEffectNum(player, item, decrement)
+function mod:IncrementCollectibleEffectNum(player, item, decrement)
 	local effects = player:GetEffects()
-	effects:AddCollectibleEffect(item, false, decrement and -1 or 1)
+
+	if decrement then
+		effects:RemoveCollectibleEffect(item, 1)
+	else
+		effects:AddCollectibleEffect(item, false, 1)
+	end
 
 	return effects:GetCollectibleEffectNum(item)
 end
 
-function mod.SetTrinketEffectNum(player, trinket, amount)
+function mod:SetTrinketEffectNum(player, trinket, amount)
 	local effects = player:GetEffects()
 	local current = effects:GetTrinketEffectNum(trinket)
 
@@ -686,14 +759,19 @@ function mod.SetTrinketEffectNum(player, trinket, amount)
 	end
 end
 
-function mod.IncrementTrinketEffectNum(player, trinket)
+function mod:IncrementTrinketEffectNum(player, trinket, decrement)
 	local effects = player:GetEffects()
-	effects:AddTrinketEffect(trinket, false, 1)
+
+	if decrement then
+		effects:RemoveTrinketEffect(trinket, 1)
+	else
+		effects:AddTrinketEffect(trinket, false, 1)
+	end
 
 	return effects:GetTrinketEffectNum(trinket)
 end
 
-function mod.GetStageCollisionDamage()
+function mod:GetStageCollisionDamage()
 	local level = game:GetLevel()
 
 	if level:GetStage() >= LevelStage.STAGE4_1 and game.Difficulty < Difficulty.DIFFICULTY_GREED then
@@ -703,7 +781,7 @@ function mod.GetStageCollisionDamage()
 	end
 end
 
-function mod.IsPlayerHoldingTrinket(player, trinket)
+function mod:IsPlayerHoldingTrinket(player, trinket)
 	for i = 0, 1 do
 		if player:GetTrinket(i) == trinket then
 			return i
@@ -713,11 +791,11 @@ function mod.IsPlayerHoldingTrinket(player, trinket)
 	return false
 end
 
-function mod.PlayerHasSmeltedTrinket(player, trinket)
-	return player:HasTrinket(trinket) and not mod.IsPlayerHoldingTrinket(player, trinket)
+function mod:PlayerHasSmeltedTrinket(player, trinket)
+	return player:HasTrinket(trinket) and not mod:IsPlayerHoldingTrinket(player, trinket)
 end
 
-function mod.SmeltHeldTrinket(player, slot)
+function mod:SmeltHeldTrinket(player, slot)
 	local otherSlot = (slot + 1) % 2
 	local otherTrinket = player:GetTrinket(otherSlot)
 
@@ -732,7 +810,7 @@ function mod.SmeltHeldTrinket(player, slot)
 	end
 end
 
-function mod.AddSmeltedTrinket(player, trinket, firstPickup)
+function mod:AddSmeltedTrinket(player, trinket, firstPickup)
 	local trinket0 = player:GetTrinket(0)
 	local trinket1 = player:GetTrinket(1)
 
@@ -752,7 +830,7 @@ mod.DiamondsCards = {
 	Card.CARD_DIAMONDS_2,
 }
 
-function mod.IsCardDiamonds(cardID)
+function mod:IsCardDiamonds(cardID)
 	for _, id in pairs(mod.DiamondsCards) do
 		if id == cardID then
 			return true
@@ -765,7 +843,7 @@ mod.SpadesCards = {
 	Card.CARD_SPADES_2,
 }
 
-function mod.IsCardSpades(cardID)
+function mod:IsCardSpades(cardID)
 	for _, id in pairs(mod.SpadesCards) do
 		if id == cardID then
 			return true
@@ -778,7 +856,7 @@ mod.ClubsCards = {
 	Card.CARD_CLUBS_2,
 }
 
-function mod.IsCardClubs(cardID)
+function mod:IsCardClubs(cardID)
 	for _, id in pairs(mod.ClubsCards) do
 		if id == cardID then
 			return true
@@ -793,7 +871,7 @@ mod.HeartsCards = {
 	Card.CARD_SUICIDE_KING, -- King of Hearts
 }
 
-function mod.IsCardHearts(cardID)
+function mod:IsCardHearts(cardID)
 	for _, id in pairs(mod.HeartsCards) do
 		if id == cardID then
 			return true
@@ -801,38 +879,38 @@ function mod.IsCardHearts(cardID)
 	end
 end
 
-function mod.IsCardSuited(cardID)
-	return mod.IsCardDiamonds(cardID) or mod.IsCardSpades(cardID) or mod.IsCardClubs(cardID) or mod.IsCardHearts(cardID)
+function mod:IsCardSuited(cardID)
+	return mod:IsCardDiamonds(cardID) or mod:IsCardSpades(cardID) or mod:IsCardClubs(cardID) or mod:IsCardHearts(cardID)
 end
  ]]
 
-function mod.IsRealEnemy(entity)
+function mod:IsRealEnemy(entity)
 	return entity:IsEnemy() and entity.Type ~= 33 and entity.Type ~= 292
 end
 
-function mod.IsActiveVulnerableEnemy(entity)
-	return mod.IsRealEnemy(entity) and entity:IsActiveEnemy() and entity:IsVulnerableEnemy()
+function mod:IsActiveVulnerableEnemy(entity)
+	return mod:IsRealEnemy(entity) and entity:IsActiveEnemy() and entity:IsVulnerableEnemy()
 end
 
-function mod.DoEntitiesOverlap(entity1, entity2)
+function mod:DoEntitiesOverlap(entity1, entity2)
 	return entity1.Position:Distance(entity2.Position) <= entity1.Size + entity2.Size
 end
 
-function mod.AreEntitiesSame(entity1, entity2)
+function mod:AreEntitiesSame(entity1, entity2)
 	return entity1 and entity2 and GetPtrHash(entity1) == GetPtrHash(entity2)
 end
 
-function mod.RemoveDefaultSlotDrops(slot)
+function mod:RemoveDefaultSlotDrops(slot)
 	for i = 4, 5 do
 		for _, entity in pairs(Isaac.FindByType(i)) do
-			if mod.DoEntitiesOverlap(entity, slot) and entity.FrameCount <= 1 then
+			if mod:DoEntitiesOverlap(entity, slot) and entity.FrameCount <= 1 then
 				entity:Remove()
 			end
 		end
 	end
 end
 
-function mod.ShouldPlayerGetInitialised(player) -- Credit to Kittenchilly
+function mod:ShouldPlayerGetInitialised(player) -- Credit to Kittenchilly
 	if (player.FrameCount == 0 or (player.FrameCount == 1 and game:GetNumPlayers() > 1)) and not player.Parent then
 		local level = game:GetLevel()
 
@@ -842,17 +920,15 @@ function mod.ShouldPlayerGetInitialised(player) -- Credit to Kittenchilly
 	end
 end
 
-function mod.GetScreenCentre() -- Credit to _Kilburn
-    local room = game:GetRoom()
-    local pos = room:WorldToScreenPosition(Vector.Zero) - room:GetRenderScrollOffset() - Game().ScreenShakeOffset
-    
-    local rx = pos.X + 60 * 26 / 40
-    local ry = pos.Y + 140 * (26 / 40)
-    
-    return Vector(rx*2 + 13*26, ry*2 + 7*26) / 2
+function mod:GetScreenVector()
+	return Vector(Isaac.GetScreenWidth(), Isaac.GetScreenHeight())
 end
 
-function mod.AddTears(baseFiredelay, tearsUp) -- Credit to _Kilburn and DeadInfinity
+function mod:GetScreenCentre()
+    return mod:GetScreenVector() / 2
+end
+
+function mod:AddTears(baseFiredelay, tearsUp) -- Credit to _Kilburn and DeadInfinity
 	local currentTears = 30 / (baseFiredelay + 1)
 	local newTears = currentTears + tearsUp
 	local newFiredelay = math.max((30 / newTears) - 1, -0.75)
@@ -860,7 +936,7 @@ function mod.AddTears(baseFiredelay, tearsUp) -- Credit to _Kilburn and DeadInfi
 	return newFiredelay
 end
 
-function mod.MultiplyTears(baseFiredelay, multiplier)
+function mod:MultiplyTears(baseFiredelay, multiplier)
 	local currentTears = 30 / (baseFiredelay + 1)
 	local newTears = currentTears * multiplier
 	local newFiredelay = math.max((30 / newTears) - 1, -0.75)
@@ -868,14 +944,40 @@ function mod.MultiplyTears(baseFiredelay, multiplier)
 	return newFiredelay
 end
 
-function mod.GetTopLeftHudShift()
+function mod:GetTopLeftHudShift()
 	local offsetInt = Options.HUDOffset * 10
 	local offset = Vector(offsetInt * 2, offsetInt * 1.2)
 
 	return offset
 end
 
-function mod.GameHasUnlockBlockingSeed()
+function mod:GetTopRightHudShift()
+	local offsetInt = Options.HUDOffset * 10
+	local offset = Vector(offsetInt * -1.6, offsetInt * 1.2)
+
+	return offset
+end
+
+function mod:GetBottomRightHudShift()
+	local offsetInt = Options.HUDOffset * 10
+	local offset = Vector(offsetInt * -1.6, offsetInt * -0.6)
+
+	return offset
+end
+
+function mod:GetPrimaryActiveHudPosition(corner)
+	if corner == 0 then
+		return mod:GetTopLeftHudShift() + Vector(30, 1)
+	elseif corner == 1 then
+		return mod:GetTopRightHudShift() + Vector(Isaac.GetScreenWidth(), 0) + Vector(-30, -30)
+	elseif corner == 2 then
+
+	elseif corner == 3 then
+		return mod:GetBottomRightHudShift() + mod:GetScreenVector() + Vector(-44, -38)
+	end
+end
+
+function mod:GameHasUnlockBlockingSeed()
 	local seeds = game:GetSeeds()
 	for _, seed in pairs(mod.UnlockBlockingSeedEffects) do
 		if seeds:HasSeedEffect(seed) then
@@ -886,17 +988,17 @@ function mod.GameHasUnlockBlockingSeed()
 	return false
 end
 
-function mod.GameHasPreStatPositionShifter()
+function mod:GameHasPreStatPositionShifter()
 	local difficultyShift 	= game.Difficulty ~= Difficulty.DIFFICULTY_NORMAL
 	local destinationShift 	= game.Challenge ~= 0
-	local illegalSeedShift 	= mod.GameHasUnlockBlockingSeed()
+	local illegalSeedShift 	= mod:GameHasUnlockBlockingSeed()
 
 	return difficultyShift or destinationShift or illegalSeedShift
 end
 
-function mod.GameHasExpandedStatsHUD()
+function mod:GameHasExpandedStatsHUD()
 	local numRealPlayers = 0
-	mod.ForAllPlayers(function(player)
+	mod:ForAllPlayers(function(player)
 		if not player.Parent then
 			numRealPlayers = numRealPlayers + 1
 		end
@@ -905,15 +1007,15 @@ function mod.GameHasExpandedStatsHUD()
 	return numRealPlayers > 1
 end
 
-function mod.GetResourceModifierMultiplier()
-	local bethanyModifier = mod.GameHasPlayerType(PlayerType.PLAYER_BETHANY) and 1 or 0
-	local taintedBethanyModifier = mod.GameHasPlayerType(PlayerType.PLAYER_BETHANY_B) and 1 or 0
-	local taintedBlueBabyModifier = mod.GameHasPlayerType(PlayerType.PLAYER_BLUEBABY_B) and 1 or 0
+function mod:GetResourceModifierMultiplier()
+	local bethanyModifier = mod:GameHasPlayerType(PlayerType.PLAYER_BETHANY) and 1 or 0
+	local taintedBethanyModifier = mod:GameHasPlayerType(PlayerType.PLAYER_BETHANY_B) and 1 or 0
+	local taintedBlueBabyModifier = mod:GameHasPlayerType(PlayerType.PLAYER_BLUEBABY_B) and 1 or 0
 
 	return bethanyModifier + taintedBethanyModifier + taintedBlueBabyModifier
 end
 
-function mod.GameHasPlayerType(...)
+function mod:GameHasPlayerType(...)
 	for _, player in pairs(Isaac.FindByType(1)) do
 		for _, playerType in pairs({...}) do
 			if player:ToPlayer():GetPlayerType() == playerType then
@@ -923,9 +1025,25 @@ function mod.GameHasPlayerType(...)
 	end
 end
 
-function mod.GetNumNonStrawmanPlayers()
+function mod:GetPlayerOfType(playerType, strict)
+	for _, player in pairs(Isaac.FindByType(1)) do
+		if player:ToPlayer():GetPlayerType() == playerType then return player:ToPlayer() end
+	end
+
+	if not strict then return Isaac.GetPlayer() end
+end
+
+function mod:GameHasBirthrightEffect(playerType)
+	return mod:ForAllPlayers(function(player)
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			return true
+		end
+	end, playerType)
+end
+
+function mod:GetNumNonStrawmanPlayers()
 	local n = 0
-	mod.ForAllPlayers(function(player)
+	mod:ForAllPlayers(function(player)
 		if not player.Parent then
 			n = n + 1
 		end
@@ -934,7 +1052,7 @@ function mod.GetNumNonStrawmanPlayers()
 	return n
 end
 
-function mod.GameHadSeedEffect(test)
+function mod:GameHadSeedEffect(test)
 	if mod.GameSeedEffects then
 		for _, effect in pairs(mod.GameSeedEffects) do
 			if effect == test then
@@ -944,7 +1062,7 @@ function mod.GameHadSeedEffect(test)
 	end
 end
 
-function mod.EntityMatchesValues(entity, typ, var, sub)
+function mod:EntityMatchesValues(entity, typ, var, sub)
 	if not entity then return false end
 
 	typ = typ or entity.Type
@@ -954,7 +1072,7 @@ function mod.EntityMatchesValues(entity, typ, var, sub)
 	return typ == entity.Type and var == entity.Variant and sub == entity.SubType
 end
 
-function mod.DamagePlayerInRadius(source, radius, amount, flags, cooldown)
+function mod:DamagePlayerInRadius(source, radius, amount, flags, cooldown)
 	for _, player in pairs(Isaac.FindByType(1)) do
 		if player.Position:Distance(source.Position) < radius + player.Size then
 			player:TakeDamage(amount or 1, flags or 0, EntityRef(source), cooldown or 60)
@@ -967,64 +1085,123 @@ function mod.DamagePlayerInRadius(source, radius, amount, flags, cooldown)
 		end
 	end
 end
---[[
-function mod.UniversalRemoveItemFromPools(item)
-	mod.RemoveItemFromCustomItemPools(item)
+
+function mod:UniversalRemoveItemFromPools(item)
+	mod:RemoveItemFromCustomItemPools(item)
 
 	local itempool = game:GetItemPool()
 	itempool:RemoveCollectible(item)
 end
 
-function mod.UniversalRemoveTrinketFromPools(trinket)
-	mod.RemoveTrinketFromCustomItemPools(trinket)
+function mod:UniversalRemoveTrinketFromPools(trinket)
+	mod:RemoveTrinketFromCustomItemPools(trinket)
 
 	local itempool = game:GetItemPool()
 	itempool:RemoveTrinket(trinket)
 end
- ]]
-function mod.CanAffordItem(player, item)
-	if item.Price > 0 then
-		return item.Price <= player:GetNumCoins()
-	elseif item.Price == PickupPrice.PRICE_SPIKES then
+
+function mod:GetItemFromPool(pool, remove, rng)
+	local itemPool = game:GetItemPool()
+	local item = itemPool:GetCollectible(pool, remove, rng:Next())
+
+	if remove then
+		mod:UniversalRemoveItemFromPools(item)
+	end
+
+	return item
+end
+
+function mod:CanAffordPrice(player, price)
+	if price > 0 then
+		return price <= player:GetNumCoins()
+	elseif price == PickupPrice.PRICE_SPIKES then
 		return player:GetDamageCooldown() == 0
-	elseif item.Price == PickupPrice.PRICE_SOUL then
+	elseif price == PickupPrice.PRICE_SOUL then
 		return player:HasTrinket(TrinketType.TRINKET_YOUR_SOUL)
-	elseif item.Price == 0 or item.Price == PickupPrice.PRICE_FREE or (player:HasCollectible(mod.ITEMS.HEARTBROKER) and player:GetBrokenHearts() > 0) then
+	elseif price == 0 or price == PickupPrice.PRICE_FREE then
 		return true
-	elseif item.Price == PickupPrice.PRICE_ONE_HEART or item.Price == PickupPrice.PRICE_TWO_HEARTS then
+	elseif price == PickupPrice.PRICE_ONE_HEART or price == PickupPrice.PRICE_TWO_HEARTS then
 		return player:GetEffectiveMaxHearts() > 0
-	elseif item.Price == PickupPrice.PRICE_ONE_HEART_AND_TWO_SOULHEARTS or item.Price == PickupPrice.PRICE_ONE_HEART_AND_ONE_SOUL_HEART then
+	elseif price == PickupPrice.PRICE_ONE_HEART_AND_TWO_SOULHEARTS or price == PickupPrice.PRICE_ONE_HEART_AND_ONE_SOUL_HEART then
 		return player:GetSoulHearts() > 0 and player:GetEffectiveMaxHearts() > 0
-	elseif item.Price == PickupPrice.PRICE_THREE_SOULHEARTS or item.Price == PickupPrice.PRICE_ONE_SOUL_HEART or item.Price == PickupPrice.PRICE_TWO_SOUL_HEARTS then
+	elseif price == PickupPrice.PRICE_THREE_SOULHEARTS or price == PickupPrice.PRICE_ONE_SOUL_HEART or price == PickupPrice.PRICE_TWO_SOUL_HEARTS then
 		return player:GetSoulHearts() > 0
 	end
 end
 
-function mod.GetHighestHeartContainerCount()
+function mod:PayPickupPrice(player, price, pickup)
+	if price > 0 then
+		player:AddCoins(-price)
+	elseif price == PickupPrice.PRICE_SPIKES then
+		player:TakeDamage(2, DamageFlag.DAMAGE_SPIKES | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(pickup), 30)
+	elseif price == PickupPrice.PRICE_SOUL then
+		player:TryRemoveTrinket(TrinketType.TRINKET_YOUR_SOUL)
+	end
+end
+
+function mod:WillPlayerBuyCollectible(player, pickup)
+	return (
+		pickup.Price ~= 0 and
+		pickup.Wait == 0 and
+		player.Variant == mod.PlayerVariant.PLAYER and
+		player.ItemHoldCooldown == 0 and
+		player:CanPickupItem() and
+		not player:IsHoldingItem() and
+		mod:CanAffordPrice(player, pickup.Price)
+	)
+end
+
+function mod:WillPlayerBuyHeart(player, pickup)
+	return (
+		pickup.Price ~= 0 and
+		player.Variant == mod.PlayerVariant.PLAYER and
+		mod:CanAffordPrice(player, pickup.Price) and
+		mod:CanPickHeart(player, pickup)
+	)
+end
+
+function mod:WillPlayerBuyBattery(player, pickup)
+	return (
+		pickup.Price ~= 0 and
+		player.Variant == mod.PlayerVariant.PLAYER and
+		mod:CanAffordPrice(player, pickup.Price) and
+		player:NeedsCharge()
+	)
+end
+
+function mod:WillPlayerBuyPickup(player, pickup)
+	if pickup.Variant == 100 then
+		return mod:WillPlayerBuyCollectible(player, pickup)
+	elseif pickup.Variant == 10 then
+		return mod:WillPlayerBuyHeart(player, pickup)
+	elseif pickup.Variant == 90 then
+		return mod:WillPlayerBuyBattery(player, pickup)
+	elseif mod:CanAffordPrice(player, pickup.Price) then
+		return true
+	end
+end
+
+function mod:GetHighestHeartContainerCount()
 	local highest = 0
-	mod.ForAllPlayers(function(player)
+	mod:ForAllPlayers(function(player)
 		highest = math.max(player:GetEffectiveMaxHearts(), highest)
 	end)
 
 	return highest
 end
 	
-function mod.GetExpectedDevilDealPrice(collectible)
+function mod:GetExpectedDevilDealPrice(collectible)
 	local itemConfig = Isaac.GetItemConfig()
 	local item = itemConfig:GetCollectible(collectible)
 
 	local devilPrice = item.DevilPrice
 
-	if devilPrice == 1 and mod.JetFeatherTwoHeartPrice[collectible] then
-		devilPrice = 2
-	end
-
 	return -devilPrice
 end
 
-function mod.GetRealDevilDealPrice(collectible)
-	local price = mod.GetExpectedDevilDealPrice(collectible)
-	local greatestHealth = mod.GetHighestHeartContainerCount()
+function mod:GetRealDevilDealPrice(collectible)
+	local price = mod:GetExpectedDevilDealPrice(collectible)
+	local greatestHealth = mod:GetHighestHeartContainerCount()
 
 	if greatestHealth == 0 then
 		price = PickupPrice.PRICE_THREE_SOULHEARTS
@@ -1036,19 +1213,14 @@ function mod.GetRealDevilDealPrice(collectible)
 		price = PickupPrice.PRICE_ONE_HEART
 	end
 
-	if mod.AnyPlayerHasTrinket(TrinketType.TRINKET_YOUR_SOUL) then
+	if mod:AnyPlayerHasTrinket(TrinketType.TRINKET_YOUR_SOUL) then
 		price = PickupPrice.PRICE_SOUL
-	end
-
-	if collectible == mod.ITEMS.BLOOD_OF_SATAN then
-		return PickupPrice.PRICE_ONE_SOUL_HEART
 	end
 
 	return price
 end
 
-
-function mod.ShouldEntityGetTearCollisionEffects(entity, tear)
+function mod:ShouldEntityGetTearCollisionEffects(entity, tear)
 	return (
 		entity:ToNPC() and
 		not entity:HasEntityFlags(EntityFlag.FLAG_ICE_FROZEN) and
@@ -1057,7 +1229,7 @@ function mod.ShouldEntityGetTearCollisionEffects(entity, tear)
 	)
 end
 
-function mod.ShouldEntityGetKnifeCollisionEffects(entity, knife)
+function mod:ShouldEntityGetKnifeCollisionEffects(entity, knife)
 	return (
 		entity:ToNPC() and
 		entity:Exists() and
@@ -1070,14 +1242,14 @@ function mod.ShouldEntityGetKnifeCollisionEffects(entity, knife)
 	)
 end
 
-function mod.ShouldPickupGetPickedByKnife(pickup)
+function mod:ShouldPickupGetPickedByKnife(pickup)
 	return (
 		pickup:Exists() and
 		pickup.EntityCollisionClass > 0
 	)
 end
 
-function mod.DoesEntityMimicGridTearCollision(entity)
+function mod:DoesEntityMimicGridTearCollision(entity)
 	return (
 		entity.Type == 33 or
 		entity.Type == 292 or
@@ -1085,8 +1257,9 @@ function mod.DoesEntityMimicGridTearCollision(entity)
 	)
 end
 
-function mod.ShouldTearSpawnPoofOnEntityCollision(tear, collider)
-	if collider and mod.DoesEntityMimicGridTearCollision(collider) then
+--[[
+function mod:ShouldTearSpawnPoofOnEntityCollision(tear, collider)
+	if collider and mod:DoesEntityMimicGridTearCollision(collider) then
 		return (
 			not tear:HasTearFlags(TearFlags.TEAR_SPECTRAL)
 		)
@@ -1101,17 +1274,18 @@ function mod.ShouldTearSpawnPoofOnEntityCollision(tear, collider)
 		)
 	end
 end
+ ]]
 
-function mod.EntitiesAreWithinRange(entity1, entity2, range)
+function mod:EntitiesAreWithinRange(entity1, entity2, range)
 	return entity1.Position:Distance(entity2.Position) - entity1.Size - entity2.Size < range
 end
 
-function mod.EntitiesHaveLineOfSight(entity1, entity2)
+function mod:EntitiesHaveLineOfSight(entity1, entity2, mode)
 	local room = game:GetRoom()
-	return room:CheckLine(entity1.Position, entity2.Position, 0)
+	return room:CheckLine(entity1.Position, entity2.Position, mode or 0)
 end
 
-function mod.GetNearestDirectionStringFromAngle(angle, horizontalOverride)
+function mod:GetNearestDirectionStringFromAngle(angle, horizontalOverride)
 	if math.abs(angle) < 45 then
 		return horizontalOverride or "Right"
 	elseif math.abs(angle) > 135 then
@@ -1123,7 +1297,7 @@ function mod.GetNearestDirectionStringFromAngle(angle, horizontalOverride)
 	end
 end
 
-function mod.RevealRandomMapRoom(rng, displayFlag)
+function mod:RevealRandomMapRoom(rng, displayFlag)
 	displayFlag = displayFlag or 5
 	if not rng then
 		rng = RNG()
@@ -1160,7 +1334,7 @@ function mod.RevealRandomMapRoom(rng, displayFlag)
 	level:UpdateVisibility()
 end
 
-function mod.DoKnockoutPushback(entity, source, powerMultiplier)
+function mod:DoKnockoutPushback(entity, source, powerMultiplier)
 	if not (entity:HasEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK) or entity:HasEntityFlags(EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)) then
 		local targetVelocity = (entity.Position - source.Position):Resized(24 * (powerMultiplier or 1))
 		entity:AddVelocity(targetVelocity)
@@ -1170,7 +1344,7 @@ function mod.DoKnockoutPushback(entity, source, powerMultiplier)
 	end
 end
 
-function mod.GetItemOfQuality(pool, qualityMinimum, rng)
+function mod:GetItemOfQuality(pool, qualityMinimum, rng)
 	local itempool = game:GetItemPool()
 	local config = Isaac.GetItemConfig()
 	local collectible
@@ -1194,18 +1368,18 @@ function mod.GetItemOfQuality(pool, qualityMinimum, rng)
 	if returnHighest then
 		return highest or 0
 	else
-		mod.UniversalRemoveItemFromPools(collectible)
+		mod:UniversalRemoveItemFromPools(collectible)
 		return collectible
 	end
 end
 
 --[[
 mod.PLACEBO_CHARGES = {}
-function mod.RegisterPlaceboCharge(card, charge)
+function mod:RegisterPlaceboCharge(card, charge)
 	mod.PLACEBO_CHARGES[card] = charge
 end
 
-function mod.ChangePlaceboCharge(player, newCharge, slot, useflags)
+function mod:ChangePlaceboCharge(player, newCharge, slot, useflags)
 	slot = slot or ActiveSlot.SLOT_PRIMARY
 	useflags = useflags or UseFlag.USE_OWNED
 
@@ -1227,18 +1401,18 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, item, rng, player, flags, 
 	if mod.PLACEBO_CHARGES[card] then
 		player:UseCard(card, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC)
 
-		local returnValue = mod.ChangePlaceboCharge(player, mod.PLACEBO_CHARGES[card], slot, flags)
+		local returnValue = mod:ChangePlaceboCharge(player, mod.PLACEBO_CHARGES[card], slot, flags)
 		if returnValue then return returnValue end
 	end
 end, CollectibleType.COLLECTIBLE_PLACEBO)
  ]]
 
-function mod.DespawnOptionsPartners(check)
+function mod:DespawnOptionsPartners(check)
 	if check.OptionsPickupIndex > 0 then
 		for _, pickup in pairs(Isaac.FindByType(5)) do
 			pickup = pickup:ToPickup()
 
-			if not mod.AreEntitiesSame(pickup, check) and pickup.OptionsPickupIndex == check.OptionsPickupIndex then
+			if not mod:AreEntitiesSame(pickup, check) and pickup.OptionsPickupIndex == check.OptionsPickupIndex then
 				Isaac.Spawn(1000, 15, 0, pickup.Position, Vector.Zero, nil)
 				pickup:Remove()
 			end
@@ -1246,11 +1420,11 @@ function mod.DespawnOptionsPartners(check)
 	end
 end
 
-function mod.GetExpectedBrokenHeartsFromDamage(player)
+function mod:GetExpectedBrokenHeartsFromDamage(player)
 	local playerType = player:GetPlayerType()
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
-		if mod.WillDamageBeFatal(player, 1, 0, true, true) then
+		if mod:WillDamageBeFatal(player, 1, 0, true, true) then
 			if playerType == PlayerType.PLAYER_KEEPER or playerType == PlayerType.PLAYER_KEEPER_B then
 				return 1
 			else
@@ -1262,7 +1436,7 @@ function mod.GetExpectedBrokenHeartsFromDamage(player)
 	return 0
 end
 
-function mod.WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeartbreak)
+function mod:WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeartbreak)
 	if flags & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then
 		return false
 	end
@@ -1280,7 +1454,7 @@ function mod.WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeart
 	end
 
 	if not ignoreHeartbreak and player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
-		return brokens >= 12 - mod.GetExpectedBrokenHeartsFromDamage(player)
+		return brokens >= 12 - mod:GetExpectedBrokenHeartsFromDamage(player)
 	end
 
 	if playerType == PlayerType.PLAYER_JACOB2_B or effects:HasNullEffect(NullItemID.ID_LOST_CURSE) then
@@ -1300,7 +1474,7 @@ function mod.WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeart
 	return false
 end
 
-function mod.GetGoodShootingJoystick(player)
+function mod:GetGoodShootingJoystick(player)
 	local returnValue = player:GetShootingJoystick()
 
     if player.ControllerIndex == 0 and Options.MouseControl and Input.IsMouseBtnPressed(0) then -- ControllerIndex 0 == Keyboard & Mouse
@@ -1310,39 +1484,47 @@ function mod.GetGoodShootingJoystick(player)
     return returnValue:Normalized()
 end
 
-function mod.IsPlayerMarkedFiring(player)
+function mod:IsPlayerMarkedFiring(player)
 	return (
 		player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) and
-		mod.GetPlayerMarkedTarget(player)
+		mod:GetPlayerMarkedTarget(player)
 	)
 end
 
-function mod.IsPlayerTryingToShoot(player)
+function mod:IsPlayerTryingToShoot(player)
 	return (
-		mod.GetGoodShootingJoystick(player):Length() > 0 or
+		mod:GetGoodShootingJoystick(player):Length() > 0 or
 		player:AreOpposingShootDirectionsPressed() or
-		mod.IsPlayerMarkedFiring(player)
+		mod:IsPlayerMarkedFiring(player)
 	)
 end
 
-function mod.GetPlayerFireVector(player)
+function mod:GetPlayerFireVector(player)
 	return mod.DirectionToVector[player:GetFireDirection()]
 end
 
-function mod.GetFamiliarShootingDirection(familiar) -- Return Values: (Vector) Fire Direction, (Bool) Override Movement Inheritance 
+function mod:GetGoodFiringVector(player)
+	if mod:IsPlayerMarkedFiring(player) or player:HasCollectible(CollectibleType.COLLECTIBLE_ANALOG_STICK) then
+		return player:GetAimDirection()
+	else
+		return mod:GetPlayerFireVector(player)
+	end
+end
+
+function mod:GetFamiliarShootingDirection(familiar) -- Return Values: (Vector) Fire Direction, (Bool) Override Movement Inheritance
 	local player = familiar.Player
-	local kingBabyTarget = mod.GetMyKingBabyTarget(familiar)
+	local kingBabyTarget = mod:GetMyKingBabyTarget(familiar)
 
 	if kingBabyTarget then
 		return (kingBabyTarget.Position - familiar.Position):Normalized(), true
 	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) then
-		return (mod.GetPlayerMarkedTarget(familiar.Player).Position - familiar.Position):Normalized(), true
+		return (mod:GetPlayerMarkedTarget(familiar.Player).Position - familiar.Position):Normalized(), true
 	else
-		return mod.GetPlayerFireVector(player) or mod.GetGoodShootingJoystick(player), false
+		return mod:GetPlayerFireVector(player) or mod:GetGoodShootingJoystick(player), false
 	end
 end
 
-function mod.GetPlayerMarkedTarget(player, force)
+function mod:GetPlayerMarkedTarget(player, force)
 	-- player:GetActiveWeaponEntity doesn't work for Marked :'(
 	local data = player:GetData()
 	if data.richer_MarkedTargetStorage and data.richer_MarkedTargetStorage:Exists() and not force then
@@ -1360,7 +1542,7 @@ function mod.GetPlayerMarkedTarget(player, force)
 	end
 end
 
-function mod.GetMyKingBabyTarget(familiar) -- Modified version of a function by Erfly. Thanks Erfly!!
+function mod:GetMyKingBabyTarget(familiar) -- Modified version of a function by Erfly. Thanks Erfly!!
 	local entity = familiar.Parent
 	while entity do
 		if entity.Type == 3 and entity.Variant == FamiliarVariant.KING_BABY then
@@ -1371,25 +1553,39 @@ function mod.GetMyKingBabyTarget(familiar) -- Modified version of a function by 
 	end
 end
 
-function mod.QuickCheckFamiliar(player, familiarVariant, itemID, subtype)
-	player:CheckFamiliar(familiarVariant, mod.GetExpectedFamiliarNum(player, itemID), player:GetCollectibleRNG(itemID), mod.GetItem(itemID), subtype)
+function mod:QuickCheckFamiliar(player, familiarVariant, itemID, subtype)
+	player:CheckFamiliar(familiarVariant, mod:GetExpectedFamiliarNum(player, itemID), player:GetCollectibleRNG(itemID), mod:GetItem(itemID), subtype)
 end
 
-function mod.GetDummyNpc(position)
-	local dummy = Isaac.Spawn(792, 1889, 0, position or Vector.Zero, Vector.Zero, nil)
+--[[
+function mod:GetDummyNpc(position)
+	local dummy = Isaac.Spawn(792, 1889, 0, position or Vector.Zero, Vector.Zero, nil):ToNPC()
 	dummy:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 	return dummy
 end
+ ]]
 
-function mod.GetGoodPlayerFireDirection(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) and mod.GetPlayerMarkedTarget(player) then
-		return (mod.GetPlayerMarkedTarget(player).Position - player.Position):Normalized()
+function mod:GetGoodPlayerFireDirection(player)
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_MARKED) and mod:GetPlayerMarkedTarget(player) then
+		return (mod:GetPlayerMarkedTarget(player).Position - player.Position):Normalized()
 	else
-		return mod.GetGoodShootingJoystick(player)
+		return mod:GetGoodShootingJoystick(player)
 	end
 end
 
-function mod.GetSwingingKnifeHitboxScaler(knife)
+function mod:TestForValidPath(start, target, dummyNpc, noRemove)
+	dummyNpc = dummyNpc or mod:GetDummyNpc(start)
+	dummyNpc.Position = start
+
+	local canPath = dummyNpc.Pathfinder:HasPathToPos(target, true)
+	if not noRemove then
+		dummyNpc:Remove()
+	end
+
+	return canPath
+end
+
+function mod:GetSwingingKnifeHitboxScaler(knife)
 	if knife.Variant == mod.KNIFE.BONE_SCYTHE then
 		return 3
 	end
@@ -1397,17 +1593,22 @@ function mod.GetSwingingKnifeHitboxScaler(knife)
 	return 2
 end
 
-function mod.EntityCollidesWithSwingingKnife(entity, knife)
+function mod:GetCapsulePositionRadius(knife)
 	local player = knife.SpawnerEntity:ToPlayer()
-	local scaler = mod.GetSwingingKnifeHitboxScaler(knife)
+	local scaler = mod:GetSwingingKnifeHitboxScaler(knife)
 	local capsuleRadius = knife.Size * scaler * knife.SpriteScale.X
 	local knifeVectorDirection = Vector(0, 1):Rotated(knife.SpriteRotation)
 	local capsulePosition = knife.Position - knife.SpawnerEntity.Velocity + knifeVectorDirection * capsuleRadius
 
-	return entity.Position:Distance(capsulePosition) < entity.Size + capsuleRadius
+	return capsulePosition, capsuleRadius
 end
 
-function mod.Benchmark(func, numTests)
+function mod:EntityCollidesWithSwingingKnife(entity, knife)
+	local position, radius = mod:GetCapsulePositionRadius(knife)
+	return entity.Position:Distance(position) < entity.Size + radius
+end
+
+function mod:Benchmark(func, numTests)
 	local time = Isaac.GetTime()
 
 	for i = 1, numTests or 1000000 do
@@ -1426,15 +1627,18 @@ local function swapAquarius(creep, skin)
 	sprite.Color = Color.Default
 end
 
-function mod.RecalculateAquariusSkin(effect)
-	if mod.HasRicherTearFlags(effect, mod.TEARFLAG.REFLUX_PRIMED) then 		-- Reflux (Primed)
+--[[
+function mod:RecalculateAquariusSkin(effect)
+	if mod:HasRicherTearFlags(effect, TearFlag) then
+		swapAquarius(effect, AquariusSkin)
 	end
 end
+ ]]
 
 local reduce = 0
 mod:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, CallbackPriority.EARLY, function() reduce = 0 end, CacheFlag.CACHE_FIREDELAY)
 
-function mod.GetTearsMultiplier(player, multiplierAmount)
+function mod:GetTearsMultiplier(player, multiplierAmount)
 	local playerType = player:GetPlayerType()
 	local reduceModifer = 0
 	reduce = reduce + 1
@@ -1448,20 +1652,24 @@ function mod.GetTearsMultiplier(player, multiplierAmount)
 	return 1 / fireDelayMultiplier
 end
 
-function mod.IsQuestItem(itemId)
+function mod:IsQuestItem(itemId)
 	return Isaac.GetItemConfig():GetCollectible(itemId):HasTags(ItemConfig.TAG_QUEST)
 end
 
-function mod.GetItemQuality(itemId)
+function mod:GetItemQuality(itemId)
 	return Isaac.GetItemConfig():GetCollectible(itemId).Quality
 end
 
-function mod.GetRoomPool()
+function mod:GetItemConfigData(itemId, dataString)
+	return Isaac.GetItemConfig():GetCollectible(itemId)[dataString]
+end
+
+function mod:GetRoomPool()
 	local room = game:GetRoom()
 	return math.max(0, game:GetItemPool():GetPoolForRoom(room:GetType(), room:GetAwardSeed()))
 end
 
-function mod.MorphCollectible(entity, targetItem, resetPrice, resetOptions)
+function mod:MorphCollectible(entity, targetItem, resetPrice, resetOptions)
 	local optionsCache = entity.OptionsPickupIndex
 	local waitCache = entity.Wait
 
@@ -1477,14 +1685,14 @@ function mod.MorphCollectible(entity, targetItem, resetPrice, resetOptions)
 	end
 end
 
-function mod.IsDimension(dimensionId)
+function mod:IsDimension(dimensionId)
 	local level = game:GetLevel()
 	local roomId = level:GetCurrentRoomIndex()
 
 	return GetPtrHash(level:GetRoomByIdx(roomId, mod.DIMENSION.CURRENT)) == GetPtrHash(level:GetRoomByIdx(roomId, dimensionId))
 end
 
-function mod.IsDamageSacrificeSpikes(flags, source)
+function mod:IsDamageSacrificeSpikes(flags, source)
 	return (
 		source.Type == EntityType.ENTITY_NULL and
 		source.Variant == GridEntityType.GRID_SPIKES and
@@ -1493,19 +1701,18 @@ function mod.IsDamageSacrificeSpikes(flags, source)
 	)
 end
 
-function mod.IsDamageSanguineSpikes(player, flags, source)
+function mod:IsDamageSanguineSpikes(player, flags, source)
 	return (
 		source.Type == EntityType.ENTITY_NULL and
 		source.Variant == GridEntityType.GRID_SPIKES and
 		flags & DamageFlag.DAMAGE_SPIKES > 0 and
-		mod.AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) and
+		mod:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_SANGUINE_BOND) and
 		game:GetRoom():GetType() == RoomType.ROOM_DEVIL and
 		game:GetRoom():GetGridIndex(player.Position) == 67
 	)
 end
 
--- TODO make blessing text to support multiple langs
-function mod.GrantNextSacrificePayout(spikes)
+function mod:GrantNextSacrificePayout(spikes)
 	spikes = spikes or game:GetRoom():GetGridEntity(67)
 
 	if spikes then
@@ -1515,11 +1722,11 @@ function mod.GrantNextSacrificePayout(spikes)
 
 		if spikes.VarData < 2 then
 			if Isaac.GetPlayer(0):GetNumBombs() == 0 and level:GetStateFlag(LevelStateFlag.STATE_SHOVEL_QUEST_TRIGGERED) then
-				mod.SpawnNearPosition(5, 40, 1, spawnPosition)
+				mod:SpawnNearPosition(5, 40, 1, spawnPosition)
 			end
 
 			if rng:RandomFloat() < 0.5 then
-				mod.SpawnNearPosition(5, 20, 1, spawnPosition)
+				mod:SpawnNearPosition(5, 20, 1, spawnPosition)
 			end
 		elseif spikes.VarData < 3 then
 			if rng:RandomFloat() < 2/3 then
@@ -1528,12 +1735,12 @@ function mod.GrantNextSacrificePayout(spikes)
 			end
 		elseif spikes.VarData < 4 then
 			if rng:RandomFloat() < 0.5 then
-				mod.SpawnNearPosition(5, 50, 0, spawnPosition)
+				mod:SpawnNearPosition(5, 50, 0, spawnPosition)
 			end
 		elseif spikes.VarData < 5 then
 			if rng:RandomFloat() < 1/3 then
 				for i = 1, 3 do
-					mod.SpawnNearPosition(5, 20, 1, spawnPosition)
+					mod:SpawnNearPosition(5, 20, 1, spawnPosition)
 				end
 			else
 				level:AddAngelRoomChance(0.5)
@@ -1544,18 +1751,18 @@ function mod.GrantNextSacrificePayout(spikes)
 				level:InitializeDevilAngelRoom(true, false)
 				Isaac.GetPlayer():UseCard(Card.CARD_JOKER, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 			else
-				mod.SpawnNearPosition(5, 50, 0, spawnPosition)
+				mod:SpawnNearPosition(5, 50, 0, spawnPosition)
 			end
 		elseif spikes.VarData < 7 then
-			if game:GetDevilRoomDeals() > 0 and mod.IsItemAvailable(CollectibleType.COLLECTIBLE_REDEMPTION) and rng:RandomFloat() < 0.5 then
-				mod.SpawnNearPosition(5, 100, CollectibleType.COLLECTIBLE_REDEMPTION, spawnPosition)
+			if game:GetDevilRoomDeals() > 0 and mod:IsItemAvailable(CollectibleType.COLLECTIBLE_REDEMPTION) and rng:RandomFloat() < 0.5 then
+				mod:SpawnNearPosition(5, 100, CollectibleType.COLLECTIBLE_REDEMPTION, spawnPosition)
 			else
 				if rng:RandomFloat() < 1/3 then
 					local item = game:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, true, rng:GetSeed())
 					rng:Next()
-					mod.SpawnNearPosition(5, 100, item, spawnPosition)
+					mod:SpawnNearPosition(5, 100, item, spawnPosition)
 				else
-					mod.SpawnNearPosition(5, 10, 3, spawnPosition)
+					mod:SpawnNearPosition(5, 10, 3, spawnPosition)
 				end
 			end
 		elseif spikes.VarData < 8 then
@@ -1565,11 +1772,11 @@ function mod.GrantNextSacrificePayout(spikes)
 		elseif spikes.VarData < 10 then
 			if rng:RandomFloat() < 0.5 then
 				for i = 1, 7 do
-					mod.SpawnNearPosition(5, 10, 3, spawnPosition)
+					mod:SpawnNearPosition(5, 10, 3, spawnPosition)
 				end
 			else
 				for i = 1, 30 do
-					mod.SpawnNearPosition(5, 20, 1, spawnPosition)
+					mod:SpawnNearPosition(5, 20, 1, spawnPosition)
 				end
 			end
 		elseif spikes.VarData < 11 then
@@ -1584,7 +1791,7 @@ function mod.GrantNextSacrificePayout(spikes)
 	end
 end
 
-function mod.GrantSanguineBondPayout(player)
+function mod:GrantSanguineBondPayout(player)
 	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SANGUINE_BOND)
 	local roll = rng:RandomFloat()
 	local spikes = game:GetRoom():GetGridEntity(67)
@@ -1592,19 +1799,19 @@ function mod.GrantSanguineBondPayout(player)
 	if roll < 0.35 then
 		-- Nothing
 	elseif roll < 0.68 then
-		mod.IncrementCollectibleEffectNum(player, CollectibleType.COLLECTIBLE_SANGUINE_BOND)
+		mod:IncrementCollectibleEffectNum(player, CollectibleType.COLLECTIBLE_SANGUINE_BOND)
 	elseif roll < 0.83 then
 		for i = 1, 6 do
-			mod.SpawnNearPosition(5, 20, 1, spikes.Position)
+			mod:SpawnNearPosition(5, 20, 1, spikes.Position)
 		end
 	elseif roll < 0.93 then
 		for i = 1, 2 do
-			mod.SpawnNearPosition(5, 10, 6, spikes.Position)
+			mod:SpawnNearPosition(5, 10, 6, spikes.Position)
 		end
 	elseif roll < 0.98 then
 		local item = game:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, true, rng:GetSeed())
 		rng:Next()
-		mod.SpawnNearPosition(5, 100, item, spikes.Position)
+		mod:SpawnNearPosition(5, 100, item, spikes.Position)
 	else
 		for i = 1, 3 do
 			player:AddCollectible(CollectibleType.COLLECTIBLE_LORD_OF_THE_PIT)
@@ -1616,18 +1823,18 @@ function mod.GrantSanguineBondPayout(player)
 	end
 end
 
-function mod.SpawnNearPosition(typ, var, sub, position, velocity, spawner)
+function mod:SpawnNearPosition(typ, var, sub, position, velocity, spawner)
 	local room = game:GetRoom()
 	position = room:FindFreePickupSpawnPosition(position)
 
-	Isaac.Spawn(typ, var, sub, position, velocity or Vector.Zero, spawner or nil)
+	return Isaac.Spawn(typ, var, sub, position, velocity or Vector.Zero, spawner or nil)
 end
 
-function mod.IsItemAvailable(itemId)
+function mod:IsItemAvailable(itemId)
 	return Isaac.GetItemConfig():GetCollectible(itemId):IsAvailable()
 end
 
-function mod.GetBombExplosionRadius(entityBomb) -- Thank you dataminers
+function mod:GetBombExplosionRadius(entityBomb) -- Thank you dataminers
 	local radius
 	local damage = entityBomb.ExplosionDamage
 
@@ -1644,7 +1851,7 @@ function mod.GetBombExplosionRadius(entityBomb) -- Thank you dataminers
 	return radius * entityBomb.RadiusMultiplier
 end
 
-function mod.FullHeal(player)
+function mod:FullHeal(player)
 	local bloodCharges = player:GetBloodCharge()
 	player:AddHearts(100)
 
@@ -1653,50 +1860,90 @@ function mod.FullHeal(player)
 	end
 end
 
-function mod.BulkAppend(hostTable, appendTable)
+function mod:HasActivePocketItem(player, item) -- Checks if the item is in ActiveSlot.SLOT_POCKET, and that no pills or cards occupy the "active" pocket slot
+	return (
+		player:GetActiveItem(ActiveSlot.SLOT_POCKET) == item and
+		player:GetPill(0) == 0 and
+		player:GetCard(0) == 0
+	)
+end
+
+function mod:IsValueInTable(value, tbl)
+	for _, entry in pairs(tbl) do
+		if entry == value then
+			return true
+		end
+	end
+end
+
+function mod:IsEntityInTable(tbl, entity)
+	for _, entry in pairs(tbl) do
+		if GetPtrHash(entry) == GetPtrHash(entity) then
+			return true
+		end
+	end
+end
+
+function mod:BulkAppend(hostTable, appendTable)
 	for _, entry in pairs(appendTable) do
 		table.insert(hostTable, entry)
 	end
 end
 
-function mod.DoEntitiesIntersect(entity1, entity2)
-	local capsules = {}
-
-	for _, entity in pairs({entity1, entity2}) do
-		local scaler = math.min(entity.SizeMulti.X, entity.SizeMulti.Y)
-		local stretcher = math.max(entity.SizeMulti.X, entity.SizeMulti.Y)
-		local trueRadius = entity.Size * scaler
-		
-		local stretchDirection = Vector.Zero
-		if entity.SizeMulti.X > entity.SizeMulti.Y then stretchDirection = Vector(1, 0) end
-		if entity.SizeMulti.Y > entity.SizeMulti.X then stretchDirection = Vector(0, 1) end
-
-		local locusOffset = stretchDirection * (stretcher * entity.Size - trueRadius)
-
-		table.insert(capsules, {
-			Locus1 = entity.Position + locusOffset:Rotated(entity.SpriteRotation),
-			Locus2 = entity.Position - locusOffset:Rotated(entity.SpriteRotation),
-			Radius = trueRadius,
-		})
-
-		-- Isaac.Spawn(1000, 175, 0, capsules[#capsules].Locus1, Vector.Zero, nil)
-		-- Isaac.Spawn(1000, 175, 0, capsules[#capsules].Locus2, Vector.Zero, nil)
-
-		-- local me = capsules[#capsules]
-		-- print("\nEntity:", entity.Type, "\nSize:", entity.Size, "SizeMulti:", entity.SizeMulti, "\nPosition:", entity.Position, "\nLocus 1:", me.Locus1, "\nLocus 2:", me.Locus2, "\nRadius:", me.Radius)
+function mod:IndexedBulkAppend(hostTable, appendTable)
+	for _, entry in pairs(appendTable) do
+		hostTable[entry[1]] = entry[2]
 	end
-
-	return mod.SimulateCapsuleCapsuleCollision(table.unpack(capsules))
 end
 
-function mod.SimulateCapsuleCapsuleCollision(capsule1, capsule2)
+function mod:RevealUltraSecretLocation()
+	local level = game:GetLevel()
+	local roomsList = level:GetRooms()
+
+	for i = 0, #roomsList - 1 do
+		local roomDesc = roomsList:Get(i)
+		if roomDesc.Data and roomDesc.Data.Type == RoomType.ROOM_ULTRASECRET then
+			local mutableDesc = level:GetRoomByIdx(roomDesc.SafeGridIndex)
+			mutableDesc.DisplayFlags = mutableDesc.DisplayFlags | RoomDescriptor.DISPLAY_ICON
+		end
+	end
+
+	level:UpdateVisibility()
+end
+
+function mod:GenerateCapsuleFromEntity(entity)
+	local scaler = math.min(entity.SizeMulti.X, entity.SizeMulti.Y)
+	local stretcher = math.max(entity.SizeMulti.X, entity.SizeMulti.Y)
+	local trueRadius = entity.Size * scaler
+
+	local stretchDirection = Vector.Zero
+	if entity.SizeMulti.X > entity.SizeMulti.Y then stretchDirection = Vector(1, 0) end
+	if entity.SizeMulti.Y > entity.SizeMulti.X then stretchDirection = Vector(0, 1) end
+
+	local locusOffset = stretchDirection * (stretcher * entity.Size - trueRadius)
+
+	return {
+		Locus1 = entity.Position + locusOffset:Rotated(entity.SpriteRotation),
+		Locus2 = entity.Position - locusOffset:Rotated(entity.SpriteRotation),
+		Radius = trueRadius,
+	}
+end
+
+function mod:DoEntitiesIntersect(entity1, entity2)
+	return mod:SimulateCapsuleCapsuleCollision(
+		mod:GenerateCapsuleFromEntity(entity1),
+		mod:GenerateCapsuleFromEntity(entity2)
+	)
+end
+
+function mod:SimulateCapsuleCapsuleCollision(capsule1, capsule2)
 	local capsules = {capsule1, capsule2}
 
 	for i, hostCapsule in pairs(capsules) do
 		local testCapsule = capsules[i % 2 + 1]
 		for _, point in pairs({testCapsule.Locus1, testCapsule.Locus2}) do
-			local closestPoint = mod.GetClosestPointOnLine(point, hostCapsule.Locus1, hostCapsule.Locus2)
-			local distance = mod.TruncateDecimals(closestPoint:Distance(point), 3)
+			local closestPoint = mod:GetClosestPointOnLine(point, hostCapsule.Locus1, hostCapsule.Locus2)
+			local distance = mod:TruncateDecimals(closestPoint:Distance(point), 3)
 			-- print("\nLine:", testCapsule.Locus1, testCapsule.Locus2, "\nPoint:", point, "\nClosest:", closestPoint, "\nDistance:", distance)
 
 			if distance <= hostCapsule.Radius + testCapsule.Radius then
@@ -1708,20 +1955,367 @@ function mod.SimulateCapsuleCapsuleCollision(capsule1, capsule2)
 	return false
 end
 
-function mod.GetClosestPointOnLine(testPosition, lineOrigin, lineEnd)
+function mod:GetClosestPointOnLine(testPosition, lineOrigin, lineEnd)
 	local heading = lineEnd - lineOrigin
 	local magnitude = heading:Length()
 	heading:Normalize()
 
 	local lhs = testPosition - lineOrigin
 	local dot = lhs:Dot(heading)
-	dot = mod.Bound(dot, 0, magnitude)
+	dot = mod:Bound(dot, 0, magnitude)
 	return lineOrigin + heading * dot
 end
 
-function mod.TruncateDecimals(value, numDigits)
+function mod:TruncateDecimals(value, numDigits)
 	local whole = math.floor(value)
 	local totalDigits = string.len(tostring(whole)) + numDigits + 1
 	local truncatedString = string.sub(tostring(value), 1,  totalDigits)
 	return tonumber(truncatedString)
+end
+
+function mod:GetItemSlot(player, item)
+	for slot = ActiveSlot.SLOT_PRIMARY, ActiveSlot.SLOT_POCKET do
+		if player:GetActiveItem(slot) == item then
+			return slot
+		end
+	end
+end
+
+function mod:PostCollectHeart()
+	game:GetLevel():SetHeartPicked()
+	game:ClearStagesWithoutHeartsPicked()
+	game:SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+end
+
+function mod:PostCollectCoin()
+	game:SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+end
+
+function mod:PostCollectBomb()
+	game:SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
+end
+
+local textSplahes = {}
+local defaultSplashColour = KColor(1, 1, 1, 1, 0, 0, 0)
+local defaultSplashDuration = 60
+local splashFadeSpeed = 6
+local splashFont = Font()
+splashFont:Load("font/luaminioutlined.fnt")
+
+function mod:AddFlavourText(text, worldPosition, duration, delay, colour, font)
+	table.insert(textSplahes, {
+		Text = text,
+		Position = worldPosition,
+		Duration = duration or defaultSplashDuration,
+		Colour = colour or defaultSplashColour,
+		InitFrame = game:GetFrameCount() + (delay or 0),
+		Font = font or splashFont,
+	})
+end
+
+local function getFadeAlpha(timeDelta, duration)
+	return math.min(1, duration / (4 * splashFadeSpeed) - (timeDelta - duration / 2)^2 / (duration * splashFadeSpeed))
+	-- Thank you desmos <3
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+	for i = #textSplahes, 1, -1 do
+		local data = textSplahes[i]
+		local timeDelta = game:GetFrameCount() - data.InitFrame
+
+		if timeDelta > 0 then
+			local room = game:GetRoom()
+			local screenPosition = room:WorldToScreenPosition(data.Position)
+			local colour = KColor(data.Colour.Red, data.Colour.Green, data.Colour.Blue, getFadeAlpha(timeDelta, data.Duration))
+			data.Font:DrawString(data.Text, screenPosition.X, screenPosition.Y - timeDelta / 4, colour, 1, true)
+		end
+
+		if timeDelta >= data.Duration then
+			table.remove(textSplahes, i)
+		end
+	end
+end)
+
+function mod:GetEffectiveMaxCharge(player, slot)
+	local item = player:GetActiveItem(slot)
+	if item then
+		local configItem = mod:GetItem(item)
+		local multiplier = 1
+
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BATTERY) then
+			multiplier = 2
+		end
+
+		return configItem.MaxCharges * multiplier, configItem.MaxCharges
+	end
+end
+
+function mod:AddCharges(player, slot, numCharges) -- Returns bool: hitFullCharge
+	local current = player:GetActiveCharge(slot) + player:GetBatteryCharge(slot)
+	local chargeCap, capIncrement = mod:GetEffectiveMaxCharge(player, slot)
+	local newCharge = mod:Bound(current + numCharges, 0, chargeCap)
+
+	player:SetActiveCharge(newCharge, slot)
+	game:GetHUD():FlashChargeBar(player, slot)
+	return newCharge % capIncrement == 0 and newCharge ~= current
+end
+
+function mod:QuickSpawn(entityName, position)
+	Isaac.Spawn(Isaac.GetEntityTypeByName(entityName), Isaac.GetEntityVariantByName(entityName), 0, position, Vector.Zero, nil)
+end
+
+local function countVisibleConnections(originIndex)
+	local level = game:GetLevel()
+	local connections = 0
+
+	for _, index in pairs({originIndex - 1, originIndex + 1, originIndex - 13, originIndex + 13}) do
+		local desc = level:GetRoomByIdx(index)
+		if desc.Data and desc.Data.Type ~= RoomType.ROOM_SECRET and desc.Data.Type ~= RoomType.ROOM_SUPERSECRET then
+			connections = connections + 1
+		end
+	end
+
+	return connections
+end
+
+function mod:GetDeadEnd(rng)
+	local deadEnds = {}
+	local level = game:GetLevel()
+	local roomsList = level:GetRooms()
+
+	for i = 0, #roomsList - 1 do
+		local desc = roomsList:Get(i)
+		if desc.Data.Type == RoomType.ROOM_DEFAULT and desc.Data.Shape == RoomShape.ROOMSHAPE_1x1 and countVisibleConnections(desc.SafeGridIndex) == 1 then
+			table.insert(deadEnds, desc)
+		end
+	end
+
+	return deadEnds[rng:RandomInt(#deadEnds) + 1].SafeGridIndex
+end
+
+function mod:TeleportToDoorSlot(player, slot, force)
+	if player:IsExtraAnimationFinished() or force then
+		local offset = Vector(40, 0):Rotated(slot * 90)
+		local base = game:GetRoom():GetDoorSlotPosition(slot)
+		local targetPosition = base + offset
+
+		player:StopExtraAnimation()
+		player:GetData().richer_GenericTeleportTargetLocation = targetPosition
+		player:AnimateTeleport(true)
+		player.Velocity = Vector.Zero
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
+	local data = player:GetData()
+	if player:IsExtraAnimationFinished() and data.richer_GenericTeleportTargetLocation then
+		player.Position = data.richer_GenericTeleportTargetLocation
+		data.richer_GenericTeleportTargetLocation = nil
+		player:AnimateTeleport(false)
+		sfx:Play(SoundEffect.SOUND_HELL_PORTAL1)
+	end
+end)
+
+local schedule = {}
+function mod:Schedule(func, delay)
+	table.insert(schedule, {
+		Call = func,
+		TimeToCall = game:GetFrameCount() + delay,
+	})
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+	for i = #schedule, 1, -1 do
+		local data = schedule[i]
+		if data.TimeToCall <= game:GetFrameCount() then
+			data.Call()
+			table.remove(schedule, i)
+		end
+	end
+end)
+
+function mod:SpawnEmptyItemPedestal(position, spawner)
+	local pedestal = Isaac.Spawn(5, 100, 0, position, Vector.Zero, spawner):ToPickup()
+	pedestal.SubType = 0
+	pedestal:GetSprite():Play("Empty")
+	pedestal.Touched = true
+	pedestal:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+	pedestal:Update()
+
+	return pedestal
+end
+
+function mod:PlayerHasEmptyActiveSlot(player)
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_SCHOOLBAG) then
+		return player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == 0
+	else
+		return player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == 0
+	end
+end
+
+function mod:SimulateSpindownDice(currentId)
+	local config = Isaac.GetItemConfig()
+
+	repeat
+		currentId = currentId - 1
+	until currentId == 0 or (
+		ItemConfig.Config.IsValidCollectible(currentId) and
+		config:GetCollectible(currentId):IsAvailable() and
+		not config:GetCollectible(currentId).Hidden
+	)
+
+	return currentId
+end
+
+function mod:FormatDuration(frames)
+	local hours = math.floor(frames / 30 / 60 / 60)
+	frames = frames - hours * 60 * 60 * 30
+	hours = tostring(hours)
+	if string.len(hours) == 1 then hours = "0" .. hours end
+
+	local minutes = math.floor(frames / 30 / 60)
+	frames = frames - minutes * 60 * 30
+	minutes = tostring(minutes)
+	if string.len(minutes) == 1 then minutes = "0" .. minutes end
+
+	local seconds = math.floor(frames / 30)
+	seconds = tostring(seconds)
+	if string.len(seconds) == 1 then seconds = "0" .. seconds end
+
+	return hours .. ":" .. minutes .. ":" .. seconds
+end
+
+function mod:RNG(seed, shiftIndex)
+	local rng = RNG()
+	rng:SetSeed(seed, shiftIndex or 35)
+	return rng
+end
+
+mod.PhdEffectMap = {
+	[PillEffect.PILLEFFECT_HEALTH_DOWN] = 		PillEffect.PILLEFFECT_HEALTH_UP,
+	[PillEffect.PILLEFFECT_RANGE_DOWN] = 		PillEffect.PILLEFFECT_RANGE_UP,
+	[PillEffect.PILLEFFECT_SPEED_DOWN] = 		PillEffect.PILLEFFECT_SPEED_UP,
+	[PillEffect.PILLEFFECT_TEARS_DOWN] = 		PillEffect.PILLEFFECT_TEARS_UP,
+	[PillEffect.PILLEFFECT_LUCK_DOWN] = 		PillEffect.PILLEFFECT_LUCK_UP,
+	[PillEffect.PILLEFFECT_SHOT_SPEED_DOWN] = 	PillEffect.PILLEFFECT_SHOT_SPEED_UP,
+	[PillEffect.PILLEFFECT_AMNESIA] = 			PillEffect.PILLEFFECT_SEE_FOREVER,
+	[PillEffect.PILLEFFECT_QUESTIONMARK] =		PillEffect.PILLEFFECT_TELEPILLS,
+	[PillEffect.PILLEFFECT_ADDICTED] =			PillEffect.PILLEFFECT_PERCS,
+	[PillEffect.PILLEFFECT_IM_EXCITED] =		PillEffect.PILLEFFECT_IM_DROWSY,
+	[PillEffect.PILLEFFECT_PARALYSIS] =			PillEffect.PILLEFFECT_PHEROMONES,
+	[PillEffect.PILLEFFECT_RETRO_VISION] = 		PillEffect.PILLEFFECT_SEE_FOREVER,
+	[PillEffect.PILLEFFECT_X_LAX] =				PillEffect.PILLEFFECT_SOMETHINGS_WRONG,
+	[PillEffect.PILLEFFECT_BAD_TRIP] =			PillEffect.PILLEFFECT_BALLS_OF_STEEL,
+}
+
+function mod:GetPhdPill(effect)
+	return mod.PhdEffectMap[effect] or effect
+end
+
+local rainbowFragments = {
+	{Progress = 0, 		Colour = Color(255 / 255,   0 / 255,   4 / 255)},
+	{Progress = 0.221, 	Colour = Color(255 / 255, 214 / 255,  47 / 255)},
+	{Progress = 0.401, 	Colour = Color(251 / 255, 255 / 255,   6 / 255)},
+	{Progress = 0.566, 	Colour = Color( 28 / 255, 255 / 255,  26 / 255)},
+	{Progress = 0.699, 	Colour = Color( 44 / 255,  93 / 255, 255 / 255)},
+	{Progress = 0.897,	Colour = Color(255 / 255,  25 / 255, 252 / 255)},
+	{Progress = 1, 		Colour = Color(255 / 255,   0 / 255,   4 / 255)},
+}
+
+function mod:GetRainbowColour(progress) -- Progress is a float from 0-1
+	progress = progress % 1
+
+	local currentIndex = 1
+	for i, data in pairs(rainbowFragments) do
+		if data.Progress <= progress and rainbowFragments[i + 1].Progress > progress then
+			currentIndex = i
+			break
+		end
+	end
+
+	local fragmentOne = rainbowFragments[currentIndex]
+	local fragmentTwo = rainbowFragments[currentIndex + 1]
+	local lerpPercent = (progress - fragmentOne.Progress) / (fragmentTwo.Progress - fragmentOne.Progress)
+	return Color.Lerp(fragmentOne.Colour, fragmentTwo.Colour, lerpPercent)
+end
+
+function mod:DeepClone(toClone, cloneTo)
+	local returnTable = cloneTo or {}
+
+	for index, value in pairs(toClone) do
+		if type(value) == "table" and index ~= "SpawnData" then -- :( Fiend Folio????
+			returnTable[index] = mod:DeepClone(value)
+		else
+			returnTable[index] = value
+		end
+	end
+
+	return returnTable
+end
+
+function mod:CloneEntityData(host, target)
+	local hostData = host:GetData()
+	local targetData = target:GetData()
+	mod:DeepClone(hostData, targetData)
+end
+
+function mod:CloneColour(colour)
+	return Color(
+		colour.R,
+		colour.G,
+		colour.B,
+		colour.A,
+		colour.RO,
+		colour.GO,
+		colour.BO
+	)
+end
+
+function mod:EdgeDistance(entity1, entity2)
+	return entity1.Position:Distance(entity2.Position) - entity1.Size - entity2.Size
+end
+
+function mod:SanitiseTrinket(id)
+	return id & TrinketType.TRINKET_ID_MASK
+end
+
+function mod:RandomVectorEX(length, randomiseToLength)
+	if randomiseToLength then
+		local lerp = Random() / 2^32
+		length = length * lerp
+	end
+
+	return RandomVector():Resized(length)
+end
+
+function mod:AddBurnEx(target, player, duration, damage)
+	if not target:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) then
+		target:AddBurn(EntityRef(player), duration or 60, damage or player:GetTearPoisonDamage())
+	end
+end
+
+function mod:AddPoisonEx(target, player, duration, damage)
+	if not target:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) then
+		target:AddPoison(EntityRef(player), duration or 60, damage or player:GetTearPoisonDamage())
+	end
+end
+
+function mod:AddCharmEx(target, player, duration)
+	if not target:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) then
+		target:AddCharmed(EntityRef(player), duration or 150)
+	end
+end
+
+function mod:AddConfusionEx(target, player, duration)
+	if not target:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) then
+		target:AddConfusion(EntityRef(player), duration or 90)
+	end
+end
+
+function mod:SetFamiliarFireCooldown(familiar, delay)
+	if familiar.Player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
+		familiar.FireCooldown = math.floor(delay / 2)
+	else
+		familiar.FireCooldown = delay
+	end
 end
