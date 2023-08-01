@@ -31,7 +31,7 @@
 	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" name="Wakaba's 9'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active description="Think before stick" gfx="edenstickynote.png" maxcharges="0" name="Eden's Sticky Note" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 
-	<active id="19" description="Re-Reroll your Destiny" gfx="d6plus.png" maxcharges="4" name="D6 Plus" devilprice="2" tags="offensive book nocantrip" quality="4" craftquality="-1"/>
+	<active id="19" description="Re-Reroll your Destiny" gfx="d6plus.png" maxcharges="6" name="D6 Plus" devilprice="2" tags="offensive book nocantrip" quality="4" craftquality="-1"/>
 	<active id="20" description="Can you take your Destiny?" gfx="d6chaos.png" maxcharges="1" name="D6 Chaos" tags="offensive nocantrip" quality="1" craftquality="-1"/>
 
 	<familiar id="21" cache="firedelay" description="Buddy for cooking" gfx="lilmoe.png" name="Lil Moe" tags="stars offensive baby summonable monstermanual" quality="2" />
