@@ -23,7 +23,7 @@ function wakaba:FoundHUDUpdateCheck()
 
 	for p = 1, activePlayers do
 		local player = Isaac.GetPlayer(p - 1)
-		if player.FrameCount == 0 or DidPlayerCharacterJustChange(player) or DidPlayerDualityCountJustChange(player) then
+		if player.FrameCount == 0 or wakaba:DidPlayerCharacterJustChange(player) or wakaba:DidPlayerDualityCountJustChange(player) then
 			updatePos = true
 		end
 	end
@@ -176,7 +176,7 @@ wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_GlobalHUDSta
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_GlobalHUDStats)
 
 
-function DidPlayerDualityCountJustChange(player)
+function wakaba:DidPlayerDualityCountJustChange(player)
 	local data = player:GetData()
 	if data.w_didDualityCountJustChange then
 		return true
@@ -198,7 +198,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 end)
 
 --character just change
-function DidPlayerCharacterJustChange(player)
+function wakaba:DidPlayerCharacterJustChange(player)
 	local data = player:GetData()
 	if data.w_playerTypeJustChanged then
 		return true
