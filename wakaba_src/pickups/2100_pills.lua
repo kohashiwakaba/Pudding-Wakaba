@@ -43,6 +43,11 @@ local pillClass = {
   [wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
 }
 
+
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
+	player:GetData().wakaba_currentPill = player:GetPill(0)
+end)
+
 local function hasPHD(player)
   if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
   or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
@@ -145,8 +150,11 @@ function wakaba:PlayerUpdate_Pills(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Pills)
 
-function wakaba:useWakabaPill(pillEffect, player, useFlags)
-  local isHorse = wakaba:IsPlayerUsingHorsePill(player, useFlags)
+function wakaba:useWakabaPill(_pillEffect, player, useFlags)
+
+	local pillColor = player:GetData().wakaba_currentPill
+  local pillEffect = wakaba.G:GetItemPool():GetPillEffect(pillColor, player)
+	local isHorse = pillColor and pillColor > 0 and pillColor >= PillColor.PILL_GIANT_FLAG
   local multiplier = 1
   if isHorse then
     multiplier = 2
