@@ -31,21 +31,38 @@ function wakaba:removeSilenceTarget(modifierName)
 	end
 end
 
-function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:addSilenceTearsBuff(player, amount)
+	local data = player:GetData()
+	data.wakaba.silencetearsbuff = (data.wakaba.silencetearsbuff or 0) + amount
+end
+
+function wakaba:getSilenceTearsBuff(player)
+	local data = player:GetData()
+	return data.wakaba.silencetearsbuff or 0
+end
+
+function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, varData)
 	local enemydmgvalue = 0
 	local hasjudas = false
 	local hasshiori = false
+	local isGolden = false
 	if wakaba:HasJudasBr(player) then
 		hasjudas = true
 	end
 	if wakaba:HasShiori(player) then
 		hasshiori = true
 	end
+	if Epiphany and Epiphany.API and Epiphany.API:IsGoldenItem(item) then
+		isGolden = true
+	end
 	for _, entry in ipairs(wakaba.SilenceErasures) do
 		local ent = Isaac.FindByType(entry.Type, entry.Variant or -1, entry.SubType or -1, true, true)
 		for i, e in ipairs(ent) do
 			if hasjudas then
 				enemydmgvalue = enemydmgvalue + e.CollisionDamage
+			end
+			if isGolden then
+				wakaba:addSilenceTearsBuff(player, 6)
 			end
 			e:Remove()
 		end
@@ -74,3 +91,27 @@ function wakaba:ItemUse_BookOfSilence(_, rng, player, useFlags, activeSlot, varD
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfSilence, wakaba.Enums.Collectibles.BOOK_OF_SILENCE)
+
+function wakaba:PlayerUpdate_BookOfSilence(player)
+	if wakaba:getSilenceTearsBuff(player) > 0 then
+		if player.FrameCount % 5 == 0 then
+			wakaba:addSilenceTearsBuff(player, -1)
+			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+			player:EvaluateItems()
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_BookOfSilence)
+
+
+ 
+function wakaba:Cache_BookOfSilence(player, cacheFlag)
+	local buffs = wakaba:getSilenceTearsBuff(player)
+	if buffs > 0 then
+    if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((buffs / 10) * wakaba:getEstimatedTearsMult(player)))
+    end
+  end
+end
+ 
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BookOfSilence)
