@@ -68,7 +68,7 @@ function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, var
 			for i, p in ipairs(pedestals) do
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.CollectibleType, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
 				if (p.CollectibleType == CollectibleType.COLLECTIBLE_VOID or p.CollectibleType == CollectibleType.COLLECTIBLE_ABYSS or p.CollectibleType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
-					p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
+					p.Pedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
 				end
 			end
 		end
