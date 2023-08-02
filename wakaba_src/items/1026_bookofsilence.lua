@@ -33,12 +33,14 @@ end
 
 function wakaba:addSilenceTearsBuff(player, amount)
 	local data = player:GetData()
-	data.wakaba.silencetearsbuff = (data.wakaba.silencetearsbuff or 0) + amount
+	if data.wakaba then
+		data.wakaba.silencetearsbuff = (data.wakaba.silencetearsbuff or 0) + amount
+	end
 end
 
 function wakaba:getSilenceTearsBuff(player)
 	local data = player:GetData()
-	return data.wakaba.silencetearsbuff or 0
+	return (data.wakaba and data.wakaba.silencetearsbuff) or 0
 end
 
 function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, varData)
