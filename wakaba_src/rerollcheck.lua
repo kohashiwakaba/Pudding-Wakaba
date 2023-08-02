@@ -283,6 +283,8 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	local hasAftCartridge = false
 	local hasRepCartridge = false
 
+	local hasDoubleDreams = false
+
 	local ignoreActiveFilter = true
 
 	local tagWhiteList = {}
@@ -327,6 +329,9 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		if wakaba:hasWaterFlame(player) then
 			tagWhiteList[ItemConfig.TAG_SUMMONABLE] = true
 		end
+		if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
+			hasDoubleDreams = true
+		end
 	end
 
 	if wakaba.roomstate.allowactives == nil then
@@ -337,6 +342,10 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 	end
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
 		AllowActives = false
+		validQuality["0"] = false
+	end
+
+	if hasDoubleDreams and Epiphany and Epiphany.API and Epiphany.API:IsGoldenItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 		validQuality["0"] = false
 	end
 
