@@ -132,6 +132,24 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			}
 		})
 	 ]]	 
+
+	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
+	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
+	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		wakaba:RemoveCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.Epiphany_AddTarnishedDatas)
 	end
 	if LibraryExpanded then
