@@ -54,7 +54,7 @@ function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, v
 	if wakaba:HasShiori(player) then
 		hasshiori = true
 	end
-	if Epiphany and Epiphany.API and wakaba:IsGoldenItem(item) then
+	if wakaba:IsGoldenItem(item) then
 		isGolden = true
 	end
 	for _, entry in ipairs(wakaba.SilenceErasures) do

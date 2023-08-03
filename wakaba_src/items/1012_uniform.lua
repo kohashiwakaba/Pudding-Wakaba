@@ -370,7 +370,7 @@ function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, var
 		else
 			player:AnimateSad()
 		end
-		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED or (Epiphany and Epiphany.API and wakaba:IsGoldenItem(usedItem)) then
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED or (wakaba:IsGoldenItem(usedItem)) then
 			discharge = false
 		end
 	end

@@ -1,8 +1,8 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
-function wakaba:ItemUse_BookOfTrauma(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_BookOfTrauma(item, rng, player, useFlags, activeSlot, varData)
 	local i = 0
 	local max = wakaba.Enums.Constants.MAX_TRAUMA_COUNT
-	local isGolden = Epiphany and Epiphany.API and wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item)
 	local allowOtherTears = false
 	local entities = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	if #entities > 0 then

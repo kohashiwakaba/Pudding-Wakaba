@@ -4,9 +4,10 @@
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_RicherFlipper(item, rng, player, useFlags, activeSlot, varData)
 	local discharge = false
 	local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
+	local isGolden = wakaba:IsGoldenItem(item)
 	for _, prePickup in ipairs(pickups) do
 		local pickup = prePickup:ToPickup()
 		if pickup then
@@ -22,6 +23,11 @@ function wakaba:ItemUse_RicherFlipper(_, rng, player, useFlags, activeSlot, varD
 			elseif pickup.Variant == PickupVariant.PICKUP_PILL then
 				discharge = true
 				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
+			elseif isGolden and pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE then
+				Epiphany.Pickup.GOLDEN_ITEM.DisableGoldPedestal = true
+				Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
+				Epiphany.Pickup.GOLDEN_ITEM.DisableGoldPedestal = false
+				discharge = true
 			end
 		end
 	end
