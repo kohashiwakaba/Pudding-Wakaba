@@ -70,6 +70,7 @@ function wakaba:PlayerCollision_SelfBurning(player, collider, low)
 	if not player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then return end
 	if player:GetDamageCooldown() > 0 then return end
 	if collider:ToProjectile() then
+		player:SetMinDamageCooldown(30)
 		player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING)
 	else
 		if collider:ToNPC() then
