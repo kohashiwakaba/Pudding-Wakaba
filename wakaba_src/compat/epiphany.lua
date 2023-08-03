@@ -133,9 +133,11 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		})
 	 ]]	 
 
-	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
-	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
-	Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
+		-- Blacklist items to check within Use Item func
+		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
+		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
+		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
+		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
 
 
 
