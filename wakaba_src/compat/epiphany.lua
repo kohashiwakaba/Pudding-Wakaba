@@ -198,6 +198,10 @@ end
 function wakaba:Epiphany_AddThrowingBagSynergies()
 end
 
+function wakaba:IsGoldenItem(itemID)
+	if not (Epiphany and Epiphany.API) then return false end
+	return Epiphany.Pickup.GOLDEN_ITEM:IsGoldenItem(itemID)
+end
 
 
 
