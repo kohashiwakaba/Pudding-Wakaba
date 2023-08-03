@@ -385,6 +385,17 @@ wakaba.Enums.Constants = {
 	SSRC_ALLOW_FLAMES = 8, -- 초민감 리셰 챌린지 최대 흡수 제한
 }
 
+wakaba.ValidCustomStat = {
+	"damage",
+	"tears",
+	"range",
+	"luck",
+	"speed",
+	"shotspeed",
+	"hairpinluck",
+	"falsedamage",
+}
+
 wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1.5,
 	[wakaba.Enums.Trinkets.CLOVER] = {t={0.3, 2}, append = true},

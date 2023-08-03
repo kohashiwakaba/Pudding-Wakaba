@@ -43,10 +43,10 @@ local pillClass = {
   [wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
 }
 
-
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
+function wakaba:PlayerUpdate_Pills(player)
 	player:GetData().wakaba_currentPill = player:GetPill(0)
-end)
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Pills)
 
 local function hasPHD(player)
   if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
@@ -86,7 +86,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 		local player = Isaac.GetPlayer(i - 1)
     if hasPHD(player) then phd = true; estdamage = player.Damage end
     if hasFalsePHD(player) then fhd = true end
-    if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE 
+    if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE
     and wakaba.G:IsGreedMode() then
       return wakaba.Enums.Pills.ALL_STATS_UP
     end
@@ -95,7 +95,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
         return wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2
       end
     end
-    if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
+    if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_ then
       if pillEffect == PillEffect.PILLEFFECT_LUCK_DOWN then
         if fhd then
           return PillEffect.PILLEFFECT_SPEED_DOWN
@@ -109,7 +109,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
           return PillEffect.PILLEFFECT_SPEED_DOWN
         end
       end
-    elseif player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
+    elseif player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B then
       if pillEffect == PillEffect.PILLEFFECT_LUCK_UP then
         if phd then
           return wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP
@@ -117,11 +117,11 @@ function wakaba:getPillEffect(pillEffect, pillColor)
           return PillEffect.PILLEFFECT_LUCK_DOWN
         end
       end
-    elseif player:GetPlayerType() == 21 then
+    elseif player:GetPlayerType() == PlayerType.PLAYER_ISAAC_B then
       if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
 		  	pillEffect = convertFalsePHD[pillEffect]
       end
-    elseif player:GetPlayerType() == 30 then
+    elseif player:GetPlayerType() == PlayerType.PLAYER_EDEN_B then
       if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
 		  	pillEffect = convertFalsePHD[pillEffect]
       end
@@ -143,15 +143,28 @@ function wakaba:getPillEffect(pillEffect, pillColor)
   --print(pillEffect)
   return pillEffect
 end
-wakaba:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, 100, wakaba.getPillEffect) 
+wakaba:AddPriorityCallback(ModCallbacks.MC_GET_PILL_EFFECT, 100, wakaba.getPillEffect)
 
-function wakaba:PlayerUpdate_Pills(player)
-
+function wakaba:getCustomStat(player, statType)
+  if type(statType) ~= "string" or not wakaba:has_value(wakaba.ValidCustomStat, statType) then return 0 end
+  return player:GetData().wakaba.statmodify[statType]
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Pills)
+
+function wakaba:addCustomStat(player, statType, amount)
+  if type(statType) ~= "string" or not wakaba:has_value(wakaba.ValidCustomStat, statType) then return end
+  if not amount or type(amount) ~= "number" then return end
+  player:GetData().wakaba.statmodify[statType] = player:GetData().wakaba.statmodify[statType] + amount
+end
+
+function wakaba:setCustomStat(player, statType, amount)
+  if type(statType) ~= "string" or not wakaba:has_value(wakaba.ValidCustomStat, statType) then return end
+  if not amount or type(amount) ~= "number" then return end
+  player:GetData().wakaba.statmodify[statType] = amount
+end
 
 function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 
+  -- Post G FUEL patch by Connor
 	local pillColor = player:GetData().wakaba_currentPill
   local pillEffect = wakaba.G:GetItemPool():GetPillEffect(pillColor, player)
 	local isHorse = pillColor and pillColor > 0 and pillColor >= PillColor.PILL_GIANT_FLAG
@@ -160,7 +173,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
     multiplier = 2
   end
   --print(isHorse)
-	if useFlags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD and Options.Language ~= "en" then 
+	if useFlags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD and Options.Language ~= "en" then
     local descTable = wakaba.descriptions[wakaba.LanguageMap[Options.Language]]
     if descTable then
       local pilltable = descTable.pills
@@ -172,37 +185,37 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 
   if wakaba:getstoredindex(player) ~= nil then
     player:GetData().wakaba.statmodify.hairpinluck = player:GetData().wakaba.statmodify.hairpinluck or 0
-		player:GetData().wakaba.statmodify.hairpinluck = player:GetData().wakaba.statmodify.hairpinluck + multiplier
+    wakaba:addCustomStat(player, "hairpinluck", multiplier)
 
     if pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP then
-      player:GetData().wakaba.statmultiplier.damage = player:GetData().wakaba.statmultiplier.damage + (0.08 * multiplier)
+      wakaba:addCustomStat(player, "damage", 0.08 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
       player:EvaluateItems()
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
     elseif pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN then
-      player:GetData().wakaba.statmultiplier.damage = player:GetData().wakaba.statmultiplier.damage - (0.02 * multiplier)
+      wakaba:addCustomStat(player, "damage", -0.02 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
       player:EvaluateItems()
       player:AnimateSad()
     elseif pillEffect == wakaba.Enums.Pills.ALL_STATS_UP then
-      player:GetData().wakaba.statmodify.damage = player:GetData().wakaba.statmodify.damage + (0.25 * multiplier)
-      player:GetData().wakaba.statmodify.tears = player:GetData().wakaba.statmodify.tears + (0.2 * multiplier)
-      player:GetData().wakaba.statmodify.range = player:GetData().wakaba.statmodify.range + (0.4 * multiplier)
-      player:GetData().wakaba.statmodify.luck = player:GetData().wakaba.statmodify.luck + (1 * multiplier)
-      player:GetData().wakaba.statmodify.speed = player:GetData().wakaba.statmodify.speed + (0.12 * multiplier)
-      player:GetData().wakaba.statmodify.shotspeed = player:GetData().wakaba.statmodify.shotspeed + (0.08 * multiplier)
+      wakaba:addCustomStat(player, "damage", 0.25 * multiplier)
+      wakaba:addCustomStat(player, "tears", 0.2 * multiplier)
+      wakaba:addCustomStat(player, "range", 0.4 * multiplier)
+      wakaba:addCustomStat(player, "luck", 1 * multiplier)
+      wakaba:addCustomStat(player, "speed", 0.12 * multiplier)
+      wakaba:addCustomStat(player, "shotspeed", 0.08 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_ALL)
       player:EvaluateItems()
       player:AnimateHappy()
       SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
     elseif pillEffect == wakaba.Enums.Pills.ALL_STATS_DOWN then
-      player:GetData().wakaba.statmodify.damage = player:GetData().wakaba.statmodify.damage - (0.1 * multiplier)
-      player:GetData().wakaba.statmodify.tears = player:GetData().wakaba.statmodify.tears - (0.08 * multiplier)
-      player:GetData().wakaba.statmodify.range = player:GetData().wakaba.statmodify.range - (0.25 * multiplier)
-      player:GetData().wakaba.statmodify.luck = player:GetData().wakaba.statmodify.luck - (1 * multiplier)
-      player:GetData().wakaba.statmodify.speed = player:GetData().wakaba.statmodify.speed - (0.09 * multiplier)
-      player:GetData().wakaba.statmodify.shotspeed = player:GetData().wakaba.statmodify.shotspeed - (0.06 * multiplier)
+      wakaba:addCustomStat(player, "damage", -0.1 * multiplier)
+      wakaba:addCustomStat(player, "tears", -0.08 * multiplier)
+      wakaba:addCustomStat(player, "range", -0.25 * multiplier)
+      wakaba:addCustomStat(player, "luck", -1 * multiplier)
+      wakaba:addCustomStat(player, "speed", -0.09 * multiplier)
+      wakaba:addCustomStat(player, "shotspeed", -0.06 * multiplier)
       player:AddCacheFlags(CacheFlag.CACHE_ALL)
       player:EvaluateItems()
       player:AnimateSad()
@@ -214,12 +227,11 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
         end
         player:AnimateSad()
       elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE8 or wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE4_3 then
-        player.AddCollectible(player, CollectibleType.COLLECTIBLE_TMTRAINER)
+        wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_TMTRAINER, 1)
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector(0,0), nil)
         if isHorse then
           Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 64), Vector(0,0), nil)
         end
-        player.RemoveCollectible(player, CollectibleType.COLLECTIBLE_TMTRAINER)
         player:AnimateSad()
       elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE3_2 and wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT) and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) then
         player:UseCard(Card.CARD_EMPEROR, UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOANNOUNCER | UseFlag.USE_CARBATTERY | UseFlag.USE_NOANIM)
@@ -255,7 +267,11 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
         wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetStartingRoomIndex(),Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
       end
     elseif pillEffect == wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT then
-      player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
+      if isHorse then
+        player:UseCard(Card.CARD_SOUL_AZAZEL, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_OWNED | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
+      else
+        player:UseActiveItem(CollectibleType.COLLECTIBLE_SULFUR, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
+      end
     elseif pillEffect == wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2 then
       wakaba:GetPlayerEntityData(player)
       player:GetData().wakaba.trollbrimstonecounter = player:GetPillRNG(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2):RandomInt(100)
@@ -265,22 +281,23 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
       end
       player:AnimateSad()
     elseif pillEffect == wakaba.Enums.Pills.DUALITY_ORDERS then
-      local indRng = player:GetPillRNG(wakaba.Enums.Pills.DUALITY_ORDERS)
-      local ind = indRng:RandomInt(41000) + 60
-
-      local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-        wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
-        Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
-      local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-      wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
-        Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
-
+      wakaba.HiddenItemManager:AddForFloor(player, CollectibleType.COLLECTIBLE_DUALITY, 0, 1, "WAKABA_PILLS")
+      wakaba.HiddenItemManager:AddForFloor(player, CollectibleType.COLLECTIBLE_EUCHARIST, 0, 1, "WAKABA_PILLS")
       if isHorse then
         wakaba.G:SetLastDevilRoomStage(-1)
-      else
-        p1.OptionsPickupIndex = ind
-        p2.OptionsPickupIndex = ind
+
+        local indRng = player:GetPillRNG(wakaba.Enums.Pills.DUALITY_ORDERS)
+        local ind = indRng:RandomInt(41000) + 60
+
+        local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+          wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false),
+          Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+        local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+        wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false),
+          Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
       end
+      player:AnimateHappy()
+      SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
     elseif pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE then
       wakaba.G:GetLevel():DisableDevilRoom()
       if isHorse then
@@ -369,16 +386,16 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
     elseif pillEffect == wakaba.Enums.Pills.UNHOLY_CURSE then
       if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) > 0 then
         if multiplier == 2 and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) > 1 then
-          player:TakeDamage(1, DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(player), 0)
+          player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
         end
         player:TakeDamage(1, DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(player), 0)
       end
       player:AnimateSad()
     end
-    
+
     if pillClass[pillEffect] then
       if pillClass[pillEffect] == -3 then
-        player:GetData().wakaba.statmodify.falsedamage = player:GetData().wakaba.statmodify.falsedamage + (0.6 * multiplier)
+        wakaba:addCustomStat(player, "falsedamage", 0.6 * multiplier)
       elseif pillClass[pillEffect] == -2 or pillClass[pillEffect] == -1 then
         if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
           Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK, Isaac.GetFreeNearPosition(player.Position, 10), Vector(0,0), nil)
@@ -390,15 +407,15 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
     end
   end
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_PILL, wakaba.useWakabaPill) 
+wakaba:AddCallback(ModCallbacks.MC_USE_PILL, wakaba.useWakabaPill)
 
 function wakaba:onPillCache(player, cacheFlag)
   local sti = player:GetData().wakaba
   if sti and sti.statmodify then
     if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage + (sti.statmodify.damage * wakaba:getEstimatedDamageMult(player))
+      player.Damage = player.Damage + (wakaba:getCustomStat(player, "damage") * wakaba:getEstimatedDamageMult(player))
       if player:HasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD) then
-        player.Damage = player.Damage + (sti.statmodify.falsedamage * wakaba:getEstimatedDamageMult(player))
+        player.Damage = player.Damage + (wakaba:getCustomStat(player, "falsedamage") * wakaba:getEstimatedDamageMult(player))
       end
       player.Damage = player.Damage * (1 + sti.statmultiplier.damage)
     end
@@ -406,25 +423,25 @@ function wakaba:onPillCache(player, cacheFlag)
       if sti.statmodify.shotspeed >= 0 then
         player.ShotSpeed = player.ShotSpeed + (math.sqrt(1 + sti.statmodify.shotspeed) - 1)
       else
-        player.ShotSpeed = player.ShotSpeed + sti.statmodify.shotspeed
+        player.ShotSpeed = player.ShotSpeed + wakaba:getCustomStat(player, "shotspeed")
       end
     end
     if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-      player.TearRange = player.TearRange + (sti.statmodify.range * 40)
+      player.TearRange = player.TearRange + (wakaba:getCustomStat(player, "range") * 40)
     end
     if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-      player.MoveSpeed = player.MoveSpeed + sti.statmodify.speed
+      player.MoveSpeed = player.MoveSpeed + wakaba:getCustomStat(player, "speed")
     end
     if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-      player.Luck = player.Luck + sti.statmodify.luck
+      player.Luck = player.Luck + wakaba:getCustomStat(player, "luck")
     end
     if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-      player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, sti.statmodify.tears * wakaba:getEstimatedTearsMult(player))
+      player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, wakaba:getCustomStat(player, "tears") * wakaba:getEstimatedTearsMult(player))
     end
   end
-	
+
 end
- 
+
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onPillCache)
 
 
@@ -463,3 +480,17 @@ function wakaba:PlayerInit_Pills(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PlayerInit_Pills, 0)
 
+if EID then
+  EID:addDescriptionModifier("Wakaba Horse Pills", function (descObj)
+    return descObj.ObjType == 5
+      and descObj.ObjVariant == PickupVariant.PICKUP_PILL
+      and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
+  end, function (descObj)
+		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
+		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].horsepills) or wakaba.descriptions["en_us"].horsepills
+    if unistr[adjustedID-1] then
+      descObj.Description = unistr[adjustedID-1][3]
+    end
+		return descObj
+  end)
+end

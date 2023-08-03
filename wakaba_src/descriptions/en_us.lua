@@ -1496,7 +1496,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		itemName = "Explosive Diarrehea 2?",
-		description = "{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
+		description = "{{Collectible118}} Grants Brimstone for the current room",
 		mimiccharge = 6,
 		class = "2+",
 	},
@@ -1508,7 +1508,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		itemName = "Duality Orders",
-		description = "Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Only one can be taken",
+		description = "{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear",
 		mimiccharge = 6,
 		class = "3+",
 	},
@@ -1538,75 +1538,75 @@ wakaba.descriptions[desclang].pills = {
 	},
 }
 wakaba.descriptions[desclang].horsepills = {
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP +1] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
 		"Damage Multiplier Up",
 		"↑ {{Damage}} +16% Damage Multiplier",
 	},
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN +1] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"Damage Multiplier Down",
 		"↓ {{Damage}} -4% Damage Multiplier",
 	},
-	[wakaba.Enums.Pills.ALL_STATS_UP +1] = {
+	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
 		"All Stats Up",
 		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +2 Luck#",
 	},
-	[wakaba.Enums.Pills.ALL_STATS_DOWN +1] = {
+	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
 		"All Stats Down",
 		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
 	},
-	[wakaba.Enums.Pills.TROLLED +1] = {
+	[wakaba.Enums.Pills.TROLLED] = {
 		tostring(wakaba.Enums.Pills.TROLLED),
 		"Trolled!",
 		"{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
 	},
-	[wakaba.Enums.Pills.TO_THE_START +1] = {
+	[wakaba.Enums.Pills.TO_THE_START] = {
 		tostring(wakaba.Enums.Pills.TO_THE_START),
 		"To the Start!",
 		"Teleports to Starting room on the floor#Heals 1 Heart#Removes a Broken Heart",
 	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2 +1] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),
 		"Explosive Diarrehea 2!",
-		"Spawns 2 troll Brimstone swirls at Isaac's position",
+		"Spawns 2 troll Brimstone swirls at Isaac's position#{{Collectible293}} Shoot brimstone lasers in all 4 directions",
 	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT +1] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT),
 		"Explosive Diarrehea 2?",
-		"{{Card88}} Invokes Soul of Azazel effect:#{{Collectible441}} Activates Mega Blast for 7.5 seconds",
+		"{{Card88}} Activates {{Collectible441}}Mega Blast for 7.5 seconds",
 	},
-	[wakaba.Enums.Pills.SOCIAL_DISTANCE +1] = {
+	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
 		tostring(wakaba.Enums.Pills.SOCIAL_DISTANCE),
 		"Social Distance",
 		"Closes Devil/Angel room for current floor#↓ {{AngelDevilChance}} Decreases Devil/Angel room chance for later floors",
 	},
-	[wakaba.Enums.Pills.DUALITY_ORDERS +1] = {
+	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
 		"Duality Orders",
-		"Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
+		"{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear#Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
 	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS +1] = {
+	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
 		tostring(wakaba.Enums.Pills.FLAME_PRINCESS),
 		"Flame Princess",
-		"Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max healt#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
+		"Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max health#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
 	},
-	[wakaba.Enums.Pills.FIREY_TOUCH +1] = {
+	[wakaba.Enums.Pills.FIREY_TOUCH] = {
 		tostring(wakaba.Enums.Pills.FIREY_TOUCH),
 		"Firey Touch",
 		"{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
 	},
-	[wakaba.Enums.Pills.PRIEST_BLESSING +1] = {
+	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
 		"Priest's Blessing",
-		"Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
+		"{{Card51}} Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken",
 	},
-	[wakaba.Enums.Pills.UNHOLY_CURSE +1] = {
+	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"Unholy Curse",
-		"Breaks a stack from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
+		"Breaks 2 stacks from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
 	},
 }
 

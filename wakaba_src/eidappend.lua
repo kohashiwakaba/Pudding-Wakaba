@@ -701,7 +701,7 @@ if EID then
 					EID:addPill(pillid, pilldesc.description, pilldesc.itemName, lang)
 				end
 				--EID:addHorsePill doesn't exist lol
-				EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)
+				--EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)
 				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
 				end ]]

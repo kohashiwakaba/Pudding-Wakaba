@@ -1589,7 +1589,8 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		itemName = "혈사 설사 2?",
-		description = "{{Card88}} Soul of Azazel 효과 발동:#7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
+		description = "{{Collectible556}} 그 방에서 공격이 {{Collectible118}}충전형 혈사포 공격으로 변경됩니다.",
+		--description = "{{Card88}} 7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
 		mimiccharge = 6,
 		class = "2+",
 	},
@@ -1599,7 +1600,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		itemName = "이중 질서",
-		description = "{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#둘 중 하나만 획득할 수 있습니다.",
+		description = "{{Collectible498}} 가능한 경우, 현재 층에서 악마방/천사방이 반드시 등장합니다.",
 	},
 	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
 		itemName = "불꽃 공주",
@@ -1611,83 +1612,83 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		itemName = "성녀의 가호",
-		description = "피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.#{{Card51}} (Holy Card 효과와 동일)",
+		description = "{{Card51}} 피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.",
 	},
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		itemName = "빼앗긴 신앙",
-		description = "Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
+		description = "{{HolyMantle}}Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
 	},
 }
 wakaba.descriptions[desclang].horsepills = {
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP +1] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
 		"공격력 배율 증가",
 		"↑ {{DamageSmall}}공격력 배율 {{ColorCyan}}x1.16{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN +1] = {
+	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"공격력 배율 감소",
 		"↓ {{DamageSmall}}공격력 배율 {{ColorYellow}}x0.96{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
 	},
-	[wakaba.Enums.Pills.ALL_STATS_UP +1] = {
+	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
 		"모든 능력치 증가",
 		"↑ {{DamageSmall}}공격력 +{{ColorCyan}}0.5{{CR}}#↑ {{TearsSmall}}연사 +{{ColorCyan}}0.4{{CR}}#↑ {{SpeedSmall}}이동속도 +{{ColorCyan}}0.24{{CR}}#↑ {{RangeSmall}}사거리 +{{ColorCyan}}0.8{{CR}}#↑ {{ShotspeedSmall}}탄속 +{{ColorCyan}}0.08{{CR}}#↑ {{LuckSmall}}행운 +{{ColorCyan}}2{{CR}}",
 	},
-	[wakaba.Enums.Pills.ALL_STATS_DOWN +1] = {
+	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
 		"모든 능력치 감소",
 		"↓ {{DamageSmall}}공격력 -{{ColorYellow}}0.2{{CR}}#↓ {{TearsSmall}}연사 -{{ColorYellow}}0.16{{CR}}#↓ {{SpeedSmall}}이동속도 -{{ColorYellow}}0.18{{CR}}#↓ {{RangeSmall}}사거리 -{{ColorYellow}}0.5{{CR}}#↓ {{ShotspeedSmall}}탄속 -{{ColorYellow}}0.06{{CR}}#↓ {{LuckSmall}}행운 -{{ColorYellow}}2{{CR}}",
 	},
-	[wakaba.Enums.Pills.TROLLED +1] = {
+	[wakaba.Enums.Pills.TROLLED] = {
 		tostring(wakaba.Enums.Pills.TROLLED),
 		"낚였구나아아아아아아",
 		"{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
-	[wakaba.Enums.Pills.TO_THE_START +1] = {
+	[wakaba.Enums.Pills.TO_THE_START] = {
 		tostring(wakaba.Enums.Pills.TO_THE_START),
 		"태초마을",
 		"각 층의 시작 방으로 텔레포트합니다.#↑ {{Heart}}하트 +1#↑ {{BrokenHeart}}{{ColorCyan}}소지 불가능 체력 -1{{CR}}",
 	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2 +1] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),
 		"혈사 설사 2",
-		"캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.",
+		"캐릭터의 위치에 십자 모양으로 발사되는 혈사 소용돌이를 두번 생성합니다.#두 혈사 소용돌이의 간격은 랜덤입니다.#{{Collectible293}} {{ColorCyan}}사용 시 대각선 또는 십자 방향으로 최대 190의 피해를 주는 혈사포를 발사합니다.{{CR}}",
 	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT +1] = {
+	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT),
 		"혈사 설사 2?",
-		"{{Card88}}7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.",
+		"{{Card88}} {{ColorCyan}}7.5초 동안 초당 공격력 x15의 {{Collectible441}}대형 혈사포를 발사합니다.{{CR}}",
 	},
-	[wakaba.Enums.Pills.SOCIAL_DISTANCE +1] = {
+	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
 		tostring(wakaba.Enums.Pills.SOCIAL_DISTANCE),
 		"사회적 거리두기",
 		"현재 층에서 악마방/천사방의 등장을 막습니다.#↓ {{ColorYellow}}이후 층에서의 악마방/천사방 확률 감소{{CR}}",
 	},
-	[wakaba.Enums.Pills.DUALITY_ORDERS +1] = {
+	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
 		"이중 질서",
-		"{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환합니다.#{{ColorCyan}}두 아이템 모두 획득할 수 있습니다.{{CR}}",
+		"{{Collectible498}} 가능한 경우, 현재 층에서 악마방/천사방이 반드시 등장합니다.#{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환하며 {{ColorCyan}}두 아이템 모두 획득할 수 있습니다.{{CR}}",
 	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS +1] = {
+	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
 		tostring(wakaba.Enums.Pills.FLAME_PRINCESS),
 		"불꽃 공주",
 		"소지 중인 레메게톤 불꽃을 흡수하여 아이템을 {{ColorCyan}}2개씩{{CR}} 획득합니다.#흡수하지 못한 불꽃의 체력을 전부 회복합니다.#불꽃을 하나도 소지하지 않은 경우 불꽃을 하나 소환합니다.",
 	},
-	[wakaba.Enums.Pills.FIREY_TOUCH +1] = {
+	[wakaba.Enums.Pills.FIREY_TOUCH] = {
 		tostring(wakaba.Enums.Pills.FIREY_TOUCH),
 		"앗 뜨거!",
 		"{{WakabaCurseFlames}} Curse of Flames!(불꽃의 저주)에 걸립니다.#위습의 체력을 전부 회복합니다.",
 	},
-	[wakaba.Enums.Pills.PRIEST_BLESSING +1] = {
+	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
 		"성녀의 가호",
-		"피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.#{{Card51}} (Holy Card 효과와 동일)",
+		"{{Card51}} 피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 {{ColorCyan}}최대 2회{{CR}} 제공합니다.#이 방어막은 피격 시까지 유지됩니다.",
 	},
-	[wakaba.Enums.Pills.UNHOLY_CURSE +1] = {
+	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"빼앗긴 신앙",
-		"Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
+		"{{HolyMantle}}Holy Mantle의 방어막을 {{ColorYellow}}2회{{CR}} 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
 	},
 }
 
