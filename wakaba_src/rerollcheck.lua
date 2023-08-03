@@ -345,7 +345,7 @@ function wakaba:rollCheck(selected, itemPoolType, decrease, seed)
 		validQuality["0"] = false
 	end
 
-	if hasDoubleDreams and Epiphany and Epiphany.API and Epiphany.API:IsGoldenItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
+	if hasDoubleDreams and Epiphany and Epiphany.API and wakaba:IsGoldenItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 		validQuality["0"] = false
 	end
 

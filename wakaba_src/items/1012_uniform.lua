@@ -300,7 +300,7 @@ function wakaba:PlayerEffect_Uniform(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffect_Uniform)
 
-function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, varData)
 	local discharge = false
 	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
 	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) 
@@ -370,7 +370,7 @@ function wakaba:ItemUse_Uniform(_, rng, player, useFlags, activeSlot, varData)
 		else
 			player:AnimateSad()
 		end
-		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
+		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED or (Epiphany and Epiphany.API and wakaba:IsGoldenItem(usedItem)) then
 			discharge = false
 		end
 	end
