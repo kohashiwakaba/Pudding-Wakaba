@@ -9,12 +9,28 @@ local function TryOpenChallengeDoor()
 	end
 end
 
+local function TryOpenQuestDoor()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+		local doorR = wakaba.G:GetRoom():GetDoor(i)
+		if doorR then 
+			if doorR.TargetRoomIndex == -7
+			or doorR.TargetRoomIndex == -10 
+			then
+				doorR:TryUnlock(Isaac.GetPlayer(), true)
+			end
+		end
+	end
+end
+
 function wakaba:NewRoom_PhantomCloak()
 	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)
 		pData = player:GetData()
 		if pData.wakaba and pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then
 			TryOpenChallengeDoor()
+			if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.PHANTOM_CLOAK) then
+				TryOpenQuestDoor()
+			end
 		end
 	end
 end
@@ -111,7 +127,7 @@ function wakaba:PNPCUpdate_PhantomCloak(npc)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, wakaba.PNPCUpdate_PhantomCloak)
 
-function wakaba:ItemUse_PhantomCloak(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_PhantomCloak(item, rng, player, useFlags, activeSlot, varData)
 	pData = player:GetData()
 	if not pData.wakaba.phantomcloak or not pData.wakaba.phantomcloak.timer then
 		pData.wakaba.phantomcloak = pData.wakaba.phantomcloak or {}
@@ -119,6 +135,9 @@ function wakaba:ItemUse_PhantomCloak(_, rng, player, useFlags, activeSlot, varDa
 		pData.wakaba.phantomcloak.active = true
 		player:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
 		TryOpenChallengeDoor()
+		if wakaba:IsGoldenItem(item) then
+			TryOpenQuestDoor()
+		end
 		--[[ if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 			player:AnimateCollectible(wakaba.Enums.Collectibles.PHANTOM_CLOAK, "UseItem", "PlayerPickup")
 		end ]]
@@ -129,7 +148,7 @@ function wakaba:ItemUse_PhantomCloak(_, rng, player, useFlags, activeSlot, varDa
 		SFXManager():Play(SoundEffect.SOUND_ANGEL_WING)
 		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_TEARFLAG)
 		player:EvaluateItems()
-	elseif pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then
+	elseif pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active and useFlags & UseFlag.USE_CARBATTERY == 0 then
 		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector(0,0), nil)
 		SFXManager():Play(SoundEffect.SOUND_BLACK_POOF)
 		pData.wakaba.phantomcloak.active = false
