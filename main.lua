@@ -305,6 +305,13 @@ local richer_saved_recipies = {
 			invtrinkets = true,
 			invpocketitems = true,
 
+			-- Found HUD options
+			hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
+			hudroomnumber = 1, -- room no - 0: false, 1: no. only, 2:detailed
+			hudroomname = 1, -- room name - 0: false, 1: name scroll, 2: full name, 3:detailed
+			hudroomdiff = 1, -- room difficulty - 0: false, 1: diff only, 2:detailed
+			hudroomweight = 1, -- room weight - 0: false, 1: weight only, 2:detailed
+
 		},
 		--wakabaoptions = wakaba.wakabaoptiondefaults,
 		pog = true,
@@ -652,6 +659,13 @@ wakaba.optiondefaults = {
 	invactives = true,
 	invtrinkets = true,
 	invpocketitems = true,
+
+	-- Found HUD options
+	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
+	hudroomnumber = 1, -- room no - 0: false, 1: no. only, 2:detailed
+	hudroomname = 1, -- room name - 0: false, 1: name scroll, 2: full name, 3:detailed
+	hudroomdiff = 1, -- room difficulty - 0: false, 1: diff only, 2:detailed
+	hudroomweight = 1, -- room weight - 0: false, 1: weight only, 2:detailed
 
 }
 

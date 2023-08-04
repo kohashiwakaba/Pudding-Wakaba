@@ -2341,6 +2341,8 @@ end
 local function clearCaches()
 	mod.roomEntitiesCache = nil
 	mod.roomPlayersCache = nil
+	mod.isTakingDamage = nil
+	mod.isTakingPenaltyDamage = nil
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, clearCaches)

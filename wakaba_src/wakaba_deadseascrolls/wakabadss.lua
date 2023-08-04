@@ -173,6 +173,11 @@ local wakabadirectory = {
 				tooltip = {strset = {'settings', 'for', 'wakaba mod'}}
 			},
 			{
+				str = 'hud settings',
+				dest = 'hud_setting',
+				tooltip = {strset = {'hud settings', 'for', 'wakaba mod'}}
+			},
+			{
 				str = 'forcevoid',
 				dest = 'forcevoid',
 				tooltip = {strset = {'settings', 'for', 'opening', 'void', 'portals'}}
@@ -524,6 +529,76 @@ local wakabadirectory = {
 					wakaba.state.options.invpocketitems = (var == 1)
 				end,
 				tooltip = {strset = {'show','pocket items','in','inventory','descriptions'}}
+			},
+		},
+	},
+	hud_setting = {
+		title = 'hud settings',
+		buttons = {
+			{
+				str = 'hit counter',
+				choices = {"don't show", "penalties only", "all"},
+				setting = 1,
+				variable = 'HUDHitCounter',
+				load = function()
+					return wakaba.state.options.hudhitcounter + 1
+				end,
+				store = function(var)
+					wakaba.state.options.hudhitcounter = var - 1
+				end,
+				tooltip = {strset = {''}}
+			},
+			{
+				str = 'room no.',
+				choices = {"don't show", "number only", "full string"},
+				setting = 1,
+				variable = 'HUDRoomNumber',
+				load = function()
+					return wakaba.state.options.hudroomnumber + 1
+				end,
+				store = function(var)
+					wakaba.state.options.hudroomnumber = var - 1
+				end,
+				tooltip = {strset = {''}}
+			},
+			{
+				str = 'room name',
+				choices = {"don't show", "name scroll", "name only", "full string"},
+				setting = 1,
+				variable = 'HUDRoomName',
+				load = function()
+					return wakaba.state.options.hudroomname + 1
+				end,
+				store = function(var)
+					wakaba.state.options.hudroomname = var - 1
+				end,
+				tooltip = {strset = {''}}
+			},
+			{
+				str = 'room difficulty',
+				choices = {"don't show", "difficulty only", "full string"},
+				setting = 1,
+				variable = 'HUDRoomDifficulty',
+				load = function()
+					return wakaba.state.options.hudroomdiff + 1
+				end,
+				store = function(var)
+					wakaba.state.options.hudroomdiff = var - 1
+				end,
+				tooltip = {strset = {''}}
+			},
+			{
+				str = 'room weight',
+				choices = {"don't show", "weight only", "full string"},
+				setting = 1,
+				variable = 'HUDRoomWeight',
+				load = function()
+					return wakaba.state.options.hudroomweight + 1
+				end,
+				store = function(var)
+					wakaba.state.options.hudroomweight = var - 1
+				end,
+				tooltip = {strset = {''}}
 			},
 		},
 	},

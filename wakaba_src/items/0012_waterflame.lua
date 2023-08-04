@@ -13,7 +13,7 @@ local function canDisplayWaterFlame(player)
 	local playerIndex = isc:getPlayerIndex(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
 		local current = wakaba.TotalWisps[playerIndex]
-		if #current.list > 0 then
+		if current and #current.list > 0 then
 			local wisp = current.list[current.index]
 			itemID = wisp.SubType
 			return itemID

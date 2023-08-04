@@ -34,6 +34,7 @@ if MCM then
 	MCM.UpdateSubcategory("Pudding & Wakaba", "General", {
 		Info = ""
 	})
+	-- General - Allow Locked items
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -60,6 +61,7 @@ if MCM then
 	)
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Charge Bars" end)
+	-- General - Charge Bar
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -87,6 +89,7 @@ if MCM then
 	)
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Stackable Holy Mantle" end)
+	-- General - Stackable Mantles
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -262,6 +265,7 @@ if MCM then
 
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Dead Wisp Notification" end)
+	-- General - Dead Wisp Notification
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -313,7 +317,7 @@ if MCM then
 
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Inventory Descriptions" end)
-
+	-- General - Inventory Descriptions
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -535,6 +539,7 @@ if MCM then
 
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Wakaba's Uniform Settings" end)
+	-- General - HUD Render 1
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -582,6 +587,7 @@ if MCM then
 		}
 	)
 	MCM.AddSpace("Pudding & Wakaba", "General")
+	-- General - POG
 	if Poglite then
 		MCM.AddSetting(
 			"Pudding & Wakaba", 
@@ -606,11 +612,15 @@ if MCM then
 		)
 	end
 	MCM.AddSpace("Pudding & Wakaba", "General")
-	MCM.AddText("Pudding & Wakaba", "General", function() return "Items" end)
-
+	---------------------------------------------------------------------------
+	------------------------------Item Functions-------------------------------
+	MCM.UpdateSubcategory("Pudding & Wakaba", "Items", {
+		Info = ""
+	})
+	-- Items - Wakaba Items
 	MCM.AddSetting(
 		"Pudding & Wakaba",
-		"General",
+		"Items",
 		{
 			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
 			CurrentSetting = function()
@@ -679,11 +689,11 @@ if MCM then
 		}
 	)
 
-	MCM.AddSpace("Pudding & Wakaba", "General")
-	MCM.AddText("Pudding & Wakaba", "General", function() return "Starting Items" end)
+	MCM.AddSpace("Pudding & Wakaba", "Items")
+	MCM.AddText("Pudding & Wakaba", "Items", function() return "Starting Items" end)
 	MCM.AddSetting(
 		"Pudding & Wakaba",
-		"General",
+		"Items",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -710,7 +720,7 @@ if MCM then
 	)
 	MCM.AddSetting(
 		"Pudding & Wakaba",
-		"General",
+		"Items",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -737,7 +747,7 @@ if MCM then
 	)
 	MCM.AddSetting(
 		"Pudding & Wakaba",
-		"General",
+		"Items",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -762,8 +772,130 @@ if MCM then
 			}
 		}
 	)
-	MCM.AddSpace("Pudding & Wakaba", "General")
+	MCM.AddSpace("Pudding & Wakaba", "Items")
 
+	---------------------------------------------------------------------------
+	---------------------------------Found HUD---------------------------------
+
+	local OptionNames_HitCounter = {"Off", "Penalties only", "All hits"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"HUD",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.hudhitcounter
+			end,
+			Minimum = 0,
+			Maximum = 2,
+			Display = function()
+				return "Hit Counter: " .. OptionNames_HitCounter[wakaba.state.options.hudhitcounter+1]
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.hudhitcounter = currentNum
+				
+			end,
+			Info = {
+				"Shows hit counter from HUD."
+			}
+		}
+	)
+
+	local OptionNames_RoomNumber = {"Off", "Value only", "Detailed"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"HUD",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.hudroomnumber
+			end,
+			Minimum = 0,
+			Maximum = 2,
+			Display = function()
+				return "Room Number: " .. OptionNames_RoomNumber[wakaba.state.options.hudroomnumber+1]
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.hudroomnumber = currentNum
+				
+			end,
+			Info = {
+				"Shows Room Number from HUD."
+			}
+		}
+	)
+
+	local OptionNames_RoomNames = {"Off", "Name Scroll", "Full Name", "Detailed"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"HUD",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.hudroomname
+			end,
+			Minimum = 0,
+			Maximum = 3,
+			Display = function()
+				return "Room Name: " .. OptionNames_RoomNames[wakaba.state.options.hudroomname+1]
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.hudroomname = currentNum
+				
+			end,
+			Info = {
+				"Shows Room Name from HUD."
+			}
+		}
+	)
+
+	local OptionNames_RoomDiff = {"Off", "Value only", "Detailed"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"HUD",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.hudroomdiff
+			end,
+			Minimum = 0,
+			Maximum = 2,
+			Display = function()
+				return "Room Difficulty: " .. OptionNames_RoomDiff[wakaba.state.options.hudroomdiff+1]
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.hudroomdiff = currentNum
+				
+			end,
+			Info = {
+				"Shows Room Difficulty from HUD."
+			}
+		}
+	)
+
+	local OptionNames_RoomWeight = {"Off", "Value only", "Detailed"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"HUD",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.hudroomweight
+			end,
+			Minimum = 0,
+			Maximum = 2,
+			Display = function()
+				return "Room Weight: " .. OptionNames_RoomNumber[wakaba.state.options.hudroomweight+1]
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.hudroomweight = currentNum
+				
+			end,
+			Info = {
+				"Shows Room Weight from HUD."
+			}
+		}
+	)
 
 
 	---------------------------------------------------------------------------
