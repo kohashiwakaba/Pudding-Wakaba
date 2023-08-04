@@ -28,16 +28,21 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		wakaba:Epiphany_AddThrowingBagSynergies()
 
 		Epiphany.API:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
+		Epiphany.API:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 		Epiphany.API:AddSlotsToSlotGroup("ArcadeBeggars", wakaba.Enums.Slots.SHIORI_VALUT)
 
 		Epiphany.API:AddCardsToCardGroup("NormalCard", {
+		Epiphany.API:AddCardsToCardGroup("Tarot", {
 			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
 			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
 			[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
+			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
+			[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
 			[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
 		})
 
 		Epiphany.API:AddCardsToCardGroup("PlayingCard", {
+		Epiphany.API:AddCardsToCardGroup("Suit", {
 			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
 			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
 			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
@@ -58,6 +63,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		})
 
 		Epiphany.API:AddCardsToCardGroup("DiceCapsules", {
+		Epiphany.API:AddCardsToCardGroup("DiceCapsule", {
 			[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
 		})
 	--[[ 
