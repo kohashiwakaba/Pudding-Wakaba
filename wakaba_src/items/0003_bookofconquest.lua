@@ -130,7 +130,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			player:GetData().wakaba.conquestmode = true
 			player:GetData().wakaba.conquestcursor = 1
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 			local target = wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
 			player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
 			bombcost, keycost = wakaba:CalculateCost(target, hasbirthright, hascarbattery)
@@ -140,11 +140,12 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			end
 			wakaba.conquestmode = true
 		else
+			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 			local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 			for _, entity in ipairs(entities) do
 				if entity:IsEnemy()
 				and not entity:IsInvincible()
-				and (not entity:IsBoss() or (entity:IsBoss() and player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)))
+				and (not entity:IsBoss() or (entity:IsBoss() and hascarbattery))
 				and not wakaba:has_value(wakaba.conquestblacklist, entity.Type)
 				then
 					entity:AddCharmed(EntityRef(player), -1)
@@ -339,6 +340,7 @@ function wakaba:Render_BookOfConquest()
 	end
 
 	if wakaba.conquestmode then
+		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 		local conqstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].bookofconquest) or wakaba.descriptions["en_us"].bookofconquest
 		local eidstring = "#"..conqstr.selectstr..": {{ButtonX}}/{{ButtonB}}"
 		eidstring = eidstring .."#"..conqstr.selectenemy..": {{ColorBookofConquest}}{{{SelectedEnemy}}}"
@@ -351,7 +353,7 @@ function wakaba:Render_BookOfConquest()
 		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY)
+			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or isGolden
 			local iscontrolling = wakaba.conquestcontrollerindex == player.ControllerIndex
 
 			if player:GetData().wakaba and player:GetData().wakaba.conquestmode then
@@ -419,12 +421,24 @@ function wakaba:Render_BookOfConquest()
 						kcolor = KColor(1,0,0,1,0,0,0)
 						canConquer = false
 					end
-					eidstring = eidstring .. " " .. (player:GetNumKeys() < keycost and "{{ColorRed}}" or "") .. math.floor(keycost // 1) .. "{{Key}}{{CR}}"
+					if player:GetNumKeys() < keycost then
+						eidstring = eidstring .. " " .. "{{ColorRed}}" .. math.floor(keycost // 1) .. "{{Key}}{{CR}}"
+					elseif isGolden then
+						eidstring = eidstring .. " " .. "{{ColorGold}}" .. math.floor(keycost // 1) .. "{{Key}}{{CR}}"
+					else
+						eidstring = eidstring .. " " .. math.floor(keycost // 1) .. "{{Key}}{{CR}}"
+					end
 					if bombcost > 0 then
 						wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.BOMB)
 						wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 35) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
 						wakaba.f:DrawStringScaledUTF8("x" .. player:GetNumBombs() .. "/" .. (bombcost // 1), Isaac.WorldToScreen(target.Position).X - wakaba.G.ScreenShakeOffset.X, Isaac.WorldToScreen(target.Position).Y - 35 - wakaba.G.ScreenShakeOffset.Y, 1, 1, bcolor,0,true)
-						eidstring = eidstring .. " + " .. (player:GetNumBombs() < bombcost and "{{ColorRed}}" or "") .. math.floor(bombcost // 1) .. "{{Bomb}}"
+						if player:GetNumBombs() < bombcost then
+							eidstring = eidstring .. " " .. "{{ColorRed}}" .. math.floor(bombcost // 1) .. "{{Bomb}}{{CR}}"
+						elseif isGolden then
+							eidstring = eidstring .. " " .. "{{ColorGold}}" .. math.floor(bombcost // 1) .. "{{Bomb}}{{CR}}"
+						else
+							eidstring = eidstring .. " " .. math.floor(bombcost // 1) .. "{{Bomb}}{{CR}}"
+						end
 					end
 					wakaba.pickupdisplaySptite:SetFrame("Idle", wakaba.pickupSpriteIndex.KEY)
 					wakaba.pickupdisplaySptite:Render(Vector(Isaac.WorldToScreen(target.Position).X - 13, Isaac.WorldToScreen(target.Position).Y - 25) - wakaba.G.ScreenShakeOffset, Vector(0,0), Vector(0,0))
