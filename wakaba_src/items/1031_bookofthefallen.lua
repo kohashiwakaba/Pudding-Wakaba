@@ -27,8 +27,9 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
+		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
 		if player:GetData().wakaba then
-			if player:GetPlayerType() ~= 23 and player:GetData().wakaba.shioridevil and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
+			if (player:GetPlayerType() ~= 23 and not isGolden) and player:GetData().wakaba.shioridevil and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
 				local OldChallenge=wakaba.G.Challenge
 				wakaba.G.Challenge=6
 				player:UpdateCanShoot()
@@ -46,8 +47,8 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 				--print("Trying Remove Blindfold Costume")
 			end
 		end
-		--[[ if player:GetData().wakaba 
-		and player:GetData().wakaba.shioridevil 
+		--[[ if player:GetData().wakaba
+		and player:GetData().wakaba.shioridevil
 		and player:GetBrokenHearts() >= 12 then
 			player:Die()
 		end ]]
@@ -60,16 +61,17 @@ function wakaba:GetThreshold(damage)
 	return th
 end
 
-function wakaba:ItemUse_BookOfTheFallen(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_BookOfTheFallen(item, rng, player, useFlags, activeSlot, varData)
 	wakaba:GetPlayerEntityData(player)
-
-	if player:GetData().wakaba.shioridevil then
-		sfx:Play(SoundEffect.SOUND_FLOATY_BABY_ROAR, 0.6, 0, false, 2)
+	local isGolden = wakaba:IsGoldenItem(item)
+	if player:GetData().wakaba.shioridevil or isGolden then
+		SFXManager():Play(SoundEffect.SOUND_FLOATY_BABY_ROAR, 0.6, 0, false, 2)
 		local damage = player.Damage
 		local tears = wakaba:getTearsStat(player.MaxFireDelay)
 		local threshold = wakaba:GetThreshold(damage)
 		for i = 1, threshold do
 			local ghost = Isaac.Spawn(1000, EffectVariant.HUNGRY_SOUL, 1, player.Position, Vector.Zero, player):ToEffect()
+			ghost.Target = wakaba:findRandomEnemy(player, rng, true)
 			ghost:GetData().wakaba = {}
 			ghost.Parent = player
 			ghost:GetData().wakaba.isFallenGhost = true
@@ -92,6 +94,7 @@ function wakaba:ItemUse_BookOfTheFallen(_, rng, player, useFlags, activeSlot, va
 			for i = 1, 39 do
 				soul:Update()
 			end
+			soul.Target = wakaba:findRandomEnemy(player, rng, true)
 		end
 		return {
 			Discharge = true,
@@ -104,9 +107,14 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wak
 
 function wakaba:Cache_BookOfTheFallen(player, cacheFlag)
 	if not player:GetData().wakaba then return end
+	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
   if player:GetData().wakaba.shioridevil then
-    if player:GetPlayerType() ~= 23 and cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-      player.Damage = player.Damage * 7
+    if cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+			if isGolden or player:GetPlayerType() == 23 then
+				player.Damage = player.Damage * 2
+			else
+				player.Damage = player.Damage * 7
+			end
     end
     if cacheFlag | CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
       player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
@@ -144,4 +152,3 @@ function wakaba:BookofTheFallenOnDamage_Pugartory(player, ent, source, newDamage
 	return returndata
 end
 
---wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, ent, damage, flags, source, countdown) print(source.Type, source.Variant, source.SpawnerType, source.SpawnerVariant, (source.Entity and source.Entity.Type), (source.Entity and source.Entity.Variant), (source.Entity and source.Entity.SubType)) end)
