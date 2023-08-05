@@ -1,4 +1,6 @@
-function wakaba:ItemUse_GrimreaperDefender(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_GrimreaperDefender(item, rng, player, useFlags, activeSlot, varData)
+	local isGolden = wakaba:IsGoldenItem(item)
+
 	wakaba:GetPlayerEntityData(player)
 	player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_WAFER)
 	player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
@@ -6,6 +8,10 @@ function wakaba:ItemUse_GrimreaperDefender(_, rng, player, useFlags, activeSlot,
 	SFXManager():Play(SoundEffect.SOUND_STATIC)
 	local skull = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.DEATH_SKULL, 0, Vector(player.Position.X, player.Position.Y - 50), Vector.Zero, player)
 	skull:GetData().wakaba = {}
+
+	if isGolden then
+		player:UseCard(Card.CARD_DEATH, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
+	end
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) and not wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		player:AddWisp(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, player.Position, true, false)
