@@ -146,6 +146,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		api:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
 		api:BlacklistGoldActive(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
 		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BALANCE)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BEETLEJUICE)
 
 		-- Whitelist Keeper pickups
 		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[100], {

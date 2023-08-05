@@ -2,6 +2,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local replacedPills = {}
 
 function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, varData)
+	local isGolden = wakaba:IsGoldenItem(item)
 	local game = wakaba.G
 	local room = game:GetRoom()
 	pData = player:GetData()
@@ -9,7 +10,7 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
 	local failed = false 
   local discharge = true
 	local pool = wakaba.G:GetItemPool()
-	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
+	--local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
 	local count = 8
 	if FiendFolio then count = 20 end
 	for i = 1, count do
@@ -22,7 +23,11 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
 		pool:IdentifyPill(newPill)
 		replacedPills[replacedPillEffect] = true
 		if i == 1 then
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, newPill, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
+			if isGolden then
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD | PillColor.PILL_GIANT_FLAG, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
+			else
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, newPill, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
+			end
 		end
 	end
 	if not failed then
