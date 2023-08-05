@@ -80,7 +80,7 @@ end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_BookofShadows, CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS)
 
 function wakaba:Shiori_Anarchist(_, rng, player, useflag, slot, vardata)
-	wakaba:addShioriBuff(player)
+	wakaba:addShioriBuff(player, CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Anarchist, CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
 
@@ -643,9 +643,9 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_BookofShiori)
 
 function wakaba:NegateDamage_BookOfShiori(player, amount, flags, source, countdown)
 	local nextflag = wakaba:getShioriFlag(player)
-	local troll = wakaba:getShioriBuffs(player)
+	local troll = wakaba:getShioriBuffs(player, CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
 	if (troll > 0 or nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
-	and flag & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION
+	and flags & DamageFlag.DAMAGE_EXPLOSION == DamageFlag.DAMAGE_EXPLOSION
 	then
 		return false
 	end
