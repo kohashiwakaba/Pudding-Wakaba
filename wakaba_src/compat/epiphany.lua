@@ -5,10 +5,13 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:Epiphany_AddTarnishedDatas()
 	-- DO NOT RUN IF THE API IS NOT LOADED
 	if Epiphany and Epiphany.API then
-		
-		--[[ 
+		local Mod = Epiphany
+		local api = Mod.API
+		local KEEPER = Mod.Character.KEEPER
+
+		--[[
 		-- Was trying to add TR Wakaba, but no time sadly
-		Epiphany.API.AddCharacter({
+		api.AddCharacter({
 			charName = "WakabaT", --Internal character name (REQUIRED)
 			charID = wakaba.Enums.Players.WAKABA_T, -- Character ID (REQUIRED)
 			charStats = wakaba.playerstats.WAKABA_T, -- Stat array
@@ -18,20 +21,20 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			coopMenuSprite = "gfx/ui/Coop/coop_menu_wakaba.anm2", -- Co-op menu icon (REQUIRED)
 			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function() 
+			unlockChecker = function()
 				--return wakaba.state.unlock.trwakaba
-				return true 
+				return true
 			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 			floorTutorial = "gfx/grid/tutorial_wakaba.anm2"
 		})
 	 ]]
 		wakaba:Epiphany_AddThrowingBagSynergies()
 
-		Epiphany.API:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
-		Epiphany.API:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
-		Epiphany.API:AddSlotsToSlotGroup("ArcadeBeggars", wakaba.Enums.Slots.SHIORI_VALUT)
+		api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
+		api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+		api:AddSlotsToSlotGroup("ArcadeBeggars", wakaba.Enums.Slots.SHIORI_VALUT)
 
-		Epiphany.API:AddCardsToCardGroup("Tarot", {
+		api:AddCardsToCardGroup("Tarot", {
 			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
 			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
 			[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
@@ -40,31 +43,31 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
 		})
 
-		Epiphany.API:AddCardsToCardGroup("Suit", {
+		api:AddCardsToCardGroup("Suit", {
 			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
 			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
 			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
 			[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
 		})
 
-		Epiphany.API:AddCardsToCardGroup("Soul", {
+		api:AddCardsToCardGroup("Soul", {
 			[wakaba.Enums.Cards.SOUL_SHIORI] = 1,
 			[wakaba.Enums.Cards.SOUL_WAKABA] = 1,
 			[wakaba.Enums.Cards.SOUL_WAKABA2] = 1,
 			[wakaba.Enums.Cards.SOUL_TSUKASA] = 0.5,
 		})
 
-		Epiphany.API:AddCardsToCardGroup("Holy", {
+		api:AddCardsToCardGroup("Holy", {
 			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
 			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
 			[wakaba.Enums.Cards.CARD_DREAM_CARD] = 1,
 		})
 
-		Epiphany.API:AddCardsToCardGroup("DiceCapsule", {
+		api:AddCardsToCardGroup("DiceCapsule", {
 			[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
 		})
-	--[[ 
-		Epiphany.API:AddTurnoverShop({
+	--[[
+		api:AddTurnoverShop({
 			Name = "WAKABA_TURNOVER",		 -- shop name, is used internally
 			Checker = function ()			-- takes 0 arguments, return true if this shop pool should be used
 				return isc:anyPlayerIs(wakaba.Enums.Players.WAKABA)
@@ -125,7 +128,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				-- minTier, maxTier are optional, checks for them pass by default
 				-- Weight is optional and defaults to 1.0
 				PickupPool =
-				{			
+				{
 					{{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL,																	 minTier = 0, maxTier = 3 }},
 					{{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK,														 minTier = 2, maxTier = 4 }},
 					{{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA,																		 minTier = 2, maxTier = 4 },	Weight = 0.06},
@@ -134,16 +137,25 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				}
 			}
 		})
-	 ]]	 
+	 ]]
 
 		-- Blacklist items to check within Use Item func
-		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
-		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
-		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
-		Epiphany.API:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
 
-
-
+		-- Whitelist Keeper pickups
+		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[100], {
+			[wakaba.Enums.Collectibles.SECRET_CARD] = 1,
+		})
+		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[350], {
+			[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1,
+			[wakaba.Enums.Trinkets.BITCOIN] = 1,
+		})
+		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants, {
+			[wakaba.Enums.Pickups.CLOVER_CHEST] = 0,
+		})
 
 
 
@@ -175,7 +187,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID3, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID4, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 		wakaba:BlacklistBook(LibraryExpanded.Item.KINDLING_BOOK.ID2, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		
+
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
@@ -186,7 +198,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		wakaba:BlacklistBook(LibraryExpanded.Item.ELECTROMAGNETISM_EXPLAINED.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		wakaba:BlacklistBook(LibraryExpanded.Item.CURSED_BOOK.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		--wakaba:BlacklistBook(LibraryExpanded.Item.CERTIFICATE.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		
+
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)

@@ -335,7 +335,7 @@ function mod:CalcPlayerDamageMult(player, negativeOnly)
 	if not negativeOnly and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_CROWN_OF_LIGHT) then
 		mult = mult * 2
 	end
-	
+
 	-- Repentance Begin
 	if not negativeOnly and effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) then
 		mult = mult * 4
@@ -346,7 +346,7 @@ function mod:CalcPlayerDamageMult(player, negativeOnly)
 	if not negativeOnly and player:HasCollectible(CollectibleType.COLLECTIBLE_IMMACULATE_HEART) then
 		mult = mult * 1.2
 	end
-	
+
 	return mult
 end
 
@@ -1189,7 +1189,7 @@ function mod:GetHighestHeartContainerCount()
 
 	return highest
 end
-	
+
 function mod:GetExpectedDevilDealPrice(collectible)
 	local itemConfig = Isaac.GetItemConfig()
 	local item = itemConfig:GetCollectible(collectible)
@@ -1893,6 +1893,12 @@ end
 function mod:IndexedBulkAppend(hostTable, appendTable)
 	for _, entry in pairs(appendTable) do
 		hostTable[entry[1]] = entry[2]
+	end
+end
+
+function mod:DictionaryBulkAppend(hostTable, appendTable)
+	for k, entry in pairs(appendTable) do
+		hostTable[k] = entry
 	end
 end
 
