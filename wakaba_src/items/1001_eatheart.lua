@@ -67,6 +67,7 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 
 	local tempeatheartcharges = 0
 	local multiplier = 32
+	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.EATHEART)
 	if mode == "PlayerDamage" then
 		amount = amount * 5000
 		multiplier = 1
@@ -89,22 +90,16 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 			multiplier = multiplier + 0.25
 		end
 	end
+	if isGolden then
+		multiplier = multiplier * 2
+	end
 	local chargeamount = (amount * multiplier) // 1
-	--print(amount, multiplier, chargeamount)
-	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.EATHEART then
-		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY) + chargeamount
-		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_PRIMARY)
-		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_PRIMARY)
-	end
-	if player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == wakaba.Enums.Collectibles.EATHEART then
-		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_SECONDARY) + player:GetBatteryCharge(ActiveSlot.SLOT_SECONDARY) + chargeamount
-		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_SECONDARY)
-		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_SECONDARY)
-	end
-	if player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.EATHEART then
-		tempeatheartcharges = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET) + chargeamount
-		player:SetActiveCharge(tempeatheartcharges, ActiveSlot.SLOT_POCKET)
-		wakaba.G:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
+	for i = 0, 2 do
+		if player:GetActiveItem(i) == wakaba.Enums.Collectibles.EATHEART then
+			tempeatheartcharges = player:GetActiveCharge(i) + player:GetBatteryCharge(i) + chargeamount
+			player:SetActiveCharge(tempeatheartcharges, i)
+			wakaba.G:GetHUD():FlashChargeBar(player, i)
+		end
 	end
 end
 
