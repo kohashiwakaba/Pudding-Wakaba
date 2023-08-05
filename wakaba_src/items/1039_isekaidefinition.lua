@@ -1,15 +1,23 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
-function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
+	local isGolden = wakaba:IsGoldenItem(item)
 	local fam = isc:getPlayerFamiliars(player)
 	local count = 0
 	for _,f in ipairs(fam) do
-		if f.Variant == FamiliarVariant.BLOOD_BABY and f.SubType == isc.BloodClotSubType.RED_NO_SUMPTORIUM then
-			count = count + 1
+		if f.Variant == FamiliarVariant.BLOOD_BABY then
+			if f.SubType == isc.BloodClotSubType.RED_NO_SUMPTORIUM then
+				count = count + 1
+			elseif isGolden and f.SubType == isc.BloodClotSubType.GOLD then
+				count = count + 1
+			end
 		end
 	end
 	local base = wakaba.Enums.Constants.ISEKAI_CERTIFICATE_CHANCE
 	base = (base + (wakaba.Enums.Constants.ISEKAI_OVER_CLOT_BONUS * (count - wakaba.Enums.Constants.MAX_ISEKAI_CLOTS + 1)))
 	if wakaba:HasShiori(player) then
+		base = base + wakaba.Enums.Constants.ISEKAI_SHIORI_BONUS
+	end
+	if isGolden then
 		base = base + wakaba.Enums.Constants.ISEKAI_SHIORI_BONUS
 	end
 
@@ -27,7 +35,11 @@ function wakaba:ItemUse_Isekai(_, rng, player, useFlags, activeSlot, varData)
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)
 	else
 		if count < wakaba.Enums.Constants.MAX_ISEKAI_CLOTS then
-			local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.RED_NO_SUMPTORIUM, player.Position, Vector.Zero, player):ToFamiliar()
+			if isGolden then
+				local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.GOLD, player.Position, Vector.Zero, player):ToFamiliar()
+			else
+				local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.RED_NO_SUMPTORIUM, player.Position, Vector.Zero, player):ToFamiliar()
+			end
 		end
 
 		SFXManager():Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT, 0.4, 0, false, 1.65)
