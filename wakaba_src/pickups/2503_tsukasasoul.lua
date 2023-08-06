@@ -23,6 +23,7 @@ function wakaba:PostTakeDamage_LunarDamocles(player, amount, flags, source, cool
 	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
 	and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
 		if not player:HasCurseMistEffect() then
+			local data = player:GetData()
 			data.wakaba.lunardamotriggered = true
 		end
 	end
