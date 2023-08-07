@@ -49,6 +49,7 @@ function wakaba:UseCard_TrialStew(_, player, flags)
 	else
 		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, true, 3)
 	end
+	wakaba.G:SetStateFlag(GameStateFlag.STATE_DONATION_SLOT_BLOWN, false)
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_TrialStew, wakaba.Enums.Cards.CARD_TRIAL_STEW)
 
