@@ -112,17 +112,23 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_FlashShift)
 
 
-function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData)
+function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varData)
+	if useFlags & UseFlag.USE_CARBATTERY > 0 then return end
 	local pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
 	if player:GetMovementDirection() ~= Direction.NO_DIRECTION and pData.wakaba.fscounter and pData.wakaba.fscounter > 0 then
 		--player:UseActiveItem(CollectibleType.COLLECTIBLE_MARS, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME, -1)
+		local isGolden = wakaba:IsGoldenItem(item)
 
 		local trail = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, 0, player.Position, Vector.Zero, nil):ToEffect()
 		trail:GetData().wakaba = {}
 		trail:GetData().wakaba.flashshift = true
 		trail:FollowParent(player) -- parents the trail to another entity and makes it follow it around
-		trail:GetSprite().Color = Color(0.9, 0.8, 1, 0.5) -- sets the color of the trail
+		if isGolden then
+			trail:GetSprite().Color = Color(1, 0.8, 0.6, 0.5) -- sets the color of the trail
+		else
+			trail:GetSprite().Color = Color(0.9, 0.8, 1, 0.5) -- sets the color of the trail
+		end
 		trail.MinRadius = 0.05 -- fade rate, lower values yield a longer trail
 		trail:SetTimeout(20)
 		trail:Update()
@@ -144,6 +150,9 @@ function wakaba:ItemUse_FlashShift(_, rng, player, useFlags, activeSlot, varData
 		pData.wakaba.fsfriction = 1.0
 		pData.wakaba.fsfrictiontimer = 3
 		pData.wakaba.fseffecttimer = 15
+		if isGolden then
+			wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_MIDAS_TOUCH, 15, 1, "WAKABA_GOLDEN_FLASH_SHIFT")
+		end
 
 		local ents = Isaac.FindInRadius(player.Position, (player.TearRange / 6.5), EntityPartition.BULLET | EntityPartition.TEAR | EntityPartition.ENEMY | EntityPartition.PICKUP)
 		for i, ent in ipairs(ents) do
