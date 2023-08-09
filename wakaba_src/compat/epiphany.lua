@@ -9,23 +9,87 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		local api = Mod.API
 		local KEEPER = Mod.Character.KEEPER
 
-		--[[
 		-- Was trying to add TR Wakaba, but no time sadly
 		api.AddCharacter({
-			charName = "WakabaT", --Internal character name (REQUIRED)
+			charName = "WAKABA", --Internal character name (REQUIRED)
 			charID = wakaba.Enums.Players.WAKABA_T, -- Character ID (REQUIRED)
 			charStats = wakaba.playerstats.WAKABA_T, -- Stat array
 			costume = "gfx/characters/character_wakaba_t.anm2", -- Main costume (REQUIRED)
 			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/menu_wakaba.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/Coop/coop_menu_wakaba.anm2", -- Co-op menu icon (REQUIRED)
+			menuGraphics = "gfx/ui/wakaba_epiphany_menu_wakaba.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_wakaba.anm2", -- Co-op menu icon (REQUIRED)
+			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+			unlockChecker = function() 
+				--return wakaba.state.unlock.trwakaba
+				return false 
+			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+		})
+		Epiphany.API.AddCharacter({
+			charName = "SHIORI", --Internal character name (REQUIRED)
+			charID = wakaba.Enums.Players.SHIORI_T, -- Character ID (REQUIRED)
+			charStats = wakaba.playerstats.SHIORI_T, -- Stat array
+			costume = "gfx/characters/character_shiori_t.anm2", -- Main costume (REQUIRED)
+			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+			menuGraphics = "gfx/ui/wakaba_epiphany_menu_shiori.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_shiori.anm2", -- Co-op menu icon (REQUIRED)
+			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+			unlockChecker = function() 
+				--return wakaba.state.unlock.trwakaba
+				return false 
+			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+		})
+		Epiphany.API.AddCharacter({
+			charName = "TSUKASA", --Internal character name (REQUIRED)
+			charID = wakaba.Enums.Players.TSUKASA_T, -- Character ID (REQUIRED)
+			charStats = wakaba.playerstats.TSUKASA_T, -- Stat array
+			costume = "gfx/characters/character_tsukasa_t.anm2", -- Main costume (REQUIRED)
+			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+			menuGraphics = "gfx/ui/wakaba_epiphany_menu_tsukasa.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_tsukasa.anm2", -- Co-op menu icon (REQUIRED)
+			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+			unlockChecker = function() 
+				--return wakaba.state.unlock.trwakaba
+				return false 
+			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+		})
+		Epiphany.API.AddCharacter({
+			charName = "RICHER", --Internal character name (REQUIRED)
+			charID = wakaba.Enums.Players.RICHER_T, -- Character ID (REQUIRED)
+			charStats = wakaba.playerstats.RICHER_T, -- Stat array
+			costume = "gfx/characters/character_richer_t.anm2", -- Main costume (REQUIRED)
+			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+			menuGraphics = "gfx/ui/wakaba_epiphany_menu_richer.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_richer.anm2", -- Co-op menu icon (REQUIRED)
+			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+			unlockChecker = function() 
+				--return wakaba.state.unlock.trwakaba
+				return false 
+			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+		})
+--[[ 
+		Epiphany.API.AddCharacter({
+			charName = "RIRA", --Internal character name (REQUIRED)
+			charID = wakaba.Enums.Players.RIRA_T, -- Character ID (REQUIRED)
+			charStats = wakaba.playerstats.RIRA_T, -- Stat array
+			costume = "gfx/characters/character_rira_t.anm2", -- Main costume (REQUIRED)
+			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+			menuGraphics = "gfx/ui/wakaba/menu_placeholder.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+			coopMenuSprite = "gfx/ui/wakaba/coop_menu_placeholder.anm2", -- Co-op menu icon (REQUIRED)
 			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
 			unlockChecker = function()
 				--return wakaba.state.unlock.trwakaba
-				return true
+				return false 
 			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/grid/tutorial_wakaba.anm2"
+			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 		})
 	 ]]
 		wakaba:Epiphany_AddThrowingBagSynergies()
