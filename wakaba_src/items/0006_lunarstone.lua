@@ -14,6 +14,7 @@ function wakaba:hasLunarStone(player, includeDead)
 	end
 end
 
+-- MC_POST_PEFFECT_UPDATE doesn't run while in death. changing into MC_POST_PLAYER_UPDATE and do frame count check instead
 ---@param player EntityPlayer
 function wakaba:ChargeBarUpdate_LunarStone(player)
 	if not wakaba:getRoundChargeBar(player, "LunarGauge") then
@@ -25,13 +26,15 @@ function wakaba:ChargeBarUpdate_LunarStone(player)
 		})
 	end
 	local chargeBar = wakaba:getRoundChargeBar(player, "LunarGauge")
-	if wakaba:hasLunarStone(player, false) then
-		local percent = player:GetData().wakaba.lunargauge and ((player:GetData().wakaba.lunargauge // 1000) / 10) or 100
-		chargeBar:UpdateSpritePercent(percent // 1)
-		chargeBar:UpdateText(percent, "", "%")
-	else
-		chargeBar:UpdateSpritePercent(-1)
-		chargeBar:UpdateText("")
+	if player.FrameCount % 2 == 0 then
+		if wakaba:hasLunarStone(player, false) then
+			local percent = player:GetData().wakaba.lunargauge and ((player:GetData().wakaba.lunargauge // 1000) / 10) or 100
+			chargeBar:UpdateSpritePercent(percent // 1)
+			chargeBar:UpdateText(percent, "", "%")
+		else
+			chargeBar:UpdateSpritePercent(-1)
+			chargeBar:UpdateText("")
+		end
 	end
 
 end
