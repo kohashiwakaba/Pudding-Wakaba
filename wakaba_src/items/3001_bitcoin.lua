@@ -27,7 +27,7 @@ function wakaba:updatePlayerBitcoin(player)
 		player:AddBloodCharge(-99)
 		player:AddBloodCharge(1 + rng:RandomInt(99))
 	end
-	if wakaba:PlayerHasSmeltedTrinket(player, wakaba.Enums.Trinkets.BITCOIN) then
+	if not player:IsHoldingItem() and wakaba:PlayerHasSmeltedTrinket(player, wakaba.Enums.Trinkets.BITCOIN) then
 		SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
 		player:TryRemoveTrinket(wakaba.Enums.Trinkets.BITCOIN)
 	end
@@ -62,20 +62,16 @@ function wakaba:onBitcoinCache(player, cacheFlag)
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onBitcoinCache)
 
-
-function wakaba:PickupInit_BitCoin(pickup)
-	if pickup.SubType == wakaba.Enums.Trinkets.BITCOIN and pickup.Touched then
-		SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
-		pickup.Timeout = 40030
-		pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_BitCoin, PickupVariant.PICKUP_TRINKET)
-
 function wakaba:PickupUpdate_BitCoin(pickup)
-	if pickup.SubType == wakaba.Enums.Trinkets.BITCOIN and pickup.Touched and pickup.Timeout <= 40000 then
-		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, entity.Position, Vector.Zero, nil)
-		pickup:Remove()
+	if pickup.SubType == wakaba.Enums.Trinkets.BITCOIN and pickup.Touched then
+		if pickup.Timeout <= 0 then
+			SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
+			pickup.Timeout = 40020
+			pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+		elseif pickup.Timeout <= 40000 then
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+			pickup:Remove()
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_BitCoin, PickupVariant.PICKUP_TRINKET)
