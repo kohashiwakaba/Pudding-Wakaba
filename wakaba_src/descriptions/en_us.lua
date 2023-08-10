@@ -1198,9 +1198,9 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.BITCOIN] = {
 		itemName = "Bitcoin II",
 		description = ""
-		.. "#Randomize consumable counters."
-		.. "#When entering the room, Randomize stats"
+		.. "#Randomize consumable counters and stats"
 		.. "#The range for consumables can be all back to 0 to full of 999"
+		.. "#!!! Will be removed once dropped or smelted!"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},

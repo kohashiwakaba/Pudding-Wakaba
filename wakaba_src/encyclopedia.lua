@@ -2896,13 +2896,13 @@ if Encyclopedia then
 		TRINKET_BITCOIN = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-				{str = "Randomize consumable counters constantly."},
-				{str = "Randomize stats every time Isaac enters another room."},
-				{str = "The range for consumables can be all back to 0 to full of 99."},
+				{str = "Randomize consumable counters and stats constantly."},
+				{str = "The range for consumables can be all back to 0 to full of 999."},
+				{str = "Once the trinket has been swapped, dropped, or smelted, the trinket disappears."},
 			},
 			{ -- Notes
 				{str = "Notes", fsize = 2, clr = 3, halign = 0},
-				{str = "As consumables completely randomized, Isaac has effectively infinite bombs, keys, and coins."},
+				{str = "As consumables completely randomized, Isaac has effectively infinite bombs, keys, and coins while held."},
 			},
 		},
 

@@ -1297,8 +1297,8 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "비트코인 II",
 		description = ""
 		.. "#소모성 픽업의 갯수와 스탯을 랜덤하게 뒤섞습니다."
-		.. "#방을 입장할 때마다 스탯을 랜덤하게 뒤섞습니다."
 		.. "#각각의 픽업 소지 수는 0개부터 999개 까지 나올 수 있습니다."
+		.. "#!!! 교체, 버리기 및 흡수 시 사라집니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	queueDesc = "도박 중독",
