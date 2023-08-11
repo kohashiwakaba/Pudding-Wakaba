@@ -174,8 +174,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			if EID then
 				EID:addDescriptionModifier("Wakaba_Epiphany Golden Actives", function(descObj)
-					return 
-					descObj.ObjType == 5 
+					return descObj.ObjType == 5
 					and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE
 					and descObj.ObjSubType > 0
 					and wakaba:isActiveItem(descObj.ObjSubType)
@@ -183,13 +182,14 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				end, function(descObj)
 					local wakabaBuff = wakaba:getWakabaDesc("epiphany_golden", descObj.ObjSubType)
 					if wakabaBuff then
-						local description = wakabaBuff.description
+						local desc = wakabaBuff.description
 						if wakabaBuff.isReplace then
-							descObj.Description = description
+							descObj.Description = desc
 						else
-							EID:appendToDescription(descObj, "#".. description .. "{{CR}}")
+							EID:appendToDescription(descObj, "#".. desc .. "{{CR}}")
 						end
 					end
+					return descObj
 				end)
 			end
 			ffReplaced = true
