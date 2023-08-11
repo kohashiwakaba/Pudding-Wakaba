@@ -1,6 +1,9 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+local turnover_layouts = include("wakaba_src.compat.epiphany.turnover_layouts")
+local turnover_pools = include("wakaba_src.compat.epiphany.turnover_pools")
+
 -- INITIALIZE EPIPHANY MENU CHARACTER
 function wakaba:Epiphany_AddTarnishedDatas()
 	-- DO NOT RUN IF THE API IS NOT LOADED
@@ -10,7 +13,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		local KEEPER = Mod.Character.KEEPER
 
 		if not ffReplaced then
-			
+
 			-- Cache unlock check
 			-- Wakaba Duality is considered as the last item from Pudding & Wakaba, which is fixed between updates.
 			Mod.UnlockChecker:AddModdedItems("wakaba", wakaba.Enums.Collectibles.WAKABAS_BLESSING, wakaba.Enums.Collectibles.WAKABA_DUALITY, function(item_id)
@@ -34,9 +37,9 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_wakaba.anm2", -- Co-op menu icon (REQUIRED)
 				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-				unlockChecker = function() 
+				unlockChecker = function()
 					--return wakaba.state.unlock.trwakaba
-					return false 
+					return false
 				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 			})
@@ -50,9 +53,9 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_shiori.anm2", -- Co-op menu icon (REQUIRED)
 				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-				unlockChecker = function() 
+				unlockChecker = function()
 					--return wakaba.state.unlock.trwakaba
-					return false 
+					return false
 				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 			})
@@ -66,9 +69,9 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_tsukasa.anm2", -- Co-op menu icon (REQUIRED)
 				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-				unlockChecker = function() 
+				unlockChecker = function()
 					--return wakaba.state.unlock.trwakaba
-					return false 
+					return false
 				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 			})
@@ -82,13 +85,13 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_richer.anm2", -- Co-op menu icon (REQUIRED)
 				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
 				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-				unlockChecker = function() 
+				unlockChecker = function()
 					--return wakaba.state.unlock.trwakaba
-					return false 
+					return false
 				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 			})
-	--[[ 
+	--[[
 			api.AddCharacter({
 				charName = "RIRA", --Internal character name (REQUIRED)
 				charID = wakaba.Enums.Players.RIRA_T, -- Character ID (REQUIRED)
@@ -101,14 +104,14 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
 				unlockChecker = function()
 					--return wakaba.state.unlock.trwakaba
-					return false 
+					return false
 				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 			})
 			]]
-		
+
 			wakaba:Epiphany_AddThrowingBagSynergies()
-			
+
 			-- prevents "item pool does not exist" warning
 			Mod.CustomItemPools.RicherShopPool_Treasure = {} -- Richer's Planetarium shop - Odd floors
 			Mod.CustomItemPools.RicherShopPool_Planetarium = {} -- Richer's Planetarium shop - Even floors
@@ -117,7 +120,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			Mod.CustomItemPools.RicherShopPool_Angel = {} -- Richer's Planetarium shop - Cathedral
 			Mod.CardGroups.RicherTicket = {} -- Pudding & Wakaba cards for Epiphany card group
 			Mod.SlotGroups.CrystalRestock = {} -- Crystal Restocks for Turnover
-			
+
 			-- Epiphany Turnover Shop pools
 			api:AddItemsToCustomPool("VaultShop", {
 				wakaba.Enums.Collectibles.SECRET_CARD,
@@ -143,7 +146,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			api:AddItemsToCustomPool("GlitchSlotPool", {
 				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1},
 			})
-			
+
 			-- Epiphany Surprise box Won items pools
 			api:AddItemsToCustomPool("SurpriseBox_Heart", {
 				wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
@@ -168,11 +171,11 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Collectibles.BEETLEJUICE,
 				wakaba.Enums.Collectibles.ANTI_BALANCE,
 			})
-	
+
 			api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
-	
+
 			api:AddSlotsToSlotGroup("CrystalRestock", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
-	
+
 			api:AddCardsToCardGroup("Tarot", {
 				[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
 				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
@@ -181,35 +184,35 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
 				[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
 			})
-	
+
 			api:AddCardsToCardGroup("Suit", {
 				[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
 				[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
 				[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
 				[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
 			})
-	
+
 			api:AddCardsToCardGroup("Soul", {
 				[wakaba.Enums.Cards.SOUL_SHIORI] = 1,
 				[wakaba.Enums.Cards.SOUL_WAKABA] = 1,
 				[wakaba.Enums.Cards.SOUL_WAKABA2] = 1,
 				[wakaba.Enums.Cards.SOUL_TSUKASA] = 0.5,
 			})
-	
+
 			api:AddCardsToCardGroup("Holy", {
 				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
 				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
 				[wakaba.Enums.Cards.CARD_DREAM_CARD] = 1,
 			})
-	
+
 			api:AddCardsToCardGroup("DiceCapsule", {
 				[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.05,
 			})
-	
+
 			api:AddCardsToCardGroup("Object", {
 				[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
 			})
-	
+
 			api:AddCardsToCardGroup("RicherTicket", {
 				[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
 				[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
@@ -223,7 +226,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 0.2,
 				[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 0.2,
 			})
-			
+
 			-- Blacklist items to check within Use Item func, will be used inside same use function instead
 			api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
 			api:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
@@ -250,7 +253,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			wakaba:DictionaryBulkAppend(multitool, {
 				[wakaba.Enums.Pickups.CLOVER_CHEST] = function (chest)
-					
+
 				end,
 			})
 
@@ -268,7 +271,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				[41017] = { Vector(320, 80), ShopItemType.Slot , Get.MakeSlotGetter({ "CrystalRestock" }) }, -- center position
 				[41026] = { Vector(400, 0), ShopItemType.Slot , Get.MakeSlotGetter({ "CrystalRestock" }) }, -- right position
 			}
-			
+
 			function Get.GetWinterAlbireoTreasureItem(_, rng)
 				return Get.GetItem("RicherShopPool_Treasure", rng)
 			end
@@ -290,43 +293,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_PLANETARIUM
 				end,
-				ShopLayout = {
-					[0] = {
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-					},
-					[1] = {
-						{ Vector(240, 320), ShopItemType.Pickup },
-						{ Vector(320, 320), ShopItemType.Collectible },
-						{ Vector(400, 320), ShopItemType.Pickup },
-					},
-					[2] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[3] = {
-						{ Vector(200, 320), ShopItemType.Collectible },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[4] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[5] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Collectible },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-						{ Vector(450, 170), ShopItemType.RestockMachine },
-					},
-				},
-				PickupPool = SaveHelper.CopyTable(Mod.Item.TURNOVER.PickupPools[RoomType.ROOM_TREASURE]),
+				ShopLayout = turnover_layouts["WINTER_ALBIREO_TREASURE"],
+				PickupPool = turnover_pools["WINTER_ALBIREO_TREASURE"],
 			})
 
 			api:AddTurnoverShop({
@@ -334,43 +302,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_PLANETARIUM
 				end,
-				ShopLayout = {
-					[0] = {
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-					},
-					[1] = {
-						{ Vector(240, 320), ShopItemType.Pickup },
-						{ Vector(320, 320), ShopItemType.Collectible },
-						{ Vector(400, 320), ShopItemType.Pickup },
-					},
-					[2] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[3] = {
-						{ Vector(200, 320), ShopItemType.Collectible },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[4] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[5] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Collectible },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-						{ Vector(450, 170), ShopItemType.RestockMachine },
-					},
-				},
-				PickupPool = SaveHelper.CopyTable(Mod.Item.TURNOVER.PickupPools[RoomType.ROOM_PLANETARIUM]),
+				ShopLayout = turnover_layouts["WINTER_ALBIREO_PLANETARIUM"],
+				PickupPool = turnover_pools["WINTER_ALBIREO_PLANETARIUM"],
 			})
 
 			api:AddTurnoverShop({
@@ -378,43 +311,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_SECRET
 				end,
-				ShopLayout = {
-					[0] = {
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-					},
-					[1] = {
-						{ Vector(240, 320), ShopItemType.Pickup },
-						{ Vector(320, 320), ShopItemType.Collectible },
-						{ Vector(400, 320), ShopItemType.Pickup },
-					},
-					[2] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[3] = {
-						{ Vector(200, 320), ShopItemType.Collectible },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[4] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[5] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Collectible },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-						{ Vector(450, 170), ShopItemType.RestockMachine },
-					},
-				},
-				PickupPool = SaveHelper.CopyTable(Mod.Item.TURNOVER.PickupPools[RoomType.ROOM_SECRET]),
+				ShopLayout = turnover_layouts["WINTER_ALBIREO_SECRET"],
+				PickupPool = turnover_pools["WINTER_ALBIREO_SECRET"],
 			})
 
 			api:AddTurnoverShop({
@@ -422,43 +320,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_DEVIL
 				end,
-				ShopLayout = {
-					[0] = {
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-					},
-					[1] = {
-						{ Vector(240, 320), ShopItemType.Pickup },
-						{ Vector(320, 320), ShopItemType.Collectible },
-						{ Vector(400, 320), ShopItemType.Pickup },
-					},
-					[2] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[3] = {
-						{ Vector(200, 320), ShopItemType.Collectible },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[4] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[5] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Collectible },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-						{ Vector(450, 170), ShopItemType.RestockMachine },
-					},
-				},
-				PickupPool = SaveHelper.CopyTable(Mod.Item.TURNOVER.PickupPools[RoomType.ROOM_DEVIL]),
+				ShopLayout = turnover_layouts["WINTER_ALBIREO_DEVIL"],
+				PickupPool = turnover_pools["WINTER_ALBIREO_DEVIL"],
 			})
 
 			api:AddTurnoverShop({
@@ -466,43 +329,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_ANGEL
 				end,
-				ShopLayout = {
-					[0] = {
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-					},
-					[1] = {
-						{ Vector(240, 320), ShopItemType.Pickup },
-						{ Vector(320, 320), ShopItemType.Collectible },
-						{ Vector(400, 320), ShopItemType.Pickup },
-					},
-					[2] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[3] = {
-						{ Vector(200, 320), ShopItemType.Collectible },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[4] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Pickup },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-					},
-					[5] = {
-						{ Vector(200, 320), ShopItemType.Pickup },
-						{ Vector(280, 320), ShopItemType.Collectible },
-						{ Vector(360, 320), ShopItemType.Pickup },
-						{ Vector(440, 320), ShopItemType.Pickup },
-						{ Vector(450, 170), ShopItemType.RestockMachine },
-					},
-				},
-				PickupPool = SaveHelper.CopyTable(Mod.Item.TURNOVER.PickupPools[RoomType.ROOM_ANGEL]),
+				ShopLayout = turnover_layouts["WINTER_ALBIREO_ANGEL"],
+				PickupPool = turnover_pools["WINTER_ALBIREO_ANGEL"],
 			})
 			local TURNOVER = Mod.Item.TURNOVER
 			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_TREASURE] = "Planetarium0"
@@ -535,6 +363,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				local roomDesc = Game():GetLevel():GetCurrentRoomDesc()
 				if wakaba:IsValidWakabaRoom(roomDesc, wakaba.RoomTypes.WINTER_ALBIREO) and wakaba.state.unlock.easteregg then
 					pool[#pool + 1] = {{ PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG,}, Weight = 10e9, WeightDecreaseFactor = 0}
+					pool[#pool + 1] = {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter({"RicherTicket"}), 		minTier = 1, maxTier = 5 }}
 					return pool
 				end
 			end
@@ -573,7 +402,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			end
 			ffReplaced = true
 		end
-		
+
 	--[[
 		api:AddTurnoverShop({
 			Name = "WAKABA_TURNOVER",		 -- shop name, is used internally
