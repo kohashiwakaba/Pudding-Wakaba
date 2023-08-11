@@ -15,7 +15,7 @@ function wakaba:hasAlbireo(player)
 		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) then
 		return true
 	elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
@@ -137,13 +137,47 @@ function wakaba:IsValidWakabaRoom(roomdesc, wakabaRoomType)
 			if hasCachedAlbireoRooms() then
 				for _, index in ipairs(albireoRooms) do
 					if index == roomDesc.Data.Variant then
-						return true
+						local stage = level:GetAbsoluteStage()
+						local stageType = level:GetStageType()
+
+						if stage <= LevelStage.STAGE4_2 then
+							if stage % 2 ~= 0 then
+								return RoomType.ROOM_TREASURE
+							else
+								return RoomType.ROOM_PLANETARIUM
+							end
+						elseif stage == LevelStage.STAGE4_3 then
+							return RoomType.ROOM_SECRET
+						elseif stage == LevelStage.STAGE5 then
+							if stageType == StageType.STAGETYPE_ORIGINAL then
+								return RoomType.ROOM_DEVIL
+							else
+								return RoomType.ROOM_ANGEL
+							end
+						end
 					end
 				end
 			else
 				-- Richer Planetariums for Winter Albireo
 				if (roomDesc.Data.Variant >= wakaba.RoomIDs.MIN_RICHER_ROOM_ID and roomDesc.Data.Variant <= wakaba.RoomIDs.MAX_RICHER_ROOM_ID) then
-					return true
+					local stage = level:GetAbsoluteStage()
+					local stageType = level:GetStageType()
+
+					if stage <= LevelStage.STAGE4_2 then
+						if stage % 2 ~= 0 then
+							return RoomType.ROOM_TREASURE
+						else
+							return RoomType.ROOM_PLANETARIUM
+						end
+					elseif stage == LevelStage.STAGE4_3 then
+						return RoomType.ROOM_SECRET
+					elseif stage == LevelStage.STAGE5 then
+						if stageType == StageType.STAGETYPE_ORIGINAL then
+							return RoomType.ROOM_DEVIL
+						else
+							return RoomType.ROOM_ANGEL
+						end
+					end
 				end
 			end
 		end
