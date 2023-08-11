@@ -127,7 +127,7 @@ function wakaba:updateHUDPosition()
 	end
 
 	--Checks if Hard Mode and Seeded/Challenge/Daily; Seeded/Challenge have no achievements logo, and Daily Challenge has destination logo.
-	if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game():IsGreedMode() or not CanRunUnlockAchievements() then
+	if Game().Difficulty == Difficulty.DIFFICULTY_HARD or Game():IsGreedMode() or not wakaba:CanRunUnlockAchievements() then
 		wakaba.globalHUDCoords = wakaba.globalHUDCoords + Vector(0, 16)
 	end
 
