@@ -184,7 +184,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 					local wakabaBuff = wakaba:getWakabaDesc("epiphany_golden", descObj.ObjSubType)
 					if wakabaBuff then
 						local description = wakabaBuff.description
-						local wakabaBuff.isReplace then
+						if wakabaBuff.isReplace then
 							descObj.Description = description
 						else
 							EID:appendToDescription(descObj, "#".. description .. "{{CR}}")
