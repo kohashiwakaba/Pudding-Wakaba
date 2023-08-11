@@ -450,7 +450,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#On use, Spawns 3 Putagory ghosts that deals 0.4x of Isaac's Damage"
 		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
-		.. "#{{ColorSilver}}On use, Spawns 11 Hungry Souls that deals Isaac's Damage + 35"
+		.. "#{{ColorSilver}}On use, Spawns 11 Hungry Souls that deals Isaac's Damage"
 		.. "#↓ {{ColorSilver}}Can no longer shoot tears"
 		.. "#↑ {{Damage}} {{ColorSilver}}+600% Damage Multiplier"
 		.. "#!!! {{ColorYellow}}Isaac can no longer swap active items{{ColorReset}}"
@@ -1182,7 +1182,100 @@ wakaba.descriptions[desclang].flashshift = {
 wakaba.descriptions[desclang].flashmurasame = {
 
 }
-
+wakaba.descriptions[desclang].epiphany_golden = {
+	[wakaba.Enums.Collectibles.D6_CHAOS] = {
+		isReplace = true,
+		description = ""
+		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} Invokes Soul of Isaac effect for {{ColorGold}}4 times{{CR}}"
+		.. "#Rerolled items cycle for {{ColorGold}}intermediate{{CR}} speed"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.SYRUP] = {
+		isReplace = true,
+		description = ""
+		.. "#!!! While Held:"
+		.. "#↑ {{Speed}} {{ColorGold}}+10%{{CR}} Speed"
+		.. "#↑ {{Range}} +{{ColorGold}}6{{CR}} Range"
+		.. "#↑ {{Damage}} +{{ColorGold}}3{{CR}} Damage"
+		.. "#Flight, {{ColorGold}}Spectral tears{{CR}}"
+		.. "#!!! Does not have on use effect"
+	},
+	[wakaba.Enums.Collectibles.UNIFORM] = {
+		isReplace = true,
+		description = ""
+		.. "#Upon use, stores/swaps current card, pill, or rune"
+		.. "#Drop button changes which slot to store/swap"
+		.. "#When Isaac uses a card, pill, or rune, he also uses a copy of every card/pill/rune stored in Wakaba's Uniform"
+		.. "#Hold Tab Key/Map Button to show current slot"
+		.. "#{{ColorGold}}Does not consume charges on swap{{CR}}"
+	},
+	[wakaba.Enums.Collectibles.EATHEART] = {
+		isReplace = false,
+		description = "{{ColorGold}}Charge rate is doubled",
+	},
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
+		isReplace = false,
+		description = "{{Card14}} {{ColorGold}}Also deals 40 damage to all enemies",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
+		isReplace = true,
+		description = ""
+		.. "#Detonate Isaac's tears currently on the screen, causing each one to explode (Max 15)"
+		.. "#Exploded tear shots {{ColorGold}}causes Giga Bomb explosions"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
+		isReplace = true,
+		description = ""
+		.. "#{{ColorGold}}On use, Spawns 11 Hungry Souls that deals Isaac's Damage"
+		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
+		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
+		.. "#{{ColorGold}}Can shoot tears even after revival"
+		.. "#↑ {{Damage}} {{ColorGold}}+100% Damage Multiplier"
+		.. "#!!! {{ColorYellow}}Isaac can no longer swap active items{{ColorReset}}"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
+		isReplace = false,
+		description = "{{ColorGold}}Grants {{Tears}}small fire rate bonus per erased projectiles that slowly fades away",
+	},
+	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
+		isReplace = false,
+		description = "{{ColorGold}}Spawns Golden Pill instead",
+	},
+	[wakaba.Enums.Collectibles.POWER_BOMB] = {
+		isReplace = false,
+		description = "{{ColorGold}}Turns room into gold, doubles damage, and makes all pickups available without options",
+	},
+	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
+		isReplace = false,
+		description = "{{ColorGold}}Also opens quest-related doors",
+	},
+	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
+		isReplace = false,
+		description = "{{ColorGold}}While in shift, {{Collectible202}}Touching enemies turns them gold",
+	},
+	[wakaba.Enums.Collectibles._3D_PRINTER] = {
+		isReplace = false,
+		description = "{{ColorGold}}Smelted trinkets are golden",
+	},
+	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
+		isReplace = false,
+		description = "{{ColorGold}}Spawns Golden Clot instead",
+	},
+	[wakaba.Enums.Collectibles.BALANCE] = {
+		isReplace = false,
+		description = "{{Collectible555}} {{ColorGold}}Grants +1.2 Damage up for the current room if coins are spent",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
+		isReplace = false,
+		description = "{{ColorGold}}Converts item pedestals into Golden variation",
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
+		isReplace = false,
+		description = "{{ColorGold}}Prevents Quality{{Quality0}} to be spawned",
+	},
+}
 
 wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = {

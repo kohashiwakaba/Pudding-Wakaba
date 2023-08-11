@@ -9,127 +9,192 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		local api = Mod.API
 		local KEEPER = Mod.Character.KEEPER
 
-		-- Was trying to add TR Wakaba, but no time sadly
-		api.AddCharacter({
-			charName = "WAKABA", --Internal character name (REQUIRED)
-			charID = wakaba.Enums.Players.WAKABA_T, -- Character ID (REQUIRED)
-			charStats = wakaba.playerstats.WAKABA_T, -- Stat array
-			costume = "gfx/characters/character_wakaba_t.anm2", -- Main costume (REQUIRED)
-			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/wakaba_epiphany_menu_wakaba.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_wakaba.anm2", -- Co-op menu icon (REQUIRED)
-			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
-			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function() 
-				--return wakaba.state.unlock.trwakaba
-				return false 
-			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
-		})
-		Epiphany.API.AddCharacter({
-			charName = "SHIORI", --Internal character name (REQUIRED)
-			charID = wakaba.Enums.Players.SHIORI_T, -- Character ID (REQUIRED)
-			charStats = wakaba.playerstats.SHIORI_T, -- Stat array
-			costume = "gfx/characters/character_shiori_t.anm2", -- Main costume (REQUIRED)
-			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/wakaba_epiphany_menu_shiori.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_shiori.anm2", -- Co-op menu icon (REQUIRED)
-			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
-			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function() 
-				--return wakaba.state.unlock.trwakaba
-				return false 
-			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
-		})
-		Epiphany.API.AddCharacter({
-			charName = "TSUKASA", --Internal character name (REQUIRED)
-			charID = wakaba.Enums.Players.TSUKASA_T, -- Character ID (REQUIRED)
-			charStats = wakaba.playerstats.TSUKASA_T, -- Stat array
-			costume = "gfx/characters/character_tsukasa_t.anm2", -- Main costume (REQUIRED)
-			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/wakaba_epiphany_menu_tsukasa.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_tsukasa.anm2", -- Co-op menu icon (REQUIRED)
-			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
-			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function() 
-				--return wakaba.state.unlock.trwakaba
-				return false 
-			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
-		})
-		Epiphany.API.AddCharacter({
-			charName = "RICHER", --Internal character name (REQUIRED)
-			charID = wakaba.Enums.Players.RICHER_T, -- Character ID (REQUIRED)
-			charStats = wakaba.playerstats.RICHER_T, -- Stat array
-			costume = "gfx/characters/character_richer_t.anm2", -- Main costume (REQUIRED)
-			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/wakaba_epiphany_menu_richer.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_richer.anm2", -- Co-op menu icon (REQUIRED)
-			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
-			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function() 
-				--return wakaba.state.unlock.trwakaba
-				return false 
-			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
-		})
---[[ 
-		Epiphany.API.AddCharacter({
-			charName = "RIRA", --Internal character name (REQUIRED)
-			charID = wakaba.Enums.Players.RIRA_T, -- Character ID (REQUIRED)
-			charStats = wakaba.playerstats.RIRA_T, -- Stat array
-			costume = "gfx/characters/character_rira_t.anm2", -- Main costume (REQUIRED)
-			--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
-			menuGraphics = "gfx/ui/wakaba/menu_placeholder.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
-			coopMenuSprite = "gfx/ui/wakaba/coop_menu_placeholder.anm2", -- Co-op menu icon (REQUIRED)
-			pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
-			pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
-			unlockChecker = function()
-				--return wakaba.state.unlock.trwakaba
-				return false 
-			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
-			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
-		})
-	 ]]
-		wakaba:Epiphany_AddThrowingBagSynergies()
+		if not ffReplaced then
 
-		api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
-		api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
-		api:AddSlotsToSlotGroup("ArcadeBeggars", wakaba.Enums.Slots.SHIORI_VALUT)
+			api.AddCharacter({
+				charName = "WAKABA", --Internal character name (REQUIRED)
+				charID = wakaba.Enums.Players.WAKABA_T, -- Character ID (REQUIRED)
+				charStats = wakaba.playerstats.WAKABA_T, -- Stat array
+				costume = "gfx/characters/character_wakaba_t.anm2", -- Main costume (REQUIRED)
+				--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+				menuGraphics = "gfx/ui/wakaba_epiphany_menu_wakaba.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_wakaba.anm2", -- Co-op menu icon (REQUIRED)
+				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+				unlockChecker = function() 
+					--return wakaba.state.unlock.trwakaba
+					return false 
+				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+			})
+			Epiphany.API.AddCharacter({
+				charName = "SHIORI", --Internal character name (REQUIRED)
+				charID = wakaba.Enums.Players.SHIORI_T, -- Character ID (REQUIRED)
+				charStats = wakaba.playerstats.SHIORI_T, -- Stat array
+				costume = "gfx/characters/character_shiori_t.anm2", -- Main costume (REQUIRED)
+				--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+				menuGraphics = "gfx/ui/wakaba_epiphany_menu_shiori.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_shiori.anm2", -- Co-op menu icon (REQUIRED)
+				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+				unlockChecker = function() 
+					--return wakaba.state.unlock.trwakaba
+					return false 
+				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+			})
+			Epiphany.API.AddCharacter({
+				charName = "TSUKASA", --Internal character name (REQUIRED)
+				charID = wakaba.Enums.Players.TSUKASA_T, -- Character ID (REQUIRED)
+				charStats = wakaba.playerstats.TSUKASA_T, -- Stat array
+				costume = "gfx/characters/character_tsukasa_t.anm2", -- Main costume (REQUIRED)
+				--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+				menuGraphics = "gfx/ui/wakaba_epiphany_menu_tsukasa.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_tsukasa.anm2", -- Co-op menu icon (REQUIRED)
+				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+				unlockChecker = function() 
+					--return wakaba.state.unlock.trwakaba
+					return false 
+				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+			})
+			Epiphany.API.AddCharacter({
+				charName = "RICHER", --Internal character name (REQUIRED)
+				charID = wakaba.Enums.Players.RICHER_T, -- Character ID (REQUIRED)
+				charStats = wakaba.playerstats.RICHER_T, -- Stat array
+				costume = "gfx/characters/character_richer_t.anm2", -- Main costume (REQUIRED)
+				--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+				menuGraphics = "gfx/ui/wakaba_epiphany_menu_richer.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+				coopMenuSprite = "gfx/ui/wakaba_epiphany_coop_richer.anm2", -- Co-op menu icon (REQUIRED)
+				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+				unlockChecker = function() 
+					--return wakaba.state.unlock.trwakaba
+					return false 
+				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+			})
+	--[[ 
+			Epiphany.API.AddCharacter({
+				charName = "RIRA", --Internal character name (REQUIRED)
+				charID = wakaba.Enums.Players.RIRA_T, -- Character ID (REQUIRED)
+				charStats = wakaba.playerstats.RIRA_T, -- Stat array
+				costume = "gfx/characters/character_rira_t.anm2", -- Main costume (REQUIRED)
+				--extraCostume = {Isaac.GetCostumeIdByPath("gfx/characters/character_wakaba_t_extra.anm2")}, -- Extra costume (e.g. Maggy's Hair)
+				menuGraphics = "gfx/ui/wakaba/menu_placeholder.anm2", -- Character menu graphics (portrait, text) (REQUIRED)
+				coopMenuSprite = "gfx/ui/wakaba/coop_menu_placeholder.anm2", -- Co-op menu icon (REQUIRED)
+				pocketItem = CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE, -- Pocket active
+				pocketItemPersistent = true, -- Should the pocket active always be re-given when not present? (false is vanilla behaviour)
+				unlockChecker = function()
+					--return wakaba.state.unlock.trwakaba
+					return false 
+				end, -- function that returns whether the character is unlocked. Defaults to always returning true.
+				floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
+			})
+			 ]]
+		
+			wakaba:Epiphany_AddThrowingBagSynergies()
+			Epiphany.API:AddItemsToCustomPool("VaultShop", {
+				wakaba.Enums.Collectibles.SECRET_CARD, 1
+			})
+			Epiphany.API:AddItemsToCustomPool("DiceShop", {
+				wakaba.Enums.Collectibles.SECRET_CARD, 1
+			})
+			Epiphany.API:AddItemsToCustomPool("BedroomShop", {
+				wakaba.Enums.Collectibles.SECRET_CARD, 1
+			})
+			Epiphany.API:AddItemsToCustomPool("SacRoomShop", {
+				wakaba.Enums.Collectibles.SECRET_CARD, 1
+			})
+			Epiphany.API:AddItemsToCustomPool("PainPool", {
+				wakaba.Enums.Collectibles.SELF_BURNING, 1
+			})
+	
+			api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
+			api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+			api:AddSlotsToSlotGroup("ArcadeBeggars", wakaba.Enums.Slots.SHIORI_VALUT)
+	
+			api:AddCardsToCardGroup("Tarot", {
+				[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
+				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
+				[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
+				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
+				[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
+				[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
+			})
+	
+			api:AddCardsToCardGroup("Suit", {
+				[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
+				[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
+				[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
+				[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
+			})
+	
+			api:AddCardsToCardGroup("Soul", {
+				[wakaba.Enums.Cards.SOUL_SHIORI] = 1,
+				[wakaba.Enums.Cards.SOUL_WAKABA] = 1,
+				[wakaba.Enums.Cards.SOUL_WAKABA2] = 1,
+				[wakaba.Enums.Cards.SOUL_TSUKASA] = 0.5,
+			})
+	
+			api:AddCardsToCardGroup("Holy", {
+				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
+				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
+				[wakaba.Enums.Cards.CARD_DREAM_CARD] = 1,
+			})
+	
+			api:AddCardsToCardGroup("DiceCapsule", {
+				[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
+			})
+			
+			-- Blacklist items to check within Use Item func
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.BALANCE)
+			api:BlacklistGoldActive(wakaba.Enums.Collectibles.BEETLEJUICE)
 
-		api:AddCardsToCardGroup("Tarot", {
-			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
-			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
-			[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
-			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
-			[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
-			[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
-		})
+			-- Whitelist Keeper pickups
+			wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[100], {
+				[wakaba.Enums.Collectibles.SECRET_CARD] = 1,
+			})
+			wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[350], {
+				[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1,
+				[wakaba.Enums.Trinkets.BITCOIN] = 1,
+			})
+			wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants, {
+				[wakaba.Enums.Pickups.CLOVER_CHEST] = 0,
+			})
 
-		api:AddCardsToCardGroup("Suit", {
-			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
-			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
-			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
-			[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
-		})
 
-		api:AddCardsToCardGroup("Soul", {
-			[wakaba.Enums.Cards.SOUL_SHIORI] = 1,
-			[wakaba.Enums.Cards.SOUL_WAKABA] = 1,
-			[wakaba.Enums.Cards.SOUL_WAKABA2] = 1,
-			[wakaba.Enums.Cards.SOUL_TSUKASA] = 0.5,
-		})
 
-		api:AddCardsToCardGroup("Holy", {
-			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
-			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
-			[wakaba.Enums.Cards.CARD_DREAM_CARD] = 1,
-		})
 
-		api:AddCardsToCardGroup("DiceCapsule", {
-			[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
-		})
+			if EID then
+				EID:addDescriptionModifier("Wakaba_Epiphany Golden Actives", function(descObj)
+					return 
+					descObj.ObjType == 5 
+					and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE
+					and descObj.ObjSubType > 0
+					and wakaba:isActiveItem(descObj.ObjSubType)
+					and wakaba:IsGoldenItem(descObj.ObjSubType)
+				end, function(descObj)
+					local wakabaBuff = wakaba:getWakabaDesc("epiphany_golden", descObj.ObjSubType)
+					if wakabaBuff then
+						local description = wakabaBuff.description
+						local wakabaBuff.isReplace then
+							descObj.Description = description
+						else
+							EID:appendToDescription(descObj, "#".. description .. "{{CR}}")
+						end
+					end
+				end)
+			end
+			ffReplaced = true
+		end
+		
 	--[[
 		api:AddTurnoverShop({
 			Name = "WAKABA_TURNOVER",		 -- shop name, is used internally
@@ -203,26 +268,6 @@ function wakaba:Epiphany_AddTarnishedDatas()
 		})
 	 ]]
 
-		-- Blacklist items to check within Use Item func
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BALANCE)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BEETLEJUICE)
-
-		-- Whitelist Keeper pickups
-		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[100], {
-			[wakaba.Enums.Collectibles.SECRET_CARD] = 1,
-		})
-		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[350], {
-			[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1,
-			[wakaba.Enums.Trinkets.BITCOIN] = 1,
-		})
-		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants, {
-			[wakaba.Enums.Pickups.CLOVER_CHEST] = 0,
-		})
 
 
 
@@ -234,7 +279,6 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 
 
-		wakaba:RemoveCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.Epiphany_AddTarnishedDatas)
 	end
 	if LibraryExpanded then
 		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_SHIORI)

@@ -1,9 +1,9 @@
 -- Todos : Add weight values for EID Bag of Crafting
 
 if EID then
-  if EIDKR then
+	if EIDKR then
 		print("Pudding and Wakaba no longer supports EID Korean. Use Original External Item Descriptions mod.")
-  else
+	else
 
 		wakaba.TextOffset = {
 			[wakaba.Enums.Players.RICHER_B] = wakaba.Enums.Constants.RICHER_B_HUD_OFFSET,
@@ -78,7 +78,7 @@ if EID then
 
 		function wakaba:getWakabaDesc(entries, id)
 			lang = EID:getLanguage() or "en_us"
-	  	local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
+			local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
 			if id then
 				if entrytables[entries] then
 					return entrytables[entries][id]
@@ -88,20 +88,20 @@ if EID then
 			end
 		end
 
-    table.insert(EID.TextReplacementPairs, {"{{WakabaBless}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{WakabaNemesis}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{Shiori}}","{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{Judasbr}}","{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{WakabaBlankCard}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{WakabaPlacebo}}","{{Collectible" .. CollectibleType.COLLECTIBLE_PLACEBO .. "}}"})
-    table.insert(EID.TextReplacementPairs, {"{{WakabaClearRune}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{WakabaBless}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{WakabaNemesis}}","{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{Shiori}}","{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{Judasbr}}","{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{WakabaBlankCard}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{WakabaPlacebo}}","{{Collectible" .. CollectibleType.COLLECTIBLE_PLACEBO .. "}}"})
+		table.insert(EID.TextReplacementPairs, {"{{WakabaClearRune}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
 
-    EID:addColor("ColorWakabaBless", KColor(0.827, 0.831, 0.992, 1))
-    EID:addColor("ColorSoul", KColor(0.827, 0.831, 0.992, 1))
-    EID:addColor("ColorWakabaNemesis", KColor(0.921, 0.6, 0.603, 1))
-    EID:addColor("ColorBookofShiori", KColor(0.462, 0.474, 0.937, 1))
-    EID:addColor("ColorBoCLight", KColor(1, 0.537, 0.867, 1))
-    EID:addColor("ColorBocDark", KColor(0.941, 0.357, 0.69, 1))
+		EID:addColor("ColorWakabaBless", KColor(0.827, 0.831, 0.992, 1))
+		EID:addColor("ColorSoul", KColor(0.827, 0.831, 0.992, 1))
+		EID:addColor("ColorWakabaNemesis", KColor(0.921, 0.6, 0.603, 1))
+		EID:addColor("ColorBookofShiori", KColor(0.462, 0.474, 0.937, 1))
+		EID:addColor("ColorBoCLight", KColor(1, 0.537, 0.867, 1))
+		EID:addColor("ColorBocDark", KColor(0.941, 0.357, 0.69, 1))
 		EID.InlineIcons["IconRedTint"] = function(_)
 			EID._NextIconModifier = function(sprite)
 				sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0.8, 0, 0)
@@ -114,7 +114,7 @@ if EID then
 			end
 			return {"Blank", 0, 0, 0}
 		end
-    EID:addColor("ColorBookofConquest", nil, function(_)
+		EID:addColor("ColorBookofConquest", nil, function(_)
 			local maxAnimTime = 80
 			local animTime = wakaba.G:GetFrameCount() % maxAnimTime
 			local c = EID.InlineColors
@@ -150,247 +150,247 @@ if EID then
 			return descObj
 		end
 
-	  -- Handle Wakaba description addition
-	  local function WakabaCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Wakaba description addition
+		local function WakabaCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function WakabaCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("wakaba", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA.."}} {{ColorWakabaBless}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function WakabaCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("wakaba", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA.."}} {{ColorWakabaBless}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Tainted Wakaba description addition
-	  local function WakabaCondition_b(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Tainted Wakaba description addition
+		local function WakabaCondition_b(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function WakabaCallback_b(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("wakaba_b", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} {{ColorWakabaNemesis}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function WakabaCallback_b(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("wakaba_b", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} {{ColorWakabaNemesis}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Wakaba's Blessing description addition
-	  local function BlessingCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if wakaba:HasBless(player) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Wakaba's Blessing description addition
+		local function BlessingCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if wakaba:HasBless(player) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function BlessingCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("bless", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} {{ColorWakabaBless}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function BlessingCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("bless", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} {{ColorWakabaBless}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Wakaba's Nemesis description addition
-	  local function NemesisCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if wakaba:HasNemesis(player) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Wakaba's Nemesis description addition
+		local function NemesisCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if wakaba:HasNemesis(player) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function NemesisCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("nemesis", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}} {{ColorWakabaNemesis}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function NemesisCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("nemesis", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}} {{ColorWakabaNemesis}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Book of Shiori description addition
-	  local function ShioriCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Book of Shiori description addition
+		local function ShioriCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function ShioriCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("shiori", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI.."}} {{ColorBookofShiori}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function ShioriCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("shiori", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI.."}} {{ColorBookofShiori}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Book of Shiori description addition
-	  local function ShioriCondition_b(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Book of Shiori description addition
+		local function ShioriCondition_b(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function ShioriCallback_b(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("shiori_b", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} {{ColorBookofShiori}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function ShioriCallback_b(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("shiori_b", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} {{ColorBookofShiori}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Book of Shiori description addition
-	  local function ShioriBookCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if wakaba:HasShiori(player) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Book of Shiori description addition
+		local function ShioriBookCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if wakaba:HasShiori(player) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function ShioriBookCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function ShioriBookCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Judas + Birthright description addition
-	  local function JudasCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	for i = 0,wakaba.G:GetNumPlayers() - 1 do
-	  		local player = Isaac.GetPlayer(i)
-	  		if wakaba:HasJudasBr(player) then
-	  			return true
-	  		end
-	  	end
-	  	return false
-	  end
+		-- Handle Judas + Birthright description addition
+		local function JudasCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			for i = 0,wakaba.G:GetNumPlayers() - 1 do
+				local player = Isaac.GetPlayer(i)
+				if wakaba:HasJudasBr(player) then
+					return true
+				end
+			end
+			return false
+		end
 
-	  local function JudasCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("belial", descObj.ObjSubType)
-	  	if wakabaBuff then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}} {{ColorWakabaNemesis}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function JudasCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("belial", descObj.ObjSubType)
+			if wakabaBuff then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}} {{ColorWakabaNemesis}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
 
-	  -- Handle Horse Pills of Pudding and Wakaba description
-	  local function WakabaPillCondition(descObj)
-	  	if descObj.ObjType == 5 or descObj.ObjVariant == PickupVariant.PICKUP_PILL and descObj.SubType > 2048 then
-	  		return true
-	  	end
-	  	return false
-	  end
-	  -- Handle Cards of Pudding and Wakaba description
-	  local function WakabaTarotCardCondition(descObj)
-	  	if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
+		-- Handle Horse Pills of Pudding and Wakaba description
+		local function WakabaPillCondition(descObj)
+			if descObj.ObjType == 5 or descObj.ObjVariant == PickupVariant.PICKUP_PILL and descObj.SubType > 2048 then
+				return true
+			end
+			return false
+		end
+		-- Handle Cards of Pudding and Wakaba description
+		local function WakabaTarotCardCondition(descObj)
+			if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
 				if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
 					return true
 				end
-	  	end
-	  	return false
-	  end
+			end
+			return false
+		end
 
-	  local function WakabaTarotCardCallback(descObj)
-	  	local wakabaBuff = wakaba:getWakabaDesc("tarotcloth", descObj.ObjSubType)
+		local function WakabaTarotCardCallback(descObj)
+			local wakabaBuff = wakaba:getWakabaDesc("tarotcloth", descObj.ObjSubType)
 			local subtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType) - 1
-	  	if wakabaBuff ~= nil then
-        local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_TAROT_CLOTH .. "}} "
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+			if wakabaBuff ~= nil then
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_TAROT_CLOTH .. "}} "
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
-	  -- Handle Better Voiding description addition
-	  local function BetterVoidingCondition(descObj)
-	  	if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-	  		return false
-	  	end
-	  	if BetterVoiding then
+		-- Handle Better Voiding description addition
+		local function BetterVoidingCondition(descObj)
+			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+				return false
+			end
+			if BetterVoiding then
 				return true
 			end
-	  	return false
-	  end
+			return false
+		end
 
-	  local function BetterVoidingCallback(descObj)
-	  	local betterVoidingBuff = wakaba.eidextradesc.bettervoiding[descObj.ObjSubType]
-	  	if betterVoidingBuff ~= nil then
-        local description = (betterVoidingBuff[EID:getLanguage()] or betterVoidingBuff.en_us)
-	  		local iconStr = "#!!! Better Voiding detected!#"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-	  	end
-	  	return descObj
-	  end
+		local function BetterVoidingCallback(descObj)
+			local betterVoidingBuff = wakaba.eidextradesc.bettervoiding[descObj.ObjSubType]
+			if betterVoidingBuff ~= nil then
+				local description = (betterVoidingBuff[EID:getLanguage()] or betterVoidingBuff.en_us)
+				local iconStr = "#!!! Better Voiding detected!#"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+			end
+			return descObj
+		end
 
 		-- Handle Bingeeater description addition
 		local function BingeeaterCondition(descObj)
@@ -449,8 +449,8 @@ if EID then
 			local wakabaBuff = wakaba:getWakabaDesc("abyss", descObj.ObjSubType)
 			if wakabaBuff then
 				local description = wakabaBuff.description
-	  		local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_ABYSS .. "}} {{ColorRed}}"
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_ABYSS .. "}} {{ColorRed}}"
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 			end
 			return descObj
 		end
@@ -494,8 +494,8 @@ if EID then
 						description = description .. "{{Collectible".. v.MainItem .. "}} "
 					end
 				end
-	  		local iconStr = "#!!! "
-	  		EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+				local iconStr = "#!!! "
+				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 			end
 			return descObj
 		end
@@ -766,7 +766,7 @@ if EID then
 		end
 
 		--wakaba:UpdateWakabaDescriptions()
-	  --EID:addDescriptionModifier("Wakaba's Horse Pills", WakabaPillCondition, WakabaPillCallback)
+		--EID:addDescriptionModifier("Wakaba's Horse Pills", WakabaPillCondition, WakabaPillCallback)
 
 		local checkedWakabaAchievement = false
 
@@ -926,7 +926,7 @@ if EID then
 		end ]]
 		--wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
 
-  end
+	end
 end
 
 wakaba.LanguageMap = {
@@ -1008,10 +1008,10 @@ end)
 
 function wakaba:EIDPos()
 	local target_offset_y=0
-  local player_type = EID.player:GetPlayerType()
-  if wakaba.TextOffset[player_type] then
-    target_offset_y=math.max(wakaba.TextOffset[player_type] or 0)
-  end
+	local player_type = EID.player:GetPlayerType()
+	if wakaba.TextOffset[player_type] then
+		target_offset_y=math.max(wakaba.TextOffset[player_type] or 0)
+	end
 	if target_offset_y > 0 then
 		EID:addTextPosModifier("Pudding n Wakaba Pos", Vector(0,target_offset_y))
 	else

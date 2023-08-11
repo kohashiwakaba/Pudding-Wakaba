@@ -1279,6 +1279,102 @@ wakaba.descriptions[desclang].flashshift = {
 wakaba.descriptions[desclang].flashmurasame = {
 
 }
+wakaba.descriptions[desclang].epiphany_golden = {
+	[wakaba.Enums.Collectibles.D6_CHAOS] = {
+		isReplace = true,
+		description = ""
+		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 아이작의 영혼 효과를 {{ColorGold}}4번{{CR}} 발동합니다 :"
+		.. "#방 안의 모든 아이템이 랜덤한 아이템과 {{ColorGold}}빠른 속도{{CR}}로 전환되며 4개의 아이템 중 하나를 선택할 수 있습니다."
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.SYRUP] = {
+		isReplace = true,
+		description = ""
+		.. "#!!! 소지 시:"
+		.. "#↑ {{SpeedSmall}}{{ColorGold}}이동속도 배율 x1.1"
+		.. "#↑ {{RangeSmall}}사거리 +{{ColorGold}}6"
+		.. "#↑ {{DamageSmall}}공격력 +{{ColorGold}}3"
+		.. "#비행 능력을 얻으며, {{ColorGold}}공격이 장애물을 관통합니다."
+		.. "#!!! (사용 효과는 없습니다)"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.UNIFORM] = {
+		isReplace = true,
+		description = ""
+		.. "#교복 아이템 사용 시 현재 선택된 슬롯과 들고 있는 알약/카드/룬을 서로 맞바꿉니다."
+		.. "#{{Blank}} (Ctrl 키로 슬롯 선택 가능)"
+		.. "#알약/카드/룬 사용 시 교복의 담긴 알약/카드/룬도 같이 사용합니다."
+		.. "#교복에 담긴 알약/카드/룬은 Tab 키를 누른 상태에서 확인할 수 있습니다."
+		.. "#{{ColorGold}}충전량을 소모하지 않습니다.{{CR}}"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.EATHEART] = {
+		isReplace = false,
+		description = "{{ColorGold}}충전량 2배",
+	},
+	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
+		isReplace = false,
+		description = "{{Card14}} {{ColorGold}}그 방의 적에게 40의 피해를 줍니다.",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
+		isReplace = true,
+		description = ""
+		.. "#사용 시 최대 15개의 캐릭터의 눈물이 폭발합니다."
+		.. "#폭발 지점마다 {{ColorGold}}기가 폭발을 일으킵니다."
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
+		isReplace = true,
+		description = ""
+		.. "#{{ColorGold}}사용 시 캐릭터의 공격력의 적을 추적하는 유령 11마리를 소환합니다."
+		.. "#피격 시 하트가 없을 경우 타천사로 변신하며 블랙하트 6개를 획득합니다."
+		.. "#!!! {{ColorSilver}}타천사 상태로 돌입 시 이하 효과 발동:"
+		.. "#↓ {{ColorGold}}눈물 발사 상태 유지"
+		.. "#↑ {{DamageSmall}}{{ColorGold}}공격력 배율 2.0"
+		.. "#!!! {{ColorYellow}}더 이상 액티브 아이템을 바꿀 수 없습니다{{ColorReset}}"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
+		isReplace = false,
+		description = "{{ColorGold}}지운 탄환 수만큼 점점 사라지는 {{TearsSmall}}연사 추가 증가",
+	},
+	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
+		isReplace = false,
+		description = "{{ColorGold}}황금 알약을 대신 소환합니다.",
+	},
+	[wakaba.Enums.Collectibles.POWER_BOMB] = {
+		isReplace = false,
+		description = "{{ColorGold}}그 방 전체를 황금으로 만들며, 피해랑 증가, 그 방의 선택형 아이템 및 픽업을 전부 획득할 수 있습니다.",
+	},
+	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
+		isReplace = false,
+		description = "{{ColorGold}}루트 진행 관련 문을 추가로 엽니다.",
+	},
+	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
+		isReplace = false,
+		description = "{{ColorGold}}시프트 중 적과 닿으면 {{Collectible202}}적을 황금화 시킵니다.",
+	},
+	[wakaba.Enums.Collectibles._3D_PRINTER] = {
+		isReplace = false,
+		description = "{{ColorGold}}흡수한 장신구가 황금 형태로 흡수됩니다.",
+	},
+	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
+		isReplace = false,
+		description = "{{ColorGold}}황금 클롯을 대신 소환합니다.",
+	},
+	[wakaba.Enums.Collectibles.BALANCE] = {
+		isReplace = false,
+		description = "{{Collectible555}} {{ColorGold}}동전을 소모한 경우 그 방에서 {{DamageSmall}}공격력 +1.2",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
+		isReplace = false,
+		description = "{{ColorGold}}그 방의 액티브/패시브 아이템을 황금화 시킵니다.",
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
+		isReplace = false,
+		description = "{{ColorGold}}{{Quality0}}등급인 아이템이 등장하지 않습니다.",
+	},
+}
 
 
 wakaba.descriptions[desclang].trinkets = {

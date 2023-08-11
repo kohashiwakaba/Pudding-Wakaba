@@ -1200,3 +1200,11 @@ function wakaba:GetMarkedTarget(player)
 	end
 
 end
+
+---@param itemID CollectibleType
+---@return boolean
+function wakaba:isActiveItem(itemID)
+	local itemConfig = Isaac.GetItemConfig():GetCollectible(itemID)
+	if not itemConfig then return false end
+	return itemConfig:IsCollectible() and itemConfig.Type == ItemType.ITEM_ACTIVE
+end
