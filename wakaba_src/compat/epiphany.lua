@@ -1,9 +1,6 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-local turnover_layouts = include("wakaba_src.compat.epiphany.turnover_layouts")
-local turnover_pools = include("wakaba_src.compat.epiphany.turnover_pools")
-
 -- INITIALIZE EPIPHANY MENU CHARACTER
 function wakaba:Epiphany_AddTarnishedDatas()
 	-- DO NOT RUN IF THE API IS NOT LOADED
@@ -177,54 +174,54 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			api:AddSlotsToSlotGroup("CrystalRestock", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 			api:AddCardsToCardGroup("Tarot", {
-				[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
-				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
-				[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 1,
-				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
-				[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
-				[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
+				wakaba.Enums.Cards.CARD_CRANE_CARD,
+				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
+				wakaba.Enums.Cards.CARD_VALUT_RIFT,
+				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
+				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
+				wakaba.Enums.Cards.CARD_TRIAL_STEW,
 			})
 
 			api:AddCardsToCardGroup("Suit", {
-				[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
-				[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
-				[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 1,
-				[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
+				wakaba.Enums.Cards.CARD_BLACK_JOKER,
+				wakaba.Enums.Cards.CARD_WHITE_JOKER,
+				wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,
+				wakaba.Enums.Cards.CARD_COLOR_JOKER,
 			})
 
 			api:AddCardsToCardGroup("Soul", {
-				[wakaba.Enums.Cards.SOUL_SHIORI] = 1,
-				[wakaba.Enums.Cards.SOUL_WAKABA] = 1,
-				[wakaba.Enums.Cards.SOUL_WAKABA2] = 1,
-				[wakaba.Enums.Cards.SOUL_TSUKASA] = 0.5,
+				wakaba.Enums.Cards.SOUL_SHIORI,
+				wakaba.Enums.Cards.SOUL_WAKABA,
+				wakaba.Enums.Cards.SOUL_WAKABA2,
+				{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
 			})
 
 			api:AddCardsToCardGroup("Holy", {
-				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
-				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
-				[wakaba.Enums.Cards.CARD_DREAM_CARD] = 1,
+				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
+				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
+				wakaba.Enums.Cards.CARD_DREAM_CARD,
 			})
 
 			api:AddCardsToCardGroup("DiceCapsule", {
-				[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.05,
+				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.05},
 			})
 
 			api:AddCardsToCardGroup("Object", {
-				[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = 0.2,
+				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.2},
 			})
 
 			api:AddCardsToCardGroup("RicherTicket", {
-				[wakaba.Enums.Cards.CARD_CRANE_CARD] = 1,
-				[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 1,
-				[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 1,
-				[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 1,
-				[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 1,
-				[wakaba.Enums.Cards.CARD_DREAM_CARD] = 0.5,
-				[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 1,
-				[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 1,
-				[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
-				[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 0.2,
-				[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 0.2,
+				wakaba.Enums.Cards.CARD_CRANE_CARD,
+				wakaba.Enums.Cards.CARD_BLACK_JOKER,
+				wakaba.Enums.Cards.CARD_COLOR_JOKER,
+				wakaba.Enums.Cards.CARD_WHITE_JOKER,
+				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
+				{wakaba.Enums.Cards.CARD_DREAM_CARD, Weight = 0.5},
+				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
+				wakaba.Enums.Cards.CARD_TRIAL_STEW,
+				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
+				{wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
+				{wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2},
 			})
 
 			-- Blacklist items to check within Use Item func, will be used inside same use function instead
@@ -262,6 +259,346 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			local ShopItemType = Mod.Item.TURNOVER.ShopItemType
 			local Get = Mod.PickupGetter
 			local Groups = Mod.GROUP_ENUM
+
+			--Cards
+			local Rune =				 {"Rune"}
+			local Soul =				 {"Soul"}
+			local Holy = 				 {"Holy"}
+			local Essence = 			 {"Essence"}
+			--Hearts
+			local HeartsAll = 			 {"Red", "Rotten","Black", "Soul","Eternal","Special","Bone", "Greedy"}
+			local Red = 				 {"Red", "Rotten", "Special"}
+			local Angel = 				 {"Soul", "Eternal"}
+			local Devil = 				 {"Black", "Bone"}
+
+			local turnover_layouts = {}
+
+			turnover_layouts["WINTER_ALBIREO_TREASURE"] =  {
+			  [0] = {
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			  },
+			  [1] = {
+			    { Vector(240, 320), ShopItemType.Pickup },
+			    { Vector(320, 320), ShopItemType.Collectible },
+			    { Vector(400, 320), ShopItemType.Pickup },
+			  },
+			  [2] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [3] = {
+			    { Vector(200, 320), ShopItemType.Collectible },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [4] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [5] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Collectible },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			    { Vector(450, 170), ShopItemType.RestockMachine },
+			  },
+			}
+
+			turnover_layouts["WINTER_ALBIREO_PLANETARIUM"] =  {
+			  [0] = {
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			  },
+			  [1] = {
+			    { Vector(240, 320), ShopItemType.Pickup },
+			    { Vector(320, 320), ShopItemType.Collectible },
+			    { Vector(400, 320), ShopItemType.Pickup },
+			  },
+			  [2] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [3] = {
+			    { Vector(200, 320), ShopItemType.Collectible },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [4] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [5] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Collectible },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			    { Vector(450, 170), ShopItemType.RestockMachine },
+			  },
+			}
+
+			turnover_layouts["WINTER_ALBIREO_SECRET"] =  {
+			  [0] = {
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			  },
+			  [1] = {
+			    { Vector(240, 320), ShopItemType.Pickup },
+			    { Vector(320, 320), ShopItemType.Collectible },
+			    { Vector(400, 320), ShopItemType.Pickup },
+			  },
+			  [2] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [3] = {
+			    { Vector(200, 320), ShopItemType.Collectible },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [4] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [5] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Collectible },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			    { Vector(450, 170), ShopItemType.RestockMachine },
+			  },
+			}
+
+			turnover_layouts["WINTER_ALBIREO_DEVIL"] =  {
+			  [0] = {
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			  },
+			  [1] = {
+			    { Vector(240, 320), ShopItemType.Pickup },
+			    { Vector(320, 320), ShopItemType.Collectible },
+			    { Vector(400, 320), ShopItemType.Pickup },
+			  },
+			  [2] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [3] = {
+			    { Vector(200, 320), ShopItemType.Collectible },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [4] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [5] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Collectible },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			    { Vector(450, 170), ShopItemType.RestockMachine },
+			  },
+			}
+
+			turnover_layouts["WINTER_ALBIREO_ANGEL"] =  {
+			  [0] = {
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			  },
+			  [1] = {
+			    { Vector(240, 320), ShopItemType.Pickup },
+			    { Vector(320, 320), ShopItemType.Collectible },
+			    { Vector(400, 320), ShopItemType.Pickup },
+			  },
+			  [2] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [3] = {
+			    { Vector(200, 320), ShopItemType.Collectible },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [4] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Pickup },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			  },
+			  [5] = {
+			    { Vector(200, 320), ShopItemType.Pickup },
+			    { Vector(280, 320), ShopItemType.Collectible },
+			    { Vector(360, 320), ShopItemType.Pickup },
+			    { Vector(440, 320), ShopItemType.Pickup },
+			    { Vector(450, 170), ShopItemType.RestockMachine },
+			  },
+			}
+
+			local turnover_pools = {}
+
+			turnover_pools["WINTER_ALBIREO_TREASURE"] = {
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, 	  							minTier = 0, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 2, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_NORMAL,	      							minTier = 0, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK,	  							minTier = 2, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 1, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_KEY, Mod.Pickup.MULTITOOL.ID, 								minTier = 2, maxTier = 5, }, Weight = 0.06}, --multitool
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN,									minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MICRO,					minTier = 1, maxTier = 2 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_NORMAL,					minTier = 3, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA,					minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_GOLDEN,					minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 1, maxTier = 4, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 2, maxTier = 5, }, Weight = 1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlaying),	 		minTier = 1, maxTier = 2 }}, -- only normal and playing cards
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlayingReverse),	minTier = 3, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_PILL, 0, 													minTier = 1, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_PILL, Get.GetHorsePill,										minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD, 									minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Rune),						minTier = 0, maxTier = 3}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.RuneSoul),				minTier = 2, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Soul),						minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Essence, Rune),				minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Card.CARD_CRACKED_KEY,							minTier = 3, maxTier = 5, }, Weight = 0.8},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.02},
+			}
+
+			turnover_pools["WINTER_ALBIREO_PLANETARIUM"] = {
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, 	  							minTier = 0, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 2, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_NORMAL,	      							minTier = 0, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK,	  							minTier = 2, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 1, maxTier = 3 }},
+			  {{ PickupVariant.PICKUP_KEY, Mod.Pickup.MULTITOOL.ID, 								minTier = 2, maxTier = 5, }, Weight = 0.06}, --multitool
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN,									minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MICRO,					minTier = 1, maxTier = 2 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_NORMAL,					minTier = 3, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA,					minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_GOLDEN,					minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 1, maxTier = 4, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 2, maxTier = 5, }, Weight = 1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlaying),	 		minTier = 1, maxTier = 2 }}, -- only normal and playing cards
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlayingReverse),	minTier = 3, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_PILL, 0, 													minTier = 1, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_PILL, Get.GetHorsePill,										minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD, 									minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Rune),						minTier = 0, maxTier = 3}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.RuneSoul),				minTier = 2, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Soul),						minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Essence, Rune),				minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Card.CARD_CRACKED_KEY,							minTier = 3, maxTier = 5, }, Weight = 0.8},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.02},
+			}
+
+			turnover_pools["WINTER_ALBIREO_SECRET"] = {
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 0, maxTier = 5, }, Weight = 0.5},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 0, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_KEY, Mod.Pickup.MULTITOOL.ID, 								minTier = 2, maxTier = 5, }, Weight = 0.4}, --multitool
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN,									minTier = 2, maxTier = 5, }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA,					minTier = 0, maxTier = 5, }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_GOLDEN,					minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 1, maxTier = 4, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 2, maxTier = 4, }, Weight = 1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlaying),	 		minTier = 1, maxTier = 2 }}, -- only normal and playing cards
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlayingReverse),	minTier = 3, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_PILL, Get.GetHorsePill,										minTier = 0, maxTier = 5 }, Weight = 0.3},
+			  {{ PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD, 									minTier = 2, maxTier = 5, }, Weight = 0.1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Rune),						minTier = 0, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.RuneSoul),				minTier = 2, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Soul),						minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Essence, Rune),				minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.1},
+			}
+
+			turnover_pools["WINTER_ALBIREO_DEVIL"] = {
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 0, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 4, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK,	  							minTier = 0, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 1, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_KEY, Mod.Pickup.MULTITOOL.ID, 								minTier = 2, maxTier = 5, }, Weight = 0.1}, --multitool
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_NORMAL,					minTier = 1, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA,					minTier = 2, maxTier = 5, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_GOLDEN,					minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 1, maxTier = 4, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_PILL, Get.GetHorsePill,										minTier = 0, maxTier = 5, }, Weight = 0.4},
+			  {{ PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD, 									minTier = 4, maxTier = 5, }, Weight = 0.1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.CardRune),				minTier = 0, maxTier = 5, }, Weight = 0.5}, -- include runes
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.Playing),				minTier = 0, maxTier = 1, }, Weight = 0.6},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 4, }, Weight = 0.4},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.ReversedRune),			minTier = 2, maxTier = 4, }, Weight = 0.8},
+			  {{ PickupVariant.PICKUP_GRAB_BAG, SackSubType.SACK_NORMAL,							minTier = 0, maxTier = 4,}},
+			  {{ PickupVariant.PICKUP_HEART, Get.MakeHeartGetter(Devil), 							minTier = 0, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Rune),						minTier = 0, maxTier = 3}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.RuneSoul),				minTier = 2, maxTier = 4}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 4}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Soul),						minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Essence, Rune),				minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Card.CARD_CRACKED_KEY,							minTier = 3, maxTier = 5, }, Weight = 0.8},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.1},
+			}
+
+			turnover_pools["WINTER_ALBIREO_ANGEL"] = {
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 0, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 4, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK,	  							minTier = 0, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 1, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_KEY, Mod.Pickup.MULTITOOL.ID, 								minTier = 2, maxTier = 5, }, Weight = 0.1}, --multitool
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_NORMAL,					minTier = 3, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_MEGA,					minTier = 2, maxTier = 4, }, Weight = 0.06},
+			  {{ PickupVariant.PICKUP_LIL_BATTERY, BatterySubType.BATTERY_GOLDEN,					minTier = 2, maxTier = 4, }, Weight = 0.03},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 1, maxTier = 4, }, Weight = 0.2},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 2, maxTier = 4, }, Weight = 1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlaying),	 		minTier = 1, maxTier = 2 }}, -- only normal and playing cards
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.TarotPlayingReverse),	minTier = 3, maxTier = 4 }},
+			  {{ PickupVariant.PICKUP_PILL, Get.GetHorsePill,										minTier = 0, maxTier = 5, }, Weight = 0.4},
+			  {{ PickupVariant.PICKUP_PILL, PillColor.PILL_GOLD, 									minTier = 4, maxTier = 5, }, Weight = 0.1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Rune),						minTier = 0, maxTier = 3}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.RuneSoul),				minTier = 2, maxTier = 4}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Groups.PlayingReverse),		minTier = 1, maxTier = 4}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Soul),						minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Essence, Rune),				minTier = 5, maxTier = 5}},
+			  {{ PickupVariant.PICKUP_HEART, Get.MakeHeartGetter(Angel), 							minTier = 1, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_HEART, Get.MakeHeartGetter(Angel), 							minTier = 1, maxTier = 5 }}, --we do this to have a chance of 2 different hearts
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetTrinket, 								minTier = 0, maxTier = 2, }, Weight = 0.1},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Get.MakeCardGetter(Holy, Rune),					minTier = 3, maxTier = 5 }},
+			  {{ PickupVariant.PICKUP_TAROTCARD, Card.CARD_HOLY,							minTier = 0, maxTier = 5, }, Weight = 2},
+			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.1},
+			}
+
 			local extraSlotLayout_WinterAlbireo = {
 				[-1] = { Vector(80, 0), ShopItemType.Slot , Get.MakeSlotGetter({ "CrystalRestock" }) }, -- default crystal restock position
 				[41007] = { Vector(80, 0), ShopItemType.Slot , Get.MakeSlotGetter({ "CrystalRestock" }) }, -- Rira level
@@ -291,7 +628,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			api:AddTurnoverShop({
 				Name = "WINTER_ALBIREO_TREASURE",
 				Checker = function()
-					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_PLANETARIUM
+					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_TREASURE
 				end,
 				ShopLayout = turnover_layouts["WINTER_ALBIREO_TREASURE"],
 				PickupPool = turnover_pools["WINTER_ALBIREO_TREASURE"],
