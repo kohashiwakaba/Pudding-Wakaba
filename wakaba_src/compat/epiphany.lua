@@ -273,7 +273,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			local turnover_layouts = {}
 
-			turnover_layouts["WINTER_ALBIREO_TREASURE"] =  {
+			turnover_layouts["WAKABA_WINTER_ALBIREO_TREASURE"] =  {
+				SetUpPrice = 20,
 			  [0] = {
 			    { Vector(280, 320), ShopItemType.Pickup },
 			    { Vector(360, 320), ShopItemType.Pickup },
@@ -302,15 +303,18 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			    { Vector(440, 320), ShopItemType.Pickup },
 			  },
 			  [5] = {
-			    { Vector(200, 320), ShopItemType.Pickup },
-			    { Vector(280, 320), ShopItemType.Collectible },
-			    { Vector(360, 320), ShopItemType.Pickup },
-			    { Vector(440, 320), ShopItemType.Pickup },
+					{ Vector(240, 240), ShopItemType.Collectible },
+					{ Vector(400, 240), ShopItemType.Collectible },
+					{ Vector(200, 320), ShopItemType.Pickup },
+					{ Vector(280, 320), ShopItemType.Pickup },
+					{ Vector(360, 320), ShopItemType.Pickup },
+					{ Vector(440, 320), ShopItemType.Pickup },
 			    { Vector(450, 170), ShopItemType.RestockMachine },
 			  },
 			}
 
-			turnover_layouts["WINTER_ALBIREO_PLANETARIUM"] =  {
+			turnover_layouts["WAKABA_WINTER_ALBIREO_PLANETARIUM"] =  {
+				SetUpPrice = 20,
 			  [0] = {
 			    { Vector(280, 320), ShopItemType.Pickup },
 			    { Vector(360, 320), ShopItemType.Pickup },
@@ -339,15 +343,18 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			    { Vector(440, 320), ShopItemType.Pickup },
 			  },
 			  [5] = {
-			    { Vector(200, 320), ShopItemType.Pickup },
-			    { Vector(280, 320), ShopItemType.Collectible },
-			    { Vector(360, 320), ShopItemType.Pickup },
-			    { Vector(440, 320), ShopItemType.Pickup },
+					{ Vector(240, 240), ShopItemType.Collectible },
+					{ Vector(400, 240), ShopItemType.Collectible },
+					{ Vector(200, 320), ShopItemType.Pickup },
+					{ Vector(280, 320), ShopItemType.Pickup },
+					{ Vector(360, 320), ShopItemType.Pickup },
+					{ Vector(440, 320), ShopItemType.Pickup },
 			    { Vector(450, 170), ShopItemType.RestockMachine },
 			  },
 			}
 
-			turnover_layouts["WINTER_ALBIREO_SECRET"] =  {
+			turnover_layouts["WAKABA_WINTER_ALBIREO_SECRET"] =  {
+				SetUpPrice = 20,
 			  [0] = {
 			    { Vector(280, 320), ShopItemType.Pickup },
 			    { Vector(360, 320), ShopItemType.Pickup },
@@ -376,15 +383,18 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			    { Vector(440, 320), ShopItemType.Pickup },
 			  },
 			  [5] = {
-			    { Vector(200, 320), ShopItemType.Pickup },
-			    { Vector(280, 320), ShopItemType.Collectible },
-			    { Vector(360, 320), ShopItemType.Pickup },
-			    { Vector(440, 320), ShopItemType.Pickup },
+					{ Vector(240, 240), ShopItemType.Collectible },
+					{ Vector(400, 240), ShopItemType.Collectible },
+					{ Vector(200, 320), ShopItemType.Pickup },
+					{ Vector(280, 320), ShopItemType.Pickup },
+					{ Vector(360, 320), ShopItemType.Pickup },
+					{ Vector(440, 320), ShopItemType.Pickup },
 			    { Vector(450, 170), ShopItemType.RestockMachine },
 			  },
 			}
 
-			turnover_layouts["WINTER_ALBIREO_DEVIL"] =  {
+			turnover_layouts["WAKABA_WINTER_ALBIREO_DEVIL"] =  {
+				SetUpPrice = 20,
 			  [0] = {
 			    { Vector(280, 320), ShopItemType.Pickup },
 			    { Vector(360, 320), ShopItemType.Pickup },
@@ -413,15 +423,18 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			    { Vector(440, 320), ShopItemType.Pickup },
 			  },
 			  [5] = {
-			    { Vector(200, 320), ShopItemType.Pickup },
-			    { Vector(280, 320), ShopItemType.Collectible },
-			    { Vector(360, 320), ShopItemType.Pickup },
-			    { Vector(440, 320), ShopItemType.Pickup },
+					{ Vector(240, 240), ShopItemType.Collectible },
+					{ Vector(400, 240), ShopItemType.Collectible },
+					{ Vector(200, 320), ShopItemType.Pickup },
+					{ Vector(280, 320), ShopItemType.Pickup },
+					{ Vector(360, 320), ShopItemType.Pickup },
+					{ Vector(440, 320), ShopItemType.Pickup },
 			    { Vector(450, 170), ShopItemType.RestockMachine },
 			  },
 			}
 
-			turnover_layouts["WINTER_ALBIREO_ANGEL"] =  {
+			turnover_layouts["WAKABA_WINTER_ALBIREO_ANGEL"] =  {
+				SetUpPrice = 20,
 			  [0] = {
 			    { Vector(280, 320), ShopItemType.Pickup },
 			    { Vector(360, 320), ShopItemType.Pickup },
@@ -450,17 +463,19 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			    { Vector(440, 320), ShopItemType.Pickup },
 			  },
 			  [5] = {
-			    { Vector(200, 320), ShopItemType.Pickup },
-			    { Vector(280, 320), ShopItemType.Collectible },
-			    { Vector(360, 320), ShopItemType.Pickup },
-			    { Vector(440, 320), ShopItemType.Pickup },
+					{ Vector(240, 240), ShopItemType.Collectible },
+					{ Vector(400, 240), ShopItemType.Collectible },
+					{ Vector(200, 320), ShopItemType.Pickup },
+					{ Vector(280, 320), ShopItemType.Pickup },
+					{ Vector(360, 320), ShopItemType.Pickup },
+					{ Vector(440, 320), ShopItemType.Pickup },
 			    { Vector(450, 170), ShopItemType.RestockMachine },
 			  },
 			}
 
 			local turnover_pools = {}
 
-			turnover_pools["WINTER_ALBIREO_TREASURE"] = {
+			turnover_pools["WAKABA_WINTER_ALBIREO_TREASURE"] = {
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, 	  							minTier = 0, maxTier = 3 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 2, maxTier = 5 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 5, }, Weight = 0.06},
@@ -490,7 +505,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.02},
 			}
 
-			turnover_pools["WINTER_ALBIREO_PLANETARIUM"] = {
+			turnover_pools["WAKABA_WINTER_ALBIREO_PLANETARIUM"] = {
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, 	  							minTier = 0, maxTier = 3 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 2, maxTier = 4 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 5, }, Weight = 0.06},
@@ -520,7 +535,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.02},
 			}
 
-			turnover_pools["WINTER_ALBIREO_SECRET"] = {
+			turnover_pools["WAKABA_WINTER_ALBIREO_SECRET"] = {
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 0, maxTier = 5, }, Weight = 0.5},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.2},
 			  {{ PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED, 								minTier = 0, maxTier = 5 }},
@@ -542,7 +557,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.1},
 			}
 
-			turnover_pools["WINTER_ALBIREO_DEVIL"] = {
+			turnover_pools["WAKABA_WINTER_ALBIREO_DEVIL"] = {
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 0, maxTier = 4 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 4, }, Weight = 0.06},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
@@ -570,7 +585,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			  {{ PickupVariant.PICKUP_TRINKET,	Get.GetGoldTrinket, 							minTier = 4, maxTier = 5 }, Weight = 0.1},
 			}
 
-			turnover_pools["WINTER_ALBIREO_ANGEL"] = {
+			turnover_pools["WAKABA_WINTER_ALBIREO_ANGEL"] = {
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, 							minTier = 0, maxTier = 4 }},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, 								minTier = 2, maxTier = 4, }, Weight = 0.06},
 			  {{ PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, 								minTier = 2, maxTier = 5, }, Weight = 0.03},
@@ -626,55 +641,61 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			end
 
 			api:AddTurnoverShop({
-				Name = "WINTER_ALBIREO_TREASURE",
+				Name = "WAKABA_WINTER_ALBIREO_TREASURE",
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_TREASURE
 				end,
-				ShopLayout = turnover_layouts["WINTER_ALBIREO_TREASURE"],
-				PickupPool = turnover_pools["WINTER_ALBIREO_TREASURE"],
+				ShopLayout = turnover_layouts["WAKABA_WINTER_ALBIREO_TREASURE"],
+				PickupPool = turnover_pools["WAKABA_WINTER_ALBIREO_TREASURE"],
 			})
 
 			api:AddTurnoverShop({
-				Name = "WINTER_ALBIREO_PLANETARIUM",
+				Name = "WAKABA_WINTER_ALBIREO_PLANETARIUM",
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_PLANETARIUM
 				end,
-				ShopLayout = turnover_layouts["WINTER_ALBIREO_PLANETARIUM"],
-				PickupPool = turnover_pools["WINTER_ALBIREO_PLANETARIUM"],
+				ShopLayout = turnover_layouts["WAKABA_WINTER_ALBIREO_PLANETARIUM"],
+				PickupPool = turnover_pools["WAKABA_WINTER_ALBIREO_PLANETARIUM"],
 			})
 
 			api:AddTurnoverShop({
-				Name = "WINTER_ALBIREO_SECRET",
+				Name = "WAKABA_WINTER_ALBIREO_SECRET",
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_SECRET
 				end,
-				ShopLayout = turnover_layouts["WINTER_ALBIREO_SECRET"],
-				PickupPool = turnover_pools["WINTER_ALBIREO_SECRET"],
+				ShopLayout = turnover_layouts["WAKABA_WINTER_ALBIREO_SECRET"],
+				PickupPool = turnover_pools["WAKABA_WINTER_ALBIREO_SECRET"],
 			})
 
 			api:AddTurnoverShop({
-				Name = "WINTER_ALBIREO_DEVIL",
+				Name = "WAKABA_WINTER_ALBIREO_DEVIL",
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_DEVIL
 				end,
-				ShopLayout = turnover_layouts["WINTER_ALBIREO_DEVIL"],
-				PickupPool = turnover_pools["WINTER_ALBIREO_DEVIL"],
+				ShopLayout = turnover_layouts["WAKABA_WINTER_ALBIREO_DEVIL"],
+				PickupPool = turnover_pools["WAKABA_WINTER_ALBIREO_DEVIL"],
 			})
 
 			api:AddTurnoverShop({
-				Name = "WINTER_ALBIREO_ANGEL",
+				Name = "WAKABA_WINTER_ALBIREO_ANGEL",
 				Checker = function()
 					return wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) == RoomType.ROOM_ANGEL
 				end,
-				ShopLayout = turnover_layouts["WINTER_ALBIREO_ANGEL"],
-				PickupPool = turnover_pools["WINTER_ALBIREO_ANGEL"],
+				ShopLayout = turnover_layouts["WAKABA_WINTER_ALBIREO_ANGEL"],
+				PickupPool = turnover_pools["WAKABA_WINTER_ALBIREO_ANGEL"],
 			})
 			local TURNOVER = Mod.Item.TURNOVER
-			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_TREASURE] = "Planetarium0"
-			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_PLANETARIUM] = "Planetarium0"
-			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_SECRET] = "Planetarium0"
-			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_DEVIL] = "Planetarium0"
-			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WINTER_ALBIREO_ANGEL] = "Planetarium0"
+			TURNOVER.ExtraRoomTypePools[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_TREASURE] = ItemPoolType.POOL_TREASURE
+			TURNOVER.ExtraRoomTypePools[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_PLANETARIUM] = ItemPoolType.POOL_PLANETARIUM
+			TURNOVER.ExtraRoomTypePools[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_SECRET] = ItemPoolType.POOL_SECRET
+			TURNOVER.ExtraRoomTypePools[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_DEVIL] = ItemPoolType.POOL_DEVIL
+			TURNOVER.ExtraRoomTypePools[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_ANGEL] = ItemPoolType.POOL_ANGEL
+
+			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_TREASURE] = "Planetarium0"
+			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_PLANETARIUM] = "Planetarium0"
+			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_SECRET] = "Planetarium0"
+			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_DEVIL] = "Planetarium0"
+			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_ANGEL] = "Planetarium0"
 
 			Mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 				if wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) and Game():GetRoom():IsFirstVisit() and IsPlayerPresent(Mod.PlayerType["KEEPER"]) then
