@@ -167,6 +167,9 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 	-- Post G FUEL patch by Connor
 	local pillColor = player:GetData().wakaba_currentPill
 	local pillEffect = wakaba.G:GetItemPool():GetPillEffect(pillColor, player)
+	if pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then
+		pillEffect = _pillEffect
+	end
 	local isHorse = pillColor and pillColor > 0 and pillColor >= PillColor.PILL_GIANT_FLAG
 	local multiplier = 1
 	if isHorse then
