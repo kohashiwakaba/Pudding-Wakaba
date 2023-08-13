@@ -35,7 +35,7 @@ function wakaba:Render_Uniform()
 		local player = Isaac.GetPlayer(i - 1)
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM then
-				--print("Drop Button pressed.") 
+				--print("Drop Button pressed.")
 				local index = player:GetData().wakaba.uniform.cursor
 				if index == nil then
 					index = 1
@@ -56,7 +56,7 @@ function wakaba:render32()
 		local player = Isaac.GetPlayer(i - 1)
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.UNIFORM then
-				--print("Drop Button pressed.") 
+				--print("Drop Button pressed.")
 				local index = player:GetData().wakaba.uniform.cursor
 				if index == nil then
 					index = 1
@@ -66,9 +66,9 @@ function wakaba:render32()
 					index = 1
 				end
 				player:GetData().wakaba.uniform.cursor = index
-				--print("Current Index = .", index) 
-				--print("Selected Type = .", player:GetData().wakaba.uniform.items[index].type) 
-				--print("Selected Card/Pill = .", player:GetData().wakaba.uniform.items[index].cardpill) 
+				--print("Current Index = .", index)
+				--print("Selected Type = .", player:GetData().wakaba.uniform.items[index].type)
+				--print("Selected Card/Pill = .", player:GetData().wakaba.uniform.items[index].cardpill)
 			end
 		end
 	end
@@ -106,12 +106,12 @@ function wakaba:render32()
 				elseif item.type == "pill" then
 					if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
 						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
-						if item.pilleffect == 14 then 
-							str = "Gold Pill" 
+						if item.pilleffect == 14 then
+							str = "Gold Pill"
 						end
 						--eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}} "
-						if item.cardpill > 2048 then 
-							str = str .. "[!]" 
+						if item.cardpill > 2048 then
+							str = str .. "[!]"
 							eidstring = eidstring .. "{{Pill" .. item.cardpill-2048 .. "}} {{ColorYellow}}" .. str
 						else
 							eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}} " ..str
@@ -138,9 +138,9 @@ function wakaba:render32()
 					eidstring = eidstring .. "#" .. unistr.use
 					if preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then
 						eidstring = eidstring .. "#" .. unistr.useprefix .. player:GetData().wakaba.uniform.cursor .. unistr.usesubfix
-					elseif preservedslotstate and (player:GetCard(0) == 0 and player:GetPill(0) == 0) then 
+					elseif preservedslotstate and (player:GetCard(0) == 0 and player:GetPill(0) == 0) then
 						eidstring = eidstring .. "#" .. unistr.pullprefix .. player:GetData().wakaba.uniform.cursor .. unistr.pullsubfix
-					elseif not preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then 
+					elseif not preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then
 						eidstring = eidstring .. "#" .. unistr.pushprefix .. player:GetData().wakaba.uniform.cursor .. unistr.pushsubfix
 					else
 					end
@@ -156,7 +156,7 @@ function wakaba:render32()
 			--Isaac.RenderText("Sample text", 155, 20, 1, 1, 1, 255)
 		end
 	end
-	
+
 end
 
 
@@ -195,11 +195,11 @@ if EID then
 				elseif item.type == "pill" then
 					if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
 						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_PILL, item.cardpill)) or itemConfig:GetPillEffect(item.pilleffect).Name
-						if item.pilleffect == 14 then 
-							str = "Gold Pill" 
+						if item.pilleffect == 14 then
+							str = "Gold Pill"
 						end
-						if item.cardpill > 2048 then 
-							str = str .. "[!]" 
+						if item.cardpill > 2048 then
+							str = str .. "[!]"
 							eidstring = eidstring .. "{{Pill" .. item.cardpill-2048 .. "}} {{ColorYellow}}" .. str
 						else
 							eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}} " ..str
@@ -223,9 +223,9 @@ if EID then
 		eidstring = eidstring .. "#" .. unistr.use
 		--[[ if preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then
 			eidstring = eidstring .. "#" .. unistr.useprefix .. player:GetData().wakaba.uniform.cursor .. unistr.usesubfix
-		elseif preservedslotstate and (player:GetCard(0) == 0 and player:GetPill(0) == 0) then 
+		elseif preservedslotstate and (player:GetCard(0) == 0 and player:GetPill(0) == 0) then
 			eidstring = eidstring .. "#" .. unistr.pullprefix .. player:GetData().wakaba.uniform.cursor .. unistr.pullsubfix
-		elseif not preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then 
+		elseif not preservedslotstate and (player:GetCard(0) ~= 0 or player:GetPill(0) ~= 0) then
 			eidstring = eidstring .. "#" .. unistr.pushprefix .. player:GetData().wakaba.uniform.cursor .. unistr.pushsubfix
 		else
 		end ]]
@@ -239,7 +239,7 @@ if EID then
 		if EID.InsideItemReminder then return false end
 		if not descObj.Entity then return false end
 		if not (descObj.ObjType == 5 and (descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD or descObj.ObjVariant == PickupVariant.PICKUP_PILL)) then return false end
-		
+
 		local player = EID.player
 		local isCard = descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD
 		local isPill = descObj.ObjVariant == PickupVariant.PICKUP_PILL
@@ -264,8 +264,8 @@ if EID then
 				local playerName = birthrightDesc and birthrightDesc[1] or player:GetName()
 				local playerStr = "" .. (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "") .. ""..playerName..""
 
-				descObj.Description = 
-					descObj.Description 
+				descObj.Description =
+					descObj.Description
 					.. "#{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}} "
 					.. unistr.pickupprefix
 					.. playerStr
@@ -303,10 +303,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffect_Unif
 function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, varData)
 	local discharge = false
 	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
-	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID) 
-	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC) 
-	or (useFlags & UseFlag.USE_OWNED ~= UseFlag.USE_OWNED) 
-	then 
+	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID)
+	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC)
+	or (useFlags & UseFlag.USE_OWNED ~= UseFlag.USE_OWNED)
+	then
 		usinguniform = true
 		wakaba:useUniform(player)
 		goto WakabaUniformUseSkip
@@ -318,17 +318,17 @@ function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, var
 		local oldItemType = player:GetData().wakaba.uniform.items[index].type
 		local oldItemData = player:GetData().wakaba.uniform.items[index].cardpill
 		local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
-		local nearest = isc:getClosestEntityTo(player, pickups, 
-			function(_, e) 
+		local nearest = isc:getClosestEntityTo(player, pickups,
+			function(_, e)
 				local isCard = e.Variant == PickupVariant.PICKUP_TAROTCARD
 				local isPill = e.Variant == PickupVariant.PICKUP_PILL
 				local isShopItem = e:ToPickup():IsShopItem()
-	
+
 				isCard = isCard and not wakaba:has_value(wakaba.Blacklists.Uniform.Cards, e.SubType)
-	
+
 				isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillColor, e.SubType & PillColor.PILL_COLOR_MASK)
 				isPill = isPill and not wakaba:has_value(wakaba.Blacklists.Uniform.PillEffect, wakaba.G:GetItemPool():GetPillEffect(e.SubType, player))
-	
+
 				return (isCard or isPill) and not isShopItem
 			end
 		)
@@ -346,13 +346,13 @@ function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, var
 		elseif nearest then
 			nearest:Remove()
 		end
-	
+
 		if eraseOld then
 			player:GetData().wakaba.uniform.items[index].type = nil
 			player:GetData().wakaba.uniform.items[index].cardpill = nil
 			player:GetData().wakaba.uniform.items[index].pilleffect = nil
 		end
-	
+
 		if tempPickupVariant == PickupVariant.PICKUP_TAROTCARD then
 			player:GetData().wakaba.uniform.items[index].type = "card"
 			player:GetData().wakaba.uniform.items[index].cardpill = tempPickupSubType
@@ -362,7 +362,7 @@ function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, var
 			player:GetData().wakaba.uniform.items[index].cardpill = tempPickupSubType
 			player:GetData().wakaba.uniform.items[index].pilleffect = wakaba.G:GetItemPool():GetPillEffect(tempPickupSubType, player)
 		end
-	
+
 		if tempPickupVariant or oldItemType then
 			player:AnimateCollectible(wakaba.Enums.Collectibles.UNIFORM, "UseItem", "PlayerPickup")
 			SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
@@ -402,12 +402,12 @@ function wakaba:useUniform(player)
 				if not FiendFolio.savedata.run.IdentifiedRunPills[tostring(pill)] then
 					FiendFolio.savedata.run.IdentifiedRunPills[tostring(pill)] = true
 				end
-			
+
 				local pillreplaced = 1
 				if FiendFolio.savedata.run.PillCopies and FiendFolio.savedata.run.PillCopies[tostring(pill)] then
 					pillreplaced = FiendFolio.savedata.run.PillCopies[tostring(pill)]
 				end
-			
+
 				local itempool = wakaba.G:GetItemPool()
 				replacedPillEffect = itempool:GetPillEffect(pillreplaced, player)
 				-- check again
@@ -415,6 +415,10 @@ function wakaba:useUniform(player)
 					player:GetData().wakaba.uniform.items[i].pilleffect = replacedPillEffect
 				end
 			end
+			if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) and item.cardpill < PillColor.PILL_GIANT_FLAG then
+				item.cardpill = item.cardpill | PillColor.PILL_GIANT_FLAG
+			end
+			player:GetData().wakaba_currentPill = item.cardpill
 			player:UsePill(replacedPillEffect, item.cardpill, flag)
 			if wakaba:HasJudasBr(player) then
 				player:UseCard(Card.CARD_DEVIL, flag)
