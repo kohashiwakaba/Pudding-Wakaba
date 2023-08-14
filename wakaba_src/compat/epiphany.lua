@@ -82,9 +82,11 @@ local throwingBagSynergyLinks = {
 	},
 	["fruitcake_bagged"] = {
 		wakaba.Enums.Collectibles.LIL_MOE,
+		wakaba.Enums.Collectibles.SWEETS_CATALOG,
 	},
 	["playdoughcookie_bagged"] = {
 		wakaba.Enums.Collectibles.LIL_MOE,
+		wakaba.Enums.Collectibles.SWEETS_CATALOG,
 	},
 	["damocles_bagged"] = {
 		wakaba.Enums.Collectibles.VINTAGE_THREAT,
@@ -133,6 +135,7 @@ local throwingBagSynergyLinks = {
 	},
 	["fire_bagged"] = {
 		wakaba.Enums.Collectibles.MAGMA_BLADE,
+		wakaba.Enums.Collectibles.SELF_BURNING,
 	},
 	["piercing_bagged"] = {
 		wakaba.Enums.Collectibles.MAGMA_BLADE,
