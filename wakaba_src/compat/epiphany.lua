@@ -140,10 +140,10 @@ local throwingBagSynergyLinks = {
 	["piercing_bagged"] = {
 		wakaba.Enums.Collectibles.MAGMA_BLADE,
 	},
-	["sanctum_spiritus_bagged"] = {
+	--[[ ["sanctum_spiritus_bagged"] = {
 		wakaba.Enums.Collectibles.MINERVA_AURA,
 		wakaba.Enums.Collectibles.MURASAME,
-	},
+	}, ]]
 	["moms_knife_bagged"] = {
 		wakaba.Enums.Collectibles.MURASAME,
 	},
