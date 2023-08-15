@@ -50,7 +50,7 @@ function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
 	local playerIndex = isc:getPlayerIndex(player)
 	if player:NeedsCharge(activeSlot) then
-		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 do
+		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 and not (activeSlot ~= ActiveSlot.SLOT_POCKET and Epiphany and player:GetPlayerType() == Epiphany.table_type_id["EDEN"]) do
 			isc:addCharge(player, activeSlot, 1)
 			richerCharges[playerIndex] = richerCharges[playerIndex] - 1
 		end
