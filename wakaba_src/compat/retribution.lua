@@ -11,8 +11,6 @@ function wakaba:GameStart_RetributionCompat()
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.SOCIAL_DISTANCE)
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.PRIEST_BLESSING)
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.UNHOLY_CURSE)
-		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.FLAME_PRINCESS)
-		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.FIREY_TOUCH)
 
 		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -20000, function(_)
 			if mod.savedata.icarusCurseIndicator % 2 == 0 then

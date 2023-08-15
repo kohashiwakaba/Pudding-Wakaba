@@ -1513,6 +1513,12 @@ wakaba.descriptions[desclang].cards = {
 		mimiccharge = 12,
 		isrune = true,
 	},
+	[wakaba.Enums.Cards.SOUL_RICHER] = {
+		itemName = "Soul of Richer",
+		description = "{{Collectible712}} Grants 6 Lemegeton Wisps#All wisps are guaranteed to be Quality{{Quality2}}+",
+		mimiccharge = 12,
+		isrune = true,
+	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "Valut Rift",
 		description = "Spawns a Shiori's Valut# The valut contains a collectible that requires 12 keys.",
@@ -1605,18 +1611,6 @@ wakaba.descriptions[desclang].pills = {
 		mimiccharge = 6,
 		class = "3+",
 	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
-		itemName = "Flame Princess",
-		description = "Absorbs all Lemegeton Wisps into items#Heals all remaining Wisps' health to max#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
-		mimiccharge = 8,
-		class = "1+",
-	},
-	[wakaba.Enums.Pills.FIREY_TOUCH] = {
-		itemName = "Firey Touch",
-		description = "{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
-		mimiccharge = 4,
-		class = "2-",
-	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		itemName = "Priest's Blessing",
 		description = "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
@@ -1680,16 +1674,6 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
 		"Duality Orders",
 		"{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear#Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
-	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
-		tostring(wakaba.Enums.Pills.FLAME_PRINCESS),
-		"Flame Princess",
-		"Absorbs all Lemegeton Wisps into two duplicated items#Heals all remaining Wisps' health to 3x of their max health#{{Collectible584}} Spawns a Book of Virtues Wisp if there are no wisps",
-	},
-	[wakaba.Enums.Pills.FIREY_TOUCH] = {
-		tostring(wakaba.Enums.Pills.FIREY_TOUCH),
-		"Firey Touch",
-		"{{WakabaCurseFlames}} Curse of Flames effect for current floor#Heals all Wisps' health to max",
 	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),

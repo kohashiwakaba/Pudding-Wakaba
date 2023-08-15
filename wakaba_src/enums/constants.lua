@@ -245,6 +245,7 @@ wakaba.Enums.Cards = {
 	SOUL_WAKABA2 = Isaac.GetCardIdByName("Soul of Wakaba?"),
 	SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
 	SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
+	SOUL_RICHER = Isaac.GetCardIdByName("Soul of Richer"),
 	CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
 	CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 
@@ -262,8 +263,6 @@ wakaba.Enums.Pills = {
 	EXPLOSIVE_DIARRHEA_2_NOT = Isaac.GetPillEffectByName("Hellish Vomit"),
 	SOCIAL_DISTANCE = Isaac.GetPillEffectByName("Social Distance"),
 	DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders"),
-	FLAME_PRINCESS = Isaac.GetPillEffectByName("Flame Princess!"),
-	FIREY_TOUCH = Isaac.GetPillEffectByName("Firey Touch"),
 	PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing"),
 	UNHOLY_CURSE = Isaac.GetPillEffectByName("Unholy Curse"),
 }

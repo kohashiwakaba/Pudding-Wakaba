@@ -21,6 +21,8 @@
 
 	<card pickup="4109" type="rune" description="Half-Life" hud="Soul of Tsukasa" name="Soul of Tsukasa" mimiccharge="12" />
 
+	<card pickup="4113" type="rune" description="Magical enforcement" hud="Soul of Richer" name="Soul of Richer" mimiccharge="12" />
+
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
 	<card pickup="4112" type="tarot" description="???" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
@@ -35,8 +37,6 @@
 	<pilleffect name="To the Start!" class="0+" mimiccharge="2" />
 	<pilleffect name="Explosive Diarrhea 2!" class="0-" mimiccharge="3" />
 	<pilleffect name="Social Distance" class="2-" mimiccharge="4" tags="nogreed"/>
-	<pilleffect name="Flame Princess!" class="1+" mimiccharge="8" />
-	<pilleffect name="Firey Touch" class="2-" mimiccharge="4" />
 	<pilleffect name="Priest's Blessing" class="3+" mimiccharge="4" />
 	<pilleffect name="Unholy Curse" class="3-" mimiccharge="4" />
 	<pilleffect name="Duality Orders" class="3+" mimiccharge="8" tags="nogreed"/>

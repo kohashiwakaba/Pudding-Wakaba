@@ -1625,6 +1625,10 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "츠카사의 영혼",
 		description = "#사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#상자/판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 캐릭터가 바뀌며 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
 	},
+	[wakaba.Enums.Cards.SOUL_RICHER] = {
+		itemName = "리셰의 영혼",
+		description = "{{Collectible712}} Lemegeton의 아이템 불꽃을 6개 소환합니다.#모든 불꽃은 최소 {{Quality2}}등급의 아이템으로 소환됩니다.",
+	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
 		description = "#시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠 12개를 소모합니다.",
@@ -1698,14 +1702,6 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "이중 질서",
 		description = "{{Collectible498}} 가능한 경우, 현재 층에서 악마방/천사방이 반드시 등장합니다.",
 	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
-		itemName = "불꽃 공주",
-		description = "소지 중인 레메게톤 위습을 흡수하여 아이템을 획득합니다.#흡수하지 못한 위습의 체력을 전부 회복합니다.#위습을 하나도 소지하지 않은 경우 위습을 하나 소환합니다.",
-	},
-	[wakaba.Enums.Pills.FIREY_TOUCH] = {
-		itemName = "앗 뜨거!",
-		description = "{{WakabaCurseFlames}} Curse of Flames!(불꽃의 저주)에 걸립니다.#위습의 체력을 전부 회복합니다.",
-	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		itemName = "성녀의 가호",
 		description = "{{Card51}} 피격 시 피해를 1회 무시하는 {{HolyMantle}}방어막을 제공합니다.#이 방어막은 중첩되지 않으며 피격 시까지 유지됩니다.",
@@ -1765,16 +1761,6 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
 		"이중 질서",
 		"{{Collectible498}} 가능한 경우, 현재 층에서 악마방/천사방이 반드시 등장합니다.#{{DevilRoom}}악마방/{{AngelRoom}}천사방 아이템을 하나씩 소환하며 {{ColorCyan}}두 아이템 모두 획득할 수 있습니다.{{CR}}",
-	},
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = {
-		tostring(wakaba.Enums.Pills.FLAME_PRINCESS),
-		"불꽃 공주",
-		"소지 중인 레메게톤 불꽃을 흡수하여 아이템을 {{ColorCyan}}2개씩{{CR}} 획득합니다.#흡수하지 못한 불꽃의 체력을 전부 회복합니다.#불꽃을 하나도 소지하지 않은 경우 불꽃을 하나 소환합니다.",
-	},
-	[wakaba.Enums.Pills.FIREY_TOUCH] = {
-		tostring(wakaba.Enums.Pills.FIREY_TOUCH),
-		"앗 뜨거!",
-		"{{WakabaCurseFlames}} Curse of Flames!(불꽃의 저주)에 걸립니다.#위습의 체력을 전부 회복합니다.",
 	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
@@ -2653,22 +2639,22 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Blank}} 다크 에사우가 없는 상태에서 사용 시 다크 에사우를 바로 소환합니다."
 		.. "#{{Blank}} 아니마 솔라가 항상 다크 에사우만을 노립니다."
 		.. "",
-	
+
 
 	},
 
 
-	
+
 	-- wakaba
 	[wakaba.Enums.Players.WAKABA] = {
 		-- icon = "",
 		name = "와카바",
-		description = "와카바는 하라 유이 작품의 단편작 {{ColorLime}}와카바 걸{{CR}}의 주인공입니다."
+	description = "와카바는 하라 유이 작품의 단편작 {{ColorLime}}와카바 걸{{CR}}의 주인공입니다."
 		.. "#좋은 아이템이 등장하며 유도성 빙결 눈물을 발사합니다."
 		.. "#{{AngelChance}} 와카바로 플레이 시 악마방이 등장하지 않습니다."
 		.. "#{{BrokenHeart}} 그녀의 외로운 과거로 인해, 대부분의 체력이 소지 불가능 하트로 채워져 있습니다."
 		.. "#{{Pill}} 와카바로 플레이 시 행운 감소, 이동 속도 증가 알약이 등장하지 않습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} 고유 능력 : 와카바의 축복"
+	.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} 고유 능력 : 와카바의 축복"
 		--.. "#"
 		.. "",
 	},

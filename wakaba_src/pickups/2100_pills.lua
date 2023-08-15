@@ -13,8 +13,6 @@ local convertPHD = {
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT,
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = -1,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = -1,
-	[wakaba.Enums.Pills.FIREY_TOUCH] = wakaba.Enums.Pills.FLAME_PRINCESS,
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = -1,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
 }
@@ -29,8 +27,6 @@ local convertFalsePHD = {
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2,
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = wakaba.Enums.Pills.SOCIAL_DISTANCE,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = -1,
-	[wakaba.Enums.Pills.FLAME_PRINCESS] = wakaba.Enums.Pills.FIREY_TOUCH,
-	[wakaba.Enums.Pills.FIREY_TOUCH] = -1,
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = wakaba.Enums.Pills.UNHOLY_CURSE,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = -1,
 }
@@ -39,7 +35,6 @@ local pillClass = {
 	[wakaba.Enums.Pills.ALL_STATS_DOWN] = -3,
 	[wakaba.Enums.Pills.TROLLED] = -3,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = -2,
-	[wakaba.Enums.Pills.FIREY_TOUCH] = -2,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
 }
 
@@ -116,14 +111,6 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 				else
 					return PillEffect.PILLEFFECT_LUCK_DOWN
 				end
-			end
-		elseif player:GetPlayerType() == PlayerType.PLAYER_ISAAC_B then
-			if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
-				pillEffect = convertFalsePHD[pillEffect]
-			end
-		elseif player:GetPlayerType() == PlayerType.PLAYER_EDEN_B then
-			if pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
-				pillEffect = convertFalsePHD[pillEffect]
 			end
 		end
 	end
@@ -307,7 +294,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 				wakaba.G:SetLastDevilRoomStage(wakaba.G:GetLevel():GetAbsoluteStage())
 			end
 			player:AnimateSad()
-		elseif pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
+		--[[ elseif pillEffect == wakaba.Enums.Pills.FLAME_PRINCESS then
 			local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, -1, false, false)
 			local haswisp = false
 			local wispcnt = 0
@@ -379,7 +366,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 				end
 			end
 			player:AnimateSad()
-		elseif pillEffect == wakaba.Enums.Pills.PRIEST_BLESSING then
+		 ]]elseif pillEffect == wakaba.Enums.Pills.PRIEST_BLESSING then
 			player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 			if multiplier == 2 then
 				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)

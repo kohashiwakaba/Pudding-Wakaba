@@ -31,6 +31,7 @@ if EID then
 			[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = 15,
 			[wakaba.Enums.Cards.CARD_VALUT_RIFT] = 16,
 			[wakaba.Enums.Cards.CARD_TRIAL_STEW] = 17,
+			[wakaba.Enums.Cards.SOUL_RICHER] = 18,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)
@@ -72,8 +73,6 @@ if EID then
 			[wakaba.Enums.Pills.TO_THE_START] = 2,
 			[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = 2,
 			[wakaba.Enums.Pills.SOCIAL_DISTANCE] = 1,
-			[wakaba.Enums.Pills.FLAME_PRINCESS] = 12,
-			[wakaba.Enums.Pills.FIREY_TOUCH] = 6,
 		} ]]
 
 		function wakaba:getWakabaDesc(entries, id)
@@ -558,7 +557,7 @@ if EID then
 					end
 				end
 			end
-	
+
 			local callbacks = {}
 
 
@@ -757,7 +756,7 @@ if EID then
 			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
-	
+
 
 			--EID:addDescriptionModifier("Pudding and Wakaba", EIDWakabaConditions, nil)
 			wakaba:ReplaceEIDBagWeight()

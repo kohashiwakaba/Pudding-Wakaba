@@ -1417,6 +1417,7 @@ include('wakaba_src.pickups.2100_pills')
 include('wakaba_src.pickups.2501_wakabasoul')
 include('wakaba_src.pickups.2502_shiorisoul')
 include('wakaba_src.pickups.2503_tsukasasoul')
+include('wakaba_src.pickups.2504_richersoul')
 
 include('wakaba_src.items.3000_notepathfinder')
 include('wakaba_src.items.3001_bitcoin')

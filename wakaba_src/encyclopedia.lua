@@ -2866,6 +2866,13 @@ if Encyclopedia then
 				{str = "Taking self-damage does not count as damage taken for blue sword, and will not give it the chance to fall."},
 			},
 		},
+		SOUL_RICHER = {
+			{ -- Effect
+				{str = "Effect", fsize = 2, clr = 3, halign = 0},
+				{str = "Spawns 6 Lemegeton Wisps."},
+				{str = "All items spawned are guaranteed for at least Quality 2."},
+			},
+		},
 		CARD_RETURN_TOKEN = {
 			{ -- Effect
 				{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -5317,6 +5324,22 @@ if Encyclopedia then
 		UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.returntoken then
 				self.Desc = "Defeat Ultra Greedier as Tainted Tsukasa"
+
+				return self
+			end
+		end,
+	})
+
+	--Soul of Richer
+	Encyclopedia.AddSoul({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Cards.SOUL_RICHER,
+		WikiDesc = Wiki.SOUL_RICHER,
+		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Richer",0),
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.richersoul then
+				self.Desc = "Defeat Boss Rush, Hush as Tainted Richer"
 
 				return self
 			end
