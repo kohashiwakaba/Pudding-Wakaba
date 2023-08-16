@@ -30,10 +30,14 @@ local throwingBagSynergyLinks = {
 		wakaba.Enums.Collectibles.BOOK_OF_FOCUS,
 		wakaba.Enums.Collectibles.ADVANCED_CRYSTAL,
 	},
+	["generic_milk_bagged"] = {
+		wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD,
+	},
 	["charm_bagged"] = {
 		wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD,
 		wakaba.Enums.Collectibles.RETURN_POSTAGE,
 		wakaba.Enums.Collectibles.BOOK_OF_CONQUEST,
+		wakaba.Enums.Collectibles.RICHERS_UNIFORM,
 	},
 	["luck_bagged"] = {
 		wakaba.Enums.Collectibles.WAKABAS_PENDANT,
@@ -70,6 +74,7 @@ local throwingBagSynergyLinks = {
 		wakaba.Enums.Collectibles.UNIFORM,
 		wakaba.Enums.Collectibles.BOTTLE_OF_RUNES,
 		wakaba.Enums.Collectibles.LUNAR_STONE,
+		wakaba.Enums.Collectibles.WATER_FLAME,
 	},
 	["techx_bagged"] = {
 		wakaba.Enums.Collectibles.EYE_OF_CLOCK,
@@ -83,10 +88,12 @@ local throwingBagSynergyLinks = {
 	["fruitcake_bagged"] = {
 		wakaba.Enums.Collectibles.LIL_MOE,
 		wakaba.Enums.Collectibles.SWEETS_CATALOG,
+		wakaba.Enums.Collectibles.RIRAS_BRA,
 	},
 	["playdoughcookie_bagged"] = {
 		wakaba.Enums.Collectibles.LIL_MOE,
 		wakaba.Enums.Collectibles.SWEETS_CATALOG,
+		wakaba.Enums.Collectibles.RIRAS_BRA,
 	},
 	["damocles_bagged"] = {
 		wakaba.Enums.Collectibles.VINTAGE_THREAT,
@@ -104,6 +111,7 @@ local throwingBagSynergyLinks = {
 	["homing_bagged"] = {
 		wakaba.Enums.Collectibles.MINERVA_AURA,
 		wakaba.Enums.Collectibles.ARCANE_CRYSTAL,
+		wakaba.Enums.Collectibles.PRESTIGE_PASS,
 	},
 	["lachryphagy_bagged"] = {
 		wakaba.Enums.Collectibles.LIL_SHIVA,
@@ -128,6 +136,7 @@ local throwingBagSynergyLinks = {
 	},
 	["battery_bagged"] = {
 		wakaba.Enums.Collectibles.CONCENTRATION,
+		wakaba.Enums.Collectibles.RABBIT_RIBBON,
 	},
 	["drug_bagged"] = {
 		wakaba.Enums.Collectibles.BEETLEJUICE,
@@ -161,6 +170,24 @@ local throwingBagSynergyLinks = {
 		wakaba.Enums.Collectibles.JAR_OF_CLOVER,
 		wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
 		wakaba.Enums.Collectibles.BUNNY_PARFAIT,
+	},
+	["bait_bagged"] = {
+		wakaba.Enums.Collectibles.WATER_FLAME,
+	},
+	["tough_bagged"] = {
+		wakaba.Enums.Collectibles.CRISIS_BOOST,
+	},
+	["spirit_bagged"] = {
+		wakaba.Enums.Collectibles.ONSEN_TOWEL,
+	},
+	["paper_bagged"] = {
+		wakaba.Enums.Collectibles.CUNNING_PAPER,
+	},
+	["curse_of_tower_bagged"] = {
+		wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2,
+	},
+	["techzero_bagged"] = {
+		wakaba.Enums.Collectibles.RICHERS_NECKLACE,
 	},
 }
 
