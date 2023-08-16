@@ -207,6 +207,7 @@ wakaba.Enums.Trinkets = {
 	AURORA_GEM = Isaac.GetTrinketIdByName("Aurora Gem"),
 	MISTAKE = Isaac.GetTrinketIdByName("Mistake"),
 	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
+	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
 
 }
 
@@ -408,6 +409,7 @@ wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.AURORA_GEM] = 6.66,
 	[wakaba.Enums.Trinkets.MISTAKE] = {t={100,185}},
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
+	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {append = true},
 }
 
 wakaba.RoomIDs = {

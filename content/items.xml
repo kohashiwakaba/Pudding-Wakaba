@@ -163,5 +163,6 @@
 	<trinket name="Repentance Cartridge" description="Only Isaac to Repentance" gfx="repentancecartridge.png" />
 
 	<trinket name="Mistake" description="Even chef Richer is not perfect" gfx="mistake.png" />
+	<trinket name="Eternity Cookie" description="Long lasting basics" gfx="eternitycookie.png" />
 
 </items>

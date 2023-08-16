@@ -3106,6 +3106,13 @@ if Encyclopedia then
 			},
 		},
 
+		TRINKET_ETERNITY_COOKIE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "All pickups no longer have time limit."},
+			},
+		},
+
 		TRINKET_MISTAKE = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -5567,6 +5574,18 @@ if Encyclopedia then
 		--[[ UnlockFunc = function(self)
 			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.isaaccartridge then
 				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+				return self
+			end
+		end, ]]
+	})
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Trinkets.ETERNITY_COOKIE,
+		WikiDesc = Wiki.TRINKET_ETERNITY_COOKIE,
+		--[[ UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.easteregg < 1 then
+				self.Desc = "Defeat Mega Satan as Tainted Tsukasa"
 				return self
 			end
 		end, ]]

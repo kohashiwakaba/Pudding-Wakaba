@@ -1554,12 +1554,20 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "그녀가 만들어줬어",
 	},
+	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {
+		itemName = "이터니티 쿠키",
+		description = ""
+		.. "#일정 시간 후 사라지는 픽업이 더 이상 사라지지 않습니다."
+		.. "{{CR}}",
+		queueDesc = "영원한 기초",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ 행운의 동전 등장 확률 추가 증가" },
 	[wakaba.Enums.Trinkets.HARD_BOOK] = { "책 아이템 하나", "책 아이템 2개", "책 아이템 3개" },
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}천체관 아이템", "{{Planetarium}}천체관 아이템 2개" },
+	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ 선택형 아이템 및 픽업을 모두 획득할 수 있습니다." },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
