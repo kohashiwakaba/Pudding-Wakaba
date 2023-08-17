@@ -217,6 +217,60 @@ function wakaba:AfterRicherInit_b(player)
 	end ]]
 end
 
+---@param pickup EntityPickup
+function wakaba:isTaintedRicherNearby(pickup)
+	local players = Isaac.FindInRadius(pickup.Position, 120, EntityPartition.PLAYER)
+	for i, entity in ipairs(players) do
+		if entity:ToPlayer() and entity:ToPlayer():GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+			return pickup.Position:Distance(entity.Position)
+		end
+	end
+end
+
+function wakaba:shouldConvertedForTaintedRicher(pickup)
+	if pickup.SubType <= 0 then return false end
+	local itemID = pickup.SubType
+	local itemConfig = Isaac.GetItemConfig():GetCollectible(itemID)
+	if not itemConfig then return false end
+	return itemConfig:IsCollectible() and itemConfig:HasTags(ItemConfig.TAG_SUMMONABLE)
+end
+
+local rr, gg, bb = 1.0, 1.0, 1.0
+local rt = 1.0
+local rc = 1.0
+local rb = 1.0
+function wakaba:PickupRender_TaintedRicher(pickup, offset)
+	local pickupData = pickup:GetData()
+	if isc:inDeathCertificateArea() or isc:inGenesisRoom() then return end
+	
+	local dist = wakaba:isTaintedRicherNearby(pickup)
+	local sprite = pickup:GetSprite()
+	if wakaba:shouldConvertedForTaintedRicher(pickup) and dist then
+		if not pickupData.wakaba_tempTint then
+			pickupData.wakaba_tempTint = sprite.Color
+		end
+		local strength = ((math.max(130 - dist, 0)) / 100)
+		local tcolor = Color(1, 1, 1, 1, 0, 0, 0.2 * strength)
+		tcolor:SetColorize(rc*2, rc, rb*3+0.8, (rc-0.2) * strength)
+		local ntcolor = Color.Lerp(tcolor, tcolor, 0.5)
+		rt = 1 - (math.sin(Game():GetFrameCount() / 6)/10)-0.1
+		rc = 1 - (math.sin(Game():GetFrameCount() / 6)/5)-0.2
+		rb = 1 - math.sin(Game():GetFrameCount() / 6)
+		ntcolor.A = rt
+
+		sprite.Color = ntcolor
+	else
+		if pickupData.wakaba_tempTint then
+			local oldColor = pickupData.wakaba_tempTint
+			local newColor = Color(oldColor.R, oldColor.G, oldColor.B, oldColor.A, oldColor.RO, oldColor.GO, oldColor.BO)
+			newColor:Reset()
+			sprite.Color = newColor
+			pickupData.wakaba_tempTint = nil
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_TaintedRicher, PickupVariant.PICKUP_COLLECTIBLE)
+
 
 
 function wakaba:PostRicherInit_b(player)
