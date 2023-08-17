@@ -12,10 +12,10 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 	local tempeatheartcharges = 0
 	hasHeart = 0
 	local hasBless = false
-  for i = 1, wakaba.G:GetNumPlayers() do
-    local pl = Isaac.GetPlayer(i - 1)
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local pl = Isaac.GetPlayer(i - 1)
 		local hasBless = wakaba:HasBless(player)
-  end
+	end
 		
 	if useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID then
 		used = 2
@@ -44,6 +44,9 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 		local selected = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_NULL)
 		local Item1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(player.Position, 25), Vector(0,0), nil):ToPickup()
 		Item1:GetData().DamoclesDuplicate = false
+		if Epiphany then
+			Item1:GetData().TRK_HasMidasImmunity = true
+		end
 		if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 			player:AnimateCollectible(wakaba.Enums.Collectibles.EATHEART, "UseItem", "PlayerPickup")
 		end
