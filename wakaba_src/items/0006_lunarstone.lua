@@ -289,13 +289,13 @@ function wakaba:RoomClear_LunarStone(rng, pos)
 		if wakaba:hasLunarStone(player) then
 			wakaba:GetPlayerEntityData(player)
 			local data = player:GetData()
-			if data.wakaba.lunargauge < 1000000 then
+			if data.wakaba.lunargauge < wakaba:getMaxLunarGauge(player) then
 				if roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_BOSSRUSH then
-					data.wakaba.lunargauge = 1000000
+					data.wakaba.lunargauge = wakaba:getMaxLunarGauge(player)
 					wakaba:setLunarGaugeSpeed(player, 0)
 				else
 					data.wakaba.lunargauge = data.wakaba.lunargauge + 30000
-					wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 3)
+					wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 4)
 				end
 			end
 		end
