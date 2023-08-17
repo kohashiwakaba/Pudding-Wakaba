@@ -434,6 +434,11 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants, {
 				[wakaba.Enums.Pickups.CLOVER_CHEST] = 0,
 			})
+			wakaba:DictionaryBulkAppend(KEEPER.CollectibleSpawnedPickups, {
+				[wakaba.Enums.Collectibles.BEETLEJUICE] = {
+					{ PickupVariant.PICKUP_PILL, 1 },
+				},
+			})
 
 			--#region Multitool
 			local multitool = Mod.Pickup.MULTITOOL.ChestOpenFunctions
