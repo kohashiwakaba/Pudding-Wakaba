@@ -87,7 +87,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 102, functio
 		local room = Game():GetRoom()
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
-			Text = (wakaba.state.options.hudroomnumber == 2 and "Difficulty:" or "")..roomDifficulty,
+			Text = (wakaba.state.options.hudroomdiff == 2 and "Difficulty:" or "")..roomDifficulty,
 		}
 		return tab
 	end
@@ -99,7 +99,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 103, functio
 		local room = Game():GetRoom()
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
-			Text = (wakaba.state.options.hudroomnumber == 2 and "Weight:" or "")..roomWeight,
+			Text = (wakaba.state.options.hudroomweight == 2 and "Weight:" or "")..roomWeight,
 		}
 		return tab
 	end
