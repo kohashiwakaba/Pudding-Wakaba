@@ -192,9 +192,9 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 		local stageType = level:GetStageType()
 
 		if wakaba.G:IsGreedMode() then
-			if stage % 2 ~= 0 and itemPoolType ~= ItemPoolType.POOL_TREASURE then
+			if stage % 2 ~= 0 and itemPoolType ~= ItemPoolType.POOL_GREED_TREASURE then
 				preGetCollectibleAntiRecursive = true
-				local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_TREASURE, decrease, seed)
+				local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_GREED_TREASURE, decrease, seed)
 				preGetCollectibleAntiRecursive = false
 				return newItem
 			end
