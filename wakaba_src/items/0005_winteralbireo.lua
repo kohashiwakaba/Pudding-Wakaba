@@ -235,7 +235,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 		local rng = RNG()
 		rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
 		if game:IsGreedMode() then
-			if stage < LevelStage.STAGE5_GREED then
+			if stage < LevelStage.STAGE6_GREED then
 				wakaba:SetAlbireoRoomGreed(rng, onlyTaintedRicher)
 			end
 		elseif stage <= LevelStage.STAGE5 and not level:IsAscent() then
