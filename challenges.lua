@@ -249,7 +249,7 @@ function wakaba:preUseItem_Challenge_AnimaSola(_, rng, player, flags, slot, vard
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.preUseItem_Challenge_AnimaSola, CollectibleType.COLLECTIBLE_ANIMA_SOLA)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.preUseItem_Challenge_AnimaSola, CollectibleType.COLLECTIBLE_ANIMA_SOLA)
 
 function wakaba:UseItem_Challenge_Recall(_, rng, player, flags, slot, vardata)
 	if wakaba.G.Challenge == Challenges.CHALLENGE_HOLD then

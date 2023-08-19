@@ -1,5 +1,4 @@
 function wakaba:ItemUse_D6Plus(_, rng, player, useFlags, activeSlot, varData)
-	
 	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD
 	player:UseCard(Card.CARD_SOUL_ISAAC, flag)
 	wakaba:makePedestalsUntouched()
@@ -7,7 +6,7 @@ function wakaba:ItemUse_D6Plus(_, rng, player, useFlags, activeSlot, varData)
 		player:AnimateCollectible(wakaba.Enums.Collectibles.D6_PLUS, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_D6Plus, wakaba.Enums.Collectibles.D6_PLUS)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_D6Plus, wakaba.Enums.Collectibles.D6_PLUS)
 
 function wakaba:ItemUse_D6Chaos(item, rng, player, useFlags, activeSlot, varData)
 	
@@ -21,7 +20,7 @@ function wakaba:ItemUse_D6Chaos(item, rng, player, useFlags, activeSlot, varData
 		player:AnimateCollectible(wakaba.Enums.Collectibles.D6_CHAOS, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_D6Chaos, wakaba.Enums.Collectibles.D6_CHAOS)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_D6Chaos, wakaba.Enums.Collectibles.D6_CHAOS)
 
 function wakaba:makePedestalsUntouched()
 	local pedestals = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)

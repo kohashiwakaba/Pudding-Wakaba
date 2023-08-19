@@ -2,7 +2,7 @@ local playerType = 30
 
 
 --[[ function wakaba:inputcheckDreams(entity, hook, action)
-	
+
 end ]]
 
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.inputcheckDreams, InputHook.IS_ACTION_TRIGGERED)
@@ -32,4 +32,4 @@ function wakaba:ItemUse_EdenNote(_, rng, player, useFlags, activeSlot, varData)
 	SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
 	player:GetData().wakaba.edencharge = true
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_EdenNote, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_EdenNote, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
