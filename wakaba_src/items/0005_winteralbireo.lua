@@ -91,6 +91,19 @@ local function hasCachedAlbireoRooms()
 	return wakaba.RoomConfigs and wakaba.RoomConfigs.WinterAlbireo
 end
 
+function wakaba:SetAlbireoRoomGreed(rng, onlyTaintedRicher)
+	local roomPool = wakaba.RoomConfigs.WinterAlbireo["Standard"]
+	local level = game:GetLevel()
+	local roomIndex = 85
+	local config = roomPool[rng:RandomInt(#roomPool) + 1]
+	local targetDesc = level:GetRoomByIdx(roomIndex)
+	targetDesc.Data = config
+	table.insert(wakaba.minimapRooms, roomIndex)
+
+	wakaba:TrySetAlbireoRoomDoor()
+	level:UpdateVisibility()
+end
+
 function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	local roomPool = wakaba.RoomConfigs.WinterAlbireo["Standard"]
 	local level = game:GetLevel()
@@ -101,7 +114,7 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	local stage = level:GetStage()
 	local isWombStage = stage >= LevelStage.STAGE4_1 and stage ~= LevelStage.STAGE4_3 and stage <= LevelStage.STAGE5
 
-	if game:GetFrameCount() == 0 or not onlyTaintedRicher or isWombStage then
+	if not onlyTaintedRicher or isWombStage then
 		local index = wakaba:GetDeadEnd(rng)
 		if index then
 			targetDesc = level:GetRoomByIdx(index)
@@ -124,7 +137,9 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	end
 
 	wakaba:TrySetAlbireoRoomDoor()
-	level:UpdateVisibility()
+	if game:GetFrameCount() > 0 then
+		level:UpdateVisibility()
+	end
 end
 
 function wakaba:IsValidWakabaRoom(roomdesc, wakabaRoomType)
@@ -219,8 +234,13 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 		local stage = level:GetStage()
 		local rng = RNG()
 		rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
-		if stage <= LevelStage.STAGE5 and not level:IsAscent() then
+		if game:IsGreedMode() then
+			if stage < LevelStage.STAGE5_GREED then
+				wakaba:SetAlbireoRoomGreed(rng, onlyTaintedRicher)
+			end
+		elseif stage <= LevelStage.STAGE5 and not level:IsAscent() then
 			wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
+			level:UpdateVisibility()
 		end
 		if MinimapAPI then
 			MinimapAPI:LoadDefaultMap()
@@ -270,6 +290,7 @@ end)
 	possible types planned : richer(winter albireo), rira(???), trwakaba(???)
  ]]
  function wakaba:ApplyDoorGraphics(door, customRoomType)
+	local room = wakaba.G:GetRoom()
 	local doorSprite = door:GetSprite()
 
 	local iscustomstage = StageAPI and StageAPI.InOverriddenStage()
@@ -279,7 +300,7 @@ end)
 		doorSprite:ReplaceSpritesheet(0, "gfx/grid/wakaba_richer_room_door.png")
 	--end
 	doorSprite:LoadGraphics()
-	doorSprite:Play("Closed")
+	doorSprite:Play(room:IsClear() and "Opened" or "Closed")
 	door:SetLocked(false)
 end
 
@@ -307,10 +328,10 @@ function wakaba:NewRoom_WinterAlbireo()
 		end
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
-			if door and door.TargetRoomType ~= RoomType.ROOM_SECRET then
+			if door and door.TargetRoomType ~= RoomType.ROOM_SECRET and door.TargetRoomType ~= RoomType.ROOM_SUPERSECRET then
 				local doorSprite = door:GetSprite()
 				wakaba:ApplyDoorGraphics(door)
-				doorSprite:Play("Opened")
+				doorSprite:Play(room:IsClear() and "Opened" or "Closed")
 			end
 		end
 	else
