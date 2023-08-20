@@ -346,7 +346,7 @@ function wakaba:TrySetAlbireoRoomDoor()
 	if room:GetType() ~= RoomType.ROOM_SECRET then
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
-			if door then
+			if door and door.TargetRoomIndex then
 				local targetroomdesc = level:GetRoomByIdx(door.TargetRoomIndex)
 				if wakaba:IsValidWakabaRoom(targetroomdesc) then
 					wakaba:ApplyDoorGraphics(door)
