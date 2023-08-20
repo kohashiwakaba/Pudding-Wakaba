@@ -1,4 +1,95 @@
 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v106",
+[[{FSIZE2}tainted richer
+item pedestals will be
+tinted with purple temporarily
+if tainted richer is nearby
+
+- this doesn't apply if
+tainted richer won't convert into flames
+
+tainted richer planetariums
+now can be spawned on first floor
+
+tainted richer planetariums
+now replaces golden treasure rooms
+on greed mode
+
+{FSIZE2}general stuff
+added found hud configuration
+
+{FSIZE2}Epiphany Compatibility
+reserved tarnished characters entries
+
+fixed using invalid group
+that causing console errors
+
+added golden active synergies
+for some items
+
+tr keeper no longer converts
+clover chest on touch
+
+added turnover shops layouts for
+tainted richer planetariums
+
+tr eden can no longer charge active items
+through rabbit ribbon/lil richer
+
+added throwing bag generic synergies
+for most items
+
+{FSIZE2}items
+soul of richer
+eternity cookie
+
+{FSIZE2}balance
+duality orders
+now guarantees devil/angel room 
+for current floor (eucharist + duality)
+horse variation still spawns 2 items
+
+hellish vomit
+original effect is moved to horse variation
+now grants brimstone for current room
+
+unholy curse
+now breaks 2 mantle shields
+for horse variation correctly
+
+self burning
+taking hit by projectile while active
+will grant 1 second of invincibility,
+to prevent continious hit by other sources
+
+bitcoin ii
+reduce speed of pickup count shuffling
+disappears once dropped
+
+lunar stone
+adjust lunar gauge management
+
+{FSIZE2}tweaks + fixes
+fixed horse pills not working
+after 1.7.9b patch
+
+fixed horse pill descriptions not applying
+
+fixed crystal restocks not working
+due to latest update
+
+excluded fireplaces being damaged
+by plasma beam, resulting constant
+damage sound in water rooms
+
+fixed wakaba's uniform not accounting
+for horse pill activation
+if any player has anti balance
+
+fixed tainted richer's planetariums
+not available for greed mode
+
+]])
 
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v105",
 [[{FSIZE2}general stuff
@@ -374,19 +465,19 @@ appearing in challenges.
 
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102a", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102a",
 [[{FSIZE2}fixes
 Fixed some compability issues with some mods deactivated
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v102",
 [[{FSIZE2}general stuff
-added semi-compability 
-for library expanded. 
-not mainly compatible yet, 
+added semi-compability
+for library expanded.
+not mainly compatible yet,
 but shouldn't trouble too much.
 
-tweaked some elixir of life 
+tweaked some elixir of life
 conversion conditions.
 
 updated general isaacscript module.
@@ -396,90 +487,90 @@ trial stew
 magma blade (for real)
 
 {FSIZE2}tweaks + fixes
-blacklisted some items 
+blacklisted some items
 from shiori (for now)
--empty book 
--my story 
+-empty book
+-my story
 (fiend folio)
 
--blank book 
--kindling book 
--electromagnetism explained 
--cursed book 
+-blank book
+-kindling book
+-electromagnetism explained
+-cursed book
 (library expanded)
 
-wakaba's nemesis now has a 
+wakaba's nemesis now has a
 50% chance to reroll q3 items
 
-all batteries in shop now will 
-be replaced by golden keys, 
-and key into 1+1 key 
+all batteries in shop now will
+be replaced by golden keys,
+and key into 1+1 key
 if playing as shiori.
-each golden key 
+each golden key
 for shiori costs 5.
 
-obtaining golden keys for shiori 
+obtaining golden keys for shiori
 now converts into 6 keys.
 
-isekai definition no longer 
-spawns lil clot if spawned count 
-is 10 or more. 
-(the count is seperated 
-from sumptorium/t.eve, 
-but shares with lil clot trinket) 
-using it while 10 sets their hp 
-into max and increase chance for 
+isekai definition no longer
+spawns lil clot if spawned count
+is 10 or more.
+(the count is seperated
+from sumptorium/t.eve,
+but shares with lil clot trinket)
+using it while 10 sets their hp
+into max and increase chance for
 hidden effect from i.d.
 
-removed 'nogreed' tag for 
-dimension cutter. 
-delirious boss can be spawned 
-in greed mode wave by 5%, 
+removed 'nogreed' tag for
+dimension cutter.
+delirious boss can be spawned
+in greed mode wave by 5%,
 scales with luck, max 25%
 
-aurora gem's purple coin 
-drop rate is also affected by 
+aurora gem's purple coin
+drop rate is also affected by
 current held easter eggs
 
-grimreaper defender 
+grimreaper defender
 now defends damocles
-(not vintage threat) 
-while held. 
-if the sword falls, 
-it immediately disappeares 
-with grimreaper defender. 
-this ignores charges, 
-and grimreaper defender 
-is also removed by process. 
-this does not apply 
+(not vintage threat)
+while held.
+if the sword falls,
+it immediately disappeares
+with grimreaper defender.
+this ignores charges,
+and grimreaper defender
+is also removed by process.
+this does not apply
 for shiori's book.
 
-changed grimreaper defender's 
-defensive effect from 
+changed grimreaper defender's
+defensive effect from
 custom one to wafer effect.
 
-elixir of life no longer removes 
-heart containers by chances, 
-instead donating 4 times 
+elixir of life no longer removes
+heart containers by chances,
+instead donating 4 times
 will remove max hearts.
 
-lil mao now chases enemies 
+lil mao now chases enemies
 automatically with baby bender.
 
-reapplied curse of blind in 
+reapplied curse of blind in
 [w98] hyper random challenge.
 
-fixed crashes in multiplayer 
+fixed crashes in multiplayer
 if co-op ghost appears.
 
-fixed wakaba's nemesis 
-making collectibles 
-on sale requiring 
+fixed wakaba's nemesis
+making collectibles
+on sale requiring
 heart containers for keeper.
 
-fixed crashes 
-for epiphany characters 
-selection screen 
+fixed crashes
+for epiphany characters
+selection screen
 due to leftover codes
 
 cached maijima mythology
@@ -487,108 +578,108 @@ book selections,
 hopefully using it
 doesn't do lagfest
 
-fixed elixir of life 
-not converting soul hearts 
+fixed elixir of life
+not converting soul hearts
 if isaac has no heart containers
 
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101a", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101a",
 [[{FSIZE2}fixes
-Fixed Wakaba's Pendant 
+Fixed Wakaba's Pendant
 Luck stat not working
 
-Reverted on-take 
-damage effect to 
-normal priority 
-to fix taking double damage 
+Reverted on-take
+damage effect to
+normal priority
+to fix taking double damage
 while holding Eat Heart,
 Mistake, and Lunar Stone
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v101",
 [[{FSIZE2}general stuff
-Added missing entries 
+Added missing entries
 for Inventory Descriptions
 
-Added Wakaba's ticket, 
-Shiori's Valut, Purple Coin, 
-and souls sprite 
+Added Wakaba's ticket,
+Shiori's Valut, Purple Coin,
+and souls sprite
 for MiniMAPI
 
-Added some failsafe for 
-Rabbit Ribbon curses, 
-This will prevent character 
-turning into The Lost 
-sometimes for no reason 
-after mod 
+Added some failsafe for
+Rabbit Ribbon curses,
+This will prevent character
+turning into The Lost
+sometimes for no reason
+after mod
 enable/disable/update.
 
 {FSIZE2}tweaks + fixes
 
-Firefly Lighter no longer 
-spawns fireflies, 
-instead grants 
+Firefly Lighter no longer
+spawns fireflies,
+instead grants
 Curse of Darkenss immunity.
 
-Wakaba Duality no longer 
-gives stat downs 
-granted from 
+Wakaba Duality no longer
+gives stat downs
+granted from
 Wakaba's Nemesis.
 
-Tweaked Wakaba's Pendant 
-Luck increments 
-with super late priority, 
-making Luck adjustment 
+Tweaked Wakaba's Pendant
+Luck increments
+with super late priority,
+making Luck adjustment
 after other modded items.
 
-Secret Card now only grants 
-only 1 coin per room clear 
-on Hard Mode. 
+Secret Card now only grants
+only 1 coin per room clear
+on Hard Mode.
 (Not applied in Greedier)
 
-Color Joker now sets 
-Broken Hearts to 
-half of character's 
+Color Joker now sets
+Broken Hearts to
+half of character's
 Heart Limit
 
-Retrun Postage? 
-now removes 
-Eternal Fly and 
+Retrun Postage?
+now removes
+Eternal Fly and
 Eternal Flickerspirit
 (Fiend Folio variant).
 
-Book of Trauma 
-now explodes 
-max 7 of Player's 
-tears on screen, 
+Book of Trauma
+now explodes
+max 7 of Player's
+tears on screen,
 and Isaac's Position.
 
-Isekai Definition 
-now spawns a red clot 
-that doesn't drain health, 
-and no longer affected 
+Isekai Definition
+now spawns a red clot
+that doesn't drain health,
+and no longer affected
 by Judas' birthright.
 
-Easter Egg damage 
-increases more per coin 
-if Isaac has 5 
+Easter Egg damage
+increases more per coin
+if Isaac has 5
 or more Easter eggs
 
-Executioner now grants 
-Backstabber effect 
+Executioner now grants
+Backstabber effect
 by default
 
-Fixed rare cases 
-for Soul of Wakaba 
+Fixed rare cases
+for Soul of Wakaba
 fails to active
 
-Fixed Book of Silence 
-not erasing fires 
+Fixed Book of Silence
+not erasing fires
 from enemies
 
-Fixed allowing 
-locked items option 
+Fixed allowing
+locked items option
 is absent in config
 
 Fixed Richer's Birthright
@@ -597,7 +688,7 @@ weapon on continue
 
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v100", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v100",
 [[{FSIZE2}save data has
 {FSIZE2}been reset!!!
 
@@ -672,88 +763,88 @@ rerolls q2 items
 curse of flames no longer
 turns active items into wisps
 
-Wakaba's Nemesis stats no longer 
+Wakaba's Nemesis stats no longer
 applied in abandoned Mines
 
-Beetlejuice also spawn pills 
+Beetlejuice also spawn pills
 on room clears, or using the item
 
-Beetlejuice now counts 
+Beetlejuice now counts
 towards spun transformation
 
-Wakaba's Pendant now adds 
-additional Luck stat after 
+Wakaba's Pendant now adds
+additional Luck stat after
 setting to 7/10 Luck
 
-Trolled! pill now teleports to 
-Boss room instead of I AM ERROR 
-in Mausoleum/Gehenna II 
+Trolled! pill now teleports to
+Boss room instead of I AM ERROR
+in Mausoleum/Gehenna II
 with ascent route
 
-Reduced total reward count for 
-Shiori Valut from 
-5 > 3 on Normal, 
+Reduced total reward count for
+Shiori Valut from
+5 > 3 on Normal,
 3 > 2 on Hard Mode
 
-3D Printer now copies one of 
-smelted trinkets Isaac isn't 
-holding anything. 
+3D Printer now copies one of
+smelted trinkets Isaac isn't
+holding anything.
 Still prioritizes holding ones
 
-Book of the Fallen gets removed 
-for Tainted Cain when revived, 
+Book of the Fallen gets removed
+for Tainted Cain when revived,
 quest tag is removed for this change
 
-Fixed Social Distance prevent opening 
+Fixed Social Distance prevent opening
 Devil/Angel room when Isaac has Murasame
 
-Fixed Clover Chest not removing 
+Fixed Clover Chest not removing
 opposite pickup from Options?
 
-Fixed Red Corruption not 
+Fixed Red Corruption not
 activating on Sheol/Cathedral
 
-Fixed Wakaba's Double Dreams 
-converting Book of Virtues wisps 
+Fixed Wakaba's Double Dreams
+converting Book of Virtues wisps
 into Wakaba's Dream Card
 
-Fixed Lunar Stone, Elixir of Life 
-not revealing blind alt-path 
+Fixed Lunar Stone, Elixir of Life
+not revealing blind alt-path
 treasure room items
 
 ]])
 
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Tsukasa v99a", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Tsukasa v99a",
 [[{FSIZE2}General/Misc
 
-Fixed major errors for 
-Fiend Folio pills after 
+Fixed major errors for
+Fiend Folio pills after
 1.7.9b update
 
-Fixed major issue for 
-using Active items 
-because of 
-Character Costume Protector 
-included in the mod 
-after 1.7.9b update. 
-Costume Protector is 
+Fixed major issue for
+using Active items
+because of
+Character Costume Protector
+included in the mod
+after 1.7.9b update.
+Costume Protector is
 temporarily removed.
 
 ]])
-DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Tsukasa v99", 
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Tsukasa v99",
 [[{FSIZE2}General/Misc
 
-Applied Dead Sea Scrolls 
+Applied Dead Sea Scrolls
 menu for mod.
 
-Added Korean Quotes 
+Added Korean Quotes
 for collectibles/Trinkets/Pills.
 
 Updated reroll function
-from Pudding n Wakaba 
+from Pudding n Wakaba
 to sync EID's function properly.
 
-Added Pause Screen 
+Added Pause Screen
 Completion Marks API.
 
 Updated Damocles API.
@@ -762,7 +853,7 @@ Updated Damocles API.
 
 {CLR3} Firefly Lighter}
 Passive
-Unlocked by ??? 
+Unlocked by ???
 (default currently)
 
 {CLR3} Double Invader}
@@ -787,80 +878,80 @@ Defeat Mega Satan as Tsukasa
 
 {FSIZE2}Balance
 
-Reverted weight values 
+Reverted weight values
 for Pudding n Wakaba items.
 
--Added weight informations 
+-Added weight informations
 for Bag of Crafting.
 
-Wakaba's Blessing is now 
+Wakaba's Blessing is now
 available for Tainted Lost again.
--Holy Mantle Shield 
+-Holy Mantle Shield
 no longer activates for T.Lost.
 
 Wakaba's Birthright effect/Wakaba Duality
-now opens Devil/Angel door 
+now opens Devil/Angel door
 in ???/Home floors.
--The door will be opened 
-in starting room 
+-The door will be opened
+in starting room
 instead of boss room.
 
-Secret Card no longer gives 
+Secret Card no longer gives
 no damage/hidden Wakaba's Blessing bonuses.
 
-Counter no longer gives 
+Counter no longer gives
 Wakaba's Blessing bonuses.
 
-Soul of Wakaba/Soul of Wakaba? 
-now spawns an corresponding(Angel/Devil) 
-pool item that cost 15 coins 
+Soul of Wakaba/Soul of Wakaba?
+now spawns an corresponding(Angel/Devil)
+pool item that cost 15 coins
 if there are no rooms left to convert.
 
-Reduced Book of the Forgotten 
+Reduced Book of the Forgotten
 charge to 12 > 6
 
-Isekai Definition no longer 
+Isekai Definition no longer
 heals Lil' clots
 
-Lunar Stone gauge no longer 
-decreases gradually 
-when Isaac cannot get soul hearts. 
+Lunar Stone gauge no longer
+decreases gradually
+when Isaac cannot get soul hearts.
 (Can be changed later)
 
-Increased general costs for 
+Increased general costs for
 Book of Conquest.
 
-Arcane/Advanced/Mystic Crystals 
+Arcane/Advanced/Mystic Crystals
 no longer appear in Boss rooms.
 
-Curse of the Tower 2 
-no longer spawns 
-Golden troll bombs 
+Curse of the Tower 2
+no longer spawns
+Golden troll bombs
 for non-penalty damage.
 
 Anti Balance also turns
 all pills into horse variant.
 
-Reduced drop rate for 
-Book of Shiori 
+Reduced drop rate for
+Book of Shiori
 + Book of Sin/Lemegeton combo.
 
 {FSIZE2}Wakaba's Uniform
 
-Wild Card can no longer be placed 
+Wild Card can no longer be placed
 for 1st slot of Uniform.
 
-Using ? Card no longer 
+Using ? Card no longer
 affects Uniform slots.
 
-Voiding Uniform no longer 
-alters Uniform slots, 
-Using Void again will activate 
+Voiding Uniform no longer
+alters Uniform slots,
+Using Void again will activate
 stored card/pills in Uniform slots before.
 
-Using Uniform with Car Battery 
-also activates stored card/pills 
-in Uniform slots 
+Using Uniform with Car Battery
+also activates stored card/pills
+in Uniform slots
 after switching card/pills.
 
 Changed mimiccharges:
@@ -872,64 +963,64 @@ Changed mimiccharges:
 
 {FSIZE2}Bug fixes
 
-Fixed infinite loop from 
+Fixed infinite loop from
 Wakaba's Uniform for some card/pills.
 
-Fixed Inventory Descriptions list 
+Fixed Inventory Descriptions list
 render errors for certain situations.
 
 Fixed revival function with Found Soul.
 
-Fixed Shiori giving consumables 
+Fixed Shiori giving consumables
 on switching books.
 
-Fixed Soul of Wakaba/Soul of Wakaba? 
+Fixed Soul of Wakaba/Soul of Wakaba?
 converting progerssion rooms.
 
-Fixed potential issues 
+Fixed potential issues
 from Book of Focus.
 
-Fixed Syrup showing wrong costume 
+Fixed Syrup showing wrong costume
 for non-regular skin color.
 
-Fixed a random console error 
+Fixed a random console error
 showing from Book of Forgotten.
 
-Fixed Apollyon Crisis not working 
+Fixed Apollyon Crisis not working
 while Void or Abyss is in the room.
 
-Fixed Lunar Stone not consuming 
+Fixed Lunar Stone not consuming
 soul hearts when not playing as Tsukasa.
 
-Fixed Eat Heart charging for ignored 
+Fixed Eat Heart charging for ignored
 modded items that gives damage immunities.
 
-Fixed Mystic Crystal not giving 
-Holy Mantle shields 
+Fixed Mystic Crystal not giving
+Holy Mantle shields
 when Isaac isn't in full health.
 
-Fixed Lemegeton indicator 
+Fixed Lemegeton indicator
 not working from Inventory Descriptions.
 
-Fixed Curse of the Tower 2 
-spawning Golden troll bombs 
+Fixed Curse of the Tower 2
+spawning Golden troll bombs
 when damage is blocked by modded items.
 
-Fixed book switching for Shiori 
+Fixed book switching for Shiori
 giving consumables if available.
 
-Fixed conquered/murasame enemies 
-somtimes damaging players. 
-(almost) 
+Fixed conquered/murasame enemies
+somtimes damaging players.
+(almost)
 
-Fixed Eye of Clock 
+Fixed Eye of Clock
 not appearing in any pools.
 
-Fixed crashes for Wakaba's Uniform 
+Fixed crashes for Wakaba's Uniform
 when using with Fiend Folio's pills.
 
 Fixed some revival function.
--Now Tsukasa/Lunar Stone's revival 
+-Now Tsukasa/Lunar Stone's revival
 works correctly with Fiend Folio mod.
 
 ]])

@@ -7,7 +7,7 @@
 
 [h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
 [b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean compatible)
-[b]HIGHLY[/b] recommended to use Encyclopedia, or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2503022727] Completion Marks for ALL Modded Characters [/url].
+[b]HIGHLY[/b] recommended to use Encyclopedia
 
 Mod Includes : 
 [img]https://i.imgur.com/OQHAgwc.png[/img]
@@ -31,7 +31,7 @@ A new Curse!(Must be enabled manually)
 80+ new Items
 15+ new Trinkets
 15+ new Card/Runes
-10+ new Pills - [spoiler]Damage Multiplier Up/Down, All Stats Up/Down, Trolled!, To the Start!, Explosive Diarrhea 2!, Social Distance, Flame Princess, Firey Touch, Priest's Blessing, Unholy Curse[/spoiler]
+10+ new Pills
 19 new Challenges
 
 [h1]Items[/h1]
@@ -81,7 +81,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - bogdanrudyka - PostGetCollectible custom callback
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>105.0</version>
+    <version>106.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
