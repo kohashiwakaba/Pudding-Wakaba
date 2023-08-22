@@ -372,6 +372,9 @@ wakaba.Enums.Constants = {
 	RICHER_B_HUD_LIMIT = 6, -- 알트 리셰 표시 아이템 수
 	RICHER_B_HUD_OFFSET = 20, -- 알트 리셰 HUD 오프셋 (EID 지원용)
 
+	SOUL_OF_RICHER_WISP_COUNT = 6,
+	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
+
 	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한
 	ISEKAI_CERTIFICATE_CHANCE = 50, -- 이세계 사증 이스터에그 확률 (0.1% 단위)
 	ISEKAI_SHIORI_BONUS = 400, -- 이세계 사증 시오리 확률 보너스

@@ -1635,7 +1635,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
-		description = "{{Collectible712}} Lemegeton의 아이템 불꽃을 6개 소환합니다.#모든 불꽃은 최소 {{Quality2}}등급의 아이템으로 소환됩니다.",
+		description = "{{Collectible712}} Lemegeton의 아이템 불꽃을 최대 6개({{Collectible263}} : 3개) 소환합니다.#모든 불꽃은 최소 {{Quality2}}등급의 아이템으로 소환됩니다.",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",

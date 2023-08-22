@@ -1522,7 +1522,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "Soul of Richer",
-		description = "{{Collectible712}} Grants 6 Lemegeton Wisps#All wisps are guaranteed to be Quality{{Quality2}}+",
+		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps ({{Collectible263}} : 1 ~ 3)#All wisps are guaranteed to be Quality{{Quality2}}+",
 		mimiccharge = 12,
 		isrune = true,
 	},

@@ -21,7 +21,7 @@
 
 	<card pickup="4109" type="rune" description="Half-Life" hud="Soul of Tsukasa" name="Soul of Tsukasa" mimiccharge="12" />
 
-	<card pickup="4113" type="rune" description="Magical enforcement" hud="Soul of Richer" name="Soul of Richer" mimiccharge="12" />
+	<card pickup="4113" type="rune" description="Magical enforcement" hud="Soul of Richer" name="Soul of Richer" mimiccharge="6" />
 
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
