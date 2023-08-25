@@ -20,7 +20,7 @@
 	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="3" />
 	<familiar id="16" cache="luck" description="Buddy for luck" gfx="lilwakaba.png" name="Lil Wakaba" tags="stars offensive baby summonable monstermanual" quality="3" />
 	
-	<active id="17" description="Counter Lasers" gfx="counter.png" chargetype="timed" maxcharges="150" name="Counter" devilprice="2" quality="4" tags="" />
+	<active id="17" description="Counter Lasers" gfx="counter.png" chargetype="timed" maxcharges="240" name="Counter" devilprice="2" quality="4" tags="" />
 	
 	
 	
