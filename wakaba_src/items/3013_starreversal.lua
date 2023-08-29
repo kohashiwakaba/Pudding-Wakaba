@@ -15,7 +15,7 @@ function wakaba:PickupUpdate_StarReversal(trinket)
   if trinket.SubType % 32768 ~= wakaba.Enums.Trinkets.STAR_REVERSAL or trinket.Touched ~= true then return end
   local sprite = trinket:GetSprite()
   local room = wakaba.G:GetRoom()
-  if room:GetType() == RoomType.ROOM_TREASURE then
+  if room:GetType() == RoomType.ROOM_TREASURE or wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) then
     if sprite:IsEventTriggered("DropSound") then
       local newPos = Isaac.GetFreeNearPosition(trinket.Position, 40.0)
       if trinket.SubType > 32768 then
