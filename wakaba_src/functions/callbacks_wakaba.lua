@@ -213,11 +213,20 @@ wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b)
 	return not a or not b or a == b
 end)
 
-function wakaba:addNemesisDamage(player, count)
+---comment
+---@param player EntityPlayer
+---@param count int
+function wakaba:addNemesisCount(player, count, damageOnly)
+	wakaba:GetPlayerEntityData(player)
 	count = count or 1
-	player:GetData().wakaba.nemesisdmg = (player:GetData().wakaba.nemesisdmg or 0) + (10.8 * count)
+	if count > 0 then
+		player:GetData().wakaba.nemesisdmg = (player:GetData().wakaba.nemesisdmg or 0) + (10.8 * count)
+		if not damageOnly then
+			player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.WAKABAS_NEMESIS, false, count)
+		end
+	end
 	
-	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+	player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
 	player:EvaluateItems()
 end
 
@@ -241,10 +250,10 @@ function wakaba:playerItemsArrayUpdate(player)
 	if player:IsCoopGhost() then return end
 	local data = player:GetData()
 	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
-  local queuedItem = player.QueuedItem
+	local queuedItem = player.QueuedItem
 	if data.w_heldItems then
 		for item = 1, itemSize do
-      local beforeHeld = queuedItem.Touched
+			local beforeHeld = queuedItem.Touched
 			if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
 				if player.FrameCount > 7 and not beforeHeld then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
 					Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
@@ -258,7 +267,7 @@ function wakaba:playerItemsArrayUpdate(player)
 	else
 		--if not initialized for some reason
 		--inventoryDataSet(player)
-    data.w_heldItems = {}
+		data.w_heldItems = {}
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)

@@ -2,7 +2,7 @@
 	
 	<!-- Death items frame 0 -->
 	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" shopprice="41" devilprice="2" tags="angel stars offensive nocantrip summonable noeden lazarusshared tearsup" quality="4" craftquality="3" />
-	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarusshared" quality="4" />
+	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarusshared" quality="4" persistent="true"/>
 	
 	<active id="3" description="Like a Pudding" gfx="eatheart.png" maxcharges="240000" name="Eat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" craftquality="-1"/>
 	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" />

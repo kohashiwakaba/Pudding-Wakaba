@@ -7,33 +7,6 @@ local roomsexplored = {}
 --player:GetPlayerType() == playerType
 local nemesiscollectiblenum = 0
 
-local origAngelChance = wakaba.runstate.angelchance
-
-function wakaba:AddDevilRoomChance(count, player)
-	player = player or Isaac.GetPlayer()
-	wakaba:CleanupSatanWisps(player)
-	for i = 1, count do
-		local wisp = player:AddWisp(CollectibleType.COLLECTIBLE_SATANIC_BIBLE, Vector(-300, -300), false, true)
-		Isaac.DebugString("[wakaba]Wisp Added!")
-		wisp:GetData().wakabatemp = true
-	end
-end
-
-function wakaba:CleanupSatanWisps(player)
-	local wispcount = 0
-	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, CollectibleType.COLLECTIBLE_SATANIC_BIBLE, false, false)
-	for i, wisp in ipairs(wisps) do
-		if wisp:GetData().wakabatemp then
-			if not player or (GetPtrHash(wisp:ToFamiliar().Player) == GetPtrHash(player)) then
-				--Isaac.DebugString("[wakaba]Wisp Removed!")
-				wispcount = wispcount + 1
-				wisp:Remove()
-			end
-		end
-	end
-	return wispcount
-end
-
 local ignorelist = {}
 local hidelist = {}
 local duped = {}
@@ -44,14 +17,13 @@ function wakaba:onNemesisCache(player, cacheFlag)
 	then
 		wakaba:GetPlayerEntityData(player)
 		local nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
-		local collectibleNum = player:GetCollectibleCount()
+		local collectibleNum = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 		local nemesiscount = player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 				nemesiscount = 0
 			else
 				nemesiscount = nemesiscount + 1
-				collectibleNum = collectibleNum - 1
 			end
 		end
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
@@ -337,24 +309,21 @@ function wakaba:GetBlessNum(player, includeWakaba)
 	return r + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_BLESSING) + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 end
 
-function wakaba:ReEvaluateNemesisStats(player)
-	wakaba:GetPlayerEntityData(player)
-	if player:GetCollectibleCount() ~= player:GetData().wakaba.currItemNum and not player:IsHoldingItem() then
-		player:GetData().wakaba.currItemNum = player:GetCollectibleCount()
-		player:GetData().wakaba.nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
-		player:GetData().wakaba.nemesisdmg = player:GetData().wakaba.nemesisdmg + 10.8
-		player:AddCacheFlags(CacheFlag.CACHE_ALL)
-		player:EvaluateItems()
+function wakaba:ReEvaluateNemesisStats(player, item)
+	if wakaba:HasNemesis(player) and item and item ~= 0 then
+		local config = Isaac.GetItemConfig():GetCollectible(item)
+		wakaba:addNemesisCount(player, 1, config:HasTags(ItemConfig.TAG_QUEST))
 	end
 end
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.ReEvaluateNemesisStats)
 
 function wakaba:HasNemesis(player, includeWakaba)
 	includeWakaba = includeWakaba or true
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-		wakaba:ReEvaluateNemesisStats(player)
+		--wakaba:addNemesisCount(player, 0)
 		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
-		wakaba:ReEvaluateNemesisStats(player)
+		--wakaba:addNemesisCount(player, 0)
 		return true
 	else
 		return false
@@ -609,15 +578,3 @@ function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, co
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_BlessNemesis)
-
---[[ function wakaba:OnGameExit_BlessNemesis(shouldSave)
-	removesatanwisp = true
-end
-
-wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.OnGameExit_BlessNemesis)
-
-
-function wakaba:Init_BlessNemesis(continue)
-	removesatanwisp = true
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.Init_BlessNemesis) ]]
