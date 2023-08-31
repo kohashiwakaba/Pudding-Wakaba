@@ -299,6 +299,44 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			wakaba:Epiphany_AddThrowingBagSynergies()
 
+			-- TR Eden Blacklist
+			api:AddItemsToEdenBlackList(
+				-- Items that combine into single quest item
+				wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+				wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
+				-- Items whose effect persists after losing them
+				-- Items that just removing Blind curse are not added, it's just intended ;)
+				wakaba.Enums.Collectibles.MURASAME, -- Devil/Angel chance modifier lasts entire floor
+				wakaba.Enums.Collectibles.BOOK_OF_SHIORI, -- Tear effect lasts entire run unless player uses Soul of Shiori
+				wakaba.Enums.Collectibles.RED_CORRUPTION, -- Compass effect lasts entire floor
+				wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2, -- Golden Bomb lasts entire floor
+				wakaba.Enums.Collectibles.DOUBLE_INVADER, -- Disables Devil/Angel rooms for entire floor
+				wakaba.Enums.Collectibles.DOUBLE_DREAMS, -- Disables Devil/Angel rooms for entire floor
+				-- Items considered too confusing on a constantly rerolling character
+				wakaba.Enums.Collectibles.UNIFORM,
+				wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, -- Constant health refill
+				wakaba.Enums.Collectibles.QUESTION_BLOCK,
+				-- Items that can't be filled, or has no effect before they get rerolled away
+				wakaba.Enums.Collectibles.EATHEART, -- Requires 7500 dmg, and can't be debugged
+				wakaba.Enums.Collectibles.SECRET_CARD, -- Useless when given for 1 room
+				wakaba.Enums.Collectibles.WINTER_ALBIREO, -- Useless when given for 1 room
+				wakaba.Enums.Collectibles.DEJA_VU, -- Useless when given for 1 room
+				-- Items that revive the player as another character
+				wakaba.Enums.Collectibles.VINTAGE_THREAT, -- Tainted Shiori
+				wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, -- Tainted Tsukasa
+				wakaba.Enums.Collectibles.JAR_OF_CLOVER, -- Wakaba
+				wakaba.Enums.Collectibles.BUNNY_PARFAIT, -- Rira
+				wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, -- Richer
+				-- Bomb modifiers
+				wakaba.Enums.Collectibles.NEW_YEAR_BOMB,
+				-- Items that give soul or black hearts
+				wakaba.Enums.Collectibles.ONSEN_TOWEL,
+				wakaba.Enums.Collectibles.SUCCUBUS_BLANKET,
+				wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
+				-- Items considered too bad for the run as a whole
+				wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN -- Must NOT lose the active
+			)
+
 			-- prevents "item pool does not exist" warning
 			Mod.CustomItemPools.RicherShopPool_Treasure = {} -- Richer's Planetarium shop - Odd floors
 			Mod.CustomItemPools.RicherShopPool_Planetarium = {} -- Richer's Planetarium shop - Even floors
