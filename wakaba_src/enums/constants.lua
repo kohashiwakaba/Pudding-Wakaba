@@ -375,6 +375,8 @@ wakaba.Enums.Constants = {
 	SOUL_OF_RICHER_WISP_COUNT = 6,
 	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
 
+	MAGNET_HEAVEN_TIMER = 150,
+
 	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한
 	ISEKAI_CERTIFICATE_CHANCE = 50, -- 이세계 사증 이스터에그 확률 (0.1% 단위)
 	ISEKAI_SHIORI_BONUS = 400, -- 이세계 사증 시오리 확률 보너스
@@ -413,6 +415,7 @@ wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.MISTAKE] = {t={100,185}},
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {append = true},
+	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {append = true},
 }
 
 wakaba.RoomIDs = {

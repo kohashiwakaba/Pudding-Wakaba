@@ -1568,6 +1568,7 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.HARD_BOOK] = { "책 아이템 하나", "책 아이템 2개", "책 아이템 3개" },
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}천체관 아이템", "{{Planetarium}}천체관 아이템 2개" },
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ 선택형 아이템 및 픽업을 모두 획득할 수 있습니다." },
+	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} 방 입장 시 5초동안 그 방의 적에게 자력 효과를 부여합니다." },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {

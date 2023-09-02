@@ -1445,6 +1445,7 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books" },
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items" },
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ Removes all selection from pickups" },
+	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} Magnetize all enemies for 5 seconds when entering a new room" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {

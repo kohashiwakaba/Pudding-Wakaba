@@ -1,4 +1,13 @@
-function wakaba:PickupUpdate_Magnet(pickup)
+local maxMult = 0
+function wakaba:PostUpdate_MagnetHeaven()
+	maxMult = 0
+	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+		maxMult = math.max(maxMult, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.MAGNET_HEAVEN))
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_MagnetHeaven)
+
+function wakaba:PickupUpdate_MagnetHeaven(pickup)
 	if not pickup then return end
 	if pickup:IsShopItem() then return end
 	local ismagnet = false
@@ -81,7 +90,7 @@ function wakaba:PickupUpdate_Magnet(pickup)
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_Magnet)
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_MagnetHeaven)
 
 
 function wakaba.PickupInit_Magnet(pickup)
@@ -89,6 +98,39 @@ function wakaba.PickupInit_Magnet(pickup)
 			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.G:GetItemPool():GetTrinket())
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_Magnet, PickupVariant.PICKUP_TRINKET)
+--wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_Magnet, PickupVariant.PICKUP_TRINKET)
+
+function wakaba:NewRoom_MagnetHeaven()
+	local room = wakaba.G:GetRoom()
+	if maxMult >= 2 and not room:IsClear() then
+		local duration = (maxMult - 1) * wakaba.Enums.Constants.MAGNET_HEAVEN_TIMER
+		for _, entity in ipairs(Isaac.GetRoomEntities()) do
+			local npc = entity:ToNPC()
+			if npc and npc:IsEnemy() and npc.Type ~= EntityType.ENTITY_FIREPLACE then
+				entity.Color = Color(0.6, 0.6, 0.6, 1)
+				entity:AddEntityFlags(EntityFlag.FLAG_MAGNETIZED)
+				local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PULLING_EFFECT, 0, entity.Position, Vector.Zero, entity):ToEffect()
+				eff.Parent = entity
+				eff.Timeout = duration
+				eff.LifeSpan = duration
+				wakaba:scheduleForUpdate(function()
+					if entity and entity:Exists() then
+						entity.Color = Color(1, 1, 1, 1)
+						entity:ClearEntityFlags(EntityFlag.FLAG_MAGNETIZED)
+					end
+					if eff and eff:Exists() then
+						eff:Remove()
+					end
+				end, duration)
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_MagnetHeaven)
 
 
+---@param satan EntityNPC
+local function Test_NPC3333(_, n)
+	print(n:GetSprite().Color.R, n:GetSprite().Color.G, n:GetSprite().Color.B, n:GetSprite().Color.A, n:GetSprite().Color.RO, n:GetSprite().Color.GO, n:GetSprite().Color.BO)
+end
+--wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, Test_NPC3333)
