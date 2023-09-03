@@ -447,9 +447,9 @@ local richer_saved_recipies = {
 			richersoul1 = 0, -- Boss Rush
 			richersoul2 = 0, -- Hush
 			waterflame = 0, -- Delirium
-			spirititems = 0, -- Mega Satan
+			crystalrestock = 0, -- Mega Satan
 			trialstew = 0, -- Ultra Greedier
-			mistake = 0, -- Mother
+			eternitycookie = 0, -- Mother
 			winteralbireo = 0, -- The Beast
 
 			starreversal = false,
@@ -819,9 +819,9 @@ wakaba.unlocks = {
 	richersoul1 = 0, -- Boss Rush
 	richersoul2 = 0, -- Hush
 	waterflame = 0, -- Delirium
-	spirititems = 0, -- Mega Satan
+	crystalrestock = 0, -- Mega Satan
 	trialstew = 0, -- Ultra Greedier
-	mistake = 0, -- Mother
+	eternitycookie = 0, -- Mother
 	winteralbireo = 0, -- The Beast
 
 	starreversal = false,

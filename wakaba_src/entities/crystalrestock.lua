@@ -44,7 +44,7 @@ end
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:convertRestockMachines(entype, var, subtype, grindex, seed)
-	if --[[ wakaba.state.unlock.crystalrestock > 0 and  ]] entype == EntityType.ENTITY_SLOT and var == 10 then
+	if wakaba.state.unlock.crystalrestock > 0 and entype == EntityType.ENTITY_SLOT and var == 10 then
 		local rand = wakaba.RNG
 		rand:SetSeed(rand:Next(),1)
 		local ran = rand:RandomFloat()

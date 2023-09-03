@@ -672,17 +672,17 @@ wakaba.encyclopediadesc.desc.characters = {
 		 function()
 			 local UnlocksTab = {
 				 MomsHeart = {Unlock = (wakaba.state.unlock.taintedrichermomsheart >= 1), Hard = (wakaba.state.unlock.taintedrichermomsheart == 2)},
-				 Isaac = {Unlock = (wakaba.state.unlock.isaaccartridge1 >= 1), Hard = (wakaba.state.unlock.isaaccartridge1 == 2)},
-				 Satan = {Unlock = (wakaba.state.unlock.isaaccartridge2 >= 1), Hard = (wakaba.state.unlock.isaaccartridge2 == 2)},
-				 BlueBaby = {Unlock = (wakaba.state.unlock.isaaccartridge3 >= 1), Hard = (wakaba.state.unlock.isaaccartridge3 == 2)},
-				 Lamb = {Unlock = (wakaba.state.unlock.isaaccartridge4 >= 1), Hard = (wakaba.state.unlock.isaaccartridge4 == 2)},
-				 BossRush = {Unlock = (wakaba.state.unlock.tsukasasoul1 >= 1), Hard = (wakaba.state.unlock.tsukasasoul1 == 2)},
-				 Hush = {Unlock = (wakaba.state.unlock.tsukasasoul2 >= 1), Hard = (wakaba.state.unlock.tsukasasoul2 == 2)},
-				 MegaSatan = {Unlock = (wakaba.state.unlock.easteregg >= 1), Hard = (wakaba.state.unlock.easteregg == 2)},
-				 Delirium = {Unlock = (wakaba.state.unlock.flashshift >= 1), Hard = (wakaba.state.unlock.flashshift == 2)},
-				 Mother = {Unlock = (wakaba.state.unlock.sirenbadge >= 1), Hard = (wakaba.state.unlock.sirenbadge == 2)},
-				 Beast = {Unlock = (wakaba.state.unlock.elixiroflife >= 1), Hard = (wakaba.state.unlock.elixiroflife == 2)},
-				 GreedMode = {Unlock = (wakaba.state.unlock.returntoken >= 1), Hard = (wakaba.state.unlock.returntoken == 2)},
+				 Isaac = {Unlock = (wakaba.state.unlock.starreversal1 >= 1), Hard = (wakaba.state.unlock.starreversal1 == 2)},
+				 Satan = {Unlock = (wakaba.state.unlock.starreversal2 >= 1), Hard = (wakaba.state.unlock.starreversal2 == 2)},
+				 BlueBaby = {Unlock = (wakaba.state.unlock.starreversal3 >= 1), Hard = (wakaba.state.unlock.starreversal3 == 2)},
+				 Lamb = {Unlock = (wakaba.state.unlock.starreversal4 >= 1), Hard = (wakaba.state.unlock.starreversal4 == 2)},
+				 BossRush = {Unlock = (wakaba.state.unlock.richersoul1 >= 1), Hard = (wakaba.state.unlock.richersoul1 == 2)},
+				 Hush = {Unlock = (wakaba.state.unlock.richersoul2 >= 1), Hard = (wakaba.state.unlock.richersoul2 == 2)},
+				 MegaSatan = {Unlock = (wakaba.state.unlock.crystalrestock >= 1), Hard = (wakaba.state.unlock.crystalrestock == 2)},
+				 Delirium = {Unlock = (wakaba.state.unlock.waterflame >= 1), Hard = (wakaba.state.unlock.waterflame == 2)},
+				 Mother = {Unlock = (wakaba.state.unlock.eternitycookie >= 1), Hard = (wakaba.state.unlock.eternitycookie == 2)},
+				 Beast = {Unlock = (wakaba.state.unlock.winteralbireo >= 1), Hard = (wakaba.state.unlock.winteralbireo == 2)},
+				 GreedMode = {Unlock = (wakaba.state.unlock.trialstew >= 1), Hard = (wakaba.state.unlock.trialstew == 2)},
 			 }
 			 return UnlocksTab
 		 end
@@ -716,7 +716,8 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "Rabbey-planetarium contains a planetarium item in even floors, and normal treasure item in odd floors."},
 					{str = "- Rabbey-planetariums continue appear in Womb/Corpse floors."},
 					{str = "- Rabbey-planetariums contain Devil items in Sheol, Angel items in Cathedral."},
-					{str = "- Rabbey-planetariums replace Treasure rooms if playing as Tainted Richer except for first floor."},
+					{str = "- Rabbey-planetariums contain Secret room items in Blue Womb."},
+					{str = "- Rabbey-planetariums replace Treasure rooms if playing as Tainted Richer."},
 					{str = "Water-Flame", clr = 3, halign = 0},
 					{str = "Her magical body allows absorbing the item wisps."},
 					{str = "Tainted Richer can select which wisp to absorb into passive item."},
@@ -730,16 +731,16 @@ wakaba.encyclopediadesc.desc.characters = {
 					{str = "Notes", fsize = 2, clr = 3, halign = 0},
 					{str = "Rabbit Ribbon, The Winter Albireo for Tainted Richer is intrinsic to the character, and it can't be rerolled."},
 			},
-			--[[ { -- Unlockables
+			{ -- Unlockables
 					{str = "Unlockables", fsize = 2, clr = 3, halign = 0},
 					{str = "- Star Reversal : Defeat Isaac, Satan, ???, The Lamb as Tainted Richer"},
-					{str = "- Spiritual Items : Defeat Mega Satan as Tainted Richer"},
+					{str = "- Crystal Restock machine: Defeat Mega Satan as Tainted Richer"},
 					{str = "- Soul of Richer : Defeat Boss Rush, Hush as Tainted Richer"},
 					{str = "- Trial Stew : Defeat Ultra Greedier as Tainted Richer"},
 					{str = "- Water-Flame : Defeat Delirium as Tainted Richer"},
-					{str = "- Mistake : Defeat Mother as Tainted Richer"},
+					{str = "- Eternity Cookie : Defeat Mother as Tainted Richer"},
 					{str = "- The Winter Albireo : Defeat The Beast as Tainted Richer"},
-			}, ]]
+			},
 
 		},
 	},
@@ -1314,7 +1315,21 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	WINTER_ALBIREO = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Planetariums always appear."},
+			{str = "If possible, additional rabbey-planetariums appear."},
+			{str = "Rabbey-planetarium contains a planetarium item in even floors, and normal treasure item in odd floors."},
+			{str = "- Rabbey-planetariums continue appear in Womb/Corpse floors."},
+			{str = "- Rabbey-planetariums contain Devil items in Sheol, Angel items in Cathedral."},
+			{str = "- Rabbey-planetariums contain Secret room items in Blue Womb."},
+			{str = "- Rabbey-planetariums replace Treasure rooms if playing as Tainted Richer."},
+			{str = "Crystal Restock machines appear in Rabbey-planetarium."},
+			{str = "- Crystal Restocks can be used for paying 5 coins, or bombing itself."},
+			{str = "- Can be used fixed amounts depending of its color."},
+			{str = "- Crystal Restocks in Rabbey-planetariums always appear regardless of unlock status."},
+		},
+		{
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "More Options", clr = 3, halign = 0},
+			{str = "Crystal restocks from Rabbey-planetariums gain more uses."},
 		},
 	},
 
@@ -2364,7 +2379,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		},
 	},
 
-	
+
 	-----------------------------------------------------------------------------
 	-------------------------------- Rira Unlocks -------------------------------
 	-----------------------------------------------------------------------------
@@ -3125,7 +3140,7 @@ if Encyclopedia then
 
 
 	}
-	
+
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
 	---------------------------------------------------------------------
@@ -3154,7 +3169,7 @@ if Encyclopedia then
 			end
 		end,
 	})
-	
+
 	--Wakaba's Nemesis
 	Encyclopedia.AddItem({
 		Class = class,
@@ -3500,8 +3515,8 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not hasRicher then
-				self.Desc = "Only available for Tainted Richer"
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.winteralbireo < 1 and not hasRicher then
+				self.Desc = "Defeat The Beast as Tainted Richer"
 
 				return self
 			end
@@ -3522,8 +3537,8 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not hasRicher then
-				self.Desc = "Only available for Tainted Richer"
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.waterflame < 1 and not hasRicher then
+				self.Desc = "Defeat Delirium as Tainted Richer"
 
 				return self
 			end
@@ -3537,7 +3552,7 @@ if Encyclopedia then
 		ID = wakaba.Enums.Collectibles.CHIMAKI,
 		Hide = true,
 	})
-	
+
 	--Broken Toolbox
 	Encyclopedia.AddItem({
 		Class = class,
@@ -5571,24 +5586,24 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Trinkets.STAR_REVERSAL,
 		WikiDesc = Wiki.TRINKET_STAR_REVERSAL,
-		--[[ UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.isaaccartridge then
-				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Tsukasa"
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.starreversal then
+				self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Richer"
 				return self
 			end
-		end, ]]
+		end,
 	})
 	Encyclopedia.AddTrinket({
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Trinkets.ETERNITY_COOKIE,
 		WikiDesc = Wiki.TRINKET_ETERNITY_COOKIE,
-		--[[ UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.easteregg < 1 then
-				self.Desc = "Defeat Mega Satan as Tainted Tsukasa"
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.eternitycookie < 1 then
+				self.Desc = "Defeat Mother as Tainted Richer"
 				return self
 			end
-		end, ]]
+		end,
 	})
 	Encyclopedia.AddTrinket({
 		Class = class,
