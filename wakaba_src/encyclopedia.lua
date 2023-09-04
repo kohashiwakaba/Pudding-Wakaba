@@ -3493,7 +3493,7 @@ if Encyclopedia then
 					hasRicher = true
 				end
 			end
-			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.sweetscatalog  and not hasRicher then
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.sweetscatalog < 1 and not hasRicher then
 				self.Desc = "Defeat Isaac as Richer"
 
 				return self
@@ -4738,6 +4738,13 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.TRIAL_STEW,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
+		UnlockFunc = function(self)
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.trialstew < 2 then
+				self.Desc = "Defeat Ultra Greedier as Tainted Richer"
+
+				return self
+			end
+		end,
 	})
 
 
@@ -5344,7 +5351,7 @@ if Encyclopedia then
 		WikiDesc = Wiki.CARD_RETURN_TOKEN,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Return Token",0),
 		UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.returntoken then
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.returntoken < 2 then
 				self.Desc = "Defeat Ultra Greedier as Tainted Tsukasa"
 
 				return self
@@ -5376,7 +5383,7 @@ if Encyclopedia then
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.TRIAL_STEW,
 		Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Trial Stew",0),
 		UnlockFunc = function(self)
-			if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.trialstew then
+			if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.trialstew < 2 then
 				self.Desc = "Defeat Ultra Greedier as Tainted Richer"
 
 				return self
