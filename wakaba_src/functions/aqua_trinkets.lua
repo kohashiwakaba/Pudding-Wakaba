@@ -6,6 +6,7 @@ local aqua_trinkets_data = {
 	},
 	floor = {
 		aquatrinkets = {},
+		triedindexes = {},
 	},
 	room = {
 	}
@@ -43,18 +44,23 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
 			aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
 		end
+		if not aqua_trinkets_data.floor.triedindexes[currentRoomIndex] then
+			aqua_trinkets_data.floor.triedindexes[currentRoomIndex] = {}
+		end
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		local alreadyTried = wakaba:has_value(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local rand = RNG()
 		rand:SetSeed(pickup.InitSeed, 35)
 		local ran = rand:RandomFloat()
 		--print(ran, pickup:CanReroll(), pickup.Touched)
-		if ran < wakaba.state.options.fortunereplacechance / 100 then
+		if not alreadyTried and ran < wakaba.state.options.fortunereplacechance / 100 then
 			if not isAquaTrinket then
 				--print("Aqua Trinket Registered! ID :"..pickup.SubType)
 				table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 				isAquaTrinket = true
 			end
 		end
+		table.insert(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		if isAquaTrinket then
 			--print("Aqua Trinket spawned! ID :"..pickup.SubType)
 			pickup:GetData().wakaba = pickup:GetData().wakaba or {}
