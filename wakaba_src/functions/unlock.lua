@@ -486,7 +486,8 @@ function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShow
 	if unlockKey ~= "Greed" and not skipAll then
 		local allHard = true
 		local oldAllHard = TestUnlock(playerType, "All")
-
+		--print("allHard", allHard)
+		--print("oldAllHard", oldAllHard)
 
 		for key, valTable in pairs(unlockTable) do
 			if type(valTable) == "table" then
@@ -494,20 +495,28 @@ function wakaba:UnlockWithPopupsTemp(playerType, bossEntry, newValue, shouldShow
 				if type(value) == "number" then
 					local num = value
 					if num < 2 then
+						--print("old detected:", key, num)
 						oldAllHard = false
 					end
+					--print("-------:", key, unlockKeyToCheck)
 
-					if key == associationToValueMap[bossEntry] then
+					if key == unlockKeyToCheck then
 						num = newValue
 					end
 
+					--[[ if key == associationToValueMap[bossEntry] then
+						num = newValue
+					end ]]
+
 					if num < 2 then
+						--print("detected:", key, num)
 						allHard = false
 						break
 					end
 				end
 			end
 		end
+		--print("final:", allHard, not oldAllHard, unlockTable.All)
 
 		if allHard and not oldAllHard and unlockTable.All then
 			if shouldShowPopup then

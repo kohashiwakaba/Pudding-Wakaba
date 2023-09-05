@@ -544,7 +544,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.UnlockCheck)
+--wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.UnlockCheck)
 
 function wakaba:UnlockConvert(playerType)
 	if playerType == Isaac.GetPlayerTypeByName("Wakaba", false) then

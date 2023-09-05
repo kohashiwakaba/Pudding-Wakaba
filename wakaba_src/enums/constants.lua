@@ -94,6 +94,7 @@ wakaba.Enums.Collectibles = {
 
 	-- Tsukasa items
 	NEW_YEAR_BOMB = Isaac.GetItemIdByName("New Year's Eve Bomb"),
+	NEW_YEAR_EVE_BOMB = Isaac.GetItemIdByName("New Year's Eve Bomb"),
 	MURASAME = Isaac.GetItemIdByName("Murasame"),
 	NASA_LOVER = Isaac.GetItemIdByName("Nasa Lover"),
 	ARCANE_CRYSTAL = Isaac.GetItemIdByName("Arcane Crystal"),
