@@ -184,13 +184,13 @@ wakaba.UnlockTables = {
 		BossRush	= {"bunnyparfait", "collectible",	wakaba.Enums.Collectibles.BUNNY_PARFAIT,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bunnyparfait.png") end},
 		Hush		= {"richeruniform", "collectible",	wakaba.Enums.Collectibles.RICHERS_UNIFORM,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richeruniform.png") end},
 		Delirium	= {"prestigepass", "collectible",	wakaba.Enums.Collectibles.PRESTIGE_PASS,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_prestigepass.png") end},
-		MegaSatan	= {"printer", "collectible",		wakaba.Enums.Collectibles._3D_PRINTER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_printer.png") end},
+		MegaSatan	= {"printer", "collectible",		wakaba.Enums.Collectibles._3D_PRINTER,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_3dprinter.png") end},
 		Mother		= {"cunningpaper", "collectible",	wakaba.Enums.Collectibles.CUNNING_PAPER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_cunningpaper.png") end},
 		Beast		= {"selfburning", "collectible",	wakaba.Enums.Collectibles.SELF_BURNING,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_selfburning.png") end},
 		Greed		= {"clensingfoam", "collectible",	wakaba.Enums.Collectibles.CLENSING_FOAM,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_clensingfoam.png") end},
 		Greedier	= {"lilricher", "collectible",		wakaba.Enums.Collectibles.LIL_RICHER,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilricher.png") end},
 
-		All 		= {"rabbitribbon", "collectible",	wakaba.Enums.Collectibles.RABBIT_RIBBON,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_blank.png") end},
+		All 		= {"rabbitribbon", "collectible",	wakaba.Enums.Collectibles.RABBIT_RIBBON,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_rabbitribbon.png") end},
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		istainted = true,
