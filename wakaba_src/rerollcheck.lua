@@ -142,7 +142,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.TrackBoosterPacks
 
 function wakaba:TakeDmg_TrackBoosterPacks(entity, amount, flag, source, countdownFrames)
 	if flag & DamageFlag.DAMAGE_SPAWN_RUNE > 0 then
-		print("[wakaba] Rune spawn with enemy kill detected, Trying to reroll...")
+		--print("[wakaba] Rune spawn with enemy kill detected, Trying to reroll...")
 		boosterPackDetectedAt = wakaba.G:GetFrameCount() + 1
 		boosterPackType = "rune"
 	end
@@ -154,7 +154,7 @@ function wakaba:RuneBag_TrackBoosterPacks(familiar)
 	data.w_counter = data.w_counter or 0
 	if data.w_counter then
 		if data.w_counter < familiar.RoomClearCount then
-			print("[wakaba] Rune Bag spawn found, Trying to reroll...")
+			--print("[wakaba] Rune Bag spawn found, Trying to reroll...")
 			boosterPackDetectedAt = wakaba.G:GetFrameCount()
 			boosterPackType = "rune"
 		end
