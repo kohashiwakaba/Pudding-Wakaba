@@ -152,14 +152,15 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 30000, wakaba.TakeDm
 function wakaba:RuneBag_TrackBoosterPacks(familiar)
 	local data = familiar:GetData()
 	data.w_counter = data.w_counter or 0
-	if data.w_counter then
-		if data.w_counter < familiar.RoomClearCount then
-			--print("[wakaba] Rune Bag spawn found, Trying to reroll...")
-			boosterPackDetectedAt = wakaba.G:GetFrameCount()
-			boosterPackType = "rune"
-		end
+
+	local prev = data.w_counter
+	local new = familiar.RoomClearCount
+	if new > prev then
+		--print("[wakaba] Rune Bag spawn found, Trying to reroll...")
+		boosterPackDetectedAt = wakaba.G:GetFrameCount()
+		boosterPackType = "rune"
 	end
-	data.w_counter = familiar.RoomClearCount
+	data.w_counter = new
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.RuneBag_TrackBoosterPacks, FamiliarVariant.RUNE_BAG)
 
