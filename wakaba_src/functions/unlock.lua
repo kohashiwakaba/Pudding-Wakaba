@@ -357,6 +357,22 @@ function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
 	return true
 end
 
+function wakaba:IsEntryUnlocked(entryName)
+	if wakaba.state.options.allowlockeditems then
+		return true
+	end
+	if not entryName then
+		return false
+	end
+	local unlockStateVal = wakaba.state.unlock[entryName]
+	if type(unlockStateVal) == "boolean" then
+		return unlockStateVal
+	elseif type(unlockStateVal) == "number" then
+		return unlockStateVal > 0
+	end
+	return false
+end
+
 local function HasPlayerAchievedQuartetTemp(playerType)
 	local unlockTable = wakaba.UnlockTables[playerType]
 	if not unlockTable then
