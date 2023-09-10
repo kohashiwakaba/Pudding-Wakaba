@@ -35,6 +35,20 @@ function wakaba:getShioriFloorBuffs(player, colllectibleType)
 	return player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_SHIORI_FLOOR)
 end
 
+function wakaba:NewRoom_ResetShioriBuffs()
+	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+		player:GetData().wakaba.shioribuffs = {}
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_ResetShioriBuffs)
+
+function wakaba:NewFloor_ResetShioriBuffs()
+	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+		player:GetData().wakaba.shiorifloorbuffs = {}
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewFloor_ResetShioriBuffs)
+
 function wakaba:getShioriFlag(player)
 	return player:GetData().wakaba.nextshioriflag
 end
