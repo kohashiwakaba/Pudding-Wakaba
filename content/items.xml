@@ -57,7 +57,7 @@
 	<passive id="40" cache="damage" description="Damage down... but what at cost?" gfx="nekofigure.png" name="Neko Figure" tags="offensive guppy nocantrip" devilprice="2" quality="3" />
 
 
-	<passive id="41" description="Connect" gfx="winteralbireo.png" name="The Winter Albireo" tags="stars offensive noeden" quality="4" hidden="true" achievement="9999"/>
+	<passive id="41" description="Connect" gfx="winteralbireo.png" name="The Winter Albireo" tags="stars offensive" quality="4"/>
 
 	<passive id="42" description="You feel forgotten" gfx="dejavu.png" name="Deja Vu" tags="offensive nocantrip noeden" quality="2" craftquality="-1"/>
 	<familiar id="43" cache="speed" description="Buddy for rift" gfx="lilmao.png" name="Lil Mao" tags="offensive baby" quality="2"/>
@@ -131,15 +131,15 @@
 	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4"/>
 	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="wakabahairpin.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
 	<active id="96" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" tags="offensive nocantrip" quality="1"/>
-	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4"/>
+	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4" hidden="true" achievement="9999"/>
 	<active id="98" description="Crush ground" gfx="powblock.png" maxcharges="0" name="POW Block" bombs="6" tags="offensive" quality="1"/>
 	<active id="99" description="Crush air" gfx="modblock.png" maxcharges="0" name="MOd Block" bombs="6" tags="offensive" quality="1"/>
-	<active id="100" cache="tearflag" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2" hidden="true" achievement="9999"/>
+	<active id="100" cache="tearflag" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2"/>
 	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="2" hidden="true" achievement="9999"/>
 	<passive id="102" description="Itch taste" gfx="richernecklace.png" name="Richer's Necklace" tags="tech summonable offensive" quality="3"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
-	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip" quality="4" hidden="true" achievement="9999"/>
+	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" quality="4" hidden="true" achievement="9999"/>
 	
 
 	<trinket name="Bring me there" cache="firedelay" description="Don't forget!" gfx="bringmethere.png" />
