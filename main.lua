@@ -129,8 +129,9 @@ local function GetCurrentModPath()
 	return modPath
 end
 
-wakaba.version = "v106 Richer 2023.08.20"
-wakaba.intversion = 10600
+-- Current version from Pudding & Wakaba mod
+wakaba.version = "v107 Richer 2023.09.--"
+wakaba.intversion = 10700
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -2250,6 +2251,11 @@ local function runUpdates(tab) --This is from Fiend Folio
 end
 
 wakaba.delayedFuncs = {}
+
+---Scheduled update from Fiend Folio
+---@param foo function
+---@param delay int
+---@param callback function
 function wakaba:scheduleForUpdate(foo, delay, callback)
 	callback = callback or ModCallbacks.MC_POST_UPDATE
 	if not wakaba.delayedFuncs[callback] then
@@ -2262,6 +2268,9 @@ function wakaba:scheduleForUpdate(foo, delay, callback)
 	table.insert(wakaba.delayedFuncs[callback], { Func = foo, Delay = delay })
 end
 
+---Shuffle sorting from table
+---@param tbl table
+---@return table
 function wakaba:Shuffle(tbl)
 	for i = #tbl, 2, -1 do
 		local j = wakaba:RandomInt(1, i)
