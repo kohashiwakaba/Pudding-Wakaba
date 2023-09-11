@@ -39,9 +39,9 @@ function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 			player:DischargeActiveItem(counterslot)
 			
 			if source.Entity ~= nil and source.Entity.SpawnerEntity ~= nil then
-				player:FireTechLaser(player.Position, LaserOffset.LASER_TRACTOR_BEAM_OFFSET, source.Entity.SpawnerEntity.Position-player.Position, false, true, player, 5.0)
+				wakaba:TryShootCounterLaser(player, source.Entity.SpawnerEntity, 30)
 			elseif source.Entity ~= nil then
-				player:FireTechLaser(player.Position, LaserOffset.LASER_TRACTOR_BEAM_OFFSET, source.Entity.Position-player.Position, false, true, player, 5.0)
+				wakaba:TryShootCounterLaser(player, source.Entity, 30)
 			end
 			if wakaba:isMausoleumDoor(flag) then 
 				wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
@@ -51,10 +51,11 @@ function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 		end
 	end
 	if player:GetData().wakabacountertimer > 0 then
+		local timer = player:GetData().wakabacountertimer
 		if source.Entity ~= nil and source.Entity.SpawnerEntity ~= nil then
-			player:FireTechLaser(player.Position, LaserOffset.LASER_TRACTOR_BEAM_OFFSET, source.Entity.SpawnerEntity.Position-player.Position, false, true, player, 5.0)
+			wakaba:TryShootCounterLaser(player, source.Entity.SpawnerEntity, timer)
 		elseif source.Entity ~= nil then
-			player:FireTechLaser(player.Position, LaserOffset.LASER_TRACTOR_BEAM_OFFSET, source.Entity.Position-player.Position, false, true, player, 5.0)
+			wakaba:TryShootCounterLaser(player, source.Entity, timer)
 		end
 		if wakaba:isMausoleumDoor(flag) then 
 			wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
@@ -63,6 +64,23 @@ function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.CounterTakeDmg, EntityType.ENTITY_PLAYER)
+
+---@param player EntityPlayer
+---@param entity Entity
+function wakaba:TryShootCounterLaser(player, entity, timer)
+	if not player or not entity then return end
+	timer = timer or 30
+	local data = entity:GetData()
+	if not data.w_counter then
+		player:FireTechLaser(player.Position, LaserOffset.LASER_TRACTOR_BEAM_OFFSET, entity.Position-player.Position, false, true, player, 5.0)
+		data.w_counter = true
+		wakaba:scheduleForUpdate(function()
+			if entity and entity:Exists() then
+				data.w_counter = false
+			end
+		end, timer)
+	end
+end
 
 function wakaba:ItemUse_Counter(_, rng, player, useFlags, activeSlot, varData)
 	local ct = player:GetData().wakabacountertimer
