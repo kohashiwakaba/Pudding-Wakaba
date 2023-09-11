@@ -1,9 +1,9 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/wakaba_dreamcatcher.anm2">
-	
+
 	<!-- Death items frame 0 -->
 	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" shopprice="41" devilprice="2" tags="angel stars offensive nocantrip summonable noeden lazarusshared tearsup" quality="4" craftquality="3" />
 	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarusshared" quality="4" persistent="true"/>
-	
+
 	<active id="3" description="Like a Pudding" gfx="eatheart.png" maxcharges="240000" name="Eat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" craftquality="-1"/>
 	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" />
 	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive food summonable" quality="4" />
@@ -19,14 +19,14 @@
 
 	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="3" />
 	<familiar id="16" cache="luck" description="Buddy for luck" gfx="lilwakaba.png" name="Lil Wakaba" tags="stars offensive baby summonable monstermanual" quality="3" />
-	
+
 	<active id="17" description="Counter Lasers" gfx="counter.png" chargetype="timed" maxcharges="240" name="Counter" devilprice="2" quality="4" tags="" />
-	
-	
-	
-	
+
+
+
+
 	<active id="999" description="Eternal Dreams..." gfx="doubledreams.png" maxcharges="0" name="Wakaba's Double Dreams" tags="stars offensive nocantrip angel devil book" devilprice="2" quality="4" craftquality="-1"/>
-	
+
 	<active description="Curse of Cinderella" gfx="wakabacurfew.png" chargetype="timed" maxcharges="900" name="Wakaba's 6'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" name="Wakaba's 9'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active description="Think before stick" gfx="edenstickynote.png" maxcharges="0" name="Eden's Sticky Note" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
@@ -67,7 +67,7 @@
 
 	<passive id="46" hearts="4" maxhearts="2" cache="damage range" description="HP, DMG, Range up" gfx="moemuffin.png" name="Moe's Muffin" tags="offensive nocantrip" quality="2" />
 
-	
+
 	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="3"/>
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3"/>
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="3"/>
@@ -75,14 +75,14 @@
 	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
 	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3"/>
 	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" quality="4"/>
-	
+
 	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3"/>
 	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="offensive" quality="3" craftquality="-1"/>
 
 	<passive id="56" cache="damage tearflag" description="DMG up" gfx="arcanecrystal.png" name="Arcane Crystal" tags="offensive stars" devilprice="1" quality="4"/>
 	<passive id="57" cache="damage tearflag" description="DMG up" gfx="advancedcrystal.png" name="Advanced Crystal" tags="offensive stars" devilprice="1" quality="4"/>
 	<passive id="58" cache="damage tearflag" description="DMG up" gfx="mysticcrystal.png" name="Mystic Crystal" tags="offensive stars" devilprice="1" quality="4"/>
-	
+
 	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive nogreed lazarusshared" quality="3"/>
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" maxcharges="0" name="Syrup" tags="baby nocantrip" quality="3" addcostumeonpickup="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="1" craftquality="3"/>
@@ -97,7 +97,7 @@
 	<passive id="71" cache="range luck" description="Help from the fairies" gfx="fireflylighter.png" name="Firefly Lighter" devilprice="1" quality="1" tags="offensive"/>
 
 	<passive id="72" cache="damage range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" tags="offensive tech"/>
-	
+
 	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2" tags="nochallenge"/>
 	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" tags="nochallenge"/>
 	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" tags="nochallenge"/>
@@ -126,7 +126,7 @@
 	<active id="91" description="Don't Cheating!" gfx="cunningpaper.png" maxcharges="2" name="Cunning Paper" tags="offensive nocantrip" quality="1"/>
 
 	<passive id="92" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" quality="0" hidden="true" achievement="9999" persistent="true" />
-	
+
 	<passive id="93" description="Regeneration + HP up" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1"/>
 	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4"/>
 	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="wakabahairpin.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2"/>
@@ -140,7 +140,7 @@
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" quality="4" hidden="true" achievement="9999"/>
-	
+
 
 	<trinket name="Bring me there" cache="firedelay" description="Don't forget!" gfx="bringmethere.png" />
 	<trinket name="Clover" cache="firedelay luck" description="You feel lucky" gfx="clover.png" />
@@ -157,7 +157,7 @@
 	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
 	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" />
 	<trinket name="Kuromi Card" description="She made it for us" gfx="kuromicard.png" />
-	
+
 	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />
 	<trinket name="Afterbirth Cartridge" description="Only Isaac to Afterbirth+" gfx="afterbirthcartridge.png" />
 	<trinket name="Repentance Cartridge" description="Only Isaac to Repentance" gfx="repentancecartridge.png" />
