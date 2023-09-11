@@ -1191,15 +1191,12 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	MURASAME = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "While held", clr = 3, halign = 0},
 			{str = "Spawns a familiar that follows Isaac."},
-			{str = "A Devil Room / Angel Room Door will always spawn after every boss fight, excluding first floor and floors after Chapter 4."},
+			{str = "A Devil Room and Angel Room Door will always spawn after every boss fight, excluding first floor and floors after Chapter 4."},
 			{str = "- The spawned door will not disappear when leaving and re-entering the boss room."},
-			{str = "Angel Rooms can still appear even Isaac takes Devil deal."},
-			{str = "On use", clr = 3, halign = 0},
-			{str = "Revives one of defeated boss as friendly, and 320 HP."},
-			{str = "Only counts from Boss rooms. Regular rooms does not count."},
-			{str = "If there are no defeated bosses in Boss Room, Monstro will be summoned."},
+			{str = "- Upon entering one, the other one will disappear."},
+			{str = "- In rooms with only two accessible walls, only one of the two will spawn."},
+			{str = "Angel Rooms can still appear even Isaac takes Devil deal if teleported via Joker, or etc."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -1210,11 +1207,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Tsukasa", clr = 3, halign = 0},
 			{str = "Can be merged with Flash Shift. can damage enemies, or break rock/poop type objects."},
-		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Book of Shiori + Book of Conquest", clr = 3, halign = 0},
-			{str = "The revived bosses from Murasame shares costs for Book of Conquest."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},

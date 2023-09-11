@@ -556,13 +556,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MURASAME] = {
 		itemName = "Murasame",
 		description = ""
-		.. "#!!! While held : "
-		.. "#{{AngelDevilChance}} Forces a {{DevilRoom}}Devil/{{AngelRoom}}Angel room door to spawn after every boss fight"
-		.. "#{{AngelChance}} Allows both Devil and Angel deals to be taken"
-		.. "#!!! On use : "
-		.. "#Adds +20% {{AngelChance}}Angel room chance for current floor"
-		.. "#Revives one of defeated floor boss in current run as friendly and 320 HP"
-		.. "#Monstro will be summoned if no floor boss is beaten"
+		.. "#{{AngelDevilChance}} Spawns both an Angel and Devil room for 100% chance#Entering one makes the other disappear"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.CONJOINED .. "",
 	},

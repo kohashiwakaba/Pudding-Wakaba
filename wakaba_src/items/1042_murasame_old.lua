@@ -1,6 +1,56 @@
+
+wakaba.murasameblacklist = {
+	EntityType.ENTITY_CHUB,
+}
+local function getExpectedMurasameCount(type, variant)
+	if type == EntityType.ENTITY_LARRYJR then
+		return 5
+	elseif type == EntityType.ENTITY_CHUB then
+		return 3
+	end
+	return 1
+end
+
+local function getMurasameBossByID(type, variant)
+	for i, v in ipairs(wakaba.runstate.murasamebosses) do
+		if v["type"] == type and v["variant"] == variant then
+			return v["count"]
+		end
+	end
+end
+
+local function getMurasameBossByEntity(entity)
+	return getMurasameBossByID(entity.Type, entity.Variant)
+end
+
+local function addMurasameBoss(entity)
+	for i, v in ipairs(wakaba.runstate.murasamebosses) do
+		if v["type"] == entity.Type and v["variant"] == entity.Variant then
+			v["count"] = getExpectedMurasameCount(entity.Type, entity.Variant)
+			return
+		end
+	end
+	local value = {
+		type = entity.Type,
+		variant = entity.Variant,
+		count = getExpectedMurasameCount(entity.Type, entity.Variant),
+	}
+	table.insert(wakaba.runstate.murasamebosses, value)
+end
+
+function wakaba:GetMurasameBoss(rng)
+	if #wakaba.runstate.murasamebosses == 0 then return EntityType.ENTITY_MONSTRO, 0, 1 end
+	local i = rng:RandomInt(#wakaba.runstate.murasamebosses) + 1
+	if wakaba.runstate.murasamebosses[i] then
+		local t = wakaba.runstate.murasamebosses[i]
+		return t["type"], t["variant"], t["count"]
+	end
+	return EntityType.ENTITY_MONSTRO, 0, 1
+end
+
 function wakaba:HasMurasame(player)
-	if not player then
-		return false
+	if not player then 
+		return false 
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
     return true
@@ -370,10 +420,67 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_Murasame)
 
 function wakaba:ItemUse_Murasame(_, rng, player, useFlags, activeSlot, varData)
-
+	--local newMachinePos = wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
+	local newMachinePos = Isaac.GetFreeNearPosition(player.Position, 40)
+	local eType, eVariant, count = wakaba:GetMurasameBoss(rng)
+	local ents = {}
+	for i = 1, count do
+		if i ~= 1 then
+			newMachinePos = Isaac.GetFreeNearPosition(ents[i-1].Position, 40)
+		end
+		ents[i] = Isaac.Spawn(eType, eVariant, 0, newMachinePos, Vector(0,0), player)
+		ents[i]:AddCharmed(EntityRef(player), -1)
+		ents[i]:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+		ents[i].HitPoints = 320
+		ents[i]:GetData().wakaba = {}
+		ents[i]:GetData().wakaba.conquered = true
+		wakaba.conqueredSeed[tostring(ents[i].InitSeed)] = true
+		if i ~= 1 then
+			ents[i].Parent = ents[i-1]
+			ents[i-1].Child = ents[i]
+		end
+	end
+	wakaba.G:GetLevel():AddAngelRoomChance(0.2)
+	SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
+	SFXManager():Play(SoundEffect.SOUND_SUPERHOLY, 1, 0, false, 1)
+	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
+		player:AnimateCollectible(wakaba.Enums.Collectibles.MURASAME, "UseItem", "PlayerPickup")
+	end
+	--wakaba:Dash(player, dashstate)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Murasame, wakaba.Enums.Collectibles.MURASAME)
+
+
+function wakaba:NPCUpdate_Murasame(entity)
+	if not entity or wakaba:has_value(wakaba.conquestblacklist, entity.Type) then return end
+	if entity.Parent and entity.Parent:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT)
+	and not (entity:GetData().wakaba and entity:GetData().wakaba.conquered) then
+		entity:GetData().wakaba = entity:GetData().wakaba or {}
+		entity:GetData().wakaba.conquered = true
+		entity:AddCharmed(EntityRef(player), -1)
+		entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+	end
+	if entity.Child and entity.Child:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT) 
+	and not (entity:GetData().wakaba and entity:GetData().wakaba.conquered) then
+		entity:GetData().wakaba = entity:GetData().wakaba or {}
+		entity:GetData().wakaba.conquered = true
+		entity:AddCharmed(EntityRef(player), -1)
+		entity:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_Murasame)
+
+function wakaba:BossKill_Murasame(entity)
+	if not entity:IsBoss() then return end
+	if wakaba:has_value(wakaba.murasameblacklist, entity.Type) then return end
+	if wakaba:has_value(wakaba.conquestblacklist, entity.Type) then return end
+	if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS then
+		addMurasameBoss(entity)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.BossKill_Murasame)
+
 
 local function CheckTears()
 	local tears = Isaac.FindByType(EntityType.ENTITY_TEAR)

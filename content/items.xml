@@ -74,7 +74,7 @@
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" quality="1"/>
 	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
 	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3"/>
-	<active id="53" passivecache="true" cache="familiars" description="Shrine protector" gfx="murasame.png" maxcharges="12" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" quality="4" craftquality="3"/>
+	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" quality="4"/>
 	
 	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3"/>
 	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="offensive" quality="3" craftquality="-1"/>

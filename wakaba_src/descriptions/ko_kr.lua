@@ -610,13 +610,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MURASAME] = {
 		itemName = "무라사메",
 		description = ""
-		.. "#!!! 소지 시 : "
-		.. "#{{AngelDevilChance}} 악마방/천사방이 반드시 등장합니다."
-		.. "#{{AngelChance}} 악마 거래 이후에도 천사방이 등장할 수 있습니다."
-		.. "#!!! 사용 시 : "
-		.. "#↑ {{AngelChance}}천사방 확률 +20%."
-		.. "#현재 게임에서 처치한 보스 방의 보스 중 하나를 아군으로 부활시킵니다. 부활한 보스의 체력은 320으로 고정됩니다."
-		.. "#보스 방을 클리어한 적이 없을 경우 Monstro가 소환됩니다."
+		.. "{{Collectible215}} {{AngelDevilChanceSmall}}악마방/천사방 확률이 100%로 고정됩니다."
+		.. "#{{Collectible498}} {{AngelDevilChanceSmall}}악마방과 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "신사 지킴이",
