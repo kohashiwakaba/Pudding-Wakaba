@@ -49,6 +49,7 @@ local headErased = false
 ---@param satan EntityNPC
 function wakaba:NPCUpdate_DoubleInvader_MegaSatan(satan)
 	if satan.Variant > 0 then return end
+	if not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then return end
 	local sprite = satan:GetSprite()
 	--print(satan.State, satan.StateFrame, satan.I1, satan.I2)
 	--print(sprite:GetAnimation(), sprite:IsPlaying("Appear"))
