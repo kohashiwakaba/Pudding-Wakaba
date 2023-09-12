@@ -943,6 +943,20 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "{{Collectible191}} 사용 시 그 방에서 랜덤 눈물 효과를 얻으며;#상태이상의 걸린 적에게 25%p의 추가 피해를 줍니다.",
 		queueDesc = "일시적 눈물 효과 + 치명타 소스",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
+		itemName = "리라의 코트",
+		description = "사용 시 The Lost(영혼) 상태가 됩니다.#{{Blank}} (Downpour/Dross 2 스테이지의 흰색 불에 닿은 효과와 동일)#방 클리어 후 다른 방 진입 시 상태가 복원됩니다.",
+		queueDesc = "그렇게 뚫어지게 쳐다보시면 부끄러워요...",
+	},
+	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
+		itemName = "리라의 수영복",
+		description = "??%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
+		.. "#{{LuckSmall}} :행운 ??+일 때 100%"
+		.. "#침수된 적은 화상/독성 공격에 더 적은 피해를 받으나, 침수/폭발/레이저 공격에 추가 피해를 받습니다."
+		.. "#침수된 적에게 랜덤 방향으로 눈물이 나가며 처치 시 소울하트 반칸을 드랍합니다."
+		.. "{{CR}}",
+		queueDesc = "너무 젖어있는 눈물",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

@@ -1620,6 +1620,19 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Stop Watch", clr = 3, halign = 0},
 			{str = "Enemies always take more damage when Rira's Bra is in effect."},
 		},
+		RIRAS_COAT = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "On use, Grants white fire effect for Isaac."},
+				{str = "The white fire effect is same as touching a white fire in Downpour/Dross 2."},
+				{str = "The white fire effect is removed on room clear, and entering the other room."},
+			},
+		},
+		RIRAS_SWIMSUIT = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			},
+		},
 	},
 
 	-----------------------------------------------------------------------------
@@ -4789,6 +4802,20 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.LIL_RIRA,
+		Hide = true,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RIRAS_COAT,
+		Hide = true,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RIRAS_SWIMSUIT,
 		Hide = true,
 	})
 

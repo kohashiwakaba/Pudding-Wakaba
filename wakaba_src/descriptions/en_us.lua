@@ -857,6 +857,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Rira's Bra",
 		description = "{{Collectible191}} Grants random tear effects for current room#Enemies with status effects take 25% more damage for current room",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
+		itemName = "Rira's Coat",
+		description = "Activates white fire effect",
+	},
+	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
+		itemName = "Rira's Swimsuit",
+		description = "??% chance to shoot tears that liquify enemies#{{Luck}} 100% chance at ?? Luck#Liquified enemies emit tears for random direction, drops half soul heart on death, take less damage from poison/fire, but more damage from laser, explosion, and water",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
