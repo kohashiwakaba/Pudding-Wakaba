@@ -212,6 +212,24 @@ wakaba.Enums.Trinkets = {
 
 }
 
+--[[ 
+wakaba.Enums.Trackers = {
+	WOMB = Isaac.GetTrinketIdByName("WAKABA_WOMB_TRACKER"), -- Determine achievements
+	HUSH = Isaac.GetTrinketIdByName("WAKABA_HUSH_TRACKER"), -- Determine overall Void Portals
+	DELIRIUM = Isaac.GetTrinketIdByName("WAKABA_DELIRIUM_TRACKER"), -- Determine Delirium beaten
+	DADS_KEY = Isaac.GetTrinketIdByName("WAKABA_DADS_KEY_TRACKER"), -- Determine Mega Satan
+	MEGA_SATAN = Isaac.GetTrinketIdByName("WAKABA_MEGA_SATAN_TRACKER"), -- Determine Apollyon
+	SECRET_EXIT = Isaac.GetTrinketIdByName("WAKABA_SECRET_EXIT_TRACKER"), -- Determine Mother
+	JACOB_ESAU = Isaac.GetTrinketIdByName("WAKABA_JACOB_ESAU_TRACKER"), -- Determine Beast
+	RED_KEY = Isaac.GetTrinketIdByName("WAKABA_RED_KEY_TRACKER"), -- Determine Cracked Key
+	BEAST = Isaac.GetTrinketIdByName("WAKABA_BEAST_TRACKER"), -- Determine Beast Beaten
+
+	LUCKY_PENNY = Isaac.GetTrinketIdByName("WAKABA_LUCKY_PENNY_TRACKER"),
+	GOLDEN_PENNY = Isaac.GetTrinketIdByName("WAKABA_GOLDEN_PENNY_TRACKER"),
+	GOLDEN_BOMB = Isaac.GetTrinketIdByName("WAKABA_GOLDEN_BOMB_TRACKER"),
+}
+ ]]
+
 -- 와카바 모드 특수효과
 wakaba.Enums.Effects = {
 	POWER_BOMB = Isaac.GetEntityVariantByName("Wakaba Power Bomb Explosion"),
@@ -349,6 +367,13 @@ wakaba.Enums.Chances = {
 
 wakaba.Enums.Constants = {
 	WAKABA_UNIFORM_MAX_SLOTS = 3, --와카바의 교복 최대 슬롯 수
+
+	STACK_STRENGTH_SUPER = 2.0, -- 중첩 효과 극강
+	STACK_STRENGTH_HIGH = 1.0, -- 중첩 효과 강
+	STACK_STRENGTH_MEDIUM = 0.5, -- 중첩 효과 중
+	STACK_STRENGTH_LOW = 0.25, -- 중첩 효과 약
+	STACK_STRENGTH_MIN = 0.1, -- 중첩 효과 미약
+	STACK_STRENGTH_NONE = -1, -- 중첩 효과 없음
 
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
