@@ -10,6 +10,9 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 wakaba.minimapRooms = {}
 local game = wakaba.G
 
+---Check selected player has Winter Albireo, or playing as Tainted Richer
+---@param player EntityPlayer
+---@return boolean
 function wakaba:hasAlbireo(player)
 	if not player then
 		return false
@@ -25,6 +28,9 @@ function wakaba:hasAlbireo(player)
 	end
 end
 
+---Check any player has Winter Albireo, or playing as Tainted Richer
+---@return boolean hasAlbireo
+---@return boolean onlyTaintedRicher
 function wakaba:anyPlayerHasAlbireo()
 	local hasAlbireo = false
 	local onlyTaintedRicher = true
@@ -120,12 +126,18 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 			targetDesc = level:GetRoomByIdx(index)
 			targetDesc.Data = config
 			targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
+			targetDesc.Flags = targetDesc.Flags | RoomDescriptor.FLAG_MAMA_MEGA
 			table.insert(wakaba.minimapRooms, index)
 		else
 		end
 	elseif targetDesc.Data.Type == RoomType.ROOM_TREASURE then
 		targetDesc.Data = config
 		table.insert(wakaba.minimapRooms, roomIndex)
+		targetDesc.Flags = targetDesc.Flags | RoomDescriptor.FLAG_MAMA_MEGA
+		if game:GetFrameCount() <= 1 then
+			local portal = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PORTAL_TELEPORT, 1000 + targetDesc.SafeGridIndex, isc:gridCoordinatesToWorldPosition(3, 0), Vector.Zero, nil)
+			targetDesc.Flags = targetDesc.Flags | RoomDescriptor.FLAG_PORTAL_LINKED
+		end
 	end
 
 	if StageAPI then
@@ -328,7 +340,7 @@ function wakaba:NewRoom_WinterAlbireo()
 		end
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
-			if door and door.TargetRoomType ~= RoomType.ROOM_SECRET and door.TargetRoomType ~= RoomType.ROOM_SUPERSECRET then
+			if door and door.TargetRoomType ~= RoomType.ROOM_SECRET and door.TargetRoomType ~= RoomType.ROOM_SUPERSECRET and door.TargetRoomType ~= RoomType.ROOM_ULTRASECRET and door.TargetRoomType ~= RoomType.ROOM_CURSE then
 				local doorSprite = door:GetSprite()
 				wakaba:ApplyDoorGraphics(door)
 				doorSprite:Play(room:IsClear() and "Opened" or "Closed")
@@ -343,7 +355,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
 function wakaba:TrySetAlbireoRoomDoor()
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()
-	if room:GetType() ~= RoomType.ROOM_SECRET then
+	if room:GetType() ~= RoomType.ROOM_SECRET and room:GetType() ~= RoomType.ROOM_CURSE then
 		for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 			local door = room:GetDoor(i)
 			if door and door.TargetRoomIndex then
