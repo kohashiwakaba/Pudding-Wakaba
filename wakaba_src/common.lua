@@ -1182,7 +1182,7 @@ end
 
 ---gets a target used by Marked, or Eye of Occult for certain synergies
 ---@param player EntityPlayer
----@return Entity
+---@function
 function wakaba:GetMarkedTarget(player)
 	local occults = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.OCCULT_TARGET)
 	for _, target in ipairs(occults) do
@@ -1202,9 +1202,49 @@ function wakaba:GetMarkedTarget(player)
 end
 
 ---@param itemID CollectibleType
----@return boolean
+---@function
 function wakaba:isActiveItem(itemID)
 	local itemConfig = Isaac.GetItemConfig():GetCollectible(itemID)
 	if not itemConfig then return false end
 	return itemConfig:IsCollectible() and itemConfig.Type == ItemType.ITEM_ACTIVE
+end
+
+---From Epiphany, get random entry from table
+---@param list table
+---@param rng RNG
+---@param number integer
+---@function
+function wakaba:getRandomEntry(list, rng, number)
+	if number > #list then
+		return list
+	end
+	local newList = {}
+	if not rng then
+		rng = RNG()
+		rng:SetSeed(Random(), 42)
+	end
+	for _ = 1, number do
+		local Index = RNG:RandomInt(#list) + 1
+		table.insert(newList, list[Index])
+		table.remove(list, Index)
+		table.sort(list)
+	end
+
+	return newList
+end
+
+---comment
+---@param collectiblesOnly boolean
+---@function
+function wakaba:getSelectionPickups(collectiblesOnly)
+	local roomEntities = wakaba:GetRoomEntities()
+	local selections = {}
+	for _, e in ipairs(roomEntities) do
+		if e:ToPickup() and e:ToPickup().OptionsPickupIndex ~= 0 then
+			if not (collectiblesOnly and e.Variant ~= PickupVariant.PICKUP_COLLECTIBLE) then
+				table.insert(selections, e:ToPickup())
+			end
+		end
+	end
+	return selections
 end

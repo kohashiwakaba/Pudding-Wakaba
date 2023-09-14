@@ -81,7 +81,7 @@ function wakaba:initMurasame(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
-	
+
 end
 
 function wakaba:updateMurasame(familiar)
@@ -99,8 +99,8 @@ function wakaba:updateMurasame(familiar)
 		if familiar.FireCooldown <= 0 then
 			local tear_vector = nil
 			if Isaac.CountEnemies() > 0 then
-				if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then 
-					autoaim = true 
+				if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
+					autoaim = true
 				end
 				if autoaim then
 					local enemy = wakaba:findNearestEntityByPartition(familiar, EntityPartition.ENEMY)
@@ -192,7 +192,7 @@ function wakaba:updateMurasame(familiar)
 			end
 			nontear = true
 		end
-		
+
 		if --[[ not nontear and ]] (player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) or player:HasWeaponType(WeaponType.WEAPON_FETUS)) and fData.wakaba.dashcountdown > 11 then
 			local repeatCount = player:HasWeaponType(WeaponType.WEAPON_FETUS) and 1 or 13
 			for i = 0, repeatCount do
@@ -252,7 +252,7 @@ function wakaba:updateMurasame(familiar)
 		local grid = wakaba.G:GetRoom():GetGridEntityFromPos(familiar.Position)
 		if grid then
 			local gridtype = grid:GetType()
-			if (gridtype >= GridEntityType.GRID_ROCK and gridtype <= GridEntityType.GRID_ROCK_ALT) 
+			if (gridtype >= GridEntityType.GRID_ROCK and gridtype <= GridEntityType.GRID_ROCK_ALT)
 			or gridtype == GridEntityType.GRID_ROCK_SS
 			or gridtype == GridEntityType.GRID_ROCK_SPIKED
 			or gridtype == GridEntityType.GRID_ROCK_ALT2
@@ -393,7 +393,52 @@ local function CheckTears()
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, CheckTears)
 
+local function getSelectionItems()
+	local roomEntities = wakaba:GetRoomEntities()
+	local selections = {}
+	for _, e in ipairs(roomEntities) do
+		if e:ToPickup() and e:ToPickup().OptionsPickupIndex ~= 0 then
+			table.insert(selections, e:ToPickup())
+		end
+	end
+	return selections
+end
 
+function wakaba:NewRoom_Murasame()
+	local murasame_count = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.MURASAME)
+	if murasame_count <= 1 then return end
+	local murasame_players = {}
+	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+		if player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) then
+			table.insert(murasame_players, player)
+		elseif player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
+			table.insert(murasame_players, player)
+			murasame_count = murasame_count + 1
+		end
+	end)
+
+	local roomDesc = wakaba.G:GetLevel():GetCurrentRoomDesc()
+	local room = wakaba.G:GetRoom()
+	local player = murasame_players[1]
+	if roomDesc.SafeGridIndex == GridRooms.ROOM_ANGEL_SHOP_IDX then
+		for i = 1, (murasame_count - 1) do
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_COUPON, UseFlag.USE_NOANIM)
+		end
+	elseif roomDesc.SafeGridIndex == GridRooms.ROOM_DEVIL_IDX then
+		if room:GetType() == RoomType.ROOM_DEVIL then
+			for i = 1, (murasame_count - 1) do
+				player:UseActiveItem(CollectibleType.COLLECTIBLE_COUPON, UseFlag.USE_NOANIM)
+			end
+		elseif room:GetType() == RoomType.ROOM_ANGEL then
+			local selections = wakaba:getSelectionPickups()
+			local filtered = wakaba:getRandomEntry(selections, player:GetCollectibleRNG(wakaba.Enums.Collectibles.MURASAME), (murasame_count - 1))
+			for _, e in ipairs(filtered) do
+				e.OptionsPickupIndex = 0
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Murasame)
 
 
 
