@@ -8,6 +8,7 @@ local function activeShieldForPlayer(player, count)
 	end
 end
 function mantlemod:activeShield()
+	if Game():GetRoom():GetFrameCount() ~= 1 then return end
 	local hasbeast = false
 	for _, entity in pairs(Isaac.FindByType(EntityType.ENTITY_BEAST, -1, -1, false, false)) do
 		hasbeast = wakaba.state.options.beastblanket and true
@@ -56,7 +57,7 @@ function mantlemod:activeShield()
 		end ]]
 	end
 end
-mantlemod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mantlemod.activeShield)
+mantlemod:AddCallback(ModCallbacks.MC_POST_UPDATE, mantlemod.activeShield)
 
 function mantlemod:activeShieldForLevel(curse)
 	for num = 1, wakaba.G:GetNumPlayers() do
