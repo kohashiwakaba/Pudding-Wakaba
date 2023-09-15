@@ -1248,3 +1248,11 @@ function wakaba:getSelectionPickups(collectiblesOnly)
 	end
 	return selections
 end
+
+---Getting pickup index from InitSeed
+---Normally, InitSeed isn't enough to determine pickup index, but only use this for now to prevent extreme lags in such as Death Certificate area.
+---@param pickup EntityPickup
+---@function
+function wakaba:getPickupIndex(pickup)
+	return tostring(pickup.InitSeed)
+end
