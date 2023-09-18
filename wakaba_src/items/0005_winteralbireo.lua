@@ -277,10 +277,14 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 	end
 end)
 
+
+local extraItemSpawned = 0
+
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 	if catchDebugRoom then
 		catchDebugRoom = nil
 	end
+	extraItemSpawned = 0
 end)
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
@@ -374,3 +378,20 @@ function wakaba:InitCrystalRestock_WinterAlbireo(slot)
 	end
 end
 wakaba:AddCallback(wakaba.Callback.PRE_EVALUATE_CRYSTAL_RESTOCK, wakaba.InitCrystalRestock_WinterAlbireo)
+
+function wakaba:SlotSpawn_WinterAlbireo(entype, var, subtype, grindex, seed)
+	if var ~= 14 then return end
+	if not wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then return end
+	local count = 0
+	wakaba:ForAllPlayers(function(player)
+		count = count + player:GetCollectibleNum(wakaba.Enums.Collectibles.WINTER_ALBIREO)
+	end)
+	print("extraItemSpawned :", extraItemSpawned, "count :", (count-1))
+	if extraItemSpawned <= (count - 1) then
+		extraItemSpawned = extraItemSpawned + 1
+		return {5, 100, 0}
+	else
+		return {999, 175, 0}
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.SlotSpawn_WinterAlbireo, EntityType.ENTITY_SLOT)
