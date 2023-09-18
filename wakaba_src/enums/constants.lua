@@ -211,9 +211,10 @@ wakaba.Enums.Trinkets = {
 	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
 	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
 
+	HIGHEST_ID = Isaac.GetTrinketIdByName("Eternity Cookie"),
 }
 
---[[ 
+--[[
 wakaba.Enums.Trackers = {
 	WOMB = Isaac.GetTrinketIdByName("WAKABA_WOMB_TRACKER"), -- Determine achievements
 	HUSH = Isaac.GetTrinketIdByName("WAKABA_HUSH_TRACKER"), -- Determine overall Void Portals
@@ -243,6 +244,20 @@ wakaba.Enums.Effects = {
 wakaba.Enums.Pickups = {
 	CLOVER_CHEST = Isaac.GetEntityVariantByName("Clover Chest"),
 
+	WAKABA_ITEM_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Item Spawner"),
+	WAKABA_TRINKET_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Trinket Spawner"),
+	WAKABA_TICKET_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Ticket Spawner"),
+}
+
+-- 와카바 모드 특수 장애물
+wakaba.Enums.GridVars = {
+	--[[
+		Question Block
+	 ]]
+	QUESTION_BLOCK = 1983,
+	--[[
+		Bocchi the Rock
+	 ]]
 }
 
 -- 와카바 모드 코인 타입 : CoinSubType 위치에 사용
@@ -327,6 +342,14 @@ wakaba.Enums.CrystalRestockTypes = {
 	[wakaba.Enums.CrystalRestockSubType.PRESTIGE] = 2,
 	[wakaba.Enums.CrystalRestockSubType.RIRA] = 5,
 	[wakaba.Enums.CrystalRestockSubType.YELLOW] = 5,
+}
+
+	[2] = wakaba.Enums.Cards.CARD_CRANE_CARD,
+	[3] = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
+	[4] = wakaba.Enums.Cards.CARD_DREAM_CARD,
+	[5] = wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
+	[6] = wakaba.Enums.Cards.CARD_VALUT_RIFT,
+	[7] = wakaba.Enums.Cards.CARD_TRIAL_STEW,
 }
 
 wakaba.Magnet = {}

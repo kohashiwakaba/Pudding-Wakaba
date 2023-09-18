@@ -164,4 +164,15 @@
 	<!-- Lunar Damocles -->
 	<entity anm2path="wakaba_lunar_damocles.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lunar Damocles" tags="uniquefamiliar" numGridCollisionPoints="12" shadowSize="10" stageHP="0" variant="4106"/>
 
+	<!-- Room Spawners -->
+	<entity anm2path="wakaba_invalid.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Wakaba Item Spawner" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="3900">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+	<entity anm2path="wakaba_invalid.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Wakaba Trinket Spawner" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="3901">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+	<entity anm2path="wakaba_invalid.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Wakaba Ticket Spawner" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="3902">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
 </entities>

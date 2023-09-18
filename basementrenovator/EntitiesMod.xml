@@ -13,7 +13,182 @@
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="4" Image="wakaba/crystal_restock_rira.png" Name="Richer's Crystal Restock (rira)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="5" Image="wakaba/crystal_restock_yellow.png" Name="Richer's Crystal Restock (yellow)"/>
   <!-- Collectibles -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="0" Name="wakaba Collectibles (Random)" Image=""/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1" Name="Wakaba's Blessing" Image="wakaba/collectibles/wakabablessing.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="2" Name="Wakaba's Nemesis" Image="wakaba/collectibles/wakabanemesis.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="3" Name="Eat Heart" Image="wakaba/collectibles/eatheart.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="4" Name="Book of Forgotten" Image="wakaba/collectibles/bookofforgotten.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="5" Name="D-Cup Ice Cream" Image="wakaba/collectibles/dcupicecream.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="6" Name="Mysterious game CD" Image="wakaba/collectibles/gamecd.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="7" Name="Wakaba's Pendant" Image="wakaba/collectibles/wakabapendant.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="8" Name="Secret Card" Image="wakaba/collectibles/secretcard.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="9" Name="Plumy" Image="wakaba/collectibles/plumy.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="10" Name="Executioner" Image="wakaba/collectibles/executioner.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="11" Name="Revenge Fruit" Image="wakaba/collectibles/revengefruit.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="12" Name="Return Postage" Image="wakaba/collectibles/returnpostage.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="13" Name="Wakaba's Uniform" Image="wakaba/collectibles/schooluniform.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="14" Name="New Year's Eve Bomb" Image="wakaba/collectibles/newyearbomb.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="15" Name="Eye of Clock" Image="wakaba/collectibles/eyeofclock.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="16" Name="Lil Wakaba" Image="wakaba/collectibles/lilwakaba.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="17" Name="Counter" Image="wakaba/collectibles/counter.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="18" Name="Wakaba's Double Dreams" Image="wakaba/collectibles/doubledreams.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="19" Name="Wakaba's 6'o Clock Curfew" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="20" Name="Wakaba's 9'o Clock Curfew" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="21" Name="Eden's Sticky Note" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="22" Name="D6 Plus" Image="wakaba/collectibles/d6plus.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="23" Name="D6 Chaos" Image="wakaba/collectibles/d6chaos.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="24" Name="Lil Moe" Image="wakaba/collectibles/lilmoe.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="25" Name="Book of Shiori" Image="wakaba/collectibles/bookofshiori.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="26" Name="Shiori's Red Bookmark" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="27" Name="Shiori's Blue Bookmark" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="28" Name="Shiori's Yellow Bookmark" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="29" Name="Book of Focus" Image="wakaba/collectibles/bookoffocus.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="30" Name="Shiori's Bottle of Runes" Image="wakaba/collectibles/deckofrunes.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="31" Name="Micro Doppelganger" Image="wakaba/collectibles/microdoppelganger.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="32" Name="Book of Silence" Image="wakaba/collectibles/bookofsilence.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="33" Name="Vintage Threat" Image="wakaba/collectibles/vintagethreat.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="34" Name="Book of Conquest" Image="wakaba/collectibles/bookofconquest.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="35" Name="Book of The God" Image="wakaba/collectibles/bookofthegod.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="36" Name="Grimreaper Defender" Image="wakaba/collectibles/grimreaperdefender.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="37" Name="Minerva's Aura" Image="wakaba/collectibles/minervaaura.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="38" Name="Book of The Fallen" Image="wakaba/collectibles/bookofthefallen.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="39" Name="Maijima Mythology" Image="wakaba/collectibles/maijimamythology.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="40" Name="Book of Trauma" Image="wakaba/collectibles/bookoftrauma.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="41" Name="Apollyon Crisis" Image="wakaba/collectibles/apollyoncrisis.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="42" Name="Lil Shiva" Image="wakaba/collectibles/lilshiva.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="43" Name="Neko Figure" Image="wakaba/collectibles/nekofigure.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="44" Name="The Winter Albireo" Image="wakaba/collectibles/winteralbireo.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="45" Name="Deja Vu" Image="wakaba/collectibles/dejavu.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="46" Name="Lil Mao" Image="wakaba/collectibles/lilmao.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="47" Name="Isekai Definition" Image="wakaba/collectibles/isekaidefinition.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="48" Name="Balance ecnalaB" Image="wakaba/collectibles/balance.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="49" Name="Moe's Muffin" Image="wakaba/collectibles/moemuffin.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="50" Name="Concentration" Image="wakaba/collectibles/concentration.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="51" Name="Lunar Stone" Image="wakaba/collectibles/lunarstone.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="52" Name="Elixir of Life" Image="wakaba/collectibles/elixiroflife.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="53" Name="Flash Shift" Image="wakaba/collectibles/flashshift.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="54" Name="Beetlejuice" Image="wakaba/collectibles/beetlejuice.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="55" Name="Magma Blade" Image="wakaba/collectibles/magmablade.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="56" Name="Murasame" Image="wakaba/collectibles/murasame.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="57" Name="Nasa Lover" Image="wakaba/collectibles/nasalover.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="58" Name="Question Block" Image="wakaba/collectibles/questionblock.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="59" Name="Arcane Crystal" Image="wakaba/collectibles/arcanecrystal.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="60" Name="Advanced Crystal" Image="wakaba/collectibles/advancedcrystal.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="61" Name="Mystic Crystal" Image="wakaba/collectibles/mysticcrystal.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="62" Name="Red Corruption" Image="wakaba/collectibles/redcorruption.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="63" Name="Syrup" Image="wakaba/collectibles/syrup.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="64" Name="Phantom Cloak" Image="wakaba/collectibles/phantomcloak.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="65" Name="3D Printer" Image="wakaba/collectibles/3dprinter.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="66" Name="Clensing Foam" Image="wakaba/collectibles/clensingfoam.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="67" Name="Curse of The Tower 2" Image="wakaba/collectibles/curseofthetower2.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="68" Name="Anti Balance" Image="wakaba/collectibles/antibalance.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="69" Name="Venom Incantation" Image="wakaba/collectibles/venomincantation.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="70" Name="Double Invader" Image="wakaba/collectibles/doubleinvader.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="71" Name="Firefly Lighter" Image="wakaba/collectibles/fireflylighter.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="72" Name="Plasma Beam" Image="wakaba/collectibles/plasmabeam.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="73" Name="See des Bischofs" Image="wakaba/collectibles/lakeofbishop.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="74" Name="Jar of Clover" Image="wakaba/collectibles/jarofclover.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="75" Name="Bunny Parfait" Image="wakaba/collectibles/bunnyparfait.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="76" Name="Caramella Pancake" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="77" Name="Power Bomb" Image="wakaba/collectibles/powerbomb.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="78" Name="Lunar Damocles" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="79" Name="Rabbit Ribbon" Image="wakaba/collectibles/rabbitribbon.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="80" Name="Sweets Catalog" Image="wakaba/collectibles/sweetscatalog.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="81" Name="Richer's Uniform" Image="wakaba/collectibles/richeruniform.png"/>
+	<entity Kind="wakaba" Group="Reserved" ID="5" Variant="3900" Subtype="82" Name="Chimaki" Image="wakaba/collectibles/chimaki_placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="83" Name="Lil Richer" Image="wakaba/collectibles/lilricher.png"/>
+	<entity Kind="wakaba" Group="Reserved" ID="5" Variant="3900" Subtype="84" Name="Lil Rira" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="85" Name="Self Burning" Image="wakaba/collectibles/selfburning.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="86" Name="Water-Flame" Image="wakaba/collectibles/waterflame.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="87" Name="Easter Egg" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="88" Name="Crisis Boost" Image="wakaba/collectibles/crisisboost.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="89" Name="Prestige Pass" Image="wakaba/collectibles/prestigepass.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="90" Name="Onsen Towel" Image="wakaba/collectibles/onsentowel.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="91" Name="Cunning Paper" Image="wakaba/collectibles/cunningpaper.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="92" Name="Trial Stew" Image="wakaba/collectibles/__placeholder.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="93" Name="Succubus Blanket" Image="wakaba/collectibles/trialstew.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="94" Name="Mint Chocolate Ice-cream" Image="wakaba/collectibles/mintchocolate.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="95" Name="Wakaba's Hairpin" Image="wakaba/collectibles/wakabahairpin.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="96" Name="Richer's Flipper" Image="wakaba/collectibles/richerflipper.png"/>
+	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="97" Name="Broken Toolbox" Image="wakaba/collectibles/brokentoolbox.png"/> -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="98" Name="POW Block" Image="wakaba/collectibles/powblock.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="99" Name="MOd Block" Image="wakaba/collectibles/modblock.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="100" Name="Rira's Bra" Image="wakaba/collectibles/rirabra.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="101" Name="Secret Door" Image="wakaba/collectibles/secretdoor.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="102" Name="Richer's Necklace" Image="wakaba/collectibles/richernecklace.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="103" Name="Rira's Coat" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="104" Name="Rira's Swimsuit" Image="wakaba/collectibles/__placeholder.png"/>
+<!--
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="105" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="106" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="107" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="108" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="109" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="110" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="111" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="112" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="113" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="114" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="115" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="116" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="117" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="118" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="119" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
+ -->
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1023" Name="Clover Shard" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1024" Name="Wakaba Duality" Image="wakaba/collectibles/__placeholder.png"/>
   <!-- Trinkets -->
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="0" Name="wakaba Trinkets (Random)" Image=""/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="1" Name="Bring me there" Image="wakaba/trinkets/bringmethere.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="2" Name="Clover" Image="wakaba/trinkets/clover.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="3" Name="Bitcoin II" Image="wakaba/trinkets/bitcoin.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="4" Name="Magnet Heaven" Image="wakaba/trinkets/magnetheaven.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="5" Name="Hard Book" Image="wakaba/trinkets/hardbook.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="6" Name="Determination Ribbon" Image="wakaba/trinkets/determinationribbon.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="7" Name="Bookmark Bag" Image="wakaba/trinkets/bookmarkbag.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="8" Name="Ring of Jupiter" Image="wakaba/trinkets/ringofjupiter.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="9" Name="Dimension Cutter" Image="wakaba/trinkets/dimensioncutter.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="10" Name="Delimiter" Image="wakaba/trinkets/delimiter.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="11" Name="Range OS" Image="wakaba/trinkets/rangeos.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="12" Name="Siren's Badge" Image="wakaba/trinkets/sirenbadge.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="13" Name="Star Reversal" Image="wakaba/trinkets/starreversal.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="14" Name="Aurora Gem" Image="wakaba/trinkets/auroragem.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="15" Name="Kuromi Card" Image="wakaba/trinkets/kuromicard.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="16" Name="Isaac Cartridge" Image="wakaba/trinkets/isaaccartridge.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="17" Name="Afterbirth Cartridge" Image="wakaba/trinkets/afterbirthcartridge.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="18" Name="Repentance Cartridge" Image="wakaba/trinkets/repentancecartridge.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="19" Name="Mistake" Image="wakaba/trinkets/mistake.png"/>
+	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="20" Name="Eternity Cookie" Image="wakaba/trinkets/eternitycookie.png"/>
   <!-- Cards -->
-  <!-- Wakaba Tickets -->
+  <!-- Runes -->
+<!--
+	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="1" Name="Soul of Wakaba (Angel)" Image="wakaba/cards/wakabasoul.png"/>
+	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="2" Name="Soul of Wakaba (Devil)" Image="wakaba/cards/wakabasoul2.png"/>
+	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="3" Name="Soul of Shiori" Image="wakaba/cards/shiorisoul.png"/>
+	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="4" Name="Soul of Tsukasa" Image="wakaba/cards/tsukasasoul.png"/>
+	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="5" Name="Soul of Richer" Image="wakaba/cards/richersoul.png"/>
+	 -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="6" Name="Soul of Rira" Image="wakaba/cards/rirasoul.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="21" Name="Essence of Wakaba" Image="wakaba/cards/wakabaessence.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="22" Name="Essence of Shiori" Image="wakaba/cards/shioriessence.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="23" Name="Essence of Tsukasa" Image="wakaba/cards/tsukasaessence.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="24" Name="Essence of Richer" Image="wakaba/cards/richeressence.png"/> -->
+	<!-- <entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="25" Name="Essence of Rira" Image="wakaba/cards/riraessence.png"/> -->
+
+	<!-- Wakaba Tickets -->
+<!--
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="1" Name="Minerva Ticket" Image="wakaba/cards/minervaticket.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="2" Name="Crane Card" Image="wakaba/cards/cranecard.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="3" Name="Confessional Card" Image="wakaba/cards/confessionalcard.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="4" Name="Black Joker" Image="wakaba/cards/blackjoker.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="5" Name="White Joker" Image="wakaba/cards/whitejoker.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="6" Name="Color Joker" Image="wakaba/cards/colorjoker.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="7" Name="Wakaba's Dream Card" Image="wakaba/cards/dreamcard.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="8" Name="Unknown Bookmark" Image="wakaba/cards/bookmark.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="9" Name="Queen of Spades" Image="wakaba/cards/queenofspades.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="10" Name="Valut Rift" Image="wakaba/cards/valutrift.png"/>
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3902" Subtype="11" Name="Trial Stew" Image="wakaba/cards/trialstew.png"/>
+
+	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3904" Subtype="1" Name="Return Token" Image="wakaba/cards/returntoken.png"/>
+	 -->
 </data>
