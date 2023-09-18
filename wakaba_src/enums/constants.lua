@@ -258,6 +258,7 @@ wakaba.Enums.GridVars = {
 	--[[
 		Bocchi the Rock
 	 ]]
+	BOCCHI_THE_ROCK = 221,
 }
 
 -- 와카바 모드 코인 타입 : CoinSubType 위치에 사용
@@ -344,6 +345,9 @@ wakaba.Enums.CrystalRestockTypes = {
 	[wakaba.Enums.CrystalRestockSubType.YELLOW] = 5,
 }
 
+wakaba.Spawner = {}
+wakaba.Spawner.PocketItemLookup = {
+	[1] = wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 	[2] = wakaba.Enums.Cards.CARD_CRANE_CARD,
 	[3] = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
 	[4] = wakaba.Enums.Cards.CARD_DREAM_CARD,
