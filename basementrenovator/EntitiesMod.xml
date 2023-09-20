@@ -118,8 +118,8 @@
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="102" Name="Richer's Necklace" Image="wakaba/collectibles/richernecklace.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="103" Name="Rira's Coat" Image="wakaba/collectibles/__placeholder.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="104" Name="Rira's Swimsuit" Image="wakaba/collectibles/__placeholder.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="105" Name="Rira's Bandage" Image="wakaba/collectibles/rirabandage.png"/>
 <!--
-	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="105" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="106" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="107" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="108" Name="wakabacollectible" Image="wakaba/collectibles/__placeholder.png"/>

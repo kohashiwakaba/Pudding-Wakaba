@@ -957,6 +957,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "너무 젖어있는 눈물",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
+		itemName = "리라의 반창고",
+		description = "{{Collectible486}} 스테이지 진입 시 피격 시 효과를 6회 발동합니다.",
+		queueDesc = "그녀의 기운이 느껴져",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

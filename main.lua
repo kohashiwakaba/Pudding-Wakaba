@@ -1400,6 +1400,7 @@ include('wakaba_src.items.1077_rirabra')
 include('wakaba_src.items.1078_secretdoor')
 include('wakaba_src.items.1079_bunnyparfait')
 include('wakaba_src.items.1086_richernecklace')
+include('wakaba_src.items.1088_rirabandage')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')

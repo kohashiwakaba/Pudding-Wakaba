@@ -135,7 +135,7 @@ wakaba.Enums.Collectibles = {
 	RIRAS_SWIMSUIT = Isaac.GetItemIdByName("Rira's Swimsuit"),
 	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
 	SECRET_DOOR = Isaac.GetItemIdByName("Secret Door"),
-	--RIRAS_BANDAGE = Isaac.GetItemIdByName("Chimaki"),
+	RIRAS_BANDAGE = Isaac.GetItemIdByName("Rira's Bandage"),
 	POW_BLOCK = Isaac.GetItemIdByName("POW Block"),
 	MOD_BLOCK = Isaac.GetItemIdByName("MOd Block"),
 	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
@@ -428,6 +428,9 @@ wakaba.Enums.Constants = {
 
 	SOUL_OF_RICHER_WISP_COUNT = 6,
 	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
+
+	RIRA_BANDAGE_BASE = 4,
+	RIRA_BANDAGE_EXTRA = 2,
 
 	MAGNET_HEAVEN_TIMER = 150,
 

@@ -1633,6 +1633,11 @@ wakaba.encyclopediadesc.desc.collectibles = {
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			},
 		},
+		RIRAS_BANDAGE = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			},
+		},
 	},
 
 	-----------------------------------------------------------------------------
@@ -4816,6 +4821,13 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.RIRAS_SWIMSUIT,
+		Hide = true,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.RIRAS_BANDAGE,
 		Hide = true,
 	})
 
