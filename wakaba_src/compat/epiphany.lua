@@ -479,6 +479,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			})
 
 			--#region Multitool
+			--[[
 			local multitool = Mod.Pickup.MULTITOOL.ChestOpenFunctions
 
 			wakaba:DictionaryBulkAppend(multitool, {
@@ -486,7 +487,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 				end,
 			})
-
+			]]
 			--#endregion
 
 			local ShopItemType = Mod.Item.TURNOVER.ShopItemType
