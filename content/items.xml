@@ -155,7 +155,7 @@
 	<trinket cache="all" name="Ring of Jupiter" description="We become one" gfx="ringofjupiter.png" />
 	<trinket name="Dimension Cutter" description="Voided Memory" gfx="dimensioncutter.png" tags=""/>
 	<trinket name="Delimiter" description="Weaker rocks" gfx="delimiter.png" tags="nogreed"/>
-	<trinket cache="damage range" name="Range OS" description="Make deeper towards them" gfx="rangeos.png" />
+	<trinket name="Range OS" description="Make deeper towards them" gfx="rangeos.png" cache="damage range" />
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
 	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" />
@@ -167,5 +167,6 @@
 
 	<trinket name="Mistake" description="Even chef Richer is not perfect" gfx="mistake.png" />
 	<trinket name="Eternity Cookie" description="Long lasting basics" gfx="eternitycookie.png" />
+	<trinket name="Richer's Report Card" description="Less mistake, less penalties" gfx="richerreportcard.png" cache="luck" persistent="true"/>
 
 </items>

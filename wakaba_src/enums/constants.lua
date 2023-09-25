@@ -210,8 +210,9 @@ wakaba.Enums.Trinkets = {
 	MISTAKE = Isaac.GetTrinketIdByName("Mistake"),
 	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
 	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
+	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
 
-	HIGHEST_ID = Isaac.GetTrinketIdByName("Eternity Cookie"),
+	HIGHEST_ID = Isaac.GetTrinketIdByName("Richer's Report Card"),
 }
 
 --[[
@@ -429,6 +430,9 @@ wakaba.Enums.Constants = {
 	SOUL_OF_RICHER_WISP_COUNT = 6,
 	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
 
+	REPORT_CARD_BASE_LUCK = 0,
+	REPORT_CARD_EXTRA_LUCK = 5,
+
 	RIRA_BANDAGE_BASE = 4,
 	RIRA_BANDAGE_EXTRA = 2,
 
@@ -473,6 +477,7 @@ wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {append = true},
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {append = true},
+	[wakaba.Enums.Trinkets.REPORT_CARD] = 5,
 }
 
 wakaba.RoomIDs = {

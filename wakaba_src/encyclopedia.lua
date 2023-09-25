@@ -2925,6 +2925,19 @@ if Encyclopedia then
 			},
 		},
 
+		REPORT_CARD = {
+			{ -- Effects
+				{str = "Effects", fsize = 2, clr = 3, halign = 0},
+				{str = "+5 Luck."},
+				{str = "If Isaac takes non-self damage while holding it, -0.5 Luck."},
+				{str = "This penalty cannot exceed below Luck stat granted by the trinket."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "This trinket is minor version of Perfection trinket, from Repentance DLC."},
+			},
+		},
+
 		TRINKET_BITCOIN = {
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -5440,6 +5453,14 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Trinkets.BRING_ME_THERE,
 		WikiDesc = Wiki.BRING_ME_THERE,
+	})
+
+	--Richer's Report Card
+	Encyclopedia.AddTrinket({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Trinkets.REPORT_CARD,
+		WikiDesc = Wiki.REPORT_CARD,
 	})
 
 

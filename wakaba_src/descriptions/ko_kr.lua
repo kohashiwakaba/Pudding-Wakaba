@@ -1575,6 +1575,15 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "영원한 기초",
 	},
+	[wakaba.Enums.Trinkets.REPORT_CARD] = {
+		itemName = "리셰의 성적표",
+		description = ""
+		.. "#↑ {{LuckSmall}}행운 +5"
+		.. "#↓ 패널티 피격 시 {{LuckSmall}}증가한 행운 -0.5"
+		.. "#스테이지 진입 시 감소된 행운이 돌아옵니다."
+		.. "{{CR}}",
+		queueDesc = "맞으면 점수 깎인다",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {

@@ -1444,6 +1444,14 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Timed pickups no longer disappear"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.REPORT_CARD] = {
+		itemName = "Richer's Report Card",
+		description = ""
+		.. "#↑ {{Luck}} +5 Luck"
+		.. "#↓ Taking damage reduces {{Luck}} -0.5 Luck (does not exceed minimum)"
+		.. "#Reduced Luck is restored on new floor"
+		.. "{{CR}}",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {
