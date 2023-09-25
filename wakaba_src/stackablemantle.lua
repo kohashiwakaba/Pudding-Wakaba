@@ -16,7 +16,7 @@ mantlemod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mantlemod.activeShieldPreL
 function mantlemod:activeShieldLevel()
 	local level = Game():GetLevel()
 	local room = Game():GetRoom()
-	if level:GetCurrentRoomIndex ~= 84 or room:GetFrameCount() ~= 1 or not room:IsFirstVisit() then return end
+	if level:GetCurrentRoomIndex() ~= 84 or room:GetFrameCount() ~= 1 or not room:IsFirstVisit() then return end
 	mantlemod:activeShield()
 	mantlemod:RemoveCallback(ModCallbacks.MC_POST_UPDATE, mantlemod.activeShieldLevel)
 end
