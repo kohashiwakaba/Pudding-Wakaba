@@ -119,7 +119,7 @@ function wakaba:PNPCUpdate_PhantomCloak(npc)
 		if target:ToPlayer() and wakaba:HasShiori(target:ToPlayer()) then
 			npc:AddEntityFlags(EntityFlag.FLAG_SLOW)
 		end
-		return true
+		--return true
 	elseif npc:GetData().wakaba.clocked then 
 		npc:GetData().wakaba.clocked = false
 		npc:ClearEntityFlags(EntityFlag.FLAG_CONFUSION | EntityFlag.FLAG_SLOW)
