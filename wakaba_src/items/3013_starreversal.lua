@@ -42,13 +42,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_StarR
 function wakaba:PlayerUpdate_StarReversal(player)
 	if not player:IsHoldingItem() and wakaba:PlayerHasSmeltedTrinket(player, wakaba.Enums.Trinkets.STAR_REVERSAL) then
 		local room = wakaba.G:GetRoom()
-		if Input.IsActionPressed(ButtonAction.ACTION_MUTE, player.ControllerIndex) and shouldActivateReversal() then
-			local newPos = Isaac.GetFreeNearPosition(player.Position, 40.0)
+		if Input.IsActionTriggered(ButtonAction.ACTION_MUTE, player.ControllerIndex) and shouldActivateReversal() then
 			local oldTrinketCount = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.STAR_REVERSAL)
 			player:TryRemoveTrinket(wakaba.Enums.Trinkets.STAR_REVERSAL)
 			local newTrinketCount = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.STAR_REVERSAL)
 			for i = 1, (oldTrinketCount - newTrinketCount) do
 				sfx:Play(SoundEffect.SOUND_SOUL_PICKUP, 1, 0, false, 1)
+				local newPos = room:FindFreePickupSpawnPosition(player.Position)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM), newPos, Vector.Zero, nil)
 			end
 		end
