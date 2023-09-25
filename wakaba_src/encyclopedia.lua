@@ -3130,6 +3130,7 @@ if Encyclopedia then
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
 				{str = "Dropping the trinket in a Treasure room exchanges it for Planetarium item."},
 				{str = "The trinket disappears on exchange."},
+				{str = "Pressing Drop button while smelted also exchanges the trinket."},
 			},
 		},
 

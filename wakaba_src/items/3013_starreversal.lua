@@ -42,7 +42,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_StarR
 function wakaba:PlayerUpdate_StarReversal(player)
 	if not player:IsHoldingItem() and wakaba:PlayerHasSmeltedTrinket(player, wakaba.Enums.Trinkets.STAR_REVERSAL) then
 		local room = wakaba.G:GetRoom()
-		if Input.IsActionTriggered(ButtonAction.ACTION_MUTE, player.ControllerIndex) and shouldActivateReversal() then
+		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) and shouldActivateReversal() then
 			local oldTrinketCount = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.STAR_REVERSAL)
 			player:TryRemoveTrinket(wakaba.Enums.Trinkets.STAR_REVERSAL)
 			local newTrinketCount = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.STAR_REVERSAL)

@@ -1418,6 +1418,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Star Reversal",
 		description = ""
 		.. "#Dropping the trinket in a {{TreasureRoom}}Treasure room exchanges it for {{Planetarium}}Planetarium item"
+		.. "#Also works while smelted"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Trinkets.AURORA_GEM] = {

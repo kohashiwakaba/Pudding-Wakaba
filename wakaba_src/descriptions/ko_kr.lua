@@ -1542,6 +1542,7 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 		.. "#!!! 일회용"
 		.. "#{{TreasureRoom}}보물방에서 장신구를 버리면 {{Planetarium}}천체관 아이템으로 바뀝니다."
+		.. "#{{Blank}} (흡수한 상태에서도 교체 버튼을 통해 사용 가능)"
 		.. "{{CR}}",
 		queueDesc = "황금빛 장소로 가져다줘",
 	},
