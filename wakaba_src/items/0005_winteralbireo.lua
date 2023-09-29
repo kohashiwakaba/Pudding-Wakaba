@@ -36,7 +36,7 @@ function wakaba:anyPlayerHasAlbireo()
 	local onlyTaintedRicher = true
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i-1)
-		hasAlbireo = player.Variant == 0 and wakaba:hasAlbireo(player)
+		hasAlbireo = hasAlbireo or (player.Variant == 0 and wakaba:hasAlbireo(player))
 		onlyTaintedRicher = onlyTaintedRicher and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
 	end
 	return hasAlbireo, onlyTaintedRicher
