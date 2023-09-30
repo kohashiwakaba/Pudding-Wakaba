@@ -414,6 +414,9 @@ wakaba.Enums.Constants = {
 	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
 	ELIXIR_MAX_COOLDOWN_DMG = 50, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수
 
+	SOUL_OF_TSUKASA_MINIMUM_TIMER = 30 * 60 * 10, -- 츠카사의 영혼 최소 보존 시간
+	SOUL_OF_TSUKASA_EXTEND_TIMER = 30 * 60 * 5, -- 츠카사의 영혼 중복 사용 시 추가 제공 최소 시간
+
 	RABBIT_RIBBON_BASIC_CHARGES = 12, -- 토끼 리본 기본 보존 충전량
 	RABBIT_RIBBON_EXTRA_CHARGES = 4, -- 토끼 리본 중첩 당 추가 보존 충전량
 
@@ -481,6 +484,14 @@ wakaba.GoldenTrinketData = {
 }
 
 wakaba.RoomIDs = {
+	-- Treasure Rooms given by Rabbit Ribbon
+	MIN_RABBEY_TREASURE_ROOM_ID = 41000,
+	MAX_RABBEY_TREASURE_ROOM_ID = 41036,
+
+	-- Shops given by Rabbit Ribbon
+	MIN_RABBEY_SHOP_ROOM_ID = 41003,
+	MAX_RABBEY_SHOP_ROOM_ID = 41005,
+
 	-- Angel rooms replaced by Wakaba Rooms
 
 	-- Planetariums replaced by Duet Rooms
