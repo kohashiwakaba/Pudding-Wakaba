@@ -1617,6 +1617,7 @@ function wakaba:init(continue)
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
+	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.MURASAME)
 	wakaba:updateHUDPosition()
 end
 
