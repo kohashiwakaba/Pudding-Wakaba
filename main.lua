@@ -1309,6 +1309,7 @@ include('wakaba_src.functions.callbacks_wakaba')
 include('wakaba_src.functions.hudstats')
 include('wakaba_src.functions.hit_counter')
 include('wakaba_src.functions.room_name_display')
+include('wakaba_src.functions.isc_roomgen')
 include('wakaba_src.functions.spawner')
 
 include('wakaba_src.items.0000_blessing')

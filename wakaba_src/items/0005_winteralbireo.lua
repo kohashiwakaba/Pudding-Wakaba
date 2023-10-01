@@ -129,6 +129,19 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 			targetDesc.Flags = targetDesc.Flags | RoomDescriptor.FLAG_MAMA_MEGA
 			table.insert(wakaba.minimapRooms, index)
 		else
+			-- TODO make this to seperate function
+			local candidates = isc:getNewRoomCandidatesForLevel()
+			if #candidates > 0 then
+				local e = isc:getRandomArrayElementAndRemove(candidates, rng)
+				local success = level:MakeRedRoomDoor(e.adjacentRoomGridIndex, e.doorSlot)
+				if success then
+					targetDesc = level:GetRoomByIdx(e.newRoomGridIndex, -1)
+					targetDesc.Data = newRoom.Data
+					targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
+					targetDesc.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
+					table.insert(wakaba.minimapRooms, e.newRoomGridIndex)
+				end
+			end
 		end
 	elseif targetDesc.Data.Type == RoomType.ROOM_TREASURE then
 		targetDesc.Data = config

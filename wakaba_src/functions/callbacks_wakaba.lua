@@ -13,6 +13,8 @@ end
 ---@display wakaba.Callback
 wakaba.Callback = {
 
+	ROOM_GENERATION = {},
+
 	-- ---
 	-- POST_GET_COLLECTIBLE
 	-- ---

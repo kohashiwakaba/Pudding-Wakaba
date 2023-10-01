@@ -150,44 +150,22 @@ function wakaba:RabbitSniperOnDamage_Knife(source, target, data, newDamage, newF
 	return returndata
 end
 
-function wakaba:NewLevel_RabbitRibbon()
-	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
-	if (isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON) or isc:anyPlayerIs(wakaba.Enums.Players.RICHER))
-	and (isc:hasCurse(LevelCurse.CURSE_OF_LABYRINTH) or wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_LABYRINTH))
-	and not wakaba.G:GetLevel():IsAscent() then
-		local rooms = isc:getRooms()
-		local candidates = {}
-		for i, room in ipairs(rooms) do
-			local roomType = isc:getRoomType(room.SafeGridIndex)
-			local roomShape = isc:getRoomShape(room.SafeGridIndex)
-			local allowedDoors = isc:getRoomAllowedDoors(room.SafeGridIndex)
-			--print(roomType, roomShape, allowedDoors.size)
-			if roomType ~= RoomType.ROOM_DEFAULT
-			and roomType ~= RoomType.ROOM_BOSS
-			and roomType ~= RoomType.ROOM_SECRET
-			and roomType ~= RoomType.ROOM_SUPERSECRET
-			and roomShape == RoomShape.ROOMSHAPE_1x1
-			and allowedDoors.size == 4
-			then
-				table.insert(candidates, room)
-			end
-		end
-		for i, room in ipairs(candidates) do
-			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBIT_RIBBON)
-			local newRoomPoint = isc:newRoom(rng)
-			--print(newRoomPoint)
-			if newRoomPoint then
-				isc:setRoomData(newRoomPoint, room.Data)
-			end
-		end
+function wakaba:GC()
+	local candidates = isc:getNewRoomCandidatesForLevel()
+	print(#candidates)
+	for i, e in ipairs(candidates) do
+		print(e.adjacentRoomGridIndex, e.doorSlot, e.newRoomGridIndex)
 		if MinimapAPI then
-			MinimapAPI:LoadDefaultMap()
+			MinimapAPI:AddRoom{
+				id=i,
+				Position=isc:roomGridIndexToVector(e.newRoomGridIndex),
+				Shape=RoomShape.ROOMSHAPE_1x1,
+				PermanentIcons={"TreasureRoom"},
+				DisplayFlags=5,
+			}
 		end
 	end
-
 end
-
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_RabbitRibbon)
 
 function wakaba:NewRoom_RabbitRibbon()
 	if isc:inDeathCertificateArea() then return end
