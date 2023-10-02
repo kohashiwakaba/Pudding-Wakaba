@@ -248,6 +248,8 @@ wakaba.Enums.Pickups = {
 	WAKABA_ITEM_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Item Spawner"),
 	WAKABA_TRINKET_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Trinket Spawner"),
 	WAKABA_TICKET_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Ticket Spawner"),
+
+	WINTER_ALBIREO_EXTRA_SPAWNER = Isaac.GetEntityVariantByName("Wakaba Winter Albireo Extra Spawner"),
 }
 
 -- 와카바 모드 특수 장애물

@@ -191,4 +191,13 @@
 
 	<entity Kind="wakaba" Group="Cards/Wakaba Tickets" ID="5" Variant="3904" Subtype="1" Name="Return Token" Image="wakaba/cards/returntoken.png"/>
 	 -->
+	<!-- Wakaba Utility entities -->
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="1" Name="Winter Albireo Extra Spawner 1" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="2" Name="Winter Albireo Extra Spawner 2" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="3" Name="Winter Albireo Extra Spawner 3" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="4" Name="Winter Albireo Extra Spawner 4" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="5" Name="Winter Albireo Extra Spawner 5" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="6" Name="Winter Albireo Extra Spawner 6" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="7" Name="Winter Albireo Extra Spawner 7" Image=""/>
+	<entity Kind="wakaba" Group="Utils" ID="5" Variant="3903" Subtype="8" Name="Winter Albireo Extra Spawner 8" Image=""/>
 </data>
