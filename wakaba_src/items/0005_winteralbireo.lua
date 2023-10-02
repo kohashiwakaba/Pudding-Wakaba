@@ -394,7 +394,11 @@ function wakaba:PickupSpawn_WinterAlbireo(entype, var, subtype, grindex, seed)
 	local count = 0
 	wakaba:ForAllPlayers(function(player)
 		count = count + player:GetCollectibleNum(wakaba.Enums.Collectibles.WINTER_ALBIREO)
+		if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+			count = count + 1
+		end
 	end)
+	count = count - 1
 	--print("extraItemSpawned :", extraItemSpawned, "count :", (count-1))
 	if subtype > 0 and subtype <= count then
 		return {5, 100, 0}
