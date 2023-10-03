@@ -31,7 +31,7 @@ function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 	local player = entity:ToPlayer()
 	if player:HasCollectible(wakaba.Enums.Collectibles.COUNTER) then
 		local counterslot = wakaba:GetActiveSlot(player, wakaba.Enums.Collectibles.COUNTER)
-		if counterslot ~= nil and player:GetActiveCharge(counterslot) >= 120 and player:GetData().wakabacountertimer == 0 then
+		if counterslot ~= nil and player:GetActiveCharge(counterslot) >= (15 * 8) and player:GetData().wakabacountertimer == 0 then
 			--player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
 			--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, 1)
 			SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
