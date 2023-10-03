@@ -171,7 +171,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Water-Flame",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
-		.. "#On use, spawns copy wisp of the nearest pedestal"
+		.. "#On use, spawns 2 copy wisps of the nearest pedestal"
 		.. "#Only can copy item that can be spawned by {{Collectible712}}Lemegeton"
 		.. "{{CR}}",
 	},

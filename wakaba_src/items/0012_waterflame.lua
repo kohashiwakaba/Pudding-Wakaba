@@ -123,6 +123,8 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 			--player:AnimateCollectible(nearest.SubType, "Pickup", "PlayerPickupSparkle")
 
 			player:AddItemWisp(nearest.SubType, player.Position, true)
+			player:AddItemWisp(nearest.SubType, player.Position, true)
+			player:AnimateCollectible(nearest.SubType, "HideItem", "PlayerPickup")
 		else
 			player:AnimateSad()
 			return {
