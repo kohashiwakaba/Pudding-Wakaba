@@ -1,5 +1,9 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
-[[{FSIZE2}tainted richer
+[[{FSIZE2}v107a patch
+- fixed water-flame, winter albireo
+not available in any item pools
+
+tainted richer
 added shortcut portal that
 leads to tainted richer planetarium
 for first floor
@@ -63,7 +67,7 @@ soul of richer
 with clear rune
 
 magnet heaven (gold)
-- magnetize enemies for 5 secs 
+- magnetize enemies for 5 secs
 on room enter
 
 star reversal
@@ -138,7 +142,7 @@ eternity cookie
 
 {FSIZE2}balance
 duality orders
-now guarantees devil/angel room 
+now guarantees devil/angel room
 for current floor (eucharist + duality)
 horse variation still spawns 2 items
 

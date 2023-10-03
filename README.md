@@ -7,7 +7,7 @@ An anime mod that contains characters from the creator's favorite.
 - 80+ new Items
 - 20+ new Trinkets
 - 20+ new Card/Runes
-- 12 new Pills 
+- 12 new Pills
    - Damage Multiplier Up/Down
    - All Stats Up/Down
    - Trolled!/To the Start!
@@ -16,7 +16,7 @@ An anime mod that contains characters from the creator's favorite.
    - Priest's Blessing/Unholy Curse
 - 19 new Challenges
 
-**Current Version : v107-Richer**(updated time : 2023-10-03)
+**Current Version : v107a-Richer**(updated time : 2023-10-03)
 
 ## Characters
 
@@ -35,7 +35,7 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
     - Stackable Holy Mantle in Pudding & Wakaba only stacks up to 5 Holy Card shields for balance reason.
   - Also allows to activate Blanket for Dogma/The Beast fight.
   - Semi-compatible with Mantle Rework.
-- **Priest's Blessing** 
+- **Priest's Blessing**
   - Adds a pill that grants Holy Mantle shield until getting hit.
 
 ## Curse of Flames (Experimental)
@@ -71,7 +71,7 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
 - Xalum (Retribution) - Major mechanics for custom rooms(for implementation for Tainted Richer planetariums), base format for custom callbacks
 - DeadInfinity - getting current dimension snippet
 - Zamiel, (+ NeoDement) - Isaacscript (+ for player identifier logic)
-- im_tem - Pseudo-Lilith Birtrhright position 
+- im_tem - Pseudo-Lilith Birtrhright position
 - Wofsauge - Pseudo-Dark Arts trails snippet
 - Cadaver: The Rotten Expansion - for implementation for Clover Chest
 - Connor - Hidden Item manager
