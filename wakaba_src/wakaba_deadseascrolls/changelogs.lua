@@ -1,3 +1,96 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
+[[{FSIZE2}tainted richer
+added shortcut portal that
+leads to tainted richer planetarium
+for first floor
+
+all tainted richer planetariums
+now have white fireplace.
+getting winter albireo as tainted richer
+or multiple copies of winter albireo
+as other characters makes
+tainted richer planetariums to spawn
+extra collectibles.
+(limit 2 extra copies for now)
+
+{FSIZE2}general stuff
+changed pickup indexing method
+achievement papers for tainted richer
+completion marks for
+tainted richer now can be recorded
+
+{FSIZE2}items
+???
+???
+
+{FSIZE2}balance
+rabbit ribbon
+- curse of labyrinth buffs now only
+spawns extra treasure, shops.
+-- extra rooms spawned by rabbit ribbon
+will only have room layouts from p&w mod.
+-- rabbit ribbon treasure rooms
+can be appeared normally,
+but shops do not.
+- curse of magical girl now allows
+using blood donation machines,
+curse rooms, sacrifice room spikes.
+-- this does not protect from
+all non-penalty damage sources.
+
+counter
+- increased cooldown from 5 > 8 seconds
+- now fires 1 laser per activation
+
+wakaba's nemesis
+- adjust stats when isaac get items,
+instead of constant checking
+
+murasame
+- now is a passive item,
+removed previous on-use effect
+- adds duality effect, multiple copies make
+random item free for devil/angel shop,
+and remove selection status from
+random item for angel room.
+
+phantom cloak
+- enemies no longer stay dumb while active.
+only get confusion.
+
+soul of richer
+- only grants 3 lemegeton wisps
+with clear rune
+
+magnet heaven (gold)
+- magnetize enemies for 5 secs 
+on room enter
+
+star reversal
+- also allow tainted richer planetariums
+- add option to drop pedestals
+for smelted ones
+
+{FSIZE2}tweaks + fixes
+fixed some achievement papers not appearing
+
+fixed book of shiori room/floor
+synergies not resetting
+
+fixed locked cards/runes appearing
+through rune bag, book of shiori/fruit cake,
+or booster pack.
+
+curse room door images no longer
+being converted to
+tainted richer planetarium door.
+
+fixed wakaba's blessing shield
+not working on starting room.
+
+fixed siren stealing murasame familiar
+
+]])
 
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v106",
 [[{FSIZE2}tainted richer

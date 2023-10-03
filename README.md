@@ -13,11 +13,10 @@ An anime mod that contains characters from the creator's favorite.
    - Trolled!/To the Start!
    - Explosive Diarrhea 2!
    - Social Distance
-   - Flame Princess/Firey Touch
    - Priest's Blessing/Unholy Curse
 - 19 new Challenges
 
-**Current Version : v106-Richer**(updated time : 2023-08-20)
+**Current Version : v107-Richer**(updated time : 2023-10-03)
 
 ## Characters
 
@@ -62,7 +61,7 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
       - Book of Conquest
 - **Mod Compatibility Hack** - allows certain mods make compatible.
 - **Mod Config Menu - Pure** - can configure some mod options.
-- Not compatible with EID Korean.
+- Not compatible with older version of EID Korean.
 
 ## Special Thanks
 - _Kilburn - Tearsup function
