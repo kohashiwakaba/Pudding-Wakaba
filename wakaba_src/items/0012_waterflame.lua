@@ -125,6 +125,11 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 			player:AddItemWisp(nearest.SubType, player.Position, true)
 		else
 			player:AnimateSad()
+			return {
+				Discharge = false,
+				Remove = false,
+				ShowAnim = false,
+			}
 		end
 	end
 end

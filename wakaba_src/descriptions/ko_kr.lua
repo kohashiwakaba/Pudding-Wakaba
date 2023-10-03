@@ -185,7 +185,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "겨울의 알비레오",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{PlanetariumChance}} 가능한 경우, 스테이지 진입 시 리셰의 전용 천체방이 등장합니다."
+		.. "#{{PlanetariumChance}} 가능한 경우, 스테이지 진입 시 Tainted Richer의 전용 천체방이 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "저 너머로 이어져 있어",
 	},
@@ -193,7 +193,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "워터 플레임",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
-		.. "#사용 시 가장 가까이에 있는 패시브 아이템을 흡수하며, 흡수한 패시브의 불꽃을 소환합니다."
+		.. "#사용 시 가장 가까이에 있는 패시브 아이템의 불꽃을 2마리 소환합니다."
+		.. "#{{Collectible712}}Lemegeton으로 획득할 수 있는 아이템만 적용할 수 있습니다."
 		.. "{{CR}}",
 		queueDesc = "역시 리셰쨩은 달콤해",
 	},
