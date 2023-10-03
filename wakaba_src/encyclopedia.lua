@@ -3531,6 +3531,13 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WINTER_ALBIREO,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WINTER_ALBIREO,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_TREASURE,
+			Encyclopedia.ItemPools.POOL_SECRET,
+			Encyclopedia.ItemPools.POOL_PLANETARIUM,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		},
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do
@@ -3553,6 +3560,11 @@ if Encyclopedia then
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.WATER_FLAME,
 		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WATER_FLAME,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_SHOP,
+			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+			Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		},
 		UnlockFunc = function(self)
 			local hasRicher = false
 			for i = 1, wakaba.G:GetNumPlayers() do

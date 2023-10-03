@@ -25,6 +25,7 @@
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="The Winter Albireo" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -53,6 +54,7 @@
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Water-Flame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
@@ -113,6 +115,7 @@
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="The Winter Albireo" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 	</Pool>
@@ -147,8 +150,8 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
-	
-	
+
+
 	<Pool Name="greedTreasure">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -180,6 +183,8 @@
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Water-Flame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="The Winter Albireo" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -215,6 +220,7 @@
 		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="The Winter Albireo" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="POW Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -256,8 +262,8 @@
 		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
-	
-	
+
+
 	<Pool Name="beggar">
 		<Item Name="Balance ecnalaB" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -299,6 +305,7 @@
 	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="The Winter Albireo" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="rottenBeggar">
 	</Pool>
@@ -314,6 +321,7 @@
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Water-Flame" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="redChest">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
