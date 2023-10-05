@@ -28,11 +28,17 @@ function wakaba:CoinCollision_EasterEgg(pickup, collider)
 
 		if player then
 			player:AddCoins(1)
-			player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
+			if not player:HasCollectible(wakaba.Enums.Collectibles.EASTER_EGG) then
+				player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
+			end
+			player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.EASTER_EGG)
 		elseif familiar then
 			familiar.Coins = familiar.Coins + 1
 			if familiar.Player then
-				familiar.Player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
+				if not familiar.Player:HasCollectible(wakaba.Enums.Collectibles.EASTER_EGG) then
+					familiar.Player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
+				end
+				familiar.Player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.EASTER_EGG)
 			end
 		end
 		--sfx:Play(SoundEffect.SOUND_CANDLE_LIGHT, 1, 0, false, 1)
@@ -73,7 +79,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_EasterEgg)
 
 function wakaba:FamiliarInit_EasterEgg(familiar)
-	familiar:AddToOrbit(3)
+	familiar.IsFollower = true
+	familiar:AddToFollowers()
+	familiar.FireCooldown = 3
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_EasterEgg, wakaba.Enums.Familiars.EASTER_EGG)
 
@@ -144,12 +152,12 @@ end
 
 
 function wakaba:FamiliarUpdate_EasterEgg(familiar)
-	local off = EntityFamiliar.GetOrbitDistance(0)
-	local val = math.sin(math.rad(familiar.FrameCount) * 8)
-	local dist = off:Length() + (val ^ 2 + 0.5) * 20
+	--local off = EntityFamiliar.GetOrbitDistance(0)
+	--local val = math.sin(math.rad(familiar.FrameCount) * 8)
+	--local dist = off:Length() + (val ^ 2 + 0.5) * 20
 	--familiar.OrbitDistance = off:Resized(dist)
   --  familiar.OrbitSpeed = -familiar.OrbitSpeed
-	familiar.Velocity = familiar:GetOrbitPosition(familiar.Player.Position - familiar.Player.Velocity) - familiar.Position
+	--familiar.Velocity = familiar:GetOrbitPosition(familiar.Player.Position - familiar.Player.Velocity) - familiar.Position
 
 	local p = familiar.Player
 	local d = familiar:GetData()
@@ -158,12 +166,12 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 	local animdir = dirToStr[dir]
 	d.animpre = d.animpre or "Float"
 	d.cooldown = d.cooldown or 0
-	local cnt = p:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
+	local cnt = p:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.EASTER_EGG)
 	local damage = cnt
+	local newcooldown = 30 - (damage // 4)
 	if p:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-		newcooldown = 30
+		newcooldown = newcooldown // 2
 	end
-	local newcooldown = 60 - damage
 	if cnt >= 5 then
 		damage = damage + 5
 	else
@@ -175,7 +183,7 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 		d.animpre = "FloatShoot"
 		d.cooldown = familiar.FrameCount + newcooldown
 		s.FlipX = dir == Direction.LEFT
-		wakaba:ShootEasterEggTear(familiar.Position, dirToVec[dir]:Resized(11), familiar, damage)
+		wakaba:ShootEasterEggTear(familiar.Position, dirToVec[dir]:Resized(11), familiar, damage + 2.5)
 	end
 
 	if d.animpre == "Float" then
@@ -190,6 +198,28 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 
 	if d.animpre == "FloatShoot" and d.cooldown - familiar.FrameCount <= 50 then
 		d.animpre = "Float"
+	end
+	if p:GetPlayerType() == PlayerType.PLAYER_LILITH and p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		familiar:RemoveFromFollowers()
+		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
+		
+		local dirVec = wakaba.DIRECTION_VECTOR[p:GetHeadDirection()]
+		if p:AreControlsEnabled() and
+		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, p.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, p.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, p.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, p.ControllerIndex)
+			or Input.IsMouseBtnPressed(0)
+		) then
+			dirVec = p:GetAimDirection()
+		end
+		local ppos = p.Position
+		local oldpos = familiar.Position
+		local newpos = ppos + dirVec:Resized(40)
+		familiar.Velocity = (newpos - oldpos):Normalized():Resized((newpos - oldpos):Length() * 0.4)
+
+	else
+		familiar:FollowParent()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_EasterEgg, wakaba.Enums.Familiars.EASTER_EGG)
