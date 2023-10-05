@@ -1090,31 +1090,6 @@ wakaba.descriptions[desclang].richer_b = {
 		.. "{{CR}}",
 	},
 }
-wakaba.descriptions[desclang].bless = {
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		description = "{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaBless}}Can get all items with selection",
-	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "Spawns two collectible items instead of one",
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "↑ {{Luck}} Additional +0.15 Luck up per Luck affect items#{{Luck}} {{ColorWakabaBless}}Sets to 10 Luck if Luck is lower than 10",
-	},
-	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "Plumy can replicate Isaac's tears",
-	},
-	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "↑ 1.2x chance for Eraser tears",
-	},
-}
-wakaba.descriptions[desclang].nemesis = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "#{{AngelDevilChance}} 100% chance to find an Devil/Angel Room in all floors except Blue Womb#↑ {{ColorWakabaNemesis}}Can get all items with selection",
-	},
-	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
-		description = "↑ 2x chance for Lasers, Grants Homing Lasers",
-	},
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use",

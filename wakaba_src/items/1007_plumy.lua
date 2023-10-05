@@ -2,10 +2,6 @@ local cooldown = 120
 local plumcount = 0
 local hasPlum = false
 
-local function CanPlumShootPlayerTears(player, fData)
-	return wakaba:HasBless(player) or (Sewn_API and Sewn_API:IsSuper(fData)) or wakaba.G.Challenge == wakaba.challenges.CHALLENGE_PLUM
-end
-
 local function getPlumShootFrame(angle)
 	local res = {
 		Frame = "Idle",
@@ -112,13 +108,10 @@ local function InitPlumTear(player, familiar, vector)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
-	
-	if CanPlumShootPlayerTears(player, fData) then
-		tear.TearFlags = tear.TearFlags | player.TearFlags | tearparams.TearFlags
-		tear.Color = tearparams.TearColor
-		if tearparams.TearVariant ~= TearVariant.BLUE and tearparams.TearVariant ~= TearVariant.BLOOD then
-			tear:ChangeVariant(tearparams.TearVariant)
-		end
+	tear.TearFlags = tear.TearFlags | player.TearFlags | tearparams.TearFlags
+	tear.Color = tearparams.TearColor
+	if tearparams.TearVariant ~= TearVariant.BLUE and tearparams.TearVariant ~= TearVariant.BLOOD then
+		tear:ChangeVariant(tearparams.TearVariant)
 	end
 	if (Sewn_API and Sewn_API:IsUltra(fData)) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_BOUNCE
@@ -165,10 +158,8 @@ function wakaba:initPlumKnife(player, familiar, vector)
 		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
 	
-	if CanPlumShootPlayerTears(player, fData) then
-		knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
-		knife.Color = tearparams.TearColor
-	end
+	knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
+	knife.Color = tearparams.TearColor
 	if (Sewn_API and Sewn_API:IsUltra(fData)) then
 		knife.TearFlags = knife.TearFlags | TearFlags.TEAR_BOUNCE
 	end
@@ -285,21 +276,18 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 			if familiar.FireCooldown <= 0 then
 				
 				local nontear = false
-				if CanPlumShootPlayerTears(player, fData) then
-					if player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) then
-						wakaba:initPlumKnife(player, familiar, dirVec:Resized(math.min(30 / player.MaxFireDelay, 1)))
-						nontear = true
-					end
-					if player:HasWeaponType(WeaponType.WEAPON_TECH_X) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_X) then
-						wakaba:initPlumSingleLaser(player, familiar, dirVec)
-						nontear = true
-						--nontear = true
-					end
-					if player:HasWeaponType(WeaponType.WEAPON_LASER) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) then
-						wakaba:initPlumSingleLaser(player, familiar, dirVec)
-						nontear = true
-					end
-
+				if player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) then
+					wakaba:initPlumKnife(player, familiar, dirVec:Resized(math.min(30 / player.MaxFireDelay, 1)))
+					nontear = true
+				end
+				if player:HasWeaponType(WeaponType.WEAPON_TECH_X) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_X) then
+					wakaba:initPlumSingleLaser(player, familiar, dirVec)
+					nontear = true
+					--nontear = true
+				end
+				if player:HasWeaponType(WeaponType.WEAPON_LASER) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) then
+					wakaba:initPlumSingleLaser(player, familiar, dirVec)
+					nontear = true
 				end
 				if nontear ~= true then
 					InitPlumTear(player, familiar, dirVec)

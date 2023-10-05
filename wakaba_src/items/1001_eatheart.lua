@@ -11,11 +11,6 @@ function wakaba:ItemUse_EatHeart(_, rng, player, useFlags, activeSlot, varData)
 	local result = false
 	local tempeatheartcharges = 0
 	hasHeart = 0
-	local hasBless = false
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local pl = Isaac.GetPlayer(i - 1)
-		local hasBless = wakaba:HasBless(player)
-	end
 		
 	if useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID then
 		used = 2
@@ -152,18 +147,6 @@ function wakaba:PlayerUpdate_EatHeart(player)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_EatHeart)
-
-function wakaba:Damocles_EatHeart()
-	local dupcnt = 0
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if wakaba:HasBless(player) and used > 0 then
-			dupcnt = dupcnt + 1
-		end
-	end
-	return dupcnt
-end
-CCO.DamoclesAPI.AddDamoclesCallback(wakaba.Damocles_EatHeart)
 
 function wakaba:Update_EatHeart()
 	eatHeartErr = 0
