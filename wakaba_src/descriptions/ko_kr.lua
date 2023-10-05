@@ -963,6 +963,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "{{Collectible486}} 스테이지 진입 시 피격 시 효과를 6회 발동합니다.",
 		queueDesc = "그녀의 기운이 느껴져",
 	},
+	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
+		itemName = "검은콩 모찌",
+		description = "10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다.#{{LuckSmall}} 행운 16+일 때 100%#압박 상태의 적 처치 시 폭발하며 주변의 적에게 60의 피해를 줍니다.",
+		queueDesc = "리라의 추억은 누군가에겐 악몽",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

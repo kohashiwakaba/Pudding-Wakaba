@@ -870,6 +870,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Rira's Bandage",
 		description = "{{Collectible486}} Activates on-damage effects 6 times on start of the floor",
 	},
+	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
+		itemName = "Black Bean Mochi",
+		description = "10% chance to shoot 'zip' enemies#{{Luck}} 100% chance at 16 Luck#Zipped enemies make explosion on death#Zip explosion does not harm Isaac",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

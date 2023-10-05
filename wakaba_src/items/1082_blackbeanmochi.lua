@@ -1,4 +1,4 @@
---[[ 
+--[[
 	Black Bean Mochi - 패시브(Passive)
 	적 처치 시 폭발
  ]]
@@ -7,7 +7,9 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Zipped")
-wakaba:RegisterStatusEffect("ZIPPED", sprite)
+wakaba:RegisterStatusEffect("ZIPPED", sprite, {
+	EntityColor = Color(0.7, 0.4, 0.5, 1),
+})
 
 ---@param player EntityPlayer
 local function shouldApplyZipped(player)
@@ -22,11 +24,13 @@ local function shouldApplyZipped(player)
 	return rng:RandomFloat() < chance
 end
 
+---@param tear EntityTear
 function wakaba:TearInit_BlackBeanMochi(tear)
 	if tear.FrameCount < 1 and tear.Parent then
 		local player = wakaba:getPlayerFromTear(tear)
 		if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) and shouldApplyZipped(player) then
 			wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.ZIPPED)
+			tear.Color = Color(0.7, 0.4, 0.5, 1)
 		end
 	end
 end
@@ -44,8 +48,14 @@ function wakaba:NPCDeath_BlackBeanMochi(npc)
 		local statusData = wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED)
 		local player = statusData.Player
 		if player then
-			wakaba.G:BombExplosionEffects(npc.Position, 60, TearFlags.TEAR_NORMAL, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
-			print("Explode!")
+			local enemies = isc:getNPCs()
+			for i, e in ipairs(enemies) do
+				if wakaba:EntitiesAreWithinRange(npc, e, 75) then
+					wakaba:AddStatusEffect(e, wakaba.StatusEffect.ZIPPED, 90, player)
+				end
+			end
+			wakaba.G:BombExplosionEffects(npc.Position, 60, player:GetBombFlags(), Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
+			--print("Explode!")
 		end
 	end
 end

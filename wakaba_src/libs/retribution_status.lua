@@ -87,6 +87,10 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, function(_, npc)
 		local renderPosition = initialRenderPosition + multiStatusOffset + Vector(16, 0) * (index - 1)
 		local colourIntensity = 1
 
+		if metadata.EntityColor then
+			npc.Color = metadata.EntityColor
+		end
+
 		if metadata.CanStack then -- Not gonna be done until Retribution needs one like this
 
 		else
@@ -102,6 +106,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, function(_, npc)
 			metadata.Sprite:Render(renderPosition)
 
 			if statusData.ExpireyFrame <= npc.FrameCount then
+				npc.Color = Color(1, 1, 1, 1)
 				data.wakaba_StatusEffectData[index] = nil
 			end
 		end
