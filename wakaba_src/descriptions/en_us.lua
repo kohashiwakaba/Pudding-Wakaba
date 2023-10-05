@@ -1642,7 +1642,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
 		"All Stats Down",
-		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↑ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
+		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↓ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
 	},
 	[wakaba.Enums.Pills.TROLLED] = {
 		tostring(wakaba.Enums.Pills.TROLLED),
