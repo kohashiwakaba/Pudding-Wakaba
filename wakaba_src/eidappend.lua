@@ -197,54 +197,6 @@ if EID then
 			return descObj
 		end
 
-		-- Handle Wakaba's Blessing description addition
-		local function BlessingCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if wakaba:HasBless(player) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function BlessingCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("bless", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} {{ColorWakabaBless}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Wakaba's Nemesis description addition
-		local function NemesisCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if wakaba:HasNemesis(player) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function NemesisCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("nemesis", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.WAKABAS_NEMESIS .. "}} {{ColorWakabaNemesis}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
 		-- Handle Book of Shiori description addition
 		local function ShioriCondition(descObj)
 			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
@@ -742,8 +694,6 @@ if EID then
 			--EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
 			EID:addDescriptionModifier("Wakaba", WakabaCondition, WakabaCallback)
 			EID:addDescriptionModifier("Tainted Wakaba", WakabaCondition_b, WakabaCallback_b)
-			EID:addDescriptionModifier("Wakaba's Blessing", BlessingCondition, BlessingCallback)
-			EID:addDescriptionModifier("Wakaba's Nemesis", NemesisCondition, NemesisCallback)
 			EID:addDescriptionModifier("Shiori", ShioriCondition, ShioriCallback)
 			EID:addDescriptionModifier("Tainted Shiori", ShioriCondition_b, ShioriCallback_b)
 

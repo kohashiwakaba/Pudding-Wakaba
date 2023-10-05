@@ -56,9 +56,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
 		if luck < 0 then
 			luck = 1
 		end
-		if wakaba:HasBless(spawner) then
-			luck = luck * 10
-		end
 		if negativeLuck > 199 then
 			negativeLuck = 199
 		end

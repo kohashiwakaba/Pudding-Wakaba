@@ -1195,31 +1195,6 @@ wakaba.descriptions[desclang].richer_b = {
 		.. "{{CR}}",
 	},
 }
-wakaba.descriptions[desclang].bless = {
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		description = "{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다.#↑ {{ColorWakabaBless}}선택형 아이템을 모두 획득할 수 있습니다.",
-	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "아이템을 2개 소환합니다.",
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "{{LuckSmall}}행운을 최소 10 이상으로 설정#↑ {{ColorWakabaBless}}행운에 영향을 주는 아이템의 갯수만큼 {{LuckSmall}}행운 + 0.5",
-	},
-	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "플럼이가 캐릭터의 눈물을 발사할 수 있게 됩니다.",
-	},
-	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "지우개 눈물 발사 확률 10x",
-	},
-}
-wakaba.descriptions[desclang].nemesis = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다.#↑ {{ColorWakabaNemesis}}선택형 아이템을 모두 획득할 수 있습니다.",
-	},
-	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
-		description = "혈사포 발사확률 x2#{{ColorWakabaNemesis}}혈사포에 유도 기능이 생깁니다.",
-	},
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.",

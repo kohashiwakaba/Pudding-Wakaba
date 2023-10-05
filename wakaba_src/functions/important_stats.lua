@@ -7,17 +7,10 @@ function wakaba:Cache_Important(player, cacheFlag)
 			if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
 				pendantcnt = #player:GetData().wakaba.PendantCandidates
 			end
-			if wakaba:HasBless(player) then
-				if player.Luck < 10 then
-					player.Luck = 10
-				end
-				player.Luck = player.Luck + (0.15 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
-			else
-				if player.Luck < 7 then
-					player.Luck = 7
-				end
-				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
+			if player.Luck < 7 then
+				player.Luck = 7
 			end
+			player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 		end
 	end
 end
