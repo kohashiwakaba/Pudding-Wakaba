@@ -140,6 +140,7 @@
 	<active id="103" description="Don't stare like that, it's embarrasing..." gfx="__placeholder.png" maxcharges="2" name="Rira's Coat" tags="" quality="2" hidden="true" achievement="9999"/>
 	<passive id="104" description="Aqua shot" gfx="__placeholder.png" name="Rira's Swimsuit" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
 	<passive id="105" description="Feeling her sense" gfx="rirabandage.png" name="Rira's Bandage" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
+	<passive id="106" description="Zipped memories" gfx="__placeholder.png" name="Black Bean Mochi" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" quality="4" hidden="true" achievement="9999"/>

@@ -1285,6 +1285,7 @@ include('wakaba_src.damocles_api')
 include('wakaba_src.enums.players')
 include('wakaba_src.enums.costumes')
 include('wakaba_src.enums.wakabachargebar')
+include('wakaba_src.datas.tearflags_wakaba')
 
 local renderActive = include("wakaba_src.functions.render_active_base")
 
@@ -1307,6 +1308,7 @@ function wakaba:getAllMainPlayers()
 end
 
 include('wakaba_src.functions.callbacks_wakaba')
+include('wakaba_src.libs.retribution_status')
 include('wakaba_src.functions.hudstats')
 include('wakaba_src.functions.hit_counter')
 include('wakaba_src.functions.room_name_display')
@@ -1401,6 +1403,7 @@ include('wakaba_src.items.1076_selfburning')
 include('wakaba_src.items.1077_rirabra')
 include('wakaba_src.items.1078_secretdoor')
 include('wakaba_src.items.1079_bunnyparfait')
+include('wakaba_src.items.1082_blackbeanmochi')
 include('wakaba_src.items.1086_richernecklace')
 include('wakaba_src.items.1088_rirabandage')
 

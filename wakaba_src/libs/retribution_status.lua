@@ -19,6 +19,7 @@ function mod:RegisterStatusEffect(statusName, spriteObject, metadata)
 
 	spriteObject:SetLastFrame()
 	mod.StatusMetadata[index].Sprite = spriteObject
+	mod.StatusMetadata[index].AnimationName = spriteObject:GetAnimation()
 	mod.StatusMetadata[index].AnimationLength = spriteObject:GetFrame() + 1
 	return index
 end
@@ -32,7 +33,7 @@ function mod:CanApplyStatusEffect(npcTarget)
 	)
 end
 
-function mod:AddStatusEffect(npcTarget, statusType, duration)
+function mod:AddStatusEffect(npcTarget, statusType, duration, player)
 	local data = npcTarget:GetData()
 
 	data.wakaba_StatusEffectData = data.wakaba_StatusEffectData or {}
@@ -43,6 +44,9 @@ function mod:AddStatusEffect(npcTarget, statusType, duration)
 	else
 		local currentExpirey = data.wakaba_StatusEffectData[statusType].ExpireyFrame
 		data.wakaba_StatusEffectData[statusType].ExpireyFrame = math.max(currentExpirey or npcTarget.FrameCount, npcTarget.FrameCount + duration)
+		if player then
+			data.wakaba_StatusEffectData[statusType].Player = player
+		end
 	end
 end
 
@@ -91,7 +95,9 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, function(_, npc)
 				colourIntensity = 0
 			end
 
-			metadata.Sprite:SetFrame("Idle", npc.FrameCount % metadata.AnimationLength)
+			local animName = metadata.AnimationName or "Idle"
+
+			metadata.Sprite:SetFrame(animName, npc.FrameCount % metadata.AnimationLength)
 			metadata.Sprite.Color = Color(1, 1, 1, colourIntensity)
 			metadata.Sprite:Render(renderPosition)
 

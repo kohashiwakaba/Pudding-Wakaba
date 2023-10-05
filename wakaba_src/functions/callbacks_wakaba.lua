@@ -49,6 +49,18 @@ wakaba.Callback = {
 	RENDER_GLOBAL_FOUND_HUD = {},
 
 	-- ---
+	-- APPLY_TEARFLAG_EFFECT
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityPlayer` - player
+	-- ---
+	APPLY_TEARFLAG_EFFECT = {},
+
+	-- ---
 	-- EVALUATE_DAMAGE_AMOUNT
 	-- ---
 	-- Original code from Xalum(Retribution)

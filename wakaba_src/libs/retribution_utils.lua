@@ -415,38 +415,37 @@ end
 --[[
 function mod:GetCrutchIgnoredFlags()
 	return (
-		mod.TEARFLAG.CATARACT |
-		mod.TEARFLAG.BOOSTER_SHOT |
-		mod.TEARFLAG.MILK_TOOTH |
-		mod.TEARFLAG.HYPEROPIA |
-		mod.TEARFLAG.MYOPIA |
-		mod.TEARFLAG.HEART_WORM |
-		mod.TEARFLAG.REFLUX |
-		mod.TEARFLAG.REFLUX_DEFUSED |
-		mod.TEARFLAG.TECH_OMICRON |
-		mod.TEARFLAG.EVES_NAIL_POLISH |
-		mod.TEARFLAG.CONJUNCTIVITIS |
-		mod.TEARFLAG.GLORIOSA
+		mod.TearFlag.CATARACT |
+		mod.TearFlag.BOOSTER_SHOT |
+		mod.TearFlag.MILK_TOOTH |
+		mod.TearFlag.HYPEROPIA |
+		mod.TearFlag.MYOPIA |
+		mod.TearFlag.HEART_WORM |
+		mod.TearFlag.REFLUX |
+		mod.TearFlag.REFLUX_DEFUSED |
+		mod.TearFlag.TECH_OMICRON |
+		mod.TearFlag.EVES_NAIL_POLISH |
+		mod.TearFlag.CONJUNCTIVITIS |
+		mod.TearFlag.GLORIOSA
 	)
 end
  ]]
-
---[[
+--[[ 
 function mod:TearHasCustomEffect(tear, isCrutchCheck)
-	local testFlags = mod.TEARFLAG.ALL
+	local testFlags = mod.TearFlag.ALL
 	local myFlags = mod:GetRicherTearFlags(tear)
 
 	if isCrutchCheck then
 		testFlags = testFlags - mod:GetCrutchIgnoredFlags()
 
-		if myFlags & mod.TEARFLAG.FORCE_CRUTCH > 0 then
+		if myFlags & mod.TearFlag.FORCE_CRUTCH > 0 then
 			return true
 		end
 	end
 
 	return myFlags & testFlags > 0
 end
-
+ ]]
 function mod:AddRicherTearFlags(tear, flags)
 	local data = tear:GetData()
 	data.richer_TearFlags = data.richer_TearFlags and data.richer_TearFlags | flags or flags
@@ -473,7 +472,6 @@ end
 function mod:WipeRicherTearFlags(tear)
 	mod:ClearCustomTearEffects(tear)
 end
- ]]
 
 mod.PlayerMimickingFamiliars = {
 	[FamiliarVariant.INCUBUS] 			= true,
