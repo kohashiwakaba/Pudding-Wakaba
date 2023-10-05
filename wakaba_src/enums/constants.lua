@@ -884,6 +884,18 @@ wakaba.pickupSpriteIndex = {
 	["CONQUEST"] = 18,
 }
 
+wakaba.KnifeVariant = {
+	MOMS_KNIFE 		= 0,
+	BONE_CLUB 		= 1,
+	BONE_SCYTHE 	= 2,
+	DONKEY_JAWBONE 	= 3,
+	BAG_OF_CRAFTING = 4,
+	SUMPTORIUM 		= 5,
+	NOTCHED_AXE	 	= 9,
+	SPIRIT_SWORD 	= 10,
+	TECH_SWORD 		= 11,
+}
+
 wakaba.FIRST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABAS_BLESSING
 wakaba.LAST_WAKABA_ITEM = wakaba.Enums.Collectibles.WAKABA_DUALITY
 wakaba.FIRST_WAKABA_TRINKET = wakaba.Enums.Trinkets.CLOVER
