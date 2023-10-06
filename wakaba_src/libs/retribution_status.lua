@@ -35,6 +35,7 @@ end
 
 function mod:AddStatusEffect(npcTarget, statusType, duration, player)
 	local data = npcTarget:GetData()
+	local secondHandMultiplier = mod:GetGlobalTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
 
 	data.wakaba_StatusEffectData = data.wakaba_StatusEffectData or {}
 	data.wakaba_StatusEffectData[statusType] = data.wakaba_StatusEffectData[statusType] or {}
@@ -43,7 +44,7 @@ function mod:AddStatusEffect(npcTarget, statusType, duration, player)
 
 	else
 		local currentExpirey = data.wakaba_StatusEffectData[statusType].ExpireyFrame
-		data.wakaba_StatusEffectData[statusType].ExpireyFrame = math.max(currentExpirey or npcTarget.FrameCount, npcTarget.FrameCount + duration)
+		data.wakaba_StatusEffectData[statusType].ExpireyFrame = math.max(currentExpirey or npcTarget.FrameCount, npcTarget.FrameCount + (duration * secondHandMultiplier))
 		if player then
 			data.wakaba_StatusEffectData[statusType].Player = player
 		end
