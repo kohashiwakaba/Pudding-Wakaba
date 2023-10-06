@@ -6,8 +6,12 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local function ApplyWakabaTearEffects(entity, source, isLaser)
 	if isLaser then
-		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, nil, source.Entity:ToPlayer(), entity)
-	elseif source.Type =~ EntityType.ENTITY_PLAYER then
+		if source.Type == EntityType.ENTITY_PLAYER then
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, nil, source.Entity:ToPlayer(), entity)
+		elseif source.Entity.SpawnerEntity:ToPlayer() then
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, nil, source.Entity.SpawnerEntity:ToPlayer(), entity)
+		end
+	elseif source.Type ~= EntityType.ENTITY_PLAYER then
 		local data = source.Entity:GetData()
 		data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
 		if data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] then return end
@@ -100,6 +104,8 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 
 		local hasRerolled = false
 
+		print(flags, source.Type, source.Variant, source.SpawnerType, source.SpawnerVariant)
+
 		if source.Type == EntityType.ENTITY_TEAR then
 			local sourceData = source.Entity:GetData()
 			local sourceTear = source.Entity:ToTear()
@@ -119,10 +125,11 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.ROCKET then
 			local sourceData = source.Entity:GetData()
 			
-			ApplyWakabaTearEffects(target, source)
+			ApplyWakabaTearEffects(target, source, true)
 
 		elseif source.Type == EntityType.ENTITY_KNIFE then
 			local player = wakaba:getPlayerFromKnife(source.Entity)
+			print(player)
 			if player ~= nil then
 			
 				ApplyWakabaTearEffects(target, source, true)

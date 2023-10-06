@@ -1584,7 +1584,7 @@ function mod:TestForValidPath(start, target, dummyNpc, noRemove)
 end
 
 function mod:GetSwingingKnifeHitboxScaler(knife)
-	if knife.Variant == mod.KNIFE.BONE_SCYTHE then
+	if knife.Variant == mod.KnifeVariant.BONE_SCYTHE then
 		return 3
 	end
 

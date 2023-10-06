@@ -44,7 +44,7 @@ function mod:AddStatusEffect(npcTarget, statusType, duration, player)
 
 	else
 		local currentExpirey = data.wakaba_StatusEffectData[statusType].ExpireyFrame
-		data.wakaba_StatusEffectData[statusType].ExpireyFrame = math.max(currentExpirey or npcTarget.FrameCount, npcTarget.FrameCount + (duration * secondHandMultiplier))
+		data.wakaba_StatusEffectData[statusType].ExpireyFrame = math.max(currentExpirey or npcTarget.FrameCount, npcTarget.FrameCount + (duration * (1 + secondHandMultiplier)))
 		if player then
 			data.wakaba_StatusEffectData[statusType].Player = player
 		end

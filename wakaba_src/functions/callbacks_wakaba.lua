@@ -48,6 +48,8 @@ wakaba.Callback = {
 	-- ---
 	RENDER_GLOBAL_FOUND_HUD = {},
 
+	ANY_WEAPON_FIRE = {},
+
 	-- ---
 	-- REAL_FIRE_TEAR
 	-- ---
@@ -56,12 +58,67 @@ wakaba.Callback = {
 	-- 
 	--
 	-- Parameters : 
+	-- - `EntityTear` - tear
 	-- - `EntityPlayer` - player
 	-- ---
-	ANY_WEAPON_FIRE = {},
 	REAL_FIRE_TEAR = {},
+
+	-- ---
+	-- WISP_FIRE_TEAR
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityTear` - tear
+	-- - `EntityFamiliar` - wisp
+	-- - `CollectibleType` - itemID
+	-- ---
 	WISP_FIRE_TEAR = {},
+
+
 	EVALUATE_WAKABA_TEARFLAG = {},
+	
+
+	-- ---
+	-- PRE_SWING_BONE_CLUB
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityKnife` - club
+	-- - `EntityPlayer` - player
+	-- ---
+	PRE_SWING_BONE_CLUB = {},
+
+	-- ---
+	-- POST_THROW_KNIFE
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityKnife` - knife
+	-- - `EntityPlayer` - player
+	-- ---
+	POST_THROW_KNIFE = {},
+
+	-- ---
+	-- POST_CATCH_KNIFE
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityKnife` - knife
+	-- - `EntityPlayer` - player
+	-- ---
+	POST_CATCH_KNIFE = {},
 
 	-- ---
 	-- APPLY_TEARFLAG_EFFECT
@@ -377,6 +434,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 
 					if pass then
 						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+						--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
 					end
 				end
 			end
@@ -384,6 +442,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 			local data = knife:GetData()
 			if data.flyinglastframe and not knife:IsFlying() then
 				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+				--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
 			end
 
 			data.flyinglastframe = knife:IsFlying()
@@ -400,6 +459,144 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		end
 	end
 end, EffectVariant.ROCKET) -- Epic Fetus
+
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
+	if not effect:Exists() then
+		local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
+		if player then
+			--Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, effect, player)
+		end
+	end
+end, EffectVariant.SMALL_ROCKET) -- Epic Fetus Forgotten
+
+
+local function isKnifeVariantValidForEffects(variant)
+	return (
+		variant == wakaba.KnifeVariant.BONE_CLUB or
+		variant == wakaba.KnifeVariant.BONE_SCYTHE or
+		variant == wakaba.KnifeVariant.DONKEY_JAWBONE
+	)
+end
+
+
+wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
+	if knife.SpawnerEntity and knife.SpawnerEntity.Type <= 3 and isKnifeVariantValidForEffects(knife.Variant) and wakaba:IsKnifeSwinging(knife) then
+		local frame = knife:GetSprite():GetFrame()
+		local player = knife.SpawnerEntity:ToPlayer() or knife.SpawnerEntity:ToFamiliar().Player
+
+		if frame == 0 then
+			Isaac.RunCallback(wakaba.Callback.PRE_SWING_BONE_CLUB, knife, player)
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
+		end
+
+		if frame > 1 and frame < 9 then
+			local data = knife:GetData()
+			data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
+
+			wakaba:ForAllEntities(function(entity)
+				if wakaba:EntityCollidesWithSwingingKnife(entity, knife) then
+					if wakaba:ShouldEntityGetKnifeCollisionEffects(entity, knife) then
+						data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] = true
+
+						for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
+							if wakaba:HasRicherTearFlags(knife, callbackData.Param) then
+								local newEntity = callbackData.Function(callbackData.Mod, entity, player, knife)
+
+								if newEntity then
+									entity = newEntity
+								end
+							end
+						end
+					end
+--[[ 
+					if entity:ToPickup() and shouldKnifeParentPickPickups(knife.SpawnerEntity) and wakaba.ShouldPickupGetPickedByKnife(entity) then
+						if Isaac.RunCallbackWithParam(wakaba.Callback.TRY_PICK_PICKUP, entity.Variant, entity:ToPickup(), player, knife) then
+							entity.Velocity = Vector.Zero
+						end
+					end
+					 ]]
+
+					--Isaac.RunCallbackWithParam(wakaba.Callback.MISC_BONE_CLUB_COLLISION, entity.Type, entity, player, knife)
+				end
+			end)
+		end
+	end
+end, 4)
+
+-- Post Throw Knife
+wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
+	if knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer() then
+		local data = knife:GetData()
+		local isFlying = knife:IsFlying()
+
+		if isFlying then
+			local isReturning = data.wakaba_LastFrameDistance and data.wakaba_LastFrameDistance > knife.Position:Distance(knife.SpawnerEntity.Position)
+
+			if not data.wakaba_LastFrameWasFlying then
+				Isaac.RunCallback(wakaba.Callback.POST_THROW_KNIFE, knife, knife.SpawnerEntity:ToPlayer())
+				Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, knife.SpawnerEntity:ToPlayer())
+			end
+
+			if isReturning and not data.wakaba_LastFrameWasReturning then
+				data.wakaba_TearEffectEntityBlacklist = {}
+				data.wakaba_KnifeIsReturning = true
+			end
+
+			data.wakaba_LastFrameWasReturning = isReturning
+		elseif data.wakaba_LastFrameWasFlying then
+			Isaac.RunCallback(wakaba.Callback.POST_CATCH_KNIFE, knife, knife.SpawnerEntity:ToPlayer())
+			wakaba:WipeRetributionTearFlags(knife)
+			data.wakaba_TearEffectEntityBlacklist = {}
+			data.wakaba_KnifeIsReturning = false
+		end
+
+		data.wakaba_LastFrameWasFlying = isFlying
+		data.wakaba_LastFrameDistance = knife.Position:Distance(knife.SpawnerEntity.Position)
+	end
+end, 0)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
+	if knife.FrameCount == 0 and knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer() then
+		Isaac.RunCallback(wakaba.Callback.POST_THROW_KNIFE, knife, knife.SpawnerEntity:ToPlayer())
+		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, knife.SpawnerEntity:ToPlayer())
+	end
+end, 1)
+
+wakaba:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, function(_, knife, collider)
+	if knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer() then
+		local data = knife:GetData()
+		data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
+		if not wakaba:ShouldEntityGetKnifeCollisionEffects(collider, knife) then return end
+
+		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
+			if wakaba:HasRicherTearFlags(knife, callbackData.Param) then
+				local newEntity = callbackData.Function(callbackData.Mod, collider, knife.SpawnerEntity:ToPlayer(), knife)
+
+				if newEntity then
+					collider = newEntity
+				end
+			end
+		end
+
+		data.wakaba_TearEffectEntityBlacklist[collider.InitSeed] = true
+	end
+end, 0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --Shiori callbacks
 local function hasShioriCallbacks(collectibleType)

@@ -54,11 +54,14 @@ end
 
 function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
+		print("have coll")
 		if shouldApplyZipped(player) then
 			if weapon then
+				print("weapon found!")
 				wakaba:AddRicherTearFlags(weapon, wakaba.TearFlag.ZIPPED)
 				weapon.Color = Color(0.7, 0.4, 0.5, 1)
 			else
+				print("passed")
 				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
 			end
 		end
