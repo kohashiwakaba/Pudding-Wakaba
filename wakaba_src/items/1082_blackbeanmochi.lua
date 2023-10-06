@@ -11,6 +11,25 @@ wakaba:RegisterStatusEffect("ZIPPED", sprite, {
 	EntityColor = Color(0.7, 0.4, 0.5, 1),
 })
 
+local function shouldAlwaysColorWeapon(player)
+	return player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) or player:HasWeaponType(WeaponType.WEAPON_LASER) or player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasWeaponType(WeaponType.WEAPON_TECH_X)
+end
+
+function wakaba:Cache_BlackBeanMochi(player, cacheFlag)
+	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
+			player.Damage = player.Damage + 0.5
+		end
+		if cacheFlag == CacheFlag.CACHE_TEARCOLOR then
+			if shouldAlwaysColorWeapon(player) then
+				player.TearColor = Color(0.7, 0.4, 0.5, 1)
+				player.LaserColor = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5)
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_BlackBeanMochi)
+
 ---@param player EntityPlayer
 local function shouldApplyZipped(player)
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI)
@@ -25,16 +44,27 @@ local function shouldApplyZipped(player)
 end
 
 ---@param tear EntityTear
-function wakaba:TearInit_BlackBeanMochi(tear)
-	if tear.FrameCount < 1 and tear.Parent then
-		local player = wakaba:getPlayerFromTear(tear)
-		if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) and shouldApplyZipped(player) then
-			wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.ZIPPED)
-			tear.Color = Color(0.7, 0.4, 0.5, 1)
+function wakaba:TearFire_BlackBeanMochi(tear, player)
+	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) and shouldApplyZipped(player) then
+		wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.ZIPPED)
+		tear.Color = Color(0.7, 0.4, 0.5, 1)
+	end
+end
+--wakaba:AddCallback(wakaba.Callback.REAL_FIRE_TEAR, wakaba.TearFire_BlackBeanMochi)
+
+function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
+	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
+		if shouldApplyZipped(player) then
+			if weapon then
+				wakaba:AddRicherTearFlags(weapon, wakaba.TearFlag.ZIPPED)
+				weapon.Color = Color(0.7, 0.4, 0.5, 1)
+			else
+				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
+			end
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearInit_BlackBeanMochi)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_BlackBeanMochi)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
 	if effectTarget:IsVulnerableEnemy() then

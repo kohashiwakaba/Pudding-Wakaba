@@ -49,6 +49,21 @@ wakaba.Callback = {
 	RENDER_GLOBAL_FOUND_HUD = {},
 
 	-- ---
+	-- REAL_FIRE_TEAR
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- 
+	--
+	-- Parameters : 
+	-- - `EntityPlayer` - player
+	-- ---
+	ANY_WEAPON_FIRE = {},
+	REAL_FIRE_TEAR = {},
+	WISP_FIRE_TEAR = {},
+	EVALUATE_WAKABA_TEARFLAG = {},
+
+	-- ---
 	-- APPLY_TEARFLAG_EFFECT
 	-- ---
 	-- Original code from Xalum(Retribution)
@@ -285,6 +300,106 @@ function wakaba:playerItemsArrayUpdate(player)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)
+
+-- Real Fire Tear
+-- Evaluate Wakaba Tearflag
+function wakaba:TearUpdate_Callbacks(tear)
+	local data = tear:GetData()
+	if not data.calledWakabaFireTearCallbacks then
+		if tear.FrameCount < 1 and tear.Parent then
+			if tear.Parent.Type == 1 or (tear.Parent.Type == 3 and (tear.Parent.Variant == 80 or tear.Parent.Variant == 235 or tear.Parent.Variant == 240)) then
+				local query = tear.Parent:ToFamiliar()
+				local player = (query and query.Player or tear.Parent):ToPlayer()
+				data.calledWakabaFireTearCallbacks = true
+				Isaac.RunCallback(wakaba.Callback.REAL_FIRE_TEAR, tear, player)
+			end
+		elseif tear.FrameCount == 1 and tear.Parent then
+			if tear.Parent.Type == 3 then
+				if tear.Parent.Variant == 81 then
+					Isaac.RunCallback(wakaba.Callback.REAL_FIRE_TEAR, tear, tear.Parent:ToFamiliar().Player)
+				elseif tear.Parent.Variant == FamiliarVariant.WISP then
+					Isaac.RunCallbackWithParam(wakaba.Callback.WISP_FIRE_TEAR, tear.Parent.SubType, tear, tear.Parent:ToFamiliar())
+				end
+
+				data.calledWakabaFireTearCallbacks = true
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_Callbacks)
+
+-- Any Weapon Fire
+wakaba:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+	if player then
+		Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, tear, player)
+	end
+end)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
+	local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
+	if player then
+		if laser.FrameCount == 1 then
+			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player)
+		elseif not laser.OneHit then
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player)
+		end
+	end
+end)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb)
+	if bomb.FrameCount == 1 and bomb.IsFetus then
+		local player = bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()
+		if player then
+			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, bomb, player)
+		end
+	end
+end)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
+	local player = knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer()
+
+	if player then
+		if wakaba:IsKnifeSwingable(knife) then
+			if knife.Variant ~= wakaba.KnifeVariant.BAG_OF_CRAFTING and knife.Variant ~= wakaba.KnifeVariant.TECH_SWORD then -- Tech sword procs through LASER_INIT
+				if wakaba:IsKnifeSwinging(knife) then
+					local sprite = knife:GetSprite()
+					local pass
+
+					if knife.Variant == wakaba.KnifeVariant.SPIRIT_SWORD then
+						pass = sprite:IsEventTriggered("SwingEnd")
+					else
+						pass = sprite:GetFrame() == 8
+					end
+
+					if pass then
+						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+					end
+				end
+			end
+		else
+			local data = knife:GetData()
+			if data.flyinglastframe and not knife:IsFlying() then
+				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			end
+
+			data.flyinglastframe = knife:IsFlying()
+		end
+	end
+end)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
+	if not effect:Exists() then
+		local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
+		if player then
+			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, effect, player)
+		end
+	end
+end, EffectVariant.ROCKET) -- Epic Fetus
 
 --Shiori callbacks
 local function hasShioriCallbacks(collectibleType)

@@ -4,21 +4,25 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-local function ApplyWakabaTearEffects(entity, source)
-	local data = source.Entity:GetData()
-	data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
-	if data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] then return end
-
-	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
-		if wakaba:HasRicherTearFlags(source.Entity, callbackData.Param) then
-			local newEntity = callbackData.Function(callbackData.Mod, entity, source.Entity.SpawnerEntity:ToPlayer(), source.Entity)
-
-			if newEntity then
-				entity = newEntity
+local function ApplyWakabaTearEffects(entity, source, isLaser)
+	if isLaser then
+		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, nil, source.Entity:ToPlayer(), entity)
+	elseif source.Type =~ EntityType.ENTITY_PLAYER then
+		local data = source.Entity:GetData()
+		data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
+		if data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] then return end
+	
+		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
+			if wakaba:HasRicherTearFlags(source.Entity, callbackData.Param) then
+				local newEntity = callbackData.Function(callbackData.Mod, entity, source.Entity.SpawnerEntity:ToPlayer(), source.Entity)
+	
+				if newEntity then
+					entity = newEntity
+				end
 			end
 		end
+		data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] = true
 	end
-	data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] = true
 end
 
 function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
@@ -121,13 +125,13 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 			local player = wakaba:getPlayerFromKnife(source.Entity)
 			if player ~= nil then
 			
-				ApplyWakabaTearEffects(target, source)
+				ApplyWakabaTearEffects(target, source, true)
 	
 			end
 		elseif source.Type == EntityType.ENTITY_PLAYER and flags == flags | DamageFlag.DAMAGE_LASER then
 			local player = source.Entity:ToPlayer()
 			
-			ApplyWakabaTearEffects(target, source)
+			ApplyWakabaTearEffects(target, source, true)
 
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.DARK_SNARE then
 			if source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER then
