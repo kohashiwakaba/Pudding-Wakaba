@@ -23,7 +23,7 @@ wakaba.Callback = {
 	-- Called from POST_PEFFECT_UPDATE, when item quantity changed, and player picks it from the first time.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `EntityPlayer` - player that got an item.
 	-- - `collectibleType` - Acquired collectible.
 	-- ---
@@ -55,9 +55,9 @@ wakaba.Callback = {
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityTear` - tear
 	-- - `EntityPlayer` - player
 	-- ---
@@ -68,9 +68,9 @@ wakaba.Callback = {
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityTear` - tear
 	-- - `EntityFamiliar` - wisp
 	-- - `CollectibleType` - itemID
@@ -79,16 +79,16 @@ wakaba.Callback = {
 
 
 	EVALUATE_WAKABA_TEARFLAG = {},
-	
+
 
 	-- ---
 	-- PRE_SWING_BONE_CLUB
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityKnife` - club
 	-- - `EntityPlayer` - player
 	-- ---
@@ -99,9 +99,9 @@ wakaba.Callback = {
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityKnife` - knife
 	-- - `EntityPlayer` - player
 	-- ---
@@ -112,9 +112,9 @@ wakaba.Callback = {
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityKnife` - knife
 	-- - `EntityPlayer` - player
 	-- ---
@@ -125,9 +125,9 @@ wakaba.Callback = {
 	-- ---
 	-- Original code from Xalum(Retribution)
 	--
-	-- 
 	--
-	-- Parameters : 
+	--
+	-- Parameters :
 	-- - `EntityPlayer` - player
 	-- ---
 	APPLY_TEARFLAG_EFFECT = {},
@@ -140,14 +140,14 @@ wakaba.Callback = {
 	-- Called from MC_ENTITY_TAKE_DMG with -20000 priority. Changes damage value taken. Doesn't affect if the damage doesn't allow Modifiers.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `EntityPlayer` - victim
 	-- - `Float` - amount
 	-- - `DamageFlag` - damage flags
 	-- - `EnriryRef` - source
 	-- - `Int` - cooldown
 	-- ---
-	-- Returned values : 
+	-- Returned values :
 	-- - `newAmount` : `EntityPlayer` - victim
 	-- - `newFlags` : `DamageFlag` - new damage to be taken
 	-- ---
@@ -161,14 +161,14 @@ wakaba.Callback = {
 	-- Called from MC_ENTITY_TAKE_DMG with -19000 priority. Sets whether the damage should be negated.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `EntityPlayer` - victim
 	-- - `Float` - amount
 	-- - `DamageFlag` - damage flags
 	-- - `EnriryRef` - source
 	-- - `Int` - cooldown
 	-- ---
-	-- Returned values : 
+	-- Returned values :
 	-- - `shouldNegateDamage` : `boolean` - victim
 	-- ---
 	TRY_NEGATE_DAMAGE = {},
@@ -181,7 +181,7 @@ wakaba.Callback = {
 	-- Called from MC_ENTITY_TAKE_DMG with 20000 priority. Runs if player should take the damage.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `EntityPlayer` - victim
 	-- - `Float` - amount
 	-- - `DamageFlag` - damage flags
@@ -198,7 +198,7 @@ wakaba.Callback = {
 	-- Called right before Shiori's bookshelf is selected.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `EntityPlayer` - used player. Mostly Shiori.
 	-- - `bookshelfFlags` - Bookshelf group to select.
 	-- ---
@@ -212,7 +212,7 @@ wakaba.Callback = {
 	-- Called from MC_USE_CARD, right player using Soul of Shiori.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `collectibleType` - used active item.
 	-- - `EntityPlayer` - used player. Mostly Shiori.
 	-- ---
@@ -224,7 +224,7 @@ wakaba.Callback = {
 	-- Called from MC_USE_ITEM, right before Shiori, or player with Book of Shiori uses an active item. returned values does NOT affect any callbacks from POST_ACTIVATE_SHIORI_EFFECT.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `collectibleType` - used active item.
 	-- - `rng` - RNG from using item.
 	-- - `EntityPlayer` - used player. Mostly Shiori.
@@ -242,7 +242,7 @@ wakaba.Callback = {
 	-- Called from MC_USE_ITEM, right after Shiori, or player with Book of Shiori uses an active item. DOES affected from PRE_CHANGE_SHIORI_EFFECT returned values.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `collectibleType` - used active item.
 	-- - `rng` - RNG from using item.
 	-- - `EntityPlayer` - used player. Mostly Shiori.
@@ -256,7 +256,7 @@ wakaba.Callback = {
 	-- Called from MC_USE_ITEM, right after Shiori, or player with Book of Shiori uses an active item. Does NOT affected from PRE_CHANGE_SHIORI_EFFECT returned values.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `collectibleType` - used active item.
 	-- - `rng` - RNG from using item.
 	-- - `EntityPlayer` - used player. Mostly Shiori.
@@ -268,10 +268,10 @@ wakaba.Callback = {
 	-- ---
 	-- PRE_EVALUATE_CRYSTAL_RESTOCK
 	-- ---
-	-- Called from isc.ModCallbackCustom.POST_SLOT_INIT, right before initializing Crystal Restock Machine for the first time. 
+	-- Called from isc.ModCallbackCustom.POST_SLOT_INIT, right before initializing Crystal Restock Machine for the first time.
 	--
 	-- ---
-	-- Parameters : 
+	-- Parameters :
 	-- - `Entity` - crystal restock entity.
 	--
 	-- ---
@@ -311,7 +311,7 @@ function wakaba:addNemesisCount(player, count, damageOnly)
 			player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.WAKABAS_NEMESIS, false, count)
 		end
 	end
-	
+
 	player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
 	player:EvaluateItems()
 end
@@ -358,6 +358,13 @@ function wakaba:playerItemsArrayUpdate(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)
 
+function wakaba:IsLudoTear(weapon, onlyTear)
+	if not weapon then return false end
+	if onlyTear and weapon.Type ~= EntityType.ENTITY_TEAR then return false end
+
+	return tear:HasTearFlags(TearFlags.TEAR_LUDOVICO)
+end
+
 -- Real Fire Tear
 -- Evaluate Wakaba Tearflag
 function wakaba:TearUpdate_Callbacks(tear)
@@ -369,11 +376,17 @@ function wakaba:TearUpdate_Callbacks(tear)
 				local player = (query and query.Player or tear.Parent):ToPlayer()
 				data.calledWakabaFireTearCallbacks = true
 				Isaac.RunCallback(wakaba.Callback.REAL_FIRE_TEAR, tear, player)
+				if tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) and player then
+					data.wakabaTearCheckPlayer = player
+				end
 			end
 		elseif tear.FrameCount == 1 and tear.Parent then
 			if tear.Parent.Type == 3 then
 				if tear.Parent.Variant == 81 then
 					Isaac.RunCallback(wakaba.Callback.REAL_FIRE_TEAR, tear, tear.Parent:ToFamiliar().Player)
+					if tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) and tear.Parent:ToFamiliar().Player then
+						data.wakabaTearCheckPlayer = tear.Parent:ToFamiliar().Player
+					end
 				elseif tear.Parent.Variant == FamiliarVariant.WISP then
 					Isaac.RunCallbackWithParam(wakaba.Callback.WISP_FIRE_TEAR, tear.Parent.SubType, tear, tear.Parent:ToFamiliar())
 				end
@@ -381,6 +394,8 @@ function wakaba:TearUpdate_Callbacks(tear)
 				data.calledWakabaFireTearCallbacks = true
 			end
 		end
+	elseif data.wakabaTearCheckPlayer and tear.FrameCount % 5 == 0 then
+		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, tear, data.wakabaTearCheckPlayer)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_Callbacks)
@@ -511,7 +526,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 							end
 						end
 					end
---[[ 
+--[[
 					if entity:ToPickup() and shouldKnifeParentPickPickups(knife.SpawnerEntity) and wakaba.ShouldPickupGetPickedByKnife(entity) then
 						if Isaac.RunCallbackWithParam(wakaba.Callback.TRY_PICK_PICKUP, entity.Variant, entity:ToPickup(), player, knife) then
 							entity.Velocity = Vector.Zero
@@ -621,7 +636,7 @@ end
 
 function wakaba:getSoulofShioriCandidates()
 	local candidates = {}
-	
+
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT)) do
 		if callback.Param then
 			candidates[callback.Param] = true
@@ -748,7 +763,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, 
 
 			if somethingChanged then
 				didModifyDamage = true
-				
+
 				noRecursion = true
 				entity:TakeDamage(amount, flags, source, cooldown)
 				noRecursion = false
