@@ -868,7 +868,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "Rira's Bandage",
-		description = "{{Collectible486}} Activates on-damage effects 6 times on start of the floor",
+		description = "!!! On start of the floor:#{{Collectible486}} Activates on-damage effects 6 times#{{Collectible479}} Smelt held trinkets",
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "Black Bean Mochi",

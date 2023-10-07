@@ -1,6 +1,6 @@
 --[[
 	Rira's Bandage (리라의 반창고) - 패시브(Passive)
-	스테이지 입장 시 피격 효과 6회 발동
+	스테이지 입장 시 피격 효과 6회 발동, 소지 장신구 흡수
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 
@@ -8,6 +8,7 @@ function wakaba:NewLevel_RiraBandage()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BANDAGE)
 		if num > 0 then
+			wakaba:SmeltHeldTrinket(player)
 			local totalNum = wakaba.Enums.Constants.RIRA_BANDAGE_BASE + (num * wakaba.Enums.Constants.RIRA_BANDAGE_EXTRA)
 			wakaba:scheduleForUpdate(function()
 				player:AnimateCollectible(wakaba.Enums.Collectibles.RIRAS_BANDAGE)

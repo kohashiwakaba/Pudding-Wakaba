@@ -960,7 +960,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "리라의 반창고",
-		description = "{{Collectible486}} 스테이지 진입 시 피격 시 효과를 6회 발동합니다.",
+		description = "!!! 스테이지 진입 시:#{{Collectible486}} 피격 시 효과를 6회 발동하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.",
 		queueDesc = "그녀의 기운이 느껴져",
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
