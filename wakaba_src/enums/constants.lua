@@ -127,12 +127,12 @@ wakaba.Enums.Collectibles = {
 
 	-- Rira items
 	BLACK_BEAN_MOCHI = Isaac.GetItemIdByName("Black Bean Mochi"),
+	RIRAS_SWIMSUIT = Isaac.GetItemIdByName("Rira's Swimsuit"),
 	--SAKURA_MONT_BLANC = Isaac.GetItemIdByName("Chimaki"),
 	--NERF_GUN = Isaac.GetItemIdByName("Chimaki"),
 	--RIRAS_BENTO = Isaac.GetItemIdByName("Chimaki"),
 	--CHEWY_ROLLY_CAKE = Isaac.GetItemIdByName("Chimaki"),
 	RIRAS_COAT = Isaac.GetItemIdByName("Rira's Coat"),
-	RIRAS_SWIMSUIT = Isaac.GetItemIdByName("Rira's Swimsuit"),
 	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
 	SECRET_DOOR = Isaac.GetItemIdByName("Secret Door"),
 	RIRAS_BANDAGE = Isaac.GetItemIdByName("Rira's Bandage"),
@@ -454,6 +454,20 @@ wakaba.Enums.Constants = {
 	DIMENSION_CUTTER_GREED_MAX_RATE = 25, -- 차원검 장신구 델리 보스 소환 확률 (그리드 최대)
 
 	SSRC_ALLOW_FLAMES = 8, -- 초민감 리셰 챌린지 최대 흡수 제한
+}
+
+wakaba.Colors = {
+	AQUA_ENTITY_COLOR = Color(0.8, 0.5, 0.9, 1),
+	AQUA_WEAPON_COLOR = Color(0.5, 0.1, 0.8, 1),
+	AQUA_LASER_COLOR = Color(0.5, 0.1, 0.8, 1, 0.5, 0.1, 0.8),
+
+	ZIPPED_ENTITY_COLOR = Color(0.7, 0.4, 0.5, 1),
+	ZIPPED_WEAPON_COLOR = Color(0.7, 0.4, 0.5, 1),
+	ZIPPED_LASER_COLOR = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5),
+
+	EXECUTE_ENTITY_COLOR = Color(0.7, 0.4, 0.5, 1),
+	EXECUTE_WEAPON_COLOR = Color(0.7, 0.4, 0.5, 1),
+	EXECUTE_LASER_COLOR = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5),
 }
 
 wakaba.ValidCustomStat = {

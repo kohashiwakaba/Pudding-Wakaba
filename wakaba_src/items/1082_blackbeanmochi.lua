@@ -8,7 +8,7 @@ local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Zipped")
 wakaba:RegisterStatusEffect("ZIPPED", sprite, {
-	EntityColor = Color(0.7, 0.4, 0.5, 1),
+	EntityColor = wakaba.Colors.ZIPPED_ENTITY_COLOR,
 })
 
 local function shouldAlwaysColorWeapon(player)
@@ -22,8 +22,8 @@ function wakaba:Cache_BlackBeanMochi(player, cacheFlag)
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARCOLOR then
 			if shouldAlwaysColorWeapon(player) then
-				player.TearColor = Color(0.7, 0.4, 0.5, 1)
-				player.LaserColor = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5)
+				player.TearColor = wakaba.Colors.ZIPPED_WEAPON_COLOR
+				player.LaserColor = wakaba.Colors.ZIPPED_LASER_COLOR
 			end
 		end
 	end
@@ -47,7 +47,7 @@ end
 function wakaba:TearFire_BlackBeanMochi(tear, player)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) and shouldApplyZipped(player) then
 		wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.ZIPPED)
-		tear.Color = Color(0.7, 0.4, 0.5, 1)
+		tear.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 	end
 end
 --wakaba:AddCallback(wakaba.Callback.REAL_FIRE_TEAR, wakaba.TearFire_BlackBeanMochi)
@@ -56,7 +56,7 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
 		--print("have coll")
 		if weapon and weapon.Type == EntityType.ENTITY_LASER then -- Epic Fetus lasers
-			weapon.Color = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5)
+			weapon.Color = wakaba.Colors.ZIPPED_LASER_COLOR
 		end
 		if shouldApplyZipped(player) then
 			if weapon then
@@ -65,7 +65,7 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 				if weapon.Type == EntityType.ENTITY_LASER then
 					--weapon.Color = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5)
 				else
-					weapon.Color = Color(0.7, 0.4, 0.5, 1)
+					weapon.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				end
 			else
 				--print("passed")
