@@ -1434,7 +1434,7 @@ function mod:GetExpectedBrokenHeartsFromDamage(player)
 	return 0
 end
 
-function mod:WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeartbreak)
+function mod:WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeartbreak, ignoreLost)
 	if flags & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then
 		return false
 	end
@@ -1455,7 +1455,7 @@ function mod:WillDamageBeFatal(player, amount, flags, ignoreBerserk, ignoreHeart
 		return brokens >= 12 - mod:GetExpectedBrokenHeartsFromDamage(player)
 	end
 
-	if playerType == PlayerType.PLAYER_JACOB2_B or effects:HasNullEffect(NullItemID.ID_LOST_CURSE) then
+	if not ignoreLost and (playerType == PlayerType.PLAYER_JACOB2_B or effects:HasNullEffect(NullItemID.ID_LOST_CURSE)) then
 		return true
 	end
 
