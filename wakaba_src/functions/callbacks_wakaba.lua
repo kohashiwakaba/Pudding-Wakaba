@@ -475,6 +475,8 @@ local function isKnifeVariantValidForEffects(variant)
 	return (
 		variant == wakaba.KnifeVariant.BONE_CLUB or
 		variant == wakaba.KnifeVariant.BONE_SCYTHE or
+		variant == wakaba.KnifeVariant.SPIRIT_SWORD or
+		variant == wakaba.KnifeVariant.TECH_SWORD or
 		variant == wakaba.KnifeVariant.DONKEY_JAWBONE
 	)
 end
@@ -546,7 +548,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 			data.wakaba_LastFrameWasReturning = isReturning
 		elseif data.wakaba_LastFrameWasFlying then
 			Isaac.RunCallback(wakaba.Callback.POST_CATCH_KNIFE, knife, knife.SpawnerEntity:ToPlayer())
-			wakaba:WipeRetributionTearFlags(knife)
+			wakaba:WipeRicherTearFlags(knife)
 			data.wakaba_TearEffectEntityBlacklist = {}
 			data.wakaba_KnifeIsReturning = false
 		end
