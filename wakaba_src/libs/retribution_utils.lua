@@ -794,16 +794,18 @@ function mod:PlayerHasSmeltedTrinket(player, trinket)
 end
 
 function mod:SmeltHeldTrinket(player, slot)
-	local otherSlot = (slot + 1) % 2
-	local otherTrinket = player:GetTrinket(otherSlot)
+	if slot then
+		local otherSlot = (slot + 1) % 2
+		local otherTrinket = player:GetTrinket(otherSlot)
 
-	if otherTrinket ~= 0 then
-		player:TryRemoveTrinket(otherTrinket)
+		if otherTrinket ~= 0 then
+			player:TryRemoveTrinket(otherTrinket)
+		end
 	end
 
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM)
 
-	if otherTrinket ~= 0 then
+	if slot and otherTrinket ~= 0 then
 		player:AddTrinket(otherTrinket, false)
 	end
 end
