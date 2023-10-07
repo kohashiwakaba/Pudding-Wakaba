@@ -362,7 +362,7 @@ function wakaba:IsLudoTear(weapon, onlyTear)
 	if not weapon then return false end
 	if onlyTear and weapon.Type ~= EntityType.ENTITY_TEAR then return false end
 
-	return tear:HasTearFlags(TearFlags.TEAR_LUDOVICO)
+	return weapon:HasTearFlags(TearFlags.TEAR_LUDOVICO)
 end
 
 -- Real Fire Tear
@@ -395,6 +395,7 @@ function wakaba:TearUpdate_Callbacks(tear)
 			end
 		end
 	elseif data.wakabaTearCheckPlayer and tear.FrameCount % 5 == 0 then
+		data.wakaba_TearEffectEntityBlacklist = {}
 		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, tear, data.wakabaTearCheckPlayer)
 	end
 end
