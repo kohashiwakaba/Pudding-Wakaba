@@ -457,9 +457,20 @@ wakaba.Enums.Constants = {
 }
 
 wakaba.Colors = {
+
+	NERF_WEAPON_COLOR = Color(0.5, 0.1, 0.8, 1),
+	NERF_LASER_COLOR = Color(0.5, 0.1, 0.8, 1, 0.5, 0.1, 0.8),
+
+	STATIC_WEAPON_COLOR = Color(0.5, 0.1, 0.8, 1),
+	STATIC_LASER_COLOR = Color(0.5, 0.1, 0.8, 1, 0.5, 0.1, 0.8),
+
 	AQUA_ENTITY_COLOR = Color(0.8, 0.5, 0.9, 1),
 	AQUA_WEAPON_COLOR = Color(0.5, 0.1, 0.8, 1),
 	AQUA_LASER_COLOR = Color(0.5, 0.1, 0.8, 1, 0.5, 0.1, 0.8),
+
+	FLOOD_ENTITY_COLOR = Color(0.8, 0.5, 0.9, 1),
+	FLOOD_WEAPON_COLOR = Color(0.5, 0.1, 0.8, 1),
+	FLOOD_LASER_COLOR = Color(0.5, 0.1, 0.8, 1, 0.5, 0.1, 0.8),
 
 	ZIPPED_ENTITY_COLOR = Color(0.7, 0.4, 0.5, 1),
 	ZIPPED_WEAPON_COLOR = Color(0.7, 0.4, 0.5, 1),
