@@ -79,14 +79,19 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_BlackBeanMochi)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if effectTarget:IsVulnerableEnemy() then
+	if wakaba:CanApplyStatusEffect(effectTarget) then
 		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
+		if effectTarget:IsBoss() then
+			wakaba:AddStatusCooldown(effectTarget)
+		end
 	end
 end, wakaba.TearFlag.ZIPPED)
 
 ---@param npc EntityNPC
-function wakaba:NPCDeath_BlackBeanMochi(npc)
-	if npc:IsDead() and wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED) then
+function wakaba:NPCDeath_BlackBeanMochi(entity)
+	if not entity:ToNPC() then return end
+	local npc = entity:ToNPC()
+	if wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED) then
 		local statusData = wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED)
 		local player = statusData.Player
 		if player then
@@ -101,4 +106,4 @@ function wakaba:NPCDeath_BlackBeanMochi(npc)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCDeath_BlackBeanMochi)
+wakaba:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, wakaba.NPCDeath_BlackBeanMochi)

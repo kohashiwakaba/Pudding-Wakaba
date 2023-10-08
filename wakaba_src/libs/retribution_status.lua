@@ -25,12 +25,21 @@ function mod:RegisterStatusEffect(statusName, spriteObject, metadata)
 end
 
 function mod:CanApplyStatusEffect(npcTarget)
+	local data = npcTarget:GetData()
 	return (
 		npcTarget and
 		npcTarget:IsVulnerableEnemy() and
 		not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and
-		not npcTarget:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS)
+		not npcTarget:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) and
+		not data.wakaba_StatusCooldown
 	)
+end
+
+function mod:AddStatusCooldown(npcTarget, duration, force)
+	local data = npcTarget:GetData()
+	if not force and data.wakaba_StatusCooldown then return end
+	duration = duration or (8 * 15)
+	data.wakaba_StatusCooldown = npcTarget.FrameCount + duration
 end
 
 function mod:AddStatusEffect(npcTarget, statusType, duration, player)
@@ -74,6 +83,13 @@ local function shouldRenderStatusSymbol(npcTarget)
 		renderMode == RenderMode.REDNER_ABOVE_WATER
 	)
 end
+
+mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, function(_, npc)
+	local data = npc:GetData()
+	if data.wakaba_StatusCooldown and data.wakaba_StatusCooldown <= npc.FrameCount then
+		data.wakaba_StatusCooldown = nil
+	end
+end)
 
 mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, function(_, npc)
 	if not shouldRenderStatusSymbol(npc) then return end
