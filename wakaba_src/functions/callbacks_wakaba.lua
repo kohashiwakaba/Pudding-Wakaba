@@ -361,6 +361,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayU
 function wakaba:IsLudoTear(weapon, onlyTear)
 	if not weapon then return false end
 	if onlyTear and weapon.Type ~= EntityType.ENTITY_TEAR then return false end
+	if not weapon.TearFlags then return false end
 
 	return weapon:HasTearFlags(TearFlags.TEAR_LUDOVICO)
 end
@@ -467,10 +468,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 end)
 
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
-	if not effect:Exists() then
-		local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
-		if player then
+	local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
+	if player then
+		if not effect:Exists() then
 			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+		elseif effect.FrameCount == 1 then
 			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, effect, player)
 		end
 	end

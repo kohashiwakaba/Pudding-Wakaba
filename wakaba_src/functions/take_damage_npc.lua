@@ -125,14 +125,14 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.ROCKET then
 			local sourceData = source.Entity:GetData()
 			
-			ApplyWakabaTearEffects(target, source, true)
+			ApplyWakabaTearEffects(target, source)
 
 		elseif source.Type == EntityType.ENTITY_KNIFE then
 			local player = wakaba:getPlayerFromKnife(source.Entity)
-			print(player)
+			--print(player)
 			if player ~= nil then
 			
-				ApplyWakabaTearEffects(target, source, true)
+				ApplyWakabaTearEffects(target, source)
 	
 			end
 		elseif source.Type == EntityType.ENTITY_PLAYER and flags == flags | DamageFlag.DAMAGE_LASER then

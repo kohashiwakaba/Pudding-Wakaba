@@ -62,8 +62,10 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 			if weapon then
 				--print("weapon found!")
 				wakaba:AddRicherTearFlags(weapon, wakaba.TearFlag.ZIPPED)
-				if weapon.Type == EntityType.ENTITY_LASER then
-					--weapon.Color = Color(0.7, 0.4, 0.5, 1, 0.7, 0.4, 0.5)
+				if weapon.Type == EntityType.ENTITY_EFFECT and weapon.Variant == EffectVariant.ROCKET then
+					print("fetus found!")
+					weapon:GetSprite().Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
+					weapon:GetData().wakaba_ExplosionColor = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				else
 					weapon.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				end
