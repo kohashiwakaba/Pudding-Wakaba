@@ -46,7 +46,7 @@ end
 function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
 		--print("have coll")
-		if weapon and weapon.Type == EntityType.ENTITY_LASER then -- Epic Fetus lasers
+		if weapon and weapon.Type == EntityType.ENTITY_LASER and wakaba.RicherLasersForFlags[weapon.Variant] then -- Epic Fetus lasers
 			weapon.Color = wakaba.Colors.ZIPPED_LASER_COLOR
 		end
 		if shouldApplyZipped(player) then

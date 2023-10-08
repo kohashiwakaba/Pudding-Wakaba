@@ -473,6 +473,16 @@ function mod:WipeRicherTearFlags(tear)
 	mod:ClearCustomTearEffects(tear)
 end
 
+mod.RicherLasersForFlags = {
+	LaserVariant.THIN_RED,
+	LaserVariant.THICK_RED,
+	LaserVariant.GIANT_RED,
+	LaserVariant.BRIM_TECH,
+	LaserVariant.THICKER_RED,
+	LaserVariant.THICKER_BRIM_TECH,
+	LaserVariant.GIANT_BRIM_TECH,
+}
+
 mod.PlayerMimickingFamiliars = {
 	[FamiliarVariant.INCUBUS] 			= true,
 	[FamiliarVariant.FATES_REWARD] 		= true,

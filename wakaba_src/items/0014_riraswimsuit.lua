@@ -69,10 +69,9 @@ end
 function wakaba:EvalTearFlag_RiraSwimsuit(weapon, player, effectTarget)
 	if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) or player:GetPlayerType() == wakaba.Enums.Players.RIRA then
 		--print("have coll")
-		if weapon and weapon.Type == EntityType.ENTITY_LASER then -- Epic Fetus lasers
-			local lasercolor = Color(1.0, 1.0, 1.0, 1.0, 0/255, 0/255, 0/255)
+		if weapon and weapon.Type == EntityType.ENTITY_LASER and wakaba.RicherLasersForFlags[weapon.Variant] then -- Epic Fetus lasers
+			local lasercolor = Color(1.3, 1.3, 1.3, 1.0, 0/255, 0/255, 0/255)
 			lasercolor:SetColorize(2.2, 2.3, 3.3, 1)
-			--weapon.Color = wakaba.Colors.AQUA_LASER_COLOR
 			weapon.Color = lasercolor
 		end
 		if shouldApplyAqua(player) or shouldApplyAquaRira(player) then
@@ -116,7 +115,7 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 	local num = 0
 	local statusData = wakaba:HasStatusEffect(target, wakaba.StatusEffect.AQUA)
 	if statusData then
-		print(source.Entity, wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
+		--print(source.Entity, wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
 		if newFlags & DamageFlag.DAMAGE_FIRE > 0
 		or newFlags & DamageFlag.DAMAGE_EXPLOSION > 0
 		or newFlags & DamageFlag.DAMAGE_POOP > 0
