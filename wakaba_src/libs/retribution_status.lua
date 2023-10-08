@@ -12,8 +12,17 @@ local defaultMetadata = {
 mod.StatusEffect = {}
 mod.StatusMetadata = {}
 
+local function GetRegisteredNumStatusEffects()
+	local count = 0
+	local effects = mod.StatusEffect
+	for name, index in pairs(effects) do
+		count = count + 1
+	end
+	return count
+end
+
 function mod:RegisterStatusEffect(statusName, spriteObject, metadata)
-	local index = #mod.StatusEffect + 1
+	local index = GetRegisteredNumStatusEffects() + 1
 	mod.StatusEffect[statusName] = index
 	mod.StatusMetadata[index] = metadata or defaultMetadata
 

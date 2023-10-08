@@ -1327,6 +1327,7 @@ include('wakaba_src.items.0009_concentration')
 include('wakaba_src.items.0010_rabbitribbon')
 include('wakaba_src.items.0011_sweetscatalog')
 include('wakaba_src.items.0012_waterflame')
+include('wakaba_src.items.0014_riraswimsuit')
 include('wakaba_src.items.0015_brokentoolbox')
 include('wakaba_src.items.1001_eatheart')
 

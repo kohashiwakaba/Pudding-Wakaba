@@ -43,15 +43,6 @@ local function shouldApplyZipped(player)
 	return rng:RandomFloat() < chance
 end
 
----@param tear EntityTear
-function wakaba:TearFire_BlackBeanMochi(tear, player)
-	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) and shouldApplyZipped(player) then
-		wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.ZIPPED)
-		tear.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
-	end
-end
---wakaba:AddCallback(wakaba.Callback.REAL_FIRE_TEAR, wakaba.TearFire_BlackBeanMochi)
-
 function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI) then
 		--print("have coll")
@@ -63,10 +54,10 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 				--print("weapon found!")
 				wakaba:AddRicherTearFlags(weapon, wakaba.TearFlag.ZIPPED)
 				if weapon.Type == EntityType.ENTITY_EFFECT and weapon.Variant == EffectVariant.ROCKET then
-					print("fetus found!")
+					--print("fetus found!")
 					weapon:GetSprite().Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 					weapon:GetData().wakaba_ExplosionColor = wakaba.Colors.ZIPPED_WEAPON_COLOR
-				else
+				elseif weapon.Type ~= EntityType.ENTITY_LASER then
 					weapon.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				end
 			else

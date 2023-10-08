@@ -15,11 +15,11 @@ local function ApplyWakabaTearEffects(entity, source, isLaser)
 		local data = source.Entity:GetData()
 		data.wakaba_TearEffectEntityBlacklist = data.wakaba_TearEffectEntityBlacklist or {}
 		if data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] then return end
-	
+
 		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
 			if wakaba:HasRicherTearFlags(source.Entity, callbackData.Param) then
 				local newEntity = callbackData.Function(callbackData.Mod, entity, source.Entity.SpawnerEntity:ToPlayer(), source.Entity)
-	
+
 				if newEntity then
 					entity = newEntity
 				end
@@ -63,6 +63,11 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		end
 
 		local returndata = wakaba:PlasmaBeamDamage(source, target, data, newDamage, newFlags, flags == flags | DamageFlag.DAMAGE_LASER)
+		newDamage = returndata.newDamage or newDamage
+		sendNewDamage = returndata.sendNewDamage or sendNewDamage
+		newFlags = returndata.newFlags or newFlags
+
+		local returndata = wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
 		newFlags = returndata.newFlags or newFlags
@@ -114,38 +119,38 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 
 		elseif source.Type == EntityType.ENTITY_BOMBDROP and flags == flags | DamageFlag.DAMAGE_EXPLOSION then
 			local sourceData = source.Entity:GetData()
-			
+
 			ApplyWakabaTearEffects(target, source)
 
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL then
 			local sourceData = source.Entity:GetData()
-			
+
 			ApplyWakabaTearEffects(target, source)
 
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.ROCKET then
 			local sourceData = source.Entity:GetData()
-			
+
 			ApplyWakabaTearEffects(target, source)
 
 		elseif source.Type == EntityType.ENTITY_KNIFE then
 			local player = wakaba:getPlayerFromKnife(source.Entity)
 			--print(player)
 			if player ~= nil then
-			
+
 				ApplyWakabaTearEffects(target, source)
-	
+
 			end
 		elseif source.Type == EntityType.ENTITY_PLAYER and flags == flags | DamageFlag.DAMAGE_LASER then
 			local player = source.Entity:ToPlayer()
-			
+
 			ApplyWakabaTearEffects(target, source, true)
 
 		elseif source.Type == EntityType.ENTITY_EFFECT and source.Variant == EffectVariant.DARK_SNARE then
 			if source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER then
 				local player = source.Entity.SpawnerEntity:ToPlayer()
-			
+
 				ApplyWakabaTearEffects(target, source)
-	
+
 			end
 		elseif source.Type == EntityType.ENTITY_FAMILIAR and source.Variant == FamiliarVariant.ABYSS_LOCUST then
 			if source.Entity and source.Entity.SpawnerEntity and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER then
