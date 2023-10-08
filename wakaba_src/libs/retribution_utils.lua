@@ -483,6 +483,11 @@ mod.RicherLasersForFlags = {
 	LaserVariant.GIANT_BRIM_TECH,
 }
 
+function mod:IsLaserColorable(laser)
+	if laser.Variant == LaserVariant.THICK_RED and laser.SubType == 3 then return false end
+	return mod.RicherLasersForFlags[laser.Variant] ~= nil
+end
+
 mod.PlayerMimickingFamiliars = {
 	[FamiliarVariant.INCUBUS] 			= true,
 	[FamiliarVariant.FATES_REWARD] 		= true,
