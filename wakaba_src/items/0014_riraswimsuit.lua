@@ -4,10 +4,23 @@
 	연사 +0.3, 10%의 확률로 침수 공격 (행운 38 이상일 때 100%) / 리라의 경우 5%, 행운 19 이상일 때 100%
 	침수 공격에 탄막이 닿으면 그 탄막을 빛줄기로 변경
 	침수 상태의 적은 침수/산성/레이저 공격에 추가 피해, 불꽃/빨똥 공격에 면역
-	P.S. 침수 공격은 돌 종류의 무적 몬스터 즉사
+	P.S. 침수 공격은 돌 종류의 몬스터 즉사
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+
+wakaba.AquaInstakillEntities = {
+	{EntityType.ENTITY_GIDEON},
+	{EntityType.ENTITY_STONEY},
+	{EntityType.ENTITY_STONEHEAD},
+	{EntityType.ENTITY_GAPING_MAW},
+	{EntityType.ENTITY_BROKEN_GAPING_MAW},
+	{EntityType.ENTITY_CONSTANT_STONE_SHOOTER},
+	{EntityType.ENTITY_BRIMSTONE_HEAD},
+	{EntityType.ENTITY_STONE_EYE},
+	{EntityType.ENTITY_QUAKE_GRIMACE},
+	{EntityType.ENTITY_QUAKEY},
+}
 
 local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
@@ -16,6 +29,18 @@ wakaba:RegisterStatusEffect("AQUA", sprite, {
 	EntityColor = wakaba.Colors.AQUA_ENTITY_COLOR,
 })
 
+local function isAquaInstakill(entity)
+	for _, dict in ipairs(wakaba.AquaInstakillEntities) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
+			end
+		end
+	end
+end
+
 local function shouldAlwaysColorWeapon(player)
 	return player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) or player:HasWeaponType(WeaponType.WEAPON_LASER) or player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasWeaponType(WeaponType.WEAPON_TECH_X)
 end
@@ -23,7 +48,7 @@ end
 function wakaba:Cache_RiraSwimsuit(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) then
 		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-			--player.Damage = player.Damage + 0.5
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, 0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) * wakaba:getEstimatedTearsMult(player))
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARCOLOR then
 			if shouldAlwaysColorWeapon(player) then
@@ -97,6 +122,9 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_RiraSwimsuit)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
+	if isAquaInstakill(effectTarget) then
+		effectTarget:Die()
+	end
 	if wakaba:CanApplyStatusEffect(effectTarget) then
 		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
 		if effectTarget:IsBoss() then
@@ -106,7 +134,7 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 end, wakaba.TearFlag.AQUA)
 
 local function shouldApplySwordAqua(player)
-	return (player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) or player:GetPlayerType() == wakaba.Enums.Players.RIRA )
+	return player and (player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) or player:GetPlayerType() == wakaba.Enums.Players.RIRA )
 	and shouldApplyAqua(player) or shouldApplyAquaRira(player)
 end
 
@@ -117,16 +145,16 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 	if statusData then
 		--print(source.Entity, wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
 		if newFlags & DamageFlag.DAMAGE_FIRE > 0
-		or newFlags & DamageFlag.DAMAGE_EXPLOSION > 0
+		or newFlags & DamageFlag.DAMAGE_POISON_BURN > 0
 		or newFlags & DamageFlag.DAMAGE_POOP > 0
 		then
 			returndata.sendNewDamage = true
 			returndata.newDamage = newDamage * 0.8
 		end
 		if newFlags & DamageFlag.DAMAGE_LASER > 0
-		or newFlags & DamageFlag.DAMAGE_POISON_BURN > 0
+		or newFlags & DamageFlag.DAMAGE_EXPLOSION > 0
 		or (source.Entity and wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
-		or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordAqua(player)) -- Spirit Sword
+		or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordAqua(source.Entity)) -- Spirit Sword
 		then
 			returndata.sendNewDamage = true
 			returndata.newDamage = newDamage * 1.5

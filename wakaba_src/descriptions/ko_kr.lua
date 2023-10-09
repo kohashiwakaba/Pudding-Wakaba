@@ -951,12 +951,12 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "리라의 수영복",
-		description = "??%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
-		.. "#{{LuckSmall}} :행운 ??+일 때 100%"
-		.. "#침수된 적은 화상/독성 공격에 더 적은 피해를 받으나, 침수/폭발/레이저 공격에 추가 피해를 받습니다."
-		.. "#침수된 적에게 랜덤 방향으로 눈물이 나가며 처치 시 소울하트 반칸을 드랍합니다."
+		description = "10%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
+		.. "#{{LuckSmall}} :행운 38+일 때 100%"
+		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
-		queueDesc = "너무 젖어있는 눈물",
+		queueDesc = "이거, 살짝 야릇할지도...?",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "리라의 반창고",
