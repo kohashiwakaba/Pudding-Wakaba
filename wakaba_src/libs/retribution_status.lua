@@ -38,6 +38,8 @@ function mod:CanApplyStatusEffect(npcTarget)
 	return (
 		npcTarget and
 		npcTarget:IsVulnerableEnemy() and
+		npcTarget.Type ~= EntityType.ENTITY_FIREPLACE and
+		npcTarget.Type ~= EntityType.ENTITY_MOVABLE_TNT and
 		not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and
 		not npcTarget:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) and
 		not data.wakaba_StatusCooldown
