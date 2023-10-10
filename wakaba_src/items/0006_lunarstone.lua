@@ -303,6 +303,17 @@ function wakaba:RoomClear_LunarStone(rng, pos)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_LunarStone)
 
+function wakaba:NewLevel_LunarStone()
+	local lunarStoneNum = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE) + wakaba:GetGlobalPlayerTypeNum(wakaba.Enums.Players.TSUKASA)
+	if lunarStoneNum > 0 then
+		local room = wakaba.G:GetRoom()
+		for i = 1, lunarStoneNum do
+			local spawnPos = room:GetCenterPos()
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 1, spawnPos, Vector.Zero, nil)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_LunarStone)
 
 function wakaba:AfterRevival_LunarStone(player)
 	wakaba:GetPlayerEntityData(player)

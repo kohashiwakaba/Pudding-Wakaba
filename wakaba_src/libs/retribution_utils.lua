@@ -109,6 +109,17 @@ function mod:GetGlobalCollectibleNum(id)
 	return power
 end
 
+function mod:GetGlobalPlayerTypeNum(id)
+	local power = 0
+	mod:ForAllPlayers(function(player)
+		if player:GetPlayerType() == id then
+			power = power + 1
+		end
+	end)
+
+	return power
+end
+
 function mod:InitFamiliarRNG(familiar, item)
 	familiar:GetData().rng = mod:RNG(familiar.InitSeed)
 	familiar.Player:GetCollectibleRNG(item):Next()
