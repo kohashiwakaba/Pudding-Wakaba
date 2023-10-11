@@ -603,8 +603,13 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, function(_, knife, colli
 	end
 end, 0)
 
-
-
+-- Apply Wakaba TearFlags manually
+function wakaba:ApplyWakabaTearParams(entity, player)
+	player = player or entity.SpawnerEntity:ToPlayer()
+	if player then
+		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, entity, player)
+	end
+end
 
 
 
