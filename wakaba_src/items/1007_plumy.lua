@@ -37,6 +37,7 @@ function wakaba:initPlumBrimstoneLaser(player, familiar, multiplier, collisionsi
 	laser.Parent = familiar
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_LASER, 1, 1, player)
 	laser.TearFlags = laser.TearFlags | TearFlags.TEAR_PIERCING | player.TearFlags | tearparams.TearFlags
+	wakaba:ApplyWakabaTearParams(laser, player)
 	laser:SetOneHit(false)
 	return laser
 end
@@ -52,6 +53,7 @@ function wakaba:InitPlumMainBrimstoneLaser(player, familiar, multiplier)
 	laser:GetData().wakaba.plumymain = true
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_LASER, 1, 1, player)
 	laser.TearFlags = laser.TearFlags | player.TearFlags | tearparams.TearFlags
+	wakaba:ApplyWakabaTearParams(laser, player)
 	laser.CollisionDamage = player.Damage * multiplier
 
 	return laser
@@ -68,6 +70,7 @@ function wakaba:initPlumSingleLaser(player, familiar, vector)
 	local laser = player:FireTechLaser(familiar.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, tear_vector + float, true, true, player, multiplier)
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_LASER, 1, 1, player)
 	laser.TearFlags = TearFlags.TEAR_SPECTRAL | player.TearFlags | tearparams.TearFlags
+	wakaba:ApplyWakabaTearParams(laser, player)
 	
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		laser.TearFlags = laser.TearFlags | TearFlags.TEAR_HOMING
@@ -110,6 +113,7 @@ local function InitPlumTear(player, familiar, vector)
 	end
 	tear.TearFlags = tear.TearFlags | player.TearFlags | tearparams.TearFlags
 	tear.Color = tearparams.TearColor
+	wakaba:ApplyWakabaTearParams(tear, player)
 	if tearparams.TearVariant ~= TearVariant.BLUE and tearparams.TearVariant ~= TearVariant.BLOOD then
 		tear:ChangeVariant(tearparams.TearVariant)
 	end
@@ -149,6 +153,7 @@ function wakaba:initPlumKnife(player, familiar, vector)
 	knife:GetData().wakaba = {}
 	knife:GetData().wakaba.isplum = true
 	knife:GetData().wakaba.plumvel = (tear_vector + float) * Vector(player.ShotSpeed * 1.5, player.ShotSpeed * 1.5)
+	wakaba:ApplyWakabaTearParams(knife, player)
 	
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
