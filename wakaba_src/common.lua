@@ -1264,3 +1264,10 @@ function wakaba:getExtendedPickupIndex(pickup)
 	return tostring(pickup.InitSeed)
 end
  ]]
+
+-- Getting options value from Pudding & Wakaba mod
+function wakaba:getOptionValue(optionKey)
+	if optionKey and type(optionKey) == "string" then
+		return wakaba.state.options[optionKey]
+	end
+end
