@@ -34,7 +34,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BunnyParfait)
 function wakaba:Cache_BunnyParfait(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) then
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_ACCELERATE
+			--player.TearFlags = player.TearFlags
 		end
 	end
 end
