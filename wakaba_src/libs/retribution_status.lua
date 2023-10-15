@@ -7,6 +7,7 @@ local game = wakaba.G
 
 local defaultMetadata = {
 	CanStack = false,
+	VasculitisFlag = nil,
 }
 
 mod.StatusEffect = {}

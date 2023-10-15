@@ -8,7 +8,9 @@ local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Zipped")
 wakaba:RegisterStatusEffect("ZIPPED", sprite, {
+	CanStack = false,
 	EntityColor = wakaba.Colors.ZIPPED_ENTITY_COLOR,
+	VasculitisFlag = wakaba.TearFlag.ZIPPED,
 })
 
 local function shouldAlwaysColorWeapon(player)

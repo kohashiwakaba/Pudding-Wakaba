@@ -26,7 +26,9 @@ local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Aqua")
 wakaba:RegisterStatusEffect("AQUA", sprite, {
+	CanStack = false,
 	EntityColor = wakaba.Colors.AQUA_ENTITY_COLOR,
+	VasculitisFlag = wakaba.TearFlag.AQUA,
 })
 
 local function isAquaInstakill(entity)
