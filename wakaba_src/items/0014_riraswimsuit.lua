@@ -123,7 +123,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
 	if isAquaInstakill(effectTarget) then
-		effectTarget:Die()
+		effectTarget:Kill()
 	end
 	if wakaba:CanApplyStatusEffect(effectTarget) then
 		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
