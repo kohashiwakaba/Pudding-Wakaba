@@ -83,7 +83,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	local tear_vector = nil
 	--local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, Vector(familiar.Position.X, familiar.Position.Y), vector, familiar)
 	local entity = familiar:FireProjectile(vector)
-	tear = entity:ToTear()
+	local tear = entity:ToTear()
 	--tear:ChangeVariant(TearVariant.FETUS)
 	tear.Scale = 0.9
 	tear.TearFlags = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_FETUS
