@@ -35,4 +35,23 @@
     <sound name="pb_after_explosion5">
         <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion9.wav"/>
     </sound>
+    <sound name="chimaki_main">
+        <sample weight="1" path="chimaki/chimaki_0001.wav"/>
+    </sound>
+    <sound name="chimaki_rand">
+        <sample weight="1" path="chimaki/chimaki_0001.wav"/>
+        <sample weight="1" path="chimaki/chimaki_0004.wav"/>
+        <sample weight="1" path="chimaki/chimaki_0009.wav"/>
+        <sample weight="1" path="chimaki/chimaki_0010.wav"/>
+        <sample weight="1" path="chimaki/chimaki_0018.wav"/>
+    </sound>
+    <sound name="chimaki_triple">
+        <sample weight="1" path="chimaki/chimaki_triple.wav"/>
+    </sound>
+    <sound name="chimaki_hurt">
+        <sample weight="1" path="chimaki/chimaki_hurt.wav"/>
+    </sound>
+    <sound name="chimaki_question">
+        <sample weight="1" path="chimaki/chimaki_question.wav"/>
+    </sound>
 </sounds>

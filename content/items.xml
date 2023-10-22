@@ -110,7 +110,7 @@
 	<active id="80" cache="all" description="Temporary Random Weapon" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="4" quality="3" tags="offensive book" hidden="true" achievement="9999"/>
 	<active id="81" description="Room organize" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive nogreed"/>
 
-	<familiar id="82" description="" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby noeden" quality="4" hidden="true" achievement="9999"/>
+	<familiar id="82" description="Rira's Soulmate" gfx="chimaki_placeholder.png" name="Chimaki" devilprice="2" tags="offensive baby noeden uniquefamiliar summonable lazarusshared" quality="4" hidden="true" achievement="9999"/>
 
 	<familiar id="83" description="I wanna this ear" gfx="lilricher.png" name="Lil Richer" devilprice="2" shopprice="20" tags="offensive baby uniquefamiliar" quality="4"/>
 	<familiar id="84" description="" gfx="__placeholder.png" name="Lil Rira" devilprice="2" tags="offensive baby" quality="3" hidden="true" achievement="9999"/>

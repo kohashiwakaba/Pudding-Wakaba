@@ -1309,6 +1309,7 @@ end
 
 include('wakaba_src.functions.callbacks_wakaba')
 include('wakaba_src.libs.retribution_status')
+include('wakaba_src.libs.revel_utils')
 include('wakaba_src.functions.hudstats')
 include('wakaba_src.functions.hit_counter')
 include('wakaba_src.functions.room_name_display')
@@ -1464,6 +1465,7 @@ include('wakaba_src.characters.tsukasa')
 include('wakaba_src.characters.tsukasa_b')
 include('wakaba_src.characters.richer')
 include('wakaba_src.characters.richer_b')
+include('wakaba_src.characters.rira')
 include('wakaba_src.common')
 
 include('wakaba_src.items.0002_bookofshiori_func')

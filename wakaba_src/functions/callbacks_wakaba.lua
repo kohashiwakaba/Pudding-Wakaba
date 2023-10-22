@@ -293,6 +293,30 @@ wakaba.Callback = {
 	-- Returned values : Retruns with table with following elements
 	-- - `shouldPreventAqua` : `boolean` -
 	PRE_EVALUATE_AQUA_TRINKET = {},
+
+	-- ---
+	-- EVALUATE_CHIMAKI_COMMAND
+	-- ---
+	-- Called from MC_FAMILIAR_UPDATE, to choose which command to be used
+	--
+	-- ---
+	-- Parameters :
+	-- - `ChimakiCommandType` -
+	--
+	-- ---
+	EVALUATE_CHIMAKI_COMMAND = {},
+
+	-- ---
+	-- CHIMAKI_COMMAND
+	-- ---
+	-- Called from MC_FAMILIAR_UPDATE, binded per command
+	--
+	-- ---
+	-- Parameters :
+	-- - `ChimakiCommandType` -
+	--
+	-- ---
+	CHIMAKI_COMMAND = {},
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

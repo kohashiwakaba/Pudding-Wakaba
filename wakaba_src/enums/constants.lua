@@ -184,7 +184,7 @@ wakaba.Enums.Familiars = {
 	EASTER_EGG = Isaac.GetEntityVariantByName("Easter Egg Orbital"),
 	LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
 	--LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
-	--CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
+	CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
 
 }
 
@@ -318,6 +318,11 @@ wakaba.Enums.SoundEffects = {
 	POWER_BOMB_AFTER_EXPLOSION_3 = Isaac.GetSoundIdByName("pb_after_explosion3"),
 	POWER_BOMB_AFTER_EXPLOSION_4 = Isaac.GetSoundIdByName("pb_after_explosion4"),
 	POWER_BOMB_AFTER_EXPLOSION_5 = Isaac.GetSoundIdByName("pb_after_explosion5"),
+	CHIMAKI_MAIN = Isaac.GetSoundIdByName("chimaki_main"),
+	CHIMAKI_KYUU = Isaac.GetSoundIdByName("chimaki_rand"),
+	CHIMAKI_TRIPLE = Isaac.GetSoundIdByName("chimaki_triple"),
+	CHIMAKI_HURT = Isaac.GetSoundIdByName("chimaki_hurt"),
+	CHIMAKI_KYUU_QUESTION = Isaac.GetSoundIdByName("chimaki_question"),
 }
 
 -- 와카바 모드 거지/슬롯류 : SlotVariant 위치에 사용

@@ -43,4 +43,10 @@ if StageAPI then
 		Portrait = "gfx/ui/stage/RicherPortrait_b.png",
 		NoShake = true,
 	})
+
+	StageAPI.AddPlayerGraphicsInfo(wakaba.Enums.Players.RIRA, {
+		Name = "gfx/ui/boss/playername_rira.png",
+		Portrait = "gfx/ui/stage/RiraPortrait.png",
+		NoShake = true,
+	})
 end

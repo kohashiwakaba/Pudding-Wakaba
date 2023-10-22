@@ -21,6 +21,22 @@ local function IsExtraRoom(idx)
 	return isExtraRoom
 end
 
+function wakaba:ShouldRemoveBlind()
+	wakaba:ForAllPlayers(function(player)
+		if wakaba:HasBless(player)
+		or wakaba:HasNemesis(player)
+		or wakaba:HasShiori(player)
+		or wakaba:hasLunarStone(player)
+		or wakaba:hasElixir(player)
+		or wakaba:hasRibbon(player)
+		or wakaba:hasWaterFlame(player)
+		or wakaba:hasChimaki(player)
+		then
+			return true
+		end
+	end)
+end
+
 function wakaba:PostGetCollectible_BlackCandle(player, item)
 	if isc:hasCurse(wakaba.curses.CURSE_OF_FLAMES) and not isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B) then
 		wakaba.G:GetLevel():RemoveCurses(wakaba.curses.CURSE_OF_FLAMES)
@@ -77,7 +93,7 @@ function wakaba:Curse_Evaluate(curse)
 			goto wakabaCurseSkip
 		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
-		if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) or wakaba:hasWaterFlame(player) or wakaba:hasAlbireo(player) then
+		if wakaba:ShouldRemoveBlind() then
 			if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
 				curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_BLIND)
 			end
@@ -147,7 +163,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, wakaba.Curse_Evaluate)
 
 function wakaba:Curse_PlayerRender(player)
 	local curse = wakaba.G:GetLevel():GetCurses()
-	if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) then
+	if wakaba:ShouldRemoveBlind() then
 		if curse & LevelCurse.CURSE_OF_BLIND == LevelCurse.CURSE_OF_BLIND then
 			wakaba.G:GetLevel():RemoveCurses(LevelCurse.CURSE_OF_BLIND)
 		end

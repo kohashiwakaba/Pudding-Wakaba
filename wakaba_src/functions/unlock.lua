@@ -203,6 +203,23 @@ wakaba.UnlockTables = {
 		Beast		= {"winteralbireo", "collectible",	wakaba.Enums.Collectibles.WINTER_ALBIREO,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_winteralbireo.png") end},
 		Greedier	= {"trialstew", "card",		wakaba.Enums.Cards.CARD_TRIAL_STEW,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_trialstew.png") end},
 	},
+	[wakaba.Enums.Players.RIRA] = {
+		Heart 		= {"blackbeanmochi", "null", 		wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_fireflylighter.png") end},
+		Isaac 		= {"nerfgun", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_sweetscatalog.png") end},
+		BlueBaby 	= {"sakuramontblanc", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_doubleinvader.png") end},
+		Satan 		= {"riraswimsuit", "null",	wakaba.Enums.Collectibles.RIRAS_SWIMSUIT,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_antibalance.png") end},
+		Lamb		= {"chewyrollycake", "null",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_venomincantation.png") end},
+		BossRush	= {"caramellapancake", "null",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bunnyparfait.png") end},
+		Hush		= {"secretdoor", "null",	wakaba.Enums.Collectibles.SECRET_DOOR,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richeruniform.png") end},
+		Delirium	= {"rirabandage", "null",	wakaba.Enums.Collectibles.RIRAS_BANDAGE,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_prestigepass.png") end},
+		MegaSatan	= {"rirabento", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_3dprinter.png") end},
+		Mother		= {"sakuracapsule", "null",	nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_cunningpaper.png") end},
+		Beast		= {"maidduet", "null",	nil,		function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_selfburning.png") end},
+		Greed		= {"clensingfoam", "null",	nil,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_clensingfoam.png") end},
+		Greedier	= {"lilrira", "null",		nil,			function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_lilricher.png") end},
+
+		All 		= {"chimaki", "collectible",	wakaba.Enums.Collectibles.CHIMAKI,	function() TryPlayAchievementPaper("gfx/ui/achievement_wakaba/achievement_rabbitribbon.png") end},
+	},
 	[-999] = {
 		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_eyeofclock.png") end, BossID.MOM},
 		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_plumy.png") end, BossID.HUSH},
@@ -1290,7 +1307,9 @@ end
 
 
 for _, playerType in pairs(wakaba.Enums.Players) do
-	PauseScreenCompletionMarksAPI:AddModCharacterCallback(playerType, function()
-		return wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
-	end)
+	if validPlayerCheck[wakaba.Enums.Players] then
+		PauseScreenCompletionMarksAPI:AddModCharacterCallback(playerType, function()
+			return wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
+		end)
+	end
 end

@@ -553,14 +553,7 @@ function wakaba:RevealItemImage(pickup, offset)
 	and not (wakaba.G:GetSeeds():IsCustomRun() and isc:hasCurse(LevelCurse.CURSE_OF_BLIND))
 	and not pickup:GetData().wakaba.removequestion
 	and pickup.SubType > 0 and itemData then
-		local hasbless = false
-		for i = 1, wakaba.G:GetNumPlayers() do
-			local player = Isaac.GetPlayer(i - 1)
-			if wakaba:HasBless(player) or wakaba:HasNemesis(player) or wakaba:HasShiori(player) or wakaba:hasLunarStone(player) or wakaba:hasElixir(player) or wakaba:hasRibbon(player) then
-				hasbless = true
-			end
-		end
-		if hasbless and wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
+		if wakaba:ShouldRemoveBlind() and wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
 			local sprite = pickup:GetSprite()
 
 			sprite:ReplaceSpritesheet(1, itemData.GfxFileName)
