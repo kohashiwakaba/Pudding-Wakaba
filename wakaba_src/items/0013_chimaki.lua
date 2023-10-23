@@ -125,7 +125,7 @@ function wakaba:RoomGen_Chimaki_BossDoor()
 		writeableRoom.AwardSeed = writeablePrevRoom.AwardSeed
 	end
 end
-wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.EARLY, wakaba.RoomGen_Chimaki_BossDoor)
+--wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.EARLY, wakaba.RoomGen_Chimaki_BossDoor)
 
 function wakaba:RoomClear_Chimaki_BossDoor(rng, spawnPosition)
 	local level = wakaba.G:GetLevel()
@@ -140,8 +140,8 @@ function wakaba:RoomClear_Chimaki_BossDoor(rng, spawnPosition)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Chimaki_BossDoor)
-wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.EARLY, wakaba.RoomClear_Chimaki_BossDoor)
+--wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Chimaki_BossDoor)
+--wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_ROOM, CallbackPriority.EARLY, wakaba.RoomClear_Chimaki_BossDoor)
 
 --#endregion
 
