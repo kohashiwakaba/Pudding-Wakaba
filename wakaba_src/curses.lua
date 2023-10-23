@@ -22,6 +22,7 @@ local function IsExtraRoom(idx)
 end
 
 function wakaba:ShouldRemoveBlind()
+	local returnVal
 	wakaba:ForAllPlayers(function(player)
 		if wakaba:HasBless(player)
 		or wakaba:HasNemesis(player)
@@ -32,9 +33,10 @@ function wakaba:ShouldRemoveBlind()
 		or wakaba:hasWaterFlame(player)
 		or wakaba:hasChimaki(player)
 		then
-			return true
+			returnVal = true
 		end
 	end)
+	return returnVal
 end
 
 function wakaba:PostGetCollectible_BlackCandle(player, item)
