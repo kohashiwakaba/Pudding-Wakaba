@@ -36,15 +36,19 @@ function wakaba:Chimaki_CommandShootTears(familiar, pos, hit, tinted, speedMult)
 end
 
 function wakaba:Chimaki_CommandShootFlames(familiar, pos, hit, tinted, speedMult)
-	local length = (pos - familiar.Position):Length()
 	local player = familiar:GetData().player or familiar.Player
-	local aimDirection = (pos - familiar.Position) * (speedMult / length)
-
-	local fire = Isaac.Spawn(1000, EffectVariant.BLUE_FLAME, 0, familiar.Position, aimDirection:Resized(15), player):ToEffect()
-	fire.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
-	fire.Timeout = 60
-	fire:GetData().wakaba_chimakiBFParent = EntityRef(player)
-	return fire
+	local fires = {}
+	for i = -1, 1 do
+		local length = (pos - familiar.Position):Length()
+		local aimDirection = (pos - familiar.Position) * (speedMult / length)
+		local rotatedDirection = aimDirection:Rotated(30 * i)
+		local fire = Isaac.Spawn(1000, EffectVariant.BLUE_FLAME, 0, familiar.Position, rotatedDirection:Resized(15), player):ToEffect()
+		fire.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
+		fire.Timeout = 60
+		fire:GetData().wakaba_chimakiBFParent = EntityRef(player)
+		table.insert(fires, fire)
+	end
+	return fires
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 	local parent = effect:GetData().wakaba_chimakiBFParent --- @type EntityRef
