@@ -2,6 +2,8 @@
 	Chimaki (치마키) - 패밀리어 (유니크)
 	리라로 하드 모드 체크리스트 달성
 	Blind 저주 면역, 다양한 방면으로 캐릭터 보조
+
+	based off from virgil from Revelations
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
@@ -18,7 +20,7 @@ function wakaba:Chimaki_CommandShootTears(familiar, pos, hit, tinted, speedMult)
 	local player = familiar:GetData().player or familiar.Player
 	local entity = familiar:FireProjectile((pos - familiar.Position) * (speedMult / length))
 	local tear = entity:ToTear()
-	tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
+	tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL
 
 	local multiplier = 1
 	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
@@ -337,13 +339,9 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 			wakaba:FollowPath(familiar, speed * 0.2, path, true, 0.8)
 		end
 
---    REVEL.DebugToString({data.State, data.dummy, data.dummy:Exists()})
-
 	if data.dummy then
 		data.dummy.Position = familiar.Position
 		data.dummy.Velocity = familiar.Velocity
-
-		--    REVEL.DebugToString(data.dummy.Position)
 	end
 
 	if data.rockCooldown > 0 then
@@ -479,9 +477,9 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -349, funct
 	if player:GetNumKeys() <= 0 then return end
 	if not room:IsClear() then return end
 	local megachests = {}
-	for _, v in ipairs(isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_MEGACHEST, ChestSubType.CHEST_CLOSED)) do
-		if v.Position:Distance(data.player.Position) < 240 then
-			table.insert(megachests, v)
+	for _, v in ipairs(isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_MEGACHEST)) do
+		if v.SubType > 0 and v.Position:Distance(data.player.Position) < 240 then
+			table.insert(megachests, v:ToPickup())
 		end
 	end
 
@@ -498,12 +496,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	if (data.MegaChest and data.MegaChest:Exists() and not data.MegaChest:IsDead()) or spr:IsPlaying("kyuu") then
 		if data.MegaChest and familiar.Position:Distance(data.MegaChest.Position) < 16 then
 			local e = data.MegaChest
-
-			if e.SubType == ChestSubType.CHEST_CLOSED then
-				TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
-				playExtraAnim("kyuu", nil, familiar, spr, data)
-				e:TryOpenChest(player)
-			end
+			TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
+			playExtraAnim("kyuu", nil, familiar, spr, data)
+			e:TryOpenChest(player)
 		end
 		if spr:IsFinished("kyuu") then
 			data.State = "Move_Default"
