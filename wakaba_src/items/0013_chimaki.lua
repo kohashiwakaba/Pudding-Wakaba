@@ -474,7 +474,7 @@ end, "Command_RemoveCurse")
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -349, function(_, ent, spr, data)
 	local room = wakaba.G:GetRoom()
 	local player = data.player
-	if player:GetNumKeys() <= 0 then return end
+	if player:GetNumKeys() <= 1 and not player:HasGoldenKey() then return end
 	if not room:IsClear() then return end
 	local megachests = {}
 	for _, v in ipairs(isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_MEGACHEST)) do
@@ -494,11 +494,14 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	player = player or Isaac.GetPlayer()
 	local level = wakaba.G:GetLevel()
 	if (data.MegaChest and data.MegaChest:Exists() and not data.MegaChest:IsDead()) or spr:IsPlaying("kyuu") then
-		if data.MegaChest and familiar.Position:Distance(data.MegaChest.Position) < 16 then
+		if data.MegaChest and data.MegaChest.SubType > 0 and familiar.Position:Distance(data.MegaChest.Position) < 16 then
 			local e = data.MegaChest
 			TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 			playExtraAnim("kyuu", nil, familiar, spr, data)
-			e:TryOpenChest(player)
+			e.OptionsPickupIndex = 0
+			if e:TryOpenChest(player) and not player:HasGoldenKey() then
+				player:AddKeys(-1)
+			end
 		end
 		if spr:IsFinished("kyuu") then
 			data.State = "Move_Default"
