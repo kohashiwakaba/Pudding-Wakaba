@@ -36,12 +36,13 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_BlackBeanMochi)
 local function shouldApplyZipped(player)
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI)
 	local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI)
+	local charmBonus = wakaba:getTeardropCharmBonus(player)
 
 	local basicChance = 0.1
 	local parLuck = 16
 	local maxChance = 1 - basicChance
 
-	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), count)
+	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), count)
 	return rng:RandomFloat() < chance
 end
 

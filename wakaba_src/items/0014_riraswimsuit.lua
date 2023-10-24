@@ -70,12 +70,13 @@ local function shouldApplyAquaRira(player)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then return true end
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT)
 	local count = 1
+	local charmBonus = wakaba:getTeardropCharmBonus(player)
 
 	local basicChance = 0.05
 	local parLuck = 19
 	local maxChance = 1 - basicChance
 
-	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), count)
+	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), count)
 	return rng:RandomFloat() < chance
 end
 
@@ -83,12 +84,13 @@ end
 local function shouldApplyAqua(player)
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT)
 	local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) + (player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.RIRAS_BRA) * 2)
+	local charmBonus = wakaba:getTeardropCharmBonus(player)
 
 	local basicChance = 0.1
 	local parLuck = 38
 	local maxChance = 1 - basicChance
 
-	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), count)
+	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), count)
 	return count > 0 and rng:RandomFloat() < chance
 end
 

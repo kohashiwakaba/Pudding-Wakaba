@@ -1259,7 +1259,7 @@ end
 function wakaba:getPickupIndex(pickup)
 	return tostring(pickup.InitSeed)
 end
---[[ 
+--[[
 function wakaba:getExtendedPickupIndex(pickup)
 	return tostring(pickup.InitSeed)
 end
@@ -1270,4 +1270,12 @@ function wakaba:getOptionValue(optionKey)
 	if optionKey and type(optionKey) == "string" then
 		return wakaba.state.options[optionKey]
 	end
+end
+
+function wakaba:getTeardropCharmBonus(player)
+	local power = player:GetTrinketMultiplier(TrinketType.TRINKET_TEARDROP_CHARM)
+	if power > 0 then
+		return 2 + (2 * power)
+	end
+	return 0
 end
