@@ -656,6 +656,14 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -246, funct
 				targ = e
 			end
 		end
+
+		local sind, tind = room:GetGridIndex(ent.Position), room:GetGridIndex(targ.Position)
+		path = wakaba:GeneratePathAStar(sind, tind)
+		if not path then
+			data.transferTarget = targ
+			return
+		end -- skip to LightJump
+
 		if targ.Position:DistanceSquared(ent.Position) < 25600 then -- 160^2, aka 4 tiles
 			playExtraAnim("kyuu_three", nil, ent, spr, data)
 		else
@@ -686,6 +694,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_TRIPLE)
 		wakaba:Chimaki_CommandShootTears(familiar, data.evadeEnemy.Position, true, false, 1)
+		spr.FlipX = familiar.Position.X > data.evadeEnemy.Position.X
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
 
@@ -696,25 +705,31 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 	local room = wakaba.G:GetRoom()
 	if data.PrevCommand == "Command_HolyLightJump" or room:GetFrameCount() < 1 or data.lightCooldown > 0 then return end
 	local enemies = {}
+	if data.transferTarget then
+		table.insert(enemies, data.transferTarget)
+		data.transferTarget = nil
+		goto skipLightCheck
+	end
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
 		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320) then
 			table.insert(enemies, v)
 		end
 	end
+	::skipLightCheck::
 	if #enemies > 0 then
 		local rng = data.chimakiRng
 		local targ = enemies[rng:RandomInt(#enemies) + 1]
 		ent.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
 		data.groundMove = false
 		if data.babyBenderPower > 0 then
-			goToEnt(targ, ent, data, data.babyBenderPower * data.speed * 2)
+			goToEnt(targ, ent, data, data.babyBenderPower * data.speed * 1.4)
 			local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.TARGET, 0, targ.Position, Vector.Zero, ent):ToEffect()
 			eff.Parent = targ
 			eff:FollowParent(targ)
 			eff:SetTimeout(70)
 			data.evadeEnemy = targ
 		else
-			goToPos(targ.Position, ent, data, data.speed * 2, 0, true)
+			goToPos(targ.Position, ent, data, data.speed * 1.4, 0, true)
 			local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.TARGET, 0, targ.Position, Vector.Zero, ent):ToEffect()
 			eff:SetTimeout(70)
 		end
@@ -736,6 +751,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
 			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
 		end
+		spr.FlipX = familiar.Velocity.X < 0
 		if data.standstill then
 			spr:SetLastFrame()
 		end

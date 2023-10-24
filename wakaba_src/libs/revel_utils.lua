@@ -44,7 +44,7 @@ function wakaba:AnimateWalkFrameSpeed(sprite, vel, walkAnims, flipWhenRight, noF
 		if sprite:IsPlaying(walkAnims) then
 			frame = sprite:GetFrame() + 1
 		end
-		sprite.FlipX = (x < 0)
+		sprite.FlipX = (vel.X < 0)
 		if not sprite:IsPlaying(walkAnims) then
 			sprite:Play(walkAnims, true)
 			if frame > 0 then
