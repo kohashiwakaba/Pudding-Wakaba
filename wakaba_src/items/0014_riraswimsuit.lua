@@ -12,6 +12,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 wakaba.AquaInstakillEntities = {
 	{EntityType.ENTITY_GIDEON},
 	{EntityType.ENTITY_STONEY},
+	{EntityType.ENTITY_QUAKEY},
+	{EntityType.ENTITY_HARDY},
 	{EntityType.ENTITY_STONEHEAD},
 	{EntityType.ENTITY_GAPING_MAW},
 	{EntityType.ENTITY_BROKEN_GAPING_MAW},
@@ -20,6 +22,32 @@ wakaba.AquaInstakillEntities = {
 	{EntityType.ENTITY_STONE_EYE},
 	{EntityType.ENTITY_QUAKE_GRIMACE},
 	{EntityType.ENTITY_QUAKEY},
+	{EntityType.ENTITY_HOST, 3}, -- Hard Host
+	{EntityType.ENTITY_BLASTER},
+	{EntityType.ENTITY_ROCK_SPIDER},
+	{EntityType.ENTITY_POKY},
+	{EntityType.ENTITY_WALL_HUGGER},
+	{EntityType.ENTITY_BALL_AND_CHAIN},
+	{EntityType.ENTITY_SPIKEBALL},
+	{EntityType.ENTITY_SINGE, 1}, -- Singe's Ball
+}
+
+-- Used for Rira's Swimsuit and Black Bean Mochi --
+-- Explodes immediately from zipped tears, downgraded into second entry from aqua tears.
+wakaba.AquaDowngradeEntities = {
+	{{EntityType.ENTITY_GAPER, 2}, {EntityType.ENTITY_GAPER, 0}},
+	{{EntityType.ENTITY_GURGLE, 1}, {EntityType.ENTITY_GURGLE, 0}},
+	{{EntityType.ENTITY_WILLO, 0}, {EntityType.ENTITY_ATTACKFLY, 0}},
+	{{EntityType.ENTITY_WILLO_L2, 0}, {EntityType.ENTITY_FLY_L2, 0}},
+	{{EntityType.ENTITY_CLOTTY, 3}, {EntityType.ENTITY_CLOTTY, 0}},
+	{{EntityType.ENTITY_DANNY, 1}, {EntityType.ENTITY_DANNY, 0}},
+	{{EntityType.ENTITY_BOOMFLY, 3}, {EntityType.ENTITY_BOOMFLY, 0}},
+	{{EntityType.ENTITY_FLAMINGHOPPER, 0}, {EntityType.ENTITY_HOPPER, 0}},
+	{{EntityType.ENTITY_GYRO, 1}, {EntityType.ENTITY_GYRO, 0}},
+	{{EntityType.ENTITY_KNIGHT, 4}, {EntityType.ENTITY_KNIGHT, 0}},
+	{{EntityType.ENTITY_ROCK_SPIDER, 2}, {EntityType.ENTITY_ROCK_SPIDER, 0}},
+	{{EntityType.ENTITY_FATTY, 2}, {EntityType.ENTITY_FATTY, 0}},
+	{{EntityType.ENTITY_SKINNY, 2}, {EntityType.ENTITY_SKINNY, 0}},
 }
 
 local sprite = Sprite()
