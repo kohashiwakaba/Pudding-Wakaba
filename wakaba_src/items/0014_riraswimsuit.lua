@@ -166,7 +166,7 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 end, wakaba.TearFlag.AQUA)
 
 local function shouldApplySwordAqua(player)
-	return player and player.Type == EntityType.ENTITY_PLAYER (player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) or player:GetPlayerType() == wakaba.Enums.Players.RIRA )
+	return player and player.Type == EntityType.ENTITY_PLAYER and (player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) or player:GetPlayerType() == wakaba.Enums.Players.RIRA )
 	and shouldApplyAqua(player) or shouldApplyAquaRira(player)
 end
 
