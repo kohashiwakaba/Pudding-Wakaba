@@ -136,7 +136,7 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 				local success = level:MakeRedRoomDoor(e.adjacentRoomGridIndex, e.doorSlot)
 				if success then
 					targetDesc = level:GetRoomByIdx(e.newRoomGridIndex, -1)
-					targetDesc.Data = newRoom.Data
+					targetDesc.Data = config
 					targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
 					targetDesc.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
 					table.insert(wakaba.minimapRooms, e.newRoomGridIndex)
