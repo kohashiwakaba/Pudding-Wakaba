@@ -968,6 +968,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다.#{{LuckSmall}} 행운 16+일 때 100%#압박 상태의 적 처치 시 폭발하며 주변의 적에게 60의 피해를 줍니다.",
 		queueDesc = "리라의 추억은 누군가에겐 악몽",
 	},
+	[wakaba.Enums.Collectibles.KANAE_LENS] = {
+		itemName = "카나에 렌즈",
+		description = "↑ {{DamageSmall}}공격력 배율 x1.65#왼쪽 눈에서 유도 공격이 나갑니다.",
+		queueDesc = "지켜보는 소녀의 눈동자",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

@@ -874,6 +874,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Black Bean Mochi",
 		description = "10% chance to shoot 'zip' enemies#{{Luck}} 100% chance at 16 Luck#Zipped enemies make explosion on death#Zip explosion does not harm Isaac",
 	},
+	[wakaba.Enums.Collectibles.KANAE_LENS] = {
+		itemName = "Kanae Lens",
+		description = "↑ {{Damage}} x1.65 Damage multiplier#Homing tears from left eye",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

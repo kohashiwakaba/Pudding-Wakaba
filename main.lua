@@ -1409,6 +1409,7 @@ include('wakaba_src.items.1079_bunnyparfait')
 include('wakaba_src.items.1082_blackbeanmochi')
 include('wakaba_src.items.1086_richernecklace')
 include('wakaba_src.items.1088_rirabandage')
+include('wakaba_src.items.1089_kanaelens')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')

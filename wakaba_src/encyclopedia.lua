@@ -1620,23 +1620,37 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Stop Watch", clr = 3, halign = 0},
 			{str = "Enemies always take more damage when Rira's Bra is in effect."},
 		},
-		RIRAS_COAT = {
-			{ -- Effects
-				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-				{str = "On use, Grants white fire effect for Isaac."},
-				{str = "The white fire effect is same as touching a white fire in Downpour/Dross 2."},
-				{str = "The white fire effect is removed on room clear, and entering the other room."},
-			},
+	},
+	RIRAS_COAT = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, Grants white fire effect for Isaac."},
+			{str = "The white fire effect is same as touching a white fire in Downpour/Dross 2."},
+			{str = "The white fire effect is removed on room clear, and entering the other room."},
 		},
-		RIRAS_SWIMSUIT = {
-			{ -- Effects
-				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			},
+	},
+	RIRAS_SWIMSUIT = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 		},
-		RIRAS_BANDAGE = {
-			{ -- Effects
-				{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			},
+	},
+	RIRAS_BANDAGE = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+		},
+	},
+	KANAE_LENS = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "x1.65 damage multiplier."},
+			{str = "homing tears fired from Isaac's left eye"},
+			{str = "- Isaac always shoots homing tears if more than 1 kanae lenses through such as diplopia."},
+			{str = "- Isaac also always shoots homing tears for non-tear weapons."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "The lens was taken from 'Shiratori Kanae', from 'Imouto no Okage de Motesugite Yabai.', or 'moteyaba' from hulotte."},
+			{str = "Shiratori Kanae, or some females from Shiratori household gets heterochromia eyes, in order to watch some magical spells from the other household 'asasaka'"},
 		},
 	},
 
@@ -3804,6 +3818,18 @@ if Encyclopedia then
 		Pools = {
 			Encyclopedia.ItemPools.POOL_TREASURE,
 			Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		},
+	})
+
+	--Kanae Lens
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.KANAE_LENS,
+		WikiDesc = wakaba.encyclopediadesc.desc.collectibles.KANAE_LENS,
+		Pools = {
+			Encyclopedia.ItemPools.POOL_DEVIL,
+			Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 		},
 	})
 
