@@ -68,7 +68,11 @@ function wakaba:PlayerUpdate_FlashShift(player)
 		local maxval = wakaba:getMaxFlashShiftTimer(player)
 
 		if not pData.wakaba.fscounter then
-			pData.wakaba.fscounter = 3
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_NEPTUNUS) then
+				pData.wakaba.fscounter = 5
+			else
+				pData.wakaba.fscounter = 3
+			end
 		end
 		if pData.wakaba.fseffecttimer and pData.wakaba.fseffecttimer <= 0 then
 			local trails = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, -1)
@@ -98,7 +102,11 @@ function wakaba:PlayerUpdate_FlashShift(player)
 		--print(pData.wakaba.fstimer and pData.wakaba.fstimer, (120 * player.MaxFireDelay / 15) // 1)
 		if pData.wakaba.fstimer and pData.wakaba.fstimer >= maxval then
 			pData.wakaba.fstimer = nil
-			pData.wakaba.fscounter = 3
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_NEPTUNUS) then
+				pData.wakaba.fscounter = 5
+			else
+				pData.wakaba.fscounter = 3
+			end
 			SFXManager():Play(wakaba.Enums.SoundEffects.AEION_CHARGE)
 			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 65), Vector.Zero, nil):ToEffect()
 		elseif pData.wakaba.fstimer then
