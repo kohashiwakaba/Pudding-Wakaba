@@ -111,12 +111,52 @@ function wakaba:PlayerUpdate_FlashShift(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_FlashShift)
 
+local function canUseFlashShift(player, data)
+	if data.wakaba.fscounter and data.wakaba.fscounter > 0 then
+		return true, true, data.wakaba.fscounter
+	elseif player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
+		local totalHearts = player:GetHearts() + player:GetSoulCharge()
+		if totalHearts > 1 then
+			return true, false, player:GetSoulCharge()
+		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+		local totalHearts = player:GetSoulHearts() + player:GetBloodCharge()
+		if totalHearts > 1 then
+			return true, false, player:GetBloodCharge()
+		end
+	else
+		local totalHearts = player:GetHearts() + player:GetSoulHearts() - player:GetRottenHearts()
+		if totalHearts > 1 then
+			return true, false, player:GetSoulHearts()
+		end
+	end
+	return false, false, -1
+end
 
 function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varData)
 	if useFlags & UseFlag.USE_CARBATTERY > 0 then return end
 	local pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
-	if player:GetMovementDirection() ~= Direction.NO_DIRECTION and pData.wakaba.fscounter and pData.wakaba.fscounter > 0 then
+	local canUse, isCounterRemain, counter = canUseFlashShift(player, pData)
+	if player:GetMovementDirection() ~= Direction.NO_DIRECTION and canUse then
+		if not isCounterRemain then
+			if counter > 0 then
+				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
+					player:AddSoulCharge(-1)
+				elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+					player:AddBloodCharge(-1)
+				else
+					player:AddSoulHearts(-1)
+				end
+			else
+				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+					player:AddSoulHearts(-1)
+				else
+					player:AddHearts(-1)
+				end
+			end
+		end
 		--player:UseActiveItem(CollectibleType.COLLECTIBLE_MARS, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME, -1)
 		local isGolden = wakaba:IsGoldenItem(item)
 
@@ -202,7 +242,9 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 				end
 			end
 		end
-		pData.wakaba.fscounter = pData.wakaba.fscounter - 1
+		if pData.wakaba.fscounter > 0 then
+			pData.wakaba.fscounter = pData.wakaba.fscounter - 1
+		end
 		player:SetMinDamageCooldown(20)
 		SFXManager():Play(SoundEffect.SOUND_HELL_PORTAL1)
 		pData.wakaba.elixirinvframes = (pData.wakaba.elixirinvframes and pData.wakaba.elixirinvframes + 20) or 20
