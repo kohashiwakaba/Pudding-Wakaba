@@ -1,18 +1,18 @@
 <data>
-  <!-- Pickups -->
+	<!-- Pickups -->
 	<entity Kind="wakaba" Group="Coins" ID="5" Variant="20" Subtype="401" Image="wakaba/easter_penny.png" Name="Easter Egg Penny"/>
-  <!-- Clover Chests -->
+	<!-- Clover Chests -->
 	<entity Kind="wakaba" Group="Chests" ID="5" Variant="4101" Subtype="1" Image="wakaba/clover_chest.png" Name="Clover Chest"/>
-  <!-- Valuts -->
+	<!-- Valuts -->
 	<entity Kind="wakaba" Group="Valuts" ID="6" Variant="41" Subtype="0" Image="wakaba/shiori_valut.png" Name="Shiori's Valut"/>
-  <!-- Crystal Restocks -->
+	<!-- Crystal Restocks -->
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="0" Image="wakaba/crystal_restock.png" Name="Richer's Crystal Restock"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="1" Image="wakaba/crystal_restock_red.png" Name="Richer's Crystal Restock (red)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="2" Image="wakaba/crystal_restock_green.png" Name="Richer's Crystal Restock (green)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="3" Image="wakaba/crystal_restock_richer.png" Name="Richer's Crystal Restock (prestige)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="4" Image="wakaba/crystal_restock_rira.png" Name="Richer's Crystal Restock (rira)"/>
 	<entity Kind="wakaba" Group="Crystal Restocks" ID="6" Variant="42" Subtype="5" Image="wakaba/crystal_restock_yellow.png" Name="Richer's Crystal Restock (yellow)"/>
-  <!-- Collectibles -->
+	<!-- Collectibles -->
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="0" Name="wakaba Collectibles (Random)" Image=""/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1" Name="Wakaba's Blessing" Image="wakaba/collectibles/wakabablessing.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="2" Name="Wakaba's Nemesis" Image="wakaba/collectibles/wakabanemesis.png"/>
@@ -137,7 +137,7 @@
  -->
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1023" Name="Clover Shard" Image="wakaba/collectibles/__placeholder.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="1024" Name="Wakaba Duality" Image="wakaba/collectibles/__placeholder.png"/>
-  <!-- Trinkets -->
+	<!-- Trinkets -->
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="0" Name="wakaba Trinkets (Random)" Image=""/>
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="1" Name="Bring me there" Image="wakaba/trinkets/bringmethere.png"/>
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="2" Name="Clover" Image="wakaba/trinkets/clover.png"/>
@@ -159,8 +159,8 @@
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="18" Name="Repentance Cartridge" Image="wakaba/trinkets/repentancecartridge.png"/>
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="19" Name="Mistake" Image="wakaba/trinkets/mistake.png"/>
 	<entity Kind="wakaba" Group="Trinkets" ID="5" Variant="3901" Subtype="20" Name="Eternity Cookie" Image="wakaba/trinkets/eternitycookie.png"/>
-  <!-- Cards -->
-  <!-- Runes -->
+	<!-- Cards -->
+	<!-- Runes -->
 <!--
 	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="1" Name="Soul of Wakaba (Angel)" Image="wakaba/cards/wakabasoul.png"/>
 	<entity Kind="wakaba" Group="Runes" ID="5" Variant="3903" Subtype="2" Name="Soul of Wakaba (Devil)" Image="wakaba/cards/wakabasoul2.png"/>
