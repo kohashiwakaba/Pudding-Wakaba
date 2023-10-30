@@ -155,7 +155,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 					data.wakaba.nolunarrefill = true
 					local revivaldata = wakaba:CanRevive(player)
 					if --[[ not player:WillPlayerRevive() and ]] revivaldata and revivaldata.ID == wakaba.Enums.Collectibles.LUNAR_STONE then
-						print("Lunar remains")
+						--print("Lunar remains")
 						--data.wakaba.lunargauge = -50000
 						if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
 							player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
@@ -172,7 +172,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 						data.wakaba.extralives = player:GetExtraLives()
 						data.wakaba.tsukasa1up = 200000
 					elseif not player:WillPlayerRevive() and revivaldata then
-						print("Wakaba Revival remains")
+						--print("Wakaba Revival remains")
 						if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
 							player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
 						end
@@ -230,10 +230,10 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 	local data = player:GetData()
 	if wakaba:hasLunarStone(player)	and data.wakaba.reducelunargauge then
 		wakaba:addCurrentLunarGauge(player, -40000)
-		print("Lunar Reduced!")
+		--print("Lunar Reduced!")
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
-			print("Lunar zero, killing...")
+			--print("Lunar zero, killing...")
 			local stones = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
 
 			if stones == 0 and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
