@@ -295,6 +295,19 @@ wakaba.Callback = {
 	PRE_EVALUATE_AQUA_TRINKET = {},
 
 	-- ---
+	-- EVALUATE_ELIXIR_SOUL_RECOVER
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE, to choose check which character are soul heart
+	--
+	-- ---
+	-- Parameters :
+	-- - `EntityPlayer` -
+	--
+	-- - Return non-nil value to consider as soul character
+	-- ---
+	EVALUATE_ELIXIR_SOUL_RECOVER = {},
+
+	-- ---
 	-- EVALUATE_CHIMAKI_COMMAND
 	-- ---
 	-- Called from MC_FAMILIAR_UPDATE, to choose which command to be used
