@@ -52,7 +52,7 @@ function wakaba:ChargeBarUpdate_PhantomCloak(player)
 	if phantom and phantom.timer and phantom.timer > 1 then
 		local timer = phantom.timer
 		local count = ((phantom.timer // 12) / 10)
-		chargeBar:UpdateSpritePercent(timer, 0, 12000)
+		chargeBar:UpdateSprite(timer, 0, 12000)
 		chargeBar:UpdateText(count, "", "%")
 	else
 		chargeBar:UpdateSpritePercent(-1)
