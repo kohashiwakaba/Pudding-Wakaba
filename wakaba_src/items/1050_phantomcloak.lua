@@ -62,6 +62,33 @@ function wakaba:ChargeBarUpdate_PhantomCloak(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_PhantomCloak)
 
+local function canRefillCloak(player, data)
+	if player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
+		local totalHearts = player:GetHearts() + player:GetSoulCharge()
+		if totalHearts > 1 then
+			return true, player:GetSoulCharge()
+		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+		local totalHearts = player:GetSoulHearts() + player:GetBloodCharge()
+		if totalHearts > 1 then
+			return true, player:GetBloodCharge()
+		end
+	else
+		local totalHearts = player:GetHearts() + player:GetSoulHearts() - player:GetRottenHearts()
+		if totalHearts > 1 then
+			return true, player:GetSoulHearts()
+		end
+	end
+	return false, -1
+end
+
+local function isHoldingCloak(player)
+	for i = 0, 2 do
+		if player:GetActiveItem(i) == wakaba.Enums.Collectibles.PHANTOM_CLOAK then
+			return true
+		end
+	end
+end
 
 function wakaba:PlayerUpdate_PhantomCloak(player)
 	pData = player:GetData()
@@ -82,12 +109,32 @@ function wakaba:PlayerUpdate_PhantomCloak(player)
 				end
 			end
 			if pData.wakaba.phantomcloak.timer and pData.wakaba.phantomcloak.timer <= 1 then
-				pData.wakaba.phantomcloak.active = false
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector(0,0), nil)
-				SFXManager():Play(SoundEffect.SOUND_BLACK_POOF)
-				player:ClearEntityFlags(EntityFlag.FLAG_NO_TARGET)
-				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_TEARFLAG)
-				player:EvaluateItems()
+				local canUse, counter = canRefillCloak(player, pData)
+				if canUse and isHoldingCloak(player) then
+					if counter > 0 then
+						if player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
+							player:AddSoulCharge(-1)
+						elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+							player:AddBloodCharge(-1)
+						else
+							player:AddSoulHearts(-1)
+						end
+					else
+						if player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+							player:AddSoulHearts(-1)
+						else
+							player:AddHearts(-1)
+						end
+					end
+					pData.wakaba.phantomcloak.timer = (12000 * 0.3)
+				else
+					pData.wakaba.phantomcloak.active = false
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector(0,0), nil)
+					SFXManager():Play(SoundEffect.SOUND_BLACK_POOF)
+					player:ClearEntityFlags(EntityFlag.FLAG_NO_TARGET)
+					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_TEARFLAG)
+					player:EvaluateItems()
+				end
 			end
 		else
 			if pData.wakaba.phantomcloak.timer and pData.wakaba.phantomcloak.timer < 12000 then
