@@ -112,6 +112,8 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 				end
 				data.wakaba.elixirblooddonationcooldown = 0
 			end
+		elseif flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
+			data.wakaba.elixirinvframes = 30
 		end
 	end
 end
