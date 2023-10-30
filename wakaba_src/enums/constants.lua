@@ -421,6 +421,7 @@ wakaba.Enums.Constants = {
 
 	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
 	ELIXIR_MAX_COOLDOWN_DMG = 50, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수
+	ELIXIR_MAX_COOLDOWN_KEEPER = 360, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수 (키퍼, 로스트)
 
 	SOUL_OF_TSUKASA_MINIMUM_TIMER = 30 * 60 * 10, -- 츠카사의 영혼 최소 보존 시간
 	SOUL_OF_TSUKASA_EXTEND_TIMER = 30 * 60 * 5, -- 츠카사의 영혼 중복 사용 시 추가 제공 최소 시간

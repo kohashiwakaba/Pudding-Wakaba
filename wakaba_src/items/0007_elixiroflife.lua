@@ -14,12 +14,21 @@ function wakaba:hasElixir(player)
 	end
 end
 
+local function getElixirPower(player)
+	local power = 0
+	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
+		power = 1
+	end
+	return power + player:GetCollectibleNum(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
+end
 
 function wakaba:PlayerUpdate_Elixir(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
 	if wakaba:hasElixir(player) then
-		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) then
+		local keeperSkipped = false
+		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
+			keeperSkipped = true
 			goto KeeperSkip
 		end
 		if player:GetHearts() < 1 and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN then -- Do this again to check non-red hearts character
@@ -35,16 +44,13 @@ function wakaba:PlayerUpdate_Elixir(player)
 			if data.wakaba.elixirinvframes and data.wakaba.elixirinvframes >= 0 then
 				--player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 				data.wakaba.elixirinvframes = data.wakaba.elixirinvframes - 1
-			else
+			elseif not keeperSkipped then
 				--player:ClearEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
-				if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED then
-					if player.FrameCount % 2 == 0 then
-						player:ResetDamageCooldown()
-					else
-						player:SetMinDamageCooldown(1)
-					end
-				else
+				local power = math.max(getElixirPower(player) + (wakaba.G.Difficulty % 2), 1)
+				if player.FrameCount % power == 0 then
 					player:ResetDamageCooldown()
+				else
+					player:SetMinDamageCooldown(1)
 				end
 			end
 		end
@@ -55,11 +61,10 @@ function wakaba:PlayerUpdate_Elixir(player)
 			elseif data.wakaba.elixircooldown == -1 then
 				-- do nothing
 			elseif wakaba:IsLost(player) then
-				local thresholdmantlecount = wakaba.state.options.stackableholycard <= 5 and wakaba.state.options.stackableholycard or 5
-				if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) < thresholdmantlecount then
+				if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) == 0 then
 					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOHUD)
-					data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
+					data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
 				end
 			elseif (player:GetEffectiveMaxHearts() < 2 
 					and (not player:CanPickRedHearts() and player:GetHearts() ~= player:GetEffectiveMaxHearts())
@@ -77,7 +82,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 			elseif (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) and player:GetHearts() < player:GetMaxHearts() then
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				player:AddHearts(1)
-				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
+				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
 			end
 		end
 	else
@@ -94,6 +99,9 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_DMG
+		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
+			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER // math.min(math.max(getElixirPower(player), 1), 6)
+		end
 		if (source.Type == EntityType.ENTITY_SLOT and source.Variant == 2)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 5)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 15)
@@ -113,7 +121,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 				data.wakaba.elixirblooddonationcooldown = 0
 			end
 		elseif flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
-			data.wakaba.elixirinvframes = 30
+			data.wakaba.elixirinvframes = 20
 		end
 	end
 end

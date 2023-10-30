@@ -141,7 +141,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#↓ {{ColorOrange}}피격 무적 시간이 제거됩니다."
-		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 빠른 속도로 회복합니다."
+		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
 		.. "{{CR}}",
 		queueDesc = "무적 시간 제거 + 초고속 회복",
 	},

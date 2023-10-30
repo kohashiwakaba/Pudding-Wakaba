@@ -1158,20 +1158,20 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Grants Curse of The Blind and Unknown immunity."},
 			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Removes invincibility frames."},
+			{str = "- For Keeper, and The Lost, or in Lost Curse state, Invincibility frames are reduced to 20 frames instead of removing all."},
 			{str = "Regenerates health for fast time if Isaac did not get hit for brief time."},
 			{str = "Soul Hearts will be recovered until his maximum soul heart count he gotten."},
-			{str = "If Stackable Holy Card is applied, Isaac will be given Holy shields as recovery if The Lost, or Lost Curse is applied."},
+			{str = "- For Keeper, and The Lost, or in Lost Curse state, regeneration time takes 6 seconds"},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Tsukasa starts with this item and is intrinsic to the character, and it can't be rerolled"},
 		},
-		--[[ { -- Synergies
+		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Flash Shift", clr = 3, halign = 0},
-			{str = "Can be merged with Flash Shift. No longer needs charge to use sword attack."},
-			{str = "Non-charged attacks will only attack enemies with less damage, and break only rock/poop type objects."},
-		}, ]]
+			{str = "Diplopia", clr = 3, halign = 0},
+			{str = "Multiple copies for Elixir of Life increases invincibility frames slightly, or reduces time to restore health for Keeper, or The Lost."},
+		},
 		--[[ { -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
 			{str = "Book of Shiori", clr = 3, halign = 0},

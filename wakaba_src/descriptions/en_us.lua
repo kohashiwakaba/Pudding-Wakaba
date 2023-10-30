@@ -124,7 +124,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
 		.. "#↓ {{ColorOrange}}Removes invincibility frames"
-		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character is"
+		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
