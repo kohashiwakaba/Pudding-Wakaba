@@ -435,6 +435,68 @@ wakaba:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
 	end
 end)
 
+wakaba:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+	local var = laser.Variant
+	if var == 4 or var == 7 or var == 8 or var == 13 then -- Pride, Tractor Beam, Circle of Protection and Beast Lasers
+		return
+	end
+
+	if laser.SpawnerEntity and laser.SpawnerEntity.Type == EntityType.ENTITY_PLAYER and var == 2 and laser.SubType == 0 then
+		local familiars = Isaac.FindInRadius(laser.Position, 0.000001, EntityPartition.FAMILIAR)
+		for _,familiar in ipairs(familiars) do
+			if familiar.Variant == FamiliarVariant.FINGER then
+				return
+			end
+		end
+	end
+
+	local player = nil
+	if laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer() then
+		player = laser.SpawnerEntity:ToPlayer()
+	elseif laser.SpawnerEntity and laser.SpawnerEntity:ToFamiliar() and laser.SpawnerEntity:ToFamiliar().Player then
+		local familiar = laser.SpawnerEntity:ToFamiliar()
+
+		if familiar.Variant == FamiliarVariant.INCUBUS or familiar.Variant == FamiliarVariant.SPRINKLER or
+			familiar.Variant == FamiliarVariant.TWISTED_BABY or familiar.Variant == FamiliarVariant.BLOOD_BABY or
+			familiar.Variant == FamiliarVariant.UMBILICAL_BABY or familiar.Variant == FamiliarVariant.CAINS_OTHER_EYE 
+		then
+			player = familiar.Player
+		else
+			return
+		end
+	else
+		return
+	end
+	Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player)
+end)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, laserEndpoint)
+	if laserEndpoint.SpawnerEntity and laserEndpoint.SpawnerEntity.Type == EntityType.ENTITY_LASER then
+		local laser = laserEndpoint.SpawnerEntity
+		local var = laser.Variant
+		local subt = laser.SubType
+		if (var == 1 and subt == 3) or var == 5 or var == 12 then -- Maw of the Void, Revelation and Montezuma's Revenge lasers
+			-- do nothing
+		else
+			local endpointData = laserEndpoint:GetData()
+			local laserData = laser:GetData()
+
+			--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player, nil, true)
+		end
+	end
+end, EffectVariant.LASER_IMPACT)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, brimball)
+	local player = nil
+	if brimball.SpawnerEntity and brimball.SpawnerEntity:ToPlayer() then
+		player = brimball.SpawnerEntity:ToPlayer()
+	else
+		return
+	end
+
+	--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player, nil, true)
+end, EffectVariant.BRIMSTONE_BALL)
+
 wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
 	local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
 	if player then

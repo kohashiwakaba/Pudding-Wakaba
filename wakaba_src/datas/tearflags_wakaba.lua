@@ -5,6 +5,7 @@ wakaba.TearFlag = {
 	NERF = 1 << 3, -- Tear applies Weakness status effect (used for Nerf Gun)
 	STATIC = 1 << 4, -- Tear emits Dogma lasers (used for Richer's Necklace)
 	FLOOD = 1 << 5, -- Tear applies Flood status effect (used for ???)
+	PSEUDO_HEAVEN = 1 << 6, -- Tear applies Light effect (used for Firefly Lighter)
 }
 
 

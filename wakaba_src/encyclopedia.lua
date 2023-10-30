@@ -1094,6 +1094,17 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Tsukasa can still find this item on a pedestal. Picking the item does nothing."},
 			--{str = "Abyss Locust from this item deals 5X of Isaac's Damage."},
 		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Luna", clr = 3, halign = 0},
+			{str = "???"},
+			{str = "Sol", clr = 3, halign = 0},
+			{str = "???"},
+			{str = "Fragmented Card", clr = 3, halign = 0},
+			{str = "???"},
+			{str = "Firefly Lighter", clr = 3, halign = 0},
+			{str = "Isaac has a chance to fire a glowing blue tear that, after colliding with an enemy, spawns a damaging beam of light. (simmilar as Holy Light)"},
+		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "In 'Tonikawa', appearently a lunar stone stored inside Chitose's mansion is considered as a real moonstone, which is secured inside a clear cabinet."},
