@@ -186,7 +186,7 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		if newFlags & DamageFlag.DAMAGE_LASER > 0
 		or newFlags & DamageFlag.DAMAGE_EXPLOSION > 0
 		or (source.Entity and wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
-		or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordAqua(source.Entity)) -- Spirit Sword
+		or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordAqua(source.Entity:ToPlayer())) -- Spirit Sword
 		then
 			returndata.sendNewDamage = true
 			returndata.newDamage = newDamage * 1.5
