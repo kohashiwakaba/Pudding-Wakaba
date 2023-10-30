@@ -6,7 +6,7 @@ function wakaba:hasLunarStone(player, includeDead)
 	end
 	includeDead = includeDead or false
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and (includeDead or not (player:IsDead() and not player:WillPlayerRevive())) then
-    return true
+		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
 		return true
 	else
@@ -84,6 +84,12 @@ function wakaba:setLunarGaugeSpeed(player, amount)
 	end
 end
 
+local function getLunaPower(player)
+	if player then
+		return player:GetEffects():GetNullEffectNum(NullItemID.ID_LUNA)
+	end
+end
+
 function wakaba:PlayerUpdate_LunarStone(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
@@ -126,17 +132,31 @@ function wakaba:PlayerUpdate_LunarStone(player)
 
 		if data.wakaba.lunargauge then
 			if data.wakaba.lunargauge > 0 then
+				data.wakaba.lastlunacount = data.wakaba.lastlunacount or 0
+				if player:HasCollectible(CollectibleType.COLLECTIBLE_LUNA) then
+					if data.wakaba.lastlunacount ~= getLunaPower(player) then
+						if data.wakaba.lastlunacount < getLunaPower(player) then
+							data.wakaba.lunargauge = data.wakaba.lunargauge + 100000
+							wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 8)
+						end
+						data.wakaba.lastlunacount = getLunaPower(player)
+					end
+				end
 			else
 				if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
 					player:RemoveCollectible(wakaba.Enums.Collectibles.LUNAR_STONE)
-					data.wakaba.lunargauge = nil
-					data.wakaba.lunarregenrate = nil
+					if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+						data.wakaba.lunargauge = data.wakaba.lunargauge + 500000
+					else
+						data.wakaba.lunargauge = nil
+						data.wakaba.lunarregenrate = nil
+					end
 				elseif not player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 					data.wakaba.nolunarrefill = true
 					local revivaldata = wakaba:CanRevive(player)
-					if not player:WillPlayerRevive() and revivaldata then
-						--print("Lunar remains")
-						data.wakaba.lunargauge = -50000
+					if --[[ not player:WillPlayerRevive() and ]] revivaldata and revivaldata.ID == wakaba.Enums.Collectibles.LUNAR_STONE then
+						print("Lunar remains")
+						--data.wakaba.lunargauge = -50000
 						if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
 							player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
 						end
@@ -151,6 +171,13 @@ function wakaba:PlayerUpdate_LunarStone(player)
 					elseif player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_CHILD) then
 						data.wakaba.extralives = player:GetExtraLives()
 						data.wakaba.tsukasa1up = 200000
+					elseif not player:WillPlayerRevive() and revivaldata then
+						print("Wakaba Revival remains")
+						if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+							player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+						end
+						wakaba:PlayDeathAnimationWithRevival(player, revivaldata.ID)
+						wakaba:AddPostRevive(player, revivaldata.PostRevival)
 					else
 						--player:Die()
 						data.wakaba.lunargauge = nil
@@ -164,7 +191,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 		end
 	else
 		wakaba:GetPlayerEntityData(player)
-    local data = player:GetData()
+		local data = player:GetData()
 		data.wakaba.lunargauge = nil
 		data.wakaba.lunarregenrate = nil
 	end
@@ -203,11 +230,14 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 	local data = player:GetData()
 	if wakaba:hasLunarStone(player)	and data.wakaba.reducelunargauge then
 		wakaba:addCurrentLunarGauge(player, -40000)
+		print("Lunar Reduced!")
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
+			print("Lunar zero, killing...")
 			local stones = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
 
 			if stones == 0 and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+				local revivaldata = wakaba:CanRevive(player)
 				local hasLaz = false
 				for i = 0, 3 do
 					if player:GetCard(i) == Card.CARD_SOUL_LAZARUS then
@@ -216,11 +246,14 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 					end
 				end
 				player:Die()
-				if not hasLaz and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+				if not hasLaz and not revivaldata and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
 					player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
 				end
 			end
-
+		else
+			if not player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE) then
+				player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+			end
 		end
 		if not data.wakaba.nolunarreduction then
 			if wakaba:getLunarGaugeSpeed(player) >= 0 then
@@ -239,7 +272,7 @@ end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_LunarStone)
 
 function wakaba:Cache_LunarStone(player, cacheFlag)
-  if wakaba:hasLunarStone(player) then
+	if wakaba:hasLunarStone(player) then
 		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
 		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 			count = count + 1
@@ -273,10 +306,10 @@ function wakaba:Cache_LunarStone(player, cacheFlag)
 			end
 		end
 
-    --[[ if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-      player.TearColor = newTearColor
-    end ]]
-  end
+		--[[ if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
+			player.TearColor = newTearColor
+		end ]]
+	end
 
 end
 
@@ -289,7 +322,7 @@ function wakaba:RoomClear_LunarStone(rng, pos)
 		if wakaba:hasLunarStone(player) then
 			wakaba:GetPlayerEntityData(player)
 			local data = player:GetData()
-			if data.wakaba.lunargauge < wakaba:getMaxLunarGauge(player) then
+			if data.wakaba.lunargauge and data.wakaba.lunargauge < wakaba:getMaxLunarGauge(player) then
 				if roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_BOSSRUSH then
 					data.wakaba.lunargauge = wakaba:getMaxLunarGauge(player)
 					wakaba:setLunarGaugeSpeed(player, 0)
