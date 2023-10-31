@@ -1382,9 +1382,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "나를 데려다 줘",
 		description = ""
 		.. "#↑ {{TearsSmall}}연사 +1.5"
-		.. "#이 장신구를 소지한 상태에서 Mausoleum/Gehenna II에 진입할 경우 엄마(Mom) 대신 아빠의 노트(Dad's Note)가 등장합니다."
-		.. "#이 장신구는 Mines/Ashpit II, Mausoleum/Gehenna I 스테이지 시작방에서도 등장합니다."
-		.. "#!!! {{ColorRed}}아빠의 노트로 교체된 경우 더 이상 Womb/Corpse 스테이지로 진입할 수 없습니다.{{ColorReset}}"
+		.. "#소지 중일 때 Mausoleum/Gehenna II의 보스방 진입 시 Mom 대신 Dad's Note가 등장합니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	queueDesc = "들고 가는 거 잊지 마!",

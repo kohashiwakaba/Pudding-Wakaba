@@ -2936,17 +2936,15 @@ if Encyclopedia then
 			{ -- Effects
 				{str = "Effects", fsize = 2, clr = 3, halign = 0},
 				{str = "+1.5 tears."},
-				{str = "Entering Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom."},
-				{str = "WARNING : CANNOT ENTER WOMB/CORPSE WHEN BEING REPLACED."},
+				{str = "Entering the boss room of Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom."},
+				{str = "Dropping the trinket reverts the Boss Room into Mom."},
+				{str = "- This do not work when Isaac is entered Mausoleum/Gehenna II through Polaroid/Negative door."},
+				{str = "- Using Forget Me Now while holding this trinket also locks the Boss room to one that holds Dad's Note."},
 			},
 			{ -- Interactions
 				{str = "Interactions", fsize = 2, clr = 3, halign = 0},
 				{str = "Fiend Folio - Golem", clr = 3, halign = 0},
 				{str = "Bring Me There is considered as special trinket, thus will be not converted into random stones, will be act as normal stone if interacted with Golem's unique beggars."},
-			},
-			{ -- Notes
-				{str = "Notes", fsize = 2, clr = 3, halign = 0},
-				{str = "This trinket also appears on the staring room in Mines/Ashpit II and Mausoleum/Gehenna I, for those who accidentally entered wrong path."},
 			},
 		},
 

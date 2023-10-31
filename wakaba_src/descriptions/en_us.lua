@@ -1272,9 +1272,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Bring me there",
 		description = ""
 		.. "#↑ {{Tears}} +1.5 Fire Rate"
-		.. "#Entering Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom"
-		.. "#Also spawns in Mines/Ashpit II and Mausoleum/Gehenna I"
-		.. "#!!! {{ColorRed}}CANNOT ENTER WOMB/CORPSE WHEN BEING REPLACED{{ColorReset}}"
+		.. "#Entering Boss room of Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},

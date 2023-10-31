@@ -1,81 +1,78 @@
 
-local function isRep(stype)
-	if (stype == StageType.STAGETYPE_REPENTANCE or stype == StageType.STAGETYPE_REPENTANCE_B) then
+local isc = require("wakaba_src.libs.isaacscript-common")
+
+local function shouldSpawnTrinket(onInit)
+	local level = wakaba.G:GetLevel()
+	if wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH) then return false end
+	if onInit and wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT) then return false end
+	if level:GetAbsoluteStage() == LevelStage.STAGE3_2
+	and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
+	then
 		return true
-	else
-		return false
+	end
+	if level:GetAbsoluteStage() == LevelStage.STAGE3_1
+	and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
+	and (level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH > 0 or wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_LABYRINTH))
+	then
+		return true
 	end
 end
 
-function wakaba:checkMausoleumDest()
+function wakaba:RoomGen_BringMeThere()
+	--print("challenge check")
+	if wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then return end
+	wakaba.runstate.savednoteroom = nil
 	local level = wakaba.G:GetLevel()
-	local st = level:GetAbsoluteStage()
-	local hasnote = false
-	for num = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(num)
-		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) and wakaba:CanOpenBeast() then
-			hasnote = true
-			--wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true)
-		end
-	end
-	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL
-	-- Mines/Ashpit XL to Mausoleum/Gehenna XL
-	and ((st == LevelStage.STAGE2_1 and level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH == LevelCurse.CURSE_OF_LABYRINTH and isRep(level:GetStageType()))
-	-- Mines/Ashpit 2 to Mausoleum/Gehenna XL
-	or (st == LevelStage.STAGE2_2 and isRep(level:GetStageType()))
-	-- Depths 1 to Mausoleum/Gehenna 1
-	-- Mausoleum/Gehenna 1 to Mausoleum/Gehenna 2
-	or (st == LevelStage.STAGE3_1)
-	) then
-		if hasnote then
-			for num = 1, wakaba.G:GetNumPlayers() do
-				local player = Isaac.GetPlayer(num)
-				if player:GetSprite():IsPlaying("Trapdoor") or player:GetSprite():IsPlaying("LightTravel") then
-					wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, true)
-				end
-			end
-		end
-	elseif st == LevelStage.STAGE4_1 then
-		wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, false)
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.checkMausoleumDest)
+	local currentRoomIdx = level:GetCurrentRoomIndex()
+	--print("condition check")
+	if shouldSpawnTrinket(true) then
+		local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 43000)
+		local altRoom = level:GetRoomByIdx(-14)
+		altRoom.OverrideData = roomData
 
-function wakaba:startMausoleumRoomCheck()
-	local hasTrinket = false
-	for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
-		if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) then
-			hasTrinket = true
-		end
-	end
-	local room = wakaba.G:GetRoom()
-	local level = wakaba.G:GetLevel()
-	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL
-	and not hasTrinket and wakaba:CanOpenBeast() then
-		if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit()
-		and isRep(level:GetStageType())
-		and level:GetAbsoluteStage() == LevelStage.STAGE3_1
-		and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
-		and level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH == 0
-		then
-			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, false)
-		end
-		if wakaba.state.forcevoid.beast
-		and (wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE2_2 or wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE3_1) and (
-			wakaba.G:GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE or wakaba.G:GetLevel():GetStageType() == StageType.STAGETYPE_REPENTANCE_B
-		) and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
-		then
-			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
-				if level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH == LevelCurse.CURSE_OF_LABYRINTH and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT) then
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_FORGET_ME_NOW, room:GetGridPosition(102), Vector(0,0), nil)
+		--local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 42000)
+		local rooms = isc:getRoomsInsideGrid()
+		for _, room in ipairs(rooms) do
+			if room.Data then
+				if room.GridIndex > 0 and room.Data.Type == RoomType.ROOM_BOSS and room.Data.Subtype == 89 then
+					altRoom.Data = room.Data
+					wakaba.runstate.savednoteroom = room.GridIndex
+					break
 				end
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, room:GetGridPosition(92), Vector(0,0), nil)
 			end
+		end
+		if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_FORGET_ME_NOW, room:GetGridPosition(102), Vector(0,0), nil)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.startMausoleumRoomCheck)
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.EARLY, wakaba.RoomGen_BringMeThere)
+
+local recentPower = 0
+function wakaba:Update_BringMeThere()
+	if wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then return end
+	local level = wakaba.G:GetLevel()
+	if wakaba.runstate.savednoteroom and shouldSpawnTrinket() then
+		local savedBossRoom = level:GetRoomByIdx(wakaba.runstate.savednoteroom)
+		if savedBossRoom.VisitedCount > 0 then return end
+		local currentPower = wakaba:GetGlobalTrinketMultiplier(wakaba.Enums.Trinkets.BRING_ME_THERE)
+		if recentPower ~= currentPower then
+			local isBeastRun = currentPower > 0
+			--savedBossRoom.SurpriseMiniboss = isBeastRun
+			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, isBeastRun)
+
+			local altRoom = level:GetRoomByIdx(-14)
+			if isBeastRun then
+				savedBossRoom.Data = altRoom.OverrideData
+			else
+				savedBossRoom.Data = altRoom.Data
+			end
+
+		end
+		recentPower = currentPower
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_BringMeThere)
 
 function wakaba:dadNoteCache(player, cacheFlag)
 	if player:HasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) and cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
@@ -89,4 +86,4 @@ function wakaba.dadNotePickupCheck(pickup)
 		pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, TrinketType.TRINKET_NULL)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.dadNotePickupCheck)
+--wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.dadNotePickupCheck)
