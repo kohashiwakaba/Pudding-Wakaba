@@ -17,7 +17,7 @@ An anime mod that contains characters from the creator's favorite.
 - 19 new Challenges
 
 ![RicherPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/19b70f9d-f057-4df7-8cd3-b94983212717)
-**Current Version : v107a-Richer**(updated time : 2023-10-03)
+**Current Version : v107b-Richer**(updated time : 2023-10-31)
 
 ![RiraPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/8bf2009d-706b-4d2e-940c-bbd13ec817c8)
 **In development : v1??-???**
