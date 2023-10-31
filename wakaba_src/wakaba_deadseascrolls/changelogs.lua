@@ -1,5 +1,26 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
-[[{FSIZE2}v107a patch
+[[{FSIZE2}v107b patch
+- easter egg now follows isaad
+instead of orbiting
+
+- all of wakaba's blessing
+synergies are removed
+
+- plumy's tears now follows
+isaac's tear effects without
+wakaba's blessing
+
+- lunar stone now spawns
+luna moonlight on starting of
+each floor
+
+- fixed winter albireo not working
+on certain situations
+
+- fixed eid error from
+all stats down pill
+
+{FSIZE2}v107a patch
 - fixed water-flame, winter albireo
 not available in any item pools
 
