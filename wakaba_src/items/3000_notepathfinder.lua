@@ -37,12 +37,10 @@ function wakaba:RoomGen_BringMeThere()
 				if room.GridIndex > 0 and room.Data.Type == RoomType.ROOM_BOSS and room.Data.Subtype == 89 then
 					altRoom.Data = room.Data
 					wakaba.runstate.savednoteroom = room.GridIndex
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, wakaba.G:GetRoom():GetGridPosition(102), Vector(0,0), nil)
 					break
 				end
 			end
-		end
-		if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_FORGET_ME_NOW, room:GetGridPosition(102), Vector(0,0), nil)
 		end
 	end
 end
