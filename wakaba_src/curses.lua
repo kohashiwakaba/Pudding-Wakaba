@@ -61,6 +61,15 @@ function wakaba:PostGetCollectible_BlackCandle(player, item)
 end
 wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_BlackCandle, CollectibleType.COLLECTIBLE_BLACK_CANDLE)
 
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
+	local game = wakaba.G
+	if not game:GetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED) then
+		if isc:hasCurse(LevelCurse.CURSE_OF_LABYRINTH) then
+			--game:AddStageWithoutDamage()
+		end
+	end
+end)
+
 function wakaba:Curse_BlackCandleCheck(player)
 	local curse = wakaba.G:GetLevel():GetCurses() 
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
