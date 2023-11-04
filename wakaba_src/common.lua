@@ -480,7 +480,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 		-- End Chest spawn, but is currently unused
 		--Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BIGCHEST, -1, chestfinals, Vector(0,0), nil)
 		if finalcheck & wakaba.VoidFlags.RKEY == wakaba.VoidFlags.RKEY then
-			local rkey = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_R_KEY, voidfinals, Vector(0,0), nil):ToPickup()
+			local rkey = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, voidfinals, Vector(0,0), nil):ToPickup()
 			rkey:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_R_KEY, false, false, true)
 			rkey:GetData().DamoclesDuplicate = true
 		end
@@ -500,8 +500,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			end
 		end
 		if finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES and wakaba:CanOpenMegaSatan() then
-			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
-			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_2, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
+			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
+			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
 			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, false, false, true)
 			p2:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_2, false, false, true)
 			p1:GetData().DamoclesDuplicate = true
@@ -529,8 +529,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
 		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 		and wakaba:CanOpenMother() then
-			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
-			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
+			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
+			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
 			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, false, false, true)
 			p2:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, false, false, true)
 			p1:GetData().DamoclesDuplicate = true
@@ -562,10 +562,10 @@ function wakaba:ForceVoid(rng, spawnPosition)
 				local pool = wakaba.G:GetItemPool()
 				local pill = pool:ForceAddPillEffect(wakaba.Enums.Pills.TO_THE_START)
 				pool:IdentifyPill(pill)
-				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
+				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, pill, false, false, true)
 			else
-				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
+				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, wakaba:GetGridCenter(), Vector(0,0), nil):ToPickup()
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_FOOL, false, false, true)
 			end
 			for num = 1, wakaba.G:GetNumPlayers() do
@@ -596,7 +596,7 @@ function wakaba:ForceVoidNewRoomCheck()
 	then
 		if level:GetAbsoluteStage() == LevelStage.STAGE8 then
 			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
-				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, room:GetGridPosition(72), Vector(0,0), nil):ToPickup()
+				local p = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(72), Vector(0,0), nil):ToPickup()
 				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_CRACKED_KEY, false, false, true)
 			end
 		end
