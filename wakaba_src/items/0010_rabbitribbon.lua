@@ -321,7 +321,8 @@ function wakaba:AlterPlayerDamage_RabbitRibbon(player, amount, flags, source, co
 	if flags & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then return end
 	--print(flags)
 	--print((flags & DamageFlag.DAMAGE_RED_HEARTS > 0), (flags & DamageFlag.DAMAGE_INVINCIBLE > 0), (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0), (flags & DamageFlag.DAMAGE_NOKILL > 0), (flags & DamageFlag.DAMAGE_FAKE > 0))
-	if wakaba.curses.CURSE_OF_MAGICAL_GIRL > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL) then
+	if wakaba.curses.CURSE_OF_MAGICAL_GIRL > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL)
+	and not wakaba:WillDamageBeFatal(player, amount, flags, true, false, true) then
 		if wakaba:hasRicherBR(player)
 		or flags & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CHEST) > 0
 		or wakaba:IsDamageSacrificeSpikes(flags, source)
