@@ -99,10 +99,6 @@ function wakaba:Curse_Evaluate(curse)
 			skip = true
 			goto wakabaCurseSkip
 		end
-		if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			skip = true
-			goto wakabaCurseSkip
-		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
 		if wakaba:ShouldRemoveBlind() then
 			if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
@@ -192,9 +188,7 @@ function wakaba:Curse_PlayerRender(player)
 	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
-	if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-		wakaba.G:GetLevel():RemoveCurses(127 - (LevelCurse.CURSE_OF_LABYRINTH | LevelCurse.CURSE_OF_THE_CURSED))
-	elseif wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR) > 0 and not IsExtraRoom() then
+	if wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR) > 0 and not IsExtraRoom() then
 		Isaac.DebugString("[wakaba] Curse "..curse.." found! Preventing from Richer's Uniform...")
 		wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount - 1
 		wakaba.G:GetLevel():RemoveCurses(curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR))

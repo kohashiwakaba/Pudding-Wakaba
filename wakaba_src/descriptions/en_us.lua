@@ -28,7 +28,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible260}} Grants immunity to curses",
+		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties from Rabbit Ribbon curses",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",

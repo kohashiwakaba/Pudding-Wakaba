@@ -30,6 +30,10 @@ function wakaba:hasRibbon(player)
 	end
 end
 
+function wakaba:hasRicherBR(player)
+	return player and player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+end
+
 -- Curse of Darkness → Curse of Sniper : Cannot shoot from point-blank range, Instakills non-boss enemies afterwards / 근거리에서 적을 맞출 수 없으나 원거리에 있는 일반 적에게 즉사 or 매우 큰 대미지
 -- Curse of the Labyrinth : All special rooms are doubled if available, Also creates Devil/Angel room floor / 기존의 생성된 모든 특수방을 2배로 증가 + 그 스테이지에서 일반 악천방 생성
 -- Curse of the Lost → Curse of the Fairy : Only able to see Portion of the Map, but all secret rooms are revealed if near / 탄광모자 효과 적용, 단 그 위치에서만 지도를 볼 수 있음
@@ -71,11 +75,27 @@ function wakaba:PlayerUpdate_RabbitRibbon(player)
 			end
 		end
 	end
+	if not player:HasCurseMistEffect() then
+		if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, "WAKABA_RABBIT_RIBBON")
+			if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SPELUNKER_HAT) <= 1 then
+				player:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SPELUNKER_HAT))
+			end
+		else
+			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, "WAKABA_RABBIT_RIBBON") then
+				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, "WAKABA_RABBIT_RIBBON")
+			end
+		end
+	end
 
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		local weapon = player:GetActiveWeaponEntity()
 		if weapon then
-			weapon.Visible = false
+			if wakaba:hasRicherBR(player) then
+				weapon.Visible = true
+			else
+				weapon.Visible = false
+			end
 		end
 	end
 end
@@ -100,7 +120,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RabbitRibbon)
 
 function wakaba:TearUpdate_RabbitRibbon(tear)
 	local player = wakaba:getPlayerFromTear(tear)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and not wakaba:hasRicherBR(player) then
 		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
 		tear.Visible = false
 	end
@@ -109,7 +129,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_RabbitRib
 
 function wakaba:BombUpdate_RabbitRibbon(tear)
 	local player = wakaba:getPlayerFromTear(tear)
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player then
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and not wakaba:hasRicherBR(player) then
 		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
 		--tear.Visible = false
 	end
@@ -126,7 +146,7 @@ function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFl
 		local dist = playerPos:Distance(targetPos)
 		if dist >= 160 then
 			returndata.newDamage = newDamage * (dist * 2 / 160)
-		else
+		elseif not wakaba:hasRicherBR(player) then
 			returndata.newDamage = newDamage * (dist / 200)
 		end
 		returndata.sendNewDamage = true
@@ -142,7 +162,7 @@ function wakaba:RabbitSniperOnDamage_Knife(source, target, data, newDamage, newF
 		local dist = knife:GetKnifeDistance()
 		if dist >= 160 then
 			returndata.newDamage = newDamage * (dist * 2 / 160)
-		else
+		elseif not wakaba:hasRicherBR(player) then
 			returndata.newDamage = newDamage * (dist / 480)
 		end
 		returndata.sendNewDamage = true
@@ -170,7 +190,13 @@ end
 function wakaba:NewRoom_RabbitRibbon()
 	if isc:inDeathCertificateArea() then return end
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
-	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
+	local hasRibbon = false
+	local hasRicherBR = false
+	wakaba:ForAllPlayers(function (player)
+		hasRibbon = hasRibbon or wakaba:hasRibbon(player)
+		hasRicherBR = hasRicherBR or wakaba:hasRicherBR(player)
+	end)
+	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) and not hasRicherBR then
 		for _, room in ipairs(isc:getRoomsInsideGrid()) do
 			if room.Data --[[ and room.Data.Type == RoomType.ROOM_DEFAULT ]] then
 				local roomGridIndex = room.SafeGridIndex
@@ -186,10 +212,6 @@ function wakaba:NewRoom_RabbitRibbon()
 					end
 				end
 			end
-		end
-		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, 1, "WAKABA_RABBIT_RIBBON")
-		if not player:HasCollectible(CollectibleType.COLLECTIBLE_SPELUNKER_HAT) then
-			isc:removeCollectibleCostume(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT)
 		end
 		if MinimapAPI then
 			for _,v in ipairs(MinimapAPI:GetLevel()) do
@@ -217,12 +239,16 @@ function wakaba:NewRoom_RabbitRibbon()
 	if wakaba.curses.CURSE_OF_AMNESIA > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_AMNESIA) then
 		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBIT_RIBBON)
 		local result = rng:RandomFloat() * 100
-		if StageAPI and StageAPI.InOverriddenStage() then
+		if (StageAPI and StageAPI.InOverriddenStage()) or hasRicherBR then
 			local roomdesc = wakaba.G:GetLevel():GetCurrentRoomDesc()
 			if roomdesc.Clear and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.SafeGridIndex ~= 84 and result <= 22 then
-				player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, UseFlag.USE_CARBATTERY | UseFlag.USE_NOANIM, -1)
+				if hasRicherBR then
+					wakaba.G:GetRoom():SpawnClearAward()
+				else
+					player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, UseFlag.USE_CARBATTERY | UseFlag.USE_NOANIM, -1)
+				end
 			end
-		else
+		elseif not hasRicherBR then
 			if result <= 46 then
 				local rooms = isc:getRooms()
 				local roomdesc = rooms[rng:RandomInt(#rooms)]
@@ -296,7 +322,8 @@ function wakaba:AlterPlayerDamage_RabbitRibbon(player, amount, flags, source, co
 	--print(flags)
 	--print((flags & DamageFlag.DAMAGE_RED_HEARTS > 0), (flags & DamageFlag.DAMAGE_INVINCIBLE > 0), (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0), (flags & DamageFlag.DAMAGE_NOKILL > 0), (flags & DamageFlag.DAMAGE_FAKE > 0))
 	if wakaba.curses.CURSE_OF_MAGICAL_GIRL > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_MAGICAL_GIRL) then
-		if flags & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CHEST) > 0
+		if wakaba:hasRicherBR(player)
+		or flags & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CHEST) > 0
 		or wakaba:IsDamageSacrificeSpikes(flags, source)
 		or wakaba:IsDamageSanguineSpikes(player, flags, source) then
 			return amount, flags | DamageFlag.DAMAGE_NOKILL

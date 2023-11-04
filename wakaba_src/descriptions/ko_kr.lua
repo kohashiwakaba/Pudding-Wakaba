@@ -39,8 +39,8 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible260}} 스테이지에 입장할 때 저주에 걸리지 않습니다.#{{CurseCursedSmall}} 획득 시 Labyrinth/챌린지/특수 시드를 제외한 모든 저주를 제거합니다.",
-		queueDesc = "저주 면역 + 지속성 달콤달콤",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다.",
+		queueDesc = "더욱 달콤한 향기",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
