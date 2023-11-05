@@ -78,12 +78,16 @@ function wakaba:PlayerUpdate_RabbitRibbon(player)
 	if not player:HasCurseMistEffect() then
 		if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) then
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, 1, "WAKABA_RABBIT_RIBBON")
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_PLUTO, 1, "WAKABA_RABBIT_RIBBON")
 			if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_SPELUNKER_HAT) <= 1 then
 				player:RemoveCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_SPELUNKER_HAT))
 			end
 		else
 			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, "WAKABA_RABBIT_RIBBON") then
 				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_SPELUNKER_HAT, "WAKABA_RABBIT_RIBBON")
+			end
+			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_PLUTO, "WAKABA_RABBIT_RIBBON") then
+				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_PLUTO, "WAKABA_RABBIT_RIBBON")
 			end
 		end
 	end
