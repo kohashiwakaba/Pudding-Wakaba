@@ -145,6 +145,8 @@ function wakaba:PlayerUpdate_LunarStone(player)
 			else
 				if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_STONE) then
 					player:RemoveCollectible(wakaba.Enums.Collectibles.LUNAR_STONE)
+					wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
+					SFXManager():Play(SoundEffect.SOUND_MIRROR_BREAK)
 					if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 						data.wakaba.lunargauge = data.wakaba.lunargauge + 500000
 					else
@@ -183,6 +185,8 @@ function wakaba:PlayerUpdate_LunarStone(player)
 						data.wakaba.lunargauge = nil
 						data.wakaba.lunarregenrate = nil
 					end
+					wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
+					SFXManager():Play(SoundEffect.SOUND_MIRROR_BREAK)
 					player:Die()
 				end
 				data.wakaba.lunargauge = nil
