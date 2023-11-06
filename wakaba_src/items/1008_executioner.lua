@@ -1,77 +1,100 @@
-local alwayseraser = 0 -- 0 : default, 1 : always, -1 : never
 
-function wakaba:update28()
-	newplumcount = 0
-  for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
-			trycount = true
-		else
-			trycount = false
-		end
-  end
-	local hasnonboss = false
-	local hasboss = false
-	local hasdogma = false
-	if trycount and Isaac.CountEnemies() > 0 then
-		local entities = Isaac.FindInRadius(wakaba.G:GetRoom():GetCenterPos(), 2000, EntityPartition.ENEMY)
-		for i, e in ipairs(entities) do
-			if e.Type == EntityType.ENTITY_DOGMA 
-			or e.Type == EntityType.ENTITY_VISAGE
-			or e.Type == EntityType.ENTITY_MOTHER -- Erasing Dogma, Visage, Mother can cause softlock
-			or e.Type == EntityType.ENTITY_MOMS_HEART -- Erasing Mom's heart will NOT give access to Corpse
-			then
-				hasdogma = true
-			end
-			if not hasdogma and e:IsVulnerableEnemy() and not e:IsBoss() then
-				hasnonboss = true
-			elseif not hasdogma and e:IsBoss() then
-				hasboss = true
+local isc = require("wakaba_src.libs.isaacscript-common")
+
+wakaba.ExecutionerBlacklistEntities = {
+	{EntityType.ENTITY_DOGMA},
+	{EntityType.ENTITY_VISAGE},
+	{EntityType.ENTITY_MOTHER},
+	{EntityType.ENTITY_MOMS_HEART},
+}
+
+local function isExecutionerBlacklisted(entity)
+	for _, dict in ipairs(wakaba.ExecutionerBlacklistEntities) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
 			end
 		end
-		--print("hasnonboss ",hasnonboss," hasboss ",hasboss," hasdogma ",hasdogma)
 	end
-	if hasdogma then
-		alwayseraser = -1
-	elseif not hasnonboss and hasboss then
-		alwayseraser = 1
+end
+
+---@param player EntityPlayer
+local function shouldApplyExecute(player)
+	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.EXECUTIONER)
+	local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.EXECUTIONER)
+	local charmBonus = wakaba:getTeardropCharmBonus(player) + (player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.EXECUTIONER))
+
+	local basicChance = 0.0075
+	local parLuck = 117
+	local maxChance = 0.1 - basicChance
+
+	local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), count)
+	return count > 0 and rng:RandomFloat() < chance
+end
+
+local function shouldApplySwordExecute(player)
+	return player and player.Type == EntityType.ENTITY_PLAYER and player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) and shouldApplyExecute(player)
+end
+
+local function tryEraseEnemy(effectTarget, isBoss)
+	if isExecutionerBlacklisted(effectTarget) then return end
+	if isBoss then
+		local wisp = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.ERASER, 0, effectTarget.Position, Vector.Zero, Isaac.GetPlayer())
+		wisp.Visible = false
+		wisp.CollisionDamage = 1000
+		wakaba:scheduleForUpdate(function()
+			wisp:Remove()
+		end, 2)
 	else
-		alwayseraser = 0
+		local wisp = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.WISP, CollectibleType.COLLECTIBLE_ERASER, effectTarget.Position, Vector.Zero, Isaac.GetPlayer())
+		wisp.Visible = false
+		wakaba:scheduleForUpdate(function()
+			wisp:Remove()
+		end, 2)
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.update28)
---LagCheck
-
---TearVariant.ERASER
-wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
-	if tear ~= nil 
-	and tear.SpawnerEntity ~= nil
-	and tear.SpawnerEntity:ToPlayer() ~= nil 
-	and tear.SpawnerEntity:ToPlayer():HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
-		local spawner = tear.SpawnerEntity:ToPlayer()
-		local rng = spawner:GetCollectibleRNG(wakaba.Enums.Collectibles.EXECUTIONER)
-		local luck = (spawner.Luck) * spawner:GetCollectibleNum(wakaba.Enums.Collectibles.EXECUTIONER, false)
-		local negativeLuck = luck
-		if luck < 0 then
-			luck = 1
-		end
-		if negativeLuck > 199 then
-			negativeLuck = 199
-		end
-		local rand = rng:RandomFloat() * 400 - negativeLuck
-		if not hasdogma and (luck >= rand or alwayseraser == 1) then
-			tear:ChangeVariant(TearVariant.ERASER)
-		end
-	end
-end)
-
-function wakaba:Cache_Executioner(player, cacheFlag)
-	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.EXECUTIONER)
-	if hasitem  then
-		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_BACKSTAB | TearFlags.TEAR_EXTRA_GORE
+function wakaba:EvalTearFlag_Executioner(weapon, player, effectTarget)
+	if player:HasCollectible(wakaba.Enums.Collectibles.EXECUTIONER) then
+		if shouldApplyExecute(player) then
+			if weapon then
+				wakaba:AddRicherTearFlags(weapon, wakaba.TearFlag.EXECUTE)
+			elseif not effectTarget:IsBoss() then
+				tryEraseEnemy(effectTarget, true)
+			end
+		elseif weapon and wakaba:IsLudoTear(weapon, true) then
+			wakaba:ClearRicherTearFlags(weapon, wakaba.TearFlag.EXECUTE)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Executioner)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_Executioner)
+
+wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
+	if effectTarget:IsBoss() then
+
+	else
+		tryEraseEnemy(effectTarget, true)
+	end
+end, wakaba.TearFlag.EXECUTE)
+
+
+function wakaba:TakeDmg_Executioner(entity, amount, flag, source, countdownFrames)
+	if isExecutionerBlacklisted(entity) then return end
+	if (entity:IsBoss() and wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.EXECUTIONER))
+	or (source.Entity and wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.EXECUTE))
+	or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordExecute(source.Entity:ToPlayer())) -- Spirit Sword
+	then
+		if source.Type == EntityType.ENTITY_TEAR and source.Variant == TearVariant.ERASER then
+			
+		elseif entity:IsBoss() and entity.HitPoints <= amount then
+			entity.HitPoints = amount + 10
+			tryEraseEnemy(entity, true)
+			--return false
+		elseif not entity:IsBoss() then
+			tryEraseEnemy(entity, true)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_Executioner)

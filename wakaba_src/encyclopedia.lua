@@ -2586,21 +2586,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	EXECUTIONER = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Adds a chance to shoot Erasers instead of a tear."},
+			{str = "Isaac has a chance to fire an execution attack that erases the enemy."},
 			{str = "if the enemies are hit, despawning all enemies of that type for the rest of the run."},
-			{str = "Deals damage to bosses. If fatal, erases the boss for the rest of the run."},
-			{str = "Isaac will always shoot Eraser tears when Only bosses are present."},
+			{str = "Bosses have 100% chance to be erased."},
 			{str = "- To prevent softlocks, Isaac will never shoot Eraser tears in The Visage, Mother, Dogma, The Beast fight."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The chance to fire a eraser depends on the luck stat. The activation rate is equal to 1/(200 - Luck). At base luck (0), the chance is 0.5%, maxing out at 100% at 200 luck."},
+			{str = "The chance to fire a execution attack depends on the luck stat. At base luck (0), the chance is 0.75%, maxing out at 10% at 117 luck."},
 			{str = "Executioner Locust deals 4.2x 'slower' than normal locust, 16x Isaac's Damage, travels at 0.1x speed."},
-		},
-		{ -- Synergies
-			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Wakaba's Blessing", clr = 3, halign = 0},
-			{str = "The chance to fire a eraser will be 10x."},
 		},
 	},
 	APOLLYON_CRISIS = {

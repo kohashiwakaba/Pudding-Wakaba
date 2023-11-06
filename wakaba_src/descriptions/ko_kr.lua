@@ -305,9 +305,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		itemName = "처형자",
 		description = ""
-		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 매우 낮은 확률로 지우개 눈물을 발사합니다."
-		.. "#보스만 있는 상태에선 항상 지우개 눈물을 발사합니다."
-		.. "#!!! {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 지우개 눈물이 발사되지 않습니다){{ColorReset}}"
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 0.75%의 확률로 적을 현재 게임에서 지우는 공격이 나갑니다."
+		.. "#{{LuckSmall}} :행운 117+일 때 10%, 보스의 경우 100%"
+		.. "#!!! {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 적용되지 않음){{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "???",

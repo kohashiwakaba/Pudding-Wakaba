@@ -272,9 +272,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		itemName = "Executioner",
 		description = ""
-		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} Shoots Eraser tears for extremely low rate"
-		.. "#Always shoots Eraser tears when only bosses are in the room"
-		.. "#!!! {{ColorSilver}}Eraser tears will NOT fired in certain boss battles like Dogma and Mother{{ColorReset}}"
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 0.75% to 'erase' non-boss enemies"
+		.. "#{{Luck}} 10% chance at 117 Luck, 100% chance for bosses"
+		.. "#!!! {{ColorSilver}}Some bosses are not affected like Dogma and Mother due to potential softlocks{{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
