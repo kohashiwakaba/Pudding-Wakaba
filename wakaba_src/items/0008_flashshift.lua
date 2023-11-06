@@ -123,6 +123,7 @@ local function canUseFlashShift(player, data)
 	if data.wakaba.fscounter and data.wakaba.fscounter > 0 then
 		return true, true, data.wakaba.fscounter
 	elseif player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
+	elseif not wakaba:getOptionValue("flashshifthearts") then
 	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
 		local totalHearts = player:GetHearts() + player:GetSoulCharge()
 		if totalHearts > 1 then

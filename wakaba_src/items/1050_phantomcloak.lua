@@ -63,7 +63,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_PhantomCloak)
 
 local function canRefillCloak(player, data)
-	if player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
+	if not wakaba:getOptionValue("phantomcloakhearts") then
+		
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
 		local totalHearts = player:GetHearts() + player:GetSoulCharge()
 		if totalHearts > 1 then
 			return true, player:GetSoulCharge()
