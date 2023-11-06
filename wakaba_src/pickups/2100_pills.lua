@@ -90,7 +90,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 				return wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2
 			end
 		end
-		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_ then
+		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 			if pillEffect == PillEffect.PILLEFFECT_LUCK_DOWN then
 				if fhd then
 					return PillEffect.PILLEFFECT_SPEED_DOWN
