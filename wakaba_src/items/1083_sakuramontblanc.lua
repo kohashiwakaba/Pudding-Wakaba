@@ -52,15 +52,3 @@ function wakaba:Cache_SakuraMontBlanc(player, cacheFlag)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_SakuraMontBlanc)
-
-function wakaba:NewRoom_SakuraMontBlanc()
-	wakaba:ForAllPlayers(function (player)
-		local power = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.SAKURA_MONT_BLANC)
-		if power > 0 then
-			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_MONT_BLANC, -1)
-			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_DAMAGE)
-			player:EvaluateItems()
-		end
-	end)
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_SakuraMontBlanc)
