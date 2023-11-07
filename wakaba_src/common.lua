@@ -17,7 +17,7 @@ local function isRep(stype)
 	end
 end
 
-function wakaba:getEstimatedTearsMult(player, negativeOnly)
+function wakaba:getEstimatedTearsMult(player, negativeOnly, positiveOnly)
 	local mult = 1
 	local effects = player:GetEffects()
 
@@ -50,6 +50,9 @@ function wakaba:getEstimatedTearsMult(player, negativeOnly)
 		mult = mult * 0.51
 	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER) then
 		mult = mult * 0.42
+	end
+	if positiveOnly then
+		mult = math.max(mult, 1)
 	end
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_ALMOND_MILK) then
@@ -129,7 +132,7 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	end
 
 	-- L8 Azazel + Ludovico x0.5
-	if (player:GetPlayerType(PlayerType.PLAYER_AZAZEL) or player:GetPlayerType(PlayerType.PLAYER_AZAZEL_B))
+	if (player:GetPlayerType() == PlayerType.PLAYER_AZAZEL or player:GetPlayerType() == PlayerType.PLAYER_AZAZEL_B)
 	and player:HasCollectible(CollectibleType.COLLECTIBLE_LUDOVICO_TECHNIQUE) then
 		mult = mult * 0.5
 	end
@@ -144,7 +147,7 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	if level > 6 then return mult end
 
 	-- L6 Judas BR Damocles
-	if player:GetPlayerType(PlayerType.PLAYER_JUDAS)
+	if player:GetPlayerType() == PlayerType.PLAYER_JUDAS
 	and player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE)
 	and player:HasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) then
 		mult = mult * 1.4
@@ -191,29 +194,29 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	if level > 2 then return mult end
 
 	-- [Missing] L2 Character Multiplier
-	if player:GetPlayerType(PlayerType.PLAYER_BLACKJUDAS) then
+	if player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS then
 		mult = mult * 2
-	elseif player:GetPlayerType(PlayerType.PLAYER_THELOST_B) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_THELOST_B then
 		mult = mult * 1.3
-	elseif player:GetPlayerType(PlayerType.PLAYER_AZAZEL)
-	or player:GetPlayerType(PlayerType.PLAYER_AZAZEL_B)
-	or player:GetPlayerType(PlayerType.PLAYER_THEFORGOTTEN)
-	or player:GetPlayerType(PlayerType.PLAYER_THEFORGOTTEN_B)
-	or player:GetPlayerType(PlayerType.PLAYER_LAZARUS2_B) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_AZAZEL
+	or player:GetPlayerType() == PlayerType.PLAYER_AZAZEL_B
+	or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN
+	or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B
+	or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
 		mult = mult * 1.5
-	elseif player:GetPlayerType(PlayerType.PLAYER_LAZARUS2) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2 then
 		mult = mult * 1.4
-	elseif player:GetPlayerType(PlayerType.PLAYER_JUDAS) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_JUDAS then
 		mult = mult * 1.35
-	elseif player:GetPlayerType(PlayerType.PLAYER_CAIN)
-	or player:GetPlayerType(PlayerType.PLAYER_CAIN_B)
-	or player:GetPlayerType(PlayerType.PLAYER_KEEPER)
-	or player:GetPlayerType(PlayerType.PLAYER_EVE_B) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_CAIN
+	or player:GetPlayerType() == PlayerType.PLAYER_CAIN_B
+	or player:GetPlayerType() == PlayerType.PLAYER_KEEPER
+	or player:GetPlayerType() == PlayerType.PLAYER_EVE_B then
 		mult = mult * 1.2
-	elseif player:GetPlayerType(PlayerType.PLAYER_BLUEBABY) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY then
 		mult = mult * 1.05
-	elseif player:GetPlayerType(PlayerType.PLAYER_BETHANY_B)
-	or player:GetPlayerType(PlayerType.PLAYER_BLACKJUDAS) and not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B
+	or player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS and not effects:HasCollectibleEffect(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON) then
 		mult = mult * 0.75
 	end
 
