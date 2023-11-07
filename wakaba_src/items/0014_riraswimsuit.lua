@@ -59,7 +59,7 @@ wakaba:RegisterStatusEffect("AQUA", sprite, {
 	VasculitisFlag = wakaba.TearFlag.AQUA,
 })
 
-local function isAquaInstakill(entity)
+function wakaba:isAquaInstakill(entity)
 	for _, dict in ipairs(wakaba.AquaInstakillEntities) do
 		if entity.Type == dict[1] then
 			if not dict[2] or entity.Variant == dict[2] then
@@ -154,7 +154,7 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_RiraSwimsuit)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if isAquaInstakill(effectTarget) then
+	if wakaba:isAquaInstakill(effectTarget) then
 		effectTarget:Kill()
 	end
 	if wakaba:CanApplyStatusEffect(effectTarget) then

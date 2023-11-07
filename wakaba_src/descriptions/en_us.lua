@@ -874,6 +874,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Black Bean Mochi",
 		description = "10% chance to shoot 'zip' enemies#{{Luck}} 100% chance at 16 Luck#Zipped enemies make explosion on death#Zip explosion does not harm Isaac",
 	},
+	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
+		itemName = "Sakura Mont Blanc",
+		description = "For each enemy killed in the room:#↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +1 Fire rate#Caps at 6 kills#Killed enemies aquafy nearby enemies#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#Aqua attacks instakill stone enemies",
+	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "Kanae Lens",
 		description = "↑ {{Damage}} x1.65 Damage multiplier#Homing tears from left eye",

@@ -140,8 +140,12 @@
 	<active id="103" description="Don't stare like that, it's embarrasing..." gfx="__placeholder.png" maxcharges="2" name="Rira's Coat" tags="" quality="2" hidden="true" achievement="9999"/>
 	<passive id="104" description="Ecchi Aqua shot" gfx="riraswimsuit.png" name="Rira's Swimsuit" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
 	<passive id="105" description="Feeling her sense" gfx="rirabandage.png" name="Rira's Bandage" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
-	<passive id="106"  cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="summonable offensive" quality="3" hidden="true" achievement="9999"/>
-	<passive id="107"  cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4"/>
+	<passive id="106" cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="noeden summonable offensive" quality="3" hidden="true" achievement="9999"/>
+	<passive id="107" description="???" gfx="sakuramontblanc.png" name="Sakura Mont Blanc" tags="noeden summonable offensive" quality="2" hidden="true" achievement="9999"/>
+	<active id="108" description="???" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
+	<passive id="109" description="???" gfx="rirabento.png" name="Rira's Bento" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
+	<passive id="110" description="???" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
+	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" quality="4" hidden="true" achievement="9999"/>

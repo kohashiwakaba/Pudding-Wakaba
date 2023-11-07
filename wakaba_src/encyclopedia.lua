@@ -1660,6 +1660,16 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 		},
 	},
+	BLACK_BEAN_MOCHI = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+		},
+	},
+	SAKURA_MONT_BLANC = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+		},
+	},
 	KANAE_LENS = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -4893,6 +4903,20 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.RIRAS_BANDAGE,
+		Hide = true,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI,
+		Hide = true,
+	})
+
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.SAKURA_MONT_BLANC,
 		Hide = true,
 	})
 

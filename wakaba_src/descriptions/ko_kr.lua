@@ -968,6 +968,14 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다.#{{LuckSmall}} 행운 16+일 때 100%#압박 상태의 적 처치 시 폭발하며 주변의 적에게 60의 피해를 줍니다.",
 		queueDesc = "리라의 추억은 누군가에겐 악몽",
 	},
+	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
+		itemName = "사쿠라 몽블랑",
+		description = "적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
+		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "{{CR}}",
+		queueDesc = "리라의 추억은 누군가에겐 악몽",
+	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "카나에 렌즈",
 		description = "↑ {{DamageSmall}}공격력 배율 x1.65#왼쪽 눈에서 유도 공격이 나갑니다.",

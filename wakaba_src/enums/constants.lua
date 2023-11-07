@@ -129,7 +129,7 @@ wakaba.Enums.Collectibles = {
 	-- Rira items
 	BLACK_BEAN_MOCHI = Isaac.GetItemIdByName("Black Bean Mochi"),
 	RIRAS_SWIMSUIT = Isaac.GetItemIdByName("Rira's Swimsuit"),
-	--SAKURA_MONT_BLANC = Isaac.GetItemIdByName("Chimaki"),
+	SAKURA_MONT_BLANC = Isaac.GetItemIdByName("Sakura Mont Blanc"),
 	--NERF_GUN = Isaac.GetItemIdByName("Chimaki"),
 	--RIRAS_BENTO = Isaac.GetItemIdByName("Chimaki"),
 	--CHEWY_ROLLY_CAKE = Isaac.GetItemIdByName("Chimaki"),
