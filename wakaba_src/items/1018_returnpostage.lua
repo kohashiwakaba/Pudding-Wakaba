@@ -1,42 +1,62 @@
 local haspostage = 0
 
+wakaba.PostageConquerEntities = {
+	{EntityType.ENTITY_NEEDLE},
+	{EntityType.ENTITY_DUST},
+	{EntityType.ENTITY_POLTY},
+	{EntityType.ENTITY_MOMS_HAND},
+}
 
-function wakaba:PostageUpdate()
-	
-	haspostage = 0
-	
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.Enums.Collectibles.RETURN_POSTAGE, false) then
-			haspostage = haspostage + player:GetCollectibleNum(wakaba.Enums.Collectibles.RETURN_POSTAGE)
-		end
-	end
-	if haspostage > 0 then
-		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_NEEDLE, -1, -1)) do
-			entity:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
-		end
-		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_DUST, -1, -1)) do
-			entity:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
-		end
-		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_POLTY, -1, -1)) do
-			entity:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
-		end
-		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_MOMS_HAND, -1, -1)) do
-			entity:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
-		end
-		for i, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_ETERNALFLY, -1, -1)) do
-			entity:Remove()
-		end
-		if FiendFolio then
-			for i, entity in ipairs(Isaac.FindByType(160, 451, -1)) do
-				entity:Remove()
+wakaba.PostageRemovalEntities = {
+	{EntityType.ENTITY_ETERNALFLY},
+}
+
+local function isPostageEntity(entity)
+	for _, dict in ipairs(wakaba.PostageConquerEntities) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
 			end
 		end
 	end
-
 end
 
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostageUpdate)
+local function isPostageRemoval(entity)
+	for _, dict in ipairs(wakaba.PostageRemovalEntities) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
+			end
+		end
+	end
+end
+
+function wakaba:NPCUpdate_Postage(entity)
+
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RETURN_POSTAGE) then
+		local player
+		local players = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RETURN_POSTAGE)
+		if #players > 0 then
+			local rng = RNG()
+			rng:SetSeed(entity.InitSeed, 35)
+			player = players[rng:RandomInt(#players) + 1]
+		else
+			player = Isaac.GetPlayer()
+		end
+		if isPostageRemoval(entity) then
+			entity:Remove()
+		elseif isPostageEntity(entity) then
+			entity:AddCharmed(EntityRef(player), -1)
+		end
+		
+	end
+end
+
+wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.NPCUpdate_Postage)
 --LagCheck
 
 function wakaba:PostageAddCharm(entity)
@@ -44,8 +64,3 @@ function wakaba:PostageAddCharm(entity)
 		entitiy:AddCharmed(EntityRef(Isaac.GetPlayer()), -1)
 	end
 end
-
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.PostageUpdate, EntityType.ENTITY_NEEDLE)
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.PostageUpdate, EntityType.ENTITY_DUST)
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.PostageUpdate, EntityType.ENTITY_POLTY)
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_INIT, wakaba.PostageUpdate, EntityType.ENTITY_MOMS_HAND)
