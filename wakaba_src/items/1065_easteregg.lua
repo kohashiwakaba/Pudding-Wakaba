@@ -28,17 +28,11 @@ function wakaba:CoinCollision_EasterEgg(pickup, collider)
 
 		if player then
 			player:AddCoins(1)
-			if not player:HasCollectible(wakaba.Enums.Collectibles.EASTER_EGG) then
-				player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
-			end
-			player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.EASTER_EGG)
+			player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
 		elseif familiar then
 			familiar.Coins = familiar.Coins + 1
 			if familiar.Player then
-				if not familiar.Player:HasCollectible(wakaba.Enums.Collectibles.EASTER_EGG) then
-					familiar.Player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
-				end
-				familiar.Player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.EASTER_EGG)
+				familiar.Player:AddCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
 			end
 		end
 		--sfx:Play(SoundEffect.SOUND_CANDLE_LIGHT, 1, 0, false, 1)
