@@ -156,6 +156,8 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
 	if wakaba:isAquaInstakill(effectTarget) then
 		effectTarget:Kill()
+	elseif effectTarget:HasEntityFlags(EntityFlag.FLAG_ICE) then
+		effectTarget:AddEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
 	end
 	if wakaba:CanApplyStatusEffect(effectTarget) then
 		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)

@@ -856,8 +856,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} 2/7 : {{Collectible618}}"
 		.. "#{{Blank}} 3/8 : {{Collectible374}}"
 		.. "#{{Blank}} 4/9 : {{Collectible494}}"
-		--[[ .. "#{{Player"..wakaba.Enums.Players.RIRA.."}} 사망 시 전 방에서 Rira로 부활합니다."
-		.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira의 경우 Rira 캐릭터로 변경되지 않습니다." ]]
+		.. "#{{Player"..wakaba.Enums.Players.RIRA.."}} 사망 시 전 방에서 Rira로 부활합니다."
+		--.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira의 경우 Rira 캐릭터로 변경되지 않습니다."
 		.. "{{CR}}",
 		queueDesc = "잊혀진 레시피",
 	},

@@ -22,6 +22,8 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
 		return {ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) then
+		return {ID = wakaba.Enums.Collectibles.BUNNY_PARFAIT, PostRevival = function() wakaba:AfterRevival_BunnyParfait(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
 		return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
@@ -75,77 +77,85 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Reviv
 
 
 if DetailedRespawnGlobalAPI then
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Lunar Stone",
-    itemId = wakaba.Enums.Collectibles.LUNAR_STONE,
-    condition = function(self, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.LUNAR_STONE
-    end,
-    additionalText = "xInf",
-  }, DetailedRespawnGlobalAPI.RespawnPosition.Last)
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Question Block Wisp",
-    itemId = wakaba.Enums.Collectibles.QUESTION_BLOCK,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.QUESTION_BLOCK
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Lunar Stone"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Grimreaper Defender Wisp",
-    itemId = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Question Block Wisp"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Book of the God",
-    itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_GOD or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "See Des Bischofs",
-    itemId = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.SEE_DES_BISCHOFS or player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the God"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Jar of Clover",
-    itemId = wakaba.Enums.Collectibles.JAR_OF_CLOVER,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.JAR_OF_CLOVER or player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("See Des Bischofs"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Caramella Pancake",
-    itemId = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.CARAMELLA_PANCAKE or player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Jar of Clover"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Book of the Fallen",
-    itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Caramella Pancake"))
-  DetailedRespawnGlobalAPI:AddCustomRespawn({
-    name = "Vintage Threat",
-    itemId = wakaba.Enums.Collectibles.VINTAGE_THREAT,
-    condition = function(_, player)
-      local canRevive = wakaba:CanRevive(player)
-      return canRevive and canRevive.ID == wakaba.Enums.Collectibles.VINTAGE_THREAT or player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
-    end,
-  }, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the Fallen"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Lunar Stone",
+		itemId = wakaba.Enums.Collectibles.LUNAR_STONE,
+		condition = function(self, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.LUNAR_STONE
+		end,
+		additionalText = "xInf",
+	}, DetailedRespawnGlobalAPI.RespawnPosition.Last)
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Question Block Wisp",
+		itemId = wakaba.Enums.Collectibles.QUESTION_BLOCK,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.QUESTION_BLOCK
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Lunar Stone"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Grimreaper Defender Wisp",
+		itemId = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Question Block Wisp"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Book of the God",
+		itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_GOD or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "See Des Bischofs",
+		itemId = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.SEE_DES_BISCHOFS or player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the God"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Jar of Clover",
+		itemId = wakaba.Enums.Collectibles.JAR_OF_CLOVER,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.JAR_OF_CLOVER or player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("See Des Bischofs"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Bunny Parfait",
+		itemId = wakaba.Enums.Collectibles.BUNNY_PARFAIT,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BUNNY_PARFAIT or player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Jar of Clover"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Caramella Pancake",
+		itemId = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.CARAMELLA_PANCAKE or player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Bunny Parfait"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Book of the Fallen",
+		itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Caramella Pancake"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Vintage Threat",
+		itemId = wakaba.Enums.Collectibles.VINTAGE_THREAT,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.VINTAGE_THREAT or player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Book of the Fallen"))
 end

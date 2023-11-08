@@ -39,3 +39,20 @@ function wakaba:Cache_BunnyParfait(player, cacheFlag)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BunnyParfait)
+
+function wakaba:AfterRevival_BunnyParfait(player)
+	if player:GetPlayerType() ~= wakaba.Enums.Players.RIRA_B then
+		player:AddSoulHearts(6)
+	else
+		player:ChangePlayerType(wakaba.Enums.Players.RIRA)
+		wakaba:AfterRiraInit(player)
+		wakaba:GetRiraCostume(player)
+		player:AddMaxHearts(-200)
+		player:AddBoneHearts(-12)
+		player:AddSoulHearts(-36)
+		player:AddMaxHearts(6)
+		player:AddHearts(6)
+	end
+	player:RemoveCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+end
+

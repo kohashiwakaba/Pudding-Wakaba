@@ -774,8 +774,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} 2/7 : {{Collectible618}}"
 		.. "#{{Blank}} 3/8 : {{Collectible374}}"
 		.. "#{{Blank}} 4/9 : {{Collectible494}}"
-		--[[ .. "#{{Player"..wakaba.Enums.Players.RIRA.."}} Respawn as Rira on death"
-		.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives" ]]
+		.. "#{{Player"..wakaba.Enums.Players.RIRA.."}} Respawn as Rira on death"
+		--.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {

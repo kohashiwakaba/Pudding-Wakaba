@@ -116,7 +116,7 @@ function wakaba:RiraInit(continue)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.RiraInit)
 
-function wakaba:RicherExit()
+function wakaba:RiraExit()
 	isRiraContinue = true
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.RicherExit)
+wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.RiraExit)
