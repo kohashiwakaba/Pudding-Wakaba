@@ -80,7 +80,7 @@ end
  
 
 function wakaba:AfterRevival_CaramellaPancake(player)
-	if player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then
+	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
 		player:AddSoulHearts(6)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.RICHER)

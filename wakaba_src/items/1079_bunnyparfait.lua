@@ -41,7 +41,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BunnyParfait)
 
 function wakaba:AfterRevival_BunnyParfait(player)
-	if player:GetPlayerType() ~= wakaba.Enums.Players.RIRA_B then
+	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B then
 		player:AddSoulHearts(6)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.RIRA)
