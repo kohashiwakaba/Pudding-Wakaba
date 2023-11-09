@@ -737,7 +737,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 
 		Isaac.RunCallbackWithParam(wakaba.Callback.SLOT_UPDATE, slot.Variant, slot)
 
-		wakaba.ForAllPlayers(function(player)
+		wakaba:ForAllPlayers(function(player)
 			if wakaba.DoEntitiesOverlap(player, slot) and not player:IsDead() then
 				Isaac.RunCallbackWithParam(wakaba.Callback.SLOT_COLLISION, slot.Variant, slot, player)
 			end
