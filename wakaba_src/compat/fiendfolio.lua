@@ -67,7 +67,7 @@ function wakaba:GameStart_FiendFolioCompat()
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.RANGE_OS, Reference = "Last Origin"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.MISTAKE, Reference = "Paper Mario"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.KUROMI_CARD, Reference = "Onegai My Melody"})
-		
+
 		table.insert(wakaba.PostageRemovalEntities, {160, 451})
 
 		wakaba:addSilenceTarget("FF_Fire", 1000, 7005)
@@ -101,6 +101,69 @@ function wakaba:GameStart_FiendFolioCompat()
 
 		FiendFolio.AddItemsToContrabandPool({
 
+		})
+
+		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
+			if isCustom and (selected >= Isaac.GetItemIdByName("Pyromancy") and selected <= Isaac.GetItemIdByName("Shredder")) then
+				if not FiendFolio.IsCompletionItemUnlocked(selected) then
+					return true
+				end
+			end
+		end)
+
+		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+			{FiendFolio.ITEM.COLLECTIBLE.STORE_WHISTLE, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PINHEAD, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.IMP_SODA, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.BEGINNERS_LUCK, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.DICHROMATIC_BUTTERFLY, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.CHIRUMIRU, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.GOLEMS_ORB, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.LEFTOVER_TAKEOUT, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.GORGON, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.CLEAR_CASE, 0.50},
+			{FiendFolio.ITEM.COLLECTIBLE.PRANK_COOKIE, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.RUBBER_BULLETS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.SECRET_STASH, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_4, 0.20},
+			{FiendFolio.ITEM.COLLECTIBLE.BRIDGE_BOMBS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.LAWN_DARTS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.TOY_PIANO, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.MODEL_ROCKET, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.WRONG_WARP, 0.20},
+			{FiendFolio.ITEM.COLLECTIBLE.GOLDEN_PLUM_FLUTE, 0.10},
+			{FiendFolio.ITEM.COLLECTIBLE.EXCELSIOR, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PENNY_ROLL, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.AZURITE_SPINDOWN, 0.50},
+			{FiendFolio.ITEM.COLLECTIBLE.DEVILS_DAGGER, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.DAZZLING_SLOT, 0.10},
+			{FiendFolio.ITEM.COLLECTIBLE.RAT_POISON, 0.05},
+			{FiendFolio.ITEM.COLLECTIBLE.BOX_TOP, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.BOTTLE_OF_WATER, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.LOADED_D6, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.ERRORS_CRAZY_SLOTS, 0.50},
+		})
+		wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+			{FiendFolio.ITEM.COLLECTIBLE.MAMA_SPOOTER, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.GOLEMS_ORB, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.CHIRUMIRU, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PEACH_CREEP, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.OPHIUCHUS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.CETUS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.DEIMOS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PET_ROCK, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.CLEAR_CASE, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.WHITE_PEPPER, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.MUSCA, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.PAGE_OF_VIRTUES, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.ROBOBABY3, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.SNOW_GLOBE, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.NYX, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.TELEBOMBS, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.SPINDLE, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.AZURITE_SPINDOWN, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.D3, 1.00},
+			{FiendFolio.ITEM.COLLECTIBLE.BOTTLE_OF_WATER, 1.00},
 		})
 
 		--[[ wakaba:addSilenceTarget("FF_Waiting_spider", 150, 10)

@@ -213,6 +213,15 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				end
 			end)
 
+			wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
+				if isCustom and (selected >= Mod.Item.BLIGHTED_DICE.ID and selected <= Mod.Item.WOOLEN_CAP.ID) then
+					local achName = Epiphany.CollectibleToAchievement[selected]
+					if not (achName and Mod:GetAchievement(achName) > 0) then
+						return true
+					end
+				end
+			end)
+
 			-- TR characters for Pudding & Wakaba not available yet, just for reserve
 			api.AddCharacter({
 				charName = "WAKABA", --Internal character name (REQUIRED)
@@ -298,6 +307,19 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			]]
 
 			wakaba:Epiphany_AddThrowingBagSynergies()
+
+			wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+				{Epiphany.Item.DEBUG.ID, 1.00},
+				{Epiphany.Item.EMPTY_DECK.ID, 1.00},
+				{Epiphany.Item.WARM_COAT.ID, 1.00},
+				{Epiphany.Item.BROKEN_HALO.ID, 1.00},
+				{Epiphany.Item.KINS_CURSE.ID, 1.00},
+				{Epiphany.Item.COIN_CASE.ID, 1.00},
+			})
+			wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+				{Epiphany.Item.D5.ID, 1.00},
+				{Epiphany.Item.CHANCE_CUBE.ID, 1.00},
+			})
 
 			-- TR Eden Blacklist
 			api:AddItemsToEdenBlackList(

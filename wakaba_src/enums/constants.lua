@@ -711,6 +711,7 @@ wakaba.Weights.LilMoeTearVariants = {
 	{TearVariant.TECH_SWORD_BEAM, 01.00},
 }
 
+-- Clover Chest entries. Contains the mod dev's favorite
 wakaba.Weights.CloverChest = {
 	--{CollectibleType.COLLECTIBLE_BIBLE, 1.00},
 	{CollectibleType.COLLECTIBLE_SPOON_BENDER, 1.00},
@@ -782,6 +783,7 @@ wakaba.Weights.CloverChest = {
 	{wakaba.Enums.Collectibles.SECRET_DOOR, 1.00},
 }
 
+-- Shiori Valut items. Contains items with blue collectible image.
 wakaba.Weights.ShioriValut = {
 	{CollectibleType.COLLECTIBLE_INNER_EYE, 1.00},
 	{CollectibleType.COLLECTIBLE_TELEPORT, 1.00},
