@@ -37,6 +37,12 @@ local pillClass = {
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = -2,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
 }
+wakaba.ConvertBlessingPills = {
+	[PillEffect.PILLEFFECT_AMNESIA] = PillEffect.PILLEFFECT_SEE_FOREVER,
+	[PillEffect.PILLEFFECT_RETRO_VISION] = PillEffect.PILLEFFECT_VURP,
+	[PillEffect.PILLEFFECT_IM_EXCITED] = PillEffect.PILLEFFECT_GULP,
+	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
+}
 
 function wakaba:PlayerUpdate_Pills(player)
 	player:GetData().wakaba_currentPill = player:GetPill(0)
@@ -52,6 +58,14 @@ local function hasPHD(player)
 	else
 		return false
 	end
+end
+
+function wakaba:anyPlayerHasPHD()
+	wakaba:ForAllPlayers(function (player)
+		if hasPHD(player) then
+			return true
+		end
+	end)
 end
 
 local function hasFalsePHD(player)
@@ -74,22 +88,17 @@ function wakaba:IsPlayerUsingHorsePill(player, useFlags)
 end
 
 function wakaba:getPillEffect(pillEffect, pillColor)
-	local phd = false
-	local fhd = false
-	local estdamage = 3.5
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if hasPHD(player) then phd = true; estdamage = player.Damage end
-		if hasFalsePHD(player) then fhd = true end
-		if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE
-		and wakaba.G:IsGreedMode() then
-			return wakaba.Enums.Pills.ALL_STATS_UP
+	local phd = wakaba:anyPlayerHasPHD()
+	local fhd = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)
+	if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE and wakaba.G:IsGreedMode() then
+		return wakaba.Enums.Pills.ALL_STATS_UP
+	end
+	if wakaba:ShouldRemoveBlind() then
+		if wakaba.ConvertBlessingPills[pillEffect] then
+			return wakaba.ConvertBlessingPills[pillEffect]
 		end
-		if pillEffect == wakaba.Enums.Pills.FIREY_TOUCH then
-			if wakaba.state.options.flamescurserate == 0 then
-				return wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2
-			end
-		end
+	end
+	wakaba:ForAllPlayers(function (player)
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 			if pillEffect == PillEffect.PILLEFFECT_LUCK_DOWN then
 				if fhd then
@@ -113,7 +122,7 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 				end
 			end
 		end
-	end
+	end)
 	if phd and not fhd then
 		if convertPHD[pillEffect] ~= nil then
 			if convertPHD[pillEffect] ~= -1 then
