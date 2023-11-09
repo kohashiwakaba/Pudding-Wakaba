@@ -190,6 +190,21 @@ wakaba.Callback = {
 	-- ---
 	POST_TAKE_DAMAGE = {},
 
+	-- ---
+	-- SLOT_INIT
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- Called from MC_POST_UPDATE.
+	--
+	-- ---
+	-- Parameters :
+	-- - `Entity` - slot
+	-- ---
+	SLOT_INIT = {},
+	SLOT_UPDATE = {},
+	SLOT_COLLISION = {},
+
 	-- Extra callbacks exclusive to Pudding & Wakaba
 
 	-- ---
@@ -710,6 +725,25 @@ function wakaba:ApplyWakabaTearParams(entity, player)
 	end
 end
 
+
+-- Slot Callbacks
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+	for _, slot in pairs(Isaac.FindByType(6)) do
+		local data = slot:GetData()
+		if not data.wakaba_SlotDoneInit then
+			data.wakaba_SlotDoneInit = true
+			Isaac.RunCallbackWithParam(wakaba.Callback.SLOT_INIT, slot.Variant, slot)
+		end
+
+		Isaac.RunCallbackWithParam(wakaba.Callback.SLOT_UPDATE, slot.Variant, slot)
+
+		wakaba.ForAllPlayers(function(player)
+			if wakaba.DoEntitiesOverlap(player, slot) and not player:IsDead() then
+				Isaac.RunCallbackWithParam(wakaba.Callback.SLOT_COLLISION, slot.Variant, slot, player)
+			end
+		end)
+	end
+end)
 
 
 

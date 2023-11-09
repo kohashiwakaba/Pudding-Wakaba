@@ -193,22 +193,22 @@ function wakaba:InitValut(slot)
 
 	end
 end
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_INIT, wakaba.InitValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:AddCallback(wakaba.Callback.SLOT_INIT, wakaba.InitValut, wakaba.Enums.Slots.SHIORI_VALUT)
 
 function wakaba:ReplaceValutLate2(pickup)
-  local room = wakaba.G:GetRoom()
-  if room:GetFrameCount() < 2 then return end
-  wakaba:ReplaceValutLate(pickup)
+	local room = wakaba.G:GetRoom()
+	if room:GetFrameCount() < 2 then return end
+	wakaba:ReplaceValutLate(pickup)
 end
 function wakaba:ReplaceValutLate(pickup)
-  local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
-  local currentRoomIndex = isc:getRoomListIndex()
-  if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then return end
-  if wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
+	local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
+	local currentRoomIndex = isc:getRoomListIndex()
+	if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then return end
+	if wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
 		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 		pickup:GetSprite():SetOverlayFrame("Alternates", 1)
 		pickup:GetSprite():LoadGraphics()
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceValutLate2, PickupVariant.PICKUP_COLLECTIBLE)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PICKUP_INIT_LATE, wakaba.ReplaceValutLate, PickupVariant.PICKUP_COLLECTIBLE)

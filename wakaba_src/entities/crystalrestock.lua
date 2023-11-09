@@ -41,7 +41,7 @@ function wakaba:InitCrystalRestock(slot)
 		end
 	end
 end
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(wakaba.Callback.SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:convertRestockMachines(entype, var, subtype, grindex, seed)
 	if wakaba.state.unlock.crystalrestock > 0 and entype == EntityType.ENTITY_SLOT and var == 10 then
@@ -66,7 +66,7 @@ function wakaba:SlotCollision_CrystalRestock(slot, player)
 		end
 	end
 end
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:SlotUpdate_CrystalRestock(slot)
 	local restockData = restock_data.floor[tostring(slot.InitSeed)]
@@ -110,7 +110,7 @@ function wakaba:SlotUpdate_CrystalRestock(slot)
 
 end
 
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_SLOT_UPDATE, wakaba.SlotUpdate_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(wakaba.Callback.SLOT_UPDATE, wakaba.SlotUpdate_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:DoEntitiesOverlap(entity1, entity2)
 	return entity1.Position:Distance(entity2.Position) <= entity1.Size + entity2.Size
