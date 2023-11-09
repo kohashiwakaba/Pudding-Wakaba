@@ -30,7 +30,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local iFeatures = {
 	isc.ISCFeature.SAVE_DATA_MANAGER,
 	--isc.ISCFeature.PICKUP_INDEX_CREATION,
-	isc.ISCFeature.PLAYER_INVENTORY,
+	--isc.ISCFeature.PLAYER_INVENTORY,
 	isc.ISCFeature.CHARACTER_HEALTH_CONVERSION,
 	isc.ISCFeature.NO_SIREN_STEAL,
 	isc.ISCFeature.MODDED_ELEMENT_SETS,

@@ -120,7 +120,7 @@ function wakaba:FamiliarUpdate_LunarDamocles(familiar)
 		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.LUNAR_DAMOCLES)
 		player:RemoveCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES)
 
-		local collectibles = wakaba:getPlayerInventory(player, false)
+		local collectibles = wakaba:getCurrentCollectibles(player, false, true)
 		local collectibleCount = #collectibles
 		local removedCollectibles = 0
 		local removedItems = {

@@ -1282,3 +1282,21 @@ function wakaba:getTeardropCharmBonus(player)
 	end
 	return 0
 end
+
+function wakaba:getCurrentCollectibles(player, includeActive, includeCount)
+	if not player or player:IsCoopGhost() then return {} end
+	local list = {}
+	local id = 1
+	while (id < CollectibleType.NUM_COLLECTIBLES or Isaac.GetItemConfig():GetCollectible(id)) do
+		local count = player:GetCollectibleNum(id, true)
+		if count > 0 then
+			if includeCount then
+				table.insert(list, id)
+			else
+				list[id] = count
+			end
+		end
+		id = id + 1
+	end
+	return list
+end
