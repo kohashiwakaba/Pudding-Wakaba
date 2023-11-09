@@ -415,7 +415,7 @@ function wakaba:useUniform(player)
 					player:GetData().wakaba.uniform.items[i].pilleffect = replacedPillEffect
 				end
 			end
-			if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) and item.cardpill < PillColor.PILL_GIANT_FLAG then
+			if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.ANTI_BALANCE) and item.cardpill < PillColor.PILL_GIANT_FLAG then
 				item.cardpill = item.cardpill | PillColor.PILL_GIANT_FLAG
 			end
 			player:GetData().wakaba_currentPill = item.cardpill

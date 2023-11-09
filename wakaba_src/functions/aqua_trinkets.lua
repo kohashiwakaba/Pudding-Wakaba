@@ -39,7 +39,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 	end
 
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
-	and (--[[not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
+	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local currentRoomIndex = isc:getRoomListIndex()
 		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
 			aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}

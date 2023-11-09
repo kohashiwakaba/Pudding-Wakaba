@@ -55,7 +55,7 @@ wakaba.minimapRooms = {}
 function wakaba:NewLevel_WinterAlbireo()
 	local level = wakaba.G:GetLevel()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO)[1] or Isaac.GetPlayer()
-	if (isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) or isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B))
+	if (wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.WINTER_ALBIREO) or isc:anyPlayerIs(wakaba.Enums.Players.RICHER_B))
 	and level:GetAbsoluteStage() <= LevelStage.STAGE4_2
 	and wakaba.G:GetFrameCount() > 0
 	and not level:IsAscent() then
@@ -158,7 +158,7 @@ function wakaba:NewRoom_WinterAlbireo()
 	local roomtype = room:GetType()
 	if wakaba:IsValidWakabaRoom(roomdesc) then
 		if room:IsFirstVisit() then
-			if isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+			if wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
 				local slots = Isaac.FindByType(6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL)
 				for _, slot in ipairs(slots) do
 					local position = Vector(slot.Position.X, slot.Position.Y)

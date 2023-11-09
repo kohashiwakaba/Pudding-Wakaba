@@ -338,7 +338,7 @@ function wakaba:NewRoom_WinterAlbireo()
 	local roomtype = room:GetType()
 	if wakaba:IsValidWakabaRoom(roomdesc) then
 		if room:IsFirstVisit() then
-			if isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
+			if wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_MORE_OPTIONS) then
 				local slots = Isaac.FindByType(6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL)
 				for _, slot in ipairs(slots) do
 					local position = Vector(slot.Position.X, slot.Position.Y)

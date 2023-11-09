@@ -174,11 +174,7 @@ function wakaba:InitValut(slot)
 		if valut_data.floor.valutitemtype[tostring(slot.InitSeed)] then
 			itemID = valut_data.floor.valutitemtype[tostring(slot.InitSeed)]
 		else
-			local candidates = wakaba:getCollectiblesWithTag(ItemConfig.TAG_STARS)
-			--local candidates = wakaba:GetCandidatesByTag(ItemConfig.TAG_STARS)
-			--local entry = rng:RandomInt(#candidates) + 1
-			--itemID = candidates[entry]
-			itemID = isc:getRandomSetElement(candidates, rng)
+			itemID = wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
 			valut_data.floor.valutitemtype[tostring(slot.InitSeed)] = itemID
 		end
 
@@ -201,7 +197,7 @@ function wakaba:ReplaceValutLate2(pickup)
 	wakaba:ReplaceValutLate(pickup)
 end
 function wakaba:ReplaceValutLate(pickup)
-	local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
+	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then return end
 	if wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then

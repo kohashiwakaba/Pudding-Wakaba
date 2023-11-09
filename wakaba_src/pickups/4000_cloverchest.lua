@@ -42,7 +42,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.manageCloverChests)
 
 function wakaba:ReplaceChests(pickup)
-	local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
+	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	if pickup.Variant == PickupVariant.PICKUP_CHEST then
 		local stage = wakaba.G:GetLevel():GetStage()
 		wakaba.ItemRNG:SetSeed(pickup.DropSeed, 0)
@@ -67,7 +67,7 @@ function wakaba:ReplaceChestsLate2(pickup)
 	wakaba:ReplaceChestsLate(pickup)
 end
 function wakaba:ReplaceChestsLate(pickup)
-	local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
+	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] then return end
 	if wakaba:has_value(clover_chest_data.floor.cloverchestpedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
@@ -91,20 +91,14 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.UpdateChests, PickupVariant.PICKUP_CHEST)
 
 function wakaba:spawnCloverChestReward(chest)
-	local haspp = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
+	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] then
 		clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] = {}
 	end
 	-- 15% chance to spawn pedestal item
 	if wakaba.RNG:RandomFloat() < 0.15 then
-		local candidates = wakaba:getCollectiblesWithCacheFlag(CacheFlag.CACHE_LUCK)
-		--local candidates = wakaba:GetCandidatesByCacheFlag(CacheFlag.CACHE_LUCK)
-		--local entry = wakaba.RNG:RandomInt(#candidates) + 1
-		--local itemID = candidates[entry]
-		local rng = RNG()
-		rng:SetSeed(chest.InitSeed, 35)
-		local itemID = isc:getRandomSetElement(candidates, rng)
+		local itemID = wakaba:GetItemFromWakabaPools("CloverChest", false, chest.InitSeed)
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, chest.Position, Vector.Zero, nil):ToPickup()
 		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
 		if haspp then

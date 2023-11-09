@@ -49,7 +49,7 @@ function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
 		local player = Isaac.GetPlayer(i)
 		num = num + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.RIRAS_BRA)
 	end
-	local hasStopWatch = isc:anyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STOP_WATCH)
+	local hasStopWatch = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STOP_WATCH)
 	if num > 0 and (wakaba:HasStatusEffects(entity) or hasStopWatch) then
 		if hasStopWatch then 
 			num = num + 1 

@@ -345,6 +345,80 @@ wakaba.Callback = {
 	--
 	-- ---
 	CHIMAKI_COMMAND = {},
+
+	-- ---
+	-- EVALUATE_WAKABA_COLLECTIBLE_REROLL
+	-- ---
+	-- Called from MC_POST_GET_COLLECTIBLE, to bypass entire reroll process from Pudding & Wakaba
+	--
+	-- ---
+	-- Parameters :
+	-- - `rerollProps` - table
+	-- - `selected` - CollectibleType
+	-- - `itemPoolType` - ItemPoolType
+	-- - `decrease` - boolean
+	-- - `seed` - int
+	--
+	-- ---
+	-- - Return true to bypass reroll
+	-- ---
+	EVALUATE_WAKABA_COLLECTIBLE_REROLL = {},
+
+	-- ---
+	-- EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
+	-- ---
+	-- Called from MC_POST_GET_COLLECTIBLE, prepare for reroll a collectible
+	--
+	-- ---
+	-- Parameters :
+	-- - `rerollProps` - table
+	-- - `selected` - CollectibleType
+	-- - `itemPoolType` - ItemPoolType
+	-- - `decrease` - boolean
+	-- - `seed` - int
+	-- - `isCustom` - boolean?
+	--
+	-- ---
+	-- - Return new rerollProps to update
+	-- ---
+	EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = {},
+	-- ---
+	-- POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
+	-- ---
+	-- Called from MC_POST_GET_COLLECTIBLE, prepare for reroll a collectible, after EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
+	--
+	-- ---
+	-- Parameters :
+	-- - `rerollProps` - table
+	-- - `selected` - CollectibleType
+	-- - `itemPoolType` - ItemPoolType
+	-- - `decrease` - boolean
+	-- - `seed` - int
+	-- - `isCustom` - boolean?
+	--
+	-- ---
+	-- - Return new rerollProps to update
+	-- ---
+	POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = {},
+	-- ---
+	-- WAKABA_COLLECTIBLE_REROLL
+	-- ---
+	-- Called from MC_POST_GET_COLLECTIBLE, 
+	--
+	-- ---
+	-- Parameters :
+	-- - `rerollProps` - table
+	-- - `selected` - CollectibleType
+	-- - `selectedItemConf` - ItemConfig Collectible
+	-- - `itemPoolType` - ItemPoolType
+	-- - `decrease` - boolean
+	-- - `seed` - int
+	-- - `isCustom` - boolean?
+	--
+	-- ---
+	-- - Return true to prevent the collectible to be selected
+	-- ---
+	WAKABA_COLLECTIBLE_REROLL = {},
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

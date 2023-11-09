@@ -14,7 +14,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_DoubleInvader)
 ---@param collider Entity
 ---@param low boolean
 function wakaba:Collision_DoubleInvader(npc, collider, low)
-	if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 		if collider:ToTear() then
 			local tear = collider:ToTear()
 			if not tear:HasTearFlags(TearFlags.TEAR_PIERCING) then
@@ -35,7 +35,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInv
 ---@param collider Entity
 ---@param low boolean
 function wakaba:TearCollision_DoubleInvader(tear, collider, low)
-	if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 		if collider.Type == EntityType.ENTITY_DEATHS_HEAD then
 			return true
 		end
@@ -49,7 +49,7 @@ local headErased = false
 ---@param satan EntityNPC
 function wakaba:NPCUpdate_DoubleInvader_MegaSatan(satan)
 	if satan.Variant > 0 then return end
-	if not isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then return end
+	if not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then return end
 	local sprite = satan:GetSprite()
 	--print(satan.State, satan.StateFrame, satan.I1, satan.I2)
 	--print(sprite:GetAnimation(), sprite:IsPlaying("Appear"))
@@ -99,7 +99,7 @@ function wakaba:NewRoom_DoubleInvader()
 	headSpawned = false
 	headErased = false
 	local room = wakaba.G:GetRoom()
-	if isc:anyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) and (room:GetBossID() == 70 or room:GetBossID() == 63) then
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) and (room:GetBossID() == 70 or room:GetBossID() == 63) then
 		local level = wakaba.G:GetLevel()
 
 		local rng = RNG()
