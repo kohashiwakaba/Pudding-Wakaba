@@ -245,7 +245,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, fun
 			rerollProps.WakabaNemesis = rerollProps.WakabaNemesis or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 			if pData.wakaba and pData.wakaba.eatheartused then
 				rerollProps.eatHeartUsed = true
-				rerollProps.eatHeartCharges = math.max(rerollProps.eatHeartCharges, (pData.wakaba.eatheartcharges or 0))
+				rerollProps.eatHeartCharges = math.max((rerollProps.eatHeartCharges or 0), (pData.wakaba.eatheartcharges or 0))
 			end
 		end
 	end)
