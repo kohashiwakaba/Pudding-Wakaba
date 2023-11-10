@@ -97,7 +97,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRi
 function wakaba:AfterRiraInit(player)
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
-
+		player:SetPocketActiveItem(wakaba.Enums.Collectibles.NERF_GUN, ActiveSlot.SLOT_POCKET, true)
 	end
 end
 

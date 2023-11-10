@@ -175,6 +175,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Only can copy item that can be spawned by {{Collectible712}}Lemegeton"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.NERF_GUN] = {
+		itemName = "Nerf Gun",
+		description = ""
+		.. "#Using the item and shooting in a direction fires multiple nerf tears"
+		.. "#{{Weakness}} Nerfed enemies are {{Slow}} slowed and take double damage for 10 seconds"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "Broken Toolbox",
 		description = ""

@@ -1353,6 +1353,14 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "ssssssssssssssss"},
 		},
 	},
+
+	NERF_GUN = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "ssssssssssssssss"},
+			{str = "ssssssssssssssss"},
+		},
+	},
 	SYNCRO_CANDY = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3623,6 +3631,13 @@ if Encyclopedia then
 		Class = class,
 		ModName = class,
 		ID = wakaba.Enums.Collectibles.CHIMAKI,
+		Hide = true,
+	})
+	
+	Encyclopedia.AddItem({
+		Class = class,
+		ModName = class,
+		ID = wakaba.Enums.Collectibles.NERF_GUN,
 		Hide = true,
 	})
 

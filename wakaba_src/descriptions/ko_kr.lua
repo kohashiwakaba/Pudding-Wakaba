@@ -198,6 +198,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "역시 리셰쨩은 달콤해",
 	},
+	[wakaba.Enums.Collectibles.NERF_GUN] = {
+		itemName = "너프 건",
+		description = ""
+		.. "#사용 시 공격하는 방향으로 너프 샷을 여러 발 발사합니다."
+		.. "#{{Weakness}} 너프 샷에 맞은 적은 10초동안 속도가 느려지며 받는 피해량이 2배 증가합니다."
+		.. "{{CR}}",
+		queueDesc = "서로 서로 담궈요",
+	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "망가진 도시락",
 		description = ""
