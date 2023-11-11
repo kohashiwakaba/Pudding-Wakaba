@@ -29,6 +29,8 @@ function wakaba:getEstimatedTearsMult(player, negativeOnly, positiveOnly)
 		else
 			mult = mult * 0.4
 		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_AZAZEL or player:GetPlayerType() == PlayerType.PLAYER_AZAZEL_B and not player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then
+		mult = mult * 0.267
 	elseif player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) then
 		mult = mult / 3
 	elseif player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) then
