@@ -1,4 +1,5 @@
 wakaba.state.currentlibraryindex = 0
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:HasShiori(player)
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false) then
@@ -58,7 +59,29 @@ function wakaba:NewLevel_BookOfShiori()
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_BookOfShiori)
+--wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_BookOfShiori)
+
+
+function wakaba:RoomGen_BookOfShiori()
+	if wakaba.G:IsGreedMode() then return end
+	local players = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+	local fallbackPlayer = wakaba:GetPlayerOfType(wakaba.Enums.Players.SHIORI, true)
+	local level = wakaba.G:GetLevel()
+	if level:GetAbsoluteStage() == LevelStage.STAGE4_3 or level:GetAbsoluteStage() >= LevelStage.STAGE6 then return end
+	if #players == 0 then
+		if not fallbackPlayer or wakaba.runstate.currentshiorimode ~= wakaba.shiorimodes.SHIORI_COLLECTOR then
+			return
+		end
+	end
+	if not wakaba.G:GetLevel():IsAscent() then
+		local player = (#players > 0 and players[1]) or fallbackPlayer
+		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+		local s = {}
+		table.insert(s, {RoomType.ROOM_LIBRARY, isc:getRandomInt(wakaba.RoomIDs.MIN_SHIORI_LIBRARY_ROOM_ID, wakaba.RoomIDs.MAX_SHIORI_LIBRARY_ROOM_ID, rng)})
+		return s
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.ROOM_GENERATION, CallbackPriority.EARLY - 1, wakaba.RoomGen_BookOfShiori)
 
 function wakaba:BookofShioriUpdate()
 	local shioricount = 0

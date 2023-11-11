@@ -526,6 +526,10 @@ wakaba.RoomIDs = {
 	MIN_RABBEY_SHOP_ROOM_ID = 41003,
 	MAX_RABBEY_SHOP_ROOM_ID = 41005,
 
+	-- Libraries given by Book of Shiori
+	MIN_SHIORI_LIBRARY_ROOM_ID = 41000,
+	MAX_SHIORI_LIBRARY_ROOM_ID = 41021,
+
 	-- Angel rooms replaced by Wakaba Rooms
 
 	-- Planetariums replaced by Duet Rooms

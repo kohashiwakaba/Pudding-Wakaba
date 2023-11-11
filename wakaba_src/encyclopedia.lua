@@ -914,7 +914,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Activates additional effect when book active items are being used."},
 			{str = "Shiori also gains extra tear effect when book active items are being used."},
 			{str = "extra tear effect changes on next book usage."},
-			{str = "Spawns a random Book item at the start of every floor."},
+			{str = "Guarantees Library for each floor"},
+			{str = "- Library doesn' appear on Blue Womb, or Chest/Dark room and onwards."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

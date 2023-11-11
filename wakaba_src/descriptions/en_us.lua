@@ -78,10 +78,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Book of Shiori",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{Library}} Guarantees Library every floor if possible"
 		.. "#Activates additional effect when book active items are being used"
 		.. "#Isaac also gains extra tear effect when book active items are being used"
 		.. "#Extra tear effect changes on next book usage"
-		.. "#Spawns a random Book item at the start of every floor"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
