@@ -93,6 +93,43 @@ end
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRiraCache)
 
+function wakaba:Cache_RiraPositiveTears(player, cacheFlag)
+	if player:GetPlayerType() == playerType then
+		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+			local mult = 1
+			if player:HasWeaponType(WeaponType.WEAPON_BOMBS) then
+				if player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) then
+					mult = mult * 4.3
+				else
+					mult = mult / 0.4
+				end
+			elseif player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) then
+				mult = mult * 3
+			elseif player:HasWeaponType(WeaponType.WEAPON_MONSTROS_LUNGS) then
+				mult = mult * 4.3
+			end
+
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) then
+				mult = (mult / 2) * 3
+			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_EVES_MASCARA) then
+				mult = (mult / 2) * 3
+			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
+				mult = mult * 3
+			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) then
+				mult = mult
+			elseif player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE) or effects:HasCollectibleEffect(NullItemID.ID_REVERSE_HANGED_MAN) then
+				mult = mult / 0.51
+			elseif player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER) then
+				mult = mult / 0.42
+			end
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, mult)
+		end
+	end
+end
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, -41010720, wakaba.Cache_RiraPositiveTears)
 
 function wakaba:AfterRiraInit(player)
 	player = player or Isaac.GetPlayer()

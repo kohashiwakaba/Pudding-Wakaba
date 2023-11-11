@@ -20,6 +20,9 @@ end
 function wakaba:getEstimatedTearsMult(player, negativeOnly, positiveOnly)
 	local mult = 1
 	local effects = player:GetEffects()
+	if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
+		positiveOnly = true
+	end
 
 	-- [Missing] Star of Bethlehem / Hallowed Ground x2.5
 
