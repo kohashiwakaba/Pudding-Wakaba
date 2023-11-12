@@ -95,6 +95,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRi
 
 function wakaba:Cache_RiraPositiveTears(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
+		local effects = player:GetEffects()
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			local mult = 1
 			if player:HasWeaponType(WeaponType.WEAPON_BOMBS) then
