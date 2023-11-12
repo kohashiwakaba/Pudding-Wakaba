@@ -157,7 +157,9 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 	if wakaba:isAquaInstakill(effectTarget) then
 		effectTarget:Kill()
 	elseif effectTarget:HasEntityFlags(EntityFlag.FLAG_ICE) then
-		effectTarget:AddEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
+		effectTarget.HitPoints = 0
+		effectTarget:Update()
+		--effectTarget:AddEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
 	end
 	if wakaba:CanApplyStatusEffect(effectTarget) then
 		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
@@ -192,6 +194,17 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		then
 			returndata.sendNewDamage = true
 			returndata.newDamage = newDamage * 1.5
+		end
+		if source.Entity then
+			local convertedEntity = source.Entity:ToPlayer() or source.Entity:ToTear() or source.Entity:ToBomb() or source.Entity:ToKnife()
+			if convertedEntity and convertedEntity.TearFlags & TearFlags.TEAR_ICE > 0 then
+				returndata.sendNewDamage = true
+				if target:IsBoss() then
+					returndata.newDamage = newDamage * 4
+				else
+					returndata.newDamage = 9999999
+				end
+			end
 		end
 	end
 	return returndata

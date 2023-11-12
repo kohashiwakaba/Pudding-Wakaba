@@ -1,4 +1,4 @@
---[[ 
+--[[
 	Sakura Mont Blanc (사쿠라 몽블랑) - 패시브(Passive)
 	적 처치 시 매혹 방귀
  ]]
@@ -22,7 +22,8 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 		for i, e in ipairs(enemies) do
 			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) then
 				if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
-					e:AddEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
+					effectTarget.HitPoints = 0
+					effectTarget:Update()
 				elseif wakaba:isAquaInstakill(entity) then
 					e:Kill()
 				else
