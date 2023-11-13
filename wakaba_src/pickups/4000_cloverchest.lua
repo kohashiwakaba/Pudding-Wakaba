@@ -18,6 +18,20 @@ wakaba.ChestSubType = {
 	OPEN = 0
 }
 
+wakaba.Weights.CloverChest = {}
+wakaba.Weights.CloverChest.Normal = {
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART}, 1},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY}, 1},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB}, 1},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN}, 1},
+}
+wakaba.Weights.CloverChest.Extra = {
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_LUCKYPENNY}, 1},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_LUCKYPENNY}, 1},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_NICKEL}, 0.2},
+	{{EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_DIME}, 0.1},
+}
+
 
 function wakaba:manageCloverChests()
 	local haspp = false
@@ -100,6 +114,7 @@ function wakaba:spawnCloverChestReward(chest)
 	if wakaba.RNG:RandomFloat() < 0.15 then
 		local itemID = wakaba:GetItemFromWakabaPools("CloverChest", false, chest.InitSeed)
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, chest.Position, Vector.Zero, nil):ToPickup()
+		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
 		if haspp then
 			item:GetSprite():SetOverlayFrame("Alternates", 16)
@@ -115,6 +130,7 @@ function wakaba:spawnCloverChestReward(chest)
 		chest:Remove()
 	elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE6 then
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, chest.Position, Vector.Zero, nil):ToPickup()
+		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
 		if haspp then
 			item:GetSprite():SetOverlayFrame("Alternates", 16)
