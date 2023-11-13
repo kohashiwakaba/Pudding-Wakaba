@@ -1668,30 +1668,13 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
-		description = "시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠 2개를 소모합니다.",
-		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠 2개를 소모합니다."},
+		description = "시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.",
+		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",
 		description = "사용 시 체력과 보호막을 전부 제거하며 시련 스택을 8개 충전합니다.#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충하며 시련 스택을 1개 제거합니다.",
 		tarot = {8, 11},
-	},
-}
-wakaba.descriptions[desclang].tarotcloth = {
-	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
-		description = "{{CraneGame}}인형뽑기(크레인 게임) 기계를 2대 소환합니다.",
-	},
-	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
-		description = "{{Confessional}}고해실 부스를 2대 소환합니다.",
-	},
-	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
-		description = "사용 시 임의의 책 효과 2개를 발동합니다.#같은 효과가 발동할 수 있습니다.",
-	},
-	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
-		description = "시오리의 창고를 2대 소환합니다.",
-	},
-	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "시련 스택이 11로 증가",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
@@ -1940,18 +1923,9 @@ wakaba.descriptions[desclang].entities = {
 	{
 		type = EntityType.ENTITY_SLOT,
 		variant = wakaba.Enums.Slots.SHIORI_VALUT,
-		subtype = 0,
-		name = "시오리의 점술기계",
+		subtype = 1,
+		name = "시오리의 창고",
 		description = ""
-		.. "{{Key}} 열쇠 12개를 소모하여 작동"
-		.. "#{{Warning}} 작동 시 이하의 아이템 중 하나를 드랍합니다 :"
-		.. "#{{BlendedHeart}} {{ColorSilver}}혼합 하트"
-		.. "#{{Card}} {{ColorSilver}}카드"
-		.. "#{{Card49}} {{ColorSilver}}주사위 파편"
-		.. "#{{Card31}} {{ColorSilver}}조커"
-		.. "#{{Rune}} {{ColorSilver}}룬"
-		.. "#{{Trinket}} {{ColorSilver}}황금 장신구"
-		.. "#{{PlanetariumChance}} {{ColorSilver}}별 관련 아이템"
 		--.. "#{{Warning}} 5회 이상 작동 시 기계가 폭발할 확률이 크게 증가합니다."
 	},
 	{

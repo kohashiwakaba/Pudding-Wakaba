@@ -49,8 +49,8 @@ end
 
 function wakaba:PlayerCollision_ShioriValut(player, slot, low)
 	if slot.Type == EntityType.ENTITY_SLOT and slot.Variant == wakaba.Enums.Slots.SHIORI_VALUT then
-		if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
-			player:AddKeys(-12)
+		if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 3 then
+			player:AddKeys(-3)
 			wakaba:RollSlot_ShioriValut(slot, player)
 
 		end
@@ -242,7 +242,7 @@ function wakaba:TearUpdate_ShioriValut(tear)
 			end
 
 
-			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
+			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 3 then
 				wakaba:RollSlot_ShioriValut(slot, player)
 			end
 		end
@@ -259,8 +259,8 @@ function wakaba:PlayerUpdate_ShioriValut(player)
 	local ents = Isaac.FindInRadius(player.Position, 12)
 	for i, slot in ipairs(ents) do
 		if slot.Type == EntityType.ENTITY_SLOT and slot.Variant == wakaba.Enums.Slots.SHIORI_VALUT then
-			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 12 then
-				player:AddKeys(-12)
+			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 3 then
+				player:AddKeys(-3)
 				wakaba:RollSlot_ShioriValut(slot, player)
 
 			end
