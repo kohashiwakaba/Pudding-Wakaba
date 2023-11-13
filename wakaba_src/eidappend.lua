@@ -302,26 +302,6 @@ if EID then
 			end
 			return false
 		end
-		-- Handle Cards of Pudding and Wakaba description
-		local function WakabaTarotCardCondition(descObj)
-			if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-				if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_TAROT_CLOTH) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function WakabaTarotCardCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("tarotcloth", descObj.ObjSubType)
-			local subtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType) - 1
-			if wakabaBuff ~= nil then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_TAROT_CLOTH .. "}} "
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
 
 		-- Handle Better Voiding description addition
 		local function BetterVoidingCondition(descObj)
@@ -535,7 +515,6 @@ if EID then
 
 			-- Card / Rune Callbacks
 			elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-				if collectiblesOwned[451] then table.insert(callbacks, WakabaTarotCardCallback) end
 
 				--if collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
 				--if collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
@@ -643,6 +622,9 @@ if EID then
 						EID._currentMod = carddesc.targetMod
 					end
 					EID:addCard(cardid, carddesc.description, carddesc.itemName, lang)
+					if carddesc.tarot then
+						EID.descriptions[lang].tarotClothBuffs[cardid] = carddesc.tarot
+					end
 				end
 				for pillid, pilldesc in pairs(wakabaDescTables.pills) do
 					if not pilldesc.targetMod then
@@ -703,7 +685,6 @@ if EID then
 			EID:addDescriptionModifier("Wakaba Binge Eater", BingeeaterCondition, BingeeaterCallback)
 			EID:addDescriptionModifier("Wakaba Book of Virtues", BookOfVirtuesCondition, BookOfVirtuesCallback)
 			EID:addDescriptionModifier("Wakaba Abyss", AbyssCondition, AbyssCallback)
-			EID:addDescriptionModifier("Wakaba Tarot Cloth", WakabaTarotCardCondition, WakabaTarotCardCallback)
 			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)

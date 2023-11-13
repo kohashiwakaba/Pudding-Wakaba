@@ -1459,11 +1459,13 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "Crane Card",
 		description = "{{CraneGame}} Spawns a Crane Game machine",
+		tarot = {"{{CraneGame}} Spawns {{ColorShinyPurple}}2{{CR}} Crane Game machines"},
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "Confessional Card",
 		description = "{{Confessional}} Spawns a Confessional Booth",
+		tarot = {"{{Confessional}} Spawns {{ColorShinyPurple}}2{{CR}} Confessional Booths"},
 		mimiccharge = 4,
 	},
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
@@ -1494,6 +1496,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "Unknown Bookmark",
 		description = "Activates a random book effect#!!! Following books can be activated:",
+		tarot = "Activates 2 random book effects from above",
 		mimiccharge = 1,
 	},
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
@@ -1503,6 +1506,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
 		itemName = "Return Token",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room",
+		tarot = "Activates the effect twice",
 		mimiccharge = 3,
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
@@ -1537,30 +1541,15 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "Valut Rift",
-		description = "Spawns a Shiori's Valut# The valut contains a collectible that requires 12 keys.",
+		description = "Spawns a Shiori's Valut# The valut contains a blue colored collectible that requires 2 keys.",
+		tarot = {"Spawns {{ColorShinyPurple}}2{{CR}} Shiori's Valuts# The valut contains a blue colored collectible that requires 2 keys."},
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "Trial Stew",
 		description = "Removes all health and Holy Mantle shields#Adds 8 stacks of effect for:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge, decreases a stack on room clears.",
+		tarot = {8, 11},
 		mimiccharge = 8,
-	},
-}
-wakaba.descriptions[desclang].tarotcloth = {
-	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
-		description = "Spawns 2 Crane Game machines",
-	},
-	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
-		description = "Spawns 2 Confessional Booths",
-	},
-	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
-		description = "Activates 2 random book effects",
-	},
-	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
-		description = "Spawns 2 valuts",
-	},
-	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "Additional 3 stacks",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

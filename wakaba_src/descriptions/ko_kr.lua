@@ -1598,34 +1598,37 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "인형뽑기 카드",
 		description = "{{CraneGame}} 인형뽑기(크레인 게임) 기계를 소환합니다.",
+		tarot = {"{{CraneGame}} 인형뽑기(크레인 게임) 기계를 {{ColorShinyPurple}}2개{{CR}} 소환합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "고해실 카드",
 		description = "{{Confessional}} 고해실 부스를 소환합니다.",
+		tarot = {"{{Confessional}} 고해실 부스를 {{ColorShinyPurple}}2개{{CR}} 소환합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "블랙 조커",
-		description = "#{{DevilChance}} 카드를 소지하는 동안 천사방이 등장하지 않습니다. #사용 시 {{DevilRoom}}악마방으로 텔레포트합니다.",
+		description = "{{DevilChance}} 카드를 소지하는 동안 천사방이 등장하지 않습니다. #사용 시 {{DevilRoom}}악마방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "화이트 조커",
-		description = "#{{AngelChance}} 카드를 소지하는 동안 악마방이 등장하지 않습니다. #사용 시 {{AngelRoom}}천사방으로 텔레포트합니다.",
+		description = "{{AngelChance}} 카드를 소지하는 동안 악마방이 등장하지 않습니다. #사용 시 {{AngelRoom}}천사방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "컬러 조커",
-		description = "#{{BrokenHeart}} 부서진 하트의 갯수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
+		description = "{{BrokenHeart}} 부서진 하트의 갯수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "스페이드 Q",
-		description = "#사용 시 3~26개의 {{Key}}열쇠를 드랍합니다.",
+		description = "사용 시 3~26개의 {{Key}}열쇠를 드랍합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "와카바의 꿈 카드",
-		description = "#사용 시 현재 방 배열의 랜덤 아이템 하나를 소환합니다.",
+		description = "사용 시 현재 방 배열의 랜덤 아이템 하나를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "미지의 책갈피",
-		description = "#사용 시 임의의 책 효과를 발동합니다.",
+		description = "사용 시 임의의 책 효과를 발동합니다.",
+		tarot = "임의의 책 효과를 2개 발동합니다.(중복 가능)",
 	},
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
 		itemName = "리턴 토큰",
@@ -1640,23 +1643,24 @@ wakaba.descriptions[desclang].cards = {
 		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
+		tarot = {1, 2, 1.5, 3},
 	},
 
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",
-		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 {{AngelRoom}}천사 상점을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
+		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{AngelRoom}}천사 상점을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA2] = {
 		itemName = "와카바의 영혼?",
-		description = "#{{SoulHeart}}소울하트 +1#현재 층에서 {{DevilRoom}}악마방을 생성합니다.#{{DevilRoom}} 생성할 수 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
+		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{DevilRoom}}악마방을 생성합니다.#{{DevilRoom}} 생성할 수 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "시오리의 영혼",
-		description = "#{{Heart}}빨간하트 +2#임의의 시오리의 책 지속 효과를 발동합니다.#이 조합은 시오리의 영혼을 다시 사용하거나 시오리의 책을 소지한 상태에서 다른 책을 사용할 때까지 유지됩니다.",
+		description = "{{Heart}}빨간하트 +2#임의의 시오리의 책 지속 효과를 발동합니다.#이 조합은 시오리의 영혼을 다시 사용하거나 시오리의 책을 소지한 상태에서 다른 책을 사용할 때까지 유지됩니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "츠카사의 영혼",
-		description = "#사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#상자/판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 캐릭터가 바뀌며 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
+		description = "사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#상자/판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 캐릭터가 바뀌며 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
@@ -1664,11 +1668,13 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
-		description = "#시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠 12개를 소모합니다.",
+		description = "시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠 2개를 소모합니다.",
+		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠 2개를 소모합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",
-		description = "#사용 시 체력과 보호막을 전부 제거하며 시련 스택을 8개 충전합니다.#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충하며 시련 스택을 1개 제거합니다.",
+		description = "사용 시 체력과 보호막을 전부 제거하며 시련 스택을 8개 충전합니다.#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충하며 시련 스택을 1개 제거합니다.",
+		tarot = {8, 11},
 	},
 }
 wakaba.descriptions[desclang].tarotcloth = {
