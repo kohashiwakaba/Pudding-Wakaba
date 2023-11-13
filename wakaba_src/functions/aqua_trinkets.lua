@@ -14,6 +14,10 @@ local aqua_trinkets_data = {
 wakaba:saveDataManager("Aqua Trinkets", aqua_trinkets_data)
 wakaba.aquatrinkets = aqua_trinkets_data
 
+function wakaba:getAquaTrinketChance()
+	return wakaba.Enums.Chances.AQUA_TRINKET_DEFAULT
+end
+
 function wakaba:TryTurnAquaTrinket(trinket)
 	local currentRoomIndex = isc:getRoomListIndex()
 	table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
@@ -23,24 +27,10 @@ end
 
 local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
-	local hasTrinketDropped = false
-	if wakaba.G:GetRoom():GetFrameCount() >= 0 then
-		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-			if not player:IsCoopGhost() then
-				local lastTrigger = player:GetLastActionTriggers()
-				if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
-					hasTrinketDropped = true
-				end
-				if player:GetData().wakaba.blockAquaSpawn then
-					hasTrinketDropped = true
-				end
-			end
-		end)
-	end
+	local currentRoomIndex = isc:getRoomListIndex()
 
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
-		local currentRoomIndex = isc:getRoomListIndex()
 		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
 			aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
 		end
@@ -49,11 +39,12 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		end
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		print("[wakaba] Aqua trinket check for seed "..wakaba:getPickupIndex(pickup).."/ isAquaTrinket :",isAquaTrinket,"/ alreadyTried :",alreadyTried)
 		local rand = RNG()
 		rand:SetSeed(pickup.InitSeed, 35)
 		local ran = rand:RandomFloat()
-		--print(ran, pickup:CanReroll(), pickup.Touched)
-		if not alreadyTried and ran < wakaba.state.options.fortunereplacechance / 100 then
+		print("[wakaba] Aqua trinket roll for seed "..wakaba:getPickupIndex(pickup).." :", ran, "/", wakaba:getAquaTrinketChance())
+		if not alreadyTried and ran < wakaba:getAquaTrinketChance() then
 			if not isAquaTrinket then
 				--print("Aqua Trinket Registered! ID :"..pickup.SubType)
 				table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
@@ -66,7 +57,11 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 			pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 			pickup:GetData().wakaba.isAquaTrinket = true
 		end
+	else
+		print("[wakaba] Skipped Aqua trinket check for seed "..wakaba:getPickupIndex(pickup))
+		table.insert(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 	end
+	hasTrinketDropped = false
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
 
@@ -94,6 +89,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_AquaT
 function wakaba:TrinketCollision_AquaTrinkets(pickup, collider)
 	local player = collider:ToPlayer()
 	if player then
+		print("[wakaba] hasTrinketDropped set")
+		hasTrinketDropped = true
 		wakaba:GetPlayerEntityData(player)
 		pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 		if player and pickup:GetData().wakaba.isAquaTrinket then
@@ -115,6 +112,10 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.TrinketCollision
 
 
 function wakaba:PlayerUpdate_AquaTrinkets(player)
+	if hasTrinketDropped then
+		print("[wakaba] hasTrinketDropped unset")
+		hasTrinketDropped = false
+	end
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
 	if not player:IsItemQueueEmpty() and data.wakaba.tryAquaTrinket then
@@ -132,9 +133,15 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 			data.wakaba.prevTrinketSecondary = nil
 			data.wakaba.tryAquaTrinket = nil
 		end
-		if data.wakaba.blockAquaSpawn then
-			data.wakaba.blockAquaSpawn = nil
+	end
+	if not player:IsCoopGhost() then
+		local lastTrigger = player:GetLastActionTriggers()
+		if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
+			hasTrinketDropped = true
 		end
+	end
+	if data.wakaba.blockAquaSpawn then
+		data.wakaba.blockAquaSpawn = nil
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_AquaTrinkets)

@@ -400,6 +400,10 @@ wakaba.Enums.Chances = {
 	AURORA_DEFAULT = 6.66, -- 오로라 : 동전을 이스터에그로 바꿀 기본 확률
 	AURORA_LUCK = 1, -- 오로라 : 럭 1당 동전을 이스터에그로 바꿀 추가 확률
 	AURORA_MAX = 100, -- 오로라 : 동전을 이스터에그로 바꿀 최대 확률
+
+	AQUA_TRINKET_DEFAULT = 0.05,
+	AQUA_TRINKET_LUCK = 0.05,
+	AQUA_TRINKET_MAX = 1,
 }
 
 wakaba.Enums.Constants = {
