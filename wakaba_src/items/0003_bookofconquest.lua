@@ -315,7 +315,7 @@ function wakaba:Render_BookOfConquest()
 			end
 		end
 	end
-
+--[[
 	if hasconquest and wakaba.G:GetHUD():IsVisible() then
 		local o = wakaba:GetScreenSize()
 		local c = wakaba:GetScreenCenter()
@@ -338,7 +338,7 @@ function wakaba:Render_BookOfConquest()
 			wakaba.f:DrawString(math.floor(wakaba.killcount) .. "/160", x, y ,KColor(1,1,1,1,0,0,0),0,true)
 		end
 	end
-
+ ]]
 	if wakaba.conquestmode then
 		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 		local conqstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].bookofconquest) or wakaba.descriptions["en_us"].bookofconquest
@@ -548,4 +548,4 @@ function wakaba:HUD_BookOfConquest()
 		return tab
 	end
 end
---wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_BookOfConquest)
+wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_BookOfConquest)
