@@ -68,7 +68,7 @@ local function TryCancelNerfGun(player)
 end
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if wakaba:CanApplyStatusEffect(effectTarget) then
+	if wakaba:CanApplyStatusEffect(effectTarget, true) then
 		local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
 		effectTarget:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
 		local data = effectTarget:GetData()
