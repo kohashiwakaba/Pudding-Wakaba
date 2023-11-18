@@ -109,7 +109,7 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 
 		local hasRerolled = false
 
-		print(flags, source.Type, source.Variant, source.SpawnerType, source.SpawnerVariant)
+		--print(flags, source.Type, source.Variant, source.SpawnerType, source.SpawnerVariant)
 
 		if source.Type == EntityType.ENTITY_TEAR then
 			local sourceData = source.Entity:GetData()
