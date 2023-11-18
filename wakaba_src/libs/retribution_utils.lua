@@ -109,6 +109,15 @@ function mod:GetGlobalCollectibleNum(id)
 	return power
 end
 
+function mod:GetGlobalCollectibleEffectNum(id)
+	local power = 0
+	mod:ForAllPlayers(function(player)
+		power = power + player:GetEffects():GetCollectibleEffectNum(id)
+	end)
+
+	return power
+end
+
 function mod:GetGlobalPlayerTypeNum(id)
 	local power = 0
 	mod:ForAllPlayers(function(player)

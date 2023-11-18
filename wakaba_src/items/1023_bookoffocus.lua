@@ -38,11 +38,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShiori_BookofFocus)
 
 function wakaba:NpcUpcate_BookofFocus(entity)
-  for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		local playerEffects = player:GetEffects()
-		local focusnum = playerEffects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
-		if focusnum > 0 and entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_WEAKNESS) then
+	local power = wakaba:GetGlobalCollectibleEffectNum(wakaba.Enums.Collectibles.BOOK_OF_FOCUS)
+	if power > 0 then
+		if entity:IsVulnerableEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_WEAKNESS) then
 			entity:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
 		end
 	end

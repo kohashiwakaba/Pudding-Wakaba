@@ -206,6 +206,9 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 				end
 			end
 		end
+		if returndata.sendNewDamage then
+			SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES)
+		end
 	end
 	return returndata
 end

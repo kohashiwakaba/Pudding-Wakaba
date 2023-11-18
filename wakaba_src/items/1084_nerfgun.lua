@@ -1,9 +1,17 @@
---[[ 
+--[[
 	Nerf Gun (너프 건) - 액티브(Active)
 	공격방향으로 너프 샷을 여러 번 발사
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 local collectible = wakaba.Enums.Collectibles.NERF_GUN
+
+---@param parent EntityTear
+local function getPositionOffset(parent, scale)
+	local angle = parent.Velocity:Normalized() * 2
+	local height = parent.FallingAcceleration * parent.FallingSpeed
+	local offset = parent.PositionOffset + angle * scale + Vector(0, height / 2)
+	return offset
+end
 
 ---comment
 ---@param player EntityPlayer
@@ -22,7 +30,6 @@ local function FireNerfShot(player, direction, dirOffset, launchSpeed)
 	tear.TearFlags = tear.TearFlags | TearFlags.TEAR_PIERCING
 	tear.Scale = tear.Scale - 0.2
 	wakaba:AddRicherTearFlags(tear, wakaba.TearFlag.NERF)
-
 	local trail = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, 0, player.Position, Vector.Zero, nil):ToEffect()
 	trail:FollowParent(tear) -- parents the trail to another entity and makes it follow it around
 	trail.MinRadius = 0.08 -- fade rate, lower values yield a longer trail
@@ -31,14 +38,7 @@ local function FireNerfShot(player, direction, dirOffset, launchSpeed)
 	trail:Update()
 	trail:GetData().w_trail = true
 	trail:GetData().w_parent = tear
-end
-
----@param parent EntityTear
-local function getPositionOffset(parent, scale)
-	local angle = parent.Velocity:Normalized() * 2
-	local height = parent.FallingAcceleration * parent.FallingSpeed
-	local offset = parent.PositionOffset + angle * scale + Vector(0, height / 2)
-	return offset
+	trail.ParentOffset = getPositionOffset(tear, trail.SpriteScale.Y)
 end
 
 -- Trail offset from Bullet Trails mod
@@ -69,12 +69,22 @@ end
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
 	if wakaba:CanApplyStatusEffect(effectTarget) then
+		local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
 		effectTarget:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
-		wakaba:scheduleForUpdate(function()
-			effectTarget:ClearEntityFlags(EntityFlag.FLAG_WEAKNESS)
-		end, 150)
+		local data = effectTarget:GetData()
+		local currentExpirey = data.wakaba_nerfExpireFrame
+		data.wakaba_nerfExpireFrame = math.max(data.wakaba_nerfExpireFrame or effectTarget.FrameCount, effectTarget.FrameCount + (150 * (1 + secondHandMultiplier)))
 	end
 end, wakaba.TearFlag.NERF)
+
+function wakaba:NpcUpcate_NerfGun(npc)
+	local data = npc:GetData()
+	if data.wakaba_nerfExpireFrame and data.wakaba_nerfExpireFrame <= npc.FrameCount then
+		npc:ClearEntityFlags(EntityFlag.FLAG_WEAKNESS)
+		data.wakaba_nerfExpireFrame = nil
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NpcUpcate_NerfGun)
 
 function wakaba:UseItem_NerfGun(_, rng, player, useFlags, activeSlot, varData)
 	if useFlags & UseFlag.USE_CARBATTERY == 0 then
@@ -109,6 +119,7 @@ function wakaba:PlayerUpdate_NerfGun(player) -- Trigger throwable active upon sh
 			local randomOffset = Vector(x,y)
 			FireNerfShot(player, direction, (i == 1 and Vector.Zero or randomOffset), speed)
 		end
+		SFXManager():Play(SoundEffect.SOUND_BULLET_SHOT)
 
 		local slot = player:GetData().throwableActiveSlot
 		if slot == ActiveSlot.SLOT_PRIMARY then -- Prevent possible cheese with Schoolbag
