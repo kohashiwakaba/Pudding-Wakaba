@@ -269,7 +269,7 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 
 		data.wakaba_init = true
 	end
-	print("Chimaki States : ", data.State )
+	--print("Chimaki States : ", data.State )
 
 	if room:GetFrameCount() == 1 then
 		data.randomMoveTimer = 0
@@ -781,3 +781,25 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 
 end, "Command_HolyLightJump")
 --#endregion
+
+
+
+
+
+function wakaba:HUD_Chimaki()
+	local fam
+	local fams = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.Enums.Familiars.CHIMAKI)
+	if #fams > 0 then
+		fam = fams[1]
+	end
+	if fam then
+		local data = fam:GetData()
+		wakaba.globalHUDSprite:SetFrame("Chimaki", 0)
+		local tab = {
+			Sprite = wakaba.globalHUDSprite,
+			Text = data.State or "CHIMAKI NOT FOUND",
+		}
+		return tab
+	end
+end
+wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_Chimaki)
