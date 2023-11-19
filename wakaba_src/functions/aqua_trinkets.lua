@@ -28,15 +28,18 @@ end
 local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	local currentRoomIndex = isc:getRoomListIndex()
+	if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
+		aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
+	end
+	if not aqua_trinkets_data.floor.triedindexes[currentRoomIndex] then
+		aqua_trinkets_data.floor.triedindexes[currentRoomIndex] = {}
+	end
+	if hasTrinketDropped then
+		print("[wakaba] hasTrinketDropped detected, skipping...")
+	end
 
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
-		if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
-			aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
-		end
-		if not aqua_trinkets_data.floor.triedindexes[currentRoomIndex] then
-			aqua_trinkets_data.floor.triedindexes[currentRoomIndex] = {}
-		end
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		print("[wakaba] Aqua trinket check for seed "..wakaba:getPickupIndex(pickup).."/ isAquaTrinket :",isAquaTrinket,"/ alreadyTried :",alreadyTried)
@@ -135,10 +138,19 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 		end
 	end
 	if not player:IsCoopGhost() then
-		local lastTrigger = player:GetLastActionTriggers()
-		if lastTrigger | ActionTriggers.ACTIONTRIGGER_ITEMSDROPPED == lastTrigger then
+		data.wakaba.prevTrinketPrimary = data.wakaba.prevTrinketPrimary or 0
+		data.wakaba.prevTrinketSecondary = data.wakaba.prevTrinketSecondary or 0
+
+		local currentTrinketPrimary = player:GetTrinket(0)
+		local currentTrinketSecondary = player:GetTrinket(1)
+
+		if data.wakaba.prevTrinketPrimary ~= currentTrinketPrimary
+		or data.wakaba.prevTrinketSecondary ~= currentTrinketSecondary then
+			print("[wakaba] hasTrinketDropped set")
 			hasTrinketDropped = true
 		end
+		data.wakaba.prevTrinketPrimary = currentTrinketPrimary
+		data.wakaba.prevTrinketSecondary = currentTrinketSecondary
 	end
 	if data.wakaba.blockAquaSpawn then
 		data.wakaba.blockAquaSpawn = nil

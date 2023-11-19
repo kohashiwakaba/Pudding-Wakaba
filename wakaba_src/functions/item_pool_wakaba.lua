@@ -71,7 +71,7 @@ function wakaba:GetItemFromWakabaPools(poolName, decrease, seed)
 		local nextRng = RNG()
 		nextRng:SetSeed(seed, 35)
 		while not isPassed and wakaba.state.rerollloopcount <= wakaba.state.options.rerollbreakfastthreshold do
-			selectedIndex = isc:getRandomIndexFromWeightedArray(wakaba.CurrentCustomPool[poolName], nextRng:Next())
+			selectedIndex = isc:getRandomIndexFromWeightedArray(wakaba.CurrentCustomPool[poolName], nextRng:Next()) + 1
 			if selectedIndex then
 				wakaba.state.rerollloopcount = wakaba.state.rerollloopcount + 1
 				selected = wakaba.CurrentCustomPool[poolName][selectedIndex][1]
