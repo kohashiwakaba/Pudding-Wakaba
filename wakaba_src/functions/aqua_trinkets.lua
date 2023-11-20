@@ -27,6 +27,7 @@ end
 
 local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
+	if pickup.FrameCount ~= 1 then return end -- why
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
 		aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
@@ -66,7 +67,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 	end
 	hasTrinketDropped = false
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupInit_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupInit_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
 
 local rr, gg, bb = 1.0, 1.0, 1.0
 local rt = 1.0
