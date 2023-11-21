@@ -10,6 +10,10 @@ local isShioriContinue = true
 local iskeyinit = false
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+local indicator = Sprite()
+indicator:Load("gfx/ui/wakaba/shiori_book_indicator.anm2",true)
+wakaba.ShioriIndicator = indicator
+
 wakaba.shioriconsume = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = -1,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = -1,
@@ -804,8 +808,8 @@ function wakaba:AfterShioriInit(player)
 		if wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_LIBRARIAN then
 			data.wakaba.books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
 			if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				--player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
+				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
+				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
 			end
 		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_COLLECTOR then
 			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
@@ -902,3 +906,104 @@ function wakaba:ShioriExit()
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.ShioriExit)
 
+function wakaba:getShioriBooks(player)
+	if not player or player:GetPlayerType() ~= playerType then return end
+	local data = player:GetData()
+	if data.wakaba then
+		return data.wakaba.books
+	end
+end
+
+local cachedColors = {}
+
+function wakaba:resetShioriCachedColorIndicators()
+	cachedColors = {}
+end
+
+function wakaba:getItemColor(id, forceRefresh)
+	local config = Isaac.GetItemConfig()
+	local collectible = config:GetCollectible(id)
+	if collectible then
+		if cachedColors[id] and not forceRefresh then
+			return cachedColors[id]
+		end
+		local r = {1.0, 1.0}
+		local g = {1.0, 1.0}
+		local b = {1.0, 1.0}
+		local spriteSheet = collectible.GfxFileName
+
+		local collectibleSprite = Sprite()
+		collectibleSprite:Load("gfx/005.100_collectible.anm2", false)
+		collectibleSprite:ReplaceSpritesheet(1,spriteSheet)
+		collectibleSprite:LoadGraphics()
+		collectibleSprite:SetFrame("Idle", 0)
+		for i = -2,2,2 do
+			for j = -40,0,8 do
+				local qcolor = collectibleSprite:GetTexel(Vector(i,j),Vector(0,0),1,1)
+				if qcolor.Red > 0 then table.insert(r, qcolor.Red) end
+				if qcolor.Green > 0 then table.insert(g, qcolor.Green) end
+				if qcolor.Blue > 0 then table.insert(b, qcolor.Blue) end
+			end
+		end
+		--[[ local str = ""
+		for _, e in ipairs(r) do
+			str = str .. ", " .. e
+		end
+		print(str)
+		str = ""
+		for _, e in ipairs(g) do
+			str = str .. ", " .. e
+		end
+		print(str)
+		str = ""
+		for _, e in ipairs(b) do
+			str = str .. ", " .. e
+		end
+		print(str) ]]
+		local color = Color(wakaba:getMedian(r), wakaba:getMedian(g), wakaba:getMedian(b))
+		table.insert(cachedColors, color)
+		return color
+	end
+	return Color.Default
+end
+
+function wakaba:Render_ShioriIndicator()
+	if not wakaba.G:GetHUD():IsVisible()
+	or wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD)
+	or wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then
+		return
+	end
+	for i, playerInfo in ipairs(wakaba:getIndexedPlayers()) do
+		local player = wakaba:getIndexedPlayer(i)
+		if player and player:GetPlayerType() == playerType then
+			local list = wakaba:getShioriBooks(player)
+			if list then
+				local pos = playerInfo.ScreenPos(player, ActiveSlot.SLOT_POCKET) + playerInfo.PocketOffset[0]
+				local size
+				if i == 1 then
+					size = 1
+				else
+					size = 0.5
+				end
+				indicator.Color = Color.Default
+				indicator:SetFrame("Right", 0)
+				indicator:Render(pos + Vector(-1, 0))
+				indicator:SetFrame("Left", 0)
+				indicator:Render(pos + Vector((-4 * (#list + 1)), 0))
+				for s, id in ipairs(list) do
+					local config = Isaac.GetItemConfig()
+					local collectible = config:GetCollectible(id)
+					--local color = wakaba:getItemColor(id)
+					--indicator.Color = color
+					indicator:SetFrame("Single", 1 + collectible.Quality)
+					indicator:Render(pos + Vector(-4 * s, 0))
+				end
+				indicator.Color = Color(1,1,1,0.4)
+				local current = player:GetData().wakaba.bookindex or 1
+				indicator:SetFrame("Single_Select", wakaba.G:GetFrameCount() % 45)
+				indicator:Render(pos + Vector(-4 * current, 0))
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_ShioriIndicator)

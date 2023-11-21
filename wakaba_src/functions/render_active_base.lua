@@ -496,4 +496,12 @@ function renderActive:ResetOnGameStart()
 	end
 end
 
+function renderActive:GetIndexedPlayers()
+	return IndexedPlayers
+end
+
+function renderActive:GetIndexedPlayer(no)
+	return GetIndexedPlayer(no)
+end
+
 return renderActive

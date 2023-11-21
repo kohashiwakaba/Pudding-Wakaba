@@ -1307,6 +1307,14 @@ function wakaba:getAllMainPlayers()
 	return renderActive:GetAllMainPlayers()
 end
 
+function wakaba:getIndexedPlayers()
+	return renderActive:GetIndexedPlayers()
+end
+
+function wakaba:getIndexedPlayer(i)
+	return renderActive:GetIndexedPlayer(i)
+end
+
 include('wakaba_src.functions.callbacks_wakaba')
 include('wakaba_src.libs.retribution_status')
 include('wakaba_src.libs.revel_utils')
