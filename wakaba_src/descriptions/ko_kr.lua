@@ -206,6 +206,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "서로 서로 담궈요",
 	},
+	[wakaba.Enums.Collectibles.CHIMAKI] = {
+		itemName = "치마키",
+		description = ""
+		.. "#방 안을 돌아다니며 이하를 포함한 여러 방면으로 캐릭터를 도와줍니다:"
+		.. "#눈물/불꽃 발사#{{Collectible374}} 적을 향해 점프#{{Collectible260}} 저주 해제#{{Trinket63}} 트롤 폭탄 해체#{{MegaChest}} 메가상자 자동 개방"
+		.. "{{CR}}",
+		queueDesc = "리라의 소울메이트",
+	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "망가진 도시락",
 		description = ""

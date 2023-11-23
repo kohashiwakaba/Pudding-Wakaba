@@ -125,10 +125,10 @@ function wakaba:hasChimaki(player, includeRira)
 	end
 end
 
-function wakaba:anyPlayerHasChimaki()
+function wakaba:anyPlayerHasChimaki(includeRira)
 	local power = 0
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-		if wakaba:hasChimaki(player) then
+		if wakaba:hasChimaki(player, includeRira) then
 			power = power + 1
 		end
 	end)
@@ -254,6 +254,7 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 		local rng = RNG()
 		rng:SetSeed(familiar.Player.InitSeed, 43)
 		data.State = "Move_Default"
+		data.ForceStateUpdate = true
 		data.PrevState = "Move_Default"
 		data.PrevCommand = ""
 		data.FrameCount = 0
@@ -275,10 +276,18 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 		data.randomMoveTimer = 0
 		data.FrameCount = 0
 		data.State = "Move_Default"
+		data.ForceStateUpdate = true
 		data.groundMove = true
 		data.standstill = nil
 		stopGoToPos(familiar, data)
 		stopGoToEnt(data)
+	end
+
+	if data.ForceStateUpdate then
+		data.State = "Move_Default"
+		data.ExtraAnim = nil
+		data.ExtraAnimState = nil
+		data.ForceStateUpdate = nil
 	end
 
 	local player = data.player or familiar.Player

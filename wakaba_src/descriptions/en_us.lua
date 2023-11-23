@@ -182,6 +182,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Weakness}} Nerfed enemies are {{Slow}} slowed and take double damage for 10 seconds"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.CHIMAKI] = {
+		itemName = "Chimaki",
+		description = ""
+		.. "#Wanders around and helps Isaac not limited to:"
+		.. "#Shoot tears or fires#{{Collectible374}} Jumps toward enemy#{{Collectible260}} Removes Curses#{{Trinket63}} Converts Troll Bombs#{{MegaChest}} Opens Mega Chests for free"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "Broken Toolbox",
 		description = ""
