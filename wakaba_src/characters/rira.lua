@@ -43,7 +43,7 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_Rira)
 
 local RiraChar = {
-		DAMAGE = 0.42,
+		DAMAGE = 0.16,
 		SPEED = 0.0,
 		SHOTSPEED = 1.05,
 		TEARRANGE = 20,
