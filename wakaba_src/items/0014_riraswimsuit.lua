@@ -197,7 +197,7 @@ function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		end
 		if source.Entity then
 			local convertedEntity = source.Entity:ToPlayer() or source.Entity:ToTear() or source.Entity:ToBomb() or source.Entity:ToKnife()
-			if convertedEntity and convertedEntity.TearFlags & TearFlags.TEAR_ICE > 0 then
+			if convertedEntity and convertedEntity.TearFlags and convertedEntity.TearFlags & TearFlags.TEAR_ICE > 0 then
 				returndata.sendNewDamage = true
 				if target:IsBoss() then
 					returndata.newDamage = newDamage * 4
