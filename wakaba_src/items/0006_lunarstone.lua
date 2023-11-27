@@ -111,7 +111,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 				and (wakaba:getLunarGaugeSpeed(player) < (player:GetHearts() * -1))
 				and player:CanPickSoulHearts()
 				then
-					wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + math.min(wakaba:getLunarGaugeSpeed(player) + (player:GetTrinketEffectNum(TrinketType.TRINKET_FRAGMENTED_CARD * 8)) + player:GetEffects():GetNullEffectNum(NullItemID.ID_SOL) * 10000 + player:GetHearts(), 0))
+					wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + math.min(wakaba:getLunarGaugeSpeed(player) + (player:GetTrinketEffectNum(TrinketType.TRINKET_FRAGMENTED_CARD) * 8) + player:GetEffects():GetNullEffectNum(NullItemID.ID_SOL) * 10000 + player:GetHearts(), 0))
 				end
 				data.wakaba.lunargastimeout = data.wakaba.lunargastimeout + 1
 				if data.wakaba.lunargastimeout >= 15 then
