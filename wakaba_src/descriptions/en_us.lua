@@ -185,6 +185,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CHIMAKI] = {
 		itemName = "Chimaki",
 		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#Wanders around and helps Isaac not limited to:"
 		.. "#Shoot tears or fires#{{Collectible374}} Jumps toward enemy#{{Collectible260}} Removes Curses#{{Trinket63}} Converts Troll Bombs#{{MegaChest}} Opens Mega Chests for free"
 		.. "{{CR}}",
