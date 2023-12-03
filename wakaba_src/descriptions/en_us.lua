@@ -1512,7 +1512,7 @@ wakaba.descriptions[desclang].cards = {
 		description = "{{Collectible636}} Invokes R Key effect#Brings you back to the first floor of a new run#Items, stat boosts and pickups stay intact#{{Timer}} Resets game timer#Removes all of Isaac's consumables {{ColorRed}}including health{{CR}}",
 	},
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
-		itemName = "Return Token",
+		itemName = "Minerva Ticket",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room",
 		tarot = "Activates the effect twice",
 		mimiccharge = 3,
