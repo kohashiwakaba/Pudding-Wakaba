@@ -347,98 +347,98 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			Mod.SlotGroups.CrystalRestock = {} -- Crystal Restocks for Turnover
 
 			-- Epiphany Turnover Shop pools
-			api:AddItemsToCustomPool("VaultShop", {
-				wakaba.Enums.Collectibles.SECRET_CARD,
-			})
-			api:AddItemsToCustomPool("DiceShop", {
-				wakaba.Enums.Collectibles.SECRET_CARD,
-			})
-			api:AddItemsToCustomPool("BedroomShop", {
-				wakaba.Enums.Collectibles.SECRET_CARD,
-			})
-			api:AddItemsToCustomPool("SacRoomShop", {
-				wakaba.Enums.Collectibles.SECRET_CARD,
-			})
+			api:AddItemsToCustomPool("VaultShop",
+				wakaba.Enums.Collectibles.SECRET_CARD
+			)
+			api:AddItemsToCustomPool("DiceShop",
+				wakaba.Enums.Collectibles.SECRET_CARD
+			)
+			api:AddItemsToCustomPool("BedroomShop",
+				wakaba.Enums.Collectibles.SECRET_CARD
+			)
+			api:AddItemsToCustomPool("SacRoomShop",
+				wakaba.Enums.Collectibles.SECRET_CARD
+			)
 
 			-- Epiphany Beggar/slots pools
-			api:AddItemsToCustomPool("PainPool", {
-				wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
-			})
-			api:AddItemsToCustomPool("ConverterBeggarPool", {
+			api:AddItemsToCustomPool("PainPool",
+				wakaba.Enums.Collectibles.BOOK_OF_TRAUMA
+			)
+			api:AddItemsToCustomPool("ConverterBeggarPool",
 				wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
-				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1},
-			})
-			api:AddItemsToCustomPool("GlitchSlotPool", {
-				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1},
-			})
+				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			)
+			api:AddItemsToCustomPool("GlitchSlotPool",
+				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			)
 
 			-- Epiphany Surprise box Won items pools
-			api:AddItemsToCustomPool("SurpriseBox_Heart", {
+			api:AddItemsToCustomPool("SurpriseBox_Heart",
 				wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
 				{wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, Weight = 0.1},
-				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1},
-			})
-			api:AddItemsToCustomPool("SurpriseBox_Coin", {
-				wakaba.Enums.Collectibles.SECRET_CARD,
-			})
-			api:AddItemsToCustomPool("SurpriseBox_Bomb", {
+				{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			)
+			api:AddItemsToCustomPool("SurpriseBox_Coin",
+				wakaba.Enums.Collectibles.SECRET_CARD
+			)
+			api:AddItemsToCustomPool("SurpriseBox_Bomb",
 				wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
 				wakaba.Enums.Collectibles.POW_BLOCK,
 				wakaba.Enums.Collectibles.MOD_BLOCK,
 				{wakaba.Enums.Collectibles.POWER_BOMB, Weight = 0.5},
-				{wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB, Weight = 0.5},
-			})
-			api:AddItemsToCustomPool("SurpriseBox_Battery", {
+				{wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB, Weight = 0.5}
+			)
+			api:AddItemsToCustomPool("SurpriseBox_Battery",
 				{wakaba.Enums.Collectibles.RABBIT_RIBBON, Weight = 0.2},
-				{wakaba.Enums.Collectibles.LIL_RICHER, Weight = 0.4},
-			})
-			api:AddItemsToCustomPool("SurpriseBox_Pill", {
+				{wakaba.Enums.Collectibles.LIL_RICHER, Weight = 0.4}
+			)
+			api:AddItemsToCustomPool("SurpriseBox_Pill",
 				wakaba.Enums.Collectibles.BEETLEJUICE,
-				wakaba.Enums.Collectibles.ANTI_BALANCE,
-			})
+				wakaba.Enums.Collectibles.ANTI_BALANCE
+			)
 
 			api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
 
 			api:AddSlotsToSlotGroup("CrystalRestock", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
-			api:AddCardsToCardGroup("Tarot", {
+			api:AddCardsToCardGroup("Tarot",
 				wakaba.Enums.Cards.CARD_CRANE_CARD,
 				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
 				wakaba.Enums.Cards.CARD_VALUT_RIFT,
 				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
-				wakaba.Enums.Cards.CARD_TRIAL_STEW,
-			})
+				wakaba.Enums.Cards.CARD_TRIAL_STEW
+			)
 
-			api:AddCardsToCardGroup("Suit", {
+			api:AddCardsToCardGroup("Suit",
 				wakaba.Enums.Cards.CARD_BLACK_JOKER,
 				wakaba.Enums.Cards.CARD_WHITE_JOKER,
 				wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,
-				wakaba.Enums.Cards.CARD_COLOR_JOKER,
-			})
+				wakaba.Enums.Cards.CARD_COLOR_JOKER
+			)
 
-			api:AddCardsToCardGroup("Soul", {
+			api:AddCardsToCardGroup("Soul",
 				wakaba.Enums.Cards.SOUL_SHIORI,
 				wakaba.Enums.Cards.SOUL_WAKABA,
 				wakaba.Enums.Cards.SOUL_WAKABA2,
-				{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
-			})
+				{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5}
+			)
 
-			api:AddCardsToCardGroup("Holy", {
+			api:AddCardsToCardGroup("Holy",
 				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
-				wakaba.Enums.Cards.CARD_DREAM_CARD,
-			})
+				wakaba.Enums.Cards.CARD_DREAM_CARD
+			)
 
-			api:AddCardsToCardGroup("DiceCapsule", {
-				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.05},
-			})
+			api:AddCardsToCardGroup("DiceCapsule",
+				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.05}
+			)
 
-			api:AddCardsToCardGroup("Object", {
-				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.2},
-			})
+			api:AddCardsToCardGroup("Object",
+				{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.2}
+			)
 
-			api:AddCardsToCardGroup("RicherTicket", {
+			api:AddCardsToCardGroup("RicherTicket",
 				wakaba.Enums.Cards.CARD_CRANE_CARD,
 				wakaba.Enums.Cards.CARD_BLACK_JOKER,
 				wakaba.Enums.Cards.CARD_COLOR_JOKER,
@@ -449,8 +449,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Cards.CARD_TRIAL_STEW,
 				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
 				{wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
-				{wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2},
-			})
+				{wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2}
+			)
 
 			-- Blacklist items to check within Use Item func, will be used inside same use function instead
 			api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
