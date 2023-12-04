@@ -414,15 +414,25 @@ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Chimak
 -- 치마키 서포트:
 --- 공용 :
 ---- 주변의 트롤 폭탄을 일반 폭탄으로 변경
+local function getTrollBombs(familiar, data, player)
+	local room = wakaba.G:GetRoom()
+	local badbombs = {}
+	for _, v in ipairs(isc:getBombs()) do
+		if (v.Variant == BombVariant.BOMB_TROLL or v.Variant == BombVariant.BOMB_SUPERTROLL or v.Variant == BombVariant.BOMB_GOLDENTROLL or v.Variant == BombVariant.BOMB_GIGA) and v.Position:Distance(player.Position) < 150 then
+			local sind, tind = room:GetGridIndex(familiar.Position), room:GetGridIndex(v.Position)
+	
+			path = wakaba:GeneratePathAStar(sind, tind, GetValidGridCollisions(data.groundMove))
+			if path then
+				table.insert(badbombs, v)
+			end
+		end
+	end
+	return badbombs
+end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -400, function(_, ent, spr, data)
 	local room = wakaba.G:GetRoom()
 	if not room:IsClear() then return end
-	local badbombs = {}
-	for _, v in ipairs(isc:getBombs()) do
-		if (v.Variant == BombVariant.BOMB_TROLL or v.Variant == BombVariant.BOMB_SUPERTROLL or v.Variant == BombVariant.BOMB_GOLDENTROLL or v.Variant == BombVariant.BOMB_GIGA) and v.Position:Distance(data.player.Position) < 150 then
-			table.insert(badbombs, v)
-		end
-	end
+	local badbombs = getTrollBombs(ent, data, data.player)
 
 	if #badbombs ~= 0 then
 		local rng = data.chimakiRng
@@ -443,31 +453,37 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN, e.Position, Vector.Zero, nil)
 				data.TrollBomb:Remove()
 				data.TrollBomb = nil
+				data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 			elseif e.Variant == BombVariant.BOMB_GIGA then
 				TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 				playExtraAnim("kyuu", nil, familiar, spr, data)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA, e.Position, Vector.Zero, nil)
 				data.TrollBomb:Remove()
 				data.TrollBomb = nil
+				data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 			elseif e.Variant == BombVariant.BOMB_SUPERTROLL then
 				TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 				playExtraAnim("kyuu", nil, familiar, spr, data)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK, e.Position, Vector.Zero, nil)
 				data.TrollBomb:Remove()
 				data.TrollBomb = nil
+				data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 			else
 				TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 				playExtraAnim("kyuu", nil, familiar, spr, data)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL, e.Position, Vector.Zero, nil)
 				data.TrollBomb:Remove()
 				data.TrollBomb = nil
+				data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 			end
 		end
 		if spr:IsFinished("kyuu") then
+			data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 			data.State = "Move_Default"
 			data.TrollBomb = nil
 		end
 	else
+		data.ForceStateUpdate = #getTrollBombs(familiar, data, player) > 0
 		data.State = "Move_Default"
 	end
 
@@ -785,7 +801,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		end
 		spr.FlipX = familiar.Velocity.X < 0
 		if data.standstill or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
-			print("Land")
+			--print("Land")
 			playExtraAnim("long_fly_end", nil, ent, spr, data)
 		end
 	elseif spr:IsPlaying("long_fly_end") then
@@ -801,7 +817,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 	if spr:IsFinished("long_fly_end") then
-		print("Finished")
+		--print("Finished")
 		data.State = "Chimaki_Rest"
 		data.FrameCount = 0
 		stopGoToEnt(data)
