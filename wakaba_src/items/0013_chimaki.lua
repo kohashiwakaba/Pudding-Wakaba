@@ -414,11 +414,12 @@ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Chimak
 -- 치마키 서포트:
 --- 공용 :
 ---- 주변의 트롤 폭탄을 일반 폭탄으로 변경
-local function getTrollBombs(familiar, data, player)
+local function getTrollBombs(familiar, data, player, range)
 	local room = wakaba.G:GetRoom()
+	range = range or 150
 	local badbombs = {}
 	for _, v in ipairs(isc:getBombs()) do
-		if (v.Variant == BombVariant.BOMB_TROLL or v.Variant == BombVariant.BOMB_SUPERTROLL or v.Variant == BombVariant.BOMB_GOLDENTROLL or v.Variant == BombVariant.BOMB_GIGA) and v.Position:Distance(player.Position) < 150 then
+		if (v.Variant == BombVariant.BOMB_TROLL or v.Variant == BombVariant.BOMB_SUPERTROLL or v.Variant == BombVariant.BOMB_GOLDENTROLL or v.Variant == BombVariant.BOMB_GIGA) and v.Position:Distance(player.Position) < range then
 			local sind, tind = room:GetGridIndex(familiar.Position), room:GetGridIndex(v.Position)
 	
 			path = wakaba:GeneratePathAStar(sind, tind, GetValidGridCollisions(data.groundMove))
@@ -431,8 +432,20 @@ local function getTrollBombs(familiar, data, player)
 end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -400, function(_, ent, spr, data)
 	local room = wakaba.G:GetRoom()
-	if not room:IsClear() then return end
+	--if not room:IsClear() then return end
 	local badbombs = getTrollBombs(ent, data, data.player)
+
+	if #badbombs ~= 0 then
+		local rng = data.chimakiRng
+		data.TrollBomb = badbombs[rng:RandomInt(#badbombs) + 1]
+		goToEnt(data.TrollBomb, ent, data, 13)
+		return "Command_ConvertTrollBombs"
+	end
+end)
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, 400, function(_, ent, spr, data)
+	local room = wakaba.G:GetRoom()
+	--if not room:IsClear() then return end
+	local badbombs = getTrollBombs(ent, data, data.player, 2000)
 
 	if #badbombs ~= 0 then
 		local rng = data.chimakiRng
