@@ -1,5 +1,11 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
-[[{FSIZE2}v107b patch
+[[{FSIZE2}v107c patch
+- fix minor eid errors
+
+- fix potential major issues with
+epiphany compatibility
+
+{FSIZE2}v107b patch
 - easter egg now follows isaad
 instead of orbiting
 
