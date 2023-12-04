@@ -21,7 +21,7 @@ local function GetValidGridCollisions(groundMove)
 end
 
 local function TryChimakiSound(sndId)
-	if true then
+	if wakaba:getOptionValue("chimakisound") then
 		sfx:Play(sndId)
 	end
 end
@@ -408,7 +408,9 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 	if path then data.prevPathLength = #path end
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_Chimaki, wakaba.Enums.Familiars.CHIMAKI)
+--#endregion
 
+--#region
 -- 치마키 서포트:
 --- 공용 :
 ---- 주변의 트롤 폭탄을 일반 폭탄으로 변경
@@ -470,7 +472,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 end, "Command_ConvertTrollBombs")
+--#endregion
 
+--#region
 --- 스테이지 입장 시 :
 ---- 일정 확률로 저주 해제, XL 저주 제외
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, function(_, ent, spr, data)
@@ -510,6 +514,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 end, "Command_RemoveCurse")
+--#endregion
+
+--#region
 
 	--- 비전투 시 :
 	---- 열쇠 1개로 메가 체스트 완전 오픈
@@ -554,6 +561,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 end, "Command_MegaChest")
+--#endregion
+
+--#region
 
 --- 전투 시 :
 ---- 자폭 파리 소환, 모든 자폭파리 타겟팅
@@ -590,6 +600,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		--data.TrollBomb = nil
 	end
 end, "Command_Locust")
+--#endregion
+
+--#region
 
 ---- 탄환을 향해 3방향 파란 불꽃 발사
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -248, function(_, ent, spr, data)
@@ -644,6 +657,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
 end, "Command_BlueFlame")
+--#endregion
+
+--#region
 
 ---- 유도 눈물 발사
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -246, function(_, ent, spr, data)
@@ -708,6 +724,9 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 end, "Command_ShootTears")
+--#endregion
+
+--#region
 
 ---- 먼 거리 점프, 점프 중 그 위치에 빛줄기 소환 (이후 추가 예정)
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, function(_, ent, spr, data, player)
@@ -742,7 +761,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 			local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.TARGET, 0, targ.Position, Vector.Zero, ent):ToEffect()
 			eff:SetTimeout(70)
 		end
-		playExtraAnim("long_fly", nil, ent, spr, data)
+		playExtraAnim("long_fly_start", nil, ent, spr, data)
 		--data.evadeEnemy = targ
 		return "Command_HolyLightJump"
 	end
@@ -756,15 +775,24 @@ function wakaba:Chimaki_CommandSpawnBeam(player, position, power)
 end
 wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
 	player = player or Isaac.GetPlayer()
-	if spr:IsPlaying("long_fly") then
+	if spr:IsPlaying("long_fly_start") then
+		if spr:IsEventTriggered("next") then
+			playExtraAnim("long_fly_loop", nil, ent, spr, data)
+		end
+	elseif spr:IsPlaying("long_fly_loop") then
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
 			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
 		end
 		spr.FlipX = familiar.Velocity.X < 0
-		if data.standstill then
-			spr:SetLastFrame()
+		if data.standstill or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
+			print("Land")
+			playExtraAnim("long_fly_end", nil, ent, spr, data)
 		end
-		--data.standstill = true
+	elseif spr:IsPlaying("long_fly_end") then
+		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
+			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
+		end
+		spr.FlipX = familiar.Velocity.X < 0
 	elseif not data.targetEnt then
 		data.State = "Move_Default"
 		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
@@ -772,8 +800,8 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		data.lightCooldown = 48
 	end
 
-	if spr:IsFinished("long_fly") then
-		--print("Finished")
+	if spr:IsFinished("long_fly_end") then
+		print("Finished")
 		data.State = "Chimaki_Rest"
 		data.FrameCount = 0
 		stopGoToEnt(data)
