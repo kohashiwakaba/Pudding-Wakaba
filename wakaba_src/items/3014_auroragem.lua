@@ -12,7 +12,7 @@ function wakaba:CoinInit_AuroraGem(pickup)
 
   local canTurn = wakaba:Roll(rng, 0, 2, 0)
 
-  if not isc:isGreedMode() and canTurn then
+  if not wakaba.G:IsGreedMode() and canTurn then
     pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)
     return
   end
