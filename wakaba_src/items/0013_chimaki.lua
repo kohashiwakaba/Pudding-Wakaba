@@ -805,15 +805,20 @@ end
 wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
 	player = player or Isaac.GetPlayer()
 	if spr:IsPlaying("long_fly_start") then
-		if spr:IsEventTriggered("next") then
-			playExtraAnim("long_fly_loop", nil, ent, spr, data)
-		end
-	elseif spr:IsPlaying("long_fly_loop") then
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
 			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
 		end
 		spr.FlipX = familiar.Velocity.X < 0
-		if data.standstill or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
+		if spr:IsEventTriggered("next") then
+			playExtraAnim("long_fly_loop", nil, ent, spr, data)
+		end
+	elseif spr:IsPlaying("long_fly_loop") then
+		data.longFlyCount = (data.longFlyCount or 0) + 1
+		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
+			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
+		end
+		spr.FlipX = familiar.Velocity.X < 0
+		if data.standstill or data.longFlyCount >= 150 or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
 			--print("Land")
 			playExtraAnim("long_fly_end", nil, ent, spr, data)
 		end
@@ -838,6 +843,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
 		data.groundMove = true
 		data.lightCooldown = 48
+		data.longFlyCount = nil
 	elseif spr:IsEventTriggered("kyuu") then
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
