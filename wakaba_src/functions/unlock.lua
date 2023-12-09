@@ -205,11 +205,11 @@ wakaba.UnlockTables = {
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		Heart 		= {"blackbeanmochi", "null", 		wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_fireflylighter.png") end},
-		Isaac 		= {"nerfgun", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_sweetscatalog.png") end},
-		BlueBaby 	= {"sakuramontblanc", "null",	nil,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_doubleinvader.png") end},
+		Isaac 		= {"nerfgun", "null",	wakaba.Enums.Collectibles.NERF_GUN,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_sweetscatalog.png") end},
+		BlueBaby 	= {"sakuramontblanc", "null",	wakaba.Enums.Collectibles.SAKURA_MONT_BLANC,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_doubleinvader.png") end},
 		Satan 		= {"riraswimsuit", "null",	wakaba.Enums.Collectibles.RIRAS_SWIMSUIT,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_antibalance.png") end},
 		Lamb		= {"chewyrollycake", "null",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_venomincantation.png") end},
-		BossRush	= {"caramellapancake", "null",	nil,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bunnyparfait.png") end},
+		BossRush	= {"caramellapancake", "null",	wakaba.Enums.Collectibles.CARAMELLA_PANCAKE,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_bunnyparfait.png") end},
 		Hush		= {"secretdoor", "null",	wakaba.Enums.Collectibles.SECRET_DOOR,		function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_richeruniform.png") end},
 		Delirium	= {"rirabandage", "null",	wakaba.Enums.Collectibles.RIRAS_BANDAGE,				function() CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievement_wakaba/achievement_prestigepass.png") end},
 		MegaSatan	= {"rirabento", "null",		nil,			function() table.insert(wakaba.state.pendingunlock, "gfx/ui/achievement_wakaba/achievement_3dprinter.png") end},
@@ -315,6 +315,34 @@ function wakaba:GetUnlocksTemplate(playerType)
 		Beast = {Unlock = false, Hard = false},
 		GreedMode = {Unlock = false, Hard = false},
 	}
+end
+
+local translationTable = {
+	Heart = "MomsHeart",
+	Satan = "Satan",
+	Isaac = "Isaac",
+	BlueBaby = "BlueBaby",
+	Lamb = "Lamb",
+	BossRush = "BossRush",
+	Hush = "Hush",
+	MegaSatan = "MegaSatan",
+	Delirium = "Delirium",
+	Mother = "Mother",
+	Beast = "Beast",
+	Greed = "GreedMode",
+}
+
+function wakaba:GetEncyPaper(playerType)
+	local dataset = wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
+	local UnlockTables = {}
+	for ep, enc in pairs(translationTable) do
+		local mark = wakaba:GetUnlockValuesFromBoss(playerType, ep)
+		UnlockTables[enc] = {
+			Unlock = (mark > 0 and true or false),
+			Hard = (mark > 1 and true or false),
+		}
+	end
+	return UnlockTables
 end
 
 function wakaba:GetUnlockEntry(playerType, unlockType)
