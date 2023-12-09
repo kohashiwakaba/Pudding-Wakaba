@@ -177,7 +177,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		itemName = "달콤달콤 카탈로그",
 		description = ""
-		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 무기 효과를 얻습니다:"
+		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 조합 효과를 얻습니다:"
 		.. "{{CR}}",
 		queueDesc = "맛집은 못 참지",
 	},
@@ -1658,6 +1658,17 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "시련의 국",
 		description = "사용 시 체력과 보호막을 전부 제거하며 시련 스택을 8개 충전합니다.#↑ {{TearsSmall}}1스택 당 연사(+상한) +1#↑ {{DamageSmall}}공격력 배율 x2#↑ {{DamageSmall}}1스택 당 추가 공격력 +25%#방 클리어 시 액티브 아이템을 완충하며 시련 스택을 1개 제거합니다.",
 		tarot = {8, 11},
+	},
+	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
+		itemName = "리셰 티켓",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 사용 시 그 방에서 아래 중 하나의 랜덤 조합 효과를 얻습니다:{{CR}}",
+		mimiccharge = 4,
+	},
+	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
+		itemName = "리라 티켓",
+		description = "{{BrokenHeart}}부서진하트 1개를 {{EmptyBoneHeart}} 혹은 {{SoulHeart}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 +1",
+		tarot = {"{{BrokenHeart}}부서진하트 1개를 {{ColorShinyPurple}}{{BoneHeart}} 혹은 {{SoulHeart}}+{{Heart}}{{CR}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 {{ColorShinyPurple}}+2{{CR}}"},
+		mimiccharge = 6,
 	},
 }
 wakaba.descriptions[desclang].runechalk = {

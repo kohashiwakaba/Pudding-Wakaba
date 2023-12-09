@@ -108,7 +108,7 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 	local playerIndex = isc:getPlayerIndex(player)
 	local previewItem = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
-	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and useFlags & UseFlag.USE_OWNED > 0 then
 		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
 		if not player:GetData().wakaba.usingCatalog then
 			local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)

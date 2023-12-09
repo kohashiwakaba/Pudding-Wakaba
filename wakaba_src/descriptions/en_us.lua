@@ -158,7 +158,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		itemName = "Sweets Catalog",
 		description = ""
-		.. "#Gives one of following weapons for current room:"
+		.. "#Grants a random combinations current room"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
@@ -1463,6 +1463,17 @@ wakaba.descriptions[desclang].cards = {
 		description = "Removes all health and Holy Mantle shields#Adds 8 stacks of effect for:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge, decreases a stack on room clears.",
 		tarot = {8, 11},
 		mimiccharge = 8,
+	},
+	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
+		itemName = "Richer Ticket",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Grants a random combinations current room",
+		mimiccharge = 4,
+	},
+	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
+		itemName = "Rira Ticket",
+		description = "{{BrokenHeart}}Recovers 1 Broken Heart into {{EmptyBoneHeart}}or{{SoulHeart}}#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals 1 Red Heart if no trinkets and Broken Hearts",
+		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts""},
+		mimiccharge = 6,
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
