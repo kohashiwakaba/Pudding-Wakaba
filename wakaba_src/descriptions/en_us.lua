@@ -93,6 +93,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! Cannot use the item if there are too many friendly enemies!"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		--wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact",
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		itemName = "Minerva's Aura",
@@ -207,6 +208,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Spawns a random collectible item from current item pool"
 		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
 		.. "{{CR}}",
+		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "Book of Forgotten",
@@ -216,6 +218,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Heart}} Heals all heart containers"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		belial = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
+		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed",
 	},
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D-Cup Ice Cream",
@@ -225,7 +229,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#↑ {{Damage}} +80% Damage Multiplier (Does not stack)"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		binge = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "Mint-Chocolate Ice Cream",
@@ -322,7 +326,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Hold Tab Key/Map Button to show current slot"
 		.. "#Only consume charges in Hard mode."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
+		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
@@ -350,7 +355,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! This item automatically activates when taking damage. Activating the item this way will also prevent Isaac to be damaged"
 		.. "#Does not activate when other shields are active"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "Return Postage",
@@ -370,7 +375,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Cycle back to their original form after one second"
 		.. "#Effect repeats"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect",
 	},
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		itemName = "D6 Chaos",
@@ -378,7 +384,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} Invokes Soul of Isaac effect for {{ColorRed}}9 times{{CR}}"
 		.. "#Rerolled items cycle for insane speed"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect",
 	},
 	[wakaba.Enums.Collectibles.LIL_MOE] = {
 		itemName = "Lil Moe",
@@ -388,7 +394,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{Blank}} (Explosive effects not included)"
 		.. "#Fire rate depends on Isaac's Tears stats"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "Book of Focus",
@@ -397,14 +403,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#If Isaac is not moving manually, Isaac shoots Homing and Spectral tears with +1.4 {{Damage}}Damage and +1.0 {{Tears}}Tears"
 		.. "#!!! Isaac will also take at least 2 Full Heart Damage in the current room"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#Homing tears",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		itemName = "Shiori's Bottle of Runes",
 		description = ""
 		.. "#{{Rune}} Gives Isaac a random rune"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		belial = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance",
+		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#{{Rune}}15% chance for enemy to drop rune on kill#{{Rune}}Spawns a rune when destroyed",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		itemName = "Micro Doppelganger",
@@ -412,14 +421,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Spawns 12 tiny Isaac familiars."
 		.. "#They chase and shoot at nearby enemies"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns MinIsaacs when destroyed",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		itemName = "Book of Silence",
 		description = ""
 		.. "#Removes all enemy projectiles"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		belial = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles",
+		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Immune to projectiles#Erases nearby projectiles",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "Vintage Threat",
@@ -449,7 +461,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Also all damage takes red hearts first and prevents penalty damage."
 		.. "#!!! {{ColorYellow}}The effect of the book will not work on Sacrifice rooms Spikes!{{ColorReset}}"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Revives Isaac on death and the wisp is consumed",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
 		itemName = "Book of Trauma",
@@ -479,7 +492,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Random book active item effect"
 		--[[ .. "#!!! Following books can be activated:" ]]
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns Unknown Bookmark when destroyed",
 	},
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "Apollyon Crisis",
@@ -545,7 +559,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#If there are not enough coins: "
 		.. "#Converts 1 of Key/Bomb into another one that Isaac less have."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while Isaac has same Keys and Bombs",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "Richer's Flipper",
@@ -626,7 +641,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Duplicates and smelts current held trinket"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed",
 	},
 	[wakaba.Enums.Collectibles.SYRUP] = {
 		itemName = "Syrup",
@@ -672,6 +687,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Opens challenge room doors while in invisible"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		belial = "↑ {{Damage}} +25% Damage multiplier while in cloaked state",
 	},
 	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "Red Corruption",
@@ -906,6 +922,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} 8% chance to spawn Wakaba's Dream Card on room clears"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+	belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
@@ -919,118 +936,6 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 }
 
-wakaba.descriptions[desclang].bingeeater = {
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
-	},
-	--[[ [wakaba.Enums.Collectibles.MOE_MUFFIN] = {
-		description = "+1.0 {{Damage}}Damage Up",
-	}, ]]
-	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
-		description = "+1.0 {{Damage}}Damage Up",
-	}, ]]
-}
-wakaba.descriptions[desclang].belial = {
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
-	},
-	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance",
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles",
-	},
-	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "Summons Black Heart type Lil Clot instead of Soul Heart type",
-	}, ]]
-	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "↑ +4% chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
-	},
-	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "↑ {{Damage}} +25% Damage multiplier while in cloaked state",
-	},
-	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "Spawns {{DevilRoom}}Devil room items instead of current pool",
-	},
-}
-wakaba.descriptions[desclang].bookofvirtues = {
-
-	--[[ Book of Virtues
-		Ring position > count
-		tearvariants
-		effects
-		when destroyed
-	 ]]
-
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held"
-	},
-	[wakaba.Enums.Collectibles.COUNTER] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active"
-	},
-	[wakaba.Enums.Collectibles.D6_PLUS] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
-	},
-	[wakaba.Enums.Collectibles.D6_CHAOS] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
-		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Homing tears"
-	},
-	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "{{ColorYellow}}Center Ring x1: {{CR}}#{{Rune}}15% chance for enemy to drop rune on kill#{{Rune}}Spawns a rune when destroyed"
-	},
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns MinIsaacs when destroyed"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Immune to projectiles#Erases nearby projectiles"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact"
-	},
-	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}High durability#Revives Isaac on death and the wisp is consumed"
-	},
-	--[[ [wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
-		description = "{{ColorRed}}!!!링에 귀속되지 않는 불꽃 6: {{CR}}#이 아이템으로 부활한 이후 불꽃이 소환되며 불꽃이 적을 따라다니면서 피해를 줍니다.#불꽃이 어떠한 피해도 입지 않습니다."
-	}, ]]
-	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
-		description = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns Unknown Bookmark when destroyed"
-	},
-	--[[ [wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
-		description = "{{ColorRed}}!!!No Wisp {{CR}}#현재 켜져 있는 모든 불꽃을 흡수하며 능력치로 환산합니다."
-	}, ]]
-	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}#캐릭터와 같은 공격력의 눈물을 발사합니다."
-	}, ]]
-	[wakaba.Enums.Collectibles.BALANCE] = {
-		description = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while Isaac has same Keys and Bombs"
-	},
-	--[[ [wakaba.Enums.Collectibles.FLASH_SHIFT] = {
-		description = "{{ColorRed}}!!!No Wisp {{CR}}#시프트 시 일정 시간동안 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다."
-	}, ]]
-	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "{{ColorLime}}Inner Ring x1: {{CR}}(Max 1)#Invincible Wisp#Revives Isaac on death and the wisp is consumed"
-	},
-	[wakaba.Enums.Collectibles._3D_PRINTER] = {
-		description = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed"
-	},
-
-	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "{{ColorRed}}!!!No effect{{CR}}"
-	},
-
-}
 wakaba.descriptions[desclang].abyss = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		description = "deals 7x faster than normal locust, double of Isaac's Damage, chases through enemies, and freezes on death"

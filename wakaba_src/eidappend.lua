@@ -270,30 +270,6 @@ if EID then
 			return descObj
 		end
 
-		-- Handle Judas + Birthright description addition
-		local function JudasCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if wakaba:HasJudasBr(player) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function JudasCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("belial", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL .. "}} {{ColorWakabaNemesis}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
 
 		-- Handle Horse Pills of Pudding and Wakaba description
 		local function WakabaPillCondition(descObj)
@@ -319,69 +295,6 @@ if EID then
 			if betterVoidingBuff ~= nil then
 				local description = (betterVoidingBuff[EID:getLanguage()] or betterVoidingBuff.en_us)
 				local iconStr = "#!!! Better Voiding detected!#"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Bingeeater description addition
-		local function BingeeaterCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
-				return true
-			end
-			return false
-		end
-
-		local function BingeeaterCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("bingeeater", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_BINGE_EATER .. "}} "
-				EID:appendToDescription(descObj, iconStr..description:gsub("#",iconStr) .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Book of Virtues description addition
-		local function BookOfVirtuesCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES) then
-				return true
-			end
-			return false
-		end
-
-		local function BookOfVirtuesCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("bookofvirtues", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES .. "}} "
-				EID:appendToDescription(descObj, iconStr..description:gsub("#",iconStr) .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Abyss description addition
-		local function AbyssCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			if EID:PlayersHaveCollectible(CollectibleType.COLLECTIBLE_ABYSS) then
-				return true
-			end
-			return false
-		end
-
-		local function AbyssCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("abyss", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. CollectibleType.COLLECTIBLE_ABYSS .. "}} {{ColorRed}}"
 				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
 			end
 			return descObj
@@ -454,86 +367,6 @@ if EID then
 		local collectiblesOwned = {}
 		local hasPlayer = {}
 
-		local function EIDWakabaConditions(descObj)
-			-- currently, only pickup descriptions have modifiers
-			if descObj.ObjType ~= 5 then return false end
-
-			-- recheck the players' owned collectibles periodically, not every frame
-			if wakaba.G:GetFrameCount() % 10 == 0 then
-				local numPlayers = wakaba.G:GetNumPlayers()
-				local players = {}; for i = 0, numPlayers - 1 do players[i] = Isaac.GetPlayer(i) end
-				for _,v in ipairs(playersCheck) do
-					hasPlayer[v] = false
-					for i = 0, numPlayers - 1 do
-						if players[i]:GetPlayerType() == v then
-							hasPlayer[v] = true
-							break
-						end
-					end
-				end
-				for _,v in ipairs(collectiblesToCheck) do
-					collectiblesOwned[v] = false
-					for i = 0, numPlayers - 1 do
-						if players[i]:HasCollectible(v) then
-							collectiblesOwned[v] = true
-							break
-						end
-					end
-				end
-				-- Birthright Book of Belial
-				collectiblesOwned[59] = false
-				for i = 0, numPlayers - 1 do
-					local playerType = players[i]:GetPlayerType()
-					if (playerType == PlayerType.PLAYER_JUDAS or playerType == PlayerType.PLAYER_BLACKJUDAS) and players[i]:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-						collectiblesOwned[59] = true
-						break
-					end
-				end
-			end
-
-			local callbacks = {}
-
-
-			-- Collectible Pedestal Callbacks
-			if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
-				if hasPlayer[wakaba.Enums.Players.WAKABA] then table.insert(callbacks, WakabaCallback) end
-				if hasPlayer[wakaba.Enums.Players.WAKABA_B] then table.insert(callbacks, WakabaCallback_b) end
-				if hasPlayer[wakaba.Enums.Players.SHIORI] then table.insert(callbacks, ShioriCallback) end
-				if hasPlayer[wakaba.Enums.Players.SHIORI_B] then table.insert(callbacks, ShioriCallback_b) end
-
-
-				if collectiblesOwned[664] then table.insert(callbacks, BingeeaterCallback) end
-
-				if collectiblesOwned[wakaba.Enums.Collectibles.WAKABAS_BLESSING] then table.insert(callbacks, BlessingCallback) end
-				if collectiblesOwned[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] then table.insert(callbacks, NemesisCallback) end
-				if collectiblesOwned[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] then table.insert(callbacks, ShioriBookCallback) end
-
-
-				if collectiblesOwned[59] then table.insert(callbacks, JudasCallback) end
-				if collectiblesOwned[584] then table.insert(callbacks, BookOfVirtuesCallback) end
-				if collectiblesOwned[706] then table.insert(callbacks, AbyssCallback) end
-
-			-- Card / Rune Callbacks
-			elseif descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD then
-
-				--if collectiblesOwned[286] and not blankCardHidden[descObj.ObjSubType] and descObj.ObjSubType <= 80 then table.insert(callbacks, BlankCardCallback) end
-				--if collectiblesOwned[263] and runeIDs[descObj.ObjSubType] then table.insert(callbacks, ClearRuneCallback) end
-			-- Pill Callbacks
-			elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
-				--if collectiblesOwned[654] then table.insert(callbacks, FalsePHDCallback) end
-
-				--if collectiblesOwned[348] then table.insert(callbacks, PlaceboCallback) end
-			-- Trinket Callbacks
-			elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
-				-- Golden Trinket / Mom's Box
-				--[[ isGolden = (descObj.ObjSubType > TrinketType.TRINKET_GOLDEN_FLAG)
-				hasBox = collectiblesOwned[439]
-				if isGolden or hasBox then table.insert(callbacks, GoldenTrinketCallback) end ]]
-			end
-
-			return callbacks
-		end
-
 		function wakaba:UpdateWakabaDescriptions()
 			EID._currentMod = "Pudding and Wakaba"
 			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
@@ -596,6 +429,21 @@ if EID then
 					EID:addCollectible(itemID, itemdesc.description, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("collectible", itemID, itemdesc.transformations)
+					end
+					if itemdesc.carBattery then
+						EID.descriptions[lang].carBattery[itemID] = itemdesc.carBattery
+					end
+					if itemdesc.wisp then
+						--EID.descriptions[lang].bookOfVirtuesWisps[itemID] = itemdesc.wisp
+					end
+					if itemdesc.abyss then
+						--EID.descriptions[lang].abyssSynergies[itemID] = itemdesc.abyss
+					end
+					if itemdesc.belial then
+						EID.descriptions[lang].bookOfBelialBuffs[itemID] = itemdesc.belial
+					end
+					if itemdesc.binge then
+						EID.descriptions[lang].bingeEaterBuffs[itemID] = itemdesc.binge
 					end
 				end
 				for itemID, itemdesc in pairs(wakabaDescTables.trinkets) do
@@ -690,7 +538,6 @@ if EID then
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
 
 
-			--EID:addDescriptionModifier("Pudding and Wakaba", EIDWakabaConditions, nil)
 			wakaba:ReplaceEIDBagWeight()
 
 			EID._currentMod = "Pudding and Wakaba_reserved"

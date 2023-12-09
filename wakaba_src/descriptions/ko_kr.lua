@@ -234,6 +234,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
+		wisp = "{{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "잊혀진 자의 책",
@@ -244,6 +245,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "충전식 뼈",
+		belial = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
+		wisp = "{{ColorYellow}}중앙 x1{CR}}/{{Heart}}:3{#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#불꽃이 꺼지면 {{BoneHeart}}뼈하트, 혹은 아군 Bony류 몬스터를 소환합니다.",
 	},
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D컵 아이스크림",
@@ -255,6 +258,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
+		binge = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "민트초코 아이스크림",
@@ -362,6 +366,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",
+		belial = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
+		wisp = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다.",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "시간의 눈",
@@ -390,8 +396,9 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#이 아이템이 완충인 상태에서 피격 시 강제로 발동되며 대미지를 입지 않습니다."
 		.. "#!!! 이 아이템이 아닌 다른 아이템의 보호막이 발동 중이면 레이저가 발사되지 않습니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
-	queueDesc = "레이저 반사",
+		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "레이저 반사",
+		wisp = "{{ColorOrange}}외부 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#방을 나가면 사라집니다.#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다.",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "미니핀 시러시러",
@@ -449,6 +456,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "충전식 룬 뽑기",
+	belial = "{{Card41}}Black Rune을 획득할 확률이 50%로 증가합니다.#{{ColorWakabaNemesis}}10%의 확률로 {{Card41}}Black Rune의 효과를 발동합니다.",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		itemName = "마이크로 도플갱어",
@@ -466,6 +474,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "탄막 청소기",
+	belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "빈티지의 위협",
@@ -739,8 +748,9 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#완충 상태에서만 사용할 수 있으며 게이지는 공격 중이거나 움직일 때만 회복할 수 있습니다."
 		.. "#캐릭터가 숨어있는 동안 도전방, 보스 도전방의 문이 열립니다."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	queueDesc = "은신은 무적이 아니다",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "은신은 무적이 아니다",
+		belial = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25",
 	},
 	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "적색 감염",
@@ -1013,8 +1023,9 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#아이템이 등장할 경우 해당 꿈에 해당되는 배열의 아이템이 등장합니다."
 		.. "#방 클리어 시 8%의 확률로 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드를 드랍합니다."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
-	queueDesc = "영원한 꿈",
+		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+		queueDesc = "영원한 꿈",
+		belial = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "에덴의 접착제",
@@ -1028,43 +1039,6 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 }
 
-wakaba.descriptions[desclang].bingeeater = {
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
-	},
-	--[[ [wakaba.Enums.Collectibles.MOE_MUFFIN] = {
-		description = "+1.0 Damage Up",
-	}, ]]
-	--[[ [wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
-		description = "+1.0 Damage Up",
-	}, ]]
-}
-wakaba.descriptions[desclang].belial = {
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - 악마 카드 효과를 같이 발동합니다.",
-	},
-	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description = "{{Card41}}블랙 룬을 획득할 확률이 50%로 증가합니다.#{{ColorWakabaNemesis}}10%의 확률로 {{Card41}}블랙 룬의 효과를 발동합니다.",
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}흑마술의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.",
-	},
-	--[[ [wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "블랙 하트 타입의 꼬마 클롯을 소환합니다.",
-	}, ]]
-	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
-	},
-	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25",
-	},
-	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "아이템 소환 시 악마방 배열의 아이템이 소환됩니다.",
-	},
-}
 wakaba.descriptions[desclang].bookofvirtues = {
 
 	--[[ Book of Virtues
