@@ -1472,7 +1472,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "Rira Ticket",
 		description = "{{BrokenHeart}}Recovers 1 Broken Heart into {{EmptyBoneHeart}}or{{SoulHeart}}#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals 1 Red Heart if no trinkets and Broken Hearts",
-		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts""},
+		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
 		mimiccharge = 6,
 	},
 }
