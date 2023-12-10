@@ -11,6 +11,7 @@ function wakaba:UseCard_TrialStew(_, player, flags)
 	player:GetData().wakaba.trialstewtimer = 25
 	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW, true, 8)
 	if flags & UseFlag.USE_CARBATTERY == 0 then
+		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS, -1)
 		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, -1)
 		player:GetEffects():RemoveNullEffect(NullItemID.ID_HOLY_CARD, -1)
 		if player:GetBoneHearts() > 0 then
