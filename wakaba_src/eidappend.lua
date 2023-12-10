@@ -531,10 +531,6 @@ if EID then
 			EID:addDescriptionModifier("Tainted Shiori", ShioriCondition_b, ShioriCallback_b)
 
 			EID:addDescriptionModifier("Book of Shiori", ShioriBookCondition, ShioriBookCallback)
-			EID:addDescriptionModifier("Wakaba Judas Birthright", JudasCondition, JudasCallback)
-			EID:addDescriptionModifier("Wakaba Binge Eater", BingeeaterCondition, BingeeaterCallback)
-			EID:addDescriptionModifier("Wakaba Book of Virtues", BookOfVirtuesCondition, BookOfVirtuesCallback)
-			EID:addDescriptionModifier("Wakaba Abyss", AbyssCondition, AbyssCallback)
 			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
