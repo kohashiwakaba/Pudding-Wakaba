@@ -220,11 +220,13 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, wakaba.newRollCheck)
 
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL, function(_, selected, itemPoolType, decrease, seed)
-	return wakaba.G:GetFrameCount() == 0
-	or seed == 1
-	or selected and selected <= 0
-	or LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom()
-	or wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
+	local shouldSkip =
+		wakaba.G:GetFrameCount() == 0
+		or seed == 1
+		or selected and selected <= 0
+		or LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom()
+		or wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
+	if shouldSkip then return true end
 end)
 
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, function(_, rerollProps, selected, itemPoolType, decrease, seed, isCustom)
