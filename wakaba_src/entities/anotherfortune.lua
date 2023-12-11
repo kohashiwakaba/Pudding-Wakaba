@@ -2,7 +2,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local valut_data = {
 	run = {
-
+		ascentSharedSeeds = {},
 	},
 	floor = {
 		valutitemtype = {},

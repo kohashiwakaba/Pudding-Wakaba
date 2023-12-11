@@ -2,6 +2,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local restock_data = {
 	run = {
+		ascentSharedSeeds = {},
 	},
 	floor = {
 	},

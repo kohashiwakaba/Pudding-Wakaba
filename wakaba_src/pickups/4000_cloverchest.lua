@@ -2,7 +2,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 local clover_chest_data = {
 	run = {
-
+		ascentSharedSeeds = {},
 	},
 	floor = {
 		cloverchestpedestals = {},
