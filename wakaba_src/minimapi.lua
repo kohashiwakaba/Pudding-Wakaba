@@ -115,6 +115,8 @@ if MinimapAPI then
 
 	MinimapAPI:AddPickup("wakaba_DreamCard", "wakaba_DreamCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_MinervaTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_MINERVA_TICKET, MinimapAPI.PickupNotCollected, "cards", 9050)
+	MinimapAPI:AddPickup("wakaba_RicherTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_RICHER_TICKET, MinimapAPI.PickupNotCollected, "cards", 9050)
+	MinimapAPI:AddPickup("wakaba_RiraTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_RIRA_TICKET, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_ValutTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_VALUT_RIFT, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_TrialStew", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_TRIAL_STEW, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_CraneCard", "wakaba_CraneCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_CRANE_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)
