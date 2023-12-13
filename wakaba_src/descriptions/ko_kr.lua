@@ -1015,6 +1015,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Heart}}빨간하트 +1"
 		.. "#↑ {{SpeedSmall}}이동속도 +0.04"
 		.. "#↑ {{TearsSmall}}연사 +0.35"
+		.. "#↑ {{DamageSmall}}하트 1칸당 공격력 +1"
 		.. "#↑ {{DamageSmall}}공격력 배울 x1.07"
 		.. "#↑ {{RangeSmall}}사거리 +0.5"
 		.. "#↑ {{LuckSmall}}행운 +0.4"

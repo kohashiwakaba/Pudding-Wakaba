@@ -23,6 +23,9 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+---comment
+---@param player EntityPlayer
+---@param cacheFlag CacheFlag
 function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
