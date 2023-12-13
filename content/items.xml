@@ -175,4 +175,6 @@
 	<trinket name="Eternity Cookie" description="Long lasting basics" gfx="eternitycookie.png" />
 	<trinket name="Richer's Report Card" description="Less mistake, less penalties" gfx="richerreportcard.png" cache="luck" persistent="true"/>
 
+	<trinket name="Sigil of Kaguya" description="Weapon from Moon" gfx="sigilofkaguya.png" hidden="true" achievement="9999"/>
+
 </items>

@@ -212,8 +212,9 @@ wakaba.Enums.Trinkets = {
 	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
 	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
 	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
+	SIGIL_OF_KAGUYA = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 
-	HIGHEST_ID = Isaac.GetTrinketIdByName("Richer's Report Card"),
+	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 }
 
 --[[
@@ -892,7 +893,7 @@ wakaba.Weights.ShioriValut = {
 	{CollectibleType.COLLECTIBLE_SOUL_LOCKET, 1.00},
 	{CollectibleType.COLLECTIBLE_SALVATION, 1.00},
 	{CollectibleType.COLLECTIBLE_GLASS_EYE, 1.00},
-	
+
 	{wakaba.Enums.Collectibles.BOOK_OF_SHIORI, 1.00},
 	{wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, 1.00},
 	{wakaba.Enums.Collectibles.D6_PLUS, 1.00},

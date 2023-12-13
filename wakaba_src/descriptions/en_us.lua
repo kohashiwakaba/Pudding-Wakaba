@@ -1363,6 +1363,14 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Reduced Luck is restored on new floor"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
+		itemName = "Sigil of Kaguya",
+		description = ""
+		.. "{{Collectible160}} 16% chance to Activates Crack the Sky effect per 15 seconds"
+		.. "#{{Luck}} 100% chance at 34 Luck"
+		.. "#Activation will be delayed in cleared rooms"
+		.. "{{CR}}",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {

@@ -1583,6 +1583,15 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "맞으면 점수 깎인다",
 	},
+	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
+		itemName = "카구야의 인장",
+		description = ""
+		.. "{{Collectible160}} 15초마다 16% 확률로 Crack the Sky 효과를 발동합니다."
+		.. "#{{Luck}} 행운 34+일 때 100%"
+		.. "#클리어하지 않은 방인 경우 발동을 보류합니다."
+		.. "{{CR}}",
+		queueDesc = "파괴 월광선",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {

@@ -1463,6 +1463,7 @@ include('wakaba_src.items.3015_mistake')
 include('wakaba_src.items.3016_kuromicard')
 include('wakaba_src.items.3017_eternitycookie')
 include('wakaba_src.items.3018_richerreportcard')
+include('wakaba_src.items.3019_sigilofkaguya')
 
 include('wakaba_src.pickups.4000_cloverchest')
 
