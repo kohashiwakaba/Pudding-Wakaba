@@ -79,7 +79,6 @@ wakaba.Enums.Collectibles = {
 	LIL_WAKABA = Isaac.GetItemIdByName("Lil Wakaba"),
 	COUNTER = Isaac.GetItemIdByName("Counter"),
 	RETURN_POSTAGE = Isaac.GetItemIdByName("Return Postage"),
-	PRESTIGE_PASS = Isaac.GetItemIdByName("Prestige Pass"),
 	--HEALTH_REVERSAL = Isaac.GetItemIdByName("Health Reversal"),
 
 	-- Shiori items
@@ -120,6 +119,7 @@ wakaba.Enums.Collectibles = {
 	ANTI_BALANCE = Isaac.GetItemIdByName("Anti Balance"),
 	BUNNY_PARFAIT = Isaac.GetItemIdByName("Bunny Parfait"),
 	RICHERS_UNIFORM = Isaac.GetItemIdByName("Richer's Uniform"),
+	PRESTIGE_PASS = Isaac.GetItemIdByName("Prestige Pass"),
 	CUNNING_PAPER = Isaac.GetItemIdByName("Cunning Paper"),
 	LIL_RICHER = Isaac.GetItemIdByName("Lil Richer"),
 	SELF_BURNING = Isaac.GetItemIdByName("Self Burning"),
@@ -131,7 +131,7 @@ wakaba.Enums.Collectibles = {
 	RIRAS_SWIMSUIT = Isaac.GetItemIdByName("Rira's Swimsuit"),
 	SAKURA_MONT_BLANC = Isaac.GetItemIdByName("Sakura Mont Blanc"),
 	NERF_GUN = Isaac.GetItemIdByName("Nerf Gun"),
-	--RIRAS_BENTO = Isaac.GetItemIdByName("Chimaki"),
+	RIRAS_BENTO = Isaac.GetItemIdByName("Rira's Bento"),
 	--CHEWY_ROLLY_CAKE = Isaac.GetItemIdByName("Chimaki"),
 	RIRAS_COAT = Isaac.GetItemIdByName("Rira's Coat"),
 	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),

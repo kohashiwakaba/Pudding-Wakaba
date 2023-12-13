@@ -1008,6 +1008,20 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "↑ {{DamageSmall}}공격력 배율 x1.65#왼쪽 눈에서 유도 공격이 나갑니다.",
 		queueDesc = "지켜보는 소녀의 눈동자",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
+		itemName = "리라의 도시락,
+		description = ""
+		.. "#↑ {{Heart}}최대 체력 +1"
+		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{SpeedSmall}}이동속도 +0.04"
+		.. "#↑ {{TearsSmall}}연사 +0.35"
+		.. "#↑ {{DamageSmall}}공격력 배울 x1.07"
+		.. "#↑ {{RangeSmall}}사거리 +0.5"
+		.. "#↑ {{LuckSmall}}행운 +0.4"
+		.. "#!!! 이후 등장하는 모든 아이템이 {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento로 등장합니다."
+		.. "{{CR}}",
+		queueDesc = "더 먹고 싶어",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

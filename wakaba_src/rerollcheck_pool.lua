@@ -18,6 +18,9 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 	if seed == 1 then goto cont end
 	-- Library Expanded : Do not check reroll in Library Certifiate area
 	if LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom() then goto cont end
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
+		return wakaba.Enums.Collectibles.RIRAS_BENTO
+	end
 
 	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) then
 		if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.runstate.dreampool ~= itemPoolType then

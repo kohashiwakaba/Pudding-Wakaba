@@ -913,6 +913,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Kanae Lens",
 		description = "↑ {{Damage}} x1.65 Damage multiplier#Homing tears from left eye",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
+		itemName = "Rira's Bento",
+		description = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#↑ {{Speed}} +0.04 Speed#↑ {{Tears}} +0.35 Fire Rate#↑ {{Damage}} x1.07 Damage Multiplier#↑ {{Range}} +0.5 Range#↑ {{Luck}} +0.4 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
