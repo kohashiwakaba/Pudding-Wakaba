@@ -18,7 +18,7 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
 	elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		return {ID = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE) and not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_CAPSULE) then
 		return {ID = wakaba.Enums.Collectibles.SAKURA_CAPSULE, PostRevival = function() wakaba:AfterRevival_SakuraCapsule(player) end, CurrentRoom = true}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
 		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
