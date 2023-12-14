@@ -1481,7 +1481,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#↑ {{DamageSmall}}공격력 +16%"
 		.. "#↑ {{ShotspeedSmall}}탄속 +5%"
 		.. "#↑ {{LuckSmall}}행운 +1"
-		.. "#모든 플레이어가 해당 장신구의 스탯 증가량만큼 증가합니다."
+		.. "#모든 플레이어가 해당 장신구의 능력치 증가량만큼 증가합니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	queueDesc = "자매의 유대감",
@@ -1491,7 +1491,7 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 		.. "#클리어 하지 않은 방 진입 시 15%의 확률로 임의의 {{Collectible510}}델리리움의 모습을 한 보스가 등장합니다."
 		.. "#{{GreedModeSmall}} Greed 모드의 경우 5%, {{LuckSmall}}행운 10+일 때 25%"
-		.. "#↑ {{Card"..Card.CARD_CHAOS.."}}카오스 카드가 델리리움과 비스트에게 대미지를 줄 수 있습니다.(틱 당 339)"
+		.. "#↑ {{Card"..Card.CARD_CHAOS.."}}Chaos Card가 Delirium과 The Beast에게 초당 캐릭터의 공격력 x150의 피해를 줍니다.(최소 5085)"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	queueDesc = "텅 비어 있는 기억",
@@ -1558,7 +1558,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.AURORA_GEM] = {
 		itemName = "오로라 보석",
 		description = ""
-		.. "#이스터 코인의 등장 확률이 6.66% 증가합니다."
+		.. "#이스터 동전의 등장 확률이 6.66% 증가합니다."
 		.. "#{{LuckSmall}} : 6.66 +(1*{{LuckSmall}})%"
 		.. "{{CR}}",
 		queueDesc = "황금빛 장소로 가져다줘",
@@ -1678,7 +1678,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "츠카사의 영혼",
-		description = "사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#상자/판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 캐릭터가 바뀌며 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
+		description = "사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
