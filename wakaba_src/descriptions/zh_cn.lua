@@ -15,7 +15,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}栞",
-		description = "↑ Halves key consume when using active item(Minimum 1)",
+		description = "↑ 钥匙被消耗时触发主动道具(最小为 1)",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted 栞)",
@@ -800,7 +800,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "焦糖煎饼",
 		description = ""
 			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为Richer"
-			.. "#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里icher只是复活"
+			.. "#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里Richer只是复活"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.EASTER_EGG] = {
