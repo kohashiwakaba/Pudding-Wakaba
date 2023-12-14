@@ -5,9 +5,9 @@ local tempRevivalFunc = {
 
 function wakaba:CanRevive(player)
 	--if not player then return false end
-	--[[ if player:WillPlayerRevive() then 
+	--[[ if player:WillPlayerRevive() then
 		if not (not wakaba:HasCard(player, Card.CARD_SOUL_LAZARUS) and player:GetEffects():HasNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)) then return false end
-		--return false 
+		--return false
 	end ]]
 	if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
 	local data = player:GetData()
@@ -18,6 +18,10 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
 	elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		return {ID = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE) then
+		return {ID = wakaba.Enums.Collectibles.SAKURA_CAPSULE, PostRevival = function() wakaba:AfterRevival_SakuraCapsule(player) end, CurrentRoom = true}
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
+		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS) then
 		return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
@@ -26,8 +30,6 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.BUNNY_PARFAIT, PostRevival = function() wakaba:AfterRevival_BunnyParfait(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
 		return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
-		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not player:GetData().wakaba.shioridevil then
 		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT) and not player:GetData().wakaba.vintagethreat then
@@ -103,13 +105,21 @@ if DetailedRespawnGlobalAPI then
 		end,
 	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Question Block Wisp"))
 	DetailedRespawnGlobalAPI:AddCustomRespawn({
+		name = "Sakura Capsule",
+		itemId = wakaba.Enums.Collectibles.SAKURA_CAPSULE,
+		condition = function(_, player)
+			local canRevive = wakaba:CanRevive(player)
+			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.SAKURA_CAPSULE or (player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE) and not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_CAPSULE))
+		end,
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
+	DetailedRespawnGlobalAPI:AddCustomRespawn({
 		name = "Book of the God",
 		itemId = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD,
 		condition = function(_, player)
 			local canRevive = wakaba:CanRevive(player)
 			return canRevive and canRevive.ID == wakaba.Enums.Collectibles.BOOK_OF_THE_GOD or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD)
 		end,
-	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Grimreaper Defender Wisp"))
+	}, DetailedRespawnGlobalAPI.RespawnPosition:After("Sakura Capsule"))
 	DetailedRespawnGlobalAPI:AddCustomRespawn({
 		name = "See Des Bischofs",
 		itemId = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS,

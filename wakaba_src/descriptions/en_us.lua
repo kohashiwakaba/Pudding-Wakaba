@@ -917,6 +917,16 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Rira's Bento",
 		description = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#↑ {{Speed}} +0.04 Speed#↑ {{Tears}} +0.35 Fire Rate#↑ {{Damage}} +0.5 Damage for every {{HalfHeart}} Half Heart Isaac has#↑ {{Damage}} x1.07 Damage Multiplier#↑ {{Range}} +0.5 Range#↑ {{Luck}} +0.4 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
 	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		itemName = "Sakura Capsule",
+		description = ""
+		.. "#↑ +1 Life"
+		.. "#{{Collectible127}} Isaac respawns with 4{{Heart}} on death with reroll/restarting the entire floor"
+		.. "#!!! Per floor not revived:"
+		.. "#Refills Extra Life"
+		.. "#Spawns 1 of each pickup type"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

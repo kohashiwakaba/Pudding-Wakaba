@@ -1023,6 +1023,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "더 먹고 싶어",
 	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		itemName = "벛꽃 캡슐",
+		description = ""
+		.. "#↑ 목숨 +1"
+		.. "#{{Collectible127}} 사망 시 4{{Heart}}로 부활하며 그 스테이지를 재시작합니다."
+		.. "#!!! 부활하지 않은 스테이지 진입 시:"
+		.. "#소진된 목숨 보충"
+		.. "#모든 종류의 픽업을 하나씩 드랍합니다."
+		.. "{{CR}}",
+		queueDesc = "잊혀졌던 기억",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

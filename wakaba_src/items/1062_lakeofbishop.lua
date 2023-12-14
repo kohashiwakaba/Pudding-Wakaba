@@ -25,7 +25,7 @@ function wakaba:AfterRevival_LakeOfBishop(player)
 	player:GetData().wakaba.bypassunlock = true
 	player:ChangePlayerType(wakaba.Enums.Players.TSUKASA_B)
 	wakaba:AfterTsukasaInit_b(player)
-	wakaba:GetTsukasaCostume_b(player) 
+	wakaba:GetTsukasaCostume_b(player)
 	player:AddMaxHearts(6-player:GetMaxHearts())
 	player:AddBoneHearts(-12)
 	player:AddSoulHearts(-36)
@@ -35,7 +35,7 @@ end
 
 
 function wakaba:Cache_JarOfClover(player, cacheFlag)
-  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) 
+  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 	then
 		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.JAR_OF_CLOVER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
@@ -46,11 +46,11 @@ function wakaba:Cache_JarOfClover(player, cacheFlag)
     end
   end
 end
- 
+
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_JarOfClover)
 
 function wakaba:PEffectUpdate_JarofClover(player)
-  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) 
+  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 	then
 		local gameTimer = wakaba.G:GetFrameCount()
@@ -68,7 +68,7 @@ function wakaba:AfterRevival_JarOfClover(player)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.WAKABA)
 		wakaba:AfterWakabaInit(player)
-		wakaba:GetWakabaCostume(player) 
+		wakaba:GetWakabaCostume(player)
 		player:AddMaxHearts(4-player:GetMaxHearts())
 		player:AddBoneHearts(-12)
 		player:AddSoulHearts(-36)
@@ -77,7 +77,7 @@ function wakaba:AfterRevival_JarOfClover(player)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 end
 
- 
+
 
 function wakaba:AfterRevival_CaramellaPancake(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
@@ -85,7 +85,7 @@ function wakaba:AfterRevival_CaramellaPancake(player)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.RICHER)
 		wakaba:AfterRicherInit(player)
-		wakaba:GetRicherCostume(player) 
+		wakaba:GetRicherCostume(player)
 		player:AddMaxHearts(-200)
 		player:AddBoneHearts(-12)
 		player:AddSoulHearts(-36)
@@ -97,3 +97,18 @@ function wakaba:AfterRevival_CaramellaPancake(player)
 end
 
 
+---@param player EntityPlayer
+function wakaba:AfterRevival_SakuraCapsule(player)
+	player:AddMaxHearts(-200)
+	player:AddBoneHearts(-12)
+	player:AddSoulHearts(-36)
+	player:AddMaxHearts(8)
+	player:AddHearts(8)
+	player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_CAPSULE, false, 2)
+	player:SetMinDamageCooldown(30)
+	wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
+	wakaba:scheduleForUpdate(function ()
+		player:AnimateLightTravel()
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_FORGET_ME_NOW, UseFlag.USE_NOANIM)
+	end, 15)
+end

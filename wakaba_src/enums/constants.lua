@@ -141,9 +141,8 @@ wakaba.Enums.Collectibles = {
 	MOD_BLOCK = Isaac.GetItemIdByName("MOd Block"),
 	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
 	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
-	--SAKURA_CAPSULE = Isaac.GetItemIdByName("Chimaki"),
+	SAKURA_CAPSULE = Isaac.GetItemIdByName("Sakura Capsule"),
 	--MAID_DUET = Isaac.GetItemIdByName("Chimaki"),
-	--SYNCRO_CANDY = Isaac.GetItemIdByName("Chimaki"),
 
 	--CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
