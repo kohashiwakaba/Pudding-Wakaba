@@ -1009,7 +1009,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "지켜보는 소녀의 눈동자",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
-		itemName = "리라의 도시락,
+		itemName = "리라의 도시락",
 		description = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{Heart}}빨간하트 +1"
