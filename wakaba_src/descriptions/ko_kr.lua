@@ -1024,7 +1024,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "더 먹고 싶어",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
-		itemName = "벛꽃 캡슐",
+		itemName = "사쿠라 캡슐",
 		description = ""
 		.. "#↑ 목숨 +1"
 		.. "#{{Collectible127}} 사망 시 4{{Heart}}로 부활하며 그 스테이지를 재시작합니다."
