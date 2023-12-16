@@ -356,6 +356,22 @@ wakaba.Enums.CrystalRestockTypes = {
 	[wakaba.Enums.CrystalRestockSubType.YELLOW] = 5,
 }
 
+-- 와카바 특수 자폭파리 타입
+---@class WakabaFlySubType
+wakaba.Enums.Flies = {
+	RICHER = 401, -- 리셰, 일반형
+	RIRA = 402, -- 리라, 레이저형
+	CIEL = 403, -- 시엘, 폭발형
+	KORON = 404, -- 코론,
+}
+
+wakaba.Enums.FlyDamageMult = {
+	[wakaba.Enums.Flies.RICHER] = 4,
+	[wakaba.Enums.Flies.RIRA] = 3,
+	[wakaba.Enums.Flies.CIEL] = 10,
+	[wakaba.Enums.Flies.KORON] = 4,
+}
+
 wakaba.Spawner = {}
 wakaba.Spawner.PocketItemLookup = {
 	[1] = wakaba.Enums.Cards.CARD_MINERVA_TICKET,

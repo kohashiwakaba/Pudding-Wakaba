@@ -98,6 +98,28 @@ if EID then
 		table.insert(EID.TextReplacementPairs, {"{{WakabaPlacebo}}","{{Collectible" .. CollectibleType.COLLECTIBLE_PLACEBO .. "}}"})
 		table.insert(EID.TextReplacementPairs, {"{{WakabaClearRune}}","{{Collectible" .. CollectibleType.COLLECTIBLE_CLEAR_RUNE .. "}}"})
 
+
+		-- Function for handling colors that fade between multiple different colors (rainbow, gold, tarot cloth purple)
+		local function SwagColors(colors, maxAnimTime)
+			maxAnimTime = maxAnimTime or 80
+			local animTime = Game():GetFrameCount() % maxAnimTime
+			local colorFractions = (maxAnimTime - 1) / #colors
+			local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
+			local primaryColorIndex = subAnm % (#colors + 1)
+			if primaryColorIndex == 0 then
+				primaryColorIndex = 1
+			end
+			local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
+			if secondaryColorIndex == 0 then
+				secondaryColorIndex = 1
+			end
+			return EID:interpolateColors(
+				colors[primaryColorIndex],
+				colors[secondaryColorIndex],
+				(animTime % (colorFractions + 1)) / colorFractions
+			)
+		end
+
 		EID:addColor("ColorWakabaBless", KColor(0.827, 0.831, 0.992, 1))
 		EID:addColor("ColorSoul", KColor(0.827, 0.831, 0.992, 1))
 		EID:addColor("ColorWakabaNemesis", KColor(0.921, 0.6, 0.603, 1))
@@ -117,25 +139,20 @@ if EID then
 			return {"Blank", 0, 0, 0}
 		end
 		EID:addColor("ColorBookofConquest", nil, function(_)
-			local maxAnimTime = 80
-			local animTime = wakaba.G:GetFrameCount() % maxAnimTime
 			local c = EID.InlineColors
-			local colors = {c["ColorBoCLight"], c["ColorBocDark"]}
-			local colorFractions = (maxAnimTime - 1) / #colors
-			local subAnm = math.floor(animTime / (colorFractions + 1)) + 1
-			local primaryColorIndex = subAnm % (#colors + 1)
-			if primaryColorIndex == 0 then
-				primaryColorIndex = 1
-			end
-			local secondaryColorIndex = (subAnm + 1) % (#colors + 1)
-			if secondaryColorIndex == 0 then
-				secondaryColorIndex = 1
-			end
-			return EID:interpolateColors(
-				colors[primaryColorIndex],
-				colors[secondaryColorIndex],
-				(animTime % (colorFractions + 1)) / colorFractions
-			)
+			return SwagColors({c["ColorBoCLight"], c["ColorBocDark"]})
+		end)
+		EID:addColor("ColorRicher", nil, function(_)
+			return SwagColors({KColor(0.6, 0.74, 0.88, 1), KColor(0.31, 0.26, 0.49, 1), KColor(0.21, 0.16, 0.3, 1)})
+		end)
+		EID:addColor("ColorRira", nil, function(_)
+			return SwagColors({KColor(1, 0.74, 0.76, 1), KColor(0.87, 0.42, 0.57, 1), KColor(0.76, 0.28, 0.57, 1)})
+		end)
+		EID:addColor("ColorCiel", nil, function(_)
+			return SwagColors({KColor(1, 0.74, 0.49, 1), KColor(0.4, 0.2, 0, 1), KColor(1, 0.91, 0.79, 1)})
+		end)
+		EID:addColor("ColorKoron", nil, function(_)
+			return SwagColors({KColor(0.75, 0.66, 0.87, 1), KColor(0.5, 0.37, 0.55, 1), KColor(0.22, 0.11, 0.25, 1)})
 		end)
 
 		local function LastPoolCondition(descObj)

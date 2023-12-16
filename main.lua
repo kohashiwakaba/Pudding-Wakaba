@@ -1382,6 +1382,7 @@ include('wakaba_src.items.1044_clovershard')
 
 
 include('wakaba_src.items.1042_murasame')
+include('wakaba_src.items.1043_caramellapancake')
 include('wakaba_src.items.1045_nasalover')
 include('wakaba_src.items.1046_crystals')
 include('wakaba_src.items.1047_3dprinter')

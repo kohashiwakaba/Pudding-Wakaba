@@ -892,7 +892,11 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "카라멜로 팬케이크",
 		description = ""
 		.. "#↑ 목숨 +1"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} 사망 시 전 방에서 Richer로 부활합니다."
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↑ {{LuckSmall}}행운 +1"
+		.. "#공격이 카라멜로 멤버의 파리로 바뀌거나 추가로 소환됩니다."
+		.. "#{wakaba_cp1}"
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} 사망 시 전 방에서 Richer로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer의 경우 Richer 캐릭터로 변경되지 않습니다."
 		.. "{{CR}}",
 		queueDesc = "잊혀진 레시피",
@@ -2812,6 +2816,11 @@ if EID then
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}획득 성공 : "
 
 	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! {1} 버튼을 누르면 즉시 발동"
+
+	EID.descriptions[desclang].CaramellaFlyRicher = "!!! {{ColorRicher}}리셰: 파리가 캐릭터의 공격력 x4의 피해를 줍니다."
+	EID.descriptions[desclang].CaramellaFlyRira = "!!! {{ColorRira}}리라: 파리가 캐릭터의 공격력 x3의 침수 피해를 줍니다."
+	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}시엘: 파리가 캐릭터의 공격력 x10의 폭발 피해를 줍니다. (캐릭터 피해 없음)"
+	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}코론: 파리가 캐릭터의 공격력 x4의 석화 피해를 줍니다."
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 

@@ -812,8 +812,13 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "Caramella Pancake",
 		description = ""
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "#↑ {{Luck}} +1 Luck"
+		.. "#Replaces/spawns weapons to Caramella flies depending of Isaac's weapon"
+		.. "#{wakaba_cp1}"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} Respawn as Richer on death"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives"
+		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.EASTER_EGG] = {
@@ -2568,6 +2573,11 @@ if EID then
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}Succeed for matching quality : "
 
 	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! Press {1} to activate immediately"
+
+	EID.descriptions[desclang].CaramellaFlyRicher = "!!! {{ColorRicher}}Richer: The fly deals 4x Isaac's damage"
+	EID.descriptions[desclang].CaramellaFlyRira = "!!! {{ColorRira}}Rira: The fly deals 3x Isaac's damage + aqua status"
+	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}Ciel: The fly deals 10x Isaac's damage + explosion damage (does not hurt Isaac)"
+	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}Koron: The fly deals 4x Isaac's damage + petrify status"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
