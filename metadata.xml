@@ -6,7 +6,7 @@
     <description>The various uncommon girls arrived to basement!
 
 [h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
-[b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean compatible)
+[b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean/Chinese compatible)
 [b]HIGHLY[/b] recommended to use Encyclopedia
 
 Mod Includes : 
@@ -80,8 +80,9 @@ True co-op not tested, but most items should work. except for certain items whic
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - NFrost - charge bar library
-- Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.</description>
-    <version>107.9</version>
+- Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
+- YouDuckBoom - Chinese EID translation</description>
+    <version>107.13</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

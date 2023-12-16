@@ -34,6 +34,8 @@ local credits = {
 	{"",				"character costume protector"},
 	{"iristeru",				""},
 	{"",				"base frame for character sprites"},
+	{"youduckboom",				""},
+	{"",				"chinese eid translation"},
 	"",
 	{"you", "playing the mod"}
 }
