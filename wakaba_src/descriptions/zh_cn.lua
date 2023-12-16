@@ -65,8 +65,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ 发射穿透眼泪，除了若叶"
 			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
 			.. "#↓ 阻止 {{Quality4}} 道具生成, 也降低 {{Quality3}}道具出现几率"
-			.. "#卡牌和符文有概率替换为 {{Card78}}红钥匙"
-			.. "#{{DevilRoom}} 恶魔房间的物品价格被设定为6个硬币s"
+			.. "#{{SoulHeart}}所有道具交易都改为魂心"
 			.. "#所有受到的伤害都不会被视为惩罚性的伤害"
 			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
 			.. "{{CR}}",
@@ -80,8 +79,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 拾取物品时获得临时 {{Damage}} +3.6 伤害提升和永久 全属性下降"
 			.. "#{{AngelDevilChance}}100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
 			.. "#↑ 可以拿取所有道具"
-			.. "#卡牌和符文有几率被替换成 {{Card78}}红钥匙"
-			.. "#{{DevilRoom}} 恶魔房间物品的价格被设定为6枚硬币"
+			.. "#{{SoulHeart}}所有道具交易都改为魂心"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -740,7 +738,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "萤火虫提灯",
 		description = ""
 			.. "#↑ {{Range}} +2攻击距离"
-			.. "#↑ {{Luck}} +1 Luck"
+			.. "#↑ {{Luck}} +1 幸运"
 			.. "#{{WakabaAntiCurseDarkness}} 免疫黑暗诅咒"
 			.. "#通过奖励板可以为陷阱生成清理房间的奖励"
 			.. "{{CR}}",
@@ -869,9 +867,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "对所有漂浮的敌人造成333点分裂伤害#{{Bomb}} 消耗2个炸弹",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
-		itemName = "Secret Door",
-		description = "Teleports to Starting room"
-			.. "#!!! Other effects may occur in certain situations"
+		itemName = "秘密通道",
+		description = "传送到初始房间"
+			.. "#!!!在某些情况下可能会出现其他效果"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
