@@ -54,7 +54,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
 		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#Cards and runes has chance to be replaced into {{Card78}}Cracked Key"
-		.. "#{{DevilRoom}} Price of Devil room items are set to 6 coins"
+		.. "#{{SoulHeart}}All collectibles for sale requires Soul Hearts" -- This line is changed
 		.. "#All damage taken will be non-penalty damage"
 		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
@@ -69,7 +69,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors except Blue Womb"
 		.. "#↑ Can get all items with selection"
 		.. "#Cards and runes has chance to be replaced into {{Card78}}Cracked Key"
-		.. "#{{DevilRoom}} Price of Devil room items are set to 6 coins"
+		.. "#{{SoulHeart}}All collectibles for sale requires Soul Hearts" -- This line is changed (same line as Wakaba's Nemesis)
 		.. "#All damage taken will be non-penalty damage"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
