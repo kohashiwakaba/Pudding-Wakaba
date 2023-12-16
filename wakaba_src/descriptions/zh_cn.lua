@@ -77,9 +77,9 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#↑ 穿甲眼泪（若叶除外"
 			.. "#↓ 拾取物品时获得临时 {{Damage}} +3.6 伤害提升和永久 全属性下降"
-			.. "#{{AngelDevilChance}}100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
+			.. "#{{AngelDevilChance}} 100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
 			.. "#↑ 可以拿取所有道具"
-			.. "#{{SoulHeart}}所有道具交易都改为魂心"
+			.. "#{{SoulHeart}} 所有道具交易都改为魂心"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
