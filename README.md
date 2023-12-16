@@ -17,7 +17,7 @@ An anime mod that contains characters from the creator's favorite.
 - 19 new Challenges
 
 ![RicherPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/19b70f9d-f057-4df7-8cd3-b94983212717)
-**Current Version : v107b-Richer**(updated time : 2023-10-31)
+**Current Version : v107d-Richer**(updated time : 2023-12-16)
 
 ![RiraPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/8bf2009d-706b-4d2e-940c-bbd13ec817c8)
 **In development : v1??-???**
@@ -81,3 +81,4 @@ Check [This link](https://kohashiwakaba.notion.site/4e87f1c646524283896401a27075
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - Sanio - Character Costume Protector library / PnW uses modified version of Costume Protector.
+- YouDuckBoom - Chinese EID translation
