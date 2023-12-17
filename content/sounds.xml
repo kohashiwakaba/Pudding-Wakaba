@@ -1,57 +1,82 @@
 <sounds root="sfx/">
-    <sound name="deadseascrolls_pop">
-        <sample weight="1" path="deadseascrolls/pop.wav"/>
-    </sound>
-    <sound name="deadseascrolls_whoosh">
-        <sample weight="1" path="deadseascrolls/whoosh.wav"/>
-    </sound>
-    <sound name="aeion_charged">
-        <sample weight="1" path="dreadsfx/aeion_charged.wav"/>
-    </sound>
-    <sound name="pb_explosion">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_01.wav"/>
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_02.wav"/>
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_03.wav"/>
-    </sound>
-    <sound name="pb_loop">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_loop.wav"/>
-    </sound>
-    <sound name="pb_charge">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_charge.wav"/>
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_charge_02.wav"/>
-    </sound>
-    <sound name="pb_after_explosion1">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion3.wav"/>
-    </sound>
-    <sound name="pb_after_explosion2">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion5.wav"/>
-    </sound>
-    <sound name="pb_after_explosion3">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion7.wav"/>
-    </sound>
-    <sound name="pb_after_explosion4">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion8.wav"/>
-    </sound>
-    <sound name="pb_after_explosion5">
-        <sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion9.wav"/>
-    </sound>
-    <sound name="chimaki_main">
-        <sample weight="1" path="chimaki/chimaki_0001.wav"/>
-    </sound>
-    <sound name="chimaki_rand">
-        <sample weight="1" path="chimaki/chimaki_0001.wav"/>
-        <sample weight="1" path="chimaki/chimaki_0004.wav"/>
-        <sample weight="1" path="chimaki/chimaki_0009.wav"/>
-        <sample weight="1" path="chimaki/chimaki_0010.wav"/>
-        <sample weight="1" path="chimaki/chimaki_0018.wav"/>
-    </sound>
-    <sound name="chimaki_triple">
-        <sample weight="1" path="chimaki/chimaki_triple.wav"/>
-    </sound>
-    <sound name="chimaki_hurt">
-        <sample weight="1" path="chimaki/chimaki_hurt.wav"/>
-    </sound>
-    <sound name="chimaki_question">
-        <sample weight="1" path="chimaki/chimaki_question.wav"/>
-    </sound>
+	<sound name="deadseascrolls_pop">
+		<sample weight="1" path="deadseascrolls/pop.wav"/>
+	</sound>
+	<sound name="deadseascrolls_whoosh">
+		<sample weight="1" path="deadseascrolls/whoosh.wav"/>
+	</sound>
+	<sound name="aeion_charged">
+		<sample weight="1" path="dreadsfx/aeion_charged.wav"/>
+	</sound>
+	<sound name="pb_explosion">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_01.wav"/>
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_02.wav"/>
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_03.wav"/>
+	</sound>
+	<sound name="pb_loop">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_loop.wav"/>
+	</sound>
+	<sound name="pb_charge">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_charge.wav"/>
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_charge_02.wav"/>
+	</sound>
+	<sound name="pb_after_explosion1">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion3.wav"/>
+	</sound>
+	<sound name="pb_after_explosion2">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion5.wav"/>
+	</sound>
+	<sound name="pb_after_explosion3">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion7.wav"/>
+	</sound>
+	<sound name="pb_after_explosion4">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion8.wav"/>
+	</sound>
+	<sound name="pb_after_explosion5">
+		<sample weight="1" path="dreadsfx/weapons_powerbomb_powerbombonexplosion9.wav"/>
+	</sound>
+	<sound name="chimaki_main">
+		<sample weight="1" path="chimaki/chimaki_0001.wav"/>
+	</sound>
+	<sound name="chimaki_rand">
+		<sample weight="1" path="chimaki/chimaki_0001.wav"/>
+		<sample weight="1" path="chimaki/chimaki_0004.wav"/>
+		<sample weight="1" path="chimaki/chimaki_0009.wav"/>
+		<sample weight="1" path="chimaki/chimaki_0010.wav"/>
+		<sample weight="1" path="chimaki/chimaki_0018.wav"/>
+	</sound>
+	<sound name="chimaki_triple">
+		<sample weight="1" path="chimaki/chimaki_triple.wav"/>
+	</sound>
+	<sound name="chimaki_hurt">
+		<sample weight="1" path="chimaki/chimaki_hurt.wav"/>
+	</sound>
+	<sound name="chimaki_question">
+		<sample weight="1" path="chimaki/chimaki_question.wav"/>
+	</sound>
+	<sound name="richer_hurt">
+		<sample weight="1" path="richer/richer_hurt1.wav"/>
+		<sample weight="1" path="richer/richer_hurt2.wav"/>
+	</sound>
+	<sound name="richer_death">
+		<sample weight="1" path="richer/richer_death.wav"/>
+	</sound>
+	<sound name="richer_item_rabbitribbon">
+		<sample weight="1" path="richer/richer_hazukashi_itemsnd.wav"/>
+	</sound>
+	<sound name="richer_item_caramellapancake">
+		<sample weight="1" path="richer/richer_tadaima.wav"/>
+	</sound>
+	<sound name="richer_item_sweetscatalog">
+		<sample weight="1" path="richer/richer_ittadakimasu.wav"/>
+	</sound>
+	<sound name="richer_item_richeruniform">
+		<sample weight="1" path="richer/richer_akagakimaki_itemsnd.wav"/>
+	</sound>
+	<sound name="richer_hazukashi_strong">
+		<sample weight="1" path="richer/richer_hazukashi_strong.wav"/>
+	</sound>
+	<sound name="richer_item_lilricher">
+		<sample weight="1" path="richer/richer_drunk_nadenade_pls.wav"/>
+	</sound>
 </sounds>

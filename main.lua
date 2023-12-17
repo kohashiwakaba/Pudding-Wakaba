@@ -1323,6 +1323,8 @@ include('wakaba_src.functions.hit_counter')
 include('wakaba_src.functions.room_name_display')
 include('wakaba_src.functions.isc_roomgen')
 include('wakaba_src.functions.spawner')
+include('wakaba_src.functions.custom_item_sound')
+include('wakaba_src.functions.custom_hurt_sound')
 
 include('wakaba_src.items.0000_blessing')
 include('wakaba_src.items.0001_bookofshiori')
