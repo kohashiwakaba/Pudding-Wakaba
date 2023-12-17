@@ -57,6 +57,8 @@
 	<sound name="richer_hurt">
 		<sample weight="1" path="richer/richer_hurt1.wav"/>
 		<sample weight="1" path="richer/richer_hurt2.wav"/>
+		<sample weight="1" path="richer/richer_hurt3.wav"/>
+		<sample weight="1" path="richer/richer_hurt4.wav"/>
 	</sound>
 	<sound name="richer_death">
 		<sample weight="1" path="richer/richer_death.wav"/>
