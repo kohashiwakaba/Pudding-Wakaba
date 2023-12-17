@@ -932,6 +932,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Spawns 1 of each pickup type"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.CHEWY_ROLLY_CAKE] = {
+		itemName = "Chewy Rolly Cake",
+		description = "!!! Upon taking damage:"
+		.. "#↑ {{Speed}} +0.3 Speed for the room"
+		.. "#Clears nearby projectiles"
+		.. "#{{Slow}} Slows all enemies in the room permanently"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

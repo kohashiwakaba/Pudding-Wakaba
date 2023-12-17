@@ -1038,6 +1038,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "잊혀졌던 기억",
 	},
+	[wakaba.Enums.Collectibles.CHEWY_ROLLY_CAKE] = {
+		itemName = "츄잉 롤케이크",
+		description = "!!! 피격 시 그 방에서:"
+		.. "#↑ 그 방에서 {{SpeedSmall}}이동속도 +0.3"
+		.. "#주변의 탄환을 제거합니다."
+		.. "#{{Slow}} 방 안의 모든 적들을 영구적으로 둔화시킵니다."
+		.. "{{CR}}",
+		queueDesc = "휘몰아치는 그 맛",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."

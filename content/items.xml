@@ -144,7 +144,7 @@
 	<passive id="107" cache="firedelay damage" description="???" gfx="sakuramontblanc.png" name="Sakura Mont Blanc" tags="noeden summonable offensive" quality="2" hidden="true" achievement="9999"/>
 	<active id="108" description="Tea-bagging shots" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
 	<passive id="109" cache="all" hearts="4" maxhearts="2" description="Ultra Gluton" gfx="rirabento.png" name="Rira's Bento" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
-	<passive id="110" description="???" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
+	<passive id="110" cache="speed" description="Whriling taste" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="noeden summonable nolostbr" quality="1" hidden="true" achievement="9999"/>
 	<passive id="111" description="Fading memories" gfx="sakuracapsule.png" name="Sakura Capsule" tags="noeden summonable offensive" quality="2" hidden="true" achievement="9999" persistent="true"/>
 	<passive id="112" description="Mind-expandable explosion" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" quality="3" hidden="true" achievement="9999"/>
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="noeden summonable offensive baby uniquefamiliar" quality="4" hidden="true" achievement="9999"/>
