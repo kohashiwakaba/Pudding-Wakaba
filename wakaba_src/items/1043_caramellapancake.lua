@@ -117,11 +117,11 @@ function wakaba:EffectUpdate_CaramellaPancake_Laser(laserEndpoint)
 		local laser = laserEndpoint.SpawnerEntity
 		local var = laser.Variant
 		local subt = laser.SubType
+		local player = isc:getPlayerFromEntity(laser)
 		if (var == 1 and subt == 3) or var == 5 or var == 12 then
-		elseif player:HasWeaponType(WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then
-		elseif laser.FrameCount % 6 == 0 then
-			local player = isc:getPlayerFromEntity(laser)
-			if player and hasCaramellaEffect(player) then
+		elseif player and player:HasWeaponType(WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then
+		elseif player and laser.FrameCount % 6 == 0 then
+			if hasCaramellaEffect(player) then
 				local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.RIRA)
 				if #flies < 10 then
 					wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RIRA)
