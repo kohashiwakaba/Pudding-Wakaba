@@ -27,7 +27,7 @@ function wakaba:TakeDamage_CustomSound_LostSoul(soul)
 		checkType = PlayerType.PLAYER_ISAAC
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CustomSound, EntityType.ENTITY_FAMILIAR)
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CustomSound_LostSoul, EntityType.ENTITY_FAMILIAR)
 
 ---@param collectibleType CollectibleType
 ---@param rng RNG
