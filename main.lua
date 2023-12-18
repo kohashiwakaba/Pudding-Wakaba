@@ -1621,7 +1621,7 @@ function wakaba:init(continue)
 			end
 		end
 		wakaba.runstate.playersavedata = reservedplayerdatas
-		wakaba:LoadHiddenItemData()
+		--wakaba:LoadHiddenItemData()
 		wakaba:ResetWispStatus()
 	end
 	-- Run this whether continue or not
