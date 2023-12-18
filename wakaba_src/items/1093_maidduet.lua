@@ -71,7 +71,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_MaidD
 -- TODO 패밀리어 기능으로 교체
 function wakaba:RoomClear_MaidDuet()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-		if player:GetEffcts():HasCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET) then
+		if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET) then
 			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET, -1)
 		end
 	end)
