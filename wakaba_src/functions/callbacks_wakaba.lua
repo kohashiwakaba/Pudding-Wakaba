@@ -419,6 +419,19 @@ wakaba.Callback = {
 	-- - Return true to prevent the collectible to be selected
 	-- ---
 	WAKABA_COLLECTIBLE_REROLL = {},
+	-- ---
+	-- EVALUATE_MAID_DUET
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE, to choose check Maid Duet should be used or not
+	--
+	-- ---
+	-- Parameters :
+	-- - `player` - EntityPlayer
+	--
+	-- ---
+	-- - Return true to prevent usage of Maid Duet
+	-- ---
+	EVALUATE_MAID_DUET = {},
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

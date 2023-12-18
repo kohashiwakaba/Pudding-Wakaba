@@ -1047,6 +1047,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "휘몰아치는 그 맛",
 	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		itemName = "메이드 듀엣",
+		description = ""
+		.. "#{wakaba_md1} 버튼으로 소지 중인 액티브와 픽업 슬롯 액티브를 교체합니다."
+		.. "#카드/알약 액티브가 비어있을 경우 액티브를 픽업 슬롯으로 옮깁니다."
+		.. "#한 번 옮기면 방 클리어 시 다시 옮길 수 있습니다."
+		.. "#!!! (일부 아이템은 픽업 슬롯으로 옮길 수 없음)"
+		.. "{{CR}}",
+		queueDesc = "액티브 교체 요정",
+	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."
@@ -2830,6 +2840,8 @@ if EID then
 	EID.descriptions[desclang].CaramellaFlyRira = "!!! {{ColorRira}}리라: 파리가 캐릭터의 공격력 x3의 침수 피해를 줍니다."
 	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}시엘: 파리가 캐릭터의 공격력 x10의 폭발 피해를 줍니다. (캐릭터 피해 없음)"
 	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}코론: 파리가 캐릭터의 공격력 x4의 석화 피해를 줍니다."
+
+	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}리셰{{CR}} & {{ColorRira}}리라{{CR}} 듀엣이 이 아이템을 카드/알약 슬롯으로 넣을 수 없습니다."
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 

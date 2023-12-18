@@ -1427,6 +1427,7 @@ include('wakaba_src.items.1088_rirabandage')
 include('wakaba_src.items.1089_kanaelens')
 include('wakaba_src.items.1091_sakuracapsule')
 include('wakaba_src.items.1092_chewyrollycake')
+include('wakaba_src.items.1093_maidduet')
 
 include('wakaba_src.pickups.2005_dreamcard')
 include('wakaba_src.items.1200_doubledreams')

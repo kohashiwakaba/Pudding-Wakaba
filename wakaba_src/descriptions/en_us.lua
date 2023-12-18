@@ -940,6 +940,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Slow}} Slows all enemies in the room permanently"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		itemName = "Maid Duet",
+		description = ""
+		.. "#Pressing {wakaba_md1} to swap current active with pocket active"
+		.. "#Will be inserted if pocket active is empty"
+		.. "#Can only swap once per room clear"
+		.. "#!!! Some active items cannot be inserted into pocket"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
@@ -2586,6 +2595,8 @@ if EID then
 	EID.descriptions[desclang].CaramellaFlyRira = "!!! {{ColorRira}}Rira: The fly deals 3x Isaac's damage + aqua status"
 	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}Ciel: The fly deals 10x Isaac's damage + explosion damage (does not hurt Isaac)"
 	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}Koron: The fly deals 4x Isaac's damage + petrify status"
+
+	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}Richer{{CR}} & {{ColorRira}}Rira{{CR}} cannot put this into pocket!"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
