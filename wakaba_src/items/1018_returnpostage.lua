@@ -1,3 +1,5 @@
+
+local isc = require("wakaba_src.libs.isaacscript-common")
 local haspostage = 0
 
 wakaba.PostageConquerEntities = {
