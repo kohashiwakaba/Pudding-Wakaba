@@ -44,17 +44,40 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 		or (player.ControllerIndex > 0 and Controller and Input.IsButtonPressed(Controller.STICK_RIGHT, player.ControllerIndex) and Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex)) then
 			if canUseMaidDuet(player) then
 				local duetPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.MAID_DUET)
+				local config = Isaac.GetItemConfig()
 
 				local firstActive = player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
+				local firstConfig = config:GetCollectible(firstActive)
 				local firstCharge = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY)
-				local secondActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
-				local secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
 
 				local extraFirstCharge = 0
-				local extraSecondCharge = 0
+				if firstConfig:IsCollectible() then
+					if firstConfig.ChargeType == ItemConfig.CHARGE_TIMED then
+						extraFirstCharge = (firstConfig.MaxCharges * (duetPower - 1)) // 10
+					elseif firstConfig.ChargeType == ItemConfig.CHARGE_TIMED then
+						extraFirstCharge = duetPower - 1
+					end
+				end
 
-				isc:setActiveItem(player, secondActive, ActiveSlot.SLOT_PRIMARY, secondCharge + (duetPower - 1))
-				isc:setActiveItem(player, firstActive, ActiveSlot.SLOT_POCKET, firstCharge + (duetPower - 1))
+
+				local secondActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
+				local extraSecondCharge = 0
+				if secondActive > 0 then
+					local secondConfig = config:GetCollectible(secondActive)
+					local secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
+					if secondConfig:IsCollectible() then
+						if secondConfig.ChargeType == ItemConfig.CHARGE_TIMED then
+							extraSecondCharge = (secondConfig.MaxCharges * (duetPower - 1)) // 10
+						elseif secondConfig.ChargeType == ItemConfig.CHARGE_TIMED then
+							extraSecondCharge = duetPower - 1
+						end
+					end
+				end
+
+				isc:setActiveItem(player, firstActive, ActiveSlot.SLOT_POCKET, firstCharge + extraFirstCharge)
+				if secondActive > 0 then
+					isc:setActiveItem(player, secondActive, ActiveSlot.SLOT_PRIMARY, secondCharge + extraSecondCharge)
+				end
 
 				SFXManager():Play(SoundEffect.SOUND_DIVINE_INTERVENTION)
 
