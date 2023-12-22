@@ -144,7 +144,7 @@ wakaba.Enums.Collectibles = {
 	SAKURA_CAPSULE = Isaac.GetItemIdByName("Sakura Capsule"),
 	MAID_DUET = Isaac.GetItemIdByName("Maid Duet"),
 
-	--CHIMAKI = Isaac.GetItemIdByName("Chimaki"),
+	RABBEY_WARD = Isaac.GetItemIdByName("Rabbey Ward"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
 
 	-- Tainted Items
@@ -162,6 +162,8 @@ wakaba.Enums.Collectibles = {
 	BALANCE = Isaac.GetItemIdByName("Balance ecnalaB"),
 	RICHERS_FLIPPER = Isaac.GetItemIdByName("Richer's Flipper"),
 	RICHERS_NECKLACE = Isaac.GetItemIdByName("Richer's Necklace"),
+	CROSS_BOMB = Isaac.GetItemIdByName("Cross Bomb"),
+	GOOMBELLA = Isaac.GetItemIdByName("Goombella"),
 	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 

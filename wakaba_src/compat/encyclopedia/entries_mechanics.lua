@@ -1,0 +1,3 @@
+wakaba.encyclopediadesc.desc.mechanics = {
+	
+}
