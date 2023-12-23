@@ -896,7 +896,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
-		description = "Activates white fire effect",
+		description = "Activates white fire effect#Install whiter fireplace on Isaac's position",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",

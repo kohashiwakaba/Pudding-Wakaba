@@ -137,7 +137,7 @@
 	<active id="100" cache="tearflag" description="Temporary Random tears + Critical Flavors" gfx="rirabra.png" maxcharges="4" name="Rira's Bra" tags="offensive" quality="2"/>
 	<active id="101" description="Emergency Escape" gfx="secretdoor.png" maxcharges="2" name="Secret Door" tags="offensive" quality="2"/>
 	<passive id="102" description="Itch taste" gfx="richernecklace.png" name="Richer's Necklace" tags="tech summonable offensive" quality="3"/>
-	<active id="103" description="Don't stare like that, it's embarrasing..." gfx="__placeholder.png" maxcharges="2" name="Rira's Coat" tags="" quality="2" hidden="true" achievement="9999"/>
+	<active id="103" description="Don't stare like that, it's embarrasing..." gfx="riracoat.png" maxcharges="4" name="Rira's Coat" tags="noeden" quality="2" hidden="true" achievement="9999"/>
 	<passive id="104" description="Ecchi Aqua shot" gfx="riraswimsuit.png" name="Rira's Swimsuit" tags="summonable offensive" quality="3"/>
 	<passive id="105" description="Feeling her sense" gfx="rirabandage.png" name="Rira's Bandage" tags="summonable offensive" quality="3"/>
 	<passive id="106" cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="noeden summonable offensive" quality="3"/>

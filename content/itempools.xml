@@ -58,6 +58,7 @@
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -189,6 +190,7 @@
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -341,6 +343,7 @@
 		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Coat" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="woodenChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>

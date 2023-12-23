@@ -977,7 +977,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "리라의 코트",
-		description = "사용 시 The Lost(영혼) 상태가 됩니다.#{{Blank}} (Downpour/Dross 2 스테이지의 흰색 불에 닿은 효과와 동일)#방 클리어 후 다른 방 진입 시 상태가 복원됩니다.",
+		description = "사용 시 The Lost(영혼) 상태가 되며 캐릭터의 위치에 흰색 모닥불을 설치합니다.#{{Blank}} (Downpour/Dross 2 스테이지의 흰색 불에 닿은 효과와 동일)#방 클리어 후 다른 방 진입 시 상태가 복원됩니다.",
 		queueDesc = "그렇게 뚫어지게 쳐다보시면 부끄러워요...",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {

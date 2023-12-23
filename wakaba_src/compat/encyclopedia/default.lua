@@ -274,12 +274,16 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_BEGGAR,
 	},
 })
--- TODO Rira's Coat
+-- Rira's Coat
 Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = wakaba.Enums.Collectibles.RIRAS_COAT,
-	Hide = true,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_OLD_CHEST,
+	},
 })
 -- Richer Ticket
 Encyclopedia.AddCard({

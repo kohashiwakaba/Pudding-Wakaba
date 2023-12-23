@@ -887,6 +887,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "On use, Grants white fire effect for Isaac."},
+			{str = "Also installs white fireplace."},
 			{str = "The white fire effect is same as touching a white fire in Downpour/Dross 2."},
 			{str = "The white fire effect is removed on room clear, and entering the other room."},
 		},
