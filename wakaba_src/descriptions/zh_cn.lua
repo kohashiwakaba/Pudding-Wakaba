@@ -77,9 +77,9 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#↑ 穿甲眼泪（若叶除外"
 			.. "#↓ 拾取物品时获得临时 {{Damage}} +3.6 伤害提升和永久 全属性下降"
-			.. "#{{AngelDevilChance}}100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
+			.. "#{{AngelDevilChance}} 100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
 			.. "#↑ 可以拿取所有道具"
-			.. "#{{SoulHeart}}所有道具交易都改为魂心"
+			.. "#{{SoulHeart}} 所有道具交易都改为魂心"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -109,7 +109,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#玩家在范围内时:"
 			.. "↑ {{Damage}} +1 攻击"
-			.. "↑ {{Tears}} +2.0 射速"
+			.. "↑ {{Tears}} +2.0 射速修正"
 			.. "↑ 跟踪眼泪"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
@@ -227,7 +227,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "薄荷巧克力冰淇淋",
 		description = ""
 			.. "#↑ {{Tears}} +100% 射速倍率 (不叠加)"
-			.. "#↑ {{Tears}} +0.2 额外射速(叠加)"
+			.. "#↑ {{Tears}} +0.2 额外射速修正(叠加)"
 			.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -771,7 +771,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}}血量越低，攻击力乘数越高（最高+75%）"
 			.. "#!!! {{HolyMantle}} 神圣斗篷防御也算血量"
-			.. "#↑ {{Tears}} +1射速"
+			.. "#↑ {{Tears}} +1射速修正"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
@@ -779,7 +779,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#{{BossRoom}} 在击败Boss房间后生成Richer的ROLL机"
 			..
-			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也回生成"
+			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
 			.. "#Richer的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
 			.. "{{CR}}",
 	},
@@ -805,7 +805,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "复活节彩蛋",
 		description = ""
 			.. "#环绕物，发射跟踪眼泪，每颗造成1点伤害"
-			.. "#拾取复活节硬币会提高伤害和射速"
+			.. "#拾取复活节硬币会提高伤害和射速修正"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ONSEN_TOWEL] = {
@@ -847,7 +847,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "试炼炖汤",
 		description =
-		"!!! 激活时:#↑ {{Tears}}每层增加1射速#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}每层增加25%额外攻击力#所有主动道具在清理房间后完全充能",
+		"!!! 激活时:#↑ {{Tears}}每层增加1射速修正#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}每层增加25%额外攻击力#所有主动道具在清理房间后完全充能",
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "自焚",
@@ -1249,7 +1249,7 @@ wakaba.descriptions[desclang].epiphany_golden = {
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		isReplace = false,
-		description = "{{ColorGold}}每消除一个弹幕，就获得 {{Tears}}小幅度的射速加成，这个加成会慢慢消失",
+		description = "{{ColorGold}}每消除一个弹幕，就获得 {{Tears}}小幅度的射速修正加成，这个加成会慢慢消失",
 	},
 	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
 		isReplace = false,
@@ -1296,7 +1296,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = {
 		itemName = "带我走",
 		description = ""
-			.. "#↑ {{Tears}} +1.5射速"
+			.. "#↑ {{Tears}} +1.5射速修正"
 			.. "#进入马腿房会生成爸爸的便条,不会生成boss"
 			.. "#在支线也有效果"
 			.. "#!!! {{ColorRed}}触发效果无法进入子宫层{{ColorReset}}"
@@ -1315,7 +1315,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = {
 		itemName = "四叶草",
 		description = ""
-			.. "#↑ {{Tears}} +0.3 射速"
+			.. "#↑ {{Tears}} +0.3 射速修正"
 			.. "#↑ {{Luck}} +2 幸运"
 			.. "#↑ {{Luck}} +100% 幸运倍率"
 			.. "#↑ 幸运属性总是正数"
@@ -1569,7 +1569,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "试炼炖汤",
 		description =
-		"移除所有心与神圣斗篷防御#增加8层效果:#↑ {{Tears}}+1 射速#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}+25% 攻击力#主动道具满充能#清空房间减少一次效果.",
+		"移除所有心与神圣斗篷防御#增加8层效果:#↑ {{Tears}}+1 射速修正#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}+25% 攻击力#主动道具满充能#清空房间减少一次效果.",
 		mimiccharge = 8,
 	},
 }
@@ -2255,5 +2255,5 @@ if EID then
 
 	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! 按 {1} 立即激活"
 
-	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吸收{{CR}}"
+	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
 end
