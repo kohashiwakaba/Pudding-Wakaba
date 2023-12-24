@@ -14,11 +14,11 @@ wakaba.descriptions[desclang].birthright = {
 			"}}若叶的宿敌不再降低所有的属性，并且减少伤害衰减的速度#免疫爆炸和碾压的影响",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
-		playerName = "{{ColorBookofShiori}}栞",
+		playerName = "{{ColorBookofShiori}}汐宫",
 		description = "↑ 钥匙被消耗时触发主动道具(最小为 1)",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
-		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted 栞)",
+		playerName = "{{ColorCyan}}密涅瓦{{CR}}(Tainted 汐宫)",
 		description = "{{Collectible" ..
 			wakaba.Enums.Collectibles.MINERVA_AURA ..
 			"}} 一直激活光环# {{Collectible" ..
@@ -36,13 +36,13 @@ wakaba.descriptions[desclang].birthright = {
 			wakaba.Enums.Collectibles.FLASH_SHIFT .. "}} 闪移能力现在被移动到口袋物品槽.",
 	},
 	[wakaba.Enums.Players.RICHER] = {
-		playerName = "Richer",
+		playerName = "璃贝",
 		description = "#{{Collectible" ..
 			wakaba.Enums.Collectibles.SWEETS_CATALOG ..
 			"}}甜品目录的效果现在会持续到下一次使用目录为止#{{Collectible260}} 免疫诅咒",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
-		playerName = "Tainted Richer",
+		playerName = "Tainted 璃贝",
 		description = "#更耐用的火焰#{{Collectible" ..
 			wakaba.Enums.Collectibles.WATER_FLAME .. "}}水中焰每吸收一个火焰就会给予额外的被动效果",
 	},
@@ -85,7 +85,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
-		itemName = "栞之书",
+		itemName = "汐宫之书",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#使用书籍类主动道具时激活额外效果"
@@ -105,7 +105,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
-		itemName = "Minerva的领域",
+		itemName = "密涅瓦的领域",
 		description = ""
 			.. "#玩家在范围内时:"
 			.. "↑ {{Damage}} +1 攻击"
@@ -175,7 +175,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "辇道增七",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#{{PlanetariumChance}} 每层都会出现Richer的特殊星象房"
+			.. "#{{PlanetariumChance}} 每层都会出现璃贝的特殊星象房"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -401,7 +401,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		itemName = "栞的符文瓶",
+		itemName = "汐宫的符文瓶",
 		description = ""
 			.. "#{{Rune}} 给一个随机符文"
 			.. "{{CR}}",
@@ -425,7 +425,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "复古威胁",
 		description = ""
-			.. "#{{Player" .. wakaba.Enums.Players.SHIORI_B .. "}} 死亡时, 在当前房间重生为里栞"
+			.. "#{{Player" .. wakaba.Enums.Players.SHIORI_B .. "}} 死亡时, 在当前房间重生为里汐宫"
 			.. "#复活后,重置钥匙为0, 获得4把 {{Collectible656}}达摩剑"
 			..
 			"#!!! {{ColorBlink}}{{ColorRed}}受到任何惩罚伤害都会使达摩克利斯之剑掉落，并立即结束本局，无论玩家是否有复活！{{ColorReset}}"
@@ -550,13 +550,13 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
-		itemName = "Richer的脚蹼",
+		itemName = "璃贝的脚蹼",
 		description = ""
 			.. "#将{{Bomb}}/{{Key}} 和 {{Card}}/{{Pill}} 互相转换"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_NECKLACE] = {
-		itemName = "Richer的项链",
+		itemName = "璃贝的项链",
 		description = ""
 			.. "#未命中的眼泪会产生教条的激光"
 			.. "{{CR}}",
@@ -777,10 +777,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "声望通行证",
 		description = ""
-			.. "#{{BossRoom}} 在击败Boss房间后生成Richer的ROLL机"
+			.. "#{{BossRoom}} 在击败Boss房间后生成璃贝的ROLL机"
 			..
 			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
-			.. "#Richer的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
+			.. "#璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
@@ -797,8 +797,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "焦糖煎饼",
 		description = ""
-			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为Richer"
-			.. "#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里Richer只是复活"
+			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为璃贝"
+			.. "#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里璃贝只是复活"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.EASTER_EGG] = {
@@ -823,13 +823,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
-		itemName = "Richer的制服",
+		itemName = "璃贝的制服",
 		description = ""
 			.. "#不同的房间有不同的效果"
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.LIL_RICHER] = {
-		itemName = "Richer宝宝",
+		itemName = "璃贝宝宝",
 		description = ""
 			.. "#发射追踪子弹"
 			.. "#每一帧造成2点伤害"
@@ -1102,7 +1102,7 @@ wakaba.descriptions[desclang].richer_b = {
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description =
-		"赋予栞 {{Damage}} 1.2x攻击力倍率，并在当前房间给予神圣斗篷({{Collectible313}})护盾#{{ColorBookofShiori}}在下次使用书籍之前，发射神性之泪({{Collectible331}})",
+		"赋予汐宫 {{Damage}} 1.2x攻击力倍率，并在当前房间给予神圣斗篷({{Collectible313}})护盾#{{ColorBookofShiori}}在下次使用书籍之前，发射神性之泪({{Collectible331}})",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
 		description =
@@ -1110,7 +1110,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
 		description =
-		"生成 5 个虚空之口激光，每一跳造成栞的攻击力的 64% 的伤害#{{ColorBookofShiori}}在下次使用书籍之前，发射岩石泪({{Collectible592}})",
+		"生成 5 个虚空之口激光，每一跳造成汐宫的攻击力的 64% 的伤害#{{ColorBookofShiori}}在下次使用书籍之前，发射岩石泪({{Collectible592}})",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
 		description =
@@ -1118,7 +1118,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
 		description =
-		"巨魔炸弹和爆炸对敌人造成双倍伤害，在当前房间#{{ColorBookofShiori}}在下次使用书籍之前，发射爆炸泪，并且栞对爆炸免疫",
+		"巨魔炸弹和爆炸对敌人造成双倍伤害，在当前房间#{{ColorBookofShiori}}在下次使用书籍之前，发射爆炸泪，并且汐宫对爆炸免疫",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
 		description =
@@ -1161,7 +1161,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		description =
-		"不移动时无视敌人的护甲#{{ColorBookofShiori}}重置当前的栞之书泪珠加成",
+		"不移动时无视敌人的护甲#{{ColorBookofShiori}}重置当前的汐宫之书泪珠加成",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		description =
@@ -1173,7 +1173,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		description =
-		"阻止所有敌人的弹幕额外 2 秒#{{ColorBookofShiori}}重置当前的栞之书泪珠加成",
+		"阻止所有敌人的弹幕额外 2 秒#{{ColorBookofShiori}}重置当前的汐宫之书泪珠加成",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
 		description =
@@ -1181,7 +1181,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		description =
-		"所有瞄准以撒的敌人也会在以撒隐身时减速.#{{ColorBookofShiori}}(当前的栞之书泪珠加成没有变化)",
+		"所有瞄准以撒的敌人也会在以撒隐身时减速.#{{ColorBookofShiori}}(当前的汐宫之书泪珠加成没有变化)",
 	},
 }
 wakaba.descriptions[desclang].murasame = {
@@ -1354,7 +1354,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "书签袋",
 		description = ""
 			.. "#当进入新房间时，给予随机的一次性使用的书籍物品"
-			.. "#包含的书籍和栞在'所有书籍'模式下的初始书籍相同"
+			.. "#包含的书籍和汐宫在'所有书籍'模式下的初始书籍相同"
 			.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -1455,7 +1455,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "{{CR}}",
 	},
 	[wakaba.Enums.Trinkets.REPORT_CARD] = {
-		itemName = "Richer的成绩单",
+		itemName = "璃贝的成绩单",
 		description = ""
 			.. "#↑ {{Luck}} +5 幸运"
 			.. "#↓ 受到伤害会减少 {{Luck}} -0.5 幸运（不会低于最小值）"
@@ -1522,9 +1522,9 @@ wakaba.descriptions[desclang].cards = {
 		"{{Collectible636}} 触发R键效果#将你带回新的游戏的第一层#物品，属性提升和掉落物保持不变#{{Timer}} 重置游戏计时器#移除的所有消耗品 {{ColorRed}}包括生命值{{CR}}",
 	},
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
-		itemName = "Minerva 体验券",
+		itemName = "密涅瓦 体验券",
 		description = "{{Collectible" ..
-			wakaba.Enums.Collectibles.MINERVA_AURA .. "}}在这个房间激活Minerva的领域",
+			wakaba.Enums.Collectibles.MINERVA_AURA .. "}}在这个房间激活密涅瓦的领域",
 		mimiccharge = 3,
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
@@ -1542,8 +1542,8 @@ wakaba.descriptions[desclang].cards = {
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
-		itemName = "栞的魂石",
-		description = "{{Heart}} 治愈2红心s#激活栞书籍的随机眼泪效果",
+		itemName = "汐宫的魂石",
+		description = "{{Heart}} 治愈2红心s#激活汐宫书籍的随机眼泪效果",
 		mimiccharge = 8,
 		isrune = true,
 	},
@@ -1555,7 +1555,7 @@ wakaba.descriptions[desclang].cards = {
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
-		itemName = "Richer魂石",
+		itemName = "璃贝魂石",
 		description =
 		"{{Collectible712}} 随机生成1-6个道具灵火 ({{Collectible263}} : 1 ~ 3)#灵火的品质至少是{{Quality2}}+",
 		mimiccharge = 12,
@@ -1563,7 +1563,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "裂缝宝库",
-		description = "生成一个栞的宝库# 宝库需要12把钥匙解锁获得道具.",
+		description = "生成一个汐宫的宝库# 宝库需要12把钥匙解锁获得道具.",
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
@@ -1933,7 +1933,7 @@ wakaba.descriptions[desclang].curses = {
 			..
 			"#{{Collectible" ..
 			wakaba.Enums.Collectibles.RABBIT_RIBBON ..
-			"}} 如果玩的是Richer，或者持有兔子丝带，会在可能的情况下创建额外的特殊房间"
+			"}} 如果玩的是璃贝，或者持有兔子丝带，会在可能的情况下创建额外的特殊房间"
 			.. "",
 		seedeffect = SeedEffect.SEED_PERMANENT_CURSE_LABYRINTH,
 	},
@@ -2004,10 +2004,10 @@ wakaba.descriptions[desclang].curses = {
 	[wakaba.curses.CURSE_OF_SATYR] = {
 		icon = "WakabaCurseSatyr",
 		name = "半人羊诅咒",
-		description = "!!! 只有在栞使用'半人羊诅咒'模式时才会出现"
-			.. "#栞无法切换书籍"
+		description = "!!! 只有在汐宫使用'半人羊诅咒'模式时才会出现"
+			.. "#汐宫无法切换书籍"
 			.. "#使用口袋里的书会使书变成另一本"
-			.. "#不像未知书签或Maijima Mythology，这样使用书会改变栞的眼泪加成"
+			.. "#不像未知书签或Maijima Mythology，这样使用书会改变汐宫的眼泪加成"
 			.. "#这个诅咒无法被{{Collectible260}}黑蜡烛移除"
 			.. "",
 	},
@@ -2016,7 +2016,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "狙击手诅咒",
 		description = "!!! 只有在{{Player" ..
 			wakaba.Enums.Players.RICHER ..
-			"}}Richer，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
+			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseDarkness}} 替代黑暗诅咒"
 			.. "#眼泪是隐形的，并且在短时间内对敌人造成更少的伤害"
 			.. "#在4个瓷砖之后对敌人造成2倍的伤害"
@@ -2028,7 +2028,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "仙女诅咒",
 		description = "!!! 只有在{{Player" ..
 			wakaba.Enums.Players.RICHER ..
-			"}}Richer，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
+			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseLost}} 替代迷失诅咒"
 			.. "#无法看到远处的地图"
 			.. "#{{SecretRoom}} 可以揭示秘密房间和超级秘密房间"
@@ -2039,7 +2039,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "失忆诅咒",
 		description = "!!! 只有在{{Player" ..
 			wakaba.Enums.Players.RICHER ..
-			"}}Richer，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
+			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseMaze}} 替代迷宫诅咒"
 			.. "#有时候已经清理过的房间会随机变成未清理的"
 			.. "#特殊房间不包括在内"
@@ -2050,7 +2050,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "魔法少女诅咒",
 		description = "!!! 只有在{{Player" ..
 			wakaba.Enums.Players.RICHER ..
-			"}}Richer，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
+			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseUnknown}} 替代未知诅咒"
 			.. "#{{Card91}} 当前楼层永久失落诅咒状态"
 			.. "#{{Collectible285}} 所有敌人都会退化（如果可能的话）"
@@ -2136,46 +2136,46 @@ wakaba.descriptions[desclang].playernotes = {
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		-- icon = "",
-		name = "被污染的若叶",
-		description = "被污染的若叶是她孤独而不幸的过去版本"
+		name = "里若叶",
+		description = "里若叶是她孤独而不幸的过去版本"
 			.. "#她{{ColorRed}}不能{{CR}}得到好的物品，发射幽灵和穿透的眼泪"
 			.. "#{{DevilChance}} 她只能看到恶魔房间。所有的恶魔交易的价格都是6个硬币"
 			..
 			"#{{Damage}} 由于她缺乏爱，她每得到一个收集品就会暂时获得+3.6攻击力上升，但其他属性会永久降低"
-			.. "#{{Pill}} 被污染的若叶无法看到速度下降，运气上升的药丸"
+			.. "#{{Pill}} 里若叶无法看到速度下降，运气上升的药丸"
 			.. "#{{Collectible" ..
-			wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} 被污染的若叶开始时拥有若叶的仇敌"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.EATHEART .. "}} 被污染的若叶开始时拥有食心"
+			wakaba.Enums.Collectibles.WAKABAS_BLESSING .. "}} 里若叶开始时拥有若叶的仇敌"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.EATHEART .. "}} 里若叶开始时拥有食心"
 			--.. "#"
 			.. "",
 	},
 	-- shiori
 	[wakaba.Enums.Players.SHIORI] = {
 		-- icon = "",
-		name = "栞",
+		name = "汐宫",
 		description =
-			"栞是来自{{ColorBookofConquest}}只有神知道的世界{{CR}}的图书管理员，作者是若木民喜"
+			"汐宫是来自{{ColorBookofConquest}}只有神知道的世界{{CR}}的图书管理员，作者是若木民喜"
 			.. "#伤害低，但可以发射定向眼泪"
-			.. "#{{Key}} 栞需要钥匙才能使用主动道具。小电池可以恢复栞的钥匙"
+			.. "#{{Key}} 汐宫需要钥匙才能使用主动道具。小电池可以恢复汐宫的钥匙"
 			.. "#{{GoldenKey}} 商店里的电池会自动转换为金钥匙。获得金钥匙会自动转换为6个钥匙"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} 栞从Book of 栞开始"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} 汐宫从Book of 汐宫开始"
 			.. "",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		-- icon = "",
-		name = "Minerva",
-		description = "Minerva是木星姐妹之一，与栞相连" ..
+		name = "密涅瓦",
+		description = "密涅瓦是木星女神，是汐宫的女神" ..
 			"#她是一个小女孩，但她的翅膀使她能够飞行" ..
 			"#伤害低，但可以发射定向眼泪" ..
-			"#{{Key}} Minerva需要钥匙才能使用主动道具。小电池可以恢复Minerva的钥匙" ..
+			"#{{Key}} 密涅瓦需要钥匙才能使用主动道具。小电池可以恢复密涅瓦的钥匙" ..
 			"#{{GoldenKey}} 商店里的电池会自动转换为金钥匙。获得金钥匙会自动转换为6个钥匙" ..
 			"#{{Collectible" ..
 			wakaba.Enums.Collectibles.BOOK_OF_SHIORI ..
-			"}} Minerva从栞之书开始" ..
+			"}} 密涅瓦从汐宫之书开始" ..
 			"#{{Collectible" ..
 			wakaba.Enums.Collectibles.MINERVA_AURA ..
-			"}} Minerva从Minerva’s Aura开始" ..
-			"#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_CONQUEST .. "}} Minerva从Book of Conquest开始"
+			"}} 密涅瓦从密涅瓦的光环开始" ..
+			"#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_CONQUEST .. "}} 密涅瓦从Book of Conquest开始"
 			--.. "#"
 			.. "",
 	},
@@ -2194,42 +2194,42 @@ wakaba.descriptions[desclang].playernotes = {
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		-- icon = "",
-		name = "被污染的司",
+		name = "里司",
 		description = "???"
 			.. "#不能发射眼泪，但她初始携带仙女，村雨 "
 			.. "#由于不老药的副作用，她{{ColorRed}}没有无敌帧{{CR}}"
 			.. "#由于不老药，她以快速的速度恢复生命"
 			.. "#{{Collectible" ..
-			wakaba.Enums.Collectibles.ELIXIR_OF_LIFE .. "}} 被污染的司开始时拥有不老药"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.MURASAME .. "}} 被污染的司开始时拥有村雨"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.FLASH_SHIFT .. "}} 被污染的司开始时拥有闪移"
+			wakaba.Enums.Collectibles.ELIXIR_OF_LIFE .. "}} 里司开始时拥有不老药"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.MURASAME .. "}} 里司开始时拥有村雨"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.FLASH_SHIFT .. "}} 里司开始时拥有闪移"
 			--.. "#"
 			.. "",
 	},
 
-	-- richer
+	-- richerTSUKASAzhi
 	[wakaba.Enums.Players.RICHER] = {
 		-- icon = "",
-		name = "Richer",
+		name = "璃贝",
 		description =
-			"Richer是一位可爱的女仆，来自{{ColorLime}}Love’s Sweet Garnish{{CR}}，作者是Miyasaka Miyu和Miyasaka Naco"
+			"璃贝是一位可爱的女仆，来自{{ColorLime}}尚有佳蜜伴恋心{{CR}}，作者是宫坂姐妹"
 			.. "#她可以通过她的丝带改善她的命运"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}} Richer从兔子丝带开始"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.SWEETS_CATALOG .. "}} Richer从甜品目录开始"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}} 璃贝从兔子丝带开始"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.SWEETS_CATALOG .. "}} 璃贝从甜品目录开始"
 			--.. "#"
 			.. "",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		-- icon = "",
-		name = "污染的Richer",
-		description = "污染的Richer有一副甜美的身体，但太过娇嫩"
+		name = "里璃贝",
+		description = "里璃贝有一副甜美的身体，但太过娇嫩"
 			.. "#她不能正常常获得任何被动道具，任何尝试获取它们都会将它们变成道具灵火"
 			.. "#主动道具可以正常收集"
 			.. "#{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON ..
-			"}} 污染的Richer从兔子丝带开始"
+			"}} 里璃贝从兔子丝带开始"
 			.. "#{{Collectible" ..
-			wakaba.Enums.Collectibles.WINTER_ALBIREO .. "}} 污染的Richer从辇道增七开始"
-			.. "#{{Collectible" .. wakaba.Enums.Collectibles.WATER_FLAME .. "}} 污染的Richer从水中焰开始"
+			wakaba.Enums.Collectibles.WINTER_ALBIREO .. "}} 里璃贝从辇道增七开始"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.WATER_FLAME .. "}} 里璃贝从水中焰开始"
 			--.. "#"
 			.. "",
 	},
@@ -2244,7 +2244,7 @@ if EID then
 	EID.descriptions[desclang].TaintedTsukasaWarningText =
 	"必须先解锁这个角色#方法：用红色钥匙打开家里的隐藏衣柜，扮演司#进入右边的门会退出游戏"
 	EID.descriptions[desclang].TaintedRicherWarningText =
-	"必须先解锁这个角色#方法：用红色钥匙打开家里的隐藏衣柜，扮演Richer#进入右边的门会退出游戏"
+	"必须先解锁这个角色#方法：用红色钥匙打开家里的隐藏衣柜，扮演璃贝#进入右边的门会退出游戏"
 
 	EID.descriptions[desclang].SweetsChallenge = "使用时，显示品质提示#如果品质匹配，获得物品"
 	EID.descriptions[desclang].SweetsFlipFlop =
