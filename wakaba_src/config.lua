@@ -79,7 +79,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.leftchargebardigits = currentBool
-				
+
 			end,
 			Info = {
 				"Change alignment for number of charge bars.",
@@ -113,7 +113,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.stackablemantle = currentNum
-				
+
 			end,
 			Info = {
 				"Maximum stacks for Holy Mantle shield per room. Does not affect The Lost's Holy mantle.",
@@ -143,7 +143,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.stackableholycard = currentNum
-				
+
 			end,
 			Info = {
 				"Maximum stacks for Holy Card, Wooden Cross, Elixir of Life, and Mystic Crystal.",
@@ -174,7 +174,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.stackableblanket = currentNum
-				
+
 			end,
 			Info = {
 				"Maximum stacks for Blanket shield when entering the boss room.",
@@ -204,7 +204,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.stackableblessing = currentNum
-				
+
 			end,
 			Info = {
 				"Maximum stacks for Wakaba's Blessing shield when total hearts are 1 or less.",
@@ -231,7 +231,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.dogmablanket = currentBool
-				
+
 			end,
 			Info = {
 				"Activate Blanket shield on Dogma fight",
@@ -255,7 +255,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.beastblanket = currentBool
-				
+
 			end,
 			Info = {
 				"Activate Blanket shield on The Beast fight",
@@ -283,7 +283,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.deadwispnotif = currentBool
-				
+
 			end,
 			Info = {
 				"Notify which Item wisp is turned off",
@@ -307,7 +307,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.deadwispnotifsound = currentBool
-				
+
 			end,
 			Info = {
 				"Sound which Item wisp is turned off",
@@ -345,19 +345,19 @@ if MCM then
 			Popup = function()
 
 				local currentValue = wakaba.state.options.listkey
-	
+
 				local goBackString = "back"
 				if ModConfigMenu.Config.LastBackPressed then
-	
+
 					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
 						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
 					end
-	
+
 				end
-	
+
 				local keepSettingString = ""
 				if currentValue > -2 then
-	
+
 					local currentSettingString = nil
 					if currentValue == -1 then
 						currentSettingString = "(Disabled)"
@@ -365,16 +365,16 @@ if MCM then
 					if InputHelper.KeyboardToString[currentValue] then
 						currentSettingString = InputHelper.KeyboardToString[currentValue]
 					end
-	
+
 					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-	
+
 				end
-	
+
 				local deviceString = ""
 				deviceString = "keyboard"
-	
+
 				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-	
+
 			end,
 			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
 			PopupWidth = 280,
@@ -410,10 +410,10 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
-		"Pudding & Wakaba", 
-		"General", 
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -433,8 +433,8 @@ if MCM then
 		}
 	)
 	MCM.AddSetting(
-		"Pudding & Wakaba", 
-		"General", 
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -454,8 +454,8 @@ if MCM then
 		}
 	)
 	MCM.AddSetting(
-		"Pudding & Wakaba", 
-		"General", 
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -475,8 +475,8 @@ if MCM then
 		}
 	)
 	MCM.AddSetting(
-		"Pudding & Wakaba", 
-		"General", 
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -496,8 +496,8 @@ if MCM then
 		}
 	)
 	MCM.AddSetting(
-		"Pudding & Wakaba", 
-		"General", 
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
@@ -555,14 +555,14 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.uniformalpha = currentNum
-				
+
 			end,
 			Info = {
 				"",
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -579,7 +579,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.uniformscale = currentNum
-				
+
 			end,
 			Info = {
 				"",
@@ -590,8 +590,8 @@ if MCM then
 	-- General - POG
 	if Poglite then
 		MCM.AddSetting(
-			"Pudding & Wakaba", 
-			"General", 
+			"Pudding & Wakaba",
+			"General",
 			{
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function()
@@ -645,19 +645,19 @@ if MCM then
 			Popup = function()
 
 				local currentValue = wakaba.state.options.vintagetriggerkey
-	
+
 				local goBackString = "back"
 				if ModConfigMenu.Config.LastBackPressed then
-	
+
 					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
 						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
 					end
-	
+
 				end
-	
+
 				local keepSettingString = ""
 				if currentValue > -2 then
-	
+
 					local currentSettingString = nil
 					if currentValue == -1 then
 						currentSettingString = "(Disabled)"
@@ -665,16 +665,16 @@ if MCM then
 					if InputHelper.KeyboardToString[currentValue] then
 						currentSettingString = InputHelper.KeyboardToString[currentValue]
 					end
-	
+
 					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-	
+
 				end
-	
+
 				local deviceString = ""
 				deviceString = "keyboard"
-	
+
 				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-	
+
 			end,
 			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
 			PopupWidth = 280,
@@ -710,7 +710,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.richersweetscatalog = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Richer's Starting Item",
@@ -737,7 +737,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.lostuniform = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Tainted Lost's Starting Item",
@@ -764,7 +764,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.edensticky = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Tainted Eden's Starting Item",
@@ -793,7 +793,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.hudhitcounter = currentNum
-				
+
 			end,
 			Info = {
 				"Shows hit counter from HUD."
@@ -817,7 +817,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.hudroomnumber = currentNum
-				
+
 			end,
 			Info = {
 				"Shows Room Number from HUD."
@@ -841,7 +841,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.hudroomname = currentNum
-				
+
 			end,
 			Info = {
 				"Shows Room Name from HUD."
@@ -865,7 +865,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.hudroomdiff = currentNum
-				
+
 			end,
 			Info = {
 				"Shows Room Difficulty from HUD."
@@ -889,7 +889,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.hudroomweight = currentNum
-				
+
 			end,
 			Info = {
 				"Shows Room Weight from HUD."
@@ -924,14 +924,14 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.flamesoverride = currentBool
-				
+
 			end,
 			Info = {
 				"Choose whether Curse of Flames priotizes over other curses",
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Curses",
@@ -956,7 +956,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.flamescurserate = currentNum
-				
+
 			end,
 			Info = {
 				"Sets rate of getting Curse of Flames",
@@ -1017,7 +1017,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.mom = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when Mom is defeated"
@@ -1039,7 +1039,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.keypiece = currentNum
-				
+
 			end,
 			Info = {
 				"Change setting for Key Pieces when defeating ??? or The Lamb",
@@ -1061,7 +1061,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.knifepiece = currentNum
-				
+
 			end,
 			Info = {
 				"Change setting for Knife Pieces when Mom from Alt path is defeated",
@@ -1083,7 +1083,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.beast = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when entering Mausoleum I",
@@ -1106,7 +1106,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.crackedkey = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when entering Home",
@@ -1130,7 +1130,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.isaacsatan = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when Isaac/Satan is Defeated",
@@ -1152,7 +1152,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.bblamb = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when ???/The Lamb is Defeated",
@@ -1174,7 +1174,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.megasatan = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when Mega Satan is Defeated",
@@ -1197,7 +1197,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.mother = currentNum
-				
+
 			end,
 			Info = {
 				"Change Behavior when Mother is Defeated",
@@ -1221,7 +1221,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.forcevoid.delirium = deli[currentNum]
-				
+
 			end,
 			Info = {
 				"Change Behavior when Delirium is Defeated",
@@ -1254,7 +1254,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.startingroomindexed = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Wakaba Duality ignore Starting Room",
@@ -1279,7 +1279,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.firsttreasureroomindexed = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Wakaba Duality ignore First Treasure Room",
@@ -1304,7 +1304,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.blessnemesisindexed = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Wakaba Duality to apply remove index ability",
@@ -1342,11 +1342,11 @@ if MCM then
 	if wakaba.state.unlock.doubledreams then
 
 	end
---[[ 
+--[[
 	if Poglite then
 		MCM.AddSetting(
-			"Pudding & Wakaba", 
-			"Wakaba", 
+			"Pudding & Wakaba",
+			"Wakaba",
 			{
 				Type = ModConfigMenu.OptionType.BOOLEAN,
 				CurrentSetting = function()
@@ -1369,7 +1369,7 @@ if MCM then
 	]]
 	---------------------------------------------------------------------------
 	-----------------------------  Shiori Settings  ---------------------------
-	
+
 	MCM.UpdateSubcategory("Pudding & Wakaba", "Shiori", {
 		Info = "Settings for Shiori"
 	})
@@ -1394,7 +1394,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.shiorimodes = currentNum
-				
+
 			end,
 			Info = function()
 				local st = wakaba.shiorimodestrings[wakaba.state.options.shiorimodes].configdesc
@@ -1419,7 +1419,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.shioriakasicbooks = currentNum
-				
+
 			end,
 			Info = {
 				"Number of books Shiori can start each floor (Default = 3)",
@@ -1495,7 +1495,7 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.shiorikeychance = currentNum
-				
+
 			end,
 			Info = {
 				"Drop rate for Keys when pickup is appeared or Room clear (Default = 50)",
@@ -1504,7 +1504,7 @@ if MCM then
 	)
 	---------------------------------------------------------------------------
 	-----------------------------  Tsukasa Settings  ---------------------------
-	
+
 	MCM.UpdateSubcategory("Pudding & Wakaba", "Tsukasa", {
 		Info = "Settings for Tsukasa"
 	})
@@ -1536,40 +1536,40 @@ if MCM then
 			Popup = function()
 
 				local currentValue = wakaba.state.options.concentrationkeyboard
-	
+
 				local goBackString = "back"
 				if ModConfigMenu.Config.LastBackPressed then
-	
+
 					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
 						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
 					end
-	
+
 				end
-	
+
 				local keepSettingString = ""
 				if currentValue > -1 then
-	
+
 					local currentSettingString = nil
 					if InputHelper.KeyboardToString[currentValue] then
 						currentSettingString = InputHelper.KeyboardToString[currentValue]
 					end
-	
+
 					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-	
+
 				end
-	
+
 				local deviceString = ""
 				deviceString = "keyboard"
-	
+
 				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-	
+
 			end,
 			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
 			PopupWidth = 280,
 			OnChange = function(current)
 				if current then
 					wakaba.state.options.concentrationkeyboard = current
-					
+
 				end
 			end,
 			Info = {
@@ -1601,41 +1601,41 @@ if MCM then
 			Popup = function()
 
 				local currentValue = wakaba.state.options.concentrationcontroller
-	
+
 				local goBackString = "back"
 				if ModConfigMenu.Config.LastBackPressed then
-	
+
 					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
 						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
 					elseif InputHelper.ControllerToString[ModConfigMenu.Config.LastBackPressed] then
 						goBackString = InputHelper.ControllerToString[ModConfigMenu.Config.LastBackPressed]
 					end
-	
+
 				end
-	
+
 				local keepSettingString = ""
 				if currentValue > -1 then
-	
+
 					local currentSettingString = nil
 					if InputHelper.ControllerToString[currentValue] then
 						currentSettingString = InputHelper.ControllerToString[currentValue]
 					end
-	
+
 					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-	
+
 				end
-	
+
 				local deviceString = "controller"
-	
+
 				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-	
+
 			end,
 			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
 			PopupWidth = 280,
 			OnChange = function(current)
 				if current then
 					wakaba.state.options.concentrationcontroller = current
-					
+
 				end
 			end,
 			Info = {
@@ -1661,7 +1661,7 @@ if MCM then
 			end,
 			OnChange = function(currentBool)
 				wakaba.state.options.lunarpercent = currentBool
-				
+
 			end,
 			Info = {
 				"Change behavior whether Lunar Stone percent displayed next to charge bar",
@@ -1669,7 +1669,38 @@ if MCM then
 			}
 		}
 	)
+	---------------------------------------------------------------------------
+	-----------------------------  Rira Settings  ---------------------------
+	MCM.UpdateSubcategory("Pudding & Wakaba", "Rira", {
+		Info = "Settings for Rira"
+	})
 
+	MCM.AddText("Pudding & Wakaba", "Rira", function() return "Rira Settings" end)
+	MCM.AddSpace("Pudding & Wakaba", "Rira")
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Rira",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.chimakisound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.chimakisound then
+					onOff = "True"
+				end
+				return "Chimaki Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.chimakisound = currentBool
+
+			end,
+			Info = {
+				"Allow Chimaki 'kyuu' sound",
+			}
+		}
+	)
 
 	---------------------------------------------------------------------------
 	-----------------------------------Unlocks---------------------------------
@@ -1680,7 +1711,7 @@ if MCM then
 
 	local unlockstats = {"Locked", "Normal", "Hard", "Normal", "Hard"}
 	local booleanunlockstats = {"Locked", "Unlocked"}
-	
+
 	MCM.AddText("Pudding & Wakaba", "Unlock", function() return "Wakaba Unlocks" end)
 	MCM.AddSpace("Pudding & Wakaba", "Unlock")
 	MCM.AddSetting(
@@ -1720,7 +1751,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1739,7 +1770,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1758,7 +1789,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1777,7 +1808,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1796,7 +1827,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1816,7 +1847,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1835,7 +1866,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -1989,7 +2020,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2040,7 +2071,7 @@ if MCM then
 		}
 	)
 
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2154,7 +2185,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2173,7 +2204,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2192,7 +2223,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2211,7 +2242,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2230,7 +2261,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2249,7 +2280,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2268,7 +2299,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2384,7 +2415,7 @@ if MCM then
 		}
 	)
 
-	
+
 	MCM.AddSpace("Pudding & Wakaba", "Unlock")
 
 	MCM.AddText("Pudding & Wakaba", "Unlock", function() return "Tainted Shiori Unlocks" end)
@@ -2422,7 +2453,7 @@ if MCM then
 			}
 		}
 	)
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",
@@ -2473,7 +2504,7 @@ if MCM then
 		}
 	)
 
-	
+
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Unlock",

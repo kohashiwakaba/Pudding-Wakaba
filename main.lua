@@ -253,6 +253,9 @@ local richer_saved_recipies = {
 			lunarpercent = true,
 			leftchargebardigits = true,
 
+			-- Rira options
+			chimakisound = true,
+
 			mindonationcount = 5,
 
 			-- Wakaba Duality options
@@ -607,6 +610,9 @@ wakaba.optiondefaults = {
 	concentrationcontroller = (Controller and Controller.BUMPER_RIGHT) or ButtonAction.ACTION_DROP,
 	lunarpercent = true,
 	leftchargebardigits = true,
+
+	-- Rira options
+	chimakisound = true,
 
 	mindonationcount = 5,
 

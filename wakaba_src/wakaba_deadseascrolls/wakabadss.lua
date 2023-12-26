@@ -843,6 +843,34 @@ local wakabadirectory = {
 				tooltip = {strset = {'show','percent','for','lunar stone'}}
 			},
 
+			---------------------------------------------------------------------------
+			-----------------------------	rira Settings	---------------------------
+			{str = '', fsize = 1, nosel = true},
+			{
+					str = '- rira -',
+					nosel = true,
+					glowcolor = 3
+			},
+			{str = '', fsize = 2, nosel = true},
+
+			{
+				str = 'chimaki sounds',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'RiraChimakiSound',
+				load = function()
+					if wakaba.state.options.chimakisound then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.chimakisound = (var == 1)
+				end,
+				tooltip = {strset = {'rabbit sound','for chimaki'}}
+			},
+
 		},
 		generate = function(item)
 			item.shiorimodes = wakaba.state.options.shiorimodes or wakaba.shiorimodes.SHIORI_AKASIC_RECORDS
