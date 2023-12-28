@@ -59,12 +59,13 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.CoinCollision_EasterEgg, PickupVariant.PICKUP_COIN)
 
 function wakaba:Cache_EasterEgg(player, cacheFlag)
-	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.EASTER_EGG)
+	local eecount = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
 	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.EASTER_EGG)
+	local chimaki = wakaba:hasChimaki(player)
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
 		efcount = efcount <= 64 and efcount or 64
-		if hasitem or efcount > 0 then
+		if (eecount + efcount > 0) and not (chimaki and eecount >= 5) then
 			count = 1
 		end
 		player:CheckFamiliar(wakaba.Enums.Familiars.EASTER_EGG, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.EASTER_EGG))

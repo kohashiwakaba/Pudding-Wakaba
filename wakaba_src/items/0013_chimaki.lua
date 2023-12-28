@@ -29,14 +29,13 @@ end
 function wakaba:Chimaki_CommandShootTears(familiar, pos, hit, tinted, speedMult)
 	local length = (pos - familiar.Position):Length()
 	local player = familiar:GetData().player or familiar.Player
+	local data = familiar:GetData()
 	local entity = familiar:FireProjectile((pos - familiar.Position) * (speedMult / length))
 	local tear = entity:ToTear()
 	tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL
 
 	local multiplier = 1
-	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
-		multiplier = multiplier * 2
-	end
+	multiplier = multiplier * (1 + data.bffsPower)
 	local tearDamage = (player:GetCollectibleNum(wakaba.Enums.Collectibles.CHIMAKI) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CHIMAKI) + 1) * 3.5
 	tear.CollisionDamage = tearDamage * multiplier
 
@@ -46,6 +45,21 @@ function wakaba:Chimaki_CommandShootTears(familiar, pos, hit, tinted, speedMult)
 	end
 
 	return tear
+end
+function wakaba:Chimaki_CommandShootLasers(familiar, pos, hit, tinted, speedMult)
+	local player = familiar:GetData().player or familiar.Player
+	local angle = (pos - familiar.Position):GetAngleDegrees()
+	local data = familiar:GetData()
+	local laser = EntityLaser.ShootAngle(2, familiar.Position, angle, 3, Vector(0, -20), familiar)
+	laser:AddTearFlags(TearFlags.TEAR_RAINBOW | TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL)
+	laser.Parent = familiar
+
+	local multiplier = 1
+	multiplier = multiplier * (1 + data.bffsPower)
+	local tearDamage = ((player:GetCollectibleNum(wakaba.Enums.Collectibles.CHIMAKI) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CHIMAKI) + 1 + data.easterPower) * 3.5) + 5
+	laser.CollisionDamage = tearDamage * multiplier
+
+	return laser
 end
 
 function wakaba:Chimaki_CommandShootFlames(familiar, pos, hit, tinted, speedMult)
@@ -175,7 +189,7 @@ end
 
 function wakaba:Cache_Chimaki(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
-		if wakaba:hasChimaki(player) then
+		if wakaba:hasChimaki(player) or (wakaba:getTaintedLazarusSubPlayer(player) and wakaba:hasChimaki(wakaba:getTaintedLazarusSubPlayer(player))) then
 			player:CheckFamiliar(wakaba.Enums.Familiars.CHIMAKI, 1, player:GetCollectibleRNG(wakaba.Enums.Collectibles.CHIMAKI), Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.CHIMAKI))
 		end
 	end
@@ -298,7 +312,9 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 	data.lullabyPower = player:GetTrinketMultiplier(TrinketType.TRINKET_FORGOTTEN_LULLABY)
 	data.bffsPower = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BFFS)
 	data.babyBenderPower = player:GetTrinketMultiplier(TrinketType.TRINKET_BABY_BENDER)
+	data.easterPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
 	data.standstill = nil
+	data.isSuperpositioned = wakaba:isSuperpositionedPlayer(player)
 
 	local run = false
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.CHIMAKI_COMMAND)) do
@@ -645,7 +661,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -248, funct
 
 	if #nearbyProjs ~= 0 then
 		local rng = data.chimakiRng
-		
+
 		local targ
 		local shortestLength = 1000000
 		for _, e in ipairs(nearbyProjs) do
@@ -747,7 +763,11 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	elseif spr:IsEventTriggered("shoot_tears") then
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_TRIPLE)
-		wakaba:Chimaki_CommandShootTears(familiar, data.evadeEnemy.Position, true, false, 1)
+		if data.easterPower >= 5 then
+			wakaba:Chimaki_CommandShootLasers(familiar, data.evadeEnemy.Position, true, false, 1)
+		else
+			wakaba:Chimaki_CommandShootTears(familiar, data.evadeEnemy.Position, true, false, 1)
+		end
 		spr.FlipX = familiar.Position.X > data.evadeEnemy.Position.X
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
@@ -875,3 +895,19 @@ function wakaba:HUD_Chimaki()
 	end
 end
 wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_Chimaki)
+
+
+
+function wakaba:FamiliarRender_EasterEgg(familiar)
+	local data = familiar:GetData()
+	if not data.easterPower or data.easterPower < 5 then return end
+
+	local sprite = familiar:GetSprite()
+	local tcolor = Color(1, 1, 1, 1, 0, 0, 0)
+	tcolor:SetColorize(wakaba.RGB.R/255,wakaba.RGB.G/255,wakaba.RGB.B/255, 0.42)
+	local ntcolor = Color.Lerp(tcolor, tcolor, 0.5)
+	ntcolor.A = 0.9
+
+	sprite.Color = ntcolor
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_EasterEgg, wakaba.Enums.Familiars.CHIMAKI)
