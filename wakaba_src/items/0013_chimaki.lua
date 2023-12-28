@@ -822,11 +822,25 @@ function wakaba:Chimaki_CommandSpawnBeam(player, position, power)
 	beam:Update()
 	return beam
 end
+function wakaba:Chimaki_CommandSpawnLaserRing(player, position, power)
+	local laser = Isaac.Spawn(EntityType.ENTITY_LASER, LaserVariant.THIN_RED, LaserSubType.LASER_SUBTYPE_RING_PROJECTILE, position, Vector.Zero, familiar):ToLaser()
+	laser.Timeout = 8
+	laser.DisableFollowParent = true
+	laser.TearFlags = TearFlags.TEAR_RAINBOW | TearFlags.TEAR_HOMING
+	laser.Parent = player
+	laser.CollisionDamage = player.Damage * 3 * power
+	laser.Radius = math.max(math.min(30.0), 0.001)
+	laser:Update()
+	return laser
+end
 wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
 	player = player or Isaac.GetPlayer()
 	if spr:IsPlaying("long_fly_start") then
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
-			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
+			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			if data.easterPower >= 5 then
+				local laser = wakaba:Chimaki_CommandSpawnLaserRing(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			end
 		end
 		spr.FlipX = familiar.Velocity.X < 0
 		if spr:IsEventTriggered("next") then
@@ -835,7 +849,10 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	elseif spr:IsPlaying("long_fly_loop") then
 		data.longFlyCount = (data.longFlyCount or 0) + 1
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
-			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
+			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			if data.easterPower >= 5 then
+				local laser = wakaba:Chimaki_CommandSpawnLaserRing(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			end
 		end
 		spr.FlipX = familiar.Velocity.X < 0
 		if data.standstill or data.longFlyCount >= 150 or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
@@ -844,7 +861,10 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		end
 	elseif spr:IsPlaying("long_fly_end") then
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
-			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus)
+			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			if data.easterPower >= 5 then
+				local laser = wakaba:Chimaki_CommandSpawnLaserRing(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
+			end
 		end
 		spr.FlipX = familiar.Velocity.X < 0
 	elseif not data.targetEnt then
