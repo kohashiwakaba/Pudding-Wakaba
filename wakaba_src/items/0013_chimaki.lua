@@ -898,7 +898,7 @@ wakaba:AddCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, wakaba.HUD_Chimaki)
 
 
 
-function wakaba:FamiliarRender_EasterEgg(familiar)
+function wakaba:FamiliarRender_EasterEgg_Chimaki(familiar)
 	local data = familiar:GetData()
 	if not data.easterPower or data.easterPower < 5 then return end
 
@@ -910,4 +910,4 @@ function wakaba:FamiliarRender_EasterEgg(familiar)
 
 	sprite.Color = ntcolor
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_EasterEgg, wakaba.Enums.Familiars.CHIMAKI)
+wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_EasterEgg_Chimaki, wakaba.Enums.Familiars.CHIMAKI)
