@@ -1617,6 +1617,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "맞으면 점수 깎인다",
 	},
+	[wakaba.Enums.Trinkets.RABBIT_PILLOW] = {
+		itemName = "토끼 배게",
+		description = ""
+		.. "유령(Lost) 상태에서도 헌헐류 요소를 사용할 수 있습니다."
+		.. "{{CR}}",
+		queueDesc = "푹신푹신해...",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "카구야의 인장",
 		description = ""

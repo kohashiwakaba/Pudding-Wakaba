@@ -213,6 +213,7 @@ wakaba.Enums.Trinkets = {
 	KUROMI_CARD = Isaac.GetTrinketIdByName("Kuromi Card"),
 	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
 	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
+	RABBIT_PILLOW = Isaac.GetTrinketIdByName("Rabbit Pillow"),
 	SIGIL_OF_KAGUYA = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 
 	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),

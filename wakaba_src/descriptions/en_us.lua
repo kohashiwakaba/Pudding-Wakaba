@@ -1395,6 +1395,12 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#Reduced Luck is restored on new floor"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.RABBIT_PILLOW] = {
+		itemName = "Rabbit Pillow",
+		description = ""
+		.. "Allows to use donation mechanics while in White fire state."
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "Sigil of Kaguya",
 		description = ""

@@ -180,6 +180,8 @@
 	<trinket name="Eternity Cookie" description="Long lasting basics" gfx="eternitycookie.png" />
 	<trinket name="Richer's Report Card" description="Less mistake, less penalties" gfx="richerreportcard.png" cache="luck" persistent="true"/>
 
+	<trinket name="Rabbit Pillow" description="Feels mofumofu" gfx="rabbitpillow.png" hidden="true" achievement="9999" />
+
 	<trinket name="Candy of Richer" description="I bring harmony" gfx="richercandy.png" persistent="true" hidden="true" achievement="9999" />
 	<trinket name="Candy of Rira" description="I bring aqua" gfx="riracandy.png" persistent="true" hidden="true" achievement="9999"/>
 	<trinket name="Candy of Ciel" description="I bring star" gfx="cielcandy.png" persistent="true" hidden="true" achievement="9999"/>

@@ -216,7 +216,6 @@ Encyclopedia.AddItem({
 
 
 -- Rira / Greed : Rabbit Pillow
---[[
 Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
@@ -230,7 +229,6 @@ Encyclopedia.AddTrinket({
 	WikiDesc = {
 	},
 })
- ]]
 
 -- Rira / Gdier : Lil Rira
 Encyclopedia.AddItem({
