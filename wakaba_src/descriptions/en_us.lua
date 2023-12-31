@@ -940,6 +940,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Slow}} Slows all enemies in the room permanently"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.LIL_RIRA] = {
+		itemName = "Lil Rira",
+		description = ""
+		.. "#Shoots chasing tears"
+		.. "#Deals 2 damage per tick"
+		.. "#↓ {{Battery}}{{BlinkYellowRed}}Steals battery charges{{CR}}"
+		.. "#↑ {{Damage}} +0.05 Damage per stolen charges"
+		.. "{{CR}}",
+	transformations = EID.TRANSFORMATION.CONJOINED .. "",
+	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		itemName = "Maid Duet",
 		description = ""

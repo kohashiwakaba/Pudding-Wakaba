@@ -5,8 +5,70 @@
 	액티브 아이템 충전량을 흡수하여 공격력 (or 랜덤 스탯) 증가
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
+local c = wakaba.Enums.Constants
+local sfx = SFXManager()
 
-local function fireTearRicher(player, familiar, vector, rotation)
+local rira_saved_recipies = {
+	run = {
+
+	},
+}
+wakaba:saveDataManager("PnW_LilRira", rira_saved_recipies)
+
+local riraCharges = rira_saved_recipies.run
+
+---@param player EntityPlayer
+---@param count? integer
+---@param ignoreMax? boolean
+---@return integer
+function wakaba:addRiraDamage(player, count, ignoreMax)
+	count = count or 1
+
+	local playerIndex = isc:getPlayerIndex(player)
+	riraCharges[playerIndex] = riraCharges[playerIndex] or 0
+
+	riraCharges[playerIndex] = math.max(riraCharges[playerIndex] + count, 0)
+
+	return riraCharges[playerIndex]
+end
+
+---@param familiar EntityFamiliar
+---@param player EntityPlayer
+---@param activeSlot ActiveSlot
+function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
+	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
+	local playerIndex = isc:getPlayerIndex(player)
+	local activeItem = player:GetActiveItem(activeSlot)
+	if activeItem ~= 0 then
+		local config = Isaac.GetItemConfig():GetCollectible(activeItem)
+		local maxCharges = config.MaxCharges
+		if maxCharges == 0 then return end
+		local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
+		local chargeType = config.ChargeType
+		if chargeType == ItemConfig.CHARGE_TIMED or (chargeType == ItemConfig.CHARGE_NORMAL and maxCharges == 1 and player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)) then
+			if charges >= maxCharges then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				local dmgToAdd = charges / maxCharges
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
+		elseif chargeType == ItemConfig.CHARGE_NORMAL then
+			if charges >= 1 then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
+		end
+	end
+end
+
+local function fireTearRira(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
 	local tear_vector = nil
 	--local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, Vector(familiar.Position.X, familiar.Position.Y), vector, familiar)
@@ -33,7 +95,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	return tear
 end
 
-function wakaba:FamiliarInit_LilRicher(familiar)
+function wakaba:FamiliarInit_LilRira(familiar)
 	familiar.IsFollower = true
 	familiar:AddToFollowers()
 
@@ -42,7 +104,7 @@ function wakaba:FamiliarInit_LilRicher(familiar)
 	
 end
 
-function wakaba:FamiliarUpdate_LilRicher(familiar)
+function wakaba:FamiliarUpdate_LilRira(familiar)
 	local fData = familiar:GetData()
 	local player = familiar.Player
 	local move_dir = player:GetMovementDirection()
@@ -50,16 +112,8 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 
-	if familiar.RoomClearCount > 0 then
-		for i = 0, 2 do
-			if player:NeedsCharge(i) then
-				isc:addCharge(player, i, 1)
-				familiar.RoomClearCount = familiar.RoomClearCount - 1
-			end
-		end
-		if familiar.RoomClearCount > 16 then
-			familiar.RoomClearCount = 16
-		end
+	for i = 0, 2 do
+		wakaba:tryStealRiraCharge(familiar, player, i)
 	end
 
 	if player_fire_direction == Direction.NO_DIRECTION then
@@ -72,12 +126,15 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 		if familiar.FireCooldown <= 0 then
 			local tear_vector = wakaba.DIRECTION_VECTOR[player_fire_direction]:Normalized()
 			sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
+			if not autoaim and mark then
+				tear_vector = Vector(mark.Position.X - familiar.Position.X, mark.Position.Y - familiar.Position.Y):Normalized()
+			end
 			if familiar.FireCooldown <= 0 then
-				fireTearRicher(player, familiar, tear_vector, 0)
+				fireTearRira(player, familiar, tear_vector, 0)
 				if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-					familiar.FireCooldown = 15
+					familiar.FireCooldown = c.LIL_RICHER_BASIC_COOLDOWN // 2
 				else
-					familiar.FireCooldown = 30
+					familiar.FireCooldown = c.LIL_RICHER_BASIC_COOLDOWN
 				end
 			end
 		end
@@ -107,18 +164,26 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	end
 end
 
-function wakaba:Cache_LilRicher(player, cacheFlag)
-	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
+function wakaba:Cache_LilRira(player, cacheFlag)
+	if cacheFlag == CacheFlag.CACHE_DAMAGE then
+		local power = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RIRA) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
+		if power >= 0 then
+			local playerIndex = isc:getPlayerIndex(player)
+			riraPower = riraCharges[playerIndex] or 0
+
+			player.Damage = player.Damage + (0.05 * riraPower * power * wakaba:getEstimatedDamageMult(player))
+		end
+	elseif cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
-		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER)
-		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)
+		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
 		if hasitem or efcount > 0 then
 			count = 1
 		end
-		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_RICHER, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_RICHER))
+		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_RIRA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_RIRA))
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRicher)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
-wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRira)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.LIL_RIRA)

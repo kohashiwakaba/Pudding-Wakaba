@@ -1047,6 +1047,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "휘몰아치는 그 맛",
 	},
+	[wakaba.Enums.Collectibles.LIL_RIRA] = {
+		itemName = "리틀 리라",
+		description = ""
+		.. "#공격하는 방향으로 틱 당 공격력 2의 추적 눈물을 발사합니다."
+		.. "#↓ {{Battery}}{{BlinkYellowRed}}액티브 아이템의 충전량을 강제로 훔치며{{CR}};"
+		.. "#↑ 훔친 충전량 당 {{DamageSmall}}공격력 +0.05"
+		.. "{{CR}}",
+		queueDesc = "핑크빛을 위한 리본",
+	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		itemName = "메이드 듀엣",
 		description = ""
