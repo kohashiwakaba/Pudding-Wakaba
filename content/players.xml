@@ -75,6 +75,7 @@
 	hp="6" birthright="Overcome Tragic Trial"
 	portrait="TsukasaPortrait_b.png"
 	nameimage="playername_tsukasa.png" skin="character_tsukasa.png" skinColor="0" costumeSuffix="tsukasa"
+	achievement="The Phoenix"
 	/>
 
 	<player name="Richer" costume="52"
@@ -90,7 +91,7 @@
 	portrait="RicherPortrait_b.png"
 	nameimage="playername_richer.png"
 	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b"
-	healthtype="1"
+	healthtype="1" achievement="The Miko"
 	/>
 
 	<player name="Rira" costume="52"

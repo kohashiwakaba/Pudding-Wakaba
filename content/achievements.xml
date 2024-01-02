@@ -1,0 +1,60 @@
+<achievements gfxroot="gfx/ui/achievement/">
+
+	<!-- Characters -->
+	<!-- <achievement name="Wakaba" text='' gfx="achievement_wakaba_wakaba.png" /> --> <!-- Reach 5+ Luck in single run -->
+	<!-- <achievement name="Shiori" text='' gfx="achievement_wakaba_shiori.png" /> --> <!-- Obtain Bookworm transformation -->
+	<!-- <achievement name="Tsukasa" text='' gfx="achievement_wakaba_tsukasa.png" /> --> <!--  -->
+	<!-- <achievement name="Richer" text='' gfx="achievement_wakaba_richer.png" /> --> <!--  -->
+	<!-- <achievement name="Rira" text='' gfx="achievement_wakaba_rira.png" /> --> <!--  -->
+	<!-- Characters Tainted -->
+	<!-- <achievement name="The Fury" text='' gfx="achievement_wakaba_wakaba_b.png" />
+	<achievement name="The Minerva" text='' gfx="achievement_wakaba_shiori_b.png" />-->
+	<achievement name="The Phoenix" text='' gfx="achievement_wakaba_taintedtsukasa.png" />
+	<achievement name="The Miko" text='' gfx="achievement_wakaba_taintedricher.png" />
+	<!-- <achievement name="The Aqua" text='' gfx="achievement_wakaba_rira_b.png" /> -->
+	<!-- Characters Tarnished -->
+	<!-- <achievement name="The Root" text='' gfx="achievement_wakaba_wakaba_t.png" /> -->
+	<!-- <achievement name="The Page" text='' gfx="achievement_wakaba_shiori_t.png" /> -->
+	<!-- <achievement name="The Loop" text='' gfx="achievement_wakaba_tsukasa_t.png" /> -->
+	<!-- <achievement name="The Solar" text='' gfx="achievement_wakaba_richer_t.png" /> -->
+	<!-- <achievement name="The Aqua" text='' gfx="achievement_wakaba_rira_t.png" /> -->
+	<!-- Wakaba Unlocks -->
+	<!-- Wakaba Tainted Unlocks -->
+	<!-- Wakaba Tarnished Unlocks -->
+	<!-- Shiori Unlocks -->
+	<!-- Shiori Tainted Unlocks -->
+	<!-- Shiori Tarnished Unlocks -->
+	<!-- Tsukasa Unlocks -->
+	<!-- Tsukasa Tainted Unlocks -->
+	<!-- Tsukasa Tarnished Unlocks -->
+	<!-- Richer Unlocks -->
+	<!-- Richer Tainted Unlocks -->
+	<!-- Richer Tarnished Unlocks -->
+	<!-- Rira Unlocks -->
+	<!-- Rira Tainted Unlocks -->
+	<!-- Rira Tarnished Unlocks -->
+
+	<!-- Challenge Unlocks -->
+	<!-- <achievement name="Eye of Clock" text='wakaba challenge w01' gfx="achievement_wakaba_eyeofclock.png" />
+	<achievement name="Plumy" text='wakaba challenge w02' gfx="achievement_wakaba_plumy.png" />
+	<achievement name="WWWWWW" text='wakaba challenge w03' gfx="achievement_wakaba_eyeofclock.png" />
+	<achievement name="Delimiter" text='wakaba challenge w04' gfx="achievement_wakaba_delimiter.png" />
+	<achievement name="Neko Figure" text='wakaba challenge w05' gfx="achievement_wakaba_nekofigure.png" />
+	<achievement name="Micro Doppelganger" text='wakaba challenge w06' gfx="achievement_wakaba_microdoppelganger.png" />
+	<achievement name="Dimension Cutter" text='wakaba challenge w07' gfx="achievement_wakaba_dimensioncutter.png" />
+	<achievement name="Lil Wakaba" text='wakaba challenge w08' gfx="achievement_wakaba_lilwakaba.png" />
+	<achievement name="Lost Holds Uniform" text='wakaba challenge w09' gfx="achievement_wakaba_lostuniform.png" />
+	<achievement name="Executioner" text='wakaba challenge w10' gfx="achievement_wakaba_executioner.png" />
+	<achievement name="Apollyon Crisis" text='wakaba challenge w11' gfx="achievement_wakaba_apollyoncrisis.png" />
+	<achievement name="Isekai Definition" text='wakaba challenge w12' gfx="achievement_wakaba_isekaidefinition.png" />
+	<achievement name="Mirrored Balance" text='wakaba challenge w13' gfx="achievement_wakaba_balance.png" />
+	<achievement name="Lil Mao" text='wakaba challenge w14' gfx="achievement_wakaba_lilmao.png" />
+	<achievement name="Richer's Flipper" text='wakaba challenge w15' gfx="achievement_wakaba_richerflipper.png" />
+	<achievement name="Richer's Necklace" text='wakaba challenge w16' gfx="achievement_wakaba_richernecklace.png" />
+	<achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" />
+	<achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" /> -->
+	<!-- Challenge Special -->
+	<!-- <achievement name="Eden's Sticky Note" text='wakaba challenge w98' gfx="achievement_wakaba_edensticky.png" />
+	<achievement name="Wakaba's Double Dreams" text='wakaba challenge w99' gfx="achievement_wakaba_doubledreams.png" /> -->
+
+</achievements>

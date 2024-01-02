@@ -1,3 +1,5 @@
+if REPENTOGON then return end
+
 local lockedChars = {
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		unlockCheck = "taintedtsukasa",

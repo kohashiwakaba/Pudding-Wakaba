@@ -1090,131 +1090,131 @@ wakaba.LAST_WAKABA_TRINKET = wakaba.Enums.Trinkets.KUROMI_CARD
 
 -- Reserved for popup image
 wakaba.achievementsprite = {
-	dcupicecream = "gfx/ui/achievement_wakaba/achievement_dcupicecream.png",
-	secretcard = "gfx/ui/achievement_wakaba/achievement_secretcard.png",
-	pendant = "gfx/ui/achievement_wakaba/achievement_pendant.png",
-	clover = "gfx/ui/achievement_wakaba/achievement_clover.png",
-	counter = "gfx/ui/achievement_wakaba/achievement_counter.png",
-	newyearbomb = "gfx/ui/achievement_wakaba/achievement_newyearbomb.png",
-	dreamcard = "gfx/ui/achievement_wakaba/achievement_dreamcard.png",
-	donationcard = "gfx/ui/achievement_wakaba/achievement_donationcard.png",
-	whitejoker = "gfx/ui/achievement_wakaba/achievement_whitejoker.png",
-	revengefruit = "gfx/ui/achievement_wakaba/achievement_revengefruit.png",
-	uniform = "gfx/ui/achievement_wakaba/achievement_uniform.png",
-	brimstonedetonator = "gfx/ui/achievement_wakaba/achievement_brimstonedetonator.png",
-	colorjoker = "gfx/ui/achievement_wakaba/achievement_colorjoker.png",
-	cranecard = "gfx/ui/achievement_wakaba/achievement_cranecard.png",
-	confessionalcard = "gfx/ui/achievement_wakaba/achievement_confessionalcard.png",
-	returnpostage = "gfx/ui/achievement_wakaba/achievement_returnpostage.png",
+	dcupicecream = "gfx/ui/achievement/achievement_wakaba_dcupicecream.png",
+	secretcard = "gfx/ui/achievement/achievement_wakaba_secretcard.png",
+	pendant = "gfx/ui/achievement/achievement_wakaba_pendant.png",
+	clover = "gfx/ui/achievement/achievement_wakaba_clover.png",
+	counter = "gfx/ui/achievement/achievement_wakaba_counter.png",
+	newyearbomb = "gfx/ui/achievement/achievement_wakaba_newyearbomb.png",
+	dreamcard = "gfx/ui/achievement/achievement_wakaba_dreamcard.png",
+	donationcard = "gfx/ui/achievement/achievement_wakaba_donationcard.png",
+	whitejoker = "gfx/ui/achievement/achievement_wakaba_whitejoker.png",
+	revengefruit = "gfx/ui/achievement/achievement_wakaba_revengefruit.png",
+	uniform = "gfx/ui/achievement/achievement_wakaba_uniform.png",
+	brimstonedetonator = "gfx/ui/achievement/achievement_wakaba_brimstonedetonator.png",
+	colorjoker = "gfx/ui/achievement/achievement_wakaba_colorjoker.png",
+	cranecard = "gfx/ui/achievement/achievement_wakaba_cranecard.png",
+	confessionalcard = "gfx/ui/achievement/achievement_wakaba_confessionalcard.png",
+	returnpostage = "gfx/ui/achievement/achievement_wakaba_returnpostage.png",
 
-	blessing = "gfx/ui/achievement_wakaba/achievement_blessing.png",
+	blessing = "gfx/ui/achievement/achievement_wakaba_blessing.png",
 
-	blackjoker = "gfx/ui/achievement_wakaba/achievement_blackjoker.png", -- Ultra Greedier
-	cloverchest = "gfx/ui/achievement_wakaba/achievement_cloverchest.png", -- Mega Satan
-	eatheart = "gfx/ui/achievement_wakaba/achievement_eatheart.png", -- Delirium
-	bitcoin = "gfx/ui/achievement_wakaba/achievement_bitcoin.png", -- Mother
-	nemesis = "gfx/ui/achievement_wakaba/achievement_nemesis.png", -- The Beast
+	blackjoker = "gfx/ui/achievement/achievement_wakaba_blackjoker.png", -- Ultra Greedier
+	cloverchest = "gfx/ui/achievement/achievement_wakaba_cloverchest.png", -- Mega Satan
+	eatheart = "gfx/ui/achievement/achievement_wakaba_eatheart.png", -- Delirium
+	bitcoin = "gfx/ui/achievement/achievement_wakaba_bitcoin.png", -- Mother
+	nemesis = "gfx/ui/achievement/achievement_wakaba_nemesis.png", -- The Beast
 
-	wakabasoul = "gfx/ui/achievement_wakaba/achievement_wakabasoul.png",
-	bookofforgotten = "gfx/ui/achievement_wakaba/achievement_bookofforgotten.png",
+	wakabasoul = "gfx/ui/achievement/achievement_wakaba_wakabasoul.png",
+	bookofforgotten = "gfx/ui/achievement/achievement_wakaba_bookofforgotten.png",
 
 	-- Shiori Unlocks
-	hardbook = "gfx/ui/achievement_wakaba/achievement_hardbook.png", -- Mom's Heart Hard
-	shiorid6plus = "gfx/ui/achievement_wakaba/achievement_shiorid6plus.png", -- Isaac
-	bookoffocus = "gfx/ui/achievement_wakaba/achievement_bookoffocus.png", --Satan
-	deckofrunes = "gfx/ui/achievement_wakaba/achievement_deckofrunes.png", -- ???
-	grimreaperdefender = "gfx/ui/achievement_wakaba/achievement_grimreaperdefender.png", -- The Lamb
-	unknownbookmark = "gfx/ui/achievement_wakaba/achievement_unknownbookmark.png", -- Boss Rush
-	bookoffallen = "gfx/ui/achievement_wakaba/achievement_bookoffallen.png", --
-	bookoftrauma = "gfx/ui/achievement_wakaba/achievement_bookoftrauma.png", -- Hush
-	magnetheaven = "gfx/ui/achievement_wakaba/achievement_magnetheaven.png", -- Ultra Greed
-	determinationribbon = "gfx/ui/achievement_wakaba/achievement_determinationribbon.png", -- Ultra Greedier
-	bookofsilence = "gfx/ui/achievement_wakaba/achievement_bookofsilence.png", -- Delirium
-	vintagethreat = "gfx/ui/achievement_wakaba/achievement_vintagethreat.png", -- Mother
-	bookofthegod = "gfx/ui/achievement_wakaba/achievement_bookofthegod.png", --The Beast
+	hardbook = "gfx/ui/achievement/achievement_wakaba_hardbook.png", -- Mom's Heart Hard
+	shiorid6plus = "gfx/ui/achievement/achievement_wakaba_shiorid6plus.png", -- Isaac
+	bookoffocus = "gfx/ui/achievement/achievement_wakaba_bookoffocus.png", --Satan
+	deckofrunes = "gfx/ui/achievement/achievement_wakaba_deckofrunes.png", -- ???
+	grimreaperdefender = "gfx/ui/achievement/achievement_wakaba_grimreaperdefender.png", -- The Lamb
+	unknownbookmark = "gfx/ui/achievement/achievement_wakaba_unknownbookmark.png", -- Boss Rush
+	bookoffallen = "gfx/ui/achievement/achievement_wakaba_bookoffallen.png", --
+	bookoftrauma = "gfx/ui/achievement/achievement_wakaba_bookoftrauma.png", -- Hush
+	magnetheaven = "gfx/ui/achievement/achievement_wakaba_magnetheaven.png", -- Ultra Greed
+	determinationribbon = "gfx/ui/achievement/achievement_wakaba_determinationribbon.png", -- Ultra Greedier
+	bookofsilence = "gfx/ui/achievement/achievement_wakaba_bookofsilence.png", -- Delirium
+	vintagethreat = "gfx/ui/achievement/achievement_wakaba_vintagethreat.png", -- Mother
+	bookofthegod = "gfx/ui/achievement/achievement_wakaba_bookofthegod.png", --The Beast
 
-	bookofshiori = "gfx/ui/achievement_wakaba/achievement_bookofshiori.png",
+	bookofshiori = "gfx/ui/achievement/achievement_wakaba_bookofshiori.png",
 
 	-- Tainted Shiori Unlocks
-	queenofspades = "gfx/ui/achievement_wakaba/achievement_queenofspades.png", -- Ultra Greedier
-	shiorivalut = "gfx/ui/achievement_wakaba/achievement_anotherfortunemachine.png", -- Mega Satan
-	bookofconquest = "gfx/ui/achievement_wakaba/achievement_bookofconquest.png", -- Delirium
-	ringofjupiter = "gfx/ui/achievement_wakaba/achievement_ringofjupiter.png", -- Mother
-	minervaaura = "gfx/ui/achievement_wakaba/achievement_minervaaura.png", -- The Beast
+	queenofspades = "gfx/ui/achievement/achievement_wakaba_queenofspades.png", -- Ultra Greedier
+	shiorivalut = "gfx/ui/achievement/achievement_wakaba_anotherfortunemachine.png", -- Mega Satan
+	bookofconquest = "gfx/ui/achievement/achievement_wakaba_bookofconquest.png", -- Delirium
+	ringofjupiter = "gfx/ui/achievement/achievement_wakaba_ringofjupiter.png", -- Mother
+	minervaaura = "gfx/ui/achievement/achievement_wakaba_minervaaura.png", -- The Beast
 
-	shiorisoul = "gfx/ui/achievement_wakaba/achievement_shiorisoul.png",
-	bookmarkbag = "gfx/ui/achievement_wakaba/achievement_bookmarkbag.png",
+	shiorisoul = "gfx/ui/achievement/achievement_wakaba_shiorisoul.png",
+	bookmarkbag = "gfx/ui/achievement/achievement_wakaba_bookmarkbag.png",
 
 	-- Tsukasa Unlocks
 
-	murasame = "gfx/ui/achievement_wakaba/achievement_murasame.png", -- Mom's Heart Hard
-	nasalover = "gfx/ui/achievement_wakaba/achievement_nasalover.png", -- Isaac
-	beetlejuice = "gfx/ui/achievement_wakaba/achievement_beetlejuice.png", --Satan
-	redcorruption = "gfx/ui/achievement_wakaba/achievement_redcorruption.png", -- ???
-	powerbomb = "gfx/ui/achievement_wakaba/achievement_powerbomb.png", -- The Lamb
-	concentration = "gfx/ui/achievement_wakaba/achievement_concentration.png", -- Boss Rush
-	plasmabeam = "gfx/ui/achievement_wakaba/achievement_plasmabeam.png", --
-	rangeos = "gfx/ui/achievement_wakaba/achievement_rangeos.png", -- Hush
-	arcanecrystal = "gfx/ui/achievement_wakaba/achievement_arcanecrystal.png", -- Ultra Greed
-	questionblock = "gfx/ui/achievement_wakaba/achievement_questionblock.png", -- Ultra Greedier
-	newyearbomb = "gfx/ui/achievement_wakaba/achievement_newyearbomb.png", -- Delirium
-	phantomcloak = "gfx/ui/achievement_wakaba/achievement_phantomcloak.png", -- Mother
-	magmablade = "gfx/ui/achievement_wakaba/achievement_magmablade.png", --The Beast
+	murasame = "gfx/ui/achievement/achievement_wakaba_murasame.png", -- Mom's Heart Hard
+	nasalover = "gfx/ui/achievement/achievement_wakaba_nasalover.png", -- Isaac
+	beetlejuice = "gfx/ui/achievement/achievement_wakaba_beetlejuice.png", --Satan
+	redcorruption = "gfx/ui/achievement/achievement_wakaba_redcorruption.png", -- ???
+	powerbomb = "gfx/ui/achievement/achievement_wakaba_powerbomb.png", -- The Lamb
+	concentration = "gfx/ui/achievement/achievement_wakaba_concentration.png", -- Boss Rush
+	plasmabeam = "gfx/ui/achievement/achievement_wakaba_plasmabeam.png", --
+	rangeos = "gfx/ui/achievement/achievement_wakaba_rangeos.png", -- Hush
+	arcanecrystal = "gfx/ui/achievement/achievement_wakaba_arcanecrystal.png", -- Ultra Greed
+	questionblock = "gfx/ui/achievement/achievement_wakaba_questionblock.png", -- Ultra Greedier
+	newyearbomb = "gfx/ui/achievement/achievement_wakaba_newyearbomb.png", -- Delirium
+	phantomcloak = "gfx/ui/achievement/achievement_wakaba_phantomcloak.png", -- Mother
+	magmablade = "gfx/ui/achievement/achievement_wakaba_magmablade.png", --The Beast
 
-	lunarstone = "gfx/ui/achievement_wakaba/achievement_lunarstone.png",
+	lunarstone = "gfx/ui/achievement/achievement_wakaba_lunarstone.png",
 
-	taintedtsukasa = "gfx/ui/achievement_wakaba/achievement_taintedtsukasa.png",
+	taintedtsukasa = "gfx/ui/achievement/achievement_wakaba_taintedtsukasa.png",
 
 	-- Tainted Tsukasa Unlocks
-	returntoken = "gfx/ui/achievement_wakaba/achievement_returntoken.png", -- Ultra Greedier
-	easteregg = "gfx/ui/achievement_wakaba/achievement_easteregg.png", -- Mega Satan
-	flashshift = "gfx/ui/achievement_wakaba/achievement_flashshift.png", -- Delirium
-	sirenbadge = "gfx/ui/achievement_wakaba/achievement_sirenbadge.png", -- Mother
-	elixiroflife = "gfx/ui/achievement_wakaba/achievement_elixiroflife.png", -- The Beast
+	returntoken = "gfx/ui/achievement/achievement_wakaba_returntoken.png", -- Ultra Greedier
+	easteregg = "gfx/ui/achievement/achievement_wakaba_easteregg.png", -- Mega Satan
+	flashshift = "gfx/ui/achievement/achievement_wakaba_flashshift.png", -- Delirium
+	sirenbadge = "gfx/ui/achievement/achievement_wakaba_sirenbadge.png", -- Mother
+	elixiroflife = "gfx/ui/achievement/achievement_wakaba_elixiroflife.png", -- The Beast
 
-	tsukasasoul = "gfx/ui/achievement_wakaba/achievement_tsukasasoul.png",
-	isaaccartridge = "gfx/ui/achievement_wakaba/achievement_isaaccartridge.png",
+	tsukasasoul = "gfx/ui/achievement/achievement_wakaba_tsukasasoul.png",
+	isaaccartridge = "gfx/ui/achievement/achievement_wakaba_isaaccartridge.png",
 
 
 	-- Richer Unlocks
-	fireflylighter = "gfx/ui/achievement_wakaba/achievement_fireflylighter.png",
-	sweetscatalog = "gfx/ui/achievement_wakaba/achievement_sweetscatalog.png",
-	antibalance = "gfx/ui/achievement_wakaba/achievement_antibalance.png",
-	doubleinvader = "gfx/ui/achievement_wakaba/achievement_doubleinvader.png",
-	venomincantation = "gfx/ui/achievement_wakaba/achievement_venomincantation.png",
-	printer = "gfx/ui/achievement_wakaba/achievement_3dprinter.png",
-	bunnyparfait = "gfx/ui/achievement_wakaba/achievement_bunnyparfait.png",
-	richeruniform = "gfx/ui/achievement_wakaba/achievement_richeruniform.png",
-	prestigepass = "gfx/ui/achievement_wakaba/achievement_prestigepass.png",
-	clensingfoam = "gfx/ui/achievement_wakaba/achievement_clensingfoam.png",
-	lilricher = "gfx/ui/achievement_wakaba/achievement_lilricher.png",
-	cunningpaper = "gfx/ui/achievement_wakaba/achievement_cunningpaper.png",
-	selfburning = "gfx/ui/achievement_wakaba/achievement_selfburning.png",
+	fireflylighter = "gfx/ui/achievement/achievement_wakaba_fireflylighter.png",
+	sweetscatalog = "gfx/ui/achievement/achievement_wakaba_sweetscatalog.png",
+	antibalance = "gfx/ui/achievement/achievement_wakaba_antibalance.png",
+	doubleinvader = "gfx/ui/achievement/achievement_wakaba_doubleinvader.png",
+	venomincantation = "gfx/ui/achievement/achievement_wakaba_venomincantation.png",
+	printer = "gfx/ui/achievement/achievement_wakaba_3dprinter.png",
+	bunnyparfait = "gfx/ui/achievement/achievement_wakaba_bunnyparfait.png",
+	richeruniform = "gfx/ui/achievement/achievement_wakaba_richeruniform.png",
+	prestigepass = "gfx/ui/achievement/achievement_wakaba_prestigepass.png",
+	clensingfoam = "gfx/ui/achievement/achievement_wakaba_clensingfoam.png",
+	lilricher = "gfx/ui/achievement/achievement_wakaba_lilricher.png",
+	cunningpaper = "gfx/ui/achievement/achievement_wakaba_cunningpaper.png",
+	selfburning = "gfx/ui/achievement/achievement_wakaba_selfburning.png",
 
-	rabbitribbon = "gfx/ui/achievement_wakaba/achievement_rabbitribbon.png",
-	taintedricher = "gfx/ui/achievement_wakaba/achievement_taintedricher.png", -- Tainted Richer
-
-
+	rabbitribbon = "gfx/ui/achievement/achievement_wakaba_rabbitribbon.png",
+	taintedricher = "gfx/ui/achievement/achievement_wakaba_taintedricher.png", -- Tainted Richer
 
 
-	eyeofclock = "gfx/ui/achievement_wakaba/achievement_eyeofclock.png", --01w
-	plumy = "gfx/ui/achievement_wakaba/achievement_plumy.png", --02w
+
+
+	eyeofclock = "gfx/ui/achievement/achievement_wakaba_eyeofclock.png", --01w
+	plumy = "gfx/ui/achievement/achievement_wakaba_plumy.png", --02w
 	--ultrablackhole = false, --03w
-	delimiter = "gfx/ui/achievement_wakaba/achievement_delimiter.png", -- 04w
-	nekodoll = "gfx/ui/achievement_wakaba/achievement_nekofigure.png", --05w
-	microdoppelganger = "gfx/ui/achievement_wakaba/achievement_microdoppelganger.png", --06w
-	delirium = "gfx/ui/achievement_wakaba/achievement_dimensioncutter.png", --07w
-	lilwakaba = "gfx/ui/achievement_wakaba/achievement_lilwakaba.png", --08w
-	lostuniform = "gfx/ui/achievement_wakaba/achievement_lostuniform.png", --09w
-	executioner = "gfx/ui/achievement_wakaba/achievement_executioner.png", -- 10w
-	apollyoncrisis = "gfx/ui/achievement_wakaba/achievement_apollyoncrisis.png", -- 11w
-	deliverysystem = "gfx/ui/achievement_wakaba/achievement_isekaidefinition.png", -- 12w
-	calculation = "gfx/ui/achievement_wakaba/achievement_balance.png", -- 13w
-	lilmao = "gfx/ui/achievement_wakaba/achievement_lilmao.png", -- 14w
-	richerflipper = "gfx/ui/achievement_wakaba/achievement_richerflipper.png", -- 15w
+	delimiter = "gfx/ui/achievement/achievement_wakaba_delimiter.png", -- 04w
+	nekodoll = "gfx/ui/achievement/achievement_wakaba_nekofigure.png", --05w
+	microdoppelganger = "gfx/ui/achievement/achievement_wakaba_microdoppelganger.png", --06w
+	delirium = "gfx/ui/achievement/achievement_wakaba_dimensioncutter.png", --07w
+	lilwakaba = "gfx/ui/achievement/achievement_wakaba_lilwakaba.png", --08w
+	lostuniform = "gfx/ui/achievement/achievement_wakaba_lostuniform.png", --09w
+	executioner = "gfx/ui/achievement/achievement_wakaba_executioner.png", -- 10w
+	apollyoncrisis = "gfx/ui/achievement/achievement_wakaba_apollyoncrisis.png", -- 11w
+	deliverysystem = "gfx/ui/achievement/achievement_wakaba_isekaidefinition.png", -- 12w
+	calculation = "gfx/ui/achievement/achievement_wakaba_balance.png", -- 13w
+	lilmao = "gfx/ui/achievement/achievement_wakaba_lilmao.png", -- 14w
+	richerflipper = "gfx/ui/achievement/achievement_wakaba_richerflipper.png", -- 15w
 
-	edensticky = "gfx/ui/achievement_wakaba/achievement_edensticky.png", -- 99w
-	doubledreams = "gfx/ui/achievement_wakaba/achievement_doubledreams.png", -- 99w
+	edensticky = "gfx/ui/achievement/achievement_wakaba_edensticky.png", -- 99w
+	doubledreams = "gfx/ui/achievement/achievement_wakaba_doubledreams.png", -- 99w
 }
 
 wakaba.Enums.UniqueItemsAppend = {
