@@ -254,7 +254,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, fun
 			end
 		end
 	end)
-	rerollProps.allowActives = wakaba.roomstate.allowactives == nil or wakaba.fullreroll ~= nil or wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_EVEN
+	rerollProps.allowActives = (wakaba.roomstate.allowactives == nil or wakaba.fullreroll ~= nil) and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_EVEN
 	if rerollProps.DoubleDreams and not isCustom then
 		rerollProps.GoldenDoubleDreams = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 
