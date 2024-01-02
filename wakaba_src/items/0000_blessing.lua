@@ -494,7 +494,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.blessnemesis)
 
 function wakaba:PostTakeDamage_BlessNemesis(player, amount, flag, source, countdownFrames)
 	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
-		if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= (2 + amount) then
+		if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= (1 + amount) then
 			player:GetData().wakaba.blessmantlenum = wakaba:GetBlessNum(player)
 			player:GetData().wakaba.blessmantle = true
 		end
