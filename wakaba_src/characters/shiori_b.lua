@@ -7,7 +7,9 @@ local costumeEquipped
 local isShioriContinue = true
 local iskeyinit = false
 local isc = require("wakaba_src.libs.isaacscript-common")
-wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.SHIORI_B, isc.HeartSubType.SOUL)
+if not REPENTOGON then
+	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.SHIORI_B, isc.HeartSubType.SOUL)
+end
 
 function wakaba:GetShioriCostume_b(player, ignorecooldown)
 	if ignorecooldown or wakaba.costumecurrframe == 0 then

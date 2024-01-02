@@ -3,7 +3,9 @@ local playerType = wakaba.Enums.Players.RICHER_B
 local removed = false
 local isRicherContinue = true
 local isc = require("wakaba_src.libs.isaacscript-common")
-wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RICHER_B, isc.HeartSubType.SOUL)
+if not REPENTOGON then
+	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RICHER_B, isc.HeartSubType.SOUL)
+end
 
 wakaba.TotalWisps = {}
 local totalwisps = wakaba.TotalWisps

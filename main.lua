@@ -1548,6 +1548,10 @@ include('wakaba_src.compat.taintedtreasure')
 include('wakaba_src.compat.thefuture')
 include('wakaba_src.compat.stageapi')
 
+if REPENTOGON then
+	include('wakaba_src.compat.repentogon')
+end
+
 --require 'monster'
 
 

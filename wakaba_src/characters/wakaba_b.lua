@@ -5,7 +5,9 @@ local collectibleCount_b
 local costumeEquipped_b
 local isWakabaContinue = true
 local isc = require("wakaba_src.libs.isaacscript-common")
-wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.WAKABA_B, isc.HeartSubType.BLACK)
+if not REPENTOGON then
+	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.WAKABA_B, isc.HeartSubType.BLACK)
+end
 
 local function InitWakabaPlayer_b()
 	collectibleCount_b = 0
@@ -70,6 +72,29 @@ function wakaba:NegateDamage_TaintedWakabaBirthright(player, amount, flags, sour
 	end
 end
 wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_TaintedWakabaBirthright)
+
+function wakaba:EffectInit_TaintedWakabaBirthright(effect)
+	local radius = 20
+	if effect.Variant == EffectVariant.BOMB_EXPLOSION then
+		radius = effect:ToEffect().Scale * 96
+	elseif effect.Variant == EffectVariant.ROCK_EXPLOSION then
+	end
+	for i, e in ipairs(Isaac.FindInRadius(effect.Position, radius, EntityPartition.PLAYER)) do
+		if e:ToPlayer() then
+			local player = e:ToPlayer()
+			print(effect.Variant, effect:ToEffect().Scale)
+			print(effect.Position, player.Position)
+			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				if player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
+					player:SetMinDamageCooldown(1)
+				end
+			end
+		end
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_TaintedWakabaBirthright)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_TaintedWakabaBirthright, EffectVariant.BOMB_EXPLOSION)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_TaintedWakabaBirthright, EffectVariant.ROCK_EXPLOSION)
 
 
 function wakaba:PostGetCollectible_Wakaba_b(player, item)

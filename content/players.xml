@@ -25,67 +25,90 @@
 	broken="1" this is how many broken hearts the character starts with every 1 is 1 broken heart (REP)
 	birthright="" this is the unique description that will appear when picking up birthright with your character.
 	bSkinParent="name" use this to set this character as the tainted version of the specified character name.
+
+	repentogon exclusive:
+	healthtype="0" this is how health type is being handled, 1:soul, 2:lost, 3:keeper, 4:bone
+	nomarks="false" if it has any value other than 'false', it will hide the completion marks for the given character
+	achievement="" This is now respected on modded characters. For mods, it's best to define this as the name of the achievement,
+		Characters with this tag should have a second frame in their characterportraits(alt).anm2
+		which should be the "locked" picture for the character.
+		In addition, all stat/item layers on the main menu will be hidden and the Unlocked By layer will be visible.
 	
 	when your done remove this comment section :)
 !-->
 	<player name="Wakaba" costume="52"
-	hp="4" broken="9" card="80" coins="5" birthright="True Pure girl"
+	hp="4" card="80" coins="5" birthright="True Pure girl"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_wakaba.png"
-	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba" />
+	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba"
+	/>
 	
 	<player name="WakabaB" bSkinParent="Wakaba" costume="52"
 	black="6" bombs="2" birthright="Explosion immunity + Fury Management" 
 	portrait="WakabaPortrait_b.png"
-	nameimage="playername_wakaba.png" skin="character_wakabab.png" skinColor="1" costumeSuffix="wakaba_b" />
+	nameimage="playername_wakaba.png" skin="character_wakabab.png" skinColor="1" costumeSuffix="wakaba_b"
+	healthtype="1"
+	/>
 
 	<player name="Shiori" costume="52"
 	hp="6" keys="12" birthright="Trace for knowledge" 
 	portrait="ShioriPortrait.png"
 	nameimage="playername_shiori.png"
-	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori" />
+	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori"
+	/>
 	
 	<player name="ShioriB" bSkinParent="Shiori" costume="52"
 	armor="6" keys="12" birthright="Luminous Connection"
 	portrait="ShioriPortrait_b.png"
-	nameimage="playername_shiori.png" skin="character_shiorib.png" skinColor="0" costumeSuffix="minerva" />
+	nameimage="playername_shiori.png" skin="character_shiorib.png" skinColor="0" costumeSuffix="minerva"
+	healthtype="1"
+	/>
 
 	<player name="Tsukasa" costume="52"
 	hp="6" birthright="Brighter Luna"
 	portrait="TsukasaPortrait.png"
 	nameimage="playername_tsukasa.png"
-	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa" />
+	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa"
+	/>
 	
 	<player name="TsukasaB" bSkinParent="Tsukasa" costume="52"
 	hp="6" birthright="Overcome Tragic Trial"
 	portrait="TsukasaPortrait_b.png"
-	nameimage="playername_tsukasa.png" skin="character_tsukasa.png" skinColor="0" costumeSuffix="tsukasa" />
+	nameimage="playername_tsukasa.png" skin="character_tsukasa.png" skinColor="0" costumeSuffix="tsukasa"
+	/>
 
 	<player name="Richer" costume="52"
 	hp="4" armor="2" birthright="Better deals, Recipe Selection" 
 	portrait="null.png"
 	extraportrait="RicherPortraitExtra.anm2"
 	nameimage="playername_richer.png"
-	skin="character_richer.png" skinColor="-1" costumeSuffix="richer" />
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer"
+	/>
 	
 	<player name="RicherB" bSkinParent="Richer" costume="52"
 	armor="6" keys="1" birthright="Dual Flames" 
 	portrait="RicherPortrait_b.png"
 	nameimage="playername_richer.png"
-	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b" />
+	skin="character_richerb.png" skinColor="-1" costumeSuffix="richer_b"
+	healthtype="1"
+	/>
 
 	<player name="Rira" costume="52"
 	hp="0" armor="6" birthright="A little bit more Ecchi"
 	portrait="null.png"
 	extraportrait="RiraPortraitExtra.anm2"
 	nameimage="playername_rira.png"
-	skin="character_rira.png" skinColor="-1" costumeSuffix="rira" />
+	skin="character_rira.png" skinColor="-1" costumeSuffix="rira"
+	nomarks="true"
+	/>
 	
 	<player name="RiraB" bSkinParent="Rira" hidden="true"
 	hp="4" armor="2" birthright="Sakura Liquifier"
 	portrait="RiraPortrait_b.png"
 	nameimage="playername_rira.png"
-	skin="character_rirab.png" skinColor="-1" costumeSuffix="rira_b" />
+	skin="character_rirab.png" skinColor="-1" costumeSuffix="rira_b"
+	healthtype="1" nomarks="true"
+	/>
 
 
 
@@ -93,30 +116,40 @@
 	hp="6"  birthright="???"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_wakaba.png"
-	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba_t" />
+	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba_t"
+	nomarks="true"
+	/>
 
 	<player name="ShioriT" costume="52" hidden="true"
 	hp="6"  birthright="???"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_shiori.png"
-	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori_t" />
+	skin="character_shiori.png" skinColor="-1" costumeSuffix="shiori_t"
+	nomarks="true"
+	/>
 
 	<player name="TsukasaT" costume="52" hidden="true"
 	hp="6"  birthright="???"
 	portrait="TsukasaPortrait.png"
 	nameimage="playername_tsukasa.png"
-	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa_t" />
+	skin="character_tsukasa.png" skinColor="-1" costumeSuffix="tsukasa_t"
+	nomarks="true"
+	/>
 
 	<player name="RicherT" costume="52" hidden="true"
 	hp="6"  birthright="???"
 	portrait="RicherPortrait_b.png"
 	nameimage="playername_richer.png"
-	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t" />
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	nomarks="true"
+	/>
 
 	<player name="RiraT" costume="52" hidden="true"
 	hp="6"  birthright="???"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_rira.png"
-	skin="character_rira.png" skinColor="-1" costumeSuffix="rira_t" />
+	skin="character_rira.png" skinColor="-1" costumeSuffix="rira_t"
+	nomarks="true"
+	/>
 
 </players>

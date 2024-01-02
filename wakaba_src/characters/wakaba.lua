@@ -31,7 +31,7 @@ end
 end ]]
 
 --Costume currently not working in Knife Piece 2 area. Needs to be fixed.
-function wakaba:PostWakabaUpdate()
+function wakaba:HandleWakabaHealth()
 	local hasconf = false
 	local conf = Isaac.FindByType(6, 17, -1, false, false)
 	if #conf > 0 then
@@ -60,7 +60,7 @@ function wakaba:PostWakabaUpdate()
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostWakabaUpdate)
+wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.HandleWakabaHealth)
 
 function wakaba:PlayerUpdate_Wakaba(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.WAKABA	then

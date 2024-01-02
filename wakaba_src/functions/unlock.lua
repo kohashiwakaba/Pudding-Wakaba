@@ -620,6 +620,8 @@ local validPlayerCheck = {
 	--wakaba.Enums.Players.RICHER_T,
 	--wakaba.Enums.Players.RIRA_T,
 }
+wakaba.PlayersToCheckMarks = validPlayerCheck
+
 function wakaba:UnlockCheck(rng, spawnPosition)
 	local playersToCheck = {}
 
