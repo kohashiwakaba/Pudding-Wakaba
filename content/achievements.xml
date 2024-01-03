@@ -19,25 +19,123 @@
 	<!-- <achievement name="The Solar" text='' gfx="achievement_wakaba_richer_t.png" /> -->
 	<!-- <achievement name="The Aqua" text='' gfx="achievement_wakaba_rira_t.png" /> -->
 	<!-- Wakaba Unlocks -->
+	<achievement name="Clover" text='' gfx="achievement_wakaba_clover.png" />
+	<achievement name="Counter" text='' gfx="achievement_wakaba_counter.png" />
+	<achievement name="Wakaba's Pendant" text='' gfx="achievement_wakaba_pendant.png" />
+	<achievement name="D-Cup Ice Cream" text='' gfx="achievement_wakaba_dcupicecream.png" />
+	<achievement name="Revenge Fruit" text='' gfx="achievement_wakaba_revengefruit.png" />
+	<achievement name="Wakaba's Dream Card" text='' gfx="achievement_wakaba_dreamcard.png" />
+	<achievement name="Color Joker" text='' gfx="achievement_wakaba_colorjoker.png" />
+	<achievement name="Wakaba's Uniform" text='' gfx="achievement_wakaba_uniform.png" />
+	<achievement name="White Joker" text='' gfx="achievement_wakaba_whitejoker.png" />
+	<achievement name="Confessional Card" text='' gfx="achievement_wakaba_confessionalcard.png" />
+	<achievement name="Return Postage" text='' gfx="achievement_wakaba_returnpostage.png" />
+	<achievement name="Secret Card" text='' gfx="achievement_wakaba_secretcard.png" />
+	<achievement name="Crane Card" text='' gfx="achievement_wakaba_cranecard.png" />
+	<achievement name="Wakaba's Blessing" text='' gfx="achievement_wakaba_blessing.png" />
+
 	<!-- Wakaba Tainted Unlocks -->
+	<achievement name="Book of Forgotten" text='' gfx="achievement_wakaba_bookofforgotten.png" />
+	<achievement name="Soul of Wakaba" text='' gfx="achievement_wakaba_wakabasoul.png" />
+	<achievement name="Eat Heart" text='' gfx="achievement_wakaba_eatheart.png" />
+	<achievement name="Clover Chest" text='' gfx="achievement_wakaba_cloverchest.png" />
+	<achievement name="Bitcoin II" text='' gfx="achievement_wakaba_bitcoin.png" />
+	<achievement name="Black Joker" text='' gfx="achievement_wakaba_blackjoker.png" />
+	<achievement name="Wakaba's Nemesis" text='' gfx="achievement_wakaba_nemesis.png" />
+
 	<!-- Wakaba Tarnished Unlocks -->
+
 	<!-- Shiori Unlocks -->
+	<achievement name="Hard Book" text='' gfx="achievement_wakaba_hardbook.png" />
+	<achievement name="Shiori holds D6 Plus" text='' gfx="achievement_wakaba_shiorid6plus.png" />
+	<achievement name="Shiori's Bottle of Runes" text='' gfx="achievement_wakaba_deckofrunes.png" />
+	<achievement name="Book of Focus" text='' gfx="achievement_wakaba_bookoffocus.png" />
+	<achievement name="Grimreaper Defender" text='' gfx="achievement_wakaba_grimreaperdefender.png" />
+	<achievement name="Unknown Bookmark" text='' gfx="achievement_wakaba_unknownbookmark.png" />
+	<achievement name="Book of Trauma" text='' gfx="achievement_wakaba_bookoftrauma.png" />
+	<achievement name="Book of Silence" text='' gfx="achievement_wakaba_bookofsilence.png" />
+	<achievement name="Book of The Fallen" text='' gfx="achievement_wakaba_bookoffallen.png" />
+	<achievement name="Vintage Threat" text='' gfx="achievement_wakaba_vintagethreat.png" />
+	<achievement name="Book of The God" text='' gfx="achievement_wakaba_bookofthegod.png" />
+	<achievement name="Magnet Heaven" text='' gfx="achievement_wakaba_magnetheaven.png" />
+	<achievement name="Determination Ribbon" text='' gfx="achievement_wakaba_determinationribbon.png" />
+	<achievement name="Book of Shiori" text='' gfx="achievement_wakaba_bookofshiori.png" />
+
 	<!-- Shiori Tainted Unlocks -->
+	<achievement name="Bookmark Bag" text='' gfx="achievement_wakaba_bookmarkbag.png" />
+	<achievement name="Soul of Shiori" text='' gfx="achievement_wakaba_shiorisoul.png" />
+	<achievement name="Book of Conquest" text='' gfx="achievement_wakaba_bookofconquest.png" />
+	<achievement name="Shiori's Valut" text='' gfx="achievement_wakaba_anotherfortunemachine.png" />
+	<achievement name="Ring of Jupiter" text='' gfx="achievement_wakaba_ringofjupiter.png" />
+	<achievement name="Queen of Spades" text='' gfx="achievement_wakaba_minervaaura.png" />
+	<achievement name="Minerva's Aura" text='' gfx="achievement_wakaba_queenofspades.png" />
+
 	<!-- Shiori Tarnished Unlocks -->
+
 	<!-- Tsukasa Unlocks -->
+	<achievement name="Murasame" text='' gfx="achievement_wakaba_murasame.png" />
+	<achievement name="Nasa Lover" text='' gfx="achievement_wakaba_nasalover.png" />
+	<achievement name="Red Corruption" text='' gfx="achievement_wakaba_totalcorruption.png" />
+	<achievement name="Beetlejuice" text='' gfx="achievement_wakaba_beetlejuice.png" />
+	<achievement name="Power Bomb" text='' gfx="achievement_wakaba_powerbomb.png" />
+	<achievement name="Concentration" text='' gfx="achievement_wakaba_concentration.png" />
+	<achievement name="Range OS" text='' gfx="achievement_wakaba_rangeos.png" />
+	<achievement name="New Year's Eve Bomb" text='' gfx="achievement_wakaba_newyearbomb.png" />
+	<achievement name="Plasma Beam" text='' gfx="achievement_wakaba_plasmabeam.png" />
+	<achievement name="Phantom Cloak" text='' gfx="achievement_wakaba_phantomcloak.png" />
+	<achievement name="Magma Blade" text='' gfx="achievement_wakaba_magmablade.png" />
+	<achievement name="Arcane Crystal" text='' gfx="achievement_wakaba_arcanecrystal.png" />
+	<achievement name="Question Block" text='' gfx="achievement_wakaba_questionblock.png" />
+	<achievement name="Lunar Stone" text='' gfx="achievement_wakaba_lunarstone.png" />
+
 	<!-- Tsukasa Tainted Unlocks -->
+	<achievement name="Isaac Cartridge" text='' gfx="achievement_wakaba_isaaccartridge.png" />
+	<achievement name="Soul of Tsukasa" text='' gfx="achievement_wakaba_tsukasasoul.png" />
+	<achievement name="Easter Egg" text='' gfx="achievement_wakaba_easteregg.png" />
+	<achievement name="Siren's Badge" text='' gfx="achievement_wakaba_sirenbadge.png" />
+	<achievement name="Flash Shift" text='' gfx="achievement_wakaba_flashshift.png" />
+	<achievement name="Return Token" text='' gfx="achievement_wakaba_returntoken.png" />
+	<achievement name="Elixir of Life" text='' gfx="achievement_wakaba_elixiroflife.png" />
+
 	<!-- Tsukasa Tarnished Unlocks -->
+
 	<!-- Richer Unlocks -->
+	<achievement name="Firefly Lighter" text='' gfx="achievement_wakaba_fireflylighter.png" />
+	<achievement name="Sweets Catalog" text='' gfx="achievement_wakaba_sweetscatalog.png" />
+	<achievement name="Double Invader" text='' gfx="achievement_wakaba_doubleinvader.png" />
+	<achievement name="Anti Balance" text='' gfx="achievement_wakaba_antibalance.png" />
+	<achievement name="Venom Incantation" text='' gfx="achievement_wakaba_venomincantation.png" />
+	<achievement name="Bunny Parfait" text='' gfx="achievement_wakaba_bunnyparfait.png" />
+	<achievement name="Richer's Uniform" text='' gfx="achievement_wakaba_richeruniform.png" />
+	<achievement name="Prestige Pass" text='' gfx="achievement_wakaba_prestigepass.png" />
+	<achievement name="3D Printer" text='' gfx="achievement_wakaba_3dprinter.png" />
+	<achievement name="Cunning Paper" text='' gfx="achievement_wakaba_cunningpaper.png" />
+	<achievement name="Self Burning" text='' gfx="achievement_wakaba_selfburning.png" />
+	<achievement name="Clensing Foam" text='' gfx="achievement_wakaba_clensingfoam.png" />
+	<achievement name="Lil Richer" text='' gfx="achievement_wakaba_lilricher.png" />
+	<achievement name="Rabbit Ribbon" text='' gfx="achievement_wakaba_rabbitribbon.png" />
+
 	<!-- Richer Tainted Unlocks -->
+	<achievement name="Star Reversal" text='' gfx="achievement_wakaba_starreversal.png" />
+	<achievement name="Soul of Richer" text='' gfx="achievement_wakaba_richersoul.png" />
+	<achievement name="Water-Flame" text='' gfx="achievement_wakaba_waterflame.png" />
+	<achievement name="Crystal Restock Machine" text='' gfx="achievement_wakaba_crystalrestock.png" />
+	<achievement name="Eternity Cookie" text='' gfx="achievement_wakaba_eternitycookie.png" />
+	<achievement name="Trial Stew" text='' gfx="achievement_wakaba_trialstew.png" />
+	<achievement name="The Winter Albireo" text='' gfx="achievement_wakaba_winteralbireo.png" />
+
 	<!-- Richer Tarnished Unlocks -->
+
 	<!-- Rira Unlocks -->
+
 	<!-- Rira Tainted Unlocks -->
+
 	<!-- Rira Tarnished Unlocks -->
 
 	<!-- Challenge Unlocks -->
-	<!-- <achievement name="Eye of Clock" text='wakaba challenge w01' gfx="achievement_wakaba_eyeofclock.png" />
+	<achievement name="Eye of Clock" text='wakaba challenge w01' gfx="achievement_wakaba_eyeofclock.png" />
 	<achievement name="Plumy" text='wakaba challenge w02' gfx="achievement_wakaba_plumy.png" />
-	<achievement name="WWWWWW" text='wakaba challenge w03' gfx="achievement_wakaba_eyeofclock.png" />
+	<!-- <achievement name="WWWWWW" text='wakaba challenge w03' gfx="achievement_wakaba_eyeofclock.png" /> -->
 	<achievement name="Delimiter" text='wakaba challenge w04' gfx="achievement_wakaba_delimiter.png" />
 	<achievement name="Neko Figure" text='wakaba challenge w05' gfx="achievement_wakaba_nekofigure.png" />
 	<achievement name="Micro Doppelganger" text='wakaba challenge w06' gfx="achievement_wakaba_microdoppelganger.png" />
@@ -47,14 +145,14 @@
 	<achievement name="Executioner" text='wakaba challenge w10' gfx="achievement_wakaba_executioner.png" />
 	<achievement name="Apollyon Crisis" text='wakaba challenge w11' gfx="achievement_wakaba_apollyoncrisis.png" />
 	<achievement name="Isekai Definition" text='wakaba challenge w12' gfx="achievement_wakaba_isekaidefinition.png" />
-	<achievement name="Mirrored Balance" text='wakaba challenge w13' gfx="achievement_wakaba_balance.png" />
+	<achievement name="Balance ecnalaB" text='wakaba challenge w13' gfx="achievement_wakaba_balance.png" />
 	<achievement name="Lil Mao" text='wakaba challenge w14' gfx="achievement_wakaba_lilmao.png" />
 	<achievement name="Richer's Flipper" text='wakaba challenge w15' gfx="achievement_wakaba_richerflipper.png" />
 	<achievement name="Richer's Necklace" text='wakaba challenge w16' gfx="achievement_wakaba_richernecklace.png" />
 	<achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" />
-	<achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" /> -->
+	<achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" />
 	<!-- Challenge Special -->
-	<!-- <achievement name="Eden's Sticky Note" text='wakaba challenge w98' gfx="achievement_wakaba_edensticky.png" />
-	<achievement name="Wakaba's Double Dreams" text='wakaba challenge w99' gfx="achievement_wakaba_doubledreams.png" /> -->
+	<achievement name="Eden's Sticky Note" text='wakaba challenge w98' gfx="achievement_wakaba_edensticky.png" />
+	<achievement name="Wakaba's Double Dreams" text='wakaba challenge w99' gfx="achievement_wakaba_doubledreams.png" />
 
 </achievements>

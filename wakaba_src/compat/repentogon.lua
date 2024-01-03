@@ -11,7 +11,7 @@ wakaba.FamiliarPriority = {
 local function SyncRepentogonMarks(playerType)
 	if not REPENTOGON or not playerType then return end
 
-	print("[wakaba] Trying to register Repentogon completion marks for ", playerType)
+	--print("[wakaba] Trying to register Repentogon completion marks for ", playerType)
 	Isaac.SetCompletionMarks({
 		PlayerType = playerType,
 		MomsHeart = wakaba:GetUnlockValuesFromBoss(playerType, "Heart"),
@@ -30,6 +30,8 @@ local function SyncRepentogonMarks(playerType)
 end
 
 function wakaba:Repentogon_SyncCompletionMarks()
+
+	print("[wakaba] Start Repentogon Sync MC_PRE_GAME_EXIT")
 	for _, playerType in pairs(wakaba.Enums.Players) do
 		if wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) then
 			SyncRepentogonMarks(playerType)
@@ -76,3 +78,175 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_Mine
 wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_SelfBurning)
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_SelfBurning)
 
+
+wakaba.persistentGameData = nil
+local save1Loaded = false
+local save2Loaded = false
+local save3Loaded = false
+
+-- TODO wakaba unlocks to repentogon achievements
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, saveslot, isSlotSelected, rawSlot)
+	local persistentGameData = Isaac.GetPersistentGameData()
+	wakaba.persistentGameData = persistentGameData
+	print("[wakaba] Pre Repentogon Sync MC_POST_SAVESLOT_LOAD", saveslot, isSlotSelected, rawSlot)
+	if isSlotSelected and wakaba:saveDataManagerInMenu() then
+		print("[wakaba] Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
+		wakaba:saveDataManagerLoad()
+		if wakaba.state.unlock.repentogon then return end
+		for _, playerType in pairs(wakaba.Enums.Players) do
+			if wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) then
+				SyncRepentogonMarks(playerType)
+			end
+		end
+		for entryName, achievementID in pairs(wakaba.RepentogonUnlocks) do
+			if wakaba:IsEntryUnlocked(entryName, true) and not persistentGameData:Unlocked(achievementID) then
+				print("[wakaba] Try Unlock", achievementID, "from", saveslot, rawSlot)
+				persistentGameData:TryUnlock(achievementID)
+			end
+		end
+		wakaba.state.unlock.repentogon = true
+		wakaba:saveDataManagerSave()
+	end
+end)
+
+
+local completionTypeToValueMap = {
+	[CompletionType.MOMS_HEART] = "Heart",
+	[CompletionType.ISAAC] = "Isaac",
+	[CompletionType.SATAN] = "Satan",
+	[CompletionType.BOSS_RUSH] = "BossRush",
+	[CompletionType.BLUE_BABY] = "BlueBaby",
+	[CompletionType.LAMB] = "Lamb",
+	[CompletionType.MEGA_SATAN] = "MegaSatan",
+	[CompletionType.ULTRA_GREED] = "Greed",
+	[CompletionType.ULTRA_GREEDIER] = "Greedier",
+	[CompletionType.DELIRIUM] = "Delirium",
+	[CompletionType.MOTHER] = "Mother",
+	[CompletionType.BEAST] = "Beast",
+	[CompletionType.HUSH] = "Hush",
+}
+
+function wakaba:GetEntryFromType(playerType, completionType)
+	if not wakaba.UnlockTables[playerType] then return end
+	local entries = wakaba.UnlockTables[playerType]
+	local bossName = completionTypeToValueMap[completionType]
+	return wakaba:GetUnlockMeta(playerType, bossName)
+end
+
+local function isQuartetOrDuet(completionType)
+	return (
+		completionType == CompletionType.ISAAC
+		or completionType == CompletionType.SATAN
+		or completionType == CompletionType.BLUE_BABY
+		or completionType == CompletionType.BLUE_BABY
+		or completionType == CompletionType.BOSS_RUSH
+		or completionType == CompletionType.HUSH
+	)
+end
+
+local DifficultyToCompletionMap = {
+	[Difficulty.DIFFICULTY_NORMAL]	 = 1,
+	[Difficulty.DIFFICULTY_HARD]	 = 2,
+	[Difficulty.DIFFICULTY_GREED]	 = 1,
+	[Difficulty.DIFFICULTY_GREEDIER] = 2,
+}
+
+local checkGroup = {}
+
+function wakaba:Repentogon_TryUnlock(playerType, completionType, force)
+	if not force and wakaba.G:AchievementUnlocksDisallowed() then return end
+	if not (wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) and wakaba.UnlockTables[playerType]) then return end
+	local persistentGameData = Isaac.GetPersistentGameData()
+	local entries = wakaba.UnlockTables[playerType]
+	local taintedCompletion = entries.istainted or entries.istarnished
+	local value = DifficultyToCompletionMap[wakaba.G.Difficulty]
+	-- 그리디어일 때 울그 선행 언락
+	if not taintedCompletion and completionType == CompletionType.ULTRA_GREEDIER then
+		local bossName = completionTypeToValueMap[CompletionType.ULTRA_GREED]
+		local entry, meta = wakaba:GetUnlockMeta(playerType, bossName)
+		local achievementID = wakaba.RepentogonUnlocks[entry]
+		wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
+		Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
+		if achievementID and not persistentGameData:Unlocked(achievementID) then
+			persistentGameData:TryUnlock(achievementID)
+		end
+	end
+	-- 개별 언락
+	do
+		local bossName = completionTypeToValueMap[completionType]
+		if not (bossName == "Heart" and value == 1) then
+			local entry, meta = wakaba:GetUnlockMeta(playerType, bossName)
+			local achievementID = wakaba.RepentogonUnlocks[entry]
+			wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
+			Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
+			if achievementID and not persistentGameData:Unlocked(achievementID) then
+				persistentGameData:TryUnlock(achievementID)
+			end
+		end
+	end
+	checkGroup[playerType] = true
+
+end
+
+function wakaba:Repentogon_TryUnlock_Group(playerType, completionType, force)
+
+	if not force and wakaba.G:AchievementUnlocksDisallowed() then return end
+	if not (wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) and wakaba.UnlockTables[playerType]) then return end
+	local persistentGameData = Isaac.GetPersistentGameData()
+	local entries = wakaba.UnlockTables[playerType]
+	local taintedCompletion = entries.istainted or entries.istarnished
+	local value = DifficultyToCompletionMap[wakaba.G.Difficulty]
+	-- 그룹 언락
+	if taintedCompletion then
+		if Isaac.AllTaintedCompletion(playerType, TaintedMarksGroup.POLAROID_NEGATIVE) > 0 then
+			local entry, meta = wakaba:GetUnlockMeta(playerType, "Quartet")
+			local achievementID = wakaba.RepentogonUnlocks[entry]
+			wakaba.state.unlock[entry] = true
+			if not persistentGameData:Unlocked(achievementID) then
+				persistentGameData:TryUnlock(achievementID)
+			end
+		end
+		if Isaac.AllTaintedCompletion(playerType, TaintedMarksGroup.SOULSTONE) > 0 then
+			local entry, meta = wakaba:GetUnlockMeta(playerType, "Duet")
+			local achievementID = wakaba.RepentogonUnlocks[entry]
+			wakaba.state.unlock[entry] = true
+			if not persistentGameData:Unlocked(achievementID) then
+				persistentGameData:TryUnlock(achievementID)
+			end
+		end
+	end
+
+	-- 전체 언락
+	if not entries.istainted and Isaac.AllMarksFilled(playerType) == 2 then
+		local entry, meta = wakaba:GetUnlockMeta(playerType, "All")
+		local achievementID = wakaba.RepentogonUnlocks[entry]
+		wakaba.state.unlock[entry] = true
+		if not persistentGameData:Unlocked(achievementID) then
+			persistentGameData:TryUnlock(achievementID)
+		end
+	end
+end
+
+wakaba:AddCallback(ModCallbacks.MC_PRE_COMPLETION_EVENT, function(_, completionType)
+	local playersToCheck = {}
+
+	wakaba:ForAllPlayers(function(player)
+		if wakaba:has_value(wakaba.PlayersToCheckMarks, player:GetPlayerType()) then
+			if not wakaba:has_value(playersToCheck, player:GetPlayerType()) then
+				table.insert(playersToCheck, player:GetPlayerType())
+			end
+		end
+	end)
+	for _, playerType in ipairs(playersToCheck) do
+		wakaba:Repentogon_TryUnlock(playerType, completionType)
+	end
+
+end)
+
+-- MC_POST_COMPLETION_MARK_GET is also called from saveslot load, so made some checks
+wakaba:AddCallback(ModCallbacks.MC_POST_COMPLETION_MARK_GET, function(_, completionType, playerType)
+	if not checkGroup[playerType] then return end
+	print("[wakaba] MC_POST_COMPLETION_MARK_GET called for :", completionType, playerType)
+	wakaba:Repentogon_TryUnlock_Group(playerType, completionType)
+	checkGroup[playerType] = nil
+end)

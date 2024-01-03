@@ -89,6 +89,24 @@ local function TryPlayAchievementPaper(sprite)
 	end
 end
 
+local achievementGfxRoot = "gfx/ui/achievement/"
+function wakaba:TryPlayAchievementPaper(entry, completionType)
+	if REPENTOGON then
+		local achievementID = wakaba.RepentogonUnlocks[entry]
+		if achievementID then
+			local persistentGameData = Isaac.GetPersistentGameData()
+			persistentGameData:TryUnlock(achievementID)
+		end
+	else
+		local gfxLocation = achievementGfxRoot..wakaba.achievementsprite[entry]
+		if #wakaba.state.pendingunlock > 0 then
+			table.insert(wakaba.state.pendingunlock, sprite)
+		else
+			CCO.AchievementDisplayAPI.PlayAchievement(sprite)
+		end
+	end
+end
+
 ---@type table
 wakaba.UnlockTables = {
 	[wakaba.Enums.Players.WAKABA] = {
@@ -345,31 +363,45 @@ function wakaba:GetEncyPaper(playerType)
 	return UnlockTables
 end
 
-function wakaba:GetUnlockEntry(playerType, unlockType)
+function wakaba:GetUnlockMeta(playerType, unlockType)
 	if wakaba.UnlockTables[playerType] then
 		local unlockCheckStr = ""
 		local unlockTable = wakaba.UnlockTables[playerType]
+		local metaTable
 		if unlockTable.istainted then
 			if unlockType == "BossRush" then
 				unlockCheckStr = unlockTable.Duet[1].."1"
+				metaTable = unlockTable.Duet
 			elseif unlockType == "Hush" then
 				unlockCheckStr = unlockTable.Duet[1].."2"
+				metaTable = unlockTable.Duet
 			elseif unlockType == "Isaac" then
 				unlockCheckStr = unlockTable.Quartet[1].."1"
+				metaTable = unlockTable.Quartet
 			elseif unlockType == "Satan" then
 				unlockCheckStr = unlockTable.Quartet[1].."2"
+				metaTable = unlockTable.Quartet
 			elseif unlockType == "BlueBaby" then
 				unlockCheckStr = unlockTable.Quartet[1].."3"
+				metaTable = unlockTable.Quartet
 			elseif unlockType == "Lamb" then
 				unlockCheckStr = unlockTable.Quartet[1].."4"
+				metaTable = unlockTable.Quartet
 			else
 				unlockCheckStr = unlockTable[unlockType][1]
+				metaTable = unlockTable[unlockType]
 			end
 		else
 			unlockCheckStr = unlockTable[unlockType][1]
+			metaTable = unlockTable[unlockType]
 		end
-		return unlockCheckStr
+		return unlockCheckStr, metaTable
 	end
+end
+
+function wakaba:GetUnlockEntry(playerType, unlockType)
+	local unlockCheckStr, meta = wakaba:GetUnlockMeta(playerType, unlockType)
+	return unlockCheckStr
 end
 
 function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
@@ -402,8 +434,8 @@ function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
 	return true
 end
 
-function wakaba:IsEntryUnlocked(entryName)
-	if wakaba.state.options.allowlockeditems then
+function wakaba:IsEntryUnlocked(entryName, precise)
+	if wakaba.state.options.allowlockeditems and not precise then
 		return true
 	end
 	if not entryName then
@@ -644,7 +676,8 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 	local type1 = room:GetType()
 	local boss = room:GetBossID()
 
-	if wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
+	-- normal unlock moved to wakaba:Repentogon_TryUnlock
+	if not REPENTOGON and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and wakaba.G:GetVictoryLap() <= 0 then
 		for _, playerType in ipairs(playersToCheck) do
 			local pendingUnlockEntry = nil
 			local taintedCompletion = wakaba.UnlockTables[playerType].istainted ~= nil
@@ -1327,6 +1360,8 @@ function wakaba:IsWakabaCharacterUnlocked(player)
   return true
 end
 
+function wakaba:UnlockEntry(entry)
+end
 
 
 

@@ -611,11 +611,19 @@ function wakaba:Effect_TaintedWakabaReady()
 								player:GetData().wakaba.taintedtouched = true
 								if not wakaba.state.unlock.taintedtsukasa and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.TSUKASA then
 									wakaba.state.unlock.taintedtsukasa = true
-									CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedtsukasa)
+									if REPENTOGON then
+										Isaac.GetPersistentGameData():TryUnlock(wakaba.RepentogonUnlocks.taintedtsukasa)
+									else
+										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedtsukasa)
+									end
 									wakaba:CheckWakabaChecklist()
 								elseif not wakaba.state.unlock.taintedricher and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.RICHER then
 									wakaba.state.unlock.taintedricher = true
-									CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedricher)
+									if REPENTOGON then
+										Isaac.GetPersistentGameData():TryUnlock(wakaba.RepentogonUnlocks.taintedricher)
+									else
+										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedricher)
+									end
 									wakaba:CheckWakabaChecklist()
 								else
 									for i = 0, wakaba.G:GetNumPlayers() - 1 do

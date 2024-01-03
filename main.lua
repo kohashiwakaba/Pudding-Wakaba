@@ -1550,6 +1550,7 @@ include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
 	include('wakaba_src.compat.repentogon')
+	include('wakaba_src.compat.repentogon_achievements')
 end
 
 --require 'monster'
