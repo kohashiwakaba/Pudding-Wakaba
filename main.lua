@@ -1549,8 +1549,9 @@ include('wakaba_src.compat.thefuture')
 include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
-	include('wakaba_src.compat.repentogon')
-	include('wakaba_src.compat.repentogon_achievements')
+	include('wakaba_src.compat.repentogon.core')
+	include('wakaba_src.compat.repentogon.achievements')
+	--include('wakaba_src.compat.repentogon.imgui')
 end
 
 --require 'monster'

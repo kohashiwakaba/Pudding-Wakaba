@@ -38,9 +38,11 @@ function wakaba:Repentogon_SyncCompletionMarks()
 		end
 	end
 end
-
 wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPORTANT, wakaba.Repentogon_SyncCompletionMarks)
 
+---Wakaba familiar order
+---@param familiar EntityFamiliar
+---@return FamiliarPriority
 function wakaba:Repentogon_GetPriority(familiar)
 	if wakaba.FamiliarPriority[familiar.Variant] then
 		return wakaba.FamiliarPriority[familiar.Variant]
@@ -49,7 +51,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, wakaba.Repentogon_GetPriority)
 
 
----comment
+---Wakaba health limitation
 ---@param player EntityPlayer
 ---@param limit int
 ---@param isKeeper boolean
@@ -78,6 +80,51 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_Mine
 wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_SelfBurning)
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_SelfBurning)
 
+-- Remove Pickup Blind
+--[[ wakaba:RemoveCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, function(_, pickup)
+	if wakaba:ShouldRemoveBlind() and wakaba.G:GetRoom():GetType() == RoomType.ROOM_TREASURE and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND and pickup:IsBlind() then
+		pickup:SetForceBlind(false)
+	end
+end, PickupVariant.PICKUP_COLLECTIBLE) ]]
+
+-- TODO Wakaba's Nemesis health price
+--wakaba:RemoveCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.pickupinit)
+--wakaba:RemoveCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.pickupinit)
+
+
+-- TODO Wakaba Characters unlock check in main menu
+
+
+
+
+-- Sweets Catalog charges
+---@param itemID CollectibleType
+---@param player EntityPlayer
+---@param varData integer
+wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, function(_, itemID, player, varData)
+	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
+		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+			return 0
+		else
+			return 12
+		end
+	else
+		return 8
+	end
+end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
+
+---@param itemID CollectibleType
+---@param charge integer
+---@param firstTime boolean
+---@param slot ActiveSlot
+---@param varData integer
+---@param player EntityPlayer
+wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
+	if firstTime and player:GetPlayerType() ~= wakaba.Enums.Players.RICHER then
+		return {itemID, 8, firstTime, slot, varData}
+	end
+end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
 wakaba.persistentGameData = nil
 local save1Loaded = false
@@ -166,7 +213,7 @@ function wakaba:Repentogon_TryUnlock(playerType, completionType, force)
 		local entry, meta = wakaba:GetUnlockMeta(playerType, bossName)
 		local achievementID = wakaba.RepentogonUnlocks[entry]
 		wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
-		Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
+		--Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
 		if achievementID and not persistentGameData:Unlocked(achievementID) then
 			persistentGameData:TryUnlock(achievementID)
 		end
@@ -178,7 +225,7 @@ function wakaba:Repentogon_TryUnlock(playerType, completionType, force)
 			local entry, meta = wakaba:GetUnlockMeta(playerType, bossName)
 			local achievementID = wakaba.RepentogonUnlocks[entry]
 			wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
-			Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
+			--Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
 			if achievementID and not persistentGameData:Unlocked(achievementID) then
 				persistentGameData:TryUnlock(achievementID)
 			end
