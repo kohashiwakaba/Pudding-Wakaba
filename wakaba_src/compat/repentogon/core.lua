@@ -92,10 +92,15 @@ end, PickupVariant.PICKUP_COLLECTIBLE) ]]
 --wakaba:RemoveCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.pickupinit)
 --wakaba:RemoveCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.pickupinit)
 
+-- Rendering to Repentogon callbacks
+wakaba:RemoveCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_GlobalHUDStats)
+wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_GlobalHUDStats)
+wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_GlobalHUDStats)
 
--- TODO Wakaba Characters unlock check in main menu
-
-
+-- Can't render above HUD with MC_HUD_RENDER
+--wakaba:RemoveCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_ChallengeDest)
+--wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_ChallengeDest)
+--wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_ChallengeDest)
 
 
 -- Sweets Catalog charges

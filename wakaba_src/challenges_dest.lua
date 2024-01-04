@@ -64,12 +64,15 @@ end
 function wakaba:Render_ChallengeDest(sn)
 	if wakaba:shouldDeHook() then return end
 
-	local isShader = sn == "wakaba_ChallengeDest_DummyShader" and true or false
+  if true --[[ not REPENTOGON ]] then
 
-	if not (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and not isShader then return end -- no render when unpaused
-	if (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and isShader then return end -- no shader when paused
+    local isShader = sn == "wakaba_ChallengeDest_DummyShader" and true or false
 
-	if sn ~= nil and not isShader then return end -- final failsafe
+    if not (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and not isShader then return end -- no render when unpaused
+    if (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and isShader then return end -- no shader when paused
+
+    if sn ~= nil and not isShader then return end -- final failsafe
+  end
 
   if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then return end
 

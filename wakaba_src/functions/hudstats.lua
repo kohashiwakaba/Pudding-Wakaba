@@ -138,12 +138,14 @@ local colourDefault = KColor(1, 1, 1, 0.5, 0, 0, 0)
 function wakaba:Render_GlobalHUDStats(sn)
 	if shouldDeHook() then return end
 
-	local isShader = sn == "wakaba_ChallengeDest_DummyShader" and true or false
+	if not REPENTOGON then
 
-	if not (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and not isShader then return end -- no render when unpaused
-	if (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and isShader then return end -- no shader when paused
+		local isShader = sn == "wakaba_ChallengeDest_DummyShader" and true or false
+		if not (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and not isShader then return end -- no render when unpaused
+		if (wakaba.G:IsPaused() and Isaac.GetPlayer(0).ControlsEnabled) and isShader then return end -- no shader when paused
+		if sn ~= nil and not isShader then return end -- final failsafe
+	end
 
-	if sn ~= nil and not isShader then return end -- final failsafe
 
 	wakaba:FoundHUDUpdateCheck()
 	local position = Vector(wakaba.globalHUDCoords.X, wakaba.globalHUDCoords.Y)

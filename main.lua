@@ -44,9 +44,11 @@ include("wakaba_src.enums.constants")
 include("wakaba_src.datas.dictionary")
 include("wakaba_src.libs.retribution_utils")
 include('wakaba_src.libs.achievement_display_api')
-include("wakaba_src.libs.pause_screen_completion_marks_api")
---require("wakaba_src.libs.item_display_library")
-PauseScreenCompletionMarksAPI:SetShader("wakaba_ChallengeDest_DummyShader")
+if not REPENTOGON then
+	include("wakaba_src.libs.pause_screen_completion_marks_api")
+	--require("wakaba_src.libs.item_display_library")
+	PauseScreenCompletionMarksAPI:SetShader("wakaba_ChallengeDest_DummyShader")
+end
 
 ---@type Game
 wakaba.G = Game() -- Cache game object

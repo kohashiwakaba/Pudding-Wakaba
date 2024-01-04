@@ -1370,11 +1370,12 @@ end
 
 
 
-
-for _, playerType in pairs(wakaba.Enums.Players) do
-	if validPlayerCheck[wakaba.Enums.Players] then
-		PauseScreenCompletionMarksAPI:AddModCharacterCallback(playerType, function()
-			return wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
-		end)
+if not REPENTOGON then
+	for _, playerType in pairs(wakaba.Enums.Players) do
+		if validPlayerCheck[wakaba.Enums.Players] then
+			PauseScreenCompletionMarksAPI:AddModCharacterCallback(playerType, function()
+				return wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
+			end)
+		end
 	end
 end
