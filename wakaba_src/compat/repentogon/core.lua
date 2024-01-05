@@ -103,6 +103,15 @@ wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_GlobalHUDStats)
 --wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_ChallengeDest)
 
 
+-- Slot to Repentogon callbacks
+
+wakaba:RemoveCallback(wakaba.Callback.SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:RemoveCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:RemoveCallback(wakaba.Callback.SLOT_UPDATE, wakaba.SlotUpdate_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, wakaba.SlotUpdate_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+
 -- Sweets Catalog charges
 ---@param itemID CollectibleType
 ---@param player EntityPlayer
