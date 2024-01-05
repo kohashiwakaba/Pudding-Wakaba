@@ -141,9 +141,6 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, char
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
 wakaba.persistentGameData = nil
-local save1Loaded = false
-local save2Loaded = false
-local save3Loaded = false
 
 -- TODO wakaba unlocks to repentogon achievements
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, saveslot, isSlotSelected, rawSlot)
