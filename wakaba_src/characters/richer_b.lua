@@ -7,6 +7,13 @@ if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RICHER_B, isc.HeartSubType.SOUL)
 end
 
+function wakaba:PostGetCollectible_Richer_b(player, item)
+	if not player or player:GetPlayerType() ~= wakaba.Enums.Players.RICHER_B then return end
+	player:AddSoulHearts(player:GetSoulHearts() * -1)
+	player:AddMaxHearts(2)
+end
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Richer_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+
 wakaba.TotalWisps = {}
 local totalwisps = wakaba.TotalWisps
 local hudLimit = wakaba.Enums.Constants.RICHER_B_HUD_LIMIT

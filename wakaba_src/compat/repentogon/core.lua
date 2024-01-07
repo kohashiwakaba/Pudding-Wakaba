@@ -67,6 +67,11 @@ end
 wakaba:RemoveCallback(ModCallbacks.MC_POST_UPDATE, wakaba.HandleWakabaHealth)
 wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, wakaba.Repentogon_HandleWakabaHealth, wakaba.Enums.Players.WAKABA)
 
+-- Remove Dead Cat callbacks
+wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Shiori_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Richer_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+
 -- Negate Damage to Repentogon callbacks
 wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_TaintedWakabaBirthright)
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_TaintedWakabaBirthright)
