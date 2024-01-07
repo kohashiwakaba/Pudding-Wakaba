@@ -75,7 +75,7 @@
 	<!-- Tsukasa Unlocks -->
 	<achievement name="Murasame" text='' gfx="achievement_wakaba_murasame.png" />
 	<achievement name="Nasa Lover" text='' gfx="achievement_wakaba_nasalover.png" />
-	<achievement name="Red Corruption" text='' gfx="achievement_wakaba_totalcorruption.png" />
+	<achievement name="Red Corruption" text='' gfx="achievement_wakaba_redcorruption.png" />
 	<achievement name="Beetlejuice" text='' gfx="achievement_wakaba_beetlejuice.png" />
 	<achievement name="Power Bomb" text='' gfx="achievement_wakaba_powerbomb.png" />
 	<achievement name="Concentration" text='' gfx="achievement_wakaba_concentration.png" />
