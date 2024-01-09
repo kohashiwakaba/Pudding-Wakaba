@@ -800,6 +800,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@
 end)
 
 function wakaba:EIDPos()
+	if not EID.player then return end
 	local target_offset_y=0
 	local player_type = EID.player:GetPlayerType()
 	if wakaba.TextOffset[player_type] then
