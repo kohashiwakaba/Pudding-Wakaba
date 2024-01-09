@@ -51,7 +51,7 @@ end, InputHook.IS_ACTION_PRESSED)
 wakaba:AddCallback(ModCallbacks.MC_INPUT_ACTION, function(_, entity, hook, action)
 	if wakaba.scanforclub then
 		if entity and entity:GetData().wakaba_InputHook and action == entity:GetData().wakaba_InputHook and entity:ToPlayer() then
-			return 2
+			return 1
 		end
 	end
 end, InputHook.GET_ACTION_VALUE)
