@@ -137,7 +137,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Caram
 ---리셰 팬케이크 포가튼 뼈 : 공격 시 독파리 생성
 ---@param knife EntityKnife
 function wakaba:KnifeUpdate_CaramellaPancake(knife)
-	local player = knife.SpawnerEntity:ToPlayer()
+	local player = knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer()
 	if player then
 		local data = knife:GetData()
 		if knife.Variant == isc.KnifeVariant.MOMS_KNIFE or knife.Variant == isc.KnifeVariant.SUMPTORIUM then
