@@ -16,6 +16,18 @@ function wakaba:PostRicherUpdate(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostRicherUpdate)
 
+
+
+function wakaba:RoomClear_Richer(rng, pos)
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
+			player:GetData().wakaba.richerroomclearcount = (player:GetData().wakaba.richerroomclearcount or 0) + 1
+		end
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Richer)
+wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_Richer)
+
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
 local RicherChar = {
 		DAMAGE = 1.0,
@@ -28,10 +40,13 @@ local RicherChar = {
 		TEARFLAG = TearFlags.TEAR_NORMAL,
 		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onRicherCache(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
+		local richerPower = (player:GetData().wakaba and player:GetData().wakaba.richerroomclearcount) or 0
+		local brPower = math.max(player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT), 0) + 1
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+			player.Damage = player.Damage + (richerPower * 0.01 * brPower * wakaba:getEstimatedDamageMult(player))
 			player.Damage = player.Damage * RicherChar.DAMAGE
 		end
 		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
@@ -50,7 +65,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 			player.CanFly = true
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RicherChar.TEARS * wakaba:getEstimatedTearsMult(player)))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((RicherChar.TEARS + (richerPower * 0.016 * brPower)) * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
@@ -59,9 +74,9 @@ function wakaba:onRicherCache(player, cacheFlag)
 			player.TearColor = RicherChar.TEARCOLOR
 		end
 	end
-	
+
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRicherCache)
 
 
@@ -71,10 +86,8 @@ function wakaba:AfterRicherInit(player)
 	if player:GetPlayerType() == playerType then
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
 
-		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN or ((wakaba.state.unlock.sweetscatalog or wakaba.state.options.allowlockeditems) and wakaba.state.achievementPopupShown) then
-			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		else
-			player:AddCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, 4, true, ActiveSlot.SLOT_PRIMARY)
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		end
 		if wakaba.state.options.cp_wakaba_b then
 			player:EvaluateItems()
