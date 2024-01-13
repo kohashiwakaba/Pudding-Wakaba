@@ -301,7 +301,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffect_Uniform)
 
 function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, varData)
-	local discharge = false
+	local discharge = true
 	if (useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY)
 	or (useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID)
 	or (useFlags & UseFlag.USE_MIMIC == UseFlag.USE_MIMIC)
@@ -366,11 +366,11 @@ function wakaba:ItemUse_Uniform(usedItem, rng, player, useFlags, activeSlot, var
 		if tempPickupVariant or oldItemType then
 			player:AnimateCollectible(wakaba.Enums.Collectibles.UNIFORM, "UseItem", "PlayerPickup")
 			SFXManager():Play(SoundEffect.SOUND_GOLDENBOMB)
-			discharge = true
 		else
 			player:AnimateSad()
+			discharge = false
 		end
-		if wakaba.G.Difficulty == Difficulty.DIFFICULTY_NORMAL or wakaba.G.Difficulty == Difficulty.DIFFICULTY_GREED or (wakaba:IsGoldenItem(usedItem)) then
+		if wakaba:IsGoldenItem(usedItem) then
 			discharge = false
 		end
 	end

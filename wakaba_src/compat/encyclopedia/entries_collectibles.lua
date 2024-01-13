@@ -1080,7 +1080,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The idea of this item was from 'nerfing' echo chamber, by making echo chanber as an active item."},
-			{str = "- unlike echo chamber, Wakaba's uniform only stores 5 effects instead of all."},
+			{str = "- unlike echo chamber, Wakaba's uniform only stores 3 effects instead of all."},
 			{str = "- however, Wakaba's uniform can remove unwanted effects like teleport cards by swapping with held cards."},
 		},
 	},

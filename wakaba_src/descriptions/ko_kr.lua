@@ -369,7 +369,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} (Ctrl 키로 슬롯 선택 가능)"
 		.. "#알약/카드/룬 사용 시 교복의 담긴 알약/카드/룬도 같이 사용합니다."
 		.. "#교복에 담긴 알약/카드/룬은 Tab 키를 누른 상태에서 확인할 수 있습니다."
-		.. "#충전량은 하드/그리디어 모드에서만 소모합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",

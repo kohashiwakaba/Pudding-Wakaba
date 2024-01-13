@@ -331,7 +331,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Drop button changes which slot to store/swap"
 		.. "#When Isaac uses a card, pill, or rune, he also uses a copy of every card/pill/rune stored in Wakaba's Uniform"
 		.. "#Hold Tab Key/Map Button to show current slot"
-		.. "#Only consume charges in Hard mode."
 		.. "{{CR}}",
 		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
 		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
