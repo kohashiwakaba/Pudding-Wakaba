@@ -1704,7 +1704,8 @@ wakaba.descriptions[desclang].cards = {
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
 		.. "#↑ {{DamageSmall}}공격력 +1"
-		.. "#↑ {{TearsSmall}}연사(+상한) +1.5"
+		.. "#↑ {{TearsSmall}}연사(+상한) +2"
+		.. "#↑ {{TearsSmall}}연사 배율 x2.3"
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
 		tarot = {1, 2, 1.5, 3},
@@ -2025,7 +2026,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#사용 시 그 방의 모든 아이템 및 픽업과 함께 시작방으로 이동합니다.",
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}보물방#{{Card90}} 방 안의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다.",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}천체관#{{Collectible105}} 사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다.",
-	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}+1/{{TearsSmall}}+2/공격이 적에게 유도됩니다.",
+	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}+1/{{TearsSmall}}+2x2.3/공격이 적에게 유도됩니다.",
 	devil = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.",
 	angel = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
 	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",

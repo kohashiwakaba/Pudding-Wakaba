@@ -32,6 +32,11 @@ function wakaba:Cache_Important(player, cacheFlag)
 			player.Damage = player.Damage * (1.07 ^ player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO))
 		end
 	end
+	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
+		if player:GetData().wakaba.minervacountplayer:GetData().wakaba.minervacount > 0 then
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 2.3)
+		end
+	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) and player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_B then
 			local pendantcnt = 0

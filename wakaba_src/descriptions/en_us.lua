@@ -101,6 +101,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Isaac and Other players inside aura grants:"
 		.. "↑ {{Damage}} +1 damage"
 		.. "↑ {{Tears}} +2.0 Fire rate up"
+		.. "↑ {{Tears}} x2.3 Fire rate multiplier"
 		.. "↑ Homing Tears"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",

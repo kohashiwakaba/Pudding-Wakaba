@@ -294,7 +294,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Emits aura that follows Isaac."},
 			{str = "Friendly monsters inside the aura gradually recovers health."},
 			{str = "- Friendly monsters can recover up to 2x of their max health."},
-			{str = "While Isaac and other players stand inside the aura, grants + 1.5 damage up, + 2.0 tears up, +1.5 range up and homing tears. It also gives Isaac a chance to block damage similar to Infamy."},
+			{str = "While Isaac and other players stand inside the aura, grants + 1.5 damage up, + 2.0 tears up, 2.3x tears multiplier, and homing tears. It also gives Isaac a chance to block damage similar to Infamy."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
