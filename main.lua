@@ -1518,8 +1518,6 @@ include('wakaba_src.functions.important_stats')
 include('challenges')
 include('wakaba_src.curses')
 
-include('wakaba_src.datas.itempoolweight')
-
 include('wakaba_src.descriptions.en_us')
 include('wakaba_src.descriptions.ko_kr')
 include('wakaba_src.descriptions.zh_cn')
