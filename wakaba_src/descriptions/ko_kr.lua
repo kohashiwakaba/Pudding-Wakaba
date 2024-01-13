@@ -39,7 +39,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다.",
+		description = "방 클리어 시의 {{DamageSmall}}공격력, {{Tears}}연사 증가량 2배#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다.",
 		queueDesc = "더욱 달콤한 향기",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
@@ -2816,7 +2816,8 @@ wakaba.descriptions[desclang].playernotes = {
 		-- icon = "",
 		name = "리셰",
 		description = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
-		.. "#그녀의 달콤한 걸 좋아하는 특성 덕분에 위기를 살짝 넘길 수 있게 되었습니다."
+		.. "#그녀의 달콤한 걸 좋아하는 특성과 부드러움이 그녀를 지켜주어 받는 피해를 절반으로 줄여줍니다."
+		.. "#방 클리어 시 {{DamageSmall}}공격력 +0.01, {{TearsSmall}}연사(상한) +0.016 증가"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 기본 소지 아이템 : 달콤달콤 카탈로그"
 		--.. "#"

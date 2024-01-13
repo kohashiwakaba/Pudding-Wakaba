@@ -225,6 +225,7 @@ if Encyclopedia then
 			{ -- Traits
 				{str = "Traits", fsize = 2, clr = 3, halign = 0},
 					--{str = ""},
+				{str = "Richer gets small tears and damage up on room clear."},
 				{str = "Rabbit Ribbon", clr = 3, halign = 0},
 				{str = "If any curse is applied, replaces it into new curse."},
 				{str = "- Curse of Sniper : Replaces Curse of Darkenss, Richer cannot see her weapons, but deal more damage to faraway enemies."},

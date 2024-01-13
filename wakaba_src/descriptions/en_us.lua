@@ -28,7 +28,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties from Rabbit Ribbon curses",
+		description = "#Doubles damage, tears boost#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties from Rabbit Ribbon curses",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
@@ -2577,7 +2577,8 @@ wakaba.descriptions[desclang].playernotes = {
 		-- icon = "",
 		name = "Richer",
 		description = "Richer is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
-		.. "#She can improve her destiny with her ribbon"
+		.. "#Her soft body allows make to take damage by half"
+		.. "#She gets small {{Damage}}Damage, {{Tears}}Fire rate boost per room clear"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"
 		--.. "#"
