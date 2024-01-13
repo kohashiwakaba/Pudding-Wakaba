@@ -60,6 +60,26 @@ Encyclopedia.AddItem({
 		end
 	end,
 })
+-- Richer / Isaac : Ancient Catalog
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANCIENT_CATALOG,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANCIENT_CATALOG,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+	},
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("sweetscatalog") then
+			self.Desc = "Defeat Isaac as Richer"
+			return self
+		end
+	end,
+})
 -- Richer / Satan : Anti Balance
 Encyclopedia.AddItem({
 	Class = class,

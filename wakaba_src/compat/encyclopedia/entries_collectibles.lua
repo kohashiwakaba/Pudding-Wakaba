@@ -556,6 +556,20 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Richer's ribbon is precious for some reason."},
 		}, ]]
 	},
+	ANCIENT_CATALOG = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, Gives Isaac one of items for the room."},
+			{str = "The available items are the items that changes weapon."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "This item is older version of Sweets Catalog, which item effect has been changed."},
+			{str = "Older version of Sweets Catalog is inspierd from 'rhongomyniad' from Astrobirth, dedicated to Isaac Streamer HY."},
+			{str = "The item effect of rhongomyniad make player to choose one of dropped items and weapon item."},
+			{str = "Unlike Sweets Catalog, rhongomyniad pool also has some items 'is considered' as weapon item, such as IPECAC"},
+		},
+	},
 	WATER_FLAME = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},

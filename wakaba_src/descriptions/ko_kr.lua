@@ -181,6 +181,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "맛집은 못 참지",
 	},
+	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
+		itemName = "옛 적의 카탈로그",
+		description = ""
+		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 무기 효과를 얻습니다:"
+		.. "{{CR}}",
+		queueDesc = "그 때 그 시절의 맛집",
+	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "겨울의 알비레오",
 		description = ""

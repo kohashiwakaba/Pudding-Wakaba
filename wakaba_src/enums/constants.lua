@@ -48,6 +48,7 @@ wakaba.Enums.Collectibles = {
 	CONCENTRATION = Isaac.GetItemIdByName("Concentration"),
 	RABBIT_RIBBON = Isaac.GetItemIdByName("Rabbit Ribbon"),
 	SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
+	ANCIENT_CATALOG = Isaac.GetItemIdByName("Ancient Catalog"),
 
 	-- Regular items
 	MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD"),
