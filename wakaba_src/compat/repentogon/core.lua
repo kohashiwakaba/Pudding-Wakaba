@@ -172,6 +172,11 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 	end
 end)
 
+-- override function : IsLost
+function wakaba:IsLost(player)
+	return player:HasInstantDeathCurse()
+end
+
 
 local completionTypeToValueMap = {
 	[CompletionType.MOMS_HEART] = "Heart",
