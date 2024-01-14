@@ -2815,7 +2815,7 @@ wakaba.descriptions[desclang].playernotes = {
 		-- icon = "",
 		name = "리셰",
 		description = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
-		.. "#그녀의 달콤한 걸 좋아하는 특성과 부드러움이 그녀를 지켜주어 받는 피해를 절반으로 줄여줍니다."
+		.. "#그녀의 부드러움 덕분에 받는 피해를 절반으로 줄여주며, 장신구의 효과가 강화됩니다."
 		.. "#방 클리어 시 {{DamageSmall}}공격력 +0.01, {{TearsSmall}}연사(상한) +0.016 증가"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 기본 소지 아이템 : 달콤달콤 카탈로그"

@@ -2576,7 +2576,7 @@ wakaba.descriptions[desclang].playernotes = {
 		-- icon = "",
 		name = "Richer",
 		description = "Richer is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
-		.. "#Her soft body allows make to take damage by half"
+		.. "#Her soft body allows make to take damage by half, and make trinket boosts"
 		.. "#She gets small {{Damage}}Damage, {{Tears}}Fire rate boost per room clear"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"

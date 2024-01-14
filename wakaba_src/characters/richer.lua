@@ -3,14 +3,20 @@ local playerType = wakaba.Enums.Players.RICHER
 local removed = false
 local isRicherContinue = true
 
+local isc = require("wakaba_src.libs.isaacscript-common")
+
 function wakaba:PostRicherUpdate(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_WAFER, 1, "WAKABA_I_RICHER")
+		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_MOMS_BOX, 1, "WAKABA_I_RICHER")
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
 	else
 		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_WAFER, "WAKABA_I_RICHER") then
 			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_WAFER, "WAKABA_I_RICHER")
+		end
+		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_MOMS_BOX, "WAKABA_I_RICHER") then
+			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_MOMS_BOX, "WAKABA_I_RICHER")
 		end
 	end
 end
@@ -22,6 +28,8 @@ function wakaba:RoomClear_Richer(rng, pos)
 	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 		if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 			player:GetData().wakaba.richerroomclearcount = (player:GetData().wakaba.richerroomclearcount or 0) + 1
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+			player:EvaluateItems()
 		end
 	end)
 end
