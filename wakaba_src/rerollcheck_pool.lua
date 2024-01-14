@@ -91,7 +91,7 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()
 	local config = Isaac.GetItemConfig()
-	
+
 	wakaba.state.rerollloopcount = wakaba.state.rerollloopcount or 0
 	local defaultPool = itemPoolType or ItemPoolType.POOL_NULL
 
@@ -179,7 +179,6 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 	else
 		wakaba.state.rerollloopcount = 0
 		wakaba.runstate.spent = false
-		wakaba.runstate.eatheartused = false
 		if wakaba.state.rerollloopcount >= wakaba.state.options.rerollbreakfastthreshold then
 			selected = CollectibleType.COLLECTIBLE_BREAKFAST
 		end
@@ -250,7 +249,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, fun
 			rerollProps.WakabaNemesis = rerollProps.WakabaNemesis or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 			if pData.wakaba and pData.wakaba.eatheartused then
 				rerollProps.eatHeartUsed = true
-				rerollProps.eatHeartCharges = math.max((rerollProps.eatHeartCharges or 0), (pData.wakaba.eatheartcharges or 0))
+				rerollProps.eatHeartQuality = math.max((rerollProps.eatHeartQuality or 0), (pData.wakaba.eatheartquality or 0))
 			end
 		end
 	end)
@@ -274,10 +273,10 @@ end)
 wakaba:AddCallback(wakaba.Callback.POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, function(_, rerollProps, selected, itemPoolType, decrease, seed, isCustom)
 
 	if rerollProps.eatHeartUsed then
-		rerollProps.qualityChance[0] = 0
-		rerollProps.qualityChance[1] = 0
-		rerollProps.qualityChance[2] = 0
-		rerollProps.qualityChance[3] = 1 - (rerollProps.eatHeartCharges / 480000)
+		rerollProps.qualityChance[0] = rerollProps.eatHeartQuality <= 0 and 1 or 0
+		rerollProps.qualityChance[1] = rerollProps.eatHeartQuality <= 1 and 1 or 0
+		rerollProps.qualityChance[2] = rerollProps.eatHeartQuality <= 2 and 1 or 0
+		rerollProps.qualityChance[3] = rerollProps.eatHeartQuality <= 3 and 1 or 0
 		rerollProps.qualityChance[4] = 1
 	elseif rerollProps.NekoFigure and wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
 		rerollProps.qualityChance[0] = 0
@@ -306,13 +305,13 @@ wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, reroll
 
 	-- Unlock Check
 	if not wakaba:unlockCheck(selected) then return true end
-	
+
 	-- Active Check
 	if selectedItemConf.Type == ItemType.ITEM_ACTIVE and not rerollProps.allowActives then return true end
 
 	-- Pool Check
 	if not isCustom and rerollProps.itemType ~= itemPoolType then return true end
-	
+
 	-- Isaac Cartridge
 	if selected ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 		local isModded = selected > CollectibleType.COLLECTIBLE_MOMS_RING
@@ -347,7 +346,7 @@ function wakaba:rerollCooltime()
 			local pData = player:GetData()
 			if player:GetData().wakaba and player:GetData().wakaba.eatheartused == true then
 				player:GetData().wakaba.eatheartused = false
-				player:GetData().wakaba.eatheartcharges = 0
+				player:GetData().wakaba.eatheartquality = nil
 			end
 		end
 	end
