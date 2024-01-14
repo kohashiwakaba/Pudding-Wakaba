@@ -33,7 +33,7 @@ function wakaba:Cache_Important(player, cacheFlag)
 		end
 	end
 	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
-		if player:GetData().wakaba.minervacountplayer:GetData().wakaba.minervacount > 0 then
+		if player:GetData().wakaba.minervacount > 0 then
 			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 2.3)
 		end
 	end
