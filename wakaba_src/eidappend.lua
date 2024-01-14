@@ -552,9 +552,6 @@ if EID then
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
 
-
-			wakaba:ReplaceEIDBagWeight()
-
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end
 
