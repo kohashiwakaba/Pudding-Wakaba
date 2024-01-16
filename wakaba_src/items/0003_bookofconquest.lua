@@ -42,15 +42,15 @@ wakaba.conquestready = {}
 wakaba.conquestreadycount = 0
 local bombcost, keycost = 0, 0
 wakaba.eidHideInBattle = EID and EID.Config["HideInBattle"]
+local camPos
 
 local function getNameEntity(entity)
 	if not EID then return "Book of Conquest requires EID" end
 	if not entity then return "No entity Found" end
 	local entityType = entity.Type
 	local entityVariant = entity.Variant
-	local e = entityType .. "." .. entityVariant
-	local eWithZero = string.gsub(e, "-1", "0")
-	local name = EID.XMLEntityNames[e] or EID.XMLEntityNames[eWithZero] or e
+	local entitySubtype = entity.SubType
+	local name = EID:GetEntityXMLName(entityType, entityVariant, entitySubtype)
 	if name == e then return "(No name or modded)" end
 
 	return name
@@ -132,7 +132,11 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 			local target = wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
-			player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+			if REPENTOGON then
+				camPos = target.Position
+			else
+				player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+			end
 			bombcost, keycost = wakaba:CalculateCost(target, hasbirthright, hascarbattery)
 			wakaba.conquestcontrollerindex = player.ControllerIndex
 			if EID then
@@ -284,6 +288,7 @@ function wakaba:CalculateCost(entity, hasbirthright, hascarbattery)
 end
 
 function wakaba:Render_BookOfConquest()
+	local room = wakaba.G:GetRoom()
 	local hasconquest = false
 	local alpha = wakaba.runstate.currentalpha
 	for i = 1, wakaba.G:GetNumPlayers() do
@@ -345,9 +350,13 @@ function wakaba:Render_BookOfConquest()
 		local eidstring = "#"..conqstr.selectstr..": {{ButtonX}}/{{ButtonB}}"
 		eidstring = eidstring .."#"..conqstr.selectenemy..": {{ColorBookofConquest}}{{{SelectedEnemy}}}"
 		eidstring = eidstring .."#!!! "..conqstr.selectreq.." :"
-		local entities = Isaac.GetRoomEntities()
-		for _, entity in ipairs(entities) do
-			entity:AddEntityFlags(EntityFlag.FLAG_FREEZE)
+		if REPENTOGON then
+			room:SetPauseTimer(2)
+		else
+			local entities = Isaac.GetRoomEntities()
+			for _, entity in ipairs(entities) do
+				entity:AddEntityFlags(EntityFlag.FLAG_FREEZE)
+			end
 		end
 		--Isaac.GetPlayer(0):UseActiveItem(CollectibleType.COLLECTIBLE_PAUSE, UseFlag.USE_NOANIM)
 		for i = 1, wakaba.G:GetNumPlayers() do
@@ -362,8 +371,10 @@ function wakaba:Render_BookOfConquest()
 				or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 				or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
 				then
-					for _, entity in ipairs(entities) do
-						entity:ClearEntityFlags(EntityFlag.FLAG_FREEZE)
+					if not REPENTOGON then
+						for _, entity in ipairs(entities) do
+							entity:ClearEntityFlags(EntityFlag.FLAG_FREEZE)
+						end
 					end
 					player:GetData().wakaba.conquestmode = false
 					player:GetData().wakaba.conquestcursor = nil
@@ -375,6 +386,7 @@ function wakaba:Render_BookOfConquest()
 						EID:hidePermanentText()
 					end
 					wakaba.conquestmode = false
+					return
 				end
 				local target = nil
 				--player:GetData().wakaba.conquestcursor = player:GetData().wakaba.conquestcursor or 0
@@ -388,7 +400,11 @@ function wakaba:Render_BookOfConquest()
 						end
 						target = wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
 					end
-					player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+					if REPENTOGON then
+						camPos = target.Position
+					else
+						player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+					end
 					bombcost, keycost = wakaba:CalculateCost(target, hasbirthright, hascarbattery)
 				elseif (Input.IsActionTriggered(ButtonAction.ACTION_RIGHT, player.ControllerIndex) or Input.IsActionTriggered(ButtonAction.ACTION_DOWN, player.ControllerIndex)) and iscontrolling then
 					SFXManager():Play(SoundEffect.SOUND_CHARACTER_SELECT_RIGHT, 1, 0, false, 1)
@@ -399,7 +415,11 @@ function wakaba:Render_BookOfConquest()
 						end
 						target = wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
 					end
-					player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+					if REPENTOGON then
+						camPos = target.Position
+					else
+						player.Position = Isaac.GetFreeNearPosition(target.Position, 64)
+					end
 					bombcost, keycost = wakaba:CalculateCost(target, hasbirthright, hascarbattery)
 				end
 				player.Velocity = Vector.Zero
@@ -469,6 +489,22 @@ function wakaba:Render_BookOfConquest()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_BookOfConquest)
+
+if REPENTOGON then
+	function wakaba:Camera_Conquest()
+		if wakaba.conquestmode and camPos then
+			local room = wakaba.G:GetRoom()
+			//print(camPos, room:GetRenderScrollOffset())
+			if Options.CameraStyle == 1 then
+				room:GetCamera():SetFocusPosition(camPos)
+			else
+				room:GetCamera():SnapToPosition(camPos)
+			end
+		end
+	end
+	--wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Camera_Conquest)
+	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Camera_Conquest)
+end
 
 function wakaba:Update_BookOfConquest()
 	if wakaba.conquestcooltime > 0 then
