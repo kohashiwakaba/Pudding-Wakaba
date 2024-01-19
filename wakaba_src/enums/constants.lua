@@ -441,6 +441,9 @@ wakaba.Enums.Chances = {
 wakaba.Enums.Constants = {
 	WAKABA_UNIFORM_MAX_SLOTS = 3, --와카바의 교복 최대 슬롯 수
 
+	CLOVER_CHEST_SPAWN_CHANCE = 0.05, -- 클로버 상자 소환 확률 (일반 상자 교체)
+	CLOVER_CHEST_COLLECTIBLE_CHANCE = 0.15, -- 클로버 상자 아이템 드랍 확률
+
 	STACK_STRENGTH_SUPER = 2.0, -- 중첩 효과 극강
 	STACK_STRENGTH_HIGH = 1.0, -- 중첩 효과 강
 	STACK_STRENGTH_MEDIUM = 0.5, -- 중첩 효과 중
