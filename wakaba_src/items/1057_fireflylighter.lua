@@ -74,3 +74,12 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 		spawnLightBeam(effectTarget, player)
 	end
 end, wakaba.TearFlag.PSEUDO_HEAVEN)
+
+---@param npc EntityNPC
+function wakaba:NPCUpdate_FireflyLighter(npc)
+	if not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.FIREFLY_LIGHTER) then return end
+	if npc:HasEntityFlags(EntityFlag.FLAG_NO_REWARD) then
+		npc:ClearEntityFlags(EntityFlag.FLAG_NO_REWARD)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_FireflyLighter)
