@@ -944,6 +944,23 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Shiratori Kanae, or some females from Shiratori household gets heterochromia eyes, in order to watch some magical spells from the other household 'asasaka'"},
 		},
 	},
+	RICHERS_BRA = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "All penalties by taking damage are removed. See synergies."},
+			{str = "- Taking any damage counts as taking self-damage."},
+			{str = "- Taking any red heart damage does not decrease the chance to open a Devil Room."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Paschal Candle", clr = 3, halign = 0},
+			{str = "Taking damage from any sources will not reset the tears up."},
+			{str = "Perfection", clr = 3, halign = 0},
+			{str = "Taking damage from any sources will not lose Perfection trinket."},
+			{str = "Damocles", clr = 3, halign = 0},
+			{str = "Taking damage from any sources does not count as damage taken for Damocles, and will not give it the chance to fall."},
+		},
+	},
   --#endregion
 
   --#region Wakaba

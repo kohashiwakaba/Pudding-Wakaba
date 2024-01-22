@@ -1079,6 +1079,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "긴급 탈출구",
 	},
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		itemName = "리셰의 속옷",
+		description = "피격 시 발생하는 패널티를 막아줍니다."
+		.. "#!!! {{Trinket145}}/{{Collectible577}}/{{Collectible567}}..."
+		.. "{{CR}}",
+		queueDesc = "포근해...",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

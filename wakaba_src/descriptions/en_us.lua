@@ -41,7 +41,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Prevents {{Quality0}}/{{Quality1}} items from spawning"
-		.. "#All damage taken will be non-penalty damage"
+		.. "#↑ Prevents penalties from all damage taken"
 		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -55,7 +55,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#Cards and runes has chance to be replaced into {{Card78}}Cracked Key"
 		.. "#{{DevilRoom}} Price of Devil room items are set to 6 coins"
-		.. "#All damage taken will be non-penalty damage"
+		.. "#↑ Prevents penalties from all damage taken"
 		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -964,6 +964,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Can only swap once per room clear"
 		.. "#!!! Some active items cannot be inserted into pocket"
 		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		itemName = "Richer's Bra",
+		description = "↑ Prevents penalties from all damage taken",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",

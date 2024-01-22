@@ -239,6 +239,18 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
+--Richer's Bra
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.RICHERS_BRA,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_BRA,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
 --Kanae Lens
 Encyclopedia.AddItem({
 	Class = class,

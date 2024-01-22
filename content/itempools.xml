@@ -84,6 +84,7 @@
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Kanae Lens" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -99,6 +100,7 @@
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
@@ -232,6 +234,7 @@
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

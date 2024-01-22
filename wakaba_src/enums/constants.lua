@@ -67,6 +67,7 @@ wakaba.Enums.Collectibles = {
 	CRISIS_BOOST = Isaac.GetItemIdByName("Crisis Boost"),
 	ONSEN_TOWEL = Isaac.GetItemIdByName("Onsen Towel"),
 	RIRAS_BRA = Isaac.GetItemIdByName("Rira's Bra"),
+	RICHERS_BRA = Isaac.GetItemIdByName("Richer's Bra"),
 	KANAE_LENS = Isaac.GetItemIdByName("Kanae Lens"),
 
 	-- Wakaba items
