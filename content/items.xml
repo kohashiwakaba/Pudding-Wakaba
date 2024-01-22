@@ -8,7 +8,7 @@
 	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" />
 	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive food summonable" quality="4" />
 	<passive id="6" cache="all" hearts="4" maxhearts="2" description="All Stats Up! + You feel lewd" gfx="gamecd.png" name="Mysterious game CD" tags="offensive tearsup summonable" quality="3" />
-	<passive id="7" cache="damage luck" hearts="120" description="You feel Super Lucky!" gfx="wakabapendant.png" name="Wakaba's Pendant" tags="stars offensive summonable" quality="2" craftquality="3"/>
+	<passive id="7" cache="damage luck" hearts="120" description="You feel Super Lucky!" gfx="wakabapendant.png" name="Wakaba's Pendant" shopprice="21" devilprice="2" tags="stars offensive summonable" quality="3" craftquality="4"/>
 	<passive id="8" description="Stack coins &amp; become secret friend" coins="22" gfx="secretcard.png" name="Secret Card" tags="offensive nocantrip summonable lazarusshared" quality="2" craftquality="4"/>
 	<familiar id="9" description="Wait What?" gfx="plumy.png" name="Plumy" devilprice="2" tags="offensive fly summonable" quality="3"/>
 	<passive id="10" description="???" gfx="executioner.png" name="Executioner" tags="offensive summonable" quality="4" />
