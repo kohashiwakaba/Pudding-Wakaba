@@ -1,4 +1,4 @@
---StartDebug()
+
 -- Pudding and Wakaba is Repentance only.
 if not REPENTANCE then
 	print("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
@@ -36,7 +36,15 @@ local iFeatures = {
 	isc.ISCFeature.NO_SIREN_STEAL,
 	isc.ISCFeature.MODDED_ELEMENT_SETS,
 }
-wakaba = isc:upgradeMod(_wakaba, iFeatures)
+if REPENTOGON then
+	iFeatures = {
+		isc.ISCFeature.SAVE_DATA_MANAGER,
+		isc.ISCFeature.TAINTED_LAZARUS_PLAYERS,
+		isc.ISCFeature.NO_SIREN_STEAL,
+		isc.ISCFeature.MODDED_ELEMENT_SETS,
+	}
+end
+wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class Mod
 
 --include("wakaba_src.libs.filepathhelper")
 include('wakaba_src.libs.screenhelper')
@@ -164,9 +172,6 @@ wakaba.RGB = {
 	B = 0,
 }
 
--- Plz fix this Edmund.
---wakaba.nepuSND = Isaac.GetSoundIdByName("wakaba_nepu")
-
 -- EID extended description. for eidappend.lua
 wakaba.descriptions = wakaba.descriptions or {}
 wakaba.encyclopediadesc = wakaba.encyclopediadesc or {}
@@ -207,15 +212,12 @@ local richer_saved_recipies = {
 			megasatan = 0,
 			mother = 0,
 			delirium = 0,
-
-			ignoretmtrainer = false,
 		},
 		options = {
 			allowlockeditems = true,
 			balancemode = wakaba.Enums.BalanceModes.WAKABA,
 
 			kud_wafu = false,
-			nepu = true,
 			fortunereplacechance = 10,
 
 			-- Reroll function threshold. Change this value if getting items are too laggy.
@@ -259,8 +261,6 @@ local richer_saved_recipies = {
 			-- Rira options
 			chimakisound = true,
 
-			mindonationcount = 5,
-
 			-- Wakaba Duality options
 			blessnemesisindexed = false,
 			blessnemesisqualityignore = false,
@@ -285,7 +285,6 @@ local richer_saved_recipies = {
 			stackableblanket = 0,
 			stackableblessing = 0,
 			stackableholycard = 5,
-			stackablewoodencross = 0,
 
 			-- Dogma/Beast Blanket options
 			dogmablanket = true,
@@ -568,12 +567,9 @@ wakaba.forcevoiddefaults = {
 	megasatan = 0,
 	mother = 0,
 	delirium = 0,
-
-	ignoretmtrainer = false,
 }
 
 wakaba.optiondefaults = {
-	nepu = true,
 	fortunereplacechance = 10,
 
 	-- Reroll function threshold. Change this value if getting items are too laggy.
@@ -616,8 +612,6 @@ wakaba.optiondefaults = {
 	-- Rira options
 	chimakisound = true,
 
-	mindonationcount = 5,
-
 	-- Wakaba Duality options
 	blessnemesisindexed = false,
 	blessnemesisqualityignore = false,
@@ -642,7 +636,6 @@ wakaba.optiondefaults = {
 	stackableblanket = 0,
 	stackableblessing = 0,
 	stackableholycard = 5,
-	stackablewoodencross = 0,
 
 	-- Dogma/Beast Blanket options
 	dogmablanket = true,
@@ -922,185 +915,6 @@ end
 --start from new wakaba.G
 if not wakaba.defaultstate then
 	wakaba.defaultstate = wakaba:deepcopy(wakaba.state)
-end
---[[
-wakaba.defaultstate = {
-	spent = false,
-	blessing = {},
-	nemesis = {},
-	dicecount = 12,
-	saved = false,
-	angelchance = 0,
-	dreampool = ItemPoolType.POOL_NULL,
-	dreamroom = RoomType.ROOM_TREASURE,
-	randtainted = false,
-	allowactives = true,
-	--- DonationCard
-	silverchance = 65,
-	vipchance = 65,
-	totalNumCoinsDonated = 0,
-	minDonationLimit = 0,
-	revengecount = 7,
-	--- Setting Below, Run Period Upper
-	forcevoid = wakaba.forcevoiddefaults,
-	options = wakaba.optiondefaults,
-	--wakabaoptions = wakaba.wakabaoptiondefaults,
-	pog = true,
-	--- Unlock State
-	unlock = wakaba.unlocks,
-
-	storedplayers = 0,
-	indexes = {},
-	playersavedata = {},
-}
-]]
-function wakaba:CheckWakabaChecklist()
-	local haspending = false
-	local pending
-	if wakaba.state.unlock.blessing == false
-	and wakaba.state.unlock.clover >= 2 -- Mom's Heart
-	and wakaba.state.unlock.counter >= 2 -- Isaac
-	and wakaba.state.unlock.dcupicecream >= 2 -- Satan
-	and wakaba.state.unlock.pendant >= 2 -- ???
-	and wakaba.state.unlock.revengefruit >= 2 -- The Lamb
-	and wakaba.state.unlock.whitejoker >= 2 -- Mega Satan
-	and wakaba.state.unlock.donationcard >= 2 -- Boss Rush
-	and wakaba.state.unlock.colorjoker >= 2 -- Hush
-	and wakaba.state.unlock.wakabauniform >= 2 -- Delirium
-	and wakaba.state.unlock.confessionalcard >= 2 -- Mother
-	and wakaba.state.unlock.returnpostage >= 2 -- The Beast
-	and wakaba.state.unlock.secretcard >= 2 -- Ultra Greed
-	and wakaba.state.unlock.cranecard >= 2 -- Ultra Greedier
-	then
-		wakaba.state.unlock.blessing = true
-		if #wakaba.state.pendingunlock > 0 then
-			table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.blessing)
-		else
-			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.blessing)
-		end
-	end
-	if wakaba.state.unlock.wakabasoul == false
-	and wakaba.state.unlock.wakabasoul1 > 0
-	and wakaba.state.unlock.wakabasoul2 > 0
-	then
-		wakaba.state.unlock.wakabasoul = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.wakabasoul)
-	end
-	if wakaba.state.unlock.bookofforgotten == false
-	and wakaba.state.unlock.bookofforgotten1 > 0
-	and wakaba.state.unlock.bookofforgotten2 > 0
-	and wakaba.state.unlock.bookofforgotten3 > 0
-	and wakaba.state.unlock.bookofforgotten4 > 0
-	then
-		wakaba.state.unlock.bookofforgotten = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookofforgotten)
-	end
-
-	if wakaba.state.unlock.bookofshiori == false
-	and wakaba.state.unlock.hardbook >= 2 -- Mom's Heart
-	and wakaba.state.unlock.shiorid6plus >= 2 -- Isaac
-	and wakaba.state.unlock.bookoffocus >= 2 -- Satan
-	and wakaba.state.unlock.deckofrunes >= 2 -- ???
-	and wakaba.state.unlock.grimreaperdefender >= 2 -- The Lamb
-	and wakaba.state.unlock.bookoffallen >= 2 -- Mega Satan
-	and wakaba.state.unlock.unknownbookmark >= 2 -- Boss Rush
-	and wakaba.state.unlock.bookoftrauma >= 2 -- Hush
-	and wakaba.state.unlock.bookofsilence >= 2 -- Delirium
-	and wakaba.state.unlock.vintagethreat >= 2 -- Mother
-	and wakaba.state.unlock.bookofthegod >= 2 -- The Beast
-	and wakaba.state.unlock.magnetheaven >= 2 -- Ultra Greed
-	and wakaba.state.unlock.determinationribbon >= 2 -- Ultra Greedier
-	then
-		wakaba.state.unlock.bookofshiori = true
-		if #wakaba.state.pendingunlock > 0 then
-			table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.bookofshiori)
-		else
-			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookofshiori)
-		end
-	end
-
-	if wakaba.state.unlock.shiorisoul == false
-	and wakaba.state.unlock.shiorisoul1 > 0
-	and wakaba.state.unlock.shiorisoul2 > 0
-	then
-		wakaba.state.unlock.shiorisoul = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.shiorisoul)
-	end
-	if wakaba.state.unlock.bookmarkbag == false
-	and wakaba.state.unlock.bookmarkbag1 > 0
-	and wakaba.state.unlock.bookmarkbag2 > 0
-	and wakaba.state.unlock.bookmarkbag3 > 0
-	and wakaba.state.unlock.bookmarkbag4 > 0
-	then
-		wakaba.state.unlock.bookmarkbag = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.bookmarkbag)
-	end
-
-
-	if wakaba.state.unlock.lunarstone == false
-	and wakaba.state.unlock.murasame >= 2 -- Mom's Heart
-	and wakaba.state.unlock.nasalover >= 2 -- Isaac
-	and wakaba.state.unlock.beetlejuice >= 2 -- Satan
-	and wakaba.state.unlock.redcorruption >= 2 -- ???
-	and wakaba.state.unlock.powerbomb >= 2 -- The Lamb
-	and wakaba.state.unlock.plasmabeam >= 2 -- Mega Satan
-	and wakaba.state.unlock.concentration >= 2 -- Boss Rush
-	and wakaba.state.unlock.rangeos >= 2 -- Hush
-	and wakaba.state.unlock.newyearbomb >= 2 -- Delirium
-	and wakaba.state.unlock.phantomcloak >= 2 -- Mother
-	and wakaba.state.unlock.magmablade >= 2 -- The Beast
-	and wakaba.state.unlock.arcanecrystal >= 2 -- Ultra Greed
-	and wakaba.state.unlock.questionblock >= 2 -- Ultra Greedier
-	then
-		wakaba.state.unlock.lunarstone = true
-		if #wakaba.state.pendingunlock > 0 then
-			table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.lunarstone)
-		else
-			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.lunarstone)
-		end
-	end
-
-	if wakaba.state.unlock.tsukasasoul == false
-	and wakaba.state.unlock.tsukasasoul1 > 0
-	and wakaba.state.unlock.tsukasasoul2 > 0
-	then
-		wakaba.state.unlock.tsukasasoul = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.tsukasasoul)
-	end
-	if wakaba.state.unlock.isaaccartridge == false
-	and wakaba.state.unlock.isaaccartridge1 > 0
-	and wakaba.state.unlock.isaaccartridge2 > 0
-	and wakaba.state.unlock.isaaccartridge3 > 0
-	and wakaba.state.unlock.isaaccartridge4 > 0
-	then
-		wakaba.state.unlock.isaaccartridge = true
-		CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.isaaccartridge)
-	end
-
-	if wakaba.state.unlock.rabbitribbon == false
-	and wakaba.state.unlock.fireflylighter >= 2 -- Mom's Heart
-	and wakaba.state.unlock.sweetscatalog >= 2 -- Isaac
-	and wakaba.state.unlock.antibalance >= 2 -- Satan
-	and wakaba.state.unlock.doubleinvader >= 2 -- ???
-	and wakaba.state.unlock.venomincantation >= 2 -- The Lamb
-	and wakaba.state.unlock.printer >= 2 -- Mega Satan
-	and wakaba.state.unlock.bunnyparfait >= 2 -- Boss Rush
-	and wakaba.state.unlock.richeruniform >= 2 -- Hush
-	and wakaba.state.unlock.prestigepass >= 2 -- Delirium
-	and wakaba.state.unlock.cunningpaper >= 2 -- Mother
-	and wakaba.state.unlock.clensingfoam >= 2 -- The Beast
-	and wakaba.state.unlock.lilricher >= 2 -- Ultra Greed
-	and wakaba.state.unlock.selfburning >= 2 -- Ultra Greedier
-	then
-		wakaba.state.unlock.rabbitribbon = true
-		if #wakaba.state.pendingunlock > 0 then
-			table.insert(wakaba.state.pendingunlock, wakaba.achievementsprite.rabbitribbon)
-		else
-			CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.rabbitribbon)
-		end
-	end
-
-	wakaba:SaveData(json.encode(wakaba.state))
 end
 
 --resetSettings (planned)
@@ -1552,9 +1366,6 @@ if REPENTOGON then
 	--include('wakaba_src.compat.repentogon.imgui')
 end
 
---require 'monster'
-
-
 -- This must be call very last
 function wakaba:TakeDmg_VintageThreat(entity, amount, flag, source, countdownFrames)
 	if entity.Type == EntityType.ENTITY_PLAYER
@@ -1755,8 +1566,6 @@ function wakaba:luamodInit()
 	end
 end
 
-function wakaba:GetEntityData(entity)
-end
 
 function wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()

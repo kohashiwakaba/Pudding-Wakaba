@@ -24,40 +24,6 @@ function wakaba:GetWakabaCostume_b(player)
 	end
 end
 
---[[ if Poglite then
-	local pogCostume = Isaac.GetCostumeIdByPath("gfx/characters/wakaba_b_pog.anm2")
-	Poglite:AddPogCostume("TaintedWakabaPog",playerType,pogCostume)
-end ]]
-
---Costume currently not working in Knife Piece 2 area. Needs to be fixed.
-function wakaba:PostWakabaUpdate_b(player)
-	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-		end
-	end
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PostWakabaUpdate_b)
-
---[[ function wakaba:PostWakabaRenderUpdate_b(player, offset)
-	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true)
-	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND then
-		if player:GetMaxHearts() > 0 then
-			local conv = player:GetMaxHearts()
-			player:AddMaxHearts(-conv, true)
-			player:AddBlackHearts(conv)
-		end
-		if player:GetBoneHearts() > 0 then
-			local conv = player:GetBoneHearts()
-			player:AddBoneHearts(-conv, true)
-			player:AddBlackHearts(conv * 2)
-		end
-		if player:GetHearts() > 0 then
-			local conv = player:GetHearts()
-			player:AddHearts(-conv)
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PostWakabaRenderUpdate_b, 0) ]]
 
 function wakaba:NegateDamage_TaintedWakabaBirthright(player, amount, flags, source, cooldown)
 	if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
@@ -81,16 +47,6 @@ function wakaba:PostGetCollectible_Wakaba_b(player, item)
 end
 wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
-function wakaba:OnWakabaUpdate_b(player)
-	-- If the player is Wakaba
-	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-
-		player:AddNullCostume(wakaba.COSTUME_WAKABA_B)
-		costumeEquipped_b = true
-	end
-end
-
---wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.OnWakabaUpdate_b)
 
 local WakabaChar_b = {
     DAMAGE = 0.7,
