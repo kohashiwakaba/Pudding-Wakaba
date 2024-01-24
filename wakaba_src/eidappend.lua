@@ -324,7 +324,7 @@ if EID then
 			and descObj.ObjType == 6
 			and descObj.ObjVariant == wakaba.Enums.Slots.SHIORI_VALUT
 			and not (descObj.Entity:GetSprite():IsPlaying("Death") or descObj.Entity:GetSprite():IsPlaying("Broken"))
-			and wakaba.slotdatas.floor.valutitemtype[tostring(descObj.Entity.InitSeed)] then
+			and wakaba:getValutRewards(descObj.Entity) then
 				return true
 			end
 			return false
@@ -332,7 +332,7 @@ if EID then
 
 		local function ValutCallback(descObj)
 			local entity = descObj.Entity
-			local collectibleID = wakaba.slotdatas.floor.valutitemtype[tostring(entity.InitSeed)]
+			local collectibleID = wakaba:getValutRewards(entity).item
 			descriptionObj = EID:getDescriptionObj(5, 100, collectibleID)
 			if EID:getEntityData(entity, "EID_DontHide") ~= true then
 				if (EID:hasCurseBlind() and EID.Config["DisableOnCurse"]) or (wakaba.G.Challenge == Challenge.CHALLENGE_APRILS_FOOL and EID.Config["DisableOnAprilFoolsChallenge"]) then

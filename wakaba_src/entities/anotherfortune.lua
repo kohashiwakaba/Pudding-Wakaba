@@ -5,7 +5,7 @@ local valut_data = {
 		ascentSharedSeeds = {},
 	},
 	floor = {
-		valutitemtype = {},
+		cachedRewards = {},
 		anotherfortunepedestals = {},
 	},
 	room = {
@@ -15,68 +15,78 @@ local valut_data = {
 wakaba:saveDataManager("Shiori Valut", valut_data)
 wakaba.slotdatas = valut_data
 
-wakaba.Enums.Slots.SHIORI_VALUT = Isaac.GetEntityVariantByName("Shiori Valut")
-wakaba.afspool = {
-	BLEND_HEART = 89,
-	CARD = 55,
-	RUNE = 26,
-	GOLDEN_TRINKET = 11,
-	DICE_SHARD = 48,
-	JOKER = 37,
-}
-
-local function getAFReward(rand)
-	local pool = wakaba.afspool
-	local totalWeight = 0
-	for k,v in pairs(pool) do
-		totalWeight = totalWeight + v
-	end
-	--print(rand)
-	if rand % totalWeight < pool.BLEND_HEART then
-		return pool.BLEND_HEART
-	elseif rand % totalWeight < pool.BLEND_HEART + pool.CARD then
-		return pool.CARD
-	elseif rand % totalWeight < pool.BLEND_HEART + pool.CARD + pool.JOKER then
-		return pool.JOKER
-	elseif rand % totalWeight < pool.BLEND_HEART + pool.CARD + pool.JOKER + pool.DICE_SHARD then
-		return pool.DICE_SHARD
-	elseif rand % totalWeight < pool.BLEND_HEART + pool.CARD + pool.JOKER + pool.DICE_SHARD + pool.RUNE then
-		return pool.RUNE
-	else
-		return pool.GOLDEN_TRINKET
-	end
-end
-
-function wakaba:PlayerCollision_ShioriValut(player, slot, low)
-	if slot.Type == EntityType.ENTITY_SLOT and slot.Variant == wakaba.Enums.Slots.SHIORI_VALUT then
-		if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 3 then
-			player:AddKeys(-3)
-			wakaba:RollSlot_ShioriValut(slot, player)
-
+function wakaba:convertSlotMachines(entype, var, subtype, grindex, seed)
+	if wakaba:IsEntryUnlocked("shiorivalut") and entype == EntityType.ENTITY_SLOT and (var == 1 or var == 3) then -- 4 is beggar; rip enums
+		local rand = wakaba.RNG
+		rand:SetSeed(rand:Next(),1)
+		local ran = rand:RandomFloat()
+		if ran < wakaba.state.options.fortunereplacechance / 100 then
+			return {EntityType.ENTITY_SLOT, wakaba.Enums.Slots.SHIORI_VALUT, 0}
 		end
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_ShioriValut)
+wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.convertSlotMachines)
 
-
-
-
-function wakaba:ResetFortuneStatus()
-
-	local slots = Isaac.FindByType(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.SHIORI_VALUT)
-	for _, slot in pairs(slots) do
-		slot:GetSprite():Play("Idle")
-	end
+local function shouldCheckAscent()
+	local room = wakaba.G:GetRoom()
+	return room:GetType() == RoomType.ROOM_BOSS or room:GetType() == RoomType.ROOM_TREASURE
 end
 
-function wakaba:Update_ShioriValut()
-	local slots = Isaac.FindByType(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.SHIORI_VALUT)
-	for _, slot in pairs(slots) do
-		if slot:GetSprite():IsFinished("CoinInsert") then slot:GetSprite():Play("Initiate") end
-		if slot:GetSprite():IsFinished("Initiate") then slot:GetSprite():Play("Wiggle") end
-		--if slot:GetSprite():IsFinished("Wiggle") then slot:GetSprite():Play("Prize") end
-		if slot:GetSprite():IsFinished("Death") then slot:GetSprite():Play("Broken") end
-		if slot:GetSprite():IsPlaying("Wiggle") then
+function wakaba:getShioriValutPrice(collectible, rng)
+	local config = Isaac.GetItemConfig()
+	local item = config:GetCollectible(collectible)
+	if item and item:IsCollectible() then
+		local quality = item.Quality
+		local devilPrice = item.DevilPrice
+		local shioriPrice = (quality + 2) * devilPrice
+		return shioriPrice
+	end
+	return 12
+end
+
+---@param chest Entity | EntitySlot
+---@return table
+function wakaba:getValutRewards(slot)
+	if valut_data.floor.cachedRewards[slot.InitSeed] then
+		return valut_data.floor.cachedRewards[slot.InitSeed]
+	end
+
+	local rng = RNG()
+	rng:SetSeed(slot.InitSeed, 35)
+	local itemID = wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
+	local rewards = {
+		item = itemID,
+		price = wakaba:getShioriValutPrice(itemID, rng),
+	}
+	valut_data.floor.cachedRewards[slot.InitSeed] = rewards
+	return rewards
+end
+
+function wakaba:SlotInit_ShioriValut(slot)
+	if slot.GridCollisionClass ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
+		local sprite = slot:GetSprite()
+		local rng = RNG()
+		rng:SetSeed(slot.InitSeed, 35)
+		local slotData = wakaba:getValutRewards(slot)
+		local itemgfx = isc:getCollectibleGfxFilename(slotData.item)
+		local pricegfx = "gfx/items/slots/wakaba_shiorivalut_price/".. slotData.price .. ".png"
+		if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
+			itemgfx = isc:getCollectibleGfxFilename(0)
+		end
+		sprite:Play("Idle")
+		sprite:ReplaceSpritesheet(2, itemgfx)
+		sprite:ReplaceSpritesheet(5, pricegfx)
+		sprite:LoadGraphics()
+	end
+end
+wakaba:AddCallback(wakaba.Callback.SLOT_INIT, wakaba.SlotInit_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+
+function wakaba:SlotUpdate_ShioriValut(slot)
+	if slot:GetSprite():IsFinished("CoinInsert") then slot:GetSprite():Play("Initiate") end
+	if slot:GetSprite():IsFinished("Initiate") then slot:GetSprite():Play("Wiggle") end
+	--if slot:GetSprite():IsFinished("Wiggle") then slot:GetSprite():Play("Prize") end
+	if slot:GetSprite():IsFinished("Death") then slot:GetSprite():Play("Broken") end
+	if slot:GetSprite():IsPlaying("Wiggle") then
 			slot:GetData().prizethreshold = slot:GetData().prizethreshold or 20
 			if slot:GetData().prizethreshold then
 				if slot:GetData().prizethreshold > 0 then
@@ -87,109 +97,60 @@ function wakaba:Update_ShioriValut()
 					slot:GetData().prizethreshold = nil
 				end
 			end
+	end
+	if slot:GetSprite():IsFinished("Prize") then
+		--SFXManager():Play(SoundEffect.SOUND_THUMBSUP, 1.0, 0, false, 1.0)
+	end
+	if slot:GetSprite():IsEventTriggered("Explosion") then
+		slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
+		local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, slot.Position, Vector.Zero, nil)
+		--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
+	end
+	if slot:GetSprite():IsEventTriggered("Prize") then
+		local currentRoomIndex = isc:getRoomListIndex()
+		if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then
+			valut_data.floor.anotherfortunepedestals[currentRoomIndex] = {}
 		end
-		if slot:GetSprite():IsFinished("Prize") then
-			--SFXManager():Play(SoundEffect.SOUND_THUMBSUP, 1.0, 0, false, 1.0)
+		local rewards = wakaba:getValutRewards(slot)
+		local itemID = rewards.item
+		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, slot.Position, Vector.Zero, nil):ToPickup()
+		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+
+		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
+		item:GetSprite():SetOverlayFrame("Alternates", 1)
+		item:GetSprite():LoadGraphics()
+		table.insert(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(item))
+		if shouldCheckAscent() then
+			valut_data.run.ascentSharedSeeds[wakaba:getPickupIndex(item)] = true
 		end
-		if slot:GetSprite():IsEventTriggered("Explosion") then
+		item.Wait = 10
+		slot:Remove()
+		SFXManager():Play(SoundEffect.SOUND_SLOTSPAWN, 1.0, 0, false, 1.0)
+	end
+	if slot.GridCollisionClass == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
+		if not (slot:GetSprite():IsPlaying("Death") or slot:GetSprite():IsPlaying("Broken")) then
 			slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
-			local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, slot.Position, Vector.Zero, nil)
-			--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
-		end
-		if slot:GetSprite():IsEventTriggered("Prize") then
-			local rewardCount = 3
-			if wakaba.G.Difficulty == Difficulty.DIFFICULTY_HARD then
-				rewardCount = 2
-			end
-			--[[
-				wakaba.afspool = {
-					BLEND_HEART = 20,
-					CARD = 20,
-					RUNE = 10,
-					GOLDEN_TRINKET = 10,
-					DICE_SHARD = 20,
-					JOKER = 20,
-				} ]]
-			for i = 1, rewardCount do
-				if i == rewardCount then
-					local currentRoomIndex = isc:getRoomListIndex()
-					if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then
-						valut_data.floor.anotherfortunepedestals[currentRoomIndex] = {}
-					end
-					local itemID = valut_data.floor.valutitemtype[tostring(slot.InitSeed)]
-					local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, slot.Position, Vector.Zero, nil):ToPickup()
-
-					item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
-					item:GetSprite():SetOverlayFrame("Alternates", 1)
-					item:GetSprite():LoadGraphics()
-					--print(slot.InitSeed, slot.DropSeed, entry, itemID)
-
-					table.insert(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(item))
-					item.Wait = 10
-					--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
-					slot:Remove()
-				else
-					local rewardflag = getAFReward(slot:GetDropRNG():Next())
-					--Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_LUCKYPENNY, chest.Position, wakaba.RandomVelocity(), nil)
-					if rewardflag == wakaba.afspool.BLEND_HEART then
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLENDED, slot.Position, wakaba.RandomVelocity(), nil)
-					elseif rewardflag == wakaba.afspool.CARD then
-						local selected = wakaba.G:GetItemPool():GetCard(slot:GetDropRNG():Next(), true, false, false)
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, selected, slot.Position, wakaba.RandomVelocity(), nil)
-					elseif rewardflag == wakaba.afspool.RUNE then
-						local selected = wakaba.G:GetItemPool():GetCard(slot:GetDropRNG():Next(), false, true, true)
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, selected, slot.Position, wakaba.RandomVelocity(), nil)
-					elseif rewardflag == wakaba.afspool.GOLDEN_TRINKET then
-						local selected = wakaba.G:GetItemPool():GetTrinket() | TrinketType.TRINKET_GOLDEN_FLAG
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, selected, slot.Position, wakaba.RandomVelocity(), nil)
-					elseif rewardflag == wakaba.afspool.DICE_SHARD then
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_DICE_SHARD, slot.Position, wakaba.RandomVelocity(), nil)
-					elseif rewardflag == wakaba.afspool.JOKER then
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_JOKER, slot.Position, wakaba.RandomVelocity(), nil)
-					end
-				end
-
-			end
-
-			SFXManager():Play(SoundEffect.SOUND_SLOTSPAWN, 1.0, 0, false, 1.0)
-		end
-		if slot.GridCollisionClass == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
-			if not (slot:GetSprite():IsPlaying("Death") or slot:GetSprite():IsPlaying("Broken")) then
-				slot:TakeDamage(100, DamageFlag.DAMAGE_EXPLOSION, EntityRef(slot), 0)
-				slot:GetSprite():Play("Broken")
-			end
+			slot:GetSprite():Play("Broken")
 		end
 	end
 end
+wakaba:AddCallback(wakaba.Callback.SLOT_UPDATE, wakaba.SlotUpdate_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
 
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_ShioriValut)
---LagCheck
-function wakaba:InitValut(slot)
-	if slot.GridCollisionClass ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
-		local sprite = slot:GetSprite()
-		local rng = RNG()
-		rng:SetSeed(slot.InitSeed, 35)
-		local itemID = wakaba.Enums.Collectibles.BOOK_OF_SHIORI
-
-		if valut_data.floor.valutitemtype[tostring(slot.InitSeed)] then
-			itemID = valut_data.floor.valutitemtype[tostring(slot.InitSeed)]
-		else
-			itemID = wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
-			valut_data.floor.valutitemtype[tostring(slot.InitSeed)] = itemID
+function wakaba:SlotCollision_ShioriValut(slot, player)
+	if REPENTOGON then
+		player = player:ToPlayer()
+		if not player then return end
+	end
+	if slot:GetSprite():IsPlaying("Idle") then
+		local valueData = wakaba:getValutRewards(slot)
+		local price = valueData.price
+		if player:GetNumKeys() >= price then
+			player:AddKeys(price * -1)
+			wakaba:RollSlot_ShioriValut(slot, player)
 		end
-
-		local gfx = isc:getCollectibleGfxFilename(itemID)
-		if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
-			gfx = isc:getCollectibleGfxFilename(0)
-		end
-
-		sprite:Play("Idle")
-		sprite:ReplaceSpritesheet(2, gfx)
-		sprite:LoadGraphics()
-
 	end
 end
-wakaba:AddCallback(wakaba.Callback.SLOT_INIT, wakaba.InitValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:AddCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
 
 function wakaba:ReplaceValutLate2(pickup)
 	local room = wakaba.G:GetRoom()
@@ -197,29 +158,16 @@ function wakaba:ReplaceValutLate2(pickup)
 	wakaba:ReplaceValutLate(pickup)
 end
 function wakaba:ReplaceValutLate(pickup)
-	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	local currentRoomIndex = isc:getRoomListIndex()
-	if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then return end
-	if wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
-		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
-		pickup:GetSprite():SetOverlayFrame("Alternates", 1)
-		pickup:GetSprite():LoadGraphics()
-	end
+	local floorCheck = valut_data.floor.anotherfortunepedestals[currentRoomIndex] ~= nil and wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup))
+	local ascentCheck = shouldCheckAscent() and valut_data.run.ascentSharedSeeds[wakaba:getPickupIndex(pickup)] ~= nil
+	if not (floorCheck or ascentCheck) then return end
+	pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
+	pickup:GetSprite():SetOverlayFrame("Alternates", 1)
+	pickup:GetSprite():LoadGraphics()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceValutLate2, PickupVariant.PICKUP_COLLECTIBLE)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PICKUP_INIT_LATE, wakaba.ReplaceValutLate, PickupVariant.PICKUP_COLLECTIBLE)
-
-function wakaba:convertSlotMachines(entype, var, subtype, grindex, seed)
-	if wakaba.state.unlock.shiorivalut > 0 and entype == EntityType.ENTITY_SLOT and (var == 1 or var == 3) then -- 4 is beggar; rip enums
-		local rand = wakaba.RNG
-		rand:SetSeed(rand:Next(),1)
-		local ran = rand:RandomFloat()
-		if ran < wakaba.state.options.fortunereplacechance / 100 then
-			return {EntityType.ENTITY_SLOT, wakaba.Enums.Slots.SHIORI_VALUT, 0}
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.convertSlotMachines)
 
 
 function wakaba:RollSlot_ShioriValut(slot, player)
@@ -251,20 +199,3 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_ShioriValut, TearVariant.KEY)
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_ShioriValut, TearVariant.KEY_BLOOD)
-
-
-
-
-function wakaba:PlayerUpdate_ShioriValut(player)
-	local ents = Isaac.FindInRadius(player.Position, 12)
-	for i, slot in ipairs(ents) do
-		if slot.Type == EntityType.ENTITY_SLOT and slot.Variant == wakaba.Enums.Slots.SHIORI_VALUT then
-			if slot:GetSprite():IsPlaying("Idle") and player:GetNumKeys() >= 3 then
-				player:AddKeys(-3)
-				wakaba:RollSlot_ShioriValut(slot, player)
-
-			end
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_ShioriValut)
