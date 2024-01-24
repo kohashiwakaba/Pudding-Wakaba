@@ -109,6 +109,12 @@ wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_GlobalHUDStats)
 
 
 -- Slot to Repentogon callbacks
+wakaba:RemoveCallback(wakaba.Callback.SLOT_INIT, wakaba.SlotInit_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:RemoveCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:RemoveCallback(wakaba.Callback.SLOT_UPDATE, wakaba.SlotUpdate_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, wakaba.SlotInit_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_COLLISION, wakaba.SlotCollision_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
+wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, wakaba.SlotUpdate_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
 
 wakaba:RemoveCallback(wakaba.Callback.SLOT_INIT, wakaba.InitCrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 wakaba:RemoveCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
