@@ -1,5 +1,9 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
-[[{FSIZE2}v107d/e patch
+[[{FSIZE2}v107f patch
+- temp fix for eid
+after repentogon patch
+
+{FSIZE2}v107d/e patch
 - add chinese eid entries
 thanks to youduckboom
 
