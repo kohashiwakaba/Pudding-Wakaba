@@ -13,7 +13,7 @@ end
 ---@display wakaba.Callback
 wakaba.Callback = {
 
-	ROOM_GENERATION = {},
+	ROOM_GENERATION = "WakabaCallbacks.ROOM_GENERATION",
 
 	-- ---
 	-- POST_GET_COLLECTIBLE
@@ -27,7 +27,7 @@ wakaba.Callback = {
 	-- - `EntityPlayer` - player that got an item.
 	-- - `collectibleType` - Acquired collectible.
 	-- ---
-	POST_GET_COLLECTIBLE = {},
+	POST_GET_COLLECTIBLE = "WakabaCallbacks.POST_GET_COLLECTIBLE",
 
 	-- ---
 	-- RENDER_GLOBAL_FOUND_HUD
@@ -46,9 +46,9 @@ wakaba.Callback = {
 	-- - `TextColor`(optional) : `KColor` - Text to render next to sprite
 	-- - `Skip`(optional) : `boolean` - Only available if Sprite, and Text isn't present. Return to shift HUD element offset by 1
 	-- ---
-	RENDER_GLOBAL_FOUND_HUD = {},
+	RENDER_GLOBAL_FOUND_HUD = "WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD",
 
-	ANY_WEAPON_FIRE = {},
+	ANY_WEAPON_FIRE = "WakabaCallbacks.ANY_WEAPON_FIRE",
 
 	-- ---
 	-- REAL_FIRE_TEAR
@@ -61,7 +61,7 @@ wakaba.Callback = {
 	-- - `EntityTear` - tear
 	-- - `EntityPlayer` - player
 	-- ---
-	REAL_FIRE_TEAR = {},
+	REAL_FIRE_TEAR = "WakabaCallbacks.REAL_FIRE_TEAR",
 
 	-- ---
 	-- WISP_FIRE_TEAR
@@ -75,10 +75,10 @@ wakaba.Callback = {
 	-- - `EntityFamiliar` - wisp
 	-- - `CollectibleType` - itemID
 	-- ---
-	WISP_FIRE_TEAR = {},
+	WISP_FIRE_TEAR = "WakabaCallbacks.WISP_FIRE_TEAR",
 
 
-	EVALUATE_WAKABA_TEARFLAG = {},
+	EVALUATE_WAKABA_TEARFLAG = "WakabaCallbacks.EVALUATE_WAKABA_TEARFLAG",
 
 
 	-- ---
@@ -92,7 +92,7 @@ wakaba.Callback = {
 	-- - `EntityKnife` - club
 	-- - `EntityPlayer` - player
 	-- ---
-	PRE_SWING_BONE_CLUB = {},
+	PRE_SWING_BONE_CLUB = "WakabaCallbacks.PRE_SWING_BONE_CLUB",
 
 	-- ---
 	-- POST_THROW_KNIFE
@@ -105,7 +105,7 @@ wakaba.Callback = {
 	-- - `EntityKnife` - knife
 	-- - `EntityPlayer` - player
 	-- ---
-	POST_THROW_KNIFE = {},
+	POST_THROW_KNIFE = "WakabaCallbacks.POST_THROW_KNIFE",
 
 	-- ---
 	-- POST_CATCH_KNIFE
@@ -118,7 +118,7 @@ wakaba.Callback = {
 	-- - `EntityKnife` - knife
 	-- - `EntityPlayer` - player
 	-- ---
-	POST_CATCH_KNIFE = {},
+	POST_CATCH_KNIFE = "WakabaCallbacks.POST_CATCH_KNIFE",
 
 	-- ---
 	-- APPLY_TEARFLAG_EFFECT
@@ -130,7 +130,7 @@ wakaba.Callback = {
 	-- Parameters :
 	-- - `EntityPlayer` - player
 	-- ---
-	APPLY_TEARFLAG_EFFECT = {},
+	APPLY_TEARFLAG_EFFECT = "WakabaCallbacks.APPLY_TEARFLAG_EFFECT",
 
 	-- ---
 	-- EVALUATE_DAMAGE_AMOUNT
@@ -151,7 +151,7 @@ wakaba.Callback = {
 	-- - `newAmount` : `EntityPlayer` - victim
 	-- - `newFlags` : `DamageFlag` - new damage to be taken
 	-- ---
-	EVALUATE_DAMAGE_AMOUNT = {},
+	EVALUATE_DAMAGE_AMOUNT = "WakabaCallbacks.EVALUATE_DAMAGE_AMOUNT",
 
 	-- ---
 	-- TRY_NEGATE_DAMAGE
@@ -171,7 +171,7 @@ wakaba.Callback = {
 	-- Returned values :
 	-- - `shouldNegateDamage` : `boolean` - victim
 	-- ---
-	TRY_NEGATE_DAMAGE = {},
+	TRY_NEGATE_DAMAGE = "WakabaCallbacks.TRY_NEGATE_DAMAGE",
 
 	-- ---
 	-- POST_TAKE_DAMAGE
@@ -188,7 +188,7 @@ wakaba.Callback = {
 	-- - `EnriryRef` - source
 	-- - `Int` - cooldown
 	-- ---
-	POST_TAKE_DAMAGE = {},
+	POST_TAKE_DAMAGE = "WakabaCallbacks.POST_TAKE_DAMAGE",
 
 	-- ---
 	-- SLOT_INIT
@@ -201,9 +201,9 @@ wakaba.Callback = {
 	-- Parameters :
 	-- - `Entity` - slot
 	-- ---
-	SLOT_INIT = {},
-	SLOT_UPDATE = {},
-	SLOT_COLLISION = {},
+	SLOT_INIT = "WakabaCallbacks.SLOT_INIT",
+	SLOT_UPDATE = "WakabaCallbacks.SLOT_UPDATE",
+	SLOT_COLLISION = "WakabaCallbacks.SLOT_COLLISION",
 
 	-- Extra callbacks exclusive to Pudding & Wakaba
 
@@ -218,8 +218,8 @@ wakaba.Callback = {
 	-- - `bookshelfFlags` - Bookshelf group to select.
 	-- ---
 	-- - Return `true|false` to set whether a book should be chosen.
-	PRE_GET_SHIORI_BOOKS = {},
-	POST_GET_SHIORI_BOOKS = {},
+	PRE_GET_SHIORI_BOOKS = "WakabaCallbacks.PRE_GET_SHIORI_BOOKS",
+	POST_GET_SHIORI_BOOKS = "WakabaCallbacks.POST_GET_SHIORI_BOOKS",
 
 	-- ---
 	-- PRE_EVALUATE_SOUL_OF_SHIORI
@@ -232,7 +232,7 @@ wakaba.Callback = {
 	-- - `EntityPlayer` - used player. Mostly Shiori.
 	-- ---
 	-- - Return non-nil values other than `false` will prevent the collectible to be selected.
-	PRE_EVALUATE_SOUL_OF_SHIORI = {},
+	PRE_EVALUATE_SOUL_OF_SHIORI = "WakabaCallbacks.PRE_EVALUATE_SOUL_OF_SHIORI",
 	-- ---
 	-- PRE_CHANGE_SHIORI_EFFECT
 	-- ---
@@ -250,7 +250,7 @@ wakaba.Callback = {
 	-- - Return `true` to reset secondary Shiori effects. and skip all remaning callbacks
 	-- - Return `false` to not change secondary Shiori effects. and skip all remaning callbacks
 	-- - Return `collectbleType` to hijack secondary Shiori effects.
-	PRE_CHANGE_SHIORI_EFFECT = {},
+	PRE_CHANGE_SHIORI_EFFECT = "WakabaCallbacks.PRE_CHANGE_SHIORI_EFFECT",
 	-- ---
 	-- POST_CHANGE_SHIORI_EFFECT
 	-- ---
@@ -264,7 +264,7 @@ wakaba.Callback = {
 	-- - `useflag` - UseFlags.
 	-- - `activeSlot` - active slot that used from.
 	-- - `vardata` - custom VarData from active item.
-	POST_CHANGE_SHIORI_EFFECT = {},
+	POST_CHANGE_SHIORI_EFFECT = "WakabaCallbacks.POST_CHANGE_SHIORI_EFFECT",
 	-- ---
 	-- POST_CHANGE_SHIORI_EFFECT
 	-- ---
@@ -278,7 +278,7 @@ wakaba.Callback = {
 	-- - `useflag` - UseFlags.
 	-- - `activeSlot` - active slot that used from.
 	-- - `vardata` - custom VarData from active item.
-	POST_ACTIVATE_SHIORI_EFFECT = {},
+	POST_ACTIVATE_SHIORI_EFFECT = "WakabaCallbacks.POST_ACTIVATE_SHIORI_EFFECT",
 
 	-- ---
 	-- PRE_EVALUATE_CRYSTAL_RESTOCK
@@ -293,7 +293,7 @@ wakaba.Callback = {
 	-- Returned values : Retruns with table with following elements
 	-- - `ExtraCount` : `integer` - extra counts for rerolls
 	-- - `SubType` : `CrystalRestockSubtype` - subType to change into
-	PRE_EVALUATE_CRYSTAL_RESTOCK = {},
+	PRE_EVALUATE_CRYSTAL_RESTOCK = "WakabaCallbacks.PRE_EVALUATE_CRYSTAL_RESTOCK",
 
 	-- ---
 	-- PRE_EVALUATE_AQUA_TRINKET
@@ -307,7 +307,7 @@ wakaba.Callback = {
 	-- ---
 	-- Returned values : Retruns with table with following elements
 	-- - `shouldPreventAqua` : `boolean` -
-	PRE_EVALUATE_AQUA_TRINKET = {},
+	PRE_EVALUATE_AQUA_TRINKET = "WakabaCallbacks.PRE_EVALUATE_AQUA_TRINKET",
 
 	-- ---
 	-- EVALUATE_ELIXIR_SOUL_RECOVER
@@ -320,7 +320,7 @@ wakaba.Callback = {
 	--
 	-- - Return non-nil value to consider as soul character
 	-- ---
-	EVALUATE_ELIXIR_SOUL_RECOVER = {},
+	EVALUATE_ELIXIR_SOUL_RECOVER = "WakabaCallbacks.EVALUATE_ELIXIR_SOUL_RECOVER",
 
 	-- ---
 	-- EVALUATE_CHIMAKI_COMMAND
@@ -332,7 +332,7 @@ wakaba.Callback = {
 	-- - `ChimakiCommandType` -
 	--
 	-- ---
-	EVALUATE_CHIMAKI_COMMAND = {},
+	EVALUATE_CHIMAKI_COMMAND = "WakabaCallbacks.EVALUATE_CHIMAKI_COMMAND",
 
 	-- ---
 	-- CHIMAKI_COMMAND
@@ -344,7 +344,19 @@ wakaba.Callback = {
 	-- - `ChimakiCommandType` -
 	--
 	-- ---
-	CHIMAKI_COMMAND = {},
+	CHIMAKI_COMMAND = "WakabaCallbacks.CHIMAKI_COMMAND",
+
+	-- ---
+	-- MOD_SETTING_EID_DISPLAY
+	-- ---
+	-- Called from MC_FAMILIAR_UPDATE, binded per command
+	--
+	-- ---
+	-- Parameters :
+	-- - `ChimakiCommandType` -
+	--
+	-- ---
+	MOD_SETTING_EID_DISPLAY = "WakabaCallbacks.MOD_SETTING_EID_DISPLAY",
 
 	-- ---
 	-- EVALUATE_WAKABA_COLLECTIBLE_REROLL
@@ -362,7 +374,7 @@ wakaba.Callback = {
 	-- ---
 	-- - Return true to bypass reroll
 	-- ---
-	EVALUATE_WAKABA_COLLECTIBLE_REROLL = {},
+	EVALUATE_WAKABA_COLLECTIBLE_REROLL = "WakabaCallbacks.EVALUATE_WAKABA_COLLECTIBLE_REROLL",
 
 	-- ---
 	-- EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
@@ -381,7 +393,7 @@ wakaba.Callback = {
 	-- ---
 	-- - Return new rerollProps to update
 	-- ---
-	EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = {},
+	EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = "WakabaCallbacks.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS",
 	-- ---
 	-- POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
 	-- ---
@@ -399,11 +411,11 @@ wakaba.Callback = {
 	-- ---
 	-- - Return new rerollProps to update
 	-- ---
-	POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = {},
+	POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS = "WakabaCallbacks.POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS",
 	-- ---
 	-- WAKABA_COLLECTIBLE_REROLL
 	-- ---
-	-- Called from MC_POST_GET_COLLECTIBLE, 
+	-- Called from MC_POST_GET_COLLECTIBLE,
 	--
 	-- ---
 	-- Parameters :
@@ -418,7 +430,7 @@ wakaba.Callback = {
 	-- ---
 	-- - Return true to prevent the collectible to be selected
 	-- ---
-	WAKABA_COLLECTIBLE_REROLL = {},
+	WAKABA_COLLECTIBLE_REROLL = "WakabaCallbacks.WAKABA_COLLECTIBLE_REROLL",
 	-- ---
 	-- EVALUATE_MAID_DUET
 	-- ---
@@ -431,7 +443,7 @@ wakaba.Callback = {
 	-- ---
 	-- - Return true to prevent usage of Maid Duet
 	-- ---
-	EVALUATE_MAID_DUET = {},
+	EVALUATE_MAID_DUET = "WakabaCallbacks.EVALUATE_MAID_DUET",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
