@@ -4,7 +4,7 @@ local restock_data = {
 	run = {
 		ascentSharedSeeds = {},
 	},
-	floor = {
+	level = {
 	},
 	room = {
 	}
@@ -17,7 +17,7 @@ function wakaba:InitCrystalRestock(slot)
 		local sprite = slot:GetSprite()
 		local rng = RNG()
 		rng:SetSeed(slot.InitSeed, 35)
-		if not restock_data.floor[tostring(slot.InitSeed)] then
+		if not restock_data.level[tostring(slot.InitSeed)] then
 			local extraCount = 0
 			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_EVALUATE_CRYSTAL_RESTOCK)) do
 				local evals = callback.Function(callback.Mod, callback.Param)
@@ -26,7 +26,7 @@ function wakaba:InitCrystalRestock(slot)
 				end
 			end
 			local reservedPos = Vector(slot.Position.X, slot.Position.Y)
-			restock_data.floor[tostring(slot.InitSeed)] = {
+			restock_data.level[tostring(slot.InitSeed)] = {
 				restockType = slot.Variant,
 				restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
 				reservedX = reservedPos.X,
@@ -35,7 +35,7 @@ function wakaba:InitCrystalRestock(slot)
 			sprite:Play("Idle")
 		end
 		slot:AddEntityFlags(EntityFlag.FLAG_NO_REWARD | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK | EntityFlag.FLAG_NO_DEATH_TRIGGER)
-		local restockData = restock_data.floor[tostring(slot.InitSeed)]
+		local restockData = restock_data.level[tostring(slot.InitSeed)]
 		--print(tostring(slot.InitSeed), restockData.restockCount, restockData.dead)
 		if restockData.dead then
 			slot:Remove()
@@ -63,7 +63,7 @@ function wakaba:SlotCollision_CrystalRestock(slot, player)
 		if not player then return end
 	end
 	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and player:GetNumCoins() >= 5 then
-		local restockData = restock_data.floor[tostring(slot.InitSeed)]
+		local restockData = restock_data.level[tostring(slot.InitSeed)]
 		if not restockData.dead then
 			player:AddCoins(-5)
 			--restockData.restockCount = restockData.restockCount - 1
@@ -74,7 +74,7 @@ end
 wakaba:AddCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:SlotUpdate_CrystalRestock(slot)
-	local restockData = restock_data.floor[tostring(slot.InitSeed)]
+	local restockData = restock_data.level[tostring(slot.InitSeed)]
 	local slotSprite = slot:GetSprite()
 
 	if restockData.restockCount > 0 and slotSprite:IsOverlayFinished("CoinInsert") then

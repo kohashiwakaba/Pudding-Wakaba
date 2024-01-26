@@ -4,7 +4,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local aqua_trinkets_data = {
 	run = {
 	},
-	floor = {
+	level = {
 		aquatrinkets = {},
 		triedindexes = {},
 	},
@@ -20,7 +20,7 @@ end
 
 function wakaba:TryTurnAquaTrinket(trinket)
 	local currentRoomIndex = isc:getRoomListIndex()
-	table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 	pickup:GetData().wakaba.isAquaTrinket = true
 end
@@ -29,11 +29,11 @@ local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
 	if pickup.FrameCount ~= 1 then return end -- why
 	local currentRoomIndex = isc:getRoomListIndex()
-	if not aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] then
-		aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex] = {}
+	if not aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] then
+		aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] = {}
 	end
-	if not aqua_trinkets_data.floor.triedindexes[currentRoomIndex] then
-		aqua_trinkets_data.floor.triedindexes[currentRoomIndex] = {}
+	if not aqua_trinkets_data.level.triedindexes[currentRoomIndex] then
+		aqua_trinkets_data.level.triedindexes[currentRoomIndex] = {}
 	end
 	if hasTrinketDropped then
 		print("[wakaba] hasTrinketDropped detected, skipping...")
@@ -41,8 +41,8 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
-		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
-		local alreadyTried = wakaba:has_value(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		local alreadyTried = wakaba:has_value(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		print("[wakaba] Aqua trinket check for seed "..wakaba:getPickupIndex(pickup).."/ isAquaTrinket :",isAquaTrinket,"/ alreadyTried :",alreadyTried)
 		local rand = RNG()
 		rand:SetSeed(pickup.InitSeed, 35)
@@ -51,11 +51,11 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		if not alreadyTried and ran < wakaba:getAquaTrinketChance() then
 			if not isAquaTrinket then
 				--print("Aqua Trinket Registered! ID :"..pickup.SubType)
-				table.insert(aqua_trinkets_data.floor.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
+				table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 				isAquaTrinket = true
 			end
 		end
-		table.insert(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		if isAquaTrinket then
 			--print("Aqua Trinket spawned! ID :"..pickup.SubType)
 			pickup:GetData().wakaba = pickup:GetData().wakaba or {}
@@ -63,7 +63,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		end
 	else
 		print("[wakaba] Skipped Aqua trinket check for seed "..wakaba:getPickupIndex(pickup))
-		table.insert(aqua_trinkets_data.floor.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
+		table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 	end
 	hasTrinketDropped = false
 end

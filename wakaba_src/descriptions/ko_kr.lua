@@ -1739,8 +1739,8 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
-		description = "시오리의 창고를 소환합니다.#창고는 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.",
-		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다."},
+		description = "시오리의 창고를 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다.",
+		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다."},
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",

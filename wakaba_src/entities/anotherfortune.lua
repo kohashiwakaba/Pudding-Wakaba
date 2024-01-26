@@ -1,19 +1,66 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-local valut_data = {
-	run = {
-		ascentSharedSeeds = {},
+wakaba.Weights.ValutRiftSubTypes = {
+	{wakaba.Enums.ShioriValutSubType.SHIORI, 1},
+	{wakaba.Enums.ShioriValutSubType.BOOKS, 0.2},
+}
+wakaba.ValutMetadata = {
+	[wakaba.Enums.ShioriValutSubType.SHIORI] = {
+		GfxPrepend = "",
+		PedestalGfx = "wakaba_shiorivalut_altar.png",
+		PedestalAlt = 1,
+		ItemInit = function(slot, extraParams)
+			return wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
+		end,
+		BasePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return itemConfigItem.Quality + 2
+		end,
+		AddPrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return 0
+		end,
+		MultiplePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return itemConfigItem.DevilPrice
+		end,
 	},
-	floor = {
-		cachedRewards = {},
-		anotherfortunepedestals = {},
+	[wakaba.Enums.ShioriValutSubType.BOOKS] = {
+		GfxPrepend = "_books",
+		PedestalGfx = "wakaba_shiorivalut_altar_books.png",
+		PedestalAlt = 1,
+		ItemInit = function(slot, extraParams)
+			local pool = wakaba.G:GetItemPool()
+			local item = pool:GetCollectible(ItemPoolType.POOL_LIBRARY, true, slot.InitSeed, CollectibleType.COLLECTIBLE_BIBLE)
+			return item
+		end,
+		BasePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return itemConfigItem.Quality + 1
+		end,
+		AddPrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return 0
+		end,
+		MultiplePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
+			return 1
+		end,
 	},
-	room = {
+}
 
-	}
+local valut_data = {
+	run = {},
+	level = {
+		cachedRewards = {},
+	},
 }
 wakaba:saveDataManager("Shiori Valut", valut_data)
 wakaba.slotdatas = valut_data
+
+function wakaba:preEntitySpawn_ShioriValut(type, variant, subType, pos, velocity, spawner, seed)
+	if type == EntityType.ENTITY_SLOT
+	and variant == wakaba.Enums.Slots.SHIORI_VALUT
+	and subType == -1 then
+		local newSubType = wakaba:GetItemFromWakabaPools("ValutRiftSubTypes", false, seed)
+		return {type, variant, newSubType, seed}
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_ShioriValut)
 
 function wakaba:convertSlotMachines(entype, var, subtype, grindex, seed)
 	if wakaba:IsEntryUnlocked("shiorivalut") and entype == EntityType.ENTITY_SLOT and (var == 1 or var == 3) then -- 4 is beggar; rip enums
@@ -32,13 +79,29 @@ local function shouldCheckAscent()
 	return room:GetType() == RoomType.ROOM_BOSS or room:GetType() == RoomType.ROOM_TREASURE
 end
 
-function wakaba:getShioriValutPrice(collectible, rng)
+function wakaba:getShioriValutItem(shioriValutSubType, slot, extraParams)
+	local meta = wakaba.ValutMetadata[shioriValutSubType]
+	if meta and meta.ItemInit then
+		return meta.ItemInit(slot, extraParams)
+	end
+	return wakaba.ValutMetadata[wakaba.Enums.ShioriValutSubType.SHIORI].ItemInit(slot, extraParams)
+end
+
+function wakaba:getShioriValutMeta(shioriValutSubType, slot, extraParams)
+	local meta = wakaba.ValutMetadata[shioriValutSubType]
+	return wakaba.ValutMetadata[shioriValutSubType] or wakaba.ValutMetadata[wakaba.Enums.ShioriValutSubType.SHIORI]
+end
+
+function wakaba:getShioriValutPrice(shioriValutSubType, collectible, rng, extraParams)
 	local config = Isaac.GetItemConfig()
 	local item = config:GetCollectible(collectible)
 	if item and item:IsCollectible() then
-		local quality = item.Quality
-		local devilPrice = item.DevilPrice
-		local shioriPrice = (quality + 2) * devilPrice
+		local meta = wakaba.ValutMetadata[shioriValutSubType]
+		local base = meta and meta.BasePrice and meta.BasePrice(item, extraParams) or 1
+		local extra = meta and meta.AddPrice and meta.AddPrice(item, extraParams) or 0
+		local mult = meta and meta.MultiplePrice and meta.MultiplePrice(item, extraParams) or 1
+
+		local shioriPrice = (base + extra) * mult
 		return shioriPrice
 	end
 	return 12
@@ -47,18 +110,18 @@ end
 ---@param chest Entity | EntitySlot
 ---@return table
 function wakaba:getValutRewards(slot)
-	if valut_data.floor.cachedRewards[slot.InitSeed] then
-		return valut_data.floor.cachedRewards[slot.InitSeed]
+	if valut_data.level.cachedRewards[slot.InitSeed] then
+		return valut_data.level.cachedRewards[slot.InitSeed]
 	end
 
 	local rng = RNG()
 	rng:SetSeed(slot.InitSeed, 35)
-	local itemID = wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
+	local itemID = wakaba:getShioriValutItem(slot.SubType, slot)
 	local rewards = {
 		item = itemID,
-		price = wakaba:getShioriValutPrice(itemID, rng),
+		price = wakaba:getShioriValutPrice(slot.SubType, itemID, rng),
 	}
-	valut_data.floor.cachedRewards[slot.InitSeed] = rewards
+	valut_data.level.cachedRewards[slot.InitSeed] = rewards
 	return rewards
 end
 
@@ -69,7 +132,9 @@ function wakaba:SlotInit_ShioriValut(slot)
 		rng:SetSeed(slot.InitSeed, 35)
 		local slotData = wakaba:getValutRewards(slot)
 		local itemgfx = isc:getCollectibleGfxFilename(slotData.item)
-		local pricegfx = "gfx/items/slots/wakaba_shiorivalut_price/".. slotData.price .. ".png"
+		local meta = wakaba:getShioriValutMeta(slot.SubType, slot)
+		local gfxPrepend = meta.GfxPrepend
+		local pricegfx = "gfx/items/slots/wakaba_shiorivalut_price"..gfxPrepend.."/" .. slotData.price .. ".png"
 		if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
 			itemgfx = isc:getCollectibleGfxFilename(0)
 		end
@@ -107,22 +172,15 @@ function wakaba:SlotUpdate_ShioriValut(slot)
 		--wakaba.G:BombExplosionEffects(slot.Position, 0, TearFlags.TEAR_NORMAL, Color.Default, nil, 1, false, false, 0)
 	end
 	if slot:GetSprite():IsEventTriggered("Prize") then
-		local currentRoomIndex = isc:getRoomListIndex()
-		if not valut_data.floor.anotherfortunepedestals[currentRoomIndex] then
-			valut_data.floor.anotherfortunepedestals[currentRoomIndex] = {}
-		end
 		local rewards = wakaba:getValutRewards(slot)
 		local itemID = rewards.item
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, slot.Position, Vector.Zero, nil):ToPickup()
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 
-		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
-		item:GetSprite():SetOverlayFrame("Alternates", 1)
-		item:GetSprite():LoadGraphics()
-		table.insert(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(item))
-		if shouldCheckAscent() then
-			valut_data.run.ascentSharedSeeds[wakaba:getPickupIndex(item)] = true
-		end
+		local meta = wakaba:getShioriValutMeta(slot.SubType, slot)
+		local gfx = "gfx/items/" .. meta.PedestalGfx
+		local alt = meta.PedestalAlt
+		wakaba:MakeCustomPedestal(item, gfx, alt)
 		item.Wait = 10
 		slot:Remove()
 		SFXManager():Play(SoundEffect.SOUND_SLOTSPAWN, 1.0, 0, false, 1.0)
@@ -151,24 +209,6 @@ function wakaba:SlotCollision_ShioriValut(slot, player)
 	end
 end
 wakaba:AddCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_ShioriValut, wakaba.Enums.Slots.SHIORI_VALUT)
-
-function wakaba:ReplaceValutLate2(pickup)
-	local room = wakaba.G:GetRoom()
-	if room:GetFrameCount() < 2 then return end
-	wakaba:ReplaceValutLate(pickup)
-end
-function wakaba:ReplaceValutLate(pickup)
-	local currentRoomIndex = isc:getRoomListIndex()
-	local floorCheck = valut_data.floor.anotherfortunepedestals[currentRoomIndex] ~= nil and wakaba:has_value(valut_data.floor.anotherfortunepedestals[currentRoomIndex], wakaba:getPickupIndex(pickup))
-	local ascentCheck = shouldCheckAscent() and valut_data.run.ascentSharedSeeds[wakaba:getPickupIndex(pickup)] ~= nil
-	if not (floorCheck or ascentCheck) then return end
-	pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
-	pickup:GetSprite():SetOverlayFrame("Alternates", 1)
-	pickup:GetSprite():LoadGraphics()
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceValutLate2, PickupVariant.PICKUP_COLLECTIBLE)
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PICKUP_INIT_LATE, wakaba.ReplaceValutLate, PickupVariant.PICKUP_COLLECTIBLE)
-
 
 function wakaba:RollSlot_ShioriValut(slot, player)
 	--print("Touched!")

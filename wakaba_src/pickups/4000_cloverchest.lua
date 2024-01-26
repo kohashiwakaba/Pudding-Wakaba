@@ -2,16 +2,10 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local collectibleSpawnChance = wakaba.Enums.Constants.CLOVER_CHEST_COLLECTIBLE_CHANCE
 
 local clover_chest_data = {
-	run = {
-		ascentSharedSeeds = {},
-	},
-	floor = {
-		cloverchestpedestals = {},
+	run = {},
+	level = {
 		cachedRewards = {},
 	},
-	room = {
-
-	}
 }
 wakaba:saveDataManager("Clover Chest", clover_chest_data)
 
@@ -43,8 +37,8 @@ end
 ---@param player? EntityPlayer
 ---@return table
 function wakaba:getCloverChestRewards(chest, player)
-	if clover_chest_data.floor.cachedRewards[chest.InitSeed] then
-		return clover_chest_data.floor.cachedRewards[chest.InitSeed]
+	if clover_chest_data.level.cachedRewards[chest.InitSeed] then
+		return clover_chest_data.level.cachedRewards[chest.InitSeed]
 	end
 
 	local rewards = {}
@@ -65,7 +59,7 @@ function wakaba:getCloverChestRewards(chest, player)
 			table.insert(rewards, premiumPickup)
 		end
 	end
-	clover_chest_data.floor.cachedRewards[chest.InitSeed] = rewards
+	clover_chest_data.level.cachedRewards[chest.InitSeed] = rewards
 
 	return rewards
 end
@@ -101,29 +95,6 @@ function wakaba:ReplaceChests(pickup)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceChests)
 
-function wakaba:ReplaceChestsLate2(pickup)
-	local room = wakaba.G:GetRoom()
-	if room:GetFrameCount() < 2 then return end
-	wakaba:ReplaceChestsLate(pickup)
-end
-function wakaba:ReplaceChestsLate(pickup)
-	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
-	local currentRoomIndex = isc:getRoomListIndex()
-	local floorCheck = clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] ~= nil and wakaba:has_value(clover_chest_data.floor.cloverchestpedestals[currentRoomIndex], wakaba:getPickupIndex(pickup))
-	local ascentCheck = shouldCheckAscent() and clover_chest_data.run.ascentSharedSeeds[wakaba:getPickupIndex(pickup)] ~= nil
-	if not (floorCheck or ascentCheck) then return end
-
-	pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
-	if haspp then
-		pickup:GetSprite():SetOverlayFrame("Alternates", 16)
-	else
-		pickup:GetSprite():SetOverlayFrame("Alternates", 10)
-	end
-	pickup:GetSprite():LoadGraphics()
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceChestsLate2, PickupVariant.PICKUP_COLLECTIBLE)
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PICKUP_INIT_LATE, wakaba.ReplaceChestsLate, PickupVariant.PICKUP_COLLECTIBLE)
-
 function wakaba:UpdateChests(pickup)
 	if pickup:GetSprite():IsEventTriggered("DropSound") then
 		SFXManager():Play(SoundEffect.SOUND_CHEST_DROP)
@@ -133,10 +104,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.UpdateChests, Pick
 
 function wakaba:spawnCloverChestReward(chest, player)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
-	local currentRoomIndex = isc:getRoomListIndex()
-	if not clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] then
-		clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] = {}
-	end
 	player = player or chest:GetData().w_player
 
 	local rewards = wakaba:getCloverChestRewards(chest, player)
@@ -144,13 +111,7 @@ function wakaba:spawnCloverChestReward(chest, player)
 		local entry = rewards[1]
 		local item = Isaac.Spawn(entry[1], entry[2], entry[3], chest.Position, Vector.Zero, nil):ToPickup()
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
-		item:GetSprite():SetOverlayFrame("Alternates", haspp and 16 or 10)
-		item:GetSprite():LoadGraphics()
-		table.insert(clover_chest_data.floor.cloverchestpedestals[currentRoomIndex], wakaba:getPickupIndex(item))
-		if shouldCheckAscent() then
-			clover_chest_data.run.ascentSharedSeeds[wakaba:getPickupIndex(item)] = true
-		end
+		wakaba:MakeCustomPedestal(item, haspp and "gfx/items/wakaba_cloverchest_altar_p2p.png" or "gfx/items/wakaba_cloverchest_altar.png", 10)
 		item.Wait = 10
 		chest:Remove()
 	else

@@ -1524,8 +1524,8 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "Valut Rift",
-		description = "Spawns a Shiori's Valut# The valut contains a blue colored collectible that requires several keys.",
-		tarot = {"Spawns {{ColorShinyPurple}}2{{CR}} Shiori's Valuts# The valut contains a blue colored collectible that requires several keys."},
+		description = "Spawns a Shiori's Valut#The valut contains a blue colored collectible that requires several keys.#Low chance to spawn random valut that containes other themed item",
+		tarot = {"Spawns {{ColorShinyPurple}}2{{CR}} Shiori's Valuts# The valut contains a blue colored collectible that requires several keys#Low chance to spawn random valut that containes other themed item"},
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
