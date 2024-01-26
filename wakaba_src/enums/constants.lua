@@ -350,6 +350,11 @@ wakaba.Enums.Slots = {
 	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
 }
 
+wakaba.Enums.ShioriValutSubType = {
+	SHIORI = 0,
+	BOOKS = 1,
+}
+
 -- 크리스탈 리스톡 타입
 wakaba.Enums.CrystalRestockSubType = {
 	NORMAL = 0, -- 일반형 (3회)
