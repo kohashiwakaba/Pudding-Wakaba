@@ -12,6 +12,10 @@ local defaultMetadata = {
 
 mod.StatusEffect = {}
 mod.StatusMetadata = {}
+mod.StatusEffectBlacklist = {
+	{EntityType.ENTITY_FIREPLACE},
+	{EntityType.ENTITY_MOVABLE_TNT},
+}
 
 local function GetRegisteredNumStatusEffects()
 	local count = 0
@@ -34,22 +38,32 @@ function mod:RegisterStatusEffect(statusName, spriteObject, metadata)
 	return index
 end
 
+function mod:isStatusBlacklisted(entity)
+	for _, dict in ipairs(wakaba.StatusEffectBlacklist) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
+			end
+		end
+	end
+end
+
 function mod:CanApplyStatusEffect(npcTarget, ignoreCooldown)
 	local data = npcTarget:GetData()
 	if ignoreCooldown then
 		return (
 			npcTarget and
 			npcTarget:IsVulnerableEnemy() and
-			npcTarget.Type ~= EntityType.ENTITY_FIREPLACE and
-			npcTarget.Type ~= EntityType.ENTITY_MOVABLE_TNT and
+			not mod:isStatusBlacklisted(mod) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 		)
 	else
 		return (
 			npcTarget and
 			npcTarget:IsVulnerableEnemy() and
-			npcTarget.Type ~= EntityType.ENTITY_FIREPLACE and
-			npcTarget.Type ~= EntityType.ENTITY_MOVABLE_TNT and
+			not mod:isStatusBlacklisted(mod) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) and
 			not data.wakaba_StatusCooldown
