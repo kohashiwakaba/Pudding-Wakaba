@@ -25,7 +25,7 @@
 
 
 
-	<active id="999" description="Eternal Dreams..." gfx="doubledreams.png" maxcharges="0" name="Wakaba's Double Dreams" tags="stars offensive nocantrip angel devil book" devilprice="2" quality="4" craftquality="-1"/>
+	<active id="999" description="Eternal Dreams..." gfx="doubledreams.png" chargetype="special" maxcharges="0" name="Wakaba's Double Dreams" tags="stars offensive nocantrip angel devil book" devilprice="2" quality="4" craftquality="-1"/>
 
 	<active description="Curse of Cinderella" gfx="wakabacurfew.png" chargetype="timed" maxcharges="900" name="Wakaba's 6'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" name="Wakaba's 9'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
