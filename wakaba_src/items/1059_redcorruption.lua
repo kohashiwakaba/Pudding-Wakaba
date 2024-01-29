@@ -49,7 +49,7 @@ function wakaba:NewLevel_RedCorruption()
 			then
 				for d = 0, 3 do
 					if isc:isDoorSlotValidAtGridIndexForRedRoom(d, i) then
-						local chance = wakaba:StackChance(0.25 + wakaba:LuckBonus(totalLuck, parLuck, 1), corruptionPower)
+						local chance = wakaba:StackChance(baseChance + wakaba:LuckBonus(totalLuck, parLuck, 1 - baseChance), corruptionPower)
 						if rng:RandomFloat() < chance then
 							local test = level:MakeRedRoomDoor(i, d)
 						end
