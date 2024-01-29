@@ -21,7 +21,7 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
 
-	<entity anm2path="murasame.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Murasame" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="" variant="4104">
+	<entity anm2path="murasame.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Murasame" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="" variant="4111">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
 
@@ -44,6 +44,8 @@
 	<entity anm2path="chimaki_familiar.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="13" friction="1" id="3" name="Chimaki" numGridCollisionPoints="12" shadowSize="20" stageHP="0" variant="4110" shutdoors="false">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
+
+	<!-- 4111 Listed for Murasame -->
 
 	<!-- Pickups -->
 
