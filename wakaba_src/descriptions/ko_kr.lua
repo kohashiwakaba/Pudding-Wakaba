@@ -334,7 +334,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "처형자",
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 0.75%의 확률로 적을 현재 게임에서 지우는 공격이 나갑니다."
-		.. "#{{LuckSmall}} :행운 117+일 때 10%, 보스의 경우 100%"
+		.. "#{{LuckSmall}} 행운 117+일 때 10%, 보스의 경우 100%"
 		.. "#!!! {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 적용되지 않음){{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
@@ -762,7 +762,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "적색 감염",
 		description = "{{Collectible21}} 맵에 특수방의 위치를 표시합니다."
 		.. "#보스방을 제외한 모든 특수 방이 빨간 방으로 바뀝니다."
-		.. "#가능한 경우, 특수 방 주변에 새로운 방이 생성됩니다."
+		.. "#가능한 경우, 스테이지 진입 시 25%의 확률로 특수 방 주변에 새로운 방이 생성됩니다."
+		.. "#{{LuckSmall}} 행운 66+일 때 100%"
 		.. "#!!! {{ErrorRoom}}오류방으로 향하는 문이 생성될 수 있습니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -989,7 +990,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "리라의 수영복",
 		description = "10%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
-		.. "#{{LuckSmall}} :행운 38+일 때 100%"
+		.. "#{{LuckSmall}} 행운 38+일 때 100%"
 		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
@@ -1604,7 +1605,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "오로라 보석",
 		description = ""
 		.. "#이스터 동전의 등장 확률이 6.66% 증가합니다."
-		.. "#{{LuckSmall}} : 6.66 +(1*{{LuckSmall}})%"
+		.. "#{{LuckSmall}}  6.66 +(1*{{LuckSmall}})%"
 		.. "{{CR}}",
 		queueDesc = "황금빛 장소로 가져다줘",
 	},

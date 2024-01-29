@@ -1317,6 +1317,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "When entering new floor, generates new rooms adjacent special rooms if possible."},
+			{str = "- The chance to create new room depends on Luck stat. At base luck (0), the chance is 25%, maxing out at 100% at 66 luck."},
 			{str = "All special rooms except Boss rooms will be turned into red rooms."},
 			{str = "Reveals the locations and types of all special rooms on the map."},
 			{str = "- All special rooms created from Red Corruption will also be revealed."},

@@ -699,7 +699,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Red Corruption",
 		description = "{{Collectible21}} Reveals icons on the map"
 		.. "#All special rooms except Boss rooms will be turned into red rooms"
-		.. "#Generates new rooms adjacent special rooms if possible"
+		.. "#Entering a new floor has 25% chance to generate new rooms adjacent special rooms if possible"
+		.. "#{{Luck}} 100% chance at 66 Luck"
 		.. "#!!! Some doors may lead to {{ErrorRoom}}I AM ERROR rooms!"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
