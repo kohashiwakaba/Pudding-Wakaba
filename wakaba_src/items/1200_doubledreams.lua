@@ -34,6 +34,7 @@ wakaba.ItemPoolRoomType = {
 	RoomType.ROOM_SHOP ,
 	RoomType.ROOM_ULTRASECRET ,
 }
+--[[
 wakaba.ItemPoolName = {
 	"Kohashi Wakaba - Default Pool",
 	"Isaac Wakaba - Treasure Pool",
@@ -51,13 +52,13 @@ wakaba.ItemPoolName = {
 	"Baby Wakaba - Baby Shop Pool",
 	"Clare Wakaba - Ultra Secret Pool"
 }
-
+ ]]
 
 -- return the first integer index holding the value 
-function AnIndexOf(t,val)
-    for k,v in ipairs(t) do 
-        if v == val then return k end
-    end
+local function AnIndexOf(t,val)
+	for k,v in ipairs(t) do
+		if v == val then return k end
+	end
 end
 
 function wakaba:GetNextPool(current)
@@ -147,7 +148,7 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 
-
+---@param player EntityPlayer
 function wakaba:dreamsUpdate(player)
 	if wakaba.runstate.dreampool and wakaba.runstate.dreampool ~= bookSpritePool then
 		wakaba.G:GetRoom():InvalidatePickupVision()
@@ -162,7 +163,7 @@ function wakaba:dreamsUpdate(player)
 			deliveranceData.temporary.lawfulPool = nil -- to allow reset lauful pool
 		end
 	end
-	if wakaba.hasdreams then
+	if wakaba.hasdreams then -- Global check instead of player check
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CHAOS, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_CHAOS)
 			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
@@ -183,7 +184,14 @@ function wakaba:dreamsUpdate(player)
 				--dreamcard:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, CollectibleType.CARD_DREAM_CARD, false, false, true)
 			end
 		end
+	end
 
+	if REPENTOGON then
+		for i = 0, 2 do
+			if player:GetActiveItem(i) == wakaba.Enums.Collectibles.DOUBLE_DREAMS then
+				player:SetActiveCharge(player:GetData().wakaba and player:GetData().wakaba.dreamstack or 0, i)
+			end
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.dreamsUpdate)
