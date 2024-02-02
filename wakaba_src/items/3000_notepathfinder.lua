@@ -27,7 +27,7 @@ function wakaba:RoomGen_BringMeThere()
 	--print("condition check")
 	if shouldSpawnTrinket(true) then
 		local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 43000)
-		local altRoom = level:GetRoomByIdx(-14)
+		local altRoom = level:GetRoomByIdx(-11)
 		altRoom.OverrideData = roomData
 
 		--local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 42000)
@@ -59,7 +59,7 @@ function wakaba:Update_BringMeThere()
 			--savedBossRoom.SurpriseMiniboss = isBeastRun
 			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, isBeastRun)
 
-			local altRoom = level:GetRoomByIdx(-14)
+			local altRoom = level:GetRoomByIdx(-11)
 			if isBeastRun then
 				savedBossRoom.Data = altRoom.OverrideData
 			else
