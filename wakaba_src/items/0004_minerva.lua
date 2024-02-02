@@ -259,11 +259,11 @@ function wakaba:PlayerUpdate_Minerva(player)
 		player:GetData().wakaba.minervadmgprotect = player:GetData().wakaba.minervadmgprotect - 1
 	end
 	if player:GetData().wakaba.hasminerva == 0 and player:GetData().wakaba.minervacount > 0 then
-		player:AddCacheFlags(CacheFlag.CACHE_ALL)
+		player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
 		player:EvaluateItems()
 		player:GetData().wakaba.hasminerva = 1
 	elseif player:GetData().wakaba.minervacount <= 0 and player:GetData().wakaba.hasminerva == 1 then
-		player:AddCacheFlags(CacheFlag.CACHE_ALL)
+		player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
 		player:EvaluateItems()
 		player:GetData().wakaba.hasminerva = 0
 	end

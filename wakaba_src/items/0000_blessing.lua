@@ -167,7 +167,7 @@ function wakaba:PlayerUpdate_Nemesis(player)
 		if player:GetCollectibleCount() ~= player:GetData().wakaba.dejavuItemNum and not player:IsHoldingItem() then
 			player:GetData().wakaba.dejavuItemNum = player:GetCollectibleCount()
 			wakaba:CheckItemCandidates(player)
-			player:AddCacheFlags(CacheFlag.CACHE_ALL)
+			player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
 			player:EvaluateItems()
 		end
 	end
