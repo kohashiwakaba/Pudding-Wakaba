@@ -57,7 +57,7 @@
 	<passive id="40" cache="damage" description="Damage down... but what at cost?" gfx="nekofigure.png" name="Neko Figure" tags="offensive guppy nocantrip" devilprice="2" quality="3" />
 
 
-	<passive id="41" description="Connect" gfx="winteralbireo.png" name="The Winter Albireo" tags="stars offensive" quality="4"/>
+	<passive id="41" description="Connect" gfx="winteralbireo.png" name="The Winter Albireo" tags="stars offensive lazarusshared" quality="4"/>
 
 	<passive id="42" description="You feel forgotten" gfx="dejavu.png" name="Deja Vu" tags="offensive nocantrip noeden" quality="2" craftquality="-1"/>
 	<familiar id="43" cache="speed" description="Buddy for rift" gfx="lilmao.png" name="Lil Mao" tags="offensive baby" quality="2"/>
