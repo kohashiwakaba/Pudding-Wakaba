@@ -189,9 +189,7 @@ end
 
 function wakaba:Cache_Chimaki(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
-		if wakaba:hasChimaki(player) or (wakaba:getTaintedLazarusSubPlayer(player) and wakaba:hasChimaki(wakaba:getTaintedLazarusSubPlayer(player))) then
-			player:CheckFamiliar(wakaba.Enums.Familiars.CHIMAKI, 1, player:GetCollectibleRNG(wakaba.Enums.Collectibles.CHIMAKI), Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.CHIMAKI))
-		end
+		player:CheckFamiliar(wakaba.Enums.Familiars.CHIMAKI, wakaba:hasChimaki(player) and 1 or 0, player:GetCollectibleRNG(wakaba.Enums.Collectibles.CHIMAKI), Isaac.GetItemConfig():GetCollectible(wakaba.Enums.Collectibles.CHIMAKI))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Chimaki)
