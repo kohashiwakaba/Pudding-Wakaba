@@ -1105,7 +1105,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_Global)
 --스크립트 로딩
 --API, 축복, 시련 아이템은 가장 먼저 로딩
 
-include('wakaba_reserved_enums')
 include('wakaba_src.damocles_api')
 
 include('wakaba_src.enums.players')
