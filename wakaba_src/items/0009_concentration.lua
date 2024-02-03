@@ -56,17 +56,24 @@ function wakaba:ChargeBarUpdate_Concentration(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_Concentration)
 
+local tempUsedCount = -1
 local function getConcentrationSpeed(speedType, usedCount)
 	-- par : 6000, maxCount : 300
 	speedType = speedType or wakaba.concentrationmodes.NORMAL
 	local speedreduce = usedCount or 0
-	speedreduce = math.max(speedreduce, wakaba.Enums.Constants.MAX_CONCENTRATION_SPEED_THRESHOLD)
+	speedreduce = math.min(speedreduce, wakaba.Enums.Constants.MAX_CONCENTRATION_SPEED_THRESHOLD)
 	local initialSpeed = wakaba.concentrationspeed[speedType] or 50
 	local midSpeed = initialSpeed - (speedreduce * 2)
+	local finalSpeed = midSpeed
 	if midSpeed < 10 then
 		midSpeed = 10
-		midSpeed = initialSpeed / (300 - math.max(speedreduce, 1))
+		finalSpeed = midSpeed - (speedreduce * 0.03)
 	end
+	if tempUsedCount ~= usedCount then
+		wakaba.Log("Concentration speed : initial:", initialSpeed, "mid:", midSpeed, "final:", finalSpeed)
+		tempUsedCount = usedCount
+	end
+	return finalSpeed
 end
 
 function wakaba:PlayerUpdate_Concentration(player)
@@ -96,6 +103,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 			data.wakaba.concentrationframes = data.wakaba.concentrationframes - getConcentrationSpeed(data.wakaba.concentrationmode, count)
 
 			if data.wakaba.concentrationframes <= 5000 then
+				wakaba.G.TimeCounter = wakaba.G.TimeCounter + (count // 3)
 				if player:GetSprite():GetAnimation() ~= "DeathTeleport" and player:GetSprite():GetAnimation() ~= "Appear" then
 					player:PlayExtraAnimation("DeathTeleport")
 				elseif player:GetSprite():GetAnimation() == "Appear" then
@@ -104,8 +112,6 @@ function wakaba:PlayerUpdate_Concentration(player)
 				if player:GetSprite():GetAnimation() == "DeathTeleport" and (player:GetSprite():GetFrame() >= 20 or player:IsExtraAnimationFinished()) then
 					player:PlayExtraAnimation("Appear")
 				end
-			else
-				wakaba.G.TimeCounter = wakaba.G.TimeCounter + count
 			end
 			if data.wakaba.concentrationframes <= 0 then
 				local chargecnt = 0
