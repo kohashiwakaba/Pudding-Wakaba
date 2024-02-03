@@ -56,11 +56,26 @@ function wakaba:ChargeBarUpdate_Concentration(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_Concentration)
 
+local function getConcentrationSpeed(speedType, usedCount)
+	-- par : 6000, maxCount : 300
+	speedType = speedType or wakaba.concentrationmodes.NORMAL
+	local speedreduce = usedCount or 0
+	speedreduce = math.max(speedreduce, wakaba.Enums.Constants.MAX_CONCENTRATION_SPEED_THRESHOLD)
+	local initialSpeed = wakaba.concentrationspeed[speedType] or 50
+	local midSpeed = initialSpeed - (speedreduce * 2)
+	if midSpeed < 10 then
+		midSpeed = 10
+		midSpeed = initialSpeed / (300 - math.max(speedreduce, 1))
+	end
+end
+
 function wakaba:PlayerUpdate_Concentration(player)
 	if wakaba:hasConcentration(player) then
 		wakaba:GetPlayerEntityData(player)
     local data = player:GetData()
+		local count = data.wakaba.concentrationcount or 0
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
+			if count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT then return end
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
 				local mode = wakaba.concentrationmodes.NORMAL
 				if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge <= 100000 then
@@ -74,12 +89,8 @@ function wakaba:PlayerUpdate_Concentration(player)
 				SFXManager():Play(SoundEffect.SOUND_LIGHTBOLT_CHARGE, 2, 0, false, 0.5)
 			else
 			end
-			local speedreduce = data.wakaba.concentrationcount or 0
-			if speedreduce > 0 then
-				speedreduce = speedreduce > 10 and 10 or speedreduce
-			end
 			data.wakaba.concentrationframes = (not data.wakaba.concentrationtriggered and data.wakaba.concentrationframes and data.wakaba.concentrationframes > 0 and data.wakaba.concentrationframes) or 6000
-			data.wakaba.concentrationframes = data.wakaba.concentrationframes - (wakaba.concentrationspeed[data.wakaba.concentrationmode] - (speedreduce * 2))
+			data.wakaba.concentrationframes = data.wakaba.concentrationframes - getConcentrationSpeed(data.wakaba.concentrationmode, count))
 
 			if data.wakaba.concentrationframes <= 5000 then
 				if player:GetSprite():GetAnimation() ~= "DeathTeleport" and player:GetSprite():GetAnimation() ~= "Appear" then
@@ -90,6 +101,8 @@ function wakaba:PlayerUpdate_Concentration(player)
 				if player:GetSprite():GetAnimation() == "DeathTeleport" and (player:GetSprite():GetFrame() >= 20 or player:IsExtraAnimationFinished()) then
 					player:PlayExtraAnimation("Appear")
 				end
+			else
+				wakaba.G.TimeCounter = wakaba.G.TimeCounter + count
 			end
 			if data.wakaba.concentrationframes <= 0 then
 				local chargecnt = 0
