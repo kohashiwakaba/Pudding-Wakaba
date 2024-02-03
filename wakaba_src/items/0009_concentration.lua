@@ -93,7 +93,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 			else
 			end
 			data.wakaba.concentrationframes = (not data.wakaba.concentrationtriggered and data.wakaba.concentrationframes and data.wakaba.concentrationframes > 0 and data.wakaba.concentrationframes) or 6000
-			data.wakaba.concentrationframes = data.wakaba.concentrationframes - getConcentrationSpeed(data.wakaba.concentrationmode, count))
+			data.wakaba.concentrationframes = data.wakaba.concentrationframes - getConcentrationSpeed(data.wakaba.concentrationmode, count)
 
 			if data.wakaba.concentrationframes <= 5000 then
 				if player:GetSprite():GetAnimation() ~= "DeathTeleport" and player:GetSprite():GetAnimation() ~= "Appear" then
