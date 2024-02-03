@@ -25,6 +25,7 @@ function wakaba:prePickupCollision_CustomItemSound(pickup, colliders, low)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_CustomItemSound, PickupVariant.PICKUP_COLLECTIBLE)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_CustomItemSound, PickupVariant.PICKUP_SHOPITEM)
 
 ---@param collectibleType CollectibleType
 ---@param rng RNG

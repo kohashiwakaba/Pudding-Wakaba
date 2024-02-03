@@ -16,11 +16,19 @@ local deathReplace = {
 local sfx = SFXManager()
 
 local checkType = PlayerType.PLAYER_ISAAC
+local skipDelay
 
 function wakaba:TakeDamage_CustomSound(player)
 	checkType = player:ToPlayer():GetPlayerType()
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CustomSound, EntityType.ENTITY_PLAYER)
+
+function wakaba:PlayerCollision_CustomSound(player, collider, low)
+	if collider.Type == EntityType.ENTITY_FIREPLACE and collider.Variant == 4 then
+		checkType = player:ToPlayer():GetPlayerType()
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_CustomSound, 0)
 
 function wakaba:TakeDamage_CustomSound_LostSoul(soul)
 	if soul.Variant == FamiliarVariant.LOST_SOUL then
@@ -54,39 +62,34 @@ function wakaba:getCustomDeathSound(collectibleType, rng)
 end
 
 ---@param player EntityPlayer
-function wakaba:PlayerRender_CustomItemSound(player)
-	if not player:IsItemQueueEmpty() and checkForCustomSound then
-		local queue = player.QueuedItem.Item
-		if queue:IsCollectible() and wakaba.CustomItemSound[queue.ID] then
-			for _, sound in ipairs(soundToReplace) do
-				if sfx:IsPlaying(sound) then
-					sfx:Stop(sound)
-					sfx:Play(wakaba:getCustomSound(queue.ID))
-					break
-				end
-			end
-		end
+function wakaba:PlayerRender_CustomHurtSound(player)
+	if player:IsDead() then
+		checkType = player:ToPlayer():GetPlayerType()
+		skipDelay = true
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_CustomItemSound)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_CustomHurtSound)
 
 function wakaba:Update_CustomItemSound()
 	local hitSound = wakaba:getCustomHurtSound(checkType)
 	local deathSound = wakaba:getCustomDeathSound(checkType)
 	if hitSound or deathSound then
 		if hitSound and sfx:IsPlaying(SoundEffect.SOUND_ISAAC_HURT_GRUNT) then
+			wakaba.Log("Hit Sound for ".. tostring(checkType) .. " replaced!")
 			sfx:Stop(SoundEffect.SOUND_ISAAC_HURT_GRUNT)
 			sfx:Play(hitSound)
 		end
 		if deathSound then
 			wakaba:scheduleForUpdate(function ()
 				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
+					wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
 					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
 					sfx:Play(deathSound)
 				end
-			end, 16)
+			end, skipDelay and 0 or 16)
 		end
 	end
 	checkType = PlayerType.PLAYER_ISAAC
+	skipDelay = nil
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Update_CustomItemSound)
