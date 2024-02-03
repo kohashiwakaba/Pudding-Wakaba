@@ -36,18 +36,18 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		aqua_trinkets_data.level.triedindexes[currentRoomIndex] = {}
 	end
 	if hasTrinketDropped then
-		print("[wakaba] hasTrinketDropped detected, skipping...")
+		wakaba.Log("hasTrinketDropped detected, skipping...")
 	end
 
 	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
-		print("[wakaba] Aqua trinket check for seed "..wakaba:getPickupIndex(pickup).."/ isAquaTrinket :",isAquaTrinket,"/ alreadyTried :",alreadyTried)
+		wakaba.Log("Aqua trinket check for seed "..wakaba:getPickupIndex(pickup).."/ isAquaTrinket :",isAquaTrinket,"/ alreadyTried :",alreadyTried)
 		local rand = RNG()
 		rand:SetSeed(pickup.InitSeed, 35)
 		local ran = rand:RandomFloat()
-		print("[wakaba] Aqua trinket roll for seed "..wakaba:getPickupIndex(pickup).." :", ran, "/", wakaba:getAquaTrinketChance())
+		wakaba.Log("Aqua trinket roll for seed "..wakaba:getPickupIndex(pickup).." :", ran, "/", wakaba:getAquaTrinketChance())
 		if not alreadyTried and ran < wakaba:getAquaTrinketChance() then
 			if not isAquaTrinket then
 				--print("Aqua Trinket Registered! ID :"..pickup.SubType)
@@ -62,7 +62,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 			pickup:GetData().wakaba.isAquaTrinket = true
 		end
 	else
-		print("[wakaba] Skipped Aqua trinket check for seed "..wakaba:getPickupIndex(pickup))
+		wakaba.Log("Skipped Aqua trinket check for seed "..wakaba:getPickupIndex(pickup))
 		table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
 	end
 	hasTrinketDropped = false
@@ -93,7 +93,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_AquaT
 function wakaba:TrinketCollision_AquaTrinkets(pickup, collider)
 	local player = collider:ToPlayer()
 	if player then
-		print("[wakaba] hasTrinketDropped set")
+		wakaba.Log("hasTrinketDropped set")
 		hasTrinketDropped = true
 		wakaba:GetPlayerEntityData(player)
 		pickup:GetData().wakaba = pickup:GetData().wakaba or {}
@@ -117,7 +117,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.TrinketCollision
 
 function wakaba:PlayerUpdate_AquaTrinkets(player)
 	if hasTrinketDropped then
-		print("[wakaba] hasTrinketDropped unset")
+		wakaba.Log("hasTrinketDropped unset")
 		hasTrinketDropped = false
 	end
 	wakaba:GetPlayerEntityData(player)
@@ -147,7 +147,7 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 
 		if data.wakaba.prevTrinketPrimary ~= currentTrinketPrimary
 		or data.wakaba.prevTrinketSecondary ~= currentTrinketSecondary then
-			print("[wakaba] hasTrinketDropped set")
+			wakaba.Log("hasTrinketDropped set")
 			hasTrinketDropped = true
 		end
 		data.wakaba.prevTrinketPrimary = currentTrinketPrimary

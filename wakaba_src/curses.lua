@@ -71,7 +71,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
 end)
 
 function wakaba:Curse_BlackCandleCheck(player)
-	local curse = wakaba.G:GetLevel():GetCurses() 
+	local curse = wakaba.G:GetLevel():GetCurses()
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
 	and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR
 	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
@@ -87,7 +87,7 @@ function wakaba:Curse_Evaluate(curse)
 	local skip = false
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if wakaba.curses.CURSE_OF_SATYR > 0 
+		if wakaba.curses.CURSE_OF_SATYR > 0
 		and player:GetPlayerType() == wakaba.Enums.Players.SHIORI
 		and ((wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and wakaba.G.TimeCounter == 0)
 		or wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR) then
@@ -135,7 +135,7 @@ function wakaba:Curse_Evaluate(curse)
 			end
 		end
 		if not skip and wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~wakaba.curses.CURSE_OF_SATYR > 0 then
-			Isaac.DebugString("[wakaba] Curse "..curse.." found! Preventing from Richer's Uniform...")
+			wakaba.Log("Curse "..curse.." found! Preventing from Richer's Uniform...")
 			wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount - 1
 			curse = isc:removeFlag(curse, curse & ~wakaba.curses.CURSE_OF_SATYR)
 			skip = true
@@ -148,7 +148,7 @@ function wakaba:Curse_Evaluate(curse)
 	if wakaba.curses.CURSE_OF_FLAMES <= LevelCurse.CURSE_OF_GIANT or wakaba.state.options.flamescurserate == 0 then return curse end
 	if wakaba.state.options.flamesoverride then
 		local newflamescurserate = wakaba.state.options.flamescurserate * 1
-		newflamescurserate = newflamescurserate / 6 -- Base curse rate 
+		newflamescurserate = newflamescurserate / 6 -- Base curse rate
 		local rng = wakaba.RNG
 		local rng = rng:RandomFloat() * 100
 		if newflamescurserate >= rng then
@@ -156,7 +156,7 @@ function wakaba:Curse_Evaluate(curse)
 		end
 	elseif curse == LevelCurse.CURSE_NONE then
 		local newflamescurserate = wakaba.state.options.flamescurserate * 1
-		newflamescurserate = newflamescurserate / 3 -- Base curse rate 
+		newflamescurserate = newflamescurserate / 3 -- Base curse rate
 		newflamescurserate = newflamescurserate / (LevelCurse.NUM_CURSES - 3) -- Curse selection rate
 		local rng = wakaba.RNG
 		local rng = rng:RandomFloat() * 100
@@ -189,7 +189,7 @@ function wakaba:Curse_PlayerRender(player)
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
 	if wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR) > 0 and not IsExtraRoom() then
-		Isaac.DebugString("[wakaba] Curse "..curse.." found! Preventing from Richer's Uniform...")
+		wakaba.Log("Curse "..curse.." found! Preventing from Richer's Uniform...")
 		wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount - 1
 		wakaba.G:GetLevel():RemoveCurses(curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR))
 	elseif wakaba:hasRibbon(player) and wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
@@ -223,7 +223,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 	function wakaba:PlayerUpdate_Curse(player)
 		if isc:inDeathCertificateArea() or isc:inGenesisRoom() then return end
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
-		local curse = wakaba.G:GetLevel():GetCurses() 
+		local curse = wakaba.G:GetLevel():GetCurses()
 		local isTaintedRicher = false
 		local onlyTaintedRicher = true
 		for i, player in ipairs(wakaba:getAllMainPlayers()) do
@@ -236,9 +236,9 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES or isTaintedRicher then
 			if not player:IsItemQueueEmpty() and player.QueuedItem.Item:IsCollectible() then
 				local heldItem = player.QueuedItem.Item
-				if not heldItem:HasTags(ItemConfig.TAG_SUMMONABLE) 
-				or heldItem:HasTags(ItemConfig.TAG_QUEST) 
-				or heldItem.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT 
+				if not heldItem:HasTags(ItemConfig.TAG_SUMMONABLE)
+				or heldItem:HasTags(ItemConfig.TAG_QUEST)
+				or heldItem.ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT
 				then
 					return
 				end
@@ -258,7 +258,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 							familiar.HitPoints = familiar.MaxHitPoints * 2
 						end
 					end
-		
+
 					wakaba.G:GetLevel():UpdateVisibility()
 					player:AnimateSad()
 				end
@@ -266,13 +266,13 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 		end
 	end
 	wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Curse)
---[[ 	
+--[[
 	function wakaba:Curse_PickupCollision(pickup, collider, low)
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
 		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_CHALLENGE then return end
 		if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSSRUSH then return end
 		if not collider:ToPlayer() then return end
-		local curse = wakaba.G:GetLevel():GetCurses() 
+		local curse = wakaba.G:GetLevel():GetCurses()
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES then
 			local id = pickup.SubType
 			if id == 0 then return end
@@ -301,7 +301,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					familiar.CollisionDamage = familiar.CollisionDamage * 16
 					familiar.MaxHitPoints = familiar.MaxHitPoints * 16
 					familiar.HitPoints = familiar.MaxHitPoints
-	
+
 					pickup.Touched = true
 					local index = pickup.OptionsPickupIndex
 					local ents = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1)
@@ -319,13 +319,13 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 					wakaba.G:GetLevel():UpdateVisibility()
 					player:AnimateSad()
 				end
-	
+
 				return true
 			end
 		end
 	end
-	
+
 	wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.Curse_PickupCollision, PickupVariant.PICKUP_COLLECTIBLE)
 	 ]]
-	
+
 end

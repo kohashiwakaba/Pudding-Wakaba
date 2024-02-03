@@ -48,7 +48,7 @@ local ShioriChar_b = {
 	TEARFLAG = TearFlags.TEAR_TURN_HORIZONTAL,
 	TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onShioriCache_b(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
 		local additional = 0
@@ -87,9 +87,9 @@ function wakaba:onShioriCache_b(player, cacheFlag)
 	else
 		player:TryRemoveNullCostume(wakaba.COSTUME_SHIORI_B)
 	end
-	
+
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onShioriCache_b)
 
 function wakaba:AfterShioriInit_b(player)
@@ -102,7 +102,7 @@ function wakaba:AfterShioriInit_b(player)
 		data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
 		data.wakaba.nextshioriflag = data.wakaba.nextshioriflag or 0
 		player:SetPocketActiveItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, ActiveSlot.SLOT_POCKET, false)
-		Isaac.DebugString("[wakaba]Adding bookmakrs")
+		wakaba.Log("Adding bookmakrs")
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end
@@ -143,7 +143,7 @@ function wakaba:ShioriInit_b(continue)
 		isShioriContinue = false
 		wakaba:AfterShioriInit_b()
 	end
-	
+
 	if Poglite then
 		if wakaba.state.pog ~= nil then
 			if wakaba.state.pog then

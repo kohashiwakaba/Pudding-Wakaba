@@ -11,7 +11,7 @@ wakaba.FamiliarPriority = {
 local function SyncRepentogonMarks(playerType)
 	if not REPENTOGON or not playerType then return end
 
-	--print("[wakaba] Trying to register Repentogon completion marks for ", playerType)
+	--wakaba.Log("Trying to register Repentogon completion marks for ", playerType)
 	Isaac.SetCompletionMarks({
 		PlayerType = playerType,
 		MomsHeart = wakaba:GetUnlockValuesFromBoss(playerType, "Heart"),
@@ -31,7 +31,7 @@ end
 
 function wakaba:Repentogon_SyncCompletionMarks()
 
-	print("[wakaba] Start Repentogon Sync MC_PRE_GAME_EXIT")
+	wakaba.Log("Start Repentogon Sync MC_PRE_GAME_EXIT")
 	for _, playerType in pairs(wakaba.Enums.Players) do
 		if wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) then
 			SyncRepentogonMarks(playerType)
@@ -44,6 +44,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPOR
 ---@param familiar EntityFamiliar
 ---@return FamiliarPriority
 function wakaba:Repentogon_GetPriority(familiar)
+	wakaba.Log("Getting Fam Priority " .. tostring(familiar.Variant) .. " / " .. tostring(wakaba.FamiliarPriority[familiar.Variant]).. " / " .. tostring(familiar.InitSeed))
 	if wakaba.FamiliarPriority[familiar.Variant] then
 		return wakaba.FamiliarPriority[familiar.Variant]
 	end
@@ -123,33 +124,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_INIT, wakaba.InitCrystalRestock, wa
 wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, wakaba.SlotUpdate_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
--- Sweets Catalog charges
----@param itemID CollectibleType
----@param player EntityPlayer
----@param varData integer
-wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, function(_, itemID, player, varData)
-	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
-		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
-			return 0
-		else
-			return 12
-		end
-	else
-		return 8
-	end
-end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
-
----@param itemID CollectibleType
----@param charge integer
----@param firstTime boolean
----@param slot ActiveSlot
----@param varData integer
----@param player EntityPlayer
-wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
-	if firstTime and player:GetPlayerType() ~= wakaba.Enums.Players.RICHER then
-		return {itemID, 8, firstTime, slot, varData}
-	end
-end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
 wakaba.persistentGameData = nil
 
@@ -157,9 +131,9 @@ wakaba.persistentGameData = nil
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, saveslot, isSlotSelected, rawSlot)
 	local persistentGameData = Isaac.GetPersistentGameData()
 	wakaba.persistentGameData = persistentGameData
-	print("[wakaba] Pre Repentogon Sync MC_POST_SAVESLOT_LOAD", saveslot, isSlotSelected, rawSlot)
+	wakaba.Log("Pre Repentogon Sync MC_POST_SAVESLOT_LOAD", saveslot, isSlotSelected, rawSlot)
 	if isSlotSelected and wakaba:saveDataManagerInMenu() then
-		print("[wakaba] Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
+		wakaba.Log("Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
 		wakaba:saveDataManagerLoad()
 		if wakaba.state.unlock.repentogon then return end
 		for _, playerType in pairs(wakaba.Enums.Players) do
@@ -169,12 +143,13 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 		end
 		for entryName, achievementID in pairs(wakaba.RepentogonUnlocks) do
 			if wakaba:IsEntryUnlocked(entryName, true) and not persistentGameData:Unlocked(achievementID) then
-				print("[wakaba] Try Unlock", achievementID, "from", saveslot, rawSlot)
+				wakaba.Log("Try Unlock", achievementID, "from", saveslot, rawSlot)
 				persistentGameData:TryUnlock(achievementID)
 			end
 		end
 		wakaba.state.unlock.repentogon = true
 		wakaba:saveDataManagerSave()
+		print("saved!")
 	end
 end)
 
@@ -320,7 +295,8 @@ end)
 -- MC_POST_COMPLETION_MARK_GET is also called from saveslot load, so made some checks
 wakaba:AddCallback(ModCallbacks.MC_POST_COMPLETION_MARK_GET, function(_, completionType, playerType)
 	if not checkGroup[playerType] then return end
-	print("[wakaba] MC_POST_COMPLETION_MARK_GET called for :", completionType, playerType)
+	wakaba.Log("MC_POST_COMPLETION_MARK_GET called for :", completionType, playerType)
 	wakaba:Repentogon_TryUnlock_Group(playerType, completionType)
 	checkGroup[playerType] = nil
 end)
+

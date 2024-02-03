@@ -1311,7 +1311,7 @@ function wakaba:LockItems()
   for i = wakaba.FIRST_WAKABA_ITEM, wakaba.LAST_WAKABA_ITEM do
     local isUnlocked = wakaba:unlockCheck(i)
     if not isUnlocked then
-      Isaac.DebugString("[wakaba]Item ID ".. i .. " Not unlocked! removing from the pools...")
+      wakaba.Log("Item ID ".. i .. " Not unlocked! removing from the pools...")
       wakaba.G:GetItemPool():RemoveCollectible(i)
     end
     if EID then
@@ -1321,7 +1321,7 @@ function wakaba:LockItems()
 
 	for i = wakaba.FIRST_WAKABA_TRINKET, wakaba.LAST_WAKABA_TRINKET do
 		if not wakaba:trinketUnlockCheck(i) then
-			Isaac.DebugString("[wakaba]Trinket ID ".. i .. " Not unlocked! removing from the pools...")
+			wakaba.Log("Trinket ID ".. i .. " Not unlocked! removing from the pools...")
 			wakaba.G:GetItemPool():RemoveCollectible(i)
 		end
 	end

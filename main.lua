@@ -46,6 +46,9 @@ if REPENTOGON then
 end
 wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class Mod
 
+include('wakaba_flags')
+include('wakaba_src.debug_area')
+
 --include("wakaba_src.libs.filepathhelper")
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
@@ -89,17 +92,6 @@ costumeProtector:Init(wakaba)
 --__wakaba = true
 --wakabaMCM = nil
 local json = require("json")
---[[
-local _, err = pcall(require, "wakaba_src.completionnotes")
-err = tostring(err)
-if not string.match(err, "attempt to call a nil value %(method 'ForceError'%)") then
-	if string.match(err, "true") then
-		err = "Error: require passed in completionnotes"
-	end
-	Isaac.DebugString(err)
-	print(err)
-end
-]]
 
 -- Made this one to make randomized tear effects
 function wakaba.TEARFLAG(x)
@@ -1377,6 +1369,7 @@ include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
 	include('wakaba_src.compat.repentogon.core')
+	include('wakaba_src.compat.repentogon.item_additions')
 	include('wakaba_src.compat.repentogon.achievements')
 	--include('wakaba_src.compat.repentogon.imgui')
 end
@@ -1532,8 +1525,8 @@ function wakaba:reinitStates()
 			for k, v in pairs(wakaba.state) do
 				if tempstate[k] == nil
 				or type(tempstate[k]) ~= type(wakaba.state[k]) then
-					--print("[wakaba]resetting state value :", k)
-					Isaac.DebugString("[wakaba]resetting state value : ".. k)
+					--wakaba.Log("resetting state value :", k)
+					wakaba.Log("[wakaba]resetting state value : ".. k)
 					tempstate[k] = wakaba.state[k]
 				end
 			end
@@ -1559,8 +1552,8 @@ function wakaba:reinitStates()
 		if tempstate.options ~= nil then
 			for k, v in pairs(wakaba.optiondefaults) do
 				if tempstate.options[k] == nil then
-					--print("[wakaba]resetting options :", k)
-					Isaac.DebugString("[wakaba]resetting options : ".. k)
+					--wakaba.Log("resetting options :", k)
+					wakaba.Log("[wakaba]resetting options : ".. k)
 					tempstate.options[k] = wakaba.state.options[k]
 				end
 			end
@@ -1575,7 +1568,8 @@ end
 
 function wakaba:luamodInit()
 	if wakaba:HasData() then
-		Isaac.DebugString(wakaba:LoadData())
+		wakaba:LoadData()
+		--Isaac.DebugString(wakaba:LoadData())
 
 		wakaba:reinitStates()
 	end
@@ -1689,7 +1683,7 @@ function wakaba:PostGlobalPlayerInit(player)
 		--print("assign")
 	end
 	player:GetData().wakaba_lhash = phash
-	Isaac.DebugString("[wakaba]Wakaba - Persistent Data registered.")
+	wakaba.Log("[wakaba]Wakaba - Persistent Data registered.")
 
 	if wakaba.G.TimeCounter == 0 then
 		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then
@@ -1833,7 +1827,7 @@ end
 
 function wakaba:save(shouldSave)
 	if shouldSave then
-		--Isaac.DebugString("[wakaba]Wakaba - Data Saving start")
+		--wakaba.Log("Wakaba - Data Saving start")
 		wakaba.runstate.saved = true
 		wakaba.state.intversion = wakaba.intversion
 		wakaba.runstate.savedtimecounter = wakaba.G:GetFrameCount()
@@ -1850,12 +1844,12 @@ function wakaba:save(shouldSave)
 			local sti = player:GetData().wakaba.sindex
 			if sti ~= nil then
 				table.insert(reservedplayersavedata, playerdata)
-				--Isaac.DebugString("[wakaba] - Saving player data : ".. json.encode(playerdata))
+				--wakaba.Log("- Saving player data : ".. json.encode(playerdata))
 			end
 		end
 		wakaba.runstate.playersavedata = reservedplayersavedata
 		--wakaba:SaveData(json.encode(wakaba.state))
-		--Isaac.DebugString("[wakaba]Wakaba - Data Saving end")
+		--wakaba.Log("Wakaba - Data Saving end")
 		wakaba:SaveHiddenItemData()
 		wakaba:saveDataManagerSave()
 	end
@@ -1879,7 +1873,7 @@ function wakaba:unlockWakaba(bool)
 	wakaba.state.unlock.blessing = true
 
 	print("Cheating Wakaba unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Wakaba unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Wakaba unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -1901,7 +1895,7 @@ function wakaba:unlockTaintedWakaba(bool)
 	wakaba.state.unlock.bookofforgotten = true
 
 	print("Cheating Tainted Wakaba unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Tainted Wakaba unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Tainted Wakaba unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -1923,7 +1917,7 @@ function wakaba:unlockShiori(bool)
 	wakaba.state.unlock.bookofshiori = true
 
 	print("Cheating Shiori unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Shiori unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Shiori unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -1945,7 +1939,7 @@ function wakaba:unlockTaintedShiori(bool)
 	wakaba.state.unlock.bookmarkbag = true
 
 	print("Cheating Tainted Shiori unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Tainted Shiori unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Tainted Shiori unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -1969,7 +1963,7 @@ function wakaba:unlockTsukasa(bool)
 	wakaba.state.unlock.taintedtsukasa = true
 
 	print("Cheating Tsukasa unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Tsukasa unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Tsukasa unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -1991,7 +1985,7 @@ function wakaba:unlockTaintedTsukasa(bool)
 	wakaba.state.unlock.isaaccartridge = true
 
 	print("Cheating Tainted Tsukasa unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Tainted Tsukasa unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Tainted Tsukasa unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -2015,7 +2009,7 @@ function wakaba:unlockRicher(bool)
 	wakaba.state.unlock.taintedricher = true
 
 	print("Cheating Richer unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Richer unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Richer unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -2041,7 +2035,7 @@ function wakaba:unlockChallenge(bool)
 	wakaba.state.unlock.doubledreams = true -- 99w Wakaba's Double Dreams
 
 	print("Cheating Challenge unlocks complete.")
-	Isaac.DebugString("[wakaba]Cheating Challenge unlocks complete.")
+	wakaba.Log("[wakaba]Cheating Challenge unlocks complete.")
 	--wakaba:save(true)
 end
 
@@ -2055,7 +2049,7 @@ include('wakaba_src.characters.not_wakaba')
 
 
 function wakaba:OnGameExit(shouldSave)
-	Isaac.DebugString("[wakaba] exit")
+	wakaba.Log("exit")
 
 	for num = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(num - 1)

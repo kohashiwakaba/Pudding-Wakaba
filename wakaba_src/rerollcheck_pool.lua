@@ -160,7 +160,7 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 	local selectedItemConf = config:GetCollectible(selected)
 	local isPassed = bypassEarlyReroll or not Isaac.RunCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, rerollProps, selected, selectedItemConf, rerollProps.itemType or itemPoolType, decrease, seed)
 	local str_ispassed = (isPassed and "passed") or "not passed"
-	Isaac.DebugString("[wakaba] Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
+	wakaba.Log("Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
 
 	pool:AddRoomBlacklist(selected)
 	if not isPassed and wakaba.state.rerollloopcount <= wakaba.state.options.rerollbreakfastthreshold then

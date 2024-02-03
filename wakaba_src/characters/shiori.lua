@@ -5,7 +5,7 @@ wakaba.SHIORI_BOOKMARK2 = Isaac.GetItemIdByName("Shiori's Blue Bookmark")
 wakaba.SHIORI_BOOKMARK3 = Isaac.GetItemIdByName("Shiori's Yellow Bookmark")
 local removed = false
 local collectibleCount
-local costumeEquipped 
+local costumeEquipped
 local isShioriContinue = true
 local iskeyinit = false
 local isc = require("wakaba_src.libs.isaacscript-common")
@@ -93,54 +93,54 @@ function wakaba:GetBookItems(bookstate)
 
 	for i = 1, maxID do
 		local item = config:GetCollectible(i)
-		if item ~= nil and item:HasTags(ItemConfig.TAG_BOOK) 
+		if item ~= nil and item:HasTags(ItemConfig.TAG_BOOK)
 		and not item.Hidden
 		then
 			local isQualityMet = true
 			isQualityMet = isQualityMet and item.Quality >= wakaba.state.options.shioriakasicminquality
 			isQualityMet = isQualityMet and item.Quality <= wakaba.state.options.shioriakasicmaxquality
-			--Isaac.DebugString("[wakaba]Checking Book -	" .. item.Name .. "...")
-			if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI 
+			--wakaba.Log("Checking Book -	" .. item.Name .. "...")
+			if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI
 			or bookstate == wakaba.bookstate.BOOKSHELF_PURE_SHIORI
 			or (bookstate == wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS and isQualityMet)
 			then
 				if item.Type == ItemType.ITEM_ACTIVE then
 					if item.ID == wakaba.Enums.Collectibles.D6_PLUS then
 						if wakaba.state.unlock.shiorid6plus > 0 then
-							table.insert(books,item.ID) 
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+							table.insert(books,item.ID)
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
-						if wakaba:unlockCheck(item.ID) then 
-							table.insert(books,item.ID) 
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						if wakaba:unlockCheck(item.ID) then
+							table.insert(books,item.ID)
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
-						if wakaba:unlockCheck(item.ID) then 
-							table.insert(books,item.ID) 
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						if wakaba:unlockCheck(item.ID) then
+							table.insert(books,item.ID)
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.ISEKAI_DEFINITION then
-						if wakaba:unlockCheck(item.ID) then 
-							table.insert(books,item.ID) 
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						if wakaba:unlockCheck(item.ID) then
+							table.insert(books,item.ID)
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.BALANCE then
-						if wakaba:unlockCheck(item.ID) then 
-							table.insert(books,item.ID) 
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						if wakaba:unlockCheck(item.ID) then
+							table.insert(books,item.ID)
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					elseif wakaba.shioribookblacklisted[item.ID] then
 						if wakaba.shioribookblacklisted[item.ID][bookstate] == true then
 							-- Do nothing
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Blacklisted")
+							wakaba.Log("Book " .. item.Name .. " Blacklisted")
 						else
 							table.insert(books,item.ID)
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					else
 						table.insert(books,item.ID)
-						Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						wakaba.Log("Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_HARD_BOOK then
@@ -149,7 +149,7 @@ function wakaba:GetBookItems(bookstate)
 
 					else
 						table.insert(books,item.ID)
-						Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						wakaba.Log("Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_SHIORI_DROP then
@@ -158,7 +158,7 @@ function wakaba:GetBookItems(bookstate)
 						-- Do nothing
 					else
 						table.insert(books,item.ID)
-						Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						wakaba.Log("Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK then
@@ -168,17 +168,17 @@ function wakaba:GetBookItems(bookstate)
 							-- Do nothing
 						else
 							table.insert(books,item.ID)
-							Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+							wakaba.Log("Book " .. item.Name .. " Inserted")
 						end
 					else
 						table.insert(books,item.ID)
-						Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+						wakaba.Log("Book " .. item.Name .. " Inserted")
 					end
 				end
 			else
 				if wakaba:unlockCheck(item.ID) then
 					table.insert(books,item.ID)
-					Isaac.DebugString("[wakaba]Book " .. item.Name .. " Inserted")
+					wakaba.Log("Book " .. item.Name .. " Inserted")
 				end
 			end
 		end
@@ -193,7 +193,7 @@ function wakaba:GetRandomBook(bookstate, player, number)
 	number = number or 1
 	local newbook = {}
 	for i = 1, number do
-		
+
 		local rng = player:GetCollectibleRNG(wakaba.SHIORI_BOOKMARK)
 		local pos = rng:RandomInt(#books) + 1
 		local randbook = books[pos]
@@ -217,7 +217,7 @@ end ]]
 
 --Costume currently not working in Knife Piece 2 area. Needs to be fixed.
 function wakaba:PostShioriUpdate()
-	
+
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostShioriUpdate)
 
@@ -295,7 +295,7 @@ function wakaba:updateShiori(player)
 				end
 			end
 		end
-		
+
 		if wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_COLLECTOR then
 			local active = player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
 			if active > 0 then
@@ -326,9 +326,9 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
-		if ((item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL) 
+		if ((item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
 		and not wakaba:has_value(wakaba.shioriwhitelisted, useditem)) then
-			if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then 
+			if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then
 				return
 			else
 				consume = 1
@@ -411,7 +411,7 @@ function wakaba:PrePickupCollision_Shiori(pickup, collider, low)
 				local config = Isaac.GetItemConfig():GetCollectible(itemID)
 				if itemID > 0 and config and not config:HasTags(ItemConfig.TAG_QUEST) then
 
-					
+
 					if pickup:IsShopItem() then
 						wakaba:PurchasePickup(player, pickup)
 					end
@@ -578,7 +578,7 @@ function wakaba:PostShioriPickupCollision(pickup, collider, low)
 								end
 							end
 						end
-		
+
 					end
 
 
@@ -617,7 +617,7 @@ function wakaba:PreTakeDamageShiori(entity, amount, flags, source, countdown)
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	then
 		local player = nil
-		if 
+		if
 			(source ~= nil
 			and source.Entity ~= nil
 			and source.Entity.SpawnerEntity ~= nil
@@ -695,13 +695,13 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
 function wakaba:PickupUpdate_Shiori(pickup)
 	if isc:anyPlayerIs(wakaba.Enums.Players.SHIORI) or isc:anyPlayerIs(wakaba.Enums.Players.SHIORI_B) then
 		if pickup:IsShopItem() then
-			
+
 			-- Pickup Price modification from Retribution, need to move to common functions though....
 			local persistentData = wakaba:GetPersistentPickupData(pickup)
 
 			if persistentData then
 				persistentData.discount = persistentData.discount or 0
-			
+
 				if persistentData.updateDefaultPrice then
 					persistentData.updateDefaultPrice = false
 					pickup.AutoUpdatePrice = true
@@ -711,18 +711,18 @@ function wakaba:PickupUpdate_Shiori(pickup)
 					if persistentData.discount > 0 then
 						local oldPrice = pickup.Price
 						pickup.Price = math.max(pickup.Price - persistentData.discount, 0)
-					
+
 						if pickup.Price == 0 and oldPrice ~= 0 then
 							pickup.Price = PickupPrice.PRICE_FREE
 						end
-					
+
 						pickup.AutoUpdatePrice = false
 						persistentData.didModifyPrice = true
 					elseif persistentData.didModifyPrice then
 						pickup.AutoUpdatePrice = true
 						persistentData.didModifyPrice = false
 					end
-				
+
 					persistentData.updatePrice = false
 				end
 			end
@@ -750,18 +750,18 @@ function wakaba:PickupUpdate_Shiori(pickup)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_Shiori)
 
-local ShioriChar = { 
+local ShioriChar = {
 	DAMAGE = 0.5,
 	SPEED = 0.0,
 	SHOTSPEED = 1.0,
 	TEARRANGE = 30,
 	TEARS = 0.27,
 	LUCK = 1,
-	FLYING = false,																 
+	FLYING = false,
 	TEARFLAG = TearFlags.TEAR_TURN_HORIZONTAL,
 	TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onShioriCache(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
 		--wakaba:GetShioriCostume(player)
@@ -795,9 +795,9 @@ function wakaba:onShioriCache(player, cacheFlag)
 	else
 		player:TryRemoveNullCostume(wakaba.COSTUME_SHIORI)
 	end
-	
+
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onShioriCache)
 
 function wakaba:AfterShioriInit(player)
@@ -845,11 +845,11 @@ function wakaba:AfterShioriInit(player)
 		data.wakaba.currdamage = data.wakaba.currdamage or 0
 		data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
 		data.wakaba.nextshioriflag = data.wakaba.nextshioriflag or 0
-		Isaac.DebugString("[wakaba]Adding bookmakrs")
+		wakaba.Log("Adding bookmakrs")
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end
-		
+
 		if not player:HasTrinket(TrinketType.TRINKET_OLD_CAPACITOR, false) then
 			player:AddTrinket(TrinketType.TRINKET_OLD_CAPACITOR)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
@@ -859,7 +859,7 @@ function wakaba:AfterShioriInit(player)
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
 		end
 
-		
+
 		if wakaba.state.options.cp_shiori then
 			player:EvaluateItems()
 			--player:ClearCostumes()

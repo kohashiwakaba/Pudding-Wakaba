@@ -1,3 +1,8 @@
+--[[
+	Sweets Catalog (달콤달콤 카탈로그) - 액티브(Active / 6 rooms)
+	리셰로 Isaac 처치
+	사용 시 그 방에서 특정 조합 적용
+ ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 local collectible = wakaba.Enums.Collectibles.SWEETS_CATALOG
 
@@ -117,7 +122,7 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 				player:GetData().wakaba.usingCatalog = true -- VERY IMPORTANT! Make the name of your GetData something more specific than "wakaba.usingCatalog" so that other mods don't overwrite it!!
 				player:GetData().throwableActiveSlot = activeSlot -- store what slot the active item was used from (primary, secondary, or pocket?)
 				player:AnimateCollectible(collectible, "LiftItem", "PlayerPickup")
-	
+
 				pending_collectibles[playerIndex] = nearest
 			else
 				player:AnimateSad()
@@ -127,10 +132,10 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 		end
 		return {Discharge = false, Remove = false, ShowAnim = false} -- stops the item from discharging unless something actually shoots out
 	else
-		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then 
-			return 
+		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then
+			return
 		end
-		-- get random 
+		-- get random
 		local catalog = wakaba.CatalogItems
 		local totalweight = 0
 		local tempCatalog = {}
@@ -162,17 +167,17 @@ function wakaba:ItemUse_SweetsCatalog(_, rng, player, useFlags, activeSlot, varD
 		if wakaba.CatalogItems[chosenVal] then
 			previewItem = wakaba.CatalogItems[chosenVal].MainItem
 			--print("CatalogItems found for:",chosenVal)
-			wakaba.HiddenItemManager:Add(player, 1, -1, 1, "RICHER_CATALOG")
-			if wakaba.HiddenItemManager:GetStacks(player, "RICHER_CATALOG") then
-				wakaba.HiddenItemManager:RemoveAll(player, "RICHER_CATALOG")
+			wakaba.HiddenItemManager:Add(player, 1, -1, 1, "RICHER_CATALOG2")
+			if wakaba.HiddenItemManager:GetStacks(player, "RICHER_CATALOG2") then
+				wakaba.HiddenItemManager:RemoveAll(player, "RICHER_CATALOG2")
 			end
 			if player:GetPlayerType() == wakaba.Enums.Players.RICHER and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 				for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
-					wakaba.HiddenItemManager:Add(player, itemID, -1, 1, "RICHER_CATALOG")
+					wakaba.HiddenItemManager:Add(player, itemID, -1, 1, "RICHER_CATALOG2")
 				end
 			else
 				for i, itemID in ipairs(wakaba.CatalogItems[chosenVal].Items) do
-					wakaba.HiddenItemManager:AddForRoom(player, itemID, -1, 1, "RICHER_CATALOG")
+					wakaba.HiddenItemManager:AddForRoom(player, itemID, -1, 1, "RICHER_CATALOG2")
 				end
 			end
 		end
@@ -195,9 +200,9 @@ function wakaba:PlayerUpdate_Catalog(player) -- Trigger throwable active upon sh
 		player:GetData().wakaba.usingCatalog = false
 		local direction = player:GetFireDirection()
 		if wakaba.G:GetRoom():IsMirrorWorld() then
-			if direction == Direction.LEFT then 
+			if direction == Direction.LEFT then
 				direction = Direction.RIGHT
-			elseif direction == Direction.RIGHT then 
+			elseif direction == Direction.RIGHT then
 				direction = Direction.LEFT
 			end
 		end
@@ -279,8 +284,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Catalog)
 if EID then
 	local function EvenOddCondition(descObj)
 		return wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN
-			and descObj.ObjType == 5 
-			and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE 
+			and descObj.ObjType == 5
+			and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE
 			and descObj.ObjSubType == wakaba.Enums.Collectibles.SWEETS_CATALOG
 	end
 	local function EvenOddCallback(descObj)

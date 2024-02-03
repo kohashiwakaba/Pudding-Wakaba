@@ -79,7 +79,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Waka
 --LagCheck
 
 function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
-	--Isaac.DebugString("[wakaba] TookDmg flag:"..flag.."")
+	--wakaba.Log("TookDmg flag:"..flag.."")
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR)
 	then
@@ -170,7 +170,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
 			end
 		end
 	end
-	
+
 end
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onWakabaCache)
@@ -190,7 +190,7 @@ function wakaba:AfterWakabaInit(player)
 			wakaba:GetWakabaCostume(player)
 		end
 	end
-	
+
 	if Poglite then
 		if wakaba.state.pog ~= nil then
 			if wakaba.state.pog then

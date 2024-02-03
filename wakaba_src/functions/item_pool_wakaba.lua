@@ -51,15 +51,15 @@ function wakaba:GetItemFromWakabaPools(poolName, decrease, seed)
 		}
 		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS)) do
 			local newRerollProps = callbackData.Function(callbackData.Mod, rerollProps, selected, nil, decrease, seed, true)
-	
+
 			if newRerollProps then
 				rerollProps = newRerollProps
 			end
 		end
-	
+
 		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS)) do
 			local newRerollProps = callbackData.Function(callbackData.Mod, rerollProps, selected, nil, decrease, seed, true)
-	
+
 			if newRerollProps then
 				rerollProps = newRerollProps
 			end
@@ -81,7 +81,7 @@ function wakaba:GetItemFromWakabaPools(poolName, decrease, seed)
 				end
 				isPassed = not Isaac.RunCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, rerollProps, selected, selectedItemConf, nil, decrease, seed, true)
 				local str_ispassed = (isPassed and "passed") or "not passed"
-				Isaac.DebugString("[wakaba] Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
+				wakaba.Log("Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
 			else
 				selected = pool:GetCollectible(ItemPoolType.POOL_TREASURE, false, seed)
 				break

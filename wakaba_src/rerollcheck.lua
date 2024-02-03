@@ -31,7 +31,7 @@ local skipGetCard
 local getCardRNG
 function wakaba:GetCard_UnlockCheck(_, card, canSuit, canRune, onlyRune)
 	if wakaba.G:GetFrameCount() == 0 then return end
-	--Isaac.DebugString("[wakaba]Getting Cards "..card.." skipGetCard : "..(skipGetCard))
+	--wakaba.Log("Getting Cards "..card.." skipGetCard : "..(skipGetCard))
 	if not getCardRNG then
 		wakaba.runstate.cardRngSeed = wakaba.runstate.cardRngSeed or wakaba.G:GetSeeds():GetStartSeed()
 		getCardRNG = RNG()
@@ -67,7 +67,7 @@ function wakaba:GetCard_UnlockCheck(_, card, canSuit, canRune, onlyRune)
 
 			repeat
 				new = itempool:GetCard(getCardRNG:Next(), canSuit, canRune, onlyRune)
-				--Isaac.DebugString("[wakaba]Try to getting Cards "..card.." new : "..new)
+				--wakaba.Log("Try to getting Cards "..card.." new : "..new)
 				i = i + 1
 			until wakaba:cardUnlockCheck(new, getCardRNG)
 
@@ -121,7 +121,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.TrackBoosterPacks
 
 function wakaba:TakeDmg_TrackBoosterPacks(entity, amount, flag, source, countdownFrames)
 	if flag & DamageFlag.DAMAGE_SPAWN_RUNE > 0 then
-		--print("[wakaba] Rune spawn with enemy kill detected, Trying to reroll...")
+		--wakaba.Log("Rune spawn with enemy kill detected, Trying to reroll...")
 		boosterPackDetectedAt = wakaba.G:GetFrameCount() + 1
 		boosterPackType = "rune"
 	end
@@ -135,7 +135,7 @@ function wakaba:RuneBag_TrackBoosterPacks(familiar)
 	local prev = data.w_counter
 	local new = familiar.RoomClearCount
 	if new > prev then
-		--print("[wakaba] Rune Bag spawn found, Trying to reroll...")
+		--wakaba.Log("Rune Bag spawn found, Trying to reroll...")
 		boosterPackDetectedAt = wakaba.G:GetFrameCount()
 		boosterPackType = "rune"
 	end
@@ -173,7 +173,7 @@ function wakaba:CheckBoosterPackSpawn(pickup)
 	-- If this happens, some cards probably spawned prior to MC_POST_GAME_STARTED, and we didn't reset `boosterPackDetectedAt` yet.
 	--print(boosterPackDetectedAt, wakaba.G:GetFrameCount())
 	if boosterPackDetectedAt and boosterPackDetectedAt > wakaba.G:GetFrameCount() then
-		--print("[wakaba] Erasing Booster Pack tracking")
+		--wakaba.Log("Erasing Booster Pack tracking")
 		boosterPackDetectedAt = nil
 		boosterPackType = nil
 	end
@@ -203,9 +203,9 @@ function wakaba:CheckBoosterPackSpawn(pickup)
 
 		-- This is probably a Booster Pack spawn.
 		local replacement = wakaba:GetCard_UnlockCheck(nil, originalCard, canSuit, canRune, onlyRune)
-		--print("[wakaba] Booster Pack detected. rerolling... from card id "..originalCard)
+		--wakaba.Log("Booster Pack detected. rerolling... from card id "..originalCard)
 		if replacement then
-			--print("[wakaba] Booster Pack replaced to "..replacement)
+			--wakaba.Log("Booster Pack replaced to "..replacement)
 			fixingBoosterPackSpawn = true
 			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, replacement, true, true, true)
 			fixingBoosterPackSpawn = false

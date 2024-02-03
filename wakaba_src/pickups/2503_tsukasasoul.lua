@@ -19,7 +19,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfTsukasa, wakab
 
 
 function wakaba:PostTakeDamage_LunarDamocles(player, amount, flags, source, cooldown)
-	if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) 
+	if player:HasCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES)
 	and flags & DamageFlag.DAMAGE_RED_HEARTS ~= DamageFlag.DAMAGE_RED_HEARTS
 	and flags & DamageFlag.DAMAGE_NO_PENALTIES ~= DamageFlag.DAMAGE_NO_PENALTIES then
 		if not player:HasCurseMistEffect() then
@@ -43,7 +43,7 @@ function wakaba:GetDamoclesTimer(collectibleNum, familiar, framesPerCheck, dropC
 	while not dropThisFrame do
 		dropcounter = dropcounter + framesPerCheck
 		local randomNum = rng:RandomInt(dropChance)
-		--Isaac.DebugString("[wakaba] Damocles Test".. dropcounter .. " " .. randomNum .. " " .. dropChance)
+		--wakaba.Log("Damocles Test".. dropcounter .. " " .. randomNum .. " " .. dropChance)
 		if randomNum == 0 then
 			dropThisFrame = true
 		end
