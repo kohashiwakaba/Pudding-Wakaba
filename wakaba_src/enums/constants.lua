@@ -464,6 +464,10 @@ wakaba.Enums.Constants = {
 	FALLEN_AFTER_DMG_THRESHOLD = 5,
 	FALLEN_BEFORE_BASE_COUNT = 3, -- 부활 전 타락책 유령 소환 수
 
+	MAX_CONCENTRATION_SPEED_THRESHOLD = 120, -- 추가 집중 시간 패널티 상한 스택
+	MAX_CONCENTRATION_COUNT_TSUKASA = 60, -- 집중 스택 최대 제한 수 (츠카사)
+	MAX_CONCENTRATION_COUNT = 300, -- 집중 스택 최대 제한 수
+
 	RED_CORRUPTION_BASE_CHANCE = 0.25, -- 적색 감염 레드방 생성 기본 확률
 	RED_CORRUPTION_PAR_LUCK = 66, -- 적색 감염 레드방 100% 확률 행운 수치
 

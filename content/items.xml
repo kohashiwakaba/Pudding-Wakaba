@@ -68,7 +68,7 @@
 	<passive id="46" hearts="4" maxhearts="2" cache="damage range" description="HP, DMG, Range up" gfx="moemuffin.png" name="Moe's Muffin" tags="offensive nocantrip" quality="2" />
 
 
-	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="3"/>
+	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="3" persistent="true"/>
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3"/>
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="3"/>
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" quality="1"/>

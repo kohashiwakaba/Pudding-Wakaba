@@ -76,6 +76,9 @@ function wakaba:PlayerUpdate_Concentration(player)
 		local count = data.wakaba.concentrationcount or 0
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT then return end
+			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION) then
+				if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.CONCENTRATION) or count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT_TSUKASA then return end
+			end
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
 				local mode = wakaba.concentrationmodes.NORMAL
 				if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge <= 100000 then
@@ -109,6 +112,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 				player:FullCharge(ActiveSlot.SLOT_PRIMARY, false)
 				player:FullCharge(ActiveSlot.SLOT_SECONDARY, false)
 				player:FullCharge(ActiveSlot.SLOT_POCKET, false)
+				player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.CONCENTRATION)
 				for i = 0, 2 do
 					local item = Isaac.GetItemConfig():GetCollectible(player:GetActiveItem(i))
 					if player:GetActiveItem(i) > 0 and item then
@@ -185,6 +189,7 @@ function wakaba.RoomClear_Concentration()
 			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:EvaluateItems()
 		end
+		player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.CONCENTRATION, -1)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Concentration)
