@@ -54,12 +54,14 @@ function wakaba:NewRoom_PrestigePass()
     or (currentstage == LevelStage.STAGE6 and isc:inStartingRoom())
   )
   and room:IsFirstVisit() then
-		for i = 1, isc:getTotalPlayerCollectibles(wakaba.Enums.Collectibles.PRESTIGE_PASS) do
-			local freeSpawnPos = room:FindFreePickupSpawnPosition(Vector(120, 120))
-			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, freeSpawnPos, Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.PRESTIGE, freeSpawnPos, Vector.Zero, nil)
-			SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
-		end
+		wakaba:scheduleForUpdate(function ()
+			for i = 1, isc:getTotalPlayerCollectibles(wakaba.Enums.Collectibles.PRESTIGE_PASS) do
+				local freeSpawnPos = room:FindFreePickupSpawnPosition(Vector(120, 120))
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, freeSpawnPos, Vector(0,0), nil)
+				Isaac.Spawn(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.PRESTIGE, freeSpawnPos, Vector.Zero, nil)
+				SFXManager():Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
+			end
+		end, 1)
 	end
 end
 
