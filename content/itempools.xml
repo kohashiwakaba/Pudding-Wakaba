@@ -29,6 +29,12 @@
 		<Item Name="The Winter Albireo" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sakura Mont Blanc" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Chewy Rolly Cake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -59,7 +65,12 @@
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Lil Rira" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -67,6 +78,7 @@
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="1" RemoveOn="0.001"/>
@@ -85,6 +97,8 @@
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Kanae Lens" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -100,7 +114,10 @@
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Lil Rira" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sakura Mont Blanc" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
@@ -123,6 +140,10 @@
 		<Item Name="The Winter Albireo" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Lil Rira" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Rira's Bento" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
+		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -136,6 +157,8 @@
 		<Item Name="Double Invader" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Red Corruption" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -194,8 +217,14 @@
 		<Item Name="The Winter Albireo" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Rira" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Necklace" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -234,7 +263,14 @@
 		<Item Name="MOd Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Rira" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sakura Mont Blanc" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Chewy Rolly Cake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -295,6 +331,9 @@
 		<Item Name="Richer's Flipper" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Crisis Boost" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rira's Bento" Weight="0.1" DecreaseBy="0.05" RemoveOn="0.01"/>
+		<Item Name="Chewy Rolly Cake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="demonBeggar">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -303,6 +342,8 @@
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -351,6 +392,7 @@
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Richer's Bra" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="woodenChest">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -359,6 +401,11 @@
 		<Item Name="Jar of Clover" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Sakura Mont Blanc" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Nerf Gun" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Chewy Rolly Cake" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="momsChest">
 	</Pool>
@@ -369,9 +416,11 @@
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Mao" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Richer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Lil Rira" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nasa Lover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool name="craneGame">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -397,6 +446,8 @@
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

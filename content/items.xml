@@ -140,7 +140,7 @@
 	<active id="103" description="Don't stare like that, it's embarrasing..." gfx="riracoat.png" maxcharges="4" name="Rira's Coat" tags="noeden" quality="2" hidden="true" achievement="9999"/>
 	<passive id="104" description="Ecchi Aqua shot" gfx="riraswimsuit.png" name="Rira's Swimsuit" tags="summonable offensive" quality="3"/>
 	<passive id="105" description="Feeling her sense" gfx="rirabandage.png" name="Rira's Bandage" tags="summonable offensive" quality="3"/>
-	<passive id="106" cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="noeden summonable offensive" quality="3"/>
+	<passive id="106" cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="noeden summonable offensive" quality="3" hidden="true" achievement="9999"/>
 	<passive id="107" cache="firedelay damage" description="???" gfx="sakuramontblanc.png" name="Sakura Mont Blanc" tags="noeden summonable offensive" quality="2" hidden="true" achievement="9999"/>
 	<active id="108" description="Tea-bagging shots" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
 	<passive id="109" cache="all" hearts="4" maxhearts="2" description="Ultra Gluton" gfx="rirabento.png" name="Rira's Bento" tags="noeden summonable offensive" quality="1" hidden="true" achievement="9999"/>
