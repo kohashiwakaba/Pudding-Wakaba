@@ -100,7 +100,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Isaac and Other players inside aura grants:"
 		.. "↑ {{Damage}} +1 damage"
-		.. "↑ {{Tears}} +2.0 Fire rate up"
+		.. "↑ {{Tears}} +0.5 Fire rate up"
 		.. "↑ {{Tears}} x2.3 Fire rate multiplier"
 		.. "↑ Homing Tears"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
@@ -1844,7 +1844,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room",
-	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}+1/{{Tears}}+2/Homing tears for current room",
+	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}+1/{{Tears}}+0.5x2.3/Homing tears for current room",
 	devil = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers",
 	angel = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Grants {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
 	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",

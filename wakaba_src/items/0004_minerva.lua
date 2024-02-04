@@ -330,7 +330,7 @@ function wakaba:Cache_Minerva(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			for i = 1, minervalevel do
-				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (2.0 * wakaba:getEstimatedTearsMult(player)))
+				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (0.5 * wakaba:getEstimatedTearsMult(player)))
 			end
 			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (additional * 0.005 * wakaba:getEstimatedTearsMult(player)))
 		end
