@@ -99,7 +99,7 @@ function wakaba:NewRoom_DoubleInvader()
 	headSpawned = false
 	headErased = false
 	local room = wakaba.G:GetRoom()
-	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) and (room:GetBossID() == 70 or room:GetBossID() == 63) then
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) and (room:GetBossID() == 70 or room:GetBossID() == 63) and not room:IsClear() then
 		local level = wakaba.G:GetLevel()
 
 		local rng = RNG()
