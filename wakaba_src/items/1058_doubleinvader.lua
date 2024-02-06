@@ -1,5 +1,82 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+local headSpawned = false
+local headErased = false
+
+wakaba.DoubleInvaderDeathHeads = {
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4},
+}
+
+wakaba.DoubleInvaderHeadLocations = {
+	["Isaac"] = {
+		{X = 5, Y = 2},
+		{X = 7, Y = 2},
+		{X = 5, Y = 4},
+		{X = 7, Y = 4},
+	},
+	["Satan"] = {
+		{X = 5, Y = 3},
+		{X = 7, Y = 3},
+	},
+	["MegaSatan"] = {
+		{X = 0, Y = 6},
+		{X = 1, Y = 5},
+		{X = 11, Y = 5},
+		{X = 12, Y = 6},
+	},
+	["Hush"] = {
+		{X = 0, Y = 0},
+		{X = 11, Y = 1},
+		{X = 13, Y = 1},
+		{X = 19, Y = 1},
+		{X = 25, Y = 3},
+		{X = 24, Y = 6},
+	},
+	["Deli"] = {
+		{X = 11, Y = 1},
+		{X = 13, Y = 1},
+		{X = 1, Y = 6},
+		{X = 24, Y = 6},
+		{X = 11, Y = 12},
+		{X = 13, Y = 12},
+	},
+	["Witness"] = {
+		{X = 0, Y = 0},
+		{X = 2, Y = 0},
+		{X = 10, Y = 0},
+		{X = 12, Y = 0},
+	},
+	["Dogma"] = {
+		{X = 0, Y = 6},
+		{X = 0, Y = 7},
+		{X = 12, Y = 6},
+		{X = 12, Y = 7},
+	},
+	["Greed"] = {
+		{X = 5, Y = 5},
+		{X = 5, Y = 7},
+		{X = 7, Y = 5},
+		{X = 7, Y = 7},
+	},
+}
+
+local function invEnabled()
+	return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) or wakaba:getOptionValue("alwaysdoubleinvader")
+end
+
+local function spawnHeads(type, rng)
+	if not wakaba.DoubleInvaderHeadLocations[type] then return end
+	for i, e in ipairs(wakaba.DoubleInvaderHeadLocations[type]) do
+		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
+		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
+		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil)
+		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS)
+	end
+end
+
 function wakaba:Cache_DoubleInvader(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
@@ -9,15 +86,30 @@ function wakaba:Cache_DoubleInvader(player, cacheFlag)
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_DoubleInvader)
 
+function wakaba:PreTakeDamage_DoubleInvader(entity)
+	if headSpawned then
+		for _, dict in ipairs(wakaba.DoubleInvaderDeathHeads) do
+			if entity.Type == dict.Type then
+				if not dict.Variant or entity.Variant == dict.Variant then
+					if not dict.SubType or entity.SubType == dict.SubType then
+						return false
+					end
+				end
+			end
+		end
+	end
+end
+wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -19999, wakaba.PreTakeDamage_DoubleInvader)
+
 ---comment
 ---@param npc EntityNPC
 ---@param collider Entity
 ---@param low boolean
 function wakaba:Collision_DoubleInvader(npc, collider, low)
-	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
+	if invEnabled() then
 		if collider:ToTear() then
 			local tear = collider:ToTear()
-			if not tear:HasTearFlags(TearFlags.TEAR_PIERCING) then
+			if not tear:HasTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_FETUS) then
 				tear:Die()
 			end
 			return true
@@ -35,7 +127,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInv
 ---@param collider Entity
 ---@param low boolean
 function wakaba:TearCollision_DoubleInvader(tear, collider, low)
-	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
+	if invEnabled() then
 		if collider.Type == EntityType.ENTITY_DEATHS_HEAD then
 			return true
 		end
@@ -43,73 +135,130 @@ function wakaba:TearCollision_DoubleInvader(tear, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, wakaba.TearCollision_DoubleInvader)
 
-local headSpawned = false
-local headErased = false
 
 ---@param satan EntityNPC
 function wakaba:NPCUpdate_DoubleInvader_MegaSatan(satan)
-	if satan.Variant > 0 then return end
-	if not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then return end
+	if not invEnabled() or headSpawned then return end
+	local room = wakaba.G:GetRoom()
 	local sprite = satan:GetSprite()
-	--print(satan.State, satan.StateFrame, satan.I1, satan.I2)
-	--print(sprite:GetAnimation(), sprite:IsPlaying("Appear"))
-	--print(color.A)
-	if not headSpawned and sprite:IsPlaying("Appear") then
+	if satan.Type == EntityType.ENTITY_MEGA_SATAN and satan.Variant == 0 then
+
+		if sprite:IsPlaying("Appear") then
+			local rng = RNG()
+			rng:SetSeed(satan.InitSeed, 35)
+			spawnHeads("MegaSatan", rng)
+			headSpawned = true
+		end
+	elseif satan.Type == EntityType.ENTITY_DOGMA and satan.Variant == 0 then
+		if sprite:IsPlaying("Idle") then
+			local rng = RNG()
+			rng:SetSeed(satan.InitSeed, 35)
+			spawnHeads("Dogma", rng)
+			headSpawned = true
+		end
+	elseif satan.Type == EntityType.ENTITY_FALLEN and satan.Variant == 0 and room:GetBossID() == 24 then
 		local rng = RNG()
 		rng:SetSeed(satan.InitSeed, 35)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(0, 5), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(1, 5), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(11, 5), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(12, 5), Vector.Zero, nil)
+		spawnHeads("Satan", rng)
 		headSpawned = true
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader_MegaSatan, EntityType.ENTITY_MEGA_SATAN)
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader_MegaSatan)
 
 
 ---@param satan EntityNPC
-function wakaba:NPCUpdate_DoubleInvader(satan)
-	if satan.Variant > 0 then return end
+function wakaba:NPCUpdate_DoubleInvader_Death(satan)
+	if not headSpawned or headErased then return end
+	local room = wakaba.G:GetRoom()
 	local sprite = satan:GetSprite()
-	if not headErased and sprite:IsPlaying("Death") then
-		wakaba:EraseDeathHeads()
-		headErased = true
+	if satan.Type == EntityType.ENTITY_SATAN and satan.Variant == 10 then
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_MEGA_SATAN_2 and satan.Variant == 0 then
+		print(sprite:GetAnimation())
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_HUSH and satan.Variant == 0 then
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_DELIRIUM then
+		if satan.HitPoints <= 1 then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_DOGMA and satan.Variant == 2 then
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_MOTHER and satan.Variant == 10 then
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			headErased = true
+		end
+	elseif satan.Type == EntityType.ENTITY_ULTRA_GREED then
+		if satan.Variant == 0 and wakaba.G.Difficulty % 2 == 0 then
+			if sprite:IsPlaying("Death") then
+				wakaba:EraseDeathHeads()
+				headErased = true
+			end
+		elseif satan.Variant == 1 and wakaba.G.Difficulty % 2 == 1 then
+			if sprite:IsPlaying("Death") then
+				wakaba:EraseDeathHeads()
+				headErased = true
+			end
+		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, EntityType.ENTITY_MEGA_SATAN_2)
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, EntityType.ENTITY_HUSH)
-
----@param satan EntityNPC
-function wakaba:NPCUpdate_DoubleInvader_Deli(satan)
-	if not headErased and satan.HitPoints <= 1 then
-		wakaba:EraseDeathHeads()
-		headErased = true
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader_Deli, EntityType.ENTITY_DELIRIUM)
+wakaba:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, wakaba.NPCUpdate_DoubleInvader_Death)
 
 function wakaba:EraseDeathHeads()
 	local entities = Isaac.FindByType(EntityType.ENTITY_DEATHS_HEAD)
 	for i, e in ipairs(entities) do
 		e:ToNPC().State = 18
 	end
+	wakaba.Log("Trying to remove Death Heads...")
 end
 
 function wakaba:NewRoom_DoubleInvader()
 	headSpawned = false
 	headErased = false
 	local room = wakaba.G:GetRoom()
-	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) and (room:GetBossID() == 70 or room:GetBossID() == 63) and not room:IsClear() then
+	if invEnabled() and not room:IsClear() then
 		local level = wakaba.G:GetLevel()
+		local bossID = room:GetBossID()
+		local entry = ""
 
-		local rng = RNG()
-		rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(11, 1), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(13, 1), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(1, 6), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(24, 6), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(11, 12), Vector.Zero, nil)
-		Isaac.Spawn(EntityType.ENTITY_DEATHS_HEAD, rng:RandomInt(2) == 1 and 2 or 0, 0, isc:gridCoordinatesToWorldPosition(13, 12), Vector.Zero, nil)
+		if bossID == 70 then
+			entry = "Deli"
+		elseif bossID == 63 then
+			entry = "Hush"
+		elseif bossID == 88 then
+			entry = "Witness"
+		elseif bossID == 39 then
+			entry = "Isaac"
+		elseif bossID == 40 then
+			entry = "Isaac"
+		elseif bossID == 24 then
+			--entry = "Satan"
+		elseif bossID == 54 then
+			entry = "Satan"
+		elseif bossID == 62 then
+			entry = "Greed"
+		end
+
+		if wakaba.DoubleInvaderHeadLocations[entry] then
+			local rng = RNG()
+			rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
+			spawnHeads(entry, rng)
+			headSpawned = true
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_DoubleInvader)
