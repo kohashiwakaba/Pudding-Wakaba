@@ -122,12 +122,18 @@ end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Elixir)
 
 function wakaba:ElixirSoulRecover_Elixir(player)
-	if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
-	or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
-	or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
-	or not isc:characterCanHaveRedHearts(player:GetPlayerType())
-	then
-		return true
+	if REPENTOGON then
+		if player:GetHealthType() == HealthType.SOUL then
+			return true
+		end
+	else
+		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
+		or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
+		or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
+		or not isc:canCharacterHaveRedHearts(player:GetPlayerType())
+		then
+			return true
+		end
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, wakaba.ElixirSoulRecover_Elixir)
