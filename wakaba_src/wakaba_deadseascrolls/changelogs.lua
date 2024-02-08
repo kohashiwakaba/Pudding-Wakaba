@@ -1,5 +1,16 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
-[[{FSIZE2}v107f patch
+[[{FSIZE2}v107g patch
+- fix all damage ups from wakaba mod
+being counted as black judas multiplier
+
+- fix wakaba's double dreams
+and double invader penalty
+ignored by duality orders pill
+
+- fix wakaba's pill conversion
+not being applied
+
+{FSIZE2}v107f patch
 - temp fix for eid
 after repentogon patch
 

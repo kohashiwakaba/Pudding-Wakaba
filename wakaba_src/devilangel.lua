@@ -243,6 +243,9 @@ function wakaba:DreamsPostLevel(player)
 			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY") then
 				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY")
 			end
+			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_EUCHARIST, "WAKABA_PILLS") then
+				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_EUCHARIST, "WAKABA_PILLS")
+			end
 		end
 	else
 		if player then
