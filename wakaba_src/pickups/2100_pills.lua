@@ -91,7 +91,17 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 	local phd = wakaba:anyPlayerHasPHD()
 	local fhd = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)
 	if pillEffect == wakaba.Enums.Pills.SOCIAL_DISTANCE and wakaba.G:IsGreedMode() then
-		return wakaba.Enums.Pills.ALL_STATS_UP
+		return wakaba.Enums.Pills.ALL_STATS_DOWN
+	end
+	if pillEffect == wakaba.Enums.Pills.DUALITY_ORDERS then
+		if wakaba.G:IsGreedMode() then
+			return wakaba.Enums.Pills.ALL_STATS_UP
+		else
+			local status = wakaba:getDevilAngelStatus()
+			if status.WDreams then
+				return wakaba.Enums.Pills.SOCIAL_DISTANCE
+			end
+		end
 	end
 	if wakaba:ShouldRemoveBlind() then
 		if wakaba.ConvertBlessingPills[pillEffect] then
