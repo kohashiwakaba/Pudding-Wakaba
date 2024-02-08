@@ -78,8 +78,8 @@ function wakaba:openDevilAngelRoom(rng, pos)
 	local duality = status.Duality
 	local wdreams = status.WDreams
 	local wakababr = status.WakabaBR
-	if not wdreams and wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS 
-	and ((bless and nemesis) or wakababr or (murasame and effectiveStage >= 2 and effectiveStage <= 8 and not isc:onAscent())) 
+	if not wdreams and wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS
+	and ((bless and nemesis) or wakababr or (murasame and effectiveStage >= 2 and effectiveStage <= 8 and not isc:onAscent()))
 	and not wakaba.G:GetLevel():CanSpawnDevilRoom() then
 		if (currentStage <= LevelStage.STAGE1_1 or currentStage > LevelStage.STAGE4_2) then
 			--wakaba.G:GetLevel():DisableDevilRoom()
@@ -145,7 +145,7 @@ function wakaba:checkTempDevilAngelRoomStats()
 			forceDealRoom = true
 		end
 		if jokers then forceDealRoom = true end
-		
+
 		if forceDealRoom then
 			local dealroom = wakaba.G:GetLevel():GetRoomByIdx(-1,-1)
 			if dealroom and dealroom.VisitedCount <= 0 then
@@ -188,12 +188,12 @@ function wakaba:NewRoom_DevilAngel()
 		local wdreams = status.WDreams
 		local wakababr = status.WakabaBR
 
-		if not wdreams 
+		if not wdreams
 		and (
-			(bless and nemesis) 
-			or wakababr 
+			(bless and nemesis)
+			or wakababr
 			or (murasame and effectiveStage >= 2 and effectiveStage <= 8 and not isc:onAscent())
-		) 
+		)
 		then
 			--print("try")
 			if murasame or (bless and nemesis) then
@@ -208,7 +208,7 @@ function wakaba:NewRoom_DevilAngel()
 			end
 			room:TrySpawnDevilRoomDoor(false, true)
 		end
-		
+
 	end
 end
 
@@ -242,6 +242,9 @@ function wakaba:DreamsPostLevel(player)
 		if player then
 			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY") then
 				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY")
+			end
+			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_EUCHARIST, "WAKABA_PILLS") then
+				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_EUCHARIST, "WAKABA_PILLS")
 			end
 		end
 	else
