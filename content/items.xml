@@ -98,10 +98,10 @@
 
 	<passive id="72" cache="damage range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" tags="offensive tech"/>
 
-	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2" tags="nochallenge"/>
-	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" tags="nochallenge"/>
-	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" tags="nochallenge"/>
-	<passive id="76" cache="damage luck" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" quality="4" tags="noeden nochallenge" persistent="true" hidden="true" achievement="9999"/>
+	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2" tags="nochallenge" persistent="true"/>
+	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" tags="nochallenge" persistent="true"/>
+	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" tags="nochallenge" persistent="true"/>
+	<passive id="76" cache="damage luck" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" quality="4" tags="noeden nochallenge" persistent="true" />
 	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" maxcharges="4" quality="3" tags="offensive nocantrip" />
 
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="9999"/>

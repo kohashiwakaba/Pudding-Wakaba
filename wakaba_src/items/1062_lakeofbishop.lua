@@ -1,6 +1,15 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+---@param player EntityPlayer
+local function hasCaramellaEffect(player, itemID)
+	return player:HasCollectible(itemID) or player:GetEffects():HasCollectibleEffect(itemID)
+end
+
+---@param player EntityPlayer
+local function getCaramellaEffectNum(player, itemID)
+	return player:GetCollectibleNum(itemID) + player:GetEffects():GetCollectibleEffectNum(itemID)
+end
 
 function wakaba:NewRoom_Bishop()
 	local room = wakaba.G:GetRoom()
@@ -9,7 +18,7 @@ function wakaba:NewRoom_Bishop()
 		local player = Isaac.GetPlayer(i)
 		wakaba:GetPlayerEntityData(player)
 		player:GetData().wakaba.lakeroomcnt = player:GetData().wakaba.lakeroomcnt or 0
-		for i = 1, player:GetCollectibleNum(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS) do
+		for i = 1, getCaramellaEffectNum(player, wakaba.Enums.Collectibles.SEE_DES_BISCHOFS) do
 			player:GetData().wakaba.lakeroomcnt = player:GetData().wakaba.lakeroomcnt + 1
 			if player:GetData().wakaba.lakeroomcnt >= 4 then
 				player:AddWisp(0, player.Position)
@@ -30,15 +39,16 @@ function wakaba:AfterRevival_LakeOfBishop(player)
 	player:AddBoneHearts(-12)
 	player:AddSoulHearts(-36)
 	player:AddHearts(6)
+	wakaba:scheduleForUpdate(function ()
+		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, false, 1)
+	end, 1)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS)
 end
 
 
 function wakaba:Cache_JarOfClover(player, cacheFlag)
-  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
-	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
-	then
-		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.JAR_OF_CLOVER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
+  if hasCaramellaEffect(player, wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
+		local count = getCaramellaEffectNum(player, wakaba.Enums.Collectibles.JAR_OF_CLOVER)
     if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
 			local gameTimer = wakaba.G:GetFrameCount()
 			local luck = gameTimer / 3600
@@ -50,9 +60,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_JarOfClover)
 
 function wakaba:PEffectUpdate_JarofClover(player)
-  if player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
-	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
-	then
+  if hasCaramellaEffect(player, wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
 		local gameTimer = wakaba.G:GetFrameCount()
 		if gameTimer % 15 == 0 then
 			player:AddCacheFlags(CacheFlag.CACHE_LUCK)
@@ -74,6 +82,9 @@ function wakaba:AfterRevival_JarOfClover(player)
 		player:AddSoulHearts(-36)
 		player:AddHearts(4)
 	end
+	wakaba:scheduleForUpdate(function ()
+		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.JAR_OF_CLOVER, false, 1)
+	end, 1)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER)
 end
 
@@ -85,7 +96,7 @@ function wakaba:AfterRevival_CaramellaPancake(player)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.RICHER)
 		wakaba:AfterRicherInit(player)
-		wakaba:GetRicherCostume(player)
+		--wakaba:GetRicherCostume(player)
 		player:AddMaxHearts(-200)
 		player:AddBoneHearts(-12)
 		player:AddSoulHearts(-36)
@@ -93,6 +104,9 @@ function wakaba:AfterRevival_CaramellaPancake(player)
 		player:AddHearts(4)
 		player:AddSoulHearts(2)
 	end
+	wakaba:scheduleForUpdate(function ()
+		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, false, 1)
+	end, 1)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
 end
 

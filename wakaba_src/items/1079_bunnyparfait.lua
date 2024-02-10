@@ -5,6 +5,15 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+---@param player EntityPlayer
+local function hasParfaitEffect(player)
+	return player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+end
+
+---@param player EntityPlayer
+local function getParfaitEffectNum(player)
+	return player:GetCollectibleNum(wakaba.Enums.Collectibles.BUNNY_PARFAIT) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+end
 
 function wakaba:NewRoom_BunnyParfait()
 	local room = wakaba.G:GetRoom()
@@ -13,7 +22,7 @@ function wakaba:NewRoom_BunnyParfait()
 	local type = roomNo % 5
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
-		if player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) then
+		if hasParfaitEffect(player) then
 			if type == 0 then
 				wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_SPOON_BENDER, -1, 1, "WAKABA_BUNNY_PARFAIT")
 			elseif type == 1 then
@@ -32,7 +41,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BunnyParfait)
 
 function wakaba:Cache_BunnyParfait(player, cacheFlag)
-	if player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) then
+	if hasParfaitEffect(player) then
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
 			--player.TearFlags = player.TearFlags
 		end
@@ -46,13 +55,16 @@ function wakaba:AfterRevival_BunnyParfait(player)
 	else
 		player:ChangePlayerType(wakaba.Enums.Players.RIRA)
 		wakaba:AfterRiraInit(player)
-		wakaba:GetRiraCostume(player)
+		--wakaba:GetRiraCostume(player)
 		player:AddMaxHearts(-200)
 		player:AddBoneHearts(-12)
 		player:AddSoulHearts(-36)
 		player:AddMaxHearts(6)
 		player:AddHearts(6)
 	end
+	wakaba:scheduleForUpdate(function ()
+		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT, false, 1)
+	end, 1)
 	player:RemoveCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
 end
 
