@@ -181,7 +181,7 @@ function wakaba:AfterWakabaInit(player)
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
 		--player:UsePill(PillEffect.PILLEFFECT_TEARS_DOWN, 0, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME | UseFlag.USE_NOANNOUNCER)
-		if wakaba.state.options.cp_wakaba_b then
+		if wakaba.state.options.cp_wakaba then
 			player:EvaluateItems()
 			--player:ClearCostumes()
 		else

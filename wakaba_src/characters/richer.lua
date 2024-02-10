@@ -97,7 +97,7 @@ function wakaba:AfterRicherInit(player)
 		else
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)
 		end
-		if wakaba.state.options.cp_wakaba_b then
+		if wakaba.state.options.cp_wakaba then
 			player:EvaluateItems()
 			--player:ClearCostumes()
 		else

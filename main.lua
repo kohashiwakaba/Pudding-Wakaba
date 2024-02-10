@@ -579,11 +579,6 @@ wakaba.optiondefaults = {
 
 	-- Costume Protector
 	cp_wakaba = true,
-	cp_wakaba_b = true,
-	cp_shiori = true,
-	cp_shiori_b = true,
-	cp_tsukasa = true,
-	cp_tsukasa_b = true,
 
 	-- Shiori options
 	shiorimodes = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,

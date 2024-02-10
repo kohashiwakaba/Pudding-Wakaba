@@ -117,7 +117,7 @@ function wakaba:AfterShioriInit_b(player)
 		end
 
 
-		if wakaba.state.options.cp_shiori_b then
+		if wakaba.state.options.cp_wakaba then
 			player:EvaluateItems()
 			--player:ClearCostumes()
 		else

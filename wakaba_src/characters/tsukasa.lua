@@ -53,11 +53,11 @@ local TsukasaChar = {
     TEARRANGE = 0.0,
 		TEARS = 1.2,
     LUCK = 0,
-    FLYING = false,                                 
+    FLYING = false,
     TEARFLAG = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_PERSISTENT,
     TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)  -- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onTsukasaCache(player, cacheFlag)
   if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 		--wakaba:GetTsukasaCostume(player)
@@ -97,7 +97,7 @@ function wakaba:onTsukasaCache(player, cacheFlag)
   end
 
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onTsukasaCache)
 
 function wakaba:NewRoom_Tsukasa()
@@ -120,7 +120,7 @@ function wakaba:AfterTsukasaInit(player)
   local player = player or Isaac.GetPlayer()
 	--print("Tsukasa event passed")
 	if player:GetPlayerType() == playerType then
-		if wakaba.state.options.cp_tsukasa then
+		if wakaba.state.options.cp_wakaba then
       --player:ClearCostumes()
 		else
 			wakaba.costumecurrframe = 0

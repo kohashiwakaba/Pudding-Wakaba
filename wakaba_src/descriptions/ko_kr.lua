@@ -851,7 +851,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ 목숨 +1"
 		.. "#{{Collectible584}} 4번째 방 진입 시마다 Book of Virtues의 불꽃을 소환합니다."
-		.. "#{{Player"..wakaba.Enums.Players.TSUKASA_B.."}} 사망 시 전 방에서 Tainted Tsukasa로 부활합니다."
+		.. "#{{Player"..wakaba.Enums.Players.TSUKASA_B.."}} 사망 시 전 방에서 Tainted Tsukasa로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "{{CR}}",
 		queueDesc = "모든 비극의 시작",
 	},
@@ -860,8 +860,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ 목숨 +1"
 		.. "#↑ 게임 시간 120초마다 {{LuckSmall}}행운 +1"
-		.. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} 사망 시 전 방에서 Wakaba로 부활합니다."
-		.. "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 Wakaba 캐릭터로 변경되지 않습니다."
+		.. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} 사망 시 전 방에서 Wakaba로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "{{CR}}",
 		queueDesc = "그녀가 태어날 때까지",
 	},
@@ -892,8 +891,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} 2/7 : {{Collectible618}}"
 		.. "#{{Blank}} 3/8 : {{Collectible374}}"
 		.. "#{{Blank}} 4/9 : {{Collectible494}}"
-		.. "#{{Player"..wakaba.Enums.Players.RIRA.."}} 사망 시 전 방에서 Rira로 부활합니다."
-		--.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira의 경우 Rira 캐릭터로 변경되지 않습니다."
+		.. "#{{Player"..wakaba.Enums.Players.RIRA.."}} 사망 시 전 방에서 Rira로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "{{CR}}",
 		queueDesc = "잊혀진 레시피",
 	},
@@ -906,7 +904,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#공격이 카라멜로 멤버의 파리로 바뀌거나 추가로 소환됩니다."
 		.. "#{wakaba_cp1}"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} 사망 시 전 방에서 Richer로 부활합니다. (부활 시에도 위 효과 유지)"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer의 경우 Richer 캐릭터로 변경되지 않습니다."
 		.. "{{CR}}",
 		queueDesc = "잊혀진 레시피",
 	},
@@ -1233,51 +1230,6 @@ wakaba.descriptions[desclang].abyss = {
 		description = "3 Locusts that deals 7x faster than normal locust, 0.9x Isaac's Damage, travels 3x speed"
 	},
 }
-wakaba.descriptions[desclang].wakaba = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "{{TearsSmall}}연사 배율 x1.25",
-	},
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		description = "{{DamageSmall}}공격력 배율 x1.5#{{ColorWakabaBless}}와카바의 공격이 적의 방어력을 무시합니다.",
-	},
-
-}
-wakaba.descriptions[desclang].wakaba_b = {
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "{{DamageSmall}}공격력 +4#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
-		description = "{{DamageSmall}}알약 사용 시마다 공격력 +0.35#{{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
-	},
-}
-wakaba.descriptions[desclang].shiori = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "작은 아이작 패밀리어를 3마리 소환합니다.",
-	},
-}
-wakaba.descriptions[desclang].shiori_b = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "작은 아이작 패밀리어를 3마리 소환합니다.",
-	},
-}
-wakaba.descriptions[desclang].tsukasa = {
-
-}
-wakaba.descriptions[desclang].tsukasa_b = {
-
-}
-wakaba.descriptions[desclang].richer = {
-
-}
-wakaba.descriptions[desclang].richer_b = {
-	[wakaba.Enums.Collectibles.WATER_FLAME] = {
-		description = ""
-		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
-		.. "#사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다."
-		.. "#{{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다."
-		.. "{{CR}}",
-	},
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.",
@@ -1342,15 +1294,6 @@ wakaba.descriptions[desclang].bookofshiori = {
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		description = "은폐 상태일 때 캐릭터를 향해 공격하던 적들은 추가로 둔화에 걸립니다.#{{ColorBookofShiori}}(이전 눈물 효과 유지)",
 	},
-}
-wakaba.descriptions[desclang].murasame = {
-
-}
-wakaba.descriptions[desclang].flashshift = {
-
-}
-wakaba.descriptions[desclang].flashmurasame = {
-
 }
 wakaba.descriptions[desclang].epiphany_golden = {
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
@@ -1449,6 +1392,36 @@ wakaba.descriptions[desclang].epiphany_golden = {
 	},
 }
 
+wakaba.descriptions[desclang].conditionals = {}
+wakaba.descriptions[desclang].conditionals.collectibles = {
+	[CollectibleType.COLLECTIBLE_URANUS] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}}공격력 배율 x1.5#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}공격이 적의 방어를 무시합니다.",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}공격력 +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}알약 사용 시마다 공격력 +0.35#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
+	},
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		desc = "{{Player"..wakaba.Enums.Players.SHIORI.."}} 작은 아이작 패밀리어를 3마리 소환합니다.",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
+	},
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
+	},
+	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 변경되지 않습니다.",
+	},
+	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
+		desc = "{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira의 경우 변경되지 않습니다.",
+	},
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer의 경우 변경되지 않습니다.",
+	},
+}
 
 wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = {

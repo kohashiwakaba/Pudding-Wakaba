@@ -55,11 +55,11 @@ local WakabaChar_b = {
     TEARRANGE = 20,
 		TEARS = 3.0,
     LUCK = -5,
-    FLYING = false,                                 
+    FLYING = false,
     TEARFLAG = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_PIERCING,
     TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)  -- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
- 
+
 function wakaba:onWakabaCache_b(player, cacheFlag)
   if player:GetPlayerType() == playerType
 	then
@@ -99,7 +99,7 @@ function wakaba:onWakabaCache_b(player, cacheFlag)
 		end
   end
 end
- 
+
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onWakabaCache_b)
 
 
@@ -112,7 +112,7 @@ function wakaba:AfterWakabaInit_b(player)
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EATHEART, ActiveSlot.SLOT_POCKET, true)
 			player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
     end
-		if wakaba.state.options.cp_wakaba_b then
+		if wakaba.state.options.cp_wakaba then
 			player:EvaluateItems()
       --player:ClearCostumes()
 		else

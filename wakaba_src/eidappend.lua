@@ -155,6 +155,11 @@ if EID then
 			return SwagColors({KColor(0.75, 0.66, 0.87, 1), KColor(0.5, 0.37, 0.55, 1), KColor(0.22, 0.11, 0.25, 1)})
 		end)
 
+		EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.WAKABA_B] = true
+		EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.SHIORI_B] = true
+		EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.RICHER_B] = true
+		EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.RIRA_B] = true
+
 		local function LastPoolCondition(descObj)
 			if EID.InsideItemReminder then return false end
 			if not descObj.Entity then return false end
@@ -168,127 +173,6 @@ if EID then
 			descObj.Description = "{{ColorSilver}}"..ddstr.lastpool.. ": " ..(currentPoolData.Icon or "{{SuperSecretRoom}}") .. "" .. (ddstr[(currentPoolData.StringID or "Default")] or "???").."{{CR}}#"..descObj.Description
 			return descObj
 		end
-
-		-- Handle Wakaba description addition
-		local function WakabaCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function WakabaCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("wakaba", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA.."}} {{ColorWakabaBless}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Tainted Wakaba description addition
-		local function WakabaCondition_b(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function WakabaCallback_b(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("wakaba_b", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} {{ColorWakabaNemesis}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Book of Shiori description addition
-		local function ShioriCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function ShioriCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("shiori", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI.."}} {{ColorBookofShiori}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Book of Shiori description addition
-		local function ShioriCondition_b(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function ShioriCallback_b(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("shiori_b", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} {{ColorBookofShiori}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
-		-- Handle Book of Shiori description addition
-		local function ShioriBookCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			for i = 0,wakaba.G:GetNumPlayers() - 1 do
-				local player = Isaac.GetPlayer(i)
-				if wakaba:HasShiori(player) then
-					return true
-				end
-			end
-			return false
-		end
-
-		local function ShioriBookCallback(descObj)
-			local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
-			if wakabaBuff then
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
 
 		-- Handle Horse Pills of Pudding and Wakaba description
 		local function WakabaPillCondition(descObj)
@@ -506,6 +390,51 @@ if EID then
 				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
 				end ]]
+				if wakabaDescTables.conditionals then
+					local conDescTables = wakabaDescTables.conditionals
+					if conDescTables.collectibles then
+						for itemID, itemdesc in pairs(conDescTables.collectibles) do
+							local conditionalEntry = "5.100."..tostring(itemID)
+							if lang == "en_us" then
+								EID.DescriptionConditions[conditionalEntry] = {
+									func = itemdesc.func,
+									vars = itemdesc.vars,
+									type = itemdesc.type,
+									modifierText = itemdesc.modifierText,
+								}
+							end
+							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
+						end
+					end
+					if conDescTables.trinkets then
+						for itemID, itemdesc in pairs(conDescTables.trinkets) do
+							local conditionalEntry = "5.350."..tostring(itemID)
+							if lang == "en_us" then
+								EID.DescriptionConditions[conditionalEntry] = {
+									func = itemdesc.func,
+									vars = itemdesc.vars,
+									type = itemdesc.type,
+									modifierText = itemdesc.modifierText,
+								}
+							end
+							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
+						end
+					end
+					if conDescTables.cards then
+						for itemID, itemdesc in pairs(conDescTables.cards) do
+							local conditionalEntry = "5.300."..tostring(itemID)
+							if lang == "en_us" then
+								EID.DescriptionConditions[conditionalEntry] = {
+									func = itemdesc.func,
+									vars = itemdesc.vars,
+									type = itemdesc.type,
+									modifierText = itemdesc.modifierText,
+								}
+							end
+							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
+						end
+					end
+				end
 				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
 					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, entitydesc.description, lang)
@@ -541,11 +470,31 @@ if EID then
 			end
 
 
+
+			-- Handle Book of Shiori description addition
+			local function ShioriBookCondition(descObj)
+				if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
+					return false
+				end
+				for i = 0,wakaba.G:GetNumPlayers() - 1 do
+					local player = Isaac.GetPlayer(i)
+					if wakaba:HasShiori(player) then
+						return true
+					end
+				end
+				return false
+			end
+
+			local function ShioriBookCallback(descObj)
+				local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
+				if wakabaBuff then
+					local description = wakabaBuff.description
+					local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
+					EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+				end
+				return descObj
+			end
 			--EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
-			EID:addDescriptionModifier("Wakaba", WakabaCondition, WakabaCallback)
-			EID:addDescriptionModifier("Tainted Wakaba", WakabaCondition_b, WakabaCallback_b)
-			EID:addDescriptionModifier("Shiori", ShioriCondition, ShioriCallback)
-			EID:addDescriptionModifier("Tainted Shiori", ShioriCondition_b, ShioriCallback_b)
 
 			EID:addDescriptionModifier("Book of Shiori", ShioriBookCondition, ShioriBookCallback)
 			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)

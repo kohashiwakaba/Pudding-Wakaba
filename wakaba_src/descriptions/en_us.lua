@@ -1034,51 +1034,6 @@ wakaba.descriptions[desclang].abyss = {
 		description = "3 Locusts that deals 7x faster than normal locust, 0.9x Isaac's Damage, travels 3x speed"
 	},
 }
-wakaba.descriptions[desclang].wakaba = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "↑ {{Tears}} -25% Tear Delay",
-	},
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		description = "↑ {{Damage}} +50% Damage Multiplier#{{ColorWakabaBless}}Armor-Piercing Tears",
-	},
-
-}
-wakaba.descriptions[desclang].wakaba_b = {
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "↑ {{Damage}} +4 Damage Up#↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
-		description = "↑ {{Damage}} +0.35 Damage per pill consumed#↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
-	},
-}
-wakaba.descriptions[desclang].shiori = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "Spawns 3 tiny Isaac familiars.",
-	},
-}
-wakaba.descriptions[desclang].shiori_b = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "Spawns 3 tiny Isaac familiars.",
-	},
-}
-wakaba.descriptions[desclang].tsukasa = {
-
-}
-wakaba.descriptions[desclang].tsukasa_b = {
-
-}
-wakaba.descriptions[desclang].richer = {
-
-}
-wakaba.descriptions[desclang].richer_b = {
-	[wakaba.Enums.Collectibles.WATER_FLAME] = {
-		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#On use, absorb selected Wisp"
-		.. "#Can be change selection by {{ButtonRT}}"
-		.. "{{CR}}",
-	},
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use",
@@ -1143,15 +1098,6 @@ wakaba.descriptions[desclang].bookofshiori = {
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)",
 	},
-}
-wakaba.descriptions[desclang].murasame = {
-
-}
-wakaba.descriptions[desclang].flashshift = {
-
-}
-wakaba.descriptions[desclang].flashmurasame = {
-
 }
 wakaba.descriptions[desclang].epiphany_golden = {
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
@@ -2602,6 +2548,57 @@ wakaba.descriptions[desclang].playernotes = {
 	},
 
 }
+
+wakaba.descriptions[desclang].conditionals = {}
+wakaba.descriptions[desclang].conditionals.collectibles = {
+	[CollectibleType.COLLECTIBLE_URANUS] = {
+		description = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}} +50% Damage Multiplier#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}Armor-Piercing Tears",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.WAKABA},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
+		description = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.WAKABA_B},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		description = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.WAKABA_B},
+	},
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		description = "{{Player"..wakaba.Enums.Players.SHIORI.."}} Spawns 3 tiny Isaac familiars",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.SHIORI, true},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
+		description = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.WAKABA},
+	},
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		description = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Absorb selected Wisp#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Can be change selection by {{ButtonRT}}",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.RICHER_B},
+	},
+	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.WAKABA_B},
+	},
+	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
+		desc = "{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.RIRA_B},
+	},
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.RICHER_B},
+	},
+}
+wakaba.descriptions[desclang].conditionals.trinkets = {}
+wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! Achievements?"
