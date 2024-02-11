@@ -494,7 +494,7 @@ if REPENTOGON then
 	function wakaba:Camera_Conquest()
 		if wakaba.conquestmode and camPos then
 			local room = wakaba.G:GetRoom()
-			//print(camPos, room:GetRenderScrollOffset())
+			--print(camPos, room:GetRenderScrollOffset())
 			if Options.CameraStyle == 1 then
 				room:GetCamera():SetFocusPosition(camPos)
 			else
