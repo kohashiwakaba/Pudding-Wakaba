@@ -166,7 +166,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
 					player.TearFlags = player.TearFlags | WakabaChar.TEARFLAG
 			end
 			if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-					player.TearColor = WakabaChar.TEARCOLOR
+					--player.TearColor = WakabaChar.TEARCOLOR
 			end
 		end
 	end

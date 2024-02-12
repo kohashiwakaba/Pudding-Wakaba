@@ -47,54 +47,54 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, wakaba.LaserUpdate_Tsukasa
 
 -- TearFlags.TEAR_ICE is not working due to bugs. Planned in next patch
 local TsukasaChar = {
-    DAMAGE = 0.65,
-    SPEED = 0.1,
-    SHOTSPEED = 1.0,
-    TEARRANGE = 0.0,
+		DAMAGE = 0.65,
+		SPEED = 0.1,
+		SHOTSPEED = 1.0,
+		TEARRANGE = 0.0,
 		TEARS = 1.2,
-    LUCK = 0,
-    FLYING = false,
-    TEARFLAG = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_PERSISTENT,
-    TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)  -- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
+		LUCK = 0,
+		FLYING = false,
+		TEARFLAG = TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_PERSISTENT,
+		TEARCOLOR = Color(1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0)	-- Color(1.0, 1.0, 1.0, 1.0, 0, 0, 0) is default
 }
 
 function wakaba:onTsukasaCache(player, cacheFlag)
-  if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 		--wakaba:GetTsukasaCostume(player)
-    if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * TsukasaChar.DAMAGE
-    end
-    if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-        player.ShotSpeed = player.ShotSpeed * TsukasaChar.SHOTSPEED
-    end
-    if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-        player.TearRange = player.TearRange
-    end
-    if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-        player.MoveSpeed = player.MoveSpeed + TsukasaChar.SPEED
-    end
-    if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-        player.Luck = player.Luck + TsukasaChar.LUCK
-    end
-    if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and TsukasaChar.FLYING then
-        player.CanFly = true
-    end
-    if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		end
+		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+				player.ShotSpeed = player.ShotSpeed * TsukasaChar.SHOTSPEED
+		end
+		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+				player.TearRange = player.TearRange
+		end
+		if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
+				player.MoveSpeed = player.MoveSpeed + TsukasaChar.SPEED
+		end
+		if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
+				player.Luck = player.Luck + TsukasaChar.LUCK
+		end
+		if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and TsukasaChar.FLYING then
+				player.CanFly = true
+		end
+		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) then
-        player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (TsukasaChar.TEARS * wakaba:getEstimatedTearsMult(player)))
+				player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (TsukasaChar.TEARS * wakaba:getEstimatedTearsMult(player)))
 			else
-        player.MaxFireDelay = player.MaxFireDelay * 1.5
+				player.MaxFireDelay = player.MaxFireDelay * 1.5
 			end
-    end
-    if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-        player.TearFlags = player.TearFlags | TsukasaChar.TEARFLAG
-    end
-    if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-        player.TearColor = TsukasaChar.TEARCOLOR
-    end
+		end
+		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+				player.TearFlags = player.TearFlags | TsukasaChar.TEARFLAG
+		end
+		if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
+				--player.TearColor = TsukasaChar.TEARCOLOR
+		end
 	else
 		--player:TryRemoveNullCostume(wakaba.COSTUME_TSUKASA)
-  end
+	end
 
 end
 
@@ -117,17 +117,17 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Tsukasa)
 
 function wakaba:AfterTsukasaInit(player)
-  local player = player or Isaac.GetPlayer()
+	local player = player or Isaac.GetPlayer()
 	--print("Tsukasa event passed")
 	if player:GetPlayerType() == playerType then
 		if wakaba.state.options.cp_wakaba then
-      --player:ClearCostumes()
+			--player:ClearCostumes()
 		else
 			wakaba.costumecurrframe = 0
 			wakaba:GetTsukasaCostume(player)
 		end
-    local data = player:GetData()
-    data.wakaba = data.wakaba or {}
+		local data = player:GetData()
+		data.wakaba = data.wakaba or {}
 		data.wakaba.lunargauge = 1000000
 		data.wakaba.lunarregenrate = 0
 	end
@@ -138,23 +138,23 @@ function wakaba:PostTsukasaInit(player)
 		wakaba:GetTsukasaCostume(player)
 		player:EvaluateItems()
 	end
-  if not isWakabaContinue then
+	if not isWakabaContinue then
 		wakaba:AfterTsukasaInit(player)
-  end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostTsukasaInit)
 
 function wakaba:TsukasaInit(continue)
-  if (not continue) then
-    isWakabaContinue = false
-    wakaba:AfterTsukasaInit()
-  end
+	if (not continue) then
+		isWakabaContinue = false
+		wakaba:AfterTsukasaInit()
+	end
 	--wakaba:TsukasaRoomInit()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.TsukasaInit)
 
 function wakaba:TsukasaExit()
-  isWakabaContinue = true
+	isWakabaContinue = true
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.TsukasaExit)
 

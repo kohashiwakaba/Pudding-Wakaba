@@ -79,7 +79,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-			player.TearColor = RicherChar.TEARCOLOR
+			--player.TearColor = RicherChar.TEARCOLOR
 		end
 	end
 

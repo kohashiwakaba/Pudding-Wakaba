@@ -790,7 +790,7 @@ function wakaba:onShioriCache(player, cacheFlag)
 			player.TearFlags = player.TearFlags | ShioriChar.TEARFLAG
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-			player.TearColor = ShioriChar.TEARCOLOR
+			--player.TearColor = ShioriChar.TEARCOLOR
 		end
 	else
 		player:TryRemoveNullCostume(wakaba.COSTUME_SHIORI)
