@@ -243,8 +243,8 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, fun
 			rerollProps.DejaVu = rerollProps.DejaVu or player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU)
 			rerollProps.NekoFigure = rerollProps.NekoFigure or player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE)
 			rerollProps.SacredOrb = rerollProps.SacredOrb or player:HasCollectible(CollectibleType.COLLECTIBLE_SACRED_ORB)
-			rerollProps.WaterFlame = rerollProps.WaterFlame or player:HasCollectible(wakaba.Enums.Collectibles.WATER_FLAME)
-			rerollProps.DoubleDreams = rerollProps.WaterFlame or player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
+			rerollProps.WaterFlame = rerollProps.WaterFlame or (player:HasCollectible(wakaba.Enums.Collectibles.WATER_FLAME) or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B)
+			rerollProps.DoubleDreams = rerollProps.DoubleDreams or player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 			rerollProps.WakabaBlessing = rerollProps.WakabaBlessing or player:GetPlayerType() == wakaba.Enums.Players.WAKABA or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
 			rerollProps.WakabaNemesis = rerollProps.WakabaNemesis or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 			if pData.wakaba and pData.wakaba.eatheartused then

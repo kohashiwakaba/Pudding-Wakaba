@@ -65,10 +65,9 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 숙명",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↑ 공격이 적의 방어를 무시합니다.(Wakaba 제외)"
+		.. "#↑ 공격이 적의 방어를 무시합니다."
 		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
 		.. "#!!! {{Quality4}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
-		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
@@ -80,11 +79,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바 듀얼리티",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↑ 공격이 적의 방어를 무시합니다.(Wakaba 제외)"
+		.. "#↑ 공격이 적의 방어를 무시합니다."
 		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
 		.. "#{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다."
 		.. "#↑ 선택형 아이템을 모두 획득할 수 있습니다."
-		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
@@ -2734,7 +2732,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "와카바(알트)",
 		description = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
 		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
-		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 악마방의 모든 아이템이 6코인으로 판매됩니다."
+		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 모든 판매 아이템이 소울하트를 요구하게 됩니다."
 		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
 		.. "#{{Pill}} 알트 와카바로 플레이 시 행운 증가, 이동 속도 감소 알약이 등장하지 않습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} 고유 능력 : 와카바의 숙명"
