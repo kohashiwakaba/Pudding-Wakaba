@@ -99,7 +99,6 @@ function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
 		end
 		if player ~= nil then
 			if (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
-			or (player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA and player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS))
 			or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
 			then
 				flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR
