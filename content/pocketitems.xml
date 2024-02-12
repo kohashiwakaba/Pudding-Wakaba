@@ -26,7 +26,7 @@
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
 	<card pickup="4112" type="tarot_reverse" description="Shiori's valuables" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
-	<card pickup="4112" type="tarot_reverse" description="Lunch time!" hud="wakaba_Richer Ticket" name="Richer Ticket" mimiccharge="4"/>
+	<card pickup="4112" type="tarot_reverse" description="Lunch time!" hud="wakaba_Richer Ticket" name="Richer Ticket" mimiccharge="8"/>
 	<card pickup="4112" type="tarot_reverse" description="Ecchi patcher" hud="wakaba_Rira Ticket" name="Rira Ticket" mimiccharge="6"/>
 
 	<card pickup="4112" type="tarot_reverse" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>

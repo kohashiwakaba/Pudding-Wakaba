@@ -1,5 +1,5 @@
 --[[
-	Richer Ticket (리셰 티켓) - 카드, Blank Card 쿨타임 3칸
+	Richer Ticket (리셰 티켓) - 카드, Blank Card 쿨타임 8칸
 	사용 시 Sweets Catalog 효과 발동
  ]]
 
