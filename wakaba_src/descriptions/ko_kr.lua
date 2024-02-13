@@ -1755,6 +1755,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.TROLLED] = {
 		itemName = "낚였구나아아아아아아",
+		itemNameAfter = "낚시용 알약",
 		description = "{{ErrorRoom}} 오류방으로 텔레포트합니다.#{{Collectible721}} ???/Home 스테이지에서는 오류 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Pills.TO_THE_START] = {

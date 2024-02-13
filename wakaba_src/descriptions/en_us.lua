@@ -1521,6 +1521,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.TROLLED] = {
 		itemName = "Trolled!",
+		itemNameAfter = "A pill for troll",
 		description = "{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home",
 		mimiccharge = 4,
 		class = "3-",

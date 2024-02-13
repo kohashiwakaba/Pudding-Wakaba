@@ -490,15 +490,21 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PlayerInit_Pills, 0)
 
 if EID then
-	EID:addDescriptionModifier("Wakaba Horse Pills", function (descObj)
+	EID:addDescriptionModifier("Wakaba Pills", function (descObj)
 		return descObj.ObjType == 5
 			and descObj.ObjVariant == PickupVariant.PICKUP_PILL
-			and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
+			--and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
 	end, function (descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].horsepills) or wakaba.descriptions["en_us"].horsepills
-		if unistr[adjustedID-1] then
-			descObj.Description = unistr[adjustedID-1][3]
+		local pillDesc = wakaba:getWakabaDesc("pills", descObj.ObjSubType)
+		if pillDesc.itemNameAfter then
+			descObj.Name = pillDesc.itemNameAfter
+		end
+		if descObj.ObjSubType > PillColor.PILL_GIANT_FLAG then
+			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].horsepills) or wakaba.descriptions["en_us"].horsepills
+			if unistr[adjustedID-1] then
+				descObj.Description = unistr[adjustedID-1][3]
+			end
 		end
 		return descObj
 	end)
