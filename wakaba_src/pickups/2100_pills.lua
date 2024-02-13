@@ -496,9 +496,14 @@ if EID then
 			--and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
 	end, function (descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		local pillDesc = wakaba:getWakabaDesc("pills", descObj.ObjSubType)
-		if pillDesc.itemNameAfter then
-			descObj.Name = pillDesc.itemNameAfter
+		local engDesc = wakaba.descriptions["en_us"]
+		local desc = wakaba.descriptions[EID:getLanguage()] or engDesc
+		local pillEntries = desc.pills or engDesc.pills
+		local pillDesc = pillEntries[adjustedID-1] or engDesc.pills[adjustedID-1]
+		if pillDesc then
+			if pillDesc.itemNameAfter then
+				descObj.Name = pillDesc.itemNameAfter
+			end
 		end
 		if descObj.ObjSubType > PillColor.PILL_GIANT_FLAG then
 			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].horsepills) or wakaba.descriptions["en_us"].horsepills
