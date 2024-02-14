@@ -86,9 +86,9 @@ wakaba.__REPAIR = false
 wakaba.HiddenItemManager = include("wakaba_src.libs.hidden_item_manager"):Init(wakaba)
 
 -- costume protector WIP
---[[ local costumeProtector = include("wakaba_src.libs.characterCostumeProtector")
+local costumeProtector = include("wakaba_src.libs.characterCostumeProtector")
 costumeProtector:Init(wakaba)
- ]]
+
 --__wakaba = true
 --wakabaMCM = nil
 local json = require("json")

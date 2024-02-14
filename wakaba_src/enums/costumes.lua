@@ -28,7 +28,7 @@ wakaba.costumeCollectibleWhiteList = {
   [CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = true,
   [CollectibleType.COLLECTIBLE_TOOTH_AND_NAIL] = true,
   [CollectibleType.COLLECTIBLE_C_SECTION] = true,
-  [CollectibleType.COLLECTIBLE_MEGA_MUSH] = false,
+  --[CollectibleType.COLLECTIBLE_MEGA_MUSH] = false,
 }
 wakaba.costumeNullWhiteList = {
   [NullItemID.ID_STATUE] = true,
