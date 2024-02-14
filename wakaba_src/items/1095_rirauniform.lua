@@ -1,6 +1,6 @@
 --[[
 	Rira's Uniform (리라의 제복) - 패시브(Passive)
-	- 모든 피격에 대한 패널티 방어
+	- 사용 시 아스트랄 + 은신 속옷 효과 발동
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 
@@ -15,11 +15,20 @@ function wakaba:ItemUse_RiraUniform(item, rng, player, useFlags, activeSlot, var
 	local remove = false
 	local useAnim = false
 
+	if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION, "WAKABA_RIRA_UNIFORM") then
+		discharge = false
+		return {
+			Discharge = discharge,
+			Remove = remove,
+			ShowAnim = showAnim,
+		}
+	end
+--[[
 	if player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION) then
 		discharge = false
 		goto skipRiraUniform
 	end
-
+ ]]
 	local clearFlag = false
 
 	local room = wakaba.G:GetRoom()
@@ -36,6 +45,7 @@ function wakaba:ItemUse_RiraUniform(item, rng, player, useFlags, activeSlot, var
 	wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION, 150, 1, "WAKABA_RIRA_UNIFORM")
 	player:TakeDamage(1, DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_FAKE, EntityRef(player), 60)
 	player:TakeDamage(1, DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_FAKE, EntityRef(player), 60)
+	player:GetEffects():AddNullEffect(NullItemID.ID_CAMO_BOOST, false, 30)
 	wakaba:scheduleForUpdate(function()
 		local effects = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 10)
 		for _, e in ipairs(effects) do
