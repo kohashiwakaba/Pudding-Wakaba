@@ -15,6 +15,11 @@ function wakaba:ItemUse_RiraUniform(item, rng, player, useFlags, activeSlot, var
 	local remove = false
 	local useAnim = false
 
+	if player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION) then
+		discharge = false
+		goto skipRiraUniform
+	end
+
 	local clearFlag = false
 
 	local room = wakaba.G:GetRoom()
@@ -53,6 +58,7 @@ function wakaba:ItemUse_RiraUniform(item, rng, player, useFlags, activeSlot, var
 	wakaba:scheduleForUpdate(function()
 		player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION, 2)
 	end, 150)
+	::skipRiraUniform::
 
 	return {
 		Discharge = discharge,

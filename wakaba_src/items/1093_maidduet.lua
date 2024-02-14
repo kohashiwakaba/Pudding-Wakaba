@@ -61,10 +61,11 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 
 
 				local secondActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
+				local secondCharge = 0
 				local extraSecondCharge = 0
 				if secondActive > 0 then
 					local secondConfig = config:GetCollectible(secondActive)
-					local secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
+					secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
 					if secondConfig:IsCollectible() then
 						if secondConfig.ChargeType == ItemConfig.CHARGE_TIMED then
 							extraSecondCharge = (secondConfig.MaxCharges * (duetPower - 1)) // 10
