@@ -127,6 +127,20 @@
 	<!-- Richer Tarnished Unlocks -->
 
 	<!-- Rira Unlocks -->
+	<achievement name="Black Bean Mochi" text='' gfx="achievement_wakaba_blackbeanmochi.png" />
+	<achievement name="Nerf Gun" text='' gfx="achievement_wakaba_nerfgun.png" />
+	<achievement name="Sakura Mont Blanc" text='' gfx="achievement_wakaba_sakuramontblanc.png" />
+	<achievement name="Rira's Swimsuit" text='' gfx="achievement_wakaba_riraswimsuit.png" />
+	<achievement name="Chewy Rolly Cake" text='' gfx="achievement_wakaba_chewyrollycake.png" />
+	<achievement name="Caramella Pancake" text='' gfx="achievement_wakaba_caramellapancake.png" />
+	<achievement name="Rira's Uniform" text='' gfx="achievement_wakaba_rirauniform.png" />
+	<achievement name="Rira's Bandage" text='' gfx="achievement_wakaba_rirabandage.png" />
+	<achievement name="Rira's Bento" text='' gfx="achievement_wakaba_rirabento.png" />
+	<achievement name="Sakura Capsule" text='' gfx="achievement_wakaba_sakuracapsule.png" />
+	<achievement name="Maid Duet" text='' gfx="achievement_wakaba_maidduet.png" />
+	<achievement name="Rabbit Pillow" text='' gfx="achievement_wakaba_rabbitpillow.png" />
+	<achievement name="Lil Rira" text='' gfx="achievement_wakaba_lilrira.png" />
+	<achievement name="Chimaki" text='' gfx="achievement_wakaba_chimaki.png" />
 
 	<!-- Rira Tainted Unlocks -->
 

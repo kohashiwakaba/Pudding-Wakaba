@@ -227,12 +227,6 @@ local richer_saved_recipies = {
 
 			-- Costume Protector
 			cp_wakaba = true,
-			cp_wakaba_b = true,
-			cp_shiori = true,
-			cp_shiori_b = true,
-			cp_tsukasa = true,
-			cp_tsukasa_b = true,
-			cp_richer = true,
 
 			-- Shiori options
 			shiorimodes = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
@@ -454,6 +448,23 @@ local richer_saved_recipies = {
 			starreversal = false,
 			richersoul = false,
 
+			--Rira Unlocks
+			blackbeanmochi 			= 0,
+			nerfgun 						= 0,
+			sakuramontblanc 		= 0,
+			riraswimsuit 				= 0,
+			chewyrollycake 			= 0,
+			caramellapancake 		= 0,
+			rirauniform 				= 0,
+			rirabandage 				= 0,
+			rirabento 					= 0,
+			sakuracapsule 			= 0,
+			maidduet 						= 0,
+			rabbitpillow 				= 0,
+			lilrira 						= 0,
+
+			chimaki = false,
+			taintedrira = false, -- Tainted Rira
 
 
 			--Challenge Unlocks
@@ -473,6 +484,8 @@ local richer_saved_recipies = {
 			lilmao = false,--14w Hold Me!
 			richerflipper = false,--15w Even or Odd
 			richernecklace = false,--16w Runaway Pheromones
+			crossbomb = false,--17w The floor is LAVA
+			goombella = false,--18w Universe of Goom
 
 			edensticky = false,--98w T.Eden Starts with Sticky Note
 			doubledreams = false, -- 99w Wakaba's Double Dreams
@@ -817,6 +830,24 @@ wakaba.unlocks = {
 	starreversal = false,
 	richersoul = false,
 
+	--Rira Unlocks
+	blackbeanmochi = 0,
+	nerfgun = 0,
+	sakuramontblanc = 0,
+	riraswimsuit = 0,
+	chewyrollycake = 0,
+	caramellapancake = 0,
+	rirauniform = 0,
+	rirabandage = 0,
+	rirabento = 0,
+	sakuracapsule = 0,
+	maidduet = 0,
+	rabbitpillow = 0,
+	lilrira = 0,
+
+	chimaki = false,
+	taintedrira = false, -- Tainted Rira
+
 	--Challenge Unlocks
 	eyeofclock = false, --01w Eye of Clock
 	plumy = false, --02w Plumy
@@ -834,6 +865,8 @@ wakaba.unlocks = {
 	lilmao = false,--14w Hold Me!
 	richerflipper = false,--15w Even or Odd
 	richernecklace = false,--16w Runaway Pheromones
+	crossbomb = false,--17w The floor is LAVA
+	goombella = false,--18w Universe of Goom
 
 	edensticky = false,--98w T.Eden Starts with Sticky Note
 	doubledreams = false, -- 99w Wakaba's Double Dreams
