@@ -56,7 +56,8 @@ function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
 				player:EvaluateItems()
 			end
 		elseif chargeType == ItemConfig.CHARGE_NORMAL then
-			if charges >= 1 then
+			local minCharges = player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and 2 or 1
+			if charges >= minCharges then
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
 				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
 				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges
@@ -65,6 +66,17 @@ function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
 				player:EvaluateItems()
 			end
 		end
+	end
+end
+
+---@param familiar EntityFamiliar
+---@param player EntityPlayer
+function wakaba:tryStealRiraCharge_Shiori(familiar, player)
+	local playerIndex = isc:getPlayerIndex(player)
+	local keys = player:GetNumKeys()
+	if keys > 0 then
+		player:AddKeys(keys * -1)
+		riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + keys
 	end
 end
 
@@ -112,8 +124,14 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 
-	for i = 0, 2 do
-		wakaba:tryStealRiraCharge(familiar, player, i)
+	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
+	or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
+	then
+		wakaba:tryStealRiraCharge_Shiori(familiar, player)
+	else
+		for i = 0, 2 do
+			wakaba:tryStealRiraCharge(familiar, player, i)
+		end
 	end
 
 	if player_fire_direction == Direction.NO_DIRECTION then
