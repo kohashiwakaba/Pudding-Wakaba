@@ -14,7 +14,7 @@ local class = "Pudding n Wakaba"
 -- Rira / Blue : Sakura Mont Blanc
 -- Rira / Lamb : Chewy Rolly Cake
 -- Rira / Rush : Caramella Pancake
--- Rira / Hush : Secret Door
+-- Rira / Hush : Rira's Uniform
 -- Rira / MegaS : Rira's Bento
 -- Rira / Deli : Rira's Bandage
 -- Rira / Greed : Rabbit Pillow
@@ -149,18 +149,18 @@ Encyclopedia.AddItem({
 })
 
 
--- Rira / Hush : Secret Door
+-- Rira / Hush : Rira's Uniform
 Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
-	ID = i.SECRET_DOOR,
+	ID = i.RIRAS_UNIFORM,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
 	UnlockFunc = function(self)
-		if not wakaba:IsEntryUnlocked("secretdoor") then
+		if not wakaba:IsEntryUnlocked("rirauniform") then
 			self.Desc = "Defeat Hush as Rira"
 			return self
 		end

@@ -1799,6 +1799,9 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	},
   CHEWY_ROLLY_CAKE = {},
   CARAMELLA_PANCAKE = {},
+	RIRAS_UNIFORM = {
+
+	},
 	SECRET_DOOR = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},

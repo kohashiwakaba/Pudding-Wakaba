@@ -1251,6 +1251,7 @@ include('wakaba_src.items.1089_kanaelens')
 include('wakaba_src.items.1091_sakuracapsule')
 include('wakaba_src.items.1092_chewyrollycake')
 include('wakaba_src.items.1093_maidduet')
+include('wakaba_src.items.1095_rirauniform')
 include('wakaba_src.items.1100_richerbra')
 
 include('wakaba_src.pickups.2005_dreamcard')
@@ -1294,7 +1295,9 @@ include('wakaba_src.items.3015_mistake')
 include('wakaba_src.items.3016_kuromicard')
 include('wakaba_src.items.3017_eternitycookie')
 include('wakaba_src.items.3018_richerreportcard')
-include('wakaba_src.items.3019_sigilofkaguya')
+
+-- Tarnished unlock trinkets
+include('wakaba_src.items.3203_sigilofkaguya')
 
 include('wakaba_src.pickups.4000_cloverchest')
 

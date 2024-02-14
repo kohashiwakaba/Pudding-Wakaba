@@ -1084,6 +1084,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "포근해...",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_UNIFORM] = {
+		itemName = "리라의 제복",
+		description = "사용 시 피격 시 효과를 2회 발동, 2초간 게임 속도가 느려진 뒤;"
+		.. "#2초간 캐릭터의 {{SpeedSmall}}/{{DamageSmall}}/{{TearsSmall}}를 크게 증가시킵니다."
+		.. "{{CR}}",
+		queueDesc = "홍당무처럼 달려가 달려가",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

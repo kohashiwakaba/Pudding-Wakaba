@@ -150,6 +150,7 @@
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="noeden summonable offensive baby uniquefamiliar" quality="4" hidden="true" achievement="9999" persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" quality="2" hidden="true" achievement="9999"/>
 	<familiar id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden summonable offensive" quality="3" hidden="true" achievement="9999"/>
+	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" tags="noeden offensive nogreed" hidden="true" achievement="9999"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4"/>
 	<active id="122" cache="all" description="Temporary Random Weapon" gfx="ancientcatalog.png" name="Ancient Catalog" maxcharges="3" quality="3" tags="offensive book"/>
 	<passive id="123" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" devilprice="2" tags="noeden summonable nolostbr" quality="3"/>

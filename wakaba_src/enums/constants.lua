@@ -139,6 +139,7 @@ wakaba.Enums.Collectibles = {
 	CARAMELLA_PANCAKE = Isaac.GetItemIdByName("Caramella Pancake"),
 	SECRET_DOOR = Isaac.GetItemIdByName("Secret Door"),
 	RIRAS_BANDAGE = Isaac.GetItemIdByName("Rira's Bandage"),
+	RIRAS_UNIFORM = Isaac.GetItemIdByName("Rira's Uniform"),
 	POW_BLOCK = Isaac.GetItemIdByName("POW Block"),
 	MOD_BLOCK = Isaac.GetItemIdByName("MOd Block"),
 	CHIMAKI = Isaac.GetItemIdByName("Chimaki"),

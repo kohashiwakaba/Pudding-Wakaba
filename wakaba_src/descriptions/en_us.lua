@@ -968,6 +968,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Richer's Bra",
 		description = "↑ Prevents penalties from all damage taken",
 	},
+	[wakaba.Enums.Collectibles.RIRAS_UNIFORM] = {
+		itemName = "Rira's Uniform",
+		description = "{{Timer}} On use:"
+		.. "#Stops time for 2 seconds"
+		.. "#Greatly increases speed and fire rate for 2 seconds"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
