@@ -35,6 +35,7 @@
 		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -286,6 +287,7 @@
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Kanae Lens" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedAngel">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -448,6 +450,7 @@
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
