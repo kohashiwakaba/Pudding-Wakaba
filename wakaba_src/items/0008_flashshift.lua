@@ -1,4 +1,3 @@
-wakaba.Enums.Collectibles.FLASH_SHIFT = Isaac.GetItemIdByName("Flash Shift")
 wakaba.KNIFE_FLASH_SHIFT = 4101
 wakaba.SUBTYPE_FLASH_SHIFT = 4101
 local flashcooldown = 8

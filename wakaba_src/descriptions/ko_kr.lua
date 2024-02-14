@@ -1648,24 +1648,29 @@ wakaba.descriptions[desclang].goldtrinkets = {
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "인형뽑기 카드",
+		queueDesc = "가챠할 시간!",
 		description = "{{CraneGame}} 인형뽑기(크레인 게임) 기계를 소환합니다.",
 		tarot = {"{{CraneGame}} 인형뽑기(크레인 게임) 기계를 {{ColorShinyPurple}}2개{{CR}} 소환합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "고해실 카드",
+		queueDesc = "회개",
 		description = "{{Confessional}} 고해실 부스를 소환합니다.",
 		tarot = {"{{Confessional}} 고해실 부스를 {{ColorShinyPurple}}2개{{CR}} 소환합니다."},
 	},
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "블랙 조커",
+		queueDesc = "당신은 죄악이 등을 타고 오르는 것을 느꼈다",
 		description = "{{DevilChance}} 카드를 소지하는 동안 천사방이 등장하지 않습니다. #사용 시 {{DevilRoom}}악마방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "화이트 조커",
+		queueDesc = "당신은 죄악이 등을 타고 오르는 것을 느꼈다",
 		description = "{{AngelChance}} 카드를 소지하는 동안 악마방이 등장하지 않습니다. #사용 시 {{AngelRoom}}천사방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "컬러 조커",
+		queueDesc = "당신은 이 결과를 원하지 않을 것이다",
 		description = "{{BrokenHeart}} 부서진 하트의 갯수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
@@ -1674,19 +1679,23 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "와카바의 꿈 카드",
+		queueDesc = "소원이 이루어지는 순간",
 		description = "사용 시 현재 방 배열의 랜덤 아이템 하나를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "미지의 책갈피",
+		queueDesc = "정보가 흩어졌을 때",
 		description = "사용 시 임의의 책 효과를 발동합니다.",
 		tarot = "임의의 책 효과를 2개 발동합니다.(중복 가능)",
 	},
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
 		itemName = "리턴 토큰",
+		queueDesc = "역사는 반복된다",
 		description = "{{Collectible636}} 사용 시 R 키 효과 발동:#소지중인 아이템과 능력치가 유지된 상태로 게임을 다시 시작합니다.#{{Timer}} 게임 시간이 초기화됩니다.#!!! {{ColorRed}}체력을 포함한{{CR}} 캐릭터의 모든 픽업 아이템을 지웁니다.",
 	},
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
 		itemName = "미네르바 티켓",
+		queueDesc = "여신의 시험",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 오라를 발산합니다."
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
@@ -1700,26 +1709,32 @@ wakaba.descriptions[desclang].cards = {
 
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",
+		queueDesc = "축복의 결정",
 		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{AngelRoom}}천사 상점을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA2] = {
 		itemName = "와카바의 영혼?",
+		queueDesc = "숙명의 결정",
 		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{DevilRoom}}악마방을 생성합니다.#{{DevilRoom}} 생성할 수 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "시오리의 영혼",
+		queueDesc = "운명의 윤회",
 		description = "{{Heart}}빨간하트 +2#임의의 시오리의 책 지속 효과를 발동합니다.#이 조합은 시오리의 영혼을 다시 사용하거나 시오리의 책을 소지한 상태에서 다른 책을 사용할 때까지 유지됩니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "츠카사의 영혼",
+		queueDesc = "하프 라이프",
 		description = "사용 시 캐릭터 머리 위에 칼이 소환되며 모든 방의 아이템이 2배로 나옵니다.#판매 아이템은 영향을 받지 않습니다.#패널티 피격 시 그 이후부터 소지 아이템의 절반이 사라질 확률이 생깁니다.#!!! 소멸확률: 4프레임 당 1/2500",
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
+		queueDesc = "마녀의 불꽃",
 		description = "{{Collectible712}} Lemegeton의 아이템 불꽃을 최대 6개({{Collectible263}} : 3개) 소환합니다.#모든 불꽃은 최소 {{Quality2}}등급의 아이템으로 소환됩니다.",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
+		queueDesc = "시오리의 창고",
 		description = "시오리의 창고를 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다.",
 		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다."},
 	},
@@ -1730,11 +1745,13 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
 		itemName = "리셰 티켓",
+		queueDesc = "간식 시간이예요!",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 사용 시 그 방에서 아래 중 하나의 랜덤 조합 효과를 얻습니다:{{CR}}",
 		mimiccharge = 4,
 	},
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "리라 티켓",
+		queueDesc = "야릇한 반창고",
 		description = "{{BrokenHeart}}부서진하트 1개를 {{EmptyBoneHeart}} 혹은 {{SoulHeart}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 +1",
 		tarot = {"{{BrokenHeart}}부서진하트 1개를 {{ColorShinyPurple}}{{BoneHeart}} 혹은 {{SoulHeart}}+{{Heart}}{{CR}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 {{ColorShinyPurple}}+2{{CR}}"},
 		mimiccharge = 6,

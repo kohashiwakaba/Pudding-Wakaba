@@ -84,6 +84,11 @@ if EID then
 			if id then
 				if entrytables[entries] then
 					return entrytables[entries][id]
+				else
+					entrytables = wakaba.descriptions["en_us"]
+					if entrytables[entries] then
+						return entrytables[entries][id]
+					end
 				end
 			else
 				return entrytables[entries]
@@ -680,7 +685,7 @@ local languageMap = wakaba.LanguageMap
 
 local i_queueLastFrame = {}
 local i_queueNow = {}
-
+if not REPENTOGON then
 
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
 	if Options.Language == "en" then return end
@@ -744,6 +749,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@
 	end
 	t_queueLastFrame[initSeed] = t_queueNow[initSeed]
 end)
+
+end
 
 function wakaba:EIDPos()
 	if wakaba.G:GetFrameCount() < 1 or not EID.player or EID.player.FrameCount < 1 or not EID.player:Exists() then return end

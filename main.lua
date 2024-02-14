@@ -1399,6 +1399,7 @@ include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
 	include('wakaba_src.compat.repentogon.core')
+	include('wakaba_src.compat.repentogon.item_names')
 	include('wakaba_src.compat.repentogon.item_additions')
 	include('wakaba_src.compat.repentogon.achievements')
 	--include('wakaba_src.compat.repentogon.imgui')

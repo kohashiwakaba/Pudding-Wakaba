@@ -5,12 +5,8 @@ if Encyclopedia then
 		Isaac.GetItemIdByName("Shiori's Blue Bookmark"),
 		Isaac.GetItemIdByName("Shiori's Yellow Bookmark"),
 		Isaac.GetItemIdByName("Lunar Damocles"),
-		Isaac.GetItemIdByName("Lil Rira"),
 		Isaac.GetItemIdByName("Trial Stew"),
 		Isaac.GetItemIdByName("Broken Toolbox"),
-		Isaac.GetItemIdByName("Rira's Coat"),
-		Isaac.GetItemIdByName("Rira's Bento"),
-		Isaac.GetItemIdByName("Chewy Rolly Cake"),
 		Isaac.GetItemIdByName("Clover Shard"),
 	}
 	wakaba.encyclopediadesc.desc.priority_collectibles = {
