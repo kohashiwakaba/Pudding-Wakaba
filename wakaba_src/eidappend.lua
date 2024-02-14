@@ -750,6 +750,28 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@
 	t_queueLastFrame[initSeed] = t_queueNow[initSeed]
 end)
 
+else
+
+	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
+		if Options.Language == "en" then return end
+		local descTable = wakaba.descriptions[languageMap[Options.Language]]
+		if not descTable then return end
+
+		local initSeed = tostring(player.InitSeed)
+
+		i_queueNow[initSeed] = player.QueuedItem.Item
+		if (i_queueNow[initSeed] ~= nil) then
+			if i_queueNow[initSeed].ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+				local playerType = player:GetPlayerType()
+				if descTable.birthright[playerType] and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil then
+					local itemName = descTable.birthrightName
+					local queueDesc = itemdesc.queueDesc or i_queueNow[initSeed].Description
+					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
+				end
+			end
+		end
+		i_queueLastFrame[initSeed] = i_queueNow[initSeed]
+	end)
 end
 
 function wakaba:EIDPos()
