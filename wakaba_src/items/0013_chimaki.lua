@@ -918,9 +918,10 @@ end, "Command_HolyLightJump")
 
 
 function wakaba:HUD_Chimaki()
-	if not wakaba.Flags.debugCore then return end
+	if not wakaba.Flags or not wakaba.Flags.debugCore then return end
 	local fam
 	local fams = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.Enums.Familiars.CHIMAKI)
+	if #fams > 0 then
 		fam = fams[1]
 	end
 	if fam then
