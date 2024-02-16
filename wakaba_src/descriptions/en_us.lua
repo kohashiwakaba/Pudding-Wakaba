@@ -34,6 +34,10 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "Tainted Richer",
 		description = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame Grants additional passive per absorbed flame",
 	},
+	[wakaba.Enums.Players.RIRA] = {
+		playerName = "Rira",
+		description = "#",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -112,7 +116,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Reduces heart container limit to 8"
 		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
 		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
-		.. "#Soul hearts are automatically used for recover lunar gauge"
+		.. "#Clearing rooms recover lunar gauge"
 		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#All damage taken will be non-penalty damage"
@@ -161,7 +165,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
-		itemName = "Sweets Catalog",
+		itemName = "Ancient Catalog",
 		description = ""
 		.. "#Grants a random weapon for current room"
 		.. "{{CR}}",
@@ -170,7 +174,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "The Winter Albireo",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#{{PlanetariumChance}} Richer's special Planetariums appear per stage"
+		.. "#{{PlanetariumChance}} Richer's special Planetariums appear per stage that contains:"
+		.. "#Random pool item depending of floor"
+		.. "#White Fireplace"
+		.. "#Crystal restock machine"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -193,7 +200,10 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#Wanders around and helps Isaac not limited to:"
-		.. "#Shoot tears or fires#{{Collectible374}} Jumps toward enemy#{{Collectible260}} Removes Curses#{{Trinket63}} Converts Troll Bombs#{{MegaChest}} Opens Mega Chests for free"
+		.. "#Shoot tears or flames"
+		.. "#{{Collectible374}} Jumps toward enemy"
+		.. "#{{Collectible260}} Chance to remove Curses"
+		.. "#{{Trinket63}} Converts Troll Bombs"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
@@ -279,7 +289,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Secret Card",
 		description = ""
 		.. "#↑ {{Coin}} +22 Coins"
-		.. "#{{Coin}} Coins will be generated per room cleared ({{HardMode}} Only 1 per clear on Hard Mode)"
+		.. "#{{Coin}} Coins will be generated per room cleared"
 		.. "#{{Shop}} Prevents Greed / Super Greed to be spawned in Shops"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -706,10 +716,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "Question Block",
 		description = ""
-		.. "#25% chance to spawn Collectible item"
-		.. "#Magic Mushroom is guaranteed to be spawned if Isaac does not have it"
-		.. "#!!! Taking any damage while holding this item will lose Magic Mushroom"
-		.. "#!!! Taking any damage without Magic Mushroom makes Isaac The Lost state"
+		.. "#REPORT TO DEV IF YOU FOUND THIS ITEM"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -966,7 +973,9 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
 		itemName = "Richer's Bra",
-		description = "↑ Prevents penalties from all damage taken",
+		description = "↑ Prevents penalties from all damage taken"
+		.. "#Activates Silver button automatically"
+		.. "{{CR}}",,
 	},
 	[wakaba.Enums.Collectibles.RIRAS_UNIFORM] = {
 		itemName = "Rira's Uniform",
@@ -1121,15 +1130,6 @@ wakaba.descriptions[desclang].epiphany_golden = {
 		.. "#↑ {{Damage}} +{{ColorGold}}3{{CR}} Damage"
 		.. "#Flight, {{ColorGold}}Spectral tears{{CR}}"
 		.. "#!!! Does not have on use effect"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		isReplace = true,
-		description = ""
-		.. "#Upon use, stores/swaps current card, pill, or rune"
-		.. "#Drop button changes which slot to store/swap"
-		.. "#When Isaac uses a card, pill, or rune, he also uses a copy of every card/pill/rune stored in Wakaba's Uniform"
-		.. "#Hold Tab Key/Map Button to show current slot"
-		.. "#{{ColorGold}}Does not consume charges on swap{{CR}}"
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		isReplace = false,
@@ -1497,9 +1497,6 @@ wakaba.descriptions[desclang].cards = {
 		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
 		mimiccharge = 6,
 	},
-}
-wakaba.descriptions[desclang].runechalk = {
-
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -2558,34 +2555,45 @@ wakaba.descriptions[desclang].playernotes = {
 wakaba.descriptions[desclang].conditionals = {}
 wakaba.descriptions[desclang].conditionals.collectibles = {
 	[CollectibleType.COLLECTIBLE_URANUS] = {
-		description = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}} +50% Damage Multiplier#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}Armor-Piercing Tears",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}} +50% Damage Multiplier#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}Armor-Piercing Tears",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.WAKABA},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.WAKABA_B},
 	},
+	[wakaba.Enums.Collectibles.SECRET_CARD] = {
+		{
+			desc = {"Coins", "1 coin"},
+			func = EID.IsHardMode,
+			type = "findReplace",
+			modifierText = "Hard Mode",
+		},
+	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
-		description = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.WAKABA_B},
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "{{Player"..wakaba.Enums.Players.SHIORI.."}} Spawns 3 tiny Isaac familiars",
+		desc = "{{Player"..wakaba.Enums.Players.SHIORI.."}} Spawns 3 tiny Isaac familiars",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.SHIORI, true},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.WAKABA},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
-		description = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Absorb selected Wisp#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Can be change selection by {{ButtonRT}}",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.RICHER_B},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Absorb selected Wisp#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Can be change selection by {{ButtonRT}}",
+			func = EID.PlayersHaveCharacter,
+			vars = {wakaba.Enums.Players.RICHER_B},
+			modifierText = "Tainted Richer",
+		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",

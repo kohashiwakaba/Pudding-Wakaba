@@ -314,7 +314,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "극비 카드",
 		description = ""
 		.. "#↑ {{Coin}}동전 +22"
-		.. "#방 클리어 시 랜덤한 갯수의 동전이 쌓입니다. ({{HardModeSmall}}하드:1개)"
+		.. "#방 클리어 시 랜덤한 갯수의 동전이 쌓입니다."
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -1081,6 +1081,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리셰의 속옷",
 		description = "피격 시 발생하는 패널티를 막아줍니다."
 		.. "#!!! {{Trinket145}}/{{Collectible577}}/{{Collectible567}}..."
+		.. "#은색 버튼이 자동으로 눌려집니다."
 		.. "{{CR}}",
 		queueDesc = "포근해...",
 	},
@@ -1405,6 +1406,12 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}공격력 +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
 	},
+	[wakaba.Enums.Collectibles.SECRET_CARD] = {
+		{
+			desc = {"랜덤한 갯수", "1개"},
+			modifierText = "Hard Mode",
+		},
+	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}알약 사용 시마다 공격력 +0.35#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
 	},
@@ -1415,7 +1422,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
-		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
+		{
+			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
+			modifierText = "Tainted Richer",
+		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 변경되지 않습니다.",
