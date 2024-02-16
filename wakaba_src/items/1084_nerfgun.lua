@@ -5,6 +5,10 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 local collectible = wakaba.Enums.Collectibles.NERF_GUN
 
+local function isRiraBR(player)
+	return (player:GetPlayerType() == wakaba.Enums.Players.RIRA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
+end
+
 ---@param parent EntityTear
 local function getPositionOffset(parent, scale)
 	local angle = parent.Velocity:Normalized() * 2
@@ -71,9 +75,11 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 	if wakaba:CanApplyStatusEffect(effectTarget, true) then
 		local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
 		effectTarget:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
-		local data = effectTarget:GetData()
-		local currentExpirey = data.wakaba_nerfExpireFrame
-		data.wakaba_nerfExpireFrame = math.max(data.wakaba_nerfExpireFrame or effectTarget.FrameCount, effectTarget.FrameCount + (150 * (1 + secondHandMultiplier)))
+		if not isRiraBR(player) then
+			local data = effectTarget:GetData()
+			local currentExpirey = data.wakaba_nerfExpireFrame
+			data.wakaba_nerfExpireFrame = math.max(data.wakaba_nerfExpireFrame or effectTarget.FrameCount, effectTarget.FrameCount + (150 * (1 + secondHandMultiplier)))
+		end
 	end
 end, wakaba.TearFlag.NERF)
 

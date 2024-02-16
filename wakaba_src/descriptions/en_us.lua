@@ -36,7 +36,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		playerName = "Rira",
-		description = "#",
+		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
@@ -2454,7 +2454,7 @@ wakaba.descriptions[desclang].playernotes = {
 		description = "Wakaba is a kawaii, and lucky girl from anime {{ColorLime}}Wakaba Girl{{CR}} from Hara Yui"
 		.. "#She can get good items, and shoots homing and ice tears"
 		.. "#{{AngelChance}} She only can see Angel rooms"
-		.. "#{{BrokenHeart}} Due to her lonely past, her heart is mostly filled with Broken Hearts"
+		.. "#{{BrokenHeart}} Due to her lonely past, she only can have maximum of total 3 hearts"
 		.. "#{{Pill}} Wakaba is unable to see Speed up, Luck Down pills"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Wakaba starts with Wakaba's Blessing"
 		--.. "#"
@@ -2465,7 +2465,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "Tainted Wakaba",
 		description = "Tainted Wakaba is the lonely, and unlucky past version"
 		.. "#She {{ColorRed}}CANNOT{{CR}} get good items, and shoots spectral and piercing tears"
-		.. "#{{DevilChance}} She only can see Devil rooms. All devil deals' price are 6 coins"
+		.. "#{{DevilChance}} She only can see Devil rooms. All collectibles for sale requires Soul Hearts"
 		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
 		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
@@ -2546,6 +2546,19 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Tainted Richer starts with Rabbit Ribbon"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Tainted Richer starts with Water-Flame"
+		--.. "#"
+		.. "",
+	},
+	-- rira
+	[wakaba.Enums.Players.RIRA] = {
+		-- icon = "",
+		name = "Rira",
+		description = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
+		.. "#She seems very shy, but actually, is really ecchi"
+		.. "#She shoots Aqua tears that aquafies enemies that take more damage from some sources"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
 		--.. "#"
 		.. "",
 	},

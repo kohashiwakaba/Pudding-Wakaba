@@ -56,7 +56,7 @@ function wakaba:Chimaki_CommandShootLasers(familiar, pos, hit, tinted, speedMult
 
 	local multiplier = 1
 	multiplier = multiplier * (1 + data.bffsPower)
-	local tearDamage = ((player:GetCollectibleNum(wakaba.Enums.Collectibles.CHIMAKI) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CHIMAKI) + 1 + data.easterPower) * 3.5) + 5
+	local tearDamage = ((player:GetCollectibleNum(wakaba.Enums.Collectibles.CHIMAKI) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CHIMAKI) ) * (1 + data.easterPower) / 4) + 5
 	laser.CollisionDamage = tearDamage * multiplier
 
 	return laser
@@ -117,7 +117,7 @@ wakaba.Chimaki = {
 		"Chimaki_Rest",
 		"Command_ConvertTrollBombs",
 		"Command_RemoveCurse",
-		"Command_MegaChest",
+		--"Command_MegaChest",
 		"Command_OpenChallengeDoor",
 		"Command_Sacrifice",
 		"Command_Locust",
@@ -165,6 +165,15 @@ function wakaba:RoomGen_Chimaki_BossDoor()
 	end
 end
 --wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.EARLY, wakaba.RoomGen_Chimaki_BossDoor)
+function wakaba:NewLevel_Chimaki()
+	local fams = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.Enums.Familiars.CHIMAKI)
+	for _, fam in ipairs(fams) do
+		local data = fam:GetData()
+		local player = data.player or fam:ToFamiliar().Player
+		data.curseRemoveTries = player:GetCollectibleNum(wakaba.Enums.Collectibles.CHIMAKI) + (player:GetPlayerType() == wakaba.Enums.Players.RIRA and (player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT) + 1) or 0)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Chimaki)
 
 function wakaba:RoomClear_Chimaki_BossDoor(rng, spawnPosition)
 	local level = wakaba.G:GetLevel()
@@ -307,10 +316,11 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 	if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
 		data.riraBonus = 2 + player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 	end
-	data.lullabyPower = player:GetTrinketMultiplier(TrinketType.TRINKET_FORGOTTEN_LULLABY)
+	data.riraBR = (player:GetPlayerType() == wakaba.Enums.Players.RIRA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
+	data.lullabyPower = player:GetTrinketMultiplier(TrinketType.TRINKET_FORGOTTEN_LULLABY) + (data.riraBR and 1)
 	data.bffsPower = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BFFS)
 	data.babyBenderPower = player:GetTrinketMultiplier(TrinketType.TRINKET_BABY_BENDER)
-	data.easterPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG)
+	data.easterPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG) + (data.riraBR and 5)
 	data.standstill = nil
 	data.isSuperpositioned = wakaba:isSuperpositionedPlayer(player)
 
@@ -528,8 +538,21 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, funct
 	local pData = player:GetData()
 	if not room:IsClear() then return end
 	if curses > 0 and curses & ~LevelCurse.CURSE_OF_LABYRINTH > 0 then
-		playExtraAnim("kyuu", nil, ent, spr, data)
-		return "Command_RemoveCurse"
+		if data.curseRemoveTries and data.curseRemoveTries > 0 then
+
+			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.CHIMAKI)
+
+			local basicChance = 0.4
+			local parLuck = 8
+			local maxChance = 1 - basicChance
+
+			local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), data.curseRemoveTries)
+			data.curseRemoveTries = nil
+			if rng:RandomFloat() < chance then
+				playExtraAnim("kyuu", nil, ent, spr, data)
+				return "Command_RemoveCurse"
+			end
+		end
 	end
 end)
 wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
@@ -549,10 +572,6 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 		level:RemoveCurses(level:GetCurses() & ~LevelCurse.CURSE_OF_LABYRINTH)
-		wakaba:Chimaki_CommandShootFlames(familiar, familiar.Position	+ Vector(0, 45), true, false, 1)
-		wakaba:Chimaki_CommandShootFlames(familiar, familiar.Position	+ Vector(0, -45), true, false, 1)
-		wakaba:Chimaki_CommandShootFlames(familiar, familiar.Position	+ Vector(45, 0), true, false, 1)
-		wakaba:Chimaki_CommandShootFlames(familiar, familiar.Position	+ Vector(-45, 0), true, false, 1)
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
 
@@ -563,6 +582,7 @@ end, "Command_RemoveCurse")
 
 	--- 비전투 시 :
 	---- 열쇠 1개로 메가 체스트 완전 오픈
+--[[
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -349, function(_, ent, spr, data)
 	local room = wakaba.G:GetRoom()
 	local player = data.player
@@ -604,6 +624,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 
 end, "Command_MegaChest")
+ ]]
 --#endregion
 
 --#region
@@ -897,9 +918,9 @@ end, "Command_HolyLightJump")
 
 
 function wakaba:HUD_Chimaki()
+	if not wakaba.Flags.debugCore then return end
 	local fam
 	local fams = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, wakaba.Enums.Familiars.CHIMAKI)
-	if #fams > 0 then
 		fam = fams[1]
 	end
 	if fam then

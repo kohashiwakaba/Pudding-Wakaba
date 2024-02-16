@@ -1240,6 +1240,7 @@ wakaba.Enums.UniqueItemsAppend = {
 	"Shiori",
 	"Tsukasa",
 	"Richer",
+	"Rira",
 }
 wakaba.Enums.UniqueItemsAppendTainted = {
 	"Wakaba",

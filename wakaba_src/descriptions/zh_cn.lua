@@ -56,7 +56,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RIRA] = { -- TODO
 		playerName = "Rira",
-		description = "#",
+		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
 		queueDesc = "A little bit more Ecchi",
 	},
 }

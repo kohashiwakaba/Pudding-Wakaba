@@ -48,6 +48,11 @@ wakaba.descriptions[desclang].birthright = {
 		description = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
 		queueDesc = "점점 따뜻해져가는 달콤함",
 	},
+	[wakaba.Enums.Players.RIRA] = {
+		playerName = "Rira",
+		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Nerf Gun의 약화효과가 더 오래 지속됩니다.#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki의 공격이 더 강해지며 치마키의 눈물이 레이저로 대체됩니다.",
+		queueDesc = "아주 살짝만 더 야릇하게?",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -218,7 +223,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#방 안을 돌아다니며 이하를 포함한 여러 방면으로 캐릭터를 도와줍니다:"
-		.. "#눈물/불꽃 발사#{{Collectible374}} 적을 향해 점프#{{Collectible260}} 저주 해제#{{Trinket63}} 트롤 폭탄 해체#{{MegaChest}} 메가상자 자동 개방"
+		.. "#눈물/불꽃 발사#{{Collectible374}} 적을 향해 점프#{{Collectible260}} 저주 해제#{{Trinket63}} 트롤 폭탄 해체"
 		.. "{{CR}}",
 		queueDesc = "리라의 소울메이트",
 	},
@@ -2834,7 +2839,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#그녀의 부드러움 덕분에 받는 피해를 절반으로 줄여주며, 장신구의 효과가 강화됩니다."
 		.. "#방 클리어 시 {{DamageSmall}}공격력 +0.01, {{TearsSmall}}연사(상한) +0.016 증가"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 기본 소지 아이템 : 달콤달콤 카탈로그"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 고유 능력 : 달콤달콤 카탈로그"
 		--.. "#"
 		.. "",
 	},
@@ -2847,6 +2852,20 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} 고유 능력 : 워터 플레임"
+		--.. "#"
+		.. "",
+	},
+	-- rira
+	[wakaba.Enums.Players.RIRA] = {
+		-- icon = "",
+		name = "리라",
+		description = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
+		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
+		.. "#확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "#The Lost(유령) 상태일 때도 헌혈류 "
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
 		--.. "#"
 		.. "",
 	},

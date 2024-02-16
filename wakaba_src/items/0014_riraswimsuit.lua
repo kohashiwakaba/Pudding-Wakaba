@@ -95,7 +95,6 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_RiraSwimsuit)
 ---@param player EntityPlayer
 local function shouldApplyAquaRira(player)
 	if player:GetPlayerType() ~= wakaba.Enums.Players.RIRA then return false end
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then return true end
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT)
 	local count = 1
 	local charmBonus = wakaba:getTeardropCharmBonus(player)
