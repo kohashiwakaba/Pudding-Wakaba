@@ -1052,7 +1052,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Richer's Bra",
 		description = "↑ Prevents penalties from all damage taken"
 		.. "#Activates Silver button automatically"
-		.. "{{CR}}",,
+		.. "{{CR}}",
 		queueDesc = "Mofu-Mofu",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_UNIFORM] = {
