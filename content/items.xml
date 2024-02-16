@@ -87,7 +87,7 @@
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" chargetype="special" maxcharges="1" initcharge="0" name="Syrup" tags="baby nocantrip" quality="3" addcostumeonpickup="true"/>
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="1" craftquality="3"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="12" name="3D Printer" shopprice="20" devilprice="2" tags="offensive nocantrip" quality="4"/>
-	<passive id="64" description="Clean yourself" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>
+	<passive id="64" description="Clean them all" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>
 	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive" devilprice="1" quality="1"/>
 	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" tags="offensive" devilprice="1" quality="2" craftquality="4"/>
 
@@ -107,8 +107,8 @@
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="9999"/>
 
 	<passive id="79" cache="all" description="Sweet Curses, Blind Immunity" gfx="rabbitribbon.png" name="Rabbit Ribbon" quality="4" tags="offensive lazarusshared"/>
-	<active id="80" cache="all" description="Temporary Random Weapon" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="6" quality="3" tags="offensive book"/>
-	<active id="81" description="Room organize" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive nogreed"/>
+	<active id="80" cache="all" description="Temporary Random Taste" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="12" quality="3" tags="offensive book"/>
+	<active id="81" description="Room extension" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive nogreed"/>
 
 	<familiar id="82" description="Rira's Soulmate" gfx="chimaki.png" name="Chimaki" devilprice="2" tags="offensive baby noeden uniquefamiliar summonable lazarusshared lazarussharedglobal" quality="4" hidden="true" achievement="9999"/>
 
