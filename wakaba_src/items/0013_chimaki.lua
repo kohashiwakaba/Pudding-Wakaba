@@ -317,10 +317,10 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 		data.riraBonus = 2 + player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 	end
 	data.riraBR = (player:GetPlayerType() == wakaba.Enums.Players.RIRA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
-	data.lullabyPower = player:GetTrinketMultiplier(TrinketType.TRINKET_FORGOTTEN_LULLABY) + (data.riraBR and 1)
+	data.lullabyPower = player:GetTrinketMultiplier(TrinketType.TRINKET_FORGOTTEN_LULLABY) + (data.riraBR and 1 or 0)
 	data.bffsPower = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BFFS)
 	data.babyBenderPower = player:GetTrinketMultiplier(TrinketType.TRINKET_BABY_BENDER)
-	data.easterPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG) + (data.riraBR and 5)
+	data.easterPower = player:GetCollectibleNum(wakaba.Enums.Collectibles.EASTER_EGG) + (data.riraBR and 5 or 0)
 	data.standstill = nil
 	data.isSuperpositioned = wakaba:isSuperpositionedPlayer(player)
 

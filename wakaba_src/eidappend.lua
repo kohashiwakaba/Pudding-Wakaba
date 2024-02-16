@@ -779,7 +779,7 @@ else
 				local playerType = player:GetPlayerType()
 				if descTable.birthright[playerType] and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil then
 					local itemName = descTable.birthrightName
-					local queueDesc = itemdesc.queueDesc or i_queueNow[initSeed].Description
+					local queueDesc = descTable.birthright[playerType].queueDesc or i_queueNow[initSeed].Description
 					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
 				end
 			end
