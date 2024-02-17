@@ -36,28 +36,50 @@ function wakaba:NewLevel_RedCorruption()
 	local totalLuck = 0
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 		corruptionPower = corruptionPower + player:GetCollectibleNum(wakaba.Enums.Collectibles.RED_CORRUPTION)
-		totalLuck = math.max(-5, player.Luck)
+		totalLuck = totalLuck + math.max(-5, player.Luck)
 	end)
+	local blacklisted = {}
+
+	local function isBlacklisted(gridIndex, doorSlot)
+		for _, entry in ipairs(blacklisted) do
+			if entry[1] == gridIndex and entry[2] == doorSlot then
+				return true
+			end
+		end
+	end
 	if corruptionPower > 0 and not game:IsGreedMode() then
-		for i=0,168 do
-			local roomDesc = level:GetRoomByIdx(i)
-			if roomDesc.Data
-			and (roomDesc.Data.Shape == RoomShape.ROOMSHAPE_1x1)
-			and (roomDesc.Data.Type ~= RoomType.ROOM_DEFAULT)
-			and (roomDesc.Data.Type ~= RoomType.ROOM_BOSS)
-			and (roomDesc.Data.Type ~= RoomType.ROOM_ULTRASECRET)
-			then
+		local candidates = {}
+		for i = 0, 2 do
+			wakaba.Log("Corruption begin : Take", i)
+			candidates = {}
+			for i=0,168 do
+				local roomDesc = level:GetRoomByIdx(i)
+				if roomDesc.Data
+				and (roomDesc.Data.Shape == RoomShape.ROOMSHAPE_1x1)
+				and (roomDesc.Data.Type ~= RoomType.ROOM_DEFAULT)
+				and (roomDesc.Data.Type ~= RoomType.ROOM_BOSS)
+				and (roomDesc.Data.Type ~= RoomType.ROOM_ULTRASECRET)
+				then
+					table.insert(candidates, i)
+				end
+			end
+			for _, e in ipairs(candidates) do
 				for d = 0, 3 do
-					if isc:isDoorSlotValidAtGridIndexForRedRoom(d, i) then
+					if not isBlacklisted(e, d) and isc:isDoorSlotValidAtGridIndexForRedRoom(d, e) then
 						local chance = wakaba:StackChance(baseChance + wakaba:LuckBonus(totalLuck, parLuck, 1 - baseChance), corruptionPower)
-						if rng:RandomFloat() < chance then
-							local test = level:MakeRedRoomDoor(i, d)
+						local res = rng:RandomFloat()
+						wakaba.Log("Corruption loc :", e, "/ slot :", d, "/ chance :", wakaba:Round(chance, 0.001), "/ result :", wakaba:Round(res, 0.001))
+						if res < chance then
+							local success = level:MakeRedRoomDoor(e, d)
+							if success then
+								table.insert(blacklisted, {e, d})
+							end
 						end
 					end
-					--print(test)
 				end
 			end
 		end
+		wakaba.Log("Corruption end")
 		level:UpdateVisibility()
 		for i=0,168 do
 			local roomDesc = level:GetRoomByIdx(i)

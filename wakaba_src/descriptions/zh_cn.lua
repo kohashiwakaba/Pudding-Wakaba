@@ -755,8 +755,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "红色侵蚀",
 		description = "{{Collectible21}} 显示地图上的图标"
 			.. "#除Boss房外的所有特殊房间都将变成红房版本"
-			.. "#Entering a new floor has 25% chance to generate new rooms adjacent special rooms if possible"
-			.. "#{{Luck}} 100% chance at 66 Luck"
+			.. "#Entering a new floor has 46% chance to generate new rooms adjacent special rooms if possible"
+			.. "#{{Luck}} 100% chance at 29 Luck"
 			.. "#!!! 一些房间可能通向 {{ErrorRoom}}错误房!"
 			.. "{{CR}}",
 		queueDesc = "Infected Compass",
