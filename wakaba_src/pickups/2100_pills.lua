@@ -493,6 +493,7 @@ if EID then
 	EID:addDescriptionModifier("Wakaba Pills", function (descObj)
 		return descObj.ObjType == 5
 			and descObj.ObjVariant == PickupVariant.PICKUP_PILL
+			and wakaba.G:GetItemPool():IsPillIdentified(descObj.ObjSubType)
 			--and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
 	end, function (descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
