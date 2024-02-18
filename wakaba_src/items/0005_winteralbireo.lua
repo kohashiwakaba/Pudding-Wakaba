@@ -169,6 +169,9 @@ end
 
 function wakaba:IsValidWakabaRoom(roomdesc, wakabaRoomType)
 	local level = game:GetLevel()
+
+	if level:GetCurrentRoomIndex() < 0 then return false end
+
 	local roomDesc = roomdesc or level:GetCurrentRoomDesc()
 	wakabaRoomType = wakabaRoomType or wakaba.RoomTypes.WINTER_ALBIREO
 

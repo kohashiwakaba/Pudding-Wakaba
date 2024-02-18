@@ -163,7 +163,7 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 	wakaba.Log("Rerolling items - #" .. wakaba.state.rerollloopcount .. ", Item No." .. selected .. " is " ..str_ispassed)
 
 	pool:AddRoomBlacklist(selected)
-	if not isPassed and wakaba.state.rerollloopcount <= wakaba.state.options.rerollbreakfastthreshold then
+	if not isPassed and wakaba.state.rerollloopcount <= wakaba.state.options.rerollbreakfastthreshold and selected ~= CollectibleType.COLLECTIBLE_DADS_NOTE then
 		wakaba.state.rerollloopcount = wakaba.state.rerollloopcount + 1
 		if wakaba.state.rerollloopcount > wakaba.state.options.rerolltreasurethreshold then
 			itemType = ItemPoolType.POOL_TREASURE
@@ -175,11 +175,11 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 		end
 		local nextRNG = RNG()
 		nextRNG:SetSeed(seed, 35)
-		return pool:GetCollectible(rerollProps.itemType or itemPoolType, decrease, nextRNG:Next(), CollectibleType.COLLECTIBLE_BREAKFAST)
+		return pool:GetCollectible(rerollProps.itemType or itemPoolType, decrease, nextRNG:Next(), CollectibleType.COLLECTIBLE_DADS_NOTE)
 	else
 		wakaba.state.rerollloopcount = 0
 		wakaba.runstate.spent = false
-		if wakaba.state.rerollloopcount >= wakaba.state.options.rerollbreakfastthreshold then
+		if wakaba.state.rerollloopcount >= wakaba.state.options.rerollbreakfastthreshold or selected == CollectibleType.COLLECTIBLE_DADS_NOTE then
 			selected = CollectibleType.COLLECTIBLE_BREAKFAST
 		end
 		--table.insert(selecteditems, selected)
