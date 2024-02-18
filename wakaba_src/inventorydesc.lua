@@ -169,15 +169,45 @@ local function getMaxCurseId(curse)
 end
 
 
-function wakaba:TestCollectibles(min, max, allow_mod)
+function wakaba:TestCollectibles(min, max, allow_mod, filter)
 	local items = {}
 	for i = min, max do
 		local config = Isaac.GetItemConfig()
 		if config:GetCollectible(i) then
+			if not filter or config:GetCollectible(i).Type == filter then
+				table.insert(items, {
+					type = 5,
+					variant = 100,
+					subtype = i,
+				})
+			end
+		end
+	end
+	idesc.state.showList = true
+	idesc.state.allowmodifiers = allow_mod
+	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
+	idesc.state.listprops.screenx = x
+	idesc.state.listprops.screeny = y
+
+	idesc.state.lists.items = items
+	--idesc.state.lists.cards = cards
+	--idesc.state.lists.pills = pills
+
+	idesc.state.listprops.max = #items
+
+end
+
+function wakaba:TestTrinkets(min, max, allow_mod, isGolden)
+	local items = {}
+	local trinkets = {}
+	for i = min, max do
+		local config = Isaac.GetItemConfig()
+		if config:GetTrinket(i) then
+			table.insert(trinkets, isGolden and i + 32678 or i)
 			table.insert(items, {
 				type = 5,
-				variant = 100,
-				subtype = i,
+				variant = 350,
+				subtype = isGolden and i + 32678 or i,
 			})
 		end
 	end
@@ -195,44 +225,25 @@ function wakaba:TestCollectibles(min, max, allow_mod)
 
 end
 
-function wakaba:TestTrinkets(min, max)
-	local items = {}
-	for i = min, max do
-		local config = Isaac.GetItemConfig()
-		if config:GetTrinket(i) then
-			table.insert(items, {
-				type = 5,
-				variant = 350,
-				subtype = i,
-			})
-		end
+function wakaba:TestCards(min, max, allow_mod, cardType)
+	if not allow_mod then
+		allow_mod = false
 	end
-	idesc.state.showList = true
-	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
-	idesc.state.listprops.screenx = x
-	idesc.state.listprops.screeny = y
-
-	idesc.state.lists.items = items
-	--idesc.state.lists.cards = cards
-	--idesc.state.lists.pills = pills
-
-	idesc.state.listprops.max = #items
-
-end
-
-function wakaba:TestCards(min, max)
 	local items = {}
 	for i = min, max do
 		local config = Isaac.GetItemConfig()
 		if config:GetCard(i) then
-			table.insert(items, {
-				type = 5,
-				variant = 300,
-				subtype = i,
-			})
+			if not cardType or config:GetCard(i).CardType == cardType then
+				table.insert(items, {
+					type = 5,
+					variant = 300,
+					subtype = i,
+				})
+			end
 		end
 	end
 	idesc.state.showList = true
+	idesc.state.allowmodifiers = allow_mod
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	idesc.state.listprops.screenx = x
 	idesc.state.listprops.screeny = y
@@ -686,7 +697,9 @@ local function onRender()
 					local curLanguage = EID:getLanguage()
 					if curLanguage ~= "en_us" then
 						EID.Config["Language"] = "en_us"
-						local englishName = desc.PermanentTextEnglish or EID:getObjectName(v.type, v.variant, v.subtype)
+						local convertedSub
+						if v.variant == 350 then convertedSub = v.subtype % 32768 end
+						local englishName = desc.PermanentTextEnglish or EID:getObjectName(v.type, v.variant, convertedSub or v.subtype)
 						if v.type == wakaba.INVDESC_TYPE_PLAYER then
 							if wakaba.descriptions["en_us"].playernotes[v.subtype] then
 								englishName = wakaba.descriptions["en_us"].playernotes[v.subtype].name
