@@ -44,7 +44,7 @@ function wakaba:GetCard_UnlockCheck(_, card, canSuit, canRune, onlyRune)
 		skipGetCard = true
 
 		local forceReroll = wakaba:cardUnlockCheck(card, getCardRNG) == false
-		local nemesis = wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE) or isc:anyPlayerIs(wakaba.Enums.Players.WAKABA_B)
+		local nemesis = wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE)
 
 		if canRune and not onlyRune then -- Objects allowed to spawn
 			if nemesis and card ~= Card.CARD_HOLY and Isaac.GetItemConfig():GetCard(Card.CARD_CRACKED_KEY):IsAvailable() then
