@@ -407,3 +407,16 @@ function wakaba:PickupSpawn_WinterAlbireo(entype, var, subtype, grindex, seed)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.PickupSpawn_WinterAlbireo, EntityType.ENTITY_PICKUP)
+
+
+---@param e EntityNPC
+function wakaba:NpcUpdate_WinterAlbireo(e)
+	if wakaba:IsValidWakabaRoom() then
+		if e.Type == EntityType.ENTITY_BABY_PLUM then
+			if not (e.State == 1 or e.Scale == 16) then
+				e.State = 16
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NpcUpdate_WinterAlbireo)
