@@ -453,7 +453,7 @@ if REPENTANCE then
 	activesToDelayCostumeReset[CollectibleType.COLLECTIBLE_LARYNX] = true
 	activesToDelayCostumeReset[CollectibleType.COLLECTIBLE_SULFUR] = true
 	activesToDelayCostumeReset[CollectibleType.COLLECTIBLE_LEMEGETON] = true
-	activesToDelayCostumeReset[CollectibleType.COLLECTIBLE_MEGA_MUSH] = true
+	--activesToDelayCostumeReset[CollectibleType.COLLECTIBLE_MEGA_MUSH] = true
 
 	costumeTrinkets[TrinketType.TRINKET_AZAZELS_STUMP] = true
 end
