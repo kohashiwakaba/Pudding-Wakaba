@@ -29,6 +29,17 @@ local function SyncRepentogonMarks(playerType)
 	})
 end
 
+local function SyncRepentogonChallengeMarks()
+	for challengeID, entry in pairs(wakaba.UnlockTables[-999]) do
+		if type(entry) == "table" then
+			local entryName = entry[1]
+			if wakaba:IsEntryUnlocked(entryName, true) then
+				Isaac.ClearChallenge(challengeID)
+			end
+		end
+	end
+end
+
 function wakaba:Repentogon_SyncCompletionMarks()
 
 	wakaba.Log("Start Repentogon Sync MC_PRE_GAME_EXIT")
@@ -37,6 +48,7 @@ function wakaba:Repentogon_SyncCompletionMarks()
 			SyncRepentogonMarks(playerType)
 		end
 	end
+	SyncRepentogonChallengeMarks()
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPORTANT, wakaba.Repentogon_SyncCompletionMarks)
 
@@ -147,6 +159,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 				persistentGameData:TryUnlock(achievementID)
 			end
 		end
+		SyncRepentogonChallengeMarks()
 		wakaba.state.unlock.repentogon = true
 		wakaba:saveDataManagerSave()
 		print("saved!")
