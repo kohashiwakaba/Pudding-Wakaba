@@ -45,13 +45,14 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "璃贝",
 		description = "#{{Collectible" ..
 			wakaba.Enums.Collectibles.SWEETS_CATALOG ..
-			"}}甜品目录的效果现在会持续到下一次使用目录为止#{{Collectible260}} 免疫诅咒",
+			"}} 甜品目录的效果现在会持续到下一次使用目录为止"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties, or gives advantages from Rabbit Ribbon curses (can be checked through Inventory Descriptions)", -- TODO
 		queueDesc = "Better deals, Recipe Selection", -- TODO
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted 璃贝",
 		description = "#更耐用的火焰#{{Collectible" ..
-			wakaba.Enums.Collectibles.WATER_FLAME .. "}}水中焰每吸收一个火焰就会给予额外的被动效果",
+			wakaba.Enums.Collectibles.WATER_FLAME .. "}} 水中焰每吸收一个火焰就会给予额外的被动效果",
 		queueDesc = "Dual Flames", -- TODO
 	},
 	[wakaba.Enums.Players.RIRA] = { -- TODO
@@ -121,10 +122,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "密涅瓦的领域",
 		description = ""
 			.. "#玩家在范围内时:"
-			.. "↑ {{Damage}} +1 攻击"
-			.. "↑ {{Tears}} +0.5 Fire rate up"
-			.. "↑ {{Tears}} x2.3 Fire rate multiplier"
-			.. "↑ 跟踪眼泪"
+			.. "#↓ {{Damage}} -0.5 攻击"
+			.. "#↑ {{Tears}} +0.5 Fire rate up"
+			.. "#↑ {{Tears}} x2.3 Fire rate multiplier"
+			.. "#↑ 跟踪眼泪"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
 		queueDesc = "Help the friends", -- TODO
@@ -1926,7 +1927,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}道具房#{{Card90}} 重置房间内的所有物品和掉落物#重置后的物品来自随机物品池",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}星象房#{{Collectible105}} 重置房间内的所有物品",
 	boss = "#{{BossRoom}} {{ColorCyan}}Boss房#{{Collectible" ..
-		wakaba.Enums.Collectibles.MINERVA_AURA .. "}} {{Damage}}+1/{{Tears}}+2/跟踪眼泪 在当前房间有效",
+		wakaba.Enums.Collectibles.MINERVA_AURA .. "}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/跟踪眼泪 在当前房间有效",
 	devil = "#{{DevilRoom}} {{ColorCyan}}恶魔房#生成品质 {{Quality3}} 的物品，需要2个心之容器",
 	angel = "#{{AngelRoom}} {{ColorCyan}}天使房#获得 {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} 防止一次诅咒的生效",
 	sacrifice =
@@ -2052,6 +2053,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseDarkness}} 替代黑暗诅咒"
 			.. "#眼泪是隐形的，并且在短时间内对敌人造成更少的伤害"
 			.. "#在4个瓷砖之后对敌人造成2倍的伤害"
+			.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies" -- TODO
 			.. "",
 	},
 
@@ -2064,6 +2066,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseLost}} 替代迷失诅咒"
 			.. "#无法看到远处的地图"
 			.. "#{{SecretRoom}} 可以揭示秘密房间和超级秘密房间"
+			.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost" -- TODO
 			.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -2075,6 +2078,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseMaze}} 替代迷宫诅咒"
 			.. "#有时候已经清理过的房间会随机变成未清理的"
 			.. "#特殊房间不包括在内"
+			.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns" -- TODO
 			.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -2085,7 +2089,9 @@ wakaba.descriptions[desclang].curses = {
 			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseUnknown}} 替代未知诅咒"
 			.. "#{{Card91}} 当前楼层永久失落诅咒状态"
+			.. "#Donation mechanics can be used even with Lost Curse state" -- TODO
 			.. "#{{Collectible285}} 所有敌人都会退化（如果可能的话）"
+			.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state" -- TODO
 			.. "",
 	},
 

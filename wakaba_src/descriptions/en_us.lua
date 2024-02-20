@@ -28,11 +28,11 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "#Doubles damage, tears boost#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties from Rabbit Ribbon curses",
+		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties, or gives advantages from Rabbit Ribbon curses (can be checked through Inventory Descriptions)",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
-		description = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame Grants additional passive per absorbed flame",
+		description = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame Grants additional passive per absorbed flame",
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		playerName = "Rira",
@@ -101,10 +101,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Minerva's Aura",
 		description = ""
 		.. "#Isaac and Other players inside aura grants:"
-		.. "↑ {{Damage}} +1 damage"
-		.. "↑ {{Tears}} +0.5 Fire rate up"
-		.. "↑ {{Tears}} x2.3 Fire rate multiplier"
-		.. "↑ Homing Tears"
+		.. "#↓ {{Damage}} -0.5 damage"
+		.. "#↑ {{Tears}} +0.5 Fire rate up"
+		.. "#↑ {{Tears}} x2.3 Fire rate multiplier"
+		.. "#↑ Homing Tears"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -1793,7 +1793,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room",
-	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}+1/{{Tears}}+0.5x2.3/Homing tears for current room",
+	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
 	devil = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers",
 	angel = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Grants {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
 	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
@@ -1908,8 +1908,9 @@ wakaba.descriptions[desclang].curses = {
 		name = "Curse of Sniper",
 		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
 		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
-		.. "#Tears are invisible and deal less damage enemies for a short time"
+		.. "#Weapons are invisible and deal less damage enemies for a short time"
 		.. "#Deals 2x damage to enemies after 4 tiles"
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -1919,6 +1920,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Replaces Curse of the Lost"
 		.. "#Isaac cannot see the map far away"
 		.. "#{{SecretRoom}} Can reveal Secret and Super Secret Rooms"
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -1928,6 +1930,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Replaces Curse of the Maze"
 		.. "#Sometimes cleared rooms are randomly be uncleared"
 		.. "#Special rooms are not included"
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -1936,7 +1939,9 @@ wakaba.descriptions[desclang].curses = {
 		description = "!!! Only appears for {{Player"..wakaba.Enums.Players.RICHER.."}}Richer, or {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon is held"
 		.. "#{{CurseUnknown}} Replaces Curse of the Unknown"
 		.. "#{{Card91}} Permanent Lost Curse state for current floor"
+		.. "#Donation mechanics can be used even with Lost Curse state"
 		.. "#{{Collectible285}} All enemies are devolved if possible"
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state"
 		.. "",
 	},
 }

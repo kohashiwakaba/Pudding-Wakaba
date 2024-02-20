@@ -21,7 +21,7 @@ wakaba.descriptions[desclang].birthright = {
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 미네르바의 오라 효과 적용:"
-		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↓ {{DamageSmall}}공격력 -0.5 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
@@ -40,12 +40,12 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "방 클리어 시의 {{DamageSmall}}공격력, {{Tears}}연사 증가량 2배#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}}Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다.",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다. (Inventory Descriptions 참조)",
 		queueDesc = "더욱 달콤한 향기",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
-		description = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}}Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
+		description = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
 		queueDesc = "점점 따뜻해져가는 달콤함",
 	},
 	[wakaba.Enums.Players.RIRA] = {
@@ -119,7 +119,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
-		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↓ {{DamageSmall}}공격력 -0.5 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
@@ -1714,7 +1714,7 @@ wakaba.descriptions[desclang].cards = {
 		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 오라를 발산합니다."
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
-		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#↓ {{DamageSmall}}공격력 -0.5 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
@@ -2046,7 +2046,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#사용 시 그 방의 모든 아이템 및 픽업과 함께 시작방으로 이동합니다.",
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}보물방#{{Card90}} 방 안의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다.",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}천체관#{{Collectible105}} 사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다.",
-	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}+1/{{TearsSmall}}+0.5x2.3/공격이 적에게 유도됩니다.",
+	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}-0.5/{{TearsSmall}}+0.5x2.3/공격이 적에게 유도됩니다.",
 	devil = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.",
 	angel = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
 	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",
@@ -2158,8 +2158,9 @@ wakaba.descriptions[desclang].curses = {
 		name = "저격수의 저주",
 		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
 		.. "#{{CurseDarkness}} Darkness 저주를 교체하여 등장합니다."
-		.. "#눈물의 모습이 사라지며 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
+		.. "#공격의 모습이 사라지며 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
 		.. "#멀리 있는 적에게 2배의 피해를 줍니다."
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}공격이 다시 보이며 가까이 있는 적에게 일반적인 피해를 줍니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -2169,6 +2170,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Lost 저주를 교체하여 등장합니다."
 		.. "#현재 방 주변의 방 위치를 볼 수 있으나 더 멀리 있는 위치의 방은 지도에 표시되지 않습니다."
 		.. "#{{SecretRoom}} 비밀방 및 일급비밀방의 위치가 표시됩니다."
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}멀리 있는 방의 위치가 사라지지 않습니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -2178,6 +2180,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Maze 저주를 교체하여 등장합니다."
 		.. "#방 입장 시 클리어한 방이 낮은 확률로 클리어하지 않은 상태로 바뀝니다."
 		.. "#다시 클리어할 경우 방 클리어 보상이 드랍되며 특수방은 적용되지 않습니다."
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}방이 더 이상 클리어하지 않은 상태로 바뀌지 않으나 방 클리어 보상을 소환합니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -2186,7 +2189,9 @@ wakaba.descriptions[desclang].curses = {
 		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
 		.. "#{{CurseUnknown}} Unknown 저주를 교체하여 등장합니다."
 		.. "#{{Card91}} 저주에 걸린 동안 항상 Lost 상태가 됩니다."
+		.. "#Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible285}} 모든 적이 약화 형태로 등장합니다."
+		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}모든 피격이 일반 피격으로 대체됩니다."
 		.. "",
 	},
 }
