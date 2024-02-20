@@ -2868,7 +2868,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
 		.. "#확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
-		.. "#The Lost(유령) 상태일 때도 헌혈류 "
+		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
 		--.. "#"

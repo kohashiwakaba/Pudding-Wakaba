@@ -2245,7 +2245,7 @@ wakaba.descriptions[desclang].playernotes = {
 			.. "",
 	},
 
-	-- richerTSUKASAzhi
+	-- richer
 	[wakaba.Enums.Players.RICHER] = {
 		-- icon = "",
 		name = "璃贝",
@@ -2270,6 +2270,19 @@ wakaba.descriptions[desclang].playernotes = {
 			.. "#{{Collectible" .. wakaba.Enums.Collectibles.WATER_FLAME .. "}} 里璃贝从水中焰开始"
 			--.. "#"
 			.. "",
+	},
+	-- rira
+	[wakaba.Enums.Players.RIRA] = { -- TODO
+		-- icon = "",
+		name = "Rira",
+		description = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
+		.. "#She seems very shy, but actually, is really ecchi"
+		.. "#She shoots Aqua tears that aquafies enemies that take more damage from some sources"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
+		--.. "#"
+		.. "",
 	},
 }
 
