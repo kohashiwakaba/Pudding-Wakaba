@@ -323,7 +323,7 @@ function wakaba:Cache_Minerva(player, cacheFlag)
       player.Luck = player.Luck + (minervalevel * additional * 0.1)
     end
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + ((1.5 * minervalevel) + (additional * 0.03) * wakaba:getEstimatedDamageMult(player))
+			player.Damage = player.Damage - (0.5 * wakaba:getEstimatedDamageMult(player))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + (60 * minervalevel) + (additional * 0.5)
