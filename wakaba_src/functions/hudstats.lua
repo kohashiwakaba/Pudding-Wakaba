@@ -135,6 +135,7 @@ function wakaba:updateHUDPosition()
 end
 
 local colourDefault = KColor(1, 1, 1, 0.5, 0, 0, 0)
+wakaba._hudShiftPos = 1
 function wakaba:Render_GlobalHUDStats(sn)
 	if shouldDeHook() then return end
 
@@ -159,12 +160,12 @@ function wakaba:Render_GlobalHUDStats(sn)
       local textColor = renderedHUDElement.TextColor or colourDefault
       if sprite and renderedText then
         --account for screenshake offset
-				local renderPos = position + Vector(0, (12 * offset))
+				local renderPos = position + Vector(0, (12 * offset) )
         local textCoords = renderPos + Game().ScreenShakeOffset
 
         font:DrawString(renderedText, textCoords.X + 16, textCoords.Y + 1, textColor, 0, true)
 				sprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0)
-        sprite:Render(renderPos, Vector(0, 0), Vector(0, 0))
+        sprite:Render(renderPos + Vector(0, wakaba._hudShiftPos or 1), Vector(0, 0), Vector(0, 0))
 
         offset = offset + 1
       elseif renderedHUDElement.Skip then

@@ -29,7 +29,15 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 100, function(_)
 	if wakaba.state.options.hudroomnumber > 0 then
-		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 0)
+		local bunnyParfait = false
+		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+			bunnyParfait = bunnyParfait or player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+		end)
+		if bunnyParfait then
+			wakaba.globalHUDSprite:SetFrame("BunnyParfait", roomNo % 5)
+		else
+			wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 0)
+		end
 		local room = Game():GetRoom()
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
