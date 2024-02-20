@@ -26,28 +26,34 @@ function wakaba:CounterPlayerEffectUpdate(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.CounterPlayerEffectUpdate)
 
-
+---@param entity EntityPlayer
+---@param amount integer
+---@param flag DamageFlag
+---@param source EntityRef
+---@param countdownFrames integer
+---@return boolean
 function wakaba:CounterTakeDmg(entity, amount, flag, source, countdownFrames)
 	local player = entity:ToPlayer()
 	if player:HasCollectible(wakaba.Enums.Collectibles.COUNTER) then
-		local counterslot = wakaba:GetActiveSlot(player, wakaba.Enums.Collectibles.COUNTER)
-		if counterslot ~= nil and player:GetActiveCharge(counterslot) >= (15 * 8) and player:GetData().wakabacountertimer == 0 then
-			--player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
-			--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, 1)
-			SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
-			player:UseActiveItem(wakaba.Enums.Collectibles.COUNTER, 0, counterslot)
-			player:DischargeActiveItem(counterslot)
-			
-			if source.Entity ~= nil and source.Entity.SpawnerEntity ~= nil then
-				wakaba:TryShootCounterLaser(player, source.Entity.SpawnerEntity, 30)
-			elseif source.Entity ~= nil then
-				wakaba:TryShootCounterLaser(player, source.Entity, 30)
+		for counterslot = 0, 2 do
+			if player:GetActiveItem(counterslot) == wakaba.Enums.Collectibles.COUNTER and not player:NeedsCharge(counterslot) and player:GetData().wakabacountertimer == 0 then
+				--player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
+				--player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, true, 1)
+				SFXManager():Play(SoundEffect.SOUND_HOLY_MANTLE)
+				player:UseActiveItem(wakaba.Enums.Collectibles.COUNTER, 0, counterslot)
+				player:DischargeActiveItem(counterslot)
+
+				if source.Entity ~= nil and source.Entity.SpawnerEntity ~= nil then
+					wakaba:TryShootCounterLaser(player, source.Entity.SpawnerEntity, 30)
+				elseif source.Entity ~= nil then
+					wakaba:TryShootCounterLaser(player, source.Entity, 30)
+				end
+				if wakaba:isMausoleumDoor(flag) then
+					wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+				end
+
+				return false
 			end
-			if wakaba:isMausoleumDoor(flag) then 
-				wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
-			end
-	
-			return false
 		end
 	end
 	if player:GetData().wakabacountertimer > 0 then

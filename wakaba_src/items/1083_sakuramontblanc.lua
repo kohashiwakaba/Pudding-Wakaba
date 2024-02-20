@@ -22,8 +22,8 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 		for i, e in ipairs(enemies) do
 			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) then
 				if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
-					effectTarget.HitPoints = 0
-					effectTarget:Update()
+					e.HitPoints = 0
+					e:Update()
 				elseif wakaba:isAquaInstakill(entity) then
 					e:Kill()
 				else
