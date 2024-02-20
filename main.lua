@@ -1723,76 +1723,20 @@ function wakaba:PostGlobalPlayerInit(player)
 			player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
 		end
 	end
---[[
-
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.WAKABA,
-		"gfx/characters/costumes/character_wakaba.png",
-		67, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_wakaba.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_WAKABA --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA, wakaba.costumeNullWhiteList)
-
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.WAKABA_B,
-		"gfx/characters/costumes/character_wakabab.png",
-		40, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_wakabab.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_WAKABA_B --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.WAKABA_B, wakaba.costumeNullWhiteList)
-
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.SHIORI,
-		"gfx/characters/costumes/character_shiori.png",
-		67, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_shiori.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_SHIORI --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI, wakaba.costumeNullWhiteList)
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.SHIORI_B,
-		"gfx/characters/costumes/character_shiorib.png",
-		wakaba.COSTUME_SHIORI_B_BODY, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_shiorib.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_SHIORI_B --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.SHIORI_B, wakaba.costumeNullWhiteList)
-
-
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.TSUKASA,
-		"gfx/characters/costumes/character_tsukasa.png",
-		67, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_tsukasa.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_TSUKASA --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA, wakaba.costumeNullWhiteList)
-
-	costumeProtector:AddPlayer(
-		player,
-		wakaba.Enums.Players.TSUKASA_B,
-		"gfx/characters/costumes/character_tsukasab.png",
-		67, --A separate costume that is added for all cases that you ever gain flight.
-		"gfx/characters/costumes/character_tsukasab.png", --Your character's spritesheet, but customized to have your flight costume.
-		wakaba.COSTUME_TSUKASA_B --Your character's additional costume. Hair, ears, whatever.
-	)
-	costumeProtector:ItemCostumeWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeCollectibleWhiteList)
-	costumeProtector:NullItemIDWhitelist(wakaba.Enums.Players.TSUKASA_B, wakaba.costumeNullWhiteList) ]]
-	--print(player:GetPlayerType(), #costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()], costumeProtector.PlayerNullItemCostumeWhitelist[player:GetPlayerType()][CollectibleType.COLLECTIBLE_LUNA])
-
-	--wakaba:save(true)
+	if wakaba.state.options.cp_wakaba then
+		for playerType, entries in pairs(wakaba.cpManagedPlayerType) do
+			costumeProtector:AddPlayer(
+				player,
+				playerType,
+				"gfx/characters/costumes/character_"..entries.sheetName..".png",
+				entries.flightID or 67, --A separate costume that is added for all cases that you ever gain flight.
+				"gfx/characters/costumes/character_"..entries.flightSheetName..".png", --Your character's spritesheet, but customized to have your flight costume.
+				entries.extraNullID or NullItemID.ID_JACOB --Your character's additional costume. Hair, ears, whatever.
+			)
+			costumeProtector:ItemCostumeWhitelist(playerType, wakaba.costumeCollectibleWhiteList)
+			costumeProtector:NullItemIDWhitelist(playerType, wakaba.costumeNullWhiteList)
+		end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostGlobalPlayerInit)
 
