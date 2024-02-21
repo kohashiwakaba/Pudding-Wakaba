@@ -54,7 +54,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 		local richerPower = (player:GetData().wakaba and player:GetData().wakaba.richerroomclearcount) or 0
 		local brPower = math.max(player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT), 0) + 1
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (richerPower * 0.01 * brPower * wakaba:getEstimatedDamageMult(player))
+			--player.Damage = player.Damage + (richerPower * 0.01 * brPower * wakaba:getEstimatedDamageMult(player))
 			player.Damage = player.Damage * RicherChar.DAMAGE
 		end
 		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
@@ -73,7 +73,7 @@ function wakaba:onRicherCache(player, cacheFlag)
 			player.CanFly = true
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((RicherChar.TEARS + (richerPower * 0.016 * brPower)) * wakaba:getEstimatedTearsMult(player)))
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((RicherChar.TEARS --[[ + (richerPower * 0.016 * brPower) ]]) * wakaba:getEstimatedTearsMult(player)))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | RicherChar.TEARFLAG
