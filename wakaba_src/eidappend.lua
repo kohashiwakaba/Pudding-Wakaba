@@ -133,15 +133,15 @@ if EID then
 		EID:addColor("ColorBocDark", KColor(0.941, 0.357, 0.69, 1))
 		EID.InlineIcons["IconRedTint"] = function(_)
 			EID._NextIconModifier = function(sprite)
-				sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0.8, 0, 0)
+				sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0.8, -1.5, -1.5)
 			end
-			return {"Blank", 0, 0, 0}
+			return {"Blank", -1.5, -1.5, 0}
 		end
 		EID.InlineIcons["IconBlack"] = function(_)
 			EID._NextIconModifier = function(sprite)
-				sprite.Color = Color(0, 0, 0, EID.Config["Transparency"] * 1, 0, 0, 0)
+				sprite.Color = Color(-1.5, -1.5, 0, EID.Config["Transparency"] * 1, -1.5, -1.5, 0)
 			end
-			return {"Blank", 0, 0, 0}
+			return {"Blank", -1.5, -1.5, 0}
 		end
 		EID:addColor("ColorBookofConquest", nil, function(_)
 			local c = EID.InlineColors
@@ -277,9 +277,9 @@ if EID then
 
 		function wakaba:UpdateWakabaDescriptions()
 			EID._currentMod = "Pudding and Wakaba"
-			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
+			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1.5, -1.5, "Curses")
 			EID:setModIndicatorName("Pudding & Wakaba")
-			EID:setModIndicatorIcon("Player"..wakaba.Enums.Players.WAKABA.."", true)
+			EID:setModIndicatorIcon(REPENTOGON and "WakabaModRgon" or "WakabaMod", true)
 			for cardid, carddata in pairs(wakaba.descriptions["en_us"].cards) do
 				if carddata.mimiccharge then
 					EID:addCardMetadata(cardid, carddata.mimiccharge, carddata.isrune)
@@ -315,6 +315,13 @@ if EID then
 			EID:addIcon("WakabaAntiCurseMaze", "EID_Curses", 7, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaAntiCurseBlind", "EID_Curses", 8, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaAntiCurseGiant", "EID_Curses", 9, 12, 11, -1, 0, wakaba.MiniMapAPISprite)
+
+			EID:addIcon("WakabaMod", "EID_Icons", 0, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaModRgon", "EID_Icons", 1, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("CrystalRestock", "EID_Icons", 2, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("CloverChest", "EID_Icons", 3, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("ShioriValut", "EID_Icons", 4, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("RicherPlanetarium", "EID_Icons", 5, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)

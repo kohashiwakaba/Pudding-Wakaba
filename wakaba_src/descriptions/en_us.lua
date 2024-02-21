@@ -80,7 +80,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Book of Shiori",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#{{Library}} Guarantees Library every floor if possible"
+		.. "#{{ShioriValut}} Guarantees Library every floor if possible"
 		.. "#Activates additional effect when book active items are being used"
 		.. "#Isaac also gains extra tear effect when book active items are being used"
 		.. "#Extra tear effect changes on next book usage"
@@ -174,10 +174,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "The Winter Albireo",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#{{PlanetariumChance}} Richer's special Planetariums appear per stage that contains:"
+		.. "#{{RicherPlanetarium}} Richer's special Planetariums appear per stage that contains:"
 		.. "#Random pool item depending of floor"
 		.. "#White Fireplace"
-		.. "#Crystal restock machine"
+		.. "#{{CrystalRestock}} Crystal restock machine"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -1476,8 +1476,8 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "Valut Rift",
-		description = "Spawns a Shiori's Valut#The valut contains a blue colored collectible that requires several keys.#Low chance to spawn random valut that containes other themed item",
-		tarot = {"Spawns {{ColorShinyPurple}}2{{CR}} Shiori's Valuts# The valut contains a blue colored collectible that requires several keys#Low chance to spawn random valut that containes other themed item"},
+		description = "{{ShioriValut}} Spawns a Shiori's Valut#{{ShioriValut}} The valut contains a blue colored collectible that requires several keys.#Low chance to spawn random valut that containes other themed item",
+		tarot = {"{{ShioriValut}} Spawns {{ColorShinyPurple}}2{{CR}} Shiori's Valuts#{{ShioriValut}} The valut contains a blue colored collectible that requires several keys#Low chance to spawn random valut that containes other themed item"},
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {

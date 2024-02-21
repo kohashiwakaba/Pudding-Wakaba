@@ -98,7 +98,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "시오리의 책",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{Library}} 가능한 경우 모든 스테이지에서 책방이 등장합니다."
+		.. "#{{ShioriValut}} 가능한 경우 모든 스테이지에서 책방이 등장합니다."
 		.. "#책 유형의 액티브 아이템 사용 시 다른 부가 효과와 시오리의 추가 눈물 효과가 발동됩니다."
 		.. "#시오리의 추가 눈물 효과는 다른 책을 사용하기 전까지 계속 유지됩니다."
 		.. "{{CR}}",
@@ -197,7 +197,12 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "겨울의 알비레오",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{PlanetariumChance}} 가능한 경우, 스테이지 진입 시 Tainted Richer의 전용 천체방이 등장합니다."
+		.. "#{{RicherPlanetarium}} 가능한 경우, 스테이지 진입 시 Tainted Richer의 전용 천체방이 등장합니다."
+		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
+		.. "#현재 스테이지에 따른 배열의 아이템"
+		.. "#흰색 모닥불"
+		.. "#{{CrystalRestock}} 리셰의 재입고 기계(해금 무관)"
+		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 일정 횟수 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		queueDesc = "저 너머로 이어져 있어",
 	},
@@ -879,9 +884,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "프리스티지 패스",
 		description = ""
-		.. "#{{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
-		.. "#{{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
-		.. "#리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 2회 사용 시 비활성화 됩니다."
+		.. "#{{CrystalRestock}} {{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
+		.. "#{{CrystalRestock}} {{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
+		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 2회 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
 	},
@@ -1750,8 +1755,8 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
 		queueDesc = "시오리의 창고",
-		description = "시오리의 창고를 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다.",
-		tarot = {"시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다."},
+		description = "{{ShioriValut}} 시오리의 창고를 소환합니다.#{{ShioriValut}} 창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다.",
+		tarot = {"{{ShioriValut}} 시오리의 창고를 {{ColorShinyPurple}}2개{{CR}} 소환합니다.#{{ShioriValut}} 창고는 파란색 아이템 하나가 담겨져 있으나 열쇠를 여러개 소모합니다.#낮은 확률로 다른 아이템이 든 창고가 소환됩니다."},
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "시련의 국",
