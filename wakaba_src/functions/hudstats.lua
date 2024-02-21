@@ -135,7 +135,7 @@ function wakaba:updateHUDPosition()
 end
 
 local colourDefault = KColor(1, 1, 1, 0.5, 0, 0, 0)
-wakaba._hudShiftPos = 1
+wakaba._hudShiftPos = 1.25
 function wakaba:Render_GlobalHUDStats(sn)
 	if shouldDeHook() then return end
 
