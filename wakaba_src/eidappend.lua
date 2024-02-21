@@ -135,13 +135,13 @@ if EID then
 			EID._NextIconModifier = function(sprite)
 				sprite.Color = Color(1, 1, 1, EID.Config["Transparency"] * 0.5, 0.8, -1.5, -1.5)
 			end
-			return {"Blank", -1.5, -1.5, 0}
+			return {"Blank", 0, 0, 0}
 		end
 		EID.InlineIcons["IconBlack"] = function(_)
 			EID._NextIconModifier = function(sprite)
-				sprite.Color = Color(-1.5, -1.5, 0, EID.Config["Transparency"] * 1, -1.5, -1.5, 0)
+				sprite.Color = Color(0, 0, 0, EID.Config["Transparency"] * 1, 0, 0, 0)
 			end
-			return {"Blank", -1.5, -1.5, 0}
+			return {"Blank", 0, 0, 0}
 		end
 		EID:addColor("ColorBookofConquest", nil, function(_)
 			local c = EID.InlineColors
@@ -277,7 +277,7 @@ if EID then
 
 		function wakaba:UpdateWakabaDescriptions()
 			EID._currentMod = "Pudding and Wakaba"
-			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1.5, -1.5, "Curses")
+			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
 			EID:setModIndicatorName("Pudding & Wakaba")
 			EID:setModIndicatorIcon(REPENTOGON and "WakabaModRgon" or "WakabaMod", true)
 			for cardid, carddata in pairs(wakaba.descriptions["en_us"].cards) do
