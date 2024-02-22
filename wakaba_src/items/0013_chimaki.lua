@@ -300,6 +300,7 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 		data.ForceStateUpdate = true
 		data.groundMove = true
 		data.standstill = nil
+		data.ignoreBeast = nil
 		stopGoToPos(familiar, data)
 		stopGoToEnt(data)
 	end
@@ -380,7 +381,7 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 		targ = data.targetPos
 
 		local sind, tind = room:GetGridIndex(familiar.Position), room:GetGridIndex(targ)
-		
+
 		path = wakaba:GeneratePathAStar(sind, tind, GetValidGridCollisions(data.groundMove))
 		speed = data.gotoSpeed * math.min(1, targ:Distance(familiar.Position) / 60 + 0.5)
 
@@ -388,6 +389,12 @@ function wakaba:FamiliarUpdate_Chimaki(familiar)
 			data.targetPos = nil
 			data.standstill = true
 		end
+	end
+
+	local isBeast
+	if isc:inBeastRoom() then
+		path = {}
+		isBeast = not data.ignoreBeast
 	end
 
 	if (targ and (not data.prevTarg or targ:DistanceSquared(data.prevTarg) > 50)) or (path and #path ~= data.prevPathLength) then
@@ -445,7 +452,7 @@ local function getTrollBombs(familiar, data, player, range)
 	for _, v in ipairs(isc:getBombs()) do
 		if (v.Variant == BombVariant.BOMB_TROLL or v.Variant == BombVariant.BOMB_SUPERTROLL or v.Variant == BombVariant.BOMB_GOLDENTROLL or v.Variant == BombVariant.BOMB_GIGA) and v.Position:Distance(player.Position) < range then
 			local sind, tind = room:GetGridIndex(familiar.Position), room:GetGridIndex(v.Position)
-	
+
 			path = wakaba:GeneratePathAStar(sind, tind, GetValidGridCollisions(data.groundMove))
 			if path then
 				table.insert(badbombs, v)
@@ -731,7 +738,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -246, funct
 	local room = wakaba.G:GetRoom()
 	local enemies = {}
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320 and room:IsPositionInRoom(v.Position, 0)) then
 			table.insert(enemies, v)
 		end
 	end
@@ -807,7 +814,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 		goto skipLightCheck
 	end
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320 and room:IsPositionInRoom(v.Position, 0)) then
 			table.insert(enemies, v)
 		end
 	end
@@ -817,17 +824,20 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 		local targ = enemies[rng:RandomInt(#enemies) + 1]
 		ent.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
 		data.groundMove = false
+		data.ignoreBeast = true
 		if data.babyBenderPower > 0 then
 			goToEnt(targ, ent, data, data.babyBenderPower * data.speed * 1.4)
 			local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.TARGET, 0, targ.Position, Vector.Zero, ent):ToEffect()
 			eff.Parent = targ
 			eff:FollowParent(targ)
-			eff:SetTimeout(70)
+			eff:SetTimeout(200)
 			data.evadeEnemy = targ
+			data.holyLightTargetEnt = eff
 		else
 			goToPos(targ.Position, ent, data, data.speed * 1.4, 0, true)
 			local eff = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.TARGET, 0, targ.Position, Vector.Zero, ent):ToEffect()
-			eff:SetTimeout(70)
+			eff:SetTimeout(200)
+			data.holyLightTargetEnt = eff
 		end
 		playExtraAnim("long_fly_start", nil, ent, spr, data)
 		--data.evadeEnemy = targ
@@ -854,6 +864,7 @@ function wakaba:Chimaki_CommandSpawnLaserRing(player, position, power)
 end
 wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
 	player = player or Isaac.GetPlayer()
+	local room = wakaba.G:GetRoom()
 	if spr:IsPlaying("long_fly_start") then
 		if familiar.FrameCount % (8 // (1 + data.lullabyPower)) == 0 then
 			local light = wakaba:Chimaki_CommandSpawnBeam(player, familiar.Position, 1 + data.bffsPower + data.riraBonus + (data.easterPower * 0.02))
@@ -874,7 +885,10 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 			end
 		end
 		spr.FlipX = familiar.Velocity.X < 0
-		if data.standstill or data.longFlyCount >= 150 or (data.targetPos and data.targetPos:Distance(familiar.Position) <= 40) or (data.targetEnt and data.targetEnt.Position:Distance(familiar.Position) <= 40) then
+		if data.standstill or data.longFlyCount >= 150
+			or (data.targetPos and (data.targetPos:Distance(familiar.Position) <= 40 or not room:IsPositionInRoom(data.targetPos, 0)))
+			or (data.targetEnt and (data.targetEnt.Position:Distance(familiar.Position) <= 40 or not room:IsPositionInRoom(data.targetEnt.Position, 0)))
+		then
 			--print("Land")
 			playExtraAnim("long_fly_end", nil, ent, spr, data)
 		end
@@ -886,11 +900,17 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 			end
 		end
 		spr.FlipX = familiar.Velocity.X < 0
+		if data.holyLightTargetEnt and data.holyLightTargetEnt:Exists() then
+			data.holyLightTargetEnt:Remove()
+			data.holyLightTargetEnt = nil
+		end
 	elseif not data.targetEnt then
 		data.State = "Move_Default"
 		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
 		data.groundMove = true
+		data.ignoreBeast = nil
 		data.lightCooldown = 48
+		data.holyLightTargetEnt = nil
 	end
 
 	if spr:IsFinished("long_fly_end") then
@@ -901,6 +921,7 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 		stopGoToPos(familiar, data)
 		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
 		data.groundMove = true
+		data.ignoreBeast = nil
 		data.lightCooldown = 48
 		data.longFlyCount = nil
 	elseif spr:IsEventTriggered("kyuu") then
