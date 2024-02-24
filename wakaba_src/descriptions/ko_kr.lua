@@ -182,7 +182,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		itemName = "달콤달콤 카탈로그",
 		description = ""
-		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 조합 효과를 얻습니다:"
+		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 무기 효과를 얻습니다:"
 		.. "{{CR}}",
 		queueDesc = "맛집은 못 참지",
 	},
@@ -192,6 +192,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 그 방에서 아래 중 하나의 랜덤 무기 효과를 얻습니다:"
 		.. "{{CR}}",
 		queueDesc = "그 때 그 시절의 맛집",
+	},
+	[wakaba.Enums.Collectibles.PREMIUM_CATALOG] = {
+		itemName = "달콤달콤 카탈로그",
+		description = ""
+		.. "#사용 시 그 방에서 랜덤 조합 효과를 얻습니다:"
+		.. "{{CR}}",
+		queueDesc = "리셰쨩의 풀 코스",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "겨울의 알비레오",

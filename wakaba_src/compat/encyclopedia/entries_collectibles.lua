@@ -570,6 +570,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Unlike Sweets Catalog, rhongomyniad pool also has some items 'is considered' as weapon item, such as IPECAC"},
 		},
 	},
+	PREMIUM_CATALOG = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, Gives Isaac one of synergies for the room."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+		},
+	},
 	WATER_FLAME = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},

@@ -161,13 +161,19 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		itemName = "Sweets Catalog",
 		description = ""
-		.. "#Grants a random combinations for current room"
+		.. "#Grants a random weapon for current room"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
 		itemName = "Ancient Catalog",
 		description = ""
 		.. "#Grants a random weapon for current room"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.PREMIUM_CATALOG] = {
+		itemName = "Sweets Catalog",
+		description = ""
+		.. "#Grants a random combinations for current room"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {

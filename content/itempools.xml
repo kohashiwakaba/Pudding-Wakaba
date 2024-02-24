@@ -24,7 +24,6 @@
 		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="The Winter Albireo" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Secret Door" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -178,7 +177,6 @@
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
-		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 
 
@@ -211,7 +209,6 @@
 		<Item Name="Bunny Parfait" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Caramella Pancake" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cunning Paper" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Water-Flame" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -257,7 +254,6 @@
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="The Winter Albireo" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="POW Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -446,7 +442,6 @@
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rabbit Ribbon" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
-		<Item Name="Ancient Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Flash Shift" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>

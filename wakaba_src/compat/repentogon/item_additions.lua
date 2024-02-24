@@ -1,18 +1,12 @@
 --MC_PLAYER_GET_ACTIVE_MAX_CHARGE skips remaining callbacks if a value is returned, so doing in one singe callback
 
---- Sweets Catalog : 리셰의 경우 12칸, 이외의 경우 8칸, 특수 챌린지의 경우 항상 발동 가능
+--- Sweets Catalog : 특수 챌린지의 경우 항상 발동 가능
 ---@param itemID CollectibleType
 ---@param player EntityPlayer
 ---@param varData integer
 wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, function(_, itemID, player, varData)
-	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
-		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
-			return 0
-		else
-			return 12
-		end
-	else
-		return 8
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+		return 0
 	end
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 

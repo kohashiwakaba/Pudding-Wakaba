@@ -107,7 +107,7 @@
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="9999"/>
 
 	<passive id="79" cache="all" description="Sweet Curses, Blind Immunity" gfx="rabbitribbon.png" name="Rabbit Ribbon" quality="4" tags="offensive lazarusshared"/>
-	<active id="80" cache="all" description="Temporary Random Taste" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="12" quality="3" tags="offensive book"/>
+	<active id="80" cache="all" description="Temporary Random Taste" gfx="sweetscatalog.png" name="Sweets Catalog" maxcharges="4" quality="3" tags="offensive book"/>
 	<active id="81" description="Room extension" gfx="richeruniform.png" name="Richer's Uniform" maxcharges="4" quality="4" tags="offensive nogreed"/>
 
 	<familiar id="82" description="Rira's Soulmate" gfx="chimaki.png" name="Chimaki" devilprice="2" tags="offensive baby noeden uniquefamiliar summonable lazarusshared lazarussharedglobal" quality="4" hidden="true" achievement="9999"/>
@@ -154,6 +154,7 @@
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4"/>
 	<active id="122" cache="all" description="Temporary Random Weapon" gfx="ancientcatalog.png" name="Ancient Catalog" maxcharges="3" quality="3" tags="offensive book"/>
 	<passive id="123" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" devilprice="2" tags="noeden summonable nolostbr" quality="3"/>
+	<active id="124" cache="all" description="Temporary Random Full Course" gfx="premiumcatalog.png" name="Premium Catalog" maxcharges="12" quality="4" tags="noeden offensive book" hidden="true" achievement="9999"/>
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" quality="4" hidden="true" achievement="9999"/>

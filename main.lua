@@ -1191,6 +1191,7 @@ include('wakaba_src.items.0008_flashshift')
 include('wakaba_src.items.0009_concentration')
 include('wakaba_src.items.0010_rabbitribbon')
 include('wakaba_src.items.0011_sweetscatalog')
+--include('wakaba_src.items.0011_sweetscatalog_premium')
 include('wakaba_src.items.0012_waterflame')
 include('wakaba_src.items.0013_chimaki')
 include('wakaba_src.items.0014_riraswimsuit')
@@ -1714,7 +1715,7 @@ function wakaba:PostGlobalPlayerInit(player)
 		--print("assign")
 	end
 	player:GetData().wakaba_lhash = phash
-	wakaba.Log("[wakaba]Wakaba - Persistent Data registered.")
+	wakaba.Log("Wakaba - Persistent Data registered.")
 
 	if wakaba.G.TimeCounter == 0 then
 		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then

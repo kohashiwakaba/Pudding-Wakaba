@@ -80,6 +80,20 @@ Encyclopedia.AddItem({
 		end
 	end,
 })
+-- Richer / Isaac : Premium Catalog
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.PREMIUM_CATALOG,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.PREMIUM_CATALOG,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("sweetscatalog") then
+			self.Desc = "Defeat Isaac as Richer"
+			return self
+		end
+	end,
+})
 -- Richer / Satan : Anti Balance
 Encyclopedia.AddItem({
 	Class = class,
