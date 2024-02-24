@@ -17,6 +17,7 @@ local sfx = SFXManager()
 
 local checkType = PlayerType.PLAYER_ISAAC
 local skipDelay
+local checkForDelay
 
 function wakaba:TakeDamage_CustomSound(player)
 	checkType = player:ToPlayer():GetPlayerType()
@@ -26,6 +27,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CustomSoun
 function wakaba:PlayerCollision_CustomSound(player, collider, low)
 	if collider.Type == EntityType.ENTITY_FIREPLACE and collider.Variant == 4 then
 		checkType = player:ToPlayer():GetPlayerType()
+		checkForDelay = player:ToPlayer():GetPlayerType()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_CustomSound, 0)
@@ -73,13 +75,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_Custo
 function wakaba:Update_CustomItemSound()
 	local hitSound = wakaba:getCustomHurtSound(checkType)
 	local deathSound = wakaba:getCustomDeathSound(checkType)
-	if hitSound or deathSound then
+	local delayedDeathSound = wakaba:getCustomDeathSound(checkForDelay)
+	if hitSound or deathSound or delayedDeathSound then
 		if hitSound and sfx:IsPlaying(SoundEffect.SOUND_ISAAC_HURT_GRUNT) then
 			wakaba.Log("Hit Sound for ".. tostring(checkType) .. " replaced!")
 			sfx:Stop(SoundEffect.SOUND_ISAAC_HURT_GRUNT)
 			sfx:Play(hitSound)
 		end
-		if deathSound then
+		if deathSound or delayedDeathSound then
 			wakaba:scheduleForUpdate(function ()
 				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
 					wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
@@ -87,6 +90,18 @@ function wakaba:Update_CustomItemSound()
 					sfx:Play(deathSound)
 				end
 			end, skipDelay and 0 or 16)
+			if delayedDeathSound then
+				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
+					wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
+					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
+					if not sfx:IsPlaying(delayedDeathSound) then
+						sfx:Play(delayedDeathSound)
+					end
+					checkForDelay = nil
+				end
+			else
+				checkForDelay = nil
+			end
 		end
 	end
 	checkType = PlayerType.PLAYER_ISAAC
