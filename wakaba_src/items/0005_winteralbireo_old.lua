@@ -8,8 +8,8 @@ if StageAPI then
 end
 
 function wakaba:hasAlbireo(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
     return true
@@ -46,7 +46,7 @@ function wakaba:GetRicherRooms(roomType, rng)
 	for i = min, max do
 		table.insert(candidates, i)
 	end
-	
+
 	result = candidates[rng:RandomInt(#candidates) + 1]
 	return result
 end
@@ -59,7 +59,7 @@ function wakaba:NewLevel_WinterAlbireo()
 	and level:GetAbsoluteStage() <= LevelStage.STAGE4_2
 	and wakaba.G:GetFrameCount() > 0
 	and not level:IsAscent() then
-			
+
 		local seeds = wakaba.G:GetSeeds()
 		local startSeed = seeds:GetStageSeed(level:GetAbsoluteStage())
 		srng = RNG()
@@ -67,7 +67,7 @@ function wakaba:NewLevel_WinterAlbireo()
 
 		if --[[ wakaba.luarooms ]] StageAPI and StageAPI.InOverriddenStage() then
 			local roomNo = wakaba:GetRicherRooms(nil, srng)
-			
+
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.WINTER_ALBIREO)
 			local newRoomPoint = isc:newRoom(rng)
 			--print(newRoomPoint)
@@ -106,7 +106,7 @@ function wakaba:NewLevel_WinterAlbireo()
 		end
 		if MinimapAPI then
 			MinimapAPI:LoadDefaultMap()
-	
+
 			if #wakaba.minimapRooms > 0 then
 				for i, roomidx in pairs(wakaba.minimapRooms) do
 					local minimaproom = MinimapAPI:GetRoomByIdx(roomidx)
@@ -130,7 +130,7 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_WinterAlbireo)
 
---[[ 
+--[[
 	Door sprite replacement, from Tainted Treasure rooms
 	customRoomType is for future usage
 	possible types planned : richer(winter albireo), rira(???), trwakaba(???)
@@ -139,7 +139,7 @@ function wakaba:ApplyDoorGraphics(door, customRoomType)
 	local doorSprite = door:GetSprite()
 
 	local iscustomstage = StageAPI and StageAPI.InOverriddenStage()
-	
+
 	--if not iscustomstage then
 		doorSprite:Load("gfx/grid/wakaba_richer_room_door.anm2", true)
 		doorSprite:ReplaceSpritesheet(0, "gfx/grid/wakaba_richer_room_door.png")
@@ -190,5 +190,5 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
 
 --[[ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, function(_, fam)
-	print("[wakaba] Familiar Init : "..fam.Variant.."."..fam.SubType)
+	wakaba.Log("Familiar Init : "..fam.Variant.."."..fam.SubType)
 end) ]]
