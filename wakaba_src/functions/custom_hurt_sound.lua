@@ -85,24 +85,22 @@ function wakaba:Update_CustomItemSound()
 			sfx:Play(hitSound)
 		end
 		if deathSound or delayedDeathSound then
-			wakaba:scheduleForUpdate(function ()
-				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
-					wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
-					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
-					sfx:Play(deathSound)
-				end
-			end, skipDelay and 0 or 16)
+			if deathSound then
+				wakaba:scheduleForUpdate(function ()
+					if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
+						wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
+						sfx:Stop(SoundEffect.SOUND_ISAACDIES)
+						sfx:Play(deathSound)
+					end
+				end, skipDelay and 0 or 16)
+			end
 			if delayedDeathSound then
 				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
-					wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
+					wakaba.Log("Delayed Death Sound for ".. tostring(checkType) .. " replaced!")
 					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
-					if not sfx:IsPlaying(delayedDeathSound) then
-						sfx:Play(delayedDeathSound)
-					end
+					sfx:Play(delayedDeathSound)
 					checkForDelay = nil
 				end
-			else
-				checkForDelay = nil
 			end
 		end
 	end
