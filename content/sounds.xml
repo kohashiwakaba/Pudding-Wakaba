@@ -54,6 +54,7 @@
 	<sound name="chimaki_question">
 		<sample weight="1" path="chimaki/chimaki_question.wav"/>
 	</sound>
+
 	<sound name="richer_hurt">
 		<sample weight="1" path="richer/richer_hurt1.wav"/>
 		<sample weight="1" path="richer/richer_hurt2.wav"/>
@@ -81,4 +82,26 @@
 	<sound name="richer_item_lilricher">
 		<sample weight="1" path="richer/richer_drunk_nadenade_pls.wav"/>
 	</sound>
+
+	<sound name="rira_hurt">
+		<sample weight="1" path="rira/rira_hurt1.wav"/>
+		<sample weight="1" path="rira/rira_hurt2.wav"/>
+		<sample weight="1" path="rira/rira_hurt3.wav"/>
+		<sample weight="1" path="rira/rira_hurt4.wav"/>
+		<sample weight="1" path="rira/rira_hurt5.wav"/>
+	</sound>
+	<sound name="rira_death">
+		<sample weight="1" path="rira/rira_death1.wav"/>
+	</sound>
+	<sound name="rira_item_rirauniform">
+		<sample weight="1" path="rira/rira_akagakimaki_itemsnd.wav"/>
+	</sound>
+	<sound name="rira_item_riraswimsuit">
+		<sample weight="1" path="rira/rira_donstare1.wav"/>
+	</sound>
+	<sound name="rira_hazukashi_strong">
+		<sample weight="1" path="rira/rira_hazukashi2.wav"/>
+	</sound>
+
+
 </sounds>

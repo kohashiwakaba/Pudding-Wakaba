@@ -343,6 +343,13 @@ wakaba.Enums.SoundEffects = {
 	RICHER_ITEM_RICHER_UNIFORM = Isaac.GetSoundIdByName("richer_item_richeruniform"),
 	RICHER_HAZUKASHI_STRONG = Isaac.GetSoundIdByName("richer_hazukashi_strong"),
 	RICHER_ITEM_LIL_RICHER = Isaac.GetSoundIdByName("richer_item_lilricher"),
+
+	RIRA_HURT = Isaac.GetSoundIdByName("rira_hurt"),
+	RIRA_DEATH = Isaac.GetSoundIdByName("rira_death"),
+
+	RIRA_ITEM_RIRA_UNIFORM = Isaac.GetSoundIdByName("rira_item_rirauniform"),
+	RIRA_ITEM_RIRA_SWIMSUIT = Isaac.GetSoundIdByName("rira_item_riraswimsuit"),
+	RIRA_HAZUKASHI_STRONG = Isaac.GetSoundIdByName("rira_hazukashi_strong"),
 }
 
 -- 와카바 모드 거지/슬롯류 : SlotVariant 위치에 사용
