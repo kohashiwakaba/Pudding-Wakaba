@@ -13,10 +13,6 @@ function wakaba:HasBeast()
 	return false
 end
 
-function wakaba:TestAchievement(id)
-	CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite[id])
-end
-
 function wakaba:UnlockConvert(playerType)
 	if playerType == Isaac.GetPlayerTypeByName("Wakaba", false) then
 	elseif playerType == Isaac.GetPlayerTypeByName("WakabaB", true) then

@@ -81,14 +81,6 @@ local associationTestValue = {
 	Greedier 	= 2,
 }
 
-local function TryPlayAchievementPaper(sprite)
-	if #wakaba.state.pendingunlock > 0 then
-		table.insert(wakaba.state.pendingunlock, sprite)
-	else
-		CCO.AchievementDisplayAPI.PlayAchievement(sprite)
-	end
-end
-
 local achievementGfxRoot = "gfx/ui/achievement/"
 function wakaba:TryPlayAchievementPaper(entry, completionType)
 	if REPENTOGON then
@@ -871,14 +863,32 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if shouldShowPopup then
-						unlockTableEntry[4]()
+						if REPENTOGON then
+							local entryName = unlockTableEntry[1]
+							local achievementID = wakaba.RepentogonUnlocks[entryName]
+							if not persistentGameData:Unlocked(achievementID) then
+								wakaba.Log("Try Unlock", achievementID, "from")
+								persistentGameData:TryUnlock(achievementID)
+							end
+						else
+							unlockTableEntry[4]()
+						end
 					end
 				end
 			elseif type1 == RoomType.ROOM_BOSS and unlockTableEntry[5] == boss then
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if shouldShowPopup then
-						unlockTableEntry[4]()
+						if REPENTOGON then
+							local entryName = unlockTableEntry[1]
+							local achievementID = wakaba.RepentogonUnlocks[entryName]
+							if not persistentGameData:Unlocked(achievementID) then
+								wakaba.Log("Try Unlock", achievementID, "from")
+								persistentGameData:TryUnlock(achievementID)
+							end
+						else
+							unlockTableEntry[4]()
+						end
 					end
 				end
 			end
