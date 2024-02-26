@@ -51,7 +51,7 @@ end
 function wakaba:FireTearVLate_MagmaBlade(tear)
 	if --[[ isc:isTearFromPlayer(tear) ]] true then
 		local player = wakaba:getPlayerFromTear(tear)
-		if canActivateMagmaBlade(player)
+		if player and canActivateMagmaBlade(player)
 		then
 			--tear:Remove()
 			tear:ChangeVariant(TearVariant.PUPULA)
