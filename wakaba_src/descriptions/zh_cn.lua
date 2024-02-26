@@ -6,16 +6,19 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "{{ColorWakabaBless}}若叶",
 		description =
 		"↑ {{Heart}}增加一个心上限#{{AngelChance}} 100%打开天使房",
+		queueDesc = "真正纯洁",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}里若叶",
 		description = "↑ {{Collectible" ..
 			wakaba.Enums.Collectibles.WAKABAS_NEMESIS ..
-			"}}若叶的宿敌不再降低所有的属性，并且减少伤害衰减的速度#免疫爆炸和碾压的影响",
+			"}}若叶的宿敌不再降低所有的属性，并且减少伤害衰减的速度#免疫爆炸和碰撞的影响",
+		queueDesc = "免疫爆炸+可控狂暴",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}汐宫",
 		description = "↑ 钥匙被消耗时触发主动道具(最小为 1)",
+		queueDesc = "追求知识",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}密涅瓦{{CR}}(Tainted 汐宫)",
@@ -24,27 +27,44 @@ wakaba.descriptions[desclang].birthright = {
 			"}} 一直激活光环# {{Collectible" ..
 			wakaba.Enums.Collectibles.BOOK_OF_CONQUEST ..
 			"}}征服之书和主动物品所需的钥匙数量减少（最少1）#↑ 根据当前征服的敌人数量提升全属性",
+		queueDesc = "闪亮链接",
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
 		playerName = "{{ColorPink}}司",
 		description = "让司找到胎衣 ~ 忏悔的物品#↑ 延长 {{Collectible" ..
-			wakaba.Enums.Collectibles.LUNAR_STONE .. "}}月亮能量的最大上限",
+			wakaba.Enums.Collectibles.LUNAR_STONE .. "}}月亮石能量的最大上限",
+		queueDesc = "明亮的月光",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		playerName = "???(Tainted 司)",
 		description = "让里司能够发射眼泪#{{Collectible" ..
 			wakaba.Enums.Collectibles.FLASH_SHIFT .. "}} 闪移能力现在被移动到口袋物品槽.",
+		queueDesc = "克服悲痛审判",
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "璃贝",
 		description = "#{{Collectible" ..
 			wakaba.Enums.Collectibles.SWEETS_CATALOG ..
-			"}}甜品目录的效果现在会持续到下一次使用目录为止#{{Collectible260}} 免疫诅咒",
+			"}} 甜品目录的效果现在会持续到下一次使用目录为止"
+			..
+			"#{{Collectible" ..
+			wakaba.Enums.Collectibles.RABBIT_RIBBON ..
+			"}} 从兔子丝带的诅咒中移除惩罚或给予奖励 (可以使用F5检查)",
+		queueDesc = "美妙交易,优质菜单",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted 璃贝",
 		description = "#更耐用的火焰#{{Collectible" ..
-			wakaba.Enums.Collectibles.WATER_FLAME .. "}}水中焰每吸收一个火焰就会给予额外的被动效果",
+			wakaba.Enums.Collectibles.WATER_FLAME .. "}} 水中焰每吸收一个火焰就会给予额外的被动效果",
+		queueDesc = "双倍火力",
+	},
+	[wakaba.Enums.Players.RIRA] = {
+		playerName = "莉良",
+		description = "#{{Collectible" ..
+			wakaba.Enums.Collectibles.NERF_GUN ..
+			"}}热火枪的弱化持续时间更长#{{Collectible" ..
+			wakaba.Enums.Collectibles.CHIMAKI .. "}} 小棕会变得更强",
+		queueDesc = "有一点更H了",
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
@@ -56,44 +76,44 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#所有受到的伤害都不会有惩罚"
 			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "信仰上升 + 更好的道具",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 		itemName = "若叶的宿敌",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#↑ 发射穿透眼泪，除了若叶"
+			.. "#↑ 穿透眼泪"
 			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
 			.. "#↓ 阻止 {{Quality4}} 道具生成, 也降低 {{Quality3}}道具出现几率"
 			.. "#{{SoulHeart}}所有道具交易都改为魂心"
 			.. "#所有受到的伤害都不会被视为惩罚性的伤害"
 			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
+		queueDesc = "邪恶&射程上升 + 更糟的道具",
 	},
 	[wakaba.Enums.Collectibles.WAKABA_DUALITY] = {
 		itemName = "若叶二相性",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#↑ 穿甲眼泪（若叶除外"
+			.. "#↑ 穿透眼泪"
 			.. "#↓ 拾取物品时获得临时 {{Damage}} +3.6 伤害提升和永久 全属性下降"
 			.. "#{{AngelDevilChance}} 100% 几率在除了蓝子宫以外的所有楼层找到恶魔/天使房"
 			.. "#↑ 可以拿取所有道具"
 			.. "#{{SoulHeart}} 所有道具交易都改为魂心"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
+		queueDesc = "游离在幸运与愤怒之间",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
 		itemName = "汐宫之书",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{Library}} Guarantees Library every floor if possible"
 			.. "#使用书籍类主动道具时激活额外效果"
 			.. "#在使用书籍类主动道具时获得额外的眼泪效果"
 			.. "#额外的眼泪效果会在下次使用书籍时改变"
-			.. "#在每层楼开始时生成一个随机的书籍物品"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "知识就是力量",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
 		itemName = "征服之书",
@@ -102,18 +122,19 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#魅惑的敌人的生命值被设定为他们最大生命值的10倍"
 			.. "#!!! 如果有太多友好的敌人，就不能使用这个物品 !"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "迷途羔羊指南",
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		itemName = "密涅瓦的领域",
 		description = ""
 			.. "#玩家在范围内时:"
-			.. "↑ {{Damage}} +1 攻击"
-			.. "↑ {{Tears}} +2.0 射速修正"
-			.. "↑ 跟踪眼泪"
+			.. "#↓ {{Damage}} -0.5 攻击"
+			.. "#↑ {{Tears}} +0.5 Fire rate up"
+			.. "#↑ {{Tears}} x2.3 Fire rate multiplier"
+			.. "#↑ 跟踪眼泪"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "互帮互助",
 	},
 	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
 		itemName = "月石",
@@ -122,11 +143,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 将心之容器的上限降低到8"
 			.. "#↑ 获得额外的月相表，根据月相表的数值提高{{Damage}}伤害和{{Tears}}射速"
 			.. "#如果受到伤害，月石失效，月相表开始消耗"
-			.. "#魂心会自动用于恢复月相表"
+			.. "#Clearing rooms recover lunar gauge"
 			.. "#↑ 只要以撒拥有月石，就拥有无限的生命"
 			.. "#!!! 当月相表耗尽时，月石会消失"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
+		queueDesc = "保持圣洁",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
 		itemName = "长生不老药",
@@ -134,9 +156,9 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{WakabaAntiCurseUnknown}} 免疫未知诅咒"
 			.. "#↓ {{ColorOrange}}移除无敌帧"
-			..
-			"#在短时间内未受伤快速恢复任何类型生命值"
+			.. "#在短时间内未受伤快速恢复任何类型生命值"
 			.. "{{CR}}",
+		queueDesc = "辉夜魔药",
 	},
 	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
 		itemName = "闪光位移",
@@ -145,6 +167,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#满充能前最多可使用3次"
 			.. "#!!! 宝宝不会移动, 灵火或魂火可以"
 			.. "{{CR}}",
+		queueDesc = "彗星女孩",
 	},
 	[wakaba.Enums.Collectibles.CONCENTRATION] = {
 		itemName = "专注",
@@ -155,6 +178,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!! 专注时间会随着使用次数增加。这个计数可以在清理房间时减少"
 			.. "#!!! 在专注模式下不能移动，并且受到的伤害加倍"
 			.. "{{CR}}",
+		queueDesc = "可重复使用的充电器",
 	},
 	[wakaba.Enums.Collectibles.RABBIT_RIBBON] = {
 		itemName = "兔子丝带",
@@ -164,19 +188,32 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Battery}} 清理房间后储存额外的能量（最多16个）"
 			.. "#为未充满的主动道具自动消耗储存的能量"
 			.. "{{CR}}",
+		queueDesc = "甜蜜诅咒，不再盲目",
 	},
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		itemName = "甜品目录",
 		description = ""
+			.. "#为当前房间授予以下随机组合道具"
+			.. "{{CR}}",
+		queueDesc = "随意试吃",
+	},
+	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
+		itemName = "远古事迹",
+		description = ""
 			.. "#在当前房间给予以下武器之一:"
 			.. "{{CR}}",
+		queueDesc = "临时随机武器",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "辇道增七",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#{{PlanetariumChance}} 每层都会出现璃贝的特殊星象房"
+			.. "#{{PlanetariumChance}}璃贝的特殊天文馆在每个楼层都会出现，其中包含:"
+			.. "#取决于楼层的随机道具"
+			.. "#白色壁炉"
+			.. "#水晶补货机"
 			.. "{{CR}}",
+		queueDesc = "连接",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		itemName = "水中焰",
@@ -185,6 +222,27 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#使用生成最近道具的两个灵火复制"
 			.. "#{{Collectible712}}只能生成所罗门之书可以生成的道具"
 			.. "{{CR}}",
+		queueDesc = "璃贝酱很美味",
+	},
+	[wakaba.Enums.Collectibles.NERF_GUN] = {
+		itemName = "热火枪",
+		description = ""
+			.. "#使用道具后朝一个方向射出多发nerf眼泪"
+			.. "#{{Weakness}} 被击中的敌人{{Slow}}减速并受到双倍伤害10秒"
+			.. "{{CR}}",
+		queueDesc = "Tea-bagging shots",
+	},
+	[wakaba.Enums.Collectibles.CHIMAKI] = {
+		itemName = "小粽宝宝",
+		description = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#四处游荡并帮助玩家，但不限于:"
+			.. "#发射眼泪或者火焰"
+			.. "#{{Collectible374}} 跳向敌人"
+			.. "#{{Collectible260}} 有概率移除诅咒"
+			.. "#{{Trinket63}} 转换巨魔炸弹"
+			.. "{{CR}}",
+		queueDesc = "莉良的灵魂伴侣",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "破损工具箱",
@@ -203,6 +261,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#生成一个来自当前物品池的随机物品"
 			.. "#只会生成{{Quality3}}/{{Quality4}}道具"
 			.. "{{CR}}",
+		queueDesc = "就像布丁",
+		wisp = "{{ColorLime}}内环 x1: {{CR}}#无敌 灵火#不能发射眼泪",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "遗忘之书",
@@ -211,7 +271,9 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{BoneHeart}} +1 骨心"
 			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "可回收死灵",
+		belial = "{{BlackHeart}}给出一个黑心，而不是是骨心。恢复所有红心的效果仍然有效",
+		wisp = "{{ColorYellow}}中环 x1: {{CR}}#{{BoneHeart}}被摧毁时生成一个 骨心",
 	},
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D-杯冰淇淋",
@@ -221,7 +283,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +0.3攻击力"
 			.. "#↑ {{Damage}} +80% 攻击倍率 (不叠加)"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "攻击力上升 + 不是你想的那样!",
+		binge = "↑ {{Damage}} +1.0攻击力#↓ {{Speed}} -0.04速度",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "薄荷巧克力冰淇淋",
@@ -229,7 +292,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Tears}} +100% 射速倍率 (不叠加)"
 			.. "#↑ {{Tears}} +0.2 额外射速修正(叠加)"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "泪流满面",
 	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "神秘游戏光盘",
@@ -242,7 +305,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +0.5攻击力"
 			.. "#房间会随机地稍微上色"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "全属性上升! + 你感觉很下流",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		itemName = "若叶的挂坠",
@@ -252,7 +315,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "你感觉超级幸运!",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		itemName = "若叶的发夹 ",
@@ -260,16 +323,16 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Luck}} 每粒药丸增加+0.25的运气"
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "感觉不错!",
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "秘密卡",
 		description = ""
 			.. "#↑ {{Coin}} +22 硬币"
-			.. "#每清理一个房间就会生成{{Coin}} 硬币（{{HardMode}} 困难模式下每次只能生成 1 个）"
+			.. "#每清理一个房间就会生成{{Coin}} 硬币"
 			.. "#{{Shop}} 阻止贪婪/超级贪婪出现在商店里"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "堆叠硬币&成为秘密朋友",
 	},
 	[wakaba.Enums.Collectibles.PLUMY] = {
 		itemName = "大可爱",
@@ -279,16 +342,16 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#在以撒前方射出眼泪并且阻挡弹幕"
 			.. "#当小可爱受到太多伤害时，无法移动并且需要10秒恢复"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "啥?",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		itemName = "处刑者",
 		description = ""
-			.. "#{{Collectible" .. CollectibleType.COLLECTIBLE_ERASER .. "}}  以极低的几率发射橡皮擦眼泪"
-			.. "#当房间里只有Boss时，总是发射橡皮擦眼泪"
-			.. "#!!! {{ColorSilver}}橡皮擦眼泪不会在某些Boss战中发射，比如教条和老干妈{{ColorReset}}"
+			.. "#{{Collectible" .. CollectibleType.COLLECTIBLE_ERASER .. "}} 0.75%的几率 '擦除' 非Boss敌人"
+			.. "#{{Luck}} 10% 的几率 在 117 幸运时, 100% 对Boss有效"
+			.. "#!!! {{ColorSilver}}由于潜在的软锁定，一些Boss不会受到影响，比如教条和妈妈{{ColorReset}}"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "???",
 	},
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
 		itemName = "除夕爆竹",
@@ -299,7 +362,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Player25}} 作为里蓝人使用Hold时消耗3个{{PoopPickup}}便便并且握住一个炸弹"
 			.. "#!!! 只有在少于3个便便时才能使用Hold"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "空包弹",
 	},
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
 		itemName = "复仇之果",
@@ -310,7 +373,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#每当以撒在当前楼层受到伤害，几率就会增加"
 			--.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 1.5x攻击力 multiplier"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "极限热泪",
 	},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "若叶的制服",
@@ -319,9 +382,10 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#放下按钮改变要存储/交换的槽位"
 			.. "#使用卡牌/药丸/符文时，他也会使用wakaba制服中存储的卡牌/药丸/符文的复制"
 			.. "#按住Tab键/地图按钮显示当前的槽位"
-			.. "#只有在困难模式下才消耗充能."
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "贵安!",
+		belial = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
+		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "时钟之眼",
@@ -330,7 +394,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#激光伤害等同攻击力"
 			.. "#按下射击键，每个激光发射一个小型的激光"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "轨道激光",
 	},
 	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
 		itemName = "若叶宝宝",
@@ -339,7 +403,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#造成玩家40%的伤害"
 			.. "#射速取决于玩家的射速"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "幸运密友",
 	},
 	[wakaba.Enums.Collectibles.COUNTER] = {
 		itemName = "异议",
@@ -350,7 +414,8 @@ wakaba.descriptions[desclang].collectibles = {
 			"#!!!  这个物品在受到伤害时自动激活。这样激活物品也会防止以撒受到伤害"
 			.. "#当其他盾牌激活时不会激活"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "反驳激光",
+		wisp = "{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌"
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "退货邮费",
@@ -360,7 +425,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!! 闹鬼的箱子仍然会伤害以撒，但会试图把他扔开"
 			.. "#移除所有永恒苍蝇"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "再也别来了",
 	},
 	[wakaba.Enums.Collectibles.D6_PLUS] = {
 		itemName = "D6 Plus",
@@ -370,7 +435,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#在一秒后恢复原来的形态"
 			.. "#效果重复"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "重重置置你的命运",
+		wisp = "{{ColorLime}}内环 x1: {{CR}}没有特殊效果"
 	},
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		itemName = "混沌D6",
@@ -378,7 +444,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Card" .. Card.CARD_SOUL_ISAAC .. "}} 触发以撒的魂石 {{ColorRed}}9 次{{CR}}"
 			.. "#疯狂的速度循环重置的物品"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "你可以改变命运吗?",
+		wisp = "{{ColorLime}}内环 x1: {{CR}}没有特殊效果"
 	},
 	[wakaba.Enums.Collectibles.LIL_MOE] = {
 		itemName = "Moe宝宝",
@@ -388,7 +455,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{Blank}} (不包括爆炸效果)"
 			.. "#射速取决于玩家射速"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "料理密友",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "专注之书",
@@ -398,14 +465,17 @@ wakaba.descriptions[desclang].collectibles = {
 			"#如果以撒不手动移动，以撒会发射追踪和穿透的眼泪#  +1.4 {{Damage}}伤害 和 +1.0 {{Tears}}射速"
 			.. "#!!! 在当前房间内也会至少受到2颗满心的伤害"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "慎用",
+		wisp = "{{ColorYellow}}中环 x1: {{CR}}#跟踪眼泪"
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		itemName = "汐宫的符文瓶",
 		description = ""
 			.. "#{{Rune}} 给一个随机符文"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "复用魔法石头",
+		belial = "有50%的几率率获得黑色符文，而不是随机的#{{ColorWakabaNemesis}}召唤出黑色符文的效果，有10%的几率",
+		wisp = "{{ColorYellow}}中环 x1: {{CR}}#{{Rune}}敌人杀死时有 15% 的几率掉落一个 灵火#{{Rune}}被摧毁时生成一个 灵火",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		itemName = "迷你二重身",
@@ -413,14 +483,17 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#生成12个小以撒"
 			.. "#自动追踪敌人射击"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "自我分裂",
+		wisp = "{{ColorOrange}}外环 x1: {{CR}}#被摧毁时生成迷你以撒"
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		itemName = "沉默之书",
 		description = ""
 			.. "#消除所有敌人的弹幕"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "清除",
+		beilal = "召唤{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}黑暗艺术效果，并对所有敌人造成每次擦除的敌弹伤害",
+		wisp = "{{ColorOrange}}外环 x1: {{CR}}#对射击无效#清除附近的敌弹"
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "复古威胁",
@@ -430,7 +503,7 @@ wakaba.descriptions[desclang].collectibles = {
 			..
 			"#!!! {{ColorBlink}}{{ColorRed}}受到任何惩罚伤害都会使达摩克利斯之剑掉落，并立即结束本局，无论玩家是否有复活！{{ColorReset}}"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "永生?",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = {
 		itemName = "上帝之书",
@@ -442,7 +515,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{BrokenHeart}} 受到任何伤害会让以撒获得碎心"
 			.. "#!!! 变成天使后不能通过献祭房进入天使房"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "杀死我的会让我更强大",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
 		itemName = "死神守护者",
@@ -451,7 +524,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#同时，所有的伤害都先扣红心，并且防止惩罚伤害"
 			.. "#!!! {{ColorYellow}}这本书的效果不会在献祭房间的尖刺上起作用{{ColorReset}}"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "人生保险",
+		wisp = "{{ColorLime}}内环 x1: {{CR}}高耐久度#死亡时复活 Isaac 和 灵火被消耗"
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
 		itemName = "创伤之书",
@@ -459,7 +533,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#引爆屏幕上当前存在的玩家的泪弹，使每一颗都爆炸（最多15颗）."
 			.. "#爆炸的泪弹向四个方向发射硫磺火激光."
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "眼泪雷管",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "堕落之书",
@@ -473,7 +547,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} {{ColorSilver}}+600% 攻击倍率"
 			.. "#!!! {{ColorYellow}}不能更换主动{{ColorReset}}"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "感受海浪",
 	},
 	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
 		itemName = "舞岛神话",
@@ -481,7 +555,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#随机书籍效果"
 			--[[ .. "#!!! Following books can be activated:" ]]
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "德墨忒尔传说",
+		wisp = "{{ColorOrange}}外环 x1: {{CR}}#被摧毁时生成一个 未知的书签"
 	},
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "亚波伦的危机",
@@ -492,7 +567,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ 被动物品：随机属性小幅提升"
 			.. "#为每个消耗的道具生成一个攻击苍蝇跟班"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "拥抱虚无",
 	},
 	[wakaba.Enums.Collectibles.LIL_SHIVA] = {
 		itemName = "湿婆宝宝",
@@ -504,7 +579,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#眼泪可以被射入其他眼泪，使它们变大"
 			.. "#玩家的眼泪可以被吞噬"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "水之密友",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
 		itemName = "猫娘手办",
@@ -513,14 +588,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#Isaac的非爆炸性攻击现在忽略护甲"
 			.. "#↑ 保证在{{UltraSecretRoom}}红隐里出现{{Quality3}}/{{Quality4}}的道具"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.GUPPY .. "",
+		queueDesc = "伤害下降n... 但代价是什么?",
 	},
 	[wakaba.Enums.Collectibles.DEJA_VU] = {
 		itemName = "既视感",
 		description = ""
 			.. "#12.5%的几率将道具重置为已经拥有的道具"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.GUPPY .. "",
+		queueDesc = "你感觉被遗忘了",
 	},
 	[wakaba.Enums.Collectibles.LIL_MAO] = {
 		itemName = "Mao宝宝",
@@ -529,7 +604,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#发射环型硫磺火,无法自行移动"
 			.. "#可以通过触摸它来拾起和扔掉它"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "裂隙密友",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		itemName = "异世界定义",
@@ -537,7 +612,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#生成一个小血块（最多10个）"
 			.. "#恢复所有生成的小血块的生命值2点"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "史莱姆分裂",
 	},
 	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "平衡 恒平",
@@ -547,19 +622,22 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#如果硬币不够: "
 			.. "#将1个钥匙/炸弹转换为以撒更少拥有的另一个."
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "耗材转换器",
+		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#当拥有相同数量的钥匙和炸弹时，所有 灵火变得无敌",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "璃贝的脚蹼",
 		description = ""
 			.. "#将{{Bomb}}/{{Key}} 和 {{Card}}/{{Pill}} 互相转换"
 			.. "{{CR}}",
+		queueDesc = "翻转掉落物",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_NECKLACE] = {
 		itemName = "璃贝的项链",
 		description = ""
 			.. "#未命中的眼泪会产生教条的激光"
 			.. "{{CR}}",
+		queueDesc = "麻麻的",
 	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "Moe的松饼",
@@ -569,14 +647,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +1.5攻击力"
 			.. "#↑ {{Range}} +1.5 射程"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "生命, 伤害, 射程 上升",
 	},
 	[wakaba.Enums.Collectibles.MURASAME] = {
 		itemName = "村雨",
 		description = ""
 			.. "#100% 几率生成一个天使房和一个恶魔房#进入其中一个会使另一个消失"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "神社守护者",
 	},
 	[wakaba.Enums.Collectibles.CLOVER_SHARD] = {
 		itemName = "三叶草碎片",
@@ -585,7 +663,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Heart}} 治疗一红心"
 			.. "#↑ {{Damage}} +11% 攻击倍率"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "继续收集",
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		itemName = "宇航爱好者",
@@ -594,7 +672,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Collectible494}} 玩家和他所有的宝宝也获得电泪"
 			.. "#{{Collectible565}} 血狗变得友好"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "电动卡拉",
 	},
 	[wakaba.Enums.Collectibles.ARCANE_CRYSTAL] = {
 		itemName = "神秘水晶",
@@ -603,7 +681,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#跟踪眼泪"
 			.. "#70% 几率造成额外伤害"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "伤害上升",
 	},
 	[wakaba.Enums.Collectibles.ADVANCED_CRYSTAL] = {
 		itemName = "高级晶体",
@@ -612,7 +690,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#穿透眼泪"
 			.. "#敌人有25%的几率受到穿甲伤害"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "伤害上升",
 	},
 	[wakaba.Enums.Collectibles.MYSTIC_CRYSTAL] = {
 		itemName = "神秘晶体",
@@ -621,14 +699,15 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#神性眼泪"
 			.. "#{{Card" .. Card.CARD_HOLY .. "}}超过上限的灵心会激活神圣卡效果 (最多5个)"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "伤害上升",
 	},
 	[wakaba.Enums.Collectibles._3D_PRINTER] = {
 		itemName = "3D打印",
 		description = ""
 			.. "#复制并吞下当前持有的饰品"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "多倍饰品",
+		wisp = "{{ColorYellow}}中环 x1: {{CR}}#被摧毁时生成一个 饰品",
 	},
 	[wakaba.Enums.Collectibles.SYRUP] = {
 		itemName = "糖浆",
@@ -640,13 +719,15 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#飞行"
 			.. "#!!! 使用没有效果"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "会飞的乌龟!",
 	},
 	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
 		itemName = "电浆炮",
 		description = ""
 			.. "#↑ 所有攻击现在造成1.25倍的激光伤害"
 			.. "#↑ 之前的激光伤害现在无视敌人的护甲"
+			.. "{{CR}}",
+		queueDesc = "高科技穿刺眼泪",
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "力量炸弹",
@@ -654,6 +735,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#制造一个巨大的爆炸，摧毁当前房间内的所有物体，打开所有门，伤害所有敌人"
 			.. "#在爆炸消失时，将所有掉落物吸引到爆炸点"
 			.. "{{CR}}",
+		queueDesc = "复用巨型炸弹",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "岩浆之刃",
@@ -661,7 +743,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Burning}} 在眼泪攻击时挥舞火焰之刃"
 			.. "#{{DamageSmall}} 对非眼泪攻击的攻击力乘数+100%"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "烧成灰烬!",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		itemName = "幻影斗篷",
@@ -673,26 +755,25 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "计时器只能通过移动或发射泪水来充能。充满后才能使用"
 			.. "#隐形时可以打开挑战房间的门"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "寂静无声",
+		belial = "↑ {{Damage}} +25% 攻击力倍数，在隐身状态下使用",
 	},
 	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "红色侵蚀",
 		description = "{{Collectible21}} 显示地图上的图标"
 			.. "#除Boss房外的所有特殊房间都将变成红房版本"
-			.. "#如果可能，在特殊房间附近生成新房间"
+			.. "#如果可能的话，进入新楼层有46%的机会在特殊房间附近生成新房间"
+			.. "#{{Luck}} 29幸运是100%"
 			.. "#!!! 一些房间可能通向 {{ErrorRoom}}错误房!"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "受感染的指南针",
 	},
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "问号方块",
 		description = ""
-			.. "#有25%的几率生成可收集物品"
-			.. "#如果以撒没有魔法蘑菇，那么魔法蘑菇就一定会被生成"
-			.. "#!!! 拿着这个物品受到任何伤害都会失去魔法蘑菇"
-			.. "#!!! 没有魔法蘑菇受到伤害会让以撒变成Lost状态"
+			.. "#如果发现此道具，请向开发者报告"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "盒子里是什么?",
 	},
 	[wakaba.Enums.Collectibles.CLENSING_FOAM] = {
 		itemName = "清洁泡沫",
@@ -700,7 +781,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Poison}} 使周围的小范围内敌人中毒"
 			.. "#周围的小范围内移除敌人的变体属性"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOB .. "",
+		queueDesc = "一扫而光",
 	},
 	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
 		itemName = "哗鬼家族",
@@ -708,7 +789,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Pill}} 使用时，随机化当前游戏中的6种药丸效果，并生成其中一种改变的药丸"
 			.. "#{{Pill}} 在清理房间时可以生成额外的药丸"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "更新药丸的内在",
 	},
 	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
 		itemName = "塔之诅咒2",
@@ -717,14 +798,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#到伤害时，在房间周围生成一个金色的巨魔炸弹"
 			.. "#!!! 小心：所有的巨魔炸弹都会尽可能地转化为金色的巨魔炸弹"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "拥抱混乱",
 	},
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "不平衡",
 		description = ""
 			.. "#{{Pill}} 所有药丸变成大药丸"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		queueDesc = "不再适量",
 	},
 	[wakaba.Enums.Collectibles.VENOM_INCANTATION] = {
 		itemName = "毒液咒文",
@@ -732,7 +813,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "#{{Poison}} 中毒/燃烧伤害有5%的几率立即杀死普通敌人#{{Blank}} (对非主线boss的几率为1.36%)"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.SPUN .. "",
+		queueDesc = "无法逃脱",
 	},
 	[wakaba.Enums.Collectibles.FIREFLY_LIGHTER] = {
 		itemName = "萤火虫提灯",
@@ -742,7 +823,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseDarkness}} 免疫黑暗诅咒"
 			.. "#通过奖励板可以为陷阱生成清理房间的奖励"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		queueDesc = "仙子们的帮助",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		itemName = "双重入侵者",
@@ -750,6 +831,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 恶魔/天使房不再出现"
 			.. "#↑ {{Damage}} +250% 攻击倍率#{{Blank}} （每多一层增加100%)"
 			.. "{{CR}}",
+		queueDesc = "伤害很高，但代价是什么?",
 	},
 	[wakaba.Enums.Collectibles.SEE_DES_BISCHOFS] = {
 		itemName = "主教之海",
@@ -757,14 +839,15 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Collectible584}} 每四个房间生成一个美德之书的灵火"
 			.. "#{{Player" .. wakaba.Enums.Players.TSUKASA_B .. "}} 死亡后重生为里司"
 			.. "{{CR}}",
+		queueDesc = "悲剧的开始",
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		itemName = "四叶草罐",
 		description = ""
 			.. "#↑ {{Luck}} 每一分钟游戏时间增加0.5运气"
 			.. "#{{Player" .. wakaba.Enums.Players.WAKABA .. "}} 死亡后重生为若叶"
-			.. "#{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} 里若叶只是复活"
 			.. "{{CR}}",
+		queueDesc = "等待她的降生",
 	},
 	[wakaba.Enums.Collectibles.CRISIS_BOOST] = {
 		itemName = "危机提升",
@@ -773,6 +856,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!! {{HolyMantle}} 神圣斗篷防御也算血量"
 			.. "#↑ {{Tears}} +1射速修正"
 			.. "{{CR}}",
+		queueDesc = "更少的血量，更多的力量",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "声望通行证",
@@ -782,6 +866,7 @@ wakaba.descriptions[desclang].collectibles = {
 			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
 			.. "#璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
 			.. "{{CR}}",
+		queueDesc = "璃贝酱的魔法",
 	},
 	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
 		itemName = "兔子芭菲",
@@ -792,14 +877,20 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Blank}} 2/7 : {{Collectible618}}"
 			.. "#{{Blank}} 3/8 : {{Collectible374}}"
 			.. "#{{Blank}} 4/9 : {{Collectible494}}"
+			.. "#{{Player" .. wakaba.Enums.Players.RIRA .. "}} 死后复活为莉良"
 			.. "{{CR}}",
+		queueDesc = "神秘配方",
 	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "焦糖煎饼",
 		description = ""
+			.. "#↑ {{Damage}} +1 伤害"
+			.. "#↑ {{Luck}} +1 幸运"
+			.. "#根据Isaac的武器为生成苍蝇"
+			.. "#{wakaba_cp1}" -- do not translate this
 			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为璃贝"
-			.. "#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里璃贝只是复活"
 			.. "{{CR}}",
+		queueDesc = "被遗忘的朗诵",
 	},
 	[wakaba.Enums.Collectibles.EASTER_EGG] = {
 		itemName = "复活节彩蛋",
@@ -814,6 +905,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{SoulHeart}} +1 魂心"
 			.. "#{{HalfSoulHeart}} 每分钟45%恢复半魂心"
 			.. "{{CR}}",
+		queueDesc = "再生 + 生命提升",
 	},
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
 		itemName = "魅魔毯子",
@@ -821,12 +913,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{BlackHeart}} +1 黑心"
 			.. "#{{HalfBlackHeart}} 每分钟有45%的几率恢复半个黑心"
 			.. "{{CR}}",
+		queueDesc = "再生 + 生命提升",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
 		itemName = "璃贝的制服",
 		description = ""
 			.. "#不同的房间有不同的效果"
 			.. "{{CR}}",
+		queueDesc = "房间延展",
 	},
 	[wakaba.Enums.Collectibles.LIL_RICHER] = {
 		itemName = "璃贝宝宝",
@@ -836,18 +930,20 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Battery}} 清理房间后储存额外的充能（最多12个）"
 			.. "#自动消耗储存的能量为未充满的主动道具"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		queueDesc = "我想要这个兔耳",
 	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 		itemName = "灵巧纸片",
 		description = ""
 			.. "#{{Card}} 每次使用触发一个随机的卡牌效果"
 			.. "{{CR}}",
+		queueDesc = "别作弊!",
 	},
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "试炼炖汤",
 		description =
 		"!!! 激活时:#↑ {{Tears}}每层增加1射速修正#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}每层增加25%额外攻击力#所有主动道具在清理房间后完全充能",
+		queueDesc = "???",
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "自焚",
@@ -857,38 +953,127 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#献血机（或类似物品），或者献祭房正常工作"
 			.. "#每层只能使用一次"
 			.. "{{CR}}",
+		queueDesc = "燃起来!",
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW方块",
 		description = "对所有地面的敌人造成275点分裂伤害#{{Bomb}} 消耗2个炸弹",
+		queueDesc = "摧毁地面",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "模块方块",
 		description = "对所有漂浮的敌人造成333点分裂伤害#{{Bomb}} 消耗2个炸弹",
+		queueDesc = "摧毁天空",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "秘密通道",
 		description = "传送到初始房间"
 			.. "#!!!在某些情况下可能会出现其他效果"
 			.. "{{CR}}",
+		queueDesc = "紧急逃生",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
-		itemName = "Rira的胸罩",
+		itemName = "莉良的胸罩",
 		description =
 		"{{Collectible191}}在当前房间给予随机的泪水效果#带有状态效果的敌人在当前房间受到的伤害增加25%",
+		queueDesc = "临时随机眼泪+挑剔口味",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
-		itemName = "Rira的外套",
+		itemName = "莉良的外套",
 		description = "激活白色火焰效果",
+		queueDesc = "别那样盯着我看，太尴尬了...",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
-		itemName = "Rira的泳衣",
+		itemName = "莉良的泳衣",
 		description =
 		"??% 的几率发射能液化敌人的泪水#{{Luck}} 在?? 运气时有100% 的几率#液化的敌人会向随机方向发射泪水，死亡时掉落半个灵魂之心，对毒素/火焰的伤害减少，但对激光、爆炸和水的伤害增加",
+		queueDesc = "H泪水射击",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
-		itemName = "Rira的绷带",
-		description = "{{Collectible486}} 在每层开始时激活受伤效果6次",
+		itemName = "莉良的绷带",
+		description =
+		"!!! 在楼层开始时:#{{Collectible486}} 激活6次受伤效果#{{Collectible479}} 熔炼饰品",
+		queueDesc = "感受她的感觉",
+	},
+	------------ RIRA ITEMS START HERE ------------
+	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
+		itemName = "黑豆麻糬",
+		description =
+		"10% 几率射击“压缩”敌人#{{Luck}}16幸运时100%触发# 压缩敌人死亡后爆炸#压缩爆炸不会伤害艾萨克",
+		queueDesc = "浓缩的记忆",
+	},
+	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
+		itemName = "樱花蒙布朗",
+		description =
+		"在房间里杀死一个敌人:#↑ {{Damage}} +0.5 伤害#↑ {{Tears}} +1 射速#超过6次#被杀死的敌人使附近的敌人潮湿#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大#水攻击可以击杀石头敌人",
+		queueDesc = "潮湿费洛蒙",
+	},
+	[wakaba.Enums.Collectibles.KANAE_LENS] = {
+		itemName = "透镜",
+		description = "↑ {{Damage}} x1.65 伤害倍率#左眼流泪",
+		queueDesc = "守护者之眼",
+	},
+	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
+		itemName = "莉良的便当",
+		description =
+			"↑ {{Heart}} +1 心之容器#{{Heart}}治疗一红心#↑ {{Speed}} +0.04 速度#↑ {{Tears}} +0.35 射速修正#↑ {{Damage}} +0.5 伤害 {{HalfHeart}}在每次受到半红心伤害时#↑ {{Damage}} x1.07 伤害倍率#↑ {{Range}} +0.5 射程#↑ {{Luck}} +0.4 幸运#!!! 所有的道具都会变成 {{Collectible" ..
+			wakaba.Enums.Collectibles.RIRAS_BENTO .. "}}莉良的便当",
+		queueDesc = "超级面筋",
+	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		itemName = "樱花胶囊",
+		description = ""
+			.. "#↑ +1 额外生命"
+			.. "#{{Collectible127}} 在死亡时以4个{{Heart}} 重生 并重启动整个楼层"
+			.. "#!!! 不会每层恢复:"
+			.. "#补充额外生命"
+			.. "#每种掉落物类型产生1个"
+			.. "{{CR}}",
+		queueDesc = "褪色的记忆",
+	},
+	[wakaba.Enums.Collectibles.CHEWY_ROLLY_CAKE] = {
+		itemName = "瑞士卷",
+		description = "!!! 受伤后:"
+			.. "#↑ {{Speed}} +0.3 速度在此房间"
+			.. "#清除附近的子弹"
+			.. "#{{Slow}} 永久减缓房间内所有敌人的速度"
+			.. "{{CR}}",
+		queueDesc = "回旋风味",
+	},
+	[wakaba.Enums.Collectibles.LIL_RIRA] = {
+		itemName = "莉良宝宝",
+		description = ""
+			.. "#追踪眼泪"
+			.. "#每一帧造成2点伤害"
+			.. "#↓ {{Battery}}{{BlinkYellowRed}}偷取充能{{CR}}"
+			.. "#↑ {{Damage}} +0.05 伤害每次偷取充能"
+			.. "{{CR}}",
+		queueDesc = "红丝带",
+	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		itemName = "女仆组合",
+		description = ""
+			.. "#按下 {wakaba_md1} 可将当前主动道具与副位主动位置进行切换"
+			.. "#如果副主动为空，将插入"
+			.. "#每个房间只能交换一次"
+			.. "#!!! 某些主动无法放入副位"
+			.. "{{CR}}",
+		queueDesc = "左右横跳",
+	},
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		itemName = "璃贝的胸罩",
+		description = "↑ 所有受到的伤害都不会有惩罚"
+			.. "#自动激活银色按钮"
+			.. "{{CR}}",
+		queueDesc = "软软香香",
+	},
+	[wakaba.Enums.Collectibles.RIRAS_UNIFORM] = {
+		itemName = "莉良的制服",
+		description = "{{Timer}} 使用时:"
+			.. "#时停2秒"
+			.. "#大幅提高移动速度和射速2秒"
+			.. "{{CR}}",
+		queueDesc = "脸颊绯红",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
@@ -899,8 +1084,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Card" ..
 			wakaba.Enums.Cards.CARD_DREAM_CARD .. "}} 在清理房间后有8% 的几率生成若叶的梦境卡"
 			.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL ..
-			"," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+		queueDesc = "永恒梦境...",
+		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "伊甸的便利贴",
@@ -910,104 +1095,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#将当前的主动道具移动到口袋栏"
 			.. "#口袋栏的主动道具不会在受击时被重置"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+		queueDesc = "三思而后行...",
 	},
-}
-
-wakaba.descriptions[desclang].bingeeater = {
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "↑ {{Damage}} +1.0攻击力#↓ {{Speed}} -0.04速度",
-	},
-}
-wakaba.descriptions[desclang].belial = {
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "{{BlackHeart}}给出一个黑心，而不是是骨心。恢复所有红心的效果仍然有效",
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
-	},
-	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description =
-		"有50%的几率率获得黑色符文，而不是随机的#{{ColorWakabaNemesis}}召唤出黑色符文的效果，有10%的几率",
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "召唤{{Collectible" ..
-			CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}黑暗艺术效果，并对所有敌人造成每次擦除的敌弹伤害",
-	},
-	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		description = "召唤黑心类型的小血块，而不是是魂心类型",
-	},
-	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "↑ +4% 的的概率掉落{{Card" ..
-			wakaba.Enums.Cards.CARD_DREAM_CARD ..
-			"}}若叶拥有时。当使用物品时，没有额外的效果",
-	},
-	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
-		description = "↑ {{Damage}} +25% 攻击力倍数，在隐身状态下使用"
-	},
-	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description = "生成{{DevilRoom}}恶魔房物品，而不是当前道具池"
-	}
-}
-wakaba.descriptions[desclang].bookofvirtues = {
-
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "{{ColorLime}}内环 x1: {{CR}}#无敌 灵火#不能发射眼泪"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "{{ColorYellow}}中环 x1: {{CR}}#{{BoneHeart}}被摧毁时生成一个 骨心"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌"
-	},
-	[wakaba.Enums.Collectibles.COUNTER] = {
-		description =
-		"{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌"
-	},
-	[wakaba.Enums.Collectibles.D6_PLUS] = {
-		description = "{{ColorLime}}内环 x1: {{CR}}没有特殊效果"
-	},
-	[wakaba.Enums.Collectibles.D6_CHAOS] = {
-		description = "{{ColorLime}}内环 x1: {{CR}}没有特殊效果"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
-		description = "{{ColorYellow}}中环 x1: {{CR}}#跟踪眼泪"
-	},
-	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		description =
-		"{{ColorYellow}}中环 x1: {{CR}}#{{Rune}}敌人杀死时有 15% 的几率掉落一个 灵火#{{Rune}}被摧毁时生成一个 灵火"
-	},
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "{{ColorOrange}}外环 x1: {{CR}}#被摧毁时生成迷你以撒"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
-		description = "{{ColorOrange}}外环 x1: {{CR}}#对射击无效#清除附近的敌单"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
-		description = "{{ColorOrange}}外环 x1: {{CR}}#让非BOSS 敌人变得友好接触"
-	},
-	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
-		description = "{{ColorLime}}内环 x1: {{CR}}高耐久度#死亡时复活 Isaac 和 灵火被消耗"
-	},
-
-	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
-		description = "{{ColorOrange}}外环 x1: {{CR}}#被摧毁时生成一个 未知的书签"
-	},
-
-	[wakaba.Enums.Collectibles.BALANCE] = {
-		description = "{{ColorRed}}!!!没有 灵火 {{CR}}#当拥有相同数量的钥匙和炸弹时，所有 灵火变得无敌"
-	},
-	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
-		description =
-		"{{ColorLime}}内环 x1: {{CR}}(最多 1)#无敌灵火#死亡时复活 Isaac 和 灵火被消耗"
-	},
-	[wakaba.Enums.Collectibles._3D_PRINTER] = {
-		description = "{{ColorYellow}}中环 x1: {{CR}}#被摧毁时生成一个 饰品"
-	},
-
-	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		description = "{{ColorRed}}!!!没有效果{{CR}}"
-	}
 }
 
 wakaba.descriptions[desclang].abyss = {
@@ -1053,51 +1142,6 @@ wakaba.descriptions[desclang].abyss = {
 		description = "3只蝗虫，比普通蝗虫快7倍，伤害是玩家的0.9倍，速度是3倍"
 	},
 
-}
-wakaba.descriptions[desclang].wakaba = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "↑ {{Tears}} -25% 射速",
-	},
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		description = "↑ {{Damage}} +50% 攻击倍率#{{ColorWakabaBless}}穿甲眼泪",
-	},
-
-}
-wakaba.descriptions[desclang].wakaba_b = {
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "↑ {{Damage}} +4攻击力上升#↓ {{ColorWakabaNemesis}}幸运奖励不适用",
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
-		description = "↑ {{Damage}} 使用药丸时+0.35攻击力#↓ {{ColorWakabaNemesis}}幸运奖励不适用",
-	},
-}
-wakaba.descriptions[desclang].shiori = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "生成3个迷你以撒.",
-	},
-}
-wakaba.descriptions[desclang].shiori_b = {
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "生成3个迷你以撒.",
-	},
-}
-wakaba.descriptions[desclang].tsukasa = {
-
-}
-wakaba.descriptions[desclang].tsukasa_b = {
-
-}
-wakaba.descriptions[desclang].richer = {
-
-}
-wakaba.descriptions[desclang].richer_b = {
-	[wakaba.Enums.Collectibles.WATER_FLAME] = {
-		description = ""
-			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#使用时，吸收选定的灵火"
-			.. "#可以通过更改选择{{ButtonRT}}"
-			.. "{{CR}}",
-	},
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
@@ -1184,15 +1228,6 @@ wakaba.descriptions[desclang].bookofshiori = {
 		"所有瞄准以撒的敌人也会在以撒隐身时减速.#{{ColorBookofShiori}}(当前的汐宫之书泪珠加成没有变化)",
 	},
 }
-wakaba.descriptions[desclang].murasame = {
-
-}
-wakaba.descriptions[desclang].flashshift = {
-
-}
-wakaba.descriptions[desclang].flashmurasame = {
-
-}
 wakaba.descriptions[desclang].epiphany_golden = {
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		isReplace = true,
@@ -1210,15 +1245,6 @@ wakaba.descriptions[desclang].epiphany_golden = {
 			.. "#↑ {{Damage}} +{{ColorGold}}3{{CR}}攻击力"
 			.. "#飞行, {{ColorGold}}穿透泪{{CR}}"
 			.. "#!!! 使用没有效果"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		isReplace = true,
-		description = ""
-			.. "#使用时，存储/交换当前的卡牌，药丸，或符文"
-			.. "#放下按钮改变要存储/交换的槽位"
-			.. "#当以撒使用卡牌，药丸，或符文时，他也会使用若叶的制服中存储的每一张卡牌/药丸/符文的副本"
-			.. "#按住 Tab 键/地图按钮显示当前槽位"
-			.. "#{{ColorGold}}交换时不消耗充能{{CR}}"
 	},
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		isReplace = false,
@@ -1297,20 +1323,19 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "带我走",
 		description = ""
 			.. "#↑ {{Tears}} +1.5射速修正"
-			.. "#进入马腿房会生成爸爸的便条,不会生成boss"
-			.. "#在支线也有效果"
-			.. "#!!! {{ColorRed}}触发效果无法进入子宫层{{ColorReset}}"
+			..
+			"#拿着这个小饰品进入马腿层的Boss房，让爸爸的纸条代替妈妈出现"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "别忘了!",
 	},
 	[wakaba.Enums.Trinkets.BITCOIN] = {
 		itemName = "比特币 II",
 		description = ""
-			.. "##随机化掉落物数量和属性"
+			.. "#随机化掉落物数量和属性"
 			.. "#掉落物的范围可以从0到999"
 			.. "#!!! 一旦掉落或吞下就会消失!"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "真正的赌博",
 	},
 	[wakaba.Enums.Trinkets.CLOVER] = {
 		itemName = "四叶草",
@@ -1321,7 +1346,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#↑ 幸运属性总是正数"
 			.. "#↑ 增加幸运硬币的出现几率"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "你感觉很幸运",
 	},
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {
 		itemName = "磁铁天堂",
@@ -1329,7 +1354,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#立即将炸弹，钥匙，和硬币传送到以撒身边"
 			.. "#将粘性镍币转换为普通镍币"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "梦想的时刻",
 	},
 	[wakaba.Enums.Trinkets.HARD_BOOK] = {
 		itemName = "硬化书",
@@ -1338,7 +1363,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#{{SacrificeRoom}} 在献祭房有100%的机会掉落一本书"
 			.. "#!!! 当道具掉落时，饰品会消失"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "它很脆弱...",
 	},
 	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {
 		itemName = "决心丝带",
@@ -1348,7 +1373,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#!!! {{ColorYellow}}饰品的效果在献祭房的尖刺上不起作用！{{ColorReset}}"
 			.. "#!!! 受到攻击时有2%的几率掉落饰品"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "保持决心!",
 	},
 	[wakaba.Enums.Trinkets.BOOKMARK_BAG] = {
 		itemName = "书签袋",
@@ -1356,7 +1381,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#当进入新房间时，给予随机的一次性使用的书籍物品"
 			.. "#包含的书籍和汐宫在'所有书籍'模式下的初始书籍相同"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "它似乎被打乱了...",
 	},
 	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = {
 		itemName = "木星之戒",
@@ -1368,7 +1393,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#↑ {{Shotspeed}} +5% 弹速"
 			.. "#↑ {{Luck}} +1 幸运"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "我们合而为一",
 	},
 	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = {
 		itemName = "维度切割器",
@@ -1377,7 +1402,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#{{GreedMode}} 贪婪模式下有5%的几率，{{Luck}}幸运值超过10时最高可达25%"
 			.. "#↑ {{Card" .. Card.CARD_CHAOS .. "}}混沌卡可以对百变怪和三眼霍恩造成伤害（每次339点）"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "无效记忆",
 	},
 	[wakaba.Enums.Trinkets.DELIMITER] = {
 		itemName = "分隔符",
@@ -1386,6 +1411,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#摧毁宝藏石和愚人金"
 			.. "#将柱子，金属块，尖刺岩石变成普通岩石"
 			.. "{{CR}}",
+		queueDesc = "较弱的岩石",
 	},
 	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "火控系统",
@@ -1393,14 +1419,14 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#↓ {{Range}} -45% 攻击距离倍率"
 			.. "#↑ {{Damage}} +125% 伤害倍率"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "向他们深入",
 	},
 	[wakaba.Enums.Trinkets.SIREN_BADGE] = {
 		itemName = "海妖徽章",
 		description = ""
 			.. "#防止接触伤害"
 			.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
+		queueDesc = "亲吻无罪",
 	},
 	[wakaba.Enums.Trinkets.ISAAC_CARTRIDGE] = {
 		itemName = "以撒游戏卡",
@@ -1408,6 +1434,7 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#只会生成游戏本体的道具"
 			.. "#{{Collectible619}}长子权，修改后的物品也会出现"
 			.. "{{CR}}",
+		queueDesc = "只有重生",
 	},
 	[wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE] = {
 		itemName = "胎衣游戏卡",
@@ -1415,12 +1442,14 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#只会生成AB/AB+ DLC 的道具"
 			.. "#{{Collectible619}}长子权会出现"
 			.. "{{CR}}",
+		queueDesc = "只有胎衣",
 	},
 	[wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE] = {
 		itemName = "忏悔游戏卡",
 		description = ""
 			.. "#只会生成忏悔 DLC 的道具"
 			.. "{{CR}}",
+		queueDesc = "只有忏悔",
 	},
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {
 		itemName = "星星逆转",
@@ -1428,24 +1457,28 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#在{{TreasureRoom}}道具房里丢弃饰品可以将其换成{{Planetarium}}星象房道具"
 			.. "#吞下后也有效"
 			.. "{{CR}}",
+		queueDesc = "带到道具房",
 	},
 	[wakaba.Enums.Trinkets.AURORA_GEM] = {
 		itemName = "极光宝石",
 		description = ""
 			.. "#增加复活节硬币的出现几率"
 			.. "{{CR}}",
+		queueDesc = "它在发光",
 	},
 	[wakaba.Enums.Trinkets.MISTAKE] = {
 		itemName = "错误",
 		description = ""
 			.. "#受到伤害时会在随机敌人身上引发爆炸。"
 			.. "{{CR}}",
+		queueDesc = "即使是璃贝也不完美",
 	},
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {
 		itemName = "库洛米卡",
 		description = ""
 			.. "#使用主动道具不会消耗其充能或道具。#!!! 使用后有90%的几率移除饰品！"
 			.. "{{CR}}",
+		queueDesc = "她为我们做的",
 	},
 
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {
@@ -1453,6 +1486,7 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 			.. "#有时间限制的物品不再消失"
 			.. "{{CR}}",
+		queueDesc = "持久的基础",
 	},
 	[wakaba.Enums.Trinkets.REPORT_CARD] = {
 		itemName = "璃贝的成绩单",
@@ -1460,6 +1494,22 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#↑ {{Luck}} +5 幸运"
 			.. "#↓ 受到伤害会减少 {{Luck}} -0.5 幸运（不会低于最小值）"
 			.. "#降低的幸运会在新的楼层恢复"
+			.. "{{CR}}",
+		queueDesc = "更少的失误，更少的处罚",
+	},
+	[wakaba.Enums.Trinkets.RABBIT_PILLOW] = {
+		itemName = "兔子枕头 ",
+		description = ""
+			.. "允许在白火状态下使用献血机."
+			.. "{{CR}}",
+		queueDesc = "柔软舒心",
+	},
+	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
+		itemName = "辉夜的叹息",
+		description = ""
+			.. "{{Collectible160}} 每15秒有16%的几率触发撕裂苍穹效果"
+			.. "#{{Luck}} 在34幸运时100%触发"
+			.. "#已清空的房间将延迟触发"
 			.. "{{CR}}",
 	},
 
@@ -1476,122 +1526,120 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "娃娃机卡",
 		description = "{{CraneGame}} 生成一个抓娃娃机",
-		mimiccharge = 6,
+		tarot = { "{{CraneGame}} 生成 {{ColorShinyPurple}}2{{CR}}抓娃娃机" },
+		queueDesc = "抽卡!",
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "忏悔卡",
 		description = "{{Confessional}} 生成一个忏悔室",
-		mimiccharge = 4,
+		tarot = { "{{Confessional}} 生成 {{ColorShinyPurple}}2{{CR}} 个忏悔室" },
+		queueDesc = "忏悔",
 	},
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "黑 Joker",
 		description =
 		"{{DevilChance}} 持有时,阻止天使房出现. #{{DevilRoom}} 使用时，传送到恶魔房",
-		mimiccharge = 2,
+		queueDesc = "你感到罪孽",
 	},
 	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "白 Joker",
-		description =
-		"{{AngelChance}} 持有时, 阻止恶魔房出现. #{{AngelRoom}} 使用时，传送到天使房",
-		mimiccharge = 2,
+		description = "{{AngelChance}} 持有时, 阻止恶魔房出现. #{{AngelRoom}} 使用时，传送到天使房",
+		queueDesc = "你感到圣洁",
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "彩 Joker",
-		description =
-		"{{BrokenHeart}} 设置碎心数量到6 #生成3个道具8个卡牌/符文/魂石",
-		mimiccharge = 6,
+		description = "{{BrokenHeart}} 设置碎心数量到6 #生成3个道具8个卡牌/符文/魂石",
+		queueDesc = "你不会想要的",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "黑桃皇后",
 		description = "{{Key}} 生成3~26把钥匙",
-		mimiccharge = 10,
+		queueDesc = ";P",
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "若叶的梦幻卡",
 		description = "生成一个随机的道具",
-		mimiccharge = 10,
+		queueDesc = "梦想成真",
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "未知书签",
 		description = "随机触发以下书籍效果其一:",
-		mimiccharge = 1,
+		tarot = "激活2个以下随机书籍效果",
+		queueDesc = "无信息",
 	},
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
 		itemName = "返回代币",
 		description =
 		"{{Collectible636}} 触发R键效果#将你带回新的游戏的第一层#物品，属性提升和掉落物保持不变#{{Timer}} 重置游戏计时器#移除的所有消耗品 {{ColorRed}}包括生命值{{CR}}",
+		queueDesc = "历史重演",
 	},
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
 		itemName = "密涅瓦 体验券",
-		description = "{{Collectible" ..
-			wakaba.Enums.Collectibles.MINERVA_AURA .. "}}在这个房间激活密涅瓦的领域",
-		mimiccharge = 3,
+		description = "{{Collectible" .. wakaba.Enums.Collectibles.MINERVA_AURA .. "}}在这个房间激活密涅瓦的领域",
+		tarot = "触发两次",
+		queueDesc = "女神审判",
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "若叶的魂石",
 		description =
 		"{{SoulHeart}} +1 魂心#{{AngelRoom}} 在当前层生成一个天使房#{{AngelRoom}} 如果无法生成,则生成一个交易道具",
-		mimiccharge = 8,
 		isrune = true,
+		queueDesc = "祝福的意义",
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA2] = {
 		itemName = "若叶?的魂石",
 		description =
 		"{{SoulHeart}} +1 魂心#{{DevilRoom}} 在当前层生成一个恶魔房#{{AngelRoom}} 如果无法生成,则生成一个交易道具",
-		mimiccharge = 8,
 		isrune = true,
+		queueDesc = "无名的意义",
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "汐宫的魂石",
-		description = "{{Heart}} 治愈2红心s#激活汐宫书籍的随机眼泪效果",
-		mimiccharge = 8,
+		description = "{{Heart}} 治愈2红心#激活汐宫书籍的随机眼泪效果",
 		isrune = true,
+		queueDesc = "循环你的命运",
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "司的魂石",
 		description =
 		"在以撒的头上悬挂一把剑，它可以使所有的基座物品翻倍#不会使商店、箱子或恶魔交易的物品翻倍#{{Warning}} 受到任何伤害后，剑有几率移除以撒的一半物品，并在每一帧变成随机的角色e",
-		mimiccharge = 12,
 		isrune = true,
+		queueDesc = "半衰期",
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "璃贝魂石",
 		description =
 		"{{Collectible712}} 随机生成1-6个道具灵火 ({{Collectible263}} : 1 ~ 3)#灵火的品质至少是{{Quality2}}+",
-		mimiccharge = 12,
 		isrune = true,
+		queueDesc = "魔法施放",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "裂缝宝库",
-		description = "生成一个汐宫的宝库# 宝库需要12把钥匙解锁获得道具.",
-		mimiccharge = 6,
+		description =
+		"生成汐宫的裂缝#裂缝包含一个蓝色的道具,需要几个钥匙解锁.#低概率生成包含其他道具的随机裂缝",
+		tarot = { "生成 {{ColorShinyPurple}}2{{CR}} 个汐宫的裂缝#裂缝包含一个蓝色的道具,需要几个钥匙解锁.#低概率生成包含其他道具的随机裂缝" },
+		queueDesc = "汐宫的宝物",
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "试炼炖汤",
 		description =
 		"移除所有心与神圣斗篷防御#增加8层效果:#↑ {{Tears}}+1 射速修正#↑ {{Damage}}+100% 攻击倍率#↑ {{Damage}}+25% 攻击力#主动道具满充能#清空房间减少一次效果.",
-		mimiccharge = 8,
+		tarot = { 8, 11 },
+		queueDesc = "???",
 	},
-}
-wakaba.descriptions[desclang].tarotcloth = {
-	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
-		description = "生成两个抓娃娃机",
+	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
+		itemName = "璃贝奖券",
+		description = "{{Collectible" ..
+			wakaba.Enums.Collectibles.SWEETS_CATALOG .. "}} 为当前房间授予随机组合道具",
+		queueDesc = "午餐时间!",
 	},
-	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
-		description = "生成两个忏悔室",
+	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
+		itemName = "莉良奖券",
+		description =
+		"{{BrokenHeart}}将一颗碎心恢复为 {{EmptyBoneHeart}}或{{SoulHeart}}#{{Collectible479}} 吞下持有的饰品#{{Heart}}治愈一红心,如果没有碎心或饰品",
+		tarot = { "{{BrokenHeart}}将一颗碎心恢复为 {{ColorShinyPurple}}({{EmptyBoneHeart}}或{{SoulHeart}}+{{Heart}})#{{Collectible479}} 吞下持有的饰品#{{Heart}} 治愈 {{ColorShinyPurple}}2{{CR}} 红心 如果没有碎心或饰品" },
+		queueDesc = "H补丁",
 	},
-	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
-		description = "触发两个书籍效果",
-	},
-	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
-		description = "生成两个宝藏",
-	},
-	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
-		description = "额外添加3层效果",
-	},
-}
-wakaba.descriptions[desclang].runechalk = {
-
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -1894,7 +1942,7 @@ wakaba.descriptions[desclang].richeruniform = {
 	treasure = "#{{TreasureRoom}} {{ColorCyan}}道具房#{{Card90}} 重置房间内的所有物品和掉落物#重置后的物品来自随机物品池",
 	planetarium = "#{{Planetarium}} {{ColorCyan}}星象房#{{Collectible105}} 重置房间内的所有物品",
 	boss = "#{{BossRoom}} {{ColorCyan}}Boss房#{{Collectible" ..
-		wakaba.Enums.Collectibles.MINERVA_AURA .. "}} {{Damage}}+1/{{Tears}}+2/跟踪眼泪 在当前房间有效",
+		wakaba.Enums.Collectibles.MINERVA_AURA .. "}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/跟踪眼泪 在当前房间有效",
 	devil = "#{{DevilRoom}} {{ColorCyan}}恶魔房#生成品质 {{Quality3}} 的物品，需要2个心之容器",
 	angel = "#{{AngelRoom}} {{ColorCyan}}天使房#获得 {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} 防止一次诅咒的生效",
 	sacrifice =
@@ -2020,6 +2068,10 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseDarkness}} 替代黑暗诅咒"
 			.. "#眼泪是隐形的，并且在短时间内对敌人造成更少的伤害"
 			.. "#在4个瓷砖之后对敌人造成2倍的伤害"
+			..
+			"{{Player" ..
+			wakaba.Enums.Players.RICHER ..
+			"}} +{{Collectible619}} {{ColorRicher}}武器是可见的，可以对附近的敌人造成正常伤害"
 			.. "",
 	},
 
@@ -2032,6 +2084,8 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseLost}} 替代迷失诅咒"
 			.. "#无法看到远处的地图"
 			.. "#{{SecretRoom}} 可以揭示秘密房间和超级秘密房间"
+			.. "{{Player" ..
+			wakaba.Enums.Players.RICHER .. "}} +{{Collectible619}} {{ColorRicher}}地图没有丢失"
 			.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -2043,6 +2097,10 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseMaze}} 替代迷宫诅咒"
 			.. "#有时候已经清理过的房间会随机变成未清理的"
 			.. "#特殊房间不包括在内"
+			..
+			"{{Player" ..
+			wakaba.Enums.Players.RICHER ..
+			"}} +{{Collectible619}} {{ColorRicher}}已清除的房间不再被清除，房间清除奖励仍然产生"
 			.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -2053,7 +2111,13 @@ wakaba.descriptions[desclang].curses = {
 			"}}璃贝，或者持有{{Collectible" .. wakaba.Enums.Collectibles.RABBIT_RIBBON .. "}}兔子丝带时才会出现"
 			.. "#{{CurseUnknown}} 替代未知诅咒"
 			.. "#{{Card91}} 当前楼层永久失落诅咒状态"
+			..
+			"#即使在失去诅咒状态下也可以使用献血机"
 			.. "#{{Collectible285}} 所有敌人都会退化（如果可能的话）"
+			..
+			"{{Player" ..
+			wakaba.Enums.Players.RICHER ..
+			"}} +{{Collectible619}} {{ColorRicher}}璃贝会正常的造成伤害"
 			.. "",
 	},
 
@@ -2207,7 +2271,7 @@ wakaba.descriptions[desclang].playernotes = {
 			.. "",
 	},
 
-	-- richerTSUKASAzhi
+	-- richer
 	[wakaba.Enums.Players.RICHER] = {
 		-- icon = "",
 		name = "璃贝",
@@ -2233,7 +2297,72 @@ wakaba.descriptions[desclang].playernotes = {
 			--.. "#"
 			.. "",
 	},
+	-- rira
+	[wakaba.Enums.Players.RIRA] = {
+		-- icon = "",
+		name = "莉良",
+		description =
+			"莉良是一位可爱的女仆,来自{{ColorLime}}尚有佳蜜伴恋心{{CR}}，作者是宫坂姐妹"
+			.. "#她看起来很害羞，但实际上，她真的很H"
+			.. "#她射出水之泪，使敌人潮湿并从某些来源受到更多伤害"
+			.. "#即使处于游魂状态，她也可以使用献血机"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.CHIMAKI .. "}} 莉良开始持有小棕"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.NERF_GUN .. "}} 莉良开始持有热火枪"
+			--.. "#"
+			.. "",
+	},
 }
+
+wakaba.descriptions[desclang].conditionals = {}
+wakaba.descriptions[desclang].conditionals.collectibles = {
+	[CollectibleType.COLLECTIBLE_URANUS] = {
+		desc = "{{Player" ..
+			wakaba.Enums.Players.WAKABA ..
+			"}} ↑ {{Damage}} +50% 攻击倍率#{{{Player" .. wakaba.Enums.Players.WAKABA .. "}} {ColorWakabaBless}}穿甲眼泪",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
+		desc = "{{Player" ..
+			wakaba.Enums.Players.WAKABA_B ..
+			"}} ↑ {{Damage}} +4攻击力上升#{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} ↓ {{ColorWakabaNemesis}}幸运奖励不适用",
+	},
+	[wakaba.Enums.Collectibles.SECRET_CARD] = {
+		{
+			desc = { "硬币", "1 硬币" },
+			modifierText = "Hard Mode", -- do NOT translate this
+		},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
+		desc = "{{Player" ..
+			wakaba.Enums.Players.WAKABA_B ..
+			"}} ↑ {{Damage}} 使用药丸时+0.35攻击力#{{Player" ..
+			wakaba.Enums.Players.WAKABA_B .. "}} ↓ {{ColorWakabaNemesis}}幸运奖励不适用",
+	},
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		desc = "{{Player" .. wakaba.Enums.Players.SHIORI .. "}} 生成3个迷你以撒",
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
+		desc = "{{Player" .. wakaba.Enums.Players.WAKABA .. "}} ↑{{Tears}} -25% 射速",
+	},
+	[wakaba.Enums.Collectibles.WATER_FLAME] = {
+		{
+			desc = "{{Player" ..
+				wakaba.Enums.Players.RICHER_B ..
+				"}} 使用时，吸收选定的灵火#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 可以通过更改选择{{ButtonRT}}",
+			modifierText = "Tainted Richer", -- do NOT translate this
+		},
+	},
+	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
+		desc = "{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} 里若叶只是复活",
+	},
+	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
+		desc = "{{Player" .. wakaba.Enums.Players.RIRA_B .. "}} 里莉良只是复活",
+	},
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
+		desc = "{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里璃贝只是复活",
+	},
+}
+wakaba.descriptions[desclang].conditionals.trinkets = {}
+wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 成就？"
@@ -2254,6 +2383,17 @@ if EID then
 	EID.descriptions[desclang].SweetsChallengeSuccess = "{{ColorCyan}}因为品质匹配而成功 : "
 
 	EID.descriptions[desclang].WakabaVintageHotkey = "#!!! 按 {1} 立即激活"
+
+
+	EID.descriptions[desclang].CaramellaFlyRicher = "!!! {{ColorRicher}}璃贝：苍蝇造成4倍玩家的伤害"
+	EID.descriptions[desclang].CaramellaFlyRira = "!!! {{ColorRira}}莉良: 苍蝇造成3倍玩家的伤害+潮湿状态"
+	EID.descriptions[desclang].CaramellaFlyCiel =
+	"!!! {{ColorCiel}}希耶尔: 苍蝇造成10倍艾萨克的伤害+爆炸伤害（不伤害玩家）"
+	EID.descriptions[desclang].CaramellaFlyKoron =
+	"!!! {{ColorKoron}}心月: 苍蝇造成4倍玩家的伤害+石化状态"
+
+	EID.descriptions[desclang].MaidDuetBlacklisted =
+	"!!! {{ColorRicher}}璃贝{{CR}} & {{ColorRira}}莉良{{CR}} 不能把这个放进口袋!"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
 end
