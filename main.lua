@@ -52,7 +52,6 @@ include('wakaba_src.debug_area')
 --include("wakaba_src.libs.filepathhelper")
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
-include("wakaba_src.datas.dictionary")
 include("wakaba_src.libs.retribution_utils")
 include('wakaba_src.libs.achievement_display_api')
 if not REPENTOGON then
