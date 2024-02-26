@@ -147,7 +147,9 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 	if isSlotSelected and wakaba:saveDataManagerInMenu() then
 		wakaba.Log("Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
 		wakaba:saveDataManagerLoad()
-		if wakaba.state.unlock.repentogon then return end
+		if wakaba.state.unlock.repentogon then
+			return
+		end
 		for _, playerType in pairs(wakaba.Enums.Players) do
 			if wakaba:has_value(wakaba.PlayersToCheckMarks, playerType) then
 				SyncRepentogonMarks(playerType)

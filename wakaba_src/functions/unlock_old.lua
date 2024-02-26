@@ -83,7 +83,6 @@ function wakaba:Effect_TaintedWakabaReady()
 									else
 										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedtsukasa)
 									end
-									wakaba:CheckWakabaChecklist()
 								elseif not wakaba.state.unlock.taintedricher and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.RICHER then
 									wakaba.state.unlock.taintedricher = true
 									if REPENTOGON then
@@ -91,7 +90,6 @@ function wakaba:Effect_TaintedWakabaReady()
 									else
 										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedricher)
 									end
-									wakaba:CheckWakabaChecklist()
 								else
 									for i = 0, wakaba.G:GetNumPlayers() - 1 do
 										Isaac.GetPlayer(i):AddCollectible(CollectibleType.COLLECTIBLE_INNER_CHILD)

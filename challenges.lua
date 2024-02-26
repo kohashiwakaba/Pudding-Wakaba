@@ -669,6 +669,7 @@ function wakaba:toDelirium(rng, spawnPosition)
 	local type1 = room:GetType()
 	if type1 == RoomType.ROOM_BOSS
 	and (wakaba:isDelirium() or wakaba:isHush()) then
+		wakaba.Log("Hush/Deli challenge check", wakaba:isDelirium(), wakaba:isHush(), stage)
 		if (stage == 9) then
 			if wakaba:isDelirium() then
 				local hasvoid = false
@@ -691,9 +692,11 @@ function wakaba:toDelirium(rng, spawnPosition)
 			else
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TROPHY, -1, room:GetCenterPos(), Vector(0,0), nil)
 			end
+			wakaba.Log("Hush challenge passed, skipping room clear")
 			return true
 		elseif stage == 9 or stage == 8 or (stage == 7 and (curse & LevelCurse.CURSE_OF_LABYRINTH == LevelCurse.CURSE_OF_LABYRINTH)) then
 			wakaba.G.BlueWombParTime = 2147483647
+			wakaba.Log("Hush door for Mom's Heart, skipping room clear")
 			return true
 		end
 	end

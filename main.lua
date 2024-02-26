@@ -1112,20 +1112,22 @@ function wakaba:activePapers()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.activePapers)
 
-function wakaba:PostUpdate_Global()
-	--wakaba.runstate.HIDDEN_ITEM_DATA = wakaba.HiddenItemManager:GetSaveData()
-	if activePendingPapers == true then
-		if #wakaba.state.pendingunlock > 0 then
-			for i = 1, #wakaba.state.pendingunlock do
-				CCO.AchievementDisplayAPI.PlayAchievement(wakaba.state.pendingunlock[i])
+if not REPENTOGON then
+	function wakaba:PostUpdate_Global()
+		--wakaba.runstate.HIDDEN_ITEM_DATA = wakaba.HiddenItemManager:GetSaveData()
+		if activePendingPapers == true then
+			if #wakaba.state.pendingunlock > 0 then
+				for i = 1, #wakaba.state.pendingunlock do
+					CCO.AchievementDisplayAPI.PlayAchievement(wakaba.state.pendingunlock[i])
+				end
+				wakaba.state.pendingunlock = {}
 			end
-			wakaba.state.pendingunlock = {}
+			activePendingPapers = false
 		end
-		activePendingPapers = false
-	end
 
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_Global)
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_Global)
 
 --Scripts
 --APIs, Wakaba's Blessing, Nemesis must be loaded first due to item usages

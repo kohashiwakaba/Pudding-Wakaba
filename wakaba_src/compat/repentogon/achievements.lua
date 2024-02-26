@@ -166,8 +166,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, function(_, saveslot, isS
 		lilmao = Isaac.GetAchievementIdByName("Lil Mao"),
 		richerflipper = Isaac.GetAchievementIdByName("Richer's Flipper"),
 		richernecklace = Isaac.GetAchievementIdByName("Richer's Necklace"),
-		crossbomb = Isaac.GetAchievementIdByName("Cross Bomb"),
-		goombella = Isaac.GetAchievementIdByName("Goombella"),
+		--crossbomb = Isaac.GetAchievementIdByName("Cross Bomb"),
+		--goombella = Isaac.GetAchievementIdByName("Goombella"),
 		edensticky = Isaac.GetAchievementIdByName("Eden's Sticky Note"),
 		doubledreams = Isaac.GetAchievementIdByName("Wakaba's Double Dreams"),
 

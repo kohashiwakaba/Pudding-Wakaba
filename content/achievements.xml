@@ -149,7 +149,7 @@
 	<!-- Challenge Unlocks -->
 	<achievement name="Eye of Clock" text='wakaba challenge w01' gfx="achievement_wakaba_eyeofclock.png" />
 	<achievement name="Plumy" text='wakaba challenge w02' gfx="achievement_wakaba_plumy.png" />
-	<!-- <achievement name="WWWWWW" text='wakaba challenge w03' gfx="achievement_wakaba_eyeofclock.png" /> -->
+	<achievement name="Wakaba Orgel" text='wakaba challenge w03' gfx="achievement_wakaba_wakabaorgel.png" />
 	<achievement name="Delimiter" text='wakaba challenge w04' gfx="achievement_wakaba_delimiter.png" />
 	<achievement name="Neko Figure" text='wakaba challenge w05' gfx="achievement_wakaba_nekofigure.png" />
 	<achievement name="Micro Doppelganger" text='wakaba challenge w06' gfx="achievement_wakaba_microdoppelganger.png" />
@@ -163,8 +163,8 @@
 	<achievement name="Lil Mao" text='wakaba challenge w14' gfx="achievement_wakaba_lilmao.png" />
 	<achievement name="Richer's Flipper" text='wakaba challenge w15' gfx="achievement_wakaba_richerflipper.png" />
 	<achievement name="Richer's Necklace" text='wakaba challenge w16' gfx="achievement_wakaba_richernecklace.png" />
-	<achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" />
-	<achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" />
+	<!-- <achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" /> -->
+	<!-- <achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" /> -->
 	<!-- Challenge Special -->
 	<achievement name="Eden's Sticky Note" text='wakaba challenge w98' gfx="achievement_wakaba_edensticky.png" />
 	<achievement name="Wakaba's Double Dreams" text='wakaba challenge w99' gfx="achievement_wakaba_doubledreams.png" />

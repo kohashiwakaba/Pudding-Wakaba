@@ -228,7 +228,7 @@ wakaba.UnlockTables = {
 	[-999] = {
 		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, BossID.MOM},
 		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() wakaba:TryPlayAchievementPaper("plumy", "Boss") end, BossID.HUSH},
-		--[wakaba.challenges.CHALLENGE_PULL] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("blank", "Boss") end, BossID.MOM},
+		--[wakaba.challenges.CHALLENGE_PULL] = {"wakabaorgel", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("blank", "Boss") end, BossID.MOM},
 		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() wakaba:TryPlayAchievementPaper("delimiter", "Boss") end, BossID.HEART},
 		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() wakaba:TryPlayAchievementPaper("nekofigure", "Boss") end, BossID.MOTHER},
 		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() wakaba:TryPlayAchievementPaper("microdoppelganger", "Boss") end, BossID.HUSH},
@@ -862,33 +862,19 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 and unlockTableEntry[5] == BossID.BEAST then
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
-					if shouldShowPopup then
-						if REPENTOGON then
-							local entryName = unlockTableEntry[1]
-							local achievementID = wakaba.RepentogonUnlocks[entryName]
-							if not persistentGameData:Unlocked(achievementID) then
-								wakaba.Log("Try Unlock", achievementID, "from")
-								persistentGameData:TryUnlock(achievementID)
-							end
-						else
-							unlockTableEntry[4]()
-						end
+					if REPENTOGON then
+						wakaba.state.unlock.repentogon = false
+					elseif shouldShowPopup then
+						unlockTableEntry[4]()
 					end
 				end
 			elseif type1 == RoomType.ROOM_BOSS and unlockTableEntry[5] == boss then
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
-					if shouldShowPopup then
-						if REPENTOGON then
-							local entryName = unlockTableEntry[1]
-							local achievementID = wakaba.RepentogonUnlocks[entryName]
-							if not persistentGameData:Unlocked(achievementID) then
-								wakaba.Log("Try Unlock", achievementID, "from")
-								persistentGameData:TryUnlock(achievementID)
-							end
-						else
-							unlockTableEntry[4]()
-						end
+					if REPENTOGON then
+						wakaba.state.unlock.repentogon = false
+					elseif shouldShowPopup then
+						unlockTableEntry[4]()
 					end
 				end
 			end
