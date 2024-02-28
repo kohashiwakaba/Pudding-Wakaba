@@ -147,6 +147,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#↓ {{ColorOrange}}피격 무적 시간이 제거됩니다."
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
+		.. "#!!! 헌혈류 4회 사용 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
 		.. "{{CR}}",
 		queueDesc = "무적 시간 제거 + 초고속 회복",
 	},

@@ -157,6 +157,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseUnknown}} 免疫未知诅咒"
 			.. "#↓ {{ColorOrange}}移除无敌帧"
 			.. "#在短时间内未受伤快速恢复任何类型生命值"
+			.. "#恢复4次减少一颗心"
 			.. "{{CR}}",
 		queueDesc = "辉夜魔药",
 	},

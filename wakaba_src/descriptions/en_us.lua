@@ -129,6 +129,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
 		.. "#↓ {{ColorOrange}}Removes invincibility frames"
 		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
+		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
