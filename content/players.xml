@@ -37,7 +37,7 @@
 	when your done remove this comment section :)
 !-->
 	<player name="Wakaba" costume="52"
-	hp="4" card="80" coins="5" birthright="True Pure girl"
+	hp="4" coins="5" birthright="True Pure girl"
 	portrait="WakabaPortrait.png"
 	nameimage="playername_wakaba.png"
 	skin="character_wakaba.png" skinColor="-1" costumeSuffix="wakaba"

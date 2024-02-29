@@ -7,7 +7,7 @@ local isChallengeContinue = true
 wakaba.ChallengeParams = {}
 wakaba.ChallengeParams.TargetCharacters = {}
 wakaba.ChallengeParams.CharacterInitFuncs = {
-	[wakaba.Enums.Players.WAKABA] = function(player)
+	[wakaba.Enums.Players.WAKABA] = function(player) ---@param player EntityPlayer
 		player:AddMaxHearts(4 - player:GetMaxHearts())
 	end,
 	[wakaba.Enums.Players.WAKABA_B] = function(player)
@@ -114,6 +114,7 @@ function wakaba:isDevilAngelAllowed()
 end
 
 function wakaba:NewLevel_Challenges()
+	local level = wakaba.G:GetLevel()
 	if not wakaba:isDevilAngelAllowed() then
 		level:DisableDevilRoom()
 	end
