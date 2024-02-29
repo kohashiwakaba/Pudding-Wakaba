@@ -69,7 +69,9 @@ wakaba:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, wakaba.Repentogon_GetP
 ---@param limit int
 ---@param isKeeper boolean
 function wakaba:Repentogon_HandleWakabaHealth(player, limit, isKeeper)
-	if player:GetData().wakaba and player:GetData().wakaba.shioriangel then
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
+		-- do nothing
+	elseif player:GetData().wakaba and player:GetData().wakaba.shioriangel then
 		return math.max(24, limit)
 	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		return math.min(8, limit)
@@ -79,6 +81,16 @@ function wakaba:Repentogon_HandleWakabaHealth(player, limit, isKeeper)
 end
 wakaba:RemoveCallback(ModCallbacks.MC_POST_UPDATE, wakaba.HandleWakabaHealth)
 wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, wakaba.Repentogon_HandleWakabaHealth, wakaba.Enums.Players.WAKABA)
+
+---@param player EntityPlayer
+---@param limit int
+---@param isKeeper boolean
+function wakaba:Repentogon_HandleWakabaHealthType(player)
+	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then
+		return HealthType.SOUL
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, wakaba.Repentogon_HandleWakabaHealthType, wakaba.Enums.Players.WAKABA)
 
 -- Remove Dead Cat callbacks
 wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
