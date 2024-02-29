@@ -27,8 +27,8 @@
 
 	<active id="999" description="Eternal Dreams..." gfx="doubledreams.png" chargetype="special" maxcharges="0" name="Wakaba's Double Dreams" tags="stars offensive nocantrip angel devil book" devilprice="2" quality="4" craftquality="-1"/>
 
-	<active description="Curse of Cinderella" gfx="wakabacurfew.png" chargetype="timed" maxcharges="900" name="Wakaba's 6'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
-	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" name="Wakaba's 9'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
+	<active description="Curse of Cinderella" gfx="wakabacurfew.png" chargetype="timed" maxcharges="900" initcharge="0" name="Wakaba's 6'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
+	<active description="Curse of Cinderella" gfx="wakabacurfew_b.png" chargetype="timed" maxcharges="900" initcharge="0" name="Wakaba's 9'o Clock Curfew" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 	<active description="Think before stick" gfx="edenstickynote.png" maxcharges="0" name="Eden's Sticky Note" tags="quest nocantrip noeden" hidden="true" quality="0" achievement="9999"/>
 
 	<active id="19" description="Re-Reroll your Destiny" gfx="d6plus.png" maxcharges="6" name="D6 Plus" devilprice="2" tags="offensive book nocantrip" quality="4" craftquality="-1"/>
@@ -115,7 +115,7 @@
 	<familiar id="83" description="I wanna this ear" gfx="lilricher.png" name="Lil Richer" devilprice="2" shopprice="20" tags="offensive baby uniquefamiliar" quality="4"/>
 	<familiar id="84" cache="damage" description="Ribbon for blushing" gfx="lilrira.png" name="Lil Rira" devilprice="2" tags="offensive baby uniquefamiliar" quality="3" />
 
-	<active id="85" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive" quality="1" persistent="true"/>
+	<active id="85" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" name="Self Burning" tags="offensive nocantrip" quality="1" persistent="true"/>
 
 	<active id="86" description="Richer-chan is tasty" gfx="waterflame.png" name="Water-Flame" maxcharges="6" quality="3" craftquality="4" tags="offensive nocantrip" />
 

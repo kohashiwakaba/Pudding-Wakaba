@@ -2,6 +2,12 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 local c = wakaba.challenges.CHALLENGE_RAND
 local randtainted = wakaba.runstate.randtainted
+wakaba.ChallengeParams.HyperRandomBlacklisted = {
+  [CollectibleType.COLLECTIBLE_GENESIS] = true,
+  [CollectibleType.COLLECTIBLE_DAMOCLES] = true,
+  [wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = true,
+  [wakaba.Enums.Collectibles.SELF_BURNING] = true,
+}
 
 ---@param player EntityPlayer
 function wakaba:Challenge_PlayerInit_EvenOrOdd(player)
@@ -56,13 +62,13 @@ end
 function wakaba:Challenge_PlayerInit_HyperRandom(player)
 	if wakaba.G.Challenge ~= c then return end
   player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
+  player:DischargeActiveItem(ActiveSlot.SLOT_POCKET)
   if player:GetPlayerType() == wakaba.Enums.Players.WAKABA or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B then return end
   if wakaba.G:GetFrameCount() == 0 then
-    Isaac.ExecuteCommand("restart " .. tp)
+    Isaac.ExecuteCommand("restart " .. wakaba.Enums.Players.WAKABA)
     return
   else
     player:ChangePlayerType(wakaba.Enums.Players.WAKABA)
-		player:DischargeActiveItem(ActiveSlot.SLOT_POCKET)
   end
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, -19999, wakaba.Challenge_PlayerInit_HyperRandom)
@@ -113,7 +119,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Challenge_Update_HyperRandom)
 
 function wakaba:Challenge_PostTakeDamage_HyperRandom(player, amount, flag, source, countdownFrames)
-	if wakaba.G.Challenge == Challenges.CHALLENGE_RAND then
+	if wakaba.G.Challenge == c then
 		if player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW and player:GetActiveItem() ~= wakaba.Enums.Collectibles.WAKABAS_CURFEW2 then
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.WAKABAS_CURFEW, ActiveSlot.SLOT_POCKET, true)
 		end
@@ -126,10 +132,10 @@ wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.Challenge_PostTakeDa
 
 function wakaba:PreUseItem_NoGenesis(item, rng, player, flag, slot, varData)
 	if wakaba.G.Challenge == c and player:GetActiveItem(slot) ~= item then
-		return true
+		if isc:collectibleHasTag(item, ItemConfig.TAG_NO_CANTRIP) or wakaba.ChallengeParams.HyperRandomBlacklisted[item] then
+      return true
+    end
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_GENESIS)
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, CollectibleType.COLLECTIBLE_DAMOCLES)
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.PreUseItem_NoGenesis)
