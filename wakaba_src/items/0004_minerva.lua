@@ -47,17 +47,19 @@ function wakaba:initAura(player)
 	aura.Timeout = 108000000
 	aura.LifeSpan = 108000000
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_BIKE then
-		local entities = Isaac.FindByType(EntityType.ENTITY_DARK_ESAU, 0, -1, false, false)
-		if #entities > 0 and wakaba.G:GetLevel():GetCurrentRoomIndex() ~= wakaba.G:GetLevel():GetStartingRoomIndex() then
-			for i, e in ipairs(entities) do
-				aura.Parent = e
-				aura.Position = e.Position
-				aura:FollowParent(e)
+		wakaba:scheduleForUpdate(function ()
+			local entities = Isaac.FindByType(EntityType.ENTITY_DARK_ESAU, 0, -1, false, false)
+			if #entities > 0 and wakaba.G:GetLevel():GetCurrentRoomIndex() ~= wakaba.G:GetLevel():GetStartingRoomIndex() then
+				for i, e in ipairs(entities) do
+					aura.Parent = e
+					aura.Position = e.Position
+					aura:FollowParent(e)
+				end
+			else
+				aura:FollowParent(player)
+				aura.Parent = player
 			end
-		else
-			aura:FollowParent(player)
-			aura.Parent = player
-		end
+		end, 1)
 	else
 		aura:FollowParent(player)
 		aura.Parent = player

@@ -1368,7 +1368,8 @@ include('wakaba_src.functions.fireclub')
 include('wakaba_src.functions.take_damage_npc')
 include('wakaba_src.functions.important_stats')
 
-include('challenges')
+--include('challenges')
+include('wakaba_src.challenges.core')
 include('wakaba_src.curses')
 
 include('wakaba_src.descriptions.en_us')
