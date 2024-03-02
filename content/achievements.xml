@@ -127,20 +127,20 @@
 	<!-- Richer Tarnished Unlocks -->
 
 	<!-- Rira Unlocks -->
-	<achievement name="Black Bean Mochi" text='' gfx="achievement_wakaba_blackbeanmochi.png" />
-	<achievement name="Nerf Gun" text='' gfx="achievement_wakaba_nerfgun.png" />
-	<achievement name="Sakura Mont Blanc" text='' gfx="achievement_wakaba_sakuramontblanc.png" />
-	<achievement name="Rira's Swimsuit" text='' gfx="achievement_wakaba_riraswimsuit.png" />
-	<achievement name="Chewy Rolly Cake" text='' gfx="achievement_wakaba_chewyrollycake.png" />
-	<achievement name="Caramella Pancake" text='' gfx="achievement_wakaba_caramellapancake.png" />
-	<achievement name="Rira's Uniform" text='' gfx="achievement_wakaba_rirauniform.png" />
-	<achievement name="Rira's Bandage" text='' gfx="achievement_wakaba_rirabandage.png" />
-	<achievement name="Rira's Bento" text='' gfx="achievement_wakaba_rirabento.png" />
-	<achievement name="Sakura Capsule" text='' gfx="achievement_wakaba_sakuracapsule.png" />
-	<achievement name="Maid Duet" text='' gfx="achievement_wakaba_maidduet.png" />
-	<achievement name="Rabbit Pillow" text='' gfx="achievement_wakaba_rabbitpillow.png" />
-	<achievement name="Lil Rira" text='' gfx="achievement_wakaba_lilrira.png" />
-	<achievement name="Chimaki" text='' gfx="achievement_wakaba_chimaki.png" />
+	<achievement name="Black Bean Mochi" text='' gfx="wa_rira_blackbeanmochi.png" gfxback="wabg_rira.png" />
+	<achievement name="Nerf Gun" text='' gfx="wa_rira_nerfgun.png" gfxback="wabg_rira.png" />
+	<achievement name="Sakura Mont Blanc" text='' gfx="wa_rira_sakuramontblanc.png" gfxback="wabg_rira.png" />
+	<achievement name="Rira's Swimsuit" text='' gfx="wa_rira_riraswimsuit.png" gfxback="wabg_rira.png" />
+	<achievement name="Chewy Rolly Cake" text='' gfx="wa_rira_chewyrollycake.png" gfxback="wabg_rira.png" />
+	<achievement name="Caramella Pancake" text='' gfx="wa_rira_caramellapancake.png" gfxback="wabg_rira.png" />
+	<achievement name="Rira's Uniform" text='' gfx="wa_rira_rirauniform.png" gfxback="wabg_rira.png" />
+	<achievement name="Rira's Bandage" text='' gfx="wa_rira_rirabandage.png" gfxback="wabg_rira.png" />
+	<achievement name="Rira's Bento" text='' gfx="wa_rira_rirabento.png" gfxback="wabg_rira.png" />
+	<achievement name="Sakura Capsule" text='' gfx="wa_rira_sakuracapsule.png" gfxback="wabg_rira.png" />
+	<achievement name="Maid Duet" text='' gfx="wa_rira_maidduet.png" gfxback="wabg_rira.png" />
+	<achievement name="Rabbit Pillow" text='' gfx="wa_rira_rabbitpillow.png" gfxback="wabg_rira.png" />
+	<achievement name="Lil Rira" text='' gfx="wa_rira_lilrira.png" gfxback="wabg_rira.png" />
+	<achievement name="Chimaki" text='' gfx="wa_rira_chimaki.png" gfxback="wabg_rira_chimaki.png" />
 
 	<!-- Rira Tainted Unlocks -->
 
@@ -149,7 +149,7 @@
 	<!-- Challenge Unlocks -->
 	<achievement name="Eye of Clock" text='wakaba challenge w01' gfx="achievement_wakaba_eyeofclock.png" />
 	<achievement name="Plumy" text='wakaba challenge w02' gfx="achievement_wakaba_plumy.png" />
-	<achievement name="Wakaba Orgel" text='wakaba challenge w03' gfx="achievement_wakaba_wakabaorgel.png" />
+	<achievement name="Wakaba Orgel" text='wakaba challenge w03' gfx="achievement_wakaba_wakabaorgel.png" hidden="true" />
 	<achievement name="Delimiter" text='wakaba challenge w04' gfx="achievement_wakaba_delimiter.png" />
 	<achievement name="Neko Figure" text='wakaba challenge w05' gfx="achievement_wakaba_nekofigure.png" />
 	<achievement name="Micro Doppelganger" text='wakaba challenge w06' gfx="achievement_wakaba_microdoppelganger.png" />
@@ -163,8 +163,8 @@
 	<achievement name="Lil Mao" text='wakaba challenge w14' gfx="achievement_wakaba_lilmao.png" />
 	<achievement name="Richer's Flipper" text='wakaba challenge w15' gfx="achievement_wakaba_richerflipper.png" />
 	<achievement name="Richer's Necklace" text='wakaba challenge w16' gfx="achievement_wakaba_richernecklace.png" />
-	<!-- <achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" /> -->
-	<!-- <achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" /> -->
+	<achievement name="Cross Bomb" text='wakaba challenge w17' gfx="achievement_wakaba_crossbomb.png" hidden="true" />
+	<achievement name="Goombella" text='wakaba challenge w18' gfx="achievement_wakaba_goombella.png" hidden="true" />
 	<!-- Challenge Special -->
 	<achievement name="Eden's Sticky Note" text='wakaba challenge w98' gfx="achievement_wakaba_edensticky.png" />
 	<achievement name="Wakaba's Double Dreams" text='wakaba challenge w99' gfx="achievement_wakaba_doubledreams.png" />

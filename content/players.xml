@@ -100,7 +100,6 @@
 	extraportrait="RiraPortraitExtra.anm2"
 	nameimage="playername_rira.png"
 	skin="character_rira.png" skinColor="-1" costumeSuffix="rira"
-	nomarks="true"
 	/>
 	
 	<player name="RiraB" bSkinParent="Rira" hidden="true"

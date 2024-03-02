@@ -1024,12 +1024,13 @@ local function postTakeDamage(_, entity, amount, flags, source, cooldown)
 	Isaac.RunCallback(wakaba.Callback.POST_TAKE_DAMAGE, entity:ToPlayer(), amount, flags, source, cooldown)
 
 	if didModifyDamage then
+		local player = entity:ToPlayer()
 		if wakaba:IsDamageSacrificeSpikes(flags, source) then
 			local grid = game:GetRoom():GetGridEntityFromPos(entity.Position)
 			wakaba:GrantNextSacrificePayout(grid)
 		end
 
-		if wakaba:IsDamageSanguineSpikes(player, flags, source) then
+		if player and wakaba:IsDamageSanguineSpikes(player, flags, source) then
 			wakaba:GrantSanguineBondPayout(player)
 		end
 	end
