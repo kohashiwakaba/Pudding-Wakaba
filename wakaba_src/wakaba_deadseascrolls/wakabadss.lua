@@ -124,12 +124,12 @@ local wakabadirectory = {
 			-- "buttons" is a list of objects that will be displayed on this page. The meat of the menu!
 			buttons = {
 					-- The simplest button has just a "str" tag, which just displays a line of text.
-					
+
 					-- The "action" tag can do one of three pre-defined actions:
 					--- "resume" closes the menu, like the resume game button on the pause menu. Generally a good idea to have a button for this on your main page!
 					--- "back" backs out to the previous menu item, as if you had sent the menu back input
 					--- "openmenu" opens a different dss menu, using the "menu" tag of the button as the name
-					{str = 'resume', action = 'resume'},
+					{str = 'resume', action = 'resume', tooltip = dssmod.menuOpenToolTip},
 
 					-- The "dest" option, if specified, means that pressing the button will send you to that page of your menu.
 					-- If using the "openmenu" action, "dest" will pick which item of that menu you are sent to.
@@ -150,12 +150,21 @@ local wakabadirectory = {
 
 					-- Text font size can be modified with the "fsize" tag. There are three font sizes, 1, 2, and 3, with 1 being the smallest and 3 being the largest.
 					--[[ {str = 'look at the little text!', fsize = 2, nosel = true} ]]
+
+					{
+						str = "full unlock enabled",
+						nosel = true,
+						fsize = 1,
+						displayif = function ()
+							return wakaba.state.options.allowlockeditems
+						end,
+					},
 			},
 
 			-- A tooltip can be set either on an item or a button, and will display in the corner of the menu while a button is selected or the item is visible with no tooltip selected from a button.
 			-- The object returned from DSSInitializerFunction contains a default tooltip that describes how to open the menu, at "menuOpenToolTip"
 			-- It's generally a good idea to use that one as a default!
-			tooltip = dssmod.menuOpenToolTip
+			--[[ tooltip = dssmod.menuOpenToolTip ]]
 	},
 	settings = {
 		title = 'wakaba settings',
@@ -192,6 +201,7 @@ local wakabadirectory = {
 	general = {
 		title = 'general settings',
 		buttons = {
+			-- allow locked items
 			{
 				str = 'allow locked items',
 				choices = {'true', 'false'},
@@ -209,6 +219,7 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'change this', 'to enable or', 'disable all', 'unlocks.', "we'll still", 'keep track', 'for you!'}}
 			},
+			-- charge bar align
 			{
 				str = 'charge bar align',
 				choices = {'left', 'right'},
@@ -226,6 +237,7 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'change', 'direction', 'for', 'charge bar', 'numbers'}}
 			},
+			-- hud alpha
 			{
 				str = 'hud alpha',
 				min = 0,
@@ -248,6 +260,7 @@ local wakabadirectory = {
 					nosel = true,
 					glowcolor = 3
 			},
+			-- instant vintage
 			{
 				str = 'instant vintage',
 				-- A keybind option lets you bind a key!
@@ -264,6 +277,7 @@ local wakabadirectory = {
 				tooltip = {strset = {'press to','activate','vintage','threat','immediately','default = 9'}},
 			},
 			{str = '', fsize = 1, nosel = true},
+			-- stackable mantle
 			{
 					str = '-stackable mantle-',
 					nosel = true,
@@ -290,7 +304,7 @@ local wakabadirectory = {
 					wakaba.state.options.stackablemantle = var
 				end,
 				changefunc = function(button, item)
-					--[[ 
+					--[[
 					if button.setting == -1 then
 					elseif button.setting == 0 then
 					else
@@ -347,6 +361,7 @@ local wakabadirectory = {
 				tooltip = {strset = {"max stacks","for wakaba's ","blessing","shield ","when total","hearts are","1 or less"}},
 			},
 			{str = '', fsize = 1, nosel = true},
+			-- blanket settings
 			{
 					str = '- blanket -',
 					nosel = true,
@@ -388,6 +403,7 @@ local wakabadirectory = {
 				tooltip = {strset = {'activate','blanket','shield on','beast fight'}}
 			},
 			{str = '', fsize = 1, nosel = true},
+			-- dead wisp notif
 			{
 				str = 'dead wisp notif',
 				choices = {'true', 'false'},
@@ -407,6 +423,7 @@ local wakabadirectory = {
 			},
 			--{str = 'Elixir of Life, and Mystic Crystal', fsize = 3, nosel = true},
 			{str = '', fsize = 1, nosel = true},
+			-- inventory descriptions
 			{
 					str = '- inventory desc. -',
 					nosel = true,
@@ -606,28 +623,6 @@ local wakabadirectory = {
 		title = 'characters',
 		buttons = {
 
-			-- Richer starts Sweets Catalog : POCKET/normal
-			{
-				str = 'catalog for richer',
-				choices = {'pocket', 'normal'},
-				setting = 1,
-				variable = 'RicherSweetsCatalog',
-				load = function()
-					if wakaba.state.options.richersweetscatalog then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.richersweetscatalog = (var == 1)
-				end,
-				displayif = function(btn, item, tbl)
-					return wakaba.state.unlock.sweetscatalog
-				end,
-				tooltip = {strset = {'richer','starts with',"sweets",'catalog'}}
-			},
-			
 			-- T.Lost starts Wakaba's Uniform : TRUE/false
 			{
 				str = 'uniform for t.lost',
@@ -673,14 +668,25 @@ local wakabadirectory = {
 
 			---------------------------------------------------------------------------
 			-------------------------------Wakaba Settings-----------------------------
-			--[[
 			{str = '', fsize = 1, nosel = true},
 			{
 					str = 'wakaba',
 					nosel = true
 			},
 			{str = '', fsize = 2, nosel = true},
-			]]
+			{
+				str = 'clover chest chance',
+				min = 0,
+				max = 100,
+				increment = 0.5,
+				suf = '%',
+				setting = 0,
+				variable = "CloverChestChance",
+				load = function() return wakaba.state.options.cloverchestchance or wakaba.optiondefaults.cloverchestchance end,
+				store = function(var) wakaba.state.options.cloverchestchance = var end,
+				displayif = function(btn, item, tbl) return wakaba:IsEntryUnlocked("cloverchest") end,
+				tooltip = {strset = {'chance for', 'spawn', 'clover chest', 'set 0 to', 'disable'}},
+			},
 
 			-- Minimum quality for Wakaba's Blessing : 0(Disable)/1/2
 			-- Maximum quality for Wakaba's Nemesis : 2/3/4(Disable)
@@ -698,7 +704,7 @@ local wakabadirectory = {
 			},
 			{str = '', fsize = 2, nosel = true},
 
-			
+
 			{
 				str = 'modes',
 				choices = wakaba.shiorimodestringsdss,
@@ -798,7 +804,20 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'maximum','quality for','books','','default = 4'}},
 			},
-			
+			{
+				str = 'shiori valut chance',
+				min = 0,
+				max = 100,
+				increment = 0.5,
+				suf = '%',
+				setting = 0,
+				variable = "ShioriValutChance",
+				load = function() return wakaba.state.options.valutchance or wakaba.optiondefaults.valutchance end,
+				store = function(var) wakaba.state.options.valutchance = var end,
+				displayif = function(btn, item, tbl) return wakaba:IsEntryUnlocked("shiorivalut") end,
+				tooltip = {strset = {'chance for', 'spawn', 'shiori valut', 'set 0 to', 'disable'}},
+			},
+
 			---------------------------------------------------------------------------
 			-----------------------------	Tsukasa Settings	---------------------------
 			{str = '', fsize = 1, nosel = true},
@@ -841,6 +860,42 @@ local wakabadirectory = {
 					wakaba.state.options.lunarpercent = (var == 1)
 				end,
 				tooltip = {strset = {'show','percent','for','lunar stone'}}
+			},
+			{
+				str = 'easter egg chance',
+				min = 0,
+				max = 100,
+				increment = 0.5,
+				suf = '%',
+				setting = 0,
+				variable = "EasterEggChance",
+				load = function() return wakaba.state.options.eastereggchance or wakaba.optiondefaults.eastereggchance end,
+				store = function(var) wakaba.state.options.eastereggchance = var end,
+				displayif = function(btn, item, tbl) return wakaba:IsEntryUnlocked("easteregg") end,
+				tooltip = {strset = {'chance for', 'spawn', 'easter egg', 'set 0 to', 'disable'}},
+			},
+
+			---------------------------------------------------------------------------
+			-----------------------------	richer Settings	---------------------------
+			{str = '', fsize = 1, nosel = true},
+			{
+					str = '- richer -',
+					nosel = true,
+					glowcolor = 3
+			},
+			{str = '', fsize = 2, nosel = true},
+			{
+				str = 'crystal restock chance',
+				min = 0,
+				max = 100,
+				increment = 0.5,
+				suf = '%',
+				setting = 0,
+				variable = "CrystalRestockChance",
+				load = function() return wakaba.state.options.crystalrestockchance or wakaba.optiondefaults.crystalrestockchance end,
+				store = function(var) wakaba.state.options.crystalrestockchance = var end,
+				displayif = function(btn, item, tbl) return wakaba:IsEntryUnlocked("crystalrestock") end,
+				tooltip = {strset = {'chance for', 'spawn', 'crystal restock', 'set 0 to', 'disable'}},
 			},
 
 			---------------------------------------------------------------------------
@@ -1015,7 +1070,7 @@ local wakabadirectory = {
 			{str = "full sets of unlocks", nosel = true},
 			{str = "", nosel = true},
 			{str = "this is an optional feature", nosel = true},
-			
+
 			{str = "", nosel = true},
 			{str = "do you want to lock", fsize = 2, nosel = true},
 			{str = "some items behind", fsize = 2, nosel = true},
@@ -1436,7 +1491,7 @@ local tempFont
 		end
 	end
 end) ]]
---[[ 
+--[[
 
 
 	settings = {
@@ -1475,7 +1530,7 @@ end) ]]
 
 							-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
 							variable = 'ExampleChoiceOption',
-							
+
 							-- When the menu is opened, "load" will be called on all settings-buttons
 							-- The "load" function for a button should return what its current setting should be
 							-- This generally means looking at your mod's save data, and returning whatever setting you have stored
@@ -1506,7 +1561,7 @@ end) ]]
 
 							-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
 							variable = 'ExampleSliderOption',
-							
+
 							-- These functions work just like in the choice option!
 							load = function()
 									return wakaba.state.options.exampleslider or 1

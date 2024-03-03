@@ -1,8 +1,9 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+local easterEggChance = wakaba.state.options.eastereggchance
 
 function wakaba:CoinInit_AuroraGem(pickup)
-  if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.easteregg < 1 then return end
+  if not wakaba:IsEntryUnlocked("easteregg") then return end
 	if pickup.SubType ~= 1 then return end
   local seed = pickup.InitSeed
 
@@ -10,7 +11,7 @@ function wakaba:CoinInit_AuroraGem(pickup)
   rng:SetSeed(seed, 35)
   local randInt = rng:RandomFloat() * 100
 
-  local canTurn = wakaba:Roll(rng, 0, 2, 0)
+  local canTurn = wakaba:Roll(rng, 0, easterEggChance, 0)
 
   if not wakaba.G:IsGreedMode() and canTurn then
     pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)

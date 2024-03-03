@@ -1,0 +1,122 @@
+
+---@class WakabaOptions
+local config = {
+	allowlockeditems = true,
+	balancemode = wakaba.Enums.BalanceModes.WAKABA,
+
+	kud_wafu = false,
+	fortunereplacechance = 10,
+
+	-- Reroll function threshold. Change this value if getting items are too laggy.
+	rerolltreasurethreshold = 120,
+	rerollbreakfastthreshold = 160,
+
+	-- HUD for Pudding and Wakaba items options
+	uniformalpha = 20,
+	uniformscale = 100,
+
+	-- Starting items control options
+	richersweetscatalog = true,
+	lostuniform = true,
+	edensticky = true,
+
+	-- Costume Protector
+	cp_wakaba = true,
+
+	-- Wakaba options
+	cloverchestchance = 5,
+	taintedcloverchestchance = 5,
+
+	-- Shiori options
+	shiorimodes = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
+	shioridreams = false,
+	shiorikeychance = 50,
+	shioribombchance = 50,
+	shioriakasicbooks = 3,
+	shioriakasicminquality = 0,
+	shioriakasicmaxquality = 4,
+	vintagetriggerkey = Keyboard.KEY_9,
+
+	valutchance = 10,
+
+	-- Tsukasa options
+	concentrationkeyboard = Keyboard.KEY_LEFT_CONTROL,
+	concentrationcontroller = (Controller and Controller.BUMPER_RIGHT) or ButtonAction.ACTION_DROP,
+	lunarpercent = true,
+	leftchargebardigits = true,
+
+	eastereggchance = 2,
+
+	-- Richer options
+	lilricherautocharge = true,
+	lilrichertriggerkey = Keyboard.KEY_5,
+
+	crystalrestockchance = 10,
+
+	-- Rira options
+	chimakisound = true,
+	maidtriggerkey = Keyboard.KEY_7,
+	lilriraautosteal = true,
+	lilriratriggerkey = Keyboard.KEY_6,
+
+	-- Wakaba Duality options
+	blessnemesisindexed = false,
+	blessnemesisqualityignore = false,
+	startingroomindexed = false,
+	firsttreasureroomindexed = false,
+
+	-- Curse of Flames options
+	flamesoverride = false,
+	flamescurserate = 0,
+
+	-- Curse of Vampire options
+	--flamesoverride = false,
+	--flamescurserate = 0,
+
+	--[[
+	Stackable Holy Mantle options
+	-1 : Disabled
+	 0 : Infinite
+	 any number beyond 0 : maximum number of stack
+	 ]]
+	stackablemantle = 0,
+	stackableblanket = 0,
+	stackableblessing = 0,
+	stackableholycard = 5,
+
+	-- Dogma/Beast Blanket options
+	dogmablanket = true,
+	beastblanket = true,
+	rotgutblanket = true,
+
+	-- Dead Wisp Notification options
+	deadwispnotif = false,
+	deadwispnotifsound = false,
+
+	-- Inventory Descriptions options
+	listoffset = 200,
+	listkey = Keyboard.KEY_F5,
+	idleicon = 0,
+	selicon = 17,
+	lemegetonicon = 18,
+	q0icon = 20,
+	q1icon = 21,
+	q2icon = 22,
+	q3icon = 23,
+	q4icon = 24,
+	invplayerinfos = true,
+	invcurses = true,
+	invcollectibles = true,
+	invactives = true,
+	invtrinkets = true,
+	invpocketitems = true,
+
+	-- Found HUD options
+	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
+	hudroomnumber = 1, -- room no - 0: false, 1: no. only, 2:detailed
+	hudroomname = 1, -- room name - 0: false, 1: name scroll, 2: full name, 3:detailed
+	hudroomdiff = 1, -- room difficulty - 0: false, 1: diff only, 2:detailed
+	hudroomweight = 1, -- room weight - 0: false, 1: weight only, 2:detailed
+
+}
+return config
