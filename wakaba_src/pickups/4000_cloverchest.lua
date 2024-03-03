@@ -82,7 +82,7 @@ function wakaba:ReplaceChests(pickup)
 		wakaba.ItemRNG:SetSeed(pickup.DropSeed, 0)
 		if wakaba:IsEntryUnlocked("cloverchest")
 		and stage ~= LevelStage.STAGE6
-		and wakaba.ItemRNG:RandomFloat() < wakaba.state.options.cloverchestchance
+		and wakaba.ItemRNG:RandomFloat() * 100 < wakaba.state.options.cloverchestchance
 		and wakaba.G:GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
 			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end

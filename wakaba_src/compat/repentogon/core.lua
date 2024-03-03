@@ -61,7 +61,7 @@ function wakaba:Repentogon_GetPriority(familiar)
 		return wakaba.FamiliarPriority[familiar.Variant]
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, wakaba.Repentogon_GetPriority)
+--wakaba:AddCallback(ModCallbacks.MC_GET_FOLLOWER_PRIORITY, wakaba.Repentogon_GetPriority)
 
 
 ---Wakaba health limitation

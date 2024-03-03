@@ -2,7 +2,7 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 local c = wakaba.challenges.CHALLENGE_MINE
 
-if not REPENTOGON then
+if true then -- TODO change to not REPENTOGON if finished
 	function wakaba:Challenge_PlayerUpdate_MineStuff(player)
 		if wakaba.G.Challenge ~= c then return end
 		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) ~= CollectibleType.COLLECTIBLE_NOTCHED_AXE then
