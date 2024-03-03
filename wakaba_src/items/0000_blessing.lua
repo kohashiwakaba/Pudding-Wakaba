@@ -171,11 +171,15 @@ function wakaba:PlayerUpdate_Nemesis(player)
 			player:EvaluateItems()
 		end
 	end
-	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and player:GetData().wakaba.blessmantlenum and player:GetData().wakaba.blessmantlenum > 0 then
-		for i = 1, player:GetData().wakaba.blessmantlenum do
-			player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
+	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and player:GetData().wakaba.tryactivateblessmantle then
+
+		if player:GetHearts() + player:GetSoulHearts() <= 2 then
+			for i = 1, wakaba:GetBlessNum(player) do
+				player:UseActiveItem(CollectibleType.COLLECTIBLE_HOLY_MANTLE, UseFlag.USE_NOANIM | UseFlag.USE_OWNED | UseFlag.USE_NOANNOUNCER)
+			end
+			player:GetData().wakaba.blessmantle = true
 		end
-		player:GetData().wakaba.blessmantlenum = nil
+		player:GetData().wakaba.tryactivateblessmantle = nil
 	end
 
 
@@ -367,7 +371,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 		player:GetData().wakaba.blessmantle = nil
 		if wakaba:HasBless(player) then
 			bless = true
-			if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= 2 then
+			if player:GetHearts() + player:GetSoulHearts() <= 2 then
+				player:GetData().wakaba.blessmantle = true
 				--print("Holy Mantle for Wakaba's Blessing activated")
 				if wakaba.G:GetRoom():GetType() == RoomType.ROOM_BOSS and StageAPI and not wakaba.G:GetRoom():IsClear() then
 					player:GetData().wakaba.pendingblessmantle = wakaba:GetBlessNum(player)
@@ -494,10 +499,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.blessnemesis)
 
 function wakaba:PostTakeDamage_BlessNemesis(player, amount, flag, source, countdownFrames)
 	if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B and wakaba:HasBless(player) and not player:GetData().wakaba.blessmantle then
-		if player:GetHearts() + player:GetSoulHearts() + player:GetBoneHearts() - player:GetRottenHearts() <= (1 + amount) then
-			player:GetData().wakaba.blessmantlenum = wakaba:GetBlessNum(player)
-			player:GetData().wakaba.blessmantle = true
-		end
+		player:GetData().wakaba.tryactivateblessmantle = true
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_BlessNemesis)
