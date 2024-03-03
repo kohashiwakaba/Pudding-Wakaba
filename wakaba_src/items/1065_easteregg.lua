@@ -178,7 +178,7 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 		d.animpre = "FloatShoot"
 		d.cooldown = familiar.FrameCount + newcooldown
 		s.FlipX = dir == Direction.LEFT
-		wakaba:ShootEasterEggTear(familiar.Position, dirToVec[dir]:Resized(11), familiar, damage + 2.5)
+		wakaba:ShootEasterEggTear(familiar.Position, dirToVec[dir]:Resized(11), familiar, damage)
 	end
 
 	if d.animpre == "Float" then
