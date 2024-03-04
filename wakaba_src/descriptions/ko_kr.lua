@@ -1009,7 +1009,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
-		queueDesc = "이거, 살짝 야릇할지도...?",
+		queueDesc = "이거, 살짝 부끄러울지도...?",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "리라의 반창고",
@@ -1027,7 +1027,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
-		queueDesc = "리라의 추억은 누군가에겐 악몽",
+		queueDesc = "페로몬에 젖어",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "카나에 렌즈",
