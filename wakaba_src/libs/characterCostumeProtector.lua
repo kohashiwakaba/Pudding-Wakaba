@@ -1150,7 +1150,7 @@ function ccp:init(mod)
 
 	if REPENTANCE then
 		mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, ccp.astralProjectionOnHit, EntityType.ENTITY_PLAYER)
-		mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, ccp.restoreCostumeInMineshaft, 0)
+		--mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, ccp.restoreCostumeInMineshaft, 0)
 	end
 end
 
