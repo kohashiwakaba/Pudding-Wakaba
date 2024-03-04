@@ -228,6 +228,19 @@ Encyclopedia.AddTrinket({
 --#endregion
 
 --#region Rira defaults
+--Secret Door
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.SECRET_DOOR,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SECRET_DOOR,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_BEGGAR,
+	},
+})
 --Rira's Bra
 Encyclopedia.AddItem({
 	Class = class,
@@ -291,6 +304,7 @@ Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = wakaba.Enums.Collectibles.RIRAS_COAT,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_COAT,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
@@ -389,6 +403,36 @@ Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = wakaba.Enums.Collectibles.BOOK_OF_SHIORI_ROOM,
+	Hide = true,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = Isaac.GetItemIdByName("Candy of Richer"),
+	Hide = true,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = Isaac.GetItemIdByName("Candy of Rira"),
+	Hide = true,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = Isaac.GetItemIdByName("Candy of Ciel"),
+	Hide = true,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = Isaac.GetItemIdByName("Candy of Koron"),
+	Hide = true,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = Isaac.GetItemIdByName("Caramella Candy Bag"),
 	Hide = true,
 })
 -- Broken Toolbox

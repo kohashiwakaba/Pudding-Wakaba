@@ -79,6 +79,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
+	Hide = true,
 })
 -- Richer / Isaac : Premium Catalog
 Encyclopedia.AddItem({
