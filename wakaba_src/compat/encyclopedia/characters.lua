@@ -309,7 +309,7 @@ if Encyclopedia then
 				--{str = "Make some paid items for free sometimes"},
 				{str = "Converts Troll Bombs"},
 				{str = "Opens Mega Chest quickly"},
-				{str = "Opens Challenge room doors"},
+				-- {str = "Opens Challenge room doors"},
 				{str = "Commands all blue flies for attack"},
 				{str = "Jump towards enemies with Holy Light lasers"},
 				{str = "Shoot tears"},
@@ -319,12 +319,29 @@ if Encyclopedia then
 			},
 			{ -- Birthright
 				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-					--{str = "Richer gets her sweets catalog on her pocket slot."},
-				{str = "Always shoot aqua tears"},
+				{str = "Chimaki shoots rainbow lasers instead of tears."},
+				{str = "Weakness from Nerf Gun lasts longer."},
 			},
 			{ -- Notes
 				{str = "Notes", fsize = 2, clr = 3, halign = 0},
 				{str = "Chimaki effect for Rira is intrinsic to the character, and it can't be rerolled."},
+			},
+			{ -- Unlockables
+				{str = "Unlockables", fsize = 2, clr = 3, halign = 0},
+				{str = "- Black Bean Mochi : Defeat Mom's Heart as Rira on Hard Mode"},
+				{str = "- Nerf Gun : Defeat Isaac as Rira"},
+				{str = "- Rira's Swimsuit : Defeat Satan as Rira"},
+				{str = "- Sakura Mont Blanc : Defeat ??? as Rira"},
+				{str = "- Chewy Rolly Cake : Defeat The Lamb as Rira"},
+				{str = "- Rira's Bento : Defeat Mega Satan as Rira"},
+				{str = "- Caramella Pancake : Defeat Boss Rush as Rira"},
+				{str = "- Rira's Uniform : Defeat Hush as Rira"},
+				{str = "- Rabbit Pillow : Defeat Ultra Greed as Rira"},
+				{str = "- Lil Rira : Defeat Ultra Greedier as Rira"},
+				{str = "- Rira's Bandage : Defeat Delirium as Rira"},
+				{str = "- Sakura Capsule : Defeat Mother as Rira"},
+				{str = "- Maid Duet : Defeat The Beast as Rira"},
+				{str = "- Chimaki : Earn all 12 completion Marks on Hard Mode as Rira"},
 			},
 			{ -- Trivia
 				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -625,7 +642,7 @@ if Encyclopedia then
 			Name = "Rira",
 			Description = "The Curity",
 			Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraits.anm2", "Rira", 0),
-			--CompletionTrackerFuncs = { function() return wakaba:GetEncyPaper(wakaba.Enums.Players.RIRA) end },
+			CompletionTrackerFuncs = { function() return wakaba:GetEncyPaper(wakaba.Enums.Players.RIRA) end },
 		},
 		[wakaba.Enums.Players.WAKABA_B] = {
 			Tainted = true,
@@ -732,7 +749,7 @@ if Encyclopedia then
 				Sprite = desc.Sprite,
 				CompletionTrackerFuncs = desc.CompletionTrackerFuncs,
 				UnlockFunc = desc.UnlockFunc,
-				WikiDesc = wikiTainted[Name],
+				WikiDesc = wikiTainted[desc.Name],
 			})
 		elseif desc and desc.Tarnished then
 			Encyclopedia.AddCharacterTainted({
@@ -757,7 +774,7 @@ if Encyclopedia then
 				Description = desc.Description,
 				Sprite = desc.Sprite,
 				CompletionTrackerFuncs = desc.CompletionTrackerFuncs,
-				WikiDesc = wiki[Name],
+				WikiDesc = wiki[desc.Name],
 			})
 		end
 	end

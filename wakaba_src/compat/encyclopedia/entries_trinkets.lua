@@ -213,7 +213,12 @@ wakaba.encyclopediadesc.desc.trinkets = {
 			{str = "All pickups no longer have time limit."},
 		},
 	},
-	--[t.RABBIT_PILLOW] = {},
+	[t.RABBIT_PILLOW] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Allows to use donation mechanics while in White fire state."},
+		},
+	},
 	--[t.CANDY_OF_RICHER] = {},
 	--[t.CANDY_OF_RIRA] = {},
 	--[t.CANDY_OF_CIEL] = {},

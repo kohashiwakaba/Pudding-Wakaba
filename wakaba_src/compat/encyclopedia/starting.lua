@@ -404,13 +404,11 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_SHOP,
-		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_BABY_SHOP,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("chimaki") and not wakaba:GameHasPlayerType(wakaba.Enums.Players.RIRA) then
-			--self.Desc = "Earn all 12 completion marks on Hard mode as Rira"
-			self.Desc = "Only available for Rira"
+			self.Desc = "Earn all 12 completion marks on Hard mode as Rira"
 			return self
 		end
 	end,
@@ -422,15 +420,13 @@ Encyclopedia.AddItem({
 	ID = wakaba.Enums.Collectibles.NERF_GUN,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.NERF_GUN,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_SHOP,
-		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.WOODEN_CHEST,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("nerfgun") and not wakaba:GameHasPlayerType(wakaba.Enums.Players.RIRA) then
-			--self.Desc = "Earn all 12 completion marks on Hard mode as Rira"
-			self.Desc = "Only available for Rira"
+			self.Desc = "Defeat Isaac as Rira"
 			return self
 		end
 	end,

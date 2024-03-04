@@ -48,7 +48,10 @@ Encyclopedia.AddItem({
 	ID = i.BLACK_BEAN_MOCHI,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_CURSE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
 	UnlockFunc = function(self)
@@ -57,9 +60,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BLACK_BEAN_MOCHI,
 })
 
 -- Rira / Satan : Rira's Swimsuit
@@ -69,7 +70,7 @@ Encyclopedia.AddItem({
 	ID = i.RIRAS_SWIMSUIT,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
 	UnlockFunc = function(self)
@@ -78,9 +79,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_SWIMSUIT,
 })
 
 -- Rira / Blue : Sakura Mont Blanc
@@ -90,8 +89,9 @@ Encyclopedia.AddItem({
 	ID = i.SAKURA_MONT_BLANC,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("sakuramontblanc") then
@@ -99,9 +99,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SAKURA_MONT_BLANC,
 })
 
 
@@ -112,8 +110,9 @@ Encyclopedia.AddItem({
 	ID = i.CHEWY_ROLLY_CAKE,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_BEGGAR,
+		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("chewyrollycake") then
@@ -121,9 +120,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CHEWY_ROLLY_CAKE,
 })
 
 
@@ -135,7 +132,8 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_BEGGAR,
+		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellapancake") then
@@ -143,9 +141,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CARAMELLA_PANCAKE,
 })
 
 
@@ -165,9 +161,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_UNIFORM,
 })
 
 
@@ -177,9 +171,10 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = i.RIRAS_BENTO,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_BEGGAR,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("rirabento") then
@@ -187,9 +182,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_BENTO,
 })
 
 
@@ -199,9 +192,11 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = i.RIRAS_BANDAGE,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_CURSE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_BEGGAR,
+		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("rirabandage") then
@@ -209,9 +204,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RIRAS_BANDAGE,
 })
 
 
@@ -226,8 +219,7 @@ Encyclopedia.AddTrinket({
 			return self
 		end
 	end,
-	WikiDesc = {
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.RABBIT_PILLOW],
 })
 
 -- Rira / Gdier : Lil Rira
@@ -236,9 +228,12 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = i.LIL_RIRA,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_BABY_SHOP,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("lilrira") then
@@ -246,9 +241,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.LIL_RIRA,
 })
 
 
@@ -258,9 +251,11 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = i.SAKURA_CAPSULE,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
+		Encyclopedia.ItemPools.POOL_WOODEN_CHEST,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("sakuracapsule") then
@@ -268,9 +263,7 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SAKURA_CAPSULE,
 })
 
 
@@ -280,9 +273,9 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = i.MAID_DUET,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
-		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("maidduet") then
@@ -290,7 +283,5 @@ Encyclopedia.AddItem({
 			return self
 		end
 	end,
-	WikiDesc = {
-
-	},
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MAID_DUET,
 })

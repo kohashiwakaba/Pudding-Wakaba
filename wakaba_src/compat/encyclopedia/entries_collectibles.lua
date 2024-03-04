@@ -612,15 +612,20 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	CHIMAKI = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "ssssssssssssssss"},
-			{str = "ssssssssssssssss"},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
+			{str = "Wanders around and helps Rira through various behaviors:"},
+			{str = "- Flies towards enemies if far away, with Holy Lights"},
+			{str = "- Chance to remove Curses"},
+			{str = "- Shoots Homing tears, or blue flames"},
+			{str = "- Converts Troll bombs"},
 		},
 	},
 	NERF_GUN = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "ssssssssssssssss"},
-			{str = "ssssssssssssssss"},
+			{str = "Fires multiple 'nerf' tears that gives weakness status effect for 10 seconds."},
+			{str = "- weakend enemies become slow and take double damage"},
 		},
 	},
 
@@ -1607,7 +1612,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	BUNNY_PARFAIT = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Grants accelerating tears."},
+			{str = "Grants an extra life."},
+			{str = "- Isaac will respawn as Rira in the previous room."},
 			{str = "Grants different tear effects depending of last digit of room number."},
 			{str = "0/5 - Homing Tears (Spoon Bender)"},
 			{str = "1/6 - Split Tears (Cricket's Body)"},
@@ -1621,7 +1627,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Rira", clr = 3, halign = 0},
 			{str = "Revives as herself, rather than normal Rira. Effectively acts as 1up!"},
-		},
+		}, ]]
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Resurrection items activate in a set order."},
@@ -1630,13 +1636,29 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
 			{str = "- Shiori will also lose all of her books."},
 			{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
-		}, ]]
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "Bunny Parfait is one of Caramella recipe item references Niwasaka Rira."},
+			-- TODO Trivia
+		},
 	},
 	CARAMELLA_PANCAKE = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an extra life."},
 			{str = "- Isaac will respawn as Richer in the previous room."},
+			{str = "Attacks are replaced, or spawns Caramella member flies"},
+			{str = "- Tears are replaced by lavender fly states Richer."},
+			{str = "-- Richer flies take 4x damage."},
+			{str = "- Shooting lasers also spawns pink fly states Rira."},
+			{str = "-- Rira flies take 3x damage, and grants aqua status effect"},
+			{str = "- Fetus bombs are replaced by golden fly states Ciel."},
+			{str = "- Epic Fetus pointer spawns golden fly states Ciel."},
+			{str = "-- Ciel flies take 10x damage, with explosion that doesn't hurt Isaac."},
+			{str = "- Shooting Knives also spawns silver fly states Koron."},
+			{str = "-- Koron flies take 4x damage, and grants petrified status effect."},
+			{str = "- Each Caramella member flies can be stacked up to 10x"},
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
@@ -1651,6 +1673,11 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- If Lilith is resurrected she will lose Incubus and fire as any other character instead."},
 			{str = "- Shiori will also lose all of her books."},
 			{str = "Like other items that grant an extra life, but respawn Isaac as a different character, all completion marks earned from the moment of death onward will count towards the new character, not the old."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "Caramella Pancake is one of Caramella recipe item references Shionomiya Richer."},
+			-- TODO Trivia
 		},
 	},
 	RICHERS_UNIFORM = {
@@ -1766,13 +1793,22 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "-- Laser, Explosions, Aqua tears"},
 			{str = "- Aquafied enemies take less damage from:"},
 			{str = "-- Fire/Burn, Poison, Red Poops"},
-			{str = "Aqua tears also instakills following enemies:"},
-			{str = "Aqua tears also degenerates following enemies into:"},
+			{str = "Aqua tears also instakills rock enemies such as:"},
+			{str = "- Great Gideon"},
+			{str = "- Stonies"},
+			{str = "- Gaping Maws"},
+			{str = "- Stone shooters"},
+			{str = "- Rock Spiders"},
+			{str = "- Ball and Chains"},
+			{str = "- SpikeBalls"},
+			{str = "- Wall Huggers"},
+			--{str = "Aqua tears also instakills following enemies:"},
+			--{str = "Aqua tears also degenerates following enemies into:"},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "The chance for a tear to be aqua depends on the luck stat and goes up to 100% at 38 Luck."},
-			{str = "- Rira has innate version of this item, though the chance for a tear to be aqua reduced to 5% goes up to 100% at 19 Luck."},
+			{str = "- Rira has innate version of this item, though the chance for a tear to be aqua reduced to 5% and goes up to 100% at 19 Luck."},
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
@@ -1806,10 +1842,30 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			-- TODO Trivia
 		},
 	},
-  CHEWY_ROLLY_CAKE = {},
-  CARAMELLA_PANCAKE = {},
+  CHEWY_ROLLY_CAKE = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon Isaac takes damage, grants +0.3 speed for the current room."},
+			{str = "- Also, removes nearby projectiles and slows all enemies in the room permanently."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Slowing effect is same as Broken Watch, and cannot be stacked."},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "Chewy Rolly Cake is one of Caramella recipe item references Niwasaka Rira."},
+			-- TODO Trivia
+		},
+	},
 	RIRAS_UNIFORM = {
-
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, grants Astral Projection effect."},
+			{str = "- Isaac's tears and speed are greatly increased while time is stopped, although this is not shown on the HUD."},
+			{str = "- Does not negate secondary damage."},
+			{str = "Unlike the original item, Rira's Uniform also works in cleared rooms."},
+		},
 	},
 	SECRET_DOOR = {
 		{ -- Effect
@@ -1825,10 +1881,47 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Most special attacks for PMSS, which is called 'Things' requires Secret Door to find."},
 		},
 	},
-  RIRAS_BENTO = {},
-  RIRAS_BANDAGE = {},
-  LIL_RIRA = {},
-  SAKURA_CAPSULE = {},
+  RIRAS_BENTO = {
+		{ -- Effect
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants one full Red Heart container."},
+			{str = "Heals 1 additional heart of health."},
+			{str = "+0.04 Speed Up"},
+			{str = "+0.35 Fire rate Up"},
+			{str = "x1.07 Damage Multiplier"},
+			{str = "+0.5 Range Up"},
+			{str = "+0.4 Luck Up"},
+			{str = "Every future items will be Rira's Bento, making unable to get other collectibles."},
+			{str = "Every half heart Isaac has, grants +0.5 Damage up"},
+		},
+	},
+  RIRAS_BANDAGE = {
+		{ -- Effect
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "On new floor:"},
+			{str = "- Activates on-damage effects 6 times"},
+			{str = "- Smelts currently held trinkets"},
+		},
+	},
+  LIL_RIRA = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns a familiar that follows Isaac around shooting chasing tears that deal 2 damage each tick."},
+			{str = "Lil Rira shoots once per second."},
+			{str = "Steals a charge for active items if Isaac has any."},
+			{str = "- Does not steal special charge items."},
+			{str = "Every charge stolen by Lil Rira grants Isaac +0.05 Damage up"},
+		},
+	},
+  SAKURA_CAPSULE = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants an extra life."},
+			{str = "- Isaac will respawn with 4 hearts with restarting the stage."},
+			{str = "- Consumed extra life will be restored on the next floor."},
+			{str = "If a stage is passed without revival, spawns one of each pickups."},
+		},
+	},
   MAID_DUET = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},

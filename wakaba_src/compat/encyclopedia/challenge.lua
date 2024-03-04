@@ -310,6 +310,7 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
+	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("crossbomb") then
 			self.Desc = "Complete The Floor is Lava (challenge No.17w)"
@@ -328,6 +329,7 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
+	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("goombella") then
 			self.Desc = "Complete Universe of Goom (challenge No.18w)"
