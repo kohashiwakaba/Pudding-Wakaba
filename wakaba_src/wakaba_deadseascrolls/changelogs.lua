@@ -1,3 +1,261 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v111",
+[[{FSIZE2}rira update
+
+- new character has been
+appeared to basement
+
+{FSIZE2}general stuff
+- changed slot callback method
+from isaacscript
+to retribution/repentogon
+
+- add custom items pools for
+clover chest, valut rift
+
+- Updated character portraits
+
+- Bunny Parfait effect now
+can be shown in Found HUD
+
+{FSIZE2}repentogon additions
+
+- following familiars from pudding & wakaba
+now have higher priority
+
+- completion marks and achievements
+are now synced
+
+- wakaba : no longer shows broken hearts
+to make heart limit,
+uses vanilla heart limit
+mechanics instead
+
+- player damage negate callbacks
+changed to repentogon callbacks
+-- this allows defending holy shields for negate
+
+- global hud elements callbacks
+changed to repentogon callbacks
+
+- health type for
+t.wakaba, t.shiori, t.richer
+changed to repentogon callbacks
+-- health type for tainted wakaba
+changed to black -> soul
+due to this change
+
+{FSIZE2}items
+- Kanae Lens : Unlocked by default
+- Ancient Catalog : Defeat Isaac as Richer
+- Richer's Bra : Unlocked by default
+- Richer Ticket : Unlocked by default
+- Rira Ticket : Unlocked by default
+
+{FSIZE2}balance
+- all items from pudding & wakaba
+that grants curse of blind immunity
+also changes some negative pills
+into another one
+-- amnesia -> i can see forever
+-- retro vision -> vurp
+-- i'm excited!!! -> gulp!
+-- social distance -> duality orders
+
+wakaba/wakaba's blessing
+- emergency holy shields
+now works like boss challenge rooms
+- no longer reactivates
+emergency holy shields
+if already activated
+on room enter
+
+tainted wakaba/wakaba's nemesis
+- no longer adds chances to
+change cards to cracked key,
+and guaranteed q3/4
+in ultra secret rooms
+
+tsukasa
+- cannot concentrate repeatedly
+until room clear
+- max allowed stacks
+are reduced further
+
+richer
+- birthright no longer removes
+rabbit ribbon curses,
+but all penalties from
+rabbit ribbon curses are removed
+-- curse of sniper : removes
+transparent weapon penalty
+-- curse of fairy : grants
+spelunker hat effect
+-- curse of magical girl :
+all damage takes health
+instead of instakill
+-- curse of amnesia : no longer turns
+cleared room into uncleared state,
+instead, there is a chance to
+trigger room clear effect
+in already cleared room
+- also adds innate extra trinket boost
+
+tainted richer/the winter albireo
+- baby plum in richer's planetarium
+now immediately leaves when entered
+
+syrup
+- now has constant empty charges,
+allowing to make some synergies
+
+wakaba's uniform
+- now consumes charges in all modes
+
+wakaba's pendant
+- increase price, quality
+
+eat heart
+- no longer gains overcharge and q4 bonus,
+due to boss pools not having
+q4 that causes errors
+- using eat heart on overcharged
+no longer depletes charge completely
+
+book of shiori
+- spawn extra library per floor,
+previous item spawn is removed
+
+minerva's aura
+- gives additional x2.3
+fire rate multiplier (does not stack)
+
+shiori's valut
+- now is divided into 2 variants
+-- library ver that contains library pool
+-- blue ver that contains custom pool
+with blue themed items
+- price is determined by quality and devil price.
+
+concentration
+- concentration no longer work
+if stacks are 300 or more
+- concentration speed is far more
+reduced on high stacks
+
+flash shift
+- add an option to use health
+if no remaining shifts are left
+- uses half heart per extra shift
+- does not work with tainted tsukasa
+or extra high tears stat.
+- neptunus gives flash shift
+extra 2 shifts per cycle
+
+red corruption
+- creation of new rooms are now chance based
+46% chance, 100% at 29 luck
+
+question block
+- temporarily removed, will be readded
+
+lunar stone
+- on gauge depleted,
+creates an explosion
+on isaac's position
+- add some synergies with some items
+-- luna : restore lunar gauge
+with luna light beam.
+-- sol/fragmented card :
+drastically reduces lunar gauge
+reduction speed
+-- firefly lighter : grants chance
+to shoot holy light shots
+
+easter egg
+- reverted previous change - now shows
+all collected eggs on
+the hud instead of one.
+this is reverted because of genesis
+
+elixir of life
+- no longer regains holy shields
+while in lost state.
+regains holy mantle shields
+if no the lost has no holy shields.
+inv frames are normal in this state.
+
+richer's necklace
+- now has 11 frames of cooldown
+- multiple copies of necklace
+reduce cooldown
+
+- stackable mantle
+- make blanket also activete boss rush rooms
+
+- bring me there
+- now changes boss rooms
+from mausoleum ii immediately
+instead of checking before
+entering the floor.
+dropping the trinket
+reverts the boss room into mom.
+(does not work if entered through
+polaroid/negative door in depths ii)
+- bring me there no longer drops
+in mines ii/mausoleum i.
+it will drop in mausoleum ii instead.
+
+crane card,
+confessional card,
+valut rift,
+trial stew
+- changed type from tarot > tarot r,
+making spawn rate reduced.
+
+{FSIZE2}tweaks + fixes
+
+- fix trinkets trying to
+convert into aqua every time
+the pickup inits
+
+- fix some items not available
+from any item pools
+
+- fix extra rooms not appearing
+as tainted richer
+with curse of labytinth
+
+- fix power bomb explosion
+not triggering
+broken shovel falling
+
+- lunar stone : fix weird revival
+order with vanilla revival items
+
+- library expanded : blacklisted
+weird book from shiori
+
+- fix potential issues with ascent
+from clover chest/valut rift
+
+- fix speed down not applying
+with d-cup icecream + binge eater
+
+- fix wrong order with
+detailed respawn compatibility
+
+- fix issues with hidden item
+loading with save/continue
+
+- adjust unique birthright
+init order to fix errors
+with unique items port pack
+
+- fix winter albireo, easter egg
+only working with
+active side of tainted lazarus
+
+]])
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Richer v107",
 [[{FSIZE2}v107d/e patch
 - add chinese eid entries

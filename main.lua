@@ -53,7 +53,7 @@ include('wakaba_src.debug_area')
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include("wakaba_src.libs.retribution_utils")
-include('wakaba_src.libs.achievement_display_api')
+include('wakaba_src.libs.achievement_display_api') -- TODO move to non-repengoton area if finished
 if not REPENTOGON then
 	include("wakaba_src.libs.pause_screen_completion_marks_api")
 	--require("wakaba_src.libs.item_display_library")
@@ -77,9 +77,6 @@ wakaba.MiniMapAPISprite:Load("gfx/ui/wakaba/minimapapi.anm2", true)
 ---@type Sprite
 wakaba.globalHUDSprite = Sprite()
 wakaba.globalHUDSprite:Load("gfx/ui/wakaba/hudstats2.anm2", true)
-
--- Repair difficulty check
-wakaba.__REPAIR = false
 
 -- Hidden Item Manager
 wakaba.HiddenItemManager = include("wakaba_src.libs.hidden_item_manager"):Init(wakaba)
@@ -133,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v107e Richer 2023.12.28"
-wakaba.intversion = 10705
+wakaba.version = "v111 Richer 2024.03.04"
+wakaba.intversion = 11100
 
 wakaba.modpath = GetCurrentModPath()
 

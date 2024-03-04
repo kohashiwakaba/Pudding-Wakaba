@@ -3,7 +3,7 @@
 An anime mod that contains characters from the creator's favorite.
 **Pudding & Wakaba contains:**
 - A new Curse!(Must be enabled manually)
-- 8 New Characters(Wakaba, Shiori, Tsukasa, and Richér, with both tainted forms)
+- 9 New Characters(Wakaba, Shiori, Tsukasa, and Richér, with both tainted forms, Rira)
 - 80+ new Items
 - 20+ new Trinkets
 - 20+ new Card/Runes
@@ -16,11 +16,8 @@ An anime mod that contains characters from the creator's favorite.
    - Priest's Blessing/Unholy Curse
 - 19 new Challenges
 
-![RicherPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/19b70f9d-f057-4df7-8cd3-b94983212717)
-**Current Version : v107d-Richer**(updated time : 2023-12-16)
-
 ![RiraPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/8bf2009d-706b-4d2e-940c-bbd13ec817c8)
-**In development : v1??-???**
+**Current Version : v111-Rira**(updated time : 2024-03-04)
 
 ## Characters
 
@@ -28,6 +25,7 @@ An anime mod that contains characters from the creator's favorite.
 - **Shiori** (From The World God only knows - Wakagi Tamaki)
 - **Tsukasa** (From Tonikaku Kawaii - Hata Kenjiro)
 - **Richer** (From Love's Sweet Garnish - Miyasaka Miyu / Miyasaka Nako)
+- **Rira** (From Love's Sweet Garnish - Miyasaka Miyu / Miyasaka Nako)
 
 ## Item informations
 

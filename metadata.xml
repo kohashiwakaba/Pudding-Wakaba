@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>!~Pudding And Wakaba [REP]</name>
+    <name>!~Pudding And Wakaba [REP/RGON/WIP]</name>
     <directory>pudding and wakaba</directory>
     <id>2543118811</id>
     <description>The various uncommon girls arrived to basement!
 
-[h1]REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
+[h1][url=https://repentogon.com/]REPENTOGON[/url]/REPENTANCE ONLY! Does not work with Afterbirth+![/h1]
 [b]Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=836319872]External Item Descriptions[/url][/b](English/Korean/Chinese compatible)
-[b]HIGHLY[/b] recommended to use Encyclopedia
 
 Mod Includes : 
 [img]https://i.imgur.com/OQHAgwc.png[/img]
@@ -26,8 +25,10 @@ Mod Includes :
 
 [img]https://i.imgur.com/In7yTCH.png[/img]
 
+[img]https://i.imgur.com/YlrKb6R.png[/img]
+
 A new Curse!(Must be enabled manually)
-8 New Characters(Wakaba, Shiori, Tsukasa, with both tainted forms, and Richér)
+9 New Characters(Wakaba, Shiori, Tsukasa, Richér, with both tainted forms, and Rira)
 80+ new Items
 15+ new Trinkets
 15+ new Card/Runes
@@ -56,9 +57,8 @@ This mod also gives multiple shields for Blanket item if you entered a Boss Room
 
 [h1] More Notes [/h1]
 [list]
- [*] As this is my very first mod, this mod is does not have many items as almost all items requires to be unlocked. More items and challenges coming soon.
+ [*] [b]Using with REPENTOGON is highly recommended.[/b]
  [*] [b]Like other mods, you MUST restart the game if you installed, enabled/disabled, or updated the mod.[/b]
- [*] Some tweaks can be activated via Mod Config Menu. 
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362] Encyclopedia [/url]
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued no longer works.)
  [*] Wakaba's Mega Mush costume requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2697721144]Unique MEGAIsaacs[/url]
@@ -82,7 +82,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
 - YouDuckBoom - Chinese EID translation</description>
-    <version>107.14</version>
+    <version>111.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
