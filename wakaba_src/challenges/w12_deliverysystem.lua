@@ -18,7 +18,7 @@ function wakaba:Challenge_GameStart_DeliverySystem(continue)
 	local player = Isaac.GetPlayer()
 	if continue then
 		local esau = Isaac.Spawn(EntityType.ENTITY_DARK_ESAU, 0, -1, wakaba:GetGridCenter(), Vector.Zero, player)
-		esau:AddEntityFlags(EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
+		esau:AddEntityFlags(EntityFlag.FLAG_NO_DEATH_TRIGGER)
 		esau.CollisionDamage = esau.CollisionDamage * 3
 		esau:Update()
 	end
@@ -48,7 +48,7 @@ function wakaba:Challenge_NewRoom_DeliverySystem()
   local hasEsau = false
   local entities = Isaac.FindByType(EntityType.ENTITY_DARK_ESAU, 0, -1, false, false)
   for i, e in ipairs(entities) do
-    e:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+    --e:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
     hasEsau = true
   end
   if room:IsFirstVisit() and isc:inStartingRoom() then
@@ -80,7 +80,7 @@ function wakaba:Challenge_PlayerUpdate_DeliverySystem(player)
   if player:GetData().wakaba.pendingesauspawn and not wakaba.G:IsPaused() then
     player:GetData().wakaba.pendingesauspawn = false
     local esau = Isaac.Spawn(EntityType.ENTITY_DARK_ESAU, 0, -1, wakaba:GetGridCenter(), Vector.Zero, player)
-    esau:AddEntityFlags(EntityFlag.FLAG_NO_DEATH_TRIGGER | EntityFlag.FLAG_FRIENDLY)
+    esau:AddEntityFlags(EntityFlag.FLAG_NO_DEATH_TRIGGER)
     esau.CollisionDamage = esau.CollisionDamage * 3
     esau:Update()
   end
@@ -191,11 +191,6 @@ function wakaba:Challenge_Update_DeliverySystem()
   local entities = Isaac.FindByType(EntityType.ENTITY_DARK_ESAU, 0, -1, false, false)
   for i, e in ipairs(entities) do
     hasEsau = true
-    if not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-      wakaba:scheduleForUpdate(function ()
-        e:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
-      end, 2)
-    end
     if e:IsDead() then
 
     end

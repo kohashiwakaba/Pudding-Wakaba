@@ -405,34 +405,34 @@ Encyclopedia.AddItem({
 	ID = wakaba.Enums.Collectibles.BOOK_OF_SHIORI_ROOM,
 	Hide = true,
 })
-Encyclopedia.AddItem({
+Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
-	ID = Isaac.GetItemIdByName("Candy of Richer"),
+	ID = Isaac.GetTrinketIdByName("Candy of Richer"),
 	Hide = true,
 })
-Encyclopedia.AddItem({
+Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
-	ID = Isaac.GetItemIdByName("Candy of Rira"),
+	ID = Isaac.GetTrinketIdByName("Candy of Rira"),
 	Hide = true,
 })
-Encyclopedia.AddItem({
+Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
-	ID = Isaac.GetItemIdByName("Candy of Ciel"),
+	ID = Isaac.GetTrinketIdByName("Candy of Ciel"),
 	Hide = true,
 })
-Encyclopedia.AddItem({
+Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
-	ID = Isaac.GetItemIdByName("Candy of Koron"),
+	ID = Isaac.GetTrinketIdByName("Candy of Koron"),
 	Hide = true,
 })
-Encyclopedia.AddItem({
+Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
-	ID = Isaac.GetItemIdByName("Caramella Candy Bag"),
+	ID = Isaac.GetTrinketIdByName("Caramella Candy Bag"),
 	Hide = true,
 })
 -- Broken Toolbox
