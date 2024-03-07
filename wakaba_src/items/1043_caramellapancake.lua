@@ -15,6 +15,12 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 local flyType = 2
+wakaba.CaramellaAutoTargetFiles = {
+	[wakaba.Enums.Flies.RICHER] = true,
+	[wakaba.Enums.Flies.RIRA] = true,
+	[wakaba.Enums.Flies.CIEL] = true,
+	[wakaba.Enums.Flies.KORON] = true,
+}
 
 ---comment
 ---@param player EntityPlayer
@@ -95,6 +101,7 @@ function wakaba:TearInit_Pancake(tear)
 	local player = wakaba:getPlayerFromTear(tear)
 	if player and hasCaramellaEffect(player) then
 		local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.RICHER)
+		local vel = tear.Velocity
 		if tear.Variant == TearVariant.FETUS then
 			tear.CollisionDamage = 0
 			if tear.FrameCount % 9 == 0 and #flies < 10 then
@@ -102,7 +109,9 @@ function wakaba:TearInit_Pancake(tear)
 			end
 		elseif not player:HasWeaponType(WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then
 			if #flies < 10 then
-				wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER)
+				local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER)
+				fly:GetData().wakaba_vel = vel
+				fly:GetData().wakaba_veltimer = player.TearRange / 5
 			end
 			tear:Remove()
 		end
@@ -202,9 +211,12 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Caram
 function wakaba:BombInit_Pancake(bomb)
 	local player = wakaba:getPlayerFromTear(bomb)
 	if player and hasCaramellaEffect(player) and bomb.IsFetus then
+		local vel = bomb.Velocity
 		local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.CIEL)
 		if #flies < 10 then
-			wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, nil, true)
+			local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, nil, true)
+			fly:GetData().wakaba_vel = vel
+			fly:GetData().wakaba_veltimer = player.TearRange / 5
 		end
 		bomb:Remove()
 	end
@@ -239,42 +251,66 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Caram
 ---comment
 ---@param fly EntityFamiliar
 function wakaba:FamiliatInit_Pancake(fly)
-	if fly.FrameCount > 1 then return end
-	if fly.SubType == wakaba.Enums.Flies.RICHER then
-		local spr = fly:GetSprite()
-		spr:Load("gfx/wakaba_flies.anm2", true)
-		spr:Play("Richer", true)
-		local player = fly.Player or Isaac.GetPlayer()
-		fly.CollisionDamage = player.Damage * 4
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
-			fly.CollisionDamage = fly.CollisionDamage * 2
+	if fly.FrameCount <= 1 then
+		if fly.SubType == wakaba.Enums.Flies.RICHER then
+			local spr = fly:GetSprite()
+			spr:Load("gfx/wakaba_flies.anm2", true)
+			spr:Play("Richer", true)
+			local player = fly.Player or Isaac.GetPlayer()
+			fly.CollisionDamage = player.Damage * 4
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
+				fly.CollisionDamage = fly.CollisionDamage * 2
+			end
+		elseif fly.SubType == wakaba.Enums.Flies.RIRA then
+			local spr = fly:GetSprite()
+			spr:Load("gfx/wakaba_flies.anm2", true)
+			spr:Play("Rira", true)
+			local player = fly.Player or Isaac.GetPlayer()
+			fly.CollisionDamage = player.Damage * 4
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
+				fly.CollisionDamage = fly.CollisionDamage * 2
+			end
+		elseif fly.SubType == wakaba.Enums.Flies.CIEL then
+			local spr = fly:GetSprite()
+			spr:Load("gfx/wakaba_flies.anm2", true)
+			spr:Play("Ciel", true)
+			local player = fly.Player or Isaac.GetPlayer()
+			fly.CollisionDamage = player.Damage * 10
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
+				fly.CollisionDamage = fly.CollisionDamage * 2
+			end
+		elseif fly.SubType == wakaba.Enums.Flies.KORON then
+			local spr = fly:GetSprite()
+			spr:Load("gfx/wakaba_flies.anm2", true)
+			spr:Play("Koron", true)
+			local player = fly.Player or Isaac.GetPlayer()
+			fly.CollisionDamage = player.Damage * 4
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
+				fly.CollisionDamage = fly.CollisionDamage * 2
+			end
 		end
-	elseif fly.SubType == wakaba.Enums.Flies.RIRA then
-		local spr = fly:GetSprite()
-		spr:Load("gfx/wakaba_flies.anm2", true)
-		spr:Play("Rira", true)
-		local player = fly.Player or Isaac.GetPlayer()
-		fly.CollisionDamage = player.Damage * 4
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
-			fly.CollisionDamage = fly.CollisionDamage * 2
-		end
-	elseif fly.SubType == wakaba.Enums.Flies.CIEL then
-		local spr = fly:GetSprite()
-		spr:Load("gfx/wakaba_flies.anm2", true)
-		spr:Play("Ciel", true)
-		local player = fly.Player or Isaac.GetPlayer()
-		fly.CollisionDamage = player.Damage * 10
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
-			fly.CollisionDamage = fly.CollisionDamage * 2
-		end
-	elseif fly.SubType == wakaba.Enums.Flies.KORON then
-		local spr = fly:GetSprite()
-		spr:Load("gfx/wakaba_flies.anm2", true)
-		spr:Play("Koron", true)
-		local player = fly.Player or Isaac.GetPlayer()
-		fly.CollisionDamage = player.Damage * 4
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
-			fly.CollisionDamage = fly.CollisionDamage * 2
+	elseif wakaba.CaramellaAutoTargetFiles[fly.SubType] then
+		if not (fly.Target and fly.Target:Exists()) then
+			local room = wakaba.G:GetRoom()
+			local vel = fly:GetData().wakaba_vel
+			local veltimer = fly:GetData().wakaba_veltimer
+			if (room:GetFrameCount() > 0 and vel and veltimer and veltimer > 0) then
+				fly:GetData().wakaba_veltimer = fly:GetData().wakaba_veltimer - 1
+				fly.Velocity = vel
+			else
+				fly:GetData().wakaba_veltimer = nil
+				fly:GetData().wakaba_vel = nil
+			end
+
+			local rng = RNG()
+			rng:SetSeed(fly.InitSeed + fly.FrameCount, 35)
+			local enemy = wakaba:findRandomEnemy(fly, rng, true)
+			if enemy then
+				fly.Target = enemy
+			end
+		else
+			fly:GetData().wakaba_veltimer = nil
+			fly:GetData().wakaba_vel = nil
 		end
 	end
 end
