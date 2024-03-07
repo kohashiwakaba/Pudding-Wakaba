@@ -201,7 +201,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Caram
 ---@param bomb EntityBomb
 function wakaba:BombInit_Pancake(bomb)
 	local player = wakaba:getPlayerFromTear(bomb)
-	if player and hasCaramellaEffect(player) then
+	if player and hasCaramellaEffect(player) and bomb.IsFetus then
 		local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.CIEL)
 		if #flies < 10 then
 			wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, nil, true)
