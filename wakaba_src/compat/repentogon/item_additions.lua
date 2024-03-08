@@ -22,20 +22,28 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, char
 	end
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
+local maidRecursive = false
 --- Maid Duet : 모든 액티브 아이템의 최대 충전량 2칸 감소 (최소 1), 시간제, 스페셜의 경우 15%
 ---@param itemID CollectibleType
 ---@param player EntityPlayer
 ---@param varData integer
 wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 20000, function(_, itemID, player, varData)
-	if player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and itemID ~= 0 then
+	if not maidRecursive and player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and itemID ~= 0 and not wakaba.Blacklists.MaidDuetCharges[itemID] then
+		maidRecursive = true
 		local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
-		local maxCharges = cfg.MaxCharges
+		local maxCharges = player:GetActiveMaxCharge(player:GetActiveItemSlot(itemID))
 		local type = cfg.ChargeType
+		maidRecursive = false
 		if type == ItemConfig.CHARGE_NORMAL then
-			return math.max(maxCharges - 2, 0)
+			if maxCharges <= 2 then
+				return math.max(maxCharges - 1, 0)
+			else
+				return math.max(maxCharges - 2, 0)
+			end
 		else
 			return math.floor(maxCharges * 0.85)
 		end
+
 	end
 end)
 

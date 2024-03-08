@@ -6,14 +6,21 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 wakaba.Blacklists.MaidDuet = {
-	CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE,
-	CollectibleType.BOOK_OF_VIRTUES,
-	CollectibleType.COLLECTIBLE_D_INFINITY,
+	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE] = true,
+	[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true,
+	[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
+}
+wakaba.Blacklists.MaidDuetCharges = {
+	--[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
+	[CollectibleType.COLLECTIBLE_EVERYTHING_JAR] = true,
+	--[CollectibleType.COLLECTIBLE_PLACEBO] = true,
+	--[CollectibleType.COLLECTIBLE_BLANK_CARD] = true,
+	--[CollectibleType.COLLECTIBLE_CLEAR_RUNE] = true,
 }
 
 wakaba.Blacklists.MaidDuetPlayers = {
-	PlayerType.PLAYER_CAIN_B,
-	wakaba.Enums.Players.SHIORI,
+	[PlayerType.PLAYER_CAIN_B] = true,
+	[wakaba.Enums.Players.SHIORI] = true,
 }
 
 ---@param player EntityPlayer
@@ -22,15 +29,15 @@ local function canUseMaidDuet(player, force)
 	local active2 = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
 	local extraCond = Isaac.RunCallback(wakaba.Callback.EVALUATE_MAID_DUET, player)
 	return active1 > 0
-		and not wakaba:has_value(wakaba.Blacklists.MaidDuet, active1)
-		and not wakaba:has_value(wakaba.Blacklists.MaidDuet, active2)
+		and not wakaba.Blacklists.MaidDuet[active1]
+		and not wakaba.Blacklists.MaidDuet[active2]
 		and not extraCond
 		and (force or not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET))
 end
 
 ---@param player EntityPlayer
 wakaba:AddCallback(wakaba.Callback.EVALUATE_MAID_DUET, function(_, player)
-	if wakaba:has_value(wakaba.Blacklists.MaidDuetPlayers, player:GetPlayerType()) then
+	if wakaba.Blacklists.MaidDuetPlayers[player:GetPlayerType()] then
 		return true
 	end
 end)
@@ -63,7 +70,7 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 				local secondActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
 				local secondCharge = 0
 				local extraSecondCharge = 0
-				if secondActive > 0 then
+				if secondActive ~= 0 then
 					local secondConfig = config:GetCollectible(secondActive)
 					secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
 					if secondConfig:IsCollectible() then
@@ -76,9 +83,7 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 				end
 
 				isc:setActiveItem(player, firstActive, ActiveSlot.SLOT_POCKET, firstCharge + extraFirstCharge)
-				if secondActive > 0 then
-					isc:setActiveItem(player, secondActive, ActiveSlot.SLOT_PRIMARY, secondCharge + extraSecondCharge)
-				end
+				isc:setActiveItem(player, secondActive, ActiveSlot.SLOT_PRIMARY, secondCharge + extraSecondCharge)
 
 				SFXManager():Play(SoundEffect.SOUND_DIVINE_INTERVENTION)
 
