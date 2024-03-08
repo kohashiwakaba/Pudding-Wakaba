@@ -1,5 +1,29 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v111",
-[[{FSIZE2}rira update
+[[{FSIZE2}v111a patch
+rira's bento
+- reduced stats increments
+
+bitcoin ii
+- no longer noisy sounds
+for glitched items
+that use bitcoin ii
+
+caramella pancake
+- fix caramella pancake converting
+normal bomb into ciel flies
+- fix caramella flies
+not chasing faraway enemies
+
+maid duet
+- fix maid duet blacklist
+not working
+- fix maid duet copying
+first item slot if there are
+no pocket actives
+- maid duet no longer
+reduce everything jar cooldown
+
+{FSIZE2}rira update
 
 - new character has been
 appeared to basement
