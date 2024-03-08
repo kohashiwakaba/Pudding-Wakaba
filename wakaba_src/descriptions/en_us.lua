@@ -939,7 +939,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
 		itemName = "Rira's Bento",
-		description = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#↑ {{Speed}} +0.04 Speed#↑ {{Tears}} +0.35 Fire Rate#↑ {{Damage}} +0.5 Damage for every {{HalfHeart}} Half Heart Isaac has#↑ {{Damage}} x1.07 Damage Multiplier#↑ {{Range}} +0.5 Range#↑ {{Luck}} +0.4 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
+		description = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#↑ {{Speed}} +0.02 Speed#↑ {{Tears}} +0.2 Fire Rate#↑ {{Damage}} +0.1 Damage for every {{HalfHeart}} Half Heart Isaac has#↑ {{Damage}} +4% Damage Up#↑ {{Range}} +0.25 Range#↑ {{Luck}} +0.2 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
 		itemName = "Sakura Capsule",

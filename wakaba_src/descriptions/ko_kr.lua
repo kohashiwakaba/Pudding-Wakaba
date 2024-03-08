@@ -1039,12 +1039,12 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{Heart}}빨간하트 +1"
-		.. "#↑ {{SpeedSmall}}이동속도 +0.04"
-		.. "#↑ {{TearsSmall}}연사 +0.35"
-		.. "#↑ {{DamageSmall}}하트 1칸당 공격력 +1"
-		.. "#↑ {{DamageSmall}}공격력 배울 x1.07"
-		.. "#↑ {{RangeSmall}}사거리 +0.5"
-		.. "#↑ {{LuckSmall}}행운 +0.4"
+		.. "#↑ {{SpeedSmall}}이동속도 +0.02"
+		.. "#↑ {{TearsSmall}}연사 +0.2"
+		.. "#↑ {{DamageSmall}}하트 1칸당 공격력 +0.1"
+		.. "#↑ {{DamageSmall}}공격력 배울 +4%p"
+		.. "#↑ {{RangeSmall}}사거리 +0.25"
+		.. "#↑ {{LuckSmall}}행운 +0.2"
 		.. "#!!! 이후 등장하는 모든 아이템이 {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento로 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "더 먹고 싶어",
