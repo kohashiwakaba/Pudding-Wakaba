@@ -1363,7 +1363,8 @@ end
 
 if not REPENTOGON then
 	for _, playerType in pairs(wakaba.Enums.Players) do
-		if validPlayerCheck[wakaba.Enums.Players] then
+		if wakaba:has_value(validPlayerCheck, playerType) then
+			wakaba.Log("Adding custom pause screen completion mark callbacks for", playerType)
 			PauseScreenCompletionMarksAPI:AddModCharacterCallback(playerType, function()
 				return wakaba:GetCompletionNoteLayerDataFromPlayerType(playerType)
 			end)
