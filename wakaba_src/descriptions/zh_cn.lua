@@ -1017,7 +1017,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
 		itemName = "莉良的便当",
 		description =
-			"↑ {{Heart}} +1 心之容器#{{Heart}}治疗一红心#↑ {{Speed}} +0.04 速度#↑ {{Tears}} +0.35 射速修正#↑ {{Damage}} +0.5 伤害 {{HalfHeart}}在每次受到半红心伤害时#↑ {{Damage}} x1.07 伤害倍率#↑ {{Range}} +0.5 射程#↑ {{Luck}} +0.4 幸运#!!! 所有的道具都会变成 {{Collectible" ..
+			"↑ {{Heart}} +1 心之容器#{{Heart}}治疗一红心#↑ {{Speed}} +0.02 速度#↑ {{Tears}} +0.2 射速修正#↑ {{Damage}} +0.1 伤害 {{HalfHeart}}在每次受到半红心伤害时#↑ {{Damage}} +4% 伤害倍率#↑ {{Range}} +0.25 射程#↑ {{Luck}} +0.2 幸运#!!! 所有的道具都会变成 {{Collectible" ..
 			wakaba.Enums.Collectibles.RIRAS_BENTO .. "}}莉良的便当",
 		queueDesc = "超级面筋",
 	},
