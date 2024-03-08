@@ -391,7 +391,10 @@ function wakaba:GetUnlockEntry(playerType, unlockType)
 	return unlockCheckStr
 end
 
-function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString)
+function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString, pricise)
+	if wakaba.state.options.allowlockeditems and not pricise then
+		return true
+	end
 	typeString = typeString or "collectible"
 	for _, linkedTable in ipairs(wakaba.LinkedCompletionUnlocks) do
 		if linkedTable[1] == itemID and linkedTable[2] == typeString and linkedTable[3] ~= nil then
