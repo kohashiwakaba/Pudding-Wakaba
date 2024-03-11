@@ -98,6 +98,8 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_DMG
+		local donationThreshold = 3 + getElixirPower(player)
+		local soulThreshold = 1 + getElixirPower(player)
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
 			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER // math.min(math.max(getElixirPower(player), 1), 6)
 		end
@@ -109,7 +111,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		then
 			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown or 0
 			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown + 1
-			if data.wakaba.elixirblooddonationcooldown >= 4 then
+			if data.wakaba.elixirblooddonationcooldown >= donationThreshold then
 				if player:GetBoneHearts() > 0 then
 					player:AddBoneHearts(-1)
 				elseif player:GetMaxHearts() > 0 then
@@ -122,7 +124,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		elseif player:GetSoulHearts() > 0 then
 			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown or 0
 			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown + 1
-			if wakaba:IsDamageSanguineSpikes(player, flags, source) or data.wakaba.elixirsouldamagecooldown >= 2 then
+			if wakaba:IsDamageSanguineSpikes(player, flags, source) or data.wakaba.elixirsouldamagecooldown >= soulThreshold then
 				if data.wakaba.elixirmaxsoulhearts > 0 then
 					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 2
 				end
