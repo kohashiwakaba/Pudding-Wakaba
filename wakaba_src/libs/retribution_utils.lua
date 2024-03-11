@@ -1178,7 +1178,7 @@ function mod:WillPlayerBuyCollectible(player, pickup)
 	return (
 		pickup.Price ~= 0 and
 		pickup.Wait == 0 and
-		player.Variant == mod.PlayerVariant.PLAYER and
+		player.Variant == 0 and
 		player.ItemHoldCooldown == 0 and
 		player:CanPickupItem() and
 		not player:IsHoldingItem() and
@@ -1189,7 +1189,7 @@ end
 function mod:WillPlayerBuyHeart(player, pickup)
 	return (
 		pickup.Price ~= 0 and
-		player.Variant == mod.PlayerVariant.PLAYER and
+		player.Variant == 0 and
 		mod:CanAffordPrice(player, pickup.Price) and
 		mod:CanPickHeart(player, pickup)
 	)
@@ -1198,7 +1198,7 @@ end
 function mod:WillPlayerBuyBattery(player, pickup)
 	return (
 		pickup.Price ~= 0 and
-		player.Variant == mod.PlayerVariant.PLAYER and
+		player.Variant == 0 and
 		mod:CanAffordPrice(player, pickup.Price) and
 		player:NeedsCharge()
 	)

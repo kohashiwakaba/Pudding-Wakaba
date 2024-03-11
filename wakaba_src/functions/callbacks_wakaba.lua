@@ -205,6 +205,22 @@ wakaba.Callback = {
 	SLOT_UPDATE = "WakabaCallbacks.SLOT_UPDATE",
 	SLOT_COLLISION = "WakabaCallbacks.SLOT_COLLISION",
 
+
+	-- ---
+	-- POST_PURCHASE_PICKUP
+	-- ---
+	-- Original code from Xalum(Retribution)
+	--
+	-- Called from MC_POST_UPDATE.
+	--
+	-- ---
+	-- Parameters :
+	-- - `EntityPickup` - pickup
+	-- - `EntityPlayer` - player
+	-- - `Int` - price
+	-- ---
+	POST_PURCHASE_PICKUP = "WakabaCallbacks.POST_PURCHASE_PICKUP",
+
 	-- Extra callbacks exclusive to Pudding & Wakaba
 
 	-- ---
@@ -585,7 +601,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
 
 		if familiar.Variant == FamiliarVariant.INCUBUS or familiar.Variant == FamiliarVariant.SPRINKLER or
 			familiar.Variant == FamiliarVariant.TWISTED_BABY or familiar.Variant == FamiliarVariant.BLOOD_BABY or
-			familiar.Variant == FamiliarVariant.UMBILICAL_BABY or familiar.Variant == FamiliarVariant.CAINS_OTHER_EYE 
+			familiar.Variant == FamiliarVariant.UMBILICAL_BABY or familiar.Variant == FamiliarVariant.CAINS_OTHER_EYE
 		then
 			player = familiar.Player
 		else
@@ -1035,6 +1051,15 @@ local function postTakeDamage(_, entity, amount, flags, source, cooldown)
 		end
 	end
 end
+
+-- Post Purchase Pickup
+wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriority.LATE, function(_, pickup, collider)
+	local player = collider:ToPlayer()
+	if player and wakaba:WillPlayerBuyPickup(player, pickup) then
+		Isaac.RunCallbackWithParam(wakaba.Callback.POST_PURCHASE_PICKUP, pickup.Variant, pickup, player, pickup.Price)
+	end
+end)
+
 
 if CustomHealthAPI and CustomHealthAPI.Mod.Version < 0.946 then
 	wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, postTakeDamage, EntityType.ENTITY_PLAYER)

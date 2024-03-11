@@ -53,8 +53,13 @@ function wakaba:PlayerUpdate_Elixir(player)
 		end
 		data.wakaba.elixircooldown = data.wakaba.elixircooldown or wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 		if not player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS) then
-			local availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
 			local isSoulCharacter = Isaac.RunCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, player) ~= nil
+			local availableMaxSoul
+			if isSoulCharacter then
+				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
+			else
+				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetBoneHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
+			end
 			if data.wakaba.elixircooldown > 0 then
 				data.wakaba.elixircooldown = data.wakaba.elixircooldown - 1
 			elseif data.wakaba.elixircooldown == -1 then
@@ -114,7 +119,17 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 				end
 				data.wakaba.elixirblooddonationcooldown = 0
 			end
-		elseif flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
+		elseif player:GetSoulHearts() > 0 then
+			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown or 0
+			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown + 1
+			if wakaba:IsDamageSanguineSpikes(player, flags, source) or data.wakaba.elixirsouldamagecooldown >= 2 then
+				if data.wakaba.elixirmaxsoulhearts > 0 then
+					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 2
+				end
+				data.wakaba.elixirsouldamagecooldown = 0
+			end
+		end
+		if flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
 			data.wakaba.elixirinvframes = 20
 		end
 	end
@@ -137,3 +152,24 @@ function wakaba:ElixirSoulRecover_Elixir(player)
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, wakaba.ElixirSoulRecover_Elixir)
+
+local priceToSoulCount = {
+	[PickupPrice.PRICE_ONE_HEART_AND_ONE_SOUL_HEART] = 2,
+	[PickupPrice.PRICE_ONE_HEART_AND_TWO_SOULHEARTS] = 4,
+	[PickupPrice.PRICE_ONE_SOUL_HEART] = 2,
+	[PickupPrice.PRICE_TWO_SOUL_HEARTS] = 4,
+	[PickupPrice.PRICE_THREE_SOULHEARTS] = 6,
+}
+function wakaba:PickupPurchase_Elixir(pickup, player, price)
+	if wakaba:hasElixir(player) then
+		wakaba:GetPlayerEntityData(player)
+		local data = player:GetData()
+		local soulsToReduce = priceToSoulCount[price]
+		if soulsToReduce then
+			if data.wakaba.elixirmaxsoulhearts > 0 then
+				data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - soulsToReduce
+			end
+		end
+	end
+end
+wakaba:AddCallback(wakaba.Callback.POST_PURCHASE_PICKUP, wakaba.PickupPurchase_Elixir)
