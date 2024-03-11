@@ -126,7 +126,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown + 1
 			if wakaba:IsDamageSanguineSpikes(player, flags, source) or data.wakaba.elixirsouldamagecooldown >= soulThreshold then
 				if data.wakaba.elixirmaxsoulhearts > 0 then
-					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 2
+					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 1
 				end
 				data.wakaba.elixirsouldamagecooldown = 0
 			end
