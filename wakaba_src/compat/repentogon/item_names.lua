@@ -1,4 +1,12 @@
+wakaba.Blacklists.NameLocalization = {
+	function() return DaRules ~= nil end,
+}
+
 wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function()
+
+	for i, func in ipairs(wakaba.Blacklists.NameLocalization) do
+		if func() then return end
+	end
 
 	local languageMap = wakaba.LanguageMap
 	local descTable = wakaba.descriptions[languageMap[Options.Language]]
