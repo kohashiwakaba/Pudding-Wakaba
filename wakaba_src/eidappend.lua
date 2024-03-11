@@ -702,11 +702,14 @@ wakaba.LanguageMap = {
 	["kr"] = "ko_kr",
 	["zh"] = "zh_cn",
 }
+wakaba.Blacklists.NameLocalization = {
+	function() return DaRules ~= nil end,
+}
 local languageMap = wakaba.LanguageMap
 
 local i_queueLastFrame = {}
 local i_queueNow = {}
-if not REPENTOGON then
+function wakaba:RegisterLegacyItemNames()
 
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
 	if Options.Language == "en" then return end
@@ -771,8 +774,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@
 	t_queueLastFrame[initSeed] = t_queueNow[initSeed]
 end)
 
-else
-
+end
+function wakaba:RegisterBirthrightLegacyItemNames()
 	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@param player EntityPlayer
 		if Options.Language == "en" then return end
 		local descTable = wakaba.descriptions[languageMap[Options.Language]]
@@ -793,6 +796,10 @@ else
 		end
 		i_queueLastFrame[initSeed] = i_queueNow[initSeed]
 	end)
+end
+
+if not REPENTOGON then
+	wakaba:RegisterLegacyItemNames()
 end
 
 function wakaba:EIDPos()
