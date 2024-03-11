@@ -99,7 +99,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		local data = player:GetData()
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_DMG
 		local donationThreshold = 3 + getElixirPower(player)
-		local soulThreshold = 1 + getElixirPower(player)
+		local soulThreshold = 2 + getElixirPower(player)
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
 			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER // math.min(math.max(getElixirPower(player), 1), 6)
 		end
