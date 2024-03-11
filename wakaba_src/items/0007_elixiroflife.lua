@@ -53,9 +53,9 @@ function wakaba:PlayerUpdate_Elixir(player)
 		end
 		data.wakaba.elixircooldown = data.wakaba.elixircooldown or wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 		if not player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS) then
-			local isSoulCharacter = Isaac.RunCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, player) ~= nil
+			local isSoulCharacter, shouldConvertFunc = Isaac.RunCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, player) ~= nil
 			local availableMaxSoul
-			if isSoulCharacter then
+			if isSoulCharacter and shouldConvertFunc then
 				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
 			else
 				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetBoneHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
@@ -141,15 +141,16 @@ wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Elixi
 function wakaba:ElixirSoulRecover_Elixir(player)
 	if REPENTOGON then
 		if player:GetHealthType() == HealthType.SOUL then
-			return true
+			return true, true
 		end
 	else
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
 		or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
 		or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
-		or not isc:canCharacterHaveRedHearts(player:GetPlayerType())
 		then
-			return true
+			return true, false
+		elseif not isc:canCharacterHaveRedHearts(player:GetPlayerType()) then
+			return true, true
 		end
 	end
 end
