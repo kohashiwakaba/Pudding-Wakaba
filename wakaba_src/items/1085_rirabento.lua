@@ -16,8 +16,8 @@ function wakaba:Cache_RiraBento(player, cacheFlag)
 			player.MoveSpeed = player.MoveSpeed + (0.02 * power)
 		end
 		if cacheFlag  == CacheFlag.CACHE_DAMAGE then
-			local heartPower = math.min((player:GetHearts() + player:GetSoulHearts() * 5), 24)
-			player.Damage = player.Damage * (heartPower * 0.1 * wakaba:getEstimatedDamageMult(player))
+			local heartPower = math.min((player:GetHearts() + player:GetSoulHearts()), 24)
+			player.Damage = player.Damage + (heartPower * 0.1 * wakaba:getEstimatedDamageMult(player))
 			--player.Damage = player.Damage * (1.02 ^ power)
 		end
 		if cacheFlag  == CacheFlag.CACHE_FIREDELAY then

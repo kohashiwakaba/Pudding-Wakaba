@@ -29,7 +29,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
-			player.Damage = player.Damage * (1.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO))
+			player.Damage = player.Damage * (1 + (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO)))
 		end
 	end
 	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
