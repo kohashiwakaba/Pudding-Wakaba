@@ -17,7 +17,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_EternityCookie
 ---@param pickup EntityPickup
 function wakaba:PickupUpdate_EternityCookie(pickup)
 	if maxMult == 0 then return end
-	if pickup.Timeout > 0 then
+	if pickup.Timeout > 0 and pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE then
 		pickup.Timeout = -1
 	end
 	if maxMult > 1 and not (pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and isc:inDeathCertificateArea()) then
