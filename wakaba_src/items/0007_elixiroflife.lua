@@ -58,7 +58,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 			if isSoulCharacter and shouldConvertFunc then
 				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
 			else
-				availableMaxSoul = math.min(player:GetHeartLimit() - (player:GetBoneHearts() * 2), (data.wakaba.elixirmaxsoulhearts or 0))
+				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetMaxHearts() - (player:GetBoneHearts() * 2), (data.wakaba.elixirmaxsoulhearts or 0))
 			end
 			if data.wakaba.elixircooldown > 0 then
 				data.wakaba.elixircooldown = data.wakaba.elixircooldown - 1
