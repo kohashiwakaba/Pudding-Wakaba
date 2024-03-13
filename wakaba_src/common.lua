@@ -1344,3 +1344,23 @@ function wakaba:getMean( t )
 
 	return (sum / count)
 end
+
+---Check whether item is procedural or not
+---@param player EntityPlayer
+---@param usedItem CollectibleType
+---@param slot ActiveSlot
+function wakaba:IsActiveFromProceduralItem(player, usedItem, slot)
+	slot = slot or ActiveSlot.SLOT_PRIMARY
+	if slot == -1 then -- Item not used directly
+		return false, false, true
+	end
+
+	local currentItem = player:GetActiveSlot(slot)
+	if currentItem < 0 then -- Item is used by Procedural item
+		return true, false, false
+	elseif currentItem == CollectibleType.COLLECTIBLE_VOID then -- Item is used by Void
+		return false, true, false
+	elseif currentItem ~= usedItem then -- Item not used directly
+		return false, false, true
+	end
+end
