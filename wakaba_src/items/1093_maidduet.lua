@@ -10,12 +10,13 @@ wakaba.Blacklists.MaidDuet = {
 	[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true,
 	[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
 }
+if not REPENTOGON then
+	wakaba.Blacklists.MaidDuet[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
+	wakaba.Blacklists.MaidDuet[CollectibleType.COLLECTIBLE_JAR_OF_WISPS] = true
+end
 wakaba.Blacklists.MaidDuetCharges = {
-	--[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
 	[CollectibleType.COLLECTIBLE_EVERYTHING_JAR] = true,
-	--[CollectibleType.COLLECTIBLE_PLACEBO] = true,
-	--[CollectibleType.COLLECTIBLE_BLANK_CARD] = true,
-	--[CollectibleType.COLLECTIBLE_CLEAR_RUNE] = true,
+	[CollectibleType.COLLECTIBLE_WOODEN_NICKEL] = true,
 }
 
 wakaba.Blacklists.MaidDuetPlayers = {
