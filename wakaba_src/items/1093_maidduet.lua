@@ -9,6 +9,7 @@ wakaba.Blacklists.MaidDuet = {
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE] = true,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true,
 	[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
+
 }
 if not REPENTOGON then
 	wakaba.Blacklists.MaidDuet[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
@@ -46,6 +47,22 @@ end)
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_MaidDuet(player)
 	if not player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) then return end
+	wakaba:GetPlayerEntityData(player)
+	local data = player:GetData()
+	local lastPlayer = data.wakaba.lastmaidplayertype
+	if lastPlayer and lastPlayer ~= player:GetPlayerType() then
+		player:AddCollectible(data.wakaba.lastmaidpocketitem, data.wakaba.lastmaidpocketcharge or 0, false, ActiveSlot.SLOT_POCKET)
+		isc:setActiveItem(player, data.wakaba.lastmaidpocketitem, ActiveSlot.SLOT_POCKET, data.wakaba.lastmaidpocketcharge or 0)
+		if REPENTOGON then
+			local a = player:GetActiveItemDesc(ActiveSlot.SLOT_POCKET)
+			--a.Item = data.wakaba.lastmaidpocketitem
+			--a.Charge = data.wakaba.lastmaidcharge
+			--a.BatteryCharge = data.wakaba.lastmaidbatterycharge
+			a.PartialCharge = data.wakaba.lastmaidpartialcharge
+			a.VarData = data.wakaba.lastmaidvardata
+		end
+		data.wakaba.lastmaidplayertype = player:GetPlayerType()
+	end
 	if player.ControlsEnabled then
 		--TODO 설정 가능 옵션으로 교체
 		if (player.ControllerIndex == 0 and Input.IsButtonTriggered(Keyboard.KEY_8, player.ControllerIndex))
@@ -57,6 +74,9 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 				local firstActive = player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
 				local firstConfig = config:GetCollectible(firstActive)
 				local firstCharge = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY)
+
+				local firstVarData
+				local firstPartialCharge
 
 				local extraFirstCharge = 0
 				if firstConfig:IsCollectible() then
@@ -71,6 +91,9 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 				local secondActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
 				local secondCharge = 0
 				local extraSecondCharge = 0
+
+				local secondVarData
+				local secondPartialCharge
 				if secondActive ~= 0 then
 					local secondConfig = config:GetCollectible(secondActive)
 					secondCharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
@@ -83,17 +106,46 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 					end
 				end
 
+				if REPENTOGON then
+					local prDesc = player:GetActiveItemDesc(ActiveSlot.SLOT_PRIMARY)
+					firstPartialCharge = prDesc.PartialCharge
+					firstVarData = prDesc.VarData
+
+					local poDesc = player:GetActiveItemDesc(ActiveSlot.SLOT_POCKET)
+					secondPartialCharge = poDesc.PartialCharge
+					secondVarData = poDesc.VarData
+				end
+
 				isc:setActiveItem(player, firstActive, ActiveSlot.SLOT_POCKET, firstCharge + extraFirstCharge)
 				isc:setActiveItem(player, secondActive, ActiveSlot.SLOT_PRIMARY, secondCharge + extraSecondCharge)
+				if REPENTOGON then
+					local prDesc = player:GetActiveItemDesc(ActiveSlot.SLOT_PRIMARY)
+					local poDesc = player:GetActiveItemDesc(ActiveSlot.SLOT_POCKET)
+					poDesc.VarData = firstVarData or 0
+					poDesc.PartialCharge = firstPartialCharge or 0
+					prDesc.VarData = secondVarData or 0
+					prDesc.PartialCharge = secondPartialCharge or 0
+				end
 
 				SFXManager():Play(SoundEffect.SOUND_DIVINE_INTERVENTION)
 
 				player:AnimateCollectible(wakaba.Enums.Collectibles.MAID_DUET, "HideItem")
 				player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET)
+				data.wakaba.lastmaidplayertype = player:GetPlayerType()
+				data.wakaba.lastmaidpocketitem = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
 			else
 				SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
 			end
 		end
+	end
+	data.wakaba.lastmaidpocketcharge = player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + player:GetBatteryCharge(ActiveSlot.SLOT_POCKET)
+	if REPENTOGON then
+		local a = player:GetActiveItemDesc(ActiveSlot.SLOT_POCKET)
+		--data.wakaba.lastmaidpocketitem = a.Item
+		--data.wakaba.lastmaidcharge = a.Charge
+		--data.wakaba.lastmaidbatterycharge = a.BatteryCharge
+		data.wakaba.lastmaidpartialcharge = a.PartialCharge
+		data.wakaba.lastmaidvardata = a.VarData
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_MaidDuet)
