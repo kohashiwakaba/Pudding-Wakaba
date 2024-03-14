@@ -63,7 +63,11 @@ function wakaba:GetDeadEnd(rng)
 
 	for i = 0, #roomsList - 1 do
 		local desc = roomsList:Get(i)
-		if desc.Data.Type == RoomType.ROOM_DEFAULT and desc.Data.Shape == RoomShape.ROOMSHAPE_1x1 and countVisibleConnections(desc.SafeGridIndex) == 1 then
+		if desc.Data.Type == RoomType.ROOM_DEFAULT
+		and desc.Data.Subtype == 0
+		and desc.Data.Shape == RoomShape.ROOMSHAPE_1x1
+		and countVisibleConnections(desc.SafeGridIndex) == 1
+		then
 			table.insert(deadEnds, desc)
 		end
 	end
