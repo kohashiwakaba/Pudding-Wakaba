@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="2022-12-20 15:11:03" Version="187" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="2024-03-16 02:54:12" Version="188" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="completion_doors.png" Id="0"/>
@@ -67,6 +67,21 @@
 				</LayerAnimation>
 				<LayerAnimation LayerId="0" Visible="true">
 					<Frame XPosition="0" YPosition="0" XPivot="4" YPivot="8" XCrop="192" YCrop="0" Width="64" Height="64" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+			</LayerAnimations>
+			<NullAnimations/>
+			<Triggers/>
+		</Animation>
+		<Animation Name="Rira" FrameNum="1" Loop="true">
+			<RootAnimation>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+			</RootAnimation>
+			<LayerAnimations>
+				<LayerAnimation LayerId="1" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="16" YPivot="16" XCrop="0" YCrop="64" Width="96" Height="96" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+				<LayerAnimation LayerId="0" Visible="true">
+					<Frame XPosition="0" YPosition="0" XPivot="4" YPivot="8" XCrop="256" YCrop="0" Width="64" Height="64" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>

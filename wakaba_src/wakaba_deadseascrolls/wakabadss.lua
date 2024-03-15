@@ -80,7 +80,11 @@ local completionCharacterSets = {
 	{
 		{HeadName = "Richer", PlayerID = wakaba.Enums.Players.RICHER, IsUnlocked = function() return true end},
 		{HeadName = "RicherB", PlayerID = wakaba.Enums.Players.RICHER_B, IsUnlocked = function() return wakaba.state.unlock.taintedricher end},
-	}
+	},
+	{
+		{HeadName = "Rira", PlayerID = wakaba.Enums.Players.RIRA, IsUnlocked = function() return true end},
+		--{HeadName = "RicherB", PlayerID = wakaba.Enums.Players.RIRA_B, IsUnlocked = function() return wakaba.state.unlock.taintedrira end},
+	},
 }
 
 
@@ -987,10 +991,10 @@ local wakabadirectory = {
 			{str = ""},
 			{str = ""},
 			{str = ""},
+			{str = ""},
 
 			--{str = "", nosel = true},
 			--{str = "", nosel = true},
-			{str = "", nosel = true},
 			{str = "", nosel = true},
 			{str = "", nosel = true},
 			{str = "", fsize = 2, nosel = true},
@@ -1031,11 +1035,20 @@ local wakabadirectory = {
 					return item.bsel == 4
 				end,
 			},
+			{
+				str = "current character : rira",
+				nosel = true,
+				fsize = 1,
+
+				displayif = function(_, item)
+					return item.bsel == 5
+				end,
+			},
 		},
 
 		postrender = function(item, tbl)
-			if item.bsel < 1 then item.bsel = 4 end
-			if item.bsel > 4 then item.bsel = 1 end
+			if item.bsel < 1 then item.bsel = 5 end
+			if item.bsel > 5 then item.bsel = 1 end
 			--[[ if item.bsel == 5 then end ]]
 			local centre = getScreenCenterPosition()
 			local renderDataset = completionCharacterSets[item.bsel]
