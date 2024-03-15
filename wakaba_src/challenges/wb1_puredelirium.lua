@@ -9,8 +9,10 @@ function wakaba:Challenge_PlayerInit_PureDeli(player)
 	if wakaba.G.Challenge ~= c then return end
   player:SetPocketActiveItem(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, ActiveSlot.SLOT_POCKET, true)
   if wakaba.G:GetFrameCount() == 0 then
-		wakaba.G:GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
-		Isaac.ExecuteCommand("goto s.boss.3414")
+    wakaba:scheduleForUpdate(function ()
+      wakaba.G:GetLevel():SetStage(LevelStage.STAGE7, StageType.STAGETYPE_ORIGINAL)
+      Isaac.ExecuteCommand("goto s.boss.3414")
+    end, 1)
   end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_PureDeli)

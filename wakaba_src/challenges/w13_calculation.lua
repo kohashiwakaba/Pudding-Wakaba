@@ -7,6 +7,11 @@ wakaba.ChallengeParams.TargetCharacters[c] = tp
 ---@param player EntityPlayer
 function wakaba:Challenge_PlayerInit_Calculation(player)
 	if wakaba.G.Challenge ~= c then return end
+  wakaba:scheduleForUpdate(function ()
+    if player:GetSoulHearts() == 1 then -- TODO temporary fix for RGON
+      player:AddSoulHearts(5)
+    end
+  end, 0)
   player:AddBombs(32)
   player:AddKeys(99)
 end

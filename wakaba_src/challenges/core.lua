@@ -140,9 +140,11 @@ function wakaba:Challenge_PlayerInit_Core(player)
 		if player:GetPlayerType() ~= tp then
 			wakaba.Log("Player incorrectness found from challenge", c, ", time :", wakaba.G:GetFrameCount())
 			if wakaba.G:GetFrameCount() == 0 then
+				wakaba.Log("First player! restarting...")
 				Isaac.ExecuteCommand("restart " .. tp)
 				return
 			else
+				wakaba.Log("Second player! changing...")
 				player:ChangePlayerType(tp)
 				if wakaba.ChallengeParams.CharacterInitFuncs[tp] then
 					wakaba.ChallengeParams.CharacterInitFuncs[tp](player)
