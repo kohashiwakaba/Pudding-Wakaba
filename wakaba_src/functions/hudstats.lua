@@ -226,5 +226,8 @@ end)
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -30000, function(_)
 	if PlanetariumChance and not PlanetariumChance:shouldDeHook() then
 		return {Skip = true}
+	elseif REPENTOGON and Options.StatHUDPlanetarium then
+		local pd = Isaac.GetPersistentGameData()
+		return {Skip = pd:Unlocked(Achievement.PLANETARIUMS)}
 	end
 end)
