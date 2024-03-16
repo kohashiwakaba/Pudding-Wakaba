@@ -186,7 +186,7 @@ end)
 
 -- override function : IsLost
 function wakaba:IsLost(player)
-	return player:HasInstantDeathCurse()
+	return player:HasInstantDeathCurse() or player:GetHealthType() == HealthType.LOST
 end
 
 

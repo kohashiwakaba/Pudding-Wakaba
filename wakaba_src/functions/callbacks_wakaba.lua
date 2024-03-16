@@ -460,6 +460,19 @@ wakaba.Callback = {
 	-- - Return true to prevent usage of Maid Duet
 	-- ---
 	EVALUATE_MAID_DUET = "WakabaCallbacks.EVALUATE_MAID_DUET",
+	-- ---
+	-- POST_MANTLE_BREAK
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE,
+	--
+	-- ---
+	-- Parameters :
+	-- - `player` - EntityPlayer
+	-- - `prevCount` - int
+	-- - `afterCount` - int
+	--
+	-- ---
+	POST_MANTLE_BREAK = "WakabaCallbacks.POST_MANTLE_BREAK",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
@@ -1057,6 +1070,29 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, CallbackPriorit
 	local player = collider:ToPlayer()
 	if player and wakaba:WillPlayerBuyPickup(player, pickup) then
 		Isaac.RunCallbackWithParam(wakaba.Callback.POST_PURCHASE_PICKUP, pickup.Variant, pickup, player, pickup.Price)
+	end
+end)
+
+-- Post Mantle Break
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, -19999, function(_, player) ---@param player EntityPlayer
+	if wakaba.G:GetRoom():GetFrameCount() < 1 then return end
+	if not player:IsDead() then
+		local d = player:GetData()
+		local mantle = player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
+		local count = 0
+		if mantle then
+			count = mantle.Count
+		end
+		if d.w_mc then
+			if count < d.w_mc then
+				Isaac.RunCallback(wakaba.Callback.POST_MANTLE_BREAK, player, d.w_mc, count)
+				d.w_mc = count
+			else
+				d.w_mc = count
+			end
+		else
+			d.w_mc = count
+		end
 	end
 end)
 

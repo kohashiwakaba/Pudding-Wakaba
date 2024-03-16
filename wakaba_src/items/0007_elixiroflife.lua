@@ -2,8 +2,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 
 function wakaba:hasElixir(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B and not (player:IsDead() and not player:WillPlayerRevive()) then
 		return true
@@ -92,6 +92,18 @@ function wakaba:PlayerUpdate_Elixir(player)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Elixir)
+
+function wakaba:MantleBreak_Elixir(player, prevCount, nextCount)
+	if wakaba:hasElixir(player) and wakaba:IsLost(player) then
+		wakaba:GetPlayerEntityData(player)
+		local data = player:GetData()
+		data.wakaba.elixirinvframes = 30
+		player:ResetDamageCooldown()
+		player:SetMinDamageCooldown(30)
+		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
+	end
+end
+wakaba:AddCallback(wakaba.Callback.POST_MANTLE_BREAK, wakaba.MantleBreak_Elixir)
 
 function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 	if wakaba:hasElixir(player) and player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
