@@ -97,9 +97,9 @@ function wakaba:MantleBreak_Elixir(player, prevCount, nextCount)
 	if wakaba:hasElixir(player) and wakaba:IsLost(player) then
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
-		data.wakaba.elixirinvframes = 30
+		data.wakaba.elixirinvframes = 15
 		player:ResetDamageCooldown()
-		player:SetMinDamageCooldown(30)
+		player:SetMinDamageCooldown(15)
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
 	end
 end
