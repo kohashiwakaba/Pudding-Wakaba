@@ -361,5 +361,6 @@ function wakaba:AfterRevival_LunarStone(player)
 	if data.wakaba.tsukasa1up then
 		data.wakaba.lunargauge = data.wakaba.tsukasa1up
 		data.wakaba.tsukasa1up = nil
+		data.wakaba.nolunarrefill = nil
 	end
 end

@@ -63,6 +63,7 @@ function wakaba:PlayerUpdate_Revival2(player)
 			if tempRevivalFunc[playerIndex] then
 				tempRevivalFunc[playerIndex](player)
 				tempRevivalFunc[playerIndex] = nil
+				data.nolunarrefill = nil
 			end
 
 			data.willRevive = false
