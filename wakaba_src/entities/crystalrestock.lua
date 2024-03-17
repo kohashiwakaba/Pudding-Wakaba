@@ -31,6 +31,7 @@ function wakaba:InitCrystalRestock(slot)
 				restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
 				reservedX = reservedPos.X,
 				reservedY = reservedPos.Y,
+				dead = false,
 			}
 			sprite:Play("Idle")
 		end
