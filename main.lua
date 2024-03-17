@@ -678,11 +678,6 @@ if not wakaba.defaultstate then
 	wakaba.defaultstate = wakaba:deepcopy(wakaba.state)
 end
 
---resetSettings (planned)
-wakaba.defaultsettings = {
-
-}
-
 --Global Functions and variables
 
 local HUD = wakaba.G:GetHUD()
@@ -690,20 +685,6 @@ wakaba.RNG = RNG()
 wakaba.ItemRNG = RNG()
 wakaba.PickupRNG = RNG()
 wakaba.ItemConfig = Isaac.GetItemConfig()
-
---[[
-	Taken from Community Remix, This is needed to prevent infinite freeze from getting familiar priority.
-	Callback created from base modRef(_wakaba) instead of UpgradedModRef(wakaba) just in case
-]]
-if REPENTOGON then
-	_wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, f)
-		if not f.Parent then
-			if f.Player then
-				f.Parent = f.Player
-			end
-		end
-	end)
-end
 
 function wakaba:has_value (tab, val)
 	if tab == nil then return false end
