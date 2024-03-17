@@ -1,8 +1,4 @@
-local JokerChance = wakaba.state.silverchance
-local origAngelChance = wakaba.runstate.angelchance
 local rng = wakaba.RNG
-local black = false
-local white = false
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 

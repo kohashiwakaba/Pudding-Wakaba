@@ -1,10 +1,3 @@
-local animation = "gfx/cranecarddrop.anm2"
-local CraneCardChance = wakaba.state.silverchance
-
-local usedCardInThisRoom = false
-local player
-
-
 function wakaba:onUseCard2002(_, player, flags)
 	local newMachinePos = wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true)
 	local machineVariant = 16

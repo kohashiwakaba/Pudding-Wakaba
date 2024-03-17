@@ -1,10 +1,3 @@
-local animation = "gfx/confessionalcarddrop.anm2"
-local ConfessionalCardChance = wakaba.state.silverchance
-
-local usedCardInThisRoom = false
-local player
-
-
 function wakaba:onUseCard2003(_, player, flags)
 	local newMachinePos = wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 45, true)
 	local machineVariant = 17
