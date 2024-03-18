@@ -35,7 +35,8 @@
 		In addition, all stat/item layers on the main menu will be hidden and the Unlocked By layer will be visible.
 	
 	when your done remove this comment section :)
-!-->
+  -->
+	<!-- 코하시 와카바 -->
 	<player name="Wakaba" costume="52"
 	hp="4" coins="5" birthright="True Pure girl"
 	portrait="WakabaPortrait.png"
@@ -50,6 +51,7 @@
 	healthtype="1"
 	/>
 
+	<!-- 시오미야 시오리 -->
 	<player name="Shiori" costume="52"
 	hp="6" keys="12" birthright="Trace for knowledge" 
 	portrait="ShioriPortrait.png"
@@ -64,6 +66,7 @@
 	healthtype="1"
 	/>
 
+	<!-- 유자키 츠카사 -->
 	<player name="Tsukasa" costume="52"
 	hp="6" birthright="Brighter Luna"
 	portrait="TsukasaPortrait.png"
@@ -78,6 +81,7 @@
 	achievement="The Phoenix"
 	/>
 
+	<!-- 시오노미야 리셰 -->
 	<player name="Richer" costume="52"
 	hp="4" armor="2" birthright="Better deals, Recipe Selection" 
 	portrait="null.png"
@@ -94,6 +98,7 @@
 	healthtype="1" achievement="The Miko"
 	/>
 
+	<!-- 니와사카 리라 -->
 	<player name="Rira" costume="52"
 	hp="0" armor="6" birthright="A little bit more Ecchi"
 	portrait="null.png"
@@ -149,6 +154,53 @@
 	portrait="WakabaPortrait.png"
 	nameimage="playername_rira.png"
 	skin="character_rira.png" skinColor="-1" costumeSuffix="rira_t"
+	nomarks="true"
+	/>
+
+	<!-- Challenge only characters -->
+	<!-- Hidden in normal gameplay, only can be played through revival -->
+	<!-- 미나토 시마 - 마죠사쿠 -->
+	<player name="Shima" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	nomarks="true"
+	/>
+
+	<!-- 세실리아 - 백성녀 (미확정) -->
+	<player name="Cecilia" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	nomarks="true"
+	/>
+
+	<!-- 텐노스 아테네 - 하야테처럼 (미확정) -->
+	<player name="Athena" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	nomarks="true"
+	/>
+
+	<!-- 이나에 코론 -->
+	<player name="Koron" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	nomarks="true"
+	/>
+
+	<!-- 호시자쿠라 시엘 -->
+	<player name="Ciel" costume="52" hidden="true"
+	hp="6"  birthright="???"
+	portrait="RicherPortrait_b.png"
+	nameimage="playername_richer.png"
+	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
 	nomarks="true"
 	/>
 

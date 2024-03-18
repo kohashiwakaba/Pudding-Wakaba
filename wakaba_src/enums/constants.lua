@@ -26,6 +26,13 @@ wakaba.Enums.Players = {
 	TSUKASA_T = Isaac.GetPlayerTypeByName("TsukasaT", false),
 	RICHER_T = Isaac.GetPlayerTypeByName("RicherT", false),
 	RIRA_T = Isaac.GetPlayerTypeByName("RiraT", false),
+
+	-- Challenge exclusive characters
+	SHIMA = Isaac.GetPlayerTypeByName("Shima", false),
+	CECILIA = Isaac.GetPlayerTypeByName("Cecilia", false), -- not final, can be changed
+	ATHENA = Isaac.GetPlayerTypeByName("Athena", false), -- not final, can be changed
+	CIEL = Isaac.GetPlayerTypeByName("Ciel", false),
+	KORON = Isaac.GetPlayerTypeByName("Koron", false),
 }
 
 -- 와카바 모드 아이템
