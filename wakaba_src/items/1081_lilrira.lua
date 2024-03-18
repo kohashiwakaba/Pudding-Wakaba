@@ -25,9 +25,9 @@ function wakaba:addRiraDamage(player, count, ignoreMax)
 	count = count or 1
 
 	local playerIndex = isc:getPlayerIndex(player)
-	riraCharges[playerIndex] = riraCharges[playerIndex] or 0
+	rira_saved_recipies.run[playerIndex] = riraCharges[playerIndex] or 0
 
-	riraCharges[playerIndex] = math.max(riraCharges[playerIndex] + count, 0)
+	rira_saved_recipies.run[playerIndex] = math.max(riraCharges[playerIndex] + count, 0)
 
 	return riraCharges[playerIndex]
 end
@@ -76,7 +76,7 @@ function wakaba:tryStealRiraCharge_Shiori(familiar, player)
 	local keys = player:GetNumKeys()
 	if keys > 0 then
 		player:AddKeys(keys * -1)
-		riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + keys
+		rira_saved_recipies.run[playerIndex] = (riraCharges[playerIndex] or 0) + keys
 	end
 end
 

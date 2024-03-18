@@ -24,19 +24,19 @@ function wakaba:addRabbitCharge(player, count, ignoreMax)
 	count = count or 1
 
 	local playerIndex = isc:getPlayerIndex(player)
-	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
+	richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] or 0
 
 	if count < 0 and richerCharges[playerIndex] < count * -1 then
 		count = richerCharges[playerIndex] * -1
 	end
 
-	richerCharges[playerIndex] = richerCharges[playerIndex] + count
+	richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] + count
 
 	if not ignoreMax then
 		local maxCharges = wakaba:getMaxRabbitCharges(player)
 
 		if richerCharges[playerIndex] > maxCharges then
-			richerCharges[playerIndex] = maxCharges
+			richer_saved_recipies.run[playerIndex] = maxCharges
 		end
 	end
 
@@ -52,7 +52,7 @@ function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	if player:NeedsCharge(activeSlot) then
 		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 and not (activeSlot ~= ActiveSlot.SLOT_POCKET and Epiphany and player:GetPlayerType() == Epiphany.table_type_id["EDEN"]) do
 			isc:addRoomClearChargeToSlot(player, activeSlot)
-			richerCharges[playerIndex] = richerCharges[playerIndex] - 1
+			richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] - 1
 		end
 	end
 end
@@ -125,7 +125,7 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local mark = wakaba:GetMarkedTarget(player)
 
 	local playerIndex = isc:getPlayerIndex(player)
-	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
+	richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] or 0
 	local limit = c.LIL_RICHER_BASIC_CHARGES + (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)) * c.LIL_RICHER_EXTRA_CHARGES
 
 	if familiar.RoomClearCount > 0 then
