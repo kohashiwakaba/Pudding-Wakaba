@@ -695,6 +695,7 @@ if EID then
 end
 
 wakaba.LanguageMap = {
+	["en"] = "en_us",
 	["jp"] = "ja_jp",
 	["es"] = "spa",
 	["de"] = "de",
