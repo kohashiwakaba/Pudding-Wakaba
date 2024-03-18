@@ -98,8 +98,8 @@ wakaba:AddCallback(wakaba.Callback.MOD_NAME_TRANSLATE_BLACKLIST, function()
 		if g.minipoprulesopen or g.poprulesopen then return true end
 	end
 	if Encyclopedia then
-		if DeadSeaScrollsMenu.IsOpen() then -- TODO do not return true if wakaba dss is open
-			return true
+		if DeadSeaScrollsMenu.OpenedMenu and DeadSeaScrollsMenu.OpenedMenu.Name == "Encyclopedia" then -- TODO do not return true if wakaba dss is open
+			--return true
 		end
 	end
 end)
