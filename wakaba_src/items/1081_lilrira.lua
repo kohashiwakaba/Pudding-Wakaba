@@ -45,11 +45,21 @@ function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
 		if maxCharges == 0 then return end
 		local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
 		local chargeType = config.ChargeType
-		if chargeType == ItemConfig.CHARGE_TIMED or (chargeType == ItemConfig.CHARGE_NORMAL and maxCharges == 1 and player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)) then
+		if chargeType == ItemConfig.CHARGE_TIMED then
 			if charges >= maxCharges then
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
 				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
-				local dmgToAdd = charges / maxCharges
+				local dmgToAdd = charges / 1800
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
+		elseif (chargeType == ItemConfig.CHARGE_NORMAL and maxCharges == 1 and player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)) then
+			if charges >= maxCharges then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				local dmgToAdd = charges / 4
 				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
 				player:DischargeActiveItem(activeSlot)
 				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
