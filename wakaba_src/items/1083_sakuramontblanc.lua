@@ -46,7 +46,7 @@ function wakaba:Cache_SakuraMontBlanc(player, cacheFlag)
 	local power = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.SAKURA_MONT_BLANC)
 	power = math.min(power, 6 * baseLimit)
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, power * wakaba:getEstimatedTearsMult(player, false, true))
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, power * wakaba:getEstimatedTearsMult(player))
 	end
 	if cacheFlag == CacheFlag.CACHE_DAMAGE then
 		player.Damage = player.Damage + (0.5 * power * wakaba:getEstimatedDamageMult(player))
