@@ -50,17 +50,20 @@ end
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_SHIORI)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.ANCIENT_CATALOG, wakaba.bookstate.BOOKSHELF_SHIORI)
 
 -- Blacklist items for Hard Drop trinket
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SHIORI, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.ANCIENT_CATALOG, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 
 -- Blacklist items for Unknown Bookmark, Maijima Mythology
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.BALANCE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.ANCIENT_CATALOG, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 
 -- Blacklist items for Soul of Shiori
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.D6_PLUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
@@ -73,6 +76,7 @@ wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.B
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_LEMEGETON, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+wakaba:BlacklistBook(wakaba.Enums.Collectibles.ANCIENT_CATALOG, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 
 function wakaba:GetBookItems(bookstate)
 	local isShiori = false
