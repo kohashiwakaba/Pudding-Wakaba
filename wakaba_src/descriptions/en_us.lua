@@ -1303,7 +1303,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "Range OS",
 		description = ""
-		.. "#↓ {{Range}} -45% Range Multiplier"
+		.. "#↓ {{Range}} -60% Range Multiplier"
 		.. "#↑ {{Damage}} +125% Damage Multiplier"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",

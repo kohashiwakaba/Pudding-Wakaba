@@ -1563,7 +1563,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "강습형 전투 시스템",
 		description = ""
-		.. "#↓ {{RangeSmall}}사거리 배율 x0.55"
+		.. "#↓ {{RangeSmall}}사거리 배율 x0.4"
 		.. "#↑ {{DamageSmall}}공격력 배율 x2.25"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",

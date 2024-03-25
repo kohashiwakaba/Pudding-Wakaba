@@ -7,7 +7,7 @@ function wakaba:Cache_RangeOS(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
-				player.TearRange = player.TearRange * 0.55
+				player.TearRange = player.TearRange * 0.4
 			end
 		end
 	end

@@ -1417,7 +1417,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "火控系统",
 		description = ""
-			.. "#↓ {{Range}} -45% 攻击距离倍率"
+			.. "#↓ {{Range}} -60% 攻击距离倍率"
 			.. "#↑ {{Damage}} +125% 伤害倍率"
 			.. "{{CR}}",
 		queueDesc = "向他们深入",

@@ -123,14 +123,14 @@ wakaba.encyclopediadesc.desc.trinkets = {
 	[t.RANGE_OS] = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "-45% Range Multiplier"},
+			{str = "-60% Range Multiplier"},
 			{str = "+125% Damage Multiplier"},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-			{str = "This item is inspired from 'Assault OS', which was in 'Last Origin' from 'SmartJoy'."},
+			{str = "This item is inspired from 'Assault OS', which was in 'Last Origin' from 'Studio Valkyrie'."},
 			{str = "In early era in Last Origin, There are 'effective range' for each skills, some skills needed to be used in close range."},
-			{str = "Many players overused this equipment to control main skills for each unit, to only use stronger skills, which was not available in normal automatic playthrough."},
+			{str = "Many players overused this equipment to control main skills for each unit, to only use stronger skills, which was not available in normal playthrough."},
 		},
 	},
 	[t.ISAAC_CARTRIDGE] = {
