@@ -802,7 +802,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CRISIS_BOOST] = {
 		itemName = "Crisis Boost",
 		description = ""
-		.. "#↑ {{Damage}} Damage multiplier up for low health (max +75%)"
+		.. "#↑ {{Damage}} Damage multiplier up for low health (max +45%)"
 		.. "#!!! {{HolyMantle}} Holy shields also count for health"
 		.. "#↑ {{Tears}} +1 Fire Rate"
 		.. "{{CR}}",

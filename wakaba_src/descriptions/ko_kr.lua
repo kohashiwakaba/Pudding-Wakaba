@@ -885,7 +885,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{TearsSmall}}연사 +1"
 		.. "#↑ 전체 체력 및 {{HolyMantleSmall}}보호막의 수가 적을수록 {{DamageSmall}}공격력 배율 증가"
-		.. "#{{Blank}} 체력 1칸일 때 최대 x1.75/{{HalfHeart}}일 때 x3.0"
+		.. "#{{Blank}} 체력 1칸일 때 최대 x1.45/{{HalfHeart}}일 때 x2.0"
 		.. "{{CR}}",
 		queueDesc = "위기에 빠질수록 강해지다",
 	},

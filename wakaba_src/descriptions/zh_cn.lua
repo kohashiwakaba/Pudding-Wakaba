@@ -853,7 +853,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CRISIS_BOOST] = {
 		itemName = "危机提升",
 		description = ""
-			.. "#↑ {{Damage}}血量越低，攻击力乘数越高（最高+75%）"
+			.. "#↑ {{Damage}}血量越低，攻击力乘数越高（最高+45%）"
 			.. "#!!! {{HolyMantle}} 神圣斗篷防御也算血量"
 			.. "#↑ {{Tears}} +1射速修正"
 			.. "{{CR}}",
