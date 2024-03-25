@@ -141,7 +141,7 @@ function wakaba:EvalTearFlag_RiraSwimsuit(weapon, player, effectTarget)
 				elseif weapon.Type ~= EntityType.ENTITY_LASER then
 					weapon.Color = wakaba.Colors.AQUA_WEAPON_COLOR
 				end
-			else
+			elseif wakaba:CanApplyStatusEffect(effectTarget) then
 				--print("passed")
 				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
 			end

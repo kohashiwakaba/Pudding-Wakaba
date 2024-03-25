@@ -63,7 +63,7 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 				elseif weapon.Type ~= EntityType.ENTITY_LASER then
 					weapon.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				end
-			else
+			elseif wakaba:CanApplyStatusEffect(effectTarget) then
 				--print("passed")
 				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
 			end
