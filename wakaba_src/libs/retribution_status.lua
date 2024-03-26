@@ -26,6 +26,16 @@ local function GetRegisteredNumStatusEffects()
 	return count
 end
 
+local function getStatusEffectCount(npcTarget)
+	local data = npcTarget:GetData()
+	if not data.wakaba_StatusEffectData then return end
+	local count = 0
+	for index, statusData in pairs(data.wakaba_StatusEffectData) do
+		count = count + 1
+	end
+	return count
+end
+
 function mod:RegisterStatusEffect(statusName, spriteObject, metadata)
 	local index = GetRegisteredNumStatusEffects() + 1
 	mod.StatusEffect[statusName] = index
@@ -56,14 +66,14 @@ function mod:CanApplyStatusEffect(npcTarget, ignoreCooldown)
 		return (
 			npcTarget and
 			npcTarget:IsVulnerableEnemy() and
-			not mod:isStatusBlacklisted(mod) and
+			not mod:isStatusBlacklisted(npcTarget) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 		)
 	else
 		return (
 			npcTarget and
 			npcTarget:IsVulnerableEnemy() and
-			not mod:isStatusBlacklisted(mod) and
+			not mod:isStatusBlacklisted(npcTarget) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and
 			not npcTarget:HasEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS) and
 			not data.wakaba_StatusCooldown
@@ -109,7 +119,7 @@ function mod:HasStatusEffect(npcTarget, statusType)
 	else
 		return (
 			data.wakaba_StatusEffectData and
-			#data.wakaba_StatusEffectData > 0
+			getStatusEffectCount(npcTarget) > 0
 		)
 	end
 end
@@ -133,13 +143,15 @@ mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, function(_, npc)
 	if not shouldRenderStatusSymbol(npc) then return end
 
 	local data = npc:GetData()
-	local numStatuses = #data.wakaba_StatusEffectData
+	local numStatuses = getStatusEffectCount(npc)
 	local initialRenderPosition = Isaac.WorldToScreen(npc.Position) + npc.SpriteOffset + Vector(0, -32)
 	local multiStatusOffset = Vector(-8, 0) * math.max(0, numStatuses - 1)
 
+	local i = 0
 	for index, statusData in pairs(data.wakaba_StatusEffectData) do
+		i = i + 1
 		local metadata = mod.StatusMetadata[index]
-		local renderPosition = initialRenderPosition + multiStatusOffset + Vector(16, 0) * (index - 1)
+		local renderPosition = initialRenderPosition + multiStatusOffset + Vector(16, 0) * (i - 1)
 		local colourIntensity = 1
 
 		if metadata.EntityColor then
