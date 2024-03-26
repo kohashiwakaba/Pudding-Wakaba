@@ -7,12 +7,16 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 ---@param player EntityPlayer
 local function hasParfaitEffect(player)
-	return player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+	wakaba:GetPlayerEntityData(player)
+	player:GetData().wakaba.parfaitcount = player:GetData().wakaba.parfaitcount or 0
+	return player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetData().wakaba.parfaitcount > 0
 end
 
 ---@param player EntityPlayer
 local function getParfaitEffectNum(player)
-	return player:GetCollectibleNum(wakaba.Enums.Collectibles.BUNNY_PARFAIT) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+	wakaba:GetPlayerEntityData(player)
+	player:GetData().wakaba.parfaitcount = player:GetData().wakaba.parfaitcount or 0
+	return player:GetCollectibleNum(wakaba.Enums.Collectibles.BUNNY_PARFAIT) + player:GetData().wakaba.parfaitcount
 end
 
 function wakaba:NewRoom_BunnyParfait()
@@ -50,6 +54,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BunnyParfait)
 
 function wakaba:AfterRevival_BunnyParfait(player)
+	player:GetData().wakaba.parfaitcount = (player:GetData().wakaba.parfaitcount or 0) + 1
 	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B then
 		player:AddSoulHearts(6)
 	else

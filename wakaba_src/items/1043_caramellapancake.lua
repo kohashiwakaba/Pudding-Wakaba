@@ -25,12 +25,15 @@ wakaba.CaramellaAutoTargetFiles = {
 ---comment
 ---@param player EntityPlayer
 local function hasCaramellaEffect(player)
-	return player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
+	wakaba:GetPlayerEntityData(player)
+	player:GetData().wakaba.caramellacount = player:GetData().wakaba.caramellacount or 0
+	return player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) or player:GetData().wakaba.caramellacount > 0
 end
 
 ---@param player EntityPlayer
 local function getCaramellaEffectNum(player)
-	return player:GetCollectibleNum(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE)
+	player:GetData().wakaba.caramellacount = player:GetData().wakaba.caramellacount or 0
+	return player:GetCollectibleNum(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) + player:GetData().wakaba.caramellacount
 end
 
 ---comment
