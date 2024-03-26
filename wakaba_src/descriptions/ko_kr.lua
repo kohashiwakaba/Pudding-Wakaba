@@ -2897,6 +2897,14 @@ wakaba.descriptions[desclang].extratrinkets = {}
 
 
 if EID then
+	if EID.descriptions[desclang].ItemReminder then
+		EID.descriptions[desclang].ItemReminder.w_Character = "캐릭터"
+		EID.descriptions[desclang].ItemReminder.w_Starting = "시작 아이템"
+		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "와카바의 교복"
+		EID.descriptions[desclang].ItemReminder.w_Curse = "저주"
+		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "시오리 눈물 효과"
+	end
+
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 와카바 모드 아이템 해금 적용 여부 설정"
 	EID.descriptions[desclang].WakabaAchievementWarningText = "Pudding & Wakaba(와카바 모드)는 해금 컨텐츠가 제공됩니다.#해금 컨텐츠를 적용하시겠습니까?#Yes:해금 컨텐츠 적용#No:모든 컨텐츠 해금"
 

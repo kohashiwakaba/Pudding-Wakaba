@@ -119,7 +119,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Clearing rooms recover lunar gauge"
 		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
-		.. "#All damage taken will be non-penalty damage"
+		.. "#↑ Prevents penalties from all damage taken"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
@@ -2639,6 +2639,14 @@ wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
+	if EID.descriptions[desclang].ItemReminder then
+		EID.descriptions[desclang].ItemReminder.w_Character = "Character"
+		EID.descriptions[desclang].ItemReminder.w_Starting = "Starting items"
+		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "Wakaba's Uniform"
+		EID.descriptions[desclang].ItemReminder.w_Curse = "Curses"
+		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "Shiori Tear effects"
+	end
+
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! Achievements?"
 	EID.descriptions[desclang].WakabaAchievementWarningText = "Pudding & Wakaba's characters come with full sets of unlocks#This is an optional feature#Do you want to lock some items behind our characters?"
 

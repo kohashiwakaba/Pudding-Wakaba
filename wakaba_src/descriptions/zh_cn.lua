@@ -2366,6 +2366,14 @@ wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
+	if EID.descriptions[desclang].ItemReminder then -- TODO
+		EID.descriptions[desclang].ItemReminder.w_Character = "Character"
+		EID.descriptions[desclang].ItemReminder.w_Starting = "Starting items"
+		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "Wakaba's Uniform"
+		EID.descriptions[desclang].ItemReminder.w_Curse = "Curses"
+		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "Shiori Tear effects"
+	end
+
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 成就？"
 	EID.descriptions[desclang].WakabaAchievementWarningText =
 	"Mod中的角色都有完整的解锁奖励#这是一个可选的功能#你想把一些物品锁在我们的角色后面吗？"
