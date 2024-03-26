@@ -754,17 +754,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 				{str = "Shiva later requested Wakaba to join the contest, and Wakaba won the contest."},
 		},
 	},
-	WINTER_ALBIREO = {
-		{ -- Effects
-			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Spawns Planetariums every floor until Womb/Corpse."},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Tainted Richer starts with this item and is intrinsic to the character, and it can't be rerolled"},
-			--{str = "- Tainted Richer can still find this item on a pedestal. Picking the item does nothing currently."},
-		},
-	},
 	CRISIS_BOOST = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
