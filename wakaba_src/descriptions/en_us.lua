@@ -1220,7 +1220,8 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 		.. "#Randomize consumable counters and stats"
 		.. "#The range for consumables can be all back to 0 to full of 999"
-		.. "#!!! Will be removed once dropped or smelted!"
+		.. "#!!! Will be removed once dropped!"
+		.. "#!!! Will no longer randomize consumables when smelted"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},

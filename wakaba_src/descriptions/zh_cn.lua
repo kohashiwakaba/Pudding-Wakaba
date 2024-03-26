@@ -1334,7 +1334,9 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 			.. "#随机化掉落物数量和属性"
 			.. "#掉落物的范围可以从0到999"
-			.. "#!!! 一旦掉落或吞下就会消失!"
+			--.. "#!!! 一旦掉落或吞下就会消失!"
+			.. "#!!! Will be removed once dropped!" -- TODO
+			.. "#!!! Will no longer randomize consumables when smelted"
 			.. "{{CR}}",
 		queueDesc = "真正的赌博",
 	},

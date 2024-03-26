@@ -43,7 +43,8 @@ wakaba.encyclopediadesc.desc.trinkets = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Randomize consumable counters and stats constantly."},
 			{str = "The range for consumables can be all back to 0 to full of 999."},
-			{str = "Once the trinket has been swapped, dropped, or smelted, the trinket disappears."},
+			{str = "Once the trinket has been swapped, dropped, the trinket disappears."},
+			{str = "Once the trinket has been smelted, the consumables no longer shuffled."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

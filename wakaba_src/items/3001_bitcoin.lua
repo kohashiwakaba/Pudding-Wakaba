@@ -1,35 +1,35 @@
 function wakaba:updatePlayerBitcoin(player)
-	if player.FrameCount % 10 == 0 and player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, UseFlag.USE_NOANIM)
-		local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.BITCOIN)
-		if player:GetPlayerType() ~= PlayerType.PLAYER_XXX_B then
-			player:AddBombs(-99)
-			player:AddBombs(1 + rng:RandomInt(99))
+	if player.FrameCount % 10 == 0 then
+		if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, false) then
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_D8, UseFlag.USE_NOANIM)
 		end
-		player:AddKeys(-99)
-		player:AddKeys(1 + rng:RandomInt(99))
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) then
-			player:AddCoins(-999)
-			player:AddCoins(1 + rng:RandomInt(999))
-		else
-			player:AddCoins(-999)
-			player:AddCoins(1 + rng:RandomInt(99))
+		if player:HasTrinket(wakaba.Enums.Trinkets.BITCOIN, true) then
+			local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.BITCOIN)
+			if player:GetPlayerType() ~= PlayerType.PLAYER_XXX_B then
+				player:AddBombs(-99)
+				player:AddBombs(1 + rng:RandomInt(99))
+			end
+			player:AddKeys(-99)
+			player:AddKeys(1 + rng:RandomInt(99))
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_DEEP_POCKETS) then
+				player:AddCoins(-999)
+				player:AddCoins(1 + rng:RandomInt(999))
+			else
+				player:AddCoins(-999)
+				player:AddCoins(1 + rng:RandomInt(99))
+			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				player:AddPoopMana(-29)
+				player:AddPoopMana(1 + rng:RandomInt(29))
+			else
+				player:AddPoopMana(-29)
+				player:AddPoopMana(1 + rng:RandomInt(9))
+			end
+			player:AddSoulCharge(-99)
+			player:AddSoulCharge(1 + rng:RandomInt(99))
+			player:AddBloodCharge(-99)
+			player:AddBloodCharge(1 + rng:RandomInt(99))
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			player:AddPoopMana(-29)
-			player:AddPoopMana(1 + rng:RandomInt(29))
-		else
-			player:AddPoopMana(-29)
-			player:AddPoopMana(1 + rng:RandomInt(9))
-		end
-		player:AddSoulCharge(-99)
-		player:AddSoulCharge(1 + rng:RandomInt(99))
-		player:AddBloodCharge(-99)
-		player:AddBloodCharge(1 + rng:RandomInt(99))
-	end
-	if not player:IsHoldingItem() and wakaba:PlayerHasSmeltedTrinket(player, wakaba.Enums.Trinkets.BITCOIN) then
-		SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
-		player:TryRemoveTrinket(wakaba.Enums.Trinkets.BITCOIN)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.updatePlayerBitcoin)
