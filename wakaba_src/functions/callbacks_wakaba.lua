@@ -474,6 +474,19 @@ wakaba.Callback = {
 	-- ---
 	EVALUATE_MAID_DUET = "WakabaCallbacks.EVALUATE_MAID_DUET",
 	-- ---
+	-- EVALUATE_RIRA_BRA
+	-- ---
+	-- Called from MC_ENTITY_TAKE_DMG, to choose check entity is considered as have status effect
+	--
+	-- ---
+	-- Parameters :
+	-- - `entity` - EntityP
+	--
+	-- ---
+	-- - Return non-nil other than false to make take extra damage from rira's bra
+	-- ---
+	EVALUATE_RIRA_BRA = "WakabaCallbacks.EVALUATE_RIRA_BRA",
+	-- ---
 	-- POST_MANTLE_BREAK
 	-- ---
 	-- Called from MC_POST_PLAYER_UPDATE,

@@ -26,6 +26,18 @@ function wakaba:HasStatusEffects(entity)
 			break 
 		end
 	end
+
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_RIRA_BRA)) do
+		local returnedFlag = callback.Function(callback.Mod, entity)
+		if returnedFlag ~= nil and returnedFlag ~= false then
+			hasEffect = true
+		end
+	end
+	return hasEffect
+end
+
+function wakaba:RiraBra_FiendFolio(entity)
+	local hasEffect = false
 	local data = entity:GetData()
 	if FiendFolio then
 		--hasEffect = hasEffect or (data.hasFFStatusIcon ~= nil)
@@ -41,6 +53,14 @@ function wakaba:HasStatusEffects(entity)
 	end
 	return hasEffect
 end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_FiendFolio)
+
+function wakaba:RiraBra_Basic(entity)
+	for index, statusData in pairs(data.wakaba_StatusEffectData) do
+		return true
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_Basic)
 
 function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
 	local returndata = {}
