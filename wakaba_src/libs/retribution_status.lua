@@ -75,7 +75,9 @@ function mod:AddStatusCooldown(npcTarget, duration, force)
 	local data = npcTarget:GetData()
 	if not force and data.wakaba_StatusCooldown then return end
 	duration = duration or (8 * 15)
-	data.wakaba_StatusCooldown = npcTarget.FrameCount + duration
+	wakaba:scheduleForUpdate(function()
+		data.wakaba_StatusCooldown = npcTarget.FrameCount + duration
+	end, 0)
 end
 
 function mod:AddStatusEffect(npcTarget, statusType, duration, player)
