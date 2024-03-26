@@ -56,10 +56,7 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_FiendFolio)
 
 function wakaba:RiraBra_Basic(entity)
-	local data = entity:GetData()
-	for index, statusData in pairs(data.wakaba_StatusEffectData) do
-		return true
-	end
+	return wakaba:HasStatusEffect(entity)
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_Basic)
 
