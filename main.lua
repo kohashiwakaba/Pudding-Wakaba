@@ -1147,7 +1147,7 @@ function wakaba:TakeDmg_VintageThreat(entity, amount, flag, source, countdownFra
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat)
+--wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_VintageThreat)
 
 --init 맨 마지막에 발동
 

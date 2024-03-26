@@ -249,6 +249,19 @@ wakaba.Callback = {
 	-- ---
 	-- - Return non-nil values other than `false` will prevent the collectible to be selected.
 	PRE_EVALUATE_SOUL_OF_SHIORI = "WakabaCallbacks.PRE_EVALUATE_SOUL_OF_SHIORI",
+
+	-- ---
+	-- EVALUATE_VINTAGE_DAMOCLES
+	-- ---
+	-- Called from WakabaCallbacks.EVALUATE_DAMAGE_AMOUNT, Determines vintage Damocles should fall.
+	--
+	-- ---
+	-- Parameters :
+	-- - `EntityPlayer` - used player. Mostly Shiori.
+	-- - `DamageFlag` -
+	-- ---
+	-- - Return non-nil values other than `false` prevent vintage damo fall.
+	EVALUATE_VINTAGE_DAMOCLES = "WakabaCallbacks.EVALUATE_VINTAGE_DAMOCLES",
 	-- ---
 	-- PRE_CHANGE_SHIORI_EFFECT
 	-- ---

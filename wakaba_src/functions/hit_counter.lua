@@ -4,7 +4,7 @@
 
 --Identificaiton of special damage types, referenced from Rep+ code--
 
-local function isSelfDamage(damageFlags, data)
+function wakaba:isSelfDamage(damageFlags, data)
 	local selfDamageFlags = {
 		['IVBag'] = DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_IV_BAG,
 		['Confessional'] = DamageFlag.DAMAGE_RED_HEARTS,

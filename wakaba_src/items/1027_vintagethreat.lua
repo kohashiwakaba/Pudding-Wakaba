@@ -96,6 +96,28 @@ function wakaba:FamiliarUpdate_VintageThreat(familiar)
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_VintageThreat, FamiliarVariant.DAMOCLES)
 
+
+function wakaba:AlterPlayerDamage_Vintage(entity, amount, flags, source, countdown)
+	local Source = source.Entity
+	local player = entity:ToPlayer()
+	if player then
+		if player:GetData().wakaba.vintagethreat then
+			local shouldNotFall = Isaac.RunCallback(wakaba.Callback.EVALUATE_VINTAGE_DAMOCLES, player, flags)
+			if not shouldNotFall then
+				player:GetData().wakaba.vintagekill = true
+			end
+		end
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -39999, wakaba.AlterPlayerDamage_Vintage)
+
+function wakaba:EvaluateVintage_Main(player, flags)
+	if flag & DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS > 0 then
+		return true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_VINTAGE_DAMOCLES, -39999, wakaba.EvaluateVintage_Main)
+
 function wakaba:DEBUG_FallDamocles()
 	local entities = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.DAMOCLES, -1, false, false)
 	for i, e in ipairs(entities) do
