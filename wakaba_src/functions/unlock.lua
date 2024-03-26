@@ -226,24 +226,24 @@ wakaba.UnlockTables = {
 		All 		= {"chimaki", "collectible",	wakaba.Enums.Collectibles.CHIMAKI,	function() wakaba:TryPlayAchievementPaper("chimaki", "Boss") end},
 	},
 	[-999] = {
-		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, BossID.MOM},
-		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() wakaba:TryPlayAchievementPaper("plumy", "Boss") end, BossID.HUSH},
-		--[wakaba.challenges.CHALLENGE_PULL] = {"wakabaorgel", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("blank", "Boss") end, BossID.MOM},
-		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() wakaba:TryPlayAchievementPaper("delimiter", "Boss") end, BossID.HEART},
-		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() wakaba:TryPlayAchievementPaper("nekofigure", "Boss") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() wakaba:TryPlayAchievementPaper("microdoppelganger", "Boss") end, BossID.HUSH},
-		[wakaba.challenges.CHALLENGE_DELI] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() wakaba:TryPlayAchievementPaper("dimensioncutter", "Boss") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_SIST] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() wakaba:TryPlayAchievementPaper("lilwakaba", "Boss") end, BossID.LAMB},
-		[wakaba.challenges.CHALLENGE_DRAW] = {"lostuniform", "null",	nil,	function() wakaba:TryPlayAchievementPaper("lostuniform", "Boss") end}, BossID.BLUE_BABY,
-		[wakaba.challenges.CHALLENGE_HUSH] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() wakaba:TryPlayAchievementPaper("executioner", "Boss") end, BossID.HUSH},
-		[wakaba.challenges.CHALLENGE_APPL] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() wakaba:TryPlayAchievementPaper("apollyoncrisis", "Boss") end, BossID.LAMB},
-		[wakaba.challenges.CHALLENGE_BIKE] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() wakaba:TryPlayAchievementPaper("isekaidefinition", "Boss") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() wakaba:TryPlayAchievementPaper("balance", "Boss") end, BossID.MEGA_SATAN},
-		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() wakaba:TryPlayAchievementPaper("lilmao", "Boss") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() wakaba:TryPlayAchievementPaper("richerflipper", "Boss") end, BossID.MOTHER},
-		[wakaba.challenges.CHALLENGE_RNPR] = {"richernecklace", "collectible",	wakaba.Enums.Collectibles.RICHERS_NECKLACE,	function() wakaba:TryPlayAchievementPaper("richernecklace", "Boss") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() wakaba:TryPlayAchievementPaper("edensticky", "Boss") end, BossID.DELIRIUM},
-		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() wakaba:TryPlayAchievementPaper("doubledreams", "Boss") end, BossID.BEAST},
+		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, function(boss) return boss == BossID.MOM end},
+		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() wakaba:TryPlayAchievementPaper("plumy", "Boss") end, function(boss) return boss == BossID.HUSH end},
+		--[wakaba.challenges.CHALLENGE_PULL] = {"wakabaorgel", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("blank", "Boss") end, function(boss) return boss == BossID.MOM},
+		[wakaba.challenges.CHALLENGE_MINE] = {"delimiter", "trinket",	wakaba.Enums.Trinkets.DELIMITER,	function() wakaba:TryPlayAchievementPaper("delimiter", "Boss") end, function(boss) return boss == BossID.HEART or boss == BossID.IT_LIVES end},
+		[wakaba.challenges.CHALLENGE_GUPP] = {"nekodoll", "collectible",	wakaba.Enums.Collectibles.NEKO_FIGURE,	function() wakaba:TryPlayAchievementPaper("nekofigure", "Boss") end, function(boss) return boss == BossID.MOTHER end},
+		[wakaba.challenges.CHALLENGE_DOPP] = {"microdoppelganger", "collectible",	wakaba.Enums.Collectibles.MICRO_DOPPELGANGER,	function() wakaba:TryPlayAchievementPaper("microdoppelganger", "Boss") end, function(boss) return boss == BossID.HUSH end},
+		[wakaba.challenges.CHALLENGE_DELI] = {"delirium", "trinket",	wakaba.Enums.Trinkets.DIMENSION_CUTTER,	function() wakaba:TryPlayAchievementPaper("dimensioncutter", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_SIST] = {"lilwakaba", "collectible",	wakaba.Enums.Collectibles.LIL_WAKABA,	function() wakaba:TryPlayAchievementPaper("lilwakaba", "Boss") end, function(boss) return boss == BossID.LAMB end},
+		[wakaba.challenges.CHALLENGE_DRAW] = {"lostuniform", "null",	nil,	function() wakaba:TryPlayAchievementPaper("lostuniform", "Boss") end, function(boss) return boss == BossID.BLUE_BABY end},
+		[wakaba.challenges.CHALLENGE_HUSH] = {"executioner", "collectible",	wakaba.Enums.Collectibles.EXECUTIONER,	function() wakaba:TryPlayAchievementPaper("executioner", "Boss") end, function(boss) return boss == BossID.HUSH end},
+		[wakaba.challenges.CHALLENGE_APPL] = {"apollyoncrisis", "collectible",	wakaba.Enums.Collectibles.APOLLYON_CRISIS,	function() wakaba:TryPlayAchievementPaper("apollyoncrisis", "Boss") end, function(boss) return boss == BossID.LAMB end},
+		[wakaba.challenges.CHALLENGE_BIKE] = {"deliverysystem", "collectible",	wakaba.Enums.Collectibles.ISEKAI_DEFINITION,	function() wakaba:TryPlayAchievementPaper("isekaidefinition", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_CALC] = {"calculation", "collectible",	wakaba.Enums.Collectibles.BALANCE,	function() wakaba:TryPlayAchievementPaper("balance", "Boss") end, function(boss) return boss == BossID.MEGA_SATAN end},
+		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() wakaba:TryPlayAchievementPaper("lilmao", "Boss") end, function(boss) return boss == BossID.MOTHER end},
+		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() wakaba:TryPlayAchievementPaper("richerflipper", "Boss") end, function(boss) return boss == BossID.MOTHER end},
+		[wakaba.challenges.CHALLENGE_RNPR] = {"richernecklace", "collectible",	wakaba.Enums.Collectibles.RICHERS_NECKLACE,	function() wakaba:TryPlayAchievementPaper("richernecklace", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() wakaba:TryPlayAchievementPaper("edensticky", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() wakaba:TryPlayAchievementPaper("doubledreams", "Boss") end, function(boss) return boss == BossID.BEAST end},
 	}
 }
 
@@ -862,7 +862,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 		local unlocksTable = wakaba.UnlockTables[-999]
 		if unlocksTable[wakaba.G.Challenge] then
 			local unlockTableEntry = unlocksTable[wakaba.G.Challenge]
-			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 and unlockTableEntry[5] == BossID.BEAST then
+			if type1 == RoomType.ROOM_DUNGEON and currentStage == 13 and level:GetCurrentRoomDesc().Data.Variant == 666 and unlockTableEntry[5](BossID.BEAST) then
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if REPENTOGON then
@@ -871,7 +871,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 						unlockTableEntry[4]()
 					end
 				end
-			elseif type1 == RoomType.ROOM_BOSS and unlockTableEntry[5] == boss then
+			elseif type1 == RoomType.ROOM_BOSS and unlockTableEntry[5](boss) then
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if REPENTOGON then
