@@ -1,10 +1,10 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 -- TODO register secondary persistent player data
--- - [ ] Lunar Stone
+-- - [x] Lunar Stone
 -- - [ ] Shiori Datas
--- - [ ] Elixir of Life
--- - [ ] Concentration
+-- - [x] Elixir of Life
+-- - [x] Concentration
 -- - [ ] Vintage Threat
 -- - [ ] Book of the Fallen
 -- - [ ] Lunar Damocles

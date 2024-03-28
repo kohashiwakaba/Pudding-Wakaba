@@ -26,14 +26,15 @@ function wakaba:PlayerUpdate_Elixir(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
 	if wakaba:hasElixir(player) then
+		wakaba:initPlayerDataEntry(player, "elixirdonationcount", 0)
+		wakaba:initPlayerDataEntry(player, "elixirsouldamagedcount", 0)
 		local keeperSkipped = false
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
 			keeperSkipped = true
 			goto KeeperSkip
 		end
 		if player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN then -- Do this again to check non-red hearts character
-			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts or 0
-			data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts >= player:GetSoulHearts() and data.wakaba.elixirmaxsoulhearts or player:GetSoulHearts()
+			wakaba:setPlayerDataEntry(player, "elixirmaxsoulhearts", math.max(wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0), player:GetSoulHearts()))
 		end
 		::KeeperSkip::
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
@@ -55,10 +56,11 @@ function wakaba:PlayerUpdate_Elixir(player)
 		if not player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS) then
 			local isSoulCharacter, shouldConvertFunc = Isaac.RunCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, player) ~= nil
 			local availableMaxSoul
+			local savedSoulCap = wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0)
 			if isSoulCharacter and shouldConvertFunc then
-				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), (data.wakaba.elixirmaxsoulhearts or 0))
+				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), savedSoulCap)
 			else
-				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetMaxHearts() - (player:GetBoneHearts() * 2), (data.wakaba.elixirmaxsoulhearts or 0))
+				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetMaxHearts() - (player:GetBoneHearts() * 2), savedSoulCap)
 			end
 			if data.wakaba.elixircooldown > 0 then
 				data.wakaba.elixircooldown = data.wakaba.elixircooldown - 1
@@ -85,6 +87,9 @@ function wakaba:PlayerUpdate_Elixir(player)
 			end
 		end
 	else
+		wakaba:removePlayerDataEntry(player, "elixirdonationcount")
+		wakaba:removePlayerDataEntry(player, "elixirsouldamagedcount")
+		wakaba:removePlayerDataEntry(player, "elixirmaxsoulhearts")
 		if data.wakaba.elixirinvframes and data.wakaba.elixirinvframes >= 0 then
 			--player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 			data.wakaba.elixirinvframes = data.wakaba.elixirinvframes - 1
@@ -121,26 +126,24 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		or (source.Type == EntityType.ENTITY_SLOT and source.Variant == 17)
 		or flags & DamageFlag.DAMAGE_IV_BAG == DamageFlag.DAMAGE_IV_BAG
 		then
-			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown or 0
-			data.wakaba.elixirblooddonationcooldown = data.wakaba.elixirblooddonationcooldown + 1
-			if data.wakaba.elixirblooddonationcooldown >= donationThreshold then
+			wakaba:addPlayerDataCounter(player, "elixirdonationcount", 1)
+			if wakaba:getPlayerDataEntry(player, "elixirdonationcount") >= donationThreshold then
 				if player:GetBoneHearts() > 0 then
 					player:AddBoneHearts(-1)
 				elseif player:GetMaxHearts() > 0 then
 					player:AddMaxHearts(-2)
-				elseif data.wakaba.elixirmaxsoulhearts > 0 then
-					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 2
+				elseif wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0) > 0 then
+					wakaba:addPlayerDataCounter(player, "elixirmaxsoulhearts", -2)
 				end
-				data.wakaba.elixirblooddonationcooldown = 0
+				wakaba:setPlayerDataEntry(player, "elixirdonationcount", 0)
 			end
 		elseif player:GetSoulHearts() > 0 then
-			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown or 0
-			data.wakaba.elixirsouldamagecooldown = data.wakaba.elixirsouldamagecooldown + 1
-			if wakaba:IsDamageSanguineSpikes(player, flags, source) or data.wakaba.elixirsouldamagecooldown >= soulThreshold then
-				if data.wakaba.elixirmaxsoulhearts > 0 then
-					data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - 1
+			wakaba:addPlayerDataCounter(player, "elixirsouldamagedcount", 1)
+			if wakaba:IsDamageSanguineSpikes(player, flags, source) or wakaba:getPlayerDataEntry(player, "elixirsouldamagedcount", 0) >= soulThreshold then
+				if wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0) > 0 then
+					wakaba:addPlayerDataCounter(player, "elixirmaxsoulhearts", -2)
 				end
-				data.wakaba.elixirsouldamagecooldown = 0
+				wakaba:setPlayerDataEntry(player, "elixirsouldamagedcount", 0)
 			end
 		end
 		if flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
@@ -181,10 +184,9 @@ function wakaba:PickupPurchase_Elixir(pickup, player, price)
 		local data = player:GetData()
 		local soulsToReduce = priceToSoulCount[price]
 		if soulsToReduce then
-			if data.wakaba.elixirmaxsoulhearts > 0 then
-				data.wakaba.elixirmaxsoulhearts = data.wakaba.elixirmaxsoulhearts - soulsToReduce
+			if wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0) > 0 then
+				wakaba:addPlayerDataCounter(player, "elixirmaxsoulhearts", -soulsToReduce)
 			end
-		end
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_PURCHASE_PICKUP, wakaba.PickupPurchase_Elixir)
