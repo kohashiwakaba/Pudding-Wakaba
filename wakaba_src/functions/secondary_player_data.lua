@@ -8,10 +8,9 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 -- - [ ] Vintage Threat
 -- - [ ] Book of the Fallen
 -- - [ ] Lunar Damocles
--- - [ ] Challenge wb2
+-- - [x] Challenge wb2
 -- - [x] Wakaba's Nemesis
 -- - [ ] Book of Shiori secondary
--- - [ ] Rabbit Ribbon
 
 local rs = {
 	run = {},

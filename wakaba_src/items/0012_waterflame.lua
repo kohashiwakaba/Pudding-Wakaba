@@ -102,7 +102,7 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 
 		if recent then
 			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
-				player:GetData().wakaba.flamecnt = player:GetData().wakaba.flamecnt - 1
+				wakaba:addPlayerDataCounter(player, "flamecnt", -1)
 			end
 			SFXManager():Play(SoundEffect.SOUND_POWERUP1)
 			player:AddCollectible(recent)
@@ -157,10 +157,10 @@ if EID then
 			itemID = wisp.SubType
 			local demoDescObj = EID:getDescriptionObj(5, 100, itemID)
 			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
-				if player:GetData().wakaba.flamecnt == 0 then
+				if wakaba:getPlayerDataEntry(player, "flamecnt", 0) == 0 then
 					descObj.Description = "{{ColorError}}"..wfstr.supersensitivefinal
 				else
-					descObj.Name = "{{ColorOrange}}"..wfstr.supersensitiveprefix..player:GetData().wakaba.flamecnt .. " >{{ColorEIDObjName}}".. "{{Collectible"..itemID.."}} " .. demoDescObj.Name
+					descObj.Name = "{{ColorOrange}}"..wfstr.supersensitiveprefix.. wakaba:getPlayerDataEntry(player, "flamecnt", 0) .. " >{{ColorEIDObjName}}".. "{{Collectible"..itemID.."}} " .. demoDescObj.Name
 					descObj.Description = demoDescObj.Description
 				end
 			else
@@ -170,10 +170,10 @@ if EID then
 		else
 			descObj.Description = wfstr.taintedricher
 			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SSRC then
-				if player:GetData().wakaba.flamecnt == 0 then
+				if wakaba:getPlayerDataEntry(player, "flamecnt", 0) == 0 then
 					descObj.Description = "{{ColorError}}"..wfstr.supersensitivefinal
 				else
-					descObj.Description = descObj.Description .. "#{{ColorOrange}}"..wfstr.supersensitiveprefix..player:GetData().wakaba.flamecnt.."{{CR}}"
+					descObj.Description = descObj.Description .. "#{{ColorOrange}}"..wfstr.supersensitiveprefix..wakaba:getPlayerDataEntry(player, "flamecnt", 0).."{{CR}}"
 				end
 			end
 		end

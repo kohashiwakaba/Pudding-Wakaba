@@ -14,7 +14,7 @@ function wakaba:Challenge_PlayerInit_SensitiveRicher(player)
       end
     end, 0)
     wakaba:scheduleForUpdate(function ()
-      player:GetData().wakaba.flamecnt = wakaba.Enums.Constants.SSRC_ALLOW_FLAMES
+      wakaba:initPlayerDataEntry(player, "flamecnt", wakaba.Enums.Constants.SSRC_ALLOW_FLAMES)
     end, 1)
   end
 end
@@ -27,7 +27,7 @@ function wakaba:Challenge_PlayerUpdate_SensitiveRicher(player)
   if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.WATER_FLAME then
     player:SetPocketActiveItem(wakaba.Enums.Collectibles.WATER_FLAME, ActiveSlot.SLOT_POCKET, true)
   end
-  if player:GetData().wakaba and player:GetData().wakaba.flamecnt and player:GetData().wakaba.flamecnt > 0 then
+  if wakaba:getPlayerDataEntry(player, "flamecnt") > 0 then
     player:SetActiveCharge(200000, ActiveSlot.SLOT_POCKET)
   else
     player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
