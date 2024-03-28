@@ -47,7 +47,7 @@ function wakaba:ChargeBarUpdate_Concentration(player)
 		local current = player:GetData().wakaba.concentrationframes or 0
 		local maxval = 6000
 		chargeBar:UpdateSprite(current, 0, maxval)
-		chargeBar:UpdateText((player:GetData().wakaba.concentrationcount or 0), "-", "")
+		chargeBar:UpdateText(wakaba:getPlayerDataEntry(player, "concentrationcount", 0), "-", "")
 	else
 		chargeBar:UpdateSpritePercent(-1)
 		chargeBar:UpdateText("")
@@ -78,9 +78,10 @@ end
 
 function wakaba:PlayerUpdate_Concentration(player)
 	if wakaba:hasConcentration(player) then
+		wakaba:initPlayerDataEntry(player, "concentrationcount", 0)
 		wakaba:GetPlayerEntityData(player)
     local data = player:GetData()
-		local count = data.wakaba.concentrationcount or 0
+		local count = wakaba:getPlayerDataEntry(player, "concentrationcount")
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT then return end
 			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION) then
@@ -88,7 +89,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 			end
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
 				local mode = wakaba.concentrationmodes.NORMAL
-				if wakaba:hasLunarStone(player) and data.wakaba.lunargauge and data.wakaba.lunargauge <= 100000 then
+				if wakaba:hasLunarStone(player) and wakaba:getPlayerDataEntry(player , "lunargauge", 1000000) <= 100000 then
 					mode = wakaba.concentrationmodes.LOW_LUNAR
 				elseif not wakaba:hasLunarStone(player) and player:GetHearts() + player:GetSoulHearts() < 6 then
 					mode = wakaba.concentrationmodes.LOW_HEALTH
@@ -138,8 +139,8 @@ function wakaba:PlayerUpdate_Concentration(player)
 				SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE, 2, 0, false, 1)
 
 				if data.wakaba.concentrationmode == wakaba.concentrationmodes.LOW_LUNAR then
-					data.wakaba.lunargauge = 200000 + player:GetHearts() * 10000
-					data.wakaba.lunarregenrate = 0
+					wakaba:setCurrentLunarGauge(player, 200000 + player:GetHearts() * 10000)
+					wakaba:setPlayerDataEntry(player, "lunarregenrate", 0)
 					local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(player.Position.X, player.Position.Y - 95), Vector.Zero, nil):ToEffect()
 					notif.DepthOffset = player.DepthOffset + 5
 					SFXManager():Play(SoundEffect.SOUND_HOLY, 2, 0, false, 1)
@@ -159,7 +160,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 					SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE, 2, 0, false, 1)
 				end
 				if chargecnt == 0 then chargecnt = 1 end
-				data.wakaba.concentrationcount = (data.wakaba.concentrationcount and data.wakaba.concentrationcount + chargecnt) or chargecnt
+				wakaba:addPlayerDataCounter(player, "concentrationcount", chargecnt)
 				player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 				player:EvaluateItems()
 				data.wakaba.concentrationframes = 0
@@ -190,8 +191,8 @@ function wakaba.RoomClear_Concentration()
 		local player = Isaac.GetPlayer(i)
     local data = player:GetData()
 		wakaba:GetPlayerEntityData(player)
-		if data.wakaba.concentrationcount and data.wakaba.concentrationcount > 0 then
-			data.wakaba.concentrationcount = data.wakaba.concentrationcount - 1
+		if wakaba:getPlayerDataEntry(player, "concentrationcount", 0) > 0 then
+			wakaba:addPlayerDataCounter(player, "concentrationcount", -1)
 			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:EvaluateItems()
 		end
@@ -255,9 +256,9 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_
 
 
 function wakaba:Cache_Concentration(player, cacheFlag)
-	if player:GetData().wakaba and player:GetData().wakaba.concentrationcount then
+	if wakaba:hasPlayerDataEntry(player, "concentrationcount") then
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-			player.TearRange = player.TearRange + (36 * 1.5) + (4 * player:GetData().wakaba.concentrationcount)
+			player.TearRange = player.TearRange + (36 * 1.5) + (4 * wakaba:getPlayerDataEntry(player, "concentrationcount"))
 		end
 	end
 end

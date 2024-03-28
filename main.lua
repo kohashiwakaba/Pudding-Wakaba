@@ -893,6 +893,7 @@ function wakaba:getIndexedPlayer(i)
 end
 
 include('wakaba_src.functions.callbacks_wakaba')
+include('wakaba_src.functions.secondary_player_data')
 include('wakaba_src.libs.retribution_status')
 include('wakaba_src.libs.revel_utils')
 include('wakaba_src.functions.hudstats')

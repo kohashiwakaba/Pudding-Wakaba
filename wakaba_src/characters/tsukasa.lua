@@ -126,10 +126,8 @@ function wakaba:AfterTsukasaInit(player)
 			wakaba.costumecurrframe = 0
 			wakaba:GetTsukasaCostume(player)
 		end
-		local data = player:GetData()
-		data.wakaba = data.wakaba or {}
-		data.wakaba.lunargauge = 1000000
-		data.wakaba.lunarregenrate = 0
+		wakaba:initPlayerDataEntry(player, "lunargauge", 1000000)
+		wakaba:initPlayerDataEntry(player, "lunarregenrate", 0)
 	end
 end
 

@@ -12,7 +12,7 @@ function wakaba:CanRevive(player)
 	if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
 	local data = player:GetData()
 	if player:GetData().wakaba.vintagethreat then return false end
-	if wakaba:hasLunarStone(player, true) and data.wakaba.lunargauge and data.wakaba.lunargauge > 0 then
+	if wakaba:hasLunarStone(player, true) and wakaba:getPlayerDataEntry(player , "lunargauge", 0) > 0 then
 		return {ID = wakaba.Enums.Collectibles.LUNAR_STONE, PostRevival = function() wakaba:AfterRevival_LunarStone(player) end}
 	elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.QUESTION_BLOCK) then
 		return {ID = wakaba.Enums.Collectibles.QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
@@ -63,7 +63,7 @@ function wakaba:PlayerUpdate_Revival2(player)
 			if tempRevivalFunc[playerIndex] then
 				tempRevivalFunc[playerIndex](player)
 				tempRevivalFunc[playerIndex] = nil
-				data.nolunarrefill = nil
+				wakaba:removePlayerDataEntry(player, "nolunarrefill")
 			end
 
 			data.willRevive = false
