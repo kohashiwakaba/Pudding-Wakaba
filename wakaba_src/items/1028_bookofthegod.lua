@@ -34,7 +34,7 @@ function wakaba:AfterRevival_BookOfTheGod(player)
 	player:AddCostume(Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_REVELATION), false)
 	local Poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector.Zero, player):ToEffect()
 	Poof.SpriteScale = Vector(1.5, 1.5)
-	data.wakaba.shioriangel = true
+	wakaba:setPlayerDataEntry(player, "shioriangel", true)
 	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FLYING | CacheFlag.CACHE_TEARFLAG)
 	player:EvaluateItems()
 	player:AddBrokenHearts(-12)
@@ -47,7 +47,7 @@ function wakaba:PlayerUpdate_BookOfTheGod()
 	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba
-		and player:GetData().wakaba.shioriangel then
+		and wakaba:hasPlayerDataEntry(player, "shioriangel") then
 			if player:GetMaxHearts() > 0 then
 				player:AddMaxHearts(player:GetMaxHearts() * -1)
 			end
@@ -68,7 +68,7 @@ function wakaba:PickupCollision_BookOfTheGod(pickup, collider, low)
   if collider:ToPlayer() ~= nil then
     local player = collider:ToPlayer()
 		if player:GetData().wakaba
-		and player:GetData().wakaba.shioriangel then
+		and wakaba:hasPlayerDataEntry(player, "shioriangel") then
 			return false
 		end
   end
@@ -79,8 +79,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_
 
 
 function wakaba:Cache_BookOfTheGod(player, cacheFlag)
-	if not player:GetData().wakaba then return end
-  if player:GetData().wakaba.shioriangel then
+  if wakaba:hasPlayerDataEntry(player, "shioriangel") then
     if cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
       player.Damage = player.Damage * 0.5
     end
@@ -97,7 +96,7 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BookOfTheGod)
 function wakaba:EnemyTakeDmg_BookOfTheGod(target, damage, flags, source, cooldown)
 	if math.floor(damage * 1000)/1000 == 2 and source.Entity ~= nil and source.Entity.Type == 2 then
 		local player = source.Entity.SpawnerEntity and source.Entity.SpawnerEntity:ToPlayer()
-		if player ~= nil and player:GetData().wakaba and player:GetData().wakaba.shioriangel then
+		if player ~= nil and wakaba:hasPlayerDataEntry(player, "shioriangel") then
 			local tf = source.Entity:ToTear().TearFlags
 			if player ~= nil and tf | TearFlags.TEAR_GLOW == tf then
 				target:TakeDamage(player.Damage, flags, source, cooldown)
@@ -111,7 +110,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.EnemyTakeDmg_BookOfTh
 
 function wakaba:AlterPlayerDamage_BookOfTheGod(player, amount, flags, source, countdown)
 	local data = player:GetData()
-	if data.wakaba.shioriangel and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+	if wakaba:hasPlayerDataEntry(player, "shioriangel") and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
 		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
 	end
 end
@@ -119,7 +118,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDam
 
 function wakaba:PostTakeDamage_BookOfTheGod(player, amount, flags, source, countdown)
 	local data = player:GetData()
-	if data.wakaba.shioriangel and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+	if wakaba:hasPlayerDataEntry(player, "shioriangel") and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
 		player:AddBrokenHearts(1)
 	end
 end

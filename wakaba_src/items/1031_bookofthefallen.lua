@@ -17,7 +17,7 @@ function wakaba:AfterRevival_BookOfTheFallen(player)
 
 	local Poof = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector.Zero, player):ToEffect()
 	Poof.SpriteScale = Vector(1.5, 1.5)
-	data.wakaba.shioridevil = true
+	wakaba:setPlayerDataEntry(player, "shioridevil", true)
 	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FLYING | CacheFlag.CACHE_TEARFLAG)
 
 	player:EvaluateItems()
@@ -29,7 +29,7 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 		wakaba:GetPlayerEntityData(player)
 		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
 		if player:GetData().wakaba then
-			if (player:GetPlayerType() ~= 23 and not isGolden) and player:GetData().wakaba.shioridevil and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
+			if (player:GetPlayerType() ~= 23 and not isGolden) and wakaba:hasPlayerDataEntry(player, "shioridevil") and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
 				local OldChallenge=wakaba.G.Challenge
 				wakaba.G.Challenge=6
 				player:UpdateCanShoot()
@@ -37,7 +37,7 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 				wakaba.G.Challenge=OldChallenge
 				player:AddNullCostume(14)
 				--print("Trying Add Blindfold Costume")
-			elseif player:GetData().wakaba.blindfolded and not player:GetData().wakaba.shioridevil then
+			elseif player:GetData().wakaba.blindfolded and not wakaba:hasPlayerDataEntry(player, "shioridevil") then
 				local OldChallenge=wakaba.G.Challenge
 				wakaba.G.Challenge=0
 				player:UpdateCanShoot()
@@ -64,7 +64,7 @@ end
 function wakaba:ItemUse_BookOfTheFallen(item, rng, player, useFlags, activeSlot, varData)
 	wakaba:GetPlayerEntityData(player)
 	local isGolden = wakaba:IsGoldenItem(item)
-	if player:GetData().wakaba.shioridevil or isGolden then
+	if wakaba:hasPlayerDataEntry(player, "shioridevil") or isGolden then
 		SFXManager():Play(SoundEffect.SOUND_FLOATY_BABY_ROAR, 0.6, 0, false, 2)
 		local damage = player.Damage
 		local tears = wakaba:getTearsStat(player.MaxFireDelay)
@@ -108,7 +108,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wak
 function wakaba:Cache_BookOfTheFallen(player, cacheFlag)
 	if not player:GetData().wakaba then return end
 	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
-  if player:GetData().wakaba.shioridevil then
+  if wakaba:hasPlayerDataEntry(player, "shioridevil") then
     if cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			if isGolden or player:GetPlayerType() == 23 then
 				player.Damage = player.Damage * 2
@@ -131,7 +131,7 @@ function wakaba:prePickupCollision_BookOfTheFallen(pickup, collider, low)
 	if collider:ToPlayer() == nil then return end
 	if not collider:GetData().wakaba then return end
 	local player = collider:ToPlayer()
-	if pickup.SubType ~= 0 and player:GetData().wakaba.shioridevil then
+	if pickup.SubType ~= 0 and wakaba:hasPlayerDataEntry(player, "shioridevil") then
 		local id = pickup.SubType
 		local config = Isaac.GetItemConfig():GetCollectible(id)
 		if config.Type == ItemType.ITEM_ACTIVE then

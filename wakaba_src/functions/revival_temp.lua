@@ -63,7 +63,7 @@ function wakaba:PostPlayerFatalDamage(player)
       end
     end
     return false
-  elseif data.wakaba.shioriangel and not (isc:willReviveFromHeartbreak(player) or isc:willReviveFromSpiritShackles(player)) then 
+  elseif wakaba:hasPlayerDataEntry(player, "shioriangel") and not (isc:willReviveFromHeartbreak(player) or isc:willReviveFromSpiritShackles(player)) then
     player:AddBrokenHearts(1)
     return false
   end

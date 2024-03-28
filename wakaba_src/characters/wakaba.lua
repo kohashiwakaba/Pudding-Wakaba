@@ -44,7 +44,7 @@ function wakaba:HandleWakabaHealth()
 		then
 			wakaba:GetPlayerEntityData(player)
 			if wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND
-			and not player:GetData().wakaba.shioriangel then
+			and not wakaba:hasPlayerDataEntry(player, "shioriangel") then
 				if hasconf then
 					broken = 0
 				elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
