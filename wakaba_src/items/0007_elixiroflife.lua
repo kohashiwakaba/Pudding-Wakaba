@@ -185,8 +185,9 @@ function wakaba:PickupPurchase_Elixir(pickup, player, price)
 		local soulsToReduce = priceToSoulCount[price]
 		if soulsToReduce then
 			if wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0) > 0 then
-				wakaba:addPlayerDataCounter(player, "elixirmaxsoulhearts", -soulsToReduce)
+				wakaba:addPlayerDataCounter(player, "elixirmaxsoulhearts", soulsToReduce * -1)
 			end
+		end
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_PURCHASE_PICKUP, wakaba.PickupPurchase_Elixir)
