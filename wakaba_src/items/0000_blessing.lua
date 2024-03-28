@@ -16,7 +16,7 @@ function wakaba:onNemesisCache(player, cacheFlag)
 	and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_RAND
 	then
 		wakaba:GetPlayerEntityData(player)
-		local nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
+		local nemesisdmg = wakaba:getPlayerDataEntry(player, "nemesisdmg", 0)
 		local collectibleNum = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
 		local nemesiscount = player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) + player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABA_DUALITY)
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B then
@@ -195,19 +195,17 @@ function wakaba:PlayerUpdate_Nemesis(player)
 
 		player:GetData().wakaba.nemesisupdatedelay = player:GetData().wakaba.nemesisupdatedelay or 0
 
-
-		player:GetData().wakaba.nemesisdmg = player:GetData().wakaba.nemesisdmg or 0
 		local currItemNum = player:GetData().wakaba.nemesiscollectiblenum
 		if player:GetData().wakaba.nemesisupdatedelay > 0 then
 			if player:AreControlsEnabled() and not player:HasCurseMistEffect() then
 				player:GetData().wakaba.nemesisupdatedelay = player:GetData().wakaba.nemesisupdatedelay - 1
 			end
 		else
-			if player:GetData().wakaba.nemesisdmg > 0 then
-				if player:GetData().wakaba.nemesisdmg > 90 then
-					player:GetData().wakaba.nemesisdmg = 90
+			if wakaba:getPlayerDataEntry(player, "nemesisdmg", 0) > 0 then
+				if wakaba:getPlayerDataEntry(player, "nemesisdmg") > 90 then
+					wakaba:setPlayerDataEntry(player, "nemesisdmg", 90)
 				end
-				player:GetData().wakaba.nemesisdmg = player:GetData().wakaba.nemesisdmg - 0.1
+				wakaba:addPlayerDataCounter(player, "nemesisdmg", -0.1)
 				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 				player:EvaluateItems()
 			end

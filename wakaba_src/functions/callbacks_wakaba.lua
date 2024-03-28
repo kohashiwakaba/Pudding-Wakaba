@@ -512,7 +512,7 @@ function wakaba:addNemesisCount(player, count, damageOnly)
 	wakaba:GetPlayerEntityData(player)
 	count = count or 1
 	if count > 0 then
-		player:GetData().wakaba.nemesisdmg = (player:GetData().wakaba.nemesisdmg or 0) + (10.8 * count)
+		wakaba:addPlayerDataCounter(player, "nemesisdmg", 10.8 * count)
 		if not damageOnly then
 			player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.WAKABAS_NEMESIS, false, count)
 		end

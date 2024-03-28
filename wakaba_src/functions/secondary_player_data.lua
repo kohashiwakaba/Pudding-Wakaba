@@ -9,7 +9,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 -- - [ ] Book of the Fallen
 -- - [ ] Lunar Damocles
 -- - [ ] Challenge wb2
--- - [ ] Wakaba's Nemesis
+-- - [x] Wakaba's Nemesis
 -- - [ ] Book of Shiori secondary
 -- - [ ] Rabbit Ribbon
 
