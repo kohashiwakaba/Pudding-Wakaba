@@ -221,6 +221,53 @@ function wakaba:Epiphany_AddTarnishedDatas()
 						return true
 					end
 				end
+
+				-- TR Isaac blighted photo recursive skip
+				local runSave = Mod:RunSave()
+				if not (runSave.TR_ISAAC_UNLOCK_METHOD_STARTED and runSave.IsaacUnlockInsertedBlightedPhoto) then
+					local cfg = selectedItemConf
+					if not cfg:HasTags(ItemConfig.TAG_QUEST) and runSave.TR_ISAAC_UNLOCK_METHOD_STARTED then
+						return true
+					end
+				end
+
+				-- TR Lost recursive skip, unfinished
+				if rerollProps.EpiphanyTRLost then
+					local cfg = selectedItemConf
+					if not cfg:HasTags(ItemConfig.TAG_OFFENSIVE) and not cfg:HasTags(ItemConfig.TAG_NO_LOST_BR) then
+						return true
+					end
+				end
+			end)
+
+			-- TR Lost recursive skip
+			wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL, function(_, selected, itemPoolType, decrease, seed)
+				if wakaba:GameHasPlayerType(Mod.PlayerType.LOST) then
+					local room = wakaba.G:GetRoom()
+					local level = wakaba.G:GetLevel()
+					local inFirstRoom =
+						level:GetStage() == LevelStage.STAGE1_1
+						and level:GetCurrentRoomIndex() == level:GetStartingRoomIndex()
+						and room:IsFirstVisit()
+						and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE
+						and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B
+						and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+					if inFirstRoom then return true end
+				end
+				local config = Epiphany.config:GetCollectible(selected)
+				local runSave = Epiphany:RunSave()
+				-- TR Isaac bypass
+				if not config:HasTags(ItemConfig.TAG_QUEST) and runSave.TR_ISAAC_UNLOCK_METHOD_STARTED and not runSave.IsaacUnlockInsertedBlightedPhoto then
+					return true
+				end
+			end)
+
+			-- TR Lost Tag Ban
+			wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, function(_, rerollProps, selected, itemPoolType, decrease, seed, isCustom)
+				if wakaba:GameHasPlayerType(Mod.PlayerType.LOST) then
+					rerollProps.EpiphanyTRLost = true
+				end
+				return rerollProps
 			end)
 
 			-- TR characters for Pudding & Wakaba not available yet, just for reserve
@@ -339,6 +386,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Collectibles.UNIFORM,
 				wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, -- Constant health refill
 				wakaba.Enums.Collectibles.QUESTION_BLOCK,
+				wakaba.Enums.Collectibles.LIL_RIRA,
 				-- Items that can't be filled, or has no effect before they get rerolled away
 				wakaba.Enums.Collectibles.EATHEART, -- Requires 7500 dmg, and can't be debugged
 				wakaba.Enums.Collectibles.SECRET_CARD, -- Useless when given for 1 room
@@ -358,6 +406,35 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
 				-- Items considered too bad for the run as a whole
 				wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN -- Must NOT lose the active
+			)
+
+			-- TR Lost Blacklist
+			api:AddItemsToLostBlackList(
+				wakaba.Enums.Collectibles.UNIFORM,
+				wakaba.Enums.Collectibles.RICHERS_UNIFORM,
+				wakaba.Enums.Collectibles.RICHERS_BRA,
+				wakaba.Enums.Collectibles.BOOK_OF_SILENCE,
+				wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
+				wakaba.Enums.Collectibles.MINERVA_AURA,
+				wakaba.Enums.Collectibles.CONCENTRATION,
+				wakaba.Enums.Collectibles.SELF_BURNING,
+				wakaba.Enums.Collectibles.WATER_FLAME,
+				wakaba.Enums.Collectibles.ONSEN_TOWEL,
+				wakaba.Enums.Collectibles.SECRET_DOOR,
+				wakaba.Enums.Collectibles.RIRAS_COAT,
+				wakaba.Enums.Collectibles.RIRAS_BENTO,
+				wakaba.Enums.Collectibles.RIRAS_UNIFORM,
+				wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, -- Constant health refill
+				wakaba.Enums.Collectibles.FLASH_SHIFT,
+				wakaba.Enums.Collectibles.VINTAGE_THREAT, -- Tainted Shiori
+				wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, -- Tainted Tsukasa
+				wakaba.Enums.Collectibles.JAR_OF_CLOVER, -- Wakaba
+				wakaba.Enums.Collectibles.BUNNY_PARFAIT, -- Rira
+				wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, -- Richer
+				wakaba.Enums.Collectibles.LIL_RICHER,
+				wakaba.Enums.Collectibles.LIL_RIRA,
+				wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+				wakaba.Enums.Collectibles.WAKABAS_NEMESIS
 			)
 
 			-- prevents "item pool does not exist" warning
@@ -955,7 +1032,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			TURNOVER.RoomToShopkeeperAnimName[TURNOVER.ExtraRoomTypes.WAKABA_WINTER_ALBIREO_ANGEL] = "Planetarium0"
 
 			Mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-				if wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) and Game():GetRoom():IsFirstVisit() and IsPlayerPresent(Mod.PlayerType["KEEPER"]) then
+				if wakaba:IsValidWakabaRoom(Game():GetLevel():GetCurrentRoomDesc(), wakaba.RoomTypes.WINTER_ALBIREO) and Game():GetRoom():IsFirstVisit() and wakaba:GameHasPlayerType(Mod.PlayerType.KEEPER) then
 					for _, ent in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
 						local pickup = ent:ToPickup()
 						pickup.ShopItemId = -1

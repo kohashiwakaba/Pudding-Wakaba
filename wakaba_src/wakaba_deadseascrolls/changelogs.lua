@@ -1,3 +1,56 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v112",
+[[{FSIZE2}general
+- updated compatibility for
+epiphany wave 6
+-- added blacklist for tr lost
+
+{FSIZE2}balance
+range os
+- range multiplier
+reduced from 55% -> 40%
+
+crisis boost
+- overall damage multiplier
+reduced from max 1.75x -> 1.45x
+
+rira's bento
+- items no longer rerolled into
+bento while in full reroll (d4)
+
+lil rira
+- timed actives now count
+120 second as 1 charge
+
+{FSIZE2}bug fixes
+- fixed some elements not
+restored by glowing hourglass
+-- lunar stone gauge
+-- elixir of life max soul cap
+-- concentration counter
+-- challenge wb2 counter
+-- wakaba's nemesis damage
+-- crystal restock counter
+-- lil richer counter
+-- lil rira damage ups
+
+- fix sakura mont blanc
+ignoring tears down multiplier
+from enemy kills
+
+- fix unknown bookmark/maijima
+mythology selecting unused book
+
+- fix w04, w09 unlock not working correctly
+
+- fix wakaba status effect
+only apply one effect for bosses
+
+- fix multiple status effect
+not working with rira's bra,
+and icon rendering
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v111",
 [[{FSIZE2}v111a patch
 rira's bento

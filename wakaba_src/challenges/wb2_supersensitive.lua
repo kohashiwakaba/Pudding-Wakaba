@@ -27,7 +27,7 @@ function wakaba:Challenge_PlayerUpdate_SensitiveRicher(player)
   if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= wakaba.Enums.Collectibles.WATER_FLAME then
     player:SetPocketActiveItem(wakaba.Enums.Collectibles.WATER_FLAME, ActiveSlot.SLOT_POCKET, true)
   end
-  if wakaba:getPlayerDataEntry(player, "flamecnt") > 0 then
+  if wakaba:getPlayerDataEntry(player, "flamecnt", 0) > 0 then
     player:SetActiveCharge(200000, ActiveSlot.SLOT_POCKET)
   else
     player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
