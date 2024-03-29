@@ -6,7 +6,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 -- - [x] Elixir of Life
 -- - [x] Concentration
 -- - [ ] Vintage Threat
--- - [ ] Book of the Fallen
+-- - [x] Book of the Fallen
 -- - [ ] Lunar Damocles
 -- - [x] Challenge wb2
 -- - [x] Wakaba's Nemesis
