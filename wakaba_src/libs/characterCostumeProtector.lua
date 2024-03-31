@@ -555,7 +555,7 @@ local function addItemSpecificCostumes(player)
 		end
 
 		if player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BRIMSTONE) >= 2 then
-			ccp:AddNullCostume(NullItemID.ID_BRIMSTONE2)
+			player:AddNullCostume(NullItemID.ID_BRIMSTONE2)
 		end
 
 		local ID_DOUBLE_GUPPYS_EYE = 125
