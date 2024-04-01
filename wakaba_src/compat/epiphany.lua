@@ -256,6 +256,12 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				end
 				local config = Epiphany.config:GetCollectible(selected)
 				local runSave = Epiphany:RunSave()
+
+				-- Skip if Epiphany pool table is not initialized
+				if not runSave["POOLS_TO_ITEMS"] then
+					return true
+				end
+
 				-- TR Isaac bypass
 				if not config:HasTags(ItemConfig.TAG_QUEST) and runSave.TR_ISAAC_UNLOCK_METHOD_STARTED and not runSave.IsaacUnlockInsertedBlightedPhoto then
 					return true
