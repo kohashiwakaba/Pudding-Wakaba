@@ -8,6 +8,13 @@ function wakaba:Challenge_PlayerUpdate_HoldMe(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Challenge_PlayerUpdate_HoldMe)
 
+function wakaba:Challenge_PreReroll_HoldMe(itemPoolType, decrease, seed)
+	if wakaba.G.Challenge == c then
+		return wakaba.Enums.Collectibles.CLOVER_SHARD
+	end
+end
+wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, -18000, wakaba.Challenge_PreReroll_HoldMe)
+
 function wakaba:UseItem_Challenge_Recall(_, rng, player, flags, slot, vardata)
 	if wakaba.G.Challenge == c then
 		if player:IsHoldingItem() then

@@ -1,3 +1,5 @@
+
+
 function wakaba:Cache_CloverShard(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.CLOVER_SHARD) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
@@ -6,14 +8,3 @@ function wakaba:Cache_CloverShard(player, cacheFlag)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_CloverShard)
-
-
-
-
-
-
-
-
-
-
-
