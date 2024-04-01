@@ -480,7 +480,7 @@ wakaba.Callback = {
 	--
 	-- ---
 	-- Parameters :
-	-- - `entity` - EntityP
+	-- - `entity` - Entity
 	--
 	-- ---
 	-- - Return non-nil other than false to make take extra damage from rira's bra
@@ -499,6 +499,24 @@ wakaba.Callback = {
 	--
 	-- ---
 	POST_MANTLE_BREAK = "WakabaCallbacks.POST_MANTLE_BREAK",
+	-- ---
+	-- EVALUATE_SHIORI_CHARGE
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE, to determine current charge for shiori
+	--
+	-- ---
+	-- Parameters :
+	-- - `player` - EntityPlayer
+	-- - `slot` - ActiveSlot
+	-- - `item` - CollectibleType
+	-- - `keys` - int
+	-- - `charge` - int
+	-- - `conf` - ItemConfigItem
+	--
+	-- ---
+	-- - Return true to disable to set charge by keys, return non-nil integer to override current charge value
+	-- ---
+	EVALUATE_SHIORI_CHARGE = "WakabaCallbacks.EVALUATE_SHIORI_CHARGE",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

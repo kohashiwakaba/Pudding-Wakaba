@@ -225,51 +225,63 @@ function wakaba:PostShioriUpdate()
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostShioriUpdate)
 
-function wakaba:SetShioriCharge(player, amount, slot)
-	if player == nil then return end
-	local amount = amount or 0
-	local slot = slot or ActiveSlot.SLOT_PRIMARY
-	local activeItem = player:GetActiveItem(slot)
-	if activeItem <= 0 then return end
-	local itemConfig = Isaac.GetItemConfig()
-	local activeConfig = itemConfig:GetCollectible(activeItem)
-	if activeConfig == nil then return end
-	local maxCharges = activeConfig.MaxCharges
-	local chargeType = activeConfig.ChargeType
+
+---@param player EntityPlayer
+---@param slot ActiveSlot
+---@param item CollectibleType
+---@param keys integer
+---@param charge integer
+---@param conf ItemConfigItem
+function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
+	if not conf then return end
+	local maxCharges = conf.MaxCharges
+	local chargeType = conf.ChargeType
 	if chargeType == ItemConfig.CHARGE_TIMED or chargeType == ItemConfig.CHARGE_SPECIAL then
-		if wakaba:has_value(wakaba.shioriwhitelisted, activeItem) then
-			if player:GetNumKeys() > 0 then
-				player:SetActiveCharge(200000, slot)
-			end
-		end
-	elseif activeItem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
-		if wakaba.killcount <= 160 then
-			player:SetActiveCharge(200000, slot)
+		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, activeItem) then
+			return 100000
 		else
-			player:SetActiveCharge(0, slot)
+			return true
 		end
+	elseif item == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
+		return wakaba.killcount <= 160 and 200000 or 0
 	elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local reqconsume = maxCharges // 2
-		amount = amount + (maxCharges - reqconsume)
-		player:SetActiveCharge(amount, slot)
-	else
-		player:SetActiveCharge(amount, slot)
+		return charge + (maxCharges - reqconsume)
 	end
 end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, 19999, wakaba.ShioriCharge_Shiori)
 
-function wakaba:PostShioriPlayerUpdate(player)
+function wakaba:PlayerEffectUpdate_Shiori(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+		local itemConfig = Isaac.GetItemConfig()
 		if player:HasGoldenKey() then
 			player:RemoveGoldenKey()
 			player:AddKeys(6)
 		end
 		local keys = player:GetNumKeys()
-		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_PRIMARY)
-		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_SECONDARY)
-		wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_POCKET)
+		for i = 0, 2 do
+			local charge = keys
+			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_SHIORI_CHARGE)) do
+				if not callback.Param or callback.Param == i then
+					local item = player:GetActiveItem(i)
+					local activeConfig = itemConfig:GetCollectible(item)
+					local newCharge = callback.Function(callback.Mod, player, i, item, keys, charge, activeConfig)
+
+					if newCharge == true then
+						charge = false
+						break
+					elseif newCharge then
+						charge = newCharge
+					end
+				end
+			end
+			if type(charge) ~= "boolean" then
+				player:SetActiveCharge(charge, i)
+			end
+		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PostShioriPlayerUpdate)
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffectUpdate_Shiori)
 
 function wakaba:updateShiori(player)
 	if player:GetPlayerType() == playerType and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
@@ -294,8 +306,8 @@ function wakaba:updateShiori(player)
 					end
 					--player:SetPocketActiveItem(pdata.books[pdata.bookindex], ActiveSlot.SLOT_POCKET, true)
 					player:AddCollectible(pdata.books[pdata.bookindex], 0, false, ActiveSlot.SLOT_POCKET)
-					local keys = player:GetNumKeys()
-					wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_POCKET)
+					--local keys = player:GetNumKeys()
+					--wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_POCKET)
 				end
 			end
 		end

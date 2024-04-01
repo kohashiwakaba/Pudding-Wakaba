@@ -1,4 +1,4 @@
---[[ 
+--[[
 	Lil Rira (리틀 리라) - 패밀리어(Familiar) - 유니크
 	리라로 Ultra Greedier 처치
 	지형 관통, 특수 유도 눈물 발사
@@ -108,7 +108,7 @@ local function fireTearRira(player, familiar, vector, rotation)
 	end
 	tearDamage = 4
 	tear.CollisionDamage = tearDamage * multiplier
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 		tear.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
@@ -123,7 +123,7 @@ function wakaba:FamiliarInit_LilRira(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
-	
+
 end
 
 function wakaba:FamiliarUpdate_LilRira(familiar)
@@ -134,14 +134,8 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 
-	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
-	or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
-	then
-		wakaba:tryStealRiraCharge_Shiori(familiar, player)
-	else
-		for i = 0, 2 do
-			wakaba:tryStealRiraCharge(familiar, player, i)
-		end
+	for i = 0, 2 do
+		wakaba:tryStealRiraCharge(familiar, player, i)
 	end
 
 	if player_fire_direction == Direction.NO_DIRECTION then
@@ -171,7 +165,7 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 	if player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
-		
+
 		local dirVec = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
 		if player:AreControlsEnabled() and
 		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
@@ -215,3 +209,19 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRira)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
+
+---@param player EntityPlayer
+---@param slot ActiveSlot
+---@param item CollectibleType
+---@param keys integer
+---@param charge integer
+---@param conf ItemConfigItem
+function wakaba:ShioriCharge_LilRira(player, slot, item, keys, charge, conf)
+	local count = 0
+	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
+	if hasitem or efcount > 0 then
+		return true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, 20000, wakaba.ShioriCharge_LilRira)
