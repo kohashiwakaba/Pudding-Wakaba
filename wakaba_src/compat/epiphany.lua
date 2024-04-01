@@ -242,7 +242,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			-- TR Lost recursive skip
 			wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL, function(_, selected, itemPoolType, decrease, seed)
-				if wakaba:GameHasPlayerType(Mod.PlayerType.LOST) then
+				--[[ if wakaba:GameHasPlayerType(Mod.PlayerType.LOST) then
 					local room = wakaba.G:GetRoom()
 					local level = wakaba.G:GetLevel()
 					local inFirstRoom =
@@ -253,12 +253,12 @@ function wakaba:Epiphany_AddTarnishedDatas()
 						and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B
 						and not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 					if inFirstRoom then return true end
-				end
+				end ]]
 				local config = Epiphany.config:GetCollectible(selected)
 				local runSave = Epiphany:RunSave()
 
 				-- Skip if Epiphany pool table is not initialized
-				if not runSave["POOLS_TO_ITEMS"] then
+				if not Epiphany.PoolTableHelper.ItemsToPools then
 					return true
 				end
 
