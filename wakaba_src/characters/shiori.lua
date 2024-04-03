@@ -244,6 +244,8 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 		end
 	elseif item == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
 		return wakaba.killcount <= 160 and 200000 or 0
+	elseif item == CollectibleType.COLLECTIBLE_BLANK_CARD and player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
+		return 0
 	elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local reqconsume = maxCharges // 2
 		return charge + (maxCharges - reqconsume)
