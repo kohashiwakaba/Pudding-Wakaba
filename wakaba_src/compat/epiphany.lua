@@ -373,6 +373,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
 				{Epiphany.Item.D5.ID, 1.00},
 				{Epiphany.Item.CHANCE_CUBE.ID, 1.00},
+				{Epiphany.Item.DIVINE_REMNANTS.ID, 0.20},
 			})
 
 			-- TR Eden Blacklist
@@ -393,17 +394,22 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, -- Constant health refill
 				wakaba.Enums.Collectibles.QUESTION_BLOCK,
 				wakaba.Enums.Collectibles.LIL_RIRA,
+				wakaba.Enums.Collectibles.MAID_DUET, -- Both for glitched item and TR Eden
 				-- Items that can't be filled, or has no effect before they get rerolled away
 				wakaba.Enums.Collectibles.EATHEART, -- Requires 7500 dmg, and can't be debugged
 				wakaba.Enums.Collectibles.SECRET_CARD, -- Useless when given for 1 room
 				wakaba.Enums.Collectibles.WINTER_ALBIREO, -- Useless when given for 1 room
 				wakaba.Enums.Collectibles.DEJA_VU, -- Useless when given for 1 room
+				wakaba.Enums.Collectibles.RIRAS_BANDAGE, -- Useless when given for 1 room
+				wakaba.Enums.Collectibles.PRESTIGE_PASS, -- Useless when given for 1 room
 				-- Items that revive the player as another character
 				wakaba.Enums.Collectibles.VINTAGE_THREAT, -- Tainted Shiori
 				wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, -- Tainted Tsukasa
 				wakaba.Enums.Collectibles.JAR_OF_CLOVER, -- Wakaba
 				wakaba.Enums.Collectibles.BUNNY_PARFAIT, -- Rira
 				wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, -- Richer
+				-- Strong item pool modifiers
+				wakaba.Enums.Collectibles.RIRAS_BENTO, -- Richer
 				-- Bomb modifiers
 				wakaba.Enums.Collectibles.NEW_YEAR_BOMB,
 				-- Items that give soul or black hearts
@@ -468,7 +474,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 
 			-- Epiphany Beggar/slots pools
 			api:AddItemsToCustomPool("PainPool",
-				wakaba.Enums.Collectibles.BOOK_OF_TRAUMA
+				wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
+				wakaba.Enums.Collectibles.RIRAS_BANDAGE
 			)
 			api:AddItemsToCustomPool("ConverterBeggarPool",
 				wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
@@ -514,6 +521,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
 				wakaba.Enums.Cards.CARD_TRIAL_STEW
+				wakaba.Enums.Cards.CARD_RICHER_TICKET,
+				wakaba.Enums.Cards.CARD_RIRA_TICKET,
 			)
 
 			api:AddCardsToCardGroup("Suit",
@@ -527,7 +536,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Cards.SOUL_SHIORI,
 				wakaba.Enums.Cards.SOUL_WAKABA,
 				wakaba.Enums.Cards.SOUL_WAKABA2,
-				{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5}
+				{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
+				{wakaba.Enums.Cards.SOUL_RICHER, Weight = 0.5}
 			)
 
 			api:AddCardsToCardGroup("Holy",
@@ -552,6 +562,8 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
 				{wakaba.Enums.Cards.CARD_DREAM_CARD, Weight = 0.5},
 				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
+				wakaba.Enums.Cards.CARD_RICHER_TICKET,
+				wakaba.Enums.Cards.CARD_RIRA_TICKET,
 				wakaba.Enums.Cards.CARD_TRIAL_STEW,
 				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
 				{wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
@@ -1092,7 +1104,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 						if wakabaBuff.isReplace then
 							descObj.Description = desc
 						else
-							EID:appendToDescription(descObj, "#".. desc .. "{{CR}}")
+							EID:appendToDescription(descObj, "# {{GoldenItem}}".. desc .. "{{CR}}")
 						end
 					end
 					return descObj
