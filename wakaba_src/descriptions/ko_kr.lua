@@ -646,6 +646,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#적을 놓친 눈물에 도그마 레이저가 생깁니다."
 		.. "{{CR}}",
+		queueDesc = "따끔!",
 	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "모에의 머핀",
