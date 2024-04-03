@@ -15,7 +15,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}Shiori",
-		description = "↑ 액티브 아이템 사용에 필요한 열쇠 갯수가 절반으로 감소합니다. (최소 1)",
+		description = "↑ 액티브 아이템 사용에 필요한 열쇠 개수가 절반으로 감소합니다. (최소 1)",
 		queueDesc = "좀 더 똑똑해진 문학소녀",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
@@ -25,7 +25,7 @@ wakaba.descriptions[desclang].birthright = {
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Book of Conquest와 액티브 아이템 사용에 필요한 열쇠 갯수가 일정량 감소합니다. (최소 1)#↑ 현재 함락된 적들의 코스트에 비례하여 모든 능력치가 상승합니다.",
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Book of Conquest와 액티브 아이템 사용에 필요한 열쇠 개수가 일정량 감소합니다. (최소 1)#↑ 현재 함락된 적들의 코스트에 비례하여 모든 능력치가 상승합니다.",
 		queueDesc = "문학소녀의 유대감",
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
@@ -312,7 +312,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 펜던트",
 		description = ""
 		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
-		.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 갯수만큼 행운 +0.35"
+		.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 개수만큼 행운 +0.35"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{Heart}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
@@ -332,7 +332,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "극비 카드",
 		description = ""
 		.. "#↑ {{Coin}}동전 +22"
-		.. "#방 클리어 시 랜덤한 갯수의 동전이 쌓입니다."
+		.. "#방 클리어 시 랜덤한 개수의 동전이 쌓입니다."
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -390,7 +390,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",
-		belial = "교복에 담긴 알약/카드/룬의 갯수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
+		belial = "교복에 담긴 알약/카드/룬의 개수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
 		wisp = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다.",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
@@ -505,8 +505,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ 목숨 +1"
 		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} 사망 시 현재 방에서 Tainted Shiori로 부활하며;"
-		.. "#{{Blank}} 열쇠 갯수가 0개로 초기화, 4개의 {{Collectible656}}Damocles의 검이 활성화됩니다."
-		.. "#{{Warning}} {{ColorBlink}}{{ColorRed}}경고 : 패널티 피격을 받으면 피격받는 그 즉시 Damocles의 검이 떨어지며 추가 목숨 갯수 및 남은 플레이어와 관계없이 즉시 게임이 종료됩니다.{{ColorReset}}"
+		.. "#{{Blank}} 열쇠 개수가 0개로 초기화, 4개의 {{Collectible656}}Damocles의 검이 활성화됩니다."
+		.. "#{{Warning}} {{ColorBlink}}{{ColorRed}}경고 : 패널티 피격을 받으면 피격받는 그 즉시 Damocles의 검이 떨어지며 추가 목숨 개수 및 남은 플레이어와 관계없이 즉시 게임이 종료됩니다.{{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "영원한 생명?",
@@ -629,7 +629,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Coin}}동전 +10"
 		.. "#동전 5개를 소모하여 폭탄과 열쇠를 각각 1개씩 획득합니다."
 		.. "#!!! 동전이 부족한 상태에서 사용 시: "
-		.. "#폭탄 혹은 열쇠 중 갯수가 많은 쪽을 1개 차감하여 다른 쪽 픽업을 1개 획득합니다."
+		.. "#폭탄 혹은 열쇠 중 개수가 많은 쪽을 1개 차감하여 다른 쪽 픽업을 1개 획득합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "소모품 교환소 + 동전 10개",
@@ -1426,7 +1426,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		{
-			desc = {"랜덤한 갯수", "1개"},
+			desc = {"랜덤한 개수", "1개"},
 			modifierText = "Hard Mode",
 		},
 	},
@@ -1469,9 +1469,9 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.BITCOIN] = {
 		itemName = "비트코인 II",
 		description = ""
-		.. "#소모성 픽업의 갯수와 스탯을 랜덤하게 뒤섞습니다."
+		.. "#소모성 픽업의 개수와 스탯을 랜덤하게 뒤섞습니다."
 		.. "#각각의 픽업 소지 수는 0개부터 999개 까지 나올 수 있습니다."
-		.. "#!!! 교체, 버리기 시 사라지며 흡수 시 픽업의 갯수가 유지됩니다."
+		.. "#!!! 교체, 버리기 시 사라지며 흡수 시 픽업의 개수가 유지됩니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	queueDesc = "도박 중독",
@@ -1699,7 +1699,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "컬러 조커",
 		queueDesc = "당신은 이 결과를 원하지 않을 것이다",
-		description = "{{BrokenHeart}} 부서진 하트의 갯수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
+		description = "{{BrokenHeart}} 부서진 하트의 개수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "스페이드 Q",
@@ -2091,7 +2091,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "미궁의 저주",
 		description = "!!! 챕터 1 ~ 4의 홀수 층에서만 발동"
 		.. "#2개의 스테이지를 하나로 합쳐 하나의 XL 스테이지로 만듭니다."
-		.. "#!!! 보스방/보물방의 갯수만 2개로 늘어나며 나머지 특수방은 스테이지 하나인 것으로 취급됩니다."
+		.. "#!!! 보스방/보물방의 개수만 2개로 늘어나며 나머지 특수방은 스테이지 하나인 것으로 취급됩니다."
 		.. "#Basement/Cellar/Burning Basement XL 스테이지에서는 두 보물방 모두 열쇠를 필요로 하지 않습니다."
 		.. "#이 저주는 {{Collectible260}}Black Candle 아이템으로도 제거할 수 없습니다."
 		.. "",
@@ -2102,7 +2102,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "길 잃은 자의 저주",
 		description = "HUD상에서 지도가 표시되지 않습니다."
 		.. "#맵의 크기가 한 단계 더 커집니다."
-		.. "#{{Collectible260}}Black Candle 아이템 획득 시 지도만 다시 표시되며, 기존의 늘어난 방 갯수는 그대로 유지됩니다."
+		.. "#{{Collectible260}}Black Candle 아이템 획득 시 지도만 다시 표시되며, 기존의 늘어난 방 개수는 그대로 유지됩니다."
 		.. "",
 		seedeffect = SeedEffect.SEED_PERMANENT_CURSE_LOST,
 	},
@@ -2591,7 +2591,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받으며 빨간하트를 채울 수 없습니다."
 		.. "#침대에서 자면 소울하트 3칸을 회복합니다."
 		.. "#{{Collectible725}} 폭탄을 사용할 수 없으며 폭탄 대신 여러 종류의 똥을 사용합니다."
-		.. "#{{PoopPickup}} 폭탄 픽업은 똥 픽업으로 바뀌며 폭탄을 지급하는 아이템은 그 갯수만큼 자폭 파리로 변환됩니다."
+		.. "#{{PoopPickup}} 폭탄 픽업은 똥 픽업으로 바뀌며 폭탄을 지급하는 아이템은 그 개수만큼 자폭 파리로 변환됩니다."
 		.. "#똥은 반드시 순서대로만 사용할 수 잇습니다."
 		.. "#가스를 많이 뿜으므로 불장난에 주의합시다."
 		--[[ .. "#{{PoopPickup}} 평범한 똥입니다." -- 갈색
@@ -2802,7 +2802,7 @@ wakaba.descriptions[desclang].playernotes = {
 	[wakaba.Enums.Players.SHIORI] = {
 		-- icon = "",
 		name = "시오리",
-		description = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만의 아는 세계{{CR}}의 히로인 중 한명입니다."
+		description = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만이 아는 세계{{CR}}의 히로인 중 한명입니다."
 		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
 		.. "#{{Key}} 시오리는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
 		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
