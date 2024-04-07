@@ -24,6 +24,14 @@ function wakaba:GameStart_FiendFolioCompat()
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_4, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 		wakaba:BlacklistBook(FiendFolio.ITEM.COLLECTIBLE.MY_STORY_6, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
 
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_1] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_2] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_3] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_4] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_5] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_6] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_8] = true
+		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_12] = true
 
 		FiendFolio.RockTrinkets[wakaba.Enums.Trinkets.BRING_ME_THERE] = -2
 		FiendFolio.GolemTrinketWhitelist[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1

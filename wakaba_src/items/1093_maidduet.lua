@@ -9,6 +9,9 @@ wakaba.Blacklists.MaidDuet = {
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL_PASSIVE] = true,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = true,
 	[CollectibleType.COLLECTIBLE_D_INFINITY] = true,
+	[CollectibleType.COLLECTIBLE_BLANK_CARD] = true,
+	[CollectibleType.COLLECTIBLE_PLACEBO] = true,
+	[CollectibleType.COLLECTIBLE_CLEAR_RUNE] = true,
 
 }
 if not REPENTOGON then
