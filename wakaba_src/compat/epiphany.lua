@@ -520,9 +520,9 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Cards.CARD_VALUT_RIFT,
 				wakaba.Enums.Cards.CARD_MINERVA_TICKET,
 				wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
-				wakaba.Enums.Cards.CARD_TRIAL_STEW
+				wakaba.Enums.Cards.CARD_TRIAL_STEW,
 				wakaba.Enums.Cards.CARD_RICHER_TICKET,
-				wakaba.Enums.Cards.CARD_RIRA_TICKET,
+				wakaba.Enums.Cards.CARD_RIRA_TICKET
 			)
 
 			api:AddCardsToCardGroup("Suit",
