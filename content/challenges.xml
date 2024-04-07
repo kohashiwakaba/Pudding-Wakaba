@@ -34,7 +34,7 @@ See this community post for more details. It's not mine, but it's still very use
 	<challenge name="[w01] Electric Disorder" playertype="Wakaba" endstage="6" getcurse="1" roomfilter="2,4" canshoot="false" cursefilter="32" />
 	<challenge name="[w02] Berry Best Friend" playertype="31" endstage="11" roomfilter="2,4" canshoot="false" startingitems="619,619,619,619,619,619,619,619,619"/>
 	<challenge name="[w03] Pull and Pull" playertype="3" endstage="8" maxhp="6" redhp="6" roomfilter="4" startingitems="-34,45,182,329,153,153,315,617,583"/>
-	<challenge name="[w04] Mine stuff" playertype="23" endstage="8" maxhp="16" redhp="16" canshoot="false" startingitems="-477,584,147" startingtrinkets="15"/>
+	<challenge name="[w04] Mine stuff" playertype="23" endstage="8" maxhp="16" redhp="16" canshoot="false" startingitems="-477,584" startingtrinkets="15"/>
 	<challenge name="[w05] Black neko dreams" playertype="WakabaB" endstage="8" getcurse="4" secretpath="true" canshoot="false" roomfilter="4" cursefilter="32" startingitems="134,81,212,360,626,627"/>
 	<challenge name="[w06] Doppelganger" playertype="Shiori" endstage="9" altpath="true" roomfilter="4,7" canshoot="false" cursefilter="127" startingitems="247,598,633"/>
 	<challenge name="[w07] Delirium" playertype="Wakaba" endstage="11" roomfilter="4" canshoot="false" startingitems="20,116,63,182,356"/>

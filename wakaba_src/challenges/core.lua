@@ -76,7 +76,7 @@ wakaba.ChallengeParams.DevilDisallowed = {
 include('wakaba_src.challenges.w01_electricdisorder')
 include('wakaba_src.challenges.w02_berrybestfriend')
 include('wakaba_src.challenges.w03_pullandpull')
---include('wakaba_src.challenges.w04_minestuff')
+include('wakaba_src.challenges.w04_minestuff')
 include('wakaba_src.challenges.w05_blacknekodreams')
 include('wakaba_src.challenges.w06_doppelganger')
 include('wakaba_src.challenges.w07_delirium')
