@@ -449,6 +449,17 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				wakaba.Enums.Collectibles.WAKABAS_NEMESIS
 			)
 
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.ISAAC] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.MAGDALENE] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.CAIN] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS2] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS3] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.SAMSON] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.EDEN] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.LOST] = true
+			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.KEEPER] = true
+
 			-- prevents "item pool does not exist" warning
 			Mod.CustomItemPools.RicherShopPool_Treasure = {} -- Richer's Planetarium shop - Odd floors
 			Mod.CustomItemPools.RicherShopPool_Planetarium = {} -- Richer's Planetarium shop - Even floors
