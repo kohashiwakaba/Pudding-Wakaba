@@ -1455,6 +1455,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer의 경우 변경되지 않습니다.",
 	},
+	-- REPENTOGON ADDITIONS
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 최대 +10%",
+	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		desc = "{{WakabaModRgon}} {{Battery}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",
+	},
 }
 
 wakaba.descriptions[desclang].trinkets = {

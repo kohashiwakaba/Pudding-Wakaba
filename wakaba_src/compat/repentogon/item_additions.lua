@@ -58,6 +58,15 @@ end, wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 
 --- Devil/Angel chance : 악마/천사 확률 조절
 function wakaba:AlterDevilChance_Core()
+	local richerBraCnt = PlayerManager.GetNumCollectibles(wakaba.Enums.Collectibles.RICHERS_BRA)
+	local add = 0
+	if richerBraCnt > 0 then
+		add = add + (0.05 * (richerBraCnt + 1))
+	end
+	return add
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_ITEMS, wakaba.AlterDevilChance_Core)
+function wakaba:AlterDevilChance_Sp()
 	local status = wakaba:getDevilAngelStatus()
 	if status.WDreams then
 		return 0
@@ -65,4 +74,4 @@ function wakaba:AlterDevilChance_Core()
 		return 4001
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_SPECIAL_ITEMS, wakaba.AlterDevilChance_Core)
+wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_SPECIAL_ITEMS, wakaba.AlterDevilChance_Sp)

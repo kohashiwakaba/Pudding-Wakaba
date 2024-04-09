@@ -2635,6 +2635,15 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.RICHER_B},
 	},
+	-- REPENTOGON ADDITIONS
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +10% Devil/Angel Room chance",
+		func = function() return REPENTOGON end,
+	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		desc = "{{WakabaModRgon}} {{Battery}} Reduces Active items' cooldown by 1~2",
+		func = function() return REPENTOGON end,
+	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}

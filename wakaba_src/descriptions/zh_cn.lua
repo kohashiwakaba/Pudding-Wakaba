@@ -2363,6 +2363,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		desc = "{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里璃贝只是复活",
 	},
+	-- REPENTOGON ADDITIONS
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +10% Devil/Angel Room chance",
+	},
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		desc = "{{WakabaModRgon}} {{Battery}} Reduces Active items' cooldown by 1~2",
+	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
