@@ -221,9 +221,11 @@ function wakaba:blessnemesisrender()
 	local wdreams = status.WDreams
 	local wakababr = status.WakabaBR
 	if not wdreams and ((bless and nemesis) or wakababr) then
-		wakaba.G:GetLevel():SetStateFlag(LevelStateFlag.STATE_REDHEART_DAMAGED, false)
-		wakaba.G:GetRoom():SetRedHeartDamage(false)
-		wakaba.G:SetLastDevilRoomStage(LevelStage.STAGE_NULL)
+		if not REPENTOGON then
+			wakaba.G:GetLevel():SetStateFlag(LevelStateFlag.STATE_REDHEART_DAMAGED, false)
+			wakaba.G:GetRoom():SetRedHeartDamage(false)
+			wakaba.G:SetLastDevilRoomStage(LevelStage.STAGE_NULL)
+		end
 		if wakaba.G:GetLevel():GetAngelRoomChance() <= 0 then
 			wakaba.G:GetLevel():AddAngelRoomChance((wakaba.G:GetLevel():GetAngelRoomChance() * -1) + 0.00001)
 		end
@@ -238,7 +240,9 @@ function wakaba:DreamsPostLevel(player)
 	local bless = status.Blessing
 	local nemesis = status.Nemesis
 	if wdreams then
-		wakaba.G:GetLevel():DisableDevilRoom()
+		if not REPENTOGON then
+			wakaba.G:GetLevel():DisableDevilRoom()
+		end
 		if player then
 			if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY") then
 				wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_DUALITY, "WAKABA_DUALITY")

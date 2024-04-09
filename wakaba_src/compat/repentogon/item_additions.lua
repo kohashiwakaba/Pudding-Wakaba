@@ -18,7 +18,7 @@ end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 ---@param player EntityPlayer
 wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
 	if firstTime and player:GetPlayerType() ~= wakaba.Enums.Players.RICHER then
-		return {itemID, 8, firstTime, slot, varData}
+		--return {itemID, 8, firstTime, slot, varData}
 	end
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
@@ -55,3 +55,14 @@ end, wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, -20000, function(_, _, player, varData)
 	return 10000
 end, wakaba.Enums.Collectibles.DOUBLE_DREAMS)
+
+--- Devil/Angel chance : 악마/천사 확률 조절
+function wakaba:AlterDevilChance_Core()
+	local status = wakaba:getDevilAngelStatus()
+	if status.WDreams then
+		return 0
+	elseif (status.Blessing and status.Nemesis) or status.WakabaBR or status.Murasame then
+		return 4001
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_SPECIAL_ITEMS, wakaba.AlterDevilChance_Core)
