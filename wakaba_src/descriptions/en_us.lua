@@ -1,5 +1,12 @@
 local desclang = "en_us"
 
+
+if EID then
+	function wakaba:EIDCond_IsChallenge(challenge)
+		return wakaba.G.Challenge == challenge
+	end
+end
+
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {
 	[wakaba.Enums.Players.WAKABA] = {
@@ -2634,6 +2641,12 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives",
 		func = EID.PlayersHaveCharacter,
 		vars = {wakaba.Enums.Players.RICHER_B},
+	},
+	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
+		type = "replaceAll",
+		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
+		func = wakaba.EIDCond_IsChallenge,
+		vars = {wakaba.challenges.CHALLENGE_EVEN},
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {

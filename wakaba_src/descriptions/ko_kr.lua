@@ -1455,6 +1455,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer의 경우 변경되지 않습니다.",
 	},
+	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
+		desc = "{{WakabaMod}} 가장 가까운 아이템의 등급을 체크합니다.#{{WakabaMod}} 등급을 맞추면 아이템 획득, 실패 시 소멸합니다.",
+	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
 		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 최대 +10%",

@@ -232,6 +232,9 @@ if EID then
 		end
 
 		local function CatalogCondition(descObj)
+			if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
+				return false
+			end
 			if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.SWEETS_CATALOG then
 				return true
 			end
