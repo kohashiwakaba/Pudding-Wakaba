@@ -66,6 +66,7 @@ function wakaba:AlterDevilChance_Core()
 	return add
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_ITEMS, wakaba.AlterDevilChance_Core)
+
 function wakaba:AlterDevilChance_Sp()
 	local status = wakaba:getDevilAngelStatus()
 	if status.WDreams then
@@ -75,3 +76,11 @@ function wakaba:AlterDevilChance_Sp()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_SPECIAL_ITEMS, wakaba.AlterDevilChance_Sp)
+
+function wakaba:AlterDevilChance_Final()
+	local status = wakaba:getDevilAngelStatus()
+	if status.WDreams then
+		return -20000
+	end
+end
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_DEVIL_CALCULATE, 20000, wakaba.AlterDevilChance_Final)

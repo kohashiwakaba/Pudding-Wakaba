@@ -168,17 +168,20 @@ function wakaba:dreamsUpdate(player)
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_CHAOS)
 			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD, true) then
+		if not REPENTOGON and player:HasCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_GOAT_HEAD)
 			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, true) then
+		if not REPENTOGON and player:HasCollectible(CollectibleType.COLLECTIBLE_EUCHARIST, true) then
 			player:RemoveCollectible(CollectibleType.COLLECTIBLE_EUCHARIST)
 			local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 		end
 		local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
 		for i, e in ipairs(wisps) do
-			if e.SubType == CollectibleType.COLLECTIBLE_CHAOS or e.SubType == CollectibleType.COLLECTIBLE_EUCHARIST or e.SubType == CollectibleType.COLLECTIBLE_GOAT_HEAD then
+			if e.SubType == CollectibleType.COLLECTIBLE_CHAOS
+			or (not REPENTOGON and e.SubType == CollectibleType.COLLECTIBLE_EUCHARIST)
+			or (not REPENTOGON and e.SubType == CollectibleType.COLLECTIBLE_GOAT_HEAD)
+			then
 				e:Kill()
 				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 				--dreamcard:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, CollectibleType.CARD_DREAM_CARD, false, false, true)
