@@ -2366,6 +2366,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = { -- TODO
 		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
 	},
+	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = { -- TODO
+		desc = "{{WakabaModHidden}} 25% chance to block damage#{{WakabaModHidden}} Prevents penalties from all damage taken",
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = { -- TODO
+		desc = "{{WakabaModHidden}} Multiple Death's head appear in major boss rooms",
+	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = { -- TODO
 		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +10% Devil/Angel Room chance",

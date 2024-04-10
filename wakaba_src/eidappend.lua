@@ -256,25 +256,6 @@ if EID then
 			return descObj
 		end
 
-		local collectiblesCheck = {
-			wakaba.Enums.Collectibles.WAKABAS_BLESSING,
-			wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
-			wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
-			CollectibleType.COLLECTIBLE_BINGE_EATER,
-			CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES,
-			CollectibleType.COLLECTIBLE_TAROT_CLOTH,
-			CollectibleType.COLLECTIBLE_BLANK_CARD,
-			CollectibleType.COLLECTIBLE_CLEAR_RUNE,
-			CollectibleType.COLLECTIBLE_PLACEBO,
-			CollectibleType.COLLECTIBLE_FALSE_PHD,
-			CollectibleType.COLLECTIBLE_ABYSS,
-		}
-		local playersCheck = {
-			wakaba.Enums.Players.WAKABA,
-			wakaba.Enums.Players.WAKABA_B,
-			wakaba.Enums.Players.SHIORI,
-			wakaba.Enums.Players.SHIORI_B,
-		}
 		local collectiblesOwned = {}
 		local hasPlayer = {}
 
@@ -325,6 +306,8 @@ if EID then
 			EID:addIcon("CloverChest", "EID_Icons", 3, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("ShioriValut", "EID_Icons", 4, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("RicherPlanetarium", "EID_Icons", 5, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaModCheat", "EID_Icons", 6, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaModHidden", "EID_Icons", 7, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)

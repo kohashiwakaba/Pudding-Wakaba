@@ -1458,6 +1458,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		desc = "{{WakabaMod}} 가장 가까운 아이템의 등급을 체크합니다.#{{WakabaMod}} 등급을 맞추면 아이템 획득, 실패 시 소멸합니다.",
 	},
+	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
+		desc = "{{WakabaModHidden}} 25%의 확률로 피해를 막습니다.#{{WakabaModHidden}} 모든 피격에 대한 패널티에 방어",
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
+		desc = "{{WakabaModHidden}} !!! {{ColorOrange}}메이저 보스방에 Death's head 여러 마리가 등장합니다.",
+	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
 		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 최대 +10%",

@@ -1,10 +1,11 @@
 local desclang = "en_us"
 
 
-if EID then
-	function wakaba:EIDCond_IsChallenge(challenge)
-		return wakaba.G.Challenge == challenge
-	end
+function wakaba:EIDCond_IsChallenge(challenge)
+	return wakaba.G.Challenge == challenge
+end
+function wakaba:EIDCond_IsHiddenEnabled()
+	return EID and EID.Config["ItemReminderShowHiddenInfo"]
 end
 
 wakaba.descriptions[desclang] = {}
@@ -2647,6 +2648,15 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
 		func = wakaba.EIDCond_IsChallenge,
 		vars = {wakaba.challenges.CHALLENGE_EVEN},
+	},
+	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
+		desc = "{{WakabaModHidden}} 25% chance to block damage#{{WakabaModHidden}} Prevents penalties from all damage taken",
+		func = wakaba.EIDCond_IsHiddenEnabled,
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
+		desc = "{{WakabaModHidden}} Multiple Death's head appear in major boss rooms",
+		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
