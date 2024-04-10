@@ -2915,7 +2915,7 @@ wakaba.descriptions[desclang].extratrinkets = {}
 
 
 if EID then
-	if EID.descriptions[desclang].ItemReminder then
+	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "캐릭터"
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Starting = "시작 아이템"
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_WakabaUniform = "와카바의 교복"

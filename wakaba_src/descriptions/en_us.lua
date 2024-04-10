@@ -2672,7 +2672,7 @@ wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
-	if EID.descriptions[desclang].ItemReminder then
+	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "Character"
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Starting = "Starting items"
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_WakabaUniform = "Wakaba's Uniform"
