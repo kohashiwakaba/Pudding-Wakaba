@@ -2916,11 +2916,11 @@ wakaba.descriptions[desclang].extratrinkets = {}
 
 if EID then
 	if EID.descriptions[desclang].ItemReminder then
-		EID.descriptions[desclang].ItemReminder.w_Character = "캐릭터"
-		EID.descriptions[desclang].ItemReminder.w_Starting = "시작 아이템"
-		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "와카바의 교복"
-		EID.descriptions[desclang].ItemReminder.w_Curse = "저주"
-		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "시오리 눈물 효과"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "캐릭터"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Starting = "시작 아이템"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_WakabaUniform = "와카바의 교복"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Curse = "저주"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "시오리 눈물 효과"
 	end
 
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 와카바 모드 아이템 해금 적용 여부 설정"

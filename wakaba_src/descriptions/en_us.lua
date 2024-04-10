@@ -2673,11 +2673,11 @@ wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
 	if EID.descriptions[desclang].ItemReminder then
-		EID.descriptions[desclang].ItemReminder.w_Character = "Character"
-		EID.descriptions[desclang].ItemReminder.w_Starting = "Starting items"
-		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "Wakaba's Uniform"
-		EID.descriptions[desclang].ItemReminder.w_Curse = "Curses"
-		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "Shiori Tear effects"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "Character"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Starting = "Starting items"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_WakabaUniform = "Wakaba's Uniform"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Curse = "Curses"
+		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "Shiori Tear effects"
 	end
 
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! Achievements?"
