@@ -2072,7 +2072,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#眼泪是隐形的，并且在短时间内对敌人造成更少的伤害"
 			.. "#在4个瓷砖之后对敌人造成2倍的伤害"
 			..
-			"{{Player" ..
+			"#{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}武器是可见的，可以对附近的敌人造成正常伤害"
 			.. "",
@@ -2087,7 +2087,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseLost}} 替代迷失诅咒"
 			.. "#无法看到远处的地图"
 			.. "#{{SecretRoom}} 可以揭示秘密房间和超级秘密房间"
-			.. "{{Player" ..
+			.. "#{{Player" ..
 			wakaba.Enums.Players.RICHER .. "}} +{{Collectible619}} {{ColorRicher}}地图没有丢失"
 			.. "",
 	},
@@ -2101,7 +2101,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#有时候已经清理过的房间会随机变成未清理的"
 			.. "#特殊房间不包括在内"
 			..
-			"{{Player" ..
+			"#{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}已清除的房间不再被清除，房间清除奖励仍然产生"
 			.. "",
@@ -2118,7 +2118,7 @@ wakaba.descriptions[desclang].curses = {
 			"#即使在失去诅咒状态下也可以使用献血机"
 			.. "#{{Collectible285}} 所有敌人都会退化（如果可能的话）"
 			..
-			"{{Player" ..
+			"#{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}璃贝会正常的造成伤害"
 			.. "",

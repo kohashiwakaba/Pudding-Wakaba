@@ -2194,7 +2194,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseDarkness}} Darkness 저주를 교체하여 등장합니다."
 		.. "#공격의 모습이 사라지며 공격이 매우 가까이 있는 적에게 피해를 입히지 못하나;"
 		.. "#멀리 있는 적에게 2배의 피해를 줍니다."
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}공격이 다시 보이며 가까이 있는 적에게 일반적인 피해를 줍니다."
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}공격이 다시 보이며 가까이 있는 적에게 일반적인 피해를 줍니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -2204,7 +2204,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Lost 저주를 교체하여 등장합니다."
 		.. "#현재 방 주변의 방 위치를 볼 수 있으나 더 멀리 있는 위치의 방은 지도에 표시되지 않습니다."
 		.. "#{{SecretRoom}} 비밀방 및 일급비밀방의 위치가 표시됩니다."
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}멀리 있는 방의 위치가 사라지지 않습니다."
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}멀리 있는 방의 위치가 사라지지 않습니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -2214,7 +2214,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Maze 저주를 교체하여 등장합니다."
 		.. "#방 입장 시 클리어한 방이 낮은 확률로 클리어하지 않은 상태로 바뀝니다."
 		.. "#다시 클리어할 경우 방 클리어 보상이 드랍되며 특수방은 적용되지 않습니다."
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}방이 더 이상 클리어하지 않은 상태로 바뀌지 않으나 방 클리어 보상을 소환합니다."
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}방이 더 이상 클리어하지 않은 상태로 바뀌지 않으나 방 클리어 보상을 소환합니다."
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -2225,7 +2225,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{Card91}} 저주에 걸린 동안 항상 Lost 상태가 됩니다."
 		.. "#Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible285}} 모든 적이 약화 형태로 등장합니다."
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}모든 피격이 일반 피격으로 대체됩니다."
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}모든 피격이 일반 피격으로 대체됩니다."
 		.. "",
 	},
 }

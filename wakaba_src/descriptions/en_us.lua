@@ -1926,7 +1926,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
 		.. "#Weapons are invisible and deal less damage enemies for a short time"
 		.. "#Deals 2x damage to enemies after 4 tiles"
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies"
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -1936,7 +1936,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Replaces Curse of the Lost"
 		.. "#Isaac cannot see the map far away"
 		.. "#{{SecretRoom}} Can reveal Secret and Super Secret Rooms"
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost"
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -1946,7 +1946,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Replaces Curse of the Maze"
 		.. "#Sometimes cleared rooms are randomly be uncleared"
 		.. "#Special rooms are not included"
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns"
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -1957,7 +1957,7 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{Card91}} Permanent Lost Curse state for current floor"
 		.. "#Donation mechanics can be used even with Lost Curse state"
 		.. "#{{Collectible285}} All enemies are devolved if possible"
-		.. "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state"
+		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state"
 		.. "",
 	},
 }
