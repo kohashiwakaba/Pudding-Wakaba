@@ -2650,6 +2650,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		vars = {wakaba.challenges.CHALLENGE_EVEN},
 	},
 	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
+		desc = "{{WakabaModHidden}} Replaces all Bomb spawns with a {{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}",
+		func = wakaba.EIDCond_IsHiddenEnabled,
+	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc = "{{WakabaModHidden}} 25% chance to block damage#{{WakabaModHidden}} Prevents penalties from all damage taken",
 		func = wakaba.EIDCond_IsHiddenEnabled,

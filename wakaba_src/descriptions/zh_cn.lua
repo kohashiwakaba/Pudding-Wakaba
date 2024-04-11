@@ -2367,6 +2367,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
 	},
 	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = { -- TODO
+		desc = "{{WakabaModHidden}} Replaces all Bomb spawns with a {{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}", -- can change to 'other pickups'
+	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = { -- TODO
 		desc = "{{WakabaModHidden}} 25% chance to block damage#{{WakabaModHidden}} Prevents penalties from all damage taken",
 	},

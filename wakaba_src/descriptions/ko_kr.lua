@@ -1459,6 +1459,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaMod}} 가장 가까운 아이템의 등급을 체크합니다.#{{WakabaMod}} 등급을 맞추면 아이템 획득, 실패 시 소멸합니다.",
 	},
 	-- HIDDEN DESCRIPTIONS
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
+		desc = "{{WakabaModHidden}} 폭탄 픽업이 다른 픽업으로 대체됩니다.",
+	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc = "{{WakabaModHidden}} 25%의 확률로 피해를 막습니다.#{{WakabaModHidden}} 모든 피격에 대한 패널티에 방어",
 	},
