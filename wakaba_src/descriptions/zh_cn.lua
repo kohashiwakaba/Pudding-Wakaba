@@ -2424,4 +2424,7 @@ if EID then
 	"!!! {{ColorRicher}}璃贝{{CR}} & {{ColorRira}}莉良{{CR}} 不能把这个放进口袋!"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
+
+	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Item pool for this floor : " -- TODO
+
 end

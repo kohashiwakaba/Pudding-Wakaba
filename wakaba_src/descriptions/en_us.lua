@@ -2704,4 +2704,6 @@ if EID then
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
+	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
+
 end

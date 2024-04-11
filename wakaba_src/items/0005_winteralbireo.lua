@@ -171,6 +171,28 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	end
 end
 
+function wakaba:GetAlbireoPool()
+	local level = game:GetLevel()
+	local stage = level:GetAbsoluteStage()
+	local stageType = level:GetStageType()
+
+	if stage <= LevelStage.STAGE4_2 then
+		if stage % 2 ~= 0 then
+			return ItemPoolType.POOL_TREASURE
+		else
+			return ItemPoolType.POOL_PLANETARIUM
+		end
+	elseif stage == LevelStage.STAGE4_3 then
+		return ItemPoolType.POOL_SECRET
+	elseif stage == LevelStage.STAGE5 then
+		if stageType == StageType.STAGETYPE_ORIGINAL then
+			return ItemPoolType.POOL_DEVIL
+		else
+			return ItemPoolType.POOL_ANGEL
+		end
+	end
+end
+
 function wakaba:IsValidWakabaRoom(roomdesc, wakabaRoomType)
 	local level = game:GetLevel()
 

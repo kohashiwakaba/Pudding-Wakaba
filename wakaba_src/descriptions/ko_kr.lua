@@ -2947,4 +2947,6 @@ if EID then
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
+	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
+
 end
