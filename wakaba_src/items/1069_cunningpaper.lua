@@ -1,13 +1,14 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-local richer_saved_recipies = {
+local cunning_data = {
 	run = {
 
 	},
 }
-wakaba:saveDataManager("PnW_CunningPaper", richer_saved_recipies)
+wakaba:saveDataManager("PnW_CunningPaper", cunning_data)
 
-local cunningCard = richer_saved_recipies.run
+local cunningCard = cunning_data.run
+wakaba.cunningPaperData = cunningCard
 
 function wakaba:PlayerUpdate_CunningPaper(player)
 	local playerIndex = isc:getPlayerIndex(player)
@@ -17,7 +18,7 @@ function wakaba:PlayerUpdate_CunningPaper(player)
 		local startSeed = seeds:GetStartSeed()
 		local rng = RNG()
 		rng:SetSeed(startSeed, 35)
-		cunningCard[playerIndex] = itemPool:GetCard(rng:GetSeed(),false, false, false)
+		cunning_data.run[playerIndex] = itemPool:GetCard(rng:GetSeed(),false, false, false)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_CunningPaper)
@@ -36,25 +37,8 @@ function wakaba:ItemUse_CunningPaper(item, rng, player, useFlags, activeSlot, va
 			player:UseCard(cunningCard[playerIndex], UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 		end
 		local newCard = itemPool:GetCard(player:GetCollectibleRNG(wakaba.Enums.Collectibles.CUNNING_PAPER):Next(), false, false, false)
-		cunningCard[playerIndex] = newCard
+		cunning_data.run[playerIndex] = newCard
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_CunningPaper, wakaba.Enums.Collectibles.CUNNING_PAPER)
 
-if EID then
-	local function CunningPaperCondition(descObj)
-		if not EID.InsideItemReminder then return false end
-		if EID.holdTabPlayer == nil then return false end
-		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.CUNNING_PAPER
-	end
-	local function CunningPaperCallback(descObj)
-		local player = EID.holdTabPlayer
-		local playerIndex = isc:getPlayerIndex(player)
-		local card = cunningCard[playerIndex]
-		local demoDescObj = EID:getDescriptionObj(5, 300, card)
-		descObj.Name = "{{Card"..card.."}} ".. demoDescObj.Name
-		descObj.Description = demoDescObj.Description
-		return descObj
-	end
-	EID:addDescriptionModifier("Wakaba Cunning Paper", CunningPaperCondition, CunningPaperCallback)
-end
