@@ -55,8 +55,6 @@ wakaba.Enums.Collectibles = {
 	CONCENTRATION = Isaac.GetItemIdByName("Concentration"),
 	RABBIT_RIBBON = Isaac.GetItemIdByName("Rabbit Ribbon"),
 	SWEETS_CATALOG = Isaac.GetItemIdByName("Sweets Catalog"),
-	ANCIENT_CATALOG = Isaac.GetItemIdByName("Ancient Catalog"),
-	PREMIUM_CATALOG = Isaac.GetItemIdByName("Premium Catalog"),
 
 	-- Regular items
 	MYSTERIOUS_GAME_CD = Isaac.GetItemIdByName("Mysterious game CD"),
@@ -182,6 +180,7 @@ wakaba.Enums.Collectibles = {
 	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
+	CLEANER = Isaac.GetItemIdByName("Clover Cleaner"),
 
 }
 

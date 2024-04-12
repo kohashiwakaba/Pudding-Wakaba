@@ -1,5 +1,5 @@
 --[[
-	Book of Amplitude (증폭의 책) - 패시브(Passive)
+	Book of Amplitude (증폭의 책) - 액티브(Active) - 1 room
 	소지 중일 때 방 입장 시마다 아래 효과 중 하나를 번갈아가며 적용
 	- 이동속도 +0.15
 	- 연사 + 1

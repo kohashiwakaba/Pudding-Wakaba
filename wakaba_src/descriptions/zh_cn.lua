@@ -198,13 +198,6 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "随意试吃",
 	},
-	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
-		itemName = "远古事迹",
-		description = ""
-			.. "#在当前房间给予以下武器之一:"
-			.. "{{CR}}",
-		queueDesc = "临时随机武器",
-	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "辇道增七",
 		description = ""
