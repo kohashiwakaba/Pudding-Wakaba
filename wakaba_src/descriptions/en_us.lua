@@ -2651,20 +2651,20 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	-- HIDDEN DESCRIPTIONS
 	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
-		desc = "{{WakabaModHidden}} {{ColorGrey}}Replaces all Bomb spawns with a {{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}",
+		desc = "{{WakabaModHidden}} {{ColorGray}}Replaces all Bomb spawns with a {{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
-		desc = "{{WakabaModHidden}} {{ColorGrey}}25% chance to block damage#{{WakabaModHidden}} {{ColorGrey}}Prevents penalties from all damage taken",
+		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage#{{WakabaModHidden}} {{ColorGray}}Prevents penalties from all damage taken",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
-		desc = "{{WakabaModHidden}} {{ColorGrey}}Multiple Death's head appear in major boss rooms",
+		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGrey}}0.5% chance to teleport Isaac to Death Certificate area instead"
-				 .."#{{WakabaModHidden}} {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}{{ColorGrey}}4.5% with Book of Shiori",
+		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead"
+				 .."#{{WakabaModHidden}} {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}{{ColorGray}}4.5% with Book of Shiori",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	-- REPENTOGON ADDITIONS
