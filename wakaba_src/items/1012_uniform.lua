@@ -278,7 +278,7 @@ if EID then
 	end
 
 
-	EID:addDescriptionModifier("Wakaba's Uniform", UniformCondition, UniformCallback)
+	--EID:addDescriptionModifier("Wakaba's Uniform", UniformCondition, UniformCallback)
 	EID:addDescriptionModifier("Wakaba's Uniform_CardPill", UniformCondition_CardPill, UniformCallback_CardPill)
 else
 	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.render32)
