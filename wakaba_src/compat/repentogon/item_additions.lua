@@ -63,6 +63,9 @@ function wakaba:AlterDevilChance_Core()
 	if richerBraCnt > 0 then
 		add = add + (0.05 * (richerBraCnt + 1))
 	end
+	if PlayerManager.AnyoneHasCollectible(wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE) then
+		add = add + 0.2
+	end
 	return add
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_DEVIL_APPLY_ITEMS, wakaba.AlterDevilChance_Core)
@@ -84,3 +87,41 @@ function wakaba:AlterDevilChance_Final()
 	end
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_DEVIL_CALCULATE, 20000, wakaba.AlterDevilChance_Final)
+
+local ampSprite = Sprite()
+ampSprite:Load('gfx/items/wakaba_bookofamplitude.anm2', true)
+
+-- Book of Amplitude
+---@param player EntityPlayer
+---@param activeSlot ActiveSlot
+---@param offset Vector
+---@param alpha number
+---@param scale number
+---@param chargeBarOffset Vector
+function wakaba:ActiveRender_BookOfAmplitude(player, activeSlot, offset, alpha, scale, chargeBarOffset)
+	local item = player:GetActiveItem(activeSlot)
+	if item == wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE and not player:IsCoopGhost() then
+		local ampStat = wakaba:getPlayerDataEntry(player, "ampstat")
+		if ampStat then
+			local mode = ampStat % 4
+
+			local pocket = player:GetPocketItem(0)
+			local ispocketactive = (pocket:GetSlot() == 3 and pocket:GetType() == 2)
+
+			local renderPos = Vector(16, 16)
+			local renderScale = Vector(1, 1)
+
+			if mode < 4 then
+				if activeSlot == ActiveSlot.SLOT_PRIMARY then
+				elseif activeSlot == ActiveSlot.SLOT_SECONDARY or (not ispocketactive) then
+					renderPos = renderPos / 2
+					renderScale = renderScale / 2
+				end
+				ampSprite:SetFrame("Idle", mode)
+				ampSprite.Scale = renderScale
+				ampSprite:Render(renderPos + offset, Vector.Zero, Vector.Zero)
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, wakaba.ActiveRender_BookOfAmplitude)

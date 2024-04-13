@@ -1097,6 +1097,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "홍당무처럼 달려가 달려가",
 	},
+	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
+		itemName = "증폭의 책",
+		description = "{{ArrowGrayRight}} 소지 중일 때 아래 중 하나 적용:"
+		.. "#↑ {{DamageSmall}}공격력 +2"
+		.. "#↑ {{TearsSmall}}연사 +1"
+		.. "#↑ {{RangeSmall}}이동속도 + 0.15"
+		.. "#↑ {{LuckSmall}}행운 +2"
+		.. "#방 입장 시 혹은 사용 시 위의 4개 중 하나가 번갈아가며 변경됩니다."
+		.. "{{CR}}",
+		queueDesc = "충전식 증폭기",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""
@@ -1459,7 +1470,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
-		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 최대 +10%",
+		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 +10%",
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
+		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}소지 중일 때 악마방 확률 +20%",
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",

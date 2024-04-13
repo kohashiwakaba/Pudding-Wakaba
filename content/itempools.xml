@@ -71,6 +71,7 @@
 		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -177,6 +178,7 @@
 		<Item Name="Minerva's Aura" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 	</Pool>
 
 
@@ -223,6 +225,7 @@
 		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

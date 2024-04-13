@@ -987,6 +987,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Greatly increases speed and fire rate for 2 seconds"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
+		itemName = "Book of Amplitude",
+		description = "{{ArrowGrayRight}} One of effects while held:"
+		.. "#↑ {{Damage}}Damage +2"
+		.. "#↑ {{Tears}}Fire rate +1"
+		.. "#↑ {{Range}}Speed + 0.15"
+		.. "#↑ {{Luck}}Luck +2"
+		.. "#On use, or entering new room changes to next effect respectively"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
@@ -2658,6 +2668,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
 		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +10% Devil/Angel Room chance",
+		func = function() return REPENTOGON end,
+	},
+	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +20% Devil/Angel Room chance while held",
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {

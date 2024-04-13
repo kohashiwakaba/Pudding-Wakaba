@@ -149,8 +149,9 @@
 	<passive id="112" description="Mind-expandable explosion" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" quality="3" hidden="true" achievement="9999"/>
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="summonable offensive baby uniquefamiliar nochallenge" quality="4"  persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" quality="2" hidden="true" achievement="9999"/>
-	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden summonable offensive" maxcharges="6" quality="3" hidden="true" achievement="9999"/>
+	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden offensive" maxcharges="6" quality="3" hidden="true" achievement="9999"/>
 	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" tags="offensive nogreed"/>
+	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="noeden offensive" maxcharges="1" quality="1" hidden="true" achievement="9999"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4"/>
 	<passive id="122" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" devilprice="2" tags="summonable nolostbr" quality="3"/>
 

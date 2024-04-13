@@ -311,6 +311,18 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_OLD_CHEST,
 	},
 })
+-- Book of Amplitude
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BOOK_OF_AMPLITUDE,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
 -- Richer Ticket
 Encyclopedia.AddCard({
 	Class = class,

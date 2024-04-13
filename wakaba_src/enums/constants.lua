@@ -75,6 +75,7 @@ wakaba.Enums.Collectibles = {
 	RIRAS_BRA = Isaac.GetItemIdByName("Rira's Bra"),
 	RICHERS_BRA = Isaac.GetItemIdByName("Richer's Bra"),
 	KANAE_LENS = Isaac.GetItemIdByName("Kanae Lens"),
+	BOOK_OF_AMPLITUDE = Isaac.GetItemIdByName("Book of Amplitude"),
 
 	-- Wakaba items
 	BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),

@@ -941,6 +941,19 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Taking damage from any sources does not count as damage taken for Damocles, and will not give it the chance to fall."},
 		},
 	},
+	BOOK_OF_AMPLITUDE = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "While held, grants Isaac a boost depending on the book's color."},
+			{str = "- Red : +2 Damage"},
+			{str = "- Blue : +1 Fire rate"},
+			{str = "- Yellow : +0.15 Speed"},
+			{str = "- Green : +2 Luck"},
+			{str = "Entering new room, or using active item changes to next color."},
+			{str = "- The order is always Red - Blue - Yellow - Green, and goes to Red after Green"},
+			{str = "RGON - Increases the chance to open the Devil Room or Angel Room after killing a boss by 20% while holding it"},
+		},
+	},
   --#endregion
 
   --#region Wakaba
