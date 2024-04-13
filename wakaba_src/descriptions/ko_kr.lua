@@ -204,7 +204,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "워터 플레임",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
-		.. "#사용 시 가장 가까이에 있는 패시브 아이템의 불꽃을 2마리 소환합니다."
+		.. "#사용 시 가장 가까이에 있는 패시브 아이템을 아이템 불꽃 2개로 복제합니다."
 		.. "#{{Collectible712}}Lemegeton으로 획득할 수 있는 아이템만 적용할 수 있습니다."
 		.. "{{CR}}",
 		queueDesc = "역시 리셰쨩은 달콤해",
