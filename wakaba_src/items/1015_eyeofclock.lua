@@ -10,19 +10,21 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local function fireTechClock(player)
 	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechXLaser(player.Position, Vector.Zero, 0.02, nil, multiplier)
-	laser.CollisionDamage = 1
-  laser.Variant = 2
+	--local laser = Isaac.Spawn(EntityType.ENTITY_LASER, LaserVariant.THIN_RED, LaserSubType.LASER_SUBTYPE_RING_PROJECTILE, player.Position, Vector.Zero, player):ToLaser()
+	laser.CollisionDamage = player.Damage * multiplier
+  --laser.Variant = 2
   laser.SubType = 3
-	laser.Parent = player
-	laser.TearFlags = player.TearFlags
+	--laser.Parent = player
+	--laser.TearFlags = player.TearFlags
 	laser.DisableFollowParent = true
 	laser:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+	--laser:Update()
 	return laser
 end
 
-local function fireTechClock_Sub(player, laser, direction)
+local function fireTechClock_Sub(player, parentLaser, direction)
 	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
-	local laser = player:FireTechLaser(laser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
+	local laser = player:FireTechLaser(parentLaser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
 	laser.CollisionDamage = 1
 	laser:AddTearFlags(TearFlags.TEAR_SPECTRAL)
   --laser.Variant = 2
@@ -126,24 +128,19 @@ function wakaba:PlayerUpdate_EyeOfClock(player)
 					local sublaser = sublasers[pi][i]
 					local laserPos = calculateLength(player, 40.0 * i, getLaserRotationAngle(player, i))
 					laser.Position = laserPos
+					laser:SetTimeout(30)
 					sublaser.Position = laserPos
 					sublaser:SetTimeout(30)
 					sublaser.AngleDegrees = shootInput:GetAngleDegrees()
 				end
 			end
 		elseif player:IsExtraAnimationFinished() then
-			if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
-			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
-			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
-			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex) then
-			else
-				if lasertimer[pi] > 0 then
-					lasertimer[pi] = 0
-				end
-				lasertimer[pi] = lasertimer[pi] - 1
-				if lasertimer[pi] < 3 then
-					eraseLasers(player)
-				end
+			if lasertimer[pi] > 0 then
+				lasertimer[pi] = 0
+			end
+			lasertimer[pi] = lasertimer[pi] - 1
+			if lasertimer[pi] < 3 then
+				eraseLasers(player)
 			end
 		end
 	else
