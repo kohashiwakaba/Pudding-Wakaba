@@ -1909,24 +1909,14 @@ wakaba.descriptions[desclang].doubledreams = {
 }
 
 wakaba.descriptions[desclang].entities = {
-	{
+	{ -- TODO
 		type = EntityType.ENTITY_SLOT,
 		variant = wakaba.Enums.Slots.SHIORI_VALUT,
 		subtype = 0,
-		name = "诗织的另一个幸运机",
+		name = "Shiori's Valut",
 		description = ""
-			.. "{{Key}} 需要5把钥匙才能激活"
-			.. "#{{Warning}} 撞到机器会生成以下物品之一："
-			.. "#{{BlendedHeart}} {{ColorSilver}}混合心"
-			.. "#{{Card}} {{ColorSilver}}随机卡牌"
-			.. "#{{Card49}} {{ColorSilver}}骰子碎片"
-			.. "#{{Card31}} {{ColorSilver}}Joker"
-			.. "#{{Rune}} {{ColorSilver}}随机符文"
-			.. "#{{Trinket}} {{ColorSilver}}金色饰品"
-			.. "#{{PlanetariumChance}} {{ColorSilver}}与星星相关的道具"
-			.. "#{{Warning}} 生成5次（困难模式下3次）或更多次有很高的几率爆炸"
 	},
-	{
+	{ -- TODO
 		type = EntityType.ENTITY_PICKUP,
 		variant = wakaba.Enums.Pickups.CLOVER_CHEST,
 		subtype = wakaba.ChestSubType.CLOSED,
@@ -1934,9 +1924,8 @@ wakaba.descriptions[desclang].entities = {
 		description = ""
 			.. "{{Key}} 需要一把钥匙才能打开"
 			.. "#{{Warning}} 打开箱子可能包含以下物品之一："
-			.. "#{{Coin}} {{ColorSilver}}金币"
-			.. "#{{Coin}} {{ColorSilver}}2个幸运硬币"
-			.. "#{{Luck}} {{ColorSilver}}与运气相关的收藏品"
+			.. "#{{Coin}} {{ColorSilver}}Lucky Coin, Nickel, or Dime"
+			.. "#{{Luck}} {{ColorSilver}}Clover chest pool collectible"
 	},
 }
 wakaba.descriptions[desclang].richeruniform = {

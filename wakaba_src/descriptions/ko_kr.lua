@@ -2068,9 +2068,8 @@ wakaba.descriptions[desclang].entities = {
 		description = ""
 		.. "{{Key}} 상자를 여는 데 열쇠 필요"
 		.. "#{{Warning}} 상자에서 이하 아이템 중 하나를 드랍합니다 :"
-		.. "#{{Coin}} {{ColorSilver}}황금 코인"
-		.. "#{{Coin}} {{ColorSilver}}행운 코인 2개"
-		.. "#{{LuckSmall}} {{ColorSilver}}운 관련 아이템"
+		.. "#{{Coin}} {{ColorSilver}}행운 코인, 니켈, 혹은 다임"
+		.. "#{{LuckSmall}} {{ColorSilver}}클로버 상자 배열 아이템"
 	},
 }
 wakaba.descriptions[desclang].richeruniform = {

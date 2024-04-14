@@ -1772,18 +1772,9 @@ wakaba.descriptions[desclang].entities = {
 		type = EntityType.ENTITY_SLOT,
 		variant = wakaba.Enums.Slots.SHIORI_VALUT,
 		subtype = 0,
-		name = "Shiori's Another Fortune Machine",
+		name = "Shiori's Valut",
 		description = ""
-		.. "{{Key}} Requires 5 Keys to activate"
-		.. "#{{Warning}} Bumping into the Machine spawns one of followings :"
-		.. "#{{BlendedHeart}} {{ColorSilver}}Blended Heart"
-		.. "#{{Card}} {{ColorSilver}}Random Card"
-		.. "#{{Card49}} {{ColorSilver}}Dice Shard"
-		.. "#{{Card31}} {{ColorSilver}}Joker"
-		.. "#{{Rune}} {{ColorSilver}}Random Rune"
-		.. "#{{Trinket}} {{ColorSilver}}Golden Trinket"
-		.. "#{{PlanetariumChance}} {{ColorSilver}}Star-related collectible"
-		.. "#{{Warning}} Spawning 5 (3 in Hard Mode) or more times has high chance to explode"
+		.. ""
 	},
 	{
 		type = EntityType.ENTITY_PICKUP,
@@ -1793,9 +1784,8 @@ wakaba.descriptions[desclang].entities = {
 		description = ""
 		.. "{{Key}} Requires a key to open"
 		.. "#{{Warning}} Opening the chest may contain one of followings :"
-		.. "#{{Coin}} {{ColorSilver}}Golden Coin"
-		.. "#{{Coin}} {{ColorSilver}}2 Lucky Coins"
-		.. "#{{Luck}} {{ColorSilver}}Luck-related collectible"
+		.. "#{{Coin}} {{ColorSilver}}Lucky Coin, Nickel, or Dime"
+		.. "#{{Luck}} {{ColorSilver}}Clover chest pool collectible"
 	},
 }
 wakaba.descriptions[desclang].richeruniform = {
