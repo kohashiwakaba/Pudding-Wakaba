@@ -621,8 +621,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Nasa Lover",
 		description = ""
 		.. "#{{Collectible494}} Electric tear familiar"
-		.. "#{{Collectible494}} Isaac and all of Isaac's familiars also gain electric tears"
-		.. "#{{Collectible565}} Makes Blood Puppy friendly"
+		.. "#{{Collectible494}} All of Isaac's familiars also gain electric tears"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
@@ -2646,6 +2645,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage#{{WakabaModHidden}} {{ColorGray}}Prevents penalties from all damage taken",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
+	[wakaba.Enums.Collectibles.NASA_LOVER] = {
+		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}Makes Blood Puppy friendly",
+		func = wakaba.EIDCond_IsHiddenEnabled,
+	}
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
 		func = wakaba.EIDCond_IsHiddenEnabled,

@@ -667,8 +667,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "나사 러버",
 		description = ""
 		.. "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."
-		.. "#캐릭터와 패밀리어의 공격이 적에게 부딪힐 때 마다 1~2개의 짧은 유도 레이저가 발사됩니다."
-		.. "#{{Collectible565}} Blood Puppy가 플레이어를 공격하지 않습니다."
+		.. "#패밀리어의 공격이 적에게 부딪힐 때 마다 1~2개의 짧은 유도 레이저가 발사됩니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "전류 텔레파시",
@@ -1461,18 +1460,21 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}25%의 확률로 피해를 막습니다.#{{WakabaModHidden}} {{ColorGray}}모든 피격에 대한 패널티에 방어",
 	},
+	[wakaba.Enums.Collectibles.NASA_LOVER] = {
+		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}Blood Puppy가 플레이어를 공격하지 않습니다.",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		desc = "{{WakabaModHidden}} !!! {{ColorOrange}}메이저 보스방에 Death's head 여러 마리가 등장합니다.",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5%의 확률로 사망 증명서 방으로 이동, {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}시오리의 책 소지 시 확률 4.5%",
+		desc = "{{WakabaModHidden}} {{Collectible628}}{{ColorGray}}0.5%의 확률로 사망 증명서 방으로 이동, {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}시오리의 책 소지 시 확률 4.5%",
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
-		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}악마방 확률 +10%",
+		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}악마방 확률 +10%",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
-		desc = "{{WakabaModRgon}} ↑ {{DevilChanceSmall}}소지 중일 때 악마방 확률 +20%",
+		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}소지 중일 때 악마방 확률 +20%",
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",

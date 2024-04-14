@@ -663,8 +663,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "宇航爱好者",
 		description = ""
 			.. "#{{Collectible494}} 电泪宝宝"
-			.. "#{{Collectible494}} 玩家和他所有的宝宝也获得电泪"
-			.. "#{{Collectible565}} 血狗变得友好"
+			.. "#{{Collectible494}} All of Isaac's familiars also gain electric tears" -- TODO
 			.. "{{CR}}",
 		queueDesc = "电动卡拉",
 	},
@@ -2365,6 +2364,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = { -- TODO
 		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage#{{WakabaModHidden}} {{ColorGray}}Prevents penalties from all damage taken",
+	},
+	[wakaba.Enums.Collectibles.NASA_LOVER] = {
+		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}血狗变得友好",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = { -- TODO
 		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
