@@ -3,9 +3,12 @@ local laserRot2 = 0
 local laserRot3 = 0
 local lasers = {}
 local sublasers = {}
+local lasertimer = {}
+
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 local function fireTechClock(player)
-	local multiplier = (0.4 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechXLaser(player.Position, Vector.Zero, 0.02, nil, multiplier)
 	laser.CollisionDamage = 1
   laser.Variant = 2
@@ -13,11 +16,12 @@ local function fireTechClock(player)
 	laser.Parent = player
 	laser.TearFlags = player.TearFlags
 	laser.DisableFollowParent = true
+	laser:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
 	return laser
 end
 
 local function fireTechClock_Sub(player, laser, direction)
-	local multiplier = (0.25 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechLaser(laser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
 	laser.CollisionDamage = 1
 	laser:AddTearFlags(TearFlags.TEAR_SPECTRAL)
@@ -27,6 +31,7 @@ local function fireTechClock_Sub(player, laser, direction)
 	laser:SetTimeout(30)
 	laser.TearFlags = player.TearFlags
 	laser.DisableFollowParent = true
+	laser:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
 	return laser
 end
 
@@ -39,130 +44,112 @@ local function calculateLength(player, r, i)
 	return Vector(ptx, pty)
 end
 
-local function initLasers(player)
-	local sti = wakaba:getstoredindex(player)
-	if lasers[sti] == nil then
-		lasers[sti] = {}
+---@param player EntityPlayer
+local function eraseLasers(player)
+	local pi = tostring(isc:getPlayerIndex(player))
+	for i, laser in pairs(lasers[pi]) do
+		if laser:Exists() then
+			laser:Die()
+		end
 	end
-	lasers[sti][1] = fireTechClock(player)
-	lasers[sti][1].Radius = math.max(math.min(20.0), 0.001)
-	lasers[sti][2] = fireTechClock(player)
-	lasers[sti][2].Radius = math.max(math.min(30.0), 0.001)
-	lasers[sti][3] = fireTechClock(player)
-	lasers[sti][3].Radius = math.max(math.min(50.0), 0.001)
+	for i, laser in pairs(sublasers[pi]) do
+		if laser:Exists() then
+			laser:Die()
+		end
+	end
+	lasers[pi] = {}
+	sublasers[pi] = {}
+	lasertimer[pi] = 0
 end
 
+---@param player EntityPlayer
+---@param index integer
+local function getLaserRotationAngle(player, index)
+	local frame = player.FrameCount
+	local angle = 0
+	if index == 1 then
+		angle = frame % 360
+	elseif index == 2 then
+		local no = frame * -2.45
+		local floating = no - (no % 1)
+		angle = ((no % 1) % 360) + floating
+	elseif index == 3 then
+		local no = frame * 3.9
+		local floating = no - (no % 1)
+		angle = ((no % 1) % 360) + floating
+	end
+	return angle
+end
 
-function wakaba:pUpdate35(player)
+---@param player EntityPlayer
+function wakaba:PlayerUpdate_EyeOfClock(player)
+	local pi = tostring(isc:getPlayerIndex(player))
 	if player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
-		local sti = wakaba:getstoredindex(player)
-		if lasers[sti] == nil then
-			lasers[sti] = {}
-			initLasers(player)
+		lasers[pi] = lasers[pi] or {}
+		sublasers[pi] = sublasers[pi] or {}
+		lasertimer[pi] = lasertimer[pi] or 0
+		local shootInput = player:GetShootingInput()
+		if shootInput:Length() < 0.1 then
+			shootInput = player:GetShootingJoystick()
 		end
-		if sublasers[sti] == nil then
-			sublasers[sti] = {}
+		if shootInput:Length() < 0.1 and Input.IsMouseBtnPressed(Mouse.MOUSE_BUTTON_1) then
+			local mousePos = Input.GetMousePosition(false)
+			if Game():GetRoom():IsMirrorWorld() then
+				mousePos = Vector(Isaac.GetScreenWidth() * Isaac.GetScreenPointScale() - mousePos.X, mousePos.Y)
+			end
+			mousePos = Isaac.ScreenToWorld(mousePos)
+			shootInput = mousePos - player.Position
 		end
-		if lasers[sti][1] ~= nil then
-			lasers[sti][1].Position = calculateLength(player, 40.0, laserRot1)
-		end
-		if lasers[sti][2] ~= nil then
-			lasers[sti][2].Position = calculateLength(player, 80.0, laserRot2)
-		end
-		if lasers[sti][3] ~= nil then
-			lasers[sti][3].Position = calculateLength(player, 120.0, laserRot3)
-		end
-		if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+		if shootInput:Length() < 0.1 and (
+			Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
 		or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
 		or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
-		or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex) then
-			if lasers[sti][1] ~= nil then
-				if sublasers[sti][1] and sublasers[sti][1]:Exists() then
-					sublasers[sti][1].Position = lasers[sti][1].Position
-					sublasers[sti][1]:SetTimeout(30)
-					sublasers[sti][1].AngleDegrees = wakaba.DIRECTION_ANGLE[player:GetFireDirection()]
-				else
-					sublasers[sti][1] = fireTechClock_Sub(player, lasers[sti][1], wakaba.DIRECTION_VECTOR[player:GetFireDirection()])
+		or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+		) then
+			shootInput = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
+		end
+		if shootInput:Length() > 0.1 then
+			if lasertimer[pi] < 0 then
+				lasertimer[pi] = 0
+			end
+			lasertimer[pi] = lasertimer[pi] + 1
+			for i = 1, 3 do
+				if lasertimer[pi] > (120 * (i - 1)) then
+					if not lasers[pi][i] or not lasers[pi][i]:Exists() then
+						lasers[pi][i] = fireTechClock(player)
+						lasers[pi][i].Radius = math.max(math.min((i + 1) * 10.0), 0.001)
+					end
+					local laser = lasers[pi][i]
+					if not sublasers[pi][i] or not sublasers[pi][i]:Exists() then
+						sublasers[pi][i] = fireTechClock_Sub(player, laser, shootInput)
+					end
+					local sublaser = sublasers[pi][i]
+					local laserPos = calculateLength(player, 40.0 * i, getLaserRotationAngle(player, i))
+					laser.Position = laserPos
+					sublaser.Position = laserPos
+					sublaser:SetTimeout(30)
+					sublaser.AngleDegrees = shootInput:GetAngleDegrees()
 				end
 			end
-			if lasers[sti][2] ~= nil then
-				if sublasers[sti][2] and sublasers[sti][2]:Exists() then
-					sublasers[sti][2].Position = lasers[sti][2].Position
-					sublasers[sti][2]:SetTimeout(30)
-					sublasers[sti][2].AngleDegrees = wakaba.DIRECTION_ANGLE[player:GetFireDirection()]
-				else
-					sublasers[sti][2] = fireTechClock_Sub(player, lasers[sti][2], wakaba.DIRECTION_VECTOR[player:GetFireDirection()])
+		elseif player:IsExtraAnimationFinished() then
+			if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex) then
+			else
+				if lasertimer[pi] > 0 then
+					lasertimer[pi] = 0
 				end
-			end
-			if lasers[sti][3] ~= nil then
-				if sublasers[sti][3] and sublasers[sti][3]:Exists() then
-					sublasers[sti][3].Position = lasers[sti][3].Position
-					sublasers[sti][3]:SetTimeout(30)
-					sublasers[sti][3].AngleDegrees = wakaba.DIRECTION_ANGLE[player:GetFireDirection()]
-				else
-					sublasers[sti][3] = fireTechClock_Sub(player, lasers[sti][3], wakaba.DIRECTION_VECTOR[player:GetFireDirection()])
+				lasertimer[pi] = lasertimer[pi] - 1
+				if lasertimer[pi] < 3 then
+					eraseLasers(player)
 				end
-			end
-		else
-			if sublasers[sti][1] then
-				sublasers[sti][1]:Die()
-				sublasers[sti][1] = nil
-			end
-			if sublasers[sti][2] then
-				sublasers[sti][2]:Die()
-				sublasers[sti][2] = nil
-			end
-			if sublasers[sti][3] then
-				sublasers[sti][3]:Die()
-				sublasers[sti][3] = nil
 			end
 		end
-	
 	else
-		if lasers[sti] ~= nil then
-			if lasers[sti][1] ~= nil then
-				lasers[sti][1]:Die()
-			end
-			if lasers[sti][2] ~= nil then
-				lasers[sti][2]:Die()
-			end
-			if lasers[sti][3] ~= nil then
-				lasers[sti][3]:Die()
-			end
-			lasers[sti] = nil
-		end
+		lasers[pi] = nil
+		sublasers[pi] = nil
+		lasertimer[pi] = nil
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.pUpdate35)
-
-function wakaba:newRoom35()
-	
-	for num = 1, wakaba.G:GetNumPlayers() do
-		local player = wakaba.G:GetPlayer(num)
-		local sti = wakaba:getstoredindex(player)
-		if player:HasCollectible(wakaba.Enums.Collectibles.EYE_OF_CLOCK) then
-			initLasers(player)
-		elseif sti ~= nil then
-			lasers[sti] = nil
-		end
-	end
-	
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.newRoom35)
-
-function wakaba:update35()
-	laserRot1 = laserRot1 + 1
-	laserRot2 = laserRot2 - 2.45
-	laserRot3 = laserRot3 + 3.9
-	if laserRot1 >= 360 then
-		laserRot1 = laserRot1 - 360
-	end
-	if laserRot2 < 0 then
-		laserRot2 = laserRot2 + 360
-	end
-	if laserRot3 >= 360 then
-		laserRot3 = laserRot3 - 360
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.update35)
---LagCheck
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_EyeOfClock)

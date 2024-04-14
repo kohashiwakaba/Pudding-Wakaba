@@ -349,9 +349,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
 		description = ""
-		.. "#3 Tech. X lasers orbit Isaac"
-		.. "#Lasers' damage scales with Isaac's Damage stats"
-		.. "#Pressing fire button also fires lasers from each orbiting lasers"
+		.. "#Constantly shooting gradually spawns Tech. X lasers orbiting Isaac"
+		.. "#Orbiting lasers also shoots extra lasers"
+		.. "#The lasers deal 0.3x Isaac's damage"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},

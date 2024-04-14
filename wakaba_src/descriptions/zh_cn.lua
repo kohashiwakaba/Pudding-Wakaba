@@ -381,12 +381,12 @@ wakaba.descriptions[desclang].collectibles = {
 		belial = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
 		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌",
 	},
-	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
+	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = { -- TODO
 		itemName = "时钟之眼",
 		description = ""
-			.. "#3个激光球环绕玩家"
-			.. "#激光伤害等同攻击力"
-			.. "#按下射击键，每个激光发射一个小型的激光"
+		.. "#Constantly shooting gradually spawns Tech. X lasers orbiting Isaac"
+		.. "#Orbiting lasers also shoots extra lasers"
+		.. "#The lasers deal 0.3x Isaac's damage"
 			.. "{{CR}}",
 		queueDesc = "轨道激光",
 	},

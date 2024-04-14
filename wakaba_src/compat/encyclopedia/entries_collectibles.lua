@@ -1937,11 +1937,12 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	EYE_OF_CLOCK = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "3 Tech. X lasers orbit Isaac."},
-			{str = "Lasers' damage scales with Damage stats."},
+			{str = "Max 3 orbiting lasers are created as Isaac is shooting."},
+			{str = "Each orbiting Tech.X lasers also fire additional lasers."},
 			{str = "- Laser Damage : Damage * 0.4"},
-			{str = "Holding fire button also fires additional lasers from each orbiting Tech.X lasers."},
 			{str = "- All orbiting lasers and additional lasers inherit Isaac's tear effects."},
+			{str = "Lasers disappear if Isaac stops shooting."},
+			{str = "- Being hit, changing rooms, and using items does not make laser disapeear."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
