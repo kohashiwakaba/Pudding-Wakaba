@@ -1,3 +1,6 @@
+
+local isc = require("wakaba_src.libs.isaacscript-common")
+
 function wakaba:Cache_Crystals(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.ARCANE_CRYSTAL) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
