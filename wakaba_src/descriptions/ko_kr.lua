@@ -962,7 +962,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "셀프 버닝",
 		description = "{{Burning}} 사용 시 캐릭터가 뜨거워집니다.(버닝)"
-		.. "#{{Burning}} 버닝 상태일 때 탄환 피격을 제외한 모든 피해를 받지 않으나 20초마다 체력 반칸이 깎이며 탄환 피격 시 효과가 사라집니다."
+		.. "#{{Burning}} 버닝 상태일 때 탄환 피격을 제외한 적에 의한 피해를 받지 않으나 20초마다 체력 반칸이 깎이며 탄환 피격 시 효과가 사라집니다."
 		.. "#체력 소모 아이템, 헌혈기, 희생방 피격은 그대로 적용됩니다.#!!! 스테이지 당 한번 사용할수 있으며 배터리나 방 클리어로 충전되지 않습니다."
 		.. "{{CR}}",
 		queueDesc = "달아오르기 시작",

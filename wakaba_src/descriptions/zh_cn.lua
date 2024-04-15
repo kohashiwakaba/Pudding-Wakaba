@@ -942,7 +942,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "自焚",
 		description = "{{Burning}}使用时烧伤自己"
 			..
-			"#{{Burning}} 着火时，对除了弹幕以外的所有伤害免疫，但每20秒流失半颗心#被弹幕击中会取消着火效果"
+			"#{{Burning}} 着火时，对除了弹幕以外的所有伤害免疫，但每20秒流失半颗心#被弹幕击中会取消着火效果" -- TODO change 'all damage except for projectiles' to 'enemy damage except for projectiles'
 			.. "#献血机（或类似物品），或者献祭房正常工作"
 			.. "#每层只能使用一次"
 			.. "{{CR}}",
