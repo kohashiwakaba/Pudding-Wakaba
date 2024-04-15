@@ -2648,7 +2648,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}Makes Blood Puppy friendly",
 		func = wakaba.EIDCond_IsHiddenEnabled,
-	}
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
 		func = wakaba.EIDCond_IsHiddenEnabled,
@@ -2660,15 +2660,15 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
-		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +10% Devil/Angel Room chance",
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+10% Devil/Angel Room chance",
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
-		desc = "{{WakabaModRgon}} {{AngelDevilChance}} +20% Devil/Angel Room chance while held",
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+20% Devil/Angel Room chance while held",
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
-		desc = "{{WakabaModRgon}} {{Battery}} Reduces Active items' cooldown by 1~2",
+		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}Reduces Active items' cooldown by 1~2",
 		func = function() return REPENTOGON end,
 	},
 }

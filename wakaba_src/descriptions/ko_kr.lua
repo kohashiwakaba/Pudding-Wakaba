@@ -1471,13 +1471,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
-		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}악마방 확률 +10%",
+		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}{{ColorRicher}}악마방 확률 +10%",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
-		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}소지 중일 때 악마방 확률 +20%",
+		desc = "{{WakabaModRgon}} ↑{{DevilChanceSmall}}{{ColorRicher}}소지 중일 때 악마방 확률 +20%",
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
-		desc = "{{WakabaModRgon}} {{Battery}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",
+		desc = "{{WakabaModRgon}} {{Battery}}{{ColorRicher}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",
 	},
 }
 
