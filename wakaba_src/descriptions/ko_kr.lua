@@ -677,7 +677,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{DamageSmall}}공격력 배율 1.12x"
 		.. "#공격에 유도 효과가 생깁니다."
-		.. "#적들이 대미지를 받을 때 70%의 확률로 한 번 더 받습니다."
+		.. "#공격이 적 명중 시 20%의 확률로 한 번 더 받습니다."
+		.. "#{{LuckSmall}} 행운 43+일 때 60%"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "공격력 증가",
@@ -687,7 +688,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{DamageSmall}}공격력 배율 1.14x"
 		.. "#공격이 적을 관통합니다."
-		.. "#적들이 대미지를 받을 때 25%의 확률로 적의 방어를 무시합니다."
+		.. "#공격이 적 명중 시 5%의 확률로 적의 방어를 무시합니다."
+		.. "#{{LuckSmall}} 행운 55+일 때 43%"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "공격력 증가",
@@ -697,7 +699,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{DamageSmall}}공격력 배율 1.16x"
 		.. "#눈물에 후광이 생깁니다."
-		.. "#{{Card" .. Card.CARD_HOLY .."}} 하트가 꽉 찬 상태에서 소울 하트 픽업을 집을 경우 Holy Mantle 방어막을 지급합니다. (최대 5회)"
+		.. "#{{Card" .. Card.CARD_HOLY .."}} 방 8개 클리어 시마다 Holy Mantle 방어막을 지급합니다. (최대 2개)"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "공격력 증가",

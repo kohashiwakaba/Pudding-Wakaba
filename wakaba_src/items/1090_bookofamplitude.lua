@@ -13,7 +13,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:PostGetCollectible_BookOfAmplitude(player, item)
 	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE)
 	local stat = rng:RandomInt(4)
-	wakaba:getPlayerDataEntry(player, "ampstat", stat)
+	wakaba:initPlayerDataEntry(player, "ampstat", stat)
 	player:AddCacheFlags(CacheFlag.CACHE_SPEED | CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_LUCK)
 	player:EvaluateItems()
 end

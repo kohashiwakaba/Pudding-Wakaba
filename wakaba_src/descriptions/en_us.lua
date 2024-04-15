@@ -630,7 +630,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +12% Damage Multiplier"
 		.. "#Homing tears"
-		.. "#70% chance to take extra damage for enemies"
+		.. "#20% chance to take extra damage for enemies"
+		.. "#{{Luck}} 60% chance at 43 Luck"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -639,7 +640,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +14% Damage Multiplier"
 		.. "#Piercing tears"
-		.. "#25% chance to take armor-piercing damage for enemies"
+		.. "#5% chance to take armor-piercing damage for enemies"
+		.. "#{{Luck}} 43% chance at 55 Luck"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -648,7 +650,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +16% Damage Multiplier"
 		.. "#Glowing tears"
-		.. "#{{Card" .. Card.CARD_HOLY .."}}Getting soul hearts beyond limit activates Holy Card effect (Max 5)"
+		.. "#{{Card" .. Card.CARD_HOLY .."}} Holy Card effect is granted per 8 room clears (Max 2)"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},

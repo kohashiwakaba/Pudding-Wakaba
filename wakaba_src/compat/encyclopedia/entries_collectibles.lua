@@ -1329,7 +1329,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "+12% Damage Multiplier"},
 			{str = "Homing tears"},
-			{str = "70% chance to take extra damage for enemies"},
+			{str = "20% chance to take extra damage for enemies"},
+			{str = "The chance for extra damage depends on the luck stat and goes up to 60% at 43 Luck."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -1344,7 +1345,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "+14% Damage Multiplier"},
 			{str = "Piercing tears"},
-			{str = "25% chance to take armor-piercing damage for enemies"},
+			{str = "5% chance to take armor-piercing damage for enemies"},
+			{str = "The chance for extra damage depends on the luck stat and goes up to 43% at 55 Luck."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -1359,7 +1361,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "+16% Damage Multiplier"},
 			{str = "Glowing tears"},
-			{str = "Getting soul hearts beyond limit activates Holy Card effect (Max 5)"},
+			{str = "Clearing 8 rooms activate Holy Card effect (Max 2)"},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},

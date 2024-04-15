@@ -672,7 +672,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +12% 攻击倍率"
 			.. "#跟踪眼泪"
-			.. "#70% 几率造成额外伤害"
+			.. "#20% 几率造成额外伤害"
+			.. "#{{Luck}} 60% chance at 43 Luck" -- TODO
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -681,7 +682,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +14% 攻击倍率"
 			.. "#穿透眼泪"
-			.. "#敌人有25%的几率受到穿甲伤害"
+			.. "#敌人有5%的几率受到穿甲伤害"
+			.. "#{{Luck}} 43% chance at 55 Luck" -- TODO
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -690,7 +692,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +16% 攻击倍率"
 			.. "#神性眼泪"
-			.. "#{{Card" .. Card.CARD_HOLY .. "}}超过上限的灵心会激活神圣卡效果 (最多5个)"
+			.. "#{{Card" .. Card.CARD_HOLY .."}} Holy Card effect is granted per 8 room clears (Max 2)" -- TODO
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},

@@ -29,13 +29,13 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_Crystals)
 
 function wakaba:TakeDmg_Crystals(entity, amount, flag, source, countdownFrames)
 	if entity.Type ~= EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES) 
+	and not (flag & DamageFlag.DAMAGE_CLONES == DamageFlag.DAMAGE_CLONES)
 	then
 		local player = nil
-		if 
+		if
 			(source
-			and source.Entity 
-			and source.Entity.SpawnerEntity 
+			and source.Entity
+			and source.Entity.SpawnerEntity
 			and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER )
 		then
 			player = source.Entity.SpawnerEntity:ToPlayer()
@@ -47,18 +47,30 @@ function wakaba:TakeDmg_Crystals(entity, amount, flag, source, countdownFrames)
 		if player then
 			if player:HasCollectible(wakaba.Enums.Collectibles.ARCANE_CRYSTAL) then
 				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ARCANE_CRYSTAL)
-				local chance = rng:RandomInt(1000000)
-				local threshold = 700000 + (30000 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL))
-				if chance <= threshold then
+				local charmBonus = wakaba:getTeardropCharmBonus(player)
+
+				local basicChance = 0.2
+				local parLuck = 43
+				local maxChance = 0.6 - basicChance
+
+				local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), 1)
+
+				if rng:RandomFloat() < chance then
 					flag = flag | DamageFlag.DAMAGE_CLONES
 					entity:TakeDamage(amount, flag, source, countdownFrames)
 				end
 			end
 			if player:HasCollectible(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL) then
 				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL)
-				local chance = rng:RandomInt(1000000)
-				local threshold = 250000 + (50000 * player:GetCollectibleNum(wakaba.Enums.Collectibles.ADVANCED_CRYSTAL))
-				if chance <= threshold then
+				local charmBonus = wakaba:getTeardropCharmBonus(player)
+
+				local basicChance = 0.05
+				local parLuck = 55
+				local maxChance = 0.43 - basicChance
+
+				local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), 1)
+
+				if rng:RandomFloat() < chance then
 					flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
 					entity:TakeDamage(amount, flag, source, countdownFrames)
 					return false
@@ -69,14 +81,31 @@ function wakaba:TakeDmg_Crystals(entity, amount, flag, source, countdownFrames)
 end
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_Crystals)
 
+function wakaba:RoomClear_MysticCrystal(rng, spawnPosition)
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if player:HasCollectible(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL) then
+			local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL)
+			wakaba:initPlayerDataEntry(player, "mysticholycount", 0)
+			if wakaba:getPlayerDataEntry(player, "mysticholycount", 0) < 8 then
+				wakaba:addPlayerDataCounter(player, "mysticholycount", 1)
+			end
+			if wakaba:getPlayerDataEntry(player, "mysticholycount") >= (9 - count) and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) < 2 then
+				wakaba:setPlayerDataEntry(player, "mysticholycount", 0)
+				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD)
+			end
+		end
+	end)
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_MysticCrystal)
+wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_MysticCrystal)
 
 
 function wakaba:PickupCollision_Crystals(pickup, collider, low)
   if collider:ToPlayer() then
     local player = collider:ToPlayer()
 		if player:CanPickSoulHearts() and not wakaba:IsLost(player) then return end
-		local thresholdmantlecount = wakaba.state.options.stackableholycard <= 5 and wakaba.state.options.stackableholycard or 5
-		if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) >= thresholdmantlecount then return end 
+		local thresholdmantlecount = wakaba.state.options.stackableholycard <= 2 and wakaba.state.options.stackableholycard or 2
+		if player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) >= thresholdmantlecount then return end
 		if player:HasCollectible(wakaba.Enums.Collectibles.MYSTIC_CRYSTAL) then
 			local picked = false
 			if pickup.SubType == HeartSubType.HEART_BLENDED or pickup.SubType == HeartSubType.HEART_SOUL then
@@ -106,7 +135,7 @@ function wakaba:PickupCollision_Crystals(pickup, collider, low)
 
   end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_Crystals, PickupVariant.PICKUP_HEART)
+--wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_Crystals, PickupVariant.PICKUP_HEART)
 
 
 
