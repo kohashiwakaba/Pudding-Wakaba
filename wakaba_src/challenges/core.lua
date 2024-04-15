@@ -142,6 +142,9 @@ function wakaba:Challenge_PlayerInit_Core(player)
 			if wakaba.G:GetFrameCount() == 0 then
 				wakaba.Log("First player! restarting...")
 				Isaac.ExecuteCommand("restart " .. tp)
+				wakaba:scheduleForUpdate(function()
+					Isaac.ExecuteCommand("restart")
+				end, 1)
 				return
 			else
 				wakaba.Log("Second player! changing...")
