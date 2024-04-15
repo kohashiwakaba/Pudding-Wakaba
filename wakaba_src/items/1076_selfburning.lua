@@ -78,7 +78,7 @@ function wakaba:PlayerCollision_SelfBurning(player, collider, low)
 		end
 		player:SetMinDamageCooldown(1)
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
-		return true
+		return false
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_SelfBurning)
