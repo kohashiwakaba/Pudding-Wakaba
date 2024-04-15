@@ -19,7 +19,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, function(_, saveslot, isS
 		--tarnishedwakaba = Isaac.GetAchievementIdByName("The Root"),
 		--tarnishedshiori = Isaac.GetAchievementIdByName("The Page"),
 		--tarnishedtsukasa = Isaac.GetAchievementIdByName("The Loop"),
-		--tarnishedricher = Isaac.GetAchievementIdByName("The Solar"),
+		--tarnishedricher = Isaac.GetAchievementIdByName("The Nightmare"),
 		--tarnishedrira = Isaac.GetAchievementIdByName("The Ink"),
 
 		-- Core items
