@@ -8,6 +8,9 @@ wakaba.ChallengeParams.TargetCharacters[c] = tp
 function wakaba:Challenge_PlayerInit_EvenOrOdd(player)
 	if wakaba.G.Challenge ~= c then return end
   wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
+	if not wakaba.Flags.stackableDamocles then
+		player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_EvenOrOdd)
 
@@ -33,3 +36,22 @@ function wakaba:Challenge_PickupCollision_EvenOrOdd(pickup, colliders, low)
 end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.Challenge_PickupCollision_EvenOrOdd, PickupVariant.PICKUP_COLLECTIBLE)
+
+if wakaba.Flags.stackableDamocles then
+	function wakaba:Damocles_Catalog()
+		return wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and 1 or 0
+	end
+	CCO.DamoclesAPI.AddDamoclesCallback(wakaba.Damocles_Catalog)
+else
+	function wakaba:FamiliarUpdate_EvenOrOdd(familiar)
+		if not familiar.Player then return end
+		local player = familiar.Player
+		if wakaba.G.Challenge == c then
+			familiar.Visible = false
+			if familiar.State == 2 then
+				familiar.State = 1
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_EvenOrOdd, FamiliarVariant.DAMOCLES)
+end

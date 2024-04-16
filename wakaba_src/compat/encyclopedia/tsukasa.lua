@@ -335,6 +335,10 @@ Encyclopedia.AddItem({
 			self.Desc = "Defeat Boss Rush, Hush as Tainted Tsukasa"
 			return self
 		end
+		if not wakaba.Flags.stackableDamocles then
+			self.Desc = "Requires Damocles API to work"
+			return self
+		end
 	end,
 })
 Encyclopedia.AddSoul({
@@ -347,6 +351,10 @@ Encyclopedia.AddSoul({
 		if not wakaba:IsEntryUnlocked("tsukasasoul") then
 			self.Desc = "Defeat Boss Rush, Hush as Tainted Tsukasa"
 
+			return self
+		end
+		if not wakaba.Flags.stackableDamocles then
+			self.Desc = "Requires Damocles API to work"
 			return self
 		end
 	end,

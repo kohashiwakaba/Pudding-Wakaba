@@ -10,6 +10,7 @@ local damo_data = {
 }
 wakaba:saveDataManager("Lunar Damocles", damo_data)
 
+if not wakaba.Flags.stackableDamocles then return end
 
 function wakaba:UseCard_SoulOfTsukasa(_, player, flags)
 	--local rng = player:GetCardRNG(wakaba.Enums.Cards.SOUL_TSUKASA)

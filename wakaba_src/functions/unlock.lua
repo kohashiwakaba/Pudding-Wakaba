@@ -94,6 +94,21 @@ function wakaba:TryPlayAchievementPaper(entry, completionType)
 	end
 end
 
+wakaba.Blacklists.FlagLock = {}
+wakaba.Blacklists.FlagLock.collectible = {
+	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = function()
+		return not wakaba.Flags.stackableDamocles
+	end,
+}
+wakaba.Blacklists.FlagLock.trinket = {
+
+}
+wakaba.Blacklists.FlagLock.card = {
+	[wakaba.Enums.Cards.SOUL_TSUKASA] = function()
+		return not wakaba.Flags.stackableDamocles
+	end,
+}
+
 ---@type table
 wakaba.UnlockTables = {
 	[wakaba.Enums.Players.WAKABA] = {
@@ -403,10 +418,15 @@ function wakaba:GetUnlockEntry(playerType, unlockType)
 end
 
 function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString, pricise)
+	typeString = typeString or "collectible"
+	local flagBlacklist = wakaba.Blacklists.FlagLock[typeString] and wakaba.Blacklists.FlagLock[typeString][itemID]
+	if flagBlacklist and type(flagBlacklist) == "function" and flagBlacklist() then
+		wakaba.Log(typeString, itemID, "Blacklisted by flag")
+		return false
+	end
 	if wakaba.state.options.allowlockeditems and not pricise then
 		return true
 	end
-	typeString = typeString or "collectible"
 	for _, linkedTable in ipairs(wakaba.LinkedCompletionUnlocks) do
 		if linkedTable[1] == itemID and linkedTable[2] == typeString and linkedTable[3] ~= nil then
 			itemID = linkedTable[3]

@@ -231,6 +231,10 @@ Encyclopedia.AddItem({
 
 			return self
 		end
+		if not wakaba.Flags.stackableDamocles then
+			self.Desc = "Requires Damocles API to work"
+			return self
+		end
 	end,
 })
 -- Shiori / Beast : Book of the God

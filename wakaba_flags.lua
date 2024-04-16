@@ -4,4 +4,6 @@ wakaba.Flags = {
 	debugConsole = true,
 
 	debugChimaki = false,
+
+	stackableDamocles = true or (CCO.DamoclesAPI ~= nil),
 }

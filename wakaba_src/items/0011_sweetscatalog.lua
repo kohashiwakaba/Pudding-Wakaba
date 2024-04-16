@@ -327,8 +327,3 @@ function wakaba:Render_Catalog()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_Catalog)
-
-function wakaba:Damocles_Catalog()
-	return wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and 1 or 0
-end
-CCO.DamoclesAPI.AddDamoclesCallback(wakaba.Damocles_Catalog)

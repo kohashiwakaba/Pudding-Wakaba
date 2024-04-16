@@ -856,8 +856,9 @@ end
 --APIs, Wakaba's Blessing, Nemesis must be loaded first due to item usages
 --스크립트 로딩
 --API, 축복, 시련 아이템은 가장 먼저 로딩
-
-include('wakaba_src.damocles_api')
+if wakaba.Flags.stackableDamocles then
+	include('wakaba_src.damocles_api')
+end
 
 include('wakaba_src.enums.players')
 include('wakaba_src.enums.costumes')
@@ -1101,6 +1102,7 @@ include('wakaba_src.descriptions.en_us')
 include('wakaba_src.descriptions.ko_kr')
 include('wakaba_src.descriptions.zh_cn')
 include('wakaba_src.eidappend')
+include('wakaba_src.eidreminder')
 include('wakaba_src.uniqueitems')
 
 include('wakaba_src.rgb')
