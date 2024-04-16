@@ -1,8 +1,8 @@
---[[ 
+--[[
 	Lil Richer (리틀 리셰) - 패밀리어(Familiar) - 유니크
 	지형 관통, 특수 유도 눈물 발사
 	방 클리어 시마다 액티브 게이지 추가 충전
-	완충 시 최대 16회분까지 보존	
+	완충 시 최대 16회분까지 보존
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 local c = wakaba.Enums.Constants
@@ -44,6 +44,28 @@ function wakaba:addRabbitCharge(player, count, ignoreMax)
 end
 
 ---@param player EntityPlayer
+function wakaba:RibbonTransfer_Shiori(player)
+	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
+	or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+		if player:GetNumKeys() < 99 then
+			local playerIndex = isc:getPlayerIndex(player)
+			player:AddKeys(1)
+			richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] - 1
+		end
+		return true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE, 18000, wakaba.RibbonTransfer_Shiori)
+
+---@param player EntityPlayer
+function wakaba:RibbonTransfer(player)
+	for i = 0, 2 do
+		wakaba:tryTransferRabbitCharge(player, i)
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE, 20000, wakaba.RibbonTransfer)
+
+---@param player EntityPlayer
 ---@param activeSlot ActiveSlot
 function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	if wakaba:getRabbitCharges(player) <= 0 then return end
@@ -51,7 +73,9 @@ function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	local playerIndex = isc:getPlayerIndex(player)
 	if player:NeedsCharge(activeSlot) then
 		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 and not (activeSlot ~= ActiveSlot.SLOT_POCKET and Epiphany and player:GetPlayerType() == Epiphany.table_type_id["EDEN"]) do
-			isc:addRoomClearChargeToSlot(player, activeSlot)
+			--isc:addRoomClearChargeToSlot(player, activeSlot)
+			local charge = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
+			player:SetActiveCharge(charge + 1, activeSlot)
 			richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] - 1
 		end
 	end
@@ -97,7 +121,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 	local tearDamage = (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER) + 1) * c.LIL_RICHER_BASIC_DMG
 	tear.CollisionDamage = tearDamage * multiplier
 	tear.Color = Color(0.82, 0.8, 0.96, 1, 0, 0, 0)
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 		tear.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
@@ -112,7 +136,7 @@ function wakaba:FamiliarInit_LilRicher(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
-	
+
 end
 
 function wakaba:FamiliarUpdate_LilRicher(familiar)
@@ -134,8 +158,11 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	end
 
 	if wakaba:getRabbitCharges(player) > 0 then
-		for i = 0, 2 do
-			wakaba:tryTransferRabbitCharge(player, i)
+		for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE)) do
+			local evals = callback.Function(callback.Mod, player)
+			if evals then
+				break
+			end
 		end
 	end
 
@@ -166,7 +193,7 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	if player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
-		
+
 		local dirVec = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
 		if player:AreControlsEnabled() and
 		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
@@ -193,7 +220,7 @@ function wakaba:FamiliarRender_LilRicher(familiar)
 
 	local playerIndex = isc:getPlayerIndex(player)
 	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
-	
+
 	if wakaba.G:GetHUD():IsVisible() and Options.ChargeBars and richerCharges[playerIndex] > 0 then
 		local fpos = Isaac.WorldToScreen(familiar.Position) + Vector(1, -11) + Vector(8, -8)
 		local boxwidth = 0

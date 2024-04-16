@@ -70,8 +70,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_R
 function wakaba:PlayerUpdate_RabbitRibbon(player)
 	if wakaba:ShouldChargeRabbitRibbon(player) then
 		if wakaba:getRabbitCharges(player) > 0 then
-			for i = 0, 2 do
-				wakaba:tryTransferRabbitCharge(player, i)
+			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE)) do
+				local evals = callback.Function(callback.Mod, player)
+				if evals then
+					break
+				end
 			end
 		end
 	end

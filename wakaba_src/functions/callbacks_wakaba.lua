@@ -517,6 +517,20 @@ wakaba.Callback = {
 	-- - Return true to disable to set charge by keys, return non-nil integer to override current charge value
 	-- ---
 	EVALUATE_SHIORI_CHARGE = "WakabaCallbacks.EVALUATE_SHIORI_CHARGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `player` - EntityPlayer
+	-- - `slot` - ActiveSlot
+	-- - `item` - CollectibleType
+	-- - `keys` - int
+	-- - `charge` - int
+	-- - `conf` - ItemConfigItem
+	--
+	-- ---
+	-- - Return true to disable to set charge by keys, return non-nil integer to override current charge value
+	-- ---
+	PRE_RABBIT_RIBBON_CHARGE = "WakabaCallbacks.PRE_RABBIT_RIBBON_CHARGE",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
