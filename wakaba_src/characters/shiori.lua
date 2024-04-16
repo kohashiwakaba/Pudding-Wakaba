@@ -258,6 +258,7 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, 19999, wakaba.ShioriCharge_Shiori)
 
+---@param player EntityPlayer
 function wakaba:PlayerEffectUpdate_Shiori(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
 		local itemConfig = Isaac.GetItemConfig()
@@ -272,7 +273,8 @@ function wakaba:PlayerEffectUpdate_Shiori(player)
 				if not callback.Param or callback.Param == i then
 					local item = player:GetActiveItem(i)
 					local activeConfig = itemConfig:GetCollectible(item)
-					local newCharge = callback.Function(callback.Mod, player, i, item, keys, charge, activeConfig)
+					local origin = player:GetActiveCharge(i) + player:GetBatteryCharge(i)
+					local newCharge = callback.Function(callback.Mod, player, i, item, keys, charge, activeConfig, origin)
 
 					if newCharge == true then
 						charge = false

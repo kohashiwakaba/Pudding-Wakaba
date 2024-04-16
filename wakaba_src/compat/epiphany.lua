@@ -276,6 +276,17 @@ function wakaba:Epiphany_AddTarnishedDatas()
 				return rerollProps
 			end)
 
+			-- Shiori Blighted Dice
+			wakaba:AddCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, function(_, player, slot, item, keys, charge, conf, origin)
+				local pData = player:GetData()
+				if item == Mod.Item.BLIGHTED_DICE.ID2 then
+					if origin >= Epiphany.Item.BLIGHTED_DICE.MAX_CHARGE2 then
+						player:AddKeys(origin)
+						return true
+					end
+				end
+			end)
+
 			-- TR characters for Pudding & Wakaba not available yet, just for reserve
 			api.AddCharacter({
 				charName = "WAKABA", --Internal character name (REQUIRED)
