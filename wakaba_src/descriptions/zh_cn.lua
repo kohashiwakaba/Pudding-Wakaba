@@ -839,7 +839,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		itemName = "四叶草罐",
 		description = ""
-			.. "#↑ {{Luck}} 每一分钟游戏时间增加0.5运气"
+			.. "#↑ {{Luck}} 每一分钟游戏时间增加0.25运气"
 			.. "#{{Player" .. wakaba.Enums.Players.WAKABA .. "}} 死亡后重生为若叶"
 			.. "{{CR}}",
 		queueDesc = "等待她的降生",

@@ -862,7 +862,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "클로버 씨앗 병",
 		description = ""
 		.. "#↑ 목숨 +1"
-		.. "#↑ 게임 시간 120초마다 {{LuckSmall}}행운 +1"
+		.. "#↑ 게임 시간 240초마다 {{LuckSmall}}행운 +1"
 		.. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} 사망 시 전 방에서 Wakaba로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "{{CR}}",
 		queueDesc = "그녀가 태어날 때까지",

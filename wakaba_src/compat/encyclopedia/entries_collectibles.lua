@@ -751,6 +751,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an extra life."},
 			{str = "- Isaac will respawn as Tainted Tsukasa in the previous room."},
+			{str = "every 4 rooms spawns 4 book of virtues wisps."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -767,6 +768,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an extra life."},
 			{str = "- Isaac will respawn as Wakaba in the previous room."},
+			{str = "luck gradually increases as timer goes on."},
+			{str = "- +0.25 luck is added per minute."},
 		},
 		{ -- Notes
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
@@ -801,11 +804,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Replaces all bomb spawns with a random pickup."},
 			{str = "Upon taking damage, spawns a golden troll bomb around the room."},
 			{str = "All troll bombs are converted into Golden troll bombs if possible."},
-		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Power Bomb", clr = 3, halign = 0},
-			{str = "Does not replace bomb pickups while held."},
 		},
 	},
 	SYRUP = {

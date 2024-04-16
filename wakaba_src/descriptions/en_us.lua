@@ -791,7 +791,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		itemName = "Jar of Clover",
 		description = ""
-		.. "#↑ {{Luck}} +0.5 Luck per 1 game minute"
+		.. "#↑ {{Luck}} +0.25 Luck per 1 game minute"
 		.. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} Respawn as Wakaba on death"
 		.. "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives"
 		.. "{{CR}}",

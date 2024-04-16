@@ -55,7 +55,7 @@ function wakaba:Cache_JarOfClover(player, cacheFlag)
 		local count = getCaramellaEffectNum(player, wakaba.Enums.Collectibles.JAR_OF_CLOVER, "jarclovercount")
     if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
 			local gameTimer = wakaba.G:GetFrameCount()
-			local luck = gameTimer / 3600
+			local luck = gameTimer / 7200
       player.Luck = player.Luck + (count * luck)
     end
   end
