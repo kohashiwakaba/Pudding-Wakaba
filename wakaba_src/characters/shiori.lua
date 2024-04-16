@@ -221,6 +221,15 @@ function wakaba:PostShioriUpdate()
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostShioriUpdate)
 
+function wakaba:ShioriHasBook(player, item)
+	if player:HasCollectible(item, true) then return true end
+	local books = player:GetData().wakaba and player:GetData().wakaba.books
+	if books and type(books) == "table" then
+		if wakaba:has_value(books, item) then
+			return true
+		end
+	end
+end
 
 ---@param player EntityPlayer
 ---@param slot ActiveSlot

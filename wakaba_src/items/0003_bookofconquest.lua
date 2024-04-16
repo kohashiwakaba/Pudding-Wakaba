@@ -101,6 +101,10 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ, 1, 0, false, 1)
 		return {Discharge = false}
 	end
+	if not wakaba:ShioriHasBook(player, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST) and wakaba.killcount > 40 then
+		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ, 1, 0, false, 1)
+		return {Discharge = false}
+	end
 	if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then return end
 	wakaba:GetPlayerEntityData(player)
 	if not wakaba.conquestmode then
@@ -559,11 +563,7 @@ function wakaba:HUD_BookOfConquest()
 	local hasConquest = false
 	wakaba:ForAllPlayers(function(player)
 		if player.FrameCount > 7 then
-			hasConquest = hasConquest or player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-			local books = player:GetData().wakaba and player:GetData().wakaba.books
-			if books and type(books) == "table" then
-				hasConquest = hasConquest or wakaba:has_value(books, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-			end
+			hasConquest = hasConquest or wakaba:ShioriHasBook(player, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
 		end
 	end)
 	if hasConquest then
