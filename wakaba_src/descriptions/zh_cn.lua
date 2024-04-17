@@ -108,7 +108,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "汐宫之书",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#{{Library}} Guarantees Library every floor if possible"
+			.. "#{{Library}} 如果可以每层生成书房"
 			.. "#使用书籍类主动道具时激活额外效果"
 			.. "#在使用书籍类主动道具时获得额外的眼泪效果"
 			.. "#额外的眼泪效果会在下次使用书籍时改变"
@@ -143,7 +143,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 将心之容器的上限降低到8"
 			.. "#↑ 获得额外的月相表，根据月相表的数值提高{{Damage}}伤害和{{Tears}}射速"
 			.. "#如果受到伤害，月石失效，月相表开始消耗"
-			.. "#Clearing rooms recover lunar gauge"
+			.. "#清理房间回复充能"
 			.. "#↑ 只要以撒拥有月石，就拥有无限的生命"
 			.. "#!!! 当月相表耗尽时，月石会消失"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
@@ -197,6 +197,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#为当前房间授予以下随机组合道具"
 			.. "{{CR}}",
 		queueDesc = "随意试吃",
+	},
+	[wakaba.Enums.Collectibles.ANCIENT_CATALOG] = {
+		itemName = "远古事迹",
+		description = ""
+			.. "#在当前房间给予以下武器之一:"
+			.. "{{CR}}",
+		queueDesc = "临时随机武器",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "辇道增七",
@@ -381,12 +388,12 @@ wakaba.descriptions[desclang].collectibles = {
 		belial = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
 		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌",
 	},
-	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = { -- TODO
+	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "时钟之眼",
 		description = ""
-		.. "#Constantly shooting gradually spawns Tech. X lasers orbiting Isaac"
-		.. "#Orbiting lasers also shoots extra lasers"
-		.. "#The lasers deal 0.3x Isaac's damage"
+			.. "#3个激光球环绕玩家"
+			.. "#激光伤害等同攻击力"
+			.. "#按下射击键，每个激光发射一个小型的激光"
 			.. "{{CR}}",
 		queueDesc = "轨道激光",
 	},
@@ -663,7 +670,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "宇航爱好者",
 		description = ""
 			.. "#{{Collectible494}} 电泪宝宝"
-			.. "#{{Collectible494}} All of Isaac's familiars also gain electric tears" -- TODO
+			.. "#{{Collectible494}} 玩家和他所有的宝宝也获得电泪"
+			.. "#{{Collectible565}} 血狗变得友好"
 			.. "{{CR}}",
 		queueDesc = "电动卡拉",
 	},
@@ -672,8 +680,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +12% 攻击倍率"
 			.. "#跟踪眼泪"
-			.. "#20% 几率造成额外伤害"
-			.. "#{{Luck}} 60% chance at 43 Luck" -- TODO
+			.. "#70% 几率造成额外伤害"
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -682,8 +689,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +14% 攻击倍率"
 			.. "#穿透眼泪"
-			.. "#敌人有5%的几率受到穿甲伤害"
-			.. "#{{Luck}} 43% chance at 55 Luck" -- TODO
+			.. "#敌人有25%的几率受到穿甲伤害"
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -692,7 +698,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +16% 攻击倍率"
 			.. "#神性眼泪"
-			.. "#{{Card" .. Card.CARD_HOLY .."}} Holy Card effect is granted per 8 room clears (Max 2)" -- TODO
+			.. "#{{Card" .. Card.CARD_HOLY .. "}}超过上限的灵心会激活神圣卡效果 (最多5个)"
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -839,7 +845,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		itemName = "四叶草罐",
 		description = ""
-			.. "#↑ {{Luck}} 每一分钟游戏时间增加0.25运气"
+			.. "#↑ {{Luck}} 每一分钟游戏时间增加0.5运气"
 			.. "#{{Player" .. wakaba.Enums.Players.WAKABA .. "}} 死亡后重生为若叶"
 			.. "{{CR}}",
 		queueDesc = "等待她的降生",
@@ -881,7 +887,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +1 伤害"
 			.. "#↑ {{Luck}} +1 幸运"
-			.. "#根据Isaac的武器为生成苍蝇"
+			.. "#根据玩家的攻击方法为生成苍蝇"
 			.. "#{wakaba_cp1}" -- do not translate this
 			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为璃贝"
 			.. "{{CR}}",
@@ -944,7 +950,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "自焚",
 		description = "{{Burning}}使用时烧伤自己"
 			..
-			"#{{Burning}} 着火时，对除了弹幕以外的所有伤害免疫，但每20秒流失半颗心#被弹幕击中会取消着火效果" -- TODO change 'all damage except for projectiles' to 'enemy damage except for projectiles'
+			"#{{Burning}} 着火时，对除了弹幕以外的所有伤害免疫，但每20秒流失半颗心#被弹幕击中会取消着火效果"
 			.. "#献血机（或类似物品），或者献祭房正常工作"
 			.. "#每层只能使用一次"
 			.. "{{CR}}",
@@ -1069,17 +1075,6 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#大幅提高移动速度和射速2秒"
 			.. "{{CR}}",
 		queueDesc = "脸颊绯红",
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = { -- TODO
-		itemName = "Book of Amplitude",
-		description = "{{ArrowGrayRight}} One of effects while held:"
-		.. "#↑ {{Damage}}Damage +2"
-		.. "#↑ {{Tears}}Fire rate +1"
-		.. "#↑ {{Range}}Speed + 0.15"
-		.. "#↑ {{Luck}}Luck +2"
-		.. "#On use, or entering new room changes to next effect respectively" -- Damage > Tears > Range > Luck > Damage > ...
-		.. "{{CR}}",
-		queueDesc = "Reusable Amplifier",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
@@ -1340,8 +1335,8 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "#随机化掉落物数量和属性"
 			.. "#掉落物的范围可以从0到999"
 			--.. "#!!! 一旦掉落或吞下就会消失!"
-			.. "#!!! Will be removed once dropped!" -- TODO
-			.. "#!!! Will no longer randomize consumables when smelted"
+			.. "#!!! 丢掉就会消失!"
+			.. "#!!! 将不再随机吞下"
 			.. "{{CR}}",
 		queueDesc = "真正的赌博",
 	},
@@ -1910,14 +1905,24 @@ wakaba.descriptions[desclang].doubledreams = {
 }
 
 wakaba.descriptions[desclang].entities = {
-	{ -- TODO
+	{
 		type = EntityType.ENTITY_SLOT,
 		variant = wakaba.Enums.Slots.SHIORI_VALUT,
 		subtype = 0,
-		name = "Shiori's Valut",
+		name = "诗织的另一个幸运机",
 		description = ""
+			.. "{{Key}} 需要5把钥匙才能激活"
+			.. "#{{Warning}} 撞到机器会生成以下物品之一："
+			.. "#{{BlendedHeart}} {{ColorSilver}}混合心"
+			.. "#{{Card}} {{ColorSilver}}随机卡牌"
+			.. "#{{Card49}} {{ColorSilver}}骰子碎片"
+			.. "#{{Card31}} {{ColorSilver}}Joker"
+			.. "#{{Rune}} {{ColorSilver}}随机符文"
+			.. "#{{Trinket}} {{ColorSilver}}金色饰品"
+			.. "#{{PlanetariumChance}} {{ColorSilver}}与星星相关的道具"
+			.. "#{{Warning}} 生成5次（困难模式下3次）或更多次有很高的几率爆炸"
 	},
-	{ -- TODO
+	{
 		type = EntityType.ENTITY_PICKUP,
 		variant = wakaba.Enums.Pickups.CLOVER_CHEST,
 		subtype = wakaba.ChestSubType.CLOSED,
@@ -1925,8 +1930,9 @@ wakaba.descriptions[desclang].entities = {
 		description = ""
 			.. "{{Key}} 需要一把钥匙才能打开"
 			.. "#{{Warning}} 打开箱子可能包含以下物品之一："
-			.. "#{{Coin}} {{ColorSilver}}Lucky Coin, Nickel, or Dime"
-			.. "#{{Luck}} {{ColorSilver}}Clover chest pool collectible"
+			.. "#{{Coin}} {{ColorSilver}}金币"
+			.. "#{{Coin}} {{ColorSilver}}2个幸运硬币"
+			.. "#{{Luck}} {{ColorSilver}}与运气相关的收藏品"
 	},
 }
 wakaba.descriptions[desclang].richeruniform = {
@@ -2066,7 +2072,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#眼泪是隐形的，并且在短时间内对敌人造成更少的伤害"
 			.. "#在4个瓷砖之后对敌人造成2倍的伤害"
 			..
-			"#{{Player" ..
+			"{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}武器是可见的，可以对附近的敌人造成正常伤害"
 			.. "",
@@ -2081,7 +2087,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#{{CurseLost}} 替代迷失诅咒"
 			.. "#无法看到远处的地图"
 			.. "#{{SecretRoom}} 可以揭示秘密房间和超级秘密房间"
-			.. "#{{Player" ..
+			.. "{{Player" ..
 			wakaba.Enums.Players.RICHER .. "}} +{{Collectible619}} {{ColorRicher}}地图没有丢失"
 			.. "",
 	},
@@ -2095,7 +2101,7 @@ wakaba.descriptions[desclang].curses = {
 			.. "#有时候已经清理过的房间会随机变成未清理的"
 			.. "#特殊房间不包括在内"
 			..
-			"#{{Player" ..
+			"{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}已清除的房间不再被清除，房间清除奖励仍然产生"
 			.. "",
@@ -2112,7 +2118,7 @@ wakaba.descriptions[desclang].curses = {
 			"#即使在失去诅咒状态下也可以使用献血机"
 			.. "#{{Collectible285}} 所有敌人都会退化（如果可能的话）"
 			..
-			"#{{Player" ..
+			"{{Player" ..
 			wakaba.Enums.Players.RICHER ..
 			"}} +{{Collectible619}} {{ColorRicher}}璃贝会正常的造成伤害"
 			.. "",
@@ -2357,47 +2363,28 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		desc = "{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 里璃贝只是复活",
 	},
-	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = { -- TODO
-		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
-	},
-	-- HIDDEN DESCRIPTIONS
-	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = { -- TODO
-		desc = "{{WakabaModHidden}} {{ColorGray}}Replaces all Bomb spawns with a {{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}", -- can change to 'other pickups'
-	},
-	[wakaba.Enums.Collectibles.MINERVA_AURA] = { -- TODO
-		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage#{{WakabaModHidden}} {{ColorGray}}Prevents penalties from all damage taken",
-	},
-	[wakaba.Enums.Collectibles.NASA_LOVER] = {
-		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}血狗变得友好",
-	},
-	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = { -- TODO
-		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
-	},
-	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = { -- TODO
-		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead"
-				 .."#{{WakabaModHidden}} {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}{{ColorGray}}4.5% with Book of Shiori",
+	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
+		desc =
+		"{{WakabaMod}} 检查最近道具的等级#{{WakabaMod}} 如果匹配，拿走它，否则，它会消失",
 	},
 	-- REPENTOGON ADDITIONS
-	[wakaba.Enums.Collectibles.RICHERS_BRA] = { -- TODO
-		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+10% Devil/Angel Room chance",
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} 增加 +10% 恶魔/天使房生成几率 ",
 	},
-	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = { -- TODO
-		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+20% Devil/Angel Room chance while held",
-	},
-	[wakaba.Enums.Collectibles.MAID_DUET] = { -- TODO
-		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}Reduces Active items' cooldown by 1~2",
+	[wakaba.Enums.Collectibles.MAID_DUET] = {
+		desc = "{{WakabaModRgon}} {{Battery}} 减少主动道具的冷却时间1~2秒",
 	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then
-	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then -- TODO
-		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "Character"
-		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Starting = "Starting items"
-		EID.descriptions[desclang].ItemReminder.CategoryNames.w_WakabaUniform = "Wakaba's Uniform"
-		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Curse = "Curses"
-		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "Shiori Tear effects"
+	if EID.descriptions[desclang].ItemReminder then
+		EID.descriptions[desclang].ItemReminder.w_Character = "角色"
+		EID.descriptions[desclang].ItemReminder.w_Starting = "初始道具"
+		EID.descriptions[desclang].ItemReminder.w_WakabaUniform = "若叶的制服"
+		EID.descriptions[desclang].ItemReminder.w_Curse = "诅咒"
+		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "汐宫之书的特效眼泪"
 	end
 
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 成就？"
@@ -2431,7 +2418,4 @@ if EID then
 	"!!! {{ColorRicher}}璃贝{{CR}} & {{ColorRira}}莉良{{CR}} 不能把这个放进口袋!"
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
-
-	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Item pool for this floor : " -- TODO
-
 end
