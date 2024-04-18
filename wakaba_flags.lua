@@ -5,5 +5,5 @@ wakaba.Flags = {
 
 	debugChimaki = false,
 
-	stackableDamocles = true or (CCO.DamoclesAPI ~= nil),
+	stackableDamocles = true or (CCO and CCO.DamoclesAPI ~= nil),
 }

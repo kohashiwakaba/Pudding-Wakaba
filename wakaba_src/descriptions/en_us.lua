@@ -2686,7 +2686,7 @@ if EID then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "Shiori Tear effects"
 	end
 
-	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}} Warning from Wakaba-chan"
+	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}}Warning from Wakaba-chan"
 	EID.descriptions[desclang].WakabaRGONWarningText = "REPENTOGON not installed! Pudding & Wakaba works without REPENTOGON, but some items effects or elements will be removed!"
 	EID.descriptions[desclang].WakabaDamoclesWarningText = "Damocles API disabled! Some items requires it, and will be removed until it's re-enabled again!"
 
