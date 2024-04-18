@@ -2931,6 +2931,10 @@ if EID then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "시오리 눈물 효과"
 	end
 
+	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}} 와카바의 주의사항"
+	EID.descriptions[desclang].WakabaRGONWarningText = "REPENTOGON이 설치되지 않았습니다 Pudding & Wakaba 모드는 REPENTOGON 모드 설치를 권장하며, 해당 모드 없이 대부분의 요소가 작동하나 일부 아이템 효과 및 요소가 제거됩니다."
+	EID.descriptions[desclang].WakabaDamoclesWarningText = "Damocles API가 비활성화 되었습니다. Damocles API가 필요한 아이템이 등장하지 않습니다."
+
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 와카바 모드 아이템 해금 적용 여부 설정"
 	EID.descriptions[desclang].WakabaAchievementWarningText = "Pudding & Wakaba(와카바 모드)는 해금 컨텐츠가 제공됩니다.#해금 컨텐츠를 적용하시겠습니까?#Yes:해금 컨텐츠 적용#No:모든 컨텐츠 해금"
 
