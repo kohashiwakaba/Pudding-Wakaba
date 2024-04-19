@@ -4,7 +4,7 @@ function wakaba:Cache_NasaLover(player, cacheFlag)
 	local tsukasa = (wakaba.state.unlock.nasalover > 0 and player:GetPlayerType() == wakaba.Enums.Players.TSUKASA) and 1 or 0
 	if hasitem or efcount > 0 or tsukasa > 0  then
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_JACOBS
+			--player.TearFlags = player.TearFlags | TearFlags.TEAR_JACOBS
 		end
 	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then

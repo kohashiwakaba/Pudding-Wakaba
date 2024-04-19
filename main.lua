@@ -1857,6 +1857,38 @@ end
 
 
 
+if EID then
+	local shouldShowWarning = {}
+	if not REPENTOGON then
+		table.insert(shouldShowWarning, "WakabaRGONWarningText")
+	end
+	if not wakaba.Flags.stackableDamocles then
+		table.insert(shouldShowWarning, "WakabaDamoclesWarningText")
+	end
+
+	local hasShownStartWarning = false
+	function wakaba:Render_WakabaFlagsWarning()
+		if #shouldShowWarning > 0 and wakaba.G:GetFrameCount() < 10*30 then
+			local player = Isaac.GetPlayer()
+			local title = EID:getDescriptionEntry("WakabaGlobalWarningTitle")
+			local desc = ""
+			for i, entry in ipairs(shouldShowWarning) do
+				desc = desc .. "#" .. EID:getDescriptionEntry(shouldShowWarning[i])
+			end
+			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+			--demoDescObj.Icon = "{{Player"..wakaba.Enums.Players.RICHER_B.."}}"
+			demoDescObj.Name = title or ""
+			demoDescObj.Description = desc or ""
+			EID:displayPermanentText(demoDescObj, "WakabaGlobalWarningTitle")
+		elseif hasShownStartWarning then
+			EID:hidePermanentText()
+			hasShownStartWarning = false
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WakabaFlagsWarning)
+end
+
+
 
 print("Pudding and Wakaba", wakaba.version, "load complete.")
 --wakaba:luamodInit()

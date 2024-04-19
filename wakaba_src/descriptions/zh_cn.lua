@@ -2387,6 +2387,10 @@ if EID then
 		EID.descriptions[desclang].ItemReminder.w_ShioriFlags = "汐宫之书的特效眼泪"
 	end
 
+	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}} Warning from Wakaba" -- TODO
+	EID.descriptions[desclang].WakabaRGONWarningText = "REPENTOGON not installed! Pudding & Wakaba works without REPENTOGON, but some items effects or elements will be removed!" -- TODO
+	EID.descriptions[desclang].WakabaDamoclesWarningText = "Damocles API disabled! Some items requires it, and will be removed until it's re-enabled again!" -- TODO
+
 	EID.descriptions[desclang].WakabaAchievementWarningTitle = "{{ColorYellow}}!!! 成就？"
 	EID.descriptions[desclang].WakabaAchievementWarningText =
 	"Mod中的角色都有完整的解锁奖励#这是一个可选的功能#你想把一些物品锁在我们的角色后面吗？"
