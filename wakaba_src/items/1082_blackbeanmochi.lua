@@ -93,7 +93,7 @@ function wakaba:NPCDeath_BlackBeanMochi(entity)
 		if player then
 			local enemies = isc:getNPCs()
 			for i, e in ipairs(enemies) do
-				if wakaba:EntitiesAreWithinRange(npc, e, 75) and not wakaba:isStatusBlacklisted(npc) then
+				if wakaba:EntitiesAreWithinRange(npc, e, 75) and not wakaba:isStatusBlacklisted(e) then
 					wakaba:AddStatusEffect(e, wakaba.StatusEffect.ZIPPED, 90, player)
 				end
 			end

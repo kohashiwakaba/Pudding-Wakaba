@@ -20,7 +20,7 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 		end
 		local enemies = isc:getNPCs()
 		for i, e in ipairs(enemies) do
-			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) then
+			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) and not wakaba:isStatusBlacklisted(e) then
 				if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
 					e.HitPoints = 0
 					e:Update()
