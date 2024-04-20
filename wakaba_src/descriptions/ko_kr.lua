@@ -1254,66 +1254,108 @@ wakaba.descriptions[desclang].abyss = {
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "현재 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible331}}눈물에 후광이 생깁니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
+		primary = "",
+		secondary = "",
 		description = "현재 방에서 {{DamageSmall}}추가 공격력 +1.5#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible462}}벨리알의 눈효과가 적용됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
+		primary = "",
+		secondary = "",
 		description = "캐릭터 공격력 64%의 위력의 검은 고리를 5개를 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible592}}눈물이 돌이 됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible213}}눈물이 적의 투사체를 막아줍니다.",
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
+		primary = "",
+		secondary = "",
 		description = "현재 방에서 적들이 폭발 피해를 2배로 받으며 처치 시 낮은 확률로 {{BlackHeart}}블랙하트를 드랍합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 폭발성 눈물을 발사하며 폭발에 면역이 됩니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
+		primary = "",
+		secondary = "",
 		description = "현재 층에서 4기사 패밀리어 2마리 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 일정 확률로 적에게 맞으면 빛줄기가 내려오는{{Collectible374}} 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 픽업 아이템을 드랍합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 패밀리어의 공격력 x3",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
+		primary = "",
+		secondary = "",
 		description = "현재 방에서 벽을 넘나드는{{Collectible369}} 눈물을 발사합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible3}}유도 + {{Collectible494}}전기 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = {
+		primary = "",
+		secondary = "",
 		description = "Darkness 및 Lost 저주를 해제하며 3종류의 지도 효과를 전부 발동합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible618}}표식을 박는 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "현재 층에서 {{DamageSmall}}추가 공격력 +1.0#{{ColorBookofShiori}}다음 책 사용 시까지 적에게 {{Collectible259}}공포를 거는 눈물을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
+		primary = "",
+		secondary = "",
 		description = "아군 Bony를 추가로 소환합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible237}}낫을 발사합니다.",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
+		primary = "",
+		secondary = "",
 		description = "일정 확률로 켜져 있는 아이템 위습 하나를 흡수합니다.#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 아이템 위습을 회복합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
+		primary = "",
+		secondary = "",
 		description = "아군으로 만들 적을 선택할 수 있습니다.#{{ColorBookofShiori}}일반 적은 {{Key}}열쇠를, 보스는 추가로 {{Bomb}}폭탄을 소모합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible453}}뼈 눈물을 발사합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
+		primary = "",
+		secondary = "",
 		description = "캐릭터가 움직이지 않을 경우 공격이 적의 방어력을 무시합니다.#!!! {{ColorBookofShiori}}시오리의 책 지속 효과를 초기화합니다.",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음)#{{ColorBookofShiori}}다음 책 사용 시까지 적 처치시 일정 확률로 {{Rune}}룬을 드랍합니다.",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		primary = "",
+		secondary = "",
 		description = "작은 아이작 패밀리어가 받는 피해량이 매우 크게 줄어듭니다.#{{ColorBookofShiori}}다음 책 사용 시까지 작은 아이작 패밀리어가 캐릭터의 공격 일부분을 복사합니다.",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
+		primary = "",
+		secondary = "",
 		description = "2초동안 추가로 투사체를 제거합니다.#!!! {{ColorBookofShiori}}시오리의 책 지속 효과를 초기화합니다.",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
+		primary = "",
+		secondary = "",
 		description = "(부가효과 없음) #{{ColorBookofShiori}}다음 책 사용 시까지 {{Collectible579}}검은 영혼의 검을 사용할 수 있습니다.",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
+		primary = "",
+		secondary = "",
 		description = "은폐 상태일 때 캐릭터를 향해 공격하던 적들은 추가로 둔화에 걸립니다.#{{ColorBookofShiori}}(이전 눈물 효과 유지)",
 	},
 }

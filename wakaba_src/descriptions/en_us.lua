@@ -1064,66 +1064,108 @@ wakaba.descriptions[desclang].abyss = {
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
+		primary = "",
+		secondary = "",
 		description = "Adds additional {{Damage}} +1.5 Damage up for current room#{{ColorBookofShiori}}Gives Eye of Belial Tears({{Collectible462}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns 5 Maw of Void lasers dealing 64% of Shiori's Damage per tick#{{ColorBookofShiori}}Gives Rock Tears({{Collectible592}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Shielded Tears({{Collectible213}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
+		primary = "",
+		secondary = "",
 		description = "Troll bombs and explosions deal double damage to enemies for current room#{{ColorBookofShiori}}Gives Explosive Tears and Shiori is immune to explosions until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns 2 Lil Harbringers for current floor#{{ColorBookofShiori}}Gives chance to fire Holy Light Tears({{Collectible374}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Adds chance to drop a random pickup when enemies are killed until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#↑ {{ColorBookofShiori}}Familiars deal 3x Damage until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
+		primary = "",
+		secondary = "",
 		description = "Gives Spectral and Continnum Tears({{Collectible369}}) for current room#{{ColorBookofShiori}}Gives Homing and Electric Tears({{Collectible494}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = {
+		primary = "",
+		secondary = "",
 		description = "Fully reveals the map and removes {{WakabaAntiCurseDarkness}}Curse of Darkness and {{WakabaAntiCurseLost}}Curse of the Lost#{{ColorBookofShiori}}Gives Mark({{Collectible618}}) tears until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "Adds additional {{Damage}} +1.0 Damage up for current floor#{{ColorBookofShiori}}Gives Dark matter tears({{Collectible259}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns additional friendly Bonies#{{ColorBookofShiori}}Gives Death's Touch Tears({{Collectible237}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
+		primary = "",
+		secondary = "",
 		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Chance to heal item wisps when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
+		primary = "",
+		secondary = "",
 		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Bone Tears({{Collectible453}}) until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
+		primary = "",
+		secondary = "",
 		description = "Ignores Enemy's armor when not moving#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{Rune}} {{ColorBookofShiori}}Adds chance to drop a rune when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		primary = "",
+		secondary = "",
 		description = "Damage taken for Minissac is greatly reduced#{{ColorBookofShiori}}Minissac Copies Most of Isaac's tear effects until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
+		primary = "",
+		secondary = "",
 		description = "Prevents all enemy projectiles for extra 2 seconds#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
+		primary = "",
+		secondary = "",
 		description = "No extra Temporary effect #{{Collectible579}} {{ColorBookofShiori}}Gives Temporary Black Spirit Sword. The Scythe tears will be fired instead of sword projectile",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
+		primary = "",
+		secondary = "",
 		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)",
 	},
 }
