@@ -59,6 +59,7 @@ do
 end
 
 function wakaba:EIDItemReminder_HandleCharacters(player)
+	if not EID:ItemReminderCanAddMoreToView() then return end
 	local t = player:GetPlayerType()
 	local entry = wakaba.descriptions["en_us"].playernotes[t] or wakaba.descriptions["en_us"].playernotes[-666]
 	local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..t) ~= EID.InlineIcons["ERROR"] and "{{Player"..t.."}}" or "{{CustomTransformation}}")
@@ -66,7 +67,7 @@ function wakaba:EIDItemReminder_HandleCharacters(player)
 end
 
 function wakaba:EIDItemReminder_HandleWakabaUniform(player)
-	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM, true) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM, true) and EID:ItemReminderCanAddMoreToView() then
 		EID:ItemReminderAddDescription(player, 5, 100, wakaba.Enums.Collectibles.UNIFORM)
 	end
 end
@@ -84,7 +85,7 @@ function wakaba:EIDItemReminder_HandleCurses(player)
 	if player.ControllerIndex ~= 0 then return end
 	local currCurse = wakaba.G:GetLevel():GetCurses()
 	for curseId = 0, getMaxCurseId(currCurse) do
-		if 1 << curseId & currCurse > 0 then
+		if 1 << curseId & currCurse > 0 and EID:ItemReminderCanAddMoreToView() then
 			local c = 1 << curseId
 			local entry = wakaba.descriptions["en_us"].curses[c]
 			local icon = entry and entry.icon and "{{"..entry.icon.."}}"
