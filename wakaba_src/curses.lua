@@ -224,15 +224,7 @@ if wakaba.curses.CURSE_OF_FLAMES > LevelCurse.CURSE_OF_GIANT then
 		if isc:inDeathCertificateArea() or isc:inGenesisRoom() then return end
 		if wakaba.curses.CURSE_OF_FLAMES <= 0 then return end
 		local curse = wakaba.G:GetLevel():GetCurses()
-		local isTaintedRicher = false
-		local onlyTaintedRicher = true
-		for i, player in ipairs(wakaba:getAllMainPlayers()) do
-			if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
-				isTaintedRicher = true
-			else
-				onlyTaintedRicher = false
-			end
-		end
+		local isTaintedRicher = player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
 		if curse & wakaba.curses.CURSE_OF_FLAMES == wakaba.curses.CURSE_OF_FLAMES or isTaintedRicher then
 			if not player:IsItemQueueEmpty() and player.QueuedItem.Item:IsCollectible() then
 				local heldItem = player.QueuedItem.Item
