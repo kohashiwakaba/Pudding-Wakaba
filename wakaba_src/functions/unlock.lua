@@ -424,7 +424,7 @@ function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString, pricise)
 		wakaba.Log(typeString, itemID, "Blacklisted by flag")
 		return false
 	end
-	if wakaba.state.options.allowlockeditems and not pricise then
+	if (not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems) and not pricise then
 		return true
 	end
 	for _, linkedTable in ipairs(wakaba.LinkedCompletionUnlocks) do
