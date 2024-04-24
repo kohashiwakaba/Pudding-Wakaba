@@ -297,7 +297,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			local room = wakaba.G:GetRoom()
 			local vel = fly:GetData().wakaba_vel
 			local veltimer = fly:GetData().wakaba_veltimer
-			if (room:GetFrameCount() > 0 and vel and veltimer and veltimer > 0) then
+			if (room:GetFrameCount() > 0 and room:IsPositionInRoom(fly.Position, 0) and vel and veltimer and veltimer > 0) then
 				fly:GetData().wakaba_veltimer = fly:GetData().wakaba_veltimer - 1
 				fly.Velocity = vel
 			else
