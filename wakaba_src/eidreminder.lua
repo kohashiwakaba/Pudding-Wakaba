@@ -1,6 +1,124 @@
-
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+wakaba.Reminder = {}
+wakaba.Reminder.DefaultItems = {
+	[PlayerType.PLAYER_LAZARUS] = {
+		{
+			item = CollectibleType.COLLECTIBLE_LAZARUS_RAGS
+		},
+		{
+			item = CollectibleType.COLLECTIBLE_ANEMIC,
+			cond = function()
+				EID:HaveUnlockedAchievement(Achievement.LAZARUS_BLEEDS_MORE)
+			end,
+		},
+	},
+	[PlayerType.PLAYER_LAZARUS2] = {
+		{
+			item = CollectibleType.COLLECTIBLE_ANEMIC
+		},
+	},
+	[PlayerType.PLAYER_THELOST] = {
+		{
+			item = CollectibleType.COLLECTIBLE_HOLY_MANTLE,
+			cond = function()
+				EID:HaveUnlockedAchievement(Achievement.LOST_HOLDS_HOLY_MANTLE)
+			end,
+		},
+	},
+	[PlayerType.PLAYER_LILITH] = {
+		{
+			item = CollectibleType.COLLECTIBLE_INCUBUS
+		},
+	},
+	[PlayerType.PLAYER_SAMSON_B] = {
+		{
+			item = CollectibleType.COLLECTIBLE_BERSERK
+		},
+	},
+	[PlayerType.PLAYER_AZAZEL_B] = {
+		{
+			item = CollectibleType.COLLECTIBLE_HEMOPTYSIS
+		},
+	},
+	[PlayerType.PLAYER_LILITH_B] = {
+		{
+			item = CollectibleType.COLLECTIBLE_GELLO
+		},
+	},
+	[wakaba.Enums.Players.WAKABA] = {
+		{
+			item = wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+		},
+	},
+	[wakaba.Enums.Players.WAKABA_B] = {
+		{
+			item = wakaba.Enums.Collectibles.WAKABAS_NEMESIS,
+		},
+	},
+	[wakaba.Enums.Players.SHIORI] = {
+		{
+			item = wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
+		},
+	},
+	[wakaba.Enums.Players.SHIORI_B] = {
+		{
+			item = wakaba.Enums.Collectibles.BOOK_OF_SHIORI,
+		},
+		{
+			item = wakaba.Enums.Collectibles.MINERVA_AURA,
+		},
+	},
+	[wakaba.Enums.Players.TSUKASA] = {
+		{
+			item = wakaba.Enums.Collectibles.LUNAR_STONE,
+		},
+		{
+			item = wakaba.Enums.Collectibles.CONCENTRATION,
+		},
+		{
+			item = wakaba.Enums.Collectibles.NASA_LOVER,
+			cond = function()
+				wakaba:IsCompletionItemUnlockedTemp("nasalover")
+			end,
+		},
+	},
+	[wakaba.Enums.Players.TSUKASA_B] = {
+		{
+			item = wakaba.Enums.Collectibles.MURASAME,
+		},
+		{
+			item = wakaba.Enums.Collectibles.FLASH_SHIFT,
+		},
+		{
+			item = wakaba.Enums.Collectibles.ELIXIR_OF_LIFE,
+		},
+	},
+	[wakaba.Enums.Players.RICHER] = {
+		{
+			item = wakaba.Enums.Collectibles.RABBIT_RIBBON,
+		},
+		{
+			item = CollectibleType.COLLECTIBLE_MOMS_BOX,
+		},
+		{
+			item = CollectibleType.COLLECTIBLE_WAFER,
+		},
+	},
+	[wakaba.Enums.Players.RICHER_B] = {
+		{
+			item = wakaba.Enums.Collectibles.RABBIT_RIBBON,
+		},
+		{
+			item = wakaba.Enums.Collectibles.WINTER_ALBIREO,
+		},
+	},
+	[wakaba.Enums.Players.RIRA] = {
+		{
+			item = wakaba.Enums.Collectibles.CHIMAKI,
+		},
+	},
+}
 
 
 ---comment
@@ -24,6 +142,30 @@ function wakaba:EIDItemReminder_GetIndex(id)
 		end
 	end
 end
+
+function wakaba:EIDItemReminder_AddPassiveEntry(player, id)
+	local playerID = EID:getPlayerID(player)
+	EID:InitItemInteractionIfAbsent(playerID)
+	if not wakaba:has_value(EID.RecentlyTouchedItems[playerID], id) then
+		table.insert(EID.RecentlyTouchedItems[playerID], id)
+	end
+end
+
+---@param player EntityPlayer
+function wakaba:PlayerUpdate_EIDItemReminder(player)
+	if not EID or not EID.holdTabPlayer or not wakaba.Reminder.DefaultItems[player:GetPlayerType()] then return end
+	if EID.GameUpdateCount % 10 == 0 then
+		local entries = wakaba.Reminder.DefaultItems[player:GetPlayerType()]
+		for i, e in ipairs(entries) do
+			local id = e.item
+			local condition = e.cond
+			if condition == nil or (condition()) then
+				wakaba:EIDItemReminder_AddPassiveEntry(player, id)
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_EIDItemReminder)
 
 do
 	local index = wakaba:EIDItemReminder_GetIndex("Special")
@@ -51,7 +193,7 @@ do
 	if ent and ent.entryGenerators then
 		local gen = ent.entryGenerators
 		table.insert(gen, #gen -1 , function(player)
-			if wakaba:hasAlbireo(player) then
+			if wakaba:hasAlbireo(player) and not EID:IsCategorySelected("Passives") then
 				EID:ItemReminderAddDescription(player, 5, 100, wakaba.Enums.Collectibles.WINTER_ALBIREO)
 			end
 		end)

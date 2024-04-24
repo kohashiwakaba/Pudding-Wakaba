@@ -1,6 +1,15 @@
 local desclang = "en_us"
 
 
+function wakaba:EIDCond_PlayerHasBirthright(playerType)
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:GetPlayerType() == playerType and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			return true
+		end
+	end
+	return false
+end
 function wakaba:EIDCond_IsChallenge(challenge)
 	return wakaba.G.Challenge == challenge
 end
@@ -1957,7 +1966,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
 		.. "#Weapons are invisible and deal less damage enemies for a short time"
 		.. "#Deals 2x damage to enemies after 4 tiles"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -1967,7 +1975,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Replaces Curse of the Lost"
 		.. "#Isaac cannot see the map far away"
 		.. "#{{SecretRoom}} Can reveal Secret and Super Secret Rooms"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -1977,7 +1984,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Replaces Curse of the Maze"
 		.. "#Sometimes cleared rooms are randomly be uncleared"
 		.. "#Special rooms are not included"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -1988,7 +1994,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{Card91}} Permanent Lost Curse state for current floor"
 		.. "#Donation mechanics can be used even with Lost Curse state"
 		.. "#{{Collectible285}} All enemies are devolved if possible"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state"
 		.. "",
 	},
 }
@@ -2718,6 +2723,33 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
+wakaba.descriptions[desclang].conditionals.entities = {
+	["-998.-1."..LevelCurse.CURSE_OF_LABYRINTH] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Spawns extra special rooms",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_SNIPER] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_FAIRY] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_AMNESIA] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+}
 
 if EID then
 	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then

@@ -446,6 +446,33 @@ if EID then
 							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
 						end
 					end
+					if conDescTables.entities then
+						for conditionalEntry, wcd in pairs(conDescTables.entities) do
+							if lang == "en_us" then
+								EID.DescriptionConditions[conditionalEntry] = {}
+							end
+							if #wcd == 0 then wcd = {wcd} end
+							for _, itemdesc in ipairs(wcd) do
+								local subEntry = conditionalEntry
+								if itemdesc.modifierText then
+									subEntry = conditionalEntry .. " (" .. itemdesc.modifierText .. ")"
+								end
+								if lang == "en_us" then
+									table.insert(EID.DescriptionConditions[conditionalEntry], {
+										func = itemdesc.func,
+										vars = itemdesc.vars,
+										type = itemdesc.type,
+										modifierText = itemdesc.modifierText,
+									})
+								end
+								-- TODO EID version check
+								if not EID.descriptions[lang].ConditionalDescs then
+									EID.descriptions[lang].ConditionalDescs = {}
+								end
+								EID.descriptions[lang].ConditionalDescs[subEntry] = itemdesc.desc
+							end
+						end
+					end
 				end
 				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
