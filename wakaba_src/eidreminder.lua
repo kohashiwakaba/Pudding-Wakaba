@@ -172,8 +172,8 @@ do
 	table.insert(EID.ItemReminderCategories, index, {id = "w_Character", entryGenerators = {
 		function(player) wakaba:EIDItemReminder_HandleCharacters(player) end,
 	}})
-	table.insert(EID.ItemReminderCategories, index+1, {id = "w_Starting", entryGenerators = {
-		--function(player) wakaba:EIDItemReminder_HandleCharacters(player) end,
+	table.insert(EID.ItemReminderCategories, index+1, {id = "w_ShioriFlags", entryGenerators = {
+		function(player) wakaba:EIDItemReminder_HandleShioriFlags(player) end,
 	}})
 	table.insert(EID.ItemReminderCategories, index+2, {id = "w_Curse", entryGenerators = {
 		function(player) wakaba:EIDItemReminder_HandleCurses(player) end,
@@ -214,6 +214,17 @@ function wakaba:EIDItemReminder_HandleWakabaUniform(player)
 	end
 end
 
+function wakaba:EIDItemReminder_HandleShioriFlags(player)
+	if not EID:ItemReminderCanAddMoreToView() then return end
+	local shioriFlag = wakaba:getShioriFlag(player)
+	if shioriFlag then
+		local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", shioriFlag)
+		if wakabaBuff then
+			EID:ItemReminderAddDescription(player, 5, 100, wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+		end
+	end
+end
+
 local function getMaxCurseId(curse)
 	local maxloop = 0
 	while curse > 0 do
@@ -248,9 +259,26 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.WINTER_A
 	end,
 }
 
+EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
+	modifierFunction = function(descObj, player)
+		if EID:IsCategorySelected("w_ShioriFlags") then
+			local shioriFlag = wakaba:getShioriFlag(player)
+			local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", shioriFlag)
+			if wakabaBuff then
+				local demoDescObj = EID:getDescriptionObj(5, 100, shioriFlag)
+				local description = wakabaBuff.description
+				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
+				descObj.Icon = demoDescObj.Icon
+				descObj.Name = demoDescObj.Name
+				descObj.Description = iconStr.. description .. "{{CR}}"
+			end
+		end
+	end,
+}
+
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM] = {
 	modifierFunction = function(descObj, player)
-		if EID.ItemReminderSelectedCategory + 1 == wakaba:EIDItemReminder_GetIndex("w_WakabaUniform") then
+		if EID:IsCategorySelected("w_WakabaUniform") then
 			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 			local eidstring = ""
 			local preservedslotstate = false
