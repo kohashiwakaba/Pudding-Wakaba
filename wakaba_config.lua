@@ -23,6 +23,12 @@ local config = {
 	-- Costume Protector
 	cp_wakaba = true,
 
+	-- Custom sounds
+	customhitsound = true,
+	customhitsoundprof = -1,
+	customitemsound = true,
+	customsoundvolume = 5,
+
 	-- Wakaba options
 	cloverchestchance = 5,
 	taintedcloverchestchance = 5,

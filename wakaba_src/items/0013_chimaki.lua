@@ -22,7 +22,7 @@ end
 
 local function TryChimakiSound(sndId)
 	if wakaba:getOptionValue("chimakisound") then
-		sfx:Play(sndId)
+		sfx:Play(sndId, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
 end
 

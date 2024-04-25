@@ -19,6 +19,7 @@ local sfx = SFXManager()
 local checkForCustomSound = false
 
 function wakaba:prePickupCollision_CustomItemSound(pickup, colliders, low)
+	if not wakaba:getOptionValue("customitemsound") then return end
 	local id = pickup.SubType
 	if wakaba.CustomItemSound[id] then
 		checkForCustomSound = true
@@ -47,7 +48,7 @@ function wakaba:PlayerRender_CustomItemSound(player)
 			for _, sound in ipairs(soundToReplace) do
 				if sfx:IsPlaying(sound) then
 					sfx:Stop(sound)
-					sfx:Play(wakaba:getCustomSound(queue.ID))
+					sfx:Play(wakaba:getCustomSound(queue.ID), wakaba:getOptionValue("customsoundvolume") / 10 or 5)
 					break
 				end
 			end

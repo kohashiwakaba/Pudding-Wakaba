@@ -290,6 +290,79 @@ if MCM then
 			}
 		}
 	)
+
+	MCM.AddSpace("Pudding & Wakaba", "General")
+	MCM.AddText("Pudding & Wakaba", "General", function() return "Sounds" end)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.customitemsound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.customitemsound then
+					onOff = "True"
+				end
+				return "Custom item Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.customitemsound = currentBool
+
+			end,
+			Info = {
+				"Allow custom item sound from Pudding & Wakaba items",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.customhitsound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.customhitsound then
+					onOff = "True"
+				end
+				return "Custom hurt Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.customhitsound = currentBool
+
+			end,
+			Info = {
+				"Allow custom hurt/death sound from Pudding & Wakaba characters",
+				"(Richer, Rira)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return wakaba.state.options.customsoundvolume
+			end,
+			Display = function()
+				return "Custom Sound volume: $scroll" .. wakaba.state.options.customsoundvolume
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.customsoundvolume = currentNum
+			end,
+			Info = {
+				"Adjust volume for Pudding & Wakaba custom sounds",
+				"(Richer, Rira, Chimaki, etc)",
+			}
+		}
+	)
+
 	--[[ MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
