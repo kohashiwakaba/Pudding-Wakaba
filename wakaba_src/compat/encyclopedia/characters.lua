@@ -225,7 +225,7 @@ if Encyclopedia then
 			{ -- Traits
 				{str = "Traits", fsize = 2, clr = 3, halign = 0},
 					--{str = ""},
-				{str = "Richer gets small tears and damage up on room clear."},
+				{str = "Richer takes less damage from most damage sources. (same as the wafer)"},
 				{str = "Richer also boosts trinkets by 1."},
 				{str = "Rabbit Ribbon", clr = 3, halign = 0},
 				{str = "If any curse is applied, replaces it into new curse."},
@@ -240,7 +240,7 @@ if Encyclopedia then
 				{str = "- Automatically consumes stored charges if Isaac's active is not fully charged."},
 				{str = "Sweets Catalog", clr = 3, halign = 0},
 				{str = "Richer has her expiremental recipies."},
-				{str = "When used, Richer gets one of random combination effects in current room."},
+				{str = "When used, Richer gets one of random weapon effects in current room."},
 			},
 			{ -- Birthright
 				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
