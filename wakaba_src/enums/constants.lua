@@ -153,6 +153,7 @@ wakaba.Enums.Collectibles = {
 	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
 	SAKURA_CAPSULE = Isaac.GetItemIdByName("Sakura Capsule"),
 	MAID_DUET = Isaac.GetItemIdByName("Maid Duet"),
+	CLEANER = Isaac.GetItemIdByName("Dual Cleaner"),
 
 	RABBEY_WARD = Isaac.GetItemIdByName("Rabbey Ward"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
@@ -181,7 +182,6 @@ wakaba.Enums.Collectibles = {
 	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
-	CLEANER = Isaac.GetItemIdByName("Clover Cleaner"),
 
 }
 
@@ -226,6 +226,11 @@ wakaba.Enums.Trinkets = {
 	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
 	RABBIT_PILLOW = Isaac.GetTrinketIdByName("Rabbit Pillow"),
 	SIGIL_OF_KAGUYA = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
+	CANDY_OF_RICHER = Isaac.GetTrinketIdByName("Candy of Richer"),
+	CANDY_OF_RIRA = Isaac.GetTrinketIdByName("Candy of Rira"),
+	CANDY_OF_CIEL = Isaac.GetTrinketIdByName("Candy of Ciel"),
+	CANDY_OF_KORON = Isaac.GetTrinketIdByName("Candy of Koron"),
+	CARAMELLA_CANDY_BAG = Isaac.GetTrinketIdByName("Caramella Candy Bag"),
 
 	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 }
