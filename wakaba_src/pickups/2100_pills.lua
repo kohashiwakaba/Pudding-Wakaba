@@ -49,23 +49,17 @@ function wakaba:PlayerUpdate_Pills(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Pills)
 
-local function hasPHD(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
-	or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
-	or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
-	then
-		return true
-	else
-		return false
-	end
-end
-
 function wakaba:anyPlayerHasPHD()
+	local a = false
 	wakaba:ForAllPlayers(function (player)
-		if hasPHD(player) then
-			return true
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
+		then
+			a = true
 		end
 	end)
+	return a
 end
 
 local function hasFalsePHD(player)
