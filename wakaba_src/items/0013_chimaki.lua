@@ -544,6 +544,9 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, funct
 	local player = data.player
 	local pData = player:GetData()
 	if not room:IsClear() then return end
+	if data.bypassCurseCheck then
+		return "Command_RemoveCurse"
+	end
 	if curses > 0 and curses & ~LevelCurse.CURSE_OF_LABYRINTH > 0 then
 		if data.curseRemoveTries and data.curseRemoveTries > 0 then
 
@@ -555,7 +558,11 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, funct
 
 			local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), data.curseRemoveTries)
 			data.curseRemoveTries = nil
-			if rng:RandomFloat() < chance then
+			local result = rng:RandomFloat()
+			local passed = result < chance
+			wakaba.Log("Chimaki remove curse result:",result,"/",chance)
+			if passed then
+				data.bypassCurseCheck = true
 				playExtraAnim("kyuu", nil, ent, spr, data)
 				return "Command_RemoveCurse"
 			end
@@ -573,12 +580,18 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 	if spr:IsFinished("kyuu") then
 		--print("Finished")
+		data.bypassCurseCheck = nil
 		data.State = "Chimaki_Rest"
 		stopGoToEnt(data)
 	elseif spr:IsEventTriggered("kyuu") then
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 		level:RemoveCurses(level:GetCurses() & ~LevelCurse.CURSE_OF_LABYRINTH)
+		for i = 0, 3 do
+			local laser = EntityLaser.ShootAngle(LaserVariant.LIGHT_BEAM, familiar.Position, i * 90, 3, Vector(0, -20), familiar)
+			laser.Parent = familiar
+			laser.CollisionDamage = 0
+		end
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
 
