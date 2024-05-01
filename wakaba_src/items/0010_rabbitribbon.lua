@@ -97,12 +97,8 @@ function wakaba:PlayerUpdate_RabbitRibbon(player)
 
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 		local weapon = player:GetActiveWeaponEntity()
-		if weapon and not player:GetData().w_rwi then
-			if wakaba:hasRicherBR(player) then
-				weapon.Visible = true
-			else
-				weapon.Visible = false
-			end
+		if weapon and not wakaba:hasRicherBR(player) then
+			weapon.Visible = false
 			player:GetData().w_rwi = true
 		end
 	elseif player:GetData().w_rwi then
@@ -146,6 +142,25 @@ function wakaba:BombUpdate_RabbitRibbon(tear)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombUpdate_RabbitRibbon)
+
+function wakaba:KnifeUpdate_RabbitRibbon(tear)
+	local player = wakaba:getPlayerFromKnife(tear)
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and not wakaba:hasRicherBR(player) then
+		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
+		tear.Visible = false
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_RabbitRibbon)
+
+function wakaba:LaserUpdate_RabbitRibbon(tear)
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and not wakaba:hasRicherBR(player) then
+		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
+		tear.Visible = false
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_LASER_INIT, wakaba.LaserUpdate_RabbitRibbon)
+wakaba:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, wakaba.LaserUpdate_RabbitRibbon)
 
 function wakaba:RabbitSniperOnDamage_Tear(source, target, data, newDamage, newFlags)
 	local returndata = {}
