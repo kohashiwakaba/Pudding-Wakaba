@@ -256,11 +256,13 @@ function wakaba:Repentogon_TryUnlock(playerType, completionType, force)
 		local bossName = completionTypeToValueMap[completionType]
 		if not (bossName == "Heart" and value == 1) then
 			local entry, meta = wakaba:GetUnlockMeta(playerType, bossName)
-			local achievementID = wakaba.RepentogonUnlocks[entry]
-			wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
-			--Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
-			if achievementID and not persistentGameData:Unlocked(achievementID) then
-				persistentGameData:TryUnlock(achievementID)
+			if entry then
+				local achievementID = wakaba.RepentogonUnlocks[entry]
+				wakaba.state.unlock[entry] = math.max(wakaba.state.unlock[entry], value)
+				--Isaac.SetCompletionMark(playerType, completionType, math.max(wakaba.state.unlock[entry], value)) -- TODO remove after MC_POST_COMPLETION_EVENT is available
+				if achievementID and not persistentGameData:Unlocked(achievementID) then
+					persistentGameData:TryUnlock(achievementID)
+				end
 			end
 		end
 	end

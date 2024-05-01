@@ -404,11 +404,13 @@ function wakaba:GetUnlockMeta(playerType, unlockType)
 				unlockCheckStr = unlockTable[unlockType][1]
 				metaTable = unlockTable[unlockType]
 			end
-		else
+		elseif unlockTable[unlockType] then
 			unlockCheckStr = unlockTable[unlockType][1]
 			metaTable = unlockTable[unlockType]
 		end
-		return unlockCheckStr, metaTable
+		if unlockCheckStr ~= "" then
+			return unlockCheckStr, metaTable
+		end
 	end
 end
 
