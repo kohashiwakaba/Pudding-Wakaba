@@ -419,7 +419,8 @@ if REPENTANCE then
 		[NullItemID.ID_ESAU_JR] = true,
 		[NullItemID.ID_SPIRIT_SHACKLES_SOUL] = true,
 		[NullItemID.ID_SPIRIT_SHACKLES_DISABLED] = true,
-		[NullItemID.ID_LOST_CURSE] = true
+		[NullItemID.ID_LOST_CURSE] = true,
+		[NullItemID.ID_BLINDFOLD] = true
 	}
 
 	defaultItemWhitelist[CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES] = true
