@@ -28,7 +28,7 @@ end)
 
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 100, function(_)
-	if wakaba.state.options.hudroomnumber > 0 then
+	if wakaba.state.options.hudroomnumber > 0 and wakaba.state.options.hudroomnumber ~= 3 then
 		local bunnyParfait = false
 		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 			bunnyParfait = bunnyParfait or player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
@@ -50,11 +50,25 @@ end)
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 101, function(_)
 	if wakaba.state.options.hudroomname > 0 then
 		local text = roomName
+		if wakaba.state.options.hudroomnumber == 3 then
+			local bunnyParfait = false
+			wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+				bunnyParfait = bunnyParfait or player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
+			end)
+			if bunnyParfait then
+				wakaba.globalHUDSprite:SetFrame("BunnyParfait", roomNo % 5)
+			else
+				wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 1)
+			end
+			text = roomNo .. "-" .. text
+		else
+			wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 1)
+		end
 		if wakaba.state.options.hudroomname == 1 then
 			local room = Game():GetRoom()
 			local words = {}
 			local offset = room:GetFrameCount() // 6
-			for word in string.gmatch(roomName, '.') do --Split string into individual words
+			for word in string.gmatch(text, '.') do --Split string into individual words
 				words[#words+1] = word;
 			end
 			if #words > 14 then
@@ -79,7 +93,6 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 101, functio
 		elseif wakaba.state.options.hudroomname == 3 then
 			text = "Name:"..text
 		end
-		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 1)
 		local room = Game():GetRoom()
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
@@ -90,19 +103,31 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 101, functio
 end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 102, function(_)
-	if wakaba.state.options.hudroomdiff > 0 then
+	if wakaba.state.options.hudroomdiff == 3 then
 		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 2)
 		local room = Game():GetRoom()
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
-			Text = (wakaba.state.options.hudroomdiff == 2 and "Difficulty:" or "")..roomDifficulty,
+			Text = "D:"..roomDifficulty.."/W:"..roomWeight,
+		}
+		return tab
+	end
+end)
+
+wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 102, function(_)
+	if wakaba.state.options.hudroomdiff > 0 and wakaba.state.options.hudroomdiff ~= 3 then
+		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 2)
+		local room = Game():GetRoom()
+		local tab = {
+			Sprite = wakaba.globalHUDSprite,
+			Text = (wakaba.state.options.hudroomdiff == 2 and "Diff:" or "")..roomDifficulty,
 		}
 		return tab
 	end
 end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 103, function(_)
-	if wakaba.state.options.hudroomweight > 0 then
+	if wakaba.state.options.hudroomweight > 0 and wakaba.state.options.hudroomdiff ~= 3 then
 		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 3)
 		local room = Game():GetRoom()
 		local tab = {

@@ -847,7 +847,7 @@ if MCM then
 		}
 	)
 
-	local OptionNames_RoomNumber = {"Off", "Value only", "Detailed"}
+	local OptionNames_RoomNumber = {"Off", "Value only", "Detailed", "Combined with name"}
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"HUD",
@@ -857,7 +857,7 @@ if MCM then
 				return wakaba.state.options.hudroomnumber
 			end,
 			Minimum = 0,
-			Maximum = 2,
+			Maximum = 3,
 			Display = function()
 				return "Room Number: " .. OptionNames_RoomNumber[wakaba.state.options.hudroomnumber+1]
 			end,
@@ -895,7 +895,7 @@ if MCM then
 		}
 	)
 
-	local OptionNames_RoomDiff = {"Off", "Value only", "Detailed"}
+	local OptionNames_RoomDiff = {"Off", "Value only", "Detailed", "Combined with Weight"}
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"HUD",
@@ -905,7 +905,7 @@ if MCM then
 				return wakaba.state.options.hudroomdiff
 			end,
 			Minimum = 0,
-			Maximum = 2,
+			Maximum = 3,
 			Display = function()
 				return "Room Difficulty: " .. OptionNames_RoomDiff[wakaba.state.options.hudroomdiff+1]
 			end,

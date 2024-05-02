@@ -117,6 +117,23 @@ local completionDoor = Sprite()
 completionDoor:Load("gfx/ui/wakaba/completion_doors.anm2")
 completionDoor:SetFrame("Wakaba", 0)
 
+local function gT(str)
+	local endTable = {}
+	local currentString = ""
+	for w in str:gmatch("%S+") do
+		local newString = currentString .. w .. " "
+		if newString:len() >= 15 then
+			table.insert(endTable, currentString)
+			currentString = ""
+		end
+
+		currentString = currentString .. w .. " "
+	end
+
+	table.insert(endTable, currentString)
+	return { strset = endTable }
+end
+
 -- Creating a menu like any other DSS menu is a simple process.
 -- You need a "Directory", which defines all of the pages ("items") that can be accessed on your menu, and a "DirectoryKey", which defines the state of the menu.
 local wakabadirectory = {
@@ -427,6 +444,68 @@ local wakabadirectory = {
 			},
 			--{str = 'Elixir of Life, and Mystic Crystal', fsize = 3, nosel = true},
 			{str = '', fsize = 1, nosel = true},
+			-- custom sounds
+			{
+				str = 'custom item sounds',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'CustomItemSound',
+				load = function()
+					if wakaba.state.options.customitemsound then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.customitemsound = (var == 1)
+				end,
+				tooltip = {strset = {'custom item','sound from','pudding & wakaba','items'}}
+			},
+			-- custom sounds
+			{
+				str = 'custom hurt sounds',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'CustomHurtSound',
+				load = function()
+					if wakaba.state.options.customhitsound then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.customhitsound = (var == 1)
+				end,
+				tooltip = {strset = {'custom hurt','sound from','pudding & wakaba','characters'}}
+			},
+			{
+					str = 'custom sounds volume',
+
+					-- The "slider" tag allows you to make a button a slider, with notches that are transparent / opaque depending on if they're filled.
+					slider = true,
+					-- Increment determines how much the value of the slider changes with each notch
+					increment = 1,
+					-- Max determines the maximum value of the slider. The number of notches is equal to max / increment!
+					max = 10,
+					-- Setting determines the initial value of the slider
+					setting = 5,
+
+					-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
+					variable = 'CustomSoundVolume',
+
+					-- These functions work just like in the choice option!
+					load = function()
+							return wakaba.state.options.customsoundvolume or 5
+					end,
+					store = function(var)
+							wakaba.state.options.customsoundvolume = var
+					end,
+
+					tooltip = {strset = {'volume for','pudding & wakaba','custom sounds'}}
+			},
+			{str = '', fsize = 1, nosel = true},
 			-- inventory descriptions
 			{
 					str = '- inventory desc. -',
@@ -571,7 +650,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room no.',
-				choices = {"don't show", "number only", "full string"},
+				choices = {"don't show", "number only", "full string", "combined with name"},
 				setting = 1,
 				variable = 'HUDRoomNumber',
 				load = function()
@@ -597,7 +676,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room difficulty',
-				choices = {"don't show", "difficulty only", "full string"},
+				choices = {"don't show", "difficulty only", "full string", "combined with weight"},
 				setting = 1,
 				variable = 'HUDRoomDifficulty',
 				load = function()
@@ -618,6 +697,9 @@ local wakabadirectory = {
 				end,
 				store = function(var)
 					wakaba.state.options.hudroomweight = var - 1
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.options.hudroomdiff ~= 3
 				end,
 				tooltip = {strset = {''}}
 			},
