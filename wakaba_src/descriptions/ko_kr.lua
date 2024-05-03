@@ -222,7 +222,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#방 안을 돌아다니며 이하를 포함한 여러 방면으로 캐릭터를 도와줍니다:"
-		.. "#눈물/불꽃 발사#{{Collectible374}} 적을 향해 점프#{{Collectible260}} 저주 해제#{{Trinket63}} 트롤 폭탄 해체"
+		.. "#{{TearsizeSmall}} 눈물/불꽃 발사"
+		.. "#{{Collectible374}} 적을 향해 점프"
+		.. "#{{Collectible260}} 확률적으로 저주 해제"
+		.. "#{{Blank}} {{ColorGray}}({{LuckSmall}} 40%, 8+일 때 100%)"
+		.. "#{{Trinket63}} 트롤 폭탄 해체"
 		.. "{{CR}}",
 		queueDesc = "리라의 소울메이트",
 	},
