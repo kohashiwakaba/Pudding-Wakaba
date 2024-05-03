@@ -46,6 +46,18 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		local newFlags = flags
 		local sendNewDamage = false
 
+		-- TODO move all pre damage to callback
+		--[[
+		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.PRE_ALTER_WAKABA_NPC_DAMAGE)) do
+			local returndata = callbackData.Function(callbackData.Mod, source, target, data, newDamage, newFlags)
+			if returndata then
+				newDamage = returndata.newDamage or newDamage
+				sendNewDamage = returndata.sendNewDamage or sendNewDamage
+				newFlags = returndata.newFlags or newFlags
+			end
+		end
+		]]
+
 		local returndata = wakaba:RiraBraOnDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
@@ -69,6 +81,10 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 
 		local returndata = wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
+		sendNewDamage = returndata.sendNewDamage or sendNewDamage
+		newFlags = returndata.newFlags or newFlags
+
+		local returndata = wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
 		newFlags = returndata.newFlags or newFlags
 

@@ -531,6 +531,64 @@ wakaba.Callback = {
 	-- - Return true to disable to set charge by keys, return non-nil integer to override current charge value
 	-- ---
 	PRE_RABBIT_RIBBON_CHARGE = "WakabaCallbacks.PRE_RABBIT_RIBBON_CHARGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	PRE_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.PRE_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `type` - WakabaDamageTypes
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `type` - WakabaDamageTypes
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	ROLLED_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.ROLLED_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	POST_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.POST_ALTER_WAKABA_NPC_DAMAGE",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
