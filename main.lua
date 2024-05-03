@@ -1143,7 +1143,7 @@ end
 -- This must be call very last
 function wakaba:TakeDmg_VintageThreat(entity, amount, flag, source, countdownFrames)
 	if entity.Type == EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS)
+	and flag & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_FAKE) == 0
 	then
 		local player = entity:ToPlayer()
 		--Double check just in case
@@ -1883,6 +1883,7 @@ if EID then
 			demoDescObj.Name = title or ""
 			demoDescObj.Description = desc or ""
 			EID:displayPermanentText(demoDescObj, "WakabaGlobalWarningTitle")
+			hasShownStartWarning = true
 		elseif hasShownStartWarning then
 			EID:hidePermanentText()
 			hasShownStartWarning = false
