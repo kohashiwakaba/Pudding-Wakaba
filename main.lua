@@ -1127,6 +1127,7 @@ include('wakaba_src.compat.epiphany')
 include('wakaba_src.compat.samael')
 include('wakaba_src.compat.taintedtreasure')
 include('wakaba_src.compat.thefuture')
+include('wakaba_src.compat.sacred_dreams')
 include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
