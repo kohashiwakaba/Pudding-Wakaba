@@ -1,10 +1,196 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v113",
+[[{FSIZE2}general
+- updated compatibility eid
+-- some entries from
+inventory description is now
+available through new item reminder
+--- character descriptions
+--- curses descriptions
+--- soul of shiori effects
+--- wakaba's uniform
+-- some hidden effects are
+now available by enabling
+eid's hidden descriptions
+--- hidden effects are marked
+as grey clover icon
+-- repentogon exclusive effects
+are marked as wakaba clover icon
+
+- updated compatibility
+for epiphany wave 6
+-- shiori now has special
+active charge interaction with
+blighted/broken dice
+
+- now warning will be shown
+if not playing as repentogon
+
+- challenges that starts with
+tainted wakaba characters
+now restart 1 more time
+for the first time,
+to fix issues with starting condition
+
+- added options to adjust custom sounds
+-- volumes for custom items sounds
+--- default volume is reduced by 50%
+-- custom item sounds for p&w items
+-- custom hurt sounds for richer, rira
+
+{FSIZE2}repentogon
+- wakaba's double dreams, double invader
+-- goad head, eucharist
+is now overrided
+
+- added discord rpc compatibility
+from catinsurance
+
+{FSIZE2}new items
+- book of amplitude
+
+{FSIZE2}balance
+
+jar of clover
+- now gives +1 luck
+per 120 > 240 seconds
+
+eye of clock
+- circle lasers now appear
+only if isaac is shooting
+- only 1 circle laser
+will be pop out initially,
+will be increased up to 3
+as long as holding shoot buttons
+
+book of conquest
+- indirect item
+(unknown bookmark, tmtrainter,
+or so on)
+usage are limit to
+40 cost instead of 160
+
+nasa lover
+- no longer gives
+isaac electric tears
+
+arcane crystal
+- extra damage chance
+reduced from 70% > 20%,
+scales with luck
+
+advanced crystal
+- armor-piercing attack
+chance reduced from 25% > 5%,
+scales with luck
+
+mystic crystal
+- holy shield granted
+is changed from soul hearts
+to per 8 room clears
+- max shield cound is
+reduced from 5 > 2
+
+maid duet
+- blacklisted following items
+(cooldown reduction only)
+-- blighted/broken dice (epiphany)
+-- sand pouch (sacred dreams)
+
+caramella pancake
+- flies no longer fly
+through walls.
+flies targeting enemies
+still can fly through.
+
+{FSIZE2}bug fixes
+
+- fixed some elements
+not restored by glowing hourglass
+-- cunning paper
+
+- esau's wakaba's uniform,
+cunning paper now can be shown
+
+- rabbit ribbon/lil richer
+-- fix item not working
+properly with shiori
+-- fix saved charge
+not transfering properly
+with special cooldown actives
+
+- self burning
+-- fixed item description
+not matching with its effects
+
+- fix some outdated eid entries
+
+- fix black bean mochi,
+sakura mont blanc
+affecting fireplaces
+
+- fix tainted richer
+prevent other characters
+getting collectibles
+
+- fix phd not working
+with wakaba pills
+after rira update
+
+- fix wakaba's nemesis
+armor piercing not working
+with other characters
+
+- fix tainted wakaba
+not damaging enemies
+through red candle
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v112",
 [[{FSIZE2}general
 - updated compatibility for
 epiphany wave 6
 -- added blacklist for tr lost
+-- updated blacklist for tr eden
+-- updated reroll mechanic check,
+to make sure no more freezing
+if revelations + pnw + epiphany
+is active at the same time
+- updated eid conditional descriptions
+- improved shiori active item handler
+-- this fixes potential
+issues with lil rira
+
+- chimaki debug hud no longer appears.
+can be reshown by editing
+debugChimaki value
+from wakaba_flags.lua
+
+{FSIZE2}repentogon
+
+- challenge w04 : no longer starts
+with notched axe,
+but all main weapons
+except of notched axe
+are disabled
+
+- richer's bra
+-- now adds devil room chance +10%
 
 {FSIZE2}balance
+
+shiori
+- blacklisted following items
+-- everything jar
+
+maid duet
+- blacklisted following items (swap only)
+-- placebo
+-- blank card
+-- clear rune
+-- perfectly generic object
+- blacklisted all epiphany characters (swap only)
+
 range os
 - range multiplier
 reduced from 55% -> 40%
@@ -48,6 +234,20 @@ only apply one effect for bosses
 - fix multiple status effect
 not working with rira's bra,
 and icon rendering
+
+- fix some typos for
+korean descriptions
+- fix costume protector error
+if wakaba characters
+get 2+ brimstones
+- fix notched axe
+not working properly in w04
+- fix clover shard
+not appearing in w14
+- fix shiori + lil rira + bitcoin
+making infinite damage ups
+- fix shiori + blank card 
++ trial stew making infinite damage ups
 
 ]])
 
