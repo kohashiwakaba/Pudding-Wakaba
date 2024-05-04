@@ -81,6 +81,7 @@ end
 local recent
 
 function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData)
+	local discharge = false
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
 		local playerIndex = isc:getPlayerIndex(player)
 		local current = wakaba.TotalWisps[playerIndex]
@@ -134,6 +135,11 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 			}
 		end
 	end
+	return {
+		Discharge = false,
+		Remove = false,
+		ShowAnim = false,
+	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_WaterFlame, wakaba.Enums.Collectibles.WATER_FLAME)
 

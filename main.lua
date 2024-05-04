@@ -1224,6 +1224,8 @@ function wakaba:init(continue)
 		wakaba:ResetWispStatus()
 	end
 	-- Run this whether continue or not
+
+	-- TODO make compat manager
 	if EID then
 		wakaba:UpdateWakabaDescriptions()
 		--wakaba:UpdateWakabaEncyclopediaDescriptions()
@@ -1246,6 +1248,10 @@ function wakaba:init(continue)
 
 	if TheFuture then
 		wakaba:GameStart_TheFutureCompat()
+	end
+
+	if SacredDreams then
+		wakaba:GameStart_SDCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)

@@ -2663,6 +2663,12 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			vars = {wakaba.Enums.Players.RICHER_B},
 			modifierText = "Tainted Richer",
 		},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} Aquafies all trinkets in the room",
+			func = wakaba.IsEntryUnlocked,
+			vars = {"aquatrinket", true},
+			modifierText = "Aqua Trinkets",
+		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",

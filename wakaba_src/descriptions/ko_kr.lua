@@ -1488,6 +1488,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
 			modifierText = "Tainted Richer",
 		},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} 그 방의 장신구를 아쿠아화 시킵니다.",
+			modifierText = "Aqua Trinkets",
+		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 변경되지 않습니다.",

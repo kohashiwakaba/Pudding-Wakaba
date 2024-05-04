@@ -683,7 +683,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +14% 攻击倍率"
 			.. "#穿透眼泪"
 			.. "#敌人有5%的几率受到穿甲伤害"
-			.. "#{{Luck}} 在55点幸运时有43%的几率" 
+			.. "#{{Luck}} 在55点幸运时有43%的几率"
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -692,7 +692,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Damage}} +16% 攻击倍率"
 			.. "#神性眼泪"
-			.. "#{{Card" .. Card.CARD_HOLY .. "}} 每清理8个房间(最多2个)获得神圣卡效果" 
+			.. "#{{Card" .. Card.CARD_HOLY .. "}} 每清理8个房间(最多2个)获得神圣卡效果"
 			.. "{{CR}}",
 		queueDesc = "伤害上升",
 	},
@@ -1340,7 +1340,7 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 			.. "#随机化掉落物数量和属性"
 			.. "#掉落物的范围可以从0到999"
-			.. "#!!! 掉下时就会消失!" 
+			.. "#!!! 掉下时就会消失!"
 			.. "#!!! 不再随机吞下饰品"
 			.. "{{CR}}",
 		queueDesc = "真正的赌博",
@@ -1910,14 +1910,14 @@ wakaba.descriptions[desclang].doubledreams = {
 }
 
 wakaba.descriptions[desclang].entities = {
-	{ 
+	{
 		type = EntityType.ENTITY_SLOT,
 		variant = wakaba.Enums.Slots.SHIORI_VALUT,
 		subtype = 0,
 		name = "汐宫的宝库",
 		description = ""
 	},
-	{ 
+	{
 		type = EntityType.ENTITY_PICKUP,
 		variant = wakaba.Enums.Pickups.CLOVER_CHEST,
 		subtype = wakaba.ChestSubType.CLOSED,
@@ -2347,6 +2347,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 				"}} 使用时，吸收选定的灵火#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 可以通过更改选择{{ButtonRT}}",
 			modifierText = "Tainted Richer", -- do NOT translate this
 		},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} Aquafies all trinkets in the room", -- Turns all trinkets in the room into aqua trinkets
+			modifierText = "Aqua Trinkets",-- do NOT translate this
+		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} 里若叶只是复活",
@@ -2362,18 +2366,18 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		"{{WakabaMod}} 检测附近的道具的质量#{{WakabaMod}}如果匹配，拿走它，否则，它会消失",
 	},
 	-- HIDDEN DESCRIPTIONS
-	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {  
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
 		desc =
 		"{{WakabaModHidden}} {{ColorGray}}所有的炸弹替换为{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}",  -- can change to 'other pickups'
 	},
-	[wakaba.Enums.Collectibles.MINERVA_AURA] = {                                                                                                              
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc =
 		"{{WakabaModHidden}} {{ColorGray}}25%的几率阻挡伤害#{{WakabaModHidden}} {{ColorGray}}阻止所有惩罚伤害",
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}血狗变得友好",
 	},
-	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = { 
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}多个死人头出现在主线的boss房间里",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
@@ -2406,7 +2410,7 @@ if EID then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_ShioriFlags = "汐宫的眼泪效果"
 	end
 
-	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}} 若叶的警告"                                                                                
+	EID.descriptions[desclang].WakabaGlobalWarningTitle = "{{ColorOrange}} 若叶的警告"
 	EID.descriptions[desclang].WakabaRGONWarningText =
 	"未安装REPENTOGON! mod可以运行, 但是部分道具和效果将会移除!"
 	EID.descriptions[desclang].WakabaDamoclesWarningText =
@@ -2444,5 +2448,5 @@ if EID then
 
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
 
-	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : " 
+	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : "
 end
