@@ -165,10 +165,11 @@ function wakaba:setCustomStat(player, statType, amount)
 	player:GetData().wakaba.statmodify[statType] = amount
 end
 
-function wakaba:useWakabaPill(_pillEffect, player, useFlags)
+function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 
 	-- Post G FUEL patch by Connor
-	local pillColor = player:GetData().wakaba_currentPill
+	local pillColor = REPENTOGON and _pillColor or player:GetData().wakaba_currentPill
+	wakaba.Log("Pill Used:", pillColor)
 	local pillEffect = wakaba.G:GetItemPool():GetPillEffect(pillColor, player)
 	if pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_NULL then
 		pillEffect = _pillEffect
