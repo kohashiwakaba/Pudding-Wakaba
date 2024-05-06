@@ -23,14 +23,17 @@ function wakaba:PickupUpdate_StarReversal(trinket)
 	local room = wakaba.G:GetRoom()
 	if shouldActivateReversal() then
 		if sprite:IsEventTriggered("DropSound") then
-			local newPos = Isaac.GetFreeNearPosition(trinket.Position, 40.0)
+			--local newPos = Isaac.GetFreeNearPosition(trinket.Position, 40.0)
 			if trinket.SubType > 32768 then
 				sfx:Play(SoundEffect.SOUND_SOUL_PICKUP, 1, 0, false, 1)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM), newPos, Vector.Zero, nil)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM), newPos, Vector.Zero, nil)
+				for i = 1, 2 do
+					local newPos = Isaac.GetFreeNearPosition(trinket.Position, 40.0)
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM), newPos, Vector.Zero, nil)
+				end
 				trinket:Remove()
 			else
 				sfx:Play(SoundEffect.SOUND_SOUL_PICKUP, 1, 0, false, 1)
+				local newPos = Isaac.GetFreeNearPosition(trinket.Position, 40.0)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM), newPos, Vector.Zero, nil)
 				trinket:Remove()
 			end
