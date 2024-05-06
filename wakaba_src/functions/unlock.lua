@@ -243,13 +243,13 @@ wakaba.UnlockTables = {
 	--[[ [wakaba.Enums.Players.RIRA_B] = {
 		istainted = true,
 		Heart 		= {"taintedriramomsheart"},
-		Quartet 		= {"caramellacookiebag", "trinket",	wakaba.Enums.Trinkets.STAR_REVERSAL,	function() wakaba:TryPlayAchievementPaper("starreversal", "Boss") end},
+		Quartet 		= {"caramellacandybag", "trinket",	wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG,	function() wakaba:TryPlayAchievementPaper("starreversal", "Boss") end},
 		Duet 		= {"rirasoul", "card",	wakaba.Enums.Cards.SOUL_RICHER,	function() wakaba:TryPlayAchievementPaper("richersoul", "Boss") end},
 		Delirium	= {"rabbeyward", "collectible",	wakaba.Enums.Collectibles.WATER_FLAME,				function() wakaba:TryPlayAchievementPaper("waterflame", "Boss") end},
 		MegaSatan	= {"aquatrinket", "null",		nil,			function() wakaba:TryPlayAchievementPaper("crystalrestock", "MegaSatan") end},
 		Mother		= {"uuuuuuuuuuuu", "trinket",	wakaba.Enums.Trinkets.ETERNITY_COOKIE,			function() wakaba:TryPlayAchievementPaper("eternitycookie", "Boss") end},
 		Beast		= {"uuuuuuuuuuuu", "collectible",	wakaba.Enums.Collectibles.WINTER_ALBIREO,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
-		Greedier	= {"uuuuuuuuuuuu", "card",		wakaba.Enums.Cards.CARD_TRIAL_STEW,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
+		Greedier	= {"flipcard", "card",		wakaba.Enums.Cards.CARD_FLIP,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
 	}, ]]
 	[-999] = {
 		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, function(boss) return boss == BossID.MOM end},
@@ -279,6 +279,10 @@ wakaba.LinkedCompletionUnlocks = {
 	{wakaba.Enums.Collectibles.MYSTIC_CRYSTAL, "collectible", wakaba.Enums.Collectibles.ARCANE_CRYSTAL, "collectible"},
 	{wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
 	{wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_RICHER, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_RIRA, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_CIEL, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_KORON, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
 }
 
 function wakaba:CanRunUnlockAchievements(forceNew) -- Made in conjunction with Thicco Catto

@@ -22,7 +22,7 @@ local class = "Pudding n Wakaba"
 -- Rira / Mother : Sakura Capsule
 -- Rira / Beast : Maid Duet
 
--- Rira_B / Quartet :
+-- Rira_B / Quartet : Caramella Candy Bag
 -- Rira_B / Duet :
 -- Rira_B / MegaS :
 -- Rira_B / Deli : Rabbey Ward [Starting item]
@@ -284,4 +284,71 @@ Encyclopedia.AddItem({
 		end
 	end,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MAID_DUET,
+})
+
+-- Rira_B / Quartet : Caramella Candy Bag
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CARAMELLA_CANDY_BAG,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CARAMELLA_CANDY_BAG],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_RICHER,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_RICHER],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_RIRA,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_RIRA],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_CIEL,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_CIEL],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_KORON,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_KORON],
 })

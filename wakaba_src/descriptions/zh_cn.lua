@@ -1512,6 +1512,38 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "{{CR}}",
 		queueDesc = "柔软舒心",
 	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { -- TODO
+		itemName = "Candy of Richer",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's damage"
+		.. "{{CR}}",
+		queueDesc = "I bring harmony",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { -- TODO
+		itemName = "Candy of Rira",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's aqua damage"
+		.. "{{CR}}",
+		queueDesc = "I bring aqua",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { -- TODO
+		itemName = "Candy of Ciel",
+		description = ""
+		.. "Entering a hostile room spawns an exploding attack fly"
+		.. "#The fly deals 10x Isaac's explosive damage"
+		.. "{{CR}}",
+		queueDesc = "I bring star",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { -- TODO
+		itemName = "Candy of Koron",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's freezing damage"
+		.. "{{CR}}",
+		queueDesc = "I bring ice",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "辉夜的叹息",
 		description = ""

@@ -1732,6 +1732,34 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "푹신푹신해...",
 	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
+		itemName = "리셰 사탕",
+		description = ""
+		.. "방 입장 시 적과 접촉 시 공격력 x4의 피해를 주는 파란 아군 파리를 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "조화의 향기",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
+		itemName = "리라 사탕",
+		description = ""
+		.. "방 입장 시 적과 접촉 시 공격력 x4의 침수 피해를 주는 분홍 아군 파리를 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "아쿠아의 향기",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
+		itemName = "시엘 사탕",
+		description = ""
+		.. "방 입장 시 적과 접촉 시 공격력 x10의 폭발 피해를 주는 노란 아군 파리를 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "별빛의 향기",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
+		itemName = "코론 사탕",
+		description = ""
+		.. "방 입장 시 적과 접촉 시 공격력 x4의 냉기 피해를 주는 회색 아군 파리를 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "눈꽃의 향기",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "카구야의 인장",
 		description = ""

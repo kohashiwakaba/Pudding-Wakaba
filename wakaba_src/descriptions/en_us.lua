@@ -1439,6 +1439,34 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "Allows to use donation mechanics while in White fire state."
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
+		itemName = "Candy of Richer",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
+		itemName = "Candy of Rira",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's aqua damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
+		itemName = "Candy of Ciel",
+		description = ""
+		.. "Entering a hostile room spawns an exploding attack fly"
+		.. "#The fly deals 10x Isaac's explosive damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
+		itemName = "Candy of Koron",
+		description = ""
+		.. "Entering a hostile room spawns 2 attack flies"
+		.. "#The fly deals 4x Isaac's freezing damage"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "Sigil of Kaguya",
 		description = ""
