@@ -19,10 +19,12 @@ function wakaba:NewLevel_RoomGen()
 
 	local currentRoomIdx = level:GetCurrentRoomIndex()
 	local candidates = isc:getNewRoomCandidatesForLevel()
+	wakaba.FLog("debugLevelGen", "roomsToGenerate:", #roomsToGenerate, "/ candidates:", #candidates)
 	while #roomsToGenerate > 0 and #candidates > 0 do
 		local roomVar = isc:getRandomArrayElementAndRemove(roomsToGenerate, rng)
 		local e = isc:getRandomArrayElementAndRemove(candidates, rng)
 		local success = level:MakeRedRoomDoor(e.adjacentRoomGridIndex, e.doorSlot)
+		wakaba.FLog("debugLevelGen", "Trying to Generate room for gridIndex", e.adjacentRoomGridIndex, "slot", e.doorSlot, success)
 		if success then
 			local roomData = isc:getRoomDataForTypeVariant(roomVar[1], roomVar[2], false)
 

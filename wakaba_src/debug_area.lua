@@ -18,3 +18,9 @@ function wakaba.Log(...)
 		print(str)
 	end
 end
+
+function wakaba.FLog(flagName, ...)
+	if flags[flagName] then
+		wakaba.Log(...)
+	end
+end

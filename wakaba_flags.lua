@@ -3,6 +3,7 @@ wakaba.Flags = {
 	debugLogs = true,
 	debugConsole = true,
 
+	debugShiori = false,
 	debugLevelGen = false,
 	debugChimaki = false,
 
