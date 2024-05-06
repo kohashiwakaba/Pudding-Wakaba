@@ -575,7 +575,7 @@ wakaba.ValidCustomStat = {
 wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1.5,
 	[wakaba.Enums.Trinkets.CLOVER] = {t={0.3, 2}, append = true},
-	[wakaba.Enums.Trinkets.HARD_BOOK] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.HARD_BOOK] = {mult=3, findReplace = true},
 	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {t={2}, mults={0.5}},
 	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = 9999,
 	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = 1,

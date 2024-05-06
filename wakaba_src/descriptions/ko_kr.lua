@@ -1749,7 +1749,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
 		itemName = "시엘 사탕",
 		description = ""
-		.. "방 입장 시 적과 접촉 시 공격력 x10의 폭발 피해를 주는 노란 아군 파리를 소환합니다."
+		.. "방 입장 시 적과 접촉 시 공격력 x10의 폭발 피해를 주는 노란 아군 파리를 하나 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "별빛의 향기",
 	},
@@ -1777,10 +1777,10 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}천체관 아이템", "{{Planetarium}}천체관 아이템 2개" },
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ 선택형 아이템 및 픽업을 모두 획득할 수 있습니다." },
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} 방 입장 시 5초동안 그 방의 적에게 자력 효과를 부여합니다." },
-	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2마리 소환합니다, ", "3마리 소환합니다", "4마리 소환합니다" },
-	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2마리 소환합니다, ", "3마리 소환합니다", "4마리 소환합니다" },
-	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "소환합니다", "2마리 소환합니다", "3마리 소환합니다" },
-	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2마리 소환합니다, ", "3마리 소환합니다", "4마리 소환합니다" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2마리", "3마리", "4마리" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2마리", "3마리", "4마리" },
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "하나", "2마리", "3마리" },
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2마리", "3마리", "4마리" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
