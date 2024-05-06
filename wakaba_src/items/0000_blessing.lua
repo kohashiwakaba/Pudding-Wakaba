@@ -574,7 +574,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDam
 
 function wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 	local returndata = {}
-	local passed = 0
+	local passed = false
 	wakaba:ForAllPlayers(function(player)
 		passed = passed or (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
 		passed = passed or wakaba:HasNemesis(player)
