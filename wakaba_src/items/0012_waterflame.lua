@@ -135,11 +135,6 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 			}
 		end
 	end
-	return {
-		Discharge = false,
-		Remove = false,
-		ShowAnim = false,
-	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_WaterFlame, wakaba.Enums.Collectibles.WATER_FLAME)
 

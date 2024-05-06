@@ -130,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "113a Richer 2024.05.06"
-wakaba.intversion = 11301
+wakaba.version = "113b Richer 2024.05.06"
+wakaba.intversion = 11302
 
 wakaba.modpath = GetCurrentModPath()
 
