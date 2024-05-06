@@ -1560,6 +1560,10 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}星象房道具", "2个{{Planetarium}}星象房道具" },
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ 移除所有掉落物的选择" },
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} 使所有敌人在进入新房间时被磁化5秒" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2 attack flies", "3 attack flies", "4 attack flies" }, -- TODO
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2 attack flies", "3 attack flies", "4 attack flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "an exploding attack fly", "2 exploding attack flies", "3 exploding attack flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2 attack flies", "3 attack flies", "4 attack flies" },
 
 }
 wakaba.descriptions[desclang].cards = {

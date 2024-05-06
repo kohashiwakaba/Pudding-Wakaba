@@ -1442,28 +1442,28 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
 		itemName = "Candy of Richer",
 		description = ""
-		.. "Entering a hostile room spawns 2 attack flies"
+		.. "Entering a hostile room spawns 2 Richer flies"
 		.. "#The fly deals 4x Isaac's damage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
 		itemName = "Candy of Rira",
 		description = ""
-		.. "Entering a hostile room spawns 2 attack flies"
+		.. "Entering a hostile room spawns 2 Rira flies"
 		.. "#The fly deals 4x Isaac's aqua damage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
 		itemName = "Candy of Ciel",
 		description = ""
-		.. "Entering a hostile room spawns an exploding attack fly"
+		.. "Entering a hostile room spawns an exploding Ciel fly"
 		.. "#The fly deals 10x Isaac's explosive damage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
 		itemName = "Candy of Koron",
 		description = ""
-		.. "Entering a hostile room spawns 2 attack flies"
+		.. "Entering a hostile room spawns 2 Koron flies"
 		.. "#The fly deals 4x Isaac's freezing damage"
 		.. "{{CR}}",
 	},
@@ -1479,10 +1479,14 @@ wakaba.descriptions[desclang].trinkets = {
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ Further increase chance for Lucky Penny" },
-	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books" },
-	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items" },
+	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books", "drop 3 books" },
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items"},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ Removes all selection from pickups" },
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} Magnetize all enemies for 5 seconds when entering a new room" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2 Richer flies", "3 Richer flies", "4 Richer flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2 Rira flies", "3 Rira flies", "4 Rira flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "an exploding Ciel fly", "2 exploding Ciel flies", "3 exploding Ciel flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2 Koron flies", "3 Koron flies", "4 Koron flies" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {

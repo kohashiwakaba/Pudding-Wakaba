@@ -15,18 +15,14 @@ function wakaba:NewRoom_CaramellaCandies()
 		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 			if player:HasTrinket(wakaba.Enums.Trinkets.CANDY_OF_RICHER) then
 				local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.CANDY_OF_RICHER)
-				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_RICHER)
-				local chance = rng:RandomFloat()
-				count = chance < 0.5 and count + 1 or count
+				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_RICHER) + 1
 				for i = 1, count do
 					wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER, nil, nil, true)
 				end
 			end
 			if player:HasTrinket(wakaba.Enums.Trinkets.CANDY_OF_RIRA) then
 				local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.CANDY_OF_RIRA)
-				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_RIRA)
-				local chance = rng:RandomFloat()
-				count = chance < 0.5 and count + 1 or count
+				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_RIRA) + 1
 				for i = 1, count do
 					wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RIRA, nil, nil, true)
 				end
@@ -40,9 +36,7 @@ function wakaba:NewRoom_CaramellaCandies()
 			end
 			if player:HasTrinket(wakaba.Enums.Trinkets.CANDY_OF_KORON) then
 				local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.CANDY_OF_KORON)
-				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_KORON)
-				local chance = rng:RandomFloat()
-				count = chance < 0.5 and count + 1 or count
+				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CANDY_OF_KORON) + 1
 				for i = 1, count do
 					wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.KORON, nil, nil, true)
 				end

@@ -581,13 +581,17 @@ wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = 1,
 	--[wakaba.Enums.Trinkets.DELIMITER] = 1,
 	[wakaba.Enums.Trinkets.RANGE_OS] = 1,
-	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {goldenOnly = true, mult=2, findReplace = true},
 	[wakaba.Enums.Trinkets.AURORA_GEM] = 6.66,
 	[wakaba.Enums.Trinkets.MISTAKE] = {t={100,185}},
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {append = true},
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {append = true},
 	[wakaba.Enums.Trinkets.REPORT_CARD] = 5,
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {findReplace = true},
 }
 
 wakaba.RoomIDs = {
