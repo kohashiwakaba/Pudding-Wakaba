@@ -26,7 +26,7 @@ local class = "Pudding n Wakaba"
 -- Rira_B / Duet :
 -- Rira_B / MegaS :
 -- Rira_B / Deli : Rabbey Ward [Starting item]
--- Rira_B / Gdier :
+-- Rira_B / Gdier : Flip Card
 -- Rira_B / Mother :
 -- Rira_B / Beast : [Starting item]
 
@@ -351,4 +351,19 @@ Encyclopedia.AddTrinket({
 		end
 	end,
 	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_KORON],
+})
+-- Rira_B / Gdier : Flip Card
+Encyclopedia.AddCard({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Cards.CARD_FLIP,
+	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.CARD_FLIP],
+	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Flip",0),
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("flipcard") then
+			self.Desc = "Defeat Ultra Greedier as Tainted Rira"
+
+			return self
+		end
+	end,
 })

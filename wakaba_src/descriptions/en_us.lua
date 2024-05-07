@@ -1595,6 +1595,11 @@ wakaba.descriptions[desclang].cards = {
 		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
 		mimiccharge = 6,
 	},
+	[wakaba.Enums.Cards.CARD_FLIP] = {
+		itemName = "Flip Card",
+		description = "{{Collectible711}} Holding, or using the card grants Flip effect#Entering a room with item pedestals displays a ghostly second item on the pedestals#Using the item flips the real and ghostly item",
+		mimiccharge = 4,
+	},
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {

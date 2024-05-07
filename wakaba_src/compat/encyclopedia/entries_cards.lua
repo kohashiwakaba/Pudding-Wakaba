@@ -155,6 +155,16 @@ wakaba.encyclopediadesc.desc.cards = {
 			{str = "Spawns 3 ~ 26 Keys."},
 		},
 	},
+	[c.CARD_FLIP] = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "While holding Flip card, when Isaac enters a new room containing an item (Treasure Room, Shop, etc.), the item pedestal will have a second 'ghostly' item behind it."},
+			{str = "- The real item can be interacted with normally, while the ghostly item cannot."},
+			{str = "- The ghostly item will vanish if there is no real item on the pedestal and Isaac leaves the room."},
+			{str = "Upon use, flips all real / ghostly items around on pedestals, allowing Isaac to collect the ghostly items. Does not affect pedestals that do not contain a ghostly item."},
+			{str = "If playing as Tainted Lazarus, activating it also flips between them and Dead Tainted Lazarus."},
+		},
+	},
 	--#endregion
 
 	--#region Objects

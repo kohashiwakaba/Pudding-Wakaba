@@ -1684,6 +1684,11 @@ wakaba.descriptions[desclang].cards = {
 		tarot = { "{{BrokenHeart}}将一颗碎心恢复为 {{ColorShinyPurple}}({{EmptyBoneHeart}}或{{SoulHeart}}+{{Heart}})#{{Collectible479}} 吞下持有的饰品#{{Heart}} 治愈 {{ColorShinyPurple}}2{{CR}} 红心 如果没有碎心或饰品" },
 		queueDesc = "H补丁",
 	},
+	[wakaba.Enums.Cards.CARD_FLIP] = { -- TODO
+		itemName = "Flip Card",
+		description = "{{Collectible711}} Holding, or using the card grants Flip effect#Entering a room with item pedestals displays a ghostly second item on the pedestals#Using the item flips the real and ghostly item",
+		queueDesc = "Rira's Backside",
+	},
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {

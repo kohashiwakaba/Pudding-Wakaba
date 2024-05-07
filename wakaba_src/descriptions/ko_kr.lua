@@ -1893,6 +1893,12 @@ wakaba.descriptions[desclang].cards = {
 		tarot = {"{{BrokenHeart}}부서진하트 1개를 {{ColorShinyPurple}}{{BoneHeart}} 혹은 {{SoulHeart}}+{{Heart}}{{CR}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 {{ColorShinyPurple}}+2{{CR}}"},
 		mimiccharge = 6,
 	},
+	[wakaba.Enums.Cards.CARD_FLIP] = {
+		itemName = "뒤집기 카드",
+		description = "{{Collectible711}} 소지 중일 때 일부 아이템의 뒤쪽에 숨겨진 아이템이 흐리게 표시됩니다.#사용 시 원래 아이템을 숨겨진 아이템으로 뒤집거나, 생성합니다.",
+		queueDesc = "리라의 뒷모습?",
+		mimiccharge = 4,
+	},
 }
 wakaba.descriptions[desclang].runechalk = {
 
