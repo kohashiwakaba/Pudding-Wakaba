@@ -14,6 +14,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function (_)
 	roomNo = data.Variant
 	roomSubType = data.Subtype
 	roomWeight = data.InitialWeight
+	roomWeight = (math.floor(roomWeight * 1000)) / 1000
 	roomDifficulty = data.Difficulty or data.Weight
 
 	if StageAPI then
