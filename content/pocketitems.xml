@@ -30,6 +30,7 @@
 	<card pickup="4112" type="tarot_reverse" description="Ecchi patcher" hud="wakaba_Rira Ticket" name="Rira Ticket" mimiccharge="6"/>
 
 	<card pickup="4112" type="tarot_reverse" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>
+	<card pickup="4112" type="tarot_reverse" description="???" hud="wakaba_Flip" name="Flip Card" mimiccharge="4"/>
 
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />

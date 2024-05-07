@@ -311,6 +311,7 @@ wakaba.Enums.Cards = {
 	CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 	CARD_RICHER_TICKET = Isaac.GetCardIdByName("wakaba_Richer Ticket"),
 	CARD_RIRA_TICKET = Isaac.GetCardIdByName("wakaba_Rira Ticket"),
+	CARD_FLIP = Isaac.GetCardIdByName("wakaba_Flip"),
 
 }
 
