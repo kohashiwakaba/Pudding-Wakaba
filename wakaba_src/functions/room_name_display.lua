@@ -30,6 +30,7 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 100, function(_)
 	if wakaba.state.options.hudroomnumber > 0 and wakaba.state.options.hudroomnumber ~= 3 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		local bunnyParfait = false
 		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 			bunnyParfait = bunnyParfait or player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.BUNNY_PARFAIT)
@@ -50,6 +51,7 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 101, function(_)
 	if wakaba.state.options.hudroomname > 0 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		local text = roomName
 		if wakaba.state.options.hudroomnumber == 3 then
 			local bunnyParfait = false
@@ -105,6 +107,7 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 102, function(_)
 	if wakaba.state.options.hudroomdiff == 3 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 2)
 		local room = Game():GetRoom()
 		local tab = {
@@ -117,6 +120,7 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 102, function(_)
 	if wakaba.state.options.hudroomdiff > 0 and wakaba.state.options.hudroomdiff ~= 3 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 2)
 		local room = Game():GetRoom()
 		local tab = {
@@ -129,6 +133,7 @@ end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 103, function(_)
 	if wakaba.state.options.hudroomweight > 0 and wakaba.state.options.hudroomdiff ~= 3 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		wakaba.globalHUDSprite:SetFrame("RoomNameDisplay", 3)
 		local room = Game():GetRoom()
 		local tab = {

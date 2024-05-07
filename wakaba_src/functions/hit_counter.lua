@@ -50,6 +50,7 @@ wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_HitCo
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 0, function(_)
 	if wakaba.state.options.hudhitcounter > 0 then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		local totalHitCounter = wakaba.runstate.hitcounter or 0
 		local penaltyHitCounter = wakaba.runstate.hitcounterpenalty or 0
 		if wakaba.state.options.hudhitcounter == 1 then

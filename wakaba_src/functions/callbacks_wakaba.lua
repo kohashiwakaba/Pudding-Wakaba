@@ -48,6 +48,22 @@ wakaba.Callback = {
 	-- ---
 	RENDER_GLOBAL_FOUND_HUD = "WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD",
 
+	-- ---
+	-- BOSS_DESTINATION
+	-- ---
+	--
+	-- Called from WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD, rendering Found HUD Elements
+	--
+	-- If returned value is a table that contains with both elements, HUD will render to show which boss dest
+	-- Modified values are passed along to the remaining callbacks. Returning false will nullify destination and skips the remaining callbacks.
+	--
+	-- ---
+	-- Returned values : Retruns with table with following elements
+	-- - `Boss` : `string` - Set boss, values must be one of following ("BlueBaby", "Lamb", "MegaSatan", "Delirium", "Mother", "Greed", "Beast")
+	-- - `Quality`(optional) : `int` - Set quality
+	-- ---
+	BOSS_DESTINATION = "WakabaCallbacks.BOSS_DESTINATION",
+
 	ANY_WEAPON_FIRE = "WakabaCallbacks.ANY_WEAPON_FIRE",
 
 	-- ---

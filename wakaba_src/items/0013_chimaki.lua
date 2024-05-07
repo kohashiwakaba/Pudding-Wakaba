@@ -959,6 +959,7 @@ function wakaba:HUD_Chimaki()
 		fam = fams[1]
 	end
 	if fam then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		local data = fam:GetData()
 		wakaba.globalHUDSprite:SetFrame("Chimaki", 0)
 		local tab = {

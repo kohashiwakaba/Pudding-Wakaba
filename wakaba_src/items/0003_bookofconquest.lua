@@ -567,6 +567,7 @@ function wakaba:HUD_BookOfConquest()
 		end
 	end)
 	if hasConquest then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		wakaba.globalHUDSprite:SetFrame("BookOfConquest", 0)
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
