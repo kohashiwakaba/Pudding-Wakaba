@@ -157,6 +157,7 @@ wakaba.Enums.Collectibles = {
 
 	RABBEY_WARD = Isaac.GetItemIdByName("Rabbey Ward"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
+	AZURE_RIR = Isaac.GetItemIdByName("Azure Rir"),
 
 	-- Tainted Items
 	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),

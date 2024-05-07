@@ -248,7 +248,7 @@ wakaba.UnlockTables = {
 		Delirium	= {"rabbeyward", "collectible",	wakaba.Enums.Collectibles.WATER_FLAME,				function() wakaba:TryPlayAchievementPaper("waterflame", "Boss") end},
 		MegaSatan	= {"aquatrinket", "null",		nil,			function() wakaba:TryPlayAchievementPaper("crystalrestock", "MegaSatan") end},
 		Mother		= {"uuuuuuuuuuuu", "trinket",	wakaba.Enums.Trinkets.ETERNITY_COOKIE,			function() wakaba:TryPlayAchievementPaper("eternitycookie", "Boss") end},
-		Beast		= {"uuuuuuuuuuuu", "collectible",	wakaba.Enums.Collectibles.WINTER_ALBIREO,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
+		Beast		= {"azurerir", "collectible",	wakaba.Enums.Collectibles.AZURE_RIR,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
 		Greedier	= {"flipcard", "card",		wakaba.Enums.Cards.CARD_FLIP,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
 	}, ]]
 	[-999] = {
