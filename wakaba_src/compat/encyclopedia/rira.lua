@@ -23,12 +23,12 @@ local class = "Pudding n Wakaba"
 -- Rira / Beast : Maid Duet
 
 -- Rira_B / Quartet : Caramella Candy Bag
--- Rira_B / Duet :
--- Rira_B / MegaS :
+-- Rira_B / Duet : Soul of Rira
+-- Rira_B / MegaS : Aqua Trinkets
 -- Rira_B / Deli : Rabbey Ward [Starting item]
 -- Rira_B / Gdier : Flip Card
--- Rira_B / Mother :
--- Rira_B / Beast : [Starting item]
+-- Rira_B / Mother : Pink Fork
+-- Rira_B / Beast : Azure Rir [Starting item]
 
 -- Rira_T / Quartet :
 -- Rira_T / Duet :

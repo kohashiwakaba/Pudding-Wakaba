@@ -189,11 +189,12 @@
 
 	<trinket name="Rabbit Pillow" description="Feels mofumofu" gfx="rabbitpillow.png" hidden="true" achievement="9999" />
 
-	<trinket name="Candy of Richer" description="I bring harmony" gfx="candyofricher.png" persistent="true" hidden="true" achievement="9999" />
-	<trinket name="Candy of Rira" description="I bring aqua" gfx="candyofrira.png" persistent="true" hidden="true" achievement="9999"/>
-	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" persistent="true" hidden="true" achievement="9999"/>
-	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" persistent="true" hidden="true" achievement="9999"/>
-	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" persistent="true" hidden="true" achievement="9999"/>
+	<trinket name="Candy of Richer" description="I bring harmony" gfx="candyofricher.png" hidden="true" achievement="9999" />
+	<trinket name="Candy of Rira" description="I bring aqua" gfx="candyofrira.png" hidden="true" achievement="9999"/>
+	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" hidden="true" achievement="9999"/>
+	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" hidden="true" achievement="9999"/>
+	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" hidden="true" achievement="9999"/>
+	<trinket name="Pink Fork" description="Aquatic shield" gfx="pinkfork.png" hidden="true" achievement="9999"/>
 
 	<trinket name="Sigil of Kaguya" description="Weapon from Moon" gfx="sigilofkaguya.png" hidden="true" achievement="9999"/>
 

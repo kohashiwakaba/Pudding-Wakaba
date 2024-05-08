@@ -232,6 +232,7 @@ wakaba.Enums.Trinkets = {
 	CANDY_OF_CIEL = Isaac.GetTrinketIdByName("Candy of Ciel"),
 	CANDY_OF_KORON = Isaac.GetTrinketIdByName("Candy of Koron"),
 	CARAMELLA_CANDY_BAG = Isaac.GetTrinketIdByName("Caramella Candy Bag"),
+	PINK_FORK = Isaac.GetTrinketIdByName("Pink Fork"),
 
 	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 }
