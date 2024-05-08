@@ -103,7 +103,7 @@ end
 ---@param npc EntityNPC
 function wakaba:NPCInit_BossDest(npc)
 	local bossData = wakaba:GetBossDestinationData()
-	if not bossData.ModifyHealth then return end
+	if not (bossData and bossData.ModifyHealth) then return end
 	local weight = wakaba:getBossBuffWeight(npc)
 	if not weight or npc:GetData().w_destHealthAltered then return end
 	local totalHealth = wakaba:getOptionValue("totalbosshealth") or 500000
