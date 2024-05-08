@@ -58,6 +58,7 @@ function wakaba:GetBossDestinationData()
 	local bossData = {
 		Boss = nil,
 		Quality = nil,
+		ModifyHealth = nil,
 	}
 	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.BOSS_DESTINATION)) do
 		local newData = callbackData.Function(callbackData.Mod)
@@ -67,6 +68,7 @@ function wakaba:GetBossDestinationData()
 		elseif type(newData) == "table" and newData ~= nil then
 			bossData.Boss = newData.Boss or bossData.Boss
 			bossData.Quality = newData.Quality or bossData.Quality
+			bossData.ModifyHealth = newData.ModifyHealth or bossData.ModifyHealth
 		end
 	end
 	if skip then
@@ -80,6 +82,7 @@ wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 	return {
 		Boss = wakaba.runstate.bossdest,
 		Quality = wakaba.runstate.startquality,
+		ModifyHealth = wakaba.runstate.bossdesthealth,
 	}
 end)
 
@@ -99,6 +102,8 @@ end
 
 ---@param npc EntityNPC
 function wakaba:NPCInit_BossDest(npc)
+	local bossData = wakaba:GetBossDestinationData()
+	if not bossData.ModifyHealth then return end
 	local weight = wakaba:getBossBuffWeight(npc)
 	if not weight or npc:GetData().w_destHealthAltered then return end
 	local totalHealth = wakaba:getOptionValue("totalbosshealth") or 500000
@@ -119,7 +124,7 @@ function wakaba:NPCUpdate_BossDest(npc)
 end
 wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_BossDest)
 
-function wakaba:BossRoll(seed)
+function wakaba:BossRoll(modifyHealth, seed)
 	local entries = {}
 	for k, _ in pairs(bossTables) do
 		table.insert(entries, k)
@@ -130,6 +135,7 @@ function wakaba:BossRoll(seed)
 	local selected = rng:RandomInt(#entries) + 1
 	local entry = entries[selected]
 	wakaba.runstate.bossdest = entry
+	wakaba.runstate.bossdesthealth = modifyHealth
 	return entry
 end
 
