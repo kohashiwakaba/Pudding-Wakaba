@@ -96,6 +96,12 @@ end
 
 wakaba.Blacklists.FlagLock = {}
 wakaba.Blacklists.FlagLock.collectible = {
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = function()
+		return not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = function()
+		return not REPENTOGON
+	end,
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = function()
 		return not wakaba.Flags.stackableDamocles
 	end,
