@@ -10,7 +10,7 @@ local bossTables = {
 	["MegaSatan"] = 2,
 	["Delirium"] = 3,
 	["Mother"] = 4,
-	["Greed"] = 5,
+	--["Greed"] = 5,
 	["Beast"] = 6,
 }
 
