@@ -257,6 +257,8 @@ if EID then
 			return descObj
 		end
 
+		table.insert(EID.collectiblesToCheck, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
+
 		local collectiblesOwned = {}
 		local hasPlayer = {}
 
@@ -536,10 +538,27 @@ if EID then
 			end
 			--EID:addDescriptionModifier("Wakaba Last Pool", LastPoolCondition, LastPoolCallback)
 
+			-- Handle Apollyon Crisis description addition
+			local function ApcCond(descObj)
+				if descObj.ObjType ~= 5 then return false end
+				EID:CheckPlayersCollectibles()
+				local callbacks = {}
+				if descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE then
+					if EID.collectiblesOwned[wakaba.Enums.Collectibles.APOLLYON_CRISIS] then
+						EID.collectiblesOwned[706] = EID.collectiblesOwned[wakaba.Enums.Collectibles.APOLLYON_CRISIS]
+						if EID.Config["DisplayVoidStatInfo"] then
+							EID.collectiblesOwned[477] = EID.collectiblesOwned[wakaba.Enums.Collectibles.APOLLYON_CRISIS]
+						end
+					end
+				end
+				return callbacks
+			end
+
 			EID:addDescriptionModifier("Book of Shiori", ShioriBookCondition, ShioriBookCallback)
 			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
+			--EID:addDescriptionModifier("Apollyon Crisis", ApcCond)
 
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end

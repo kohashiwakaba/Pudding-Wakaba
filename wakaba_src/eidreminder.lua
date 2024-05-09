@@ -348,3 +348,5 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.CUNNING_
 		descObj.Description = demoDescObj.Description
 	end,
 }
+
+EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.APOLLYON_CRISIS] = EID.ItemReminderDescriptionModifier["5.100.477"]
