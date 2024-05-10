@@ -113,10 +113,16 @@ function wakaba:spawnCloverChestReward(chest, player)
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 		wakaba:MakeCustomPedestal(item, haspp and "gfx/items/wakaba_cloverchest_altar_p2p.png" or "gfx/items/wakaba_cloverchest_altar.png", 10)
 		item.Wait = 10
+		if Epiphany then
+			Epiphany:AddCainEssenceInfo(item, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
+		end
 		chest:Remove()
 	else
 		for i, entry in ipairs(rewards) do
 			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba.RandomVelocity(), nil):ToPickup()
+		end
+		if Epiphany then
+			Epiphany:AddCainEssenceInfo(chest, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end
 	end
 end
