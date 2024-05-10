@@ -30,7 +30,7 @@ function wakaba:AlterPlayerDamage_Rira(player, amount, flags, source, countdown)
 	if flags & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then return end
 	--print(flags)
 	--print((flags & DamageFlag.DAMAGE_RED_HEARTS > 0), (flags & DamageFlag.DAMAGE_INVINCIBLE > 0), (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0), (flags & DamageFlag.DAMAGE_NOKILL > 0), (flags & DamageFlag.DAMAGE_FAKE > 0))
-	if (player:GetPlayerType() == wakaba.Enums.Players.RIRA or player:HasTrinket(wakaba.Enums.Trinkets.RABBIT_PILLOW))
+	if (player:GetPlayerType() == wakaba.Enums.Players.RIRA or player:GetPlayerType() == wakaba.Enums.Players.RIRA_B or player:HasTrinket(wakaba.Enums.Trinkets.RABBIT_PILLOW))
 	and player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
 	and not wakaba:WillDamageBeFatal(player, amount, flags, true, false, true) then
 		if flags & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CHEST) > 0
