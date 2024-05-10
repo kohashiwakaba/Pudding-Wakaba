@@ -49,7 +49,7 @@ function wakaba:NewLevel_RedCorruption()
 	end
 	if corruptionPower > 0 and not game:IsGreedMode() then
 		local candidates = {}
-		for i = 0, 2 do
+		for i = 0, 1 do
 			wakaba.Log("Corruption begin : Take", i)
 			candidates = {}
 			for i=0,168 do
@@ -68,13 +68,14 @@ function wakaba:NewLevel_RedCorruption()
 					if not isBlacklisted(e, d) and isc:isDoorSlotValidAtGridIndexForRedRoom(d, e) then
 						local chance = wakaba:StackChance(baseChance + wakaba:LuckBonus(totalLuck, parLuck, 1 - baseChance), corruptionPower)
 						local res = rng:RandomFloat()
-						wakaba.Log("Corruption loc :", e, "/ slot :", d, "/ chance :", wakaba:Round(chance, 0.001), "/ result :", wakaba:Round(res, 0.001))
+						local success = false
 						if res < chance then
-							local success = level:MakeRedRoomDoor(e, d)
+							success = level:MakeRedRoomDoor(e, d)
 							if success then
 								table.insert(blacklisted, {e, d})
 							end
 						end
+						wakaba.Log("Corruption loc :", e, "/ slot :", d, "/ chance :", wakaba:Round(chance, 0.001), "/ result :", wakaba:Round(res, 0.001), "/ success :", success)
 					end
 				end
 			end
