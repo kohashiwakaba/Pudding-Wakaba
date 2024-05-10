@@ -801,8 +801,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Isaac gets Golden Bomb permanently."},
-			{str = "Replaces all bomb spawns with a random pickup."},
-			{str = "Upon taking damage, spawns a golden troll bomb around the room."},
+			{str = "Replaces all bomb spawns with a random pickup or golden troll bomb."},
+			{str = "Upon taking damage, spawns 6 golden troll bombs around the room."},
 			{str = "All troll bombs are converted into Golden troll bombs if possible."},
 		},
 	},

@@ -753,7 +753,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Curse of The Tower 2",
 		description = ""
 		.. "#{{GoldenBomb}} Infinite Bombs"
-		.. "#Upon taking damage, spawns a golden troll bomb around the room"
+		.. "#Upon taking damage, spawns 6 golden troll bombs around the room"
 		.. "#!!! Beware: All troll bombs are converted into Golden troll bombs if possible!"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
