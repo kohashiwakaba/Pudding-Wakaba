@@ -144,9 +144,14 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 	if not bossData or type(bossData) ~= "table" or not bossData.Boss or not bossTables[bossData.Boss] then return end
 	wakaba.globalHUDSprite:SetFrame("BossDestination", bossTables[bossData.Boss])
 	local text = bossData.Text or bossData.Boss
-	if bossData.Quality and type(bossData.Quality) == "number" then
+	if bossData.ModifyHealth then
+		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 6)
+		text = "Ex|"..text
+	elseif bossData.Quality and type(bossData.Quality) == "number" then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", bossData.Quality)
 		text = "Q".. bossData.Quality .."|"..text
+	else
+		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 5)
 	end
 	local tab = {
 		Sprite = wakaba.globalHUDSprite,
