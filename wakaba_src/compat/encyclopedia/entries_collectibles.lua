@@ -1467,8 +1467,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	MAGMA_BLADE = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Slashes fire blade on tear attack"},
-			{str = "+100% Damage multiplier for non-tear attacks"},
+			{str = "After every 20 tears fired, Isaac will fire slash flame attack and wave of flames"},
+			{str = "Each flame wave deals 2x of Isaac's damage"},
 		},
 	},
 	LUNAR_DAMOCLES = {

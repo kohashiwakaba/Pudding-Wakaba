@@ -2793,7 +2793,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
-		desc = "{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame tear every 10 tears",
+		desc = "↑ {{Damage}}Damage +2#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears",
 		type = "replaceAll",
 		func = function() return REPENTOGON end,
 	},

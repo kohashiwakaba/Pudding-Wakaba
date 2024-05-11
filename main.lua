@@ -44,7 +44,7 @@ if REPENTOGON then
 		isc.ISCFeature.MODDED_ELEMENT_SETS,
 	}
 end
-wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class Mod
+wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class wakaba: ModReference
 
 include('wakaba_flags')
 include('wakaba_src.debug_area')

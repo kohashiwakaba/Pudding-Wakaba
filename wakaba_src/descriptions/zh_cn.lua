@@ -2466,7 +2466,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}减少道具1~2的充能上限",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = { -- TODO
-		desc = "{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame tear every 10 tears",
+		desc = "↑ {{Damage}} +1.5攻击力#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears",
 	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
