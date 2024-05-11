@@ -59,6 +59,8 @@ function wakaba:GetBossDestinationData()
 		Boss = nil,
 		Quality = nil,
 		ModifyHealth = nil,
+		Lunatic = nil,
+		DamoclesStart = nil,
 	}
 	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.BOSS_DESTINATION)) do
 		local newData = callbackData.Function(callbackData.Mod)
@@ -70,6 +72,7 @@ function wakaba:GetBossDestinationData()
 			bossData.Quality = newData.Quality ~= nil and newData.Quality or bossData.Quality
 			bossData.ModifyHealth = newData.ModifyHealth ~= nil and newData.ModifyHealth or bossData.ModifyHealth
 			bossData.Lunatic = newData.Lunatic ~= nil and newData.Lunatic or bossData.Lunatic
+			bossData.DamoclesStart = newData.DamoclesStart ~= nil and newData.DamoclesStart or bossData.DamoclesStart
 		end
 	end
 	if skip then
@@ -85,6 +88,7 @@ wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 		Quality = wakaba.runstate.startquality, --시작 아이템 퀄리티 (HUD 표시용)
 		ModifyHealth = wakaba.runstate.bossdesthealth, --50만 챌린지 적용
 		Lunatic = wakaba.runstate.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
+		DamoclesStart = wakaba.runstate.damoclesstart, -- 50만 챌린지 적용 시 다모 적용
 	}
 end)
 
@@ -161,6 +165,10 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 		table.insert(prepend, "Q".. bossData.Quality)
 	else
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 5)
+	end
+	if #prepend > 0 then
+		local prependText = table.concat(prepend, "|")
+		text = "["..prependText.."]"..text
 	end
 	local tab = {
 		Sprite = wakaba.globalHUDSprite,
