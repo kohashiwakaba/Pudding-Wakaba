@@ -275,7 +275,7 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_DEVIL,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
-		Encyclopedia.ItemPools.POOL_BEGGAR,
+		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 	},
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("magmablade") then

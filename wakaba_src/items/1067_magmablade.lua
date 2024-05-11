@@ -35,7 +35,7 @@ if REPENTOGON then
 		local fires = (player:GetData().w_magmaCount or 0) + fireAmount
 		local parNum = math.max(20 - (getMagmaBladeMultiplier(player) * 4))
 		if fires >= parNum then
-			fires = fires - (parNum + 1)
+			fires = -1
 			wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.MagmaBlade)
 			local multiParams = player:GetMultiShotParams(WeaponType.WEAPON_TEARS)
 			for i = 1, multiParams:GetNumTears() do
