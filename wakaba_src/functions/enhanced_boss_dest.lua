@@ -74,6 +74,7 @@ function wakaba:GetBossDestinationData()
 			bossData.ModifyHealthAmount = newData.ModifyHealthAmount ~= nil and newData.ModifyHealthAmount or bossData.ModifyHealthAmount
 			bossData.Lunatic = newData.Lunatic ~= nil and newData.Lunatic or bossData.Lunatic
 			bossData.DamoclesStart = newData.DamoclesStart ~= nil and newData.DamoclesStart or bossData.DamoclesStart
+			bossData.LockTarget = newData.LockTarget ~= nil and newData.LockTarget or bossData.LockTarget
 		end
 	end
 	if skip then
@@ -91,6 +92,7 @@ wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 		ModifyHealthAmount = wakaba.runstate.bossdesthealthamount, --50만 챌린지 적용 체력(총합 기준, 기본값 500000)
 		Lunatic = wakaba.runstate.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
 		DamoclesStart = wakaba.runstate.damoclesstart, -- 50만 챌린지 적용 시 다모 적용
+		LockTarget = wakaba.state.bossdestlock, -- 리셋 시 이전 타겟 유지
 	}
 end)
 
@@ -132,7 +134,7 @@ function wakaba:NPCUpdate_BossDest(npc)
 end
 wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_BossDest)
 
-function wakaba:BossRoll(modifyHealth, lunatic, seed)
+function wakaba:BossRoll(modifyHealth, lunatic, damocles, lock, seed)
 	local entries = {}
 	for k, _ in pairs(bossTables) do
 		table.insert(entries, k)
@@ -145,6 +147,8 @@ function wakaba:BossRoll(modifyHealth, lunatic, seed)
 	wakaba.runstate.bossdest = entry
 	wakaba.runstate.bossdesthealth = modifyHealth
 	wakaba.runstate.bossdestlunatic = lunatic
+	wakaba.runstate.damoclesstart = damocles
+	wakaba.runstate.bossdestlock = lock
 	return entry
 end
 
