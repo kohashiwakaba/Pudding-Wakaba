@@ -71,6 +71,7 @@ function wakaba:GetBossDestinationData()
 			bossData.Boss = newData.Boss ~= nil and newData.Boss or bossData.Boss
 			bossData.Quality = newData.Quality ~= nil and newData.Quality or bossData.Quality
 			bossData.ModifyHealth = newData.ModifyHealth ~= nil and newData.ModifyHealth or bossData.ModifyHealth
+			bossData.ModifyHealthAmount = newData.ModifyHealthAmount ~= nil and newData.ModifyHealthAmount or bossData.ModifyHealthAmount
 			bossData.Lunatic = newData.Lunatic ~= nil and newData.Lunatic or bossData.Lunatic
 			bossData.DamoclesStart = newData.DamoclesStart ~= nil and newData.DamoclesStart or bossData.DamoclesStart
 		end
@@ -87,6 +88,7 @@ wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 		Boss = wakaba.runstate.bossdest, --타겟 보스 (HUD 표시용, 50만 챌린지 적용 시 해당 보스 체력 강화)
 		Quality = wakaba.runstate.startquality, --시작 아이템 퀄리티 (HUD 표시용)
 		ModifyHealth = wakaba.runstate.bossdesthealth, --50만 챌린지 적용
+		ModifyHealthAmount = wakaba.runstate.bossdesthealthamount, --50만 챌린지 적용 체력(총합 기준, 기본값 500000)
 		Lunatic = wakaba.runstate.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
 		DamoclesStart = wakaba.runstate.damoclesstart, -- 50만 챌린지 적용 시 다모 적용
 	}
@@ -112,7 +114,7 @@ function wakaba:NPCInit_BossDest(npc)
 	if not (bossData and bossData.ModifyHealth) then return end
 	local weight = wakaba:getBossBuffWeight(npc)
 	if not weight or npc:GetData().w_destHealthAltered then return end
-	local totalHealth = wakaba:getOptionValue("totalbosshealth") or 500000
+	local totalHealth = bossData.ModifyHealthAmount or 500000
 	npc.MaxHitPoints = math.max(totalHealth * weight, 1)
 	npc.HitPoints = npc.MaxHitPoints
 end
