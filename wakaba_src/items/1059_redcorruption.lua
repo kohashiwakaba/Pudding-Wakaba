@@ -48,8 +48,9 @@ function wakaba:NewLevel_RedCorruption()
 		end
 	end
 	if corruptionPower > 0 and not game:IsGreedMode() then
+		local iterationCount = wakaba:IsLunatic() and 0 or 1
 		local candidates = {}
-		for i = 0, 1 do
+		for i = 0, iterationCount do
 			wakaba.Log("Corruption begin : Take", i)
 			candidates = {}
 			for i=0,168 do
