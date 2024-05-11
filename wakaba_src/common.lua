@@ -1364,3 +1364,7 @@ function wakaba:IsActiveFromProceduralItem(player, usedItem, slot)
 		return false, false, true
 	end
 end
+
+function wakaba:IsLunatic()
+	return wakaba.runstate.bossdestlunatic -- TODO add callback for this
+end

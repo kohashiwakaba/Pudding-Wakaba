@@ -566,7 +566,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
 
 function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, countdown)
-	if (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
+	if not wakaba:IsLunatic() and (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
 		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end
@@ -579,7 +579,7 @@ function wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 		passed = passed or (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
 		passed = passed or wakaba:HasNemesis(player)
 	end)
-	if passed then
+	if not wakaba:IsLunatic() and passed then
 		returndata.sendNewDamage = true
 		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
 	end

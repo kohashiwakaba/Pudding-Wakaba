@@ -284,11 +284,13 @@ wakaba:AddCallback(wakaba.Callback.POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS
 		rerollProps.qualityChance[1] = 0
 		rerollProps.qualityChance[2] = 0
 	elseif not rerollProps.eatHeartUsed and rerollProps.WakabaNemesis and not rerollProps.WakabaBlessing and not rerollProps.SacredOrb then
-		rerollProps.qualityChance[3] = 0.5
+		rerollProps.qualityChance[3] = wakaba:IsLunatic() and 0 or 0.5
 		rerollProps.qualityChance[4] = 0
 	elseif not rerollProps.eatHeartUsed and rerollProps.WakabaBlessing and not rerollProps.WakabaNemesis and not rerollProps.SacredOrb then
 		rerollProps.qualityChance[0] = 0
-		rerollProps.qualityChance[1] = 0
+		if not wakaba:IsLunatic() then
+			rerollProps.qualityChance[1] = 0
+		end
 	end
 
 	if rerollProps.DoubleDreams and rerollProps.GoldenDoubleDreams then

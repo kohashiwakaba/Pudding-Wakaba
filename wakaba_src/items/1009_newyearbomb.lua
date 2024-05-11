@@ -10,7 +10,7 @@ function wakaba:NewYearBombDamage(source, target, data, newDamage, newFlags, isA
 			returndata.newDamage = newDamage * (2 ^ num)
 		end
 		returndata.sendNewDamage = true
-		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		returndata.newFlags = not wakaba:IsLunatic() and newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR or newFlags
 		SFXManager():Play(SoundEffect.SOUND_BONE_SNAP)
 	end
 	return returndata

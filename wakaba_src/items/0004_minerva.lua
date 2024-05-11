@@ -448,7 +448,7 @@ wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_Minerv
 
 function wakaba:AlterPlayerDamage_Minerva(player, amount, flags, source, countdown)
 	local data = player:GetData()
-	if data.wakaba.hasminerva > 0 then
+	if not wakaba:IsLunatic() and data.wakaba.hasminerva > 0 then
 		return 1, flags | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end

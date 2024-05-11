@@ -76,7 +76,7 @@ function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, v
 			and not entity:IsInvincible()
 			and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 			then
-				entity:TakeDamage(enemydmgvalue, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(player), 0)
+				entity:TakeDamage(enemydmgvalue, not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0, EntityRef(player), 0)
 			end
 		end
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DARK_ARTS, UseFlag.USE_NOANIM | UseFlag.USE_VOID, -1)

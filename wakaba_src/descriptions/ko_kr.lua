@@ -748,8 +748,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "마그마 블레이드",
 		description = ""
-		.. "#{{Burning}} 공격 시 캐릭터의 공격방향으로 공격력 x3의 화염 검기를 추가로 발사합니다."
-		.. "#눈물 공격이 아닌 경우 {{DamageSmall}}공격력 배율 x2."
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON 전용{{CR}}#REPENTOGON을 실행중이지 않았을 때 이 아이템을 발견하면 모드 개발자에게 연락 바람"
 		.. "{{CR}}",
 		queueDesc = "마그마 스트림",
 	},
@@ -1481,7 +1480,33 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{Player"..wakaba.Enums.Players.SHIORI.."}} 작은 아이작 패밀리어를 3마리 소환합니다.",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
+		{
+			desc = ""
+			.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
+			.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
+			.. "{{CR}}",
+			modifierText = "Lunatic",
+		},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
+			modifierText = "Wakaba",
+		},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
+		{
+			desc = ""
+			.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 방어 무시 제거됨)"
+			.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
+			.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
+			.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
+			.. "{{CR}}",
+			modifierText = "Lunatic",
+		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
@@ -1530,6 +1555,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}}{{ColorRicher}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",
+	},
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
+		desc = "{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 10번 발사할 때마다 화염 검을 휘두릅니다.",
 	},
 }
 

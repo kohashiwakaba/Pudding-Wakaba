@@ -102,6 +102,15 @@ wakaba.Blacklists.FlagLock.collectible = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = function()
 		return not REPENTOGON
 	end,
+	[wakaba.Enums.Collectibles.NEKO_FIGURE] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.PLASMA_BEAM] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = function()
+		return wakaba:IsLunatic()
+	end,
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = function()
 		return not wakaba.Flags.stackableDamocles
 	end,

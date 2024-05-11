@@ -66,9 +66,10 @@ function wakaba:GetBossDestinationData()
 			skip = true
 			break
 		elseif type(newData) == "table" and newData ~= nil then
-			bossData.Boss = newData.Boss or bossData.Boss
-			bossData.Quality = newData.Quality or bossData.Quality
-			bossData.ModifyHealth = newData.ModifyHealth or bossData.ModifyHealth
+			bossData.Boss = newData.Boss ~= nil and newData.Boss or bossData.Boss
+			bossData.Quality = newData.Quality ~= nil and newData.Quality or bossData.Quality
+			bossData.ModifyHealth = newData.ModifyHealth ~= nil and newData.ModifyHealth or bossData.ModifyHealth
+			bossData.Lunatic = newData.Lunatic ~= nil and newData.Lunatic or bossData.Lunatic
 		end
 	end
 	if skip then
@@ -80,9 +81,10 @@ end
 
 wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 	return {
-		Boss = wakaba.runstate.bossdest,
-		Quality = wakaba.runstate.startquality,
-		ModifyHealth = wakaba.runstate.bossdesthealth,
+		Boss = wakaba.runstate.bossdest, --타겟 보스 (HUD 표시용, 50만 챌린지 적용 시 해당 보스 체력 강화)
+		Quality = wakaba.runstate.startquality, --시작 아이템 퀄리티 (HUD 표시용)
+		ModifyHealth = wakaba.runstate.bossdesthealth, --50만 챌린지 적용
+		Lunatic = wakaba.runstate.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
 	}
 end)
 
@@ -124,7 +126,7 @@ function wakaba:NPCUpdate_BossDest(npc)
 end
 wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_BossDest)
 
-function wakaba:BossRoll(modifyHealth, seed)
+function wakaba:BossRoll(modifyHealth, lunatic, seed)
 	local entries = {}
 	for k, _ in pairs(bossTables) do
 		table.insert(entries, k)
@@ -136,6 +138,7 @@ function wakaba:BossRoll(modifyHealth, seed)
 	local entry = entries[selected]
 	wakaba.runstate.bossdest = entry
 	wakaba.runstate.bossdesthealth = modifyHealth
+	wakaba.runstate.bossdestlunatic = lunatic
 	return entry
 end
 
@@ -144,18 +147,25 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 	if not bossData or type(bossData) ~= "table" or not bossData.Boss or not bossTables[bossData.Boss] then return end
 	wakaba.globalHUDSprite:SetFrame("BossDestination", bossTables[bossData.Boss])
 	local text = bossData.Text or bossData.Boss
+	local textColor = nil
+	local prepend = {}
+	if bossData.Lunatic then
+		table.insert(prepend, "LUN")
+		textColor = KColor(1,0.2,0.2,1,0,0,0)
+	end
 	if bossData.ModifyHealth then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 6)
-		text = "Ex|"..text
+		table.insert(prepend, "EX")
 	elseif bossData.Quality and type(bossData.Quality) == "number" then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", bossData.Quality)
-		text = "Q".. bossData.Quality .."|"..text
+		table.insert(prepend, "Q".. bossData.Quality)
 	else
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 5)
 	end
 	local tab = {
 		Sprite = wakaba.globalHUDSprite,
-		Text = text
+		Text = text,
+		TextColor = textColor,
 	}
 	return tab
 end)

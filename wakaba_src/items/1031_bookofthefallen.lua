@@ -147,7 +147,7 @@ function wakaba:BookofTheFallenOnDamage_Pugartory(player, ent, source, newDamage
 	if player and source.Entity:GetData().wakaba and source.Entity:GetData().wakaba.isFallenGhost then
 		returndata.newDamage = player.Damage
 		returndata.sendNewDamage = true
-		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
+		returndata.newFlags = not wakaba:IsLunatic() and newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES or newFlags | DamageFlag.DAMAGE_CLONES
 	end
 	return returndata
 end

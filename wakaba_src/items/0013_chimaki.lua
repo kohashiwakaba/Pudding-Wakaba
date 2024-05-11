@@ -84,7 +84,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 			local player = parent.Entity:ToPlayer()
 			for _, enemy in ipairs(Isaac.FindInRadius(effect.Position, effect.Size, EntityPartition.ENEMY)) do
 				if enemy:IsVulnerableEnemy() then
-					enemy:TakeDamage(player.Damage * 4, DamageFlag.DAMAGE_IGNORE_ARMOR, parent, 0)
+					enemy:TakeDamage(player.Damage * 4, not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0, parent, 0)
 				end
 			end
 		end

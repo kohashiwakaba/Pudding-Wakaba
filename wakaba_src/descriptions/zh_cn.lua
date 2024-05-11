@@ -735,6 +735,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "岩浆之刃",
 		description = ""
+			.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON" -- TODO
 			.. "#{{Burning}} 在眼泪攻击时挥舞火焰之刃"
 			.. "#{{DamageSmall}} 对非眼泪攻击的攻击力乘数+100%"
 			.. "{{CR}}",
@@ -766,7 +767,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "问号方块",
 		description = ""
-			.. "#如果发现此道具，请向开发者报告"
+			.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON" -- TODO
 			.. "{{CR}}",
 		queueDesc = "盒子里是什么?",
 	},
@@ -2379,7 +2380,33 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{Player" .. wakaba.Enums.Players.SHIORI .. "}} 生成3个迷你以撒",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		desc = "{{Player" .. wakaba.Enums.Players.WAKABA .. "}} ↑{{Tears}} -25% 射速",
+		{
+			desc = "" -- TODO
+				.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+				.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止{{Quality0}}物品出现"
+				.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
+				.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
+				.. "{{CR}}",
+			modifierText = "Lunatic",
+		},
+		{
+			desc = "{{Player" .. wakaba.Enums.Players.WAKABA .. "}} ↑{{Tears}} -25% 射速",
+			modifierText = "Wakaba",
+		},
+	},
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
+		{
+			desc = "" -- TODO
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER gives Armor-piercing tears"
+			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止 {{Quality3}}/{{Quality4}} 道具生成"
+			.. "#{{SoulHeart}}所有道具交易都改为魂心"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
+			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
+			.. "{{CR}}",
+			modifierText = "Lunatic",
+		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
@@ -2437,6 +2464,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}减少道具1~2的充能上限",
+	},
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = { -- TODO
+		desc = "{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame tear every 10 tears",
 	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}

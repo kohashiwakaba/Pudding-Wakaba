@@ -311,6 +311,7 @@ if EID then
 			EID:addIcon("RicherPlanetarium", "EID_Icons", 5, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaModCheat", "EID_Icons", 6, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaModHidden", "EID_Icons", 7, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaModLunatic", "EID_Icons", 8, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
