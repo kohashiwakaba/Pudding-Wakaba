@@ -27,15 +27,17 @@ function wakaba:RoomGen_BringMeThere()
 	--print("condition check")
 	if shouldSpawnTrinket(true) then
 		local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 43000)
-		local altRoom = level:GetRoomByIdx(-11)
-		altRoom.OverrideData = roomData
+
+		local altMomRoom = level:GetRoomByIdx(-11)
+		local altBeastRoom = level:GetRoomByIdx(-9)
+		altBeastRoom.Data = roomData
 
 		--local roomData = isc:getRoomDataForTypeVariant(RoomType.ROOM_BOSS, 42000)
 		local rooms = isc:getRoomsInsideGrid()
 		for _, room in ipairs(rooms) do
 			if room.Data then
 				if room.GridIndex > 0 and room.Data.Type == RoomType.ROOM_BOSS and room.Data.Subtype == 89 then
-					altRoom.Data = room.Data
+					altMomRoom.Data = room.Data
 					wakaba.runstate.savednoteroom = room.GridIndex
 					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, wakaba.G:GetRoom():GetGridPosition(102), Vector(0,0), nil)
 					break
@@ -59,11 +61,14 @@ function wakaba:Update_BringMeThere()
 			--savedBossRoom.SurpriseMiniboss = isBeastRun
 			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, isBeastRun)
 
-			local altRoom = level:GetRoomByIdx(-11)
+			local altMomRoom = level:GetRoomByIdx(-11)
+			local altBeastRoom = level:GetRoomByIdx(-9)
 			if isBeastRun then
-				savedBossRoom.Data = altRoom.OverrideData
+				--savedBossRoom.Data = altBeastRoom.Data
+				savedBossRoom.Data = REPENTOGON and RoomConfigHolder.GetRoomByStageTypeAndVariant(StbType.MAUSOLEUM, RoomType.ROOM_BOSS, 1, 5) or altBeastRoom.Data
 			else
-				savedBossRoom.Data = altRoom.Data
+				--savedBossRoom.Data = altMomRoom.Data
+				savedBossRoom.Data = REPENTOGON and RoomConfigHolder.GetRoomByStageTypeAndVariant(StbType.SPECIAL_ROOMS, RoomType.ROOM_BOSS, 6030, 5) or altMomRoom.Data
 			end
 
 		end
