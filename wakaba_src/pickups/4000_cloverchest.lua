@@ -73,6 +73,9 @@ function wakaba:NewRoom_RemoveOpenedCloverChest()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RemoveOpenedCloverChest)
 
+function wakaba:InvalidateCloverChestRewards()
+	clover_chest_data.level.cachedRewards = {}
+end
 
 function wakaba:ReplaceChests(pickup)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
@@ -116,6 +119,7 @@ function wakaba:spawnCloverChestReward(chest, player)
 			Epiphany:AddCainEssenceInfo(item, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end
 		chest:Remove()
+		wakaba:InvalidateCloverChestRewards()
 	else
 		for i, entry in ipairs(rewards) do
 			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba.RandomVelocity(), nil):ToPickup()
