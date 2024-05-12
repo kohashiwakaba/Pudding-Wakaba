@@ -95,16 +95,18 @@ function wakaba:PlayerUpdate_RabbitRibbon(player)
 		end
 	end
 	local weapon = player:GetActiveWeaponEntity()
-
-	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
-		if weapon and not wakaba:hasRicherBR(player) then
-			weapon.Visible = false
-			player:GetData().w_rwi = true
+	if weapon then
+		if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
+			if not wakaba:hasRicherBR(player) then
+				weapon.Visible = false
+				player:GetData().w_rwi = true
+			end
+		elseif player:GetData().w_rwi then
+			weapon.Visible = true
+			player:GetData().w_rwi = nil
 		end
-	elseif player:GetData().w_rwi then
-		weapon.Visible = true
-		player:GetData().w_rwi = nil
 	end
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_RabbitRibbon)
 
