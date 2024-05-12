@@ -1216,6 +1216,147 @@ local wakabadirectory = {
 
 		tooltip = {strset = {"you can", "change this", "later"}},
 	},
+	---------------------------------------------------------------------------
+	-----------------------------------ForceVoid-------------------------------
+	enhbossdest = {
+		title = 'boss destination',
+    generate = function(item)
+			item.ds1 = {
+				[1] = nil,
+				[2] = "Random",
+				[3] = "BlueBaby",
+				[4] = "Lamb",
+				[5] = "MegaSatan",
+				[6] = "Delirium",
+				[7] = "Mother",
+				[8] = "Beast",
+			}
+			item.ds2 = {
+				[1] = nil,
+				[2] = 500000,
+				[3] = 1000000,
+				[4] = 10000000,
+				[5] = 100000000,
+			}
+		end,
+		format = {
+			Panels = {
+				{
+					Panel = dssmod.panels.main,
+					Offset = Vector(100, 0),
+					Color = Color.Default,
+				}
+			}
+		},
+		postrender = function(item, tbl)
+			if tbl.Exiting then return end
+			local sel = item.bsel
+			local selToEntry = {
+				[1] = "boss",
+				[2] = "health",
+				[3] = "damo",
+				[4] = "lunatic",
+				[5] = "lock",
+				[6] = "roll",
+				[7] = "clear",
+			}
+			if EID and selToEntry[sel] then
+				local title = wakaba:getWakabaDesc("bossdest", "title_"..selToEntry[sel])
+				local desc = wakaba:getWakabaDesc("bossdest", "desc_"..selToEntry[sel])
+				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+				demoDescObj.Name = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} " .. (title or "")
+				demoDescObj.Description = desc or ""
+				EID:displayPermanentText(demoDescObj)
+			end
+		end,
+		buttons = {
+			{
+				str = 'boss',
+				choices = {"none", "random", "bluebaby", "lamb", "megasatan", "delirium", "mother", "beast"},
+				setting = 2,
+				variable = 'BossDest',
+			},
+			{
+				str = 'health',
+				choices = {"default", "500,000", "1,000,000", "10,000,000", "100,000,000"},
+				setting = 2,
+				variable = 'BossDestHealth',
+			},
+			{
+				str = 'damocles start',
+				choices = {'true', 'false'},
+				setting = 2,
+				variable = 'BossDestDamocles',
+			},
+			{
+				str = 'lunatic mode',
+				choices = {'true', 'false'},
+				setting = 2,
+				variable = 'BossDestLunatic',
+			},
+			{
+				str = 'lock until clear',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'BossDestLock',
+			},
+			{
+				str = "roll!!!",
+				action = "resume",
+				fsize = 3,
+
+				func = function(button, item, root)
+					local s_BossDest = item.ds1[item.buttons[1].setting]
+					local s_BossDestHealth = item.ds2[item.buttons[2].setting]
+					local s_Damocles = item.buttons[3].setting == 1
+					local s_Lunatic = item.buttons[4].setting == 1
+					local s_Lock = item.buttons[5].setting == 1
+
+					if s_BossDest ~= "Random" then
+						wakaba.state.bossdest = s_BossDest
+						wakaba.state.bossdesthealth = s_BossDestHealth ~= nil
+						wakaba.state.bossdestlunatic = s_Lunatic
+						wakaba.state.damoclesstart = s_Damocles
+						wakaba.state.bossdestlock = s_Lock
+						wakaba.state.bossdesthealthamount = s_BossDestHealth
+					else
+						wakaba:BossRoll(s_BossDestHealth ~= nil, s_Lunatic, s_Damocles, s_BossDestHealth, s_Lock)
+					end
+					if s_Damocles then
+						if REPENTOGON then
+							local pls = PlayerManager.GetPlayers()
+							for _, p in ipairs(pls) do
+								if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+								if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+							end
+						else
+							wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+								if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+								if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+							end)
+						end
+					end
+					if EID then
+						EID:hidePermanentText()
+					end
+					DeadSeaScrollsMenu.CloseMenu(true)
+				end
+			},
+			{
+				str = "clear",
+				action = "resume",
+				fsize = 3,
+
+				func = function(button, item, root)
+					wakaba:ClearBossDestData()
+					if EID then
+						EID:hidePermanentText()
+					end
+					DeadSeaScrollsMenu.CloseMenu(true)
+				end
+			},
+		},
+	},
 
 
 	---------------------------------------------------------------------------

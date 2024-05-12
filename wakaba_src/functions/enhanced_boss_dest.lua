@@ -86,12 +86,12 @@ end
 
 wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
 	return {
-		Boss = wakaba.runstate.bossdest, --타겟 보스 (HUD 표시용, 50만 챌린지 적용 시 해당 보스 체력 강화)
-		Quality = wakaba.runstate.startquality, --시작 아이템 퀄리티 (HUD 표시용)
-		ModifyHealth = wakaba.runstate.bossdesthealth, --50만 챌린지 적용
-		ModifyHealthAmount = wakaba.runstate.bossdesthealthamount, --50만 챌린지 적용 체력(총합 기준, 기본값 500000)
-		Lunatic = wakaba.runstate.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
-		DamoclesStart = wakaba.runstate.damoclesstart, -- 50만 챌린지 적용 시 다모 적용
+		Boss = wakaba.state.bossdest, --타겟 보스 (HUD 표시용, 50만 챌린지 적용 시 해당 보스 체력 강화)
+		Quality = wakaba.state.startquality, --시작 아이템 퀄리티 (HUD 표시용)
+		ModifyHealth = wakaba.state.bossdesthealth, --50만 챌린지 적용
+		ModifyHealthAmount = wakaba.state.bossdesthealthamount, --50만 챌린지 적용 체력(총합 기준, 기본값 500000)
+		Lunatic = wakaba.state.bossdestlunatic, -- 50만 챌린지 적용 시 대부분 와카바 모드의 방어 무시 효과 무효화, 일부 와카바 모드 아이템 너프
+		DamoclesStart = wakaba.state.damoclesstart, -- 50만 챌린지 적용 시 다모 적용
 		LockTarget = wakaba.state.bossdestlock, -- 리셋 시 이전 타겟 유지
 	}
 end)
@@ -134,7 +134,7 @@ function wakaba:NPCUpdate_BossDest(npc)
 end
 wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_BossDest)
 
-function wakaba:BossRoll(modifyHealth, lunatic, damocles, lock, seed)
+function wakaba:BossRoll(modifyHealth, lunatic, damocles, healthAmount, lock, seed)
 	local entries = {}
 	for k, _ in pairs(bossTables) do
 		table.insert(entries, k)
@@ -144,13 +144,56 @@ function wakaba:BossRoll(modifyHealth, lunatic, damocles, lock, seed)
 	rng:SetSeed(seed, 35)
 	local selected = rng:RandomInt(#entries) + 1
 	local entry = entries[selected]
-	wakaba.runstate.bossdest = entry
-	wakaba.runstate.bossdesthealth = modifyHealth
-	wakaba.runstate.bossdestlunatic = lunatic
-	wakaba.runstate.damoclesstart = damocles
-	wakaba.runstate.bossdestlock = lock
+	wakaba.state.bossdest = entry
+	wakaba.state.bossdesthealth = modifyHealth
+	wakaba.state.bossdestlunatic = lunatic
+	wakaba.state.damoclesstart = damocles
+	wakaba.state.bossdestlock = lock
+	wakaba.state.bossdesthealthamount = healthAmount
 	return entry
 end
+
+function wakaba:ClearBossDestData()
+	wakaba.state.bossdest = nil
+	wakaba.state.bossdesthealth = nil
+	wakaba.state.bossdestlunatic = nil
+	wakaba.state.damoclesstart = nil
+	wakaba.state.bossdestlock = nil
+	wakaba.state.bossdesthealthamount = nil
+end
+
+function wakaba:GameStart_BossDest(isContinue)
+	if not isContinue then return end
+	if wakaba.state.bossdestlock then
+		if wakaba.state.damoclesstart then
+			wakaba:scheduleForUpdate(function()
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if REPENTOGON then
+						local pls = PlayerManager.GetPlayers()
+						for _, p in ipairs(pls) do
+							if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+							if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+						end
+					else
+						wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+							if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+							if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+						end)
+					end
+				end)
+			end, 1)
+		end
+	else
+		wakaba:ClearBossDestData()
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_BossDest)
+
+function wakaba:GameEnd_BossDest(isGameOver)
+	if isGameOver then return end
+	wakaba:ClearBossDestData()
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_END, wakaba.GameEnd_BossDest)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function(_)
 	local bossData = wakaba:GetBossDestinationData()
@@ -183,3 +226,45 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 	}
 	return tab
 end)
+
+function wakaba:NewRoom_BossDest()
+	local bossData = wakaba:GetBossDestinationData()
+	local level = wakaba.G:GetLevel()
+	local stage = level:GetAbsoluteStage()
+	local room = wakaba.G:GetRoom()
+	if not room:IsClear() then return end
+	if bossData.Boss == "Delirium" then
+		if stage <= 8 and (room:GetBossID() == 8 or room:GetBossID() == 25) then
+			room:TrySpawnBlueWombDoor(false, true, false)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BossDest)
+
+function wakaba:RoomClear_BossDest()
+	local bossData = wakaba:GetBossDestinationData()
+	local level = wakaba.G:GetLevel()
+	local stage = level:GetAbsoluteStage()
+	local room = wakaba.G:GetRoom()
+	if bossData.Boss == "Delirium" then
+		if stage <= 8 and (room:GetBossID() == 8 or room:GetBossID() == 25) then
+			room:TrySpawnBlueWombDoor(false, true, false)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_BossDest)
+
+---@param player EntityPlayer
+function wakaba:PlayerUpdate_BossDest(player)
+	if Input.IsButtonTriggered(Keyboard.KEY_EQUAL, player.ControllerIndex) then
+		if DeadSeaScrollsMenu.OpenedMenu and DeadSeaScrollsMenu.OpenedMenu.DirectoryKey.Item.title == "boss destination" then
+			if EID then
+				EID:hidePermanentText()
+			end
+			DeadSeaScrollsMenu.CloseMenu(true)
+		else
+			DeadSeaScrollsMenu.QueueMenuOpen("Pudding n wakaba", "enhbossdest", 1, true)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_BossDest)

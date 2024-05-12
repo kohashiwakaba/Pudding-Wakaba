@@ -2828,6 +2828,24 @@ wakaba.descriptions[desclang].conditionals.entities = {
 	},
 }
 
+wakaba.descriptions[desclang].bossdest = {
+	title_boss			= "Boss",
+	title_health		= "Health",
+	title_damo			= "Damocles Start",
+	title_lunatic		= "Lunatic Mode",
+	title_lock			= "Lock until clear",
+	title_roll			= "ROLL!!",
+	title_clear			= "Clear challenge",
+
+	desc_boss			= "Select boss to challenge",
+	desc_health		= "Select health to challenge",
+	desc_damo			= "Choose damocles start or not",
+	desc_lunatic	= "Enable Lunatic mode, some Pudding & Wakaba items will be nerfed",
+	desc_lock			= "Preserve this challenge until game is cleared",
+	desc_roll			= "Are you ready?",
+	desc_clear		= "Clear challenge destination#Damocles added by this challenge is not removed",
+}
+
 if EID then
 	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then
 		EID.descriptions[desclang].ItemReminder.CategoryNames.w_Character = "Character"
