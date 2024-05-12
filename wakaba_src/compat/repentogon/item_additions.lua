@@ -125,3 +125,27 @@ function wakaba:ActiveRender_BookOfAmplitude(player, activeSlot, offset, alpha, 
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, wakaba.ActiveRender_BookOfAmplitude)
+
+-- Clover Chest + Guppy's Eye
+---@param pickup EntityPickup
+function wakaba:PickupLoot_CloverChest(pickup)
+	if pickup.Variant == wakaba.Enums.Pickups.CLOVER_CHEST and pickup.SubType == wakaba.ChestSubType.CLOSED then
+		local rewards = wakaba:getCloverChestRewards(pickup)
+
+		local loot = LootList()
+		for _, e in ipairs(rewards) do
+			loot:PushEntry(e[1], e[2] or 0, e[3] or 0, pickup.InitSeed)
+		end
+		return loot
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, wakaba.PickupLoot_CloverChest)
+
+---@param pickup EntityPickup
+function wakaba:GhostPickup_CloverChest(pickup)
+	if pickup.Variant == wakaba.Enums.Pickups.CLOVER_CHEST and pickup.SubType == wakaba.ChestSubType.CLOSED and PlayerManager.AnyoneHasCollectible(CollectibleType.COLLECTIBLE_GUPPYS_EYE) then
+		--pickup:UpdatePickupGhosts()
+		return true
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_UPDATE_GHOST_PICKUPS, wakaba.GhostPickup_CloverChest)

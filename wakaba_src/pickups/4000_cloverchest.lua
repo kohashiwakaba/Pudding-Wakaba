@@ -34,9 +34,8 @@ local function shouldCheckAscent()
 end
 
 ---@param chest EntityPickup
----@param player? EntityPlayer
 ---@return table
-function wakaba:getCloverChestRewards(chest, player)
+function wakaba:getCloverChestRewards(chest)
 	if clover_chest_data.level.cachedRewards[chest.InitSeed] then
 		return clover_chest_data.level.cachedRewards[chest.InitSeed]
 	end
@@ -49,8 +48,8 @@ function wakaba:getCloverChestRewards(chest, player)
 		table.insert(rewards, {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID})
 	else
 		player = player or Isaac.GetPlayer()
-		local momKeyPower = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KEY)
-		local cloverPower = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)
+		local momKeyPower = wakaba:GetGlobalCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KEY)
+		local cloverPower = wakaba:GetGlobalTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)
 		local loops = 1 + momKeyPower + cloverPower
 		for i = 1, loops do
 			local normalPickup = isc:getRandomFromWeightedArray(wakaba.Weights.CloverChestPickups.Normal, rng:Next())
@@ -106,7 +105,7 @@ function wakaba:spawnCloverChestReward(chest, player)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	player = player or chest:GetData().w_player
 
-	local rewards = wakaba:getCloverChestRewards(chest, player)
+	local rewards = wakaba:getCloverChestRewards(chest)
 	if #rewards == 1 then
 		local entry = rewards[1]
 		local item = Isaac.Spawn(entry[1], entry[2], entry[3], chest.Position, Vector.Zero, nil):ToPickup()
