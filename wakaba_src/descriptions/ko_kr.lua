@@ -3061,7 +3061,7 @@ wakaba.descriptions[desclang].bossdest = {
 	title_clear			= "도전 중단",
 
 	desc_boss			= "{{ArrowGrayRight}} 도전할 보스를 설정해 주세요.#아래 중 하나 선택 가능:#{{Blank}} #{{CustomTransformation}} 랜덤#{{BlueBaby}} Isaac/???#{{TheLamb}} Satan/Lamb#{{MegaSatan}} Mega Satan#{{Delirium}} Hush/Delirium#{{Mother}} Mother#{{Beast}} Dogma/Beast",
-	desc_health		= "{{ArrowGrayRight}} 도전할 보스의 총합 체력을 늘립니다.#늘어난 체력은 각 루트의 메이저 보스에게 배분됩니다.#아래 중 하나 선택 가능:#{{Blank}} #{{EmptyHeart}} 기본 (선택 안함)#{{Heart}} 500,000#{{SoulHeart}} 1,000,000#{{BlackHeart}} 10,000,000#{{EmptyBoneHeart}} 100,000,000",
+	desc_health		= "{{ArrowGrayRight}} 도전할 보스의 총합 체력을 늘립니다.#늘어난 체력은 각 루트의 메이저 보스에게 배분됩니다.#아래 중 하나 선택 가능:#{{Blank}} #{{EmptyHeart}} 기본 (선택 안함)#{{Heart}} 500,000#{{SoulHeart}} 1,000,000#{{BlackHeart}} 10,000,000#{{BoneHeart}} 100,000,000#{{EmptyBoneHeart}} 1,000,000,000#{{UnknownHeart}} 10,000,000,000",
 	desc_damo			= "{{ArrowGrayRight}} {{Collectible656}}Damocles 시작 여부를 결정합니다.#!!! 이 옵션은 시작 방에서만 영향을 받습니다.",
 	desc_lunatic	= "{{WakabaModLunatic}} 와카바 모드의 루나틱 모드 여부를 결정합니다.#{{WakabaModLunatic}} {{ColorOrange}}와카바 모드의 일부 아이템 효과가 크게 약화됩니다.",
 	desc_lock			= "{{ArrowGrayRight}} 게임 클리어 이전까지 해당 옵션을 유지합니다.",
