@@ -204,7 +204,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 	local prepend = {}
 	if bossData.Lunatic then
 		table.insert(prepend, "LUN")
-		textColor = KColor(1,0.2,0.2,1,0,0,0)
+		textColor = KColor(1,0.2,0.2,0.5,0,0,0)
 	end
 	if bossData.ModifyHealth then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 6)
