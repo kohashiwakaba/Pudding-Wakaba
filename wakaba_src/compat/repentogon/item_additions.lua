@@ -139,7 +139,7 @@ function wakaba:PickupLoot_CloverChest(pickup)
 		return loot
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, wakaba.PickupLoot_CloverChest)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_GET_LOOT_LIST, wakaba.PickupLoot_CloverChest)
 
 ---@param pickup EntityPickup
 function wakaba:GhostPickup_CloverChest(pickup)
@@ -148,4 +148,20 @@ function wakaba:GhostPickup_CloverChest(pickup)
 		return true
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_UPDATE_GHOST_PICKUPS, wakaba.GhostPickup_CloverChest)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_UPDATE_GHOST_PICKUPS, wakaba.GhostPickup_CloverChest)
+
+function wakaba:Cache_CloverChest(_, _)
+	print("Clover chest invalidated!")
+	wakaba:InvalidateCloverChestRewards()
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_CloverChest, CacheFlag.CACHE_PICKUP_VISION)
+
+---@param player EntityPlayer
+function wakaba:VisionChange_CloverChest(player, _)
+	wakaba:InvalidateCloverChestRewards()
+	wakaba.G:GetRoom():InvalidatePickupVision()
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, wakaba.VisionChange_CloverChest, wakaba.Enums.Trinkets.CLOVER)
+wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_REMOVED, wakaba.VisionChange_CloverChest, wakaba.Enums.Trinkets.CLOVER)
+wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, wakaba.VisionChange_CloverChest, CollectibleType.COLLECTIBLE_MOMS_KEY)
+wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, wakaba.VisionChange_CloverChest, CollectibleType.COLLECTIBLE_MOMS_KEY)

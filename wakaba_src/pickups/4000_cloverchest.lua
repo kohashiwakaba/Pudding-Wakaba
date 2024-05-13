@@ -36,8 +36,8 @@ end
 ---@param chest EntityPickup
 ---@return table
 function wakaba:getCloverChestRewards(chest)
-	if clover_chest_data.level.cachedRewards[chest.InitSeed] then
-		return clover_chest_data.level.cachedRewards[chest.InitSeed]
+	if clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)] then
+		return clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)]
 	end
 
 	local rewards = {}
@@ -58,7 +58,7 @@ function wakaba:getCloverChestRewards(chest)
 			table.insert(rewards, premiumPickup)
 		end
 	end
-	clover_chest_data.level.cachedRewards[chest.InitSeed] = rewards
+	clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)] = rewards
 
 	return rewards
 end
@@ -152,7 +152,7 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 			end
 			pickup.Touched = true
 
-			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN, false, true)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
 			wakaba:openCloverChest(player, pickup)
@@ -169,7 +169,7 @@ function wakaba:TearUpdate_CloverChest(tear)
 			entity = entity:ToPickup()
 			entity.Touched = true
 
-			entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+			entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN, false, true)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
 
@@ -182,7 +182,6 @@ function wakaba:TearUpdate_CloverChest(tear)
 		end
 	end
 end
-
 
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_CloverChest, TearVariant.KEY)
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_CloverChest, TearVariant.KEY_BLOOD)
