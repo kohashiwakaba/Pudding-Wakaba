@@ -163,7 +163,7 @@ function wakaba:ClearBossDestData()
 end
 
 function wakaba:GameStart_BossDest(isContinue)
-	if not isContinue then return end
+	if isContinue then return end
 	if wakaba.state.bossdestlock then
 		if wakaba.state.damoclesstart then
 			wakaba:scheduleForUpdate(function()

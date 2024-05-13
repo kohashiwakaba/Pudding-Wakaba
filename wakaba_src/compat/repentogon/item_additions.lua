@@ -165,3 +165,21 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_ADDED, wakaba.VisionChan
 wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_TRINKET_REMOVED, wakaba.VisionChange_CloverChest, wakaba.Enums.Trinkets.CLOVER)
 wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, wakaba.VisionChange_CloverChest, CollectibleType.COLLECTIBLE_MOMS_KEY)
 wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_COLLECTIBLE_REMOVED, wakaba.VisionChange_CloverChest, CollectibleType.COLLECTIBLE_MOMS_KEY)
+
+local function getfilename(sprite)
+    local name = sprite:GetFilename()
+    local index = string.find(name, "/[^/]*$")
+    return string.sub(name, index+1, string.len(name))
+end
+
+-- Wakaba Tickets are golden
+---@param pickup EntityPickup
+function wakaba:Render_Golden(pickup)
+	local sprite = pickup:GetSprite()
+	local anm2Flags = sprite:GetRenderFlags()
+	local fileName = getfilename(sprite)
+	if string.find(fileName, "Wakaba Ticket") then
+		sprite:SetRenderFlags(anm2Flags | AnimRenderFlags.GOLDEN)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.Render_Golden, PickupVariant.PICKUP_TAROTCARD)
