@@ -1325,18 +1325,7 @@ local wakabadirectory = {
 						wakaba:BossRoll(s_BossDestHealth ~= nil, s_Lunatic, s_Damocles, s_BossDestHealth, s_Lock)
 					end
 					if s_Damocles then
-						if REPENTOGON then
-							local pls = PlayerManager.GetPlayers()
-							for _, p in ipairs(pls) do
-								if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-								if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-							end
-						else
-							wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-								if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-								if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-							end)
-						end
+						wakaba:SetupDamocles()
 					end
 					if EID then
 						EID:hidePermanentText()

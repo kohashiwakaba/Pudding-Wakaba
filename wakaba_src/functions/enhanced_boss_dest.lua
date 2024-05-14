@@ -162,26 +162,38 @@ function wakaba:ClearBossDestData()
 	wakaba.state.bossdesthealthamount = nil
 end
 
+function wakaba:SetupDamocles()
+	if REPENTOGON then
+		if not Isaac.CanStartTrueCoop() then return end
+	else
+		local game = wakaba.G
+		local level = game:GetLevel()
+		local inFirstRoom = level:GetStage() == LevelStage.STAGE1_1 and level:GetCurrentRoomIndex() == level:GetStartingRoomIndex() and game:GetRoom():IsFirstVisit() and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B and not game:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
+		if not inFirstRoom then return end
+	end
+	wakaba:scheduleForUpdate(function()
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+			if REPENTOGON then
+				local pls = PlayerManager.GetPlayers()
+				for _, p in ipairs(pls) do
+					if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+					if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				end
+			else
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				end)
+			end
+		end)
+	end, 1)
+end
+
 function wakaba:GameStart_BossDest(isContinue)
 	if isContinue then return end
 	if wakaba.state.bossdestlock then
 		if wakaba.state.damoclesstart then
-			wakaba:scheduleForUpdate(function()
-				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-					if REPENTOGON then
-						local pls = PlayerManager.GetPlayers()
-						for _, p in ipairs(pls) do
-							if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-							if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-						end
-					else
-						wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-							if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-							if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-						end)
-					end
-				end)
-			end, 1)
+			wakaba:SetupDamocles()
 		end
 	else
 		wakaba:ClearBossDestData()
