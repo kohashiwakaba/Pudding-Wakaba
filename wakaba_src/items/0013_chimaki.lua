@@ -657,7 +657,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -249, funct
 	local blueflies = {}
 	local enemies = {}
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if wakaba:IsActiveVulnerableEnemy(v) then
+		if wakaba:IsActiveVulnerableEnemy(v) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
 			table.insert(enemies, v)
 		end
 	end
@@ -751,7 +751,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -246, funct
 	local room = wakaba.G:GetRoom()
 	local enemies = {}
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320 and room:IsPositionInRoom(v.Position, 0)) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320 and room:IsPositionInRoom(v.Position, 0) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
 			table.insert(enemies, v)
 		end
 	end
@@ -827,7 +827,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 		goto skipLightCheck
 	end
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320 and room:IsPositionInRoom(v.Position, 0)) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320 and room:IsPositionInRoom(v.Position, 0) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
 			table.insert(enemies, v)
 		end
 	end
