@@ -56,8 +56,9 @@ local RiraChar = {
 
 function wakaba:onRiraCache(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
+		local opt = wakaba:getOptionValue("rirastatswap") or wakaba:IsLunatic()
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * RiraChar.DAMAGE
+			player.Damage = player.Damage * RiraChar.DAMAGE * (opt and 3 or 1)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 				player.Damage = player.Damage * 1.3
 			end
@@ -79,7 +80,7 @@ function wakaba:onRiraCache(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RiraChar.TEARS * wakaba:getEstimatedTearsMult(player)))
-			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 3.04)
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 3.04 * (opt and 1/3 or 1))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | RiraChar.TEARFLAG

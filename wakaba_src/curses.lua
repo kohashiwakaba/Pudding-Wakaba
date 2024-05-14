@@ -63,6 +63,12 @@ wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectib
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
 	local game = wakaba.G
+	wakaba:scheduleForUpdate(function()
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+			player:AddCacheFlags(CacheFlag.CACHE_ALL - CacheFlag.CACHE_FAMILIARS)
+			player:EvaluateItems()
+		end)
+	end, 1)
 	if not game:GetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED) then
 		if isc:hasCurse(LevelCurse.CURSE_OF_LABYRINTH) then
 			--game:AddStageWithoutDamage()

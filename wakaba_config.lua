@@ -60,6 +60,7 @@ local config = {
 	crystalrestockchance = 10,
 
 	-- Rira options
+	rirastatswap = false,
 	chimakisound = true,
 	maidtriggerkey = Keyboard.KEY_7,
 	lilriraautosteal = true,

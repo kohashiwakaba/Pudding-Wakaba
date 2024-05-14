@@ -1785,6 +1785,37 @@ if MCM then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
+				return wakaba.state.options.rirastatswap
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.rirastatswap then
+					onOff = "True"
+				end
+				return "Stat Swap: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.rirastatswap = currentBool
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+						player:EvaluateItems()
+					end
+				end)
+			end,
+			Info = {
+				"Adds Tears mult x1/3 and Damage mult x3 for Rira",
+				"This can be helpful by reducing tears count that causes lags",
+				"Always active in Lunatic mode",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Rira",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
 				return wakaba.state.options.chimakisound
 			end,
 			Display = function()

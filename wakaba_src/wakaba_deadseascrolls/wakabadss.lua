@@ -995,6 +995,29 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 
 			{
+				str = 'swap stats',
+				choices = {'true', 'false'},
+				setting = 2,
+				variable = 'RiraStatSwap',
+				load = function()
+					if wakaba.state.options.rirastatswap then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.rirastatswap = (var == 1)
+					wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+						if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
+							player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+							player:EvaluateItems()
+						end
+					end)
+				end,
+			},
+
+			{
 				str = 'chimaki sounds',
 				choices = {'true', 'false'},
 				setting = 1,
