@@ -236,6 +236,30 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	return mult
 end
 
+---결과 아이템 받침대 소환
+---@param id CollectibleType 아이템 번호, 0 : 빈 받침대
+---@param position Vector
+---@param shouldDuplicate boolean 다모, 글크 등의 영향을 받아도 되는지 결정
+function wakaba:SpawnResultPedestal(id, position, shouldDuplicate)
+	id = id or 0
+	shouldDuplicate = shouldDuplicate or false
+	position = position or Game():GetRoom():GetCenterPos()
+	local pickup = Isaac.Spawn(5, PickupVariant.PICKUP_BROKEN_SHOVEL, 0, position, Vector.Zero, nil):ToPickup()
+	pickup:Morph(5, 100, (id == 0 and CollectibleType.COLLECTIBLE_BROKEN_SHOVEL_1 or id), true, true, (id == 0 or not shouldDuplicate))
+	pickup:GetData().DamoclesDuplicate = not shouldDuplicate -- 에피파니, 와카바 모드는 다모 복제 방지 시 필요
+	if id == 0 then
+		if REPENTOGON then
+			pickup:TryRemoveCollectible()
+		else
+			pickup.SubType = 0
+			pickup:GetSprite():ReplaceSpritesheet(1, "gfx/none.png")
+			pickup:GetSprite():ReplaceSpritesheet(4, "gfx/none.png")
+			pickup:GetSprite():LoadGraphics()
+		end
+	end
+	return pickup
+end
+
 --[[
 	와카바 모드의 ForceVoid 옵션에 따른 플래그값 처리
  ]]
@@ -508,12 +532,8 @@ function wakaba:ForceVoid(rng, spawnPosition)
 			end
 		end
 		if finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES and wakaba:CanOpenMegaSatan() then
-			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
-			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
-			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, false, false, true)
-			p2:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_2, false, false, true)
-			p1:GetData().DamoclesDuplicate = true
-			p2:GetData().DamoclesDuplicate = true
+			local p1 = wakaba:SpawnResultPedestal(CollectibleType.COLLECTIBLE_KEY_PIECE_1, room:GetGridPosition(92))
+			local p2 = wakaba:SpawnResultPedestal(CollectibleType.COLLECTIBLE_KEY_PIECE_2, room:GetGridPosition(102))
 		end
 		if finalcheck & wakaba.VoidFlags.CONTINUE == wakaba.VoidFlags.CONTINUE then
 			--This must be called AFTER creating void portal
