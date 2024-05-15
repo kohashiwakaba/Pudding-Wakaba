@@ -1,0 +1,17 @@
+
+---@param player EntityPlayer
+wakaba:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, function(_, player)
+	local data = player:GetData().wakaba
+	local revivalData = wakaba:CanRevive(player)
+	--local playerIndex = tostring(isc:getPlayerIndex(player))
+	if revivalData then
+		player:Revive()
+		if not revivalData.CurrentRoom then
+			wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, -1, 0, player)
+		end
+		if revivalData.PostRevival then
+			revivalData.PostRevival(player)
+		end
+		player:AnimateCollectible(revivalData.ID)
+	end
+end)

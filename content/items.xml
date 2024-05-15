@@ -43,7 +43,7 @@
 	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="6" name="Shiori's Bottle of Runes" tags="book offensive nocantrip" quality="2" />
 	<active id="28" description="Split yourself" gfx="microdoppelganger.png" maxcharges="8" name="Micro Doppelganger" tags="book offensive" quality="2" />
 	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="180" name="Book of Silence" cooldown="60" tags="book offensive" quality="2" />
-	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="noeden nochallenge" quality="2"/>
+	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="noeden nochallenge" quality="2" customtags="revive"/>
 	<active id="31" description="Guide book for the lost lambs" gfx="bookofconquest.png" maxcharges="12" name="Book of Conquest" devilprice="2" tags="book offensive" quality="3" />
 	<passive id="32" description="Comback Stronger" gfx="bookofthegod.png" name="Book of The God" tags="book angel nocantrip" quality="2"/>
 	<active id="33" description="Cover your life" gfx="grimreaperdefender.png" maxcharges="6" name="Grimreaper Defender" devilprice="2" tags="book devil offensive " quality="2" />
@@ -98,10 +98,10 @@
 
 	<passive id="72" cache="damage range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" tags="offensive tech"/>
 
-	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2" tags="nochallenge" persistent="true"/>
-	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" tags="nochallenge" persistent="true"/>
-	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" tags="nochallenge" persistent="true"/>
-	<passive id="76" cache="damage luck" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" quality="4" tags="nochallenge" persistent="true" />
+	<passive id="73" description="Beginning of the tragidy" gfx="lakeofbishop.png" name="See des Bischofs" quality="2" tags="nochallenge" persistent="true" customtags="revive"/>
+	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" tags="nochallenge" persistent="true" customtags="revive"/>
+	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" tags="nochallenge" persistent="true" customtags="revive"/>
+	<passive id="76" cache="damage luck" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" quality="4" tags="nochallenge" persistent="true" customtags="revive"/>
 	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" maxcharges="4" quality="3" tags="offensive nocantrip" />
 
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" hidden="true" achievement="9999"/>
