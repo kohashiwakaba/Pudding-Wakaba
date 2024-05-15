@@ -17,12 +17,14 @@ local soundToReplace = {
 local sfx = SFXManager()
 
 local checkForCustomSound = false
+local checkID = nil
 
 function wakaba:prePickupCollision_CustomItemSound(pickup, colliders, low)
 	if not wakaba:getOptionValue("customitemsound") then return end
 	local id = pickup.SubType
 	if wakaba.CustomItemSound[id] then
 		checkForCustomSound = true
+		checkID = pickup.SubType
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.prePickupCollision_CustomItemSound, PickupVariant.PICKUP_COLLECTIBLE)
@@ -45,19 +47,38 @@ function wakaba:PlayerRender_CustomItemSound(player)
 	if not player:IsItemQueueEmpty() and checkForCustomSound then
 		local queue = player.QueuedItem.Item
 		if queue:IsCollectible() and wakaba.CustomItemSound[queue.ID] then
-			for _, sound in ipairs(soundToReplace) do
-				if sfx:IsPlaying(sound) then
-					sfx:Stop(sound)
-					sfx:Play(wakaba:getCustomSound(queue.ID), wakaba:getOptionValue("customsoundvolume") / 10 or 5)
-					break
+			if REPENTOGON then
+				checkID = queue.ID
+			else
+				for _, sound in ipairs(soundToReplace) do
+					if sfx:IsPlaying(sound) then
+						sfx:Stop(sound)
+						sfx:Play(wakaba:getCustomSound(queue.ID), wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
+						break
+					end
 				end
 			end
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_CustomItemSound)
 
 function wakaba:Update_CustomItemSound()
 	checkForCustomSound = false
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Update_CustomItemSound)
+
+if REPENTOGON then
+	function wakaba:SoundPlay_CustomItemSound(ID, Volume, FrameDelay, Loop, Pitch, Pan)
+		local customSound = wakaba:getCustomSound(checkID)
+		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
+		if customSound then
+			checkID = nil
+			return {customSound, Volume * mult, FrameDelay, Loop, Pitch, Pan}
+		end
+	end
+	for _, e in ipairs(soundToReplace) do
+		wakaba:AddCallback(ModCallbacks.MC_PRE_SFX_PLAY, wakaba.SoundPlay_CustomItemSound, e)
+	end
+else
+	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, wakaba.PlayerRender_CustomItemSound)
+end
