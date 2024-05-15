@@ -264,6 +264,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.RIRA then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
@@ -273,6 +274,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.CIEL then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
@@ -282,6 +284,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.KORON then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
@@ -291,6 +294,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		end
 	elseif wakaba.CaramellaAutoTargetFiles[fly.SubType] then
 		if not (fly.Target and fly.Target:Exists()) then
