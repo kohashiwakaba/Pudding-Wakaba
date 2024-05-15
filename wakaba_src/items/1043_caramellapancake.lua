@@ -346,7 +346,7 @@ function wakaba:TakeDmg_Pancake(entity, amount, flag, source, countdownFrames)
 					wakaba.G:BombExplosionEffects(fly.Position, fly.CollisionDamage, player.TearFlags, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | (not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0))
 				elseif fly.SubType == wakaba.Enums.Flies.KORON then
 					local player = fly.Player or Isaac.GetPlayer()
-					entity:AddFreeze(player, 60)
+					entity:AddFreeze(EntityRef(player), 60)
 				end
 			end
 		end

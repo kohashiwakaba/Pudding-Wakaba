@@ -67,7 +67,6 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 				local tear = source.Entity:ToTear()
 				local tf = tear.TearFlags
 				if player and tf|TearFlags.TEAR_GLOW == tf then
-					wakaba.Log("Found Godhead Damage! replacing...")
 					newDamage = damage + 0.0001
 					sendNewDamage = true
 				end
