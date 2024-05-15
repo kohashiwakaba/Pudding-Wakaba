@@ -28,6 +28,7 @@ local bossEntities = {
 	["MegaSatan"] = {
 		{EntityType.ENTITY_MEGA_SATAN, 0, Weight = 0.5},
 		{EntityType.ENTITY_MEGA_SATAN_2, 0, Weight = 0.5, OnUpdate = true, Filter = function(npc) local sprite = npc:GetSprite(); return sprite:IsPlaying("Appear") end},
+		{EntityType.ENTITY_MEGA_SATAN_2, 0, 84, Weight = 0.5, OnUpdate = true, Filter = function(npc) return npc.MaxHitPoints == 2000 end},
 	},
 	["Delirium"] = {
 		{EntityType.ENTITY_HUSH, 0, Weight = 0.5},
@@ -52,6 +53,8 @@ local bossEntities = {
 		{EntityType.ENTITY_BEAST, 0, Weight = 0.1},
 	},
 }
+
+local damoSet = false
 
 function wakaba:GetBossDestinationData()
 	local skip = false
@@ -171,6 +174,8 @@ function wakaba:SetupDamocles()
 		local inFirstRoom = level:GetStage() == LevelStage.STAGE1_1 and level:GetCurrentRoomIndex() == level:GetStartingRoomIndex() and game:GetRoom():IsFirstVisit() and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B and not game:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 		if not inFirstRoom then return end
 	end
+	if damoSet then return end
+	damoSet = true
 	wakaba:scheduleForUpdate(function()
 		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 			if REPENTOGON then
@@ -185,6 +190,7 @@ function wakaba:SetupDamocles()
 					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
 				end)
 			end
+			damoSet = false
 		end)
 	end, 1)
 end
