@@ -85,7 +85,7 @@ local function spawnHeads(type, rng)
 		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
 		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
 		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil)
-		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS)
+		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
 	end
 end
 
