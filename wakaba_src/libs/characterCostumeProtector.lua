@@ -16,6 +16,7 @@ local playerItemCostumeWhitelist = {}
 local playerNullItemCostumeWhitelist = {}
 local playerTrinketCostumeWhitelist = {}
 local defaultItemWhitelist = {
+	[CollectibleType.COLLECTIBLE_GUPPYS_TAIL] = true,
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = true,
 	[CollectibleType.COLLECTIBLE_HOLY_MANTLE] = true,
 	[CollectibleType.COLLECTIBLE_DADS_RING] = true,
@@ -414,17 +415,20 @@ local playerFormToNullItemID = {
 
 if REPENTANCE then
 	defaultNullItemWhitelist = {
+		[NullItemID.ID_GUPPY] = true,
 		[NullItemID.ID_MARS] = true,
 		[NullItemID.ID_TOOTH_AND_NAIL] = true,
 		[NullItemID.ID_ESAU_JR] = true,
 		[NullItemID.ID_SPIRIT_SHACKLES_SOUL] = true,
 		[NullItemID.ID_SPIRIT_SHACKLES_DISABLED] = true,
 		[NullItemID.ID_LOST_CURSE] = true,
+		[NullItemID.ID_DOUBLE_GUPPYS_EYE] = true,
 		[NullItemID.ID_BLINDFOLD] = true
 	}
 
 	defaultItemWhitelist[CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES] = true
 	defaultItemWhitelist[CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION] = true
+	defaultItemWhitelist[CollectibleType.COLLECTIBLE_GUPPYS_EYE] = true
 	defaultItemWhitelist[CollectibleType.COLLECTIBLE_MEGA_MUSH] = true
 
 	nullEffectsBlacklist = {
