@@ -153,6 +153,7 @@ function wakaba:BossRoll(modifyHealth, lunatic, damocles, healthAmount, lock, se
 	wakaba.state.damoclesstart = damocles
 	wakaba.state.bossdestlock = lock
 	wakaba.state.bossdesthealthamount = healthAmount
+	wakaba:UpdateWakabaDescriptions(true)
 	return entry
 end
 
@@ -163,6 +164,7 @@ function wakaba:ClearBossDestData()
 	wakaba.state.damoclesstart = nil
 	wakaba.state.bossdestlock = nil
 	wakaba.state.bossdesthealthamount = nil
+	wakaba:UpdateWakabaDescriptions(true)
 end
 
 function wakaba:SetupDamocles()
@@ -205,7 +207,7 @@ function wakaba:GameStart_BossDest(isContinue)
 		wakaba:ClearBossDestData()
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_BossDest)
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.EARLY, wakaba.GameStart_BossDest)
 
 function wakaba:GameEnd_BossDest(isGameOver)
 	if isGameOver then return end

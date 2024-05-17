@@ -63,7 +63,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
+		.. "{{CR}}",
 		queueDesc = "악마 봉인 + 더 나아진 운명",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -77,7 +82,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 방어 무시 제거됨)"
+		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
+		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
+		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
+		.. "{{CR}}",
 		queueDesc = "천사 봉인 + 더 나빠진 운명",
 	},
 	[wakaba.Enums.Collectibles.WAKABA_DUALITY] = {
@@ -1481,32 +1494,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		{
-			desc = ""
-			.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
-			.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
-			.. "{{CR}}",
-			modifierText = "Lunatic",
-		},
-		{
 			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
 			modifierText = "Wakaba",
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		{
-			desc = ""
-			.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 방어 무시 제거됨)"
-			.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
-			.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
-			.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
-			.. "{{CR}}",
-			modifierText = "Lunatic",
-		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{

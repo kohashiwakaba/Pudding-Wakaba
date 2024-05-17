@@ -65,6 +65,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ Prevents penalties from all damage taken"
 		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality0}} items from spawning"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
+		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
+		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -76,6 +82,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#↑ Prevents penalties from all damage taken"
+		.. "#!!! Taking this item by any means counts as Taking Devil deals."
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
+		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}} items from spawning"
+		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -2689,17 +2704,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		{
-			desc = ""
-			.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality0}} items from spawning"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
-			.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
-			.. "{{CR}}",
-			type = "replaceAll",
-			func = wakaba.IsLunatic,
-			modifierText = "Lunatic",
-		},
-		{
 			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
 			func = EID.PlayersHaveCharacter,
 			vars = {wakaba.Enums.Players.WAKABA},
@@ -2707,20 +2711,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		{
-			desc = ""
-			.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
-			.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}} items from spawning"
-			.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
-			.. "#!!! Taking this item by any means counts as Taking Devil deals."
-			.. "{{CR}}",
-			type = "replaceAll",
-			func = wakaba.IsLunatic,
-			modifierText = "Lunatic",
-		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{

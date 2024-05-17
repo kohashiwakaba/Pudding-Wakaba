@@ -262,7 +262,7 @@ if EID then
 		local collectiblesOwned = {}
 		local hasPlayer = {}
 
-		function wakaba:UpdateWakabaDescriptions()
+		function wakaba:UpdateWakabaDescriptions(lunaticOnly)
 			EID._currentMod = "Pudding and Wakaba"
 			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
 			EID:setModIndicatorName("Pudding & Wakaba")
@@ -331,7 +331,8 @@ if EID then
 					elseif itemdesc.targetMod ~= EID._currentMod then
 						EID._currentMod = itemdesc.targetMod
 					end
-					EID:addCollectible(itemID, itemdesc.description, itemdesc.itemName, lang)
+					local desc = wakaba:IsLunatic() and itemdesc.lunatic or itemdesc.description
+					EID:addCollectible(itemID, desc, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("collectible", itemID, itemdesc.transformations)
 					end
@@ -357,7 +358,8 @@ if EID then
 					elseif itemdesc.targetMod ~= EID._currentMod then
 						EID._currentMod = itemdesc.targetMod
 					end
-					EID:addTrinket(itemID, itemdesc.description, itemdesc.itemName, lang)
+					local desc = wakaba:IsLunatic() and itemdesc.lunatic or itemdesc.description
+					EID:addTrinket(itemID, desc, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("trinket", itemID, itemdesc.transformations)
 					end
@@ -366,7 +368,8 @@ if EID then
 					EID.descriptions[lang].goldenTrinketEffects[itemID] = { appendText[1], appendText[2], appendText[3] }
 				end
 				for playerType, birthrightdesc in pairs(wakabaDescTables.birthright) do
-					EID:addBirthright(playerType, birthrightdesc.description, birthrightdesc.playerName, lang)
+					local desc = wakaba:IsLunatic() and birthrightdesc.lunatic or birthrightdesc.description
+					EID:addBirthright(playerType, desc, birthrightdesc.playerName, lang)
 				end
 				for cardid, carddesc in pairs(wakabaDescTables.cards) do
 					if not carddesc.targetMod then
@@ -374,7 +377,8 @@ if EID then
 					elseif carddesc.targetMod ~= EID._currentMod then
 						EID._currentMod = carddesc.targetMod
 					end
-					EID:addCard(cardid, carddesc.description, carddesc.itemName, lang)
+					local desc = wakaba:IsLunatic() and carddesc.lunatic or carddesc.description
+					EID:addCard(cardid, desc, carddesc.itemName, lang)
 					if carddesc.tarot then
 						EID.descriptions[lang].tarotClothBuffs[cardid] = carddesc.tarot
 					end
@@ -385,14 +389,16 @@ if EID then
 					elseif pilldesc.targetMod ~= EID._currentMod then
 						EID._currentMod = pilldesc.targetMod
 					end
-					EID:addPill(pillid, pilldesc.description, pilldesc.itemName, lang)
+					local desc = wakaba:IsLunatic() and pilldesc.lunatic or pilldesc.description
+					EID:addPill(pillid, desc, pilldesc.itemName, lang)
 				end
 				--EID:addHorsePill doesn't exist lol
 				--EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)
 				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
 				end ]]
-				if wakabaDescTables.conditionals then
+				if not _wakaba.condInserted and wakabaDescTables.conditionals then
+					_wakaba.condInserted = true
 					local conDescTables = wakabaDescTables.conditionals
 					if conDescTables.collectibles then
 						for itemID, wcd in pairs(conDescTables.collectibles) do
@@ -480,13 +486,16 @@ if EID then
 				end
 				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
-					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, entitydesc.description, lang)
+					local desc = wakaba:IsLunatic() and entitydesc.lunatic or entitydesc.description
+					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, desc, lang)
 				end
 				for playertype, playerdesc in pairs(wakabaDescTables.playernotes) do
-					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, playerdesc.name, playerdesc.description, lang)
+					local desc = wakaba:IsLunatic() and playerdesc.lunatic or playerdesc.description
+					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, playerdesc.name, desc, lang)
 				end
 				for curseid, cursedesc in pairs(wakabaDescTables.curses) do
-					EID:addEntity(wakaba.INVDESC_TYPE_CURSE, wakaba.INVDESC_VARIANT, curseid, cursedesc.name, cursedesc.description, lang)
+					local desc = wakaba:IsLunatic() and cursedesc.lunatic or cursedesc.description
+					EID:addEntity(wakaba.INVDESC_TYPE_CURSE, wakaba.INVDESC_VARIANT, curseid, cursedesc.name, desc, lang)
 				end
 				if CURCOL and wakabaDescTables.cursesappend and wakabaDescTables.cursesappend.CURCOL then
 					for curseid, cursedesc in pairs(wakabaDescTables.cursesappend.CURCOL) do
@@ -507,6 +516,7 @@ if EID then
 					end
 				end
 			end
+			if lunaticOnly then return end
 
 			for curseid, cursedesc in pairs(wakaba.descriptions["en_us"].curses) do
 				EID:AddIconToObject(wakaba.INVDESC_TYPE_CURSE, wakaba.INVDESC_VARIANT, curseid, cursedesc.icon)
