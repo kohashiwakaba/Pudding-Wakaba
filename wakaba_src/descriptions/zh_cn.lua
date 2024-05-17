@@ -146,7 +146,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "迷途羔羊指南",
 	},
-	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = { -- TODO
 		itemName = "密涅瓦的领域",
 		description = ""
 			.. "#玩家在范围内时:"
@@ -154,6 +154,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Tears}} +0.5 Fire rate up"
 			.. "#↑ {{Tears}} x2.3 Fire rate multiplier"
 			.. "#↑ 跟踪眼泪"
+			.. "#友方小怪或宝宝在范围内持续恢复生命"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#玩家在范围内时:"
+			.. "#{{WakabaModLunatic}} {{Damage}} {{ColorOrange}}-2 攻击"
+			.. "#↑ {{Tears}} +0.5 Fire rate up"
+			.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.2 Fire rate multiplier"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
 		queueDesc = "互帮互助",

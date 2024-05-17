@@ -142,14 +142,20 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "",
+		lunatic = ""
+		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
+		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 -2 (중첩 불가)"
+		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.2 (중첩 불가)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 유도 눈물 제거됨)"
+		.. "{{CR}}",
 		queueDesc = "공격력, 연사 증가 + 동료를 치유해주자",
 	},
 	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
 		itemName = "월석",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↓ 최대 체력 상한이 8칸으로 감소합니다."
 		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{DamageSmall}}공격력과 {{TearsSmall}}연사가 증가합니다."
 		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소하며 소울하트가 있을 경우, 강제로 소모하여 월석 게이지를 회복합니다."
 		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
