@@ -177,6 +177,16 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!! 当月相表耗尽时，月石会消失"
 			.. "#所有受到的伤害都是非惩罚性的伤害"
 			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#↑ 获得额外的月相表，根据月相表的数值提高{{Damage}}伤害和{{Tears}}射速"
+			.. "#如果受到伤害，月石失效，月相表开始消耗"
+			.. "#Clearing rooms recover lunar gauge"
+			.. "#↑ 只要以撒拥有月石，就拥有无限的生命"
+			.. "#!!! 当月相表耗尽时，月石会消失"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Faster lunar gauge reduction speed"
+			.. "{{CR}}",
 		queueDesc = "保持圣洁",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {

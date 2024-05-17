@@ -175,6 +175,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(Faster lunar gauge reduction speed)"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {

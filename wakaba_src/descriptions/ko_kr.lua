@@ -168,6 +168,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소하며 방 클리어 시 월석 게이지를 회복합니다."
 		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 월석 게이지 감소량 증가)"
 		.. "#!!! 월석 게이지 전부 소진 시 월석이 증발합니다."
 		.. "{{CR}}",
 		queueDesc = "신성함을 유지시켜줘",
