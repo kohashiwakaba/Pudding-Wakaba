@@ -117,6 +117,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Isaac also gains extra tear effect when book active items are being used"
 		.. "#Extra tear effect changes on next book usage"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{ShioriValut}} Guarantees Library every floor if possible"
+		.. "#Activates additional effect when book active items are being used"
+		.. "#Isaac also gains extra tear effect when book active items are being used"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Extra tear effect changes on next book usage, or resets on entering new floor"
+		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {

@@ -115,7 +115,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#책 유형의 액티브 아이템 사용 시 다른 부가 효과와 시오리의 추가 눈물 효과가 발동됩니다."
 		.. "#시오리의 추가 눈물 효과는 다른 책을 사용하기 전까지 계속 유지됩니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{ShioriValut}} 가능한 경우 모든 스테이지에서 책방이 등장합니다."
+		.. "#책 유형의 액티브 아이템 사용 시 다른 부가 효과와 시오리의 추가 눈물 효과가 발동됩니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}시오리의 추가 눈물 효과는 다른 책 사용 및 스테이지 진입 시 변경 혹은 초기화됩니다."
+		.. "{{CR}}",
 		queueDesc = "문학소녀의 지식을 전수하다",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {

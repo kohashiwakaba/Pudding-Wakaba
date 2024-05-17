@@ -76,6 +76,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#所有受到的伤害都不会有惩罚"
 			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
 			.. "{{CR}}",
+		lunatic = "" -- TODO
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止{{Quality0}}物品出现"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
+			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
+			.. "{{CR}}",
 		queueDesc = "信仰上升 + 更好的道具",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -87,6 +93,15 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 阻止 {{Quality4}} 道具生成, 也降低 {{Quality3}}道具出现几率"
 			.. "#{{SoulHeart}}所有道具交易都改为魂心"
 			.. "#所有受到的伤害都不会被视为惩罚性的伤害"
+			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
+			.. "{{CR}}",
+		lunatic = "" -- TODO
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER gives Armor-piercing tears"
+			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止 {{Quality3}}/{{Quality4}} 道具生成"
+			.. "#{{SoulHeart}}所有道具交易都改为魂心"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
 			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
 			.. "{{CR}}",
 		queueDesc = "邪恶&射程上升 + 更糟的道具",
@@ -112,6 +127,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#使用书籍类主动道具时激活额外效果"
 			.. "#在使用书籍类主动道具时获得额外的眼泪效果"
 			.. "#额外的眼泪效果会在下次使用书籍时改变"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{Library}} Guarantees Library every floor if possible"
+			.. "#使用书籍类主动道具时激活额外效果"
+			.. "#在使用书籍类主动道具时获得额外的眼泪效果"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Extra tear effect changes on next book usage, or resets on entering new floor" -- TODO
 			.. "{{CR}}",
 		queueDesc = "知识就是力量",
 	},
@@ -2381,32 +2403,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		{
-			desc = "" -- TODO
-				.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-				.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止{{Quality0}}物品出现"
-				.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
-				.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
-				.. "{{CR}}",
-			modifierText = "Lunatic",
-		},
-		{
 			desc = "{{Player" .. wakaba.Enums.Players.WAKABA .. "}} ↑{{Tears}} -25% 射速",
 			modifierText = "Wakaba",
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		{
-			desc = "" -- TODO
-			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER gives Armor-piercing tears"
-			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止 {{Quality3}}/{{Quality4}} 道具生成"
-			.. "#{{SoulHeart}}所有道具交易都改为魂心"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
-			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
-			.. "{{CR}}",
-			modifierText = "Lunatic",
-		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
