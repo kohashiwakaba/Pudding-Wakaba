@@ -150,7 +150,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Isaac and Other players inside aura grants:"
 		.. "#{{WakabaModLunatic}} {{Damage}} {{ColorOrange}}-2 damage"
 		.. "#↑ {{Tears}} +0.5 Fire rate up"
-		.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.2 Fire rate multiplier"
+		.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 Fire rate multiplier"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",

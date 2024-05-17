@@ -147,7 +147,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 오라 안에 있는 모든 플레이어에게 다음 효과 발동 :"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 -2 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.2 (중첩 불가)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.6 (중첩 불가)"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 유도 눈물 제거됨)"
 		.. "{{CR}}",
 		queueDesc = "공격력, 연사 증가 + 동료를 치유해주자",

@@ -397,8 +397,7 @@ if EID then
 				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
 					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
 				end ]]
-				if not _wakaba.condInserted and wakabaDescTables.conditionals then
-					_wakaba.condInserted = true
+				if not _wakaba["condInserted_"..lang] and wakabaDescTables.conditionals then
 					local conDescTables = wakabaDescTables.conditionals
 					if conDescTables.collectibles then
 						for itemID, wcd in pairs(conDescTables.collectibles) do
@@ -484,6 +483,7 @@ if EID then
 						end
 					end
 				end
+				_wakaba["condInserted_"..lang] = true
 				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
 					local desc = wakaba:IsLunatic() and entitydesc.lunatic or entitydesc.description

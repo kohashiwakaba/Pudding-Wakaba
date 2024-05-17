@@ -160,7 +160,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#玩家在范围内时:"
 			.. "#{{WakabaModLunatic}} {{Damage}} {{ColorOrange}}-2 攻击"
 			.. "#↑ {{Tears}} +0.5 Fire rate up"
-			.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.2 Fire rate multiplier"
+			.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 Fire rate multiplier"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
