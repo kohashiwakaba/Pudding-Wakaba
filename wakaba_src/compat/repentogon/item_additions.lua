@@ -10,17 +10,16 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, func
 	end
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
----@param itemID CollectibleType
----@param charge integer
----@param firstTime boolean
----@param slot ActiveSlot
----@param varData integer
----@param player EntityPlayer
-wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
-	if firstTime and player:GetPlayerType() ~= wakaba.Enums.Players.RICHER then
-		--return {itemID, 8, firstTime, slot, varData}
-	end
-end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
+wakaba.LunaticCharges = {
+	[wakaba.Enums.Collectibles.RIRAS_COAT] = 6,
+	[wakaba.Enums.Collectibles.COUNTER] = 1800,
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = 12,
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = 900,
+	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = 6,
+}
+
+function wakaba:GetCalculatedMaidMaxCharges()
+end
 
 local maidRecursive = false
 --- Maid Duet : 모든 액티브 아이템의 최대 충전량 2칸 감소 (최소 1), 시간제, 스페셜의 경우 15%
@@ -28,6 +27,9 @@ local maidRecursive = false
 ---@param player EntityPlayer
 ---@param varData integer
 wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 20000, function(_, itemID, player, varData)
+	if wakaba:IsLunatic() and wakaba.LunaticCharges[itemID] then
+		return wakaba.LunaticCharges[itemID]
+	end
 	if not maidRecursive and player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and itemID ~= 0 and not wakaba.Blacklists.MaidDuetCharges[itemID] then
 		maidRecursive = true
 		local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
@@ -43,7 +45,19 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 20000, 
 		else
 			return math.floor(maxCharges * 0.85)
 		end
+	end
+end)
 
+---@param itemID CollectibleType
+---@param charge integer
+---@param firstTime boolean
+---@param slot ActiveSlot
+---@param varData integer
+---@param player EntityPlayer
+wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
+	if firstTime and (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or wakaba:IsLunatic()) then
+		wakaba.Log("getting maid charge from item...", charge)
+		--return {itemID, charge, firstTime, slot, varData}
 	end
 end)
 

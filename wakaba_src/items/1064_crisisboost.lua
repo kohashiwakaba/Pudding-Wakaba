@@ -5,6 +5,9 @@ function wakaba:Cache_CrisisBoost(player, cacheFlag)
 		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.CRISIS_BOOST) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.CRISIS_BOOST)
 		local currHearts = player:GetHearts() + player:GetSoulHearts() + player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 		local bonus = math.min(math.max(0, (26 - currHearts) / 16), 1.5) * 0.3
+		if wakaba:IsLunatic() then
+			bonus = bonus * 16 / 45
+		end
 		if currHearts == 1 then bonus = 1 end
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * ((1 + bonus) * count)

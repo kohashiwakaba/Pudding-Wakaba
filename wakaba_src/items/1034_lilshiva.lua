@@ -66,7 +66,7 @@ function wakaba:updateLilShiva(familiar)
 	local sprite = familiar:GetSprite()
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
-	local targetoffset = 5
+	local targetoffset = wakaba:IsLunatic() and 2 or 5
 	local mark = wakaba:GetMarkedTarget(player)
 	
 	if Sewn_API then

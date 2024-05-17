@@ -634,6 +634,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#眼泪可以被射入其他眼泪，使它们变大"
 			.. "#玩家的眼泪可以被吞噬"
 			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{Collectible532}} 噬泪跟班"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Shoots single tear" -- TODO
+			.. "#T眼泪在飞行过程中减速"
+			.. "#停止时，它们会爆炸成8个小眼泪"
+			.. "#眼泪可以被射入其他眼泪，使它们变大"
+			.. "#玩家的眼泪可以被吞噬"
+			.. "{{CR}}",
 		queueDesc = "水之密友",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
@@ -913,6 +921,11 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!! {{HolyMantle}} 神圣斗篷防御也算血量"
 			.. "#↑ {{Tears}} +1射速修正"
 			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}}血量越低，攻击力乘数越高（最高+16%）"
+			.. "#!!! {{HolyMantle}} 神圣斗篷防御也算血量"
+			.. "#↑ {{Tears}} +1射速修正"
+			.. "{{CR}}",
 		queueDesc = "更少的血量，更多的力量",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
@@ -961,6 +974,10 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{SoulHeart}} +1 魂心"
 			.. "#{{HalfSoulHeart}} 每分钟45%恢复半魂心"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#↑ {{SoulHeart}} +1 魂心"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}} {{HalfSoulHeart}}每分钟10%恢复半魂心"
 			.. "{{CR}}",
 		queueDesc = "再生 + 生命提升",
 	},
@@ -1033,6 +1050,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "传送到初始房间"
 			.. "#!!!在某些情况下可能会出现其他效果"
 			.. "{{CR}}",
+		lunatic = "传送到初始房间"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Other effects won't occur" -- TODO
+			.. "{{CR}}",
 		queueDesc = "紧急逃生",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
@@ -1074,6 +1094,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "透镜",
 		description = "↑ {{Damage}} x1.65 伤害倍率#左眼流泪",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} x1.15 伤害倍率#左眼流泪",
 		queueDesc = "守护者之眼",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {

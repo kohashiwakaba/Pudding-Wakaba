@@ -1,7 +1,9 @@
 function wakaba:ItemUse_D6Plus(_, rng, player, useFlags, activeSlot, varData)
 	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD
 	player:UseCard(Card.CARD_SOUL_ISAAC, flag)
-	wakaba:makePedestalsUntouched()
+	if not wakaba:IsLunatic() then
+		wakaba:makePedestalsUntouched()
+	end
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(wakaba.Enums.Collectibles.D6_PLUS, "UseItem", "PlayerPickup")
 	end

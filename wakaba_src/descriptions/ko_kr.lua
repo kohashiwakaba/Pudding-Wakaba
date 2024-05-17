@@ -625,7 +625,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Collectible532}} 일정 주기로 눈물을 흡수하는 눈물을 일렬로 5발 발사합니다."
 		.. "#최대 5번 흡수 시 파열되어 8방향으로 작은 눈물이 발사됩니다."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.CONJOINED .. "",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Collectible532}}일정 주기로 눈물을 흡수하는 눈물을 발사합니다."
+		.. "#최대 5번 흡수 시 파열되어 8방향으로 작은 눈물이 발사됩니다."
+		.. "{{CR}}",
 	queueDesc = "소원을 비는 친구",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
@@ -931,6 +934,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ 전체 체력 및 {{HolyMantleSmall}}보호막의 수가 적을수록 {{DamageSmall}}공격력 배율 증가"
 		.. "#{{Blank}} 체력 1칸일 때 최대 x1.45/{{HalfHeart}}일 때 x2.0"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{TearsSmall}}연사 +1"
+		.. "#↑ 전체 체력 및 {{HolyMantleSmall}}보호막의 수가 적을수록 {{DamageSmall}}공격력 배율 증가"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}체력 1칸일 때 최대 x1.16/{{HalfHeart}}일 때 x2.0"
+		.. "{{CR}}",
 		queueDesc = "위기에 빠질수록 강해지다",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
@@ -980,6 +988,10 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{SoulHeart}}소울하트 +1"
 		.. "#타이머가 1분 00초가 될 때마다 45%의 확률로 {{HalfSoulHeart}}소울하트 반 칸을 회복합니다."
+		.. "{{CR}}",
+		description = ""
+		.. "#↑ {{SoulHeart}}소울하트 +1"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}타이머가 1분 00초가 될 때마다 10%의 확률로 {{HalfSoulHeart}}소울하트 반 칸을 회복합니다."
 		.. "{{CR}}",
 		queueDesc = "영혼 재생 + 체력 증가",
 	},
@@ -1081,6 +1093,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "카나에 렌즈",
 		description = "↑ {{DamageSmall}}공격력 배율 x1.65#왼쪽 눈에서 유도 공격이 나갑니다.",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.15#왼쪽 눈에서 유도 공격이 나갑니다.",
 		queueDesc = "지켜보는 소녀의 눈동자",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
@@ -1141,6 +1154,9 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "어디로든 문",
 		description = "사용 시 시작 방으로 이동합니다."
 		.. "#!!! 특정 조건에서 사용 시 다른 효과가 발동됩니다."
+		.. "{{CR}}",
+		lunatic = "사용 시 시작 방으로 이동합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 반드시 시작 방 이동 효과만 발동)"
 		.. "{{CR}}",
 		queueDesc = "긴급 탈출구",
 	},
@@ -3101,7 +3117,7 @@ wakaba.descriptions[desclang].bossdest = {
 	desc_boss			= "{{ArrowGrayRight}} 도전할 보스를 설정해 주세요.#아래 중 하나 선택 가능:#{{Blank}} #{{CustomTransformation}} 랜덤#{{BlueBaby}} Isaac/???#{{TheLamb}} Satan/Lamb#{{MegaSatan}} Mega Satan#{{Delirium}} Hush/Delirium#{{Mother}} Mother#{{Beast}} Dogma/Beast",
 	desc_health		= "{{ArrowGrayRight}} 도전할 보스의 총합 체력을 늘립니다.#늘어난 체력은 각 루트의 메이저 보스에게 배분됩니다.#아래 중 하나 선택 가능:#{{Blank}} #{{EmptyHeart}} 기본 (선택 안함)#{{Heart}} 500,000#{{SoulHeart}} 1,000,000#{{BlackHeart}} 10,000,000#{{BoneHeart}} 100,000,000#{{EmptyBoneHeart}} 1,000,000,000#{{UnknownHeart}} 10,000,000,000",
 	desc_damo			= "{{ArrowGrayRight}} {{Collectible656}}Damocles 시작 여부를 결정합니다.#!!! 이 옵션은 시작 방에서만 영향을 받습니다.",
-	desc_lunatic	= "{{WakabaModLunatic}} 와카바 모드의 루나틱 모드 여부를 결정합니다.#{{WakabaModLunatic}} {{ColorOrange}}와카바 모드의 일부 아이템 효과가 크게 약화됩니다.",
+	desc_lunatic	= "{{WakabaModLunatic}} 와카바 모드의 루나틱 모드 여부를 결정합니다.#{{WakabaModLunatic}} {{ColorOrange}}와카바 모드의 일부 아이템 효과가 크게 약화됩니다.#{{WakabaModRgon}} REPENTOGON 미적용 시 일부 아이템은 루나틱 모드에서 등장하지 않습니다.",
 	desc_lock			= "{{ArrowGrayRight}} 게임 클리어 이전까지 해당 옵션을 유지합니다.",
 	desc_roll			= "{{ArrowGrayRight}} Are you ready?",
 	desc_clear		= "{{ArrowGrayRight}} 현재 설정한 보스 챌린지를 중단합니다.#추가된 Damocles는 제거되지 않습니다.",

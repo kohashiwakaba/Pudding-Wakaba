@@ -8,7 +8,7 @@ function wakaba:Cache_KanaeLens(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.KANAE_LENS) then
 		local power = player:GetCollectibleNum(wakaba.Enums.Collectibles.KANAE_LENS)
 		if cacheFlag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1.65 ^ power)
+			player.Damage = player.Damage * ((wakaba:IsLunatic() and 1.15 or 1.65) ^ power)
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
 			if not player:HasWeaponType(WeaponType.WEAPON_TEARS) or power >= 2 then

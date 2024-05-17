@@ -111,6 +111,21 @@ wakaba.Blacklists.FlagLock.collectible = {
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = function()
 		return wakaba:IsLunatic()
 	end,
+	[wakaba.Enums.Collectibles.RIRAS_COAT] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.COUNTER] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = function()
 		return not wakaba.Flags.stackableDamocles
 	end,

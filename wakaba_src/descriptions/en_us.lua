@@ -603,6 +603,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Tears can be fired in other tears, making them bigger"
 		.. "#Isaac can support Lil Shiva using his tears"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{Collectible532}} hungry tear familiar"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Shoots single tear"
+		.. "#Tears slow down while traveling"
+		.. "#Upon stopping, they explode in 8 smaller tears"
+		.. "#Tears can be fired in other tears, making them bigger"
+		.. "#Isaac can support Lil Shiva using his tears"
+		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
@@ -872,6 +880,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! {{HolyMantle}} Holy shields also count for health"
 		.. "#↑ {{Tears}} +1 Fire Rate"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} Damage multiplier up for low health (max +16%)"
+		.. "#!!! {{HolyMantle}} Holy shields also count for health"
+		.. "#↑ {{Tears}} +1 Fire Rate"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "Prestige Pass",
@@ -918,6 +931,10 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{SoulHeart}} +1 Soul Heart"
 		.. "#{{HalfSoulHeart}} 45% Chance to heal half a soul heart every minute"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{SoulHeart}} +1 Soul Heart"
+		.. "{{WakabaModLunatic}} {{ColorOrange}}{{HalfSoulHeart}} 10% Chance to heal half a soul heart every minute"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
@@ -980,6 +997,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "Teleports to Starting room"
 		.. "#!!! Other effects may occur in certain situations"
 		.. "{{CR}}",
+		lunatic = "Teleports to Starting room"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Other effects won't occur"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
 		itemName = "Rira's Bra",
@@ -1008,6 +1028,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "Kanae Lens",
 		description = "↑ {{Damage}} x1.65 Damage multiplier#Homing tears from left eye",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} x1.15 Damage multiplier#Homing tears from left eye",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
 		itemName = "Rira's Bento",
