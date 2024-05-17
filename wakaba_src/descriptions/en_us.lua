@@ -160,7 +160,6 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Lunar Stone",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#↓ Reduces heart container limit to 8"
 		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
 		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
 		.. "#Clearing rooms recover lunar gauge"
@@ -168,13 +167,29 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#↑ Prevents penalties from all damage taken"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
+		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
+		.. "#Clearing rooms recover lunar gauge"
+		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
+		.. "#!!! Lunar Stone is removed when gauge depletes"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
 		itemName = "Elixir of Life",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
-		.. "#↓ {{ColorOrange}}Removes invincibility frames"
+		.. "#↓ {{ColorOrange}}Significantly reduces invincibility frames"
+		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
+		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
+		.. "#{{WakabaModLunatic}} {{ColorRed}}Removes invincibility frames"
 		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
 		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
 		.. "{{CR}}",
@@ -194,6 +209,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Concentrate 3 seconds to fully charge active items"
 		.. "#↑ +1.5 {{Range}} Range up for concentrate (additional +0.25 per count)"
 		.. "#!!! Concentration time increases per usage. This count can be decreased on room clears"
+		.. "#!!! Can't concentrate on 300+ counts"
+		.. "#!!! Isaac cannot move and takes twice damage while in concentration mode"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#Hold Drop button to enter concentration mode"
+		.. "#Concentrate 3 seconds to fully charge active items"
+		.. "#↑ +1.5 {{Range}} Range up for concentrate (additional +0.25 per count)"
+		.. "#!!! Concentration time increases per usage. This count can be decreased on room clears"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Repeating concentration reqires room clears, can't concentrate on 60+ counts"
 		.. "#!!! Isaac cannot move and takes twice damage while in concentration mode"
 		.. "{{CR}}",
 	},
@@ -203,6 +227,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{CurseCursed}} Changes other curses"
 		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
+		.. "#Automatically consumes stored ones for uncharged actives"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{CurseCursed}} Changes other curses"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Stores extra charge after clearing a room (max 6)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	},
@@ -908,6 +938,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
 		.. "#{{Battery}} Stores extra charge after clearing a room (max 12)"
+		.. "#Automatically consumes stored ones for uncharged actives"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#Shoots chasing tears"
+		.. "#Deals 2 damage per tick"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Stores extra charge after clearing a room (max 4)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",

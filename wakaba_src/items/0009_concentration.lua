@@ -84,7 +84,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 		local count = wakaba:getPlayerDataEntry(player, "concentrationcount")
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT then return end
-			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION) then
+			if wakaba:IsLunatic() or (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION)) then
 				if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.CONCENTRATION) or count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT_TSUKASA then return end
 			end
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then

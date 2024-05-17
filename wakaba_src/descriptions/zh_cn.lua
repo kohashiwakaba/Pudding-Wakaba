@@ -166,11 +166,10 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "互帮互助",
 	},
-	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
+	[wakaba.Enums.Collectibles.LUNAR_STONE] = { -- TODO
 		itemName = "月石",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#↓ 将心之容器的上限降低到8"
 			.. "#↑ 获得额外的月相表，根据月相表的数值提高{{Damage}}伤害和{{Tears}}射速"
 			.. "#如果受到伤害，月石失效，月相表开始消耗"
 			.. "#Clearing rooms recover lunar gauge"
@@ -185,7 +184,14 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{WakabaAntiCurseUnknown}} 免疫未知诅咒"
-			.. "#↓ {{ColorOrange}}移除无敌帧"
+			.. "#↓ {{ColorOrange}}Significantly reduces invincibility frames" -- TODO
+			.. "#在短时间内未受伤快速恢复任何类型生命值"
+			.. "#恢复4次减少一颗心"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{WakabaAntiCurseUnknown}} 免疫未知诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorRed}}移除无敌帧"
 			.. "#在短时间内未受伤快速恢复任何类型生命值"
 			.. "#恢复4次减少一颗心"
 			.. "{{CR}}",
@@ -200,13 +206,22 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "彗星女孩",
 	},
-	[wakaba.Enums.Collectibles.CONCENTRATION] = {
+	[wakaba.Enums.Collectibles.CONCENTRATION] = { -- TODO
 		itemName = "专注",
 		description = ""
 			.. "#按住丢弃按钮(通常是ctrl)进入专注模式"
 			.. "#3秒钟可以完全充能主动道具"
 			.. "#↑ +1.5 {{Range}} 射程,在专注时（每次使用额外增加0.25）"
 			.. "#!!! 专注时间会随着使用次数增加。这个计数可以在清理房间时减少"
+			.. "#!!! Can't concentrate on 300+ counts"
+			.. "#!!! 在专注模式下不能移动，并且受到的伤害加倍"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#按住丢弃按钮(通常是ctrl)进入专注模式"
+			.. "#3秒钟可以完全充能主动道具"
+			.. "#↑ +1.5 {{Range}} 射程,在专注时（每次使用额外增加0.25）"
+			.. "#!!! 专注时间会随着使用次数增加。这个计数可以在清理房间时减少"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Repeating concentration reqires room clears, can't concentrate on 60+ counts"
 			.. "#!!! 在专注模式下不能移动，并且受到的伤害加倍"
 			.. "{{CR}}",
 		queueDesc = "可重复使用的充电器",
@@ -217,6 +232,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{CurseCursed}} 改变其他诅咒"
 			.. "#{{Battery}} 清理房间后储存额外的能量（最多16个）"
+			.. "#为未充满的主动道具自动消耗储存的能量"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{CurseCursed}} 改变其他诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}清理房间后储存额外的能量（最多6个）"
 			.. "#为未充满的主动道具自动消耗储存的能量"
 			.. "{{CR}}",
 		queueDesc = "甜蜜诅咒，不再盲目",
@@ -954,6 +975,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#发射追踪子弹"
 			.. "#每一帧造成2点伤害"
 			.. "#{{Battery}} 清理房间后储存额外的充能（最多12个）"
+			.. "#自动消耗储存的能量为未充满的主动道具"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#发射追踪子弹"
+			.. "#每一帧造成2点伤害"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}清理房间后储存额外的充能（最多4个）"
 			.. "#自动消耗储存的能量为未充满的主动道具"
 			.. "{{CR}}",
 		queueDesc = "我想要这个兔耳",

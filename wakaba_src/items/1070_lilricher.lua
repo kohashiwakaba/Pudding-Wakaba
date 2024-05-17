@@ -98,6 +98,10 @@ function wakaba:getMaxRabbitCharges(player)
 
 	local rabbitMaxCharges = count > 0 and wakaba.Enums.Constants.RABBIT_RIBBON_BASIC_CHARGES + (count * wakaba.Enums.Constants.RABBIT_RIBBON_EXTRA_CHARGES) or 0
 	local lilRicherMaxCharges = lilCount > 0 and wakaba.Enums.Constants.LIL_RICHER_BASIC_CHARGES + (lilCount * wakaba.Enums.Constants.LIL_RICHER_EXTRA_CHARGES) or 0
+	if wakaba:IsLunatic() then
+		rabbitMaxCharges = count > 0 and wakaba.Enums.Constants.RABBIT_RIBBON_BASIC_CHARGES_LUNATIC + (count * wakaba.Enums.Constants.RABBIT_RIBBON_EXTRA_CHARGES_LUNATIC) or 0
+		lilRicherMaxCharges = lilCount > 0 and wakaba.Enums.Constants.LIL_RICHER_BASIC_CHARGES_LUNATIC + (lilCount * wakaba.Enums.Constants.LIL_RICHER_EXTRA_CHARGES_LUNATIC) or 0
+	end
 
 	return rabbitMaxCharges + lilRicherMaxCharges
 end
