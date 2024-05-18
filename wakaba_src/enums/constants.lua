@@ -556,6 +556,7 @@ wakaba.Colors = {
 
 	AQUA_ENTITY_COLOR = Color(0.5, 0.52, 0.75, 1),
 	AQUA_WEAPON_COLOR = Color(0.5, 0.66, 1, 1),
+	AQUA_FART_COLOR = Color(0.7, 0.7, 0.7, 1, 0, 0, 0.5),
 	AQUA_LASER_COLOR = Color(0.5, 0.7, 0.8, 1, 0.5, 0.7, 0.8),
 
 	FLOOD_ENTITY_COLOR = Color(0.8, 0.5, 0.9, 1),

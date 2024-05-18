@@ -1119,13 +1119,40 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "黑豆麻糬",
 		description =
-		"10% 几率射击“压缩”敌人#{{Luck}}16幸运时100%触发# 压缩敌人死亡后爆炸#压缩爆炸不会伤害艾萨克",
+		"10% 几率射击“压缩”敌人"
+		.. "#{{Luck}}16幸运时100%触发"
+		.. "#压缩敌人死亡后爆炸"
+		.. "#压缩爆炸不会伤害艾萨克"
+		.. "{{CR}}",
+		lunatic =
+		"10% 几率射击“压缩”敌人"
+		.. "#{{Luck}}16幸运时100%触发"
+		.. "#压缩敌人死亡后爆炸"
+		.. "#压缩爆炸不会伤害艾萨克"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Zip explosions no longer inherit Isaac's bomb synergies" -- TODO
+		.. "{{CR}}",
 		queueDesc = "浓缩的记忆",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "樱花蒙布朗",
 		description =
-		"在房间里杀死一个敌人:#↑ {{Damage}} +0.5 伤害#↑ {{Tears}} +1 射速#超过6次#被杀死的敌人使附近的敌人潮湿#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大#水攻击可以击杀石头敌人",
+		"在房间里杀死一个敌人:"
+		.. "#↑ {{Damage}} +0.5 伤害"
+		.. "#↑ {{Tears}} +1 射速"
+		.. "#超过6次"
+		.. "#被杀死的敌人使附近的敌人潮湿"
+		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+		.. "#水攻击可以击杀石头敌人"
+		.. "{{CR}}",
+		description =
+		"在房间里杀死一个敌人:"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 伤害"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 射速"
+		.. "#超过6次"
+		.. "#被杀死的敌人使附近的敌人潮湿"
+		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+		.. "#水攻击可以击杀石头敌人"
+		.. "{{CR}}",
 		queueDesc = "潮湿费洛蒙",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {

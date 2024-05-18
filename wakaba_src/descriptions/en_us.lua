@@ -1052,11 +1052,36 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "Black Bean Mochi",
-		description = "10% chance to shoot 'zip' enemies#{{Luck}} 100% chance at 16 Luck#Zipped enemies make explosion on death#Zip explosion does not harm Isaac",
+		description = "10% chance to shoot 'zip' enemies"
+		.. "#{{Luck}} 100% chance at 16 Luck"
+		.. "#Zipped enemies make explosion on death"
+		.. "#Zip explosion does not harm Isaac"
+		.. "{{CR}}",
+		lunatic = "10% chance to shoot 'zip' enemies"
+		.. "#{{Luck}} 100% chance at 16 Luck"
+		.. "#Zipped enemies make explosion on death"
+		.. "#Zip explosion does not harm Isaac"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Zip explosions no longer inherit Isaac's bomb synergies"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "Sakura Mont Blanc",
-		description = "For each enemy killed in the room:#↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +1 Fire rate#Caps at 6 kills#Killed enemies aquafy nearby enemies#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#Aqua attacks instakill stone enemies",
+		description = "For each enemy killed in the room:"
+		.. "#↑ {{Damage}} +0.5 Damage"
+		.. "#↑ {{Tears}} +1 Fire rate"
+		.. "#Caps at 6 kills"
+		.. "#Killed enemies aquafy nearby enemies"
+		.. "#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#Aqua attacks instakill stone enemies"
+		.. "{{CR}}",
+		lunatic = "For each enemy killed in the room:"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 Damage"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 Fire rate"
+		.. "#Caps at 6 kills"
+		.. "#Killed enemies aquafy nearby enemies"
+		.. "#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#Aqua attacks instakill stone enemies"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "Kanae Lens",

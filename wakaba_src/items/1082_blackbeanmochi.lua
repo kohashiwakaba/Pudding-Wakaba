@@ -97,7 +97,8 @@ function wakaba:NPCDeath_BlackBeanMochi(entity)
 					wakaba:AddStatusEffect(e, wakaba.StatusEffect.ZIPPED, 90, player)
 				end
 			end
-			wakaba.G:BombExplosionEffects(npc.Position, 60, player:GetBombFlags(), Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | (not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0))
+			local flags = wakaba:IsLunatic() and 0 or player:GetBombFlags()
+			wakaba.G:BombExplosionEffects(npc.Position, 15, flags, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | (not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0))
 			--print("Explode!")
 		end
 	end
