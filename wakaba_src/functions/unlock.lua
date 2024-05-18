@@ -131,7 +131,9 @@ wakaba.Blacklists.FlagLock.collectible = {
 	end,
 }
 wakaba.Blacklists.FlagLock.trinket = {
-
+	[wakaba.Enums.Trinkets.BITCOIN] = function()
+		return wakaba:IsLunatic()
+	end,
 }
 wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = function()
