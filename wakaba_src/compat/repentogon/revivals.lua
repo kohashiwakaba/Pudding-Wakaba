@@ -12,6 +12,8 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, function(_, player)
 		if revivalData.PostRevival then
 			revivalData.PostRevival(player)
 		end
-		player:AnimateCollectible(revivalData.ID)
+		wakaba:scheduleForUpdate(function()
+			player:AnimateCollectible(revivalData.ID)
+		end, 3)
 	end
 end)
