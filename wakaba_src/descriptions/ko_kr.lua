@@ -369,7 +369,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{Heart}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{LuckSmall}}행운을 최소 3 이상으로 설정"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 추가 행운 없음)"
+		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#{{Heart}} 체력을 모두 회복합니다"
+		.. "{{CR}}",
 		queueDesc = "공격력 증가 + 엄청난 강운",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {

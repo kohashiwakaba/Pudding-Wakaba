@@ -355,6 +355,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#{{Heart}} Full Health"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}} Sets your Luck to 3 if you have less than 3"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "#{{Heart}} Full Health"
+		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {

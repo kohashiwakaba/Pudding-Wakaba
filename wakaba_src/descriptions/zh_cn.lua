@@ -259,7 +259,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "随意试吃",
 	},
-	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
+	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = { -- TODO
 		itemName = "辇道增七",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
@@ -369,11 +369,17 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "全属性上升! + 你感觉很下流",
 	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = { -- TODO
 		itemName = "若叶的挂坠",
 		description = ""
 			.. "#{{Luck}}如果幸运少于7则提升到7"
 			.. "#↑ {{Luck}} 每有一个幸运相关道具+0.35幸运"
+			.. "#↑ {{Damage}} +1攻击力"
+			.. "#{{Heart}} 恢复所有红心"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}}如果幸运少于3则提升到3"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",

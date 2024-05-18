@@ -39,14 +39,16 @@ function wakaba:Cache_Important(player, cacheFlag)
 	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) and player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_B then
-			local pendantcnt = 0
-			if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
-				pendantcnt = #player:GetData().wakaba.PendantCandidates
+			if wakaba:IsLunatic() then
+				player.Luck = math.max(player.Luck, 3)
+			else
+				local pendantcnt = 0
+				if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
+					pendantcnt = #player:GetData().wakaba.PendantCandidates
+				end
+				player.Luck = math.max(player.Luck, 7)
+				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
-			if player.Luck < 7 then
-				player.Luck = 7
-			end
-			player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 		end
 	end
 end
