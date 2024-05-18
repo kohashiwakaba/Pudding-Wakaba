@@ -702,6 +702,10 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#生成一个小血块（最多10个）"
 			.. "#恢复所有生成的小血块的生命值2点"
 			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}生成一个小血块（最多4个）"
+			.. "#恢复所有生成的小血块的生命值2点"
+			.. "{{CR}}",
 		queueDesc = "史莱姆分裂",
 	},
 	[wakaba.Enums.Collectibles.BALANCE] = {
@@ -962,6 +966,12 @@ wakaba.descriptions[desclang].collectibles = {
 			..
 			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
 			.. "#璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{BossRoom}} 在击败Boss房间后生成璃贝的ROLL机"
+			..
+			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两1后会损坏" -- TODO
 			.. "{{CR}}",
 		queueDesc = "璃贝酱的魔法",
 	},

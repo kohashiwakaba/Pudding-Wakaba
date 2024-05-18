@@ -254,7 +254,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Tainted Richer의 전용 천체방 보물방을 대체하여 등장합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Tainted Richer의 전용 천체방이 보물방을 대체하여 등장합니다."
 		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
 		.. "#현재 스테이지에 따른 배열의 아이템"
 		.. "#흰색 모닥불"
@@ -691,7 +691,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#소환된 모든 꼬마 클롯의 체력을 2 회복합니다."
 		.. "#최대 10마리까지 소환할 수 있으며 이후 사용 시 꼬마 클롯의 체력을 전부 회복합니다."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		lunatic = ""
+		.. "#사용 시 캐릭터와 같이 이동하며 공격하는 방향으로 캐릭터의 공격과 같은 공격을 발사하는 꼬마 클롯을 소환합니다."
+		.. "#소환된 모든 꼬마 클롯의 체력을 2 회복합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}최대 4마리까지 소환할 수 있으며 이후 사용 시 꼬마 클롯의 체력을 전부 회복합니다."
+		.. "{{CR}}",
 	queueDesc = "슬라임 소환",
 	},
 	[wakaba.Enums.Collectibles.BALANCE] = {
@@ -972,6 +976,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{CrystalRestock}} {{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
 		.. "#{{CrystalRestock}} {{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 2회 사용 시 비활성화 됩니다."
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{CrystalRestock}} {{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
+		.. "#{{CrystalRestock}} {{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{CrystalRestock}}리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 1회 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
 	},

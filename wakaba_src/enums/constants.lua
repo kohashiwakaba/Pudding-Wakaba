@@ -533,6 +533,7 @@ wakaba.Enums.Constants = {
 	MAGNET_HEAVEN_TIMER = 150,
 
 	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한
+	MAX_ISEKAI_CLOTS_LUNATIC = 4, -- 이세계 정의서 소환 제한
 	ISEKAI_CERTIFICATE_CHANCE = 50, -- 이세계 사증 이스터에그 확률 (0.1% 단위)
 	ISEKAI_SHIORI_BONUS = 400, -- 이세계 사증 시오리 확률 보너스
 	ISEKAI_OVER_CLOT_BONUS = 250, -- 이세계 사증 최대 소환 확률 보너스

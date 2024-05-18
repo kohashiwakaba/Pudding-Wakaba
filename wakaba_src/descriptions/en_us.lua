@@ -668,6 +668,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Spawns a Lil Clot (max 10)"
 		.. "#Heals all spawned Lil Clots' health by 2"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Spawns a Lil Clot (max 4)"
+		.. "#Heals all spawned Lil Clots' health by 2"
+		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.BALANCE] = {
@@ -916,6 +920,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{BossRoom}} Spawns Richer's restock machine on boss room clears"
 		.. "#Spawns Richer's restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
 		.. "#Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 2 rerolls"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{BossRoom}} Spawns Richer's restock machine on boss room clears"
+		.. "#Spawns Richer's restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 1 reroll"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
