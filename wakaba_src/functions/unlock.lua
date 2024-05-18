@@ -139,6 +139,9 @@ wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = function()
 		return not wakaba.Flags.stackableDamocles
 	end,
+	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = function()
+		return wakaba:IsLunatic()
+	end,
 }
 
 ---@type table
