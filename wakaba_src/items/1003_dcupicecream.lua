@@ -6,7 +6,7 @@ function wakaba:Cache_DCupIcecream(player, cacheFlag)
 			end
 		end
 		if cacheFlag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = (player.Damage + (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM) * wakaba:getEstimatedDamageMult(player))) * 1.8
+			player.Damage = (player.Damage + (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM) * wakaba:getEstimatedDamageMult(player))) * (wakaba:IsLunatic() and 1.36 or 1.8)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BINGE_EATER) then
 				player.Damage = player.Damage + (1 * player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM) * wakaba:getEstimatedDamageMult(player))
 			end

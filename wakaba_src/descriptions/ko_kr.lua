@@ -334,7 +334,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}공격력 +0.3"
 		.. "#↑ {{DamageSmall}}공격력 배율 x1.8 (중첩 불가)"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		lunatic = ""
+		.. "#↑ {{Heart}}최대 체력 +1"
+		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{DamageSmall}}공격력 +0.3"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.36 (중첩 불가)"
+		.. "{{CR}}",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
 		binge = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
 	},

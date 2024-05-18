@@ -345,6 +345,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +0.3攻击力"
 			.. "#↑ {{Damage}} +80% 攻击倍率 (不叠加)"
 			.. "{{CR}}",
+		lunatic = ""
+			.. "#↑ {{Heart}} +1 心之容器"
+			.. "#↑ {{Heart}} 治疗1红心"
+			.. "#↑ {{Damage}} +0.3攻击力"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% 攻击倍率 (不叠加)"
+			.. "{{CR}}",
 		queueDesc = "攻击力上升 + 不是你想的那样!",
 		binge = "↑ {{Damage}} +1.0攻击力#↓ {{Speed}} -0.04速度",
 	},

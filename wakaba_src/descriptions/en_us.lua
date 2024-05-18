@@ -324,6 +324,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#↑ {{Damage}} +80% Damage Multiplier (Does not stack)"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{Heart}} +1 Heart Container"
+		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "#↑ {{Damage}} +0.3 Damage Up"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% Damage Multiplier (Does not stack)"
+		.. "{{CR}}",
 		binge = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
