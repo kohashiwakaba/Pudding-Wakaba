@@ -1920,6 +1920,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "스페이드 Q",
 		description = "사용 시 3~26개의 {{Key}}열쇠를 드랍합니다.",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}사용 시 1~6개의 {{Key}}열쇠를 드랍합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "와카바의 꿈 카드",

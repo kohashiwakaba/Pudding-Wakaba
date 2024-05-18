@@ -1714,6 +1714,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "黑桃皇后",
 		description = "{{Key}} 生成3~26把钥匙",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Key}}生成1~6把钥匙",
 		queueDesc = ";P",
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {

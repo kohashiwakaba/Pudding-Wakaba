@@ -1630,6 +1630,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "Queen of Spades",
 		description = "{{Key}} Spawns 3~26 keys",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Key}}Spawns 1~6 keys",
 		mimiccharge = 10,
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
