@@ -1388,3 +1388,11 @@ end
 function wakaba:IsLunatic()
 	return wakaba.state.bossdestlunatic -- TODO add callback for this
 end
+
+function wakaba:RoomShouldCheckAscent()
+	local room = wakaba.G:GetRoom()
+	if room:GetType() == RoomType.ROOM_BOSS or room:GetType() == RoomType.ROOM_TREASURE then
+		return true
+	end
+	return false
+end
