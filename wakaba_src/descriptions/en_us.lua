@@ -587,7 +587,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "Book of The Fallen",
 		description = ""
-		--.. "#!!! This item cannot be used before reviving into Fallen Angel"
 		.. "#On use, Spawns 3 Putagory ghosts that deals 0.4x of Isaac's Damage"
 		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"

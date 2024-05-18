@@ -13,13 +13,13 @@ wakaba.ValutMetadata = {
 			return wakaba:GetItemFromWakabaPools("ShioriValut", false, slot.InitSeed)
 		end,
 		BasePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
-			return itemConfigItem.Quality + 2
+			return wakaba:IsLunatic() and 6 or itemConfigItem.Quality + 2
 		end,
 		AddPrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
 			return 0
 		end,
 		MultiplePrice = function (itemConfigItem, extraParams) ---@param itemConfigItem ItemConfig_Item
-			return itemConfigItem.DevilPrice
+			return wakaba:IsLunatic() and 2 or itemConfigItem.DevilPrice
 		end,
 	},
 	[wakaba.Enums.ShioriValutSubType.BOOKS] = {
