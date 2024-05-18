@@ -56,6 +56,13 @@ local function getNameEntity(entity)
 	return name
 end
 
+function wakaba:GetMaxConquestCount(player)
+	if wakaba:IsLunatic() then
+		return 40
+	end
+	return 160
+end
+
 function wakaba:SetConquestCharge(player, slot)
   if player == nil then return end
   local slot = slot or ActiveSlot.SLOT_PRIMARY
@@ -67,7 +74,7 @@ function wakaba:SetConquestCharge(player, slot)
   local maxCharges = activeConfig.MaxCharges
   local chargeType = activeConfig.ChargeType
   if activeItem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
-    if wakaba.killcount <= 160 then
+    if wakaba.killcount <= wakaba:GetMaxConquestCount(player) then
       player:SetActiveCharge(200000, slot)
     else
       player:SetActiveCharge(0, slot)
@@ -97,11 +104,11 @@ function wakaba:ConquerEnemy(entity)
 end
 
 function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, varData)
-	if wakaba.killcount > 160 then
+	if wakaba.killcount > wakaba:GetMaxConquestCount(player) then
 		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ, 1, 0, false, 1)
 		return {Discharge = false}
 	end
-	if not wakaba:ShioriHasBook(player, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST) and wakaba.killcount > 40 then
+	if (wakaba:IsLunatic() or not wakaba:ShioriHasBook(player, wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)) and wakaba.killcount > 40 then
 		SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ, 1, 0, false, 1)
 		return {Discharge = false}
 	end
@@ -571,7 +578,7 @@ function wakaba:HUD_BookOfConquest()
 		wakaba.globalHUDSprite:SetFrame("BookOfConquest", 0)
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
-			Text = math.floor(wakaba.killcount) .. "/160",
+			Text = math.floor(wakaba.killcount) .. "/" .. wakaba:GetMaxConquestCount(),
 		}
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_CALC then
 			wakaba.globalHUDSprite:SetFrame("BookOfConquest", 1)
