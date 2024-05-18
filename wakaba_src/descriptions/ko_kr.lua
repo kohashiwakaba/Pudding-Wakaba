@@ -307,9 +307,15 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#피격이나 적들에게 대미지를 입혔을 때만 충전됩니다."
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}배터리 없이 초과 충전이 가능합니다."
-		--[[ .. "#!!! Wakaba variant : " ]]
 		.. "#사용 시 현재 방 배열의 아이템을 소환합니다."
 		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#피격이나 적들에게 대미지를 입혔을 때만 충전됩니다."
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}배터리 없이 초과 충전이 가능합니다."
+		.. "#사용 시 현재 방 배열의 아이템을 소환합니다."
+		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 충전 속도 50% 감소)"
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
 		wisp = "{{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",

@@ -299,9 +299,15 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Only can be charged through damaging enemies or self damage."
 		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
-		--[[ .. "#!!! Wakaba variant : " ]]
 		.. "#Spawns a random collectible item from current item pool"
 		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#Only can be charged through damaging enemies or self damage."
+		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
+		.. "#Spawns a random collectible item from current item pool"
+		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Decreased charge rate by half"
 		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
 	},

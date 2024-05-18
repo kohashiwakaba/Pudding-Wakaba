@@ -60,6 +60,9 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 	if isGolden then
 		multiplier = multiplier * 2
 	end
+	if wakaba:IsLunatic() then
+		multiplier = multiplier / 2
+	end
 	local chargeamount = (amount * multiplier) // 1
 	for i = 0, 2 do
 		if player:GetActiveItem(i) == wakaba.Enums.Collectibles.EATHEART then

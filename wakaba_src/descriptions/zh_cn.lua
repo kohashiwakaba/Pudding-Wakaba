@@ -314,7 +314,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#如果房间里有15个或更多的拾取物，它们就会爆炸."
 			.. "{{CR}}",
 	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
+	[wakaba.Enums.Collectibles.EATHEART] = { -- TODO
 		itemName = "食心",
 		description = ""
 			.. "#只能通过伤害敌人或自我伤害来充能."
@@ -322,6 +322,14 @@ wakaba.descriptions[desclang].collectibles = {
 			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
 			.. "#生成一个来自当前物品池的随机物品"
 			.. "#只会生成{{Quality3}}/{{Quality4}}道具"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#只能通过伤害敌人或自我伤害来充能."
+			.. "#即使没有 {{Collectible" ..
+			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
+			.. "#生成一个来自当前物品池的随机物品"
+			.. "#只会生成{{Quality3}}/{{Quality4}}道具"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}Decreased charge rate by half"
 			.. "{{CR}}",
 		queueDesc = "就像布丁",
 		wisp = "{{ColorLime}}内环 x1: {{CR}}#无敌 灵火#不能发射眼泪",
