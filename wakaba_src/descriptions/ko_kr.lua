@@ -252,6 +252,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계(해금 무관)"
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 일정 횟수 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Tainted Richer의 전용 천체방 보물방을 대체하여 등장합니다."
+		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
+		.. "#현재 스테이지에 따른 배열의 아이템"
+		.. "#흰색 모닥불"
+		.. "#{{CrystalRestock}} 리셰의 재입고 기계(해금 무관)"
+		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 일정 횟수 사용 시 비활성화 됩니다."
+		.. "{{CR}}",
 		queueDesc = "저 너머로 이어져 있어",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {

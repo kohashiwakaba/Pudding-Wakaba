@@ -252,6 +252,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#White Fireplace"
 		.. "#{{CrystalRestock}} Crystal restock machine"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Richer's special Planetariums replace treasure rooms that contains:"
+		.. "#Random pool item depending of floor"
+		.. "#White Fireplace"
+		.. "#{{CrystalRestock}} Crystal restock machine"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		itemName = "Water-Flame",

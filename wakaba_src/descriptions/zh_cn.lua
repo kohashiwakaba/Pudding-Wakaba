@@ -263,7 +263,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "辇道增七",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-			.. "#{{PlanetariumChance}}璃贝的特殊天文馆在每个楼层都会出现，其中包含:"
+			.. "#{{RicherPlanetarium}}璃贝的特殊天文馆在每个楼层都会出现，其中包含:"
+			.. "#取决于楼层的随机道具"
+			.. "#白色壁炉"
+			.. "#水晶补货机"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Richer's special Planetariums replace treasure rooms that contains:"
 			.. "#取决于楼层的随机道具"
 			.. "#白色壁炉"
 			.. "#水晶补货机"
