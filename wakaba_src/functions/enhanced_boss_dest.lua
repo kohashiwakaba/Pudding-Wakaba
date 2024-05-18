@@ -32,7 +32,7 @@ local bossEntities = {
 	},
 	["Delirium"] = {
 		{EntityType.ENTITY_HUSH, 0, Weight = 0.5},
-		{EntityType.ENTITY_DELIRIUM, 0, Weight = 0.5},
+		{EntityType.ENTITY_DELIRIUM, 0, Weight = 0.5, OnUpdate = true, Filter = function(npc) return npc.MaxHitPoints == 10000 or npc.MaxHitPoints == 11111 end},
 	},
 	["Mother"] = {
 		{EntityType.ENTITY_MOTHER, 0, Weight = 0.5},
