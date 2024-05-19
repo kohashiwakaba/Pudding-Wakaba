@@ -1023,7 +1023,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{SoulHeart}}소울하트 +1"
 		.. "#타이머가 1분 00초가 될 때마다 45%의 확률로 {{HalfSoulHeart}}소울하트 반 칸을 회복합니다."
 		.. "{{CR}}",
-		description = ""
+		lunatic = ""
 		.. "#↑ {{SoulHeart}}소울하트 +1"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}타이머가 1분 00초가 될 때마다 10%의 확률로 {{HalfSoulHeart}}소울하트 반 칸을 회복합니다."
 		.. "{{CR}}",

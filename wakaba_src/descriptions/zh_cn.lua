@@ -1144,7 +1144,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
 		.. "#水攻击可以击杀石头敌人"
 		.. "{{CR}}",
-		description =
+		lunatic =
 		"在房间里杀死一个敌人:"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 伤害"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 射速"
