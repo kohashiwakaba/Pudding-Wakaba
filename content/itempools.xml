@@ -69,7 +69,7 @@
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -145,7 +145,7 @@
 		<Item Name="Lil Rira" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Rira's Bento" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.6" DecreaseBy="0.6" RemoveOn="0.06"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -223,7 +223,7 @@
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
