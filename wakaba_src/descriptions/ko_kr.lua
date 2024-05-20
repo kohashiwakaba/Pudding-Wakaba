@@ -628,7 +628,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
 		itemName = "마이지마 전설",
 		description = ""
-		.. "#임의의 책 효과 하나를 발동합니다."
+		.. "#사용 시 아래 중 하나의 책 효과 하나를 발동합니다."
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "데메테르 주문서",
@@ -1951,7 +1951,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "미지의 책갈피",
 		queueDesc = "정보가 흩어졌을 때",
-		description = "사용 시 임의의 책 효과를 발동합니다.",
+		description = "사용 시 아래 중 하나의 랜덤 책 효과를 발동합니다.",
 		tarot = "임의의 책 효과를 2개 발동합니다.(중복 가능)",
 	},
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = {
