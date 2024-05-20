@@ -121,7 +121,7 @@ if REPENTOGON then
 		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
 		if hitSound then
 			skipDelay = nil
-			return {hitSound, Volume * mult, FrameDelay, Loop, Pitch, Pan}
+			return {hitSound, Volume * mult, FrameDelay, Loop, 1, 0}
 		end
 	end
 	for _, e in ipairs(hurtReplace) do
@@ -132,7 +132,7 @@ if REPENTOGON then
 		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
 		if deathSound then
 			skipDelay = nil
-			return {deathSound, Volume * mult, FrameDelay, Loop, Pitch, Pan}
+			return {deathSound, Volume * mult, FrameDelay, Loop, 1, 0}
 		end
 	end
 	for _, e in ipairs(deathReplace) do

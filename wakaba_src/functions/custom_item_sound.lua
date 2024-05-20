@@ -64,6 +64,7 @@ end
 
 function wakaba:Update_CustomItemSound()
 	checkForCustomSound = false
+	checkID = nil
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Update_CustomItemSound)
 
@@ -73,7 +74,7 @@ if REPENTOGON then
 		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
 		if customSound then
 			checkID = nil
-			return {customSound, Volume * mult, FrameDelay, Loop, Pitch, Pan}
+			return {customSound, Volume * mult, FrameDelay, Loop, 1, 0}
 		end
 	end
 	for _, e in ipairs(soundToReplace) do
