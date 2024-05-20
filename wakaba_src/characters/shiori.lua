@@ -347,7 +347,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 	if slot == ActiveSlot.SLOT_POCKET2 then return end
 	if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) and slot ~= -1 then
 		local item = Isaac.GetItemConfig():GetCollectible(useditem)
-		local charge = item.MaxCharges
+		local charge = REPENTOGON and wakaba:GetCalculatedMaidMaxCharges(player, useditem) or item.MaxCharges
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
@@ -362,14 +362,12 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		if wakaba:has_value(wakaba.shioriwhitelisted, useditem) then
 			consume = 1
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and consume > 1 then
-			consume = consume - 1
-		end
+		consume = math.max(consume - wakaba:GetMinimumPreservedCharge(player, useditem), 1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
 				consume = consume // 2
-			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B and consume > 1 then
-				consume = consume - 1
+			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+				consume = math.max(consume - 1, 1)
 			end
 		end
 		player:AddKeys(-consume)

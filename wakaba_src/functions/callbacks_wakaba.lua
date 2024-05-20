@@ -1234,3 +1234,21 @@ if CustomHealthAPI and CustomHealthAPI.Mod.Version < 0.946 then
 else
 	wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 20000, postTakeDamage, EntityType.ENTITY_PLAYER)
 end
+
+function wakaba:GetMinimumPreservedCharge(player, itemID)
+	local pr = 0
+	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
+	local chargeType = cfg.ChargeType
+
+	if chargeType == ItemConfig.CHARGE_NORMAL then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) then
+			pr = pr + 1
+		end
+		if REPENTOGON and player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and wakaba.Blacklists.MaidDuetCharges[itemID] then
+			pr = pr + 2
+		end
+	elseif chargeType == ItemConfig.CHARGE_TIMED then
+	elseif chargeType == ItemConfig.CHARGE_SPECIAL then
+	end
+	return pr
+end

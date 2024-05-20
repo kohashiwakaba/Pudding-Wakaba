@@ -66,8 +66,8 @@ function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
 				player:EvaluateItems()
 			end
 		elseif chargeType == ItemConfig.CHARGE_NORMAL then
-			local minCharges = player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and 2 or 1
-			if charges >= minCharges then
+			local minCharges = wakaba:GetMinimumPreservedCharge(player, activeItem)
+			if charges > minCharges then
 				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
 				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
 				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges

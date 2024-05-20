@@ -21,25 +21,30 @@ wakaba.LunaticCharges = {
 local maidRecursive = false
 
 function wakaba:GetCalculatedMaidMaxCharges(player, itemID, origCharge)
+	local changed = false
 	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
 	local newCharge = origCharge or cfg.MaxCharges
 	local type = cfg.ChargeType
 	if wakaba:IsLunatic() and wakaba.LunaticCharges[itemID] then
 		newCharge = wakaba.LunaticCharges[itemID]
+		changed = true
 	end
-	if not wakaba.Blacklists.MaidDuetCharges[itemID] then
+	if player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and not wakaba.Blacklists.MaidDuetCharges[itemID] then
 		if type == ItemConfig.CHARGE_NORMAL then
 			if newCharge <= 2 then
 				newCharge = math.max(newCharge - 1, 0)
+				changed = true
 			else
 				newCharge =  math.max(newCharge - 2, 0)
+				changed = true
 			end
 		elseif type == ItemConfig.CHARGE_TIMED then
 			newCharge = math.floor(newCharge * 0.85)
+			changed = true
 		else
 		end
 	end
-	return newCharge
+	return newCharge, changed
 end
 
 --- Maid Duet : 모든 액티브 아이템의 최대 충전량 2칸 감소 (최소 1), 시간제, 스페셜의 경우 15%
@@ -65,10 +70,14 @@ end)
 ---@param varData integer
 ---@param player EntityPlayer
 wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
-	if slot >= 0 and firstTime and (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or wakaba:IsLunatic()) then
-		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID) or charge
-		wakaba.Log("getting maid charge from item...", newCharge)
-		return {itemID, newCharge, firstTime, slot, varData}
+	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
+	local type = cfg.Type
+	if type == ItemType.ITEM_ACTIVE and firstTime and (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or wakaba:IsLunatic()) then
+		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID)
+		wakaba.Log("getting maid charge from item...", itemID, "slot", slot, "charge", newCharge)
+		if charge ~= newCharge then
+			return {itemID, newCharge, firstTime, slot, varData}
+		end
 	end
 end)
 

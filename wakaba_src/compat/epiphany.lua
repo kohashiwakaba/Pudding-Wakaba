@@ -279,7 +279,7 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			-- Shiori Blighted Dice
 			wakaba:AddCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, function(_, player, slot, item, keys, charge, conf, origin)
 				local pData = player:GetData()
-				if item == Mod.Item.BLIGHTED_DICE.ID2 then
+				if item == Mod.Item.BLIGHTED_DICE.ID2 and not pData.ESSENCE_FROM_BLIGHTED_DICE then
 					if origin >= Epiphany.Item.BLIGHTED_DICE.MAX_CHARGE2 then
 						player:AddKeys(origin)
 						return true
@@ -470,6 +470,9 @@ function wakaba:Epiphany_AddTarnishedDatas()
 			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.EDEN] = true
 			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.LOST] = true
 			wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.KEEPER] = true
+
+			wakaba.Blacklists.MaidDuetCharges[Mod.Item.BLIGHTED_DICE.ID] = true
+			wakaba.Blacklists.MaidDuetCharges[Mod.Item.BLIGHTED_DICE.ID2] = true
 
 			-- prevents "item pool does not exist" warning
 			Mod.CustomItemPools.RicherShopPool_Treasure = {} -- Richer's Planetarium shop - Odd floors
