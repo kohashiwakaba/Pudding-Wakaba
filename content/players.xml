@@ -108,11 +108,11 @@
 	/>
 	
 	<player name="RiraB" bSkinParent="Rira" hidden="true"
-	hp="4" armor="2" birthright="Sakura Liquifier"
+	hp="0" armor="6" birthright="Ribbon Division"
 	portrait="RiraPortrait_b.png"
 	nameimage="playername_rira.png"
 	skin="character_rirab.png" skinColor="-1" costumeSuffix="rira_b"
-	healthtype="1" nomarks="true"
+	healthtype="1" achievement="The Aqua"
 	/>
 
 

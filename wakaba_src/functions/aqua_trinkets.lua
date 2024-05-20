@@ -21,6 +21,7 @@ end
 function wakaba:TryTurnAquaTrinket(trinket)
 	local currentRoomIndex = isc:getRoomListIndex()
 	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 	pickup:GetData().wakaba.isAquaTrinket = true
 end
@@ -38,8 +39,11 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 	if hasTrinketDropped then
 		wakaba.Log("hasTrinketDropped detected, skipping...")
 	end
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Items.AZURE_RIR) then
+		wakaba:TryTurnAquaTrinket(pickup)
+	end
 
-	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
+	if --[[ wakaba:IsEntryUnlocked("aquatrinkets") and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))

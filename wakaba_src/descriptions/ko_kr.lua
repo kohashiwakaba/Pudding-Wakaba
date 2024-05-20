@@ -53,6 +53,11 @@ wakaba.descriptions[desclang].birthright = {
 		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Nerf Gun의 약화효과가 더 오래 지속됩니다.#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki의 공격이 더 강해지며 치마키의 눈물이 레이저로 대체됩니다.",
 		queueDesc = "아주 살짝만 더 야릇하게?",
 	},
+	[wakaba.Enums.Players.RIRA_B] = {
+		playerName = "Tainted Rira",
+		description = "#토끼 와드 영향권 외부에 있어도 체력이 감소하지 않습니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Ward 사용 시 추가로 그 방의 가장 가까운 아이템 하나를 복사합니다.",
+		queueDesc = "리본 가르기",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -292,6 +297,26 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Trinket63}} 트롤 폭탄 해체"
 		.. "{{CR}}",
 		queueDesc = "리라의 소울메이트",
+	},
+	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
+		itemName = "토끼 와드",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
+		.. "#사용 시 아래 효과를 지닌 토끼 와드를 설치합니다:"
+		.. "#{{Collectible91}} 설치한 방에서 2칸 이내에 있는 스테이지 구조 및 특수방을 맵에 표시 및 영향권으로 만듭니다."
+		.. "#영향권 내에서 공격력/연사 증가"
+		.. "#토끼 와드가 설치된 방 클리어 시 소울하트 반칸을 회복합니다."
+		.. "{{CR}}",
+		queueDesc = "아쿠아 확장 장치",
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		itemName = "아주르 리르",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
+		.. "#!!! 모든 최대 체력이 제거됩니다."
+		.. "{{CR}}",
+		queueDesc = "리라 액기스",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "망가진 도시락",

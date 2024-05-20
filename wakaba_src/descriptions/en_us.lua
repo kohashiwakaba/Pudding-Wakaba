@@ -55,6 +55,10 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "Rira",
 		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
 	},
+	[wakaba.Enums.Players.RIRA_B] = {
+		playerName = "Tainted Rira",
+		description = "#Health no longer drains#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -284,6 +288,24 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Collectible374}} Jumps toward enemy"
 		.. "#{{Collectible260}} Chance to remove Curses"
 		.. "#{{Trinket63}} Converts Troll Bombs"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
+		itemName = "Rabbey Ward",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
+		.. "#Installs a Rabbit Ward that causes:"
+		.. "#Reveals further rooms"
+		.. "#Damage, Tears up inside revealed rooms"
+		.. "#Clearing room inside Rabbit Ward recovers half soul heart"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		itemName = "Azure Rir",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#All trinkets become Aqua trinkets"
+		.. "#!!! Removes all heart containers"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {

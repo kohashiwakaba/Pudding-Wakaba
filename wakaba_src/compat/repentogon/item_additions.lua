@@ -217,3 +217,55 @@ function wakaba:Render_Golden(pickup)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.Render_Golden, PickupVariant.PICKUP_TAROTCARD)
+
+wakaba.Blacklists.AzureRirHealthConv = {
+	[PlayerType.PLAYER_THEFORGOTTEN] = true,
+	[PlayerType.PLAYER_THESOUL_B] = true,
+}
+
+---@param player EntityPlayer
+function wakaba:HealthType_AzureRir(player)
+	if player:HasCollectible(wakaba.Enums.Collectibles.AZURE_RIR) and not wakaba.Blacklists.AzureRirHealthConv[player:GetPlayerType()] then
+		local h = player:GetHealthType()
+		if h ~= HealthType.LOST then
+			return HealthType.SOUL
+		end
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, wakaba.HealthType_AzureRir)
+
+---@param player EntityPlayer
+---@param origLimit integer
+---@param isKeeper boolean
+function wakaba:HeartLimit_AzureRir(player, origLimit, isKeeper)
+	if player:HasCollectible(wakaba.Enums.Collectibles.AZURE_RIR) then
+		return origLimit + 24
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, wakaba.HeartLimit_AzureRir)
+
+local rr, gg, bb = 1.0, 1.0, 1.0
+local rt = 1.0
+local rc = 1.0
+local rb = 1.0
+
+---@param offset Vector
+---@param sprite Sprite
+---@param position Vector
+---@param player EntityPlayer
+function wakaba:HeartRender_Aqua(offset, sprite, position, _, player)
+	if true then
+		local strength = ((math.max(130, 0)) / 100)
+		local tcolor = Color(1, 1, 1, 1, 0, 0, 0.2 * strength)
+		tcolor:SetColorize(rc*2, rc, rb*3+0.8, (rc-0.2) * strength)
+		local ntcolor = Color.Lerp(tcolor, tcolor, 0.5)
+		rt = 1 - (math.sin(Game():GetFrameCount() / 6)/10)-0.1
+		rc = 1 - (math.sin(Game():GetFrameCount() / 6)/5)-0.2
+		rb = 1 - math.sin(Game():GetFrameCount() / 6)
+		ntcolor.A = rt
+
+		sprite.Color = ntcolor
+		sprite:Update()
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, wakaba.HeartRender_Aqua)
