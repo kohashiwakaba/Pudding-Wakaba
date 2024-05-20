@@ -397,7 +397,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} A Baby Plum familiar that follows Isaac."
 		.. "#Shoots tears in front of Isaac and blocks projectiles"
-		.. "#When Plumy gets damaged too much, Plumy cannot move and needs 10 seconds to recovery"
+		.. "{{CR}}",
+		description = ""
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} A Baby Plum familiar that follows Isaac."
+		.. "#Shoots tears in front of Isaac and blocks projectiles"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}When Plumy gets damaged too much, Plumy cannot move and needs 10 seconds to recovery"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},

@@ -422,7 +422,12 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Collectible" .. CollectibleType.COLLECTIBLE_PLUM_FLUTE ..
 			"}} 一个跟随以撒的小梅子宠物."
 			.. "#在以撒前方射出眼泪并且阻挡弹幕"
-			.. "#当小可爱受到太多伤害时，无法移动并且需要10秒恢复"
+			.. "{{CR}}",
+		lunatic = ""
+			.. "#{{Collectible" .. CollectibleType.COLLECTIBLE_PLUM_FLUTE ..
+			"}} 一个跟随以撒的小梅子宠物."
+			.. "#在以撒前方射出眼泪并且阻挡弹幕"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}当小可爱受到太多伤害时，无法移动并且需要10秒恢复"
 			.. "{{CR}}",
 		queueDesc = "啥?",
 	},

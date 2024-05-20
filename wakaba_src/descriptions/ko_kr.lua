@@ -412,9 +412,12 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} 캐릭터를 따라다니는 베이비 플럼 패밀리어가 투사체를 막아줍니다."
 		.. "#캐릭터가 발사하는 방향 앞에서 눈물을 따라서 발사합니다."
-		.. "#너무 많이 피해를 입으면 잠시동안 활동할 수 없으며 10초동안의 휴식이 필요합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		lunatic = ""
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} 캐릭터를 따라다니는 베이비 플럼 패밀리어가 투사체를 막아줍니다."
+		.. "#캐릭터가 발사하는 방향 앞에서 눈물을 따라서 발사합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}너무 많이 피해를 입으면 잠시동안 활동할 수 없으며 10초동안의 휴식이 필요합니다."
+		.. "{{CR}}",
 		queueDesc = "잠깐만 뭐라고?",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
