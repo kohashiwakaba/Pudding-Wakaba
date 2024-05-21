@@ -71,12 +71,14 @@ end)
 ---@param player EntityPlayer
 wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
 	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
+	if not cfg then return end
 	local type = cfg.Type
 	if type == ItemType.ITEM_ACTIVE and firstTime and (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or wakaba:IsLunatic()) then
 		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID)
+		local initCharge = cfg.InitCharge
 		wakaba.Log("getting maid charge from item...", itemID, "slot", slot, "charge", newCharge)
 		if charge ~= newCharge then
-			return {itemID, newCharge, firstTime, slot, varData}
+			return {itemID, math.min(newCharge, initCharge), firstTime, slot, varData}
 		end
 	end
 end)
