@@ -90,3 +90,23 @@ function wakaba.dadNotePickupCheck(pickup)
 	end
 end
 --wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.dadNotePickupCheck)
+
+function wakaba.NewRoom_BringMeThere()
+	if wakaba.G.Challenge ~= Challenge.CHALLENGE_NULL then return end
+	if not wakaba.G:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT) then return end
+	if not wakaba:AnyPlayerHasTrinket(wakaba.Enums.Trinkets.BRING_ME_THERE) then return end
+	if not wakaba.runstate.savednoteroom then return end
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
+	local targetGridIndex = wakaba.runstate.savednoteroom
+	if room:GetType() == RoomType.ROOM_BOSS and level:GetCurrentRoomIndex() == targetGridIndex then
+		if wakaba.G:GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED) then
+			wakaba.runstate.savednoteroom = nil
+			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, false)
+			room:SpawnGridEntity(37, GridEntityType.GRID_TRAPDOOR, 0)
+		else
+			room:TrySpawnSecretExit(false, true)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BringMeThere)
