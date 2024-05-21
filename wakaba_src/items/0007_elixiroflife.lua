@@ -46,7 +46,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 				--player:ClearEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 				local power = math.max(getElixirPower(player) + (wakaba.G.Difficulty % 2), 1)
 				power = wakaba:IsLunatic() and power or 0
-				if player.FrameCount % power == 0 then
+				if power == 0 or player.FrameCount % power == 0 then
 					player:ResetDamageCooldown()
 				else
 					player:SetMinDamageCooldown(1)
