@@ -114,6 +114,9 @@ wakaba.Blacklists.FlagLock.collectible = {
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = function()
 		return wakaba:IsLunatic()
 	end,
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = function()
+		return wakaba:IsLunatic()
+	end,
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = function()
 		return wakaba:IsLunatic() and not REPENTOGON
 	end,
