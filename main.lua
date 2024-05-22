@@ -1131,6 +1131,7 @@ include('wakaba_src.compat.samael')
 include('wakaba_src.compat.taintedtreasure')
 include('wakaba_src.compat.thefuture')
 include('wakaba_src.compat.sacred_dreams')
+include('wakaba_src.compat.reshaken_v1')
 include('wakaba_src.compat.stageapi')
 
 if REPENTOGON then
@@ -1257,6 +1258,10 @@ function wakaba:init(continue)
 
 	if SacredDreams then
 		wakaba:GameStart_SDCompat()
+	end
+
+	if MilkshakeVol1 then
+		wakaba:GameStart_ReshakenCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
