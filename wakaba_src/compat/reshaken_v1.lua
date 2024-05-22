@@ -4,6 +4,10 @@ local m = MilkshakeVol1
 local ma = MilkshakeVol1.API
 function wakaba:GameStart_ReshakenCompat()
 
+	wakaba:BlacklistBook(m.emums.Collectibles.LEVITICUS, wakaba.bookstate.BOOKSHELF_SHIORI)
+	wakaba:BlacklistBook(m.emums.Collectibles.LEVITICUS, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+	wakaba:BlacklistBook(m.emums.Collectibles.LEVITICUS, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+
 	-- Condictivity orb reward for Shiori's valut
 	-- Condictivity orb reward for Crystal Restock
 	-- Condictivity orb reward for Cleaner
