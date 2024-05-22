@@ -1,3 +1,175 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v114",
+[[{FSIZE2}general
+- add 'enhanced boss goal'
+feature (demo)
+-- pressing '=' on keyboard
+(not keypad) opens a dialog
+that can set extra goal
+with uber health values.
+--- pressing = again to close
+
+-- following can be set
+--- target
+--- health (total health
+that splits for each middle
+major bosses.
+mom and mom's heart
+is not included)
+--- start with damocles
+--- lunatic mode (see below)
+--- lock target until game clear
+
+- add 'lunatic mode' feature
+-- many of pudding n wakaba mod
+items are really powerful,
+making some players could
+make the game trivial
+-- lunatic mode significantly
+weakens some items from wakaba mod
+-- some items do not appear
+in lunatic mode, and some
+other items requires
+repentogon to be appeared
+-- currently exclusive to
+'enhanced boss goal' feature
+-- this invalidates
+'godhead unnerf' mod
+
+- add stat swap
+option for rira
+-- adds tears mult x0.33
+and damage mult x3 for rira
+-- this can be reduce
+difficulty for rira but
+can also help to
+reduce lags by many tears
+-- this option is always
+active on lunatic mode
+
+- room name display
+-- weight value is shown
+as '0.00x' format, rounded
+
+
+{FSIZE2}repentogon
+- clover chest
+-- now works with
+guppy's eye
+
+- magma blade
+-- now the item is
+repentogon exclusive
+-- now grants
+explosive immunity
+-- now shoots extra
+blade and flame waves
+every 20 tears
+
+- maid duet
+-- blacklisted
+blighted/broken dice
+(epiphany, charges only)
+-- blacklisted items
+by max charges now
+preserves charges like 9 volt
+-- now fully charges
+active item on pickup
+
+- fixed revival items
+now shows revival counter
+on hud
+-- caramella pancake
+-- bunny parfait
+-- see des bischofs
+-- jar of clover
+-- vintage threat
+
+{FSIZE2}balance
+
+- lunatic mode changes
+are not listed here,
+check eid for each item
+while on lunatic mode
+
+ shiori
+- blacklisted following items
+-- leviticus
+(milkshake vol1, temp)
+
+bring me there
+- now door to mausoleum heart
+spawns in dad's note room
+if held in case of tmtrainer.
+beating mom's heart this way
+cancels dad's note route
+and continues to corpse
+
+curse of the tower 2
+- now bomb pickup
+can convert into
+golden troll bombs
+- taking damage
+now spanws 6 troll bombs
+- reduced overall pool weight
+
+eat heart
+- indirect usage of item
+(such as tmtrainer)
+now activates metronome instead.
+void usage still
+spawns pedestal normally.
+
+red corruption
+- iteration count
+reduced from 3 > 2
+
+caramella pancake
+- caramella flies
+no longer get
+pushed by explosions
+
+self burning
+- indirect usage of item
+(such as tmtrainer)
+now activates only
+5 seconds in current room
+
+black bean mochi
+- reduced explosion
+damage from 60 > 15
+
+chimaki
+- now tries to jump
+if player is not reachable
+on idle state
+- no longer targets
+friendly enemies
+
+{FSIZE2}bug fixes
+
+- fixed crystal restock
+datas not loading in ascent
+
+- (rgon) fix error log
+showing for non-generic
+difficulty
+(such as insane from
+community remix)
+
+- fix bring me there
+crashing the game
+after save and continue
+
+- fix curse of sniper
+constantly prints
+error message
+
+- fix golden star reversal
+overlapping 2
+planetarium items
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v113",
 [[{FSIZE2}general
 - updated compatibility eid
@@ -143,6 +315,11 @@ with other characters
 - fix tainted wakaba
 not damaging enemies
 through red candle
+
+- fix custom pills
+not working if
+wakaba's uniform
+has 1 or more pills
 
 ]])
 

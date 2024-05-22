@@ -505,7 +505,7 @@ wakaba.Enums.Constants = {
 	RABBIT_RIBBON_BASIC_CHARGES = 12, -- 토끼 리본 기본 보존 충전량
 	RABBIT_RIBBON_EXTRA_CHARGES = 4, -- 토끼 리본 중첩 당 추가 보존 충전량
 
-	RABBIT_RIBBON_BASIC_CHARGES_LUNATIC = 6, -- 토끼 리본 기본 보존 충전량
+	RABBIT_RIBBON_BASIC_CHARGES_LUNATIC = 4, -- 토끼 리본 기본 보존 충전량
 	RABBIT_RIBBON_EXTRA_CHARGES_LUNATIC = 2, -- 토끼 리본 중첩 당 추가 보존 충전량
 
 	LIL_RICHER_BASIC_CHARGES = 8, -- 리틀 리셰 기본 보존 충전량
@@ -513,7 +513,7 @@ wakaba.Enums.Constants = {
 	LIL_RICHER_BASIC_DMG = 1, -- 리틀 리셰 기본 눈물 배수
 	LIL_RICHER_BASIC_COOLDOWN = 36, -- 리틀 리셰 눈물 쿨타임(프레임)
 
-	LIL_RICHER_BASIC_CHARGES_LUNATIC = 4, -- 리틀 리셰 기본 보존 충전량
+	LIL_RICHER_BASIC_CHARGES_LUNATIC = 3, -- 리틀 리셰 기본 보존 충전량
 	LIL_RICHER_EXTRA_CHARGES_LUNATIC = 1, -- 리틀 리셰 중첩 당 추가 보존 충전량
 
 	SELF_BURNING_DAMAGE_TIMER = 300, -- 셀프 버닝 체력 차감 쿨타임
