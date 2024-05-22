@@ -71,17 +71,39 @@ end)
 ---@param player EntityPlayer
 wakaba:AddCallback(ModCallbacks.MC_PRE_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
 	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
-	if not cfg then return end
+	if not cfg or cfg.InitCharge >= 0 then return end
 	local type = cfg.Type
 	if type == ItemType.ITEM_ACTIVE and firstTime and (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or wakaba:IsLunatic()) then
 		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID)
-		local initCharge = cfg.InitCharge
-		wakaba.Log("getting maid charge from item...", itemID, "slot", slot, "charge", newCharge)
+		--wakaba.Log("getting maid charge from item...", itemID, "slot", slot, "charge", newCharge)
 		if charge ~= newCharge then
-			return {itemID, math.min(newCharge, initCharge), firstTime, slot, varData}
+			--Retruning values from here prevents transformation counter being added, change to MC_POST_ADD_COLLECTIBLE
+			--return {itemID, newCharge, true, slot, varData}
+			wakaba:setPlayerDataEntry(player, "pending_maid", itemID)
+			wakaba:setPlayerDataEntry(player, "pending_maid_count", newCharge)
+			wakaba:setPlayerDataEntry(player, "pending_maid_slot", slot)
 		end
 	end
 end)
+---@param player EntityPlayer
+wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
+	local id = wakaba:getPlayerDataEntry(player, "pending_maid")
+	if not id then return end
+	if id == itemID then
+		local pendingCharge = wakaba:getPlayerDataEntry(player, "pending_maid_count")
+		local slot = wakaba:getPlayerDataEntry(player, "pending_maid_slot")
+		player:SetActiveCharge(pendingCharge, slot)
+	end
+	wakaba:removePlayerDataEntry(player, "pending_maid")
+	wakaba:removePlayerDataEntry(player, "pending_maid_count")
+	wakaba:removePlayerDataEntry(player, "pending_maid_slot")
+end)
+wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, function(_, itemID, charge, firstTime, slot, varData, player)
+	if not firstTime then return end
+	for i = 0, 2 do
+		player:FullCharge(i, true)
+	end
+end, wakaba.Enums.Collectibles.MAID_DUET)
 
 --- Wakaba's Double Dreams : 액티브 아이템 칸을 소환 카운터로 설정.
 wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MIN_USABLE_CHARGE, -20000, function(_)
