@@ -148,6 +148,9 @@ wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = function()
 		return wakaba:IsLunatic()
 	end,
+	[wakaba.Enums.Cards.CARD_FLIP] = function()
+		return true
+	end,
 }
 
 ---@type table
