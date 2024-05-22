@@ -103,7 +103,7 @@ function wakaba.NewRoom_BringMeThere()
 		if wakaba.G:GetStateFlag(GameStateFlag.STATE_MAUSOLEUM_HEART_KILLED) then
 			wakaba.runstate.savednoteroom = nil
 			wakaba.G:SetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH_INIT, false)
-			room:SpawnGridEntity(37, GridEntityType.GRID_TRAPDOOR, 0)
+			room:SpawnGridEntity(37, GridEntityType.GRID_TRAPDOOR, 0, level:GetDungeonPlacementSeed(), 0)
 		else
 			room:TrySpawnSecretExit(false, true)
 		end
