@@ -176,6 +176,7 @@ function wakaba:SetupDamocles()
 		local inFirstRoom = level:GetStage() == LevelStage.STAGE1_1 and level:GetCurrentRoomIndex() == level:GetStartingRoomIndex() and game:GetRoom():IsFirstVisit() and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B and not game:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 		if not inFirstRoom then return end
 	end
+	if wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) then return end
 	if damoSet then return end
 	damoSet = true
 	wakaba:scheduleForUpdate(function()
