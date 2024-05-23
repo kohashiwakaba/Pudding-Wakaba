@@ -85,7 +85,7 @@
 
 	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive nogreed lazarusshared" quality="3"/>
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" chargetype="special" maxcharges="1" initcharge="0" name="Syrup" tags="baby nocantrip" quality="3" addcostumeonpickup="true"/>
-	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" name="Phantom Cloak" tags="offensive book" quality="1" craftquality="3"/>
+	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" chargetype="special" name="Phantom Cloak" tags="offensive book" quality="1" craftquality="3"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="12" name="3D Printer" shopprice="20" devilprice="2" tags="offensive nocantrip" quality="4"/>
 	<passive id="64" description="Clean them all" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive bob" devilprice="1" quality="3"/>
 	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive" devilprice="1" quality="1"/>

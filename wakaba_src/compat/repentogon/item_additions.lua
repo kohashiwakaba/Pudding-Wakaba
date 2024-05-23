@@ -10,6 +10,19 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, func
 	end
 end, wakaba.Enums.Collectibles.SWEETS_CATALOG)
 
+wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MIN_USABLE_CHARGE, -20000, function(_, slot, player)
+	pData = player:GetData()
+	if not pData.wakaba.phantomcloak or not pData.wakaba.phantomcloak.timer then
+		return 0
+	elseif pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then
+		return 0
+	end
+end, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
+
+wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, function(_, itemID, player, varData)
+	return 12000
+end, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
+
 wakaba.LunaticCharges = {
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = 6,
 	[wakaba.Enums.Collectibles.COUNTER] = 1800,
