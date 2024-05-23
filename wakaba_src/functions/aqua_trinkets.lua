@@ -22,8 +22,8 @@ function wakaba:TryTurnAquaTrinket(trinket)
 	local currentRoomIndex = isc:getRoomListIndex()
 	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
-	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
-	pickup:GetData().wakaba.isAquaTrinket = true
+	trinket:GetData().wakaba = trinket:GetData().wakaba or {}
+	trinket:GetData().wakaba.isAquaTrinket = true
 end
 
 local hasTrinketDropped = false

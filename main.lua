@@ -926,6 +926,7 @@ include('wakaba_src.items.0014_riraswimsuit')
 include('wakaba_src.items.1084_nerfgun')
 include('wakaba_src.items.0015_brokentoolbox')
 --include('wakaba_src.items.0016_rabbeyward')
+include('wakaba_src.items.0018_azurerir')
 include('wakaba_src.items.1001_eatheart')
 
 include('wakaba_src.items.1002_bookofforgotten')
