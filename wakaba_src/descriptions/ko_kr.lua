@@ -313,7 +313,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "아주르 리르",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{WakabaAquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
+		.. "#{{AquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
 		.. "#!!! 모든 최대 체력이 제거됩니다."
 		.. "{{CR}}",
 		queueDesc = "리라 액기스",
@@ -1127,10 +1127,10 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "리라의 수영복",
-		description = "10%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
+		description = "{{WakabaAqua}} 10%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 38+일 때 100%"
-		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
 		queueDesc = "이거, 살짝 부끄러울지도...?",
 	},
@@ -1141,26 +1141,26 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "검은콩 모찌",
-		description = "10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다."
+		description = "{{WakabaZip}} 10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 16+일 때 100%"
-		.. "#압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
+		.. "#{{WakabaZip}} 압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
 		.. "{{CR}}",
-		lunatic = "10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다."
+		lunatic = "{{WakabaZip}} 10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 16+일 때 100%"
-		.. "#압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
+		.. "#{{WakabaZip}} 압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 압박 폭발이 더 이상 캐릭터의 폭탄 아이템의 영향을 받지 않음)"
 		.. "{{CR}}",
 		queueDesc = "리라의 추억은 누군가에겐 악몽",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "사쿠라 몽블랑",
-		description = "적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
-		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		description = "{{WakabaAqua}} 적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
-		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.25, {{TearsSmall}}연사 +0.1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
-		.. "#침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{WakabaAqua}}적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.25, {{TearsSmall}}연사 +0.1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
 		queueDesc = "페로몬에 젖어",
 	},
@@ -1642,7 +1642,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Tainted Richer",
 		},
 		{
-			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} 그 방의 장신구를 아쿠아화 시킵니다.",
+			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} {{AquaTrinket}}그 방의 장신구를 아쿠아화 시킵니다.",
 			modifierText = "Aqua Trinkets",
 		},
 	},
@@ -1898,7 +1898,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
 		itemName = "리라 사탕",
 		description = ""
-		.. "방 입장 시 적과 접촉 시 공격력 x4의 침수 피해를 주는 분홍 아군 파리를 2마리 소환합니다."
+		.. "{{WakabaAqua}} 방 입장 시 적과 접촉 시 공격력 x4의 침수 피해를 주는 분홍 아군 파리를 2마리 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "아쿠아의 향기",
 	},
@@ -3145,8 +3145,8 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "리라",
 		description = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
 		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
-		.. "#확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "#{{WakabaAqua}} 확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
@@ -3235,7 +3235,7 @@ if EID then
 
 	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}리셰{{CR}} & {{ColorRira}}리라{{CR}} 듀엣이 이 아이템을 카드/알약 슬롯으로 넣을 수 없습니다."
 
-	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
+	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
 

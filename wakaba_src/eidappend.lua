@@ -313,6 +313,20 @@ if EID then
 			EID:addIcon("WakabaModHidden", "EID_Icons", 7, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("WakabaModLunatic", "EID_Icons", 8, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
+			EID:addIcon("WakabaAqua", "EID_Icons", 9, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaZip", "EID_Icons", 10, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaBlueFlame", "EID_Icons", 11, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+
+			EID:addIcon("WakabaStarYellow", "EID_Icons", 12, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaStarGray", "EID_Icons", 13, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaStarAqua", "EID_Icons", 14, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("WakabaStarPink", "EID_Icons", 15, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+
+			EID:addIcon("AquaTrinket", "EID_Icons", 14, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+
+			EID:addIcon("RiraTreasure", "EID_Icons", 16, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("AquaTreasure", "EID_Icons", 17, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
 

@@ -304,7 +304,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Azure Rir",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#All trinkets become Aqua trinkets"
+		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
 		.. "#!!! Removes all heart containers"
 		.. "{{CR}}",
 	},
@@ -1070,7 +1070,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
-		description = "10% chance to shoot tears that aquafy enemies#{{Luck}} 100% chance at 38 Luck#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#Aqua attacks instakill stone enemies",
+		description = "{{WakabaAqua}} 10% chance to shoot tears that aquafy enemies#{{Luck}} 100% chance at 38 Luck#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#{{WakabaAqua}} Aqua attacks instakill stone enemies",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "Rira's Bandage",
@@ -1078,14 +1078,14 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "Black Bean Mochi",
-		description = "10% chance to shoot 'zip' enemies"
+		description = "{{WakabaZip}} 10% chance to shoot 'zip' enemies"
 		.. "#{{Luck}} 100% chance at 16 Luck"
-		.. "#Zipped enemies make explosion on death"
+		.. "#{{WakabaZip}} Zipped enemies make explosion on death"
 		.. "#Zip explosion does not harm Isaac"
 		.. "{{CR}}",
-		lunatic = "10% chance to shoot 'zip' enemies"
+		lunatic = "{{WakabaZip}} 10% chance to shoot 'zip' enemies"
 		.. "#{{Luck}} 100% chance at 16 Luck"
-		.. "#Zipped enemies make explosion on death"
+		.. "#{{WakabaZip}} Zipped enemies make explosion on death"
 		.. "#Zip explosion does not harm Isaac"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Zip explosions no longer inherit Isaac's bomb synergies"
 		.. "{{CR}}",
@@ -1096,17 +1096,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +0.5 Damage"
 		.. "#↑ {{Tears}} +1 Fire rate"
 		.. "#Caps at 6 kills"
-		.. "#Killed enemies aquafy nearby enemies"
-		.. "#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
-		.. "#Aqua attacks instakill stone enemies"
+		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
 		.. "{{CR}}",
 		lunatic = "For each enemy killed in the room:"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 Damage"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 Fire rate"
 		.. "#Caps at 6 kills"
-		.. "#Killed enemies aquafy nearby enemies"
-		.. "#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
-		.. "#Aqua attacks instakill stone enemies"
+		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
@@ -2820,7 +2820,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "Rira",
 		description = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
 		.. "#She seems very shy, but actually, is really ecchi"
-		.. "#She shoots Aqua tears that aquafies enemies that take more damage from some sources"
+		.. "#{{WakabaAqua}} She shoots Aqua tears that aquafies enemies that take more damage from some sources"
 		.. "#She can use donation mechanics even when in Lost state"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
@@ -2878,7 +2878,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Tainted Richer",
 		},
 		{
-			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} Aquafies all trinkets in the room",
+			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} {{AquaTrinket}}Aquafies all trinkets in the room",
 			func = wakaba.IsEntryUnlocked,
 			vars = {"aquatrinket", true},
 			modifierText = "Aqua Trinkets",
@@ -3029,7 +3029,7 @@ if EID then
 
 	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}Richer{{CR}} & {{ColorRira}}Rira{{CR}} cannot put this into pocket!"
 
-	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
+	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
 
