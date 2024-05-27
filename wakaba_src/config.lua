@@ -490,6 +490,51 @@ if MCM then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
+				return wakaba.state.options.invlistmode == "grid"
+			end,
+			Display = function()
+				local onOff = "List"
+				if wakaba.state.options.invlistmode then
+					onOff = "Grid"
+				end
+				return 'Display Mode: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invlistmode = currentBool and "grid" or "list"
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invgridcolumn
+			end,
+			Minimum = 3,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "Grid columns: " .. wakaba.state.options.invgridcolumn
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invgridcolumn = current
+			end,
+			Info = {
+				"Number of Columns for grid of items(Default = 6)",
+			}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
 				return wakaba.state.options.invcurses
 			end,
 			Display = function()

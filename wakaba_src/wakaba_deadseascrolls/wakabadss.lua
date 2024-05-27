@@ -546,6 +546,41 @@ local wakabadirectory = {
 				tooltip = {strset = {'right offset','for list','of items','','default = 200'}},
 			},
 			{
+				str = 'display mode',
+				choices = {'list', 'grid'},
+				setting = 1,
+				variable = 'InvDescDisplay',
+				load = function()
+					if wakaba.state.options.invlistmode == "list" then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.invlistmode = (var == 1 and "list" or "grid")
+				end,
+				tooltip = {strset = {'display mode', 'in', 'inventory','descriptions'}}
+			},
+			{
+				str = 'grid columns',
+				min = 3,
+				max = 10,
+				increment = 1,
+				setting = 6,
+				variable = "InvDescGridSize",
+				load = function()
+					return wakaba.state.options.invgridcolumn or 6
+				end,
+				store = function(var)
+					wakaba.state.options.invgridcolumn = var
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.options.invlistmode == "grid"
+				end,
+				tooltip = {strset = {'grid columns','for list','of items','','default = 6'}},
+			},
+			{
 				str = 'show curses',
 				choices = {'true', 'false'},
 				setting = 1,
