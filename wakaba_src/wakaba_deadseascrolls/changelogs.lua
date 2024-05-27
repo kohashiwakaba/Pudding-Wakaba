@@ -1,3 +1,22 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v115",
+[[{FSIZE2}general
+- 'inventory description'
+code refactor
+-- now grid mode is added
+-- pressing 'f6' while in list
+will switch grid and list mode
+
+- added eid icons for
+-- wakaba status effects
+-- aqua trinkets
+
+{FSIZE2}repentogon
+- phantom cloak
+-- add charge bar render
+-- actual effect is not changed
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v114",
 [[{FSIZE2}general
 - add 'enhanced boss goal'

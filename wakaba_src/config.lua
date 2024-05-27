@@ -20,7 +20,7 @@ if MCM then
 	MCM.AddSpace("Pudding & Wakaba", "Info")
 	MCM.AddText("Pudding & Wakaba", "Info", function() return "Pudding & Wakaba" end)
 	MCM.AddText("Pudding & Wakaba", "Info", function() return ""..wakaba.version end)
-	MCM.AddText("Pudding & Wakaba", "Info", function() return "by kohashiwahaba aka. Mika" end)
+	MCM.AddText("Pudding & Wakaba", "Info", function() return "by Richer-chan / kohashiwahaba" end)
 
 	---------------------------------------------------------------------------
 	-----------------------------------Items---------------------------------

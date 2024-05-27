@@ -17,7 +17,7 @@ An anime mod that contains characters from the creator's favorite.
 - 19 new Challenges
 
 ![RiraPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/8bf2009d-706b-4d2e-940c-bbd13ec817c8)
-**Current Version : v114-Rira**(updated time : 2024-05-22)
+**Current Version : v115-Rira**(updated time : 2024-05-28)
 
 ## Characters
 
