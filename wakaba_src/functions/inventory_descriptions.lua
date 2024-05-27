@@ -694,12 +694,25 @@ function idesc:resetEntries()
 		istate.savedtimer = nil
 	end
 end
-
 function idesc:recalculateOffset()
 
 	local validcount = getListCount()
 	local listprops = istate.listprops
 	if istate.listprops.listmode == "grid" then
+		local columns = math.max(idesc:getOptions("invgridcolumn", 6), 1)
+
+		local listOffset = listprops.offset
+		local entries = idesc:currentEntries()
+		local min = listOffset + 1
+		local max = math.min(listOffset + (validcount * columns), #entries)
+		local numEntries = #entries
+
+		if listprops.current > max then
+			local overRows = math.ceil((listprops.current - max) / columns)
+			istate.listprops.offset = listprops.offset + (overRows * columns)
+		elseif listprops.offset + (validcount * columns) > listprops.max then
+			istate.listprops.offset = math.max((math.ceil(listprops.max / columns) * columns) - (validcount * columns), 0)
+		end
 	else
 		local listOffset = listprops.offset
 		local entries = idesc:currentEntries()
@@ -723,6 +736,7 @@ end
 
 function idesc:Update(player)
 	local inputKey = idesc:getOptions("listkey", -1)
+	local switchKey = idesc:getOptions("switchkey", -1)
 	if inputKey == -1 then return end
 	if not inputready then
 		inputready = true
@@ -748,6 +762,22 @@ function idesc:Update(player)
 			idesc:resetEntries()
 			return
 		end
+
+		if switchKey ~= -1 and Input.IsButtonTriggered(switchKey, 0) then
+			inputready = false
+
+			local option = idesc:getOptions("invlistmode")
+			if option == "grid" then
+				idesc:setOptions("invlistmode", "list")
+				istate.listprops.listmode = "list"
+			else
+				idesc:setOptions("invlistmode", "grid")
+				istate.listprops.listmode = "grid"
+			end
+
+			idesc:recalculateOffset()
+		end
+
 		local listcount = getListCount()
 		local listprops = istate.listprops
 		
@@ -791,8 +821,12 @@ function idesc:Update(player)
 					istate.listprops.offset = istate.listprops.offset + columns
 				end
 				if listprops.current > listprops.max then
-					istate.listprops.current = 1
-					istate.listprops.offset = 0
+					if listprops.current > listprops.max then
+						istate.listprops.current = listprops.max
+					else
+						istate.listprops.current = 1
+						istate.listprops.offset = 0
+					end
 				end
 			end
 		else

@@ -457,7 +457,77 @@ if MCM then
 				end
 			end,
 			Info = {
-				"Press to display list and descriptions for current held items(Default = F4 key)",
+				"Press to display list and descriptions for current held items(Default = F5 key)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.switchkey
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.switchkey
+				local displayString = "Mode switch key : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.switchkey
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.switchkey = current
+				end
+			end,
+			Info = {
+				"Press to switch list mode of descriptions for current held items(Default = F6 key)",
 			}
 		}
 	)
@@ -494,7 +564,7 @@ if MCM then
 			end,
 			Display = function()
 				local onOff = "List"
-				if wakaba.state.options.invlistmode then
+				if wakaba.state.options.invlistmode == "grid" then
 					onOff = "Grid"
 				end
 				return 'Display Mode: ' .. onOff

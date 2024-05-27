@@ -531,6 +531,21 @@ local wakabadirectory = {
 				tooltip = {strset = {'press to','display','list and','descriptions','for current','held items','','default = f5'}},
 			},
 			{
+				str = 'switch key',
+				-- A keybind option lets you bind a key!
+				keybind = true,
+				-- -1 means no key set, otherwise use the Keyboard enum!
+				setting = Keyboard.KEY_F6,
+				variable = "InvDescSwitchkey",
+				load = function()
+						return wakaba.state.options.switchkey or Keyboard.KEY_F6
+				end,
+				store = function(var)
+						wakaba.state.options.switchkey = var
+				end,
+				tooltip = {strset = {'press to','switch','descriptions','mode','for current','held items','','default = f6'}},
+			},
+			{
 				str = 'list offset',
 				min = 100,
 				max = 600,
@@ -576,7 +591,14 @@ local wakabadirectory = {
 					wakaba.state.options.invgridcolumn = var
 				end,
 				displayif = function(btn, item, tbl)
-					return wakaba.state.options.invlistmode == "grid"
+					if item and item.buttons then
+						for _, btn in ipairs(item.buttons) do
+							if btn.str == 'display mode' and btn.setting == 2 then
+								return true
+							end
+						end
+					end
+					return false
 				end,
 				tooltip = {strset = {'grid columns','for list','of items','','default = 6'}},
 			},

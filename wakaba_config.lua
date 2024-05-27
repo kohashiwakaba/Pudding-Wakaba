@@ -103,6 +103,7 @@ local config = {
 	-- Inventory Descriptions options
 	listoffset = 200,
 	listkey = Keyboard.KEY_F5,
+	switchkey = Keyboard.KEY_F6,
 	idleicon = 0,
 	selicon = 17,
 	lemegetonicon = 18,
