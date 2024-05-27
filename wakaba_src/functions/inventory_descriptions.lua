@@ -48,6 +48,7 @@ local idescEntryType = {
 	CARD = "cards",
 	PILL = "pills",
 }
+InventoryDescType = idescEntryType
 
 ---@enum InvDescEIDType
 local idescEIDType = {
@@ -58,6 +59,13 @@ local idescEIDType = {
 	CARD = EntityType.ENTITY_PICKUP,
 	PILL = EntityType.ENTITY_PICKUP,
 }
+InvDescEIDType = idescEIDType
+
+---@enum InvDescEIDVariant
+local idescEIDVariant = {
+	DEFAULT = -1,
+}
+InvDescEIDVariant = idescEIDVariant
 
 local idescVar = -1
 
@@ -354,15 +362,11 @@ function idesc:getDefaults()
 		end
 	end
 	for category, datas in pairs(idesc.defaults) do
-		print("category", category)
 		local entrySet = idesc.entryset[category]
 		local ci = {}
 		for _, eix in ipairs(ei) do
-			print("category for player", eix)
 			if datas[eix] then
-				print("category for player", eix, "has defaults!")
 				for _, v in ipairs(datas[eix]) do
-					print("category for player", eix, "has default with item", v)
 					if not has(ci, v) then
 						---@type InventoryDescEntry
 						local entry = {
