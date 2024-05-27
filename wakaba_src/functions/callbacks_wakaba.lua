@@ -605,6 +605,39 @@ wakaba.Callback = {
 	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
 	-- ---
 	POST_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.POST_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Add entries for Inventory Descriptions
+	-- ---
+	-- Return arrays of entries to add basic entries to inventory description
+	--[[
+		local entries = {
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+		}
+		return entries
+	]]
+	-- ---
+	INVENTORY_DESCRIPTIONS_BASIC_ENTRIES = "WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

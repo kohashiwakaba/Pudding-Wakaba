@@ -10,7 +10,7 @@ local game = Game()
 local _debug = false
 
 wakaba._InventoryDesc = RegisterMod("Inventory Descriptions", 1)
-local idesc = wakaba._InventoryDesc
+local idesc = wakaba._InventoryDesc ---@class ModReference
 
 ---@type Sprite
 idesc.BackgroundSprite = Sprite()
@@ -281,7 +281,7 @@ end
 	- Adding curse descriptions / 저주 설명 추가
 	local curse = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1)
 	EID:addEntity(InvDescEIDType.CURSE, InvdescEIDVariant.DEFAULT, curse, "CurseName", "Curse Descriptions", "en_us")
-	
+
 	- Adding curse icons, if available / 저주 아이콘 추가
 	- "CurseCustom" is used as "{{CurseCustom}}" on EID descriptions
 	local curse = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1)
@@ -634,21 +634,24 @@ end
 
 function idesc:getBasicEntries(init)
 	local entries = {}
-	entries = merge(entries, idesc:getPlayers())
-	entries = merge(entries, idesc:getDefaults())
-	entries = merge(entries, idesc:getCurses())
-	entries = merge(entries, idesc:getHeldActives())
-	entries = merge(entries, idesc:getHeldCards())
-	entries = merge(entries, idesc:getHeldPills())
-	entries = merge(entries, idesc:getPassives())
-	entries = merge(entries, idesc:getTrinkets())
-	entries = merge(entries, idesc:getItemWisps())
-	if init then
-		--istate.lists.items = entries
-		--istate.listprops.max = #entries
+	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES)) do
+		local newEntries = callbackData.Function(callbackData.Mod)
+		if newEntries and type(newEntries) == "table" then
+			entries = merge(entries, newEntries)
+		end
 	end
 	return entries
 end
+
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -400, function (_) return idesc:getPlayers() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -380, function (_) return idesc:getDefaults() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -360, function (_) return idesc:getCurses() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -340, function (_) return idesc:getHeldActives() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -320, function (_) return idesc:getHeldCards() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -300, function (_) return idesc:getHeldPills() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -280, function (_) return idesc:getPassives() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -260, function (_) return idesc:getTrinkets() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -240, function (_) return idesc:getItemWisps() end)
 
 ---@param entries InventoryDescEntry[]
 ---@param stopTimer boolean
@@ -719,7 +722,7 @@ function idesc:recalculateOffset()
 		local min = listOffset + 1
 		local max = math.min(listOffset + validcount, #entries)
 		local numEntries = #entries
-	
+
 		if listprops.current > max then
 			istate.listprops.offset = listprops.offset + (listprops.current - listprops.offset - validcount + 2)
 		elseif listprops.offset + validcount > listprops.max then
@@ -780,7 +783,7 @@ function idesc:Update(player)
 
 		local listcount = getListCount()
 		local listprops = istate.listprops
-		
+
 		if istate.listprops.listmode == "grid" then -- Render Grid
 			local columns = idesc:getOptions("invgridcolumn", 6)
 
@@ -896,10 +899,10 @@ function idesc:Render()
 			for i=0, game:GetNumPlayers()-1 do
 				local player = Isaac.GetPlayer(i)
 				local data = player:GetData()
-	
+
 				--freeze players and disable their controls
 				player.Velocity = Vector(0,0)
-	
+
 				if not data.InvDescPlayerPosition then
 					data.InvDescPlayerPosition = player.Position
 				end
@@ -908,7 +911,7 @@ function idesc:Render()
 					player.ControlsEnabled = false
 					data.InvDescPlayerControlsDisabled = true
 				end
-	
+
 				--disable toggling revelations menu
 				if data.input and data.input.menu and data.input.menu.toggle then
 					data.input.menu.toggle = false
