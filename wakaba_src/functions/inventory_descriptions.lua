@@ -726,7 +726,7 @@ function idesc:recalculateOffset()
 		if listprops.current > max then
 			istate.listprops.offset = listprops.offset + (listprops.current - listprops.offset - validcount + 2)
 		elseif listprops.offset + validcount > listprops.max then
-			istate.listprops.offset = listprops.max - validcount
+			istate.listprops.offset = math.max(listprops.max - validcount, 0)
 		end
 	end
 
@@ -819,16 +819,17 @@ function idesc:Update(player)
 				end
 			elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex or 0) then
 				inputready = false
-				istate.listprops.current = listprops.current + columns
-				if listprops.current > (listprops.offset + (listcount * columns)) then
-					istate.listprops.offset = istate.listprops.offset + columns
-				end
-				if listprops.current > listprops.max then
-					if listprops.current > listprops.max then
-						istate.listprops.current = listprops.max
-					else
-						istate.listprops.current = 1
-						istate.listprops.offset = 0
+				local cr = istate.listprops.current
+				local mx = istate.listprops.max
+				if 0 < mx - cr and mx - cr < columns then
+					istate.listprops.current = listprops.max
+				elseif mx == cr then
+					istate.listprops.current = 1
+					istate.listprops.offset = 0
+				else
+					istate.listprops.current = listprops.current + columns
+					if listprops.current > (listprops.offset + (listcount * columns)) then
+						istate.listprops.offset = istate.listprops.offset + columns
 					end
 				end
 			end
