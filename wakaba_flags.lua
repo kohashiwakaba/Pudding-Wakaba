@@ -6,6 +6,8 @@ wakaba.Flags = {
 	debugShiori = false,
 	debugLevelGen = false,
 	debugChimaki = false,
+	
+	debugInvDescList = false,
 
 	stackableDamocles = true or (CCO and CCO.DamoclesAPI ~= nil),
 }

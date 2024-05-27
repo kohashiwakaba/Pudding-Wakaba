@@ -7,6 +7,7 @@ if not EID then return end
 if EIDKR then return end
 
 local game = Game()
+local _debug = false
 
 wakaba._InventoryDesc = RegisterMod("Inventory Descriptions", 1)
 local idesc = wakaba._InventoryDesc
@@ -84,6 +85,8 @@ if _wakaba then
 	wakaba.INVDESC_TYPE_PLAYER = -997
 	wakaba.INVDESC_TYPE_CURSE = -998
 	wakaba.INVDESC_VARIANT = -1
+
+	_debug = wakaba.Flags.debugInvDescList
 end
 
 --#region state data and functions
@@ -144,6 +147,21 @@ idesc.entryset = {
 
 --#region local functions and variables
 
+local kts = {}
+
+for key,num in pairs(Keyboard) do
+
+	local keyString = key
+
+	local keyStart, keyEnd = string.find(keyString, "KEY_")
+	keyString = string.sub(keyString, keyEnd+1, string.len(keyString))
+
+	keyString = string.gsub(keyString, "_", " ")
+
+	kts[num] = keyString
+
+end
+
 local inputready = true
 
 local function getOffset()
@@ -199,34 +217,99 @@ end
 
 --#region basic api functions
 
-function idesc:addDefault(category, id)
+function idesc:addDefault(category, target, entry)
 	if not idesc.defaults[category] then
 		idesc.defaults[category] = {}
 	end
-	table.insert(idesc.defaults[category], id)
+	if not idesc.defaults[category][target] then
+		idesc.defaults[category][target] = {}
+	end
+	table.insert(idesc.defaults[category][target], entry)
 end
 
-function idesc:removeDefault(category, id)
+function idesc:removeDefault(category, target, entry)
 end
 
-function idesc:addBlacklist(category, id)
+function idesc:addBlacklist(category, target, entry)
 	if not idesc.blacklists[category] then
 		idesc.blacklists[category] = {}
 	end
-	table.insert(idesc.blacklists[category], id)
+	if not idesc.blacklists[category][target] then
+		idesc.blacklists[category][target] = {}
+	end
+	table.insert(idesc.blacklists[category][target], entry)
 end
 
-function idesc:removeBlacklist(category, id)
+function idesc:removeBlacklist(category, target, entry)
 end
 
 --#endregion
 
 
---#region
+--#region insert descriptions here
+
+--example. check idesc_src/descriptions.lua
+--include("idesc_src.descriptions")
+
+---Recommended to manage descriptions into external files / 별도의 설명 파일에서 관리하는 것을 추천
+--[[
+	- Adding player descriptions / 플레이어 설명 추가
+	local playerType = player:GetPlayerType()
+	EID:addEntity(InvDescEIDType.PLAYER, InvdescEIDVariant.DEFAULT, playerType, "PlayerName", "Player Descriptions", "en_us")
+]]
+--[[
+	- Adding curse descriptions / 저주 설명 추가
+	local curse = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1)
+	EID:addEntity(InvDescEIDType.CURSE, InvdescEIDVariant.DEFAULT, curse, "CurseName", "Curse Descriptions", "en_us")
+	
+	- Adding curse icons, if available / 저주 아이콘 추가
+	- "CurseCustom" is used as "{{CurseCustom}}" on EID descriptions
+	local curse = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1)
+	EID:AddIconToObject(InvDescEIDType.CURSE, InvdescEIDVariant.DEFAULT, curse, "CurseCustom")
+]]
 
 --#endregion
 
---#region
+--#region link description here
+
+-- Default item links for characters
+-- Innate items through Hidden Item Manager are not needed to link.
+-- Only items that not detectable for player:HasCollectible() are needed to link.
+-- idesc:addDefault(idescEntryType.COLLECTIBLE, PlayerType.PLAYER_ISAAC, CollectibleType.COLLECTIBLE_SAD_ONION)
+-- idesc:addDefault(idescEntryType.TRINKET, PlayerType.PLAYER_ISAAC, TrinketType.TRINKET_SWALLOWED_PENNY)
+
+-- 캐릭터별 기본 아이템 링크
+-- Hidden Item Manager로 추가된 내장 패시브는 불필요,
+-- 'lua 상으로 해당 패시브를 소지하지 않는 판정'일 때만 추가
+-- 예시 :	와카바 모드의 축복은 별개로 구현되어 있는 능력이라 링크가 필요하지만,
+--				player:HasCollectible로 감지되는 히든 능력의 경우 자동으로 추가되므로 링크 불필요
+-- 모드 서순 고려하여 REPENTOGON 사용 시 ModCallbacks.MC_POST_MODS_LOADED에, 미사용 시 ModCallbacks.MC_POST_GAME_STARTED에 추가
+
+local linked = false
+function wakaba:LinkWakabaDefaults()
+	if linked then return end
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.WAKABA, wakaba.Enums.Collectibles.WAKABAS_BLESSING)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.WAKABA_B, wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.SHIORI, wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.SHIORI_B, wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.SHIORI_B, wakaba.Enums.Collectibles.MINERVA_AURA)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.TSUKASA, wakaba.Enums.Collectibles.LUNAR_STONE)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.TSUKASA, wakaba.Enums.Collectibles.CONCENTRATION)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.FLASH_SHIFT)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.TSUKASA_B, wakaba.Enums.Collectibles.MURASAME)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RICHER, wakaba.Enums.Collectibles.RABBIT_RIBBON)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RICHER_B, wakaba.Enums.Collectibles.RABBIT_RIBBON)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RICHER_B, wakaba.Enums.Collectibles.WINTER_ALBIREO)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RIRA, wakaba.Enums.Collectibles.CHIMAKI)
+	linked = true
+end
+
+if REPENTOGON then
+	wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, wakaba.LinkWakabaDefaults)
+else
+	wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.LinkWakabaDefaults)
+end
 
 --#endregion
 
@@ -270,11 +353,15 @@ function idesc:getDefaults()
 		end
 	end
 	for category, datas in pairs(idesc.defaults) do
+		print("category", category)
 		local entrySet = idesc.entryset[category]
 		local ci = {}
 		for _, eix in ipairs(ei) do
-			if datas[ei] then
-				for _, v in ipairs(datas[ei]) do
+			print("category for player", eix)
+			if datas[eix] then
+				print("category for player", eix, "has defaults!")
+				for _, v in ipairs(datas[eix]) do
+					print("category for player", eix, "has default with item", v)
 					if not has(ci, v) then
 						---@type InventoryDescEntry
 						local entry = {
@@ -376,11 +463,13 @@ function idesc:getPassives()
 		for _, entryIndex in ipairs(passives) do
 			if entryIndex > 0 and player:HasCollectible(entryIndex) and not has(ei, entryIndex) then
 				local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(entryIndex)).Quality)
+				local modifiers = entryIndex == CollectibleType.COLLECTIBLE_BIRTHRIGHT
 				---@type InventoryDescEntry
 				local entry = {
 					Type = idescEIDType.COLLECTIBLE,
 					Variant = PickupVariant.PICKUP_COLLECTIBLE,
 					SubType = entryIndex,
+					AllowModifiers = modifiers,
 					Frame = function()
 						return idesc:getOptions("q"..quality.."icon")
 					end,
@@ -516,16 +605,16 @@ function idesc:getBasicEntries(init)
 	local entries = {}
 	entries = merge(entries, idesc:getPlayers())
 	entries = merge(entries, idesc:getDefaults())
+	entries = merge(entries, idesc:getCurses())
 	entries = merge(entries, idesc:getHeldActives())
 	entries = merge(entries, idesc:getHeldCards())
 	entries = merge(entries, idesc:getHeldPills())
-	entries = merge(entries, idesc:getCurses())
 	entries = merge(entries, idesc:getPassives())
 	entries = merge(entries, idesc:getTrinkets())
 	entries = merge(entries, idesc:getItemWisps())
 	if init then
-		istate.lists.items = entries
-		istate.listprops.max = #entries
+		--istate.lists.items = entries
+		--istate.listprops.max = #entries
 	end
 	return entries
 end
@@ -534,8 +623,10 @@ end
 ---@param stopTimer boolean
 function idesc:showEntries(entries, stopTimer)
 	if #entries <= 0 then
-		return
+		return false
 	end
+	istate.lists.items = entries
+	istate.listprops.max = #entries
 	istate.showList = not istate.showList
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.listprops.screenx = x
@@ -569,6 +660,28 @@ function idesc:resetEntries()
 	end
 end
 
+function idesc:recalculateOffset()
+
+	local validcount = getListCount()
+	local listprops = istate.listprops
+	
+	local listOffset = listprops.offset
+	local entries = idesc:currentEntries()
+	local min = listOffset + 1
+	local max = math.min(listOffset + validcount, #entries)
+	local numEntries = #entries
+
+	if listprops.current > max then
+		istate.listprops.offset = listprops.offset + (listprops.current - listprops.offset - validcount + 2)
+	elseif listprops.offset + validcount > listprops.max then
+		istate.listprops.offset = listprops.max - validcount
+	end
+
+	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
+	istate.listprops.screenx = x
+	istate.listprops.screeny = y
+end
+
 --#endregion
 
 function idesc:Update(player)
@@ -584,9 +697,7 @@ function idesc:Update(player)
 		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
 			return
 		end
-		local entries = idesc:getBasicEntries(true)
-		istate.lists.items = entries
-		istate.listprops.max = #entries
+		local entries = idesc:getBasicEntries()
 		if idesc:showEntries(entries, true) then
 			istate.savedtimer = game.TimeCounter
 		else
@@ -692,12 +803,7 @@ function idesc:Render()
 
 		--창 크기 변경 시 발동
 		if isDiff(x, y, x2, y2) then
-			if listprops.current - listprops.offset > validcount then
-				istate.listprops.offset = listprops.offset + (listprops.current - listprops.offset - validcount + 2)
-				if listprops.offset + validcount > listprops.max then
-					istate.listprops.offset = listprops.max - validcount
-				end
-			end
+			idesc:recalculateOffset()
 		end
 
 		local currentcursor = 1
@@ -707,12 +813,13 @@ function idesc:Render()
 
 		-- Render headers
 		EID:renderString("Current item list("..listprops.current.."/"..listprops.max..")", Vector(x - optionsOffset, 36-(EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
-		EID:renderString("Press ".. wakaba.KeyboardToString[inputKey].." again to exit", Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
+		EID:renderString("Press ".. kts[inputKey].." again to exit", Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
 
 		local listOffset = listprops.offset
 		local entries = idesc:currentEntries()
 		local min = listOffset + 1
-		local max = math.min(listOffset + validcount, listOffset + #entries)
+		local max = math.min(listOffset + validcount, #entries)
+		local numEntries = #entries
 		local selObj = nil
 		local selEntry = nil
 
@@ -720,8 +827,10 @@ function idesc:Render()
 
 			for ix = min, max do
 				local entry = entries[ix]
+				if not entry then break end
 				local isHighlighted = ix == listprops.current
-				local obj = EID:getDescriptionObj(entry.Type, entry.Variant, entry.SubType, nil, false)
+				local allowModifiers = type(entry.AllowModifiers) == "function" and entry.AllowModifiers() or entry.AllowModifiers;
+				local obj = EID:getDescriptionObj(entry.Type, entry.Variant, entry.SubType, nil, istate.allowmodifiers or allowModifiers)
 
 				if isHighlighted then selObj = obj; selEntry = entry end
 
@@ -803,7 +912,24 @@ function idesc:Render()
 		else -- Render Grid
 		end
 
-		if selObj then
+		if _debug then
+			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+			demoDescObj.Name = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} " .. "Inventory Description list debug"
+
+			local desc = ""
+				.. "# props.screenx : " .. istate.listprops.screenx
+				.. "# props.screeny : " .. istate.listprops.screeny
+				.. "# props.max : " .. istate.listprops.max
+				.. "# props.current : " .. istate.listprops.current
+				.. "# props.offset : " .. istate.listprops.offset
+				.. "# validcount : " .. getListCount()
+				.. "# numEntries : " .. numEntries
+				.. "# calcMin : " .. (listOffset + 1)
+				.. "# calcMax : " .. (math.min(listOffset + validcount, #entries))
+
+			demoDescObj.Description = desc or ""
+			EID:displayPermanentText(demoDescObj)
+		elseif selObj then
 			desc = selObj
 			if selEntry.Type == idescEIDType.PLAYER then
 				local extIcon = type(selEntry.Icon) == "function" and selEntry.Icon() or selEntry.Icon;
@@ -842,5 +968,72 @@ function idesc:InputAction(entity, inputHook, buttonAction)
 end
 idesc:AddCallback(ModCallbacks.MC_INPUT_ACTION, idesc.InputAction)
 
+--#region 와카바 모드 테스트용 간단 설명 리스트
 
-print("Inventory Description v2 for Pudding and Wakaba Loaded")
+function idesc:tti(min, max, allow_mod, filter)
+	local entries = {}
+	local config = Isaac.GetItemConfig()
+	min = min or 1
+	max = max or config:GetCollectibles().Size - 1
+	for i = min, max do
+		if config:GetCollectible(i) and (not (filter and type(filter) == "function") or (filter(i))) then
+			local quality = tonumber(config:GetCollectible(tonumber(i)).Quality)
+			---@type InventoryDescEntry
+			local entry = {
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = i,
+				AllowModifiers = allow_mod,
+				Frame = function()
+					return idesc:getOptions("q"..quality.."icon")
+				end,
+				LeftIcon = "{{Quality"..quality.."}}",
+			}
+			table.insert(entries, entry)
+		end
+	end
+
+	idesc:showEntries(entries)
+end
+function idesc:ttt(min, max, allow_mod, isGolden, filter)
+	local entries = {}
+	local config = Isaac.GetItemConfig()
+	min = min or 1
+	max = max or config:GetTrinkets().Size - 1
+	for i = min, max do
+		if config:GetTrinket(i) and (not (filter and type(filter) == "function") or (filter(i))) then
+			---@type InventoryDescEntry
+			local entry = {
+				Type = idescEIDType.TRINKET,
+				Variant = PickupVariant.PICKUP_TRINKET,
+				SubType = isGolden and i + 32678 or i,
+				AllowModifiers = allow_mod or isGolden,
+			}
+			table.insert(entries, entry)
+		end
+	end
+	idesc:showEntries(entries)
+end
+function idesc:ttc(min, max, allow_mod, filter)
+	local entries = {}
+	local config = Isaac.GetItemConfig()
+	min = min or 1
+	max = max or config:GetCards().Size - 1
+	for i = min, max do
+		if config:GetCard(i) and (not (filter and type(filter) == "function") or (filter(i))) then
+			---@type InventoryDescEntry
+			local entry = {
+				Type = idescEIDType.CARD,
+				Variant = PickupVariant.PICKUP_TAROTCARD,
+				SubType = i,
+				AllowModifiers = allow_mod,
+			}
+			table.insert(entries, entry)
+		end
+	end
+	idesc:showEntries(entries)
+end
+
+--#endregion
+
+print("InvDesc v2 for Pudding and Wakaba Loaded")
