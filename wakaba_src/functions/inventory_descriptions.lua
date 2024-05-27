@@ -112,6 +112,7 @@ local istate = {
 		current = 1,
 		offset = 0,
 		allowmodifiers = false,
+		listonly = false,
 	},
 	savedtimer = nil,
 }
@@ -621,7 +622,7 @@ end
 
 ---@param entries InventoryDescEntry[]
 ---@param stopTimer boolean
-function idesc:showEntries(entries, stopTimer)
+function idesc:showEntries(entries, stopTimer, listOnly)
 	if #entries <= 0 then
 		return false
 	end
@@ -631,6 +632,7 @@ function idesc:showEntries(entries, stopTimer)
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.listprops.screenx = x
 	istate.listprops.screeny = y
+	istate.listprops.listonly = listOnly
 	return istate.showList
 end
 
@@ -640,12 +642,14 @@ function idesc:currentEntries()
 end
 
 function idesc:resetEntries()
+	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.showList = false
 	istate.listprops.screenx = x
 	istate.listprops.screeny = y
 	istate.listprops.offset = 0
 	istate.listprops.current = 1
 	istate.listprops.max = 1
+	istate.listprops.listonly = false
 	EID:hidePermanentText()
 	for i=0, game:GetNumPlayers()-1 do
 		local player = Isaac.GetPlayer(i)
@@ -772,26 +776,28 @@ function idesc:Render()
 	end
 
 	if istate.showList and not EID.CachingDescription then
+		if not istate.listprops.listonly then
 
-		for i=0, game:GetNumPlayers()-1 do
-			local player = Isaac.GetPlayer(i)
-			local data = player:GetData()
-
-			--freeze players and disable their controls
-			player.Velocity = Vector(0,0)
-
-			if not data.InvDescPlayerPosition then
-				data.InvDescPlayerPosition = player.Position
-			end
-			player.Position = data.InvDescPlayerPosition
-			if not data.InvDescPlayerControlsDisabled then
-				player.ControlsEnabled = false
-				data.InvDescPlayerControlsDisabled = true
-			end
-
-			--disable toggling revelations menu
-			if data.input and data.input.menu and data.input.menu.toggle then
-				data.input.menu.toggle = false
+			for i=0, game:GetNumPlayers()-1 do
+				local player = Isaac.GetPlayer(i)
+				local data = player:GetData()
+	
+				--freeze players and disable their controls
+				player.Velocity = Vector(0,0)
+	
+				if not data.InvDescPlayerPosition then
+					data.InvDescPlayerPosition = player.Position
+				end
+				player.Position = data.InvDescPlayerPosition
+				if not data.InvDescPlayerControlsDisabled then
+					player.ControlsEnabled = false
+					data.InvDescPlayerControlsDisabled = true
+				end
+	
+				--disable toggling revelations menu
+				if data.input and data.input.menu and data.input.menu.toggle then
+					data.input.menu.toggle = false
+				end
 			end
 		end
 
@@ -929,7 +935,7 @@ function idesc:Render()
 
 			demoDescObj.Description = desc or ""
 			EID:displayPermanentText(demoDescObj)
-		elseif selObj then
+		elseif selObj and not istate.listprops.listonly then
 			desc = selObj
 			if selEntry.Type == idescEIDType.PLAYER then
 				local extIcon = type(selEntry.Icon) == "function" and selEntry.Icon() or selEntry.Icon;
@@ -1034,6 +1040,64 @@ function idesc:ttc(min, max, allow_mod, filter)
 	idesc:showEntries(entries)
 end
 
+function idesc:tce()
+	local entries = {}
+	local config = Isaac.GetItemConfig()
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_1UP,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{WakabaModRgon}}리셰",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = wakaba.Enums.Collectibles.SYRUP,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{MomBoss}}메이플",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_1UP,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{WakabaModRgon}}와카바",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_STAR_OF_BETHLEHEM,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{MomBoss}}카논",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{Delirium}}Mana_4403",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_SACRED_HEART,
+		AllowModifiers = true,
+		LeftIcon = "{{Crown}}",
+		ListSecondaryTitle = "{{ColorRainbow}}{{Delirium}}흔한 닉네임의 3305",
+	})
+	table.insert(entries, {
+		Type = idescEIDType.COLLECTIBLE,
+		Variant = PickupVariant.PICKUP_COLLECTIBLE,
+		SubType = CollectibleType.COLLECTIBLE_SACRED_HEART,
+		AllowModifiers = true,
+		ListSecondaryTitle = "{{Delirium}}asdf",
+	})
+	idesc:showEntries(entries, nil, true)
+end
+
 --#endregion
+
+
 
 print("InvDesc v2 for Pudding and Wakaba Loaded")
