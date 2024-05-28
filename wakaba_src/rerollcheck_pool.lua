@@ -75,6 +75,41 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 			end
 		end
 	end
+
+	local room = wakaba.G:GetRoom()
+	local level = wakaba.G:GetLevel()
+	-- Damocles API uses itempool:GetPoolForRoom to spawn extra items, WHYYYYYYYYYYYYYYYY
+	if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL then
+		if room:GetType() == RoomType.ROOM_BOSS then
+			if itemPoolType == ItemPoolType.POOL_BOSS then
+				if room:GetBossID() == BossType.FALLEN then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, decrease, seed+2)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				end
+			end
+		elseif room:GetType() == RoomType.ROOM_TREASURE then
+			if itemPoolType == ItemPoolType.POOL_TREASURE then
+				if level:GetCurrentRoomDesc().Flags & RoomDescriptor.FLAG_DEVIL_TREASURE > 0 then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, decrease, seed+2)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				end
+			end
+		elseif room:GetType() == RoomType.ROOM_CHALLENGE then
+			if itemPoolType == ItemPoolType.POOL_TREASURE then
+				if level:HasBossChallenge() then
+					preGetCollectibleAntiRecursive = true
+					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_BOSS, decrease, seed+2)
+					preGetCollectibleAntiRecursive = false
+					return newItem
+				end
+			end
+		end
+	end
+
 	::cont::
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, wakaba.preRollCheck)
