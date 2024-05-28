@@ -239,6 +239,10 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_BEGGAR,
 	},
 	UnlockFunc = function(self)
+		if not REPENTOGON then
+			self.Desc = "Requires REPENTOGON"
+			return self
+		end
 		if not wakaba:IsEntryUnlocked("questionblock") then
 			self.Desc = "Defeat Ultra Greedier as Tsukasa"
 			return self
@@ -278,6 +282,10 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 	},
 	UnlockFunc = function(self)
+		if not REPENTOGON then
+			self.Desc = "Requires REPENTOGON"
+			return self
+		end
 		if not wakaba:IsEntryUnlocked("magmablade") then
 			self.Desc = "Defeat The Beast as Tsukasa"
 			return self

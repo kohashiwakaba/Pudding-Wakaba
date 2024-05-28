@@ -358,6 +358,7 @@ Encyclopedia.AddCard({
 	ModName = class,
 	ID = wakaba.Enums.Cards.CARD_FLIP,
 	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.CARD_FLIP],
+	Hide = true,
 	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Flip",0),
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("flipcard") then
