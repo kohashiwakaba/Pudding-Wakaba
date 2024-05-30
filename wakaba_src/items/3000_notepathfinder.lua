@@ -110,3 +110,27 @@ function wakaba.NewRoom_BringMeThere()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BringMeThere)
+
+
+-- TODO move this to other file
+local stageTypeToOffset = {
+	[StageType.STAGETYPE_ORIGINAL] = 0,
+	[StageType.STAGETYPE_WOTL] = 1,
+	[StageType.STAGETYPE_AFTERBIRTH] = 2,
+	[StageType.STAGETYPE_REPENTANCE] = 4,
+}
+function wakaba:RoomEntitySpawn_AltHeart(type)
+	if not wakaba:IsLunatic() or (type ~= EntityType.ENTITY_MOMS_HEART) then return end
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
+	local stage = level:GetAbsoluteStage()
+	local oldStageType = level:GetStageType()
+
+	if room:GetBossID() == 8 or room:GetBossID() == 25 then
+		level:SetStage(stage, StageType.STAGETYPE_REPENTANCE)
+		wakaba:scheduleForUpdate(function()
+			level:SetStage(stage, stageTypeToOffset[oldStageType])
+		end, 1)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.RoomEntitySpawn_AltHeart)
