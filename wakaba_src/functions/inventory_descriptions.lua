@@ -741,6 +741,25 @@ function idesc:currentEntries()
 	return istate.lists.items
 end
 
+---@param newEntries InventoryDescEntry[]
+---@return InventoryDescEntry[]
+function idesc:appendCurrentEntries(newEntries)
+	if not istate.showList then
+		wakaba.Log("Invdesc is not showing! skipping appendCurrentEntries...")
+		return
+	end
+	if not newEntries or type(newEntries) ~= "table" then
+		wakaba.Log("newEntries value invalid!")
+		return
+	end
+	if #newEntries == 0 then
+		newEntries = {newEntries}
+	end
+	istate.lists.items = merge(istate.lists.items, newEntries)
+	istate.listprops.max = istate.listprops.max + #newEntries
+	return istate.lists.items
+end
+
 function idesc:resetEntries()
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.showList = false
