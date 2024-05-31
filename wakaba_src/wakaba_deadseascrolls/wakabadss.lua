@@ -546,6 +546,26 @@ local wakabadirectory = {
 				tooltip = {strset = {'press to','switch','descriptions','mode','for current','held items','','default = f6'}},
 			},
 			{
+				str = 'history mode',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'InvDescHistory',
+				load = function()
+					if wakaba.state.options.invpassivehistory then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.invpassivehistory = (var == 1)
+				end,
+				displayif = function(btn, item, tbl)
+					return REPENTOGON ~= nil
+				end,
+				tooltip = {strset = {'display type', 'in', 'inventory','descriptions'}}
+			},
+			{
 				str = 'list offset',
 				min = 100,
 				max = 600,

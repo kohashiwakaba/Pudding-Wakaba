@@ -531,6 +531,24 @@ if MCM then
 			}
 		}
 	)
+	if REPENTOGON then
+	MCM.AddSetting(
+		"Inventory Desc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invpassivehistory
+			end,
+			Display = function()
+				return 'Collectible History: ' .. (wakaba.state.options.invpassivehistory and "true" or "false")
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invpassivehistory = currentBool
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+	end
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",

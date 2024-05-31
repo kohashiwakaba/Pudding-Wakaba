@@ -507,24 +507,14 @@ end
 function idesc:getPassives()
 	local ei = {}
 	local entries = {} ---@type InventoryDescEntry[]
-	local passives = EID:GetAllPassiveItems()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		local playerType = player:GetPlayerType()
-		for _, entryIndex in ipairs(passives) do
-			if entryIndex > 0 and player:HasCollectible(entryIndex) and not has(ei, entryIndex) and not idesc:hasBlacklist("collectibles", playerType, entryIndex) then
-				local onlyTrue = player:HasCollectible(entryIndex, true)
-				local hasWisp = false
-				if not onlyTrue then
-					local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, entryIndex, false, false)
-					for _, e in ipairs(wisps) do
-						local f = e:ToFamiliar()
-						if f and GetPtrHash(f.Player) == GetPtrHash(player) then
-							hasWisp = true
-						end
-					end
-				end
-				if onlyTrue or not hasWisp then
+	if REPENTOGON and idesc:getOptions("invpassivehistory") then
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local playerType = player:GetPlayerType()
+			local historyList = player:GetHistory():GetCollectiblesHistory()
+			for _, history in ipairs(historyList) do
+				local entryIndex = history:GetItemID()
+				if not history:IsTrinket() and entryIndex > 0 and player:HasCollectible(entryIndex) and not has(ei, entryIndex) and not idesc:hasBlacklist("collectibles", playerType, entryIndex) then
 					local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(entryIndex)).Quality)
 					local modifiers = entryIndex == CollectibleType.COLLECTIBLE_BIRTHRIGHT
 					---@type InventoryDescEntry
@@ -538,9 +528,49 @@ function idesc:getPassives()
 						end,
 						LeftIcon = "{{Quality"..quality.."}}",
 						InnerText = entryIndex,
+						ExtraIcon = EID.ItemPoolTypeToMarkup[history:GetItemPoolType()],
 					}
 					table.insert(entries, entry)
 					table.insert(ei, entryIndex)
+				end
+			end
+		end
+	else
+		local passives = EID:GetAllPassiveItems()
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local playerType = player:GetPlayerType()
+			for _, entryIndex in ipairs(passives) do
+				if entryIndex > 0 and player:HasCollectible(entryIndex) and not has(ei, entryIndex) and not idesc:hasBlacklist("collectibles", playerType, entryIndex) then
+					local onlyTrue = player:HasCollectible(entryIndex, true)
+					local hasWisp = false
+					if not onlyTrue then
+						local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, entryIndex, false, false)
+						for _, e in ipairs(wisps) do
+							local f = e:ToFamiliar()
+							if f and GetPtrHash(f.Player) == GetPtrHash(player) then
+								hasWisp = true
+							end
+						end
+					end
+					if onlyTrue or not hasWisp then
+						local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(entryIndex)).Quality)
+						local modifiers = entryIndex == CollectibleType.COLLECTIBLE_BIRTHRIGHT
+						---@type InventoryDescEntry
+						local entry = {
+							Type = idescEIDType.COLLECTIBLE,
+							Variant = PickupVariant.PICKUP_COLLECTIBLE,
+							SubType = entryIndex,
+							AllowModifiers = modifiers,
+							Frame = function()
+								return idesc:getOptions("q"..quality.."icon")
+							end,
+							LeftIcon = "{{Quality"..quality.."}}",
+							InnerText = entryIndex,
+						}
+						table.insert(entries, entry)
+						table.insert(ei, entryIndex)
+					end
 				end
 			end
 		end
@@ -972,6 +1002,9 @@ function idesc:Render()
 		local optionsOffset = idesc:getOptions("listoffset")
 		local inputKey = idesc:getOptions("listkey", -1)
 
+		local oldTransparency = EID.Config["Transparency"] + 0
+		EID.Config["Transparency"] = 1
+
 		-- Render headers
 		EID:renderString("Current item list("..listprops.current.."/"..listprops.max..")", Vector(x - optionsOffset, 36-(EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
 		EID:renderString("Press ".. kts[inputKey].." again to exit", Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
@@ -1144,6 +1177,7 @@ function idesc:Render()
 				end
 			end
 		end
+		EID.Config["Transparency"] = oldTransparency + 0
 
 		if _debug then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)

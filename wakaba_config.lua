@@ -120,6 +120,7 @@ local config = {
 	invpocketitems = true,
 	invlistmode = "list",
 	invgridcolumn = 6,
+	invpassivehistory = false,
 
 	-- Found HUD options
 	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
