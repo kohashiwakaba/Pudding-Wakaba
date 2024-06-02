@@ -125,6 +125,7 @@ function wakaba:RoomEntitySpawn_AltHeart(type)
 	local room = wakaba.G:GetRoom()
 	local stage = level:GetAbsoluteStage()
 	local oldStageType = level:GetStageType()
+	if room:IsClear() then return end
 
 	if room:GetBossID() == 8 or room:GetBossID() == 25 then
 		level:SetStage(stage, StageType.STAGETYPE_REPENTANCE)
