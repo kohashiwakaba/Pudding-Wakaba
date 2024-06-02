@@ -1,7 +1,7 @@
 wakaba.Flags = {
 	debugCore = true,
 	debugLogs = true,
-	debugConsole = true,
+	debugConsole = false,
 
 	debugShiori = false,
 	debugLevelGen = false,
