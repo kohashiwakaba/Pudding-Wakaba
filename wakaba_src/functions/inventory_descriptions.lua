@@ -1376,6 +1376,60 @@ function idesc:tce()
 	idesc:showEntries(entries, nil, nil, true)
 end
 
+-- example function for show random entries
+function idesc:tme()
+	local entries = {}
+	local config = Isaac.GetItemConfig()
+	local minModdedItemsID = CollectibleType.COLLECTIBLE_MOMS_RING + 1
+	local maxModdedItemsID = config:GetCollectibles().Size - 1
+	local size = maxModdedItemsID - minModdedItemsID
+	if size <= 90 then
+		for i = minModdedItemsID, maxModdedItemsID do
+			if config:GetCollectible(i) and config:GetCollectible(i):IsAvailable() then
+				local quality = tonumber(config:GetCollectible(tonumber(i)).Quality)
+				---@type InventoryDescEntry
+				local entry = {
+					Type = idescEIDType.COLLECTIBLE,
+					Variant = PickupVariant.PICKUP_COLLECTIBLE,
+					SubType = i,
+					AllowModifiers = true,
+					InnerText = i,
+					Frame = function()
+						return idesc:getOptions("q"..quality.."icon")
+					end,
+					LeftIcon = "{{Quality"..quality.."}}",
+				}
+				table.insert(entries, entry)
+			end
+		end
+	else
+		local ei = {}
+		local rng = RNG()
+		rng:SetSeed(wakaba.G:GetLevel():GetDungeonPlacementSeed(), 35)
+		while #entries < 90 do
+			local entryIndex = rng:RandomInt(size) + minModdedItemsID
+			if not has(ei, entryIndex) and config:GetCollectible(entryIndex) and config:GetCollectible(entryIndex):IsAvailable() then
+				local quality = tonumber(config:GetCollectible(tonumber(entryIndex)).Quality)
+				---@type InventoryDescEntry
+				local entry = {
+					Type = idescEIDType.COLLECTIBLE,
+					Variant = PickupVariant.PICKUP_COLLECTIBLE,
+					SubType = entryIndex,
+					AllowModifiers = true,
+					InnerText = entryIndex,
+					Frame = function()
+						return idesc:getOptions("q"..quality.."icon")
+					end,
+					LeftIcon = "{{Quality"..quality.."}}",
+				}
+				table.insert(entries, entry)
+				table.insert(ei, entryIndex)
+			end
+		end
+	end
+	idesc:showEntries(entries, "grid", nil, true)
+end
+
 --#endregion
 
 
