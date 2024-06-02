@@ -5,15 +5,35 @@ code refactor
 -- now grid mode is added
 -- pressing 'f6' while in list
 will switch grid and list mode
+-- add functions to add append
+entries that shows currently
+-- list no longer affected
+by eid transparency settings
 
 - added eid icons for
 -- wakaba status effects
 -- aqua trinkets
 
+- lunatic mode
+-- mom's heart is now
+mausoleum variant
+
 {FSIZE2}repentogon
 - phantom cloak
 -- add charge bar render
 -- actual effect is not changed
+
+- inventory descriptions
+-- add option to show passive
+history instead of held passives
+-- history list now shows
+item pool for specific items
+
+{FSIZE2}bug fixes
+
+- fixed some collectibles spawned
+from wrong item pool
+due to damocles api
 
 ]])
 
