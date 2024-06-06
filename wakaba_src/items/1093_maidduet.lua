@@ -21,6 +21,8 @@ end
 wakaba.Blacklists.MaidDuetCharges = {
 	[CollectibleType.COLLECTIBLE_EVERYTHING_JAR] = true,
 	[CollectibleType.COLLECTIBLE_WOODEN_NICKEL] = true,
+	[CollectibleType.COLLECTIBLE_BREATH_OF_LIFE] = true,
+	[CollectibleType.COLLECTIBLE_NOTCHED_AXE] = true,
 }
 
 wakaba.Blacklists.MaidDuetPlayers = {
