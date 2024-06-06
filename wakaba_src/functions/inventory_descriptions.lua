@@ -1383,7 +1383,8 @@ function idesc:tme()
 	local minModdedItemsID = CollectibleType.COLLECTIBLE_MOMS_RING + 1
 	local maxModdedItemsID = config:GetCollectibles().Size - 1
 	local size = maxModdedItemsID - minModdedItemsID
-	if size <= 90 then
+	local capacity = idesc:getOptions("invgridcolumn", 6) * getListCount()
+	if size <= capacity then
 		for i = minModdedItemsID, maxModdedItemsID do
 			if config:GetCollectible(i) and config:GetCollectible(i):IsAvailable() then
 				local quality = tonumber(config:GetCollectible(tonumber(i)).Quality)
@@ -1406,7 +1407,7 @@ function idesc:tme()
 		local ei = {}
 		local rng = RNG()
 		rng:SetSeed(wakaba.G:GetLevel():GetDungeonPlacementSeed(), 35)
-		while #entries < 90 do
+		while #entries < capacity do
 			local entryIndex = rng:RandomInt(size) + minModdedItemsID
 			if not has(ei, entryIndex) and config:GetCollectible(entryIndex) and config:GetCollectible(entryIndex):IsAvailable() then
 				local quality = tonumber(config:GetCollectible(tonumber(entryIndex)).Quality)
