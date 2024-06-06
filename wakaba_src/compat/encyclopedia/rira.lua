@@ -352,6 +352,22 @@ Encyclopedia.AddTrinket({
 	end,
 	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_KORON],
 })
+-- Rira_B / Duet : Soul of Rira
+Encyclopedia.AddSoul({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Cards.SOUL_RIRA,
+	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.SOUL_RIRA],
+	Hide = true,
+	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Rira",0),
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("rirasoul") then
+			self.Desc = "Defeat Boss Rush, Hush as Tainted Rira"
+
+			return self
+		end
+	end,
+})
 -- Rira_B / Gdier : Flip Card
 Encyclopedia.AddCard({
 	Class = class,
@@ -368,3 +384,4 @@ Encyclopedia.AddCard({
 		end
 	end,
 })
+-- Rira_B / Mother : Pink Fork

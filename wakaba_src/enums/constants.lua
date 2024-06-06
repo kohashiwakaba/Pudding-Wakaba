@@ -308,6 +308,7 @@ wakaba.Enums.Cards = {
 	SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
 	SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
 	SOUL_RICHER = Isaac.GetCardIdByName("Soul of Richer"),
+	SOUL_RIRA = Isaac.GetCardIdByName("Soul of Rira"),
 	CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
 	CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 	CARD_RICHER_TICKET = Isaac.GetCardIdByName("wakaba_Richer Ticket"),
@@ -523,6 +524,9 @@ wakaba.Enums.Constants = {
 
 	SOUL_OF_RICHER_WISP_COUNT = 6,
 	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
+
+	SOUL_OF_RIRA_AQUA_TRINKET_COUNT = 3,
+	SOUL_OF_RIRA_AQUA_TRINKET_COUNT_CLEAR_RUNE = 1,
 
 	REPORT_CARD_BASE_LUCK = 0,
 	REPORT_CARD_EXTRA_LUCK = 5,

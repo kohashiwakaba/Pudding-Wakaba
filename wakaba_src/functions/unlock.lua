@@ -151,6 +151,9 @@ wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.CARD_FLIP] = function()
 		return true
 	end,
+	[wakaba.Enums.Cards.SOUL_RIRA] = function()
+		return true
+	end,
 }
 
 ---@type table

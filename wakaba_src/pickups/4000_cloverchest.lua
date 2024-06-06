@@ -122,7 +122,7 @@ function wakaba:spawnCloverChestReward(chest, player)
 		wakaba:InvalidateCloverChestRewards()
 	else
 		for i, entry in ipairs(rewards) do
-			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba.RandomVelocity(), nil):ToPickup()
+			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba:RandomVelocity(), nil):ToPickup()
 		end
 		if Epiphany then
 			Epiphany:AddCainEssenceInfo(chest, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)

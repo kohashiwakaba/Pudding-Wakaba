@@ -23,6 +23,8 @@
 
 	<card pickup="4113" type="rune" description="Magical enforcement" hud="Soul of Richer" name="Soul of Richer" mimiccharge="6" />
 
+	<card pickup="4115" type="rune" description="Slimy mochi memories" hud="Soul of Rira" name="Soul of Rira" mimiccharge="6" />
+
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
 	<card pickup="4112" type="tarot_reverse" description="Shiori's valuables" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>

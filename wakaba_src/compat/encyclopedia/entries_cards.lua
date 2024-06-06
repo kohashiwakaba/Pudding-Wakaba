@@ -92,12 +92,21 @@ wakaba.encyclopediadesc.desc.cards = {
 			{str = "The sword has a 1/2500 chance every 4 frames to fall."},
 			{str = "Taking self-damage does not count as damage taken for blue sword, and will not give it the chance to fall."},
 			{str = "Using Soul of Tsukasa while blue sword is active reduces chance to fall."},
-		},},
+		},
+	},
 	[c.SOUL_RICHER] = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Spawns 6 Lemegeton Wisps."},
 			{str = "All items spawned are guaranteed for at least Quality 2."},
+		},
+	},
+	[c.SOUL_RIRA] = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns 3 Aqua trinkets."},
+			{str = "- Aqua trinkets spawned this way ignores unlock status."},
+			{str = "Aqua trinkets are special trinket that immediately absorbed on pickup."},
 		},
 	},
 --#endregion

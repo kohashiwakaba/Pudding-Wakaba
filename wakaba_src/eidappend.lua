@@ -35,6 +35,7 @@ if EID then
 			[wakaba.Enums.Cards.CARD_RICHER_TICKET] = 19,
 			[wakaba.Enums.Cards.CARD_RIRA_TICKET] = 20,
 			[wakaba.Enums.Cards.CARD_FLIP] = 21,
+			[wakaba.Enums.Cards.SOUL_RIRA] = 22,
 		}
 		wakaba.PlayerIconSprite = Sprite()
 		wakaba.PlayerIconSprite:Load("gfx/ui/eid_wakaba_players.anm2", true)
@@ -48,36 +49,8 @@ if EID then
 			[wakaba.Enums.Players.RICHER] = "Richer",
 			[wakaba.Enums.Players.RICHER_B] = "RicherB",
 			[wakaba.Enums.Players.RIRA] = "Rira",
+			[wakaba.Enums.Players.RIRA_B] = "RiraB",
 		}
---[[
-		wakaba.EIDBlankCardCooldowns = {
-			-- Blank Card
-			[wakaba.Enums.Cards.CARD_CRANE_CARD] = 5,
-			[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = 4,
-			[wakaba.Enums.Cards.CARD_BLACK_JOKER] = 2,
-			[wakaba.Enums.Cards.CARD_WHITE_JOKER] = 2,
-			[wakaba.Enums.Cards.CARD_COLOR_JOKER] = 6,
-			[wakaba.Enums.Cards.CARD_DREAM_CARD] = 8,
-			[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = 1,
-			[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = 8,
-		}
-		wakaba.EIDClearRuneCooldowns = {
-			-- Clear Rune
-			[wakaba.Enums.Cards.SOUL_WAKABA] = 8,
-			[wakaba.Enums.Cards.SOUL_WAKABA2] = 8,
-			[wakaba.Enums.Cards.SOUL_SHIORI] = 6,
-		}
-		wakaba.EIDPlaceboCooldowns = {
-			-- Placebo
-			[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = 12,
-			[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = 4,
-			[wakaba.Enums.Pills.ALL_STATS_UP] = 12,
-			[wakaba.Enums.Pills.ALL_STATS_DOWN] = 4,
-			[wakaba.Enums.Pills.TROLLED] = 2,
-			[wakaba.Enums.Pills.TO_THE_START] = 2,
-			[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = 2,
-			[wakaba.Enums.Pills.SOCIAL_DISTANCE] = 1,
-		} ]]
 
 		function wakaba:getWakabaDesc(entries, id)
 			lang = EID:getLanguage() or "en_us"

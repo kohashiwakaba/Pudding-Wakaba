@@ -1848,6 +1848,11 @@ wakaba.descriptions[desclang].cards = {
 		description = "{{Collectible711}} Holding, or using the card grants Flip effect#Entering a room with item pedestals displays a ghostly second item on the pedestals#Using the item flips the real and ghostly item",
 		queueDesc = "Rira's Backside",
 	},
+	[wakaba.Enums.Cards.SOUL_RIRA] = { -- TODO
+		itemName = "Soul of Rira",
+		description = "{{AquaTrinket}} Spawns 3 Aqua trinkets ({{Collectible263}} : 1)#{{Blank}} (ignores unlock status)",
+		queueDesc = "Slimy mochi memories",
+	},
 }
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {

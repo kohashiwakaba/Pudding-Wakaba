@@ -20,6 +20,12 @@ end
 
 function wakaba:TryTurnAquaTrinket(trinket)
 	local currentRoomIndex = isc:getRoomListIndex()
+	if not aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] then
+		aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] = {}
+	end
+	if not aqua_trinkets_data.level.triedindexes[currentRoomIndex] then
+		aqua_trinkets_data.level.triedindexes[currentRoomIndex] = {}
+	end
 	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	trinket:GetData().wakaba = trinket:GetData().wakaba or {}
@@ -128,7 +134,7 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 	local data = player:GetData()
 	if not player:IsItemQueueEmpty() and data.wakaba.tryAquaTrinket then
 		local queue = player.QueuedItem.Item
-		if queue:IsTrinket() and queue.ID == data.wakaba.tryAquaTrinket then
+		if queue:IsTrinket() and queue.ID == (data.wakaba.tryAquaTrinket % TrinketType.TRINKET_GOLDEN_FLAG) then
 			player:AnimateTrinket(data.wakaba.tryAquaTrinket, "UseItem")
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM | UseFlag.USE_VOID, -1)
 			if data.wakaba.prevTrinketPrimary > 0 then

@@ -2054,7 +2054,11 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "뒤집기 카드",
 		description = "{{Collectible711}} 소지 중일 때 일부 아이템의 뒤쪽에 숨겨진 아이템이 흐리게 표시됩니다.#사용 시 원래 아이템을 숨겨진 아이템으로 뒤집거나, 생성합니다.",
 		queueDesc = "리라의 뒷모습?",
-		mimiccharge = 4,
+	},
+	[wakaba.Enums.Cards.SOUL_RIRA] = {
+		itemName = "리라의 영혼",
+		description = "{{AquaTrinket}} 아쿠아 장신구를 3개({{Collectible263}} : 1개) 소환합니다.#{{Blank}} (해금 여부 무관)",
+		queueDesc = "쫀득쫀득한 추억",
 	},
 }
 wakaba.descriptions[desclang].runechalk = {
