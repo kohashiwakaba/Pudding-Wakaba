@@ -1374,6 +1374,8 @@ function idesc:tce()
 		ListSecondaryTitle = "{{Delirium}}asdf",
 	})
 	idesc:showEntries(entries, nil, nil, true)
+	istate.listprops.current = 6
+	idesc:recalculateOffset()
 end
 
 -- example function for show random entries
@@ -1406,10 +1408,12 @@ function idesc:tme()
 	else
 		local ei = {}
 		local rng = RNG()
+		local failedCnt = 0
 		rng:SetSeed(wakaba.G:GetLevel():GetDungeonPlacementSeed(), 35)
-		while #entries < capacity do
+		while #entries < capacity and failedCnt < 20 do
 			local entryIndex = rng:RandomInt(size) + minModdedItemsID
 			if not has(ei, entryIndex) and config:GetCollectible(entryIndex) and config:GetCollectible(entryIndex):IsAvailable() then
+				failedCnt = 0
 				local quality = tonumber(config:GetCollectible(tonumber(entryIndex)).Quality)
 				---@type InventoryDescEntry
 				local entry = {
@@ -1425,6 +1429,8 @@ function idesc:tme()
 				}
 				table.insert(entries, entry)
 				table.insert(ei, entryIndex)
+			else
+				failedCnt = failedCnt + 1
 			end
 		end
 	end
