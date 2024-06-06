@@ -533,7 +533,8 @@ if MCM then
 	)
 	if REPENTOGON then
 	MCM.AddSetting(
-		"Inventory Desc",
+		"Pudding & Wakaba",
+		"General",
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
