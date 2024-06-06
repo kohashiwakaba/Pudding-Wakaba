@@ -242,7 +242,7 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 	local maxCharges = conf.MaxCharges
 	local chargeType = conf.ChargeType
 	if chargeType == ItemConfig.CHARGE_TIMED or chargeType == ItemConfig.CHARGE_SPECIAL then
-		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, activeItem) then
+		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, item) then
 			return chargeType == ItemConfig.CHARGE_TIMED and 1000000 or charge
 		else
 			return true
