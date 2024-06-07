@@ -30,12 +30,27 @@ function wakaba:LewdRoomEffect()
 		end
 	end
 	if hasCd then
-		local rr = (math.random(0,math.random(0,10)) * 0.01)
-		local gg = (math.random(0,math.random(0,10)) * 0.01)
-		local bb = (math.random(0,math.random(0,10)) * 0.01)
-		local col = Color(1,1,1,1,rr,gg,bb)
-		wakaba.G:GetRoom():SetFloorColor(col)
-		wakaba.G:GetRoom():SetWallColor(col)
+		local room = wakaba.G:GetRoom()
+		local seed = room:GetSpawnSeed()
+		local rng = RNG()
+		rng:SetSeed(seed, 35)
+		if REPENTOGON then
+			local rr = (rng:RandomInt(0, rng:RandomInt(10)) * 0.1) + 0.5
+			local gg = (rng:RandomInt(0, rng:RandomInt(10)) * 0.1) + 0.5
+			local bb = (rng:RandomInt(0, rng:RandomInt(10)) * 0.1) + 0.5
+			local a = 0.5
+			--print(rr, gg, bb, a)
+			local cmod = room:GetFXParams().ColorModifier
+			local m = ColorModifier(rr, gg, bb, a)
+			wakaba.G:SetColorModifier(m, true, 0.05)
+		else
+			local rr = (math.random(0,math.random(0,10)) * 0.01)
+			local gg = (math.random(0,math.random(0,10)) * 0.01)
+			local bb = (math.random(0,math.random(0,10)) * 0.01)
+			local col = Color(1,1,1,1,rr,gg,bb)
+			room:SetFloorColor(col)
+			room:SetWallColor(col)
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.LewdRoomEffect)
