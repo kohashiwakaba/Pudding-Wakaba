@@ -394,6 +394,21 @@ function wakaba:NewRoom_WinterAlbireo()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
 
+function wakaba:Render_WinterAlbireo()
+	local level = wakaba.G:GetLevel()
+	local roomdesc = level:GetCurrentRoomDesc()
+	local room = wakaba.G:GetRoom()
+	if wakaba:IsValidWakabaRoom(roomdesc) then
+		if REPENTOGON then
+			local backdrop = room:GetBackdrop()
+			local floorSprite = backdrop:GetFloorANM2() ---@field Sprite
+			--floorSprite.Color = wakaba.ColorDatas.rwa -- TODO
+			--floorSprite:SetRenderFlags(AnimRenderFlags.GOLDEN)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WinterAlbireo)
+
 function wakaba:TrySetAlbireoRoomDoor()
 	local level = wakaba.G:GetLevel()
 	local room = wakaba.G:GetRoom()

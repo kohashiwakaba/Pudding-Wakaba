@@ -154,11 +154,7 @@ wakaba.roomoverride = {
 }
 
 wakaba.sprites = {}
-wakaba.RGB = {
-	R = 255,
-	G = 0,
-	B = 0,
-}
+include('wakaba_src.rgb')
 
 -- EID extended description. for eidappend.lua
 wakaba.descriptions = wakaba.descriptions or {}
@@ -1135,7 +1131,6 @@ end
 
 do
 
-	include('wakaba_src.rgb')
 	include('wakaba_src.devilangel')
 	include('wakaba_src.encyclopedia')
 	include('wakaba_src.rerollcheck')

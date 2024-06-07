@@ -87,15 +87,7 @@ function wakaba:PickupRender_AquaTrinkets(pickup, offset)
 	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 	if pickup:GetData().wakaba.isAquaTrinket then
 		local sprite = pickup:GetSprite()
-		local tcolor = Color(1, 1, 1, 1, 0, 0, 0)
-		tcolor:SetColorize(rc, rc, rb*2+0.8, rc-0.4)
-		local ntcolor = Color.Lerp(tcolor, tcolor, 0.5)
-		rt = 1 - (math.sin(Game():GetFrameCount() / 6)/10)-0.1
-		rc = 1 - (math.sin(Game():GetFrameCount() / 6)/5)-0.2
-		rb = 1 - math.sin(Game():GetFrameCount() / 6)
-		ntcolor.A = rt
-
-		sprite.Color = ntcolor
+		sprite.Color = wakaba.ColorDatas.aqu
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
