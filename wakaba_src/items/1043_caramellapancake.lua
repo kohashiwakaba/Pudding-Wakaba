@@ -260,7 +260,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Richer", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 3
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
@@ -270,7 +270,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Rira", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 1
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
@@ -280,7 +280,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Ciel", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 10
+			fly.CollisionDamage = player.Damage * 5
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
@@ -290,7 +290,7 @@ function wakaba:FamiliatInit_Pancake(fly)
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Koron", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 1.5
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end

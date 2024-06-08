@@ -971,10 +971,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#↑ {{Luck}} +1 Luck"
-		.. "#Replaces/spawns weapons to Caramella flies depending of Isaac's weapon"
-		.. "#{wakaba_cp1}"
+		.. "#Replaces/spawns weapons to Caramella flies"
+		.. "#The flies deal {{ColorRicher}}3x{{CR}}/{{WakabaAqua}}{{ColorRira}}1x+Aqua{{CR}}/{{ColorCiel}}5x+Explosion{{CR}}/{{ColorKoron}}1.5x+Petrify{{CR}} damage depending of color"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} Respawn as Richer on death"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives"
 		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},

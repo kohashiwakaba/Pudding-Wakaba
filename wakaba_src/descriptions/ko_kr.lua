@@ -1031,8 +1031,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ 목숨 +1"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#↑ {{LuckSmall}}행운 +1"
-		.. "#공격이 카라멜로 멤버의 파리로 바뀌거나 추가로 소환됩니다."
-		.. "#{wakaba_cp1}"
+		.. "#공격이 카라멜로 파리로 바뀌거나 추가로 소환됩니다."
+		.. "#파리 색상에 따라 적에게 {{ColorRicher}}3x(리셰){{CR}}/{{WakabaAqua}}{{ColorRira}}1x+침수(리라){{CR}}/{{ColorCiel}}5x+폭발(시엘){{CR}}/{{ColorKoron}}1.5x+석화(코론){{CR}} 피해를 줍니다."
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} 사망 시 전 방에서 Richer로 부활합니다. (부활 시에도 위 효과 유지)"
 		.. "{{CR}}",
 		queueDesc = "잊혀진 레시피",

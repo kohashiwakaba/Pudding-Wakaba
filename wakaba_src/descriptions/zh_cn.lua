@@ -993,13 +993,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "神秘配方",
 	},
-	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = { -- TODO
 		itemName = "焦糖煎饼",
 		description = ""
 			.. "#↑ {{Damage}} +1 伤害"
 			.. "#↑ {{Luck}} +1 幸运"
 			.. "#根据Isaac的武器为生成苍蝇"
-			.. "#{wakaba_cp1}" -- do not translate this
+			.. "#The flies deal {{ColorRicher}}3x{{CR}}/{{WakabaAqua}}{{ColorRira}}1x+Aqua{{CR}}/{{ColorCiel}}5x+Explosion{{CR}}/{{ColorKoron}}1.5x+Petrify{{CR}} damage depending of color"
 			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为璃贝"
 			.. "{{CR}}",
 		queueDesc = "被遗忘的朗诵",
