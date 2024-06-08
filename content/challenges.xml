@@ -47,8 +47,9 @@ See this community post for more details. It's not mine, but it's still very use
 	<challenge name="[w14] Hold Me" playertype="23" endstage="8" secretpath="true" canshoot="false" roomfilter="2,4" startingitems="626,627,619,714,-710"/>
 	<challenge name="[w15] Even or Odd" playertype="Richer" endstage="8" secretpath="true" roomfilter="2" startingitems="-34" getcurse="64" cursefilter="63"/>
 	<challenge name="[w16] Runaway Pheromones" playertype="Richer" endstage="11" altpath="true" startingitems="506"/>
-	<!-- <challenge name="[w??] Lies of R" endstage="11" altpath="true"/> -->
+	<!-- <challenge name="[w??] The Floor is Lava" endstage="11" altpath="true"/> -->
 	<!-- <challenge name="[w??] Universe of Goom" endstage="11" altpath="true"/> -->
+	<!-- <challenge name="[w??] Heavy Liquid" endstage="11" altpath="true"/> -->
 	
 	<challenge name="[w98] Hyper Random" playertype="Wakaba" endstage="11" roomfilter="2" getcurse="100" cursefilter="8" startingitems="633,721,669,12" />
 	<challenge name="[w99] True Purist Girl" playertype="Wakaba" endstage="11" secretpath="true" roomfilter="2,4,7,8,9,10,11,12,13,14,15,18,19,20,21" startingitems="626,627,619"/>

@@ -176,6 +176,7 @@ wakaba.Enums.Collectibles = {
 	RICHERS_NECKLACE = Isaac.GetItemIdByName("Richer's Necklace"),
 	CROSS_BOMB = Isaac.GetItemIdByName("Cross Bomb"),
 	GOOMBELLA = Isaac.GetItemIdByName("Goombella"),
+	BUBBLE_BOMBS = Isaac.GetItemIdByName("Bubble Bombs"),
 	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 

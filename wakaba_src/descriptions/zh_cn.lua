@@ -1079,12 +1079,12 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW方块",
-		description = "对所有地面的敌人造成275点分裂伤害#{{Bomb}} 消耗2个炸弹",
+		description = "{{Bomb}} +6炸弹#对所有地面的敌人造成275点分裂伤害#{{Bomb}} 消耗2个炸弹",
 		queueDesc = "摧毁地面",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "模块方块",
-		description = "对所有漂浮的敌人造成333点分裂伤害#{{Bomb}} 消耗2个炸弹",
+		description = "{{Bomb}} +6炸弹#对所有漂浮的敌人造成333点分裂伤害#{{Bomb}} 消耗2个炸弹",
 		queueDesc = "摧毁天空",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
@@ -1239,6 +1239,15 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#伤害>眼泪>范围>运气>伤害(这样循环)"
 			.. "{{CR}}",
 		queueDesc = "Reusable Amplifier",
+	},
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = { -- TODO
+		itemName = "Bubble Bombs",
+		description = "{{Bomb}} +5炸弹"
+		.. "#{{WakabaAqua}} Isaac's bombs aquafy enemies"
+		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+		.. "#水攻击可以击杀石头敌人"
+		.. "{{CR}}",
+		queueDesc = "Clear explosions +5 bombs",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",

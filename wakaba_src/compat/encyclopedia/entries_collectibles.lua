@@ -952,6 +952,33 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "RGON - Increases the chance to open the Devil Room or Angel Room after killing a boss by 20% while holding it"},
 		},
 	},
+	BUBBLE_BOMBS = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants 5 Bombs."},
+			{str = "Isaac's Bombs aquafies enemies when they explode."},
+			{str = "- Aquafied enemies take more damage from:"},
+			{str = "-- Laser, Explosions, Aqua tears"},
+			{str = "- Aquafied enemies take less damage from:"},
+			{str = "-- Fire/Burn, Poison, Red Poops"},
+			{str = "Bubble Bombs also instakills rock enemies such as:"},
+			{str = "- Great Gideon"},
+			{str = "- Stonies"},
+			{str = "- Gaping Maws"},
+			{str = "- Stone shooters"},
+			{str = "- Rock Spiders"},
+			{str = "- Ball and Chains"},
+			{str = "- SpikeBalls"},
+			{str = "- Wall Huggers"},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Dr. Fetus", clr = 3, halign = 0},
+			{str = "Fired bombs have a chance to aquafy enemies. This chance scales with luck, going up to 100% at 22 Luck."},
+			{str = "Epic Fetus", clr = 3, halign = 0},
+			{str = "Fired missiles have a chance to aquafy enemies."},
+		},
+	},
   --#endregion
 
   --#region Wakaba

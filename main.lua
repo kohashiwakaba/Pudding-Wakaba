@@ -1018,6 +1018,7 @@ do
 	include('wakaba_src.items.1093_maidduet')
 	include('wakaba_src.items.1095_rirauniform')
 	include('wakaba_src.items.1100_richerbra')
+	include('wakaba_src.items.1102_bubblebombs')
 
 	include('wakaba_src.pickups.2005_dreamcard')
 	include('wakaba_src.items.1200_doubledreams')

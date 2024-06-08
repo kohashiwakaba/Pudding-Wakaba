@@ -57,6 +57,7 @@ wakaba.ChallengeParams.Hush = {
 	[wakaba.challenges.CHALLENGE_HUSH] = true,
 	[wakaba.challenges.CHALLENGE_PLUM] = true,
 	[wakaba.challenges.CHALLENGE_DOPP] = true,
+	--[wakaba.challenges.CHALLENGE_HVLQ] = true,
 }
 wakaba.ChallengeParams.Deli = {
 	[wakaba.challenges.CHALLENGE_DELI] = true,

@@ -1045,11 +1045,11 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW Block",
-		description = "Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
+		description = "{{Bomb}} +6 Bombs#Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd Block",
-		description = "Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
+		description = "{{Bomb}} +6 Bombs#Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "Secret Door",
@@ -1176,6 +1176,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Range}}Speed + 0.15"
 		.. "#↑ {{Luck}}Luck +2"
 		.. "#On use, or entering new room changes to next effect respectively"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
+		itemName = "Bubble Bombs",
+		description = "{{Bomb}} +5 Bombs"
+		.. "#{{WakabaAqua}} Isaac's bombs aquafy enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {

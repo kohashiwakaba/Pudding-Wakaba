@@ -35,6 +35,7 @@
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -227,6 +228,7 @@
 		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -358,6 +360,7 @@
 		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

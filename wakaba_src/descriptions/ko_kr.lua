@@ -1107,12 +1107,12 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW 블럭",
-		description = "사용 시 폭탄 2개를 소모하여 지상 적에게 275 분산 피해를 줍니다.",
+		description = "↑ {{Bomb}}폭탄 +6#사용 시 폭탄 2개를 소모하여 지상 적에게 275 분산 피해를 줍니다.",
 		queueDesc = "지면 터트리기",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd 블럭",
-		description = "사용 시 폭탄 2개를 소모하여 공중의 적에게 333 분산 피해를 줍니다.",
+		description = "↑ {{Bomb}}폭탄 +6#사용 시 폭탄 2개를 소모하여 공중의 적에게 333 분산 피해를 줍니다.",
 		queueDesc = "공기 터트리기",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
@@ -1259,6 +1259,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#방 입장 시 혹은 사용 시 위의 4개 중 하나가 번갈아가며 변경됩니다."
 		.. "{{CR}}",
 		queueDesc = "충전식 증폭기",
+	},
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
+		itemName = "방울방울 폭탄",
+		description = "↑ {{Bomb}}폭탄 +5"
+		.. "#{{WakabaAqua}} 폭탄이 터질 때 주변의 적을 침수시킵니다.."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "{{CR}}",
+		queueDesc = "씻겨나가는 폭발 + 폭탄 5개",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
