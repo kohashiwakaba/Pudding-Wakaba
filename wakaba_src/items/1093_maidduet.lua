@@ -207,7 +207,7 @@ if EID then
 				append = append .. (maidKey or maidButton)
 			end
 			descObj.Description = descObj.Description:gsub("{wakaba_md1}", append)
-		elseif wakaba:has_value(wakaba.Blacklists.MaidDuet, descObj.ObjSubType) then
+		elseif wakaba.Blacklists.MaidDuet[descObj.ObjSubType] then
 			local append = EID:getDescriptionEntry("MaidDuetBlacklisted") or EID:getDescriptionEntryEnglish("MaidDuetBlacklisted")
 			descObj.Description = descObj.Description .. "#" .. append
 		end
