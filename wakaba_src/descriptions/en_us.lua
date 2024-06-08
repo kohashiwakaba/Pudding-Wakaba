@@ -1672,7 +1672,7 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "Crane Card",
 		description = "{{CraneGame}} Spawns a Crane Game machine",
 		tarot = {"{{CraneGame}} Spawns {{ColorShinyPurple}}2{{CR}} Crane Game machines"},
-		mimiccharge = 6,
+		mimiccharge = 5,
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "Confessional Card",
@@ -1699,12 +1699,12 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "Queen of Spades",
 		description = "{{Key}} Spawns 3~26 keys",
 		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Key}}Spawns 1~6 keys",
-		mimiccharge = 10,
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "Wakaba's Dream Card",
 		description = "Spawns a random collectible item",
-		mimiccharge = 10,
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "Unknown Bookmark",
@@ -1737,7 +1737,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "Soul of Shiori",
 		description = "{{Heart}} Heals 2 Red Hearts#Activates Random Book of Shiori tear effect",
-		mimiccharge = 8,
+		mimiccharge = 6,
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
@@ -1749,7 +1749,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "Soul of Richer",
 		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps ({{Collectible263}} : 1 ~ 3)#All wisps are guaranteed to be Quality{{Quality2}}+",
-		mimiccharge = 12,
+		mimiccharge = 6,
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
@@ -1767,7 +1767,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
 		itemName = "Richer Ticket",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Grants a random combinations current room",
-		mimiccharge = 4,
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "Rira Ticket",
