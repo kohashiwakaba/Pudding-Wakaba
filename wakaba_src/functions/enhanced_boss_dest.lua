@@ -180,21 +180,19 @@ function wakaba:SetupDamocles()
 	if damoSet then return end
 	damoSet = true
 	wakaba:scheduleForUpdate(function()
-		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-			if REPENTOGON then
-				local pls = PlayerManager.GetPlayers()
-				for _, p in ipairs(pls) do
-					if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-					if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-				end
-			else
-				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-					if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-				end)
+		if REPENTOGON then
+			local pls = PlayerManager.GetPlayers()
+			for _, p in ipairs(pls) do
+				if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
 			end
-			damoSet = false
-		end)
+		else
+			wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+				if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+			end)
+		end
+		damoSet = false
 	end, 1)
 end
 
