@@ -6,7 +6,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, function(_, player)
 	--local playerIndex = tostring(isc:getPlayerIndex(player))
 	if revivalData then
 		player:Revive()
-		if not revivalData.CurrentRoom then
+		if not revivalData.CurrentRoom and not isc:inBeastRoom() then
 			wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, -1, 0, player)
 		end
 		if revivalData.PostRevival then
