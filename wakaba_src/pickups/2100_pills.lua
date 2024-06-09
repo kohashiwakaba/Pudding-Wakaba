@@ -195,13 +195,13 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 		wakaba:addCustomStat(player, "hairpinluck", multiplier)
 
 		if pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP then
-			wakaba:addCustomStat(player, "damage", 0.08 * multiplier)
+			wakaba:addCustomStat(player, "damagemult", 0.08 * multiplier)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			player:AnimateHappy()
 			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		elseif pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN then
-			wakaba:addCustomStat(player, "damage", -0.02 * multiplier)
+			wakaba:addCustomStat(player, "damagemult", -0.02 * multiplier)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			player:AnimateSad()
