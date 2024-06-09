@@ -824,8 +824,8 @@ function mod:IsPlayerHoldingTrinket(player, trinket)
 	return false
 end
 
-function mod:PlayerHasSmeltedTrinket(player, trinket)
-	return player:HasTrinket(trinket, true) and not mod:IsPlayerHoldingTrinket(player, trinket)
+function mod:PlayerHasSmeltedTrinket(player, trinket, skipTrueCheck)
+	return player:HasTrinket(trinket, not skipTrueCheck) and not mod:IsPlayerHoldingTrinket(player, trinket)
 end
 
 function mod:SmeltHeldTrinket(player, slot)
