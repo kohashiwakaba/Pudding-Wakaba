@@ -1902,6 +1902,8 @@ end
 
 
 
+local hasShownStartWarning = false
+local skipWarning = false
 if EID then
 	local shouldShowWarning = {}
 	if not REPENTOGON then
@@ -1911,8 +1913,10 @@ if EID then
 		table.insert(shouldShowWarning, "WakabaDamoclesWarningText")
 	end
 
-	local hasShownStartWarning = false
 	function wakaba:Render_WakabaFlagsWarning()
+		if skipWarning then
+			wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WakabaFlagsWarning)
+		end
 		if #shouldShowWarning > 0 and wakaba.G:GetFrameCount() < 10*30 then
 			local player = Isaac.GetPlayer()
 			local title = EID:getDescriptionEntry("WakabaGlobalWarningTitle")
@@ -1928,7 +1932,7 @@ if EID then
 			hasShownStartWarning = true
 		elseif hasShownStartWarning then
 			EID:hidePermanentText()
-			hasShownStartWarning = false
+			skipWarning = true
 		end
 	end
 	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WakabaFlagsWarning)
