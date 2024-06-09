@@ -18,7 +18,7 @@ function wakaba:getAquaTrinketChance()
 	return wakaba.Enums.Chances.AQUA_TRINKET_DEFAULT
 end
 
-function wakaba:TryTurnAquaTrinket(trinket)
+function wakaba:TryTurnAquaTrinket(trinket, clearAqua)
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] then
 		aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] = {}
@@ -29,7 +29,7 @@ function wakaba:TryTurnAquaTrinket(trinket)
 	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	trinket:GetData().wakaba = trinket:GetData().wakaba or {}
-	trinket:GetData().wakaba.isAquaTrinket = true
+	trinket:GetData().wakaba.isAquaTrinket = not clearAqua
 end
 
 local hasTrinketDropped = false
