@@ -142,7 +142,7 @@
 	<passive id="105" description="Feeling her sense" gfx="rirabandage.png" name="Rira's Bandage" tags="summonable offensive" quality="3" craftquality="3" />
 	<passive id="106" cache="tearcolor damage" description="Zipped memories" gfx="blackbeanmochi.png" name="Black Bean Mochi" tags="summonable offensive" quality="3" craftquality="3" />
 	<passive id="107" cache="firedelay damage" description="Wet pheromones" gfx="sakuramontblanc.png" name="Sakura Mont Blanc" tags="summonable offensive" quality="2" craftquality="2" />
-	<active id="108" description="Tea-bagging shots" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="summonable offensive" quality="1" craftquality="2" />
+	<active id="108" description="Tea-bagging shots" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="offensive" quality="1" craftquality="2" />
 	<passive id="109" cache="all" hearts="4" maxhearts="2" description="Ultra Gluton" gfx="rirabento.png" name="Rira's Bento" tags="summonable offensive" quality="1" craftquality="-1" />
 	<passive id="110" cache="speed" description="Whriling taste" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="summonable nolostbr" quality="1" craftquality="1" />
 	<passive id="111" description="Fading memories" gfx="sakuracapsule.png" name="Sakura Capsule" tags="summonable offensive" customtags="nometronome" quality="2" craftquality="4" persistent="true"/>
