@@ -2619,6 +2619,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = { -- TODO
 		desc = "↑ {{Damage}} +1攻击力#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears",
 	},
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = { -- TODO
+		desc = "{{WakabaModRgon}} Active chargebar is shown to indicate how many card spawn chance have been failed",
+	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}

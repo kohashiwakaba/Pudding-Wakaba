@@ -2958,6 +2958,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		type = "replaceAll",
 		func = function() return REPENTOGON end,
 	},
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
+		desc = "{{WakabaModRgon}} Active chargebar is shown to indicate how many card spawn chance have been failed",
+		func = function() return REPENTOGON end,
+	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
