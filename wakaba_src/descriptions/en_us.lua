@@ -3001,10 +3001,10 @@ wakaba.descriptions[desclang].bossdest = {
 	desc_boss			= "Select boss to challenge",
 	desc_health		= "Select health to challenge",
 	desc_damo			= "Choose damocles start or not",
-	desc_lunatic	= "Enable Lunatic mode, some Pudding & Wakaba items will be nerfed",
+	desc_lunatic	= "Choose to enable Lunatic mode#In Lunatic mode, most of Pudding & Wakaba items will be nerfed#All damage penalty protection effect except Richer's Bra will be disabled#All Armor-piercing effect/items except Advanced Crystal will be disabled/removed from the pool",
 	desc_lock			= "Preserve this challenge until game is cleared",
 	desc_roll			= "Are you ready?",
-	desc_clear		= "Clear challenge destination#Damocles added by this challenge is not removed",
+	desc_clear		= "Clear challenge destination#Damocles added by this challenge will not removed",
 }
 
 if EID then
