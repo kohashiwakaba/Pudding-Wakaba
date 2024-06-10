@@ -1191,7 +1191,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Devil/Angel rooms no longer appear"
 		.. "#Upon use, Change the form of Wakaba's dreams"
 		.. "#If collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
-		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} 8% chance to spawn Wakaba's Dream Card on room clears"
+		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 8% chance to spawn Wakaba's Dream Card on room clears"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 	belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
