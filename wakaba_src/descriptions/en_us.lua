@@ -187,7 +187,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
-		.. "#↓ {{ColorOrange}}Significantly reduces invincibility frames"
+		.. "#!!! {{ColorOrange}}Significantly reduces invincibility frames"
 		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
 		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
 		.. "{{CR}}",
