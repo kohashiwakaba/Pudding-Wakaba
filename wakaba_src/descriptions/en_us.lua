@@ -2857,7 +2857,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		{
-			desc = {"Coins", "1 coin"},
+			desc = {"Coins will be", "1 Coin will be"},
 			func = EID.IsHardMode,
 			type = "findReplace",
 			modifierText = "Hard Mode",
