@@ -294,7 +294,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Rabbey Ward",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
-		.. "#Installs a Rabbit Ward that causes:"
+		.. "#On use, installs a Rabbit Ward that causes:"
 		.. "#Reveals further rooms"
 		.. "#Damage, Tears up inside revealed rooms"
 		.. "#Clearing room inside Rabbit Ward recovers half soul heart"

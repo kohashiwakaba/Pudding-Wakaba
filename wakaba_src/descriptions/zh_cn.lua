@@ -66,6 +66,11 @@ wakaba.descriptions[desclang].birthright = {
 			wakaba.Enums.Collectibles.CHIMAKI .. "}} 小棕会变得更强",
 		queueDesc = "有一点更H了",
 	},
+	[wakaba.Enums.Players.RIRA_B] = { -- TODO (Tainted Rira BR is not final, can be changed later)
+		playerName = "Tainted Rira",
+		description = "#Health no longer drains#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room",
+		queueDesc = "Ribbon Division",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -305,6 +310,26 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Trinket63}} 转换巨魔炸弹"
 			.. "{{CR}}",
 		queueDesc = "莉良的灵魂伴侣",
+	},
+	[wakaba.Enums.Collectibles.RABBEY_WARD] = { -- TODO
+		itemName = "Rabbey Ward",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
+		.. "#On use, installs a Rabbit Ward that causes:"
+		.. "#Reveals further rooms"
+		.. "#Damage, Tears up inside revealed rooms"
+		.. "#Clearing room inside Rabbit Ward recovers half soul heart"
+		.. "{{CR}}",
+		queueDesc = "Aqua expander",
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = { -- TODO
+		itemName = "Azure Rir",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
+		.. "#!!! Removes all heart containers"
+		.. "{{CR}}",
+		queueDesc = "Essence of Rira",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "破损工具箱",
