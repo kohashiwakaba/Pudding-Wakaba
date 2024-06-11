@@ -28,7 +28,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 ---@param cacheFlag CacheFlag
 function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
-		player.Damage = player.Damage * (1 + (wakaba:getCustomStat(player, "damagemult") or 0)
+		player.Damage = player.Damage * (1 + (wakaba:getCustomStat(player, "damagemult") or 0))
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
 			player.Damage = player.Damage * (1 + (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO)))
 		end
