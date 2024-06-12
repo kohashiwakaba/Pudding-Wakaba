@@ -47,7 +47,12 @@ function mod:GetRoomPlayers()
 	return mod.roomPlayersCache
 end
 
-function mod:ForAllPlayers(func, typeFilter)
+---@function
+---@scope wakaba
+---@param func function
+---@param typeFilter PlayerType
+---@return any
+function wakaba:ForAllPlayers(func, typeFilter)
 	for _, player in pairs(mod:GetRoomPlayers()) do
 		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
 			local returnValue = func(player)

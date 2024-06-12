@@ -638,6 +638,24 @@ wakaba.Callback = {
 	]]
 	-- ---
 	INVENTORY_DESCRIPTIONS_BASIC_ENTRIES = "WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES",
+	-- ---
+	-- EVALUATE_MAGNET_HEAVEN
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE, to choose check whether pickup should be pulled or not by Magnet Heaven
+	--
+	-- ---
+	-- Parameters :
+	-- - `variant` - PickupVariant (Optional arg)
+	-- - `playerOrEffect` - EntityPlayer|EntityEffect EntityPlayer for magnet heaven, EntityEffect for power bomb
+	-- - `targetPickup` - EntityPickup
+	-- - `checkerShopkeeper` - EntityNPC
+	-- - `ignoreObstructed` - boolean
+	--
+	-- ---
+	-- - Return true to make pulled by magnet, false to not. 
+	-- - The last callback to return a valid return value wins out and overwrites previous callbacks' return values
+	-- ---
+	EVALUATE_MAGNET_HEAVEN = "WakabaCallbacks.EVALUATE_MAGNET_HEAVEN",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
