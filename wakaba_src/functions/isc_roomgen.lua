@@ -16,6 +16,18 @@ function wakaba:NewLevel_RoomGen()
 
 	local rng = RNG()
 	local level = wakaba.G:GetLevel()
+	local seeds = wakaba.G:GetSeeds()
+	local haspermamaze = false
+	local hascurseofmaze = false
+
+	if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
+		seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+		haspermamaze = true
+	end
+	if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
+		level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
+		hascurseofmaze = true
+	end
 
 	local currentRoomIdx = level:GetCurrentRoomIndex()
 	local candidates = isc:getNewRoomCandidatesForLevel()
@@ -38,6 +50,17 @@ function wakaba:NewLevel_RoomGen()
 		end
 	end
 
+	if haspermamaze then
+		wakaba:scheduleForUpdate(function()
+			seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+		end, 0)
+	end
+
+	if hascurseofmaze then
+		wakaba:scheduleForUpdate(function()
+			level:AddCurse(LevelCurse.CURSE_OF_MAZE)
+		end, 0)
+	end
 
 	if MinimapAPI then
 		MinimapAPI:LoadDefaultMap()

@@ -117,12 +117,25 @@ end
 function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	local roomPool = wakaba.RoomConfigs.WinterAlbireo["Standard"]
 	local level = game:GetLevel()
+	local seeds = game:GetSeeds()
 	local roomIndex = level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng)
 	local config = roomPool[rng:RandomInt(#roomPool) + 1]
 	local targetDesc = level:GetRoomByIdx(roomIndex)
 
 	local stage = level:GetStage()
 	local isWombStage = stage >= LevelStage.STAGE4_1 and stage ~= LevelStage.STAGE4_3 and stage <= LevelStage.STAGE5
+
+	local haspermamaze = false
+	local hascurseofmaze = false
+
+	if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
+		seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+		haspermamaze = true
+	end
+	if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
+		level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
+		hascurseofmaze = true
+	end
 
 	if not onlyTaintedRicher or isWombStage then
 		local index = wakaba:GetDeadEnd(rng)
@@ -168,6 +181,18 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	wakaba:TrySetAlbireoRoomDoor()
 	if game:GetFrameCount() > 0 then
 		level:UpdateVisibility()
+	end
+
+	if haspermamaze then
+		wakaba:scheduleForUpdate(function()
+			seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+		end, 0)
+	end
+
+	if hascurseofmaze then
+		wakaba:scheduleForUpdate(function()
+			level:AddCurse(LevelCurse.CURSE_OF_MAZE)
+		end, 0)
 	end
 end
 
