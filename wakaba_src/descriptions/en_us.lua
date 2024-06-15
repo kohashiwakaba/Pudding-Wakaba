@@ -2881,8 +2881,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Wakaba",
 		},
 	},
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
 			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Absorb selected Wisp#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Can be change selection by {{ButtonRT}}",
