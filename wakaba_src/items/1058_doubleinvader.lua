@@ -118,7 +118,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -19999, wakaba.PreTa
 ---@param collider Entity
 ---@param low boolean
 function wakaba:Collision_DoubleInvader(npc, collider, low)
-	if invEnabled() then
+	if invEnabled() and headSpawned then
 		if collider:ToTear() then
 			local tear = collider:ToTear()
 			if not tear:HasTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_FETUS) then
@@ -157,7 +157,7 @@ wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, E
 ---@param collider Entity
 ---@param low boolean
 function wakaba:TearCollision_DoubleInvader(tear, collider, low)
-	if invEnabled() then
+	if invEnabled() and headSpawned then
 		if collider.Type == EntityType.ENTITY_DEATHS_HEAD then
 			return true
 		end
