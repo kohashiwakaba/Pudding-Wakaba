@@ -412,10 +412,10 @@ wakaba.Enums.Flies = {
 }
 
 wakaba.Enums.FlyDamageMult = {
-	[wakaba.Enums.Flies.RICHER] = 4,
-	[wakaba.Enums.Flies.RIRA] = 3,
-	[wakaba.Enums.Flies.CIEL] = 10,
-	[wakaba.Enums.Flies.KORON] = 4,
+	[wakaba.Enums.Flies.RICHER] = 3,
+	[wakaba.Enums.Flies.RIRA] = 1,
+	[wakaba.Enums.Flies.CIEL] = 5,
+	[wakaba.Enums.Flies.KORON] = 1.5,
 }
 
 wakaba.Spawner = {}
