@@ -115,8 +115,8 @@ function wakaba:TearInit_Pancake(tear)
 				local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER)
 				fly:GetData().wakaba_vel = vel
 				fly:GetData().wakaba_veltimer = player.TearRange / 5
+				tear:Remove()
 			end
-			tear:Remove()
 		end
 	end
 end
@@ -220,8 +220,8 @@ function wakaba:BombInit_Pancake(bomb)
 			local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, nil, true)
 			fly:GetData().wakaba_vel = vel
 			fly:GetData().wakaba_veltimer = player.TearRange / 5
+			bomb:Remove()
 		end
-		bomb:Remove()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombInit_Pancake)
