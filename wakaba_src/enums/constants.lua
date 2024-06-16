@@ -586,6 +586,12 @@ wakaba.ValidCustomStat = {
 	"shotspeed",
 	"hairpinluck",
 	"falsedamage",
+	"damagemult",
+	"tearsmult",
+	"rangemult",
+	"luckmult",
+	"speedmult",
+	"shotspeedmult",
 }
 
 wakaba.GoldenTrinketData = {
