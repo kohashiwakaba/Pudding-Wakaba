@@ -25,10 +25,13 @@ function wakaba:Update_MagnetHeaven()
 		end
 	end)
 	if wakaba.MagnetPlayer and wakaba.MagnetPlayer.Type == EntityType.ENTITY_PLAYER then
-		wakaba.MagnetChecker = Isaac.Spawn(EntityType.ENTITY_SHOPKEEPER, 0, 0, Vector.Zero, Vector.Zero, player):ToNPC()
-		wakaba.MagnetChecker.Visible = false
-		wakaba.MagnetChecker.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-		wakaba.MagnetChecker.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
+		if not wakaba.MagnetChecker then
+			wakaba.MagnetChecker = Isaac.Spawn(EntityType.ENTITY_SHOPKEEPER, 0, 0, Vector.Zero, Vector.Zero, player):ToNPC()
+			wakaba.MagnetChecker.Visible = false
+			wakaba.MagnetChecker:AddEntityFlags(EntityFlag.FLAG_NO_QUERY)
+			wakaba.MagnetChecker.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+			wakaba.MagnetChecker.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
+		end
 	elseif wakaba.MagnetChecker and wakaba.MagnetChecker:Exists() then
 		wakaba.MagnetChecker:Remove()
 		wakaba.MagnetChecker = nil
