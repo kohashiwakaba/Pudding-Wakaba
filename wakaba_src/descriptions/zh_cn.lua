@@ -358,6 +358,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "就像布丁",
 		wisp = "{{ColorLime}}内环 x1: {{CR}}#无敌 灵火#不能发射眼泪",
+		void = "No longer guarantees {{Quality3}}/{{Quality4}} when voided",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "遗忘之书",
@@ -498,6 +499,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "贵安!",
 		belial = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
 		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌",
+		void = "Can't change stored content anymore, copying stored content is changed to void usage", -- TODO
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "时钟之眼",
@@ -528,6 +530,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "反驳激光",
 		wisp = "{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌"
+		void = "Loses auto activation, shield duration extended to 20 seconds", -- TODO
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "退货邮费",
@@ -1292,6 +1295,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "永恒梦境...",
 		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
+		void = "Spawns {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card when voided", -- TODO
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "伊甸的便利贴",

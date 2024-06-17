@@ -344,6 +344,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
 		wisp = "{{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",
+		void = "흡수 시 더 이상 {{Quality3}}/{{Quality4}}등급을 보장하지 않음",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "잊혀진 자의 책",
@@ -489,6 +490,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "평안하세요!",
 		belial = "교복에 담긴 알약/카드/룬의 개수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
 		wisp = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다.",
+		void = "더 이상 내용물을 바꿀 수 없으며 내용물 사용도 액티브 사용으로 변경됩니다.",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "시간의 눈",
@@ -519,6 +521,7 @@ wakaba.descriptions[desclang].collectibles = {
 		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "레이저 반사",
 		wisp = "{{ColorOrange}}외부 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#방을 나가면 사라집니다.#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다.",
+		void = "더 이상 자동으로 발동되지 않으며 사용 시 무적 시간이 20초로 증가",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "미니핀 시러시러",
@@ -1286,6 +1289,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		queueDesc = "영원한 꿈",
 		belial = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
+		void = "흡수 시 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card를 대신 소환",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "에덴의 접착제",

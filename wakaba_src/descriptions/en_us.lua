@@ -332,6 +332,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Decreased charge rate by half"
 		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
+		void = "No longer guarantees {{Quality3}}/{{Quality4}} when voided",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "Book of Forgotten",
@@ -466,6 +467,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
 		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
+		void = "Can't change stored content anymore, copying stored content is changed to void usage",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
@@ -494,6 +496,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Does not activate when other shields are active"
 		.. "{{CR}}",
 		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active",
+		void = "Loses auto activation, shield duration extended to 20 seconds",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "Return Postage",
@@ -1201,6 +1204,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect on use",
+		void = "Spawns {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card when voided",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
