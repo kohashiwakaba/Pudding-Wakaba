@@ -203,7 +203,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.dreamsUpdate)
 function wakaba:dreamsCardBonus(rng, spawnPosition)
 	--local randomInt = rng:RandomInt(100)
 	
-	local border = 800
+	local border = wakaba:IsLunatic() and 100 or 800
+	if wakaba:HasJudasBr(player) then
+		border = border + 400
+	end
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DRMS then
 		border = border * 2
 	end
@@ -215,10 +218,7 @@ function wakaba:dreamsCardBonus(rng, spawnPosition)
 			local randomnum = rng:RandomInt(10000)
 			wakaba:GetPlayerEntityData(player)
 			player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack or 0
-			player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack + 800
-			if wakaba:HasJudasBr(player) then
-				player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack + 400
-			end
+			player:GetData().wakaba.dreamstack = player:GetData().wakaba.dreamstack + (wakaba:IsLunatic() and 700 or 800)
 			if randomnum <= border or player:GetData().wakaba.dreamstack >= 10000 then
 				local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 				player:GetData().wakaba.dreamstack = 0

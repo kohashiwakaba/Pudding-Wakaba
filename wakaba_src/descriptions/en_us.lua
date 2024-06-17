@@ -1189,12 +1189,18 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
-		.. "#Upon use, Change the form of Wakaba's dreams"
-		.. "#If collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
-		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 8% chance to spawn Wakaba's Dream Card on room clears"
+		.. "#On use, Change the form of Wakaba's dreams"
+		.. "#On collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
+		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 8% chance to spawn Wakaba's Dream Card on room clears (caps at 13 tries)"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
-	belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
+		lunatic = ""
+		.. "#↓ Devil/Angel rooms no longer appear"
+		.. "#On use, Change the form of Wakaba's dreams"
+		.. "#On collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 1% chance to spawn Wakaba's Dream Card on room clears (caps at 15 tries)"
+		.. "{{CR}}",
+		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+		belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect on use",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",

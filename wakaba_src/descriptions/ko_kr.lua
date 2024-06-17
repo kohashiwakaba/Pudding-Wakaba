@@ -1275,7 +1275,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
 		.. "#사용 시 와카바의 꿈이 바뀝니다."
 		.. "#아이템이 등장할 경우 해당 꿈에 해당되는 배열의 아이템이 등장합니다."
-		.. "#방 클리어 시 8%의 확률로 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드를 드랍합니다."
+		.. "#방 클리어 시 8%의 확률로 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드를 드랍합니다. (천장 13회)"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
+		.. "#사용 시 와카바의 꿈이 바뀝니다."
+		.. "#아이템이 등장할 경우 해당 꿈에 해당되는 배열의 아이템이 등장합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 1%의 확률로 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드를 드랍합니다. (천장 15회)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		queueDesc = "영원한 꿈",

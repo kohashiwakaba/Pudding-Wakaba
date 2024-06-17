@@ -1283,6 +1283,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Card" ..
 			wakaba.Enums.Cards.CARD_DREAM_CARD .. "}} 在清理房间后有8% 的几率生成若叶的梦境卡"
 			.. "{{CR}}",
+			lunatic = ""
+			.. "#↓ 恶魔/天使房不再出现"
+			.. "#使用时，改变若叶的梦境的形式"
+			.. "#如果出现可收集物品，将会从若叶的梦境的池子中选择，而不是默认的池子"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Card" ..
+			wakaba.Enums.Cards.CARD_DREAM_CARD .. "}} 在清理房间后有1% 的几率生成若叶的梦境卡"
+			.. "{{CR}}",
 		queueDesc = "永恒梦境...",
 		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
 	},
