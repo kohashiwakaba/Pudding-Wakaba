@@ -37,7 +37,7 @@ function wakaba:Update_MagnetHeaven()
 		wakaba.MagnetChecker = nil
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_MagnetHeaven)
+--wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_MagnetHeaven)
 
 ---@param pickup EntityPickup
 function wakaba:PickupUpdate_MagnetHeaven_temp(pickup)
