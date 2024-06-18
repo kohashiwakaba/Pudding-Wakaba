@@ -1,3 +1,4 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 ---@param player EntityPlayer
 wakaba:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, function(_, player)
@@ -8,6 +9,8 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_TRIGGER_PLAYER_DEATH, function(_, player)
 		player:Revive()
 		if not revivalData.CurrentRoom and not isc:inBeastRoom() then
 			wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, -1, 0, player)
+		else
+			player:SetMinDamageCooldown(150)
 		end
 		if revivalData.PostRevival then
 			revivalData.PostRevival(player)
