@@ -390,7 +390,7 @@ if EID then
 						for itemID, wcd in pairs(conDescTables.collectibles) do
 							local conditionalEntry = "5.100."..tostring(itemID)
 							if lang == "en_us" then
-								EID.DescriptionConditions[conditionalEntry] = {}
+								EID.DescriptionConditions[conditionalEntry] = EID.DescriptionConditions[conditionalEntry] or {}
 							end
 							if #wcd == 0 then wcd = {wcd} end
 							for _, itemdesc in ipairs(wcd) do
@@ -471,6 +471,17 @@ if EID then
 					end
 				end
 				_wakaba["condInserted_"..lang] = true
+				if not _wakaba["condInserted_global"] then
+					EID:AddSynergyConditional(wakaba.Enums.Collectibles.VINTAGE_THREAT, {
+						wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+						wakaba.Enums.Collectibles.MINERVA_AURA,
+						wakaba.Enums.Collectibles.LUNAR_STONE,
+						wakaba.Enums.Collectibles.RABBIT_RIBBON,
+						wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
+						wakaba.Enums.Collectibles.RICHERS_BRA,
+					}, "WakabaVintageInvalidates", "WakabaVintageInvalidated")
+					_wakaba["condInserted_global"] = true
+				end
 				EID._currentMod = "Pudding and Wakaba"
 				for _, entitydesc in pairs(wakabaDescTables.entities) do
 					local desc = wakaba:IsLunatic() and entitydesc.lunatic or entitydesc.description

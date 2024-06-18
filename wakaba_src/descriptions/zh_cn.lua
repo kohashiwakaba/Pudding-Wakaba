@@ -529,7 +529,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#当其他盾牌激活时不会激活"
 			.. "{{CR}}",
 		queueDesc = "反驳激光",
-		wisp = "{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌"
+		wisp = "{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌",
 		void = "Loses auto activation, shield duration extended to 20 seconds", -- TODO
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
@@ -2602,10 +2602,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 				"}} 使用时，吸收选定的灵火#{{Player" .. wakaba.Enums.Players.RICHER_B .. "}} 可以通过更改选择{{ButtonRT}}",
 			modifierText = "Tainted Richer", -- do NOT translate this
 		},
-		{
-			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} Aquafies all trinkets in the room", -- Turns all trinkets in the room into aqua trinkets
-			modifierText = "Aqua Trinkets",-- do NOT translate this
-		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} 里若叶只是复活",
@@ -2710,4 +2706,7 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}水之饰品 : 自动吞下{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : "
+
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} invalidates damage penalty protection" -- TODO
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "Invalidates {1}" -- TODO
 end

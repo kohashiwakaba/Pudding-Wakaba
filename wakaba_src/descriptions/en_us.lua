@@ -577,8 +577,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "Vintage Threat",
 		description = ""
-		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room"
-		.. "#Reviving into Tainted Shiori resets keys count to 0, and activates 4 {{Collectible656}}Damocles swords"
+		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room with 4 {{Collectible656}}Damocles swords, and removes all keys"
+		.. "#!!! Damage penalty protection is invalidated after revival"
 		.. "#!!! {{ColorBlink}}{{ColorRed}}TAKING ANY PENALTY DAMAGE WILL MAKE DAMOCLES SWORD FALL AND ENDS THE RUN IMMEDIATELY REGARDLESS OF EXTRA LIVES OR REMANING PLAYERS!{{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -2898,12 +2898,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			vars = {wakaba.Enums.Players.RICHER_B},
 			modifierText = "Tainted Richer",
 		},
-		{
-			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} {{AquaTrinket}}Aquafies all trinkets in the room",
-			func = wakaba.IsEntryUnlocked,
-			vars = {"aquatrinket", true},
-			modifierText = "Aqua Trinkets",
-		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",
@@ -3057,5 +3051,8 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
+
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} invalidates damage penalty protection"
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "Invalidates {1}"
 
 end

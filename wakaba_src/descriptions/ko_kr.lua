@@ -1660,10 +1660,6 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
 			modifierText = "Tainted Richer",
 		},
-		{
-			desc = "{{Player"..wakaba.Enums.Players.RIRA.."}} {{AquaTrinket}}그 방의 장신구를 아쿠아화 시킵니다.",
-			modifierText = "Aqua Trinkets",
-		},
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 변경되지 않습니다.",
@@ -3264,5 +3260,8 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
+	
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "부활 이후 피격 패널티 보호가 {1}에 의해 무력화됨"
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "부활 이후 {1}의 피격 패널티 보호가 무력화됨"
 
 end
