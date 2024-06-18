@@ -9,13 +9,13 @@
 	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive food summonable" quality="4" craftquality="4" />
 	<passive id="6" cache="all" hearts="4" maxhearts="2" description="All Stats Up! + You feel lewd" gfx="gamecd.png" name="Mysterious game CD" tags="offensive tearsup summonable" quality="3" craftquality="3" />
 	<passive id="7" cache="damage luck" hearts="120" description="You feel Super Lucky!" gfx="wakabapendant.png" name="Wakaba's Pendant" shopprice="21" devilprice="2" tags="stars offensive summonable" quality="3" craftquality="4"/>
-	<passive id="8" description="Stack coins &amp; become secret friend" coins="22" gfx="secretcard.png" name="Secret Card" tags="offensive nocantrip summonable lazarusshared" quality="2" craftquality="4"/>
+	<passive id="8" description="Stack coins &amp; become secret friend" coins="22" gfx="secretcard.png" name="Secret Card" tags="offensive nocantrip summonable lazarusshared" quality="3" craftquality="4"/>
 	<familiar id="9" description="Wait What?" gfx="plumy.png" name="Plumy" devilprice="2" tags="offensive fly summonable" quality="3" craftquality="3" />
 	<passive id="10" description="???" gfx="executioner.png" name="Executioner" tags="offensive summonable" quality="4" craftquality="4" />
 	<passive id="11" description="Extreme Hot Taste" gfx="revengefruit.png" name="Revenge Fruit" tags="offensive summonable" quality="3" craftquality="3" />
 	<passive id="12" description="No more pesky Needles" gfx="returnpostage.png" name="Return Postage" shopprice="27" devilprice="2" tags="nocantrip summonable lazarusshared" quality="3" craftquality="4" />
 	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="3" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" craftquality="4" customtags="nometronome" />
-	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="3" craftquality="3" bombs="9"/>
+	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="4" craftquality="4" bombs="9"/>
 
 	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="3" craftquality="3" />
 	<familiar id="16" cache="luck" description="Buddy for luck" gfx="lilwakaba.png" name="Lil Wakaba" tags="stars offensive baby summonable monstermanual" quality="3" craftquality="3" />
@@ -53,7 +53,7 @@
 	<active id="37" description="Explosive Tear Detonator" gfx="bookoftrauma.png" maxcharges="2" name="Book of Trauma" tags="book devil offensive" quality="2" craftquality="3" />
 
 	<active id="38" description="Embrace Emptiness" gfx="apollyoncrisis.png" maxcharges="6" name="Apollyon Crisis" devilprice="2" tags="offensive nocantrip" quality="4" craftquality="4" />
-	<familiar id="39" cache="speed" description="Buddy for water" gfx="lilshiva.png" name="Lil Shiva" tags="stars offensive baby summonable monstermanual" quality="2" craftquality="2" />
+	<familiar id="39" cache="speed" description="Buddy for water" gfx="lilshiva.png" name="Lil Shiva" tags="stars offensive baby summonable monstermanual" quality="3" craftquality="3" />
 	<passive id="40" cache="damage" description="Damage down... but what at cost?" gfx="nekofigure.png" name="Neko Figure" tags="offensive guppy nocantrip" devilprice="2" quality="3" craftquality="3" />
 
 
@@ -65,36 +65,36 @@
 	<active id="45" description="Consumable converter" gfx="balance.png" coins="10" maxcharges="0" name="Balance ecnalaB" shopprice="10" devilprice="1" tags="book offensive nocantrip" quality="1" craftquality="2"/>
 
 
-	<passive id="46" hearts="4" maxhearts="2" cache="damage range" description="HP, DMG, Range up" gfx="moemuffin.png" name="Moe's Muffin" tags="offensive nocantrip" quality="2" craftquality="2" />
+	<passive id="46" hearts="4" maxhearts="2" cache="damage range" description="HP, DMG, Range up" gfx="moemuffin.png" name="Moe's Muffin" tags="offensive nocantrip" quality="3" craftquality="3" />
 
 
-	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="3" craftquality="4" persistent="true"/>
-	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3" craftquality="3" />
-	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="3" />
+	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="4" craftquality="4" persistent="true"/>
+	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3" craftquality="4" />
+	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="4" />
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" customtags="nometronome" quality="1" craftquality="3" />
 	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
 	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3" craftquality="-1" />
 	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" customtags="nometronome" quality="4" craftquality="4"/>
 
 	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3" craftquality="3"/>
-	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="noeden offensive" customtags="nometronome" quality="3" craftquality="4" hidden="true" achievement="9999"/>
+	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="noeden offensive nocantrip" customtags="nometronome" quality="3" craftquality="4" hidden="true" achievement="9999"/>
 
 	<passive id="56" cache="damage tearflag" description="DMG up" gfx="arcanecrystal.png" name="Arcane Crystal" tags="offensive stars" devilprice="1" quality="4" craftquality="4" />
 	<passive id="57" cache="damage tearflag" description="DMG up" gfx="advancedcrystal.png" name="Advanced Crystal" tags="offensive stars" devilprice="1" quality="4" craftquality="4" />
 	<passive id="58" cache="damage tearflag" description="DMG up" gfx="mysticcrystal.png" name="Mystic Crystal" tags="offensive stars" devilprice="1" quality="4" craftquality="4" />
 
-	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive nogreed lazarusshared nocantrip" customtags="nometronome" quality="3" craftquality="4" />
+	<passive id="60" description="Infected Compass" gfx="redcorruption.png" name="Red Corruption" devilprice="2" tags="offensive nogreed lazarusshared nocantrip" customtags="nometronome" quality="4" craftquality="4" />
 	<active id="61" passivecache="true" cache="flying speed range damage" description="A flying turtle!" gfx="syrup.png" chargetype="special" maxcharges="1" initcharge="0" name="Syrup" tags="baby nocantrip" quality="3" craftquality="3" addcostumeonpickup="true"/>
-	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" chargetype="special" name="Phantom Cloak" tags="offensive book" quality="1" craftquality="3"/>
+	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" chargetype="special" name="Phantom Cloak" tags="offensive book" quality="2" craftquality="3"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="12" name="3D Printer" shopprice="20" devilprice="2" tags="offensive nocantrip" quality="4" craftquality="4" />
-	<passive id="64" description="Clean them all" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive" devilprice="1" quality="3" craftquality="2" />
+	<passive id="64" description="Clean them all" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive" devilprice="1" quality="2" craftquality="2" />
 	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive" devilprice="1" quality="1" craftquality="-1" />
 	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" tags="offensive nocantrip" customtags="nometronome" devilprice="1" quality="2" craftquality="4"/>
 
 
 	<passive id="69" cache="damage" description="No Escape" gfx="venomincantation.png" name="Venom Incantation" devilprice="2" quality="3" craftquality="3" tags="offensive syringe"/>
 	<passive id="70" cache="damage" description="DMG Way up, but what at cost?" gfx="doubleinvader.png" name="Double Invader" devilprice="2" quality="2" craftquality="3" tags="offensive"/>
-	<passive id="71" cache="range luck" description="Help from the fairies" gfx="fireflylighter.png" name="Firefly Lighter" devilprice="1" quality="1" craftquality="2" tags="offensive"/>
+	<passive id="71" cache="range luck" description="Help from the fairies" gfx="fireflylighter.png" name="Firefly Lighter" devilprice="1" quality="2" craftquality="2" tags="offensive"/>
 
 	<passive id="72" cache="damage range shotspeed tearflag" description="High-tech piercing tears!" gfx="plasmabeam.png" name="Plasma Beam" devilprice="2" quality="4" craftquality="4" tags="offensive tech"/>
 
@@ -113,7 +113,7 @@
 	<familiar id="82" description="Rira's Soulmate" gfx="chimaki.png" name="Chimaki" devilprice="2" tags="offensive baby uniquefamiliar summonable lazarusshared lazarussharedglobal" quality="4" craftquality="4" />
 
 	<familiar id="83" description="I wanna this ear" gfx="lilricher.png" name="Lil Richer" devilprice="2" shopprice="20" tags="offensive baby uniquefamiliar" quality="4" craftquality="4" />
-	<familiar id="84" cache="damage" description="Ribbon for blushing" gfx="lilrira.png" name="Lil Rira" devilprice="2" tags="offensive baby uniquefamiliar" quality="3" craftquality="3" />
+	<familiar id="84" cache="damage" description="Ribbon for blushing" gfx="lilrira.png" name="Lil Rira" devilprice="2" tags="offensive baby uniquefamiliar" quality="3" craftquality="1" />
 
 	<active id="85" description="Getting Hotter" gfx="selfburning.png" maxcharges="1" chargetype="special" cooldown="75" name="Self Burning" tags="offensive nocantrip" quality="1" craftquality="2" />
 
@@ -189,7 +189,7 @@
 	<trinket name="Eternity Cookie" description="Long lasting basics" gfx="eternitycookie.png" />
 	<trinket name="Richer's Report Card" description="Less mistake, less penalties" gfx="richerreportcard.png" cache="luck" persistent="true"/>
 
-	<trinket name="Rabbit Pillow" description="Feels mofumofu" gfx="rabbitpillow.png" hidden="true" achievement="9999" />
+	<trinket name="Rabbit Pillow" description="Feels mofumofu" gfx="rabbitpillow.png" />
 
 	<trinket name="Candy of Richer" description="I bring harmony" gfx="candyofricher.png" hidden="true" achievement="9999" />
 	<trinket name="Candy of Rira" description="I bring aqua" gfx="candyofrira.png" hidden="true" achievement="9999"/>
@@ -197,6 +197,9 @@
 	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" hidden="true" achievement="9999"/>
 	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" hidden="true" achievement="9999"/>
 	<trinket name="Pink Fork" description="Aquatic shield" gfx="pinkfork.png" hidden="true" achievement="9999"/>
+
+	<!-- 원룸천사 아이템? -->
+	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->
 
 	<trinket name="Sigil of Kaguya" description="Weapon from Moon" gfx="sigilofkaguya.png" hidden="true" achievement="9999"/>
 
