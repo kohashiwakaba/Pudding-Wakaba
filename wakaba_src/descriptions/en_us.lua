@@ -1454,7 +1454,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Bring me there",
 		description = ""
 		.. "#↑ {{Tears}} +1.5 Fire Rate"
-		.. "#Entering Boss room of Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom"
+		.. "#While held, entering Boss room of Mausoleum/Gehenna II makes Dad's Note being appear instead of Mom"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
