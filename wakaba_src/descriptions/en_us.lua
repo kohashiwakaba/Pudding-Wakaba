@@ -165,8 +165,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
-		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
-		.. "#Clearing rooms recover lunar gauge"
+		.. "#Taking damage deactivates and lunar gauge starts deplete, Clearing rooms recover it"
 		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#↑ Prevents penalties from all damage taken"
@@ -174,8 +173,7 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
-		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
-		.. "#Clearing rooms recover lunar gauge"
+		.. "#Taking damage deactivates and lunar gauge starts deplete, Clearing rooms recover it"
 		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
@@ -483,7 +481,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots small Tech.X Lasers"
 		.. "#Deals 40% of Isaac's damage"
-		.. "#Fire rate depends on Isaac's Tears stats"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
@@ -1068,7 +1065,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
-		description = "Activates white fire effect#Install whiter fireplace on Isaac's position",
+		description = "Activates white fire effect#Install white fireplace on Isaac's position",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
@@ -1080,7 +1077,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "Black Bean Mochi",
-		description = "{{WakabaZip}} 10% chance to shoot 'zip' enemies"
+		description = "{{WakabaZip}} 10% chance to shoot tears that 'zip' enemies"
 		.. "#{{Luck}} 100% chance at 16 Luck"
 		.. "#{{WakabaZip}} Zipped enemies make explosion on death"
 		.. "#Zip explosion does not harm Isaac"
@@ -1173,10 +1170,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
 		itemName = "Book of Amplitude",
 		description = "{{ArrowGrayRight}} One of effects while held:"
-		.. "#↑ {{Damage}}Damage +2"
-		.. "#↑ {{Tears}}Fire rate +1"
-		.. "#↑ {{Range}}Speed + 0.15"
-		.. "#↑ {{Luck}}Luck +2"
+		.. "#↑ {{Damage}} +2 Damage"
+		.. "#↑ {{Tears}} +1 Fire rate"
+		.. "#↑ {{Range}} +0.15 Speed"
+		.. "#↑ {{Luck}} +2 Luck"
 		.. "#On use, or entering new room changes to next effect respectively"
 		.. "{{CR}}",
 	},
@@ -2934,12 +2931,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
-		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
+		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple invincible Death's heads appear in major boss rooms",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead"
-				 .."#{{WakabaModHidden}} {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}{{ColorGray}}4.5% with Book of Shiori",
+		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead ({{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 4.5% with Book of Shiori)",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	-- REPENTOGON ADDITIONS
@@ -2956,12 +2952,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
-		desc = "↑ {{Damage}}Damage +1#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears",
-		type = "replaceAll",
+		desc = {"↑ {{Damage}} +1 Damage#{{WakabaModRgon}} Explosion immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears"},
 		func = function() return REPENTOGON end,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		desc = "{{WakabaModRgon}} Active chargebar is shown to indicate how many card spawn chance have been failed",
+		desc = "{{WakabaModRgon}} {{ColorRicher}}Active chargebar is shown to indicate how many card spawn chance have been failed",
 		func = function() return REPENTOGON end,
 	},
 }

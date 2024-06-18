@@ -1700,7 +1700,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} {{Battery}}{{ColorRicher}}액티브 아이템의 최대 충전량을 1~2칸 감소시킵니다.",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
-		desc = "{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다.",
+		desc = {"{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다."},
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 카드 소환 실패 횟수가 액티브 충전량을 통해 보여집니다.",

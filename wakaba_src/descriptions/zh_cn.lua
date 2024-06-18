@@ -515,7 +515,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#发射小型的科技X激光"
 			.. "#造成玩家40%的伤害"
-			.. "#射速取决于玩家的射速"
 			.. "{{CR}}",
 		queueDesc = "幸运密友",
 	},
@@ -2649,7 +2648,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}减少道具1~2的充能上限",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = { -- TODO
-		desc = "↑ {{Damage}} +1攻击力#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears",
+		desc = {"↑ {{Damage}} +1攻击力#{{WakabaModRgon}} Explosive immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears"},
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = { -- TODO
 		desc = "{{WakabaModRgon}} Active chargebar is shown to indicate how many card spawn chance have been failed",
