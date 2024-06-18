@@ -26,7 +26,9 @@ function wakaba:TryTurnAquaTrinket(trinket, clearAqua)
 	if not aqua_trinkets_data.level.triedindexes[currentRoomIndex] then
 		aqua_trinkets_data.level.triedindexes[currentRoomIndex] = {}
 	end
-	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	if not clearAqua then
+		table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	end
 	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
 	trinket:GetData().wakaba = trinket:GetData().wakaba or {}
 	trinket:GetData().wakaba.isAquaTrinket = not clearAqua
