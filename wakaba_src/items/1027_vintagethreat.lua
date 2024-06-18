@@ -112,7 +112,7 @@ end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -39999, wakaba.AlterPlayerDamage_Vintage)
 
 function wakaba:EvaluateVintage_Main(player, flags)
-	if flag & DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS > 0 then
+	if flags & DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS > 0 then
 		return true
 	end
 end
