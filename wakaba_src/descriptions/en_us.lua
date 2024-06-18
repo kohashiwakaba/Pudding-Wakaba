@@ -3041,7 +3041,7 @@ if EID then
 	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}Ciel: The fly deals 10x Isaac's damage + explosion damage (does not hurt Isaac)"
 	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}Koron: The fly deals 4x Isaac's damage + petrify status"
 
-	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}Richer{{CR}} & {{ColorRira}}Rira{{CR}} cannot put this into pocket!"
+	EID.descriptions[desclang].MaidDuetBlacklisted = "{{Collectible"..wakaba.Enums.Collectibles.MAID_DUET.."}} Can't swapped by Maid Duet"
 
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 

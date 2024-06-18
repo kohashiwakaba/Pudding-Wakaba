@@ -480,6 +480,8 @@ if EID then
 						wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
 						wakaba.Enums.Collectibles.RICHERS_BRA,
 					}, "WakabaVintageInvalidates", "WakabaVintageInvalidated")
+
+
 					_wakaba["condInserted_global"] = true
 				end
 				EID._currentMod = "Pudding and Wakaba"
