@@ -1,5 +1,16 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v115",
 [[{FSIZE2}general
+
+- vintage threat
+-- now eid descriptions show
+which item invalidates
+damage penalty protection
+
+- maid duet
+-- now eid descriptions show
+which item is blacklisted
+for position swap
+
 - 'inventory description'
 code refactor
 -- now grid mode is added
@@ -29,11 +40,104 @@ history instead of held passives
 -- history list now shows
 item pool for specific items
 
+- some items no longer
+work with metronome
+
+- maid duet
+-- blacklisted following items
+(cooldown only)
+--- notched axe
+--- breath of life
+
+{FSIZE2}balance
+
+- quality, pool weight
+has been changed for
+some items
+
+- bring me there
+-- bring me there spawned
+by mausouleum ii no longer
+turns into aqua
+-- normally spawned one
+still has a chance
+to be aqua
+
+- easter egg
+-- is no longer
+eden's starting item
+
+- caramalla pancake
+-- reduced overall damage
+from caramella flies
+-- weapons fire normally
+if fly count is exceeded
+
+- lil wakaba
+-- fire rate is now fixed
+-- now laser has homing
+properties by default
+
 {FSIZE2}bug fixes
 
 - fixed some collectibles spawned
 from wrong item pool
 due to damocles api
+
+- fix majority of eid issues,
+caused by default
+markup settings
+
+- fix shiori whitelist
+not working with
+timed items
+
+- fix all pudding n wakaba
+items considered as
+quality 0 for
+bag of crafting
+
+- fix golden aqua trinkets
+not being absorbed
+
+- fix invdesc option being
+on wrong position
+in mod config menu
+
+- fix revival items from
+pudding n wakaba teleporting
+from beast room
+
+- fix jacob n esau
+getting 2 damos each
+from enhanced boss dest
+
+- fix damage multiplier up
+pills working as normal damage ups
+
+- fix star reversal
+not working when smelted
+after bitcoin ii fix
+
+- changed extra room
+generation logic,
+hopefully this fixes
+death certificate crash issues
+with winter albireo,
+or book of shiori
+
+- fix death's heads
+outside of boss rooms
+not being damaged
+during lunatic mode
+
+- fix vintage threat 
+damage flag check error,
+resulting all damage
+triggering damocles fall
+
+- blacklisted rotgut
+for executioner
 
 ]])
 

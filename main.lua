@@ -130,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v115b Rira 2024.06.02"
-wakaba.intversion = 11502
+wakaba.version = "v115c Rira 2024.06.18"
+wakaba.intversion = 11503
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -1409,6 +1409,7 @@ function wakaba:GetPlayerEntityData(player)
 				hairpinluck = 0,
 				speed = 0,
 				shotspeed = 0,
+				damagemult = 0,
 			},
 			statmultiplier = {
 				damage = 0,
