@@ -1340,6 +1340,12 @@ local wakabadirectory = {
 				[6] = 1000000000,
 				[7] = 10000000000,
 			}
+			item.ds3 = {
+				[1] = nil,
+				[2] = "vanilla",
+				[3] = "lunar",
+				[4] = "vintage",
+			}
 		end,
 		format = {
 			Panels = {
@@ -1386,8 +1392,8 @@ local wakabadirectory = {
 			},
 			{
 				str = 'damocles start',
-				choices = {'true', 'false'},
-				setting = 2,
+				choices = {'none', 'vanilla', 'lunar', 'vintage'},
+				setting = 1,
 				variable = 'BossDestDamocles',
 			},
 			{
@@ -1410,7 +1416,7 @@ local wakabadirectory = {
 				func = function(button, item, root)
 					local s_BossDest = item.ds1[item.buttons[1].setting]
 					local s_BossDestHealth = item.ds2[item.buttons[2].setting]
-					local s_Damocles = item.buttons[3].setting == 1
+					local s_Damocles = item.ds3[item.buttons[3].setting]
 					local s_Lunatic = item.buttons[4].setting == 1
 					local s_Lock = item.buttons[5].setting == 1
 
@@ -1425,7 +1431,7 @@ local wakabadirectory = {
 						wakaba:BossRoll(s_BossDestHealth ~= nil, s_Lunatic, s_Damocles, s_BossDestHealth, s_Lock)
 					end
 					if s_Damocles then
-						wakaba:SetupDamocles()
+						wakaba:SetupDamocles(s_Damocles)
 					end
 					if EID then
 						EID:hidePermanentText()

@@ -1,3 +1,13 @@
+function wakaba:SetupVintageDamoclesForPlayer(player)
+	local data = player:GetData()
+	data.wakaba = data.wakaba or {}
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	data.wakaba.vintagethreat = true
+end
+
 function wakaba:AfterRevival_VintageThreat(player)
 	--print("AfterVThreatInit")
 	local data = player:GetData()

@@ -167,7 +167,12 @@ function wakaba:ClearBossDestData()
 	wakaba:UpdateWakabaDescriptions(true)
 end
 
-function wakaba:SetupDamocles()
+---@param damoclesMode "vanilla"|"lunar"|"vintage"
+function wakaba:SetupDamocles(damoclesMode)
+	if type(damoclesMode) == "boolean" then
+		damoclesMode = "vanilla"
+	end
+	damoclesMode = damoclesMode or "vanilla"
 	if REPENTOGON then
 		if not Isaac.CanStartTrueCoop() then return end
 	else
@@ -176,31 +181,65 @@ function wakaba:SetupDamocles()
 		local inFirstRoom = level:GetStage() == LevelStage.STAGE1_1 and level:GetCurrentRoomIndex() == level:GetStartingRoomIndex() and game:GetRoom():IsFirstVisit() and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE and level:GetStageType() ~= StageType.STAGETYPE_REPENTANCE_B and not game:GetStateFlag(GameStateFlag.STATE_BACKWARDS_PATH)
 		if not inFirstRoom then return end
 	end
-	if wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) then return end
+	if wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) or wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) then return end
 	if damoSet then return end
 	damoSet = true
-	wakaba:scheduleForUpdate(function()
-		if REPENTOGON then
-			local pls = PlayerManager.GetPlayers()
-			for _, p in ipairs(pls) do
-				if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-				if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+	if damoclesMode == "vintage" then
+		wakaba:scheduleForUpdate(function()
+			if REPENTOGON then
+				local pls = PlayerManager.GetPlayers()
+				for _, p in ipairs(pls) do
+					if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then wakaba:SetupVintageDamoclesForPlayer(p) end
+					if p:GetFlippedForm() then wakaba:SetupVintageDamoclesForPlayer(p:GetFlippedForm()) end
+				end
+			else
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then wakaba:SetupVintageDamoclesForPlayer(player) end
+					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:SetupVintageDamoclesForPlayer(wakaba:getTaintedLazarusSubPlayer(player)) end
+				end)
 			end
-		else
-			wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-				if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-				if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
-			end)
-		end
-		damoSet = false
-	end, 1)
+			damoSet = false
+		end, 1)
+	elseif damoclesMode == "lunar" then
+		wakaba:scheduleForUpdate(function()
+			if REPENTOGON then
+				local pls = PlayerManager.GetPlayers()
+				for _, p in ipairs(pls) do
+					if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) end
+					if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) end
+				end
+			else
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) end
+					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(wakaba.Enums.Collectibles.LUNAR_DAMOCLES) end
+				end)
+			end
+			damoSet = false
+		end, 1)
+	else
+		wakaba:scheduleForUpdate(function()
+			if REPENTOGON then
+				local pls = PlayerManager.GetPlayers()
+				for _, p in ipairs(pls) do
+					if p:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then p:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+					if p:GetFlippedForm() then p:GetFlippedForm():AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				end
+			else
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B then player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+					if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B and wakaba:getTaintedLazarusSubPlayer(player) then wakaba:getTaintedLazarusSubPlayer(player):AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE) end
+				end)
+			end
+			damoSet = false
+		end, 1)
+	end
 end
 
 function wakaba:GameStart_BossDest(isContinue)
 	if isContinue then return end
 	if wakaba.state.bossdestlock then
 		if wakaba.state.damoclesstart then
-			wakaba:SetupDamocles()
+			wakaba:SetupDamocles(wakaba.state.damoclesstart)
 		end
 	else
 		wakaba:ClearBossDestData()
