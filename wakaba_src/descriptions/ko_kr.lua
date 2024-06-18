@@ -3255,7 +3255,7 @@ if EID then
 	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}시엘: 파리가 캐릭터의 공격력 x10의 폭발 피해를 줍니다. (캐릭터 피해 없음)"
 	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}코론: 파리가 캐릭터의 공격력 x4의 석화 피해를 줍니다."
 
-	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}리셰{{CR}} & {{ColorRira}}리라{{CR}} 듀엣이 이 아이템을 카드/알약 슬롯으로 넣을 수 없습니다."
+	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{Collectible"..wakaba.Enums.Collectibles.MAID_DUET.."}}{{ColorRicher}}리셰{{CR}} & {{ColorRira}}리라{{CR}} 듀엣으로 교체 불가"
 
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
