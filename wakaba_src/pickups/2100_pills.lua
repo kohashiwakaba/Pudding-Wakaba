@@ -156,7 +156,7 @@ end
 function wakaba:addCustomStat(player, statType, amount)
 	if type(statType) ~= "string" or not wakaba:has_value(wakaba.ValidCustomStat, statType) then return end
 	if not amount or type(amount) ~= "number" then return end
-	player:GetData().wakaba.statmodify[statType] = player:GetData().wakaba.statmodify[statType] + amount
+	player:GetData().wakaba.statmodify[statType] = (player:GetData().wakaba.statmodify[statType] or 0) + amount
 end
 
 function wakaba:setCustomStat(player, statType, amount)
