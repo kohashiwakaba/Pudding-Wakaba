@@ -22,6 +22,7 @@ function wakaba:fireNecklaceLaser(startEntity, player, count)
 		if enemy then
 			projectile.Target = enemy
 		end
+		projectile:GetData().w_RicherNecklace = true
 		projectile.Visible = false
 		projectile:AddProjectileFlags(ProjectileFlags.LASER_SHOT)
 		projectile:Die()
