@@ -64,7 +64,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, wakaba.NPCRender_AzureRir)
 ---@param seed integer
 function wakaba:RoomSpawn_AzureRir(type, variant, subType, gridIndex, seed)
 	local room = wakaba.G:GetRoom()
-	print(type, variant, subType, gridIndex, seed)
+	--print(type, variant, subType, gridIndex, seed)
 	if room:IsFirstVisit()
 	and room:GetType() == RoomType.ROOM_TREASURE
 	and type == EntityType.ENTITY_PICKUP

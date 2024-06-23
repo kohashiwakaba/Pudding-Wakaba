@@ -207,7 +207,7 @@ function wakaba:NPCUpdate_DoubleInvader_Death(satan)
 			headErased = true
 		end
 	elseif satan.Type == EntityType.ENTITY_MEGA_SATAN_2 and satan.Variant == 0 then
-		print(sprite:GetAnimation())
+		--print(sprite:GetAnimation())
 		if sprite:IsPlaying("Death") then
 			wakaba:EraseDeathHeads()
 			headErased = true
