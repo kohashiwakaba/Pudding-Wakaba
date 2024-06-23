@@ -3,6 +3,7 @@
 	게임 시작 시 랜덤 보스 설정
 	보스 체력 설정
  ]]
+local toCheck = false
 
 local bossTables = {
 	["BlueBaby"] = 0,
@@ -88,6 +89,8 @@ function wakaba:GetBossDestinationData()
 end
 
 wakaba:AddCallback(wakaba.Callback.BOSS_DESTINATION, function()
+	--wakaba.Log("BOSS_DESTINATION called! _ignoreBossDestState", wakaba._ignoreBossDestState)
+	if wakaba._ignoreBossDestState then return end
 	return {
 		Boss = wakaba.state.bossdest, --타겟 보스 (HUD 표시용, 50만 챌린지 적용 시 해당 보스 체력 강화)
 		Quality = wakaba.state.startquality, --시작 아이템 퀄리티 (HUD 표시용)
@@ -142,6 +145,7 @@ function wakaba:BossRoll(modifyHealth, lunatic, damocles, healthAmount, lock, se
 	for k, _ in pairs(bossTables) do
 		table.insert(entries, k)
 	end
+	--wakaba.Log("BossDest rolled by seed:", seed,"/ damocles:", damocles, "/ lunatic:", lunatic, "/healthAmount:", healthAmount)
 	seed = seed or wakaba.G:GetSeeds():GetStartSeed()
 	local rng = RNG()
 	rng:SetSeed(seed, 35)
@@ -162,9 +166,10 @@ function wakaba:ClearBossDestData()
 	wakaba.state.bossdesthealth = nil
 	wakaba.state.bossdestlunatic = nil
 	wakaba.state.damoclesstart = nil
-	wakaba.state.bossdestlock = nil
+	wakaba.state.bossdestlock = false
 	wakaba.state.bossdesthealthamount = nil
 	wakaba:UpdateWakabaDescriptions(true)
+	wakaba.Log("Cleaned Boss destination")
 end
 
 ---@param damoclesMode "vanilla"|"lunar"|"vintage"
@@ -253,20 +258,28 @@ function wakaba:GameEnd_BossDest(isGameOver)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_END, wakaba.GameEnd_BossDest)
 
+local cachedBossData = nil
+
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function(_)
-	local bossData = wakaba:GetBossDestinationData()
+	local bossData
+	if wakaba.G:IsPaused() then
+		bossData = cachedBossData
+	else
+		bossData = wakaba:GetBossDestinationData()
+		cachedBossData = bossData
+	end
 	if not bossData or type(bossData) ~= "table" or not bossData.Boss or not bossTables[bossData.Boss] then return end
 	wakaba.globalHUDSprite:SetFrame("BossDestination", bossTables[bossData.Boss])
 	local text = bossData.Text or bossData.Boss
 	local textColor = nil
 	local prepend = {}
 	if bossData.Lunatic then
-		table.insert(prepend, "LUN")
+		table.insert(prepend, "L")
 		textColor = KColor(1,0.2,0.2,0.5,0,0,0)
 	end
 	if bossData.ModifyHealth then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 6)
-		table.insert(prepend, "EX")
+		table.insert(prepend, "E")
 	elseif bossData.Quality and type(bossData.Quality) == "number" then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", bossData.Quality)
 		table.insert(prepend, "Q".. bossData.Quality)

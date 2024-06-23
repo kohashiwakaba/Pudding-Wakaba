@@ -154,9 +154,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SLOT_UPDATE, wakaba.SlotUpdate_CrystalRe
 
 
 wakaba.persistentGameData = nil
+wakaba._ignoreBossDestState = false
 
 -- TODO wakaba unlocks to repentogon achievements
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, saveslot, isSlotSelected, rawSlot)
+	wakaba._ignoreBossDestState = true
 	local persistentGameData = Isaac.GetPersistentGameData()
 	wakaba.persistentGameData = persistentGameData
 	wakaba.Log("Pre Repentogon Sync MC_POST_SAVESLOT_LOAD", saveslot, isSlotSelected, rawSlot)
@@ -164,6 +166,8 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 		wakaba.Log("Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
 		wakaba:saveDataManagerLoad()
 		if wakaba.state.unlock.repentogon then
+			wakaba._ignoreBossDestState = false
+			wakaba:ClearBossDestData()
 			return
 		end
 		for _, playerType in pairs(wakaba.Enums.Players) do
@@ -182,6 +186,8 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 		wakaba:saveDataManagerSave()
 		print("saved!")
 	end
+	wakaba:ClearBossDestData()
+	wakaba._ignoreBossDestState = false
 end)
 
 -- override function : IsLost
