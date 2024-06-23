@@ -146,7 +146,7 @@
 	<passive id="109" cache="all" hearts="4" maxhearts="2" description="Ultra Gluton" gfx="rirabento.png" name="Rira's Bento" tags="summonable offensive" quality="1" craftquality="-1" />
 	<passive id="110" cache="speed" description="Whriling taste" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="summonable nolostbr" quality="1" craftquality="1" />
 	<passive id="111" description="Fading memories" gfx="sakuracapsule.png" name="Sakura Capsule" tags="summonable offensive" customtags="nometronome" quality="2" craftquality="4" persistent="true"/>
-	<passive id="112" description="Mind-expandable explosion" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" customtags="nometronome" quality="3" craftquality="3" hidden="true" achievement="9999"/>
+	<passive id="112" description="Mind-expandable explosions +5 bombs" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" quality="3" craftquality="3" bombs="5"/>
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="summonable offensive baby uniquefamiliar nochallenge" quality="4" craftquality="4" persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" customtags="nometronome" quality="2" craftquality="4" hidden="true" achievement="9999"/>
 	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden offensive" maxcharges="6" quality="3" craftquality="3" hidden="true" achievement="9999"/>

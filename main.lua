@@ -130,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v115c Rira 2024.06.18"
-wakaba.intversion = 11503
+wakaba.version = "v115d Rira 2024.06.20"
+wakaba.intversion = 11504
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -386,6 +386,14 @@ local richer_saved_recipies = {
 		playersavedata = {},
 		dss_menu = {},
 		pendingunlock = {},
+
+		bossdestlock = false,
+		damoclesstart = nil,
+		bossdest = nil,
+		startquality = nil,
+		bossdesthealth = nil,
+		bossdesthealthamount = nil,
+		bossdestlunatic = nil,
 
 	},
 	run = {
@@ -1016,6 +1024,7 @@ do
 	include('wakaba_src.items.1091_sakuracapsule')
 	include('wakaba_src.items.1092_chewyrollycake')
 	include('wakaba_src.items.1093_maidduet')
+	include('wakaba_src.items.1094_crossbomb')
 	include('wakaba_src.items.1095_rirauniform')
 	include('wakaba_src.items.1100_richerbra')
 	include('wakaba_src.items.1102_bubblebombs')

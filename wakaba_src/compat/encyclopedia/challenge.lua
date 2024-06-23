@@ -305,12 +305,12 @@ Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = i.CROSS_BOMB,
-	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_NECKLACE,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CROSS_BOMB,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_BOMB_BUM,
 	},
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("crossbomb") then
 			self.Desc = "Complete The Floor is Lava (challenge No.17w)"

@@ -7,12 +7,20 @@ wakaba.ChallengeParams.TargetCharacters[c] = tp
 ---@param player EntityPlayer
 function wakaba:Challenge_PlayerInit_EvenOrOdd(player)
 	if wakaba.G.Challenge ~= c then return end
-  wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
 	if not wakaba.Flags.stackableDamocles then
 		player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_EvenOrOdd)
+
+function wakaba:Challenge_GameStart_EvenOrOdd(continue)
+	if wakaba.G.Challenge ~= c then return end
+	if continue then
+	else
+		wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.Challenge_GameStart_EvenOrOdd)
 
 function wakaba:Challenge_PlayerUpdate_EvenOrOdd(player)
   if wakaba.G.Challenge ~= c then return end

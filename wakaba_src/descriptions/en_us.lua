@@ -1185,6 +1185,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.CROSS_BOMB] = {
+		itemName = "Cross Bomb",
+		description = "{{Bomb}} +5 Bombs"
+		.. "#Bombs explode in a delayed cross-shaped pattern"
+		.. "#Extra explosions deal 10 damage and does not harm Isaac"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

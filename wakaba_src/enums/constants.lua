@@ -1086,7 +1086,8 @@ wakaba.challenges = {
 	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
 	CHALLENGE_EVEN = Isaac.GetChallengeIdByName("[w15] Even or Odd"), --w15
 	CHALLENGE_RNPR = Isaac.GetChallengeIdByName("[w16] Runaway Pheromones"), --w16
-	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w17] Universe of Goom"), --w17
+	CHALLENGE_LAVA = Isaac.GetChallengeIdByName("[w17] The Floor is Lava"), --w17
+	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w18] Universe of Goom"), --w18
 
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99

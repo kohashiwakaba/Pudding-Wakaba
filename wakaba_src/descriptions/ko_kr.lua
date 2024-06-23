@@ -1272,6 +1272,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "씻겨나가는 폭발 + 폭탄 5개",
 	},
+	[wakaba.Enums.Collectibles.CROSS_BOMB] = {
+		itemName = "크로스 봄",
+		description = "↑ {{Bomb}}폭탄 +5"
+		.. "#폭탄이 상하좌우에 추가로 폭발합니다."
+		.. "#추가 폭발은 적에게 10의 피해를 주며 캐릭터에게 피해를 주지 않습니다."
+		.. "{{CR}}",
+		queueDesc = "곡괭이 폭발 + 폭탄 5개",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

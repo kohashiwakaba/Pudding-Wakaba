@@ -1276,6 +1276,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "Clear explosions +5 bombs",
 	},
+	[wakaba.Enums.Collectibles.CROSS_BOMB] = { -- TODO
+		itemName = "Cross Bomb",
+		description = "{{Bomb}} +5炸弹"
+		.. "#Bombs explode in a delayed cross-shaped pattern"
+		.. "#Extra explosions deal 10 damage and does not harm Isaac"
+		.. "{{CR}}",
+		queueDesc = "Mind-expandable explosions +5 bombs",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
 		description = ""

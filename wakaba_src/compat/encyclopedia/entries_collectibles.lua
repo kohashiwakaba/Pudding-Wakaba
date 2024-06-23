@@ -2166,7 +2166,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Can control laser emit timing by holding, or canceling shoot button."},
 		},
 	},
-  CROSS_BOMB = {},
+  CROSS_BOMB = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants 5 Bombs."},
+			{str = "Causes bombs to explode in a large cross-shaped blast by adding three extra delayed explosions in each cardinal direction."},
+			{str = "The damage for an extra explosion is 10 and does not harm Isaac."},
+			{str = "With Cross Bomb, Bedrooms, super special rocks, and the (in Repentance)Mines can be accessed with a single bomb."},
+		},
+	},
   GOOMBELLA = {},
 
 	-- Final items

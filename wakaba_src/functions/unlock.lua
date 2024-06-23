@@ -315,6 +315,7 @@ wakaba.UnlockTables = {
 		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() wakaba:TryPlayAchievementPaper("lilmao", "Boss") end, function(boss) return boss == BossID.MOTHER end},
 		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() wakaba:TryPlayAchievementPaper("richerflipper", "Boss") end, function(boss) return boss == BossID.MOTHER end},
 		[wakaba.challenges.CHALLENGE_RNPR] = {"richernecklace", "collectible",	wakaba.Enums.Collectibles.RICHERS_NECKLACE,	function() wakaba:TryPlayAchievementPaper("richernecklace", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_LAVA] = {"crossbomb", "collectible",	wakaba.Enums.Collectibles.CROSS_BOMB,	function() wakaba:TryPlayAchievementPaper("crossbomb", "Boss") end, function(boss) return boss == BossID.LAMB end},
 		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() wakaba:TryPlayAchievementPaper("edensticky", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
 		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() wakaba:TryPlayAchievementPaper("doubledreams", "Boss") end, function(boss) return boss == BossID.BEAST end},
 	}
