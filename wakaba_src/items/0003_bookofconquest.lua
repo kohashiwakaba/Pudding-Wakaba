@@ -38,6 +38,14 @@ wakaba.conqueredSeed = {
 
 }
 
+wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.IMPORTANT, function()
+	wakaba.conquestmode = false
+	if EID then
+		EID.Config["HideInBattle"] = wakaba.eidHideInBattle
+		EID:hidePermanentText()
+	end
+end)
+
 wakaba.conquestready = {}
 wakaba.conquestreadycount = 0
 local bombcost, keycost = 0, 0
@@ -91,6 +99,13 @@ function wakaba:PlayerUpdate_Conquest(player)
     wakaba:SetConquestCharge(player, ActiveSlot.SLOT_PRIMARY)
     wakaba:SetConquestCharge(player, ActiveSlot.SLOT_SECONDARY)
     wakaba:SetConquestCharge(player, ActiveSlot.SLOT_POCKET)
+	end
+	if player:IsDead() and wakaba.conquestmode then
+		wakaba.conquestmode = false
+		if EID then
+			EID.Config["HideInBattle"] = wakaba.eidHideInBattle
+			EID:hidePermanentText()
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Conquest)
