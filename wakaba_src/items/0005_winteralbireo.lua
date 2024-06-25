@@ -489,6 +489,16 @@ function wakaba:PickupSpawn_WinterAlbireo(entype, var, subtype, grindex, seed)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.PickupSpawn_WinterAlbireo, EntityType.ENTITY_PICKUP)
 
+function wakaba:EffectSpawn_WinterAlbireo(entype, var, subtype, grindex, seed)
+	if not wakaba:IsValidWakabaRoom(nil, wakaba.RoomTypes.WINTER_ALBIREO) then return end
+	local room = wakaba.G:GetRoom()
+	if not room:IsFirstVisit() then return end
+	if var == EffectVariant.DICE_FLOOR then
+		local seed = room:GetSpawnSeed()
+		return {entype, var, seed % 5}
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.EffectSpawn_WinterAlbireo, EntityType.ENTITY_EFFECT)
 
 ---@param e EntityNPC
 function wakaba:NpcUpdate_WinterAlbireo(e)
