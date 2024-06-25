@@ -18,6 +18,7 @@ function wakaba:Challenge_GameStart_EvenOrOdd(continue)
 	if continue then
 	else
 		wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MARKED)
+		wakaba.G:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_GLITCHED_CROWN)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.Challenge_GameStart_EvenOrOdd)
