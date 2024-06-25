@@ -46,6 +46,33 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 		local newFlags = flags
 		local sendNewDamage = false
 
+		-- TODO move all pre damage to callback
+		--[[
+		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.PRE_ALTER_WAKABA_NPC_DAMAGE)) do
+			local returndata = callbackData.Function(callbackData.Mod, source, target, data, newDamage, newFlags)
+			if returndata then
+				newDamage = returndata.newDamage or newDamage
+				sendNewDamage = returndata.sendNewDamage or sendNewDamage
+				newFlags = returndata.newFlags or newFlags
+			end
+		end
+		]]
+
+		if wakaba:IsLunatic() then
+			if damage == 2 and source.Entity and source.Entity.Type == 2 and target.Type ~= 1 then
+				local player = source.Entity.SpawnerEntity:ToPlayer()
+				if player == nil then
+					player = source.Entity.SpawnerEntity:ToFamiliar().Player
+				end
+				local tear = source.Entity:ToTear()
+				local tf = tear.TearFlags
+				if player and tf|TearFlags.TEAR_GLOW == tf then
+					newDamage = damage + 0.0001
+					sendNewDamage = true
+				end
+			end
+		end
+
 		local returndata = wakaba:RiraBraOnDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
@@ -69,6 +96,10 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 
 		local returndata = wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 		newDamage = returndata.newDamage or newDamage
+		sendNewDamage = returndata.sendNewDamage or sendNewDamage
+		newFlags = returndata.newFlags or newFlags
+
+		local returndata = wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 		sendNewDamage = returndata.sendNewDamage or sendNewDamage
 		newFlags = returndata.newFlags or newFlags
 
@@ -182,4 +213,4 @@ function wakaba:TakeDamage_Global(target, damage, flags, source, countdown)
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Global)
+wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.IMPORTANT, wakaba.TakeDamage_Global)

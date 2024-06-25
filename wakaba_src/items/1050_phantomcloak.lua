@@ -59,6 +59,14 @@ function wakaba:ChargeBarUpdate_PhantomCloak(player)
 		chargeBar:UpdateText("")
 	end
 
+	if REPENTOGON then
+		for i = 0, 2 do
+			if player:GetActiveItem(i) == wakaba.Enums.Collectibles.PHANTOM_CLOAK then
+				player:SetActiveCharge(player:GetData().wakaba and player:GetData().wakaba.phantomcloak and player:GetData().wakaba.phantomcloak.timer or 12000, i)
+			end
+		end
+	end
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_PhantomCloak)
 

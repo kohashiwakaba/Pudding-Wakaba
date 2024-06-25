@@ -96,6 +96,7 @@ if MinimapAPI then
 	MinimapAPI:AddIcon("wakaba_SoulofShioriIcon", wakaba.MiniMapAPISprite, "Runes", 2)
 	MinimapAPI:AddIcon("wakaba_SoulofTsukasaIcon", wakaba.MiniMapAPISprite, "Runes", 3)
 	MinimapAPI:AddIcon("wakaba_SoulofRicherIcon", wakaba.MiniMapAPISprite, "Runes", 4)
+	MinimapAPI:AddIcon("wakaba_SoulofRiraIcon", wakaba.MiniMapAPISprite, "Runes", 5)
 
 	MinimapAPI:AddIcon("wakaba_ReturnTokenIcon", wakaba.MiniMapAPISprite, "Objects", 0)
 
@@ -128,6 +129,7 @@ if MinimapAPI then
 	MinimapAPI:AddPickup("wakaba_SoulofShiori", "wakaba_SoulofShioriIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.SOUL_SHIORI, MinimapAPI.PickupNotCollected, "runes", 10050)
 	MinimapAPI:AddPickup("wakaba_SoulofTsukasa", "wakaba_SoulofTsukasaIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.SOUL_TSUKASA, MinimapAPI.PickupNotCollected, "runes", 10050)
 	MinimapAPI:AddPickup("wakaba_SoulofRicher", "wakaba_SoulofRicherIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.SOUL_RICHER, MinimapAPI.PickupNotCollected, "runes", 10050)
+	MinimapAPI:AddPickup("wakaba_SoulofRira", "wakaba_SoulofRiraIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.SOUL_RIRA, MinimapAPI.PickupNotCollected, "runes", 10050)
 
 	MinimapAPI:AddPickup("wakaba_ReturnToken", "wakaba_ReturnTokenIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_RETURN_TOKEN, MinimapAPI.PickupNotCollected, "cards", 9050)
 

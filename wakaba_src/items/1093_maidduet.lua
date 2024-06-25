@@ -21,6 +21,8 @@ end
 wakaba.Blacklists.MaidDuetCharges = {
 	[CollectibleType.COLLECTIBLE_EVERYTHING_JAR] = true,
 	[CollectibleType.COLLECTIBLE_WOODEN_NICKEL] = true,
+	[CollectibleType.COLLECTIBLE_BREATH_OF_LIFE] = true,
+	[CollectibleType.COLLECTIBLE_NOTCHED_AXE] = true,
 }
 
 wakaba.Blacklists.MaidDuetPlayers = {
@@ -66,6 +68,14 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 		end
 		data.wakaba.lastmaidplayertype = player:GetPlayerType()
 	end
+
+	for i = 0, 2 do
+		local itemID = player:GetActiveItem(i)
+		if wakaba.Blacklists.MaidDuetCharges[itemID] and player:GetActiveCharge(i) < wakaba:GetMinimumPreservedCharge(player, itemID) then
+			player:SetActiveCharge(wakaba:GetMinimumPreservedCharge(player, itemID), i)
+		end
+	end
+
 	if player.ControlsEnabled then
 		--TODO 설정 가능 옵션으로 교체
 		if (player.ControllerIndex == 0 and Input.IsButtonTriggered(Keyboard.KEY_8, player.ControllerIndex))
@@ -197,7 +207,7 @@ if EID then
 				append = append .. (maidKey or maidButton)
 			end
 			descObj.Description = descObj.Description:gsub("{wakaba_md1}", append)
-		elseif wakaba:has_value(wakaba.Blacklists.MaidDuet, descObj.ObjSubType) then
+		elseif wakaba.Blacklists.MaidDuet[descObj.ObjSubType] then
 			local append = EID:getDescriptionEntry("MaidDuetBlacklisted") or EID:getDescriptionEntryEnglish("MaidDuetBlacklisted")
 			descObj.Description = descObj.Description .. "#" .. append
 		end

@@ -99,7 +99,7 @@ function wakaba:GetBookItems(bookstate)
 			local isQualityMet = true
 			isQualityMet = isQualityMet and item.Quality >= wakaba.state.options.shioriakasicminquality
 			isQualityMet = isQualityMet and item.Quality <= wakaba.state.options.shioriakasicmaxquality
-			--wakaba.Log("Checking Book -	" .. item.Name .. "...")
+			--wakaba.FLog("debugShiori","Checking Book -	" .. item.Name .. "...")
 			if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI
 			or bookstate == wakaba.bookstate.BOOKSHELF_PURE_SHIORI
 			or (bookstate == wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS and isQualityMet)
@@ -108,39 +108,39 @@ function wakaba:GetBookItems(bookstate)
 					if item.ID == wakaba.Enums.Collectibles.D6_PLUS then
 						if wakaba.state.unlock.shiorid6plus > 0 then
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
 						if wakaba:unlockCheck(item.ID) then
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
 						if wakaba:unlockCheck(item.ID) then
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.ISEKAI_DEFINITION then
 						if wakaba:unlockCheck(item.ID) then
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					elseif item.ID == wakaba.Enums.Collectibles.BALANCE then
 						if wakaba:unlockCheck(item.ID) then
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					elseif wakaba.shioribookblacklisted[item.ID] then
 						if wakaba.shioribookblacklisted[item.ID][bookstate] == true then
 							-- Do nothing
-							wakaba.Log("Book " .. item.Name .. " Blacklisted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Blacklisted")
 						else
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					else
 						table.insert(books,item.ID)
-						wakaba.Log("Book " .. item.Name .. " Inserted")
+						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_HARD_BOOK then
@@ -149,7 +149,7 @@ function wakaba:GetBookItems(bookstate)
 
 					else
 						table.insert(books,item.ID)
-						wakaba.Log("Book " .. item.Name .. " Inserted")
+						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_SHIORI_DROP then
@@ -158,7 +158,7 @@ function wakaba:GetBookItems(bookstate)
 						-- Do nothing
 					else
 						table.insert(books,item.ID)
-						wakaba.Log("Book " .. item.Name .. " Inserted")
+						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 					end
 				end
 			elseif bookstate == wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK then
@@ -168,17 +168,17 @@ function wakaba:GetBookItems(bookstate)
 							-- Do nothing
 						else
 							table.insert(books,item.ID)
-							wakaba.Log("Book " .. item.Name .. " Inserted")
+							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 						end
 					else
 						table.insert(books,item.ID)
-						wakaba.Log("Book " .. item.Name .. " Inserted")
+						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 					end
 				end
 			else
 				if wakaba:unlockCheck(item.ID) then
 					table.insert(books,item.ID)
-					wakaba.Log("Book " .. item.Name .. " Inserted")
+					wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
 				end
 			end
 		end
@@ -242,7 +242,7 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 	local maxCharges = conf.MaxCharges
 	local chargeType = conf.ChargeType
 	if chargeType == ItemConfig.CHARGE_TIMED or chargeType == ItemConfig.CHARGE_SPECIAL then
-		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, activeItem) then
+		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, item) then
 			return chargeType == ItemConfig.CHARGE_TIMED and 1000000 or charge
 		else
 			return true
@@ -347,7 +347,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 	if slot == ActiveSlot.SLOT_POCKET2 then return end
 	if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) and slot ~= -1 then
 		local item = Isaac.GetItemConfig():GetCollectible(useditem)
-		local charge = item.MaxCharges
+		local charge = REPENTOGON and wakaba:GetCalculatedMaidMaxCharges(player, useditem) or item.MaxCharges
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
@@ -362,14 +362,12 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		if wakaba:has_value(wakaba.shioriwhitelisted, useditem) then
 			consume = 1
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) and consume > 1 then
-			consume = consume - 1
-		end
+		consume = math.max(consume - wakaba:GetMinimumPreservedCharge(player, useditem), 1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
 				consume = consume // 2
-			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B and consume > 1 then
-				consume = consume - 1
+			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+				consume = math.max(consume - 1, 1)
 			end
 		end
 		player:AddKeys(-consume)
@@ -870,7 +868,7 @@ function wakaba:AfterShioriInit(player)
 		data.wakaba.currdamage = data.wakaba.currdamage or 0
 		data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
 		data.wakaba.nextshioriflag = data.wakaba.nextshioriflag or 0
-		wakaba.Log("Adding bookmakrs")
+		wakaba.FLog("debugShiori","Adding bookmakrs")
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
 		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end

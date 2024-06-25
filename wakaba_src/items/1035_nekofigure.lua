@@ -15,7 +15,7 @@ function wakaba:NekoFigureDamage(source, target, data, newDamage, newFlags)
 		local player = Isaac.GetPlayer(i)
 		num = num + player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
 	end
-	if num > 0 then
+	if not wakaba:IsLunatic() and num > 0 then
 		returndata.sendNewDamage = true
 		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
 	end

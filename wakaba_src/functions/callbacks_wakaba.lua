@@ -48,6 +48,22 @@ wakaba.Callback = {
 	-- ---
 	RENDER_GLOBAL_FOUND_HUD = "WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD",
 
+	-- ---
+	-- BOSS_DESTINATION
+	-- ---
+	--
+	-- Called from WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD, rendering Found HUD Elements
+	--
+	-- If returned value is a table that contains with both elements, HUD will render to show which boss dest
+	-- Modified values are passed along to the remaining callbacks. Returning false will nullify destination and skips the remaining callbacks.
+	--
+	-- ---
+	-- Returned values : Retruns with table with following elements
+	-- - `Boss` : `string` - Set boss, values must be one of following ("BlueBaby", "Lamb", "MegaSatan", "Delirium", "Mother", "Greed", "Beast")
+	-- - `Quality`(optional) : `int` - Set quality
+	-- ---
+	BOSS_DESTINATION = "WakabaCallbacks.BOSS_DESTINATION",
+
 	ANY_WEAPON_FIRE = "WakabaCallbacks.ANY_WEAPON_FIRE",
 
 	-- ---
@@ -531,6 +547,115 @@ wakaba.Callback = {
 	-- - Return true to disable to set charge by keys, return non-nil integer to override current charge value
 	-- ---
 	PRE_RABBIT_RIBBON_CHARGE = "WakabaCallbacks.PRE_RABBIT_RIBBON_CHARGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	PRE_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.PRE_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `type` - WakabaDamageTypes
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `type` - WakabaDamageTypes
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	ROLLED_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.ROLLED_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Parameters :
+	-- - `source` - EntityPlayer
+	-- - `target` - ActiveSlot
+	-- - `data` - CollectibleType
+	-- - `newDamage` - int
+	-- - `newFlags` - int
+	--
+	-- ---
+	-- Return dictionary table containing values to alter damage output
+	-- - {newDamage = ```float```, sendNewDamage = ```boolean```, newFlags = ```DamageFlag```}
+	-- ---
+	POST_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.POST_ALTER_WAKABA_NPC_DAMAGE",
+	--
+	-- ---
+	-- Add entries for Inventory Descriptions
+	-- ---
+	-- Return arrays of entries to add basic entries to inventory description
+	--[[
+		local entries = {
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+			{
+				Type = idescEIDType.COLLECTIBLE,
+				Variant = PickupVariant.PICKUP_COLLECTIBLE,
+				SubType = CollectibleType.COLLECTIBLE_TMTRAINER,
+				AllowModifiers = true,
+				ListSecondaryTitle = "{{Delirium}}Mana_4403",
+			},
+		}
+		return entries
+	]]
+	-- ---
+	INVENTORY_DESCRIPTIONS_BASIC_ENTRIES = "WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES",
+	-- ---
+	-- EVALUATE_MAGNET_HEAVEN
+	-- ---
+	-- Called from MC_POST_PLAYER_UPDATE, to choose check whether pickup should be pulled or not by Magnet Heaven
+	--
+	-- ---
+	-- Parameters :
+	-- - `variant` - PickupVariant (Optional arg)
+	-- - `playerOrEffect` - EntityPlayer|EntityEffect EntityPlayer for magnet heaven, EntityEffect for power bomb
+	-- - `targetPickup` - EntityPickup
+	-- - `checkerShopkeeper` - EntityNPC
+	-- - `ignoreObstructed` - boolean
+	--
+	-- ---
+	-- - Return true to make pulled by magnet, false to not. 
+	-- - The last callback to return a valid return value wins out and overwrites previous callbacks' return values
+	-- ---
+	EVALUATE_MAGNET_HEAVEN = "WakabaCallbacks.EVALUATE_MAGNET_HEAVEN",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
@@ -1159,4 +1284,22 @@ if CustomHealthAPI and CustomHealthAPI.Mod.Version < 0.946 then
 	wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, postTakeDamage, EntityType.ENTITY_PLAYER)
 else
 	wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, 20000, postTakeDamage, EntityType.ENTITY_PLAYER)
+end
+
+function wakaba:GetMinimumPreservedCharge(player, itemID)
+	local pr = 0
+	local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
+	local chargeType = cfg.ChargeType
+
+	if chargeType == ItemConfig.CHARGE_NORMAL then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) then
+			pr = pr + 1
+		end
+		if REPENTOGON and player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and wakaba.Blacklists.MaidDuetCharges[itemID] then
+			pr = pr + 2
+		end
+	elseif chargeType == ItemConfig.CHARGE_TIMED then
+	elseif chargeType == ItemConfig.CHARGE_SPECIAL then
+	end
+	return pr
 end

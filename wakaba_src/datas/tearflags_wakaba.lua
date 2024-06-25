@@ -12,7 +12,7 @@ wakaba.TearFlag = {
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, function(_, explosion)
 	if explosion.SpawnerEntity and explosion.SpawnerType == EntityType.ENTITY_EFFECT and explosion.SpawnerVariant == EffectVariant.ROCKET then
 		local rocket = explosion.SpawnerEntity
-		print(rocket:GetData().wakaba_ExplosionColor)
+		--print(rocket:GetData().wakaba_ExplosionColor)
 		explosion:GetData().wakaba_ExplosionColor = rocket:GetData().wakaba_ExplosionColor
 	end
 end, EffectVariant.BOMB_EXPLOSION)

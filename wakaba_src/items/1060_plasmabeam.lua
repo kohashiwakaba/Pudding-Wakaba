@@ -10,7 +10,7 @@ function wakaba:PlasmaBeamDamage(source, target, data, newDamage, newFlags, isAl
 			returndata.newDamage = newDamage * (1.25 ^ num)
 			returndata.sendNewDamage = true
 			returndata.newFlags = newFlags | DamageFlag.DAMAGE_LASER
-			if isAlreadyLaser then
+			if not wakaba:IsLunatic() and isAlreadyLaser then
 				returndata.newFlags = returndata.newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
 			end
 			SFXManager():Play(SoundEffect.SOUND_REDLIGHTNING_ZAP_WEAK)

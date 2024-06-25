@@ -12,12 +12,28 @@ local restock_data = {
 wakaba:saveDataManager("Crystal Restock", restock_data)
 wakaba.restockdatas = restock_data
 
+function wakaba:GetCrystalRestockData(slot)
+	if wakaba:RoomShouldCheckAscent() then
+		return restock_data.run[tostring(slot.InitSeed)]
+	else
+		return restock_data.level[tostring(slot.InitSeed)]
+	end
+end
+
+function wakaba:SetRestockValue(slot, entry, value)
+	if wakaba:RoomShouldCheckAscent() then
+		restock_data.run[tostring(slot.InitSeed)][entry] = value
+	else
+		restock_data.level[tostring(slot.InitSeed)][entry] = value
+	end
+end
+
 function wakaba:InitCrystalRestock(slot)
 	if slot.GridCollisionClass ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
 		local sprite = slot:GetSprite()
 		local rng = RNG()
 		rng:SetSeed(slot.InitSeed, 35)
-		if not restock_data.level[tostring(slot.InitSeed)] then
+		if not wakaba:GetCrystalRestockData(slot) then
 			local extraCount = 0
 			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_EVALUATE_CRYSTAL_RESTOCK)) do
 				local evals = callback.Function(callback.Mod, callback.Param)
@@ -25,19 +41,31 @@ function wakaba:InitCrystalRestock(slot)
 					extraCount = extraCount + evals.extraCount
 				end
 			end
+			if wakaba:IsLunatic() then
+				extraCount = extraCount - 1
+			end
 			local reservedPos = Vector(slot.Position.X, slot.Position.Y)
-			restock_data.level[tostring(slot.InitSeed)] = {
-				restockType = slot.Variant,
-				restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
-				reservedX = reservedPos.X,
-				reservedY = reservedPos.Y,
-				dead = false,
-			}
+			if wakaba:RoomShouldCheckAscent() then
+				restock_data.run[tostring(slot.InitSeed)] = {
+					restockType = slot.Variant,
+					restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
+					reservedX = reservedPos.X,
+					reservedY = reservedPos.Y,
+					dead = false,
+				}
+			else
+				restock_data.level[tostring(slot.InitSeed)] = {
+					restockType = slot.Variant,
+					restockCount = (wakaba.Enums.CrystalRestockTypes[slot.SubType] or 3) + extraCount,
+					reservedX = reservedPos.X,
+					reservedY = reservedPos.Y,
+					dead = false,
+				}
+			end
 			sprite:Play("Idle")
 		end
 		slot:AddEntityFlags(EntityFlag.FLAG_NO_REWARD | EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK | EntityFlag.FLAG_NO_DEATH_TRIGGER)
-		local restockData = restock_data.level[tostring(slot.InitSeed)]
-		--print(tostring(slot.InitSeed), restockData.restockCount, restockData.dead)
+		local restockData = wakaba:GetCrystalRestockData(slot)
 		if restockData.dead then
 			slot:Remove()
 		end
@@ -64,7 +92,7 @@ function wakaba:SlotCollision_CrystalRestock(slot, player)
 		if not player then return end
 	end
 	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and player:GetNumCoins() >= 5 then
-		local restockData = restock_data.level[tostring(slot.InitSeed)]
+		local restockData = wakaba:GetCrystalRestockData(slot)
 		if not restockData.dead then
 			player:AddCoins(-5)
 			--restockData.restockCount = restockData.restockCount - 1
@@ -75,14 +103,14 @@ end
 wakaba:AddCallback(wakaba.Callback.SLOT_COLLISION, wakaba.SlotCollision_CrystalRestock, wakaba.Enums.Slots.CRYSTAL_RESTOCK)
 
 function wakaba:SlotUpdate_CrystalRestock(slot)
-	local restockData = restock_data.level[tostring(slot.InitSeed)]
+	local restockData = wakaba:GetCrystalRestockData(slot)
 	local slotSprite = slot:GetSprite()
 
 	if restockData.restockCount > 0 and slotSprite:IsOverlayFinished("CoinInsert") then
 		slotSprite:RemoveOverlay()
 		slotSprite:Play("Initiate")
 		SFXManager():Play(SoundEffect.SOUND_COIN_SLOT, 1.0, 0, false, 1.0)
-		restockData.restockCount = restockData.restockCount - 1
+		wakaba:SetRestockValue(slot, "restockCount", restockData.restockCount - 1)
 		wakaba.G:GetRoom():ShopRestockFull()
 		if restockData.restockCount == 0 then
 			slot.GridCollisionClass = 5
@@ -95,7 +123,7 @@ function wakaba:SlotUpdate_CrystalRestock(slot)
 	if slot.GridCollisionClass == 5 then
 		wakaba:RemoveDefaultPickup(slot)
 		if restockData.restockCount > 0 then
-			restockData.restockCount = restockData.restockCount - 1
+			wakaba:SetRestockValue(slot, "restockCount", restockData.restockCount - 1)
 			wakaba.G:GetRoom():ShopRestockFull()
 			if restockData.restockCount > 0 then
 				local new = wakaba.G:Spawn(EntityType.ENTITY_SLOT, slot.Variant, slot.Position, Vector.Zero, slot.SpawnerEntity, slot.SubType, slot.InitSeed)
@@ -104,7 +132,7 @@ function wakaba:SlotUpdate_CrystalRestock(slot)
 				slot:Remove()
 			end
 		elseif restockData.restockCount <= 0 and not restockData.dead then
-			restockData.dead = true
+			wakaba:SetRestockValue(slot, "dead", true)
 			SFXManager():Play(SoundEffect.SOUND_BOSS1_EXPLOSIONS)
 			SFXManager():Play(SoundEffect.SOUND_MIRROR_BREAK)
 			local explosion = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION, 0, slot.Position, Vector.Zero, nil)

@@ -117,6 +117,23 @@ local completionDoor = Sprite()
 completionDoor:Load("gfx/ui/wakaba/completion_doors.anm2")
 completionDoor:SetFrame("Wakaba", 0)
 
+local function gT(str)
+	local endTable = {}
+	local currentString = ""
+	for w in str:gmatch("%S+") do
+		local newString = currentString .. w .. " "
+		if newString:len() >= 15 then
+			table.insert(endTable, currentString)
+			currentString = ""
+		end
+
+		currentString = currentString .. w .. " "
+	end
+
+	table.insert(endTable, currentString)
+	return { strset = endTable }
+end
+
 -- Creating a menu like any other DSS menu is a simple process.
 -- You need a "Directory", which defines all of the pages ("items") that can be accessed on your menu, and a "DirectoryKey", which defines the state of the menu.
 local wakabadirectory = {
@@ -427,6 +444,68 @@ local wakabadirectory = {
 			},
 			--{str = 'Elixir of Life, and Mystic Crystal', fsize = 3, nosel = true},
 			{str = '', fsize = 1, nosel = true},
+			-- custom sounds
+			{
+				str = 'custom item sounds',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'CustomItemSound',
+				load = function()
+					if wakaba.state.options.customitemsound then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.customitemsound = (var == 1)
+				end,
+				tooltip = {strset = {'custom item','sound from','pudding & wakaba','items'}}
+			},
+			-- custom sounds
+			{
+				str = 'custom hurt sounds',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'CustomHurtSound',
+				load = function()
+					if wakaba.state.options.customhitsound then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.customhitsound = (var == 1)
+				end,
+				tooltip = {strset = {'custom hurt','sound from','pudding & wakaba','characters'}}
+			},
+			{
+					str = 'custom sounds volume',
+
+					-- The "slider" tag allows you to make a button a slider, with notches that are transparent / opaque depending on if they're filled.
+					slider = true,
+					-- Increment determines how much the value of the slider changes with each notch
+					increment = 1,
+					-- Max determines the maximum value of the slider. The number of notches is equal to max / increment!
+					max = 10,
+					-- Setting determines the initial value of the slider
+					setting = 5,
+
+					-- "variable" is used as a key to story your setting; just set it to something unique for each setting!
+					variable = 'CustomSoundVolume',
+
+					-- These functions work just like in the choice option!
+					load = function()
+							return wakaba.state.options.customsoundvolume or 5
+					end,
+					store = function(var)
+							wakaba.state.options.customsoundvolume = var
+					end,
+
+					tooltip = {strset = {'volume for','pudding & wakaba','custom sounds'}}
+			},
+			{str = '', fsize = 1, nosel = true},
 			-- inventory descriptions
 			{
 					str = '- inventory desc. -',
@@ -452,6 +531,41 @@ local wakabadirectory = {
 				tooltip = {strset = {'press to','display','list and','descriptions','for current','held items','','default = f5'}},
 			},
 			{
+				str = 'switch key',
+				-- A keybind option lets you bind a key!
+				keybind = true,
+				-- -1 means no key set, otherwise use the Keyboard enum!
+				setting = Keyboard.KEY_F6,
+				variable = "InvDescSwitchkey",
+				load = function()
+						return wakaba.state.options.switchkey or Keyboard.KEY_F6
+				end,
+				store = function(var)
+						wakaba.state.options.switchkey = var
+				end,
+				tooltip = {strset = {'press to','switch','descriptions','mode','for current','held items','','default = f6'}},
+			},
+			{
+				str = 'history mode',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'InvDescHistory',
+				load = function()
+					if wakaba.state.options.invpassivehistory then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.invpassivehistory = (var == 1)
+				end,
+				displayif = function(btn, item, tbl)
+					return REPENTOGON ~= nil
+				end,
+				tooltip = {strset = {'display type', 'in', 'inventory','descriptions'}}
+			},
+			{
 				str = 'list offset',
 				min = 100,
 				max = 600,
@@ -465,6 +579,48 @@ local wakabadirectory = {
 					wakaba.state.options.listoffset = var
 				end,
 				tooltip = {strset = {'right offset','for list','of items','','default = 200'}},
+			},
+			{
+				str = 'display mode',
+				choices = {'list', 'grid'},
+				setting = 1,
+				variable = 'InvDescDisplay',
+				load = function()
+					if wakaba.state.options.invlistmode == "list" then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.invlistmode = (var == 1 and "list" or "grid")
+				end,
+				tooltip = {strset = {'display mode', 'in', 'inventory','descriptions'}}
+			},
+			{
+				str = 'grid columns',
+				min = 3,
+				max = 10,
+				increment = 1,
+				setting = 6,
+				variable = "InvDescGridSize",
+				load = function()
+					return wakaba.state.options.invgridcolumn or 6
+				end,
+				store = function(var)
+					wakaba.state.options.invgridcolumn = var
+				end,
+				displayif = function(btn, item, tbl)
+					if item and item.buttons then
+						for _, btn in ipairs(item.buttons) do
+							if btn.str == 'display mode' and btn.setting == 2 then
+								return true
+							end
+						end
+					end
+					return false
+				end,
+				tooltip = {strset = {'grid columns','for list','of items','','default = 6'}},
 			},
 			{
 				str = 'show curses',
@@ -571,7 +727,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room no.',
-				choices = {"don't show", "number only", "full string"},
+				choices = {"don't show", "number only", "full string", "combined with name"},
 				setting = 1,
 				variable = 'HUDRoomNumber',
 				load = function()
@@ -597,7 +753,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room difficulty',
-				choices = {"don't show", "difficulty only", "full string"},
+				choices = {"don't show", "difficulty only", "full string", "combined with weight"},
 				setting = 1,
 				variable = 'HUDRoomDifficulty',
 				load = function()
@@ -618,6 +774,9 @@ local wakabadirectory = {
 				end,
 				store = function(var)
 					wakaba.state.options.hudroomweight = var - 1
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.options.hudroomdiff ~= 3
 				end,
 				tooltip = {strset = {''}}
 			},
@@ -913,6 +1072,29 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 
 			{
+				str = 'swap stats',
+				choices = {'true', 'false'},
+				setting = 2,
+				variable = 'RiraStatSwap',
+				load = function()
+					if wakaba.state.options.rirastatswap then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.rirastatswap = (var == 1)
+					wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+						if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
+							player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+							player:EvaluateItems()
+						end
+					end)
+				end,
+			},
+
+			{
 				str = 'chimaki sounds',
 				choices = {'true', 'false'},
 				setting = 1,
@@ -1133,6 +1315,144 @@ local wakabadirectory = {
 		},
 
 		tooltip = {strset = {"you can", "change this", "later"}},
+	},
+	---------------------------------------------------------------------------
+	-----------------------------------ForceVoid-------------------------------
+	enhbossdest = {
+		title = 'boss destination',
+    generate = function(item)
+			item.ds1 = {
+				[1] = nil,
+				[2] = "Random",
+				[3] = "BlueBaby",
+				[4] = "Lamb",
+				[5] = "MegaSatan",
+				[6] = "Delirium",
+				[7] = "Mother",
+				[8] = "Beast",
+			}
+			item.ds2 = {
+				[1] = nil,
+				[2] = 500000,
+				[3] = 1000000,
+				[4] = 10000000,
+				[5] = 100000000,
+				[6] = 1000000000,
+				[7] = 10000000000,
+			}
+			item.ds3 = {
+				[1] = nil,
+				[2] = "vanilla",
+				[3] = "lunar",
+				[4] = "vintage",
+			}
+		end,
+		format = {
+			Panels = {
+				{
+					Panel = dssmod.panels.main,
+					Offset = Vector(100, 0),
+					Color = Color.Default,
+				}
+			}
+		},
+		postrender = function(item, tbl)
+			if tbl.Exiting then return end
+			local sel = item.bsel
+			local selToEntry = {
+				[1] = "boss",
+				[2] = "health",
+				[3] = "damo",
+				[4] = "lunatic",
+				[5] = "lock",
+				[6] = "roll",
+				[7] = "clear",
+			}
+			if EID and selToEntry[sel] then
+				local title = wakaba:getWakabaDesc("bossdest", "title_"..selToEntry[sel])
+				local desc = wakaba:getWakabaDesc("bossdest", "desc_"..selToEntry[sel])
+				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
+				demoDescObj.Name = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} " .. (title or "")
+				demoDescObj.Description = desc or ""
+				EID:displayPermanentText(demoDescObj)
+			end
+		end,
+		buttons = {
+			{
+				str = 'boss',
+				choices = {"none", "random", "bluebaby", "lamb", "megasatan", "delirium", "mother", "beast"},
+				setting = 2,
+				variable = 'BossDest',
+			},
+			{
+				str = 'health',
+				choices = {"default", "500,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"},
+				setting = 2,
+				variable = 'BossDestHealth',
+			},
+			{
+				str = 'damocles start',
+				choices = {'none', 'vanilla', 'lunar', 'vintage'},
+				setting = 1,
+				variable = 'BossDestDamocles',
+			},
+			{
+				str = 'lunatic mode',
+				choices = {'true', 'false'},
+				setting = 2,
+				variable = 'BossDestLunatic',
+			},
+			{
+				str = 'lock until clear',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'BossDestLock',
+			},
+			{
+				str = "roll!!!",
+				action = "resume",
+				fsize = 3,
+
+				func = function(button, item, root)
+					local s_BossDest = item.ds1[item.buttons[1].setting]
+					local s_BossDestHealth = item.ds2[item.buttons[2].setting]
+					local s_Damocles = item.ds3[item.buttons[3].setting]
+					local s_Lunatic = item.buttons[4].setting == 1
+					local s_Lock = item.buttons[5].setting == 1
+
+					if s_BossDest ~= "Random" then
+						wakaba.state.bossdest = s_BossDest
+						wakaba.state.bossdesthealth = s_BossDestHealth ~= nil
+						wakaba.state.bossdestlunatic = s_Lunatic
+						wakaba.state.damoclesstart = s_Damocles
+						wakaba.state.bossdestlock = s_Lock
+						wakaba.state.bossdesthealthamount = s_BossDestHealth
+					else
+						wakaba:BossRoll(s_BossDestHealth ~= nil, s_Lunatic, s_Damocles, s_BossDestHealth, s_Lock)
+					end
+					if s_Damocles then
+						wakaba:SetupDamocles(s_Damocles)
+					end
+					if EID then
+						EID:hidePermanentText()
+					end
+					DeadSeaScrollsMenu.CloseMenu(true)
+				end
+			},
+			{
+				str = "clear",
+				action = "resume",
+				fsize = 3,
+
+				func = function(button, item, root)
+					wakaba:ClearBossDestData()
+					if EID then
+						EID:hidePermanentText()
+					end
+					DeadSeaScrollsMenu.CloseMenu(true)
+				end
+			},
+		},
 	},
 
 

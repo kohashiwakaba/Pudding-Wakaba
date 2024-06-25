@@ -20,7 +20,7 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 		end
 		local enemies = isc:getNPCs()
 		for i, e in ipairs(enemies) do
-			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) then
+			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) and not wakaba:isStatusBlacklisted(e) then
 				if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
 					e.HitPoints = 0
 					e:Update()
@@ -31,7 +31,8 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 				end
 			end
 		end
-		wakaba.G:CharmFart(entity.Position, 85 * power, player)
+		local fart = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FART, 0, entity.Position, Vector.Zero, player):ToEffect()
+		fart.Color = wakaba.Colors.AQUA_FART_COLOR
 		for i, e in ipairs(players) do
 			e:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_MONT_BLANC)
 			e:AddCacheFlags(CacheFlag.CACHE_FIREDELAY | CacheFlag.CACHE_DAMAGE)
@@ -46,10 +47,12 @@ function wakaba:Cache_SakuraMontBlanc(player, cacheFlag)
 	local power = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.SAKURA_MONT_BLANC)
 	power = math.min(power, 6 * baseLimit)
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, power * wakaba:getEstimatedTearsMult(player))
+		local mod = wakaba:IsLunatic() and 0.1 or 1
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, power * mod * wakaba:getEstimatedTearsMult(player))
 	end
 	if cacheFlag == CacheFlag.CACHE_DAMAGE then
-		player.Damage = player.Damage + (0.5 * power * wakaba:getEstimatedDamageMult(player))
+		local mod = wakaba:IsLunatic() and 0.5 or 1
+		player.Damage = player.Damage + (0.5 * power * mod * wakaba:getEstimatedDamageMult(player))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_SakuraMontBlanc)

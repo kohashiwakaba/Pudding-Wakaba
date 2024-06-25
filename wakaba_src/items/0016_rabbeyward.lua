@@ -1,8 +1,13 @@
 --[[
 	Rabbey Ward (토끼 와드) - 액티브(Active / 6 rooms)
 	뒤집힌 리라로 델리리움 처치
+	Soul of Rira (리라의 영혼) - 영혼석(Soul Stone / 4 rooms)
+	뒤집힌 리라로 보스러시/허쉬 처치
+
 	사용 시 토끼 와드 설치, 설치한 위치의 맵 상 반경 3칸 범위의 방을 보여줌,
 	토끼 와드 근처의 방에 있으면 ???
+
+	리라영혼 한정 추가 - 그 방의 모든 장신구를 아쿠아화 (해금 무관)
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")

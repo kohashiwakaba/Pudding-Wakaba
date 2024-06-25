@@ -20,7 +20,7 @@ function wakaba:Update_OnsenTowel()
 				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ONSEN_TOWEL)
 				for i = 1, getOnsenTowelMultiplier(player) do
 					local random = rng:RandomFloat() * 100
-					if random <= 45 then
+					if random <= (wakaba:IsLunatic() and 10 or 45) then
 						player:AddSoulHearts(1)
 						activated = true
 					end

@@ -249,6 +249,36 @@ wakaba.encyclopediadesc.desc.trinkets = {
 			{str = "Taking damage makes explosion on random enemy."},
 		},
 	},
+	[t.CARAMELLA_CANDY_BAG] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering an uncleared room for the first time, spawns a random Caramella Locust."},
+		},
+	},
+	[t.CANDY_OF_RICHER] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering an uncleared room for the first time, spawns a Blue Caramella Locust that deals quadruple Isaac's damage."},
+		},
+	},
+	[t.CANDY_OF_RIRA] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering an uncleared room for the first time, spawns a Pink Caramella Locust that deals quadruple Isaac's damage."},
+		},
+	},
+	[t.CANDY_OF_CIEL] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering an uncleared room for the first time, spawns a Yellow Caramella Locust that deals 10 times of Isaac's damage."},
+		},
+	},
+	[t.CANDY_OF_KORON] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering an uncleared room for the first time, spawns a Gray Caramella Locust that deals quadruple Isaac's damage."},
+		},
+	},
 
 
 

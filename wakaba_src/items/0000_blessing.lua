@@ -409,7 +409,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 		end
 		wakaba.runstate.spent = false
 	end
-	
+
 end)
 
 function wakaba:blessDetectD6(usedItem, rng)
@@ -452,7 +452,7 @@ function wakaba:blessnemesis()
 	if wakababrcount > 0 then haswakababr_b = true else haswakababr_b = false end
 
 	--collectible
-	
+
 	local items = Isaac.FindByType(5, 100, -1, false, false)
 	for i, e in ipairs(items) do
 		if wakaba.runstate.hasbless and wakaba.runstate.hasnemesis then
@@ -566,8 +566,22 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
 
 function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, countdown)
-	if (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
+	if not wakaba:IsLunatic() and (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
 		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_BlessNemesis)
+
+function wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
+	local returndata = {}
+	local passed = false
+	wakaba:ForAllPlayers(function(player)
+		passed = passed or (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
+		passed = passed or wakaba:HasNemesis(player)
+	end)
+	if not wakaba:IsLunatic() and passed then
+		returndata.sendNewDamage = true
+		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+	end
+	return returndata
+end

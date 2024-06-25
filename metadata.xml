@@ -82,7 +82,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
 - YouDuckBoom - Chinese EID translation</description>
-    <version>112.0</version>
+    <version>115.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

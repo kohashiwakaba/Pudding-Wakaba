@@ -34,11 +34,10 @@ local function shouldCheckAscent()
 end
 
 ---@param chest EntityPickup
----@param player? EntityPlayer
 ---@return table
-function wakaba:getCloverChestRewards(chest, player)
-	if clover_chest_data.level.cachedRewards[chest.InitSeed] then
-		return clover_chest_data.level.cachedRewards[chest.InitSeed]
+function wakaba:getCloverChestRewards(chest)
+	if clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)] then
+		return clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)]
 	end
 
 	local rewards = {}
@@ -49,8 +48,8 @@ function wakaba:getCloverChestRewards(chest, player)
 		table.insert(rewards, {EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID})
 	else
 		player = player or Isaac.GetPlayer()
-		local momKeyPower = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KEY)
-		local cloverPower = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)
+		local momKeyPower = wakaba:GetGlobalCollectibleNum(CollectibleType.COLLECTIBLE_MOMS_KEY)
+		local cloverPower = wakaba:GetGlobalTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)
 		local loops = 1 + momKeyPower + cloverPower
 		for i = 1, loops do
 			local normalPickup = isc:getRandomFromWeightedArray(wakaba.Weights.CloverChestPickups.Normal, rng:Next())
@@ -59,7 +58,7 @@ function wakaba:getCloverChestRewards(chest, player)
 			table.insert(rewards, premiumPickup)
 		end
 	end
-	clover_chest_data.level.cachedRewards[chest.InitSeed] = rewards
+	clover_chest_data.level.cachedRewards[tostring(chest.InitSeed)] = rewards
 
 	return rewards
 end
@@ -74,6 +73,9 @@ function wakaba:NewRoom_RemoveOpenedCloverChest()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RemoveOpenedCloverChest)
 
+function wakaba:InvalidateCloverChestRewards()
+	clover_chest_data.level.cachedRewards = {}
+end
 
 function wakaba:ReplaceChests(pickup)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
@@ -106,17 +108,24 @@ function wakaba:spawnCloverChestReward(chest, player)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	player = player or chest:GetData().w_player
 
-	local rewards = wakaba:getCloverChestRewards(chest, player)
+	local rewards = wakaba:getCloverChestRewards(chest)
 	if #rewards == 1 then
 		local entry = rewards[1]
 		local item = Isaac.Spawn(entry[1], entry[2], entry[3], chest.Position, Vector.Zero, nil):ToPickup()
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
 		wakaba:MakeCustomPedestal(item, haspp and "gfx/items/wakaba_cloverchest_altar_p2p.png" or "gfx/items/wakaba_cloverchest_altar.png", 10)
 		item.Wait = 10
+		if Epiphany then
+			Epiphany:AddCainEssenceInfo(item, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
+		end
 		chest:Remove()
+		wakaba:InvalidateCloverChestRewards()
 	else
 		for i, entry in ipairs(rewards) do
-			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba.RandomVelocity(), nil):ToPickup()
+			local item = Isaac.Spawn(entry[1], entry[2] or 0, entry[3] or 0, chest.Position, wakaba:RandomVelocity(), nil):ToPickup()
+		end
+		if Epiphany then
+			Epiphany:AddCainEssenceInfo(chest, EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end
 	end
 end
@@ -143,7 +152,7 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 			end
 			pickup.Touched = true
 
-			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN, false, true)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
 			wakaba:openCloverChest(player, pickup)
@@ -160,7 +169,7 @@ function wakaba:TearUpdate_CloverChest(tear)
 			entity = entity:ToPickup()
 			entity.Touched = true
 
-			entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
+			entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN, false, true)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
 
@@ -173,7 +182,6 @@ function wakaba:TearUpdate_CloverChest(tear)
 		end
 	end
 end
-
 
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_CloverChest, TearVariant.KEY)
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_CloverChest, TearVariant.KEY_BLOOD)

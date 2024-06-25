@@ -75,41 +75,6 @@ function wakaba:PlayerUpdate_Wakaba(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Wakaba)
 
-
---LagCheck
-
-function wakaba:WakabaTakeDmg(entity, amount, flag, source, countdownFrames)
-	--wakaba.Log("TookDmg flag:"..flag.."")
-	if entity.Type ~= EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_IGNORE_ARMOR == DamageFlag.DAMAGE_IGNORE_ARMOR)
-	then
-		local player = nil
-		if
-			(source ~= nil
-			and source.Entity ~= nil
-			and source.Entity.SpawnerEntity ~= nil
-			and source.Entity.SpawnerEntity.Type == EntityType.ENTITY_PLAYER )
-		then
-			player = source.Entity.SpawnerEntity:ToPlayer()
-		elseif
-			(source ~= nil
-			and source.Type == EntityType.ENTITY_PLAYER)
-		then
-			player = source.Entity:ToPlayer()
-		end
-		if player ~= nil then
-			if (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
-			or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
-			then
-				flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR
-				entity:TakeDamage(amount, flag, source, countdownFrames)
-				return false
-			end
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG , wakaba.WakabaTakeDmg)
-
 local WakabaChar = {
 		DAMAGE = 1.1,
 		SPEED = 0.1,

@@ -153,9 +153,11 @@ wakaba.Enums.Collectibles = {
 	LIL_RIRA = Isaac.GetItemIdByName("Lil Rira"),
 	SAKURA_CAPSULE = Isaac.GetItemIdByName("Sakura Capsule"),
 	MAID_DUET = Isaac.GetItemIdByName("Maid Duet"),
+	CLEANER = Isaac.GetItemIdByName("Dual Cleaner"),
 
 	RABBEY_WARD = Isaac.GetItemIdByName("Rabbey Ward"),
 	BROKEN_TOOLBOX = Isaac.GetItemIdByName("Broken Toolbox"),
+	AZURE_RIR = Isaac.GetItemIdByName("Azure Rir"),
 
 	-- Tainted Items
 	SUCCUBUS_BLANKET = Isaac.GetItemIdByName("Succubus Blanket"),
@@ -174,6 +176,7 @@ wakaba.Enums.Collectibles = {
 	RICHERS_NECKLACE = Isaac.GetItemIdByName("Richer's Necklace"),
 	CROSS_BOMB = Isaac.GetItemIdByName("Cross Bomb"),
 	GOOMBELLA = Isaac.GetItemIdByName("Goombella"),
+	BUBBLE_BOMBS = Isaac.GetItemIdByName("Bubble Bombs"),
 	CLOVER_SHARD = Isaac.GetItemIdByName("Clover Shard"),
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 
@@ -181,7 +184,6 @@ wakaba.Enums.Collectibles = {
 	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
-	CLEANER = Isaac.GetItemIdByName("Clover Cleaner"),
 
 }
 
@@ -226,6 +228,12 @@ wakaba.Enums.Trinkets = {
 	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
 	RABBIT_PILLOW = Isaac.GetTrinketIdByName("Rabbit Pillow"),
 	SIGIL_OF_KAGUYA = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
+	CANDY_OF_RICHER = Isaac.GetTrinketIdByName("Candy of Richer"),
+	CANDY_OF_RIRA = Isaac.GetTrinketIdByName("Candy of Rira"),
+	CANDY_OF_CIEL = Isaac.GetTrinketIdByName("Candy of Ciel"),
+	CANDY_OF_KORON = Isaac.GetTrinketIdByName("Candy of Koron"),
+	CARAMELLA_CANDY_BAG = Isaac.GetTrinketIdByName("Caramella Candy Bag"),
+	PINK_FORK = Isaac.GetTrinketIdByName("Pink Fork"),
 
 	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 }
@@ -301,10 +309,12 @@ wakaba.Enums.Cards = {
 	SOUL_SHIORI = Isaac.GetCardIdByName("Soul of Shiori"),
 	SOUL_TSUKASA = Isaac.GetCardIdByName("Soul of Tsukasa"),
 	SOUL_RICHER = Isaac.GetCardIdByName("Soul of Richer"),
+	SOUL_RIRA = Isaac.GetCardIdByName("Soul of Rira"),
 	CARD_VALUT_RIFT = Isaac.GetCardIdByName("wakaba_Valut Rift"),
 	CARD_TRIAL_STEW = Isaac.GetCardIdByName("wakaba_Trial Stew"),
 	CARD_RICHER_TICKET = Isaac.GetCardIdByName("wakaba_Richer Ticket"),
 	CARD_RIRA_TICKET = Isaac.GetCardIdByName("wakaba_Rira Ticket"),
+	CARD_FLIP = Isaac.GetCardIdByName("wakaba_Flip"),
 
 }
 
@@ -402,10 +412,10 @@ wakaba.Enums.Flies = {
 }
 
 wakaba.Enums.FlyDamageMult = {
-	[wakaba.Enums.Flies.RICHER] = 4,
-	[wakaba.Enums.Flies.RIRA] = 3,
-	[wakaba.Enums.Flies.CIEL] = 10,
-	[wakaba.Enums.Flies.KORON] = 4,
+	[wakaba.Enums.Flies.RICHER] = 3,
+	[wakaba.Enums.Flies.RIRA] = 1,
+	[wakaba.Enums.Flies.CIEL] = 5,
+	[wakaba.Enums.Flies.KORON] = 1.5,
 }
 
 wakaba.Spawner = {}
@@ -497,10 +507,16 @@ wakaba.Enums.Constants = {
 	RABBIT_RIBBON_BASIC_CHARGES = 12, -- 토끼 리본 기본 보존 충전량
 	RABBIT_RIBBON_EXTRA_CHARGES = 4, -- 토끼 리본 중첩 당 추가 보존 충전량
 
+	RABBIT_RIBBON_BASIC_CHARGES_LUNATIC = 4, -- 토끼 리본 기본 보존 충전량
+	RABBIT_RIBBON_EXTRA_CHARGES_LUNATIC = 2, -- 토끼 리본 중첩 당 추가 보존 충전량
+
 	LIL_RICHER_BASIC_CHARGES = 8, -- 리틀 리셰 기본 보존 충전량
 	LIL_RICHER_EXTRA_CHARGES = 4, -- 리틀 리셰 중첩 당 추가 보존 충전량
 	LIL_RICHER_BASIC_DMG = 1, -- 리틀 리셰 기본 눈물 배수
 	LIL_RICHER_BASIC_COOLDOWN = 36, -- 리틀 리셰 눈물 쿨타임(프레임)
+
+	LIL_RICHER_BASIC_CHARGES_LUNATIC = 3, -- 리틀 리셰 기본 보존 충전량
+	LIL_RICHER_EXTRA_CHARGES_LUNATIC = 1, -- 리틀 리셰 중첩 당 추가 보존 충전량
 
 	SELF_BURNING_DAMAGE_TIMER = 300, -- 셀프 버닝 체력 차감 쿨타임
 
@@ -509,6 +525,9 @@ wakaba.Enums.Constants = {
 
 	SOUL_OF_RICHER_WISP_COUNT = 6,
 	SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE = 3,
+
+	SOUL_OF_RIRA_AQUA_TRINKET_COUNT = 3,
+	SOUL_OF_RIRA_AQUA_TRINKET_COUNT_CLEAR_RUNE = 1,
 
 	REPORT_CARD_BASE_LUCK = 0,
 	REPORT_CARD_EXTRA_LUCK = 5,
@@ -519,6 +538,7 @@ wakaba.Enums.Constants = {
 	MAGNET_HEAVEN_TIMER = 150,
 
 	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한
+	MAX_ISEKAI_CLOTS_LUNATIC = 4, -- 이세계 정의서 소환 제한
 	ISEKAI_CERTIFICATE_CHANCE = 50, -- 이세계 사증 이스터에그 확률 (0.1% 단위)
 	ISEKAI_SHIORI_BONUS = 400, -- 이세계 사증 시오리 확률 보너스
 	ISEKAI_OVER_CLOT_BONUS = 250, -- 이세계 사증 최대 소환 확률 보너스
@@ -541,6 +561,7 @@ wakaba.Colors = {
 
 	AQUA_ENTITY_COLOR = Color(0.5, 0.52, 0.75, 1),
 	AQUA_WEAPON_COLOR = Color(0.5, 0.66, 1, 1),
+	AQUA_FART_COLOR = Color(0.7, 0.7, 0.7, 1, 0, 0, 0.5),
 	AQUA_LASER_COLOR = Color(0.5, 0.7, 0.8, 1, 0.5, 0.7, 0.8),
 
 	FLOOD_ENTITY_COLOR = Color(0.8, 0.5, 0.9, 1),
@@ -565,24 +586,34 @@ wakaba.ValidCustomStat = {
 	"shotspeed",
 	"hairpinluck",
 	"falsedamage",
+	"damagemult",
+	"tearsmult",
+	"rangemult",
+	"luckmult",
+	"speedmult",
+	"shotspeedmult",
 }
 
 wakaba.GoldenTrinketData = {
 	[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1.5,
 	[wakaba.Enums.Trinkets.CLOVER] = {t={0.3, 2}, append = true},
-	[wakaba.Enums.Trinkets.HARD_BOOK] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.HARD_BOOK] = {mult=3, findReplace = true},
 	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {t={2}, mults={0.5}},
 	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = 9999,
 	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = 1,
 	--[wakaba.Enums.Trinkets.DELIMITER] = 1,
 	[wakaba.Enums.Trinkets.RANGE_OS] = 1,
-	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {mult=2, findReplace = true},
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = {goldenOnly = true, mult=2, findReplace = true},
 	[wakaba.Enums.Trinkets.AURORA_GEM] = 6.66,
 	[wakaba.Enums.Trinkets.MISTAKE] = {t={100,185}},
 	[wakaba.Enums.Trinkets.KUROMI_CARD] = {t={90}, mults={8/9,7/9}},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = {append = true},
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {append = true},
 	[wakaba.Enums.Trinkets.REPORT_CARD] = 5,
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {findReplace = true},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {findReplace = true},
 }
 
 wakaba.RoomIDs = {
@@ -1055,7 +1086,8 @@ wakaba.challenges = {
 	CHALLENGE_HOLD = Isaac.GetChallengeIdByName("[w14] Hold Me"), --w14
 	CHALLENGE_EVEN = Isaac.GetChallengeIdByName("[w15] Even or Odd"), --w15
 	CHALLENGE_RNPR = Isaac.GetChallengeIdByName("[w16] Runaway Pheromones"), --w16
-	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w17] Universe of Goom"), --w17
+	CHALLENGE_LAVA = Isaac.GetChallengeIdByName("[w17] The Floor is Lava"), --w17
+	--CHALLENGE_GOOM = Isaac.GetChallengeIdByName("[w18] Universe of Goom"), --w18
 
 	CHALLENGE_RAND = Isaac.GetChallengeIdByName("[w98] Hyper Random"), --w98
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99

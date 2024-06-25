@@ -81,6 +81,7 @@ end
 local recent
 
 function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData)
+	local discharge = false
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
 		local playerIndex = isc:getPlayerIndex(player)
 		local current = wakaba.TotalWisps[playerIndex]

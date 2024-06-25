@@ -428,11 +428,14 @@ function wakaba:useUniform(player)
 			end
 		end
 	end
+	player:GetData().wakaba_currentPill = player:GetData().wakaba_reservedPill
+	player:GetData().wakaba_reservedPill = nil
 	usinguniform = false
 end
 
 function wakaba:usePocket32(cardpill, player, flags)
 	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) and flags & UseFlag.USE_NOHUD ~= UseFlag.USE_NOHUD then
+		player:GetData().wakaba_reservedPill = player:GetData().wakaba_currentPill
 		usinguniform = true
 		wakaba:useUniform(player)
 	end

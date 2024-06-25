@@ -20,7 +20,7 @@ if MCM then
 	MCM.AddSpace("Pudding & Wakaba", "Info")
 	MCM.AddText("Pudding & Wakaba", "Info", function() return "Pudding & Wakaba" end)
 	MCM.AddText("Pudding & Wakaba", "Info", function() return ""..wakaba.version end)
-	MCM.AddText("Pudding & Wakaba", "Info", function() return "by kohashiwahaba aka. Mika" end)
+	MCM.AddText("Pudding & Wakaba", "Info", function() return "by Richer-chan / kohashiwahaba" end)
 
 	---------------------------------------------------------------------------
 	-----------------------------------Items---------------------------------
@@ -290,6 +290,79 @@ if MCM then
 			}
 		}
 	)
+
+	MCM.AddSpace("Pudding & Wakaba", "General")
+	MCM.AddText("Pudding & Wakaba", "General", function() return "Sounds" end)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.customitemsound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.customitemsound then
+					onOff = "True"
+				end
+				return "Custom item Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.customitemsound = currentBool
+
+			end,
+			Info = {
+				"Allow custom item sound from Pudding & Wakaba items",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.customhitsound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.customhitsound then
+					onOff = "True"
+				end
+				return "Custom hurt Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.customhitsound = currentBool
+
+			end,
+			Info = {
+				"Allow custom hurt/death sound from Pudding & Wakaba characters",
+				"(Richer, Rira)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return wakaba.state.options.customsoundvolume
+			end,
+			Display = function()
+				return "Custom Sound volume: $scroll" .. wakaba.state.options.customsoundvolume
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.customsoundvolume = currentNum
+			end,
+			Info = {
+				"Adjust volume for Pudding & Wakaba custom sounds",
+				"(Richer, Rira, Chimaki, etc)",
+			}
+		}
+	)
+
 	--[[ MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -384,10 +457,99 @@ if MCM then
 				end
 			end,
 			Info = {
-				"Press to display list and descriptions for current held items(Default = F4 key)",
+				"Press to display list and descriptions for current held items(Default = F5 key)",
 			}
 		}
 	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.switchkey
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.switchkey
+				local displayString = "Mode switch key : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.switchkey
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.switchkey = current
+				end
+			end,
+			Info = {
+				"Press to switch list mode of descriptions for current held items(Default = F6 key)",
+			}
+		}
+	)
+	if REPENTOGON then
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invpassivehistory
+			end,
+			Display = function()
+				return 'Collectible History: ' .. (wakaba.state.options.invpassivehistory and "true" or "false")
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invpassivehistory = currentBool
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+	end
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -407,6 +569,51 @@ if MCM then
 			end,
 			Info = {
 				"Right offset for list of items(Default = 200)",
+			}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invlistmode == "grid"
+			end,
+			Display = function()
+				local onOff = "List"
+				if wakaba.state.options.invlistmode == "grid" then
+					onOff = "Grid"
+				end
+				return 'Display Mode: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invlistmode = currentBool and "grid" or "list"
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invgridcolumn
+			end,
+			Minimum = 3,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "Grid columns: " .. wakaba.state.options.invgridcolumn
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invgridcolumn = current
+			end,
+			Info = {
+				"Number of Columns for grid of items(Default = 6)",
 			}
 		}
 	)
@@ -774,7 +981,7 @@ if MCM then
 		}
 	)
 
-	local OptionNames_RoomNumber = {"Off", "Value only", "Detailed"}
+	local OptionNames_RoomNumber = {"Off", "Value only", "Detailed", "Combined with name"}
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"HUD",
@@ -784,7 +991,7 @@ if MCM then
 				return wakaba.state.options.hudroomnumber
 			end,
 			Minimum = 0,
-			Maximum = 2,
+			Maximum = 3,
 			Display = function()
 				return "Room Number: " .. OptionNames_RoomNumber[wakaba.state.options.hudroomnumber+1]
 			end,
@@ -822,7 +1029,7 @@ if MCM then
 		}
 	)
 
-	local OptionNames_RoomDiff = {"Off", "Value only", "Detailed"}
+	local OptionNames_RoomDiff = {"Off", "Value only", "Detailed", "Combined with Weight"}
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"HUD",
@@ -832,7 +1039,7 @@ if MCM then
 				return wakaba.state.options.hudroomdiff
 			end,
 			Minimum = 0,
-			Maximum = 2,
+			Maximum = 3,
 			Display = function()
 				return "Room Difficulty: " .. OptionNames_RoomDiff[wakaba.state.options.hudroomdiff+1]
 			end,
@@ -1706,6 +1913,37 @@ if MCM then
 
 	MCM.AddText("Pudding & Wakaba", "Rira", function() return "Rira Settings" end)
 	MCM.AddSpace("Pudding & Wakaba", "Rira")
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Rira",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.rirastatswap
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.rirastatswap then
+					onOff = "True"
+				end
+				return "Stat Swap: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.rirastatswap = currentBool
+				wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+					if player:GetPlayerType() == wakaba.Enums.Players.RIRA then
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+						player:EvaluateItems()
+					end
+				end)
+			end,
+			Info = {
+				"Adds Tears mult x1/3 and Damage mult x3 for Rira",
+				"This can be helpful by reducing tears count that causes lags",
+				"Always active in Lunatic mode",
+			}
+		}
+	)
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"Rira",

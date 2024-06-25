@@ -1,4 +1,213 @@
 
+--#region RoomgenData from Tainted Treasure rooms
+local mod = wakaba
+
+mod.adjindexes = {
+	[RoomShape.ROOMSHAPE_1x1] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 1,
+		[DoorSlot.DOWN0] = 13
+	},
+	[RoomShape.ROOMSHAPE_IH] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.RIGHT0] = 1
+	},
+	[RoomShape.ROOMSHAPE_IV] = {
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.DOWN0] = 13
+	},
+	[RoomShape.ROOMSHAPE_1x2] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 1,
+		[DoorSlot.DOWN0] = 26,
+		[DoorSlot.LEFT1] = 12,
+		[DoorSlot.RIGHT1] = 14
+	},
+	[RoomShape.ROOMSHAPE_IIV] = {
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.DOWN0] = 26
+	},
+	[RoomShape.ROOMSHAPE_2x1] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 2,
+		[DoorSlot.DOWN0] = 13,
+		[DoorSlot.UP1] = -12,
+		[DoorSlot.DOWN1] = 14
+	},
+	[RoomShape.ROOMSHAPE_IIH] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.RIGHT0] = 3
+	},
+	[RoomShape.ROOMSHAPE_2x2] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 2,
+		[DoorSlot.DOWN0] = 26,
+		[DoorSlot.LEFT1] = 12,
+		[DoorSlot.UP1] = -12,
+		[DoorSlot.RIGHT1] = 15,
+		[DoorSlot.DOWN1] = 27
+	},
+	[RoomShape.ROOMSHAPE_LTL] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -1,
+		[DoorSlot.RIGHT0] = 1,
+		[DoorSlot.DOWN0] = 25,
+		[DoorSlot.LEFT1] = 11,
+		[DoorSlot.UP1] = -13,
+		[DoorSlot.RIGHT1] = 14,
+		[DoorSlot.DOWN1] = 26
+	},
+	[RoomShape.ROOMSHAPE_LTR] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 1,
+		[DoorSlot.DOWN0] = 26,
+		[DoorSlot.LEFT1] = 12,
+		[DoorSlot.UP1] = 1,
+		[DoorSlot.RIGHT1] = 15,
+		[DoorSlot.DOWN1] = 27
+	},
+	[RoomShape.ROOMSHAPE_LBL] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 2,
+		[DoorSlot.DOWN0] = 13,
+		[DoorSlot.LEFT1] = 13,
+		[DoorSlot.UP1] = -12,
+		[DoorSlot.RIGHT1] = 15,
+		[DoorSlot.DOWN1] = 27
+	},
+	[RoomShape.ROOMSHAPE_LBR] = {
+		[DoorSlot.LEFT0] = -1,
+		[DoorSlot.UP0] = -13,
+		[DoorSlot.RIGHT0] = 2,
+		[DoorSlot.DOWN0] = 26,
+		[DoorSlot.LEFT1] = 12,
+		[DoorSlot.UP1] = -12,
+		[DoorSlot.RIGHT1] = 14,
+		[DoorSlot.DOWN1] = 14
+	}
+}
+
+mod.borderrooms = {
+	[DoorSlot.LEFT0] = {0, 13, 26, 39, 52, 65, 78, 91, 104, 117, 130, 143, 156},
+	[DoorSlot.UP0] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
+	[DoorSlot.RIGHT0] = {12, 25, 38, 51, 64, 77, 90, 103, 116, 129, 142, 155, 168},
+	[DoorSlot.DOWN0] = {156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168},
+	[DoorSlot.LEFT1] = {0, 13, 26, 39, 52, 65, 78, 91, 104, 117, 130, 143, 156},
+	[DoorSlot.UP1] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
+	[DoorSlot.RIGHT1] = {12, 25, 38, 51, 64, 77, 90, 103, 116, 129, 142, 155, 168},
+	[DoorSlot.DOWN1] = {156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168}
+}
+
+mod.oppslots = {
+	[DoorSlot.LEFT0] = DoorSlot.RIGHT0,
+	[DoorSlot.UP0] = DoorSlot.DOWN0,
+	[DoorSlot.RIGHT0] = DoorSlot.LEFT0,
+	[DoorSlot.LEFT1] = DoorSlot.RIGHT0,
+	[DoorSlot.DOWN0] = DoorSlot.UP0,
+	[DoorSlot.UP1] = DoorSlot.DOWN0,
+	[DoorSlot.RIGHT1] = DoorSlot.LEFT0,
+	[DoorSlot.DOWN1] = DoorSlot.UP0
+}
+
+mod.shapeindexes = {
+	[RoomShape.ROOMSHAPE_1x1] = { 0 },
+	[RoomShape.ROOMSHAPE_IH] = { 0 },
+	[RoomShape.ROOMSHAPE_IV] = { 0 },
+	[RoomShape.ROOMSHAPE_1x2] = { 0, 13 },
+	[RoomShape.ROOMSHAPE_IIV] = { 0, 13 },
+	[RoomShape.ROOMSHAPE_2x1] = { 0, 1 },
+	[RoomShape.ROOMSHAPE_IIH] = { 0, 1 },
+	[RoomShape.ROOMSHAPE_2x2] = { 0, 1, 13, 14 },
+	[RoomShape.ROOMSHAPE_LTL] = { 1, 13, 14 },
+	[RoomShape.ROOMSHAPE_LTR] = { 0, 13, 14 },
+	[RoomShape.ROOMSHAPE_LBL] = { 0, 1, 14 },
+	[RoomShape.ROOMSHAPE_LBR] = { 0, 1, 13 },
+}
+--#endregion RoomgenData end
+
+local game = wakaba.G
+
+function mod:IsDeadEnd(roomidx, shape)
+	local level = game:GetLevel()
+	shape = shape or RoomShape.ROOMSHAPE_1x1
+	local deadend = false
+	local adjindex = mod.adjindexes[shape]
+	local adjrooms = 0
+	for i, entry in pairs(adjindex) do
+		local oob = false
+		for j, idx in pairs(mod.borderrooms[i]) do
+			if idx == roomidx then
+				oob = true
+			end
+		end
+		if level:GetRoomByIdx(roomidx+entry).GridIndex ~= -1 and not oob then
+			adjrooms = adjrooms+1
+		end
+	end
+	if adjrooms == 1 then
+		deadend = true
+	end
+	return deadend
+end
+
+function mod:GetDeadEnds(roomdesc)
+	local level = game:GetLevel()
+	local roomidx = roomdesc.SafeGridIndex
+	local shape = roomdesc.Data.Shape
+	local adjindex = mod.adjindexes[shape]
+	local deadends = {}
+	for i, entry in pairs(adjindex) do
+		if level:GetRoomByIdx(roomidx).Data then
+			local oob = false
+			for j, idx in pairs(mod.borderrooms[i]) do
+				for k, shapeidx in pairs(mod.shapeindexes[shape]) do
+					if idx == roomidx+shapeidx then
+						oob = true
+					end
+				end
+			end
+			if roomdesc.Data.Doors & (1 << i) > 0 and mod:IsDeadEnd(roomidx+adjindex[i]) and level:GetRoomByIdx(roomidx+adjindex[i]).GridIndex == -1 and not oob then
+				table.insert(deadends, {Slot = i, GridIndex = roomidx+adjindex[i]})
+			end
+		end
+	end
+
+	if #deadends >= 1 then
+		return deadends
+	else
+		return nil
+	end
+end
+
+function mod:GetOppositeDoorSlot(slot)
+	return mod.oppslots[slot]
+end
+
+function wakaba:getLevelDeadEndCandidates(onnewlevel)
+	local level = wakaba.G:GetLevel()
+	local currentroomidx = level:GetCurrentRoomIndex()
+	local candidates = {}
+
+	for i = level:GetRooms().Size, 0, -1 do
+		local roomdesc = level:GetRooms():Get(i-1)
+		if roomdesc and roomdesc.Data.Type == RoomType.ROOM_DEFAULT and roomdesc.Data.Subtype == 0 then
+		local deadends = mod:GetDeadEnds(roomdesc)
+			if deadends and not (onnewlevel and roomdesc.GridIndex == currentroomidx) then
+				for j, deadend in pairs(deadends) do
+					table.insert(candidates, {Slot = deadend.Slot, GridIndex = deadend.GridIndex, roomidx = roomdesc.GridIndex, visitcount = roomdesc.VisitedCount})
+				end
+			end
+		end
+	end
+	return candidates
+end
+
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:NewLevel_RoomGen()
@@ -16,27 +225,76 @@ function wakaba:NewLevel_RoomGen()
 
 	local rng = RNG()
 	local level = wakaba.G:GetLevel()
+	local seeds = wakaba.G:GetSeeds()
+	local currentroomidx = level:GetCurrentRoomIndex()
+	local candidates = {}
+	local haspermamaze = false
+	local hascurseofmaze = false
+
+	local tried = false
+	local tries = 0
 
 	local currentRoomIdx = level:GetCurrentRoomIndex()
-	local candidates = isc:getNewRoomCandidatesForLevel()
-	while #roomsToGenerate > 0 and #candidates > 0 do
-		local roomVar = isc:getRandomArrayElementAndRemove(roomsToGenerate, rng)
+	candidates = wakaba:getLevelDeadEndCandidates(true)
+	wakaba.FLog("debugLevelGen", "roomsToGenerate:", #roomsToGenerate, "/ candidates:", #candidates)
+	local preserved = nil
+	while (#roomsToGenerate > 0 or preserved) and #candidates > 0 do
+		if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
+			seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+			haspermamaze = true
+		end
+		if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
+			level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
+			hascurseofmaze = true
+		end
+
+		tried = true
+		tries = tries + 1
+		wakaba.FLog("debugLevelGen", "current tries:", tries)
+
+		local roomVar = preserved or isc:getRandomArrayElementAndRemove(roomsToGenerate, rng)
 		local e = isc:getRandomArrayElementAndRemove(candidates, rng)
-		local success = level:MakeRedRoomDoor(e.adjacentRoomGridIndex, e.doorSlot)
-		if success then
-			local roomData = isc:getRoomDataForTypeVariant(roomVar[1], roomVar[2], false)
+		local roomData = isc:getRoomDataForTypeVariant(roomVar[1], roomVar[2], false)
 
-			local writeableRoom = level:GetRoomByIdx(e.newRoomGridIndex, -1)
-			writeableRoom.Data = roomData
-			writeableRoom.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
+		local deadendslot = e.Slot
+		local deadendidx = e.GridIndex
+		local roomidx = e.roomidx
+		local visitcount = e.visitcount
+		local roomdesc = level:GetRoomByIdx(roomidx)
+		if roomdesc.Data and level:GetRoomByIdx(roomdesc.GridIndex).GridIndex ~= -1 and mod:GetOppositeDoorSlot(deadendslot) and roomData.Doors & (1 << mod:GetOppositeDoorSlot(deadendslot)) > 0 then
+			local success = level:MakeRedRoomDoor(e.roomidx, e.Slot)
+			wakaba.FLog("debugLevelGen", "Trying to Generate room for gridIndex", e.roomidx, "slot", e.Slot, success)
+			if success then
 
-			level:UpdateVisibility()
+				local writeableRoom = level:GetRoomByIdx(e.GridIndex, -1)
+				writeableRoom.Data = roomData
+				writeableRoom.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
 
-			Game():StartRoomTransition(currentRoomIdx, Direction.NO_DIRECTION, RoomTransitionAnim.FADE)
+				level:UpdateVisibility()
+				preserved = nil
+			end
+		else
+			wakaba.FLog("debugLevelGen", "Found invalid location for gridIndex", e.roomidx, "slot", e.Slot)
+			preserved = e
 		end
 	end
 
+	if tried then
+		wakaba:scheduleForUpdate(function()
+			SFXManager():Stop(SoundEffect.SOUND_UNLOCK00)
+			wakaba.G:StartRoomTransition(currentroomidx, 0, RoomTransitionAnim.FADE)
+		end, 0, ModCallbacks.MC_POST_RENDER)
+		wakaba:scheduleForUpdate(function()
+			if haspermamaze then
+				seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+			end
+			if hascurseofmaze then
+				level:AddCurse(LevelCurse.CURSE_OF_MAZE)
+			end
+		end, 0, ModCallbacks.MC_POST_UPDATE)
 
+		Game():StartRoomTransition(currentRoomIdx, Direction.NO_DIRECTION, RoomTransitionAnim.FADE)
+	end
 	if MinimapAPI then
 		MinimapAPI:LoadDefaultMap()
 	end

@@ -215,7 +215,6 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.CheckBoosterPackSpawn, PickupVariant.PICKUP_TAROTCARD)
 
 function wakaba:unlockCheck(item, pool)
-	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then return true end
 	return wakaba:IsCompletionItemUnlockedTemp(item, "collectible")
 end
 

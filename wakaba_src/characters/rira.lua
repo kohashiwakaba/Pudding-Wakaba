@@ -30,7 +30,7 @@ function wakaba:AlterPlayerDamage_Rira(player, amount, flags, source, countdown)
 	if flags & (DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_FAKE) > 0 then return end
 	--print(flags)
 	--print((flags & DamageFlag.DAMAGE_RED_HEARTS > 0), (flags & DamageFlag.DAMAGE_INVINCIBLE > 0), (flags & DamageFlag.DAMAGE_NO_PENALTIES > 0), (flags & DamageFlag.DAMAGE_NOKILL > 0), (flags & DamageFlag.DAMAGE_FAKE > 0))
-	if (player:GetPlayerType() == wakaba.Enums.Players.RIRA or player:HasTrinket(wakaba.Enums.Trinkets.RABBIT_PILLOW))
+	if (player:GetPlayerType() == wakaba.Enums.Players.RIRA or player:GetPlayerType() == wakaba.Enums.Players.RIRA_B or player:HasTrinket(wakaba.Enums.Trinkets.RABBIT_PILLOW))
 	and player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
 	and not wakaba:WillDamageBeFatal(player, amount, flags, true, false, true) then
 		if flags & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_CHEST) > 0
@@ -56,8 +56,9 @@ local RiraChar = {
 
 function wakaba:onRiraCache(player, cacheFlag)
 	if player:GetPlayerType() == playerType then
+		local opt = wakaba:getOptionValue("rirastatswap") or wakaba:IsLunatic()
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * RiraChar.DAMAGE
+			player.Damage = player.Damage * RiraChar.DAMAGE * (opt and 3 or 1)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 				player.Damage = player.Damage * 1.3
 			end
@@ -79,7 +80,7 @@ function wakaba:onRiraCache(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RiraChar.TEARS * wakaba:getEstimatedTearsMult(player)))
-			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 3.04)
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 3.04 * (opt and 1/3 or 1))
 		end
 		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | RiraChar.TEARFLAG

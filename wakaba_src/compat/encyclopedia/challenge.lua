@@ -305,12 +305,12 @@ Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = i.CROSS_BOMB,
-	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RICHERS_NECKLACE,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CROSS_BOMB,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
-		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_BOMB_BUM,
 	},
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("crossbomb") then
 			self.Desc = "Complete The Floor is Lava (challenge No.17w)"
@@ -333,6 +333,26 @@ Encyclopedia.AddItem({
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("goombella") then
 			self.Desc = "Complete Universe of Goom (challenge No.18w)"
+
+			return self
+		end
+	end,
+})
+-- TODO w19 Heavy Liquid
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.BUBBLE_BOMBS,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.BUBBLE_BOMBS,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_BOMB_BUM,
+	},
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("bubblebombs") then
+			self.Desc = "Complete Heavy Liquid (challenge No.19w)"
 
 			return self
 		end

@@ -23,6 +23,12 @@ local config = {
 	-- Costume Protector
 	cp_wakaba = true,
 
+	-- Custom sounds
+	customhitsound = true,
+	customhitsoundprof = -1,
+	customitemsound = true,
+	customsoundvolume = 5,
+
 	-- Wakaba options
 	cloverchestchance = 5,
 	taintedcloverchestchance = 5,
@@ -54,6 +60,7 @@ local config = {
 	crystalrestockchance = 10,
 
 	-- Rira options
+	rirastatswap = false,
 	chimakisound = true,
 	maidtriggerkey = Keyboard.KEY_7,
 	lilriraautosteal = true,
@@ -96,6 +103,7 @@ local config = {
 	-- Inventory Descriptions options
 	listoffset = 200,
 	listkey = Keyboard.KEY_F5,
+	switchkey = Keyboard.KEY_F6,
 	idleicon = 0,
 	selicon = 17,
 	lemegetonicon = 18,
@@ -110,10 +118,13 @@ local config = {
 	invactives = true,
 	invtrinkets = true,
 	invpocketitems = true,
+	invlistmode = "list",
+	invgridcolumn = 6,
+	invpassivehistory = false,
 
 	-- Found HUD options
 	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
-	hudroomnumber = 1, -- room no - 0: false, 1: no. only, 2:detailed
+	hudroomnumber = 1, -- room no - 0: false, 1: no. only, 2:detailed, 3:combined with name
 	hudroomname = 1, -- room name - 0: false, 1: name scroll, 2: full name, 3:detailed
 	hudroomdiff = 1, -- room difficulty - 0: false, 1: diff only, 2:detailed
 	hudroomweight = 1, -- room weight - 0: false, 1: weight only, 2:detailed

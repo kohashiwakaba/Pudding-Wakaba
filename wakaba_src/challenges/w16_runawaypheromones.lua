@@ -8,7 +8,6 @@ wakaba.ChallengeParams.TargetCharacters[c] = tp
 function wakaba:Challenge_PlayerInit_RunawayPheromones(player)
 	if wakaba.G.Challenge ~= c then return end
 	player:RemoveCollectible(wakaba.Enums.Collectibles.SWEETS_CATALOG, false, ActiveSlot.SLOT_POCKET, true)
-  wakaba.G:GetItemPool():RemoveCollectible(wakaba.Enums.Collectibles.CLENSING_FOAM)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_RunawayPheromones)
 
@@ -21,6 +20,15 @@ function wakaba:ProjectileUpdate_RunawayPheromones(tear)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, wakaba.ProjectileUpdate_RunawayPheromones)
+
+function wakaba:Challenge_GameStart_RunawayPheromones(continue)
+	if wakaba.G.Challenge ~= c then return end
+	if continue then
+	else
+		wakaba.G:GetItemPool():RemoveCollectible(wakaba.Enums.Collectibles.CLENSING_FOAM)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.Challenge_GameStart_RunawayPheromones)
 
 ---@param npc EntityNPC
 function wakaba:NPCInit_RunawayPheromones(npc)

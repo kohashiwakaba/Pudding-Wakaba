@@ -225,7 +225,7 @@ if Encyclopedia then
 			{ -- Traits
 				{str = "Traits", fsize = 2, clr = 3, halign = 0},
 					--{str = ""},
-				{str = "Richer gets small tears and damage up on room clear."},
+				{str = "Richer takes less damage from most damage sources. (same as the wafer)"},
 				{str = "Richer also boosts trinkets by 1."},
 				{str = "Rabbit Ribbon", clr = 3, halign = 0},
 				{str = "If any curse is applied, replaces it into new curse."},
@@ -240,7 +240,7 @@ if Encyclopedia then
 				{str = "- Automatically consumes stored charges if Isaac's active is not fully charged."},
 				{str = "Sweets Catalog", clr = 3, halign = 0},
 				{str = "Richer has her expiremental recipies."},
-				{str = "When used, Richer gets one of random combination effects in current room."},
+				{str = "When used, Richer gets one of random weapon effects in current room."},
 			},
 			{ -- Birthright
 				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
@@ -369,12 +369,12 @@ if Encyclopedia then
 			},
 			{ -- Traits
 				{str = "Traits", fsize = 2, clr = 3, halign = 0},
-				{str = "Tainted Wakaba starts with Continum and Piercing tears."},
+				{str = "Tainted Wakaba starts with Piercing tears."},
 				{str = "Tainted Wakaba is unable to find Luck Up pills."},
 				{str = "All Heart Containers are converted into Black Hearts."},
 				{str = "Worst Items, Furious Destiny - Wakaba's Nemesis", clr = 3, halign = 0},
-				{str = "Tainted Wakaba cannot find 3+ quality items."},
-				{str = "- Tainted Wakaba is guarenteed to find 3+ quality items in Ultra Secret Rooms."},
+				{str = "Tainted Wakaba cannot find 4 quality items."},
+				{str = "Tainted Wakaba has reduced chance to find 3 quality items."},
 				{str = "All collectibles give Tainted Wakaba +3.6 temporary damage up, and small permanent all stat downs."},
 				{str = "Guarentees the Devil/Angel Room encountered to be an Devil Room."},
 				{str = "All collectibles on sale requires soul hearts."},

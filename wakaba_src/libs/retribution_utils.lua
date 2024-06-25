@@ -47,7 +47,12 @@ function mod:GetRoomPlayers()
 	return mod.roomPlayersCache
 end
 
-function mod:ForAllPlayers(func, typeFilter)
+---@function
+---@scope wakaba
+---@param func function
+---@param typeFilter PlayerType
+---@return any
+function wakaba:ForAllPlayers(func, typeFilter)
 	for _, player in pairs(mod:GetRoomPlayers()) do
 		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
 			local returnValue = func(player)
@@ -824,8 +829,8 @@ function mod:IsPlayerHoldingTrinket(player, trinket)
 	return false
 end
 
-function mod:PlayerHasSmeltedTrinket(player, trinket)
-	return player:HasTrinket(trinket, true) and not mod:IsPlayerHoldingTrinket(player, trinket)
+function mod:PlayerHasSmeltedTrinket(player, trinket, skipTrueCheck)
+	return player:HasTrinket(trinket, not skipTrueCheck) and not mod:IsPlayerHoldingTrinket(player, trinket)
 end
 
 function mod:SmeltHeldTrinket(player, slot)

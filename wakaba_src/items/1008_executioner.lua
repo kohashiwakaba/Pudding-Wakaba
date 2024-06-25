@@ -6,6 +6,7 @@ wakaba.ExecutionerBlacklistEntities = {
 	{EntityType.ENTITY_VISAGE},
 	{EntityType.ENTITY_MOTHER},
 	{EntityType.ENTITY_MOMS_HEART},
+	{EntityType.ENTITY_ROTGUT},
 }
 
 local function isExecutionerBlacklisted(entity)

@@ -1,3 +1,13 @@
+function wakaba:SetupVintageDamoclesForPlayer(player)
+	local data = player:GetData()
+	data.wakaba = data.wakaba or {}
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	player:AddCollectible(CollectibleType.COLLECTIBLE_DAMOCLES_PASSIVE)
+	data.wakaba.vintagethreat = true
+end
+
 function wakaba:AfterRevival_VintageThreat(player)
 	--print("AfterVThreatInit")
 	local data = player:GetData()
@@ -112,7 +122,7 @@ end
 wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -39999, wakaba.AlterPlayerDamage_Vintage)
 
 function wakaba:EvaluateVintage_Main(player, flags)
-	if flag & DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS > 0 then
+	if flags & (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS) > 0 then
 		return true
 	end
 end
@@ -144,7 +154,7 @@ if EID then
 	local function VintageCallback(descObj)
 		local append = EID:getDescriptionEntry("WakabaVintageHotkey") or EID:getDescriptionEntryEnglish("WakabaVintageHotkey")
 		descObj.Name = "{{ColorRed}}"..descObj.Name.."{{CR}}"
-		EID:appendToDescription(descObj, "!!! ".. append:gsub("{1}", InputHelper.KeyboardToString[wakaba.state.options.vintagetriggerkey]) .. "{{CR}}")
+		EID:appendToDescription(descObj, "".. append:gsub("{1}", InputHelper.KeyboardToString[wakaba.state.options.vintagetriggerkey]) .. "{{CR}}")
 		return descObj
 	end
 	EID:addDescriptionModifier("Wakaba Vintage Hotkey", VintageCondition, VintageCallback)

@@ -92,12 +92,21 @@ wakaba.encyclopediadesc.desc.cards = {
 			{str = "The sword has a 1/2500 chance every 4 frames to fall."},
 			{str = "Taking self-damage does not count as damage taken for blue sword, and will not give it the chance to fall."},
 			{str = "Using Soul of Tsukasa while blue sword is active reduces chance to fall."},
-		},},
+		},
+	},
 	[c.SOUL_RICHER] = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Spawns 6 Lemegeton Wisps."},
 			{str = "All items spawned are guaranteed for at least Quality 2."},
+		},
+	},
+	[c.SOUL_RIRA] = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns 3 Aqua trinkets."},
+			{str = "- Aqua trinkets spawned this way ignores unlock status."},
+			{str = "Aqua trinkets are special trinket that immediately absorbed on pickup."},
 		},
 	},
 --#endregion
@@ -153,6 +162,16 @@ wakaba.encyclopediadesc.desc.cards = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Spawns 3 ~ 26 Keys."},
+		},
+	},
+	[c.CARD_FLIP] = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "While holding Flip card, when Isaac enters a new room containing an item (Treasure Room, Shop, etc.), the item pedestal will have a second 'ghostly' item behind it."},
+			{str = "- The real item can be interacted with normally, while the ghostly item cannot."},
+			{str = "- The ghostly item will vanish if there is no real item on the pedestal and Isaac leaves the room."},
+			{str = "Upon use, flips all real / ghostly items around on pedestals, allowing Isaac to collect the ghostly items. Does not affect pedestals that do not contain a ghostly item."},
+			{str = "If playing as Tainted Lazarus, activating it also flips between them and Dead Tainted Lazarus."},
 		},
 	},
 	--#endregion

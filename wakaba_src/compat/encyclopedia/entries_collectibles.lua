@@ -801,8 +801,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Isaac gets Golden Bomb permanently."},
-			{str = "Replaces all bomb spawns with a random pickup."},
-			{str = "Upon taking damage, spawns a golden troll bomb around the room."},
+			{str = "Replaces all bomb spawns with a random pickup or golden troll bomb."},
+			{str = "Upon taking damage, spawns 6 golden troll bombs around the room."},
 			{str = "All troll bombs are converted into Golden troll bombs if possible."},
 		},
 	},
@@ -950,6 +950,33 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Entering new room, or using active item changes to next color."},
 			{str = "- The order is always Red - Blue - Yellow - Green, and goes to Red after Green"},
 			{str = "RGON - Increases the chance to open the Devil Room or Angel Room after killing a boss by 20% while holding it"},
+		},
+	},
+	BUBBLE_BOMBS = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants 5 Bombs."},
+			{str = "Isaac's Bombs aquafies enemies when they explode."},
+			{str = "- Aquafied enemies take more damage from:"},
+			{str = "-- Laser, Explosions, Aqua tears"},
+			{str = "- Aquafied enemies take less damage from:"},
+			{str = "-- Fire/Burn, Poison, Red Poops"},
+			{str = "Bubble Bombs also instakills rock enemies such as:"},
+			{str = "- Great Gideon"},
+			{str = "- Stonies"},
+			{str = "- Gaping Maws"},
+			{str = "- Stone shooters"},
+			{str = "- Rock Spiders"},
+			{str = "- Ball and Chains"},
+			{str = "- SpikeBalls"},
+			{str = "- Wall Huggers"},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Dr. Fetus", clr = 3, halign = 0},
+			{str = "Fired bombs have a chance to aquafy enemies. This chance scales with luck, going up to 100% at 22 Luck."},
+			{str = "Epic Fetus", clr = 3, halign = 0},
+			{str = "Fired missiles have a chance to aquafy enemies."},
 		},
 	},
   --#endregion
@@ -1467,8 +1494,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	MAGMA_BLADE = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Slashes fire blade on tear attack"},
-			{str = "+100% Damage multiplier for non-tear attacks"},
+			{str = "After every 20 tears fired, Isaac will fire slash flame attack and wave of flames"},
+			{str = "Each flame wave deals 2x of Isaac's damage"},
 		},
 	},
 	LUNAR_DAMOCLES = {
@@ -2139,7 +2166,15 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Can control laser emit timing by holding, or canceling shoot button."},
 		},
 	},
-  CROSS_BOMB = {},
+  CROSS_BOMB = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants 5 Bombs."},
+			{str = "Causes bombs to explode in a large cross-shaped blast by adding three extra delayed explosions in each cardinal direction."},
+			{str = "The damage for an extra explosion is 10 and does not harm Isaac."},
+			{str = "With Cross Bomb, Bedrooms, super special rocks, and the (in Repentance)Mines can be accessed with a single bomb."},
+		},
+	},
   GOOMBELLA = {},
 
 	-- Final items

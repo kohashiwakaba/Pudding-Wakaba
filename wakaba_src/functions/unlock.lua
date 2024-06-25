@@ -96,16 +96,63 @@ end
 
 wakaba.Blacklists.FlagLock = {}
 wakaba.Blacklists.FlagLock.collectible = {
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = function()
+		return not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = function()
+		return not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.NEKO_FIGURE] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.PLASMA_BEAM] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Collectibles.RIRAS_COAT] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.COUNTER] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
+	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = function()
+		return wakaba:IsLunatic() and not REPENTOGON
+	end,
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = function()
 		return not wakaba.Flags.stackableDamocles
 	end,
 }
 wakaba.Blacklists.FlagLock.trinket = {
-
+	[wakaba.Enums.Trinkets.BITCOIN] = function()
+		return wakaba:IsLunatic()
+	end,
 }
 wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = function()
 		return not wakaba.Flags.stackableDamocles
+	end,
+	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = function()
+		return wakaba:IsLunatic()
+	end,
+	[wakaba.Enums.Cards.CARD_FLIP] = function()
+		return true
+	end,
+	[wakaba.Enums.Cards.SOUL_RIRA] = function()
+		return true
 	end,
 }
 
@@ -243,13 +290,13 @@ wakaba.UnlockTables = {
 	--[[ [wakaba.Enums.Players.RIRA_B] = {
 		istainted = true,
 		Heart 		= {"taintedriramomsheart"},
-		Quartet 		= {"caramellacookiebag", "trinket",	wakaba.Enums.Trinkets.STAR_REVERSAL,	function() wakaba:TryPlayAchievementPaper("starreversal", "Boss") end},
+		Quartet 		= {"caramellacandybag", "trinket",	wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG,	function() wakaba:TryPlayAchievementPaper("starreversal", "Boss") end},
 		Duet 		= {"rirasoul", "card",	wakaba.Enums.Cards.SOUL_RICHER,	function() wakaba:TryPlayAchievementPaper("richersoul", "Boss") end},
 		Delirium	= {"rabbeyward", "collectible",	wakaba.Enums.Collectibles.WATER_FLAME,				function() wakaba:TryPlayAchievementPaper("waterflame", "Boss") end},
 		MegaSatan	= {"aquatrinket", "null",		nil,			function() wakaba:TryPlayAchievementPaper("crystalrestock", "MegaSatan") end},
 		Mother		= {"uuuuuuuuuuuu", "trinket",	wakaba.Enums.Trinkets.ETERNITY_COOKIE,			function() wakaba:TryPlayAchievementPaper("eternitycookie", "Boss") end},
-		Beast		= {"uuuuuuuuuuuu", "collectible",	wakaba.Enums.Collectibles.WINTER_ALBIREO,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
-		Greedier	= {"uuuuuuuuuuuu", "card",		wakaba.Enums.Cards.CARD_TRIAL_STEW,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
+		Beast		= {"azurerir", "collectible",	wakaba.Enums.Collectibles.AZURE_RIR,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
+		Greedier	= {"flipcard", "card",		wakaba.Enums.Cards.CARD_FLIP,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
 	}, ]]
 	[-999] = {
 		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, function(boss) return boss == BossID.MOM end},
@@ -268,6 +315,7 @@ wakaba.UnlockTables = {
 		[wakaba.challenges.CHALLENGE_HOLD] = {"lilmao", "collectible",	wakaba.Enums.Collectibles.LIL_MAO,	function() wakaba:TryPlayAchievementPaper("lilmao", "Boss") end, function(boss) return boss == BossID.MOTHER end},
 		[wakaba.challenges.CHALLENGE_EVEN] = {"richerflipper", "collectible",	wakaba.Enums.Collectibles.RICHERS_FLIPPER,	function() wakaba:TryPlayAchievementPaper("richerflipper", "Boss") end, function(boss) return boss == BossID.MOTHER end},
 		[wakaba.challenges.CHALLENGE_RNPR] = {"richernecklace", "collectible",	wakaba.Enums.Collectibles.RICHERS_NECKLACE,	function() wakaba:TryPlayAchievementPaper("richernecklace", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
+		[wakaba.challenges.CHALLENGE_LAVA] = {"crossbomb", "collectible",	wakaba.Enums.Collectibles.CROSS_BOMB,	function() wakaba:TryPlayAchievementPaper("crossbomb", "Boss") end, function(boss) return boss == BossID.LAMB end},
 		[wakaba.challenges.CHALLENGE_RAND] = {"edensticky", "collectible",	wakaba.Enums.Collectibles.EDEN_STICKY_NOTE,	function() wakaba:TryPlayAchievementPaper("edensticky", "Boss") end, function(boss) return boss == BossID.DELIRIUM end},
 		[wakaba.challenges.CHALLENGE_DRMS] = {"doubledreams", "collectible",	wakaba.Enums.Collectibles.DOUBLE_DREAMS,	function() wakaba:TryPlayAchievementPaper("doubledreams", "Boss") end, function(boss) return boss == BossID.BEAST end},
 	}
@@ -279,6 +327,10 @@ wakaba.LinkedCompletionUnlocks = {
 	{wakaba.Enums.Collectibles.MYSTIC_CRYSTAL, "collectible", wakaba.Enums.Collectibles.ARCANE_CRYSTAL, "collectible"},
 	{wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
 	{wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE, "trinket", wakaba.Enums.Trinkets.ISAAC_CARTRIDGE, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_RICHER, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_RIRA, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_CIEL, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
+	{wakaba.Enums.Trinkets.CANDY_OF_KORON, "trinket", wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG, "trinket"},
 }
 
 function wakaba:CanRunUnlockAchievements(forceNew) -- Made in conjunction with Thicco Catto
@@ -404,11 +456,13 @@ function wakaba:GetUnlockMeta(playerType, unlockType)
 				unlockCheckStr = unlockTable[unlockType][1]
 				metaTable = unlockTable[unlockType]
 			end
-		else
+		elseif unlockTable[unlockType] then
 			unlockCheckStr = unlockTable[unlockType][1]
 			metaTable = unlockTable[unlockType]
 		end
-		return unlockCheckStr, metaTable
+		if unlockCheckStr ~= "" then
+			return unlockCheckStr, metaTable
+		end
 	end
 end
 
@@ -424,7 +478,7 @@ function wakaba:IsCompletionItemUnlockedTemp(itemID, typeString, pricise)
 		wakaba.Log(typeString, itemID, "Blacklisted by flag")
 		return false
 	end
-	if wakaba.state.options.allowlockeditems and not pricise then
+	if (not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems) and not pricise then
 		return true
 	end
 	for _, linkedTable in ipairs(wakaba.LinkedCompletionUnlocks) do

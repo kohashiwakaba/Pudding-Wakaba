@@ -156,6 +156,13 @@
 		<preload-snd id="252" /> <!-- BOOK_PAGE_TURN_12 -->
 	</entity>
 
+	<entity anm2path="Soul of Rira.anm2" baseHP="0" boss="0" champion="0"
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5"
+			name="Soul of Rira" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4115">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="252" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+
 	<!-- Objects -->
 	<entity anm2path="Return Token.anm2" baseHP="0" boss="0" champion="0" 
 			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
@@ -168,6 +175,14 @@
 	<entity anm2path="Wakaba Ticket.anm2" baseHP="0" boss="0" champion="0" 
 			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
 			name="Wakaba Ticket" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4112">
+			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
+	</entity>
+	
+	<!-- Wakaba Tickets -->
+	<entity anm2path="Wakaba Uno Flip Card.anm2" baseHP="0" boss="0" champion="0" 
+			collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" 
+			name="Wakaba Uno Flip Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="4114">
 			<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 		<preload-snd id="8" /> <!-- BOOK_PAGE_TURN_12 -->
 	</entity>

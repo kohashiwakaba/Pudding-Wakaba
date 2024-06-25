@@ -6,14 +6,21 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+---@param player EntityPlayer
 function wakaba:PlayerUpdate_SelfBurning(player)
 	local wData = wakaba:GetPlayerEntityData(player)
-	if player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
+	if wakaba:getPlayerDataEntry(player ,"selfburningcount", 0) > 0 or player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
 		if not player:HasEntityFlags(EntityFlag.FLAG_BURN) then
 			player:AddEntityFlags(EntityFlag.FLAG_BURN)
 		end
-		wData.burningtimer = wData.burningtimer - 1
-		if wData.burningtimer < 0 then
+		if player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.SELF_BURNING) > 25 then
+			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING, -1)
+			for i = 1, 2 do
+				player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING)
+			end
+		end
+		wakaba:addPlayerDataCounter(player, "selfburningtimer", -1)
+		if wakaba:getPlayerDataEntry(player ,"selfburningtimer", 0) < 0 then
 			if player:GetPlayerType() == PlayerType.PLAYER_BETHANY and player:GetSoulCharge() > 0 then
 				player:AddSoulCharge(-1)
 			elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B and player:GetBloodCharge() > 0 then
@@ -32,20 +39,30 @@ function wakaba:PlayerUpdate_SelfBurning(player)
 					end
 				end
 			end
-			wData.burningtimer = wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER
+			wakaba:setPlayerDataEntry(player, "selfburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
 		end
 	else
 		if player:HasEntityFlags(EntityFlag.FLAG_BURN) then
 			player:ClearEntityFlags(EntityFlag.FLAG_BURN)
 		end
-		wData.burningtimer = nil
+		wakaba:removePlayerDataEntry(player, "selfburningcount")
+		wakaba:removePlayerDataEntry(player, "selfburningtimer")
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_SelfBurning)
 
-function wakaba:ItemUse_SelfBurning(usedItem, rng, player, useFlags, activeSlot, varData)	
-	local wData = wakaba:GetPlayerEntityData(player)
-	wData.burningtimer = wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER
+---@param player EntityPlayer
+function wakaba:ItemUse_SelfBurning(usedItem, rng, player, useFlags, activeSlot, varData)
+	local hasItem = activeSlot == ActiveSlot.SLOT_POCKET2
+	for i = 0, 2 do
+		if player:GetActiveItem(i) == wakaba.Enums.Collectibles.SELF_BURNING then
+			hasItem = true
+		end
+	end
+	if not hasItem and useFlags & UseFlag.USE_VOID == 0 then return end
+	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then return end
+	wakaba:addPlayerDataCounter(player, "selfburningcount", 1)
+	wakaba:initPlayerDataEntry(player, "selfburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
 	return {
 		Discharge = true,
 		Remove = false,
@@ -55,7 +72,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_SelfBurning, wakaba.Enums.Collectibles.SELF_BURNING)
 
 function wakaba:NewLevel_SelfBurning()
-  for i = 1, wakaba.G:GetNumPlayers() do
+	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		for i = 0, 2 do
 			if player:GetActiveItem(i) == wakaba.Enums.Collectibles.SELF_BURNING then
@@ -66,12 +83,18 @@ function wakaba:NewLevel_SelfBurning()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_SelfBurning)
 
+---comment
+---@param player EntityPlayer
 function wakaba:PlayerCollision_SelfBurning(player, collider, low)
-	if not player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then return end
+	if wakaba:getPlayerDataEntry(player ,"selfburningcount", 0) <= 0 and not player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then return end
 	if player:GetDamageCooldown() > 0 then return end
 	if collider:ToProjectile() then
 		player:SetMinDamageCooldown(30)
-		player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING)
+		if wakaba:getPlayerDataEntry(player ,"selfburningcount", 0) > 0 then
+			wakaba:addPlayerDataCounter(player, "selfburningcount", -1)
+		else
+			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING, -1)
+		end
 	elseif collider:ToNPC() then
 		collider:TakeDamage(1, DamageFlag.DAMAGE_FIRE | DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(player), 3)
 		player:SetMinDamageCooldown(1)
@@ -82,8 +105,8 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, wakaba.PlayerCollision_SelfBurning)
 
 function wakaba:NegateDamage_SelfBurning(player, amount, flag, source, countdownFrames)
-	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
+	if wakaba:getPlayerDataEntry(player ,"selfburningcount", 0) > 0 or player:GetEffects():GetCollectibleEffect(wakaba.Enums.Collectibles.SELF_BURNING) then
 		return false
 	end
 end
-wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_SelfBurning)
+--wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_SelfBurning)

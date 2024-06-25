@@ -16,7 +16,7 @@
 		<Item Name="Mystic Crystal" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Question Block" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Venom Incantation" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -35,6 +35,7 @@
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -69,7 +70,7 @@
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -91,7 +92,7 @@
 		<Item Name="Vintage Threat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Book of Conquest" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
@@ -100,6 +101,7 @@
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Magma Blade" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Wakaba's Blessing" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -125,9 +127,9 @@
 		<Item Name="Wakaba's Nemesis" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Wakaba's Uniform" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Executioner" Weight="0.75" DecreaseBy="0.75" RemoveOn="0.075"/>
-		<Item Name="New Year's Eve Bomb" Weight="0.75" DecreaseBy="0.75" RemoveOn="0.075"/>
-		<Item Name="Wakaba's Double Dreams" Weight="0.75" DecreaseBy="0.75" RemoveOn="0.075"/>
+		<Item Name="Executioner" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
+		<Item Name="New Year's Eve Bomb" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
+		<Item Name="Wakaba's Double Dreams" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -135,7 +137,7 @@
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lunar Stone" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prestige Pass" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="The Winter Albireo" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
@@ -144,16 +146,16 @@
 		<Item Name="Lil Rira" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Rira's Bento" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.6" DecreaseBy="0.6" RemoveOn="0.06"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="0.2" DecreaseBy="0.1" RemoveOn="0.02"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="0.1" DecreaseBy="0.05" RemoveOn="0.01"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Red Corruption" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
@@ -163,7 +165,7 @@
 	</Pool>
 	<Pool name="library">
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
-		<Item Name="Wakaba's Double Dreams" Weight="0.2" DecreaseBy="0.02" RemoveOn="0.02"/>
+		<Item Name="Wakaba's Double Dreams" Weight="0.02" DecreaseBy="0.002" RemoveOn="0.002"/>
 		<Item Name="D6 Plus" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Book of Shiori" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.05"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -203,7 +205,7 @@
 		<Item Name="Mystic Crystal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Question Block" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Clensing Foam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Venom Incantation" Weight="0.75" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Eye of Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="See des Bischofs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -222,10 +224,11 @@
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nerf Gun" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bento" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Maid Duet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Maid Duet" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Chimaki" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -237,6 +240,7 @@
 		<Item Name="Mystic Crystal" Weight="0.8" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Magma Blade" Weight="0.7" DecreaseBy="0.7" RemoveOn="0.07"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -307,7 +311,7 @@
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="0.5" DecreaseBy="0.2" RemoveOn="0.05"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 	</Pool>
 
@@ -345,6 +349,7 @@
 		<Item Name="Beetlejuice" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Magma Blade" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="keyMaster">
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -355,6 +360,7 @@
 		<Item Name="New Year's Eve Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Self Burning" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Lunar Stone" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -363,7 +369,7 @@
 	<Pool name="rottenBeggar">
 	</Pool>
 	<Pool name="batteryBum">
-		<Item Name="Plasma Beam" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 	</Pool>
 	<Pool name="shellGame">
 	</Pool>
@@ -378,9 +384,9 @@
 	</Pool>
 	<Pool Name="redChest">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="0.5" DecreaseBy="0.2" RemoveOn="0.05"/>
 		<Item Name="Anti Balance" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Curse of The Tower 2" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Curse of The Tower 2" Weight="0.1" DecreaseBy="0.04" RemoveOn="0.01"/>
 		<Item Name="Venom Incantation" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
@@ -389,7 +395,7 @@
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Murasame" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
-		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.05"/>
 		<Item Name="Power Bomb" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rira's Coat" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -439,7 +445,7 @@
 		<Item Name="Return Postage" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="D6 Plus" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="0.4" DecreaseBy="0.04" RemoveOn="0.04"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Double Invader" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -453,9 +459,9 @@
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Executioner" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Neko Figure" Weight="0.5" DecreaseBy="0.2" RemoveOn="0.05"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
-		<Item Name="Plasma Beam" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
+		<Item Name="Plasma Beam" Weight="0.2" DecreaseBy="0.08" RemoveOn="0.02"/>
 	</Pool>
 </ItemPools>

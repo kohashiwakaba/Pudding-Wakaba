@@ -44,7 +44,7 @@ if REPENTOGON then
 		isc.ISCFeature.MODDED_ELEMENT_SETS,
 	}
 end
-wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class Mod
+wakaba = isc:upgradeMod(_wakaba, iFeatures) ---@class wakaba: ModReference
 
 include('wakaba_flags')
 include('wakaba_src.debug_area')
@@ -130,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "112a Richer 2024.04.08"
-wakaba.intversion = 11201
+wakaba.version = "v115d Rira 2024.06.20"
+wakaba.intversion = 11504
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -154,11 +154,7 @@ wakaba.roomoverride = {
 }
 
 wakaba.sprites = {}
-wakaba.RGB = {
-	R = 255,
-	G = 0,
-	B = 0,
-}
+include('wakaba_src.rgb')
 
 -- EID extended description. for eidappend.lua
 wakaba.descriptions = wakaba.descriptions or {}
@@ -390,6 +386,14 @@ local richer_saved_recipies = {
 		playersavedata = {},
 		dss_menu = {},
 		pendingunlock = {},
+
+		bossdestlock = false,
+		damoclesstart = nil,
+		bossdest = nil,
+		startquality = nil,
+		bossdesthealth = nil,
+		bossdesthealthamount = nil,
+		bossdestlunatic = nil,
 
 	},
 	run = {
@@ -893,133 +897,144 @@ function wakaba:getIndexedPlayer(i)
 	return renderActive:GetIndexedPlayer(i)
 end
 
-include('wakaba_src.functions.callbacks_wakaba')
-include('wakaba_src.functions.secondary_player_data')
-include('wakaba_src.libs.retribution_status')
-include('wakaba_src.libs.revel_utils')
-include('wakaba_src.functions.hudstats')
-include('wakaba_src.functions.hit_counter')
-include('wakaba_src.functions.room_name_display')
-include('wakaba_src.functions.isc_roomgen')
-include('wakaba_src.functions.spawner')
-include('wakaba_src.functions.custom_item_sound')
-include('wakaba_src.functions.custom_hurt_sound')
-include('wakaba_src.functions.custom_pedestals')
+do
+	include('wakaba_src.functions.callbacks_wakaba')
+	include('wakaba_src.functions.secondary_player_data')
+	include('wakaba_src.libs.retribution_status')
+	include('wakaba_src.libs.revel_utils')
+	include('wakaba_src.functions.hudstats')
+	include('wakaba_src.functions.hit_counter')
+	include('wakaba_src.functions.room_name_display')
+	include('wakaba_src.functions.enhanced_boss_dest')
+	include('wakaba_src.functions.isc_roomgen')
+	include('wakaba_src.functions.spawner')
+	include('wakaba_src.functions.custom_item_sound')
+	include('wakaba_src.functions.custom_hurt_sound')
+	include('wakaba_src.functions.custom_pedestals')
+end
 
-include('wakaba_src.items.0000_blessing')
-include('wakaba_src.items.0001_bookofshiori')
-include('wakaba_src.items.0003_bookofconquest')
-include('wakaba_src.items.0004_minerva')
-include('wakaba_src.items.0005_winteralbireo')
-include('wakaba_src.items.0006_lunarstone')
-include('wakaba_src.items.0007_elixiroflife')
-include('wakaba_src.items.0008_flashshift')
-include('wakaba_src.items.0009_concentration')
-include('wakaba_src.items.0010_rabbitribbon')
-include('wakaba_src.items.0011_sweetscatalog')
---include('wakaba_src.items.0011_sweetscatalog_ancient')
---include('wakaba_src.items.0011_sweetscatalog_premium')
-include('wakaba_src.items.0012_waterflame')
-include('wakaba_src.items.0013_chimaki')
-include('wakaba_src.items.0014_riraswimsuit')
-include('wakaba_src.items.1084_nerfgun')
-include('wakaba_src.items.0015_brokentoolbox')
---include('wakaba_src.items.0016_rabbeyward')
-include('wakaba_src.items.1001_eatheart')
+do
 
-include('wakaba_src.items.1002_bookofforgotten')
-include('wakaba_src.items.1003_dcupicecream')
-include('wakaba_src.items.1003b_mintchocoicecream')
-include('wakaba_src.items.1004_gamecd')
-include('wakaba_src.items.1005_wakabapendant')
-include('wakaba_src.items.1006_secretcard')
-include('wakaba_src.items.1007_plumy')
-include('wakaba_src.items.1008_executioner')
-include('wakaba_src.items.1009_newyearbomb')
---include('wakaba_src.items.1010_newyearbomb')
-include('wakaba_src.items.1011_revengefruit')
-include('wakaba_src.items.1012_uniform')
-include('wakaba_src.items.1015_eyeofclock')
-include('wakaba_src.items.1016_lilwakaba')
-include('wakaba_src.items.1017_counter')
-include('wakaba_src.items.1018_returnpostage')
-include('wakaba_src.items.1019_d6plus')
-include('wakaba_src.items.1020_lilmoe')
-include('wakaba_src.items.1023_bookoffocus')
-include('wakaba_src.items.1024_deckofrunes')
-include('wakaba_src.items.1025_microdoppelganger')
-include('wakaba_src.items.1026_bookofsilence')
-include('wakaba_src.items.1027_vintagethreat')
-include('wakaba_src.items.1028_bookofthegod')
-include('wakaba_src.items.1029_grimreaperdefender')
-include('wakaba_src.items.1030_bookoftrauma')
-include('wakaba_src.items.1031_bookofthefallen')
-include('wakaba_src.items.1032_maijimamythology')
-include('wakaba_src.items.1033_apollyoncrisis')
-include('wakaba_src.items.1034_lilshiva')
-include('wakaba_src.items.1035_nekofigure')
-include('wakaba_src.items.1036_dejavu')
-include('wakaba_src.items.1038_lilmao')
-include('wakaba_src.items.1039_isekaidefinition')
-include('wakaba_src.items.1040_balance')
-include('wakaba_src.items.1041_moemuffin')
-include('wakaba_src.items.1044_clovershard')
+	include('wakaba_src.items.0000_blessing')
+	include('wakaba_src.items.0001_bookofshiori')
+	include('wakaba_src.items.0003_bookofconquest')
+	include('wakaba_src.items.0004_minerva')
+	include('wakaba_src.items.0005_winteralbireo')
+	include('wakaba_src.items.0006_lunarstone')
+	include('wakaba_src.items.0007_elixiroflife')
+	include('wakaba_src.items.0008_flashshift')
+	include('wakaba_src.items.0009_concentration')
+	include('wakaba_src.items.0010_rabbitribbon')
+	include('wakaba_src.items.0011_sweetscatalog')
+	--include('wakaba_src.items.0011_sweetscatalog_ancient')
+	--include('wakaba_src.items.0011_sweetscatalog_premium')
+	include('wakaba_src.items.0012_waterflame')
+	include('wakaba_src.items.0013_chimaki')
+	include('wakaba_src.items.0014_riraswimsuit')
+	include('wakaba_src.items.1084_nerfgun')
+	include('wakaba_src.items.0015_brokentoolbox')
+	--include('wakaba_src.items.0016_rabbeyward')
+	include('wakaba_src.items.0018_azurerir')
+	include('wakaba_src.items.1001_eatheart')
+
+	include('wakaba_src.items.1002_bookofforgotten')
+	include('wakaba_src.items.1003_dcupicecream')
+	include('wakaba_src.items.1003b_mintchocoicecream')
+	include('wakaba_src.items.1004_gamecd')
+	include('wakaba_src.items.1005_wakabapendant')
+	include('wakaba_src.items.1006_secretcard')
+	include('wakaba_src.items.1007_plumy')
+	include('wakaba_src.items.1008_executioner')
+	include('wakaba_src.items.1009_newyearbomb')
+	--include('wakaba_src.items.1010_newyearbomb')
+	include('wakaba_src.items.1011_revengefruit')
+	include('wakaba_src.items.1012_uniform')
+	include('wakaba_src.items.1015_eyeofclock')
+	include('wakaba_src.items.1016_lilwakaba')
+	include('wakaba_src.items.1017_counter')
+	include('wakaba_src.items.1018_returnpostage')
+	include('wakaba_src.items.1019_d6plus')
+	include('wakaba_src.items.1020_lilmoe')
+	include('wakaba_src.items.1023_bookoffocus')
+	include('wakaba_src.items.1024_deckofrunes')
+	include('wakaba_src.items.1025_microdoppelganger')
+	include('wakaba_src.items.1026_bookofsilence')
+	include('wakaba_src.items.1027_vintagethreat')
+	include('wakaba_src.items.1028_bookofthegod')
+	include('wakaba_src.items.1029_grimreaperdefender')
+	include('wakaba_src.items.1030_bookoftrauma')
+	include('wakaba_src.items.1031_bookofthefallen')
+	include('wakaba_src.items.1032_maijimamythology')
+	include('wakaba_src.items.1033_apollyoncrisis')
+	include('wakaba_src.items.1034_lilshiva')
+	include('wakaba_src.items.1035_nekofigure')
+	include('wakaba_src.items.1036_dejavu')
+	include('wakaba_src.items.1038_lilmao')
+	include('wakaba_src.items.1039_isekaidefinition')
+	include('wakaba_src.items.1040_balance')
+	include('wakaba_src.items.1041_moemuffin')
+	include('wakaba_src.items.1044_clovershard')
 
 
-include('wakaba_src.items.1042_murasame')
-include('wakaba_src.items.1043_caramellapancake')
-include('wakaba_src.items.1045_nasalover')
-include('wakaba_src.items.1046_crystals')
-include('wakaba_src.items.1047_3dprinter')
-include('wakaba_src.items.1048_powerbomb')
-include('wakaba_src.items.1049_syrup')
-include('wakaba_src.items.1050_phantomcloak')
-include('wakaba_src.items.1051_questionblock')
-include('wakaba_src.items.1052_clensingfoam')
-include('wakaba_src.items.1053_beetlejuice')
-include('wakaba_src.items.1054_curseofthetower2')
---include('wakaba_src.items.1055_magmablade')
-include('wakaba_src.items.1056_venomincantation')
-include('wakaba_src.items.1057_fireflylighter')
-include('wakaba_src.items.1058_doubleinvader')
-include('wakaba_src.items.1059_redcorruption')
-include('wakaba_src.items.1060_plasmabeam')
-include('wakaba_src.items.1061_antibalance')
-include('wakaba_src.items.1062_lakeofbishop')
-include('wakaba_src.items.1063_prestigepass')
-include('wakaba_src.items.1064_crisisboost')
-include('wakaba_src.items.1065_easteregg')
-include('wakaba_src.items.1066_richeruniform')
-include('wakaba_src.items.1067_magmablade')
-include('wakaba_src.items.1068_onsentowel')
-include('wakaba_src.items.1068b_succubusblanket')
-include('wakaba_src.items.1069_cunningpaper')
-include('wakaba_src.items.1070_lilricher')
-include('wakaba_src.items.1071_richerflipper')
-include('wakaba_src.items.1075_powblock')
-include('wakaba_src.items.1076_selfburning')
+	include('wakaba_src.items.1042_murasame')
+	include('wakaba_src.items.1043_caramellapancake')
+	include('wakaba_src.items.1045_nasalover')
+	include('wakaba_src.items.1046_crystals')
+	include('wakaba_src.items.1047_3dprinter')
+	include('wakaba_src.items.1048_powerbomb')
+	include('wakaba_src.items.1049_syrup')
+	include('wakaba_src.items.1050_phantomcloak')
+	include('wakaba_src.items.1051_questionblock')
+	include('wakaba_src.items.1052_clensingfoam')
+	include('wakaba_src.items.1053_beetlejuice')
+	include('wakaba_src.items.1054_curseofthetower2')
+	--include('wakaba_src.items.1055_magmablade')
+	include('wakaba_src.items.1056_venomincantation')
+	include('wakaba_src.items.1057_fireflylighter')
+	include('wakaba_src.items.1058_doubleinvader')
+	include('wakaba_src.items.1059_redcorruption')
+	include('wakaba_src.items.1060_plasmabeam')
+	include('wakaba_src.items.1061_antibalance')
+	include('wakaba_src.items.1062_lakeofbishop')
+	include('wakaba_src.items.1063_prestigepass')
+	include('wakaba_src.items.1064_crisisboost')
+	include('wakaba_src.items.1065_easteregg')
+	include('wakaba_src.items.1066_richeruniform')
+	include('wakaba_src.items.1067_magmablade')
+	include('wakaba_src.items.1068_onsentowel')
+	include('wakaba_src.items.1068b_succubusblanket')
+	include('wakaba_src.items.1069_cunningpaper')
+	include('wakaba_src.items.1070_lilricher')
+	include('wakaba_src.items.1071_richerflipper')
+	include('wakaba_src.items.1075_powblock')
+	include('wakaba_src.items.1076_selfburning')
 
-include('wakaba_src.items.1077_rirabra')
-include('wakaba_src.items.1078_secretdoor')
-include('wakaba_src.items.1079_bunnyparfait')
-include('wakaba_src.items.1081_lilrira')
-include('wakaba_src.items.1082_blackbeanmochi')
-include('wakaba_src.items.1083_sakuramontblanc')
-include('wakaba_src.items.1085_rirabento')
-include('wakaba_src.items.1086_richernecklace')
-include('wakaba_src.items.1087_riracoat')
-include('wakaba_src.items.1088_rirabandage')
-include('wakaba_src.items.1089_kanaelens')
-include('wakaba_src.items.1090_bookofamplitude')
-include('wakaba_src.items.1091_sakuracapsule')
-include('wakaba_src.items.1092_chewyrollycake')
-include('wakaba_src.items.1093_maidduet')
-include('wakaba_src.items.1095_rirauniform')
-include('wakaba_src.items.1100_richerbra')
+	include('wakaba_src.items.1077_rirabra')
+	include('wakaba_src.items.1078_secretdoor')
+	include('wakaba_src.items.1079_bunnyparfait')
+	include('wakaba_src.items.1081_lilrira')
+	include('wakaba_src.items.1082_blackbeanmochi')
+	include('wakaba_src.items.1083_sakuramontblanc')
+	include('wakaba_src.items.1085_rirabento')
+	include('wakaba_src.items.1086_richernecklace')
+	include('wakaba_src.items.1087_riracoat')
+	include('wakaba_src.items.1088_rirabandage')
+	include('wakaba_src.items.1089_kanaelens')
+	include('wakaba_src.items.1090_bookofamplitude')
+	include('wakaba_src.items.1091_sakuracapsule')
+	include('wakaba_src.items.1092_chewyrollycake')
+	include('wakaba_src.items.1093_maidduet')
+	include('wakaba_src.items.1094_crossbomb')
+	include('wakaba_src.items.1095_rirauniform')
+	include('wakaba_src.items.1100_richerbra')
+	include('wakaba_src.items.1102_bubblebombs')
 
-include('wakaba_src.pickups.2005_dreamcard')
-include('wakaba_src.items.1200_doubledreams')
-include('wakaba_src.items.1201_edenstickynote')
+	include('wakaba_src.pickups.2005_dreamcard')
+	include('wakaba_src.items.1200_doubledreams')
+	include('wakaba_src.items.1201_edenstickynote')
+end
+
+do
 
 --include('wakaba_src.pickups.2001_donationcard')
 include('wakaba_src.pickups.2002_cranecard')
@@ -1033,114 +1048,143 @@ include('wakaba_src.pickups.2010_valutcard')
 include('wakaba_src.pickups.2011_trialstew')
 include('wakaba_src.pickups.2012_richerticket')
 include('wakaba_src.pickups.2013_riraticket')
+include('wakaba_src.pickups.2015_flipcard')
 include('wakaba_src.pickups.2100_pills')
 include('wakaba_src.pickups.2501_wakabasoul')
 include('wakaba_src.pickups.2502_shiorisoul')
 include('wakaba_src.pickups.2503_tsukasasoul')
 include('wakaba_src.pickups.2504_richersoul')
+include('wakaba_src.pickups.2505_rirasoul')
+end
 
-include('wakaba_src.items.3000_notepathfinder')
-include('wakaba_src.items.3001_bitcoin')
-include('wakaba_src.items.3002_clover')
-include('wakaba_src.items.3003_magnetheaven')
-include('wakaba_src.items.3004_hardbook')
-include('wakaba_src.items.3005_determinationribbon')
-include('wakaba_src.items.3006_bookmarkbag')
-include('wakaba_src.items.3007_ringofjupiter')
-include('wakaba_src.items.3008_dimensioncutter')
-include('wakaba_src.items.3009_delimiter')
-include('wakaba_src.items.3010_rangeos')
-include('wakaba_src.items.3011_sirenbadge')
-include('wakaba_src.items.3012_isaaccartridge')
-include('wakaba_src.items.3013_starreversal')
-include('wakaba_src.items.3014_auroragem')
-include('wakaba_src.items.3015_mistake')
-include('wakaba_src.items.3016_kuromicard')
-include('wakaba_src.items.3017_eternitycookie')
-include('wakaba_src.items.3018_richerreportcard')
+do
 
--- Tarnished unlock trinkets
-include('wakaba_src.items.3203_sigilofkaguya')
+	include('wakaba_src.items.3000_notepathfinder')
+	include('wakaba_src.items.3001_bitcoin')
+	include('wakaba_src.items.3002_clover')
+	include('wakaba_src.items.3003_magnetheaven')
+	include('wakaba_src.items.3004_hardbook')
+	include('wakaba_src.items.3005_determinationribbon')
+	include('wakaba_src.items.3006_bookmarkbag')
+	include('wakaba_src.items.3007_ringofjupiter')
+	include('wakaba_src.items.3008_dimensioncutter')
+	include('wakaba_src.items.3009_delimiter')
+	include('wakaba_src.items.3010_rangeos')
+	include('wakaba_src.items.3011_sirenbadge')
+	include('wakaba_src.items.3012_isaaccartridge')
+	include('wakaba_src.items.3013_starreversal')
+	include('wakaba_src.items.3014_auroragem')
+	include('wakaba_src.items.3015_mistake')
+	include('wakaba_src.items.3016_kuromicard')
+	include('wakaba_src.items.3017_eternitycookie')
+	include('wakaba_src.items.3018_richerreportcard')
+	include('wakaba_src.items.3021_caramellacandies')
+end
 
-include('wakaba_src.pickups.4000_cloverchest')
+do
+	-- Tarnished unlock trinkets
+	include('wakaba_src.items.3203_sigilofkaguya')
+end
 
-include('wakaba_src.entities.anotherfortune')
-include('wakaba_src.entities.crystalrestock')
+do
+	include('wakaba_src.pickups.4000_cloverchest')
 
-include('wakaba_src.characters.locked')
-include('wakaba_src.characters.wakaba')
-include('wakaba_src.characters.wakaba_b')
---include('wakaba_src.characters.wakaba_t')
-include('wakaba_src.characters.shiori')
-include('wakaba_src.characters.shiori_b')
-include('wakaba_src.characters.tsukasa')
-include('wakaba_src.characters.tsukasa_b')
-include('wakaba_src.characters.richer')
-include('wakaba_src.characters.richer_b')
-include('wakaba_src.characters.rira')
-include('wakaba_src.common')
+	include('wakaba_src.entities.anotherfortune')
+	include('wakaba_src.entities.crystalrestock')
+end
 
-include('wakaba_src.items.0002_bookofshiori_func')
+do
+	include('wakaba_src.characters.locked')
+	include('wakaba_src.characters.wakaba')
+	include('wakaba_src.characters.wakaba_b')
+	--include('wakaba_src.characters.wakaba_t')
+	include('wakaba_src.characters.shiori')
+	include('wakaba_src.characters.shiori_b')
+	include('wakaba_src.characters.tsukasa')
+	include('wakaba_src.characters.tsukasa_b')
+	include('wakaba_src.characters.richer')
+	include('wakaba_src.characters.richer_b')
+	include('wakaba_src.characters.rira')
+end
 
-include('wakaba_src.functions.charge_richer')
-include('wakaba_src.functions.unlock_old')
-include('wakaba_src.functions.aqua_trinkets')
-include('wakaba_src.functions.unlock')
---include('wakaba_src.functions.charge')
-include('wakaba_src.functions.revival')
-include('wakaba_src.functions.revival2')
-include('wakaba_src.functions.hidden_items')
-include('wakaba_src.functions.fireclub')
-include('wakaba_src.functions.take_damage_npc')
-include('wakaba_src.functions.important_stats')
+do
+	include('wakaba_src.common')
 
---include('challenges')
-include('wakaba_src.challenges.core')
-include('wakaba_src.curses')
+	include('wakaba_src.items.0002_bookofshiori_func')
 
-include('wakaba_src.descriptions.en_us')
-include('wakaba_src.descriptions.ko_kr')
-include('wakaba_src.descriptions.zh_cn')
-include('wakaba_src.eidappend')
-include('wakaba_src.eidreminder')
-include('wakaba_src.uniqueitems')
+	include('wakaba_src.functions.charge_richer')
+	include('wakaba_src.functions.unlock_old')
+	include('wakaba_src.functions.aqua_trinkets')
+	include('wakaba_src.functions.unlock')
+	--include('wakaba_src.functions.charge')
+	include('wakaba_src.functions.revival')
+	include('wakaba_src.functions.revival2')
+	include('wakaba_src.functions.hidden_items')
+	include('wakaba_src.functions.fireclub')
+	include('wakaba_src.functions.take_damage_npc')
+	include('wakaba_src.functions.important_stats')
+	include('wakaba_src.functions.inventory_descriptions')
 
-include('wakaba_src.rgb')
-include('wakaba_src.devilangel')
-include('wakaba_src.encyclopedia')
-include('wakaba_src.rerollcheck')
-include('wakaba_src.rerollcheck_pool')
-include('wakaba_src.functions.item_pool_wakaba')
-include('wakaba_src.wardrobeplus')
-include('wakaba_src.stackablemantle')
-include('wakaba_src.deadwispnotif')
-include('wakaba_src.inventorydesc')
-include('wakaba_src.minimapi')
-include('wakaba_src.challenges_dest')
-include('wakaba_src.wisps')
-include('wakaba_src.config')
-include('wakaba_src.console_commands')
+	--include('challenges')
+	include('wakaba_src.challenges.core')
+	include('wakaba_src.curses')
+end
 
-include('wakaba_src.compat.fiendfolio')
-include('wakaba_src.compat.retribution')
-include('wakaba_src.compat.epiphany')
-include('wakaba_src.compat.samael')
-include('wakaba_src.compat.taintedtreasure')
-include('wakaba_src.compat.thefuture')
-include('wakaba_src.compat.stageapi')
+do
+	include('wakaba_src.descriptions.en_us')
+	include('wakaba_src.descriptions.ko_kr')
+	include('wakaba_src.descriptions.zh_cn')
+	include('wakaba_src.eidappend')
+	include('wakaba_src.eidreminder')
+	include('wakaba_src.uniqueitems')
+end
+
+do
+
+	include('wakaba_src.devilangel')
+	include('wakaba_src.encyclopedia')
+	include('wakaba_src.rerollcheck')
+	include('wakaba_src.rerollcheck_pool')
+	include('wakaba_src.functions.item_pool_wakaba')
+	include('wakaba_src.wardrobeplus')
+	include('wakaba_src.stackablemantle')
+	include('wakaba_src.deadwispnotif')
+	--include('wakaba_src.inventorydesc')
+	include('wakaba_src.minimapi')
+	include('wakaba_src.challenges_dest')
+	include('wakaba_src.wisps')
+	include('wakaba_src.config')
+	include('wakaba_src.console_commands')
+end
+
+do
+	include('wakaba_src.compat.fiendfolio')
+	include('wakaba_src.compat.retribution')
+	include('wakaba_src.compat.epiphany')
+	include('wakaba_src.compat.samael')
+	include('wakaba_src.compat.taintedtreasure')
+	include('wakaba_src.compat.thefuture')
+	include('wakaba_src.compat.sacred_dreams')
+	include('wakaba_src.compat.reshaken_v1')
+	include('wakaba_src.compat.stageapi')
+end
 
 if REPENTOGON then
 	include('wakaba_src.compat.repentogon.core')
 	include('wakaba_src.compat.repentogon.item_names')
 	include('wakaba_src.compat.repentogon.item_additions')
 	include('wakaba_src.compat.repentogon.achievements')
+	include('wakaba_src.compat.repentogon.revivals')
 	--include('wakaba_src.compat.repentogon.imgui')
+	if _DISCORDRPC then
+		include('wakaba_src.compat.repentogon.discord_rich_presence')
+	end
 end
 
 -- This must be call very last
 function wakaba:TakeDmg_VintageThreat(entity, amount, flag, source, countdownFrames)
 	if entity.Type == EntityType.ENTITY_PLAYER
-	and not (flag & DamageFlag.DAMAGE_NO_PENALTIES == DamageFlag.DAMAGE_NO_PENALTIES or flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS)
+	and flag & (DamageFlag.DAMAGE_CURSED_DOOR | DamageFlag.DAMAGE_FAKE) == 0
 	then
 		local player = entity:ToPlayer()
 		--Double check just in case
@@ -1221,6 +1265,8 @@ function wakaba:init(continue)
 		wakaba:ResetWispStatus()
 	end
 	-- Run this whether continue or not
+
+	-- TODO make compat manager
 	if EID then
 		wakaba:UpdateWakabaDescriptions()
 		--wakaba:UpdateWakabaEncyclopediaDescriptions()
@@ -1243,6 +1289,14 @@ function wakaba:init(continue)
 
 	if TheFuture then
 		wakaba:GameStart_TheFutureCompat()
+	end
+
+	if SacredDreams then
+		wakaba:GameStart_SDCompat()
+	end
+
+	if MilkshakeVol1 then
+		wakaba:GameStart_ReshakenCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
@@ -1364,6 +1418,7 @@ function wakaba:GetPlayerEntityData(player)
 				hairpinluck = 0,
 				speed = 0,
 				shotspeed = 0,
+				damagemult = 0,
 			},
 			statmultiplier = {
 				damage = 0,
@@ -1857,6 +1912,8 @@ end
 
 
 
+local hasShownStartWarning = false
+local skipWarning = false
 if EID then
 	local shouldShowWarning = {}
 	if not REPENTOGON then
@@ -1866,8 +1923,10 @@ if EID then
 		table.insert(shouldShowWarning, "WakabaDamoclesWarningText")
 	end
 
-	local hasShownStartWarning = false
 	function wakaba:Render_WakabaFlagsWarning()
+		if skipWarning then
+			wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WakabaFlagsWarning)
+		end
 		if #shouldShowWarning > 0 and wakaba.G:GetFrameCount() < 10*30 then
 			local player = Isaac.GetPlayer()
 			local title = EID:getDescriptionEntry("WakabaGlobalWarningTitle")
@@ -1880,9 +1939,10 @@ if EID then
 			demoDescObj.Name = title or ""
 			demoDescObj.Description = desc or ""
 			EID:displayPermanentText(demoDescObj, "WakabaGlobalWarningTitle")
+			hasShownStartWarning = true
 		elseif hasShownStartWarning then
 			EID:hidePermanentText()
-			hasShownStartWarning = false
+			skipWarning = true
 		end
 	end
 	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WakabaFlagsWarning)

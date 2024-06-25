@@ -191,6 +191,7 @@ function wakaba:FamiliarInit_Plumy(familiar)
 	
 end
 
+---@param familiar EntityFamiliar
 function wakaba:FamiliarUpdate_Plumy(familiar)
 	local fData = familiar:GetData()
 	local player = familiar.Player
@@ -202,7 +203,9 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 	local mark = wakaba:GetMarkedTarget(player)
 	recovertime = (Sewn_API and Sewn_API:IsSuper(fData)) and 8 or recovertime
 	recovertime = (Sewn_API and Sewn_API:IsUltra(fData)) and 5 or recovertime
-
+	if not familiar:HasEntityFlags(EntityFlag.FLAG_NO_SPIKE_DAMAGE) then
+		familiar:AddEntityFlags(EntityFlag.FLAG_NO_SPIKE_DAMAGE)
+	end
 	
 	if fData.wakaba.plumhealth <= 0 and not fData.wakaba.plumrecover then
 		fData.wakaba.plumrecover = true
@@ -403,6 +406,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_Plumy)
 function wakaba:TakeDamage_Plumy(familiar, damage, flags, source, cooldown)
 	--print("Plum took dmg")
 	if familiar.Variant ~= wakaba.Enums.Familiars.PLUMY then return end
+	if source.Entity and source.Entity.Type == EntityType.ENTITY_DARK_ESAU then return false end
+	if not wakaba:IsLunatic() then return end
 	if not familiar:GetData().wakaba then return end
 	if familiar:GetData().wakaba.plumrecover then return false end
 	familiar:GetData().wakaba.plumhealth = familiar:GetData().wakaba.plumhealth - (damage * 1000)

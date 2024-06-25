@@ -67,7 +67,7 @@ function wakaba:PlayerUpdate_Revival2(player)
 			end
 
 			data.willRevive = false
-			if not savedRevivalData.CurrentRoom then
+			if not savedRevivalData.CurrentRoom and not isc:inBeastRoom() then
 				wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, -1, 0, player)
 			end
 			wakaba:scheduleForUpdate(function()

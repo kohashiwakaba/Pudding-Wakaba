@@ -1,4 +1,6 @@
 local maxMult = 0
+wakaba.MagnetPlayer = nil ---@type EntityPlayer|EntityEffect
+wakaba.MagnetChecker = nil ---@type EntityNPC
 function wakaba:PostUpdate_MagnetHeaven()
 	maxMult = 0
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
@@ -6,6 +8,76 @@ function wakaba:PostUpdate_MagnetHeaven()
 	end)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostUpdate_MagnetHeaven)
+
+function wakaba:Update_MagnetHeaven()
+	wakaba.MagnetPlayer = nil
+	for i, e in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, wakaba.Enums.Effects.POWER_BOMB)) do
+		if e.FrameCount > 45 then
+			if e:GetSprite():IsFinished("Fading") then
+				wakaba.MagnetPlayer = e
+			end
+		end
+	end
+	wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
+		if wakaba.MagnetPlayer then return end
+		if Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, player.ControllerIndex) or player:HasCollectible(wakaba.Enums.Trinkets.MAGNET_HEAVEN) then
+			wakaba.MagnetPlayer = player
+		end
+	end)
+	if wakaba.MagnetPlayer and wakaba.MagnetPlayer.Type == EntityType.ENTITY_PLAYER then
+		if not wakaba.MagnetChecker then
+			wakaba.MagnetChecker = Isaac.Spawn(EntityType.ENTITY_SHOPKEEPER, 0, 0, Vector.Zero, Vector.Zero, player):ToNPC()
+			wakaba.MagnetChecker.Visible = false
+			wakaba.MagnetChecker:AddEntityFlags(EntityFlag.FLAG_NO_QUERY)
+			wakaba.MagnetChecker.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+			wakaba.MagnetChecker.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
+		end
+	elseif wakaba.MagnetChecker and wakaba.MagnetChecker:Exists() then
+		wakaba.MagnetChecker:Remove()
+		wakaba.MagnetChecker = nil
+	end
+end
+--wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_MagnetHeaven)
+
+---@param pickup EntityPickup
+function wakaba:PickupUpdate_MagnetHeaven_temp(pickup)
+	if not pickup then return end
+	if pickup:IsShopItem() then return end
+	if not wakaba.MagnetPlayer then return end
+
+	local ignoreObstructed = wakaba.MagnetPlayer.CanFly
+	local shouldPull = false
+	local magnetMode = wakaba.MagnetPlayer.Type == EntityType.ENTITY_EFFECT and "powerbomb" or "player"
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_MAGNET_HEAVEN)) do
+		if not callback.Param or callback.Param == pickup.Variant then
+			local evals = callback.Function(callback.Mod, callback.Param, wakaba.MagnetPlayer, pickup, wakaba.MagnetChecker, ignoreObstructed)
+			if evals then
+				if type(evals) == "boolean" then
+					shouldPull = evals
+				elseif type(evals) == "table" then
+					shouldPull = evals.ShouldPull
+					magnetMode = evals.MagnetMode
+				end
+			end
+		end
+	end
+
+	if shouldPull then
+		if pickup.Variant == PickupVariant.PICKUP_COIN and pickup.SubType == CoinSubType.COIN_STICKYNICKEL then
+			pickup.SubType = CoinSubType.COIN_NICKEL
+			--pickup = pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_NICKEL)
+		end
+	end
+end
+
+---@param pickupVar PickupVariant
+---@param playerOrEffect EntityPlayer
+---@param pickup EntityPickup
+---@param checker EntityNPC
+---@param ignoreObstructed boolean
+function wakaba:MagnetCondition_MagnetHeaven(pickupVar, playerOrEffect, pickup, checker, ignoreObstructed)
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_MAGNET_HEAVEN, wakaba.MagnetCondition_MagnetHeaven)
 
 function wakaba:PickupUpdate_MagnetHeaven(pickup)
 	if not pickup then return end

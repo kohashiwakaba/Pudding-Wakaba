@@ -22,7 +22,7 @@ end
 
 local function TryChimakiSound(sndId)
 	if wakaba:getOptionValue("chimakisound") then
-		sfx:Play(sndId)
+		sfx:Play(sndId, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
 end
 
@@ -84,7 +84,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 			local player = parent.Entity:ToPlayer()
 			for _, enemy in ipairs(Isaac.FindInRadius(effect.Position, effect.Size, EntityPartition.ENEMY)) do
 				if enemy:IsVulnerableEnemy() then
-					enemy:TakeDamage(player.Damage * 4, DamageFlag.DAMAGE_IGNORE_ARMOR, parent, 0)
+					enemy:TakeDamage(player.Damage * 4, not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0, parent, 0)
 				end
 			end
 		end
@@ -124,6 +124,9 @@ wakaba.Chimaki = {
 		"Command_HolyLightJump",
 		"Command_BlueFlame",
 		"Command_ShootTears",
+		"Command_ReturnJump",
+		"Command_FlashShift",
+		"Command_CrushJump",
 	}, -- states for which he is considered busy and cannot take new actions
 }
 local chimaki = wakaba.Chimaki
@@ -544,6 +547,9 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, funct
 	local player = data.player
 	local pData = player:GetData()
 	if not room:IsClear() then return end
+	if data.bypassCurseCheck then
+		return "Command_RemoveCurse"
+	end
 	if curses > 0 and curses & ~LevelCurse.CURSE_OF_LABYRINTH > 0 then
 		if data.curseRemoveTries and data.curseRemoveTries > 0 then
 
@@ -555,7 +561,11 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -399, funct
 
 			local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), data.curseRemoveTries)
 			data.curseRemoveTries = nil
-			if rng:RandomFloat() < chance then
+			local result = rng:RandomFloat()
+			local passed = result < chance
+			wakaba.Log("Chimaki remove curse result:",result,"/",chance)
+			if passed then
+				data.bypassCurseCheck = true
 				playExtraAnim("kyuu", nil, ent, spr, data)
 				return "Command_RemoveCurse"
 			end
@@ -573,12 +583,18 @@ wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player
 	end
 	if spr:IsFinished("kyuu") then
 		--print("Finished")
+		data.bypassCurseCheck = nil
 		data.State = "Chimaki_Rest"
 		stopGoToEnt(data)
 	elseif spr:IsEventTriggered("kyuu") then
 		--print("Event Triggered")
 		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
 		level:RemoveCurses(level:GetCurses() & ~LevelCurse.CURSE_OF_LABYRINTH)
+		for i = 0, 3 do
+			local laser = EntityLaser.ShootAngle(LaserVariant.LIGHT_BEAM, familiar.Position, i * 90, 3, Vector(0, -20), familiar)
+			laser.Parent = familiar
+			laser.CollisionDamage = 0
+		end
 		--data.thrownRockEnemy = revel.virgil.throwRock(familiar, data.evadeEnemy.Position, true, false, 10)
 	end
 
@@ -644,7 +660,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -249, funct
 	local blueflies = {}
 	local enemies = {}
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if wakaba:IsActiveVulnerableEnemy(v) then
+		if wakaba:IsActiveVulnerableEnemy(v) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
 			table.insert(enemies, v)
 		end
 	end
@@ -738,7 +754,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -246, funct
 	local room = wakaba.G:GetRoom()
 	local enemies = {}
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320 and room:IsPositionInRoom(v.Position, 0)) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) < 320 and room:IsPositionInRoom(v.Position, 0) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
 			table.insert(enemies, v)
 		end
 	end
@@ -814,7 +830,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, -245, funct
 		goto skipLightCheck
 	end
 	for _, v in ipairs(isc:getAliveNPCs(-1, -1, -1, true)) do
-		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320 and room:IsPositionInRoom(v.Position, 0)) then
+		if (wakaba:IsActiveVulnerableEnemy(v) and v.Position:Distance(ent.Position) >= 320 and room:IsPositionInRoom(v.Position, 0) and not v:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then
 			table.insert(enemies, v)
 		end
 	end
@@ -935,8 +951,74 @@ end, "Command_HolyLightJump")
 --#endregion
 
 
+--#region
 
+--- 통상 상태일 때 캐릭터에게 접근할 수 없으면 점프하여 돌아오기
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, 20000, function(_, ent, spr, data, player)
+	if data.rockCooldown > 0 or data.lightCooldown > 0 then return end
+	local room = wakaba.G:GetRoom()
+	--if not room:IsClear() then return end
+	
+	local sind, tind = room:GetGridIndex(ent.Position), room:GetGridIndex(player.Position)
 
+	if room:GetGridCollisionAtPos(player.Position) ~= GridCollisionClass.COLLISION_NONE
+	and room:GetGridCollisionAtPos(player.Position) ~= GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER
+	then return end
+
+	path = wakaba:GeneratePathAStar(sind, tind, {GridCollisionClass.COLLISION_NONE, GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER})
+	if not path then
+		ent.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
+		data.groundMove = false
+		data.ignoreBeast = true
+		goToPos(player.Position, ent, data, data.speed * 2.4, 0, true)
+		playExtraAnim("long_fly_start", nil, ent, spr, data)
+		return "Command_ReturnJump"
+	end
+end)
+
+wakaba:AddCallback(wakaba.Callback.CHIMAKI_COMMAND, function(_, familiar, player, spr, data)
+	player = player or Isaac.GetPlayer()
+	local room = wakaba.G:GetRoom()
+	if spr:IsPlaying("long_fly_start") then
+		spr.FlipX = familiar.Velocity.X < 0
+		if spr:IsEventTriggered("next") then
+			playExtraAnim("long_fly_loop", nil, ent, spr, data)
+		end
+	elseif spr:IsPlaying("long_fly_loop") then
+		data.longFlyCount = (data.longFlyCount or 0) + 1
+		spr.FlipX = familiar.Velocity.X < 0
+		if data.standstill or data.longFlyCount >= 150
+			or (data.targetPos and (data.targetPos:Distance(familiar.Position) <= 40 or not room:IsPositionInRoom(data.targetPos, 0)))
+			or (data.targetEnt and (data.targetEnt.Position:Distance(familiar.Position) <= 40 or not room:IsPositionInRoom(data.targetEnt.Position, 0)))
+		then
+			playExtraAnim("long_fly_end", nil, ent, spr, data)
+		end
+	elseif spr:IsPlaying("long_fly_end") then
+		spr.FlipX = familiar.Velocity.X < 0
+	elseif not data.targetEnt then
+		data.State = "Move_Default"
+		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
+		data.groundMove = true
+		data.ignoreBeast = nil
+		data.lightCooldown = 48
+	end
+
+	if spr:IsFinished("long_fly_end") then
+		--print("Finished")
+		data.State = "Chimaki_Rest"
+		data.FrameCount = 0
+		stopGoToEnt(data)
+		stopGoToPos(familiar, data)
+		familiar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_GROUND
+		data.groundMove = true
+		data.ignoreBeast = nil
+		data.lightCooldown = 48
+		data.longFlyCount = nil
+	elseif spr:IsEventTriggered("kyuu") then
+		TryChimakiSound(wakaba.Enums.SoundEffects.CHIMAKI_KYUU)
+	end
+end, "Command_ReturnJump")
+--#endregion
 
 function wakaba:HUD_Chimaki()
 	if not wakaba.Flags or not wakaba.Flags.debugCore or not wakaba.Flags.debugChimaki then return end
@@ -946,6 +1028,7 @@ function wakaba:HUD_Chimaki()
 		fam = fams[1]
 	end
 	if fam then
+		wakaba.globalHUDSprite:RemoveOverlay()
 		local data = fam:GetData()
 		wakaba.globalHUDSprite:SetFrame("Chimaki", 0)
 		local tab = {

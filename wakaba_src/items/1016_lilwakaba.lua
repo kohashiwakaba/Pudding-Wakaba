@@ -57,7 +57,7 @@ local function fireTechWakaba(player, familiar, vector, direction)
 	local laser = player:FireTechXLaser(familiar.Position, new_tear_vector, 0.02, familiar, multiplier)
 	laser.CollisionDamage = player.Damage * multiplier
 	laser.Timeout = (40 * player.ShotSpeed) // 1
-	laser.TearFlags = TearFlags.TEAR_NORMAL
+	laser.TearFlags = TearFlags.TEAR_NORMAL | TearFlags.TEAR_HOMING
   laser.Variant = 2
   laser.SubType = 3
 	laser.Parent = familiar
@@ -153,10 +153,10 @@ function wakaba:updateLilWakaba(familiar)
 			end
 
 			if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
-				familiar.FireCooldown = ((player.MaxFireDelay + 2) // 2) + 1
+				familiar.FireCooldown = 15
 				--familiar.FireCooldown = 5
 			else
-				familiar.FireCooldown = ((player.MaxFireDelay + 1) // 1) + 1
+				familiar.FireCooldown = 30
 				--familiar.FireCooldown = 10
 			end
 		end

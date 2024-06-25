@@ -1,4 +1,10 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
+
+function wakaba:GetMaxIsekaiClots()
+	return wakaba:IsLunatic() and wakaba.Enums.Constants.MAX_ISEKAI_CLOTS_LUNATIC or wakaba.Enums.Constants.MAX_ISEKAI_CLOTS
+end
+
+
 function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
 	local isGolden = wakaba:IsGoldenItem(item)
 	local fam = isc:getPlayerFamiliars(player)
@@ -13,7 +19,7 @@ function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
 		end
 	end
 	local base = wakaba.Enums.Constants.ISEKAI_CERTIFICATE_CHANCE
-	base = (base + (wakaba.Enums.Constants.ISEKAI_OVER_CLOT_BONUS * (count - wakaba.Enums.Constants.MAX_ISEKAI_CLOTS + 1)))
+	base = (base + (wakaba.Enums.Constants.ISEKAI_OVER_CLOT_BONUS * (count - wakaba:GetMaxIsekaiClots() + 1)))
 	if wakaba:HasShiori(player) then
 		base = base + wakaba.Enums.Constants.ISEKAI_SHIORI_BONUS
 	end
@@ -34,7 +40,7 @@ function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
 		pentagram:SetColor(Color(0.5, 0, 1, 1, 1, 0, 1), 200, 2, true, false)
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE)
 	else
-		if count < wakaba.Enums.Constants.MAX_ISEKAI_CLOTS then
+		if count < wakaba:GetMaxIsekaiClots() then
 			if isGolden then
 				local clot = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, isc.BloodClotSubType.GOLD, player.Position, Vector.Zero, player):ToFamiliar()
 			else
@@ -45,7 +51,7 @@ function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
 		SFXManager():Play(SoundEffect.SOUND_DOGMA_BRIMSTONE_SHOOT, 0.4, 0, false, 1.65)
 		local clots = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLOOD_BABY, -1)
 		for i, p in ipairs(clots) do
-			if count < wakaba.Enums.Constants.MAX_ISEKAI_CLOTS then
+			if count < wakaba:GetMaxIsekaiClots() then
 				p.HitPoints = p.HitPoints + 5
 			elseif p.HitPoints < p.MaxHitPoints then
 				p.HitPoints = p.MaxHitPoints

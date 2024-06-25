@@ -1,6 +1,15 @@
 local desclang = "en_us"
 
 
+function wakaba:EIDCond_PlayerHasBirthright(playerType)
+	for i = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:GetPlayerType() == playerType and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			return true
+		end
+	end
+	return false
+end
 function wakaba:EIDCond_IsChallenge(challenge)
 	return wakaba.G.Challenge == challenge
 end
@@ -46,6 +55,10 @@ wakaba.descriptions[desclang].birthright = {
 		playerName = "Rira",
 		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
 	},
+	[wakaba.Enums.Players.RIRA_B] = {
+		playerName = "Tainted Rira",
+		description = "#Health no longer drains#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -54,6 +67,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Prevents {{Quality0}}/{{Quality1}} items from spawning"
 		.. "#↑ Prevents penalties from all damage taken"
+		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality0}} items from spawning"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -67,6 +86,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#↑ Prevents penalties from all damage taken"
+		.. "#!!! Taking this item by any means counts as Taking Devil deals."
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
+		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}} items from spawning"
+		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -93,6 +121,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Isaac also gains extra tear effect when book active items are being used"
 		.. "#Extra tear effect changes on next book usage"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{ShioriValut}} Guarantees Library every floor if possible"
+		.. "#Activates additional effect when book active items are being used"
+		.. "#Isaac also gains extra tear effect when book active items are being used"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Extra tear effect changes on next book usage, or resets on entering new floor"
+		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
@@ -115,19 +150,34 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ Homing Tears"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#Isaac and Other players inside aura grants:"
+		.. "#{{WakabaModLunatic}} {{Damage}} {{ColorOrange}}-2 damage"
+		.. "#↑ {{Tears}} +0.5 Fire rate up"
+		.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 Fire rate multiplier"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
+		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
+		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
 	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
 		itemName = "Lunar Stone",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
-		.. "#↓ Reduces heart container limit to 8"
-		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears up that scales with it"
-		.. "#If damage is taken, Lunar Stone deactivates and lunar gauge starts deplete"
-		.. "#Clearing rooms recover lunar gauge"
-		.. "#↑ Unlimited lives as long as Isaac holds Lunar Stone"
+		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears mult while active"
+		.. "#Taking damage deactivates and lunar gauge starts deplete, Clearing rooms recover it"
+		.. "#↑ Unlimited lives while holding Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
 		.. "#↑ Prevents penalties from all damage taken"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#↑ Grants additional Lunar gauge that gives {{Damage}}Damage, {{Tears}}Tears mult while active"
+		.. "#Taking damage deactivates and lunar gauge starts deplete, Clearing rooms recover it"
+		.. "#↑ Unlimited lives while holding Lunar Stone"
+		.. "#!!! Lunar Stone is removed when gauge depletes"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(Faster lunar gauge reduction speed)"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
@@ -135,7 +185,14 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
-		.. "#↓ {{ColorOrange}}Removes invincibility frames"
+		.. "#!!! {{ColorOrange}}Significantly reduces invincibility frames to 0.03s"
+		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
+		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaAntiCurseUnknown}} Curse of the Unknown immunity"
+		.. "#{{WakabaModLunatic}} {{ColorRed}}Removes invincibility frames"
 		.. "#Regenerates health for fast time if Isaac did not get hit for brief time depends on which type of health character currently has"
 		.. "#!!! Removes, or reduces 1 heart recovery health per 4 donation mechanic usage"
 		.. "{{CR}}",
@@ -155,6 +212,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Concentrate 3 seconds to fully charge active items"
 		.. "#↑ +1.5 {{Range}} Range up for concentrate (additional +0.25 per count)"
 		.. "#!!! Concentration time increases per usage. This count can be decreased on room clears"
+		.. "#!!! Can't concentrate on 300+ counts"
+		.. "#!!! Isaac cannot move and takes twice damage while in concentration mode"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#Hold Drop button to enter concentration mode"
+		.. "#Concentrate 3 seconds to fully charge active items"
+		.. "#↑ +1.5 {{Range}} Range up for concentrate (additional +0.25 per count)"
+		.. "#!!! Concentration time increases per usage. This count can be decreased on room clears"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Repeating concentration reqires room clears, can't concentrate on 60+ counts"
 		.. "#!!! Isaac cannot move and takes twice damage while in concentration mode"
 		.. "{{CR}}",
 	},
@@ -164,6 +230,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{CurseCursed}} Changes other curses"
 		.. "#{{Battery}} Stores extra charge after clearing a room (max 16)"
+		.. "#Automatically consumes stored ones for uncharged actives"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{CurseCursed}} Changes other curses"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Stores extra charge after clearing a room (max 6)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	},
@@ -178,6 +250,13 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{RicherPlanetarium}} Richer's special Planetariums appear per stage that contains:"
+		.. "#Random pool item depending of floor"
+		.. "#White Fireplace"
+		.. "#{{CrystalRestock}} Crystal restock machine"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Richer's special Planetariums replace treasure rooms that contains:"
 		.. "#Random pool item depending of floor"
 		.. "#White Fireplace"
 		.. "#{{CrystalRestock}} Crystal restock machine"
@@ -209,6 +288,24 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Trinket63}} Converts Troll Bombs"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
+		itemName = "Rabbey Ward",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
+		.. "#On use, installs a Rabbit Ward that causes:"
+		.. "#Reveals further rooms"
+		.. "#Damage, Tears up inside revealed rooms"
+		.. "#Clearing room inside Rabbit Ward recovers half soul heart"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		itemName = "Azure Rir",
+		description = ""
+		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
+		.. "#!!! Removes all heart containers"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "Broken Toolbox",
 		description = ""
@@ -222,11 +319,18 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Only can be charged through damaging enemies or self damage."
 		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
-		--[[ .. "#!!! Wakaba variant : " ]]
 		.. "#Spawns a random collectible item from current item pool"
 		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#Only can be charged through damaging enemies or self damage."
+		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
+		.. "#Spawns a random collectible item from current item pool"
+		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Decreased charge rate by half"
+		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
+		void = "No longer guarantees {{Quality3}}/{{Quality4}} when voided",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "Book of Forgotten",
@@ -246,6 +350,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Heart}} Heals one Red Heart"
 		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#↑ {{Damage}} +80% Damage Multiplier (Does not stack)"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{Heart}} +1 Heart Container"
+		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "#↑ {{Damage}} +0.3 Damage Up"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% Damage Multiplier (Does not stack)"
 		.. "{{CR}}",
 		binge = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
 	},
@@ -278,6 +388,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#{{Heart}} Full Health"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}} Sets your Luck to 3 if you have less than 3"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
+		.. "#↑ {{Damage}} +1 Damage"
+		.. "#{{Heart}} Full Health"
+		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
@@ -302,7 +418,11 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} A Baby Plum familiar that follows Isaac."
 		.. "#Shoots tears in front of Isaac and blocks projectiles"
-		.. "#When Plumy gets damaged too much, Plumy cannot move and needs 10 seconds to recovery"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_PLUM_FLUTE.."}} A Baby Plum familiar that follows Isaac."
+		.. "#Shoots tears in front of Isaac and blocks projectiles"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}When Plumy gets damaged too much, Plumy cannot move and needs 10 seconds to recovery"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
@@ -345,6 +465,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
 		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
+		void = "Can't change stored content anymore, copying stored content is changed to void usage",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
@@ -360,7 +481,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots small Tech.X Lasers"
 		.. "#Deals 40% of Isaac's damage"
-		.. "#Fire rate depends on Isaac's Tears stats"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
@@ -373,6 +493,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Does not activate when other shields are active"
 		.. "{{CR}}",
 		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}Only for current room#All wisps become invincible while counter shield is active",
+		void = "Loses auto activation, shield duration extended to 20 seconds",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "Return Postage",
@@ -453,8 +574,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "Vintage Threat",
 		description = ""
-		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room"
-		.. "#Reviving into Tainted Shiori resets keys count to 0, and activates 4 {{Collectible656}}Damocles swords"
+		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} On death, Respawn as Tainted Shiori in current room with 4 {{Collectible656}}Damocles swords, and removes all keys"
+		.. "#!!! Damage penalty protection is invalidated after revival"
 		.. "#!!! {{ColorBlink}}{{ColorRed}}TAKING ANY PENALTY DAMAGE WILL MAKE DAMOCLES SWORD FALL AND ENDS THE RUN IMMEDIATELY REGARDLESS OF EXTRA LIVES OR REMANING PLAYERS!{{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -492,7 +613,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "Book of The Fallen",
 		description = ""
-		--.. "#!!! This item cannot be used before reviving into Fallen Angel"
 		.. "#On use, Spawns 3 Putagory ghosts that deals 0.4x of Isaac's Damage"
 		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
@@ -533,6 +653,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Tears can be fired in other tears, making them bigger"
 		.. "#Isaac can support Lil Shiva using his tears"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{Collectible532}} hungry tear familiar"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Shoots single tear"
+		.. "#Tears slow down while traveling"
+		.. "#Upon stopping, they explode in 8 smaller tears"
+		.. "#Tears can be fired in other tears, making them bigger"
+		.. "#Isaac can support Lil Shiva using his tears"
+		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
@@ -564,6 +692,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Isekai Definition",
 		description = ""
 		.. "#Spawns a Lil Clot (max 10)"
+		.. "#Heals all spawned Lil Clots' health by 2"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Spawns a Lil Clot (max 4)"
 		.. "#Heals all spawned Lil Clots' health by 2"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -689,8 +821,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "Magma Blade",
 		description = ""
-		.. "#{{Burning}} Slashes fire blade on tear attack"
-		.. "#{{DamageSmall}} +100% Damage multiplier for non-tear attacks"
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -744,7 +875,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Curse of The Tower 2",
 		description = ""
 		.. "#{{GoldenBomb}} Infinite Bombs"
-		.. "#Upon taking damage, spawns a golden troll bomb around the room"
+		.. "#Upon taking damage, spawns 6 golden troll bombs around the room"
 		.. "#!!! Beware: All troll bombs are converted into Golden troll bombs if possible!"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -803,6 +934,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! {{HolyMantle}} Holy shields also count for health"
 		.. "#↑ {{Tears}} +1 Fire Rate"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} Damage multiplier up for low health (max +16%)"
+		.. "#!!! {{HolyMantle}} Holy shields also count for health"
+		.. "#↑ {{Tears}} +1 Fire Rate"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
 		itemName = "Prestige Pass",
@@ -810,6 +946,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{BossRoom}} Spawns Richer's restock machine on boss room clears"
 		.. "#Spawns Richer's restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
 		.. "#Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 2 rerolls"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{BossRoom}} Spawns Richer's restock machine on boss room clears"
+		.. "#Spawns Richer's restock machine in {{DevilRoom}}Devil/{{AngelRoom}}Angel room, {{Planetarium}}Planetariums, {{SecretRoom}}Secret/{{UltraSecretRoom}}Ultra Secret room, and Black markets"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Richer's restock machine can be bombed or paid 5{{Coin}} to reroll, but breaks after 1 reroll"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
@@ -830,10 +971,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#↑ {{Luck}} +1 Luck"
-		.. "#Replaces/spawns weapons to Caramella flies depending of Isaac's weapon"
-		.. "#{wakaba_cp1}"
+		.. "#Replaces/spawns weapons to Caramella flies"
+		.. "#The flies deal {{ColorRicher}}3x{{CR}}/{{WakabaAqua}}{{ColorRira}}1x+Aqua{{CR}}/{{ColorCiel}}5x+Explosion{{CR}}/{{ColorKoron}}1.5x+Petrify{{CR}} damage depending of color"
 		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} Respawn as Richer on death"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives"
 		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},
@@ -849,6 +989,10 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{SoulHeart}} +1 Soul Heart"
 		.. "#{{HalfSoulHeart}} 45% Chance to heal half a soul heart every minute"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{SoulHeart}} +1 Soul Heart"
+		.. "{{WakabaModLunatic}} {{ColorOrange}}{{HalfSoulHeart}} 10% Chance to heal half a soul heart every minute"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
@@ -870,6 +1014,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
 		.. "#{{Battery}} Stores extra charge after clearing a room (max 12)"
+		.. "#Automatically consumes stored ones for uncharged actives"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#Shoots chasing tears"
+		.. "#Deals 2 damage per tick"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Stores extra charge after clearing a room (max 4)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
@@ -894,16 +1044,19 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW Block",
-		description = "Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
+		description = "{{Bomb}} +6 Bombs#Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd Block",
-		description = "Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
+		description = "{{Bomb}} +6 Bombs#Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "Secret Door",
 		description = "Teleports to Starting room"
 		.. "#!!! Other effects may occur in certain situations"
+		.. "{{CR}}",
+		lunatic = "Teleports to Starting room"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Other effects won't occur"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
@@ -912,11 +1065,11 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
-		description = "Activates white fire effect#Install whiter fireplace on Isaac's position",
+		description = "Activates white fire effect#Install white fireplace on Isaac's position",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
-		description = "10% chance to shoot tears that aquafy enemies#{{Luck}} 100% chance at 38 Luck#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#Aqua attacks instakill stone enemies",
+		description = "{{WakabaAqua}} 10% chance to shoot tears that aquafy enemies#{{Luck}} 100% chance at 38 Luck#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#{{WakabaAqua}} Aqua attacks instakill stone enemies",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "Rira's Bandage",
@@ -924,15 +1077,41 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "Black Bean Mochi",
-		description = "10% chance to shoot 'zip' enemies#{{Luck}} 100% chance at 16 Luck#Zipped enemies make explosion on death#Zip explosion does not harm Isaac",
+		description = "{{WakabaZip}} 10% chance to shoot tears that 'zip' enemies"
+		.. "#{{Luck}} 100% chance at 16 Luck"
+		.. "#{{WakabaZip}} Zipped enemies make explosion on death"
+		.. "#Zip explosion does not harm Isaac"
+		.. "{{CR}}",
+		lunatic = "{{WakabaZip}} 10% chance to shoot 'zip' enemies"
+		.. "#{{Luck}} 100% chance at 16 Luck"
+		.. "#{{WakabaZip}} Zipped enemies make explosion on death"
+		.. "#Zip explosion does not harm Isaac"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Zip explosions no longer inherit Isaac's bomb synergies"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "Sakura Mont Blanc",
-		description = "For each enemy killed in the room:#↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +1 Fire rate#Caps at 6 kills#Killed enemies aquafy nearby enemies#Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#Aqua attacks instakill stone enemies",
+		description = "For each enemy killed in the room:"
+		.. "#↑ {{Damage}} +0.5 Damage"
+		.. "#↑ {{Tears}} +1 Fire rate"
+		.. "#Caps at 6 kills"
+		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
+		.. "{{CR}}",
+		lunatic = "For each enemy killed in the room:"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 Damage"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 Fire rate"
+		.. "#Caps at 6 kills"
+		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
+		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
 		itemName = "Kanae Lens",
 		description = "↑ {{Damage}} x1.65 Damage multiplier#Homing tears from left eye",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} x1.15 Damage multiplier#Homing tears from left eye",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
 		itemName = "Rira's Bento",
@@ -961,7 +1140,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
-		.. "#↓ {{Battery}}{{BlinkYellowRed}}Steals battery charges{{CR}}"
+		.. "#↓ {{Battery}}{{BlinkYellowRed}} Steals battery charges{{CR}}"
 		.. "#↑ {{Damage}} +0.05 Damage per stolen charges"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
@@ -991,23 +1170,45 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
 		itemName = "Book of Amplitude",
 		description = "{{ArrowGrayRight}} One of effects while held:"
-		.. "#↑ {{Damage}}Damage +2"
-		.. "#↑ {{Tears}}Fire rate +1"
-		.. "#↑ {{Range}}Speed + 0.15"
-		.. "#↑ {{Luck}}Luck +2"
+		.. "#↑ {{Damage}} +2 Damage"
+		.. "#↑ {{Tears}} +1 Fire rate"
+		.. "#↑ {{Range}} +0.15 Speed"
+		.. "#↑ {{Luck}} +2 Luck"
 		.. "#On use, or entering new room changes to next effect respectively"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
+		itemName = "Bubble Bombs",
+		description = "{{Bomb}} +5 Bombs"
+		.. "#{{WakabaAqua}} Isaac's bombs aquafy enemies"
+		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
+		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.CROSS_BOMB] = {
+		itemName = "Cross Bomb",
+		description = "{{Bomb}} +5 Bombs"
+		.. "#Bombs explode in a delayed cross-shaped pattern"
+		.. "#Extra explosions deal 10 damage and does not harm Isaac"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
-		.. "#Upon use, Change the form of Wakaba's dreams"
-		.. "#If collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
-		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} 8% chance to spawn Wakaba's Dream Card on room clears"
+		.. "#On use, Change the form of Wakaba's dreams"
+		.. "#On collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
+		.. "#{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 8% chance to spawn Wakaba's Dream Card on room clears (caps at 13 tries)"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
-	belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect when item is used",
+		lunatic = ""
+		.. "#↓ Devil/Angel rooms no longer appear"
+		.. "#On use, Change the form of Wakaba's dreams"
+		.. "#On collectibles appear, The pool from Wakaba's dream will be selected instead of default pool"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}} While held, 1% chance to spawn Wakaba's Dream Card on room clears (caps at 15 tries)"
+		.. "{{CR}}",
+		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
+		belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect on use",
+		void = "Spawns {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card when voided",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
@@ -1064,66 +1265,108 @@ wakaba.descriptions[desclang].abyss = {
 }
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "Grants Shiori {{Damage}} 1.2x Damage multiplier and gives Holy Mantle({{Collectible313}}) shield for current room#{{ColorBookofShiori}}Gives Godhead Tears({{Collectible331}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = {
+		primary = "",
+		secondary = "",
 		description = "Adds additional {{Damage}} +1.5 Damage up for current room#{{ColorBookofShiori}}Gives Eye of Belial Tears({{Collectible462}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_NECRONOMICON] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns 5 Maw of Void lasers dealing 64% of Shiori's Damage per tick#{{ColorBookofShiori}}Gives Rock Tears({{Collectible592}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Shielded Tears({{Collectible213}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = {
+		primary = "",
+		secondary = "",
 		description = "Troll bombs and explosions deal double damage to enemies for current room#{{ColorBookofShiori}}Gives Explosive Tears and Shiori is immune to explosions until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns 2 Lil Harbringers for current floor#{{ColorBookofShiori}}Gives chance to fire Holy Light Tears({{Collectible374}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Adds chance to drop a random pickup when enemies are killed until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#↑ {{ColorBookofShiori}}Familiars deal 3x Damage until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
+		primary = "",
+		secondary = "",
 		description = "Gives Spectral and Continnum Tears({{Collectible369}}) for current room#{{ColorBookofShiori}}Gives Homing and Electric Tears({{Collectible494}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = {
+		primary = "",
+		secondary = "",
 		description = "Fully reveals the map and removes {{WakabaAntiCurseDarkness}}Curse of Darkness and {{WakabaAntiCurseLost}}Curse of the Lost#{{ColorBookofShiori}}Gives Mark({{Collectible618}}) tears until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = {
+		primary = "",
+		secondary = "",
 		description = "Adds additional {{Damage}} +1.0 Damage up for current floor#{{ColorBookofShiori}}Gives Dark matter tears({{Collectible259}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = {
+		primary = "",
+		secondary = "",
 		description = "Spawns additional friendly Bonies#{{ColorBookofShiori}}Gives Death's Touch Tears({{Collectible237}}) until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_LEMEGETON] = {
+		primary = "",
+		secondary = "",
 		description = "Chance to absorb random Lemegeton wisp into item#{{ColorBookofShiori}}Chance to heal item wisps when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = {
+		primary = "",
+		secondary = "",
 		description = "Select Enemy to charm permanently#{{ColorBookofShiori}}Requires Keys{{Key}} (+ Bombs{{Bomb}} for bosses) to charm",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{ColorBookofShiori}}Gives Bone Tears({{Collectible453}}) until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
+		primary = "",
+		secondary = "",
 		description = "Ignores Enemy's armor when not moving#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
+		primary = "",
+		secondary = "",
 		description = "No Extra temporary effect#{{Rune}} {{ColorBookofShiori}}Adds chance to drop a rune when enemies are killed until next book use",
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
+		primary = "",
+		secondary = "",
 		description = "Damage taken for Minissac is greatly reduced#{{ColorBookofShiori}}Minissac Copies Most of Isaac's tear effects until next book use",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
+		primary = "",
+		secondary = "",
 		description = "Prevents all enemy projectiles for extra 2 seconds#{{ColorBookofShiori}}Resets current Book of Shiori Tear bonuses",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
+		primary = "",
+		secondary = "",
 		description = "No extra Temporary effect #{{Collectible579}} {{ColorBookofShiori}}Gives Temporary Black Spirit Sword. The Scythe tears will be fired instead of sword projectile",
 	},
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
+		primary = "",
+		secondary = "",
 		description = "All enemies targeting Isaac will also be slowed while Isaac is invisible.#{{ColorBookofShiori}}(No changes for current Book of Shiori Tear bonuses)",
 	},
 }
@@ -1218,7 +1461,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Bring me there",
 		description = ""
 		.. "#↑ {{Tears}} +1.5 Fire Rate"
-		.. "#Entering Boss room of Mausoleum/Gehenna II while holding this trinket makes Dad's Note being appear instead of Mom"
+		.. "#While held, entering Boss room of Mausoleum/Gehenna II makes Dad's Note being appear instead of Mom"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -1388,6 +1631,34 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "Allows to use donation mechanics while in White fire state."
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
+		itemName = "Candy of Richer",
+		description = ""
+		.. "Entering a hostile room spawns 2 Richer flies"
+		.. "#The fly deals 4x Isaac's damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
+		itemName = "Candy of Rira",
+		description = ""
+		.. "Entering a hostile room spawns 2 Rira flies"
+		.. "#The fly deals 4x Isaac's aqua damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
+		itemName = "Candy of Ciel",
+		description = ""
+		.. "Entering a hostile room spawns an exploding Ciel fly"
+		.. "#The fly deals 10x Isaac's explosive damage"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
+		itemName = "Candy of Koron",
+		description = ""
+		.. "Entering a hostile room spawns 2 Koron flies"
+		.. "#The fly deals 4x Isaac's freezing damage"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "Sigil of Kaguya",
 		description = ""
@@ -1400,17 +1671,21 @@ wakaba.descriptions[desclang].trinkets = {
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ Further increase chance for Lucky Penny" },
-	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books" },
-	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items" },
+	[wakaba.Enums.Trinkets.HARD_BOOK] = { "drop random book", "drop 2 books", "drop 3 books" },
+	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}Planetarium item", "2 {{Planetarium}}Planetarium items"},
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ Removes all selection from pickups" },
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} Magnetize all enemies for 5 seconds when entering a new room" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2 Richer flies", "3 Richer flies", "4 Richer flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2 Rira flies", "3 Rira flies", "4 Rira flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "an exploding Ciel fly", "2 exploding Ciel flies", "3 exploding Ciel flies" },
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2 Koron flies", "3 Koron flies", "4 Koron flies" },
 }
 wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_CRANE_CARD] = {
 		itemName = "Crane Card",
 		description = "{{CraneGame}} Spawns a Crane Game machine",
 		tarot = {"{{CraneGame}} Spawns {{ColorShinyPurple}}2{{CR}} Crane Game machines"},
-		mimiccharge = 6,
+		mimiccharge = 5,
 	},
 	[wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD] = {
 		itemName = "Confessional Card",
@@ -1436,12 +1711,13 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "Queen of Spades",
 		description = "{{Key}} Spawns 3~26 keys",
-		mimiccharge = 10,
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{Key}}Spawns 1~6 keys",
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "Wakaba's Dream Card",
 		description = "Spawns a random collectible item",
-		mimiccharge = 10,
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "Unknown Bookmark",
@@ -1474,7 +1750,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "Soul of Shiori",
 		description = "{{Heart}} Heals 2 Red Hearts#Activates Random Book of Shiori tear effect",
-		mimiccharge = 8,
+		mimiccharge = 6,
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
@@ -1486,7 +1762,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "Soul of Richer",
 		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps ({{Collectible263}} : 1 ~ 3)#All wisps are guaranteed to be Quality{{Quality2}}+",
-		mimiccharge = 12,
+		mimiccharge = 6,
 		isrune = true,
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
@@ -1504,13 +1780,24 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_RICHER_TICKET] = {
 		itemName = "Richer Ticket",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Grants a random combinations current room",
-		mimiccharge = 4,
+		mimiccharge = 8,
 	},
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "Rira Ticket",
 		description = "{{BrokenHeart}}Recovers 1 Broken Heart into {{EmptyBoneHeart}}or{{SoulHeart}}#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals 1 Red Heart if no trinkets and Broken Hearts",
 		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
 		mimiccharge = 6,
+	},
+	[wakaba.Enums.Cards.CARD_FLIP] = {
+		itemName = "Flip Card",
+		description = "{{Collectible711}} Holding, or using the card grants Flip effect#Entering a room with item pedestals displays a ghostly second item on the pedestals#Using the item flips the real and ghostly item",
+		mimiccharge = 4,
+	},
+	[wakaba.Enums.Cards.SOUL_RIRA] = {
+		itemName = "Soul of Rira",
+		description = "{{AquaTrinket}} Spawns 3 Aqua trinkets ({{Collectible263}} : 1)#{{Blank}} (ignores unlock status)",
+		mimiccharge = 6,
+		isrune = true,
 	},
 }
 wakaba.descriptions[desclang].pills = {
@@ -1915,7 +2202,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseDarkness}} Replaces Curse of Darkness"
 		.. "#Weapons are invisible and deal less damage enemies for a short time"
 		.. "#Deals 2x damage to enemies after 4 tiles"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_FAIRY] = {
@@ -1925,7 +2211,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseLost}} Replaces Curse of the Lost"
 		.. "#Isaac cannot see the map far away"
 		.. "#{{SecretRoom}} Can reveal Secret and Super Secret Rooms"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_AMNESIA] = {
@@ -1935,7 +2220,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{CurseMaze}} Replaces Curse of the Maze"
 		.. "#Sometimes cleared rooms are randomly be uncleared"
 		.. "#Special rooms are not included"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns"
 		.. "",
 	},
 	[wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
@@ -1946,7 +2230,6 @@ wakaba.descriptions[desclang].curses = {
 		.. "#{{Card91}} Permanent Lost Curse state for current floor"
 		.. "#Donation mechanics can be used even with Lost Curse state"
 		.. "#{{Collectible285}} All enemies are devolved if possible"
-		.. "#{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state"
 		.. "",
 	},
 }
@@ -2564,7 +2847,7 @@ wakaba.descriptions[desclang].playernotes = {
 		name = "Rira",
 		description = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
 		.. "#She seems very shy, but actually, is really ecchi"
-		.. "#She shoots Aqua tears that aquafies enemies that take more damage from some sources"
+		.. "#{{WakabaAqua}} She shoots Aqua tears that aquafies enemies that take more damage from some sources"
 		.. "#She can use donation mechanics even when in Lost state"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
@@ -2588,7 +2871,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		{
-			desc = {"Coins", "1 coin"},
+			desc = {"Coins will be", "1 Coin will be"},
 			func = EID.IsHardMode,
 			type = "findReplace",
 			modifierText = "Hard Mode",
@@ -2605,9 +2888,12 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		vars = {wakaba.Enums.Players.SHIORI, true},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.WAKABA},
+		{
+			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
+			func = EID.PlayersHaveCharacter,
+			vars = {wakaba.Enums.Players.WAKABA},
+			modifierText = "Wakaba",
+		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
@@ -2652,12 +2938,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
-		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple Death's head appear in major boss rooms",
+		desc = "{{WakabaModHidden}} {{ColorGray}}Multiple invincible Death's heads appear in major boss rooms",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
-		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead"
-				 .."#{{WakabaModHidden}} {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}{{ColorGray}}4.5% with Book of Shiori",
+		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead ({{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 4.5% with Book of Shiori)",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	-- REPENTOGON ADDITIONS
@@ -2673,9 +2958,62 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}Reduces Active items' cooldown by 1~2",
 		func = function() return REPENTOGON end,
 	},
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
+		desc = {"↑ {{Damage}} +1 Damage#{{WakabaModRgon}} Explosion immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears"},
+		func = function() return REPENTOGON end,
+	},
+	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
+		desc = "{{WakabaModRgon}} {{ColorRicher}}Active chargebar is shown to indicate how many card spawn chance have been failed",
+		func = function() return REPENTOGON end,
+	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}
 wakaba.descriptions[desclang].conditionals.cards = {}
+wakaba.descriptions[desclang].conditionals.entities = {
+	["-998.-1."..LevelCurse.CURSE_OF_LABYRINTH] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Spawns extra special rooms",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_SNIPER] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_FAIRY] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_AMNESIA] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+	["-998.-1."..wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
+		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state",
+		func = wakaba.EIDCond_PlayerHasBirthright,
+		vars = {wakaba.Enums.Players.RICHER},
+	},
+}
+
+wakaba.descriptions[desclang].bossdest = {
+	title_boss			= "Boss",
+	title_health		= "Health",
+	title_damo			= "Damocles Start",
+	title_lunatic		= "Lunatic Mode",
+	title_lock			= "Lock until clear",
+	title_roll			= "ROLL!!",
+	title_clear			= "Clear challenge",
+
+	desc_boss			= "Select boss to challenge",
+	desc_health		= "Select health to challenge",
+	desc_damo			= "Choose damocles to start (Only affected on starting room)#{{Collectible656}} {{ColorSilver}}Vanilla{{CR}}: Normal Damocles#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_DAMOCLES.."}} {{ColorYellow}}Lunar{{CR}}: High chance to fall, removes half of items on fall#{{Collectible"..wakaba.Enums.Collectibles.VINTAGE_THREAT.."}} {{ColorRed}}Vintage{{CR}}: 4 swords. Any prior penalty damage ends the run, damage penalty protection items are invalid",
+	desc_lunatic	= "Choose to enable Lunatic mode#In Lunatic mode, most of Pudding & Wakaba items will be nerfed#All damage penalty protection effect except Richer's Bra will be disabled#All Armor-piercing effect/items except Advanced Crystal will be disabled/removed from the pool",
+	desc_lock			= "Preserve this challenge until game is cleared",
+	desc_roll			= "Are you ready?",
+	desc_clear		= "Clear challenge destination#Damocles added by this challenge will not removed",
+}
 
 if EID then
 	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then
@@ -2710,10 +3048,13 @@ if EID then
 	EID.descriptions[desclang].CaramellaFlyCiel = "!!! {{ColorCiel}}Ciel: The fly deals 10x Isaac's damage + explosion damage (does not hurt Isaac)"
 	EID.descriptions[desclang].CaramellaFlyKoron = "!!! {{ColorKoron}}Koron: The fly deals 4x Isaac's damage + petrify status"
 
-	EID.descriptions[desclang].MaidDuetBlacklisted = "!!! {{ColorRicher}}Richer{{CR}} & {{ColorRira}}Rira{{CR}} cannot put this into pocket!"
+	EID.descriptions[desclang].MaidDuetBlacklisted = "{{Collectible"..wakaba.Enums.Collectibles.MAID_DUET.."}} Can't swapped by Maid Duet"
 
-	EID.descriptions[desclang].AquaTrinketText = "!!! {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
+	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
+
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} invalidates damage penalty protection"
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "Invalidates {1}"
 
 end

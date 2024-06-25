@@ -22,13 +22,13 @@ local class = "Pudding n Wakaba"
 -- Rira / Mother : Sakura Capsule
 -- Rira / Beast : Maid Duet
 
--- Rira_B / Quartet :
--- Rira_B / Duet :
--- Rira_B / MegaS :
+-- Rira_B / Quartet : Caramella Candy Bag
+-- Rira_B / Duet : Soul of Rira
+-- Rira_B / MegaS : Aqua Trinkets
 -- Rira_B / Deli : Rabbey Ward [Starting item]
--- Rira_B / Gdier :
--- Rira_B / Mother :
--- Rira_B / Beast : [Starting item]
+-- Rira_B / Gdier : Flip Card
+-- Rira_B / Mother : Pink Fork
+-- Rira_B / Beast : Azure Rir [Starting item]
 
 -- Rira_T / Quartet :
 -- Rira_T / Duet :
@@ -285,3 +285,103 @@ Encyclopedia.AddItem({
 	end,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MAID_DUET,
 })
+
+-- Rira_B / Quartet : Caramella Candy Bag
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CARAMELLA_CANDY_BAG,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CARAMELLA_CANDY_BAG],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_RICHER,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_RICHER],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_RIRA,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_RIRA],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_CIEL,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_CIEL],
+})
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.CANDY_OF_KORON,
+	Hide = true,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("caramellacandybag") then
+			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.CANDY_OF_KORON],
+})
+-- Rira_B / Duet : Soul of Rira
+Encyclopedia.AddSoul({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Cards.SOUL_RIRA,
+	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.SOUL_RIRA],
+	Hide = true,
+	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Rira",0),
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("rirasoul") then
+			self.Desc = "Defeat Boss Rush, Hush as Tainted Rira"
+
+			return self
+		end
+	end,
+})
+-- Rira_B / Gdier : Flip Card
+Encyclopedia.AddCard({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Cards.CARD_FLIP,
+	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.CARD_FLIP],
+	Hide = true,
+	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Flip",0),
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("flipcard") then
+			self.Desc = "Defeat Ultra Greedier as Tainted Rira"
+
+			return self
+		end
+	end,
+})
+-- Rira_B / Mother : Pink Fork

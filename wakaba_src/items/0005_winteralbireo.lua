@@ -37,7 +37,7 @@ function wakaba:anyPlayerHasAlbireo()
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i-1)
 		hasAlbireo = hasAlbireo or (player.Variant == 0 and wakaba:hasAlbireo(player))
-		onlyTaintedRicher = onlyTaintedRicher and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
+		onlyTaintedRicher = wakaba:IsLunatic() or (onlyTaintedRicher and player:GetPlayerType() == wakaba.Enums.Players.RICHER_B)
 	end
 	return hasAlbireo, onlyTaintedRicher
 end
@@ -117,6 +117,7 @@ end
 function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 	local roomPool = wakaba.RoomConfigs.WinterAlbireo["Standard"]
 	local level = game:GetLevel()
+	local seeds = game:GetSeeds()
 	local roomIndex = level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng)
 	local config = roomPool[rng:RandomInt(#roomPool) + 1]
 	local targetDesc = level:GetRoomByIdx(roomIndex)
@@ -134,16 +135,31 @@ function wakaba:SetAlbireoRoom(rng, onlyTaintedRicher)
 			table.insert(wakaba.minimapRooms, index)
 		else
 			-- TODO make this to seperate function
-			local candidates = isc:getNewRoomCandidatesForLevel()
-			if #candidates > 0 then
+			local candidates = wakaba:getLevelDeadEndCandidates(true)
+			local success = false
+			local preserved = config
+			while (#candidates > 0 and preserved) do
 				local e = isc:getRandomArrayElementAndRemove(candidates, rng)
-				local success = level:MakeRedRoomDoor(e.adjacentRoomGridIndex, e.doorSlot)
-				if success then
-					targetDesc = level:GetRoomByIdx(e.newRoomGridIndex, -1)
-					targetDesc.Data = config
-					targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
-					targetDesc.Flags = targetDesc.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
-					table.insert(wakaba.minimapRooms, e.newRoomGridIndex)
+
+				local deadendslot = e.Slot
+				local deadendidx = e.GridIndex
+				local roomidx = e.roomidx
+				local visitcount = e.visitcount
+				local roomdesc = level:GetRoomByIdx(roomidx)
+
+				if roomdesc.Data and level:GetRoomByIdx(roomdesc.GridIndex).GridIndex ~= -1 and wakaba:GetOppositeDoorSlot(deadendslot) and config.Doors & (1 << wakaba:GetOppositeDoorSlot(deadendslot)) > 0 then
+					local success = level:MakeRedRoomDoor(e.roomidx, e.Slot)
+					wakaba.FLog("debugLevelGen", "Trying to Generate room for gridIndex", e.roomidx, "slot", e.Slot, success)
+					if success then
+						targetDesc = level:GetRoomByIdx(e.GridIndex, -1)
+						targetDesc.Data = config
+						targetDesc.DisplayFlags = targetDesc.DisplayFlags | getExpectedRoomDisplayFlags()
+						targetDesc.Flags = targetDesc.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
+						table.insert(wakaba.minimapRooms, e.GridIndex)
+						preserved = nil
+					end
+				else
+					wakaba.FLog("debugLevelGen", "Found invalid location for gridIndex", e.roomidx, "slot", e.Slot)
 				end
 			end
 		end
@@ -258,10 +274,22 @@ end
 
 local catchDebugRoom
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPORTANT, function()
-	local level = game:GetLevel()
+	local level = wakaba.G:GetLevel()
+	local seeds = wakaba.G:GetSeeds()
 	local hasAlbireo, onlyTaintedRicher = wakaba:anyPlayerHasAlbireo()
 	if hasAlbireo and (wakaba.state.unlock.taintedricher or wakaba.state.options.allowlockeditems or not wakaba.state.achievementPopupShown) then
 		if not hasCachedAlbireoRooms() then
+			local haspermamaze = false
+			local hascurseofmaze = false
+			if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
+				seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+				haspermamaze = true
+			end
+			if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
+				level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
+				hascurseofmaze = true
+			end
+
 			wakaba.RoomConfigs = wakaba.RoomConfigs or {}
 			wakaba.RoomConfigs.WinterAlbireo = wakaba.RoomConfigs.WinterAlbireo or {}
 
@@ -283,6 +311,15 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NEW_LEVEL, CallbackPriority.IMPO
 					Position = Vector(player.Position.X, player.Position.Y),
 				})
 			end)
+
+			wakaba:scheduleForUpdate(function()
+				if haspermamaze then
+					seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+				end
+				if hascurseofmaze then
+					level:AddCurse(LevelCurse.CURSE_OF_MAZE)
+				end
+			end, 0, ModCallbacks.MC_POST_UPDATE)
 		end
 
 		local stage = level:GetStage()
@@ -393,6 +430,21 @@ function wakaba:NewRoom_WinterAlbireo()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_WinterAlbireo)
+
+function wakaba:Render_WinterAlbireo()
+	local level = wakaba.G:GetLevel()
+	local roomdesc = level:GetCurrentRoomDesc()
+	local room = wakaba.G:GetRoom()
+	if wakaba:IsValidWakabaRoom(roomdesc) then
+		if REPENTOGON then
+			local backdrop = room:GetBackdrop()
+			local floorSprite = backdrop:GetFloorANM2() ---@field Sprite
+			--floorSprite.Color = wakaba.ColorDatas.rwa -- TODO
+			--floorSprite:SetRenderFlags(AnimRenderFlags.GOLDEN)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WinterAlbireo)
 
 function wakaba:TrySetAlbireoRoomDoor()
 	local level = wakaba.G:GetLevel()

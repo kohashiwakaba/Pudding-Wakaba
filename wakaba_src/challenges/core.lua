@@ -57,6 +57,7 @@ wakaba.ChallengeParams.Hush = {
 	[wakaba.challenges.CHALLENGE_HUSH] = true,
 	[wakaba.challenges.CHALLENGE_PLUM] = true,
 	[wakaba.challenges.CHALLENGE_DOPP] = true,
+	--[wakaba.challenges.CHALLENGE_HVLQ] = true,
 }
 wakaba.ChallengeParams.Deli = {
 	[wakaba.challenges.CHALLENGE_DELI] = true,
@@ -89,6 +90,7 @@ include('wakaba_src.challenges.w13_calculation')
 include('wakaba_src.challenges.w14_holdme')
 include('wakaba_src.challenges.w15_evenorodd')
 include('wakaba_src.challenges.w16_runawaypheromones')
+include('wakaba_src.challenges.w17_thefloorislava')
 include('wakaba_src.challenges.w98_hyperrandom')
 include('wakaba_src.challenges.w99_truepuristgirl')
 include('wakaba_src.challenges.wb1_puredelirium')

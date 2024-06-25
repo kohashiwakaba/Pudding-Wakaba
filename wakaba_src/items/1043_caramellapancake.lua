@@ -115,8 +115,8 @@ function wakaba:TearInit_Pancake(tear)
 				local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER)
 				fly:GetData().wakaba_vel = vel
 				fly:GetData().wakaba_veltimer = player.TearRange / 5
+				tear:Remove()
 			end
-			tear:Remove()
 		end
 	end
 end
@@ -220,8 +220,8 @@ function wakaba:BombInit_Pancake(bomb)
 			local fly = wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, nil, true)
 			fly:GetData().wakaba_vel = vel
 			fly:GetData().wakaba_veltimer = player.TearRange / 5
+			bomb:Remove()
 		end
-		bomb:Remove()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombInit_Pancake)
@@ -260,44 +260,48 @@ function wakaba:FamiliatInit_Pancake(fly)
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Richer", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 3
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.RIRA then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Rira", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 1
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.CIEL then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Ciel", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 10
+			fly.CollisionDamage = player.Damage * 5
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		elseif fly.SubType == wakaba.Enums.Flies.KORON then
 			local spr = fly:GetSprite()
 			spr:Load("gfx/wakaba_flies.anm2", true)
 			spr:Play("Koron", true)
 			local player = fly.Player or Isaac.GetPlayer()
-			fly.CollisionDamage = player.Damage * 4
+			fly.CollisionDamage = player.Damage * 1.5
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_HIVE_MIND) then
 				fly.CollisionDamage = fly.CollisionDamage * 2
 			end
+			fly:AddEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
 		end
 	elseif wakaba.CaramellaAutoTargetFiles[fly.SubType] then
 		if not (fly.Target and fly.Target:Exists()) then
 			local room = wakaba.G:GetRoom()
 			local vel = fly:GetData().wakaba_vel
 			local veltimer = fly:GetData().wakaba_veltimer
-			if (room:GetFrameCount() > 0 and vel and veltimer and veltimer > 0) then
+			if (room:GetFrameCount() > 0 and room:IsPositionInRoom(fly.Position, 0) and vel and veltimer and veltimer > 0) then
 				fly:GetData().wakaba_veltimer = fly:GetData().wakaba_veltimer - 1
 				fly.Velocity = vel
 			else
@@ -343,10 +347,10 @@ function wakaba:TakeDmg_Pancake(entity, amount, flag, source, countdownFrames)
 					wakaba:AddStatusEffect(entity, wakaba.StatusEffect.AQUA, 60, player)
 				elseif fly.SubType == wakaba.Enums.Flies.CIEL then
 					local player = fly.Player or Isaac.GetPlayer()
-					wakaba.G:BombExplosionEffects(fly.Position, fly.CollisionDamage, player.TearFlags, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR)
+					wakaba.G:BombExplosionEffects(fly.Position, fly.CollisionDamage, player.TearFlags, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | (not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0))
 				elseif fly.SubType == wakaba.Enums.Flies.KORON then
 					local player = fly.Player or Isaac.GetPlayer()
-					entity:AddFreeze(player, 60)
+					entity:AddFreeze(EntityRef(player), 60)
 				end
 			end
 		end

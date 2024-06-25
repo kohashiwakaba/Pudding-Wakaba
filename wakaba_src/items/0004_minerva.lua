@@ -325,7 +325,7 @@ function wakaba:Cache_Minerva(player, cacheFlag)
       player.Luck = player.Luck + (minervalevel * additional * 0.1)
     end
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage - (0.5 * wakaba:getEstimatedDamageMult(player))
+			player.Damage = player.Damage - (0.5 * wakaba:getEstimatedDamageMult(player) * (wakaba:IsLunatic() and 4 or 1))
 		end
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + (60 * minervalevel) + (additional * 0.5)
@@ -339,7 +339,7 @@ function wakaba:Cache_Minerva(player, cacheFlag)
 		if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 			player.ShotSpeed = player.ShotSpeed - 0.08
 		end
-    if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+    if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG and not wakaba:IsLunatic() then
         player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
     end
     if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
@@ -448,7 +448,7 @@ wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_Minerv
 
 function wakaba:AlterPlayerDamage_Minerva(player, amount, flags, source, countdown)
 	local data = player:GetData()
-	if data.wakaba.hasminerva > 0 then
+	if not wakaba:IsLunatic() and data.wakaba.hasminerva > 0 then
 		return 1, flags | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end

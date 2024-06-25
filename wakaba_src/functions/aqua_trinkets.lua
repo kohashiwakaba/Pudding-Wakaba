@@ -18,11 +18,20 @@ function wakaba:getAquaTrinketChance()
 	return wakaba.Enums.Chances.AQUA_TRINKET_DEFAULT
 end
 
-function wakaba:TryTurnAquaTrinket(trinket)
+function wakaba:TryTurnAquaTrinket(trinket, clearAqua)
 	local currentRoomIndex = isc:getRoomListIndex()
-	table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
-	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
-	pickup:GetData().wakaba.isAquaTrinket = true
+	if not aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] then
+		aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] = {}
+	end
+	if not aqua_trinkets_data.level.triedindexes[currentRoomIndex] then
+		aqua_trinkets_data.level.triedindexes[currentRoomIndex] = {}
+	end
+	if not clearAqua then
+		table.insert(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	end
+	table.insert(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(trinket))
+	trinket:GetData().wakaba = trinket:GetData().wakaba or {}
+	trinket:GetData().wakaba.isAquaTrinket = not clearAqua
 end
 
 local hasTrinketDropped = false
@@ -38,8 +47,11 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 	if hasTrinketDropped then
 		wakaba.Log("hasTrinketDropped detected, skipping...")
 	end
+	if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.AZURE_RIR) then
+		wakaba:TryTurnAquaTrinket(pickup)
+	end
 
-	if --[[ wakaba.state.unlock.aquatrinkets > 0 and ]] not pickup.Touched and not hasTrinketDropped
+	if --[[ wakaba:IsEntryUnlocked("aquatrinkets") and ]] not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
@@ -77,15 +89,7 @@ function wakaba:PickupRender_AquaTrinkets(pickup, offset)
 	pickup:GetData().wakaba = pickup:GetData().wakaba or {}
 	if pickup:GetData().wakaba.isAquaTrinket then
 		local sprite = pickup:GetSprite()
-		local tcolor = Color(1, 1, 1, 1, 0, 0, 0)
-		tcolor:SetColorize(rc, rc, rb*2+0.8, rc-0.4)
-		local ntcolor = Color.Lerp(tcolor, tcolor, 0.5)
-		rt = 1 - (math.sin(Game():GetFrameCount() / 6)/10)-0.1
-		rc = 1 - (math.sin(Game():GetFrameCount() / 6)/5)-0.2
-		rb = 1 - math.sin(Game():GetFrameCount() / 6)
-		ntcolor.A = rt
-
-		sprite.Color = ntcolor
+		sprite.Color = wakaba.ColorDatas.aqu
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
@@ -124,7 +128,7 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 	local data = player:GetData()
 	if not player:IsItemQueueEmpty() and data.wakaba.tryAquaTrinket then
 		local queue = player.QueuedItem.Item
-		if queue:IsTrinket() and queue.ID == data.wakaba.tryAquaTrinket then
+		if queue:IsTrinket() and queue.ID == (data.wakaba.tryAquaTrinket % TrinketType.TRINKET_GOLDEN_FLAG) then
 			player:AnimateTrinket(data.wakaba.tryAquaTrinket, "UseItem")
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM | UseFlag.USE_VOID, -1)
 			if data.wakaba.prevTrinketPrimary > 0 then

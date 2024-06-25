@@ -45,6 +45,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_ResetShioriBuff
 function wakaba:NewFloor_ResetShioriBuffs()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 		player:GetData().wakaba.shiorifloorbuffs = {}
+		if wakaba:IsLunatic() then
+			player:GetData().wakaba.nextshioriflag = nil
+		end
 	end)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewFloor_ResetShioriBuffs)

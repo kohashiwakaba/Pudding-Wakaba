@@ -8,13 +8,13 @@ function wakaba:NewLevel_RiraBandage()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BANDAGE)
 		if num > 0 then
-			wakaba:SmeltHeldTrinket(player)
 			local totalNum = wakaba.Enums.Constants.RIRA_BANDAGE_BASE + (num * wakaba.Enums.Constants.RIRA_BANDAGE_EXTRA)
 			wakaba:scheduleForUpdate(function()
 				player:AnimateCollectible(wakaba.Enums.Collectibles.RIRAS_BANDAGE)
 			end, 1)
 			wakaba:scheduleForUpdate(function()
 				player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
+				wakaba:SmeltHeldTrinket(player)
 				for i = 1, totalNum do
 					player:UseActiveItem(CollectibleType.COLLECTIBLE_DULL_RAZOR, UseFlag.USE_NOANIM)
 					--player:TakeDamage(1, DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS | DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_RED_HEARTS, EntityRef(player), 0)

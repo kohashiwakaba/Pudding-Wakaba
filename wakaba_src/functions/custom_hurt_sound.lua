@@ -45,6 +45,10 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_CustomSoun
 ---@param rng RNG
 ---@return SoundEffect
 function wakaba:getCustomHurtSound(collectibleType, rng)
+	if not wakaba:getOptionValue("customhitsound") then return end
+	if wakaba:getOptionValue("customhitsoundprof") > 0 then
+		collectibleType = wakaba:getOptionValue("customhitsoundprof")
+	end
 	local sound = wakaba.CustomHurtSound[collectibleType]
 	if type(sound) == "table" and #sound > 0 then
 		rng = rng or player:GetCollectibleRNG(wakaba.Enums.Collectibles.EASTER_EGG)
@@ -57,6 +61,10 @@ end
 ---@param rng RNG
 ---@return SoundEffect
 function wakaba:getCustomDeathSound(collectibleType, rng)
+	if not wakaba:getOptionValue("customhitsound") then return end
+	if wakaba:getOptionValue("customhitsoundprof") > 0 then
+		collectibleType = wakaba:getOptionValue("customhitsoundprof")
+	end
 	local sound = wakaba.CustomDeathSound[collectibleType]
 	if type(sound) == "table" and #sound > 0 then
 		rng = rng or player:GetCollectibleRNG(wakaba.Enums.Collectibles.EASTER_EGG)
@@ -82,7 +90,7 @@ function wakaba:Update_CustomItemSound()
 		if hitSound and sfx:IsPlaying(SoundEffect.SOUND_ISAAC_HURT_GRUNT) then
 			wakaba.Log("Hit Sound for ".. tostring(checkType) .. " replaced!")
 			sfx:Stop(SoundEffect.SOUND_ISAAC_HURT_GRUNT)
-			sfx:Play(hitSound)
+			sfx:Play(hitSound, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 		end
 		if deathSound or delayedDeathSound then
 			if deathSound then
@@ -90,7 +98,7 @@ function wakaba:Update_CustomItemSound()
 					if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
 						wakaba.Log("Death Sound for ".. tostring(checkType) .. " replaced!")
 						sfx:Stop(SoundEffect.SOUND_ISAACDIES)
-						sfx:Play(deathSound)
+						sfx:Play(deathSound, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 					end
 				end, skipDelay and 0 or 16)
 			end
@@ -98,7 +106,7 @@ function wakaba:Update_CustomItemSound()
 				if sfx:IsPlaying(SoundEffect.SOUND_ISAACDIES) then
 					wakaba.Log("Delayed Death Sound for ".. tostring(checkType) .. " replaced!")
 					sfx:Stop(SoundEffect.SOUND_ISAACDIES)
-					sfx:Play(delayedDeathSound)
+					sfx:Play(delayedDeathSound, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 					checkForDelay = nil
 				end
 			end
@@ -107,4 +115,29 @@ function wakaba:Update_CustomItemSound()
 	checkType = PlayerType.PLAYER_ISAAC
 	skipDelay = nil
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Update_CustomItemSound)
+if REPENTOGON then
+	function wakaba:SoundPlay_CustomHurtSound(ID, Volume, FrameDelay, Loop, Pitch, Pan)
+		local hitSound = wakaba:getCustomHurtSound(checkType)
+		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
+		if hitSound then
+			skipDelay = nil
+			return {hitSound, Volume * mult, FrameDelay, Loop, 1, 0}
+		end
+	end
+	for _, e in ipairs(hurtReplace) do
+		wakaba:AddCallback(ModCallbacks.MC_PRE_SFX_PLAY, wakaba.SoundPlay_CustomHurtSound, e)
+	end
+	function wakaba:SoundPlay_CustomDeathSound(ID, Volume, FrameDelay, Loop, Pitch, Pan)
+		local deathSound = wakaba:getCustomDeathSound(checkType)
+		local mult = wakaba:getOptionValue("customsoundvolume") / 10 or 0.5
+		if deathSound then
+			skipDelay = nil
+			return {deathSound, Volume * mult, FrameDelay, Loop, 1, 0}
+		end
+	end
+	for _, e in ipairs(deathReplace) do
+		wakaba:AddCallback(ModCallbacks.MC_PRE_SFX_PLAY, wakaba.SoundPlay_CustomDeathSound, e)
+	end
+else
+	wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Update_CustomItemSound)
+end

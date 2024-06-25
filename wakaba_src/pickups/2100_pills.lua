@@ -49,23 +49,17 @@ function wakaba:PlayerUpdate_Pills(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Pills)
 
-local function hasPHD(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
-	or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
-	or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
-	then
-		return true
-	else
-		return false
-	end
-end
-
 function wakaba:anyPlayerHasPHD()
+	local a = false
 	wakaba:ForAllPlayers(function (player)
-		if hasPHD(player) then
-			return true
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_PHD)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_VIRGO)
+		or player:HasCollectible(CollectibleType.COLLECTIBLE_LUCKY_FOOT)
+		then
+			a = true
 		end
 	end)
+	return a
 end
 
 local function hasFalsePHD(player)
@@ -162,7 +156,7 @@ end
 function wakaba:addCustomStat(player, statType, amount)
 	if type(statType) ~= "string" or not wakaba:has_value(wakaba.ValidCustomStat, statType) then return end
 	if not amount or type(amount) ~= "number" then return end
-	player:GetData().wakaba.statmodify[statType] = player:GetData().wakaba.statmodify[statType] + amount
+	player:GetData().wakaba.statmodify[statType] = (player:GetData().wakaba.statmodify[statType] or 0) + amount
 end
 
 function wakaba:setCustomStat(player, statType, amount)
@@ -171,10 +165,11 @@ function wakaba:setCustomStat(player, statType, amount)
 	player:GetData().wakaba.statmodify[statType] = amount
 end
 
-function wakaba:useWakabaPill(_pillEffect, player, useFlags)
+function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 
 	-- Post G FUEL patch by Connor
-	local pillColor = player:GetData().wakaba_currentPill
+	local pillColor = REPENTOGON and _pillColor or player:GetData().wakaba_currentPill
+	wakaba.Log("Pill Used:", pillColor)
 	local pillEffect = wakaba.G:GetItemPool():GetPillEffect(pillColor, player)
 	if pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD or pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_NULL then
 		pillEffect = _pillEffect
@@ -200,13 +195,13 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags)
 		wakaba:addCustomStat(player, "hairpinluck", multiplier)
 
 		if pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP then
-			wakaba:addCustomStat(player, "damage", 0.08 * multiplier)
+			wakaba:addCustomStat(player, "damagemult", 0.08 * multiplier)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			player:AnimateHappy()
 			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		elseif pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN then
-			wakaba:addCustomStat(player, "damage", -0.02 * multiplier)
+			wakaba:addCustomStat(player, "damagemult", -0.02 * multiplier)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			player:AnimateSad()

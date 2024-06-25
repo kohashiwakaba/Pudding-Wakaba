@@ -55,6 +55,16 @@ wakaba.DoubleInvaderHeadLocations = {
 		{X = 12, Y = 6},
 		{X = 12, Y = 7},
 	},
+	["Beast"] = {
+		{X = 5, Y = 1},
+		{X = 5, Y = 5},
+		{X = 7, Y = 2},
+		{X = 7, Y = 4},
+		{X = 9, Y = 1},
+		{X = 9, Y = 5},
+		{X = 11, Y = 0},
+		{X = 11, Y = 6},
+	},
 	["Greed"] = {
 		{X = 5, Y = 5},
 		{X = 5, Y = 7},
@@ -64,8 +74,10 @@ wakaba.DoubleInvaderHeadLocations = {
 }
 
 local function invEnabled()
-	return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) or wakaba:getOptionValue("alwaysdoubleinvader")
+	return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) or wakaba:IsLunatic() or wakaba:getOptionValue("alwaysdoubleinvader")
 end
+
+local beastLoc = Vector(0,0)
 
 local function spawnHeads(type, rng)
 	if not wakaba.DoubleInvaderHeadLocations[type] then return end
@@ -73,7 +85,7 @@ local function spawnHeads(type, rng)
 		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
 		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
 		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil)
-		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS)
+		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
 	end
 end
 
@@ -106,7 +118,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -19999, wakaba.PreTa
 ---@param collider Entity
 ---@param low boolean
 function wakaba:Collision_DoubleInvader(npc, collider, low)
-	if invEnabled() then
+	if invEnabled() and headSpawned then
 		if collider:ToTear() then
 			local tear = collider:ToTear()
 			if not tear:HasTearFlags(TearFlags.TEAR_PIERCING | TearFlags.TEAR_FETUS) then
@@ -121,13 +133,31 @@ function wakaba:Collision_DoubleInvader(npc, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInvader, EntityType.ENTITY_DEATHS_HEAD)
 
+---comment
+---@param npc EntityNPC
+function wakaba:NPCUpdate_DoubleInvader(npc)
+	if not (invEnabled() and isc:inBeastRoom()) then return end
+	local d = npc:GetData()
+	local addVec = d.w_beastVec or Vector(0,0)
+	local pos = npc.Position
+	local vec = npc.Velocity
+	local fv = vec - addVec
+	if (pos.X <= -48 and vec.X < 0) or pos.X >= 688 and vec.X > 0 then
+		npc:AddVelocity(Vector(-vec.X, 0))
+	end
+	if (pos.Y <= 73 and vec.Y < 0) or pos.Y >= 484 and vec.Y > 0 then
+		npc:AddVelocity(Vector(0, -vec.Y))
+	end
+	d.w_beastVec = beastVec
+end
+wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, EntityType.ENTITY_DEATHS_HEAD)
 
 ---comment
 ---@param tear EntityTear
 ---@param collider Entity
 ---@param low boolean
 function wakaba:TearCollision_DoubleInvader(tear, collider, low)
-	if invEnabled() then
+	if invEnabled() and headSpawned then
 		if collider.Type == EntityType.ENTITY_DEATHS_HEAD then
 			return true
 		end
@@ -177,7 +207,7 @@ function wakaba:NPCUpdate_DoubleInvader_Death(satan)
 			headErased = true
 		end
 	elseif satan.Type == EntityType.ENTITY_MEGA_SATAN_2 and satan.Variant == 0 then
-		print(sprite:GetAnimation())
+		--print(sprite:GetAnimation())
 		if sprite:IsPlaying("Death") then
 			wakaba:EraseDeathHeads()
 			headErased = true
@@ -213,6 +243,13 @@ function wakaba:NPCUpdate_DoubleInvader_Death(satan)
 				wakaba:EraseDeathHeads()
 				headErased = true
 			end
+		end
+	elseif satan.Type == EntityType.ENTITY_BEAST and satan.Variant == 0 then
+		beastLoc = satan.Position
+		if sprite:IsPlaying("Death") then
+			wakaba:EraseDeathHeads()
+			beastLoc = Vector(0,0)
+			headErased = true
 		end
 	end
 end
@@ -251,6 +288,8 @@ function wakaba:NewRoom_DoubleInvader()
 			entry = "Satan"
 		elseif bossID == 62 then
 			entry = "Greed"
+		elseif isc:inBeastRoom() then
+			entry = "Beast"
 		end
 
 		if wakaba.DoubleInvaderHeadLocations[entry] then
