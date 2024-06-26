@@ -453,14 +453,16 @@ function wakaba:blessnemesis()
 
 	--collectible
 
-	local items = Isaac.FindByType(5, 100, -1, false, false)
-	for i, e in ipairs(items) do
-		if wakaba.runstate.hasbless and wakaba.runstate.hasnemesis then
-			if wakaba:ShouldRemoveIndex()	then
+	if not isc:inDeathCertificateArea() then
+		local items = Isaac.FindByType(5, 100, -1, false, false)
+		for i, e in ipairs(items) do
+			if wakaba.runstate.hasbless and wakaba.runstate.hasnemesis then
+				if wakaba:ShouldRemoveIndex()	then
+					e:ToPickup().OptionsPickupIndex = 0
+				end
+			elseif (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis) and (e.SubType == CollectibleType.COLLECTIBLE_POLAROID or e.SubType == CollectibleType.COLLECTIBLE_NEGATIVE) then
 				e:ToPickup().OptionsPickupIndex = 0
 			end
-		elseif (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis) and (e.SubType == CollectibleType.COLLECTIBLE_POLAROID or e.SubType == CollectibleType.COLLECTIBLE_NEGATIVE) then
-			e:ToPickup().OptionsPickupIndex = 0
 		end
 	end
 
