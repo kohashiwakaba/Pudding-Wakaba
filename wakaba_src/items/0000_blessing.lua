@@ -561,6 +561,13 @@ function wakaba:RevealItemImage(pickup, offset)
 			pickup:GetData().wakaba.removequestion = true
 			pickup:GetData().EID_DontHide = true
 		end
+	elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN and itemData and itemData:HasTags(ItemConfig.TAG_QUEST) then
+		local sprite = pickup:GetSprite()
+
+		sprite:ReplaceSpritesheet(1, itemData.GfxFileName)
+		sprite:LoadGraphics()
+		pickup:GetData().wakaba.removequestion = true
+		pickup:GetData().EID_DontHide = true
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
