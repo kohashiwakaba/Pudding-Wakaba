@@ -2,11 +2,13 @@ wakaba.CustomHurtSound = {
 	[wakaba.Enums.Players.RICHER] = wakaba.Enums.SoundEffects.RICHER_HURT,
 	[wakaba.Enums.Players.RICHER_B] = wakaba.Enums.SoundEffects.RICHER_HURT,
 	[wakaba.Enums.Players.RIRA] = wakaba.Enums.SoundEffects.RIRA_HURT,
+	[wakaba.Enums.Players.RIRA_B] = wakaba.Enums.SoundEffects.RIRA_HURT,
 }
 wakaba.CustomDeathSound = {
 	[wakaba.Enums.Players.RICHER] = wakaba.Enums.SoundEffects.RICHER_DEATH,
 	[wakaba.Enums.Players.RICHER_B] = wakaba.Enums.SoundEffects.RICHER_DEATH,
 	[wakaba.Enums.Players.RIRA] = wakaba.Enums.SoundEffects.RIRA_DEATH,
+	[wakaba.Enums.Players.RIRA_B] = wakaba.Enums.SoundEffects.RIRA_DEATH,
 }
 
 local hurtReplace = {

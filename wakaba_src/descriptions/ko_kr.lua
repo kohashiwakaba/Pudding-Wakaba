@@ -39,7 +39,7 @@ wakaba.descriptions[desclang].birthright = {
 		queueDesc = "비극적 시련을 극복하다",
 	},
 	[wakaba.Enums.Players.RICHER] = {
-		playerName = "Richer",
+		playerName = "{{ColorRicher}}Richer",
 		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다. (Inventory Descriptions 참조)",
 		queueDesc = "더욱 달콤한 향기",
 	},
@@ -49,13 +49,13 @@ wakaba.descriptions[desclang].birthright = {
 		queueDesc = "점점 따뜻해져가는 달콤함",
 	},
 	[wakaba.Enums.Players.RIRA] = {
-		playerName = "Rira",
+		playerName = "{{ColorRira}}Rira",
 		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Nerf Gun의 약화효과가 더 오래 지속됩니다.#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki의 공격이 더 강해지며 치마키의 눈물이 레이저로 대체됩니다.",
 		queueDesc = "아주 살짝만 더 야릇하게?",
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
-		description = "#토끼 와드 영향권 외부에 있어도 체력이 감소하지 않습니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Ward 사용 시 추가로 그 방의 가장 가까운 아이템 하나를 복사합니다.",
+		description = "#토끼 와드 영향권 외부에 있어도 체력이 감소하지 않습니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Ward 사용 시 추가로 그 방의 가장 가까운 아이템 하나를 복사합니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 토끼 와드가 적을 향해 레이저 공격을 합니다.",
 		queueDesc = "리본 가르기",
 	},
 }
@@ -146,6 +146,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
 		.. "#유도 눈물을 발사합니다."
+		.. "#모든 피격에 대한 패널티에 방어"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#오라 안에 있는 아군 몬스터는 최대 체력의 2배까지 지속적으로 회복합니다."
@@ -154,6 +155,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.6 (중첩 불가)"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 유도 눈물 제거됨)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
 		.. "{{CR}}",
 		queueDesc = "공격력, 연사 증가 + 동료를 치유해주자",
 	},
@@ -1686,7 +1688,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModHidden}} {{ColorGray}}폭탄 픽업이 다른 픽업으로 대체됩니다.",
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
-		desc = "{{WakabaModHidden}} {{ColorGray}}25%의 확률로 피해를 막습니다.#{{WakabaModHidden}} {{ColorGray}}모든 피격에 대한 패널티에 방어",
+		desc = "{{WakabaModHidden}} {{ColorGray}}25%의 확률로 피해를 막습니다.",
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}Blood Puppy가 플레이어를 공격하지 않습니다.",
@@ -1711,7 +1713,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = {"{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다."},
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = {"{{WakabaModRgon}} {{Heart}}{{ColorRicher}}체력 상한 +12"},
+		desc = "{{WakabaModRgon}} {{Heart}}{{ColorRicher}}체력 상한 +12",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 카드 소환 실패 횟수가 액티브 충전량을 통해 보여집니다.",
@@ -3183,6 +3185,18 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
+		--.. "#"
+		.. "",
+	},
+	[wakaba.Enums.Players.RIRA_B] = {
+		-- icon = "",
+		name = "리라(알트)",
+		description = "The Aqua: 리라의 달콤한 페로몬은 그녀도 모르게 퍼져갑니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} {{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다."
+		.. "#{{AquaTrinket}} 모든 보물방의 아이템이 {{ColorCyan}}아쿠아 장신구{{CR}}로 바뀝니다."
+		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} 고유 능력 : 아주르 리르"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 고유 능력 : 토끼 와드"
 		--.. "#"
 		.. "",
 	},

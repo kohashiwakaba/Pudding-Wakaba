@@ -83,6 +83,8 @@ if MinimapAPI then
 	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Rira", wakaba.MiniMapAPISprite, "Extra", 7)
 	MinimapAPI:AddIcon("wakaba_CrystalRestockIcon_Yellow", wakaba.MiniMapAPISprite, "Extra", 8)
 
+	MinimapAPI:AddIcon("wakaba_RabbeyWardIcon", wakaba.MiniMapAPISprite, "Extra", 9)
+
 	MinimapAPI:AddIcon("wakaba_SilverCardIcon", wakaba.MiniMapAPISprite, "Cards", 0)
 	MinimapAPI:AddIcon("wakaba_CraneCardIcon", wakaba.MiniMapAPISprite, "Cards", 1)
 	MinimapAPI:AddIcon("wakaba_GoldCardIcon", wakaba.MiniMapAPISprite, "Cards", 2)
@@ -103,16 +105,18 @@ if MinimapAPI then
 	--Clover Chest render
 	MinimapAPI:AddPickup("CloverChest", "wakaba_CloverChestIcon", 5, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED, MinimapAPI.PickupChestNotCollected, "chests", 7450)
 	--Shiori Valut render
-	MinimapAPI:AddPickup("ShioriValut", "wakaba_ShioriValutIcon", 6, wakaba.Enums.Slots.SHIORI_VALUT, wakaba.ChestSubType.CLOSED, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1500)
+	MinimapAPI:AddPickup("ShioriValut", "wakaba_ShioriValutIcon", 6, wakaba.Enums.Slots.SHIORI_VALUT, wakaba.ChestSubType.CLOSED, function(p) return p.GridCollisionClass ~= 5 end, "slots", 1500)
 	--Easter Coin render
 	MinimapAPI:AddPickup("EasterCoin", "wakaba_EasterCoinIcon", 5, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, MinimapAPI.PickupNotCollected, "coins", 4100)
 	--Crystal Restock render
-	MinimapAPI:AddPickup("wakaba_CrystalRestock", "wakaba_CrystalRestockIcon", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
-	MinimapAPI:AddPickup("wakaba_CrystalRestock_Red", "wakaba_CrystalRestockIcon_Red", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RED, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
-	MinimapAPI:AddPickup("wakaba_CrystalRestock_Green", "wakaba_CrystalRestockIcon_Green", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.GREEN, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
-	MinimapAPI:AddPickup("wakaba_CrystalRestock_Richer", "wakaba_CrystalRestockIcon_Richer", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RICHER, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
-	MinimapAPI:AddPickup("wakaba_CrystalRestock_Rira", "wakaba_CrystalRestockIcon_Rira", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RIRA, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
-	MinimapAPI:AddPickup("wakaba_CrystalRestock_Yellow", "wakaba_CrystalRestockIcon_Yellow", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.YELLOW, function(p) return not p:GetSprite():IsPlaying("Death") end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock", "wakaba_CrystalRestockIcon", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.NORMAL, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Red", "wakaba_CrystalRestockIcon_Red", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RED, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Green", "wakaba_CrystalRestockIcon_Green", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.GREEN, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Richer", "wakaba_CrystalRestockIcon_Richer", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RICHER, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Rira", "wakaba_CrystalRestockIcon_Rira", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.RIRA, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+	MinimapAPI:AddPickup("wakaba_CrystalRestock_Yellow", "wakaba_CrystalRestockIcon_Yellow", 6, wakaba.Enums.Slots.CRYSTAL_RESTOCK, wakaba.Enums.CrystalRestockSubType.YELLOW, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 1600)
+
+	MinimapAPI:AddPickup("wakaba_RabbeyWard", "wakaba_RabbeyWardIcon", 6, wakaba.Enums.Slots.RABBEY_WARD, 0, function(p) return not p.GridCollisionClass ~= 5 end, "slots", 15000)
 
 	MinimapAPI:AddPickup("wakaba_DreamCard", "wakaba_DreamCardIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, MinimapAPI.PickupNotCollected, "cards", 9050)
 	MinimapAPI:AddPickup("wakaba_MinervaTicket", "wakaba_WakabaTicketIcon", 5, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_MINERVA_TICKET, MinimapAPI.PickupNotCollected, "cards", 9050)

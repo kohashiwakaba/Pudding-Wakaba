@@ -26,6 +26,7 @@ wakaba.AzureRirBlacklistEntities = {
 	{EntityType.ENTITY_BEAST, 0},
 	{EntityType.ENTITY_ENVY},
 	{EntityType.ENTITY_FALLEN},
+	{EntityType.ENTITY_MATRIARCH},
 	{EntityType.ENTITY_MOTHER, 0},
 }
 

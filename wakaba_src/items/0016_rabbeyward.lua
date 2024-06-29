@@ -16,13 +16,26 @@ local rabbey_ward_data = {
 		ascentSharedSeeds = {},
 	},
 	level = {
-		wards = {},
 		wardRooms = {},
 	}
 }
 wakaba:saveDataManager("Rabbey Ward", rabbey_ward_data)
-wakaba.RabbeyWards = rabbey_ward_data.level.wards
+wakaba.RabbeyWards = rabbey_ward_data.level.wardRooms
 local wardsRoomsToRender = {}
+wakaba.wardShaderRenderVal = 0
+
+function wakaba:hasRabbeyWard(player)
+	if not player then
+		return false
+	end
+	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B then
+		return true
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.RABBEY_WARD) then
+		return true
+	else
+		return false
+	end
+end
 
 function wakaba:Cache_RabbeyWard(player, cacheFlag)
 	local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
@@ -44,23 +57,35 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 	wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
 	wakaba:InstallRabbeyWard(player)
 	wakaba:revealWardMap(level:GetCurrentRoomIndex())
+	return {
+		Discharge = true,
+		Remove = false,
+		ShowAnim = true,
+	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.UseItem_RabbeyWard, wakaba.Enums.Collectibles.RABBEY_WARD)
 
 function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
+	if isc:inDeathCertificateArea() then return 0 end
 	if taintedRira and gridIndex == 84 then
 		return 3
 	end
-	if rabbey_ward_data.level.wardRooms[gridIndex] then
+	if gridIndex < 0 then
+		gridIndex = wakaba.G:GetLevel():GetPreviousRoomIndex()
+	end
+	local currRoomPower = rabbey_ward_data.level.wardRooms[gridIndex]
+	if currRoomPower and currRoomPower > 0 then
 		return 3
 	end
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
 	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
-		local gridLocation = isc:roomGridIndexToVector(index)
-		local distVec = currentGridLocation - gridLocation
-		local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
-		power = math.max(power, 3 - calculatedDist)
+		if value > 0 then
+			local gridLocation = isc:roomGridIndexToVector(index)
+			local distVec = currentGridLocation - gridLocation
+			local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
+			power = math.max(power, 3 - calculatedDist)
+		end
 	end
 	return power
 end
@@ -110,14 +135,20 @@ function wakaba:InstallRabbeyWard(player)
 		sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
 	if REPENTOGON then
-		room:SetWaterAmount(0.9)
-		room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.45))
+		room:SetWaterAmount(0.5)
+		--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.45))
 	end
 	local desc = level:GetCurrentRoomDesc()
 	local wards = wakaba:recalculateWards()
 	rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
 	rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
 	rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
+	wakaba:scheduleForUpdate(function()
+		wakaba:ForAllPlayers(function (player)
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+			player:EvaluateItems()
+		end)
+	end, 0)
 end
 
 
@@ -157,15 +188,28 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 	end
 
 	if slot.GridCollisionClass == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
+		if not d.Dead then
+			d.Dead = true
+			wakaba:scheduleForUpdate(function ()
+				local gridIndex = level:GetCurrentRoomIndex()
+				local desc = level:GetCurrentRoomDesc()
+				local wards = wakaba:recalculateWards()
+				rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
+				rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
+				rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
+				wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
+				wakaba:ForAllPlayers(function (player)
+					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+					player:EvaluateItems()
+				end)
+				wakaba.Log("Rabbey Ward killed! recalculating...")
+			end, 1)
+			slot:ClearEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
+		end
 		if slotSprite:IsFinished("Death") then
 			slotSprite:Play("Broken")
 		elseif not slotSprite:IsPlaying("Broken") then
 			wakaba:RemoveDefaultPickup(slot)
-			local desc = level:GetCurrentRoomDesc()
-			local wards = wakaba:recalculateWards()
-			rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
-			rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
-			rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
 			slotSprite:Play("Death")
 		end
 	elseif player then
@@ -231,12 +275,20 @@ end
 
 function wakaba:Update_RabbeyWard()
 	local room = wakaba.G:GetRoom()
+	local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
+	local power = wakaba:getRabbeyWardPower(gridIndex) * 10
+	local curr = wakaba.wardShaderRenderVal // 1
+	--print("Shader ", (wardShaderRender // 1) ~= power * 10, (wardShaderRender // 1), power * 10)
+	if curr > power then
+		wakaba.wardShaderRenderVal = math.floor(wakaba:Lerp(wakaba.wardShaderRenderVal, power, 0.08))
+	elseif curr < power then
+		wakaba.wardShaderRenderVal = math.ceil(wakaba:Lerp(wakaba.wardShaderRenderVal, power, 0.08))
+	end
 	if room:GetFrameCount() % 150 == 2 then
 		local ward = wakaba:getNearbyRabbitWard()
 		if ward then
 			wakaba.G:MakeShockwave(ward.Position, 0.018, 0.01, 320)
 		else
-			local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
 			local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 			local centerPos = room:GetCenterPos()
 			for _, entry in pairs(wardsRoomsToRender) do
@@ -255,18 +307,22 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_RabbeyWard)
 
 function wakaba:getNearbyWardRooms(gridIndex)
 	local loc = {}
+	if isc:inDeathCertificateArea() then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
-		local gridLocation = isc:roomGridIndexToVector(index)
-		local distVec = currentGridLocation - gridLocation
-		local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
-		if calculatedDist <= 2 then
-			table.insert(loc, {
-				index = gridLocation,
-				grid = gridLocation,
-				power = 3 - calculatedDist,
-			})
+		--print(index, value)
+		if value > 0 then
+			local gridLocation = isc:roomGridIndexToVector(index)
+			local distVec = currentGridLocation - gridLocation
+			local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
+			if calculatedDist <= 2 then
+				table.insert(loc, {
+					index = gridLocation,
+					grid = gridLocation,
+					power = 3 - calculatedDist,
+				})
+			end
 		end
 	end
 	return loc
@@ -279,8 +335,8 @@ function wakaba:NewRoom_RabbeyWard()
 	if rabbeyPower > 0 then
 		--isc:openDoorFast()
 		if REPENTOGON then
-			room:SetWaterAmount(0.3 * rabbeyPower)
-			room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.15 * rabbeyPower))
+			room:SetWaterAmount(0.16 * rabbeyPower)
+			--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.15 * rabbeyPower))
 		end
 	end
 	if room:IsFirstVisit() and room:IsClear() then
@@ -296,6 +352,20 @@ function wakaba:NewRoom_RabbeyWard()
 			end
 		end)
 	end
-	wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
+	if not isc:inDeathCertificateArea() then
+		wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbeyWard)
+
+
+wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
+	if shaderName == "wakaba_RabbeyWardArea" then
+
+		local params = {
+			Strength = wakaba.wardShaderRenderVal * 0.03,
+			Time = Isaac.GetFrameCount()
+		}
+		return params
+	end
+end)

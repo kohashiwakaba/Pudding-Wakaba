@@ -14,7 +14,7 @@
 	클리너 (REPENTOGON 한정)
 	- Hush, Chest, Dark Room, Beast, Corpse 시작 방에서 클리너 소환
 	- 접촉 시 '기본 무기'를 눈물로 변경
-	
+
 
 	추가 고유능력 : Aquaris(물병자리)
 	생득권 : 체력 감소 해제, Rabbey Ward 사용 시 가장 가까운 아이템 복사
@@ -24,11 +24,13 @@
 local playerType = wakaba.Enums.Players.RIRA_B
 local isRiraContinue = true
 
+local isc = require("wakaba_src.libs.isaacscript-common")
 
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RiraB(player)
 	if not player or player:GetPlayerType() ~= playerType then return end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then return end
+	if isc:inDeathCertificateArea() then return end
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex(), true)
@@ -51,10 +53,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Rira
 
 
 local RiraChar = {
-	DAMAGE = 0.5,
+	DAMAGE = 1,
 	SPEED = 0.0,
 	SHOTSPEED = 1.05,
-	TEARRANGE = 20,
+	TEARRANGE = 0,
 	TEARS = 0,
 	LUCK = 0,
 	FLYING = false,
@@ -63,38 +65,46 @@ local RiraChar = {
 }
 
 function wakaba:onRiraCache_b(player, cacheFlag)
-if player:GetPlayerType() == playerType then
-	if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-		player.Damage = player.Damage * RiraChar.DAMAGE
-	end
-	if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
-		player.ShotSpeed = player.ShotSpeed * RiraChar.SHOTSPEED
-	end
-	if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
-		player.TearRange = player.TearRange + RiraChar.TEARRANGE
-	end
-	if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
-		player.MoveSpeed = (player.MoveSpeed * 0.5) + 0.5 + RiraChar.SPEED
-	end
-	if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-		player.Luck = player.Luck + RiraChar.LUCK
-	end
-	if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and RiraChar.FLYING then
-		player.CanFly = true
-	end
-	if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RiraChar.TEARS * wakaba:getEstimatedTearsMult(player)))
-		player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 2)
-	end
-	if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
-		player.TearFlags = player.TearFlags | RiraChar.TEARFLAG
-	end
-	if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-		--player.TearColor = RiraChar.TEARCOLOR
+	if player:GetPlayerType() == playerType then
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
+			player.Damage = player.Damage * RiraChar.DAMAGE
+		end
+		if cacheFlag == CacheFlag.CACHE_SHOTSPEED then
+			player.ShotSpeed = player.ShotSpeed * RiraChar.SHOTSPEED
+		end
+		if cacheFlag == CacheFlag.CACHE_RANGE then
+			player.TearRange = player.TearRange + RiraChar.TEARRANGE
+		end
+		if cacheFlag == CacheFlag.CACHE_SPEED then
+			player.MoveSpeed = (player.MoveSpeed * 0.5) + 0.5 + RiraChar.SPEED
+		end
+		if cacheFlag == CacheFlag.CACHE_LUCK then
+			player.Luck = player.Luck + RiraChar.LUCK
+		end
+		if cacheFlag == CacheFlag.CACHE_FLYING and RiraChar.FLYING then
+			player.CanFly = true
+		end
+		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+			player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (RiraChar.TEARS * wakaba:getEstimatedTearsMult(player)))
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 1)
+		end
+		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
+			player.TearFlags = player.TearFlags | RiraChar.TEARFLAG
+		end
+		if cacheFlag == CacheFlag.CACHE_TEARCOLOR then
+			--player.TearColor = RiraChar.TEARCOLOR
+		end
 	end
 end
 
-end
+wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, -200, function(_, player, cacheFlag)
+	if player:GetPlayerType() == playerType then
+		if cacheFlag == CacheFlag.CACHE_TEARCOLOR then
+			--player.TearColor = RiraChar.TEARCOLOR
+			player.TearColor = wakaba.Colors.AQUA_WEAPON_COLOR
+		end
+	end
+end)
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onRiraCache_b)
 

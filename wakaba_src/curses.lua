@@ -32,6 +32,8 @@ function wakaba:ShouldRemoveBlind()
 		or wakaba:hasRibbon(player)
 		or wakaba:hasWaterFlame(player)
 		or wakaba:hasChimaki(player)
+		or wakaba:hasAzureRir(player)
+		or wakaba:hasRabbeyWard(player)
 		then
 			returnVal = true
 		end

@@ -106,7 +106,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↓ 拾取物品时，暂时增加3.6点伤害，但永久降低所有属性"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止 {{Quality3}}/{{Quality4}} 道具生成"
 			.. "#{{SoulHeart}}所有道具交易都改为魂心"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}NO LONGER Prevents penalties from all damage taken"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}不再阻止所有伤害的惩罚"
 			.. "#!!! 无论以何种方式获得这个物品，都会被视为接受了恶魔交易."
 			.. "{{CR}}",
 		queueDesc = "邪恶&射程上升 + 更糟的道具",
@@ -159,6 +159,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Tears}} +0.5 射速修正"
 			.. "#↑ {{Tears}} x2.3 射速倍率"
 			.. "#↑ 跟踪眼泪"
+			.. "#阻止所有惩罚伤害"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
 		lunatic = ""
@@ -167,6 +168,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Tears}} +0.5 射速修正"
 			.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 射速倍率"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}(不再有跟踪眼泪)"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}(不再阻止所有伤害的惩罚)"
 			.. "#友方小怪或宝宝在范围内持续恢复生命"
 			.. "{{CR}}",
 		queueDesc = "互帮互助",
@@ -2575,6 +2577,18 @@ wakaba.descriptions[desclang].playernotes = {
 			--.. "#"
 			.. "",
 	},
+	[wakaba.Enums.Players.RIRA_B] = { -- TODO
+		-- icon = "",
+		name = "Tainted Rira",
+		description = "Tainted Rira's tempting aqua body, emits sweet pheromones even without knowing it"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} She needs to be nearby {{ColorRira}}Rabbey Ward{{CR}}rooms, otherwise drains health slowly"
+		.. "#{{AquaTrinket}} All Treasure room items are converted into {{ColorCyan}}Aqua Trinkets{{CR}}"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} Tainted Rira starts with Azure Rir"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Tainted Rira starts with Rabbey Ward"
+		--.. "#"
+		.. "",
+	},
 }
 
 wakaba.descriptions[desclang].conditionals = {}
@@ -2640,7 +2654,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc =
-		"{{WakabaModHidden}} {{ColorGray}}25%的几率阻挡伤害#{{WakabaModHidden}} {{ColorGray}}阻止所有惩罚伤害",
+		"{{WakabaModHidden}} {{ColorGray}}25%的几率阻挡伤害",
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
 		desc = "{{WakabaModHidden}} {{Collectible565}}{{ColorGray}}血狗变得友好",
@@ -2669,7 +2683,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = {"↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波"},
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = {"{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit"}, -- TODO
+		desc = "{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit", -- TODO
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 主动充能条显示卡牌生成的几率",

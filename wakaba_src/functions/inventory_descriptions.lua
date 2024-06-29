@@ -353,6 +353,7 @@ function wakaba:LinkWakabaDefaults()
 	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RICHER_B, wakaba.Enums.Collectibles.RABBIT_RIBBON)
 	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RICHER_B, wakaba.Enums.Collectibles.WINTER_ALBIREO)
 	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RIRA, wakaba.Enums.Collectibles.CHIMAKI)
+	idesc:addDefault(idescEntryType.COLLECTIBLE, wakaba.Enums.Players.RIRA_B, wakaba.Enums.Collectibles.AZURE_RIR)
 	linked = true
 end
 

@@ -57,7 +57,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
-		description = "#Health no longer drains#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room",
+		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoots laser to enemies",
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
@@ -148,6 +148,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Tears}} +0.5 Fire rate up"
 		.. "#↑ {{Tears}} x2.3 Fire rate multiplier"
 		.. "#↑ Homing Tears"
+		.. "#Prevents penalties from all damage taken"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",
 		lunatic = ""
@@ -156,6 +157,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Tears}} +0.5 Fire rate up"
 		.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 Fire rate multiplier"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
@@ -1731,7 +1733,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_MINERVA_TICKET] = {
 		itemName = "Minerva Ticket",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Activates Minerva's Aura for current room#{{Blank}} ({{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears)",
 		tarot = "Activates the effect twice",
 		mimiccharge = 3,
 	},
@@ -2854,6 +2856,18 @@ wakaba.descriptions[desclang].playernotes = {
 		--.. "#"
 		.. "",
 	},
+	[wakaba.Enums.Players.RIRA_B] = {
+		-- icon = "",
+		name = "Tainted Rira",
+		description = "Tainted Rira's tempting aqua body, emits sweet pheromones even without knowing it"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} She needs to be nearby {{ColorRira}}Rabbey Ward{{CR}}rooms, otherwise drains health slowly"
+		.. "#{{AquaTrinket}} All Treasure room items are converted into {{ColorCyan}}Aqua Trinkets{{CR}}"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} Tainted Rira starts with Azure Rir"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Tainted Rira starts with Rabbey Ward"
+		--.. "#"
+		.. "",
+	},
 
 }
 
@@ -2930,7 +2944,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
-		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage#{{WakabaModHidden}} {{ColorGray}}Prevents penalties from all damage taken",
+		desc = "{{WakabaModHidden}} {{ColorGray}}25% chance to block damage",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
@@ -2963,7 +2977,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = {"{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit"},
+		desc = "{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit",
 		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
