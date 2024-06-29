@@ -130,8 +130,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v115d Rira 2024.06.20"
-wakaba.intversion = 11504
+wakaba.version = "v119 Rira 2024.07.--"
+wakaba.intversion = 12000
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -357,6 +357,22 @@ local richer_saved_recipies = {
 			chimaki = false,
 			taintedrira = false, -- Tainted Rira
 
+			-- Tainted Rira Unlocks
+			taintedriramomsheart = 0,
+			caramellacandybag1 = 0, -- Isaac
+			caramellacandybag2 = 0, -- Satan
+			caramellacandybag3 = 0, -- ???
+			caramellacandybag4 = 0, -- The Lamb
+			rirasoul1 = 0, -- Boss Rush
+			rirasoul2 = 0, -- Hush
+			rabbeyward = 0, -- Delirium
+			aquatrinket = 0, -- Mega Satan
+			flipcard = 0, -- Ultra Greedier
+			pinkfork = 0, -- Mother
+			azurerir = 0, -- The Beast
+
+			caramellacandybag = false,
+			rirasoul = false,
 
 			--Challenge Unlocks
 			eyeofclock = false, --01w Eye of Clock
@@ -652,6 +668,23 @@ wakaba.unlocks = {
 	chimaki = false,
 	taintedrira = false, -- Tainted Rira
 
+	-- Tainted Rira Unlocks
+	taintedriramomsheart = 0,
+	caramellacandybag1 = 0, -- Isaac
+	caramellacandybag2 = 0, -- Satan
+	caramellacandybag3 = 0, -- ???
+	caramellacandybag4 = 0, -- The Lamb
+	rirasoul1 = 0, -- Boss Rush
+	rirasoul2 = 0, -- Hush
+	rabbeyward = 0, -- Delirium
+	aquatrinket = 0, -- Mega Satan
+	flipcard = 0, -- Ultra Greedier
+	pinkfork = 0, -- Mother
+	azurerir = 0, -- The Beast
+
+	caramellacandybag = false,
+	rirasoul = false,
+
 	--Challenge Unlocks
 	eyeofclock = false, --01w Eye of Clock
 	plumy = false, --02w Plumy
@@ -933,7 +966,7 @@ do
 	include('wakaba_src.items.0014_riraswimsuit')
 	include('wakaba_src.items.1084_nerfgun')
 	include('wakaba_src.items.0015_brokentoolbox')
-	--include('wakaba_src.items.0016_rabbeyward')
+	include('wakaba_src.items.0016_rabbeyward')
 	include('wakaba_src.items.0018_azurerir')
 	include('wakaba_src.items.1001_eatheart')
 
@@ -1105,6 +1138,7 @@ do
 	include('wakaba_src.characters.richer')
 	include('wakaba_src.characters.richer_b')
 	include('wakaba_src.characters.rira')
+	include('wakaba_src.characters.rira_b')
 end
 
 do

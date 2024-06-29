@@ -314,7 +314,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{AquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
-		.. "#!!! 모든 최대 체력이 제거됩니다."
+		.. "#방 클리어 보상이 더 일찍 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "리라 액기스",
 	},
@@ -1709,6 +1709,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다."},
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		desc = {"{{WakabaModRgon}} {{Heart}}{{ColorRicher}}체력 상한 +12"},
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 카드 소환 실패 횟수가 액티브 충전량을 통해 보여집니다.",

@@ -291,7 +291,7 @@ local rb = 1.0
 ---@param position Vector
 ---@param player EntityPlayer
 function wakaba:HeartRender_Aqua(offset, sprite, position, _, player)
-	if true then
+	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B then
 		local strength = ((math.max(130, 0)) / 100)
 		local tcolor = Color(1, 1, 1, 1, 0, 0, 0.2 * strength)
 		tcolor:SetColorize(rc*2, rc, rb*3+0.8, (rc-0.2) * strength)
@@ -305,4 +305,4 @@ function wakaba:HeartRender_Aqua(offset, sprite, position, _, player)
 		sprite:Update()
 	end
 end
---wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, wakaba.HeartRender_Aqua)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, wakaba.HeartRender_Aqua)

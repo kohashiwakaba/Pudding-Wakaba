@@ -1073,10 +1073,14 @@ function mod:GetPlayerOfType(playerType, strict)
 	if not strict then return Isaac.GetPlayer() end
 end
 
-function mod:GameHasBirthrightEffect(playerType)
+function mod:GameHasBirthrightEffect(playerType, returnPlayerEntity)
 	return mod:ForAllPlayers(function(player)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			return true
+			if returnPlayerEntity then
+				return player
+			else
+				return true
+			end
 		end
 	end, playerType)
 end

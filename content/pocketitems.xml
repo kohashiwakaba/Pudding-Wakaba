@@ -23,7 +23,7 @@
 
 	<card pickup="4113" type="rune" description="Magical enforcement" hud="Soul of Richer" name="Soul of Richer" mimiccharge="6" />
 
-	<card pickup="4115" type="rune" description="Slimy mochi memories" hud="Soul of Rira" name="Soul of Rira" mimiccharge="6" hidden="true" achievement="9999"/>
+	<card pickup="4115" type="rune" description="Slimy mochi memories" hud="Soul of Rira" name="Soul of Rira" mimiccharge="6"/>
 
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
@@ -32,7 +32,7 @@
 	<card pickup="4112" type="tarot_reverse" description="Ecchi patcher" hud="wakaba_Rira Ticket" name="Rira Ticket" mimiccharge="6"/>
 
 	<card pickup="4112" type="tarot_reverse" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>
-	<card pickup="4114" type="special" description="Rira's Backside" hud="wakaba_Flip" name="Flip Card" mimiccharge="4" hidden="true" achievement="9999"/>
+	<card pickup="4114" type="special" description="Rira's Backside" hud="wakaba_Flip" name="Flip Card" mimiccharge="4"/>
 
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />

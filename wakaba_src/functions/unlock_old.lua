@@ -28,6 +28,8 @@ wakaba.validtainted = {
 	wakaba.Enums.Players.TSUKASA_B,
 	wakaba.Enums.Players.RICHER,
 	wakaba.Enums.Players.RICHER_B,
+	wakaba.Enums.Players.RIRA,
+	wakaba.Enums.Players.RIRA_B,
 }
 wakaba.taintedsprite = {
 	[wakaba.Enums.Players.WAKABA] = "gfx/characters/costumes/character_wakabab.png",
@@ -38,6 +40,8 @@ wakaba.taintedsprite = {
 	[wakaba.Enums.Players.TSUKASA_B] = "gfx/characters/costumes/character_tsukasa.png",
 	[wakaba.Enums.Players.RICHER] = "gfx/characters/costumes/character_richerb.png",
 	[wakaba.Enums.Players.RICHER_B] = "gfx/characters/costumes/character_richer.png",
+	[wakaba.Enums.Players.RIRA] = "gfx/characters/costumes/character_rirab.png",
+	[wakaba.Enums.Players.RIRA_B] = "gfx/characters/costumes/character_rira.png",
 }
 
 
@@ -89,6 +93,13 @@ function wakaba:Effect_TaintedWakabaReady()
 										Isaac.GetPersistentGameData():TryUnlock(wakaba.RepentogonUnlocks.taintedricher)
 									else
 										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedricher)
+									end
+								elseif not wakaba.state.unlock.taintedrira and edata.wakaba.ptype and edata.wakaba.ptype == wakaba.Enums.Players.RIRA then
+									wakaba.state.unlock.taintedrira = true
+									if REPENTOGON then
+										Isaac.GetPersistentGameData():TryUnlock(wakaba.RepentogonUnlocks.taintedrira)
+									else
+										CCO.AchievementDisplayAPI.PlayAchievement(wakaba.achievementsprite.taintedrira)
 									end
 								else
 									for i = 0, wakaba.G:GetNumPlayers() - 1 do

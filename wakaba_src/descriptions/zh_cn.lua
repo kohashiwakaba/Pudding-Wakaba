@@ -81,7 +81,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#所有受到的伤害都不会有惩罚"
 			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
 			.. "{{CR}}",
-		lunatic = "" 
+		lunatic = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止{{Quality0}}物品出现"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}不再阻止所有伤害的惩罚"
@@ -199,7 +199,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{WakabaAntiCurseUnknown}} 免疫未知诅咒"
-			.. "#↓ {{ColorOrange}}显著减少无敌帧" 
+			.. "#↓ {{ColorOrange}}显著减少无敌帧"
 			.. "#在短时间内未受伤快速恢复任何类型生命值"
 			.. "#恢复4次减少一颗心"
 			.. "{{CR}}",
@@ -221,7 +221,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "彗星女孩",
 	},
-	[wakaba.Enums.Collectibles.CONCENTRATION] = { 
+	[wakaba.Enums.Collectibles.CONCENTRATION] = {
 		itemName = "专注",
 		description = ""
 			.. "#按住丢弃按钮(通常是ctrl)进入专注模式"
@@ -264,7 +264,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "随意试吃",
 	},
-	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = { 
+	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "辇道增七",
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
@@ -327,7 +327,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 		.. "#{{AquaTrinket}} 所有饰品都变成水饰品"
-		.. "#!!! 移除所有心之容器"
+		.. "#Room clear awards spawn earlier" -- TODO
 		.. "{{CR}}",
 		queueDesc = "莉良的精华",
 	},
@@ -339,7 +339,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#如果房间里有15个或更多的拾取物，它们就会爆炸."
 			.. "{{CR}}",
 	},
-	[wakaba.Enums.Collectibles.EATHEART] = { 
+	[wakaba.Enums.Collectibles.EATHEART] = {
 		itemName = "食心",
 		description = ""
 			.. "#只能通过伤害敌人或自我伤害来充能."
@@ -409,7 +409,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "全属性上升! + 你感觉很下流",
 	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = { 
+	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		itemName = "若叶的挂坠",
 		description = ""
 			.. "#{{Luck}}如果幸运少于7则提升到7"
@@ -499,7 +499,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "贵安!",
 		belial = "每次使用制服内的卡片/药丸/符文时，会召唤出XV - The Devil的卡牌效果",
 		wisp = "{{ColorRed}}!!!没有 灵火 {{CR}}#所有 灵火在持有时变得无敌",
-		void = "不能再更改存储的内容，复制存储的内容更改为无效使用", 
+		void = "不能再更改存储的内容，复制存储的内容更改为无效使用",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "时钟之眼",
@@ -529,7 +529,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "反驳激光",
 		wisp = "{{ColorOrange}}外环 x1: {{CR}}仅对当前房间有效#所有 灵火在反击盾激活时变得无敌",
-		void = "不再自动激活，护盾持续时间延长至20秒", 
+		void = "不再自动激活，护盾持续时间延长至20秒",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
 		itemName = "退货邮费",
@@ -867,7 +867,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "岩浆之刃",
 		description = ""
-			.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者" 
+			.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者"
 			.. "#{{Burning}} 在眼泪攻击时挥舞火焰之刃"
 			.. "#{{DamageSmall}} 对非眼泪攻击的攻击力乘数+100%"
 			.. "{{CR}}",
@@ -1003,7 +1003,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{BossRoom}} 在击败Boss房间后生成璃贝的ROLL机"
 			..
 			"# {{DevilRoom}}恶魔/{{AngelRoom}}天使房, {{Planetarium}}星象房, {{SecretRoom}}隐藏/{{UltraSecretRoom}}红隐,黑市也会生成"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏" 
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}璃贝的ROLL机可以用炸弹或支付5{{Coin}}来重置，但重置两次后会损坏"
 			.. "{{CR}}",
 		queueDesc = "璃贝酱的魔法",
 	},
@@ -1020,7 +1020,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "神秘配方",
 	},
-	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = { 
+	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		itemName = "焦糖煎饼",
 		description = ""
 			.. "#↑ {{Damage}} +1 伤害"
@@ -1120,7 +1120,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#!!!在某些情况下可能会出现其他效果"
 			.. "{{CR}}",
 		lunatic = "传送到初始房间"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}没有其他的效果" 
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}没有其他的效果"
 			.. "{{CR}}",
 		queueDesc = "紧急逃生",
 	},
@@ -1267,7 +1267,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "Reusable Amplifier",
 	},
-	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = { 
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
 		itemName = "泡沫炸弹",
 		description = "{{Bomb}} +5炸弹"
 		.. "#{{WakabaAqua}} 玩家的炸弹淹没了敌人"
@@ -1302,7 +1302,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "永恒梦境...",
 		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
-		void = "{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}被吸收时生成一次卡牌", 
+		void = "{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}被吸收时生成一次卡牌",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "伊甸的便利贴",
@@ -1738,7 +1738,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "我带来水",
 	},
-	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { 
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
 		itemName = "希耶尔的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生一只爆炸攻击苍蝇"
@@ -1746,7 +1746,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "我带来星星",
 	},
-	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { 
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
 		itemName = "心月的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生2只爆炸攻击苍蝇"
@@ -1900,7 +1900,7 @@ wakaba.descriptions[desclang].cards = {
 		description = "{{Collectible711}} 持有或使用该卡可获得翻转效果#进入一个有 道具基座的房间，基座上会显示一个幽灵般的第二个 道具#使用该 道具会翻转真实的幽灵 道具",
 		queueDesc = "莉良的背面",
 	},
-	[wakaba.Enums.Cards.SOUL_RIRA] = { 
+	[wakaba.Enums.Cards.SOUL_RIRA] = {
 		itemName = "莉良的魂石",
 		description = "{{AquaTrinket}} 生成3个水饰品({{Collectible263}} : 1)#{{Blank}}(忽略解锁状态)",
 		queueDesc = "黏糊糊的麻糬记忆",
@@ -2665,8 +2665,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}减少道具1~2的充能上限",
 	},
-	[wakaba.Enums.Collectibles.MAGMA_BLADE] = { 
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波"},
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		desc = {"{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit"}, -- TODO
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 主动充能条显示卡牌生成的几率",
@@ -2724,6 +2727,6 @@ if EID then
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : "
 
-	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} 使伤害惩罚保护失效" 
-	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "无效 {1}" 
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} 使伤害惩罚保护失效"
+	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "无效 {1}"
 end

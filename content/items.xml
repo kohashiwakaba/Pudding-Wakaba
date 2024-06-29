@@ -149,7 +149,7 @@
 	<passive id="112" description="Mind-expandable explosions +5 bombs" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" quality="3" craftquality="3" bombs="5"/>
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="summonable offensive baby uniquefamiliar nochallenge" quality="4" craftquality="4" persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" customtags="nometronome" quality="2" craftquality="4" hidden="true" achievement="9999"/>
-	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden offensive" maxcharges="6" quality="3" craftquality="3" hidden="true" achievement="9999"/>
+	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden offensive" maxcharges="6" quality="3" craftquality="3" />
 	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" craftquality="1" tags="offensive nogreed"/>
 	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="noeden offensive" maxcharges="1" quality="1" craftquality="1"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4" craftquality="4"/>
@@ -157,7 +157,7 @@
 
 	<passive id="123" cache="all" description="Weapon Nullifier" gfx="cleaner.png" name="Dual Cleaner" quality="0" tags="quest noeden" customtags="nometronome" hidden="true" achievement="9999"/>
 
-	<passive id="124" cache="firedelay damage" description="Essence of Rira" gfx="azurerir.png" name="Azure Rir" devilprice="2" tags="summonable offensive noeden" quality="4" craftquality="4" hidden="true" achievement="9999"/>
+	<passive id="124" cache="firedelay damage" description="Essence of Rira" gfx="azurerir.png" name="Azure Rir" devilprice="2" tags="summonable offensive noeden" quality="4" craftquality="4"/>
 
 	<passive id="125" description="Clear explosions +5 bombs" gfx="bubblebombs.png" name="Bubble Bombs" tags="summonable offensive noeden" quality="2" craftquality="2" bombs="5" hidden="true" achievement="9999"/>
 
@@ -191,12 +191,12 @@
 
 	<trinket name="Rabbit Pillow" description="Feels mofumofu" gfx="rabbitpillow.png" />
 
-	<trinket name="Candy of Richer" description="I bring harmony" gfx="candyofricher.png" hidden="true" achievement="9999" />
-	<trinket name="Candy of Rira" description="I bring aqua" gfx="candyofrira.png" hidden="true" achievement="9999"/>
-	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" hidden="true" achievement="9999"/>
-	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" hidden="true" achievement="9999"/>
-	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" hidden="true" achievement="9999"/>
-	<trinket name="Pink Fork" description="Aquatic shield" gfx="pinkfork.png" hidden="true" achievement="9999"/>
+	<trinket name="Candy of Richer" description="I bring harmony" gfx="candyofricher.png" />
+	<trinket name="Candy of Rira" description="I bring aqua" gfx="candyofrira.png" />
+	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" />
+	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" />
+	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" />
+	<trinket name="Pink Fork" description="Aquatic shield" gfx="pinkfork.png" />
 
 	<!-- 원룸천사 아이템? -->
 	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->

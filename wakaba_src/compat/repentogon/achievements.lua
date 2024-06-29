@@ -14,7 +14,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, function(_, saveslot, isS
 		--taintedshiori = Isaac.GetAchievementIdByName("The Minerva"),
 		taintedtsukasa = Isaac.GetAchievementIdByName("The Phoenix"),
 		taintedricher = Isaac.GetAchievementIdByName("The Miko"),
-		--taintedrira = Isaac.GetAchievementIdByName("The Aqua"),
+		taintedrira = Isaac.GetAchievementIdByName("The Aqua"),
 		--- Character Tarnished
 		--tarnishedwakaba = Isaac.GetAchievementIdByName("The Root"),
 		--tarnishedshiori = Isaac.GetAchievementIdByName("The Page"),
@@ -139,6 +139,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, function(_, saveslot, isS
 		rabbitpillow = Isaac.GetAchievementIdByName("Rabbit Pillow"),
 		lilrira = Isaac.GetAchievementIdByName("Lil Rira"),
 		chimaki = Isaac.GetAchievementIdByName("Chimaki"),
+
+		caramellacandybag = Isaac.GetAchievementIdByName("Caramella Candy Bag"),
+		rirasoul = Isaac.GetAchievementIdByName("Soul of Rira"),
+		rabbeyward = Isaac.GetAchievementIdByName("Rabbey Ward"),
+		aquatrinket = Isaac.GetAchievementIdByName("Aqua Trinkets"),
+		pinkfork = Isaac.GetAchievementIdByName("Pink Fork"),
+		flipcard = Isaac.GetAchievementIdByName("Flip Card"),
+		azurerir = Isaac.GetAchievementIdByName("Azure Rir"),
 
 		--- Tarnished Wakaba unlocks
 		--- Tarnished Shiori unlocks

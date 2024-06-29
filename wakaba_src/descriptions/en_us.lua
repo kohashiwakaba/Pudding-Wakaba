@@ -303,7 +303,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
-		.. "#!!! Removes all heart containers"
+		.. "#Room clear awards spawn earlier"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
@@ -2948,23 +2948,27 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
 		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+10% Devil/Angel Room chance",
-		func = function() return REPENTOGON end,
+		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
 		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+20% Devil/Angel Room chance while held",
-		func = function() return REPENTOGON end,
+		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}Reduces Active items' cooldown by 1~2",
-		func = function() return REPENTOGON end,
+		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"↑ {{Damage}} +1 Damage#{{WakabaModRgon}} Explosion immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears"},
-		func = function() return REPENTOGON end,
+		func = function() return REPENTOGON and true end,
+	},
+	[wakaba.Enums.Collectibles.AZURE_RIR] = {
+		desc = {"{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit"},
+		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} {{ColorRicher}}Active chargebar is shown to indicate how many card spawn chance have been failed",
-		func = function() return REPENTOGON end,
+		func = function() return REPENTOGON and true end,
 	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {}

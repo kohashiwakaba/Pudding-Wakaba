@@ -148,12 +148,6 @@ wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.CARD_RETURN_TOKEN] = function()
 		return wakaba:IsLunatic()
 	end,
-	[wakaba.Enums.Cards.CARD_FLIP] = function()
-		return true
-	end,
-	[wakaba.Enums.Cards.SOUL_RIRA] = function()
-		return true
-	end,
 }
 
 ---@type table
@@ -287,17 +281,17 @@ wakaba.UnlockTables = {
 
 		All 		= {"chimaki", "collectible",	wakaba.Enums.Collectibles.CHIMAKI,	function() wakaba:TryPlayAchievementPaper("chimaki", "Boss") end},
 	},
-	--[[ [wakaba.Enums.Players.RIRA_B] = {
+	[wakaba.Enums.Players.RIRA_B] = {
 		istainted = true,
 		Heart 		= {"taintedriramomsheart"},
-		Quartet 		= {"caramellacandybag", "trinket",	wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG,	function() wakaba:TryPlayAchievementPaper("starreversal", "Boss") end},
-		Duet 		= {"rirasoul", "card",	wakaba.Enums.Cards.SOUL_RICHER,	function() wakaba:TryPlayAchievementPaper("richersoul", "Boss") end},
-		Delirium	= {"rabbeyward", "collectible",	wakaba.Enums.Collectibles.WATER_FLAME,				function() wakaba:TryPlayAchievementPaper("waterflame", "Boss") end},
-		MegaSatan	= {"aquatrinket", "null",		nil,			function() wakaba:TryPlayAchievementPaper("crystalrestock", "MegaSatan") end},
-		Mother		= {"uuuuuuuuuuuu", "trinket",	wakaba.Enums.Trinkets.ETERNITY_COOKIE,			function() wakaba:TryPlayAchievementPaper("eternitycookie", "Boss") end},
-		Beast		= {"azurerir", "collectible",	wakaba.Enums.Collectibles.AZURE_RIR,		function() wakaba:TryPlayAchievementPaper("winteralbireo", "Beast") end},
-		Greedier	= {"flipcard", "card",		wakaba.Enums.Cards.CARD_FLIP,			function() wakaba:TryPlayAchievementPaper("trialstew", "Boss") end},
-	}, ]]
+		Quartet 		= {"caramellacandybag", "trinket",	wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG,	function() wakaba:TryPlayAchievementPaper("caramellacandybag", "Boss") end},
+		Duet 		= {"rirasoul", "card",	wakaba.Enums.Cards.SOUL_RICHER,	function() wakaba:TryPlayAchievementPaper("rirasoul", "Boss") end},
+		Delirium	= {"rabbeyward", "collectible",	wakaba.Enums.Collectibles.WATER_FLAME,				function() wakaba:TryPlayAchievementPaper("rabbeyward", "Boss") end},
+		MegaSatan	= {"aquatrinket", "null",		nil,			function() wakaba:TryPlayAchievementPaper("aquatrinket", "MegaSatan") end},
+		Mother		= {"pinkfork", "trinket",	wakaba.Enums.Trinkets.PINK_FORK,			function() wakaba:TryPlayAchievementPaper("pinkfork", "Boss") end},
+		Beast		= {"azurerir", "collectible",	wakaba.Enums.Collectibles.AZURE_RIR,		function() wakaba:TryPlayAchievementPaper("azurerir", "Beast") end},
+		Greedier	= {"flipcard", "card",		wakaba.Enums.Cards.CARD_FLIP,			function() wakaba:TryPlayAchievementPaper("flipcard", "Boss") end},
+	},
 	[-999] = {
 		[wakaba.challenges.CHALLENGE_ELEC] = {"eyeofclock", "collectible",	wakaba.Enums.Collectibles.EYE_OF_CLOCK,	function() wakaba:TryPlayAchievementPaper("eyeofclock", "Boss") end, function(boss) return boss == BossID.MOM end},
 		[wakaba.challenges.CHALLENGE_PLUM] = {"plumy", "collectible",	wakaba.Enums.Collectibles.PLUMY,	function() wakaba:TryPlayAchievementPaper("plumy", "Boss") end, function(boss) return boss == BossID.HUSH end},

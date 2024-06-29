@@ -107,7 +107,7 @@
 	skin="character_rira.png" skinColor="-1" costumeSuffix="rira"
 	/>
 	
-	<player name="RiraB" bSkinParent="Rira" hidden="true"
+	<player name="RiraB" costume="52" bSkinParent="Rira"
 	hp="0" armor="6" birthright="Ribbon Division"
 	portrait="RiraPortrait_b.png"
 	nameimage="playername_rira.png"

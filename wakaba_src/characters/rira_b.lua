@@ -3,11 +3,10 @@
 	야릇한 리퀴드
 	- 최대 체력 = 소울하트 보정, REPENTOGON 적용 시 체력 상한 24칸으로 증가
 	- 토끼 와드가 주변에 없으면 지속적으로 체력 감소
-	- 모든 기초 픽업을 소울하트로 변환
+	- 모든 기초 픽업을 소울하트로 변환 (폐기)
 	- 모든 장신구가 아쿠아 장신구로 등장
 	- 모든 보물방이 '리라의 야릇한 보물방'으로 교체됨
 	-- 모든 보물방에 적용 가능, 해당 방은 아이템 대신 아쿠아 장신구가 등장
-	- 모든 판매 아이템이 소울하트를 요구하도록 변경
 	토끼 와드
 	- 사용 시 맵 기준 반경 2칸까지 아쿠아 버프 적용
 	- 아쿠아 버프가 적용된 방은 리라의 체력 감소 방지
@@ -18,12 +17,37 @@
 	
 
 	추가 고유능력 : Aquaris(물병자리)
-	생득권 : ???
+	생득권 : 체력 감소 해제, Rabbey Ward 사용 시 가장 가까운 아이템 복사
  ]]
 
 
 local playerType = wakaba.Enums.Players.RIRA_B
 local isRiraContinue = true
+
+
+---@param player EntityPlayer
+function wakaba:PlayerUpdate_RiraB(player)
+	if not player or player:GetPlayerType() ~= playerType then return end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then return end
+	local room = wakaba.G:GetRoom()
+	local level = wakaba.G:GetLevel()
+	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex(), true)
+	local wData = wakaba:GetPlayerEntityData(player)
+	if rabbeyPower > 0 then
+		wakaba:removePlayerDataEntry(player, "rabbeyburningtimer")
+	else
+		wakaba:initPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
+		wakaba:addPlayerDataCounter(player, "rabbeyburningtimer", -1)
+		if wakaba:getPlayerDataEntry(player ,"rabbeyburningtimer", 0) < 0 then
+			if player:GetSoulHearts() > 1 then
+				player:AddSoulHearts(-1)
+			end
+			wakaba:setPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_RiraB)
+
 
 
 local RiraChar = {

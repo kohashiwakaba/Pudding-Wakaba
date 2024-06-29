@@ -373,6 +373,7 @@ wakaba.Enums.SoundEffects = {
 wakaba.Enums.Slots = {
 	SHIORI_VALUT = Isaac.GetEntityVariantByName("Shiori Valut"),
 	CRYSTAL_RESTOCK = Isaac.GetEntityVariantByName("Richer's Crystal Restock"),
+	RABBEY_WARD = Isaac.GetEntityVariantByName("Rira's Rabbey Ward"),
 	--SHRINE_BEGGAR = Isaac.GetEntityVariantByName("Shrine Beggar")
 }
 
@@ -1294,6 +1295,7 @@ wakaba.Enums.UniqueItemsAppendTainted = {
 	"Shiori",
 	"Tsukasa",
 	"Richer",
+	"Rira",
 }
 
 wakaba.VoidFlags = {

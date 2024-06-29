@@ -11,7 +11,7 @@
 	<achievement name="The Minerva" text='' gfx="achievement_wakaba_shiori_b.png" />-->
 	<achievement name="The Phoenix" text='' gfx="achievement_wakaba_taintedtsukasa.png" />
 	<achievement name="The Miko" text='' gfx="achievement_wakaba_taintedricher.png" />
-	<!-- <achievement name="The Aqua" text='' gfx="achievement_wakaba_rira_b.png" /> -->
+	<achievement name="The Aqua" text='' gfx="achievement_wakaba_taintedrira.png" />
 	<!-- Characters Tarnished -->
 	<!-- <achievement name="The Root" text='' gfx="achievement_wakaba_wakaba_t.png" /> -->
 	<!-- <achievement name="The Page" text='' gfx="achievement_wakaba_shiori_t.png" /> -->
@@ -143,6 +143,13 @@
 	<achievement name="Chimaki" text='' gfx="wa_rira_chimaki.png" gfxback="wabg_rira_chimaki.png" />
 
 	<!-- Rira Tainted Unlocks -->
+	<achievement name="Caramella Candy Bag" text='' gfx="wa_rirab_caramellacandybag.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Soul of Rira" text='' gfx="wa_rirab_rirasoul.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Rabbey Ward" text='' gfx="wa_rirab_rabbeyward.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Aqua Trinkets" text='' gfx="wa_rirab_aquatrinket.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Pink Fork" text='' gfx="wa_rirab_pinkfork.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Flip Card" text='' gfx="wa_rirab_flipcard.png" gfxback="wabg_rira_b.png" />
+	<achievement name="Azure Rir" text='' gfx="wa_rirab_azurerir.png" gfxback="wabg_rira_azure.png" />
 
 	<!-- Rira Tarnished Unlocks -->
 
