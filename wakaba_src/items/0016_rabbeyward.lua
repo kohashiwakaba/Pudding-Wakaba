@@ -22,7 +22,6 @@ local rabbey_ward_data = {
 }
 wakaba:saveDataManager("Rabbey Ward", rabbey_ward_data)
 wakaba.RabbeyWards = rabbey_ward_data.level.wards
-wakaba.RabbeyWardRooms = rabbey_ward_data.level.wardRooms
 local wardsRoomsToRender = {}
 
 function wakaba:Cache_RabbeyWard(player, cacheFlag)
@@ -52,12 +51,12 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 	if taintedRira and gridIndex == 84 then
 		return 3
 	end
-	if wakaba.RabbeyWardRooms[gridIndex] then
+	if rabbey_ward_data.level.wardRooms[gridIndex] then
 		return 3
 	end
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
-	for index, value in pairs(wakaba.RabbeyWardRooms) do
+	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
 		local gridLocation = isc:roomGridIndexToVector(index)
 		local distVec = currentGridLocation - gridLocation
 		local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
@@ -116,9 +115,9 @@ function wakaba:InstallRabbeyWard(player)
 	end
 	local desc = level:GetCurrentRoomDesc()
 	local wards = wakaba:recalculateWards()
-	wakaba.RabbeyWardRooms[desc.GridIndex] = wards
-	wakaba.RabbeyWardRooms[desc.SafeGridIndex] = wards
-	wakaba.RabbeyWardRooms[level:GetCurrentRoomIndex()] = wards
+	rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
+	rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
+	rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
 end
 
 
@@ -143,6 +142,7 @@ wakaba:AddCallback(wakaba.Callback.SLOT_INIT, wakaba.SlotInit_RabbeyWard, wakaba
 
 ---@param slot Entity|EntitySlot
 function wakaba:SlotUpdate_RabbeyWard(slot)
+	local d = slot:GetData()
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local slotSprite = slot:GetSprite()
@@ -152,25 +152,8 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 		slotSprite:Play("Idle")
 	end
 	if slotSprite:IsFinished("Shoot") then
+		d.wakaba_rabbeyLaserPos = nil
 		slotSprite:Play("Idle")
-	end
-	if slotSprite:IsPlaying("Shoot") then
-		if slotSprite:IsEventTriggered("ShootLaser") then
-			if wakaba:getOptionValue("chimakisound") then
-				sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
-			end
-			local enemy = d.wakaba_rabbeyLaserTarget
-			if enemy and enemy:Exists() then
-				player = player or Isaac.GetPlayer()
-				local pos = enemy.Position
-				local angle = (pos - slot.Position):GetAngleDegrees()
-				local laser = EntityLaser.ShootAngle(2, slot.Position, angle, 3, Vector(0, -20), player)
-				laser:AddTearFlags(TearFlags.TEAR_RAINBOW | TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL)
-				laser.Parent = player
-				laser.CollisionDamage = math.max(player.Damage, 3.5)
-				d.wakaba_rabbeyLaserTarget = nil
-			end
-		end
 	end
 
 	if slot.GridCollisionClass == GridCollisionClass.COLLISION_WALL_EXCEPT_PLAYER then
@@ -180,25 +163,45 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 			wakaba:RemoveDefaultPickup(slot)
 			local desc = level:GetCurrentRoomDesc()
 			local wards = wakaba:recalculateWards()
-			wakaba.RabbeyWardRooms[desc.GridIndex] = wards
-			wakaba.RabbeyWardRooms[desc.SafeGridIndex] = wards
-			wakaba.RabbeyWardRooms[level:GetCurrentRoomIndex()] = wards
+			rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
+			rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
+			rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
 			slotSprite:Play("Death")
 		end
 	elseif player then
-		local d = slot:GetData()
 		d.wakaba_rabbeyLaserCooldown = d.wakaba_rabbeyLaserCooldown - 1
 		if d.wakaba_rabbeyLaserCooldown < 0 then
 			local rng = RNG()
 			rng:SetSeed(d.wakaba_rabbeyLaserSeed, 35)
-			d.wakaba_rabbeyLaserCooldown = rng:RandomInt(30) + 15
+			d.wakaba_rabbeyLaserCooldown = rng:RandomInt(20) + 26
 			d.wakaba_rabbeyLaserSeed = rng:GetSeed()
-			local enemy = wakaba:findNearestEntityByPartition(slot, EntityPartition.ENEMY)
-			if enemy and enemy.Entity and enemy.Entity:Exists() then
-				d.wakaba_rabbeyLaserTarget = enemy.Entity
-				slotSprite:Play("Shoot")
+			if not d.wakaba_rabbeyLaserPos then
+				local enemy = wakaba:findNearestEntityByPartition(slot, EntityPartition.ENEMY)
+				if enemy and enemy.Entity and enemy.Entity:Exists() then
+					d.wakaba_rabbeyLaserPos = enemy.Entity.Position + Vector.Zero
+					slotSprite:Play("Shoot")
+				end
 			end
 		end
+	end
+
+	if slotSprite:IsPlaying("Shoot") then
+		if slotSprite:IsEventTriggered("ShootLaser") then
+			if wakaba:getOptionValue("chimakisound") then
+				sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
+			end
+			local pos = d.wakaba_rabbeyLaserPos
+			if pos then
+				player = player or Isaac.GetPlayer()
+				local angle = (pos - slot.Position):GetAngleDegrees()
+				local laser = EntityLaser.ShootAngle(2, slot.Position, angle, 3, Vector(0, -30), player)
+				laser:AddTearFlags(TearFlags.TEAR_RAINBOW | TearFlags.TEAR_HOMING | TearFlags.TEAR_SPECTRAL)
+				laser.Parent = player
+				laser.CollisionDamage = math.max(player.Damage, 3.5)
+			end
+		end
+	else
+		d.wakaba_rabbeyLaserPos = nil
 	end
 end
 
@@ -254,7 +257,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 	local loc = {}
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
-	for index, value in pairs(wakaba.RabbeyWardRooms) do
+	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
 		local gridLocation = isc:roomGridIndexToVector(index)
 		local distVec = currentGridLocation - gridLocation
 		local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)

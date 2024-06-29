@@ -17,6 +17,31 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+wakaba.AzureRirBlacklistEntities = {
+	{EntityType.ENTITY_DOGMA},
+	{EntityType.ENTITY_ROTGUT},
+	{EntityType.ENTITY_SATAN, 0},
+	{EntityType.ENTITY_MEGA_SATAN, 0},
+	{EntityType.ENTITY_ISAAC, 2},
+	{EntityType.ENTITY_BEAST, 0},
+	{EntityType.ENTITY_ENVY},
+	{EntityType.ENTITY_FALLEN},
+	{EntityType.ENTITY_MOTHER, 0},
+}
+
+local function isAzureRirBlacklisted(entity)
+	for _, dict in ipairs(wakaba.AzureRirBlacklistEntities) do
+		if entity.Type == dict[1] then
+			if not dict[2] or entity.Variant == dict[2] then
+				if not dict[3] or entity.SubType == dict[3] then
+					return true
+				end
+			end
+		end
+	end
+end
+
+
 ---@param player EntityPlayer
 ---@return boolean
 function wakaba:hasAzureRir(player)
@@ -49,9 +74,13 @@ end
 ---@param npc EntityNPC
 function wakaba:NPCRender_AzureRir(npc)
 	if wakaba:IsLunatic() then return end
-	if not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.AZURE_RIR) then return end
-	if npc:IsDead() and npc.CanShutDoors then
+	if not wakaba:anyPlayerHasAzureRir() then return end
+	if (npc:IsDead() or npc:GetSprite():IsPlaying("Death")) and npc.CanShutDoors and not isAzureRirBlacklisted(npc) then
 		npc.CanShutDoors = false
+		local s = npc:GetSprite()
+		local c = s.Color
+		c.A = 0.5
+		s.Color = c
 	end
 
 end
