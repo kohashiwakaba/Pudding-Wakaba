@@ -404,6 +404,7 @@ if EID then
 										vars = itemdesc.vars,
 										type = itemdesc.type,
 										modifierText = itemdesc.modifierText,
+										layer = itemdesc.layer or 0,
 									})
 								end
 								-- TODO EID version check
@@ -423,6 +424,7 @@ if EID then
 									vars = itemdesc.vars,
 									type = itemdesc.type,
 									modifierText = itemdesc.modifierText,
+									layer = itemdesc.layer or 0,
 								}
 							end
 							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
@@ -437,6 +439,7 @@ if EID then
 									vars = itemdesc.vars,
 									type = itemdesc.type,
 									modifierText = itemdesc.modifierText,
+									layer = itemdesc.layer or 0,
 								}
 							end
 							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
@@ -459,6 +462,7 @@ if EID then
 										vars = itemdesc.vars,
 										type = itemdesc.type,
 										modifierText = itemdesc.modifierText,
+										layer = itemdesc.layer or 0,
 									})
 								end
 								-- TODO EID version check
