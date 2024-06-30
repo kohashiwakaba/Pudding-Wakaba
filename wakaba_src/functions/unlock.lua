@@ -714,7 +714,7 @@ local validPlayerCheck = {
 	wakaba.Enums.Players.RICHER,
 	wakaba.Enums.Players.RICHER_B,
 	wakaba.Enums.Players.RIRA,
-	--wakaba.Enums.Players.RIRA_B,
+	wakaba.Enums.Players.RIRA_B,
 	--wakaba.Enums.Players.WAKABA_T,
 	--wakaba.Enums.Players.SHIORI_T,
 	--wakaba.Enums.Players.TSUKASA_T,

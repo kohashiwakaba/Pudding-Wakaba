@@ -11,6 +11,7 @@
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+local sfx = SFXManager()
 local rabbey_ward_data = {
 	run = {
 		ascentSharedSeeds = {},
@@ -23,6 +24,50 @@ wakaba:saveDataManager("Rabbey Ward", rabbey_ward_data)
 wakaba.RabbeyWards = rabbey_ward_data.level.wardRooms
 local wardsRoomsToRender = {}
 wakaba.wardShaderRenderVal = 0
+
+function wakaba:printRabbeyWardList()
+	local wd = rabbey_ward_data.level.wardRooms
+	wakaba.Log("Rabbey Ward powers: ")
+	for index, val in pairs(wd) do
+		local nx = index // 13
+		local ny = index % 13
+		local vecPos = Vector(nx, ny)
+		wakaba.Log("Index", index, "/ Grid", vecPos, ":", val)
+	end
+end
+
+function wakaba:getRabbeyWardCheckArea(vecPos, radius)
+	compare = compare or Vector.Zero
+	local retGridIndexes = {}
+	local retVectes = {}
+	if type(vecPos) == "number" then
+		vecPos = vecPos // 1
+		local nx = vecPos // 13
+		local ny = vecPos % 13
+		vecPos = Vector(nx, ny)
+	end
+	local x = vecPos.X
+	local y = vecPos.Y
+	for xx = -radius, radius do
+		for yy = -radius, radius do
+			local distance = math.abs(xx) + math.abs(yy)
+			if (distance <= radius) then
+				local newVec = vecPos + Vector(xx, yy)
+				if newVec.X >= 0 and newVec.X < 13
+				and newVec.Y >= 0 and newVec.Y < 13 then
+					local gridIndex =  newVec.Y * 13 + newVec.X
+					local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(gridIndex)
+					local shape = roomDesc.RoomShape
+					table.insert(retGridIndexes, {v = newVec, i = gridIndex, d = distance, s = shape})
+				end
+			end
+		end
+	end
+	return retGridIndexes
+end
+
+function wakaba:updateRabbeyWardPower(gridIndex)
+end
 
 function wakaba:hasRabbeyWard(player)
 	if not player then
@@ -73,18 +118,26 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 	if gridIndex < 0 then
 		gridIndex = wakaba.G:GetLevel():GetPreviousRoomIndex()
 	end
-	local currRoomPower = rabbey_ward_data.level.wardRooms[gridIndex]
+	local currRoomPower = rabbey_ward_data.level.wardRooms[tostring(gridIndex)]
 	if currRoomPower and currRoomPower > 0 then
-		return 3
+		return currRoomPower * 3
 	end
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
-	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
-		if value > 0 then
-			local gridLocation = isc:roomGridIndexToVector(index)
-			local distVec = currentGridLocation - gridLocation
-			local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
-			power = math.max(power, 3 - calculatedDist)
+	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
+	for _, td in pairs(testAreas) do
+		local index = td.i // 1
+		local distance = td.d // 1
+		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
+		print("[]", index, rabbey_ward_data.level.wardRooms[tostring(index)])
+		if rabbey_ward_data.level.wardRooms[tostring(index)] then
+			local p = rabbey_ward_data.level.wardRooms[tostring(index)]
+			wakaba.Log("Ward power from index", index, "found: power:", p)
+			power = math.max(power, (p * 3) - distance)
+		elseif roomDesc and rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
+			local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
+			wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
+			power = math.max(power, (p * 3) - distance)
 		end
 	end
 	return power
@@ -134,15 +187,17 @@ function wakaba:InstallRabbeyWard(player)
 	if wakaba:getOptionValue("chimakisound") then
 		sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
-	if REPENTOGON then
-		room:SetWaterAmount(0.5)
+	if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+		local water = room:GetWaterAmount()
+		local newWater = math.max(water, 0.5)
+		room:SetWaterAmount(newWater)
 		--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.45))
 	end
+	local gridIndex = level:GetCurrentRoomIndex()
 	local desc = level:GetCurrentRoomDesc()
 	local wards = wakaba:recalculateWards()
-	rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
-	rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
-	rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
+	rabbey_ward_data.level.wardRooms[tostring(gridIndex)] = wards
+	rabbey_ward_data.level.wardRooms[tostring(desc.SafeGridIndex)] = wards
 	wakaba:scheduleForUpdate(function()
 		wakaba:ForAllPlayers(function (player)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
@@ -194,9 +249,8 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 				local gridIndex = level:GetCurrentRoomIndex()
 				local desc = level:GetCurrentRoomDesc()
 				local wards = wakaba:recalculateWards()
-				rabbey_ward_data.level.wardRooms[desc.GridIndex] = wards
-				rabbey_ward_data.level.wardRooms[desc.SafeGridIndex] = wards
-				rabbey_ward_data.level.wardRooms[level:GetCurrentRoomIndex()] = wards
+				rabbey_ward_data.level.wardRooms[tostring(gridIndex)] = wards
+				rabbey_ward_data.level.wardRooms[tostring(desc.SafeGridIndex)] = wards
 				wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
 				wakaba:ForAllPlayers(function (player)
 					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
@@ -292,7 +346,7 @@ function wakaba:Update_RabbeyWard()
 			local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 			local centerPos = room:GetCenterPos()
 			for _, entry in pairs(wardsRoomsToRender) do
-				local listIndex = entry.listIndex
+				--local listIndex = entry.listIndex
 				local gridLocation = entry.grid
 				local centerPos = room:GetCenterPos()
 				if gridLocation ~= currentGridLocation then
@@ -305,39 +359,71 @@ function wakaba:Update_RabbeyWard()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_RabbeyWard)
 
+---@param gridIndex integer|RoomDescriptor
+---@return table
 function wakaba:getNearbyWardRooms(gridIndex)
 	local loc = {}
 	if isc:inDeathCertificateArea() then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
-	for index, value in pairs(rabbey_ward_data.level.wardRooms) do
-		--print(index, value)
-		if value > 0 then
-			local gridLocation = isc:roomGridIndexToVector(index)
-			local distVec = currentGridLocation - gridLocation
-			local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
-			if calculatedDist <= 2 then
-				table.insert(loc, {
-					index = gridLocation,
-					grid = gridLocation,
-					power = 3 - calculatedDist,
-				})
-			end
+	local testAreas = wakaba:getRabbeyWardCheckArea(currentGridLocation, 2)
+	for _, td in pairs(testAreas) do
+		local index = td.i // 1
+		local grid = td.v
+		local distance = td.d // 1
+		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
+		if rabbey_ward_data.level.wardRooms[tostring(index)] then
+			local p = rabbey_ward_data.level.wardRooms[tostring(index)]
+			table.insert(loc, {
+				index = index,
+				grid = grid,
+				power = 3 - distance,
+			})
+		elseif rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
+			local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
+			table.insert(loc, {
+				index = index,
+				grid = grid,
+				power = 3 - distance,
+			})
 		end
 	end
 	return loc
 end
+local delayWardEffect = false
+function wakaba:CurseEval_RabbeyWard()
+	wakaba.wardShaderRenderVal = 0
+	delayWardEffect = true
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, wakaba.CurseEval_RabbeyWard)
 
-function wakaba:NewRoom_RabbeyWard()
+local function newRoomFunc()
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex())
 	if rabbeyPower > 0 then
 		--isc:openDoorFast()
-		if REPENTOGON then
-			room:SetWaterAmount(0.16 * rabbeyPower)
+		if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+			local water = room:GetWaterAmount()
+			local newWater = math.max(water, 0.16 * rabbeyPower)
+			room:SetWaterAmount(newWater)
 			--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.15 * rabbeyPower))
 		end
+	end
+	if not isc:inDeathCertificateArea() then
+		wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
+	end
+end
+
+function wakaba:NewRoom_RabbeyWard()
+	local room = wakaba.G:GetRoom()
+	local level = wakaba.G:GetLevel()
+	if delayWardEffect then
+		wakaba:scheduleForUpdate(function ()
+			newRoomFunc()
+		end, 0)
+	else
+		newRoomFunc()
 	end
 	if room:IsFirstVisit() and room:IsClear() then
 		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
@@ -352,9 +438,7 @@ function wakaba:NewRoom_RabbeyWard()
 			end
 		end)
 	end
-	if not isc:inDeathCertificateArea() then
-		wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
-	end
+	delayWardEffect = false
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbeyWard)
 

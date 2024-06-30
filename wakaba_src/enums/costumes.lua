@@ -22,6 +22,7 @@ wakaba.cpManagedPlayerType = {
   [wakaba.Enums.Players.RICHER] = {sheetName = "richer", flightSheetName = "richer", flightID = 67, extraNullID = NullItemID.ID_JACOB},
   [wakaba.Enums.Players.RICHER_B] = {sheetName = "richerb", flightSheetName = "richerb", flightID = 67, extraNullID = NullItemID.ID_JACOB},
   [wakaba.Enums.Players.RIRA] = {sheetName = "rira", flightSheetName = "rira", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+  [wakaba.Enums.Players.RIRA_B] = {sheetName = "rirab", flightSheetName = "rirab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
 }
 
 wakaba.costumeCollectibleWhiteList = {
