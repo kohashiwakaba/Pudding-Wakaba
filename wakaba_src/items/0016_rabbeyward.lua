@@ -107,7 +107,9 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 	local level = wakaba.G:GetLevel()
 	wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
 	wakaba:InstallRabbeyWard(player)
-	wakaba:revealWardMap(level:GetCurrentRoomIndex())
+	wakaba:scheduleForUpdate(function()
+		wakaba:revealWardMap(level:GetCurrentRoomIndex())
+	end, 1)
 	return {
 		Discharge = true,
 		Remove = false,
@@ -171,6 +173,7 @@ end
 function wakaba:revealWardMap(gridIndex)
 	local level = wakaba.G:GetLevel()
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
+
 	local pendingRooms = {}
 	for index = 0, 168 do
 		local gridLocation = isc:roomGridIndexToVector(index)
@@ -185,7 +188,43 @@ function wakaba:revealWardMap(gridIndex)
 			table.insert(pendingRooms, {i = index, p = (3 - calculatedDist)})
 		end
 	end
+	if MinimapAPI then
+		wakaba:recalculateWardMinimap()
+	end
 	level:UpdateVisibility()
+end
+
+function wakaba:recalculateWardMinimap(wardAreas)
+	if wardAreas then
+		-- Partial scan
+		for _, td in pairs(wardAreas) do
+			local room = MinimapAPI:GetRoomByIdx(td.index)
+			if room then
+				wakaba.Log("Rabbey room found on index", td.index)
+				local power = td.power
+				if power > 0 then
+					local np = math.min(power, 3)
+					room.Color = Color(1, 0.5 + (0.1 * np), 0.85, np * 0.2, 0, 0, 0)
+				else
+					room.Color = nil
+				end
+			end
+		end
+	else
+		-- Full scan
+		for _,room in ipairs(MinimapAPI:GetLevel()) do
+			local desc = room.Descriptor ---@type RoomDescriptor
+			if desc then
+				local power = wakaba:getRabbeyWardPower(desc.SafeGridIndex)
+				if power > 0 then
+					local np = math.min(power, 3)
+					room.Color = Color(1, 0.5 + (0.1 * np), 0.85, np * 0.2, 0, 0, 0)
+				else
+					room.Color = nil
+				end
+			end
+		end
+	end
 end
 
 function wakaba:InstallRabbeyWard(player)
@@ -269,6 +308,7 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
 					player:EvaluateItems()
 				end)
+				wakaba:recalculateWardMinimap()
 				wakaba.Log("Rabbey Ward killed! recalculating...")
 			end, 1)
 			slot:ClearEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
@@ -404,7 +444,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 				table.insert(loc, {
 					index = index,
 					grid = grid,
-					power = 3 - distance,
+					power = p > 0 and 3 - distance or 0,
 				})
 				checkedIndexes[tostring(index)] = true
 			end
@@ -414,7 +454,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 				table.insert(loc, {
 					index = index,
 					grid = grid,
-					power = 3 - distance,
+					power = p > 0 and 3 - distance or 0,
 				})
 				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
 			end
@@ -482,6 +522,9 @@ function wakaba:NewRoom_RabbeyWard()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbeyWard)
 
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function ()
+	wakaba:recalculateWardMinimap()
+end)
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
 	if shaderName == "wakaba_RabbeyWardArea" then
