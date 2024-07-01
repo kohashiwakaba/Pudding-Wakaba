@@ -37,13 +37,12 @@ function wakaba:printRabbeyWardList()
 end
 
 function wakaba:getRabbeyWardCheckArea(vecPos, radius)
-	compare = compare or Vector.Zero
 	local retGridIndexes = {}
 	local retVectes = {}
 	if type(vecPos) == "number" then
 		vecPos = vecPos // 1
-		local nx = vecPos // 13
-		local ny = vecPos % 13
+		local nx = vecPos % 13
+		local ny = vecPos // 13
 		vecPos = Vector(nx, ny)
 	end
 	local x = vecPos.X
@@ -134,14 +133,14 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 		if rabbey_ward_data.level.wardRooms[tostring(index)] then
 			if not checkedIndexes[tostring(index)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
-				wakaba.Log("Ward power from index", index, "found: power:", p)
+				--wakaba.Log("Ward power from index", index, "found: power:", p)
 				power = math.max(power, (p * 3) - distance)
 				checkedIndexes[tostring(index)] = true
 			end
 		elseif roomDesc and rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
 			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
-				wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
+				--wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
 				power = math.max(power, (p * 3) - distance)
 				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
 			end
@@ -381,24 +380,24 @@ function wakaba:getNearbyWardRooms(gridIndex)
 		local distance = td.d // 1
 		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
 		if rabbey_ward_data.level.wardRooms[tostring(index)] then
-			if not checkedIndexes[tostring(index)]] then
+			if not checkedIndexes[tostring(index)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
 				table.insert(loc, {
 					index = index,
 					grid = grid,
 					power = 3 - distance,
 				})
-				checkedIndexes[tostring(index)]] = true
+				checkedIndexes[tostring(index)] = true
 			end
 		elseif rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
-			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)]] then
+			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
 				table.insert(loc, {
 					index = index,
 					grid = grid,
 					power = 3 - distance,
 				})
-				checkedIndexes[tostring(roomDesc.SafeGridIndex)]] = true
+				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
 			end
 		end
 	end
