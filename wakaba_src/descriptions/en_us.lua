@@ -297,7 +297,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#On use, installs a Rabbit Ward that causes:"
 		.. "#Reveals further rooms"
 		.. "#Damage, Tears up inside revealed rooms"
-		.. "#Clearing room inside Rabbit Ward recovers half soul heart"
+		.. "#Clearing room inside Rabbit Ward recovers 1 soul heart"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {

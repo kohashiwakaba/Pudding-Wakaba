@@ -304,10 +304,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "토끼 와드",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
-		.. "#사용 시 아래 효과를 지닌 토끼 와드를 설치합니다:"
+		.. "#사용 시 아래 효과를 지닌 토끼 와드를 설치:"
 		.. "#{{Collectible91}} 설치한 방에서 2칸 이내에 있는 스테이지 구조 및 특수방을 맵에 표시 및 영향권으로 만듭니다."
-		.. "#영향권 내에서 공격력/연사 증가"
-		.. "#토끼 와드가 설치된 방 클리어 시 소울하트 반칸을 회복합니다."
+		.. "#영향권 내에서 {{DamageSmall}}공격력/{{TearsSmall}}연사 증가"
+		.. "#{{SoulHeart}} 클리어한 방에서 설치 및 토끼 와드가 설치된 방 클리어 시 추가 소울하트 +1"
 		.. "{{CR}}",
 		queueDesc = "아쿠아 확장 장치",
 	},

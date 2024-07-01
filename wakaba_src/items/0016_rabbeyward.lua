@@ -97,6 +97,13 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_RabbeyWard)
 
 function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData)
 	local room = wakaba.G:GetRoom()
+	if room:IsClear() then
+		wakaba:ForAllPlayers(function (p)
+			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(p.Position.X, p.Position.Y - 95), Vector.Zero, nil):ToEffect()
+			p:AddSoulHearts(2)
+		end)
+	end
+
 	local level = wakaba.G:GetLevel()
 	wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
 	wakaba:InstallRabbeyWard(player)
@@ -195,7 +202,7 @@ function wakaba:InstallRabbeyWard(player)
 	end
 	if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
 		local water = room:GetWaterAmount()
-		local newWater = math.max(water, 0.5)
+		local newWater = math.min(math.max(water, 0.5), 1)
 		room:SetWaterAmount(newWater)
 		--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.45))
 	end
@@ -333,6 +340,18 @@ function wakaba:getNearbyRabbitWard(player)
 	return nearest
 end
 
+function wakaba.RoomClear_RabbeyWard()
+	local wards = wakaba:recalculateWards()
+	if wards > 0 then
+		wakaba:ForAllPlayers(function (player)
+			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(player.Position.X, player.Position.Y - 95), Vector.Zero, nil):ToEffect()
+			player:AddSoulHearts(wards * 2)
+		end)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_RabbeyWard)
+--wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_RabbeyWard)
+
 function wakaba:Update_RabbeyWard()
 	local room = wakaba.G:GetRoom()
 	local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
@@ -419,7 +438,7 @@ local function newRoomFunc()
 		--isc:openDoorFast()
 		if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
 			local water = room:GetWaterAmount()
-			local newWater = math.max(water, 0.16 * rabbeyPower)
+			local newWater = math.min(math.max(water, 0.16 * rabbeyPower), 1)
 			room:SetWaterAmount(newWater)
 			--room:SetWaterColorMultiplier(KColor(1, 0.28, 0.57, 0.15 * rabbeyPower))
 		end
