@@ -410,6 +410,7 @@ function wakaba:CurseEval_RabbeyWard()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, wakaba.CurseEval_RabbeyWard)
 
+local lastRabbeyPower = 0
 local function newRoomFunc()
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
@@ -425,6 +426,13 @@ local function newRoomFunc()
 	end
 	if not isc:inDeathCertificateArea() then
 		wardsRoomsToRender = wakaba:getNearbyWardRooms(gridIndex)
+	end
+	if rabbeyPower ~= lastRabbeyPower then
+		wakaba:ForAllPlayers(function (player)
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
+			player:EvaluateItems()
+		end)
+		lastRabbeyPower = rabbeyPower
 	end
 end
 
