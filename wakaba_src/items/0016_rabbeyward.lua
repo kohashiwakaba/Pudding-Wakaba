@@ -122,6 +122,7 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 	if currRoomPower and currRoomPower > 0 then
 		return currRoomPower * 3
 	end
+	local checkedIndexes = {}
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
 	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
@@ -129,15 +130,21 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 		local index = td.i // 1
 		local distance = td.d // 1
 		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
-		print("[]", index, rabbey_ward_data.level.wardRooms[tostring(index)])
+		--print("[]", index, rabbey_ward_data.level.wardRooms[tostring(index)])
 		if rabbey_ward_data.level.wardRooms[tostring(index)] then
-			local p = rabbey_ward_data.level.wardRooms[tostring(index)]
-			wakaba.Log("Ward power from index", index, "found: power:", p)
-			power = math.max(power, (p * 3) - distance)
+			if not checkedIndexes[tostring(index)] then
+				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
+				wakaba.Log("Ward power from index", index, "found: power:", p)
+				power = math.max(power, (p * 3) - distance)
+				checkedIndexes[tostring(index)] = true
+			end
 		elseif roomDesc and rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
-			local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
-			wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
-			power = math.max(power, (p * 3) - distance)
+			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] then
+				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
+				wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
+				power = math.max(power, (p * 3) - distance)
+				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
+			end
 		end
 	end
 	return power
@@ -362,6 +369,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_RabbeyWard)
 ---@param gridIndex integer|RoomDescriptor
 ---@return table
 function wakaba:getNearbyWardRooms(gridIndex)
+	local checkedIndexes = {}
 	local loc = {}
 	if isc:inDeathCertificateArea() then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
@@ -373,19 +381,25 @@ function wakaba:getNearbyWardRooms(gridIndex)
 		local distance = td.d // 1
 		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
 		if rabbey_ward_data.level.wardRooms[tostring(index)] then
-			local p = rabbey_ward_data.level.wardRooms[tostring(index)]
-			table.insert(loc, {
-				index = index,
-				grid = grid,
-				power = 3 - distance,
-			})
+			if not checkedIndexes[tostring(index)]] then
+				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
+				table.insert(loc, {
+					index = index,
+					grid = grid,
+					power = 3 - distance,
+				})
+				checkedIndexes[tostring(index)]] = true
+			end
 		elseif rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
-			local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
-			table.insert(loc, {
-				index = index,
-				grid = grid,
-				power = 3 - distance,
-			})
+			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)]] then
+				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
+				table.insert(loc, {
+					index = index,
+					grid = grid,
+					power = 3 - distance,
+				})
+				checkedIndexes[tostring(roomDesc.SafeGridIndex)]] = true
+			end
 		end
 	end
 	return loc
