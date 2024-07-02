@@ -20,6 +20,61 @@ local rabbey_ward_data = {
 		wardRooms = {},
 	}
 }
+
+local offsetVecToCheck = {
+	[RoomShape.ROOMSHAPE_1x1] = {
+		Vector(0, 0),
+	},
+	[RoomShape.ROOMSHAPE_IH] = {
+		Vector(0, 0),
+	},
+	[RoomShape.ROOMSHAPE_IV] = {
+		Vector(0, 0),
+	},
+	[RoomShape.ROOMSHAPE_1x2] = {
+		Vector(0, 0),
+		Vector(0, 1),
+	},
+	[RoomShape.ROOMSHAPE_IIV] = {
+		Vector(0, 0),
+		Vector(0, 1),
+	},
+	[RoomShape.ROOMSHAPE_2x1] = {
+		Vector(0, 0),
+		Vector(1, 0),
+	},
+	[RoomShape.ROOMSHAPE_IIH] = {
+		Vector(0, 0),
+		Vector(1, 0),
+	},
+	[RoomShape.ROOMSHAPE_2x2] = {
+		Vector(0, 0),
+		Vector(0, 1),
+		Vector(1, 0),
+		Vector(1, 1),
+	},
+	[RoomShape.ROOMSHAPE_LTL] = {
+		Vector(0, 0),
+		Vector(0, 1),
+		Vector(-1, 1),
+	},
+	[RoomShape.ROOMSHAPE_LTR] = {
+		Vector(0, 0),
+		Vector(0, 1),
+		Vector(1, 1),
+	},
+	[RoomShape.ROOMSHAPE_LBL] = {
+		Vector(0, 0),
+		Vector(1, 0),
+		Vector(1, 1),
+	},
+	[RoomShape.ROOMSHAPE_LBR] = {
+		Vector(0, 0),
+		Vector(0, 1),
+		Vector(1, 0),
+	},
+}
+
 wakaba:saveDataManager("Rabbey Ward", rabbey_ward_data)
 wakaba.RabbeyWards = rabbey_ward_data.level.wardRooms
 local wardsRoomsToRender = {}
@@ -36,28 +91,33 @@ function wakaba:printRabbeyWardList()
 	end
 end
 
-function wakaba:getRabbeyWardCheckArea(vecPos, radius)
+function wakaba:getRabbeyWardCheckArea(_gridIndex, radius)
 	local retGridIndexes = {}
 	local retVectes = {}
-	if type(vecPos) == "number" then
-		vecPos = vecPos // 1
-		local nx = vecPos % 13
-		local ny = vecPos // 13
-		vecPos = Vector(nx, ny)
-	end
-	local x = vecPos.X
-	local y = vecPos.Y
-	for xx = -radius, radius do
-		for yy = -radius, radius do
-			local distance = math.abs(xx) + math.abs(yy)
-			if (distance <= radius) then
-				local newVec = vecPos + Vector(xx, yy)
-				if newVec.X >= 0 and newVec.X < 13
-				and newVec.Y >= 0 and newVec.Y < 13 then
-					local gridIndex =  newVec.Y * 13 + newVec.X
-					local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(gridIndex)
-					local shape = roomDesc.RoomShape
-					table.insert(retGridIndexes, {v = newVec, i = gridIndex, d = distance, s = shape})
+	local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(_gridIndex)
+	local gridIndex = roomDesc.SafeGridIndex
+	local roomData = roomDesc.Data
+	local shape = roomData and roomData.Shape or RoomShape.ROOMSHAPE_1x1
+
+	local nx = gridIndex % 13
+	local ny = gridIndex // 13
+	local vecPos = Vector(nx, ny)
+
+	local vecToCheck = offsetVecToCheck[shape]
+
+	for _, offset in ipairs(vecToCheck) do
+		for xx = -radius, radius do
+			for yy = -radius, radius do
+				local distance = math.abs(xx) + math.abs(yy)
+				if (distance <= radius) then
+					local newVec = vecPos + Vector(xx, yy) + offset
+					if newVec.X >= 0 and newVec.X < 13
+					and newVec.Y >= 0 and newVec.Y < 13 then
+						local gridIndex =  newVec.Y * 13 + newVec.X
+						local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(gridIndex)
+						local shape = roomDesc.RoomShape
+						table.insert(retGridIndexes, {v = newVec, i = gridIndex, d = distance, s = shape})
+					end
 				end
 			end
 		end
@@ -131,7 +191,7 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 		return currRoomPower * 3
 	end
 	local checkedIndexes = {}
-	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
+	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
 	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
 	for _, td in pairs(testAreas) do
@@ -431,8 +491,8 @@ function wakaba:getNearbyWardRooms(gridIndex)
 	local loc = {}
 	if isc:inDeathCertificateArea() then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
-	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
-	local testAreas = wakaba:getRabbeyWardCheckArea(currentGridLocation, 2)
+	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
+	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
 	for _, td in pairs(testAreas) do
 		local index = td.i // 1
 		local grid = td.v
