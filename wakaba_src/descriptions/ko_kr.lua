@@ -285,7 +285,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 공격하는 방향으로 너프 샷을 여러 발 발사합니다."
 		.. "#{{Weakness}} 너프 샷에 맞은 적은 10초동안 속도가 느려지며 받는 피해량이 2배 증가합니다."
 		.. "{{CR}}",
-		queueDesc = "서로 서로 담궈요",
+		queueDesc = "서로서로 담가요",
 	},
 	[wakaba.Enums.Collectibles.CHIMAKI] = {
 		itemName = "치마키",
