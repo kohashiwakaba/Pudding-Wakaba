@@ -38,8 +38,12 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_WhiteJoker, wakaba.E
 
 function wakaba:UseCard_ColorJoker(_, player, flags)
 	local targetBrokenHearts = ((player:GetHeartLimit() // 2) + player:GetBrokenHearts()) // 2
-	if player:GetBrokenHearts() ~= targetBrokenHearts then
-		player:AddBrokenHearts(-(player:GetBrokenHearts()-targetBrokenHearts))
+	if wakaba:IsLunatic() then
+		player:AddBrokenHearts((player:GetHeartLimit() + player:GetBrokenHearts()) // 2)
+	else
+		if player:GetBrokenHearts() ~= targetBrokenHearts then
+			player:AddBrokenHearts(-(player:GetBrokenHearts()-targetBrokenHearts))
+		end
 	end
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector(0,0), nil)
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector(0,0), nil)

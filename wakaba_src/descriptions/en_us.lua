@@ -1708,6 +1708,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "Color Joker",
 		description = "{{BrokenHeart}} Sets Broken Heart counts to 6 #Spawns 3 Collectible items and 8 Card/Rune/Soul Stones",
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}Adds 6 Broken Hearts#Spawns 3 Collectible items and 8 Card/Rune/Soul Stones",
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {

@@ -1996,6 +1996,7 @@ wakaba.descriptions[desclang].cards = {
 		itemName = "컬러 조커",
 		queueDesc = "당신은 이 결과를 원하지 않을 것이다",
 		description = "{{BrokenHeart}} 부서진 하트의 개수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}}  {{ColorOrange}}부서진 하트 +6#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "스페이드 Q",

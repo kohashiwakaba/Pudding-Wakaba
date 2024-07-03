@@ -1805,6 +1805,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "彩 Joker",
 		description = "{{BrokenHeart}} 设置碎心数量到6 #生成3个道具8个卡牌/符文/魂石",
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}Adds 6 Broken Hearts#生成3个道具8个卡牌/符文/魂石", -- TODO
 		queueDesc = "你不会想要的",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
