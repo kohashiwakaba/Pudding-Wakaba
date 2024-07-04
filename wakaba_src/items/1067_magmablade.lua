@@ -15,9 +15,14 @@ local function getMagmaBladeMultiplier(player)
 end
 
 function wakaba:Cache_MagmaBlade(player, cacheFlag)
-  if canActivateMagmaBlade(player) then
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+	if canActivateMagmaBlade(player) then
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + (getMagmaBladeMultiplier(player) * wakaba:getEstimatedDamageMult(player))
+		end
+		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
+			if player:HasWeaponType(WeaponType.WEAPON_SPIRIT_SWORD) then
+				player.TearFlags = player.TearFlags | TearFlags.TEAR_BURN
+			end
 		end
 	end
 end
@@ -34,20 +39,34 @@ if REPENTOGON then
 		if not canActivateMagmaBlade(player) then return end
 		local fires = (player:GetData().w_magmaCount or 0) + fireAmount
 		local parNum = math.max(20 - (getMagmaBladeMultiplier(player) * 4))
+
+		local sub = 0
+		local dmgMult = 2
+		if player.TearFlags & TearFlags.TEAR_HOMING > 0 then
+			sub = 1
+		end
+		if player.TearFlags & TearFlags.TEAR_BURN > 0 then
+			dmgMult = 3
+		end
+
 		if fires >= parNum then
-			fires = -1
-			wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.MagmaBlade)
+			fires = -fireAmount
+			if weapon:GetWeaponType() == WeaponType.WEAPON_SPIRIT_SWORD then
+				weapon:SetCharge(200000)
+				for i = 0, 7 do
+					wakaba:scheduleForUpdate(function()
+						local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_WAVE, sub, player.Position, Vector.Zero, player):ToEffect()
+						effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+						effect.Rotation = dirVec:GetAngleDegrees() + (i * 45)
+						effect.CollisionDamage = player.Damage * dmgMult
+					end, i * 2)
+				end
+			else
+				wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.MagmaBlade)
+			end
 			local multiParams = player:GetMultiShotParams(WeaponType.WEAPON_TEARS)
 			for i = 1, multiParams:GetNumTears() do
 				local posVel = player:GetMultiShotPositionVelocity(i, WeaponType.WEAPON_TEARS, dirVec, 1, multiParams)
-				local sub = 0
-				local dmgMult = 2
-				if player.TearFlags & TearFlags.TEAR_HOMING > 0 then
-					sub = 1
-				end
-				if player.TearFlags & TearFlags.TEAR_BURN > 0 then
-					dmgMult = 3
-				end
 				local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_WAVE, sub, player.Position, posVel.Velocity, player):ToEffect()
 				effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
 				effect.Rotation = posVel.Velocity:GetAngleDegrees()
