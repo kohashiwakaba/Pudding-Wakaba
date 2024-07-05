@@ -7,6 +7,11 @@ function wakaba:Cache_NasaLover(player, cacheFlag)
 			--player.TearFlags = player.TearFlags | TearFlags.TEAR_JACOBS
 		end
 	end
+	if hasitem or efcount > 0 and not wakaba:IsLunatic() then
+		if cacheFlag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+			player.TearFlags = player.TearFlags | TearFlags.TEAR_JACOBS
+		end
+	end
 	if cacheFlag & CacheFlag.CACHE_FAMILIARS == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
 		efcount = efcount <= 64 and efcount or 64
