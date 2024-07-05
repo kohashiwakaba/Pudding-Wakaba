@@ -630,9 +630,19 @@ end)
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
 	if shaderName == "wakaba_RabbeyWardArea" then
+		local rabbeywardrendermode = wakaba:getOptionValue("rabbeywardrendermode") or 2
+		local strength = wakaba.wardShaderRenderVal * 0.03
+		local rendertype = 1
+		if rabbeywardrendermode == 2 then
+		elseif rabbeywardrendermode == 1 then
+			rendertype = 0
+		else
+			strength = 0
+		end
 
 		local params = {
-			Strength = wakaba.wardShaderRenderVal * 0.03,
+			Strength = strength,
+			Type = rendertype,
 			Time = Isaac.GetFrameCount()
 		}
 		return params

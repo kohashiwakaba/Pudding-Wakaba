@@ -33,6 +33,7 @@
   <shader name="wakaba_RabbeyWardArea">
     <parameters>
       <param name="Strength" type="float"/>
+      <param name="Type" type="float"/>
       <param name="Time" type="float"/>
     </parameters>
     <vertex><![CDATA[
@@ -42,12 +43,14 @@
       attribute vec4 RenderData;
       attribute float Scale;
       attribute float Strength;
+      attribute float Type;
       attribute float Time;
       varying vec4 Color0;
       varying vec2 TexCoord0;
       varying vec4 RenderDataOut;
       varying float ScaleOut;
       varying float StrengthOut;
+      varying float TypeOut;
       varying float TimeOut;
       uniform mat4 Transform;
       void main(void)
@@ -55,6 +58,7 @@
         RenderDataOut = RenderData;
         ScaleOut = Scale;           // Passing data to fragment shader
         StrengthOut = Strength;           // Passing data to fragment shader
+        TypeOut = Type;           // Passing data to fragment shader
         TimeOut = Time;           // Passing data to fragment shader
         Color0 = Color;
         TexCoord0 = TexCoord;
@@ -70,6 +74,7 @@
       varying lowp float ScaleOut;
       varying lowp float StrengthOut;
       varying lowp float TimeOut;
+      varying lowp float TypeOut;
       uniform sampler2D Texture0;
       // colors
       vec3 col_water = vec3(1., .3, .8);
@@ -163,7 +168,7 @@
         vec3 dir_light = normalize(vec3(-.3, 0.2, 1.));
         vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
 
-        if (StrengthOut>0.0f){
+        if (StrengthOut>0.0f && (TypeOut==1f || ( Color.r <= 0.2f && Color.g <= 0.2f && Color.b <= 0.2f ))){
 
           float aspect = RenderDataOut.z/RenderDataOut.w;
           vec2 center = vec2(RenderDataOut.x / 2.0, RenderDataOut.y / 2.0);
