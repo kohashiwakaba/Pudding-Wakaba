@@ -21,6 +21,9 @@ local rabbey_ward_data = {
 	}
 }
 
+local rwr = wakaba.Enums.Constants.RABBEY_WARD_RADIUS
+local rwe = wakaba.Enums.Constants.RABBEY_WARD_EXTRA_RADIUS
+
 local offsetVecToCheck = {
 	[RoomShape.ROOMSHAPE_1x1] = {
 		Vector(0, 0),
@@ -91,7 +94,46 @@ function wakaba:printRabbeyWardList()
 	end
 end
 
+---@param player EntityPlayer?
+function wakaba:getWardPower(player)
+	local power = rwr
+	if player and player.QueuedItem then
+		for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_RABBEY_WARD_POWER)) do
+			local retVal = callback.Function(callback.Mod, player)
+			if retVal then
+				if type(retVal) == "table" then
+					power = retVal.Override or power
+					power = power + (retVal.Extra or 0)
+				elseif type(retVal) == "number" then
+					power = power + retVal
+				end
+			end
+		end
+	else
+		local maxPow = rwr + 0
+		wakaba:ForAllPlayers(function (player)
+			local ss = maxPow + 0
+			for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_RABBEY_WARD_POWER)) do
+				local retVal = callback.Function(callback.Mod, player)
+				if retVal then
+					if type(retVal) == "table" then
+						ss = retVal.Override or ss
+						ss = ss + (retVal.Extra or 0)
+					elseif type(retVal) == "number" then
+						ss = ss + retVal
+					end
+				end
+			end
+			maxPow = math.max(maxPow, ss)
+		end)
+		power = maxPow + 0
+	end
+	power = power // 1
+	return power
+end
+
 function wakaba:getRabbeyWardCheckArea(_gridIndex, radius)
+	radius = radius or wakaba:getWardPower()
 	local retGridIndexes = {}
 	local retVectes = {}
 	local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(_gridIndex)
@@ -193,7 +235,7 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 	local checkedIndexes = {}
 	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local power = 0
-	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
+	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex)
 	for _, td in pairs(testAreas) do
 		local index = td.i // 1
 		local distance = td.d // 1
@@ -492,7 +534,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 	if isc:inDeathCertificateArea() then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
-	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex, 2)
+	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex)
 	for _, td in pairs(testAreas) do
 		local index = td.i // 1
 		local grid = td.v

@@ -536,6 +536,9 @@ wakaba.Enums.Constants = {
 	RIRA_BANDAGE_BASE = 4,
 	RIRA_BANDAGE_EXTRA = 2,
 
+	RABBEY_WARD_RADIUS = 2, -- 토끼 와드 맵 밝히는 반경
+	RABBEY_WARD_EXTRA_RADIUS = 1, -- 토끼 와드 맵 밝히는 추가 반경
+
 	MAGNET_HEAVEN_TIMER = 150,
 
 	MAX_ISEKAI_CLOTS = 10, -- 이세계 정의서 소환 제한

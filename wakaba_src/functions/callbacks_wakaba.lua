@@ -607,6 +607,10 @@ wakaba.Callback = {
 	POST_ALTER_WAKABA_NPC_DAMAGE = "WakabaCallbacks.POST_ALTER_WAKABA_NPC_DAMAGE",
 	--
 	-- ---
+	-- ---
+	EVALUATE_RABBEY_WARD_POWER = "WakabaCallbacks.EVALUATE_RABBEY_WARD_POWER",
+	--
+	-- ---
 	-- Add entries for Inventory Descriptions
 	-- ---
 	-- Return arrays of entries to add basic entries to inventory description
