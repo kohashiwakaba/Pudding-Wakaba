@@ -149,7 +149,7 @@
 	<achievement name="Aqua Trinkets" text='' gfx="wa_rira_b_aquatrinket.png" gfxback="wabg_rira_b.png" />
 	<achievement name="Pink Fork" text='' gfx="wa_rira_b_pinkfork.png" gfxback="wabg_rira_b.png" />
 	<achievement name="Flip Card" text='' gfx="wa_rira_b_flipcard.png" gfxback="wabg_rira_b.png" />
-	<achievement name="Azure Rir" text='' gfx="wa_rira_b_azurerir.png" gfxback="wabg_rira_azure.png" />
+	<achievement name="Azure Rir" text='' gfx="wa_rira_b_azurerir.png" gfxback="wabg_rira_b_azure.png" />
 
 	<!-- Rira Tarnished Unlocks -->
 
