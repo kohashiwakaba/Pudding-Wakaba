@@ -76,11 +76,15 @@ function wakaba:NPCRender_AzureRir(npc)
 	if wakaba:IsLunatic() then return end
 	if not wakaba:anyPlayerHasAzureRir() then return end
 	if (npc:IsDead() or npc:GetSprite():IsPlaying("Death")) and npc.CanShutDoors and not isAzureRirBlacklisted(npc) then
-		npc.CanShutDoors = false
-		local s = npc:GetSprite()
-		local c = s.Color
-		c.A = 0.5
-		s.Color = c
+		npc:GetData().wakaba_rirCooldown = npc:GetData().wakaba_rirCooldown or 0
+		npc:GetData().wakaba_rirCooldown = npc:GetData().wakaba_rirCooldown + 1
+		if npc:GetData().wakaba_rirCooldown >= 5 then
+			npc.CanShutDoors = false
+			local s = npc:GetSprite()
+			local c = s.Color
+			c.A = 0.5
+			s.Color = c
+		end
 	end
 
 end
