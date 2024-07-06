@@ -291,7 +291,6 @@ Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
 	ID = t.CARAMELLA_CANDY_BAG,
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellacandybag") then
 			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
@@ -304,7 +303,6 @@ Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
 	ID = t.CANDY_OF_RICHER,
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellacandybag") then
 			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
@@ -317,7 +315,6 @@ Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
 	ID = t.CANDY_OF_RIRA,
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellacandybag") then
 			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
@@ -330,7 +327,6 @@ Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
 	ID = t.CANDY_OF_CIEL,
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellacandybag") then
 			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
@@ -343,7 +339,6 @@ Encyclopedia.AddTrinket({
 	Class = class,
 	ModName = class,
 	ID = t.CANDY_OF_KORON,
-	Hide = true,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("caramellacandybag") then
 			self.Desc = "Defeat Isaac, Satan, ???, and The Lamb as Tainted Rira"
@@ -358,7 +353,6 @@ Encyclopedia.AddSoul({
 	ModName = class,
 	ID = wakaba.Enums.Cards.SOUL_RIRA,
 	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.SOUL_RIRA],
-	Hide = true,
 	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "Soul of Rira",0),
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("rirasoul") then
@@ -374,7 +368,6 @@ Encyclopedia.AddCard({
 	ModName = class,
 	ID = wakaba.Enums.Cards.CARD_FLIP,
 	WikiDesc = wakaba.encyclopediadesc.desc.cards[c.CARD_FLIP],
-	Hide = true,
 	Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/ui_cardfronts.anm2", "wakaba_Flip",0),
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("flipcard") then
@@ -385,3 +378,15 @@ Encyclopedia.AddCard({
 	end,
 })
 -- Rira_B / Mother : Pink Fork
+Encyclopedia.AddTrinket({
+	Class = class,
+	ModName = class,
+	ID = t.PINK_FORK,
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("pinkfork") then
+			self.Desc = "Defeat Mother as Tainted Rira"
+			return self
+		end
+	end,
+	WikiDesc = wakaba.encyclopediadesc.desc.trinkets[t.PINK_FORK],
+})

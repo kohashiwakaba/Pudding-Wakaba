@@ -432,7 +432,41 @@ Encyclopedia.AddItem({
 	end,
 })
 -- Rira_B / Rabbey Ward
--- Rira_B / ????
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.RABBEY_WARD,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.RABBEY_WARD,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("rabbeyward") and not wakaba:GameHasPlayerType(wakaba.Enums.Players.RIRA_B) then
+			self.Desc = "Defeat Delirium as Tainted Rira"
+			return self
+		end
+	end,
+})
+-- Rira_B / Azure Rir
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.AZURE_RIR,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.AZURE_RIR,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+	UnlockFunc = function(self)
+		if not wakaba:IsEntryUnlocked("azurerir") and not wakaba:GameHasPlayerType(wakaba.Enums.Players.RIRA_B) then
+			self.Desc = "Defeat The Beast as Tainted Rira"
+			return self
+		end
+	end,
+})
 -- Rira_T / Pluton
 -- Rira_T / ????
 

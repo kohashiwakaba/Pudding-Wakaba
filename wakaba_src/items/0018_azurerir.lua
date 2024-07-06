@@ -88,7 +88,7 @@ function wakaba:NPCRender_AzureRir(npc)
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, wakaba.NPCRender_AzureRir)
+--wakaba:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, wakaba.NPCRender_AzureRir)
 
 ---@param type EntityType
 ---@param variant integer

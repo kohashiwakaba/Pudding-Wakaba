@@ -590,7 +590,55 @@ if Encyclopedia then
 			},
 		},
 		Rira = {
-
+			{ -- Start Data
+				{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+				{str = "Items", clr = 3, halign = 0},
+				{str = "- Azure Rir"},
+				{str = "- Rabbey Ward"},
+				{str = "Stats", clr = 3, halign = 0},
+				{str = "- HP: 3 Soul Hearts"},
+				{str = "- Speed: 1.00"},
+				{str = "- Tear Rate: 2.73"},
+				{str = "- Damage: 3.50"},
+				{str = "- Range: 6.50"},
+				{str = "- Shot Speed: 1.00"},
+				{str = "- Luck: 0.00"},
+			},
+			{ -- Traits
+				{str = "Traits", fsize = 2, clr = 3, halign = 0},
+				{str = "All Heart Containers are converted into Soul Hearts."},
+				{str = "Ecchi Aqua", clr = 3, halign = 0},
+				{str = "Tainted Rira cannot see items in Treasure rooms."},
+				{str = "All treasure room items are converted into Aqua Trinkets."},
+				{str = "Plot-critical items, Death Certificate items, Genesis room items are immune to this effect, thus can be obtained normally."},
+				{str = "Azure Rir", clr = 3, halign = 0},
+				{str = "All trinkets are Aqua Trinkets."},
+				{str = "- This ignores unlock status."},
+				{str = "Rabbey Ward", clr = 3, halign = 0},
+				{str = "Her soulmate Chimaki now become her supporter, revealing nearby rooms."},
+				{str = "Clearing rooms within Rabbey Ward gives Tainted Rira Soul Heart."},
+				{str = "Rooms within Rabbey Ward gives Tainted Rira Tears, Damage bonus."},
+				{str = "Tainted Rira's health slowly drains outside of rooms nearby Rabbey Ward."},
+			},
+			{ -- Birthright
+				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+				{str = "Converted item wisps will be doubled."},
+				{str = "Converted items will be doubled."},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Azure Rir for Tainted Rira is intrinsic to the character, and it can't be rerolled."},
+			},
+			{ -- Unlockables
+				{str = "Unlockables", fsize = 2, clr = 3, halign = 0},
+				{str = "- Caramella Candy Bag : Defeat Isaac, Satan, ???, The Lamb as Tainted Rira"},
+				{str = "- Aqua Trinkets: Defeat Mega Satan as Tainted Rira"},
+				{str = "- Soul of Rira : Defeat Boss Rush, Hush as Tainted Rira"},
+				{str = "- Flip Card : Defeat Ultra Greedier as Tainted Rira"},
+				{str = "- Rabbey Ward : Defeat Delirium as Tainted Rira"},
+				{str = "- Pink Fork : Defeat Mother as Tainted Rira"},
+				{str = "- Azure Rir : Defeat The Beast as Tainted Rira"},
+			},
 		},
 	}
 	local wikiTarnished = {
@@ -692,10 +740,19 @@ if Encyclopedia then
 		},
 		[wakaba.Enums.Players.RIRA_B] = {
 			Tainted = true,
-			Hide = true,
 			Name = "Rira",
 			Description = "The Aqua",
-			Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RicherB", 0),
+			Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RiraB", 0),
+			UnlockFunc = function(self) -- Again this is in case your tainted is "unlockable"
+				if not wakaba.state.options.allowlockeditems and not wakaba.state.unlock.taintedrira then
+					self.Spr = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraitsalt.anm2", "RiraB",1)
+					self.Desc = "Use Red Key on the hidden door in the Final Chapter as Rira."
+					self.TargetColor = Encyclopedia.VanillaColor
+
+					return self
+				end
+			end,
+			CompletionTrackerFuncs = { function() return wakaba:GetEncyPaper(wakaba.Enums.Players.RIRA_B) end },
 		},
 		[wakaba.Enums.Players.WAKABA_T] = {
 			Tarnished = true,

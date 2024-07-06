@@ -446,7 +446,7 @@ function wakaba:GetUnlockMeta(playerType, unlockType)
 			elseif unlockType == "Lamb" then
 				unlockCheckStr = unlockTable.Quartet[1].."4"
 				metaTable = unlockTable.Quartet
-			else
+			elseif unlockTable[unlockType] then
 				unlockCheckStr = unlockTable[unlockType][1]
 				metaTable = unlockTable[unlockType]
 			end

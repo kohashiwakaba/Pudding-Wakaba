@@ -316,7 +316,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{AquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
-		.. "#방 클리어 보상이 더 일찍 등장합니다."
+		--.. "#방 클리어 보상이 더 일찍 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "리라 액기스",
 	},

@@ -305,7 +305,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
-		.. "#Room clear awards spawn earlier"
+		--.. "#Room clear awards spawn earlier"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {

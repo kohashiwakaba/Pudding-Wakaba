@@ -73,6 +73,7 @@
 		<Item Name="Maid Duet" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.01"/>
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -147,6 +148,8 @@
 		<Item Name="Rira's Bento" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Sakura Capsule" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maid Duet" Weight="0.6" DecreaseBy="0.6" RemoveOn="0.06"/>
+		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
+		<Item Name="Azure Rir" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="curse">
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
@@ -229,6 +232,7 @@
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Bubble Bombs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Azure Rir" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -455,6 +459,7 @@
 		<Item Name="Black Bean Mochi" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.04" RemoveOn="0.04"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
@@ -463,5 +468,6 @@
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
 		<Item Name="Red Corruption" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>
 		<Item Name="Plasma Beam" Weight="0.2" DecreaseBy="0.08" RemoveOn="0.02"/>
+		<Item Name="Rabbey Ward" Weight="1" DecreaseBy="0.4" RemoveOn="0.04"/>
 	</Pool>
 </ItemPools>
