@@ -6,7 +6,6 @@
 	- 적 처치 판정 시 해당 적은 '방 큻리어 조건'에서 제외
 
 	REPENTOGON 한정
-	- 최대 체력 = 소울하트 보정
 	- 체력 상한 24칸으로 증가
 
 	뒤집힌 리라 한정
@@ -96,6 +95,7 @@ function wakaba:RoomSpawn_AzureRir(type, variant, subType, gridIndex, seed)
 	local room = wakaba.G:GetRoom()
 	--print(type, variant, subType, gridIndex, seed)
 	if room:IsFirstVisit()
+	and room:GetFrameCount() <= 2
 	and room:GetType() == RoomType.ROOM_TREASURE
 	and type == EntityType.ENTITY_PICKUP
 	and variant == PickupVariant.PICKUP_COLLECTIBLE
