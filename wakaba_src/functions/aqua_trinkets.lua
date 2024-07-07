@@ -52,7 +52,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		wakaba:TryTurnAquaTrinket(pickup)
 	end
 
-	if --[[ wakaba:IsEntryUnlocked("aquatrinkets") and ]] not pickup.Touched and not hasTrinketDropped
+	if wakaba:IsEntryUnlocked("aquatrinkets") and not pickup.Touched and not hasTrinketDropped
 	and (--[[not wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.RIRAS_SWIMSUIT) and ]] not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		local isAquaTrinket = wakaba:has_value(aqua_trinkets_data.level.aquatrinkets[currentRoomIndex], wakaba:getPickupIndex(pickup))
 		local alreadyTried = wakaba:has_value(aqua_trinkets_data.level.triedindexes[currentRoomIndex], wakaba:getPickupIndex(pickup))
