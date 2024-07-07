@@ -27,6 +27,8 @@ if REPENTOGON then
 	function wakaba:PreAddHealth_PinkFork(player, amount, healthType, _)
 		if player:HasTrinket(wakaba.Enums.Trinkets.PINK_FORK) and amount >= 2 then
 			wakaba:addCustomStat(player, "damage", 0.2)
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+			player:EvaluateItems()
 			return amount - 1
 		end
 	end
