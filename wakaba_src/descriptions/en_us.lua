@@ -2996,7 +2996,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {
 	[wakaba.Enums.Trinkets.PINK_FORK] = {
-		desc = {"{{WakabaModRgon}} Decreases Soul Heart heal rate by half heart#{{WakabaModRgon}} Decreased rate are converted to {{Damage}} +0.2 Damage"},
+		desc = {"{{WakabaModRgon}} Decreases Soul Heart heal rate by half heart#{{WakabaModRgon}} Decreased rate are converted to {{Damage}} +0.2 Damage#Does not work if half Soul Heart heal"},
 		func = function() return REPENTOGON and true end,
 	},
 }

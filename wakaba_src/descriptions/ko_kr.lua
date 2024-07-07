@@ -3217,7 +3217,7 @@ wakaba.descriptions[desclang].extratrinkets = {}
 
 wakaba.descriptions[desclang].conditionals.trinkets = {
 	[wakaba.Enums.Trinkets.PINK_FORK] = {
-		desc = {"{{WakabaModRgon}} 소울하트 회복 효율이 반칸만큼 감소합니다.#{{WakabaModRgon}} 감소된 효율 당 {{DamageSmall}}공격력 +0.2"},
+		desc = {"{{WakabaModRgon}} 소울하트 회복이 1칸 이상일 때 회복 효율이 반칸만큼 감소합니다.#{{WakabaModRgon}} 감소된 효율 당 {{DamageSmall}}공격력 +0.2"},
 	},
 }
 wakaba.descriptions[desclang].conditionals.cards = {}
