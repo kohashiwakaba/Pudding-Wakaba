@@ -9,9 +9,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:NewLevel_SakuraCapsule()
 	local room = wakaba.G:GetRoom()
-	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
-		local effects = player:GetEffects()
-		if effects:GetCollectibleEffectNum(wakaba.Enums.Collectibles.SAKURA_CAPSULE) <= 1 then
+	wakaba:scheduleForUpdate(function ()
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
 			local power = player:GetCollectibleNum(wakaba.Enums.Collectibles.SAKURA_CAPSULE)
 			for _ = 1, power do
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 0, room:FindFreePickupSpawnPosition(player.Position, 0), Vector.Zero, nil)
@@ -22,9 +21,8 @@ function wakaba:NewLevel_SakuraCapsule()
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, room:FindFreePickupSpawnPosition(player.Position, 0), Vector.Zero, nil)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, room:FindFreePickupSpawnPosition(player.Position, 0), Vector.Zero, nil)
 			end
-		end
-		effects:RemoveCollectibleEffect(wakaba.Enums.Collectibles.SAKURA_CAPSULE, 1)
-	end)
+		end)
+	end, 2)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_SakuraCapsule)
 

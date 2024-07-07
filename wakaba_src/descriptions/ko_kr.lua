@@ -1195,9 +1195,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ 목숨 +1"
 		.. "#{{Collectible127}} 사망 시 4{{Heart}}로 부활하며 그 스테이지를 재시작합니다."
-		.. "#!!! 부활하지 않은 스테이지 진입 시:"
-		.. "#소진된 목숨 보충"
-		.. "#모든 종류의 픽업을 하나씩 드랍합니다."
+		.. "#부활 전까지 스테이지 진입 시 모든 종류의 픽업을 하나씩 드랍합니다."
 		.. "{{CR}}",
 		queueDesc = "잊혀졌던 기억",
 	},
@@ -1698,6 +1696,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		desc = "{{WakabaModHidden}} {{Collectible628}}{{ColorGray}}0.5%의 확률로 사망 증명서 방으로 이동, {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}}시오리의 책 소지 시 확률 4.5%",
+	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		desc = "{{WakabaModHidden}} {{ColorGray}}최초 획득 시 'Gulp!' 알약을 강제로 할당합니다.",
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
@@ -3297,7 +3298,7 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
-	
+
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "부활 이후 피격 패널티 보호가 {1}에 의해 무력화됨"
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "부활 이후 {1}의 피격 패널티 보호가 무력화됨"
 

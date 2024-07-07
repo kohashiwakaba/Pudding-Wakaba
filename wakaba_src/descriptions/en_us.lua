@@ -1123,10 +1123,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Sakura Capsule",
 		description = ""
 		.. "#↑ +1 Life"
-		.. "#{{Collectible127}} Isaac respawns with 4{{Heart}} on death with reroll/restarting the entire floor"
-		.. "#!!! Per floor not revived:"
-		.. "#Refills Extra Life"
-		.. "#Spawns 1 of each pickup type"
+		.. "#{{Collectible127}} Isaac respawns with 4{{Heart}} on death with restarting the entire floor"
+		.. "#Spawns 1 of each pickup type per floor until respawn"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.CHEWY_ROLLY_CAKE] = {
@@ -2964,6 +2962,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		desc = "{{WakabaModHidden}} {{Collectible628}} {{ColorGray}}0.5% chance to teleport Isaac to Death Certificate area instead ({{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 4.5% with Book of Shiori)",
+		func = wakaba.EIDCond_IsHiddenEnabled,
+	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		desc = "{{WakabaModHidden}} {{ColorGray}}Force assign random pill as 'Gulp!' if not available",
 		func = wakaba.EIDCond_IsHiddenEnabled,
 	},
 	-- REPENTOGON ADDITIONS

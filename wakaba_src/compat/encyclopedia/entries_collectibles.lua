@@ -1948,8 +1948,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an extra life."},
 			{str = "- Isaac will respawn with 4 hearts with restarting the stage."},
-			{str = "- Consumed extra life will be restored on the next floor."},
-			{str = "If a stage is passed without revival, spawns one of each pickups."},
+			{str = "Until revival, On new floor, spawns one of each pickups."},
 		},
 	},
   MAID_DUET = {

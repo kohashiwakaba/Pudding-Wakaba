@@ -1207,9 +1207,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ +1 额外生命"
 			.. "#{{Collectible127}} 在死亡时以4个{{Heart}} 重生 并重启动整个楼层"
-			.. "#!!! 不会每层恢复:"
-			.. "#补充额外生命"
-			.. "#每种掉落物类型产生1个"
+			.. "#Spawns 1 of each pickup type per floor until respawn" -- TODO
 			.. "{{CR}}",
 		queueDesc = "褪色的记忆",
 	},
@@ -2676,6 +2674,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			..
 			"#{{WakabaModHidden}} {{Collectible" ..
 			wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}}{{ColorGray}}4.5%是汐宫之书",
+	},
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = { -- TODO
+		desc = "{{WakabaModHidden}} {{ColorGray}}Force assign random pill as 'Gulp!' if not available",
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
