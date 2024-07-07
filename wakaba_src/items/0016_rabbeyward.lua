@@ -221,7 +221,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.UseItem_RabbeyWard, wakaba.Enums.Collectibles.RABBEY_WARD)
 
 function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
-	if isc:inDeathCertificateArea() then return 0 end
+	if not wakaba:IsDimension(0) then return 0 end
 	if taintedRira and gridIndex == 84 then
 		return 3
 	end
@@ -531,7 +531,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_RabbeyWard)
 function wakaba:getNearbyWardRooms(gridIndex)
 	local checkedIndexes = {}
 	local loc = {}
-	if isc:inDeathCertificateArea() then return loc end
+	if not wakaba:IsDimension(0) then return loc end
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex)
@@ -631,7 +631,7 @@ end)
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
 	if shaderName == "wakaba_RabbeyWardArea" then
 		local rabbeywardrendermode = wakaba:getOptionValue("rabbeywardrendermode") or 2
-		local strength = wakaba.wardShaderRenderVal * 0.03
+		local strength = wakaba.wardShaderRenderVal * 0.01
 		local rendertype = 1
 		if rabbeywardrendermode == 2 then
 		elseif rabbeywardrendermode == 1 then

@@ -1733,7 +1733,7 @@ function mod:IsDimension(dimensionId)
 	local level = game:GetLevel()
 	local roomId = level:GetCurrentRoomIndex()
 
-	return GetPtrHash(level:GetRoomByIdx(roomId, mod.DIMENSION.CURRENT)) == GetPtrHash(level:GetRoomByIdx(roomId, dimensionId))
+	return GetPtrHash(level:GetRoomByIdx(roomId, -1)) == GetPtrHash(level:GetRoomByIdx(roomId, dimensionId))
 end
 
 function mod:IsDamageSacrificeSpikes(flags, source)

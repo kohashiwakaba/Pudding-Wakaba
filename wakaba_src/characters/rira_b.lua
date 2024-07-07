@@ -30,7 +30,7 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:PlayerUpdate_RiraB(player)
 	if not player or player:GetPlayerType() ~= playerType then return end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then return end
-	if isc:inDeathCertificateArea() then return end
+	if not wakaba:IsDimension(0) then return end
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex(), true)
