@@ -305,4 +305,4 @@ function wakaba:HeartRender_Aqua(offset, sprite, position, _, player)
 		sprite:Update()
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, wakaba.HeartRender_Aqua)
+--wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, wakaba.HeartRender_Aqua)
