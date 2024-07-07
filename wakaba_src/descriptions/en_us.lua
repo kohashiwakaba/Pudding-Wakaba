@@ -987,7 +987,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.ONSEN_TOWEL] = {
-		itemName = "Onsel Towel",
+		itemName = "Onsen Towel",
 		description = ""
 		.. "#↑ {{SoulHeart}} +1 Soul Heart"
 		.. "#{{HalfSoulHeart}} 45% Chance to heal half a soul heart every minute"
