@@ -416,18 +416,32 @@ if EID then
 						end
 					end
 					if conDescTables.trinkets then
-						for itemID, itemdesc in pairs(conDescTables.trinkets) do
+						for itemID, wcd in pairs(conDescTables.trinkets) do
 							local conditionalEntry = "5.350."..tostring(itemID)
 							if lang == "en_us" then
-								EID.DescriptionConditions[conditionalEntry] = {
-									func = itemdesc.func,
-									vars = itemdesc.vars,
-									type = itemdesc.type,
-									modifierText = itemdesc.modifierText,
-									layer = itemdesc.layer or 0,
-								}
+								EID.DescriptionConditions[conditionalEntry] = EID.DescriptionConditions[conditionalEntry] or {}
 							end
-							EID.descriptions[lang].ConditionalDescs[conditionalEntry] = itemdesc.desc
+							if #wcd == 0 then wcd = {wcd} end
+							for _, itemdesc in ipairs(wcd) do
+								local subEntry = "5.350."..tostring(itemID)
+								if itemdesc.modifierText then
+									subEntry = conditionalEntry .. " (" .. itemdesc.modifierText .. ")"
+								end
+								if lang == "en_us" then
+									table.insert(EID.DescriptionConditions[conditionalEntry], {
+										func = itemdesc.func,
+										vars = itemdesc.vars,
+										type = itemdesc.type,
+										modifierText = itemdesc.modifierText,
+										layer = itemdesc.layer or 0,
+									})
+								end
+								-- TODO EID version check
+								if not EID.descriptions[lang].ConditionalDescs then
+									EID.descriptions[lang].ConditionalDescs = {}
+								end
+								EID.descriptions[lang].ConditionalDescs[subEntry] = itemdesc.desc
+							end
 						end
 					end
 					if conDescTables.cards then
