@@ -925,7 +925,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "塔之诅咒2",
 		description = ""
 			.. "#{{GoldenBomb}} 无限炸弹"
-			.. "#到伤害时，在房间周围生成6个金色的巨魔炸弹"
+			.. "#Upon taking damage or losing Holy Mantle shields, spawns 6 golden troll bombs around the room" -- TODO, previous : 到伤害时，在房间周围生成6个金色的巨魔炸弹
 			.. "#!!! 小心：所有的巨魔炸弹都会尽可能地转化为金色的巨魔炸弹"
 			.. "{{CR}}",
 		queueDesc = "拥抱混乱",

@@ -145,19 +145,19 @@
 	<active id="108" description="Tea-bagging shots" gfx="nerfgun.png" name="Nerf Gun" chargetype="timed" maxcharges="150" tags="offensive" quality="1" craftquality="2" />
 	<passive id="109" cache="all" hearts="4" maxhearts="2" description="Ultra Gluton" gfx="rirabento.png" name="Rira's Bento" tags="summonable offensive" quality="1" craftquality="-1" />
 	<passive id="110" cache="speed" description="Whriling taste" gfx="chewyrollycake.png" name="Chewy Rolly Cake" tags="summonable nolostbr" quality="1" craftquality="1" />
-	<passive id="111" description="Fading memories" gfx="sakuracapsule.png" name="Sakura Capsule" tags="summonable offensive" customtags="nometronome" quality="2" craftquality="4" persistent="true"/>
-	<passive id="112" description="Mind-expandable explosions +5 bombs" gfx="crossbomb.png" name="Cross Bomb" tags="noeden summonable offensive" quality="3" craftquality="3" bombs="5"/>
+	<passive id="111" description="Fading memories" gfx="sakuracapsule.png" name="Sakura Capsule" tags="summonable offensive" customtags="nometronome revive" quality="2" craftquality="4" />
+	<passive id="112" description="Mind-expandable explosions +5 bombs" gfx="crossbomb.png" name="Cross Bomb" tags="summonable offensive" quality="3" craftquality="3" bombs="5"/>
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" tags="summonable offensive baby uniquefamiliar nochallenge" quality="4" craftquality="4" persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" customtags="nometronome" quality="2" craftquality="4" hidden="true" achievement="9999"/>
-	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="noeden offensive" maxcharges="6" quality="3" craftquality="3" />
+	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" tags="offensive" maxcharges="6" quality="3" craftquality="3" />
 	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" craftquality="1" tags="offensive nogreed"/>
-	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="noeden offensive" maxcharges="1" quality="1" craftquality="1"/>
+	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="offensive" maxcharges="1" quality="1" craftquality="1"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" devilprice="2" tags="summonable offensive" quality="4" craftquality="4"/>
 	<passive id="122" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" devilprice="2" tags="summonable nolostbr" quality="3" craftquality="4" />
 
 	<passive id="123" cache="all" description="Weapon Nullifier" gfx="cleaner.png" name="Dual Cleaner" quality="0" tags="quest noeden" customtags="nometronome" hidden="true" achievement="9999"/>
 
-	<passive id="124" cache="firedelay damage" description="Essence of Rira" gfx="azurerir.png" name="Azure Rir" devilprice="2" tags="summonable offensive noeden" quality="4" craftquality="4"/>
+	<passive id="124" cache="firedelay damage" description="Essence of Rira" gfx="azurerir.png" name="Azure Rir" devilprice="2" tags="summonable offensive" quality="4" craftquality="4"/>
 
 	<passive id="125" description="Clear explosions +5 bombs" gfx="bubblebombs.png" name="Bubble Bombs" tags="summonable offensive noeden" quality="2" craftquality="2" bombs="5" hidden="true" achievement="9999"/>
 

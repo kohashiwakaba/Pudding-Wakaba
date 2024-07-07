@@ -930,7 +930,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "탑의 저주 2",
 		description = ""
 		.. "#{{GoldenBomb}} 항상 황금폭탄을 가집니다."
-		.. "#피격 시 황금 트롤폭탄을 6개 소환합니다."
+		.. "#피격 시 및 Holy Mantle 보호막 소모 시 황금 트롤폭탄을 6개 소환합니다."
 		.. "#!!! 경고: 모든 트롤 폭탄이 황금 트롤폭탄으로 바뀝니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",

@@ -124,3 +124,9 @@ function wakaba:PostTakeDamage_CurseOfTower2(player, amount, flags, source, cool
 end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_CurseOfTower2)
 
+function wakaba:MantleBreak_CurseOfTower2(player, prevCount, nextCount)
+	if player:HasCollectible(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2) then
+		player:UseCard(Card.CARD_TOWER, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
+	end
+end
+wakaba:AddCallback(wakaba.Callback.POST_MANTLE_BREAK, wakaba.MantleBreak_CurseOfTower2)
