@@ -19,18 +19,20 @@ if REPENTOGON then
 		local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(player.Position.X, player.Position.Y - 95), Vector.Zero, nil):ToEffect()
 		player:AddSoulHearts(conv)
 	end
-	wakaba:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, wakaba.PostTakeDamage_PinkFork)
+	--wakaba:AddCallback(ModCallbacks.MC_POST_ENTITY_TAKE_DMG, wakaba.PostTakeDamage_PinkFork)
 
 	---@param player EntityPlayer
 	---@param amount integer
 	---@param healthType AddHealthType
 	function wakaba:PreAddHealth_PinkFork(player, amount, healthType, _)
 		if player:HasTrinket(wakaba.Enums.Trinkets.PINK_FORK) and amount >= 2 then
-			wakaba:addCustomStat(player, "damage", 0.2)
+			local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.PINK_FORK)
+			wakaba:addCustomStat(player, "damage", 0.2 * count)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			return amount - 1
 		end
 	end
 	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork, AddHealthType.SOUL)
+	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork, AddHealthType.BLACK)
 end
