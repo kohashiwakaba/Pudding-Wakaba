@@ -1756,6 +1756,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "我带来冰",
 	},
+	[wakaba.Enums.Trinkets.PINK_FORK] = { -- TODO
+		itemName = "Pink Fork",
+		description = ""
+		.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者"
+		.. "{{CR}}",
+		queueDesc = "Aquatic Strength",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "辉夜的叹息",
 		description = ""
@@ -2690,7 +2697,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} 主动充能条显示卡牌生成的几率",
 	},
 }
-wakaba.descriptions[desclang].conditionals.trinkets = {}
+wakaba.descriptions[desclang].conditionals.trinkets = {
+	[wakaba.Enums.Trinkets.PINK_FORK] = { -- TODO
+		desc = {"{{WakabaModRgon}} Decreases Soul Heart heal rate by half heart#{{WakabaModRgon}} Decreased rate are converted to {{Damage}} +0.2 Damage"},
+	},
+}
 wakaba.descriptions[desclang].conditionals.cards = {}
 
 if EID then

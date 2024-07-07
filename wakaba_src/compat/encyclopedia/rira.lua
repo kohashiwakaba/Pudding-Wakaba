@@ -383,6 +383,10 @@ Encyclopedia.AddTrinket({
 	ModName = class,
 	ID = t.PINK_FORK,
 	UnlockFunc = function(self)
+		if not REPENTOGON then
+			self.Desc = "Requires REPENTOGON"
+			return self
+		end
 		if not wakaba:IsEntryUnlocked("pinkfork") then
 			self.Desc = "Defeat Mother as Tainted Rira"
 			return self

@@ -598,11 +598,35 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Converts Troll bombs"},
 		},
 	},
+
 	NERF_GUN = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Fires multiple 'nerf' tears that gives weakness status effect for 10 seconds."},
 			{str = "- weakend enemies become slow and take double damage"},
+		},
+	},
+
+	AZURE_RIR = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants Curse of The Blind immunity."},
+			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
+			{str = "All trinkets become Aqua trinkets"},
+			{str = "- Aqua trinkets are special type of trinket that are being absorbed on pickup instantly."},
+			{str = "- Azure Rir ignores unlock status from Aqua trinkets."},
+		},
+	},
+
+	RABBEY_WARD = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Installs 'Rabbey Ward' that reveals on the map what type of room all 2 rooms adjacent to your current room are."},
+			{str = "- Can also reveal Secret Rooms, Super Secret Rooms, Ultra Secret Rooms, and Mini-Boss Rooms."},
+			{str = "Rooms within Rabbey Ward, or revealed by one also grants Damage, Tears up bonus."},
+			{str = "- Bonus is determined how near the ward is"},
+			{str = "Gives 1 Soul Heart per ward install."},
+			{str = "If the room is not cleared, Soul hearts are given on room clear."},
 		},
 	},
 

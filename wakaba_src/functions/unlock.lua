@@ -140,6 +140,9 @@ wakaba.Blacklists.FlagLock.trinket = {
 	[wakaba.Enums.Trinkets.BITCOIN] = function()
 		return wakaba:IsLunatic()
 	end,
+	[wakaba.Enums.Trinkets.PINK_FORK] = function()
+		return not REPENTOGON
+	end,
 }
 wakaba.Blacklists.FlagLock.card = {
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = function()

@@ -258,25 +258,32 @@ wakaba.encyclopediadesc.desc.trinkets = {
 	[t.CANDY_OF_RICHER] = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon entering an uncleared room for the first time, spawns a Blue Caramella Locust that deals quadruple Isaac's damage."},
+			{str = "Upon entering an uncleared room for the first time, spawns a Blue Caramella Locust that deals 3x of Isaac's damage."},
 		},
 	},
 	[t.CANDY_OF_RIRA] = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon entering an uncleared room for the first time, spawns a Pink Caramella Locust that deals quadruple Isaac's damage."},
+			{str = "Upon entering an uncleared room for the first time, spawns a Pink Caramella Locust that deals 1x of Isaac's damage."},
 		},
 	},
 	[t.CANDY_OF_CIEL] = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon entering an uncleared room for the first time, spawns a Yellow Caramella Locust that deals 10 times of Isaac's damage."},
+			{str = "Upon entering an uncleared room for the first time, spawns a Yellow Caramella Locust that deals 5x of Isaac's damage."},
 		},
 	},
 	[t.CANDY_OF_KORON] = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon entering an uncleared room for the first time, spawns a Gray Caramella Locust that deals quadruple Isaac's damage."},
+			{str = "Upon entering an uncleared room for the first time, spawns a Gray Caramella Locust that deals 1.5x of Isaac's damage."},
+		},
+	},
+	[t.PINK_FORK] = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Decreases Soul Heart heal rate by half heart"},
+			{str = "Decreased rate are converted to +0.2 Damage"},
 		},
 	},
 

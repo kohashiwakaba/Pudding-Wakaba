@@ -1112,6 +1112,7 @@ do
 	include('wakaba_src.items.3017_eternitycookie')
 	include('wakaba_src.items.3018_richerreportcard')
 	include('wakaba_src.items.3021_caramellacandies')
+	include('wakaba_src.items.3022_pinkfork')
 end
 
 do

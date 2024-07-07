@@ -1947,6 +1947,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "눈꽃의 향기",
 	},
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		itemName = "핑크빛 포크",
+		description = ""
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON 전용{{CR}}#REPENTOGON을 실행중이지 않았을 때 이 아이템을 발견하면 모드 개발자에게 연락 바람"
+		.. "{{CR}}",
+		queueDesc = "방울방울",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "카구야의 인장",
 		description = ""
@@ -3207,7 +3214,11 @@ wakaba.descriptions[desclang].extrabirthright = {}
 wakaba.descriptions[desclang].extracollectibles = {}
 wakaba.descriptions[desclang].extratrinkets = {}
 
-wakaba.descriptions[desclang].conditionals.trinkets = {}
+wakaba.descriptions[desclang].conditionals.trinkets = {
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		desc = {"{{WakabaModRgon}} 소울하트 회복 효율이 반칸만큼 감소합니다.#{{WakabaModRgon}} 감소된 효율 당 {{DamageSmall}}공격력 +0.2"},
+	},
+}
 wakaba.descriptions[desclang].conditionals.cards = {}
 wakaba.descriptions[desclang].conditionals.entities = {
 	["-998.-1."..LevelCurse.CURSE_OF_LABYRINTH] = {

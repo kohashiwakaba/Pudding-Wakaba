@@ -196,7 +196,7 @@
 	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" />
 	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" />
 	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" />
-	<trinket name="Pink Fork" description="Aquatic shield" gfx="pinkfork.png" />
+	<trinket name="Pink Fork" description="Aquatic strength" gfx="pinkfork.png" />
 
 	<!-- 원룸천사 아이템? -->
 	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->

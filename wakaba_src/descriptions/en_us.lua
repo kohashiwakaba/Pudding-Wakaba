@@ -1661,6 +1661,12 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#The fly deals 4x Isaac's freezing damage"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		itemName = "Pink Fork",
+		description = ""
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "Sigil of Kaguya",
 		description = ""
@@ -2986,7 +2992,12 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return REPENTOGON and true end,
 	},
 }
-wakaba.descriptions[desclang].conditionals.trinkets = {}
+wakaba.descriptions[desclang].conditionals.trinkets = {
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		desc = {"{{WakabaModRgon}} Decreases Soul Heart heal rate by half heart#{{WakabaModRgon}} Decreased rate are converted to {{Damage}} +0.2 Damage"},
+		func = function() return REPENTOGON and true end,
+	},
+}
 wakaba.descriptions[desclang].conditionals.cards = {}
 wakaba.descriptions[desclang].conditionals.entities = {
 	["-998.-1."..LevelCurse.CURSE_OF_LABYRINTH] = {
