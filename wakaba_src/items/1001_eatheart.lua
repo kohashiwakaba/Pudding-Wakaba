@@ -10,8 +10,8 @@ function wakaba:PreUseItem_EatHeart(_, rng, player, useFlags, activeSlot, varDat
 			player:GetData().wakaba.eatheartquality = 3
 		end
 		player:GetData().wakaba.eatheartused = true
-		local selected = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_NULL)
-		local Item1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(player.Position, 25), Vector(0,0), nil):ToPickup()
+		--local selected = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_NULL)
+		local Item1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 25), Vector(0,0), nil):ToPickup()
 		Item1:GetData().DamoclesDuplicate = false
 		if Epiphany then
 			Item1:GetData().TRK_HasMidasImmunity = true
