@@ -83,7 +83,7 @@ local completionCharacterSets = {
 	},
 	{
 		{HeadName = "Rira", PlayerID = wakaba.Enums.Players.RIRA, IsUnlocked = function() return true end},
-		--{HeadName = "RicherB", PlayerID = wakaba.Enums.Players.RIRA_B, IsUnlocked = function() return wakaba.state.unlock.taintedrira end},
+		{HeadName = "RiraB", PlayerID = wakaba.Enums.Players.RIRA_B, IsUnlocked = function() return wakaba.state.unlock.taintedrira end},
 	},
 }
 
