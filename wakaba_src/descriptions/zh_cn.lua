@@ -508,7 +508,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.."不断射击逐渐生成环绕玩家的X激光"
 			.."#轨道激光器也会发射额外的激光"
-			.."#激光造成0.3倍玩家的伤害"
+			.. "#Orbiting lasers deal 0.75x of Isaac's damage" -- TODO previous : "#激光造成0.3倍玩家的伤害"
+			.. "#Extra lasers deal 0.25x of Isaac's damage"
 			.. "{{CR}}",
 		queueDesc = "轨道激光",
 	},

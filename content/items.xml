@@ -17,7 +17,7 @@
 	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="3" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" craftquality="4" customtags="nometronome" />
 	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="4" craftquality="4" bombs="9"/>
 
-	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="3" craftquality="3" />
+	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="4" craftquality="4" />
 	<familiar id="16" cache="luck" description="Buddy for luck" gfx="lilwakaba.png" name="Lil Wakaba" tags="stars offensive baby summonable monstermanual" quality="3" craftquality="3" />
 
 	<active id="17" description="Counter Lasers" gfx="counter.png" chargetype="timed" maxcharges="240" name="Counter" devilprice="2" quality="4" craftquality="4" tags="" />

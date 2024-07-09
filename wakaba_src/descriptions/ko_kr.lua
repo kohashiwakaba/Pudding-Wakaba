@@ -497,9 +497,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "시간의 눈",
 		description = ""
-		.. "#공격키를 누르는 동안 최대 3개의 캐릭터 주변을 도는 원형 레이저를 생성합니다."
-		.. "#각 원형 레이저에서 새로운 직선 레이저를 추가로 발사합니다."
-		.. "#레이저는 캐릭터의 공격력 x0.3의 피해를 줍니다."
+		.. "#공격키를 누르는 동안 캐릭터 주변을 도는 원형 레이저를 생성합니다.#{{Blank}} (레이저 피해량 : 공격력 x0.75)"
+		.. "#각 원형 레이저에서 새로운 직선 레이저를 추가로 발사합니다.#{{Blank}} (레이저 피해량 : 공격력 x0.25)"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "궤도 레이저",

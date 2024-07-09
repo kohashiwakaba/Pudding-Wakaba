@@ -8,7 +8,7 @@ local lasertimer = {}
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 local function fireTechClock(player)
-	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.75 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechXLaser(player.Position, Vector.Zero, 0.02, nil, multiplier)
 	--local laser = Isaac.Spawn(EntityType.ENTITY_LASER, LaserVariant.THIN_RED, LaserSubType.LASER_SUBTYPE_RING_PROJECTILE, player.Position, Vector.Zero, player):ToLaser()
 	laser.CollisionDamage = player.Damage * multiplier
@@ -23,9 +23,9 @@ local function fireTechClock(player)
 end
 
 local function fireTechClock_Sub(player, parentLaser, direction)
-	local multiplier = (0.3 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.25 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechLaser(parentLaser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
-	laser.CollisionDamage = 1
+	--laser.CollisionDamage = 1
 	laser:AddTearFlags(TearFlags.TEAR_SPECTRAL)
   --laser.Variant = 2
   --laser.SubType = 3
