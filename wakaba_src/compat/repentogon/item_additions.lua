@@ -276,7 +276,7 @@ end
 ---@param isKeeper boolean
 function wakaba:HeartLimit_AzureRir(player, origLimit, isKeeper)
 	if wakaba:hasAzureRir(player) then
-		return origLimit + 24
+		return origLimit + 12
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEART_LIMIT, wakaba.HeartLimit_AzureRir)

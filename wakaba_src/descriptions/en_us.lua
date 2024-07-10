@@ -2987,7 +2987,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = "{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+12 Total heart limit",
+		desc = "{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 Total heart limit",
 		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
