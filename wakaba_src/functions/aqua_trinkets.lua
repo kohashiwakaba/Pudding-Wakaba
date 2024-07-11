@@ -141,6 +141,9 @@ function wakaba:PlayerUpdate_AquaTrinkets(player)
 			data.wakaba.prevTrinketPrimary = nil
 			data.wakaba.prevTrinketSecondary = nil
 			data.wakaba.tryAquaTrinket = nil
+			if REPENTOGON then
+				player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY, true)
+			end
 		end
 	end
 	if not player:IsCoopGhost() then
