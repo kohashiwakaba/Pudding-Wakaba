@@ -275,7 +275,7 @@ end
 ---@param origLimit integer
 ---@param isKeeper boolean
 function wakaba:HeartLimit_AzureRir(player, origLimit, isKeeper)
-	if wakaba:hasAzureRir(player) then
+	if player:HasCollectible(wakaba.Enums.Collectibles.AZURE_RIR) then
 		return origLimit + 12
 	end
 end
