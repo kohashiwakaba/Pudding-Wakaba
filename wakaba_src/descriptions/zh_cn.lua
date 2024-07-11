@@ -2693,7 +2693,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = {"↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波"},
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = "{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 Total heart limit", -- TODO
+		desc = "{{WakabaModRgon}} {{Tears}} {{ColorRicher}}+0.2 Fire delay up per smelted trinkets#{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 Total heart limit", -- TODO
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 主动充能条显示卡牌生成的几率",

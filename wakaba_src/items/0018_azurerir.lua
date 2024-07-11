@@ -57,6 +57,22 @@ function wakaba:hasAzureRir(player)
 	end
 end
 
+function wakaba:Cache_AzureRir(player, cacheFlag)
+	local mult = player:GetCollectibleNum(wakaba.Enums.Collectibles.AZURE_RIR)
+	mult = mult + (player:GetPlayerType() == wakaba.Enums.Players.RIRA_B and 1 or 0)
+	local num = 0
+	if REPENTOGON then
+		local trinkets = player:GetSmeltedTrinkets()
+		for _, v in pairs(trinkets) do
+			num = num + v.trinketAmount + (v.goldenTrinketAmount * 2)
+		end
+	end
+	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((num * 0.2) * wakaba:getEstimatedTearsMult(player)))
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_AzureRir)
+
 ---Check any player has Winter Albireo, or playing as Tainted Richer
 ---@return boolean hasAzureRir
 ---@return boolean onlyTaintedRira
