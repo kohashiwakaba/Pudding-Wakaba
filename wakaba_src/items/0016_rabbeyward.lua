@@ -341,7 +341,7 @@ function wakaba:InstallRabbeyWard(player)
 	if wakaba:getOptionValue("chimakisound") then
 		sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
-	if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+	if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
 		local water = room:GetWaterAmount()
 		local newWater = math.min(math.max(water, 0.5), 1)
 		room:SetWaterAmount(newWater)
@@ -578,7 +578,7 @@ local function newRoomFunc()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex())
 	if rabbeyPower > 0 then
 		--isc:openDoorFast()
-		if REPENTOGON and (room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+		if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
 			local water = room:GetWaterAmount()
 			local newWater = math.min(math.max(water, 0.16 * rabbeyPower), 1)
 			room:SetWaterAmount(newWater)
