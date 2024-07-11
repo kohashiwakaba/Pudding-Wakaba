@@ -156,61 +156,6 @@ function wakaba:ConsoleCommands(cmd, param)
 		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
 		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")
 	end
-	--[[ if EID and cmd == "wakaba_debugkr" then
-		wakaba.unlockdisplaytimer = wakaba.G:GetFrameCount()
-		wakaba.eidunlockstr = wakaba:CheckWakabaAchievementString()
-		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaDebug)
-		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")
-	end ]]
-	-- Wakaba unlock cheats
-	if cmd == "wakaba_cheat" then
-		if param == "wakaba" then
-			wakaba:unlockWakaba(true)
-		elseif param == "wakaba_b" then
-			wakaba:unlockTaintedWakaba(true)
-		elseif param == "shiori" then
-			wakaba:unlockShiori(true)
-		elseif param == "shiori_b" then
-			wakaba:unlockTaintedShiori(true)
-		elseif param == "tsukasa" then
-			wakaba:unlockTsukasa(true)
-		elseif param == "tsukasa_b" then
-			wakaba:unlockTaintedTsukasa(true)
-		elseif param == "richer" then
-			wakaba:unlockRicher(true)
-		elseif param == "challenge" then
-			wakaba:unlockChallenge(true)
-		elseif param == "all" then
-			wakaba:unlockWakaba(true)
-			wakaba:unlockTaintedWakaba(true)
-			wakaba:unlockShiori(true)
-			wakaba:unlockTaintedShiori(true)
-			wakaba:unlockTsukasa(true)
-			wakaba:unlockTaintedTsukasa(true)
-			wakaba:unlockRicher(true)
-			wakaba:unlockChallenge(true)
-		else
-			print("")
-			print("")
-			print("")
-			print("")
-			print("")
-			print("")
-			print("Unlock cheats for Pudding and Wakaba")
-			print("This command is for the people who wants to cheat unlocks for several reason (erased data, or having no time to play)")
-			print("Note that unlock papers will NOT being appeared")
-			print("")
-			print("wakaba_cheat wakaba - Unlock all Wakaba unlocks")
-			print("wakaba_cheat wakaba_b - Unlock all Tainted Wakaba unlocks")
-			print("wakaba_cheat shiori - Unlock all Shiori unlocks")
-			print("wakaba_cheat shiori_b - Unlock all Tainted Shiori unlocks")
-			print("wakaba_cheat tsukasa - Unlock all Tsukasa unlocks")
-			print("wakaba_cheat tsukasa_b - Unlock all Tainted Tsukasa unlocks")
-			print("wakaba_cheat richer - Unlock all Richer unlocks")
-			print("wakaba_cheat challenge - Unlock all Challenge unlocks")
-			print("wakaba_cheat all - Unlock all above")
-		end
-	end
 
 	if wakaba.debug then
 		if cmd == "wd" then

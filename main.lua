@@ -930,7 +930,7 @@ function wakaba:getIndexedPlayer(i)
 	return renderActive:GetIndexedPlayer(i)
 end
 
-do
+do -- Core loader
 	include('wakaba_src.functions.callbacks_wakaba')
 	include('wakaba_src.functions.secondary_player_data')
 	include('wakaba_src.libs.retribution_status')
@@ -946,8 +946,7 @@ do
 	include('wakaba_src.functions.custom_pedestals')
 end
 
-do
-
+do -- Items loader
 	include('wakaba_src.items.0000_blessing')
 	include('wakaba_src.items.0001_bookofshiori')
 	include('wakaba_src.items.0003_bookofconquest')
@@ -1067,7 +1066,7 @@ do
 	include('wakaba_src.items.1201_edenstickynote')
 end
 
-do
+do -- Consumables loader
 
 --include('wakaba_src.pickups.2001_donationcard')
 include('wakaba_src.pickups.2002_cranecard')
@@ -1090,7 +1089,7 @@ include('wakaba_src.pickups.2504_richersoul')
 include('wakaba_src.pickups.2505_rirasoul')
 end
 
-do
+do -- Trinkets loader
 
 	include('wakaba_src.items.3000_notepathfinder')
 	include('wakaba_src.items.3001_bitcoin')
@@ -1115,19 +1114,18 @@ do
 	include('wakaba_src.items.3022_pinkfork')
 end
 
-do
-	-- Tarnished unlock trinkets
+do -- Tarnished unlock trinkets
 	include('wakaba_src.items.3203_sigilofkaguya')
 end
 
-do
+do -- Extra entities loader
 	include('wakaba_src.pickups.4000_cloverchest')
 
 	include('wakaba_src.entities.anotherfortune')
 	include('wakaba_src.entities.crystalrestock')
 end
 
-do
+do -- Characters loader
 	include('wakaba_src.characters.locked')
 	include('wakaba_src.characters.wakaba')
 	include('wakaba_src.characters.wakaba_b')
@@ -1142,7 +1140,7 @@ do
 	include('wakaba_src.characters.rira_b')
 end
 
-do
+do -- Core functions loader
 	include('wakaba_src.common')
 
 	include('wakaba_src.items.0002_bookofshiori_func')
@@ -1165,7 +1163,7 @@ do
 	include('wakaba_src.curses')
 end
 
-do
+do -- EID loader
 	include('wakaba_src.descriptions.en_us')
 	include('wakaba_src.descriptions.ko_kr')
 	include('wakaba_src.descriptions.zh_cn')
@@ -1174,7 +1172,7 @@ do
 	include('wakaba_src.uniqueitems')
 end
 
-do
+do -- Extra functions loader
 
 	include('wakaba_src.devilangel')
 	include('wakaba_src.encyclopedia')
@@ -1192,7 +1190,7 @@ do
 	include('wakaba_src.console_commands')
 end
 
-do
+do -- Compatibility loader
 	include('wakaba_src.compat.fiendfolio')
 	include('wakaba_src.compat.retribution')
 	include('wakaba_src.compat.epiphany')
@@ -1204,7 +1202,7 @@ do
 	include('wakaba_src.compat.stageapi')
 end
 
-if REPENTOGON then
+if REPENTOGON then -- REPENTOGON loader
 	include('wakaba_src.compat.repentogon.core')
 	include('wakaba_src.compat.repentogon.item_names')
 	include('wakaba_src.compat.repentogon.item_additions')
@@ -1562,38 +1560,6 @@ function wakaba:PostGlobalPlayerInit(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostGlobalPlayerInit)
 
-local changeCostume = false
---[[
-function wakaba:PlayerUpdate_Costume(player)
-	if wakaba:has_value(wakaba.cpmanagedplayertype, player:GetPlayerType()) then
-		local mmcount = player:GetData().wakaba.megamush or 0
-		local megamush = player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_MEGA_MUSH)
-		if mmcount ~= megamush then
-			if megamush > 0 then
-				wakaba.costumeCollectibleWhiteList[CollectibleType.COLLECTIBLE_MEGA_MUSH] = true
-				costumeProtector:ItemCostumeWhitelist(player:GetPlayerType(), wakaba.costumeCollectibleWhiteList)
-			else
-				wakaba.costumeCollectibleWhiteList[CollectibleType.COLLECTIBLE_MEGA_MUSH] = false
-				costumeProtector:ItemCostumeWhitelist(player:GetPlayerType(), wakaba.costumeCollectibleWhiteList)
-			end
-			player:GetData().wakaba.megamush = megamush
-			costumeProtector:ResetPlayerCostumes(player)
-		end
-		if changeCostume then
-			--player:ClearCostumes()
-			changeCostume = false
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Costume)
- ]]
-local function CostumeUpdate_wakaba(player)
-	changeCostume = true
-	--print("reset costume")
-end
---costumeProtector.AddCallback("MC_POST_COSTUME_RESET", CostumeUpdate_wakaba)
-
-
 function wakaba:getcurrentindex(player)
 	for num = 0, wakaba.G:GetNumPlayers()-1 do
 		if GetPtrHash(player) == GetPtrHash(Isaac.GetPlayer(num)) then
@@ -1652,198 +1618,9 @@ function wakaba:save(shouldSave)
 	end
 end
 
-function wakaba:unlockWakaba(bool)
-	bool = bool or true
-	wakaba.state.unlock.dcupicecream = 2 --Satan
-	wakaba.state.unlock.secretcard = 2 -- Ultra Greed
-	wakaba.state.unlock.pendant = 2 -- ???
-	wakaba.state.unlock.clover = 2 -- Mom's Heart Hard
-	wakaba.state.unlock.counter = 2 -- Isaac
-	wakaba.state.unlock.returnpostage = 2 --The Beast
-	wakaba.state.unlock.donationcard = 2 -- Boss Rush
-	wakaba.state.unlock.whitejoker = 2 --
-	wakaba.state.unlock.revengefruit = 2 --
-	wakaba.state.unlock.wakabauniform = 2 -- Delirium
-	wakaba.state.unlock.colorjoker = 2 --
-	wakaba.state.unlock.cranecard = 2 -- Ultra Greedier
-	wakaba.state.unlock.confessionalcard = 2 -- Mother
-	wakaba.state.unlock.blessing = true
-
-	print("Cheating Wakaba unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Wakaba unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockTaintedWakaba(bool)
-	bool = bool or true
-	wakaba.state.unlock.taintedwakabamomsheart = 2
-	wakaba.state.unlock.blackjoker = 2 -- Ultra Greedier
-	wakaba.state.unlock.wakabasoul1 = 2 -- Boss Rush
-	wakaba.state.unlock.wakabasoul2 = 2 -- Hush
-	wakaba.state.unlock.bookofforgotten1 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookofforgotten2 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookofforgotten3 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookofforgotten4 = 2 -- 4 Bosses
-	wakaba.state.unlock.cloverchest = 2 -- Mega Satan
-	wakaba.state.unlock.eatheart = 2 -- Delirium
-	wakaba.state.unlock.bitcoin = 2 -- Mother
-	wakaba.state.unlock.nemesis = 2 -- The Beast
-	wakaba.state.unlock.wakabasoul = true
-	wakaba.state.unlock.bookofforgotten = true
-
-	print("Cheating Tainted Wakaba unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Tainted Wakaba unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockShiori(bool)
-	bool = bool or true
-	wakaba.state.unlock.hardbook = 2 -- Mom's Heart Hard
-	wakaba.state.unlock.shiorid6plus = 2 -- Isaac
-	wakaba.state.unlock.bookoffocus = 2 --Satan
-	wakaba.state.unlock.deckofrunes = 2 -- ???
-	wakaba.state.unlock.grimreaperdefender = 2 -- The Lamb
-	wakaba.state.unlock.unknownbookmark = 2 -- Boss Rush
-	wakaba.state.unlock.bookoffallen = 2 --
-	wakaba.state.unlock.bookoftrauma = 2 -- Hush
-	wakaba.state.unlock.magnetheaven = 2 -- Ultra Greed
-	wakaba.state.unlock.determinationribbon = 2 -- Ultra Greedier
-	wakaba.state.unlock.bookofsilence = 2 -- Delirium
-	wakaba.state.unlock.vintagethreat = 2 -- Mother
-	wakaba.state.unlock.bookofthegod = 2 --The Beast
-	wakaba.state.unlock.bookofshiori = true
-
-	print("Cheating Shiori unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Shiori unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockTaintedShiori(bool)
-	bool = bool or true
-	wakaba.state.unlock.taintedshiorimomsheart = 2
-	wakaba.state.unlock.queenofspades = 2 -- Ultra Greedier
-	wakaba.state.unlock.shiorisoul1 = 2 -- Boss Rush
-	wakaba.state.unlock.shiorisoul2 = 2 -- Hush
-	wakaba.state.unlock.bookmarkbag1 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookmarkbag2 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookmarkbag3 = 2 -- 4 Bosses
-	wakaba.state.unlock.bookmarkbag4 = 2 -- 4 Bosses
-	wakaba.state.unlock.shiorivalut = 2 -- Mega Satan
-	wakaba.state.unlock.bookofconquest = 2 -- Delirium
-	wakaba.state.unlock.ringofjupiter = 2 -- Mother
-	wakaba.state.unlock.minervaaura = 2 -- The Beast
-	wakaba.state.unlock.shiorisoul = true
-	wakaba.state.unlock.bookmarkbag = true
-
-	print("Cheating Tainted Shiori unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Tainted Shiori unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockTsukasa(bool)
-	bool = bool or true
-	wakaba.state.unlock.murasame = 2 -- Mom's Heart Hard
-	wakaba.state.unlock.nasalover = 2 -- Isaac
-	wakaba.state.unlock.beetlejuice = 2 --Satan
-	wakaba.state.unlock.redcorruption = 2 -- ???
-	wakaba.state.unlock.powerbomb = 2 -- The Lamb
-	wakaba.state.unlock.concentration = 2 -- Boss Rush
-	wakaba.state.unlock.plasmabeam = 2 --
-	wakaba.state.unlock.rangeos = 2 -- Hush
-	wakaba.state.unlock.arcanecrystal = 2 -- Ultra Greed
-	wakaba.state.unlock.questionblock = 2 -- Ultra Greedier
-	wakaba.state.unlock.newyearbomb = 2 -- Delirium
-	wakaba.state.unlock.phantomcloak = 2 -- Mother
-	wakaba.state.unlock.magmablade = 2 --The Beast
-	wakaba.state.unlock.lunarstone = true
-
-	wakaba.state.unlock.taintedtsukasa = true
-
-	print("Cheating Tsukasa unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Tsukasa unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockTaintedTsukasa(bool)
-	bool = bool or true
-	wakaba.state.unlock.taintedtsukasamomsheart = 2
-	wakaba.state.unlock.returntoken = 2 -- Ultra Greedier
-	wakaba.state.unlock.tsukasasoul1 = 2 -- Boss Rush
-	wakaba.state.unlock.tsukasasoul2 = 2 -- Hush
-	wakaba.state.unlock.isaaccartridge1 = 2 -- 4 Bosses
-	wakaba.state.unlock.isaaccartridge2 = 2 -- 4 Bosses
-	wakaba.state.unlock.isaaccartridge3 = 2 -- 4 Bosses
-	wakaba.state.unlock.isaaccartridge4 = 2 -- 4 Bosses
-	wakaba.state.unlock.easteregg = 2 -- Mega Satan
-	wakaba.state.unlock.flashshift = 2 -- Delirium
-	wakaba.state.unlock.sirenbadge = 2 -- Mother
-	wakaba.state.unlock.elixiroflife = 2 -- The Beast
-	wakaba.state.unlock.tsukasasoul = true
-	wakaba.state.unlock.isaaccartridge = true
-
-	print("Cheating Tainted Tsukasa unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Tainted Tsukasa unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockRicher(bool)
-	bool = bool or true
-	wakaba.state.unlock.fireflylighter = 2 -- Mom's Heart Hard
-	wakaba.state.unlock.sweetscatalog = 2 -- Isaac
-	wakaba.state.unlock.antibalance = 2 --Satan
-	wakaba.state.unlock.doubleinvader = 2 -- ???
-	wakaba.state.unlock.venomincantation = 2 -- The Lamb
-	wakaba.state.unlock.bunnyparfait = 2 -- Boss Rush
-	wakaba.state.unlock.printer = 2 --
-	wakaba.state.unlock.richeruniform = 2 -- Hush
-	wakaba.state.unlock.clensingfoam = 2 -- Ultra Greed
-	wakaba.state.unlock.lilricher = 2 -- Ultra Greedier
-	wakaba.state.unlock.prestigepass = 2 -- Delirium
-	wakaba.state.unlock.cunningpaper = 2 -- Mother
-	wakaba.state.unlock.selfburning = 2 --The Beast
-	wakaba.state.unlock.rabbitribbon = true
-
-	wakaba.state.unlock.taintedricher = true
-
-	print("Cheating Richer unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Richer unlocks complete.")
-	--wakaba:save(true)
-end
-
-function wakaba:unlockChallenge(bool)
-	bool = bool or true
-	wakaba.state.unlock.eyeofclock = true --01w Eye of Clock
-	wakaba.state.unlock.plumy = true --02w Plumy
-	wakaba.state.unlock.ultrablackhole = true --03w
-	wakaba.state.unlock.delimiter = true --04w Delimiter
-	wakaba.state.unlock.nekodoll = true --05w Neko Figure
-	wakaba.state.unlock.microdoppelganger = true --06w Micro Doppelganger
-	wakaba.state.unlock.delirium = true -- 07w Dimension CUtter
-	wakaba.state.unlock.lilwakaba = true --08w Lil Wakaba
-	wakaba.state.unlock.lostuniform = true --09w T.Lost Starts with Wakaba's Uniform
-	wakaba.state.unlock.executioner = true--10w Executioner
-	wakaba.state.unlock.apollyoncrisis = true--11w Apollyon Crisis
-	wakaba.state.unlock.deliverysystem = true--12w Isekai Definition
-	wakaba.state.unlock.calculation = true--13w Calculation
-	wakaba.state.unlock.lilmao = true--14w Hold Me
-	wakaba.state.unlock.richerflipper = true--15w Even or Odd
-	wakaba.state.unlock.richernecklace = true--16w Runaway Pheromones
-	wakaba.state.unlock.edensticky = true--98w T.Eden Starts with Sticky Note
-	wakaba.state.unlock.doubledreams = true -- 99w Wakaba's Double Dreams
-
-	print("Cheating Challenge unlocks complete.")
-	wakaba.Log("[wakaba]Cheating Challenge unlocks complete.")
-	--wakaba:save(true)
-end
-
---storedplayers = 0,
---playersavedata = {},
-
-
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.init)
 
 include('wakaba_src.characters.not_wakaba')
-
 
 function wakaba:OnGameExit(shouldSave)
 	wakaba.Log("exit")
@@ -1865,23 +1642,6 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, wakaba.OnGameExit)
 
-
--- TestFuncs
---[[ local function CountBits(mask)
-	local count = 0
-	while mask ~= 0 do
-		count = count + 1
-		mask = mask & mask - 1
-	end
-
-	return count
-end
-
-function wakaba:Test_CardUse(cardID, playerWhoUsedItem, useFlags)
-	print(cardID, CountBits(useFlags))
-end
-wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.Test_CardUse) ]]
-
 function wakaba:RandomInt(min, max, customRNG) --This and GetRandomElem were written by Guwahavel (hi)
 	local rand = customRNG or wakaba.RNG
 	if not max then
@@ -1902,8 +1662,6 @@ function wakaba:GetRandomElem(table, customRNG)
 			return table[index], index
 	end
 end
-
-
 
 local function runUpdates(tab) --This is from Fiend Folio
 	for i = #tab, 1, -1 do
@@ -1945,8 +1703,6 @@ function wakaba:Shuffle(tbl)
 	return tbl
 end
 
-
-
 local hasShownStartWarning = false
 local skipWarning = false
 if EID then
@@ -1986,19 +1742,4 @@ end
 
 
 print("Pudding and Wakaba", wakaba.version, "load complete.")
---wakaba:luamodInit()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
---Isaac.GetPlayer():GetTearHitParams(WeaponType.WEAPON_BONE, 2, 1, Isaac.GetPlayer())
