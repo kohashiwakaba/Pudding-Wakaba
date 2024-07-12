@@ -46,5 +46,6 @@
 	<pilleffect name="Unholy Curse" class="3-" mimiccharge="4" />
 	<pilleffect name="Duality Orders" class="3+" mimiccharge="8" tags="nogreed"/>
 	<pilleffect name="Hellish Vomit" class="2+" mimiccharge="6"/>
+	<pilleffect name="Heavy Mascara" class="3-" mimiccharge="4"/>
 
 </pocketitems>

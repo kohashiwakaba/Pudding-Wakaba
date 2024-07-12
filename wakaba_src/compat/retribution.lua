@@ -68,6 +68,7 @@ function wakaba:GameStart_RetributionCompat()
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.DUALITY_ORDERS)
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.PRIEST_BLESSING)
 		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.UNHOLY_CURSE)
+		table.insert(mod.EverlastingPills, wakaba.Enums.Pills.HEAVY_MASCARA)
 
 		-- Ret - Neverlasting Pills
 		table.insert(mod.NeverlastingPills, wakaba.Enums.Pills.ALL_STATS_DOWN)
@@ -83,6 +84,7 @@ function wakaba:GameStart_RetributionCompat()
 				[wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
 				[wakaba.Enums.Pills.ALL_STATS_DOWN] = wakaba.Enums.Pills.ALL_STATS_UP,
 				[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP,
+				[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SUNSHINE,
 			})
 
 		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -20000, function(_)

@@ -332,6 +332,7 @@ wakaba.Enums.Pills = {
 	DUALITY_ORDERS = Isaac.GetPillEffectByName("Duality Orders"),
 	PRIEST_BLESSING = Isaac.GetPillEffectByName("Priest's Blessing"),
 	UNHOLY_CURSE = Isaac.GetPillEffectByName("Unholy Curse"),
+	HEAVY_MASCARA = Isaac.GetPillEffectByName("Heavy Mascara"),
 }
 
 -- 와카바 모드 사운드

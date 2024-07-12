@@ -1992,6 +1992,12 @@ wakaba.descriptions[desclang].pills = {
 		mimiccharge = 4,
 		class = "3-",
 	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = { -- TODO
+		itemName = "Heavy Mascara",
+		description = "{{CurseBlind}} Curse of the Blind effect for the floor",
+		mimiccharge = 4,
+		class = "3-",
+	},
 }
 wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -2053,6 +2059,11 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"不洁诅咒",
 		"打破二层神圣斗篷#如果没有神圣斗篷，则无效",
+	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = { -- TODO
+		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
+		"Heavy Mascara",
+		"{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor",
 	},
 }
 

@@ -2156,6 +2156,10 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "빼앗긴 신앙",
 		description = "{{HolyMantle}}Holy Mantle의 방어막을 1회 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
 	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
+		itemName = "무거운 마스카라",
+		description = "{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.",
+	},
 }
 wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -2217,6 +2221,11 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"빼앗긴 신앙",
 		"{{HolyMantle}}Holy Mantle의 방어막을 {{ColorYellow}}2회{{CR}} 차감합니다.#{{Blank}} (방어막이 없을 경우 효과 없음)",
+	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
+		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
+		"무거운 마스카라",
+		"{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.#{{CurseUnknownSmall}} {{ColorYellow}}Unknown 저주에 걸리며 그 스테이지에서 체력이 보이지 않습니다.",
 	},
 }
 

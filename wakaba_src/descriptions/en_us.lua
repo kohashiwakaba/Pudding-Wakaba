@@ -1882,6 +1882,12 @@ wakaba.descriptions[desclang].pills = {
 		mimiccharge = 4,
 		class = "3-",
 	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
+		itemName = "Heavy Mascara",
+		description = "{{CurseBlind}} Curse of the Blind effect for the floor",
+		mimiccharge = 4,
+		class = "3-",
+	},
 }
 wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
@@ -1943,6 +1949,11 @@ wakaba.descriptions[desclang].horsepills = {
 		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
 		"Unholy Curse",
 		"Breaks 2 stacks from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
+	},
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
+		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
+		"Heavy Mascara",
+		"{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor",
 	},
 }
 

@@ -15,6 +15,7 @@ local convertPHD = {
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = -1,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SEE_FOREVER,
 }
 local convertFalsePHD = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN,
@@ -29,6 +30,7 @@ local convertFalsePHD = {
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = -1,
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = wakaba.Enums.Pills.UNHOLY_CURSE,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = -1,
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = -1,
 }
 local pillClass = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = -3,
@@ -36,12 +38,14 @@ local pillClass = {
 	[wakaba.Enums.Pills.TROLLED] = -3,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = -2,
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = -3,
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = -3,
 }
 wakaba.ConvertBlessingPills = {
 	[PillEffect.PILLEFFECT_AMNESIA] = PillEffect.PILLEFFECT_SEE_FOREVER,
 	[PillEffect.PILLEFFECT_RETRO_VISION] = PillEffect.PILLEFFECT_VURP,
 	[PillEffect.PILLEFFECT_IM_EXCITED] = PillEffect.PILLEFFECT_GULP,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SUNSHINE,
 }
 
 function wakaba:PlayerUpdate_Pills(player)
@@ -396,6 +400,12 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 					player:GetEffects():RemoveCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
 				end
 				player:TakeDamage(1, DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(player), 0)
+			end
+			player:AnimateSad()
+		elseif pillEffect == wakaba.Enums.Pills.HEAVY_MASCARA then
+			wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_BLIND, false)
+			if isHorse then
+				wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false)
 			end
 			player:AnimateSad()
 		end
