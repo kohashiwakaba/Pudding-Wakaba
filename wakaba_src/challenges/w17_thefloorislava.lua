@@ -72,7 +72,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Challenge_Update_TheFloor
 
 function wakaba:UseItem_Challenge_TheFloorIsLava(_, rng, player, flags, slot, vardata)
 	if wakaba.G.Challenge == c then
-		player:SetMinDamageCooldown(60)
+		player:SetMinDamageCooldown(50)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.UseItem_Challenge_TheFloorIsLava, CollectibleType.COLLECTIBLE_HOW_TO_JUMP)
