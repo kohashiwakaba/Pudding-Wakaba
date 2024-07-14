@@ -11,7 +11,7 @@
 	<achievement name="The Minerva" text='' gfx="achievement_wakaba_shiori_b.png" />-->
 	<achievement name="The Phoenix" text='' gfx="achievement_wakaba_taintedtsukasa.png" />
 	<achievement name="The Miko" text='' gfx="achievement_wakaba_taintedricher.png" />
-	<achievement name="The Aqua" text='' gfx="achievement_wakaba_taintedrira.png" />
+	<achievement name="The Aqua" text='' gfx="wa_taintedrira.png" gfxback="wabg_taintedrira.png" />
 	<!-- Characters Tarnished -->
 	<!-- <achievement name="The Root" text='' gfx="achievement_wakaba_wakaba_t.png" /> -->
 	<!-- <achievement name="The Page" text='' gfx="achievement_wakaba_shiori_t.png" /> -->
