@@ -1272,7 +1272,10 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, -19999, function(
 		end
 		if d.w_mc then
 			if count < d.w_mc then
-				Isaac.RunCallback(wakaba.Callback.POST_MANTLE_BREAK, player, d.w_mc, count)
+				local breakEffects = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 11)
+				if #breakEffects > 0 then
+					Isaac.RunCallback(wakaba.Callback.POST_MANTLE_BREAK, player, d.w_mc, count)
+				end
 				d.w_mc = count
 			else
 				d.w_mc = count
