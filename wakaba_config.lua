@@ -50,12 +50,16 @@ local config = {
 	concentrationcontroller = (Controller and Controller.BUMPER_RIGHT) or ButtonAction.ACTION_DROP,
 	lunarpercent = true,
 	leftchargebardigits = true,
+	legacyplasmabeam = false,
+	flashshifthearts = false,
+	phantomcloakhearts = false,
 
 	eastereggchance = 2,
 
 	-- Richer options
 	lilricherautocharge = true,
 	lilrichertriggerkey = Keyboard.KEY_5,
+	alwaysdoubleinvader = false,
 
 	crystalrestockchance = 10,
 
