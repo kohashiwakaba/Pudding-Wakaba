@@ -3109,6 +3109,9 @@ if EID then
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
 
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}Expands Rabbey Ward area"
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
+
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} invalidates damage penalty protection"
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "Invalidates {1}"
 

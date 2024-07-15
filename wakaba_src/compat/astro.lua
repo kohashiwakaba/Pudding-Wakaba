@@ -60,4 +60,11 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		end
 	end)
 
+	if EID then
+		EID:AddSynergyConditional(wakaba.Enums.Collectibles.RABBEY_WARD, {
+			AstroItems.Collectible.WARD,
+			AstroItems.Collectible.PINK_WARD,
+		}, "WakabaWardSynergyFrom", "WakabaWardSynergy")
+	end
+
 end)

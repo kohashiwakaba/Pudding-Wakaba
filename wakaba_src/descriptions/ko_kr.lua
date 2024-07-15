@@ -3319,6 +3319,9 @@ if EID then
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
 
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}토끼 와드 범위 증가"
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1}로 범위 증가됨"
+
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "부활 이후 피격 패널티 보호가 {1}에 의해 무력화됨"
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "부활 이후 {1}의 피격 패널티 보호가 무력화됨"
 
