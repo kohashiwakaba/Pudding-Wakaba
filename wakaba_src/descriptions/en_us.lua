@@ -1633,6 +1633,16 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "Allows to use donation mechanics while in White fire state."
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG] = {
+		itemName = "Caramella Candy Bag",
+		description = ""
+		.. "Entering a hostile room spawns one of followings:"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RICHER.."}} Lavender fly that deals 3x of Isaac's Damage"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RIRA.."}} Pink fly that deals 1x of Isaac's Damage and inflicts Aqua"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_CIEL.."}} Lavender fly that deals 5x of Isaac's Damage with Explosion"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_KORON.."}} Gray fly that deals 1.5x of Isaac's Damage and inflicts Petrify"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
 		itemName = "Candy of Richer",
 		description = ""

@@ -1724,11 +1724,22 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "{{CR}}",
 		queueDesc = "柔软舒心",
 	},
+	[wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG] = { -- TODO
+		itemName = "Caramella Candy Bag",
+		description = ""
+		.. "Entering a hostile room spawns one of followings:"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RICHER.."}} Lavender fly that deals 3x of Isaac's Damage"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RIRA.."}} Pink fly that deals 1x of Isaac's Damage and inflicts Aqua"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_CIEL.."}} Lavender fly that deals 5x of Isaac's Damage with Explosion"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_KORON.."}} Gray fly that deals 1.5x of Isaac's Damage and inflicts Petrify"
+		.. "{{CR}}",
+		queueDesc = "Smells Sweets...",
+	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
 		itemName = "璃贝的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生2只攻击苍蝇"
-		.. "#苍蝇造成4倍玩家的伤害"
+		.. "#苍蝇造成3倍玩家的伤害"
 		.. "{{CR}}",
 		queueDesc = "我带来和谐",
 	},
@@ -1736,7 +1747,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "莉良的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生2只攻击苍蝇"
-		.. "#苍蝇对玩家造成4倍的水伤害"
+		.. "#苍蝇对玩家造成1倍的水伤害"
 		.. "{{CR}}",
 		queueDesc = "我带来水",
 	},
@@ -1744,7 +1755,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "希耶尔的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生一只爆炸攻击苍蝇"
-		.. "#苍蝇造成10倍玩家的爆炸伤害"
+		.. "#苍蝇造成5倍玩家的爆炸伤害"
 		.. "{{CR}}",
 		queueDesc = "我带来星星",
 	},
@@ -1752,7 +1763,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "心月的糖果",
 		description = ""
 		.. "进入一个有敌人的房间会产生2只爆炸攻击苍蝇"
-		.. "#苍蝇造成4倍玩家的冰冻伤害"
+		.. "#苍蝇造成1.5倍玩家的冰冻伤害"
 		.. "{{CR}}",
 		queueDesc = "我带来冰",
 	},

@@ -1920,31 +1920,42 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "푹신푹신해...",
 	},
+	[wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG] = {
+		itemName = "카라멜라 사탕주머니",
+		description = ""
+		.. "방 입장 시 아래 중 하나를 소환합니다:"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RICHER.."}} 공격력 x3의 피해를 주는 파란 아군 파리"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RIRA.."}} 공격력 x1의 침수 피해를 주는 분홍 아군 파리"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_CIEL.."}} 공격력 x5의 폭발 피해를 주는 노란 아군 파리"
+		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_KORON.."}} 공격력 x1.5의 석화 피해를 주는 회색 아군 파리"
+		.. "{{CR}}",
+		queueDesc = "달콤한 냄새",
+	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
 		itemName = "리셰 사탕",
 		description = ""
-		.. "방 입장 시 적과 접촉 시 공격력 x4의 피해를 주는 파란 아군 파리를 2마리 소환합니다."
+		.. "방 입장 시 적과 접촉 시 공격력 x3의 피해를 주는 파란 아군 파리를 2마리 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "조화의 향기",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
 		itemName = "리라 사탕",
 		description = ""
-		.. "{{WakabaAqua}} 방 입장 시 적과 접촉 시 공격력 x4의 침수 피해를 주는 분홍 아군 파리를 2마리 소환합니다."
+		.. "{{WakabaAqua}} 방 입장 시 적과 접촉 시 공격력 x1의 침수 피해를 주는 분홍 아군 파리를 2마리 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "아쿠아의 향기",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
 		itemName = "시엘 사탕",
 		description = ""
-		.. "방 입장 시 적과 접촉 시 공격력 x10의 폭발 피해를 주는 노란 아군 파리를 하나 소환합니다."
+		.. "방 입장 시 적과 접촉 시 공격력 x5의 폭발 피해를 주는 노란 아군 파리를 하나 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "별빛의 향기",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
 		itemName = "코론 사탕",
 		description = ""
-		.. "방 입장 시 적과 접촉 시 공격력 x4의 냉기 피해를 주는 회색 아군 파리를 2마리 소환합니다."
+		.. "방 입장 시 적과 접촉 시 공격력 x1.5의 석화 피해를 주는 회색 아군 파리를 2마리 소환합니다."
 		.. "{{CR}}",
 		queueDesc = "눈꽃의 향기",
 	},
