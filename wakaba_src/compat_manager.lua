@@ -71,6 +71,7 @@ function wakaba:NewLevel_ApplyCompat()
 end
 
 do
+	include('wakaba_src.compat.stageapi')
 	include('wakaba_src.compat.fiendfolio')
 	include('wakaba_src.compat.retribution')
 	include('wakaba_src.compat.epiphany')
@@ -79,7 +80,7 @@ do
 	include('wakaba_src.compat.thefuture')
 	include('wakaba_src.compat.sacred_dreams')
 	include('wakaba_src.compat.reshaken_v1')
-	include('wakaba_src.compat.stageapi')
+	include('wakaba_src.compat.astro')
 end
 
 if REPENTOGON then
