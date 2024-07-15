@@ -614,7 +614,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "All trinkets become Aqua trinkets"},
 			{str = "- Aqua trinkets are special type of trinket that are being absorbed on pickup instantly."},
-			{str = "- Some trinkets are blacklisted to be Aqua trinkets, Azure Rir cannot change blacklisted trinkets."},
+			{str = "- Some trinkets are blacklisted to being Aqua trinkets, Azure Rir cannot change blacklisted trinkets."},
 			{str = "- Azure Rir ignores unlock status from Aqua trinkets."},
 		},
 	},
@@ -627,7 +627,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Rooms within Rabbey Ward, or revealed by one also grants Damage, Tears up bonus."},
 			{str = "- Bonus is determined how near the ward is"},
 			{str = "Gives 1 Soul Heart per ward install."},
-			{str = "If the room is not cleared, Soul hearts are given on room clear."},
+			{str = "- If the room is not cleared, Soul hearts are given on room clear instead."},
 		},
 	},
 
