@@ -186,7 +186,7 @@ do
 		function(player) wakaba:EIDItemReminder_HandleWakabaUniform(player) end,
 	}})
 end
-
+--[[ 
 do
 	local index = wakaba:EIDItemReminder_GetIndex("Passives")
 	local ent = EID.ItemReminderCategories[index]
@@ -199,7 +199,7 @@ do
 		end)
 	end
 end
-
+ ]]
 function wakaba:EIDItemReminder_HandleCharacters(player)
 	if not EID:ItemReminderCanAddMoreToView() then return end
 	local t = player:GetPlayerType()
