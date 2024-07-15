@@ -98,8 +98,12 @@ function wakaba:PlayerUpdate_RabbitRibbon(player)
 	if weapon then
 		if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) then
 			if not wakaba:hasRicherBR(player) then
-				weapon.Visible = false
-				player:GetData().w_rwi = true
+				if weapon.Type == EntityType.ENTITY_KNIFE then
+					--weapon:SetColor(Color(1,1,1,0), 2, 1, true, true)
+				else
+					weapon.Visible = false
+					player:GetData().w_rwi = true
+				end
 			end
 		elseif player:GetData().w_rwi then
 			weapon.Visible = true
@@ -149,7 +153,7 @@ function wakaba:KnifeUpdate_RabbitRibbon(tear)
 	local player = wakaba:getPlayerFromKnife(tear)
 	if wakaba.curses.CURSE_OF_SNIPER > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_SNIPER) and player and not wakaba:hasRicherBR(player) then
 		tear.Color = Color(1, 1, 1, 0, 0, 0, 0)
-		tear.Visible = false
+		--tear.Visible = false
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_RabbitRibbon)
