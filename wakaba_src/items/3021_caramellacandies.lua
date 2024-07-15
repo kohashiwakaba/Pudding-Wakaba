@@ -45,6 +45,18 @@ function wakaba:NewRoom_CaramellaCandies()
 			if player:HasTrinket(wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG) then
 				local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG)
 				local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG)
+				for i = 1, count do
+					local r = rng:RandomInt(4)
+					if r == 0 then
+						wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RICHER, nil, nil, true)
+					elseif r == 1 then
+						wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RIRA, nil, nil, true)
+					elseif r == 2 then
+						wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, nil, nil, true)
+					else
+						wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.KORON, nil, nil, true)
+					end
+				end
 			end
 		end)
 	end
