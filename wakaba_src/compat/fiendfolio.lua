@@ -1,6 +1,6 @@
-local ffReplaced = false
-function wakaba:GameStart_FiendFolioCompat()
-	if FiendFolio and not ffReplaced then
+
+wakaba:RegisterPatch(0, "FiendFolio", function() return (FiendFolio ~= nil) end, function()
+	do
 		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.CHRISTMAS_CRACKER)
 		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.POT_OF_GREED)
 		wakaba:BlacklistUniform("card", FiendFolio.ITEM.CARD.SMALL_CONTRABAND)
@@ -74,7 +74,7 @@ function wakaba:GameStart_FiendFolioCompat()
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.RING_OF_JUPITER, Reference = "The World Only God Knows"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.RANGE_OS, Reference = "Last Origin"})
 		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.MISTAKE, Reference = "Paper Mario"})
-		table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.KUROMI_CARD, Reference = "Onegai My Melody"})
+		--table.insert(FiendFolio.ReferenceItems.Trinkets, {ID = wakaba.Enums.Trinkets.KUROMI_CARD, Reference = "Onegai My Melody"})
 
 		table.insert(wakaba.PostageRemovalEntities, {160, 451})
 
@@ -210,5 +210,4 @@ function wakaba:GameStart_FiendFolioCompat()
  ]]
 		ffReplaced = true
 	end
-
-end
+end)

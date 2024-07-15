@@ -1,6 +1,6 @@
-local ttReplaced = false
-function wakaba:GameStart_TaintedTreasureCompat()
-	if TaintedTreasure then
+
+wakaba:RegisterPatch(0, "TaintedTreasure", function() return (TaintedTreasure ~= nil) end, function()
+	do
 		local mod = TaintedTreasure
 		if not ttReplaced then
 			mod:AddTaintedTreasure(wakaba.Enums.Collectibles.WAKABAS_BLESSING, wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
@@ -13,5 +13,4 @@ function wakaba:GameStart_TaintedTreasureCompat()
 			mod:AddTaintedTreasure(wakaba.Enums.Collectibles.WAKABAS_PENDANT, wakaba.Enums.Collectibles.WAKABAS_HAIRPIN)
 		end
 	end
-	ttReplaced = true
-end
+end)

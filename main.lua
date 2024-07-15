@@ -1191,15 +1191,7 @@ do -- Extra functions loader
 end
 
 do -- Compatibility loader
-	include('wakaba_src.compat.fiendfolio')
-	include('wakaba_src.compat.retribution')
-	include('wakaba_src.compat.epiphany')
-	include('wakaba_src.compat.samael')
-	include('wakaba_src.compat.taintedtreasure')
-	include('wakaba_src.compat.thefuture')
-	include('wakaba_src.compat.sacred_dreams')
-	include('wakaba_src.compat.reshaken_v1')
-	include('wakaba_src.compat.stageapi')
+	include('wakaba_src.compat_manager')
 end
 
 if REPENTOGON then -- REPENTOGON loader
@@ -1303,33 +1295,6 @@ function wakaba:init(continue)
 	if EID then
 		wakaba:UpdateWakabaDescriptions()
 		--wakaba:UpdateWakabaEncyclopediaDescriptions()
-	end
-	if FiendFolio then
-		wakaba:GameStart_FiendFolioCompat()
-	end
-
-	if Retribution then
-		wakaba:GameStart_RetributionCompat()
-	end
-
-	if SamaelMod then
-		wakaba:GameStart_SamaelCompat()
-	end
-
-	if TaintedTreasure then
-		wakaba:GameStart_TaintedTreasureCompat()
-	end
-
-	if TheFuture then
-		wakaba:GameStart_TheFutureCompat()
-	end
-
-	if SacredDreams then
-		wakaba:GameStart_SDCompat()
-	end
-
-	if MilkshakeVol1 then
-		wakaba:GameStart_ReshakenCompat()
 	end
 
 	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)

@@ -1,5 +1,5 @@
 
-if StageAPI then
+wakaba:RegisterPatch(0, "StageAPI", function() return (StageAPI ~= nil) end, function()
 	StageAPI.AddPlayerGraphicsInfo(wakaba.Enums.Players.WAKABA, {
 		Name = "gfx/ui/boss/playername_wakaba.png",
 		Portrait = "gfx/ui/stage/WakabaPortrait.png",
@@ -54,4 +54,4 @@ if StageAPI then
 		Portrait = "gfx/ui/stage/RiraPortrait_b.png",
 		NoShake = true,
 	})
-end
+end)

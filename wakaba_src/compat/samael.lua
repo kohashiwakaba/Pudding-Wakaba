@@ -1,8 +1,8 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
-local Replaced = false
-function wakaba:GameStart_SamaelCompat()
-	if SamaelMod and not Replaced then
+
+wakaba:RegisterPatch(0, "SamaelMod", function() return (SacredDreams ~= nil) end, function()
+	do
 		wakaba:BlacklistUniform("card", SamaelMod.ITEMS.DENIAL_DICE)
 
 		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
@@ -12,7 +12,5 @@ function wakaba:GameStart_SamaelCompat()
 				end
 			end
 		end)
-
-		Replaced = true
 	end
-end
+end)

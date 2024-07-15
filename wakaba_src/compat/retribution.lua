@@ -1,6 +1,6 @@
-local rtReplaced = false
-function wakaba:GameStart_RetributionCompat()
-	if Retribution and not rtReplaced then
+
+wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) end, function()
+	do
 		local mod = Retribution
 
 		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
@@ -77,15 +77,15 @@ function wakaba:GameStart_RetributionCompat()
 		table.insert(mod.NeverlastingPills, wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP)
 
 		-- PHD map
-			wakaba:DictionaryBulkAppend(mod.PhdEffectMap, {
-				[wakaba.Enums.Pills.TROLLED] = wakaba.Enums.Pills.TO_THE_START,
-				[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT,
-				[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
-				[wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
-				[wakaba.Enums.Pills.ALL_STATS_DOWN] = wakaba.Enums.Pills.ALL_STATS_UP,
-				[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP,
-				[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SUNSHINE,
-			})
+		wakaba:DictionaryBulkAppend(mod.PhdEffectMap, {
+			[wakaba.Enums.Pills.TROLLED] = wakaba.Enums.Pills.TO_THE_START,
+			[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT,
+			[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
+			[wakaba.Enums.Pills.UNHOLY_CURSE] = wakaba.Enums.Pills.PRIEST_BLESSING,
+			[wakaba.Enums.Pills.ALL_STATS_DOWN] = wakaba.Enums.Pills.ALL_STATS_UP,
+			[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP,
+			[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SUNSHINE,
+		})
 
 		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -20000, function(_)
 			if mod.savedata.icarusCurseIndicator % 2 == 0 then
@@ -97,7 +97,5 @@ function wakaba:GameStart_RetributionCompat()
 		end)
 
 		wakaba:BulkAppend(wakaba.Blacklists.AquaTrinkets, mod.CursedTrinketPool)
-
-		rtReplaced = true
 	end
-end
+end)
