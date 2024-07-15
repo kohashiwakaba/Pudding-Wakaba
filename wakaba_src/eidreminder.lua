@@ -192,7 +192,7 @@ do
 	local ent = EID.ItemReminderCategories[index]
 	if ent and ent.entryGenerators then
 		local gen = ent.entryGenerators
-		table.insert(gen, #gen -1 , function(player)
+		table.insert(gen, math.max(#gen -1, 0) , function(player)
 			if wakaba:hasAlbireo(player) and not EID:IsCategorySelected("Passives") then
 				EID:ItemReminderAddDescription(player, 5, 100, wakaba.Enums.Collectibles.WINTER_ALBIREO)
 			end
@@ -248,7 +248,7 @@ function wakaba:EIDItemReminder_HandleCurses(player)
 end
 
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
-	modifierFunction = function(descObj, player)
+	modifierFunction = function(descObj, player, inOverview)
 		local pool = wakaba:GetAlbireoPool()
 		if pool then
 			local prepend = EID:getDescriptionEntry("AlbireoPool")
@@ -260,7 +260,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.WINTER_A
 }
 
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
-	modifierFunction = function(descObj, player)
+	modifierFunction = function(descObj, player, inOverview)
 		if EID:IsCategorySelected("w_ShioriFlags") then
 			local shioriFlag = wakaba:getShioriFlag(player)
 			local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", shioriFlag)
@@ -277,7 +277,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.BOOK_OF_
 }
 
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM] = {
-	modifierFunction = function(descObj, player)
+	modifierFunction = function(descObj, player, inOverview)
 		if EID:IsCategorySelected("w_WakabaUniform") then
 			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 			local eidstring = ""
@@ -339,7 +339,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.CUNNING_PAPER] = {
 	isCheat = true,
-	modifierFunction = function(descObj, player)
+	modifierFunction = function(descObj, player, inOverview)
 		local playerIndex = isc:getPlayerIndex(player)
 		local card = wakaba.cunningPaperData[playerIndex]
 		local demoDescObj = EID:getDescriptionObj(5, 300, card)
