@@ -48,7 +48,7 @@ function wakaba:PickupInit_AquaTrinkets(pickup)
 		wakaba.Log("hasTrinketDropped detected, skipping...")
 	end
 	local hasAzure, onlyTaintedRira = wakaba:anyPlayerHasAzureRir()
-	if hasAzure then
+	if hasAzure and not wakaba:has_value(wakaba.Blacklists.AquaTrinkets, pickup.SubType)) then
 		wakaba:TryTurnAquaTrinket(pickup)
 	end
 

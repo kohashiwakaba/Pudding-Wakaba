@@ -305,6 +305,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{AquaTrinket}} All trinkets become Aqua trinkets"
+		.. "#!!! Blacklisted trinkets have no effect"
 		--.. "#Room clear awards spawn earlier"
 		.. "{{CR}}",
 	},

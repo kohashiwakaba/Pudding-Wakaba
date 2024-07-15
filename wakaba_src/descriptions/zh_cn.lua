@@ -329,6 +329,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 		.. "#{{AquaTrinket}} 所有饰品都变成水饰品"
+		.. "#!!! Blacklisted trinkets have no effect" -- TODO
 		--.. "#Room clear awards spawn earlier"
 		.. "{{CR}}",
 		queueDesc = "莉良的精华",
