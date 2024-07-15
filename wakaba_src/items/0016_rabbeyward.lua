@@ -222,15 +222,16 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.UseItem_RabbeyWard, wakaba.E
 
 function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 	if not wakaba:IsDimension(0) then return 0 end
+	local pow = wakaba:getWardPower()
 	if taintedRira and gridIndex == 84 then
-		return 3
+		return pow
 	end
 	if gridIndex < 0 then
 		gridIndex = wakaba.G:GetLevel():GetPreviousRoomIndex()
 	end
 	local currRoomPower = rabbey_ward_data.level.wardRooms[tostring(gridIndex)]
 	if currRoomPower and currRoomPower > 0 then
-		return currRoomPower * 3
+		return currRoomPower * pow
 	end
 	local checkedIndexes = {}
 	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
@@ -245,14 +246,14 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 			if not checkedIndexes[tostring(index)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
 				--wakaba.Log("Ward power from index", index, "found: power:", p)
-				power = math.max(power, (p * 3) - distance)
+				power = math.max(power, (p * pow) - distance)
 				checkedIndexes[tostring(index)] = true
 			end
 		elseif roomDesc and rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
 			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] then
 				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
 				--wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
-				power = math.max(power, (p * 3) - distance)
+				power = math.max(power, (p * pow) - distance)
 				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
 			end
 		end
@@ -275,19 +276,20 @@ end
 function wakaba:revealWardMap(gridIndex)
 	local level = wakaba.G:GetLevel()
 	local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
+	local pow = wakaba:getWardPower()
 
 	local pendingRooms = {}
 	for index = 0, 168 do
 		local gridLocation = isc:roomGridIndexToVector(index)
 		local distVec = currentGridLocation - gridLocation
 		local calculatedDist = math.abs(distVec.X) + math.abs(distVec.Y)
-		if calculatedDist <= 2 then
+		if calculatedDist <= (pow - 1) then
 			local roomdesc = level:GetRoomByIdx(index)
 			local roomdata = roomdesc.Data
 			if roomdata and roomdesc.DisplayFlags then
 				roomdesc.DisplayFlags = roomdesc.DisplayFlags | RoomDescriptor.DISPLAY_BOX | RoomDescriptor.DISPLAY_ICON
 			end
-			table.insert(pendingRooms, {i = index, p = (3 - calculatedDist)})
+			table.insert(pendingRooms, {i = index, p = (pow - calculatedDist)})
 		end
 	end
 	if MinimapAPI then
@@ -306,7 +308,7 @@ function wakaba:recalculateWardMinimap(wardAreas)
 				local power = td.power
 				if power > 0 then
 					local np = math.min(power, 3)
-					room.Color = Color(1, 0.5 + (0.1 * np), 0.85, np * 0.2, 0, 0, 0)
+					room.Color = Color(1, 0.9 - (0.1 * np), 0.85, 0.7 - (np * 0.2), 0, 0, 0)
 				else
 					room.Color = nil
 				end
@@ -320,7 +322,7 @@ function wakaba:recalculateWardMinimap(wardAreas)
 				local power = wakaba:getRabbeyWardPower(desc.SafeGridIndex)
 				if power > 0 then
 					local np = math.min(power, 3)
-					room.Color = Color(1, 0.5 + (0.1 * np), 0.85, np * 0.2, 0, 0, 0)
+					room.Color = Color(1, 0.9 - (0.1 * np), 0.85, 0.7 - (np * 0.2), 0, 0, 0)
 				else
 					room.Color = nil
 				end
@@ -535,6 +537,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 	gridIndex = gridIndex or wakaba.G:GetLevel():GetCurrentRoomIndex()
 	--local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 	local testAreas = wakaba:getRabbeyWardCheckArea(gridIndex)
+	local pow = wakaba:getWardPower()
 	for _, td in pairs(testAreas) do
 		local index = td.i // 1
 		local grid = td.v
@@ -546,7 +549,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 				table.insert(loc, {
 					index = index,
 					grid = grid,
-					power = p > 0 and 3 - distance or 0,
+					power = p > 0 and pow - distance or 0,
 				})
 				checkedIndexes[tostring(index)] = true
 			end
@@ -556,7 +559,7 @@ function wakaba:getNearbyWardRooms(gridIndex)
 				table.insert(loc, {
 					index = index,
 					grid = grid,
-					power = p > 0 and 3 - distance or 0,
+					power = p > 0 and pow - distance or 0,
 				})
 				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
 			end
