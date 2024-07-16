@@ -1612,7 +1612,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "+1 Damage"},
 			{str = "If an enemy takes damage with Poison/Burn, it will be killed instantly for 5% chance."},
 			{str = "- Instakill chance does not scale with luck"},
-			{str = "- Non-major Bosses have 1.36% chance instead of 5%"},
+			{str = "- Non-major Bosses have 1.36% chance instead of 5%, and is decreased over time and eventually goes to 0%"},
 			{str = "- Major Bosses are immune to this effect"},
 			{str = "This item belongs to the Spun set. Collecting three items from this set will transform Isaac into buff berserker."},
 		},

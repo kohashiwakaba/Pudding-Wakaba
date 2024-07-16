@@ -28,7 +28,8 @@ function wakaba:TakeDamage_VenomIncantation(entity, amount, flags, source, count
 				local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.VENOM_INCANTATION)
 				local chance = 0.05
 				if entity:IsBoss() then
-					chance = 0.0136
+					local modifier = math.max((900) - entity.FrameCount, 0)
+					chance = 0.0136 * (modifier / 900)
 				end
 				local val = rng:RandomFloat()
 				if val <= chance then
