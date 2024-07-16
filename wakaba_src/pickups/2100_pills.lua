@@ -205,7 +205,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 			player:AnimateHappy()
 			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)
 		elseif pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN then
-			wakaba:addCustomStat(player, "damagemult", -0.02 * multiplier)
+			wakaba:addCustomStat(player, "damagemult", -0.06 * multiplier)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:EvaluateItems()
 			player:AnimateSad()
