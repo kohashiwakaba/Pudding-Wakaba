@@ -1459,13 +1459,14 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Plasma Beam is first introduced in Metroid II - The Return of Samus. Plasma Beam in 2D Metroid series has abilty to pierce enemies."},
 			{str = "Plasma Beam had got huge buff from Metroid Fusion, allowing a single beam hitting same enemy multiple times, and even piercing bosses."},
 			{str = "Plasma Beam in 3D Metroid series also had burning effect for various enemies."},
+			{str = "Plasma Beam in Pudding n Wakaba mod has been changed, due to the original effect is excatly same as Trisagion item."},
 		},
 	},
 	BEETLEJUICE = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Identifies all pills on pickup"},
-			{str = "When used, Randomizes 6 pill effects for current run"},
+			{str = "When used, Randomizes 1 pill effect for current run"},
 			{str = "While held, An extra pill can spawn on room clears."},
 			{str = "- Chance for spawning extra pill is 20%, does not affected by luck."},
 		},

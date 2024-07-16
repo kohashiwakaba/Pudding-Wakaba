@@ -11,8 +11,8 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
   local discharge = true
 	local pool = wakaba.G:GetItemPool()
 	--local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
-	local count = 8
-	if FiendFolio then count = 20 end
+	local count = 1
+	if FiendFolio then count = 4 end
 	for i = 1, count do
 		local pillEffectCandidates = Isaac.GetItemConfig():GetPillEffects()
 		local replacedPillEffect = -1
