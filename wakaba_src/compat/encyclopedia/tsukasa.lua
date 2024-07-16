@@ -30,11 +30,11 @@ local class = "Pudding n Wakaba"
 -- Tsukasa_B / Mother : Siren's Badge
 -- Tsukasa_B / Beast : Elixir of Life [Starting item]
 
--- Tsukasa_T / Quartet :
--- Tsukasa_T / Duet :
--- Tsukasa_T / MegaS :
+-- Tsukasa_T / Quartet : Sigil of Kaguya
+-- Tsukasa_T / Duet : Essence of Tsukasa
+-- Tsukasa_T / MegaS : Fireworks
 -- Tsukasa_T / Deli :
--- Tsukasa_T / Gdier :
+-- Tsukasa_T / Gdier : Link Cable
 -- Tsukasa_T / Mother :
 -- Tsukasa_T / Beast :
 -- Tsukasa_T / Comp : Laputa [Starting item]
