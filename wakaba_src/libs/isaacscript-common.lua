@@ -46105,7 +46105,9 @@ function PlayerReorderedCallbacks.prototype.____constructor(self, postPEffectUpd
         else
             local playerIndex = getPlayerIndex(nil, player)
             local ____v_run_postPEffectUpdateQueue_0 = v.run.postPEffectUpdateQueue
-            ____v_run_postPEffectUpdateQueue_0[#____v_run_postPEffectUpdateQueue_0 + 1] = {playerIndex = playerIndex, renderOffset = VectorZero}
+            if #____v_run_postPEffectUpdateQueue_0 <= 5 then
+                ____v_run_postPEffectUpdateQueue_0[#____v_run_postPEffectUpdateQueue_0 + 1] = {playerIndex = playerIndex, renderOffset = VectorZero}
+            end
         end
     end
     self.postPlayerUpdate = function(____, player)
@@ -46114,7 +46116,9 @@ function PlayerReorderedCallbacks.prototype.____constructor(self, postPEffectUpd
         else
             local playerIndex = getPlayerIndex(nil, player)
             local ____v_run_postPlayerUpdateQueue_1 = v.run.postPlayerUpdateQueue
-            ____v_run_postPlayerUpdateQueue_1[#____v_run_postPlayerUpdateQueue_1 + 1] = {playerIndex = playerIndex, renderOffset = VectorZero}
+            if #____v_run_postPlayerUpdateQueue_1 <= 5 then
+                ____v_run_postPlayerUpdateQueue_1[#____v_run_postPlayerUpdateQueue_1 + 1] = {playerIndex = playerIndex, renderOffset = VectorZero}
+            end
         end
     end
     self.postPlayerRender = function(____, player, renderOffset)
@@ -46123,7 +46127,9 @@ function PlayerReorderedCallbacks.prototype.____constructor(self, postPEffectUpd
         else
             local playerIndex = getPlayerIndex(nil, player)
             local ____v_run_postPlayerRenderQueue_2 = v.run.postPlayerRenderQueue
-            ____v_run_postPlayerRenderQueue_2[#____v_run_postPlayerRenderQueue_2 + 1] = {playerIndex = playerIndex, renderOffset = renderOffset}
+            if #____v_run_postPlayerRenderQueue_2 <= 5 then
+                ____v_run_postPlayerRenderQueue_2[#____v_run_postPlayerRenderQueue_2 + 1] = {playerIndex = playerIndex, renderOffset = renderOffset}
+            end
         end
     end
     self.postGameStartedReorderedLast = function()
