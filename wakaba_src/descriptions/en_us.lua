@@ -57,7 +57,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
-		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoots laser to enemies",
+		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
@@ -297,7 +297,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#On use, installs a Rabbit Ward that causes:"
 		.. "#Reveals further rooms"
 		.. "#Damage, Tears up inside revealed rooms"
-		.. "#Clearing room inside Rabbit Ward recovers 1 soul heart"
+		.. "#{{SoulHeart}} Clearing room inside Rabbit Ward recovers 1 soul heart"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
@@ -323,13 +323,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Only can be charged through damaging enemies or self damage."
 		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
 		.. "#Spawns a random collectible item from current item pool"
-		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
+		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned ({{Quality1}} for {{Collectible477}})"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#Only can be charged through damaging enemies or self damage."
 		.. "#Can be overcharged without {{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}The Battery. Max 15000 damage"
 		.. "#Spawns a random collectible item from current item pool"
-		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned"
+		.. "#{{Quality3}}/{{Quality4}} are guaranteed to be spawned ({{Quality1}} for {{Collectible477}})"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Decreased charge rate by half"
 		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
@@ -379,7 +379,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Shotspeed}} +0.1 Shot Speed"
 		.. "#↑ {{Range}} +0.85 Range"
 		.. "#↑ {{Damage}} +0.5 Damage"
-		.. "#Rooms will be randomly colorized slightly"
+		.. "#{{ColorRainbow}} Rooms will be randomly colorized slightly"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -387,13 +387,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Wakaba's Pendant",
 		description = ""
 		.. "#{{Luck}} Sets your Luck to 7 if you have less than 7"
-		.. "#↑ {{Luck}} +0.35 Luck per Luck affect items"
+		--.. "#↑ {{Luck}} +0.35 Luck per Luck affect items"
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#{{Heart}} Full Health"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}} Sets your Luck to 3 if you have less than 3"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
+		--.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
 		.. "#↑ {{Damage}} +1 Damage"
 		.. "#{{Heart}} Full Health"
 		.. "{{CR}}",
@@ -870,7 +870,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
 		itemName = "Beetlejuice",
 		description = "{{Pill}} Identifies all pills"
-		.. "#{{Pill}} When used, Randomizes 6 pill effects for current run and spawns one of changed pills"
+		.. "#{{Pill}} When used, Randomizes a pill effect for current run and spawns changed pill"
 		.. "#{{Pill}} Extra pills can be spawned on room clears while held"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -887,7 +887,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "Anti Balance",
 		description = ""
-		.. "#{{Pill}} All pills will be Horse pills"
+		.. "{{Pill}} Identifies all pills#{{Pill}} All pills will be Horse pills"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -895,7 +895,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Venom Incantation",
 		description = ""
 		.. "#↑ {{Damage}} +1 Damage"
-		.. "#{{Poison}} Poison/Burn damage have 5% chance to instakill normal enemies#{{Blank}} (1.36% on non-major bosses)"
+		.. "#{{Poison}} Poison/Burn damage have 5% chance to instakill normal enemies#{{Blank}} (max 1.36% on non-major bosses)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.SPUN .. "",
 	},
@@ -921,6 +921,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible584}} Spawns Book of Virtues Wisp per 4 rooms"
 		.. "#{{Player"..wakaba.Enums.Players.TSUKASA_B.."}} Respawn as Tainted Tsukasa on death"
+		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
@@ -929,6 +930,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Luck}} +0.25 Luck per 1 game minute"
 		.. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} Respawn as Wakaba on death"
 		.. "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives"
+		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.CRISIS_BOOST] = {
@@ -967,7 +969,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} 3/8 : {{Collectible374}}"
 		.. "#{{Blank}} 4/9 : {{Collectible494}}"
 		.. "#{{Player"..wakaba.Enums.Players.RIRA.."}} Respawn as Rira on death"
-		--.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives"
+		.. "#{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives"
+		.. "#All effects are retained even after revival"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
@@ -1069,7 +1072,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
-		description = "Activates white fire effect#Install white fireplace on Isaac's position",
+		description = "Activates white fire effect#Installs white fireplace on Isaac's position",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
@@ -1756,7 +1759,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "Soul of Wakaba",
-		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Creates new Angel shop on current floor#{{AngelRoom}} Spawns an Angel room item for sale if no rooms are available",
+		description = "{{SoulHeart}} +1 Soul Heart#{{AngelRoom}} Creates new Angel room on current floor#{{AngelRoom}} Spawns an Angel room item for sale if no rooms are available",
 		mimiccharge = 8,
 		isrune = true,
 	},
@@ -1828,7 +1831,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "Damage Multiplier Down",
-		description = "↓ {{Damage}} -2% Damage Multiplier",
+		description = "↓ {{Damage}} -6% Damage Multiplier",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -1909,7 +1912,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"Damage Multiplier Down",
-		"↓ {{Damage}} -4% Damage Multiplier",
+		"↓ {{Damage}} -12% Damage Multiplier",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_UP),

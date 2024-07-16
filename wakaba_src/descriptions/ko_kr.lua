@@ -396,7 +396,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{ShotspeedSmall}}탄속 +0.1"
 		.. "#↑ {{RangeSmall}}사거리 +0.85"
 		.. "#↑ {{DamageSmall}}공격력 +0.5"
-		.. "#방 색상이 임의의 색상으로 바뀝니다."
+		.. "#{{ColorRainbow}} 방 색상이 임의의 색상으로 바뀝니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "모든 능력치 증가 + 뭔가 분위기가 이상해",
@@ -405,13 +405,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 펜던트",
 		description = ""
 		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
-		.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 개수만큼 행운 +0.35"
+		--.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 개수만큼 행운 +0.35"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{Heart}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{LuckSmall}}행운을 최소 3 이상으로 설정"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 추가 행운 없음)"
+		--.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 추가 행운 없음)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{Heart}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
@@ -920,7 +920,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "비틀쥬스",
 		description = ""
 		.. "#{{Pill}} 확인되지 않은 알약의 효과를 알 수 있습니다."
-		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 8개를 랜덤으로 바꾸며 바뀐 알약 중 하나를 드랍합니다."
+		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 1개를 랜덤으로 바꾸며 바뀐 알약을 드랍합니다."
 		.. "#{{Pill}} 소지한 상태에서 방 클리어 시 알약을 추가로 드랍합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -939,7 +939,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "안티 밸런스",
 		description = ""
-		.. "#{{Pill}} 모든 알약을 거대 알약으로 바꿉니다."
+		.. "#{{Pill}} 확인되지 않은 알약의 효과를 알 수 있습니다.#{{Pill}} 모든 알약을 거대 알약으로 바꿉니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	queueDesc = "극과 극은 통한다",
@@ -948,7 +948,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "고독의 주법",
 		description = ""
 		.. "#↑ {{DamageSmall}}공격력 +1"
-		.. "#{{Poison}} 독/화상 공격이 5%의 확률로 적을 즉사시킵니다.#{{Blank}} (일반 보스의 경우 1.36%)"
+		.. "#{{Poison}} 독/화상 공격이 5%의 확률로 적을 즉사시킵니다.#{{Blank}} (일반 보스의 경우 최대 1.36%)"
 		.. "{{CR}}",
 		queueDesc = "독에서 도망칠 수 없다",
 	},
@@ -2055,12 +2055,12 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_WAKABA] = {
 		itemName = "와카바의 영혼",
 		queueDesc = "축복의 결정",
-		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{AngelRoom}}천사 상점을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
+		description = "{{SoulHeart}}소울하트 +1#그 스테이지에서 {{AngelRoom}}천사방을 생성합니다.#{{AngelRoom}} 생성할 수 없는 경우 구매가 필요한 천사방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_WAKABA2] = {
 		itemName = "와카바의 영혼?",
 		queueDesc = "숙명의 결정",
-		description = "{{SoulHeart}}소울하트 +1#현재 층에서 {{DevilRoom}}악마방을 생성합니다.#{{DevilRoom}} 생성할 수 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
+		description = "{{SoulHeart}}소울하트 +1#그 스테이지에서 {{DevilRoom}}악마방을 생성합니다.#{{DevilRoom}} 생성할 수 없는 경우 구매가 필요한 악마방 아이템을 하나 소환합니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "시오리의 영혼",

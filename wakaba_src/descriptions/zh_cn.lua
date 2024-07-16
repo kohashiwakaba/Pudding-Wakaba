@@ -66,9 +66,9 @@ wakaba.descriptions[desclang].birthright = {
 			wakaba.Enums.Collectibles.CHIMAKI .. "}} 小棕会变得更强",
 		queueDesc = "有一点更H了",
 	},
-	[wakaba.Enums.Players.RIRA_B] = {
+	[wakaba.Enums.Players.RIRA_B] = { -- TODO
 		playerName = "里莉良",
-		description = "#生命不再消耗#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 使用兔兔衣柜可以显示更多",
+		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
 		queueDesc = "丝带分割",
 	},
 }
@@ -320,7 +320,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#使用时，安装一个兔兔衣柜，导致:"
 		.. "#显示更多房间"
 		.. "#此房间射速和攻击力上升"
-		.. "#清理房间后恢复半魂心"
+		.. "#{{SoulHeart}} 清理房间后恢复半魂心"
 		.. "{{CR}}",
 		queueDesc = "水流扩展",
 	},
@@ -349,14 +349,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#即使没有 {{Collectible" ..
 			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
 			.. "#生成一个来自当前物品池的随机物品"
-			.. "#只会生成{{Quality3}}/{{Quality4}}道具"
+			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} for {{Collectible477}})" -- TODO
 			.. "{{CR}}",
 		lunatic = ""
 			.. "#只能通过伤害敌人或自我伤害来充能."
 			.. "#即使没有 {{Collectible" ..
 			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
 			.. "#生成一个来自当前物品池的随机物品"
-			.. "#只会生成{{Quality3}}/{{Quality4}}道具"
+			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} for {{Collectible477}})" -- TODO
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}充能速率降低一半"
 			.. "{{CR}}",
 		queueDesc = "就像布丁",
@@ -408,7 +408,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Shotspeed}} +0.1 弹速"
 			.. "#↑ {{Range}} +0.85攻击距离"
 			.. "#↑ {{Damage}} +0.5攻击力"
-			.. "#房间会随机地稍微上色"
+			.. "#{{ColorRainbow}} 房间会随机地稍微上色"
 			.. "{{CR}}",
 		queueDesc = "全属性上升! + 你感觉很下流",
 	},
@@ -416,13 +416,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "若叶的挂坠",
 		description = ""
 			.. "#{{Luck}}如果幸运少于7则提升到7"
-			.. "#↑ {{Luck}} 每有一个幸运相关道具+0.35幸运"
+			--.. "#↑ {{Luck}} 每有一个幸运相关道具+0.35幸运"
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",
 		lunatic = ""
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}}如果幸运少于3则提升到3"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}(没有额外的幸运)"
+			--.. "#{{WakabaModLunatic}} {{ColorOrange}}(没有额外的幸运)"
 			.. "#↑ {{Damage}} +1攻击力"
 			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",
@@ -918,7 +918,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
 		itemName = "哗鬼家族",
 		description = "{{Pill}} 识别所有药丸"
-			.. "#{{Pill}} 使用时，随机化当前游戏中的6种药丸效果，并生成其中一种改变的药丸"
+			.. "#{{Pill}} 使用时，随机化当前游戏中的1种药丸效果，并生成其中一种改变的药丸"
 			.. "#{{Pill}} 在清理房间时可以生成额外的药丸"
 			.. "{{CR}}",
 		queueDesc = "更新药丸的内在",
@@ -935,7 +935,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "不平衡",
 		description = ""
-			.. "#{{Pill}} 所有药丸变成大药丸"
+			.. "{{Pill}} 识别所有药丸#{{Pill}} 所有药丸变成大药丸"
 			.. "{{CR}}",
 		queueDesc = "不再适量",
 	},
@@ -2728,6 +2728,24 @@ wakaba.descriptions[desclang].conditionals.trinkets = {
 	},
 }
 wakaba.descriptions[desclang].conditionals.cards = {}
+
+wakaba.descriptions[desclang].bossdest = { -- TODO
+	title_boss			= "Boss",
+	title_health		= "Health",
+	title_damo			= "Damocles Start",
+	title_lunatic		= "Lunatic Mode",
+	title_lock			= "Lock until clear",
+	title_roll			= "ROLL!!",
+	title_clear			= "Clear challenge",
+
+	desc_boss			= "Select boss to challenge",
+	desc_health		= "Select health to challenge",
+	desc_damo			= "Choose damocles to start (Only affected on starting room)#{{Collectible656}} {{ColorSilver}}Vanilla{{CR}}: Normal Damocles#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_DAMOCLES.."}} {{ColorYellow}}Lunar{{CR}}: High chance to fall, removes half of items on fall#{{Collectible"..wakaba.Enums.Collectibles.VINTAGE_THREAT.."}} {{ColorRed}}Vintage{{CR}}: 4 swords. Any prior penalty damage ends the run, damage penalty protection items are invalid",
+	desc_lunatic	= "Choose to enable Lunatic mode#In Lunatic mode, most of Pudding & Wakaba items will be nerfed#All damage penalty protection effect except Richer's Bra will be disabled#All Armor-piercing effect/items except Advanced Crystal will be disabled/removed from the pool",
+	desc_lock			= "Preserve this challenge until game is cleared",
+	desc_roll			= "Are you ready?",
+	desc_clear		= "Clear challenge destination#Damocles added by this challenge will not removed",
+}
 
 if EID then
 	if EID.descriptions[desclang].ItemReminder and EID.descriptions[desclang].ItemReminder.CategoryNames then
