@@ -206,6 +206,15 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 		end)
 	end
 
+	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+		local nearest = isc:getClosestEntityTo(player, collectibles)
+		if nearest then
+			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, nearest.SubType, Isaac.GetFreeNearPosition(nearest.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+			p1.ShopItemId = -1
+		end
+	end
+
 	local level = wakaba.G:GetLevel()
 	wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
 	wakaba:InstallRabbeyWard(player)
@@ -610,13 +619,14 @@ function wakaba:NewRoom_RabbeyWard()
 	else
 		newRoomFunc()
 	end
-	if room:IsFirstVisit() and room:IsClear() then
+	if room:IsFirstVisit() then
 		wakaba:ForAllPlayers(function (player)---@param player EntityPlayer
 			if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B then
+				local chargePow = (room:IsClear() and 1 or 0) + player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 				for i = 0, 3 do
 					local activeId = player:GetActiveItem(i)
-					if activeId == wakaba.Enums.Collectibles.RABBEY_WARD then
-						wakaba:AddCharges(player, i, 1)
+					if activeId == wakaba.Enums.Collectibles.RABBEY_WARD and chargePow > 0 then
+						wakaba:AddCharges(player, i, chargePow)
 						break
 					end
 				end
