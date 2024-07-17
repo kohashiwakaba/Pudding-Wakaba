@@ -11,8 +11,8 @@ local tp = wakaba.Enums.Players.RIRA_B
 wakaba.ChallengeParams.TargetCharacters[c] = tp
 
 ---@param player EntityPlayer
-function wakaba:Challenge_PlayerInit_HeavyLiquid(player)
+function wakaba:Challenge_PlayerInit_MannerPylon(player)
 	if wakaba.G.Challenge ~= c then return end
 	player:RemoveCollectible(wakaba.Enums.Collectibles.RABBEY_WARD, false, ActiveSlot.SLOT_POCKET, true)
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_HeavyLiquid)
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_MannerPylon)
