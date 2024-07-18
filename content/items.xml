@@ -161,6 +161,12 @@
 
 	<passive id="125" description="Clear explosions +5 bombs" gfx="bubblebombs.png" name="Bubble Bombs" tags="summonable offensive noeden" quality="2" craftquality="2" bombs="5" hidden="true" achievement="9999"/>
 
+	<active id="126" description="Khala support" gfx="pylon.png" name="Pylon" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
+
+	<!-- TR Wakaba Reserve -->
+	<active id="127" description="Embrace or Resist" gfx="nornir.png" name="Nornir" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
+	<!--  -->
+
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" customtags="nometronome" quality="4" hidden="true" achievement="9999"/>
 
@@ -179,7 +185,7 @@
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
 	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" />
-	<trinket name="Kuromi Card" description="She made it for us" gfx="kuromicard.png" />
+	<trinket name="Kuromi Card" description="She made it for us" gfx="kuromicard.png" hidden="true" achievement="9999"/>
 
 	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />
 	<trinket name="Afterbirth Cartridge" description="Only Isaac to Afterbirth+" gfx="afterbirthcartridge.png" />
@@ -200,6 +206,8 @@
 
 	<!-- 원룸천사 아이템? -->
 	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->
+
+	<!-- <trinket name="Sigil of Wakaba" description="Weapon from Wealth" gfx="sigilofwakaba.png" hidden="true" achievement="9999"/> -->
 
 	<trinket name="Sigil of Kaguya" description="Weapon from Moon" gfx="sigilofkaguya.png" hidden="true" achievement="9999"/>
 

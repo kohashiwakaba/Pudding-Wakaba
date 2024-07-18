@@ -25,6 +25,7 @@ local class = "Pudding n Wakaba"
 -- w16 Runaway Pheromones
 -- w17 The Floor is Lava
 -- w18 Universe of Goom
+-- w19 Manner Pylon
 
 -- w98 Hyper Random
 -- w99 True Purist Girl
