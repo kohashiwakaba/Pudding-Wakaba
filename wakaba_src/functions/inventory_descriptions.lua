@@ -970,12 +970,12 @@ end
 idesc:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, idesc.Update)
 
 function idesc:Render()
-	if ModConfigMenu and ModConfigMenu.IsVisible then
+	if istate.showList and ModConfigMenu and ModConfigMenu.IsVisible then
 		idesc:resetEntries()
 		return
 	end
 
-	if Encyclopedia and DeadSeaScrollsMenu.IsOpen() then
+	if istate.showList and Encyclopedia and DeadSeaScrollsMenu.IsOpen() then
 		idesc:resetEntries()
 		return
 	end
