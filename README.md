@@ -14,10 +14,10 @@ An anime mod that contains characters from the creator's favorite.
    - Explosive Diarrhea 2!
    - Social Distance
    - Priest's Blessing/Unholy Curse
-- 19 new Challenges
+- 20 new Challenges
 
 ![RiraPortrait](https://github.com/kohashiwakaba/Pudding-Wakaba/assets/37092106/8bf2009d-706b-4d2e-940c-bbd13ec817c8)
-**Current Version : v115-Rira**(updated time : 2024-05-28)
+**Current Version : v128-Rira**(updated time : 2024-07-20)
 
 ## Characters
 

@@ -27,33 +27,27 @@ Mod Includes :
 
 [img]https://i.imgur.com/YlrKb6R.png[/img]
 
-A new Curse!(Must be enabled manually)
-9 New Characters(Wakaba, Shiori, Tsukasa, Richér, with both tainted forms, and Rira)
+[img]https://i.imgur.com/iskBGLc.png[/img]
+
+10 New Characters(Wakaba, Shiori, Tsukasa, Richér, Rira, with both tainted forms)
 80+ new Items
 15+ new Trinkets
 15+ new Card/Runes
 10+ new Pills
-19 new Challenges
+20 new Challenges
 
 [h1]Items[/h1]
-[b][url=https://kohashiwakaba.notion.site/4e87f1c646524283896401a270750755?v=b0de151aac874afa8aec361b255110f9]Item Guides are finally here[/url], but Using External Item Description, or Encyclopedia Wiki is strongly recommended!. [/b] old mini item guide is in discussion.
+[b]Under construction, Using Encyclopedia Wiki is strongly recommended. [/b]
 
-[b][strike][url=https://steamcommunity.com/workshop/filedetails/discussion/2543118811/5183064363533361286]Character Informations under construction[/url][/strike], Using Encyclopedia Wiki is strongly recommended. [/b]
+[h1]Stackable Mantle[/h1]
+- Collecting multiple Holy Mantle items now allows to give corresponding amount of shields.
+- Blanket now also works on Dogma and The Beast fight!
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2613009134]Standalone version[/url]
 
-[h1] Stackable Holy Mantle [/h1]
-Have multiple shields at the same time! Collecting multiple Holy Mantle items now allows to give corresponding amount of shields.
-This mod also gives multiple shields for Blanket item if you entered a Boss Room, Plus now works on Dogma and The Beast fight!
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2613009134]Stackable Holy Mantle is also available as a seperate mod.[/url]
-
-[h1] Curse of Flames (Experimental) [/h1]
- - Isaac cannot touch items! the items are cursed and it will be on fire!
- - Trying to get items will turn item to Wisps.
- - Wisps spawned this way are much stronger than regular wisps.
- - Plot-Critical items like Polaroid/Negative can be collected as normal even when curse is active.
-
-[h1] Inventory Descriptions (Experimental) [/h1]
+[h1]Inventory Descriptions[/h1]
  - Press F5 to show current items you have. Pressing F5 again to exit list mode.
  - Also shows current curse descriptions.
+ - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2613009134]Standalone version[/url]
 
 [h1] More Notes [/h1]
 [list]
@@ -61,10 +55,8 @@ This mod also gives multiple shields for Blanket item if you entered a Boss Room
  [*] [b]Like other mods, you MUST restart the game if you installed, enabled/disabled, or updated the mod.[/b]
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2376005362] Encyclopedia [/url]
  [*] Compatible with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787] Mod Config Menu - Pure [/url] (Mod Config Menu - Continued no longer works.)
- [*] Wakaba's Mega Mush costume requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2697721144]Unique MEGAIsaacs[/url]
+ [*] Bonus Mega Mush costume requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2615720951]Mega Mush CostumeSuffix Compat[/url]
 [/list]
-
-True co-op not tested, but most items should work. except for certain items which requires rendering text [spoiler]Wakaba's Double Dreams[/spoiler]
 
 [h1] Special Thanks [/h1]
 - _Kilburn - Tearsup function
@@ -82,7 +74,7 @@ True co-op not tested, but most items should work. except for certain items whic
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
 - YouDuckBoom - Chinese EID translation</description>
-    <version>115.0</version>
+    <version>128.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

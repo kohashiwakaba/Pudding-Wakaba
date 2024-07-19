@@ -189,7 +189,7 @@ local throwingBagSynergyLinks = {
 	},
 }
 
-wakaba:RegisterPatch(0, "Epiphany", function() return (Epiphany and Epiphany.API ~= nil) end, function()
+wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany", function() return (Epiphany and Epiphany.API ~= nil) end, function()
 	local Mod = Epiphany
 	local api = Mod.API
 	local KEEPER = Mod.Character.KEEPER

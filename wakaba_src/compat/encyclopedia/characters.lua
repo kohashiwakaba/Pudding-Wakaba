@@ -622,8 +622,10 @@ if Encyclopedia then
 			},
 			{ -- Birthright
 				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-				{str = "Converted item wisps will be doubled."},
-				{str = "Converted items will be doubled."},
+				{str = "Health no longer drains outside of ward area."},
+				{str = "Doubles Rabbey Ward charge rate for new room."},
+				{str = "Using Rabbey Ward also divides nearby pedestal in the room."},
+				{str = "Rabbey Wards shoot homing laser to enemies."},
 			},
 			{ -- Notes
 				{str = "Notes", fsize = 2, clr = 3, halign = 0},
