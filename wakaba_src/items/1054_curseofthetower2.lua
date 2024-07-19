@@ -25,6 +25,7 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_CurseOfTower2)
 
+---@param pickup EntityPickup
 function wakaba:PickupSelect_CurseOfTower2(pickup)
 	if not hastower then return end
 	local variant = pickup.Variant
@@ -36,17 +37,13 @@ function wakaba:PickupSelect_CurseOfTower2(pickup)
 	local spawnsub = 0
 	if variant == PickupVariant.PICKUP_BOMB then
 		if subtype == BombSubType.BOMB_TROLL then
-			spawnvar = variant
-			spawnsub = BombSubType.BOMB_GOLDENTROLL
+			spawnent = 4
+			spawnvar = BombVariant.BOMB_GOLDENTROLL
+			spawnsub = 0
 		elseif subtype == BombSubType.BOMB_SUPERTROLL then
-			if Isaac.GetEntityVariantByName("Golden Megatroll Bomb") > -1
-			then
-				spawnent = 4
-				spawnvar = Isaac.GetEntityVariantByName("Golden Megatroll Bomb")
-			else
-				spawnvar = variant
-				spawnsub = BombSubType.BOMB_GOLDENTROLL
-			end
+			spawnent = 4
+			spawnvar = BombVariant.BOMB_SUPERTROLL
+			spawnsub = 41
 		elseif subtype ~= BombSubType.BOMB_GOLDEN then
 			local num = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2)
 			local rng = RNG()
@@ -54,8 +51,8 @@ function wakaba:PickupSelect_CurseOfTower2(pickup)
 			local chance = 0.7
 			if rng:RandomFloat() < chance then
 				spawnent = 4
-				spawnvar = variant
-				spawnsub = BombSubType.BOMB_GOLDENTROLL
+				spawnvar = BombVariant.BOMB_GOLDENTROLL
+				spawnsub = 0
 			else
 				spawnvar = rolledPickup[rng:RandomInt(#rolledPickup) + 1]
 				spawnsub = 0
@@ -70,11 +67,33 @@ function wakaba:PickupSelect_CurseOfTower2(pickup)
 			Isaac.Spawn(spawnent, spawnvar, spawnsub, savedpos, savedvel, nil)
 		end
 	end
-
 end
-
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.PickupSelect_CurseOfTower2)
 
+---@param bomb EntityBomb
+function wakaba:BombUpdate_CurseOfTower2(bomb)
+	if bomb.SubType ~= 41 then return end
+	local d = bomb:GetData()
+	local spr = bomb:GetSprite()
+	if not d.wakaba_isGoldenTroll then
+		bomb:GetData().wakaba_isGoldenTroll = true
+		spr:ReplaceSpritesheet(0, "gfx/items/pickups/wakaba_golden_troll_bomb.png")
+		spr:LoadGraphics()
+	else
+		if spr:IsEventTriggered("DropSound") then
+			SFXManager():Play(SoundEffect.SOUND_GOLD_HEART_DROP)
+		end
+		if not d.wakaba_isGoldenTrollExplode and spr:IsPlaying("Explode") then
+			bomb:GetData().wakaba_isGoldenTrollExplode = true
+			local bomb2 = Isaac.Spawn(EntityType.ENTITY_BOMB, BombVariant.BOMB_SUPERTROLL, 41, bomb.Position, wakaba:RandomVelocity(), nil)
+			local spr2 = bomb2:GetSprite()
+			bomb2:GetData().wakaba_isGoldenTroll = true
+			spr2:ReplaceSpritesheet(0, "gfx/items/pickups/wakaba_golden_troll_bomb.png")
+			spr2:LoadGraphics()
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombUpdate_CurseOfTower2, BombVariant.BOMB_SUPERTROLL)
 
 function wakaba:EntitySelect_CurseOfTower2(entitybomb)
 	if not hastower then return end
@@ -90,10 +109,9 @@ function wakaba:EntitySelect_CurseOfTower2(entitybomb)
 
 	if variant == BombVariant.BOMB_TROLL then
 		spawnvar = BombVariant.BOMB_GOLDENTROLL
-	elseif variant == BombVariant.BOMB_SUPERTROLL
-	and Isaac.GetEntityVariantByName("Golden Megatroll Bomb") > -1
-	then
-		spawnvar = Isaac.GetEntityVariantByName("Golden Megatroll Bomb")
+	elseif variant == BombVariant.BOMB_SUPERTROLL and subtype ~= 41 then
+		spawnvar = BombVariant.BOMB_SUPERTROLL
+		spawnsub = 41
 	end
 	if spawnvar then
 		entitybomb:Remove()
