@@ -168,7 +168,7 @@
         vec3 dir_light = normalize(vec3(-.3, 0.2, 1.));
         vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
 
-        if (StrengthOut>0.0f && (TypeOut==1f || ( Color.r <= 0.2f && Color.g <= 0.2f && Color.b <= 0.2f ))){
+        if (StrengthOut>0.0 && (TypeOut==1.0 || ( Color.r <= 0.2 && Color.g <= 0.2 && Color.b <= 0.2 ))){
 
           float aspect = RenderDataOut.z/RenderDataOut.w;
           vec2 center = vec2(RenderDataOut.x / 2.0, RenderDataOut.y / 2.0);
