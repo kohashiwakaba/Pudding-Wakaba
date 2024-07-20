@@ -101,7 +101,6 @@
         return mat3(rt, cross(rt, fw), fw);
       }
 
-
       // Tile fold
       float fmod(float p, float c) { return abs(c - mod(p, c * 2.)) / c; }
 
@@ -168,7 +167,7 @@
         vec3 dir_light = normalize(vec3(-.3, 0.2, 1.));
         vec4 Color = Color0 * texture2D(Texture0, TexCoord0);
 
-        if (StrengthOut>0.0 && (TypeOut==1.0 || ( Color.r <= 0.2 && Color.g <= 0.2 && Color.b <= 0.2 ))){
+        if (StrengthOut>0.0f){
 
           float aspect = RenderDataOut.z/RenderDataOut.w;
           vec2 center = vec2(RenderDataOut.x / 2.0, RenderDataOut.y / 2.0);
