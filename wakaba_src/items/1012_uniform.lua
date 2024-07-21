@@ -239,6 +239,7 @@ if EID then
 		if EID.InsideItemReminder then return false end
 		if not descObj.Entity then return false end
 		if not (descObj.ObjType == 5 and (descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD or descObj.ObjVariant == PickupVariant.PICKUP_PILL)) then return false end
+		if not (descObj.Entity.Type == 5 and (descObj.Entity.Variant == PickupVariant.PICKUP_TAROTCARD or descObj.Entity.Variant == PickupVariant.PICKUP_PILL)) then return false end
 
 		local player = EID.player
 		local isCard = descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD
