@@ -36,7 +36,7 @@ end
 
 local hasTrinketDropped = false
 function wakaba:PickupInit_AquaTrinkets(pickup)
-	if pickup.FrameCount ~= 1 then return end -- why
+	if pickup.FrameCount > 2 then return end -- why
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] then
 		aqua_trinkets_data.level.aquatrinkets[currentRoomIndex] = {}
