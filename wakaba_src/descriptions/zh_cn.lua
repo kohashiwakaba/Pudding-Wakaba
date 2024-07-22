@@ -66,9 +66,14 @@ wakaba.descriptions[desclang].birthright = {
 			wakaba.Enums.Collectibles.CHIMAKI .. "}} 小棕会变得更强",
 		queueDesc = "有一点更H了",
 	},
-	[wakaba.Enums.Players.RIRA_B] = { -- TODO
+	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "里莉良",
-		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
+		description = "#生命值不再在区域外流失#{{Collectible" ..
+			wakaba.Enums.Collectibles.RABBEY_WARD ..
+			"}} 在新房间兔兔衣柜有双倍充能速度#{{Collectible" ..
+			wakaba.Enums.Collectibles.RABBEY_WARD ..
+			"}} 兔兔衣柜复制最近的基座道具#{{Collectible" ..
+			wakaba.Enums.Collectibles.RABBEY_WARD .. "}} 兔兔衣柜向敌人发射激光",
 		queueDesc = "丝带分割",
 	},
 }
@@ -316,22 +321,22 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
 		itemName = "兔兔衣柜",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} 在持有时免疫致盲诅咒"
-		.. "#使用时，安装一个兔兔衣柜，导致:"
-		.. "#显示更多房间"
-		.. "#此房间射速和攻击力上升"
-		.. "#{{SoulHeart}} 清理房间后恢复半魂心"
-		.. "{{CR}}",
+			.. "#{{WakabaAntiCurseBlind}} 在持有时免疫致盲诅咒"
+			.. "#使用时，安装一个兔兔衣柜，导致:"
+			.. "#显示更多房间"
+			.. "#此房间射速和攻击力上升"
+			.. "#{{SoulHeart}} 清理房间后恢复半魂心"
+			.. "{{CR}}",
 		queueDesc = "水流扩展",
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		itemName = "蔚蓝",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
-		.. "#{{AquaTrinket}} 所有饰品都变成水饰品"
-		.. "#!!! Blacklisted trinkets have no effect" -- TODO
-		--.. "#Room clear awards spawn earlier"
-		.. "{{CR}}",
+			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
+			.. "#{{AquaTrinket}} 所有饰品都变成水饰品"
+			.. "#!!! 列入黑名单的饰品没有效果"
+			--.. "#Room clear awards spawn earlier"
+			.. "{{CR}}",
 		queueDesc = "莉良的精华",
 	},
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
@@ -349,14 +354,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#即使没有 {{Collectible" ..
 			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
 			.. "#生成一个来自当前物品池的随机物品"
-			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} for {{Collectible477}})" -- TODO
+			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} 在 {{Collectible477}}时)"
 			.. "{{CR}}",
 		lunatic = ""
 			.. "#只能通过伤害敌人或自我伤害来充能."
 			.. "#即使没有 {{Collectible" ..
 			CollectibleType.COLLECTIBLE_BATTERY .. "}}大电池也可以超额充能. 最大充能15000点伤害"
 			.. "#生成一个来自当前物品池的随机物品"
-			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} for {{Collectible477}})" -- TODO
+			.. "#只会生成{{Quality3}}/{{Quality4}}道具 ({{Quality1}} 在 {{Collectible477}}时)"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}充能速率降低一半"
 			.. "{{CR}}",
 		queueDesc = "就像布丁",
@@ -507,10 +512,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "时钟之眼",
 		description = ""
-			.."不断射击逐渐生成环绕玩家的X激光"
-			.."#轨道激光器也会发射额外的激光"
-			.. "#Orbiting lasers deal 0.75x of Isaac's damage" -- TODO previous : "#激光造成0.3倍玩家的伤害"
-			.. "#Extra lasers deal 0.25x of Isaac's damage"
+			.. "不断射击逐渐生成环绕玩家的X激光"
+			.. "#轨道激光器也会发射额外的激光"
+			.. "#轨道旋转激光造成0.75倍玩家伤害"
+			.. "#额外的激光造成0.25倍玩家伤害"
 			.. "{{CR}}",
 		queueDesc = "轨道激光",
 	},
@@ -927,7 +932,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "塔之诅咒2",
 		description = ""
 			.. "#{{GoldenBomb}} 无限炸弹"
-			.. "#Upon taking damage or losing Holy Mantle shields, spawns 6 golden troll bombs around the room" -- TODO, previous : 到伤害时，在房间周围生成6个金色的巨魔炸弹
+			..
+			"#在受到伤害或失去神圣斗篷盾时，在房间周围产生6个金色巨魔炸弹"
 			.. "#!!! 小心：所有的巨魔炸弹都会尽可能地转化为金色的巨魔炸弹"
 			.. "{{CR}}",
 		queueDesc = "拥抱混乱",
@@ -1030,7 +1036,8 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Damage}} +1 伤害"
 			.. "#↑ {{Luck}} +1 幸运"
 			.. "#根据角色攻击方法为生成苍蝇"
-			.. "#苍蝇造成 {{ColorRicher}}3x{{CR}}/{{WakabaAqua}}{{ColorRira}}1x+泪水{{CR}}/{{ColorCiel}}5x+爆炸{{CR}}/{{ColorKoron}}1.5x+石化{{CR}} 伤害取决于颜色"
+			..
+			"#苍蝇造成 {{ColorRicher}}3x{{CR}}/{{WakabaAqua}}{{ColorRira}}1x+泪水{{CR}}/{{ColorCiel}}5x+爆炸{{CR}}/{{ColorKoron}}1.5x+石化{{CR}} 伤害取决于颜色"
 			.. "#{{Player" .. wakaba.Enums.Players.RICHER .. "}} 死亡后重生为璃贝"
 			.. "{{CR}}",
 		queueDesc = "被遗忘的朗诵",
@@ -1155,40 +1162,40 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
 		itemName = "黑豆麻糬",
 		description =
-		"10% 几率射击“压缩”敌人"
-		.. "#{{Luck}}16幸运时100%触发"
-		.. "#压缩敌人死亡后爆炸"
-		.. "#压缩爆炸不会伤害艾萨克"
-		.. "{{CR}}",
+			"10% 几率射击“压缩”敌人"
+			.. "#{{Luck}}16幸运时100%触发"
+			.. "#压缩敌人死亡后爆炸"
+			.. "#压缩爆炸不会伤害艾萨克"
+			.. "{{CR}}",
 		lunatic =
-		"10% 几率射击“压缩”敌人"
-		.. "#{{Luck}}16幸运时100%触发"
-		.. "#压缩敌人死亡后爆炸"
-		.. "#压缩爆炸不会伤害艾萨克"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}爆炸不再继承玩家的炸弹联动效果"
-		.. "{{CR}}",
+			"10% 几率射击“压缩”敌人"
+			.. "#{{Luck}}16幸运时100%触发"
+			.. "#压缩敌人死亡后爆炸"
+			.. "#压缩爆炸不会伤害艾萨克"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}爆炸不再继承玩家的炸弹联动效果"
+			.. "{{CR}}",
 		queueDesc = "浓缩的记忆",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "樱花蒙布朗",
 		description =
-		"在房间里杀死一个敌人:"
-		.. "#↑ {{Damage}} +0.5 伤害"
-		.. "#↑ {{Tears}} +1 射速"
-		.. "#超过6次"
-		.. "#被杀死的敌人使附近的敌人潮湿"
-		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
-		.. "#水攻击可以击杀石头敌人"
-		.. "{{CR}}",
+			"在房间里杀死一个敌人:"
+			.. "#↑ {{Damage}} +0.5 伤害"
+			.. "#↑ {{Tears}} +1 射速"
+			.. "#超过6次"
+			.. "#被杀死的敌人使附近的敌人潮湿"
+			.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+			.. "#水攻击可以击杀石头敌人"
+			.. "{{CR}}",
 		lunatic =
-		"在房间里杀死一个敌人:"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 伤害"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 射速"
-		.. "#超过6次"
-		.. "#被杀死的敌人使附近的敌人潮湿"
-		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
-		.. "#水攻击可以击杀石头敌人"
-		.. "{{CR}}",
+			"在房间里杀死一个敌人:"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 伤害"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 射速"
+			.. "#超过6次"
+			.. "#被杀死的敌人使附近的敌人潮湿"
+			.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+			.. "#水攻击可以击杀石头敌人"
+			.. "{{CR}}",
 		queueDesc = "潮湿费洛蒙",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
@@ -1209,7 +1216,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ +1 额外生命"
 			.. "#{{Collectible127}} 在死亡时以4个{{Heart}} 重生 并重启动整个楼层"
-			.. "#Spawns 1 of each pickup type per floor until respawn" -- TODO
+			.. "#到新层时,每层生成1种掉落物，直到重生"
 			.. "{{CR}}",
 		queueDesc = "褪色的记忆",
 	},
@@ -1272,18 +1279,18 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
 		itemName = "泡沫炸弹",
 		description = "{{Bomb}} +5炸弹"
-		.. "#{{WakabaAqua}} 玩家的炸弹淹没了敌人"
-		.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
-		.. "#水攻击可以击杀石头敌人"
-		.. "{{CR}}",
+			.. "#{{WakabaAqua}} 玩家的炸弹淹没了敌人"
+			.. "#潮湿的敌人受到红色粪便/火焰/燃烧/位移的伤害较小，但受到激光/爆炸/水伤害的伤害较大"
+			.. "#水攻击可以击杀石头敌人"
+			.. "{{CR}}",
 		queueDesc = "完成爆炸+5个炸弹",
 	},
 	[wakaba.Enums.Collectibles.CROSS_BOMB] = {
 		itemName = "交叉炸弹",
 		description = "{{Bomb}} +5炸弹"
-		.. "#炸弹爆炸时呈延迟的十字形"
-		.. "#额外的爆炸造成10点伤害，对玩家没有伤害"
-		.. "{{CR}}",
+			.. "#炸弹爆炸时呈延迟的十字形"
+			.. "#额外的爆炸造成10点伤害，对玩家没有伤害"
+			.. "{{CR}}",
 		queueDesc = "可扩展爆炸+5个炸弹",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
@@ -1295,7 +1302,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{Card" ..
 			wakaba.Enums.Cards.CARD_DREAM_CARD .. "}} 在清理房间后有8% 的几率生成若叶的梦境卡"
 			.. "{{CR}}",
-			lunatic = ""
+		lunatic = ""
 			.. "#↓ 恶魔/天使房不再出现"
 			.. "#使用时，改变若叶的梦境的形式"
 			.. "#如果出现可收集物品，将会从若叶的梦境的池子中选择，而不是默认的池子"
@@ -1304,7 +1311,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "永恒梦境...",
 		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
-		void = "{{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}被吸收时生成一次卡牌",
+		void = "{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}被吸收时生成一次卡牌",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "伊甸的便利贴",
@@ -1724,55 +1731,59 @@ wakaba.descriptions[desclang].trinkets = {
 			.. "{{CR}}",
 		queueDesc = "柔软舒心",
 	},
-	[wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG] = { -- TODO
-		itemName = "Caramella Candy Bag",
+	[wakaba.Enums.Trinkets.CARAMELLA_CANDY_BAG] = {
+		itemName = "焦糖袋",
 		description = ""
-		.. "Entering a hostile room spawns one of followings:"
-		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RICHER.."}} Lavender fly that deals 3x of Isaac's Damage"
-		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_RIRA.."}} Pink fly that deals 1x of Isaac's Damage and inflicts Aqua"
-		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_CIEL.."}} Lavender fly that deals 5x of Isaac's Damage with Explosion"
-		.. "#{{Trinket"..wakaba.Enums.Trinkets.CANDY_OF_KORON.."}} Gray fly that deals 1.5x of Isaac's Damage and inflicts Petrify"
-		.. "{{CR}}",
-		queueDesc = "Smells Sweets...",
+			.. "进入一个未清理的房间会生成其中之一:"
+			.. "#{{Trinket" .. wakaba.Enums.Trinkets.CANDY_OF_RICHER .. "}} 造成玩家3倍伤害的薰衣草苍蝇"
+			.. "#{{Trinket" ..
+			wakaba.Enums.Trinkets.CANDY_OF_RIRA .. "}} 粉红苍蝇，造成玩家伤害的1倍，并造成水的伤害"
+			.. "#{{Trinket" ..
+			wakaba.Enums.Trinkets.CANDY_OF_CIEL .. "}} 薰衣草苍蝇，爆炸造成5倍玩家伤害"
+			..
+			"#{{Trinket" ..
+			wakaba.Enums.Trinkets.CANDY_OF_KORON .. "}} 造成1.5倍玩家伤害并造成石化的灰苍蝇"
+			.. "{{CR}}",
+		queueDesc = "气味香甜...",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = {
 		itemName = "璃贝的糖果",
 		description = ""
-		.. "进入一个有敌人的房间会产生2只攻击苍蝇"
-		.. "#苍蝇造成3倍玩家的伤害"
-		.. "{{CR}}",
+			.. "进入一个有敌人的房间会产生2只攻击苍蝇"
+			.. "#苍蝇造成3倍玩家的伤害"
+			.. "{{CR}}",
 		queueDesc = "我带来和谐",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = {
 		itemName = "莉良的糖果",
 		description = ""
-		.. "进入一个有敌人的房间会产生2只攻击苍蝇"
-		.. "#苍蝇对玩家造成1倍的水伤害"
-		.. "{{CR}}",
+			.. "进入一个有敌人的房间会产生2只攻击苍蝇"
+			.. "#苍蝇对玩家造成1倍的水伤害"
+			.. "{{CR}}",
 		queueDesc = "我带来水",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = {
 		itemName = "希耶尔的糖果",
 		description = ""
-		.. "进入一个有敌人的房间会产生一只爆炸攻击苍蝇"
-		.. "#苍蝇造成5倍玩家的爆炸伤害"
-		.. "{{CR}}",
+			.. "进入一个有敌人的房间会产生一只爆炸攻击苍蝇"
+			.. "#苍蝇造成5倍玩家的爆炸伤害"
+			.. "{{CR}}",
 		queueDesc = "我带来星星",
 	},
 	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {
 		itemName = "心月的糖果",
 		description = ""
-		.. "进入一个有敌人的房间会产生2只爆炸攻击苍蝇"
-		.. "#苍蝇造成1.5倍玩家的冰冻伤害"
-		.. "{{CR}}",
+			.. "进入一个有敌人的房间会产生2只爆炸攻击苍蝇"
+			.. "#苍蝇造成1.5倍玩家的冰冻伤害"
+			.. "{{CR}}",
 		queueDesc = "我带来冰",
 	},
-	[wakaba.Enums.Trinkets.PINK_FORK] = { -- TODO
-		itemName = "Pink Fork",
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		itemName = "粉红色叉子",
 		description = ""
-		.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者"
-		.. "{{CR}}",
-		queueDesc = "Aquatic Strength",
+			.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者"
+			.. "{{CR}}",
+		queueDesc = "水生的力量",
 	},
 	[wakaba.Enums.Trinkets.SIGIL_OF_KAGUYA] = {
 		itemName = "辉夜的叹息",
@@ -1790,10 +1801,10 @@ wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.STAR_REVERSAL] = { "{{Planetarium}}星象房道具", "2个{{Planetarium}}星象房道具" },
 	[wakaba.Enums.Trinkets.ETERNITY_COOKIE] = { "↑ 移除所有掉落物的选择" },
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = { "{{Magnetize}} 使所有敌人在进入新房间时被磁化5秒" },
-	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2攻击苍蝇","3攻击苍蝇","4攻击苍蝇" },
-	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2攻击苍蝇","3攻击苍蝇","4攻击苍蝇"  },
-	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "1只爆炸攻击苍蝇","2只爆炸攻击苍蝇","3只爆炸攻击苍蝇" },
-	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = {"2攻击苍蝇","3攻击苍蝇","4攻击苍蝇" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RICHER] = { "2攻击苍蝇", "3攻击苍蝇", "4攻击苍蝇" },
+	[wakaba.Enums.Trinkets.CANDY_OF_RIRA] = { "2攻击苍蝇", "3攻击苍蝇", "4攻击苍蝇" },
+	[wakaba.Enums.Trinkets.CANDY_OF_CIEL] = { "1只爆炸攻击苍蝇", "2只爆炸攻击苍蝇", "3只爆炸攻击苍蝇" },
+	[wakaba.Enums.Trinkets.CANDY_OF_KORON] = { "2攻击苍蝇", "3攻击苍蝇", "4攻击苍蝇" },
 
 }
 wakaba.descriptions[desclang].cards = {
@@ -1823,7 +1834,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "彩 Joker",
 		description = "{{BrokenHeart}} 设置碎心数量到6 #生成3个道具8个卡牌/符文/魂石",
-		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}Adds 6 Broken Hearts#生成3个道具8个卡牌/符文/魂石", -- TODO
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}添加6个碎心#生成3个道具8个卡牌/符文/魂石",
 		queueDesc = "你不会想要的",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
@@ -2004,9 +2015,9 @@ wakaba.descriptions[desclang].pills = {
 		mimiccharge = 4,
 		class = "3-",
 	},
-	[wakaba.Enums.Pills.HEAVY_MASCARA] = { -- TODO
-		itemName = "Heavy Mascara",
-		description = "{{CurseBlind}} Curse of the Blind effect for the floor",
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
+		itemName = "沉重的睫毛膏",
+		description = "{{CurseBlind}} 此层赋予盲目诅咒",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -2072,10 +2083,10 @@ wakaba.descriptions[desclang].horsepills = {
 		"不洁诅咒",
 		"打破二层神圣斗篷#如果没有神圣斗篷，则无效",
 	},
-	[wakaba.Enums.Pills.HEAVY_MASCARA] = { -- TODO
+	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
-		"Heavy Mascara",
-		"{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor",
+		"沉重的睫毛膏",
+		"此层{{CurseBlind}} 赋予盲目诅咒和#{CurseUnknown}}未知诅咒",
 	},
 }
 
@@ -2607,17 +2618,20 @@ wakaba.descriptions[desclang].playernotes = {
 			--.. "#"
 			.. "",
 	},
-	[wakaba.Enums.Players.RIRA_B] = { -- TODO
+	[wakaba.Enums.Players.RIRA_B] = {
 		-- icon = "",
-		name = "Tainted Rira",
-		description = "Tainted Rira's tempting aqua body, emits sweet pheromones even without knowing it"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} She needs to be nearby {{ColorRira}}Rabbey Ward{{CR}}rooms, otherwise drains health slowly"
-		.. "#{{AquaTrinket}} All Treasure room items are converted into {{ColorCyan}}Aqua Trinkets{{CR}}"
-		.. "#She can use donation mechanics even when in Lost state"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} Tainted Rira starts with Azure Rir"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Tainted Rira starts with Rabbey Ward"
-		--.. "#"
-		.. "",
+		name = "里莉良",
+		description = "被里莉良诱人的湿润身体，在不知不觉中散发出甜美的信息素"
+			..
+			"#{{Collectible" ..
+			wakaba.Enums.Collectibles.AZURE_RIR ..
+			"}} 她需要呆在 {{ColorRira}}兔兔衣柜{{CR}}附近的房间,否则生命会慢慢流失"
+			.. "#{{AquaTrinket}} 所有的宝箱房道具转换成 {{ColorCyan}}水之饰品{{CR}}"
+			.. "#她可以使用卖血机，即使在游魂状态"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.AZURE_RIR .. "}} 初始携带蔚蓝"
+			.. "#{{Collectible" .. wakaba.Enums.Collectibles.RABBEY_WARD .. "}} 初始携带兔兔衣柜"
+			--.. "#"
+			.. "",
 	},
 }
 
@@ -2680,7 +2694,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	-- HIDDEN DESCRIPTIONS
 	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
 		desc =
-		"{{WakabaModHidden}} {{ColorGray}}所有的炸弹替换为{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}",  -- can change to 'other pickups'
+		"{{WakabaModHidden}} {{ColorGray}}所有的炸弹替换为{Coin}}/{{GrabBag}}/{{Heart}}/{{Key}}/{{Battery}}/{{Pill}}/{{Card}}/{{Trinket}}", -- can change to 'other pickups'
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
 		desc =
@@ -2699,8 +2713,8 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			"#{{WakabaModHidden}} {{Collectible" ..
 			wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}}{{ColorGray}}4.5%是汐宫之书",
 	},
-	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = { -- TODO
-		desc = "{{WakabaModHidden}} {{ColorGray}}Force assign random pill as 'Gulp!' if not available",
+	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
+		desc = "{{WakabaModHidden}} {{ColorGray}} 如果不存在,强制随机药丸为“咕噜”",
 	},
 	-- REPENTOGON ADDITIONS
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
@@ -2713,38 +2727,45 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		desc = "{{WakabaModRgon}} {{Battery}} {{ColorRicher}}减少道具1~2的充能上限",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
-		desc = {"↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波"},
+		desc = { "↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波" },
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
-		desc = "{{WakabaModRgon}} {{Tears}} {{ColorRicher}}+0.2 Fire delay up per smelted trinkets#{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 Total heart limit", -- TODO
+		desc =
+		"{{WakabaModRgon}} {{Tears}} {{ColorRicher}}+0.2 增加射速上限每吞下一个饰品 #{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 心之容器上限",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} 主动充能条显示卡牌生成的几率",
 	},
 }
 wakaba.descriptions[desclang].conditionals.trinkets = {
-	[wakaba.Enums.Trinkets.PINK_FORK] = { -- TODO
-		desc = {"{{WakabaModRgon}} Decreases Soul Heart heal rate by half heart#{{WakabaModRgon}} Decreased rate are converted to {{Damage}} +0.2 Damage#Does not work if half Soul Heart heal"},
+	[wakaba.Enums.Trinkets.PINK_FORK] = {
+		desc = { "{{WakabaModRgon}} 降低魂心治疗量为半心#{{WakabaModRgon}} 降低的量转换为 {{Damage}} +0.2 伤害#如果半颗魂心被治愈则无效" },
 	},
 }
 wakaba.descriptions[desclang].conditionals.cards = {}
 
-wakaba.descriptions[desclang].bossdest = { -- TODO
-	title_boss			= "Boss",
-	title_health		= "Health",
-	title_damo			= "Damocles Start",
-	title_lunatic		= "Lunatic Mode",
-	title_lock			= "Lock until clear",
-	title_roll			= "ROLL!!",
-	title_clear			= "Clear challenge",
+wakaba.descriptions[desclang].bossdest = {
+	title_boss    = "Boss",
+	title_health  = "血量",
+	title_damo    = "达摩剑开局",
+	title_lunatic = "疯狂模式",
+	title_lock    = "锁定直到清除",
+	title_roll    = "重置!!",
+	title_clear   = "挑战完成",
 
-	desc_boss			= "Select boss to challenge",
-	desc_health		= "Select health to challenge",
-	desc_damo			= "Choose damocles to start (Only affected on starting room)#{{Collectible656}} {{ColorSilver}}Vanilla{{CR}}: Normal Damocles#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_DAMOCLES.."}} {{ColorYellow}}Lunar{{CR}}: High chance to fall, removes half of items on fall#{{Collectible"..wakaba.Enums.Collectibles.VINTAGE_THREAT.."}} {{ColorRed}}Vintage{{CR}}: 4 swords. Any prior penalty damage ends the run, damage penalty protection items are invalid",
-	desc_lunatic	= "Choose to enable Lunatic mode#In Lunatic mode, most of Pudding & Wakaba items will be nerfed#All damage penalty protection effect except Richer's Bra will be disabled#All Armor-piercing effect/items except Advanced Crystal will be disabled/removed from the pool",
-	desc_lock			= "Preserve this challenge until game is cleared",
-	desc_roll			= "Are you ready?",
-	desc_clear		= "Clear challenge destination#Damocles added by this challenge will not removed",
+	desc_boss     = "选择挑战的boss",
+	desc_health   = "选择要挑战的血量",
+	desc_damo     =
+		"选择达摩克利斯开局(只影响开始房间)#{{Collectible656}} {{ColorSilver}}基础{{CR}}: 达摩剑#{{Collectible" ..
+		wakaba.Enums.Collectibles.LUNAR_DAMOCLES ..
+		"}} {{ColorYellow}}月球{{CR}}: 高几率掉落，掉落时移除一半道具#{{Collectible" ..
+		wakaba.Enums.Collectibles.VINTAGE_THREAT ..
+		"}} {{ColorRed}}古董{{CR}}:4把达摩剑,任何惩罚伤害会触发，伤害惩罚保护道具无效",
+	desc_lunatic  =
+	"选择启用疯狂模式#在疯狂模式下，大部分布丁&若叶道具将被削弱#所有伤害惩罚保护效果(除了璃贝的胸罩)将被禁用#所有穿甲效果/道具(除了高级水晶)将被禁用/从池中移除",
+	desc_lock     = "保持这个挑战直到游戏通关",
+	desc_roll     = "准备好了吗?",
+	desc_clear    = "挑战完成#Damocles将不会被移除",
 }
 
 if EID then
@@ -2796,7 +2817,7 @@ if EID then
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : "
 
-	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}Increases Rabbey Ward area" -- TODO
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}增加兔兔衣柜区域面积"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} 使伤害惩罚保护失效"
