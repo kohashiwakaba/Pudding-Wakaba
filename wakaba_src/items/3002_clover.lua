@@ -8,10 +8,6 @@ function wakaba:cloverCache(player, cacheFlag)
 		end
 		if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck + 1 + player:GetTrinketMultiplier(wakaba.Enums.Trinkets.CLOVER)
-			player.Luck = player.Luck * 2
-			if player.Luck < 0 then
-				player.Luck = player.Luck * -1
-			end
 		end
 	end
 end

@@ -39,6 +39,12 @@ function wakaba:Cache_Important(player, cacheFlag)
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then
+		if player:HasTrinket(wakaba.Enums.Trinkets.CLOVER, false) then
+			player.Luck = player.Luck * 2
+			if player.Luck < 0 then
+				player.Luck = player.Luck * -1
+			end
+		end
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) and player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_B then
 			if wakaba:IsLunatic() then
 				player.Luck = math.max(player.Luck, 3)
