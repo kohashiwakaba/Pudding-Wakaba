@@ -96,6 +96,7 @@ wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_HEALTH_TYPE, wakaba.Repentogon_Han
 wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Wakaba_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Shiori_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Richer_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
+wakaba:RemoveCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Rira_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
 -- Negate Damage to Repentogon callbacks
 wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_TaintedWakabaBirthright)

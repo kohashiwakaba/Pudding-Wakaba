@@ -25,6 +25,9 @@ local playerType = wakaba.Enums.Players.RIRA_B
 local isRiraContinue = true
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+if not REPENTOGON then
+	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RIRA_B, isc.HeartSubType.SOUL)
+end
 
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RiraB(player)
@@ -51,6 +54,12 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_RiraB)
 
 
+function wakaba:PostGetCollectible_Rira_b(player, item)
+	if not player or player:GetPlayerType() ~= wakaba.Enums.Players.RIRA_B then return end
+	player:AddSoulHearts(player:GetSoulHearts() * -1)
+	player:AddMaxHearts(2)
+end
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_Rira_b, CollectibleType.COLLECTIBLE_DEAD_CAT)
 
 local RiraChar = {
 	DAMAGE = 1,
