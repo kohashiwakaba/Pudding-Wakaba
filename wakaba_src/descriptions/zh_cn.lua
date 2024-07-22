@@ -2818,7 +2818,7 @@ if EID then
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 本楼层的 道具池 : "
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}增加兔兔衣柜区域面积"
-	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
+	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} 额外的区域"
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidated = "{1} 使伤害惩罚保护失效"
 	EID.descriptions[desclang].ConditionalDescs.WakabaVintageInvalidates = "无效 {1}"
