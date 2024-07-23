@@ -7,13 +7,11 @@ rollItem code originally by Mana, modified for Eat Heart, Wakaba's Blessing, Wak
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:cardUnlockCheck(card)
-	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then return true end
 	return wakaba:IsCompletionItemUnlockedTemp(card, "card")
 end
 
 function wakaba:trinketUnlockCheck(trinket)
 	if wakaba.G.Challenge == Challenge.CHALLENGE_PICA_RUN then return true end
-	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then return true end
 	return wakaba:IsCompletionItemUnlockedTemp(trinket, "trinket")
 end
 
