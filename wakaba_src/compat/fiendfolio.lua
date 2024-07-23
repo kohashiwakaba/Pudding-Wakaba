@@ -33,6 +33,18 @@ wakaba:RegisterPatch(0, "FiendFolio", function() return (FiendFolio ~= nil) end,
 		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_8] = true
 		wakaba.Blacklists.MaidDuet[FiendFolio.ITEM.COLLECTIBLE.PERFECTLY_GENERIC_OBJECT_12] = true
 
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.EXTRA_VESSEL] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.HALF_VESSEL] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.FULL_VESSEL] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.MOLTEN_PENNY] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.IOU] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.ETERNAL_CAR_BATTERY] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.LOCKED_SHACKLE] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.FROG_PUPPET] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.TATTERED_FROG_PUPPET] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.CURSED_URN] = true
+		wakaba.Blacklists.Pica2[FiendFolio.ITEM.TRINKET.SHATTERED_CURSED_URN] = true
+
 		FiendFolio.RockTrinkets[wakaba.Enums.Trinkets.BRING_ME_THERE] = -2
 		FiendFolio.GolemTrinketWhitelist[wakaba.Enums.Trinkets.BRING_ME_THERE] = 1
 

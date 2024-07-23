@@ -1098,6 +1098,7 @@ wakaba.challenges = {
 	CHALLENGE_DRMS = Isaac.GetChallengeIdByName("[w99] True Purist Girl"), --w99
 	CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
 	CHALLENGE_SSRC = Isaac.GetChallengeIdByName("[wb2] Super Sensitive Richer-chan"), --wb2
+	CHALLENGE_MELT = Isaac.GetChallengeIdByName("[wb3] Melting Pika Run 2"), --wb3
 }
 
 wakaba.useflag = {

@@ -51,6 +51,9 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		{AstroItems.Collectible.VIRGO_EX, 1.00},
 	})
 
+	wakaba.Blacklists.Pica2[AstroItems.Trinket.BLACK_MIRROR] = true
+	wakaba.Blacklists.Pica2[AstroItems.Trinket.LAVA_HAND] = true
+
 	-- 와드 or 핑크 와드 소지 시 토끼 와드 영향권 범위 증가
 	wakaba:AddCallback(wakaba.Callback.EVALUATE_RABBEY_WARD_POWER, function(_, player)
 		if player:HasCollectible(AstroItems.Collectible.WARD) or player:HasCollectible(AstroItems.Collectible.PINK_WARD) then

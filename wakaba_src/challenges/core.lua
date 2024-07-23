@@ -65,6 +65,7 @@ wakaba.ChallengeParams.Deli = {
 	[wakaba.challenges.CHALLENGE_SLNT] = true,
 	[wakaba.challenges.CHALLENGE_BIKE] = true,
 	[wakaba.challenges.CHALLENGE_RNPR] = true,
+	[wakaba.challenges.CHALLENGE_MELT] = true,
 }
 wakaba.ChallengeParams.Beast = {
 	[wakaba.challenges.CHALLENGE_DRMS] = true,
@@ -95,6 +96,7 @@ include('wakaba_src.challenges.w98_hyperrandom')
 include('wakaba_src.challenges.w99_truepuristgirl')
 include('wakaba_src.challenges.wb1_puredelirium')
 include('wakaba_src.challenges.wb2_supersensitive')
+include('wakaba_src.challenges.wb3_pikarun2')
 
 function wakaba:isSpeed()
 	return wakaba.ChallengeParams.Fast[wakaba.G.Challenge] ~= nil
