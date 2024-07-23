@@ -17,13 +17,12 @@ function wakaba:NewRoom_Delimiter()
 				local rock = room:GetGridEntity(i)
 				if rock and rock:GetType() == GridEntityType.GRID_ROCK then
 					if delimitermultiplier > 1 and priorRNG then
-						local chance = priorRNG:RandomFloat() * 10000
-						if (45 + (15 * delimitermultiplier)) <= chance then
+						local chance = 0.0045 + (delimitermultiplier * 0.015)
+						if chance <= priorRNG:RandomFloat() then
 							rock:SetType(GridEntityType.GRID_ROCKT)
 						end
 					end
-				end
-				if rock then 
+				elseif rock then 
 					if (rock:GetType() == GridEntityType.GRID_ROCKT 
 					--or rock:GetType() == GridEntityType.GRID_ROCK_SS
 					or rock:GetType() == GridEntityType.GRID_ROCK_GOLD
