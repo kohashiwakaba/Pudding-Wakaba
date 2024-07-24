@@ -93,6 +93,7 @@ function wakaba:AfterRicherInit(player)
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RNPR then
+		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_MELT then
 
 		else
 			player:SetPocketActiveItem(wakaba.Enums.Collectibles.SWEETS_CATALOG, ActiveSlot.SLOT_POCKET, true)

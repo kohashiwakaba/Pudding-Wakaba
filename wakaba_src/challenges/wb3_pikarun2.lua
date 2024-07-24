@@ -23,12 +23,7 @@ wakaba.Blacklists.Pica2 = {
 ---@param player EntityPlayer
 function wakaba:Challenge_PlayerInit_Melt(player)
 	if wakaba.G.Challenge ~= c then return end
-  player:AddCollectible(wakaba.Enums.Collectibles._3D_PRINTER)
-  player:SetPocketActiveItem(CollectibleType._3D_PRINTER, ActiveSlot.SLOT_POCKET, true)
-  if wakaba:Challenge_IsFirstInit(player) then
-    player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
-    player:EvaluateItems()
-  end
+  player:SetPocketActiveItem(wakaba.Enums.Collectibles._3D_PRINTER, ActiveSlot.SLOT_POCKET, true)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.Challenge_PlayerInit_Melt)
 
@@ -105,3 +100,12 @@ function wakaba:Challenge_PickupInit_Melt(pickup)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.Challenge_PickupInit_Melt, PickupVariant.PICKUP_TAROTCARD)
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.Challenge_PickupInit_Melt, PickupVariant.PICKUP_PILL)
+
+---@param pickup EntityPickup
+function wakaba:Challenge_PickupUpdate_Melt(pickup)
+  if wakaba.G.Challenge ~= c then return end
+  if not pickup:HasEntityFlags(EntityFlag.FLAG_PERSISTENT) then
+    pickup:AddEntityFlags(EntityFlag.FLAG_PERSISTENT)
+  end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.Challenge_PickupUpdate_Melt, PickupVariant.PICKUP_TRINKET)
