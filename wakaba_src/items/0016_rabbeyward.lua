@@ -150,7 +150,7 @@ function wakaba:getRabbeyWardCheckArea(_gridIndex, radius)
 	for _, offset in ipairs(vecToCheck) do
 		for xx = -radius, radius do
 			for yy = -radius, radius do
-				local distance = math.abs(xx) + math.abs(yy)
+				local distance = math.abs(xx + offset.X) + math.abs(yy + offset.Y)
 				if (distance <= radius) then
 					local newVec = vecPos + Vector(xx, yy) + offset
 					if newVec.X >= 0 and newVec.X < 13
@@ -319,9 +319,9 @@ function wakaba:recalculateWardMinimap(wardAreas)
 				local power = td.power
 				if power > 0 then
 					local np = math.min(power, 3)
-					room.Color = Color(1, 0.9 - (0.1 * np), 0.85, 0.7 - (np * 0.2), 0, 0, 0)
+					room.Color = desc.Flags & RoomDescriptor.FLAG_RED_ROOM > 0 and Color(0.5, 0.5 - (0.1 * np), 1, 1, 0,0,0) or Color(1, 0.7 - (0.15 * np), 0.8, 1, 0, 0, 0)
 				else
-					room.Color = nil
+					room.Color = desc.Flags & RoomDescriptor.FLAG_RED_ROOM > 0 and Color(1,0.25,0.25,1,0,0,0) or nil
 				end
 			end
 		end
@@ -333,9 +333,9 @@ function wakaba:recalculateWardMinimap(wardAreas)
 				local power = wakaba:getRabbeyWardPower(desc.SafeGridIndex)
 				if power > 0 then
 					local np = math.min(power, 3)
-					room.Color = Color(1, 0.9 - (0.1 * np), 0.85, 0.7 - (np * 0.2), 0, 0, 0)
+					room.Color = desc.Flags & RoomDescriptor.FLAG_RED_ROOM > 0 and Color(0.5, 0.5 - (0.1 * np), 1, 1, 0,0,0) or Color(1, 0.7 - (0.15 * np), 0.8, 1, 0,0,0)
 				else
-					room.Color = nil
+					room.Color = desc.Flags & RoomDescriptor.FLAG_RED_ROOM > 0 and Color(1,0.25,0.25,1,0,0,0) or nil
 				end
 			end
 		end
@@ -535,7 +535,7 @@ function wakaba:Update_RabbeyWard()
 				--local listIndex = entry.listIndex
 				local gridLocation = entry.grid
 				local centerPos = room:GetCenterPos()
-				if gridLocation ~= currentGridLocation then
+				if gridLocation ~= currentGridLocation and entry.power > 0 then
 					--print(centerPos, gridLocation, currentGridLocation, centerPos + (gridLocation - currentGridLocation) * Vector(640, 600))
 					if shouldRender then
 					wakaba.G:MakeShockwave(centerPos + (gridLocation - currentGridLocation) * Vector(640, 600), 0.018, 0.01, 320)
@@ -595,6 +595,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, wakaba.CurseEval_RabbeyWard)
 
 local lastRabbeyPower = 0
 local function newRoomFunc()
+	local shouldRender = wakaba:getOptionValue("rabbeywardrender")
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex())
@@ -647,8 +648,10 @@ function wakaba:NewRoom_RabbeyWard()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbeyWard)
 
-wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function ()
-	wakaba:recalculateWardMinimap()
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function (_, isContinue)
+	if not isContinue then
+		wakaba:recalculateWardMinimap()
+	end
 end)
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
