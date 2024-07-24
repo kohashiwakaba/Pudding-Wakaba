@@ -37,6 +37,7 @@ idesc.cf:Load("font/luaminioutlined.fnt") -- load a font into the font object
 ---@field SubType integer
 ---@field AllowModifiers boolean|function
 ---@field Lemegeton boolean
+---@field IsHidden boolean|function
 ---@field Frame integer|function
 ---@field Icon string|function
 ---@field Color string|function
@@ -357,11 +358,7 @@ function wakaba:LinkWakabaDefaults()
 	linked = true
 end
 
-if REPENTOGON then
-	wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, wakaba.LinkWakabaDefaults)
-else
-	wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.LinkWakabaDefaults)
-end
+wakaba:AddCallback(REPENTOGON and ModCallbacks.MC_POST_MODS_LOADED or ModCallbacks.MC_POST_GAME_STARTED, wakaba.LinkWakabaDefaults)
 
 --#endregion
 
@@ -495,6 +492,7 @@ function idesc:getHeldPills()
 					Type = idescEIDType.PILL,
 					Variant = PickupVariant.PICKUP_PILL,
 					SubType = entryIndex,
+					IsHidden = not game:GetItemPool():IsPillIdentified(entryIndex),
 				}
 				table.insert(entries, entry)
 				table.insert(ei, entryIndex)
@@ -1045,6 +1043,7 @@ function idesc:Render()
 				local entry = entries[ix]
 				if not entry then break end
 				local isHighlighted = ix == listprops.current
+				local isHidden = type(entry.IsHidden) == "function" and entry.IsHidden() or entry.IsHidden;
 				local allowModifiers = type(entry.AllowModifiers) == "function" and entry.AllowModifiers() or entry.AllowModifiers;
 				local obj = EID:getDescriptionObj(entry.Type, entry.Variant, entry.SubType, nil, istate.allowmodifiers or allowModifiers)
 
@@ -1111,6 +1110,7 @@ function idesc:Render()
 				local entry = entries[ix]
 				if not entry then break end
 				local isHighlighted = ix == listprops.current
+				local isHidden = type(entry.IsHidden) == "function" and entry.IsHidden() or entry.IsHidden;
 				local allowModifiers = type(entry.AllowModifiers) == "function" and entry.AllowModifiers() or entry.AllowModifiers;
 				local obj = EID:getDescriptionObj(entry.Type, entry.Variant, entry.SubType, nil, istate.allowmodifiers or allowModifiers)
 
@@ -1155,6 +1155,9 @@ function idesc:Render()
 					end
 					primaryListName = curName
 				end
+				if isHidden then
+					primaryListName = "???"
+				end
 				-- 윗라인 추가 아이콘
 				if extraIcon then
 					primaryListName = extraIcon .. " " .. primaryListName
@@ -1172,6 +1175,9 @@ function idesc:Render()
 						end
 						secondaryListName = rst
 					end
+				end
+				if isHidden then
+					secondaryListName = nil
 				end
 				idesc.IconBgSprite:SetFrame("ItemIcon",frameno)
 				idesc.IconBgSprite:Render(iconrenderpos, Vector(0,0), Vector(0,0))
@@ -1217,14 +1223,22 @@ function idesc:Render()
 			demoDescObj.Description = desc or ""
 			EID:displayPermanentText(demoDescObj)
 		elseif selObj and not istate.listprops.listonly then
-			desc = selObj
-			if selEntry.Type == idescEIDType.PLAYER then
-				local extIcon = type(selEntry.Icon) == "function" and selEntry.Icon() or selEntry.Icon;
-				if extIcon then
-					desc.Name = extIcon .. desc.Name
+			local isHidden = type(selEntry.IsHidden) == "function" and selEntry.IsHidden() or selEntry.IsHidden;
+			if isHidden then
+				if EID.isDisplayingPermanent then
+					EID:hidePermanentText()
 				end
+				EID:renderQuestionMark(nil)
+			else
+				desc = selObj
+				if selEntry.Type == idescEIDType.PLAYER then
+					local extIcon = type(selEntry.Icon) == "function" and selEntry.Icon() or selEntry.Icon;
+					if extIcon then
+						desc.Name = extIcon .. desc.Name
+					end
+				end
+				EID:displayPermanentText(desc)
 			end
-			EID:displayPermanentText(desc)
 		end
 
 	end
