@@ -216,7 +216,9 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 	end
 
 	local level = wakaba.G:GetLevel()
-	wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
+	if wakaba:getOptionValue("rabbeywardrendermode") then
+		wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
+	end
 	wakaba:InstallRabbeyWard(player)
 	wakaba:scheduleForUpdate(function()
 		wakaba:revealWardMap(level:GetCurrentRoomIndex())
@@ -341,10 +343,13 @@ function wakaba:recalculateWardMinimap(wardAreas)
 end
 
 function wakaba:InstallRabbeyWard(player)
+	local shouldRender = wakaba:getOptionValue("rabbeywardrendermode")
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local freeSpawnPos = room:FindFreePickupSpawnPosition(player.Position)
-	wakaba.G:MakeShockwave(freeSpawnPos, 0.036, 0.01, 320)
+	if shouldRender then
+		wakaba.G:MakeShockwave(freeSpawnPos, 0.036, 0.01, 320)
+	end
 	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, freeSpawnPos, Vector(0,0), nil)
 	local s = Isaac.Spawn(EntityType.ENTITY_SLOT, wakaba.Enums.Slots.RABBEY_WARD, 0, freeSpawnPos, Vector.Zero, player)
 	s:AddEntityFlags(EntityFlag.FLAG_APPEAR)
@@ -352,7 +357,7 @@ function wakaba:InstallRabbeyWard(player)
 	if wakaba:getOptionValue("chimakisound") then
 		sfx:Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba:getOptionValue("customsoundvolume") / 10 or 0.5)
 	end
-	if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+	if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) and shouldRender then
 		local water = room:GetWaterAmount()
 		local newWater = math.min(math.max(water, 0.5), 1)
 		room:SetWaterAmount(newWater)
@@ -506,6 +511,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Rabbe
 --wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_RabbeyWard)
 
 function wakaba:Update_RabbeyWard()
+	local shouldRender = wakaba:getOptionValue("rabbeywardrendermode")
 	local room = wakaba.G:GetRoom()
 	local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
 	local power = wakaba:getRabbeyWardPower(gridIndex) * 10
@@ -519,7 +525,9 @@ function wakaba:Update_RabbeyWard()
 	if room:GetFrameCount() % 150 == 2 then
 		local ward = wakaba:getNearbyRabbitWard()
 		if ward then
-			wakaba.G:MakeShockwave(ward.Position, 0.018, 0.01, 320)
+			if shouldRender then
+				wakaba.G:MakeShockwave(ward.Position, 0.018, 0.01, 320)
+			end
 		else
 			local currentGridLocation = isc:roomGridIndexToVector(gridIndex)
 			local centerPos = room:GetCenterPos()
@@ -529,7 +537,9 @@ function wakaba:Update_RabbeyWard()
 				local centerPos = room:GetCenterPos()
 				if gridLocation ~= currentGridLocation then
 					--print(centerPos, gridLocation, currentGridLocation, centerPos + (gridLocation - currentGridLocation) * Vector(640, 600))
+					if shouldRender then
 					wakaba.G:MakeShockwave(centerPos + (gridLocation - currentGridLocation) * Vector(640, 600), 0.018, 0.01, 320)
+					end
 				end
 			end
 		end
@@ -590,7 +600,7 @@ local function newRoomFunc()
 	local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex())
 	if rabbeyPower > 0 then
 		--isc:openDoorFast()
-		if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) then
+		if REPENTOGON and (level:GetCurrentRoomIndex() >= 0 and room:GetType() ~= RoomType.ROOM_DUNGEON and room:GetBossID() ~= BossType.MEGA_SATAN) and shouldRender then
 			local water = room:GetWaterAmount()
 			local newWater = math.min(math.max(water, 0.16 * rabbeyPower), 1)
 			room:SetWaterAmount(newWater)
@@ -643,14 +653,12 @@ end)
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
 	if shaderName == "wakaba_RabbeyWardArea" then
-		local rabbeywardrendermode = wakaba:getOptionValue("rabbeywardrendermode") or 2
+		local rabbeywardrendermode = wakaba:getOptionValue("rabbeywardrendermode")
 		local strength = wakaba.wardShaderRenderVal * 0.01
 		local rendertype = 1
-		if rabbeywardrendermode == 2 then
-		elseif rabbeywardrendermode == 1 then
-			rendertype = 0
-		else
+		if not rabbeywardrendermode then
 			strength = 0
+			rendertype = 0
 		end
 
 		local params = {

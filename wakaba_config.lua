@@ -69,6 +69,7 @@ local config = {
 	maidtriggerkey = Keyboard.KEY_7,
 	lilriraautosteal = true,
 	lilriratriggerkey = Keyboard.KEY_6,
+	rabbeywardrender = true,
 
 	-- Wakaba Duality options
 	blessnemesisindexed = false,

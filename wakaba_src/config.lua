@@ -1964,7 +1964,34 @@ if MCM then
 
 			end,
 			Info = {
-				"Allow Chimaki 'kyuu' sound",
+				"Allow 'kyuu' sound",
+				"for Chimaki and Rabbey Ward"
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Rira",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.rabbeywardrender
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.rabbeywardrender then
+					onOff = "True"
+				end
+				return "Rabbey Ward effects: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.rabbeywardrender = currentBool
+
+			end,
+			Info = {
+				"Toggles water, wave, pink effect from Rabbey Ward",
+				"Disable this if you have motion sickness issues",
+				"Requires MiniMAPI for ward area if disabled",
 			}
 		}
 	)
