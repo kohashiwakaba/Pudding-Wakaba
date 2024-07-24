@@ -216,7 +216,7 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 	end
 
 	local level = wakaba.G:GetLevel()
-	if wakaba:getOptionValue("rabbeywardrendermode") then
+	if wakaba:getOptionValue("rabbeywardrender") then
 		wakaba.G:MakeShockwave(player.Position, 0.018, 0.01, 320)
 	end
 	wakaba:InstallRabbeyWard(player)
@@ -343,7 +343,7 @@ function wakaba:recalculateWardMinimap(wardAreas)
 end
 
 function wakaba:InstallRabbeyWard(player)
-	local shouldRender = wakaba:getOptionValue("rabbeywardrendermode")
+	local shouldRender = wakaba:getOptionValue("rabbeywardrender")
 	local room = wakaba.G:GetRoom()
 	local level = wakaba.G:GetLevel()
 	local freeSpawnPos = room:FindFreePickupSpawnPosition(player.Position)
@@ -511,7 +511,7 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_Rabbe
 --wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_RabbeyWard)
 
 function wakaba:Update_RabbeyWard()
-	local shouldRender = wakaba:getOptionValue("rabbeywardrendermode")
+	local shouldRender = wakaba:getOptionValue("rabbeywardrender")
 	local room = wakaba.G:GetRoom()
 	local gridIndex = wakaba.G:GetLevel():GetCurrentRoomIndex()
 	local power = wakaba:getRabbeyWardPower(gridIndex) * 10
@@ -653,10 +653,10 @@ end)
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, function(_, shaderName)
 	if shaderName == "wakaba_RabbeyWardArea" then
-		local rabbeywardrendermode = wakaba:getOptionValue("rabbeywardrendermode")
+		local rabbeywardrender = wakaba:getOptionValue("rabbeywardrender")
 		local strength = wakaba.wardShaderRenderVal * 0.01
 		local rendertype = 1
-		if not rabbeywardrendermode then
+		if not rabbeywardrender then
 			strength = 0
 			rendertype = 0
 		end
