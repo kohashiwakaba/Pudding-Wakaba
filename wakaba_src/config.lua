@@ -1995,5 +1995,29 @@ if MCM then
 			}
 		}
 	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"Rira",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.rirafullpica
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.rirafullpica then
+					onOff = "True"
+				end
+				return "Tainted Rira Full Pica: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.rirafullpica = currentBool
+			end,
+			Info = {
+				"Converts all collectibles to Aqua Trinkets instead of just Treasure Room collectibles",
+				"Plot-critical items are not affected",
+			}
+		}
+	)
 
 end

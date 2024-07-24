@@ -70,6 +70,7 @@ local config = {
 	lilriraautosteal = true,
 	lilriratriggerkey = Keyboard.KEY_6,
 	rabbeywardrender = true,
+	rirafullpica = false,
 
 	-- Wakaba Duality options
 	blessnemesisindexed = false,

@@ -127,3 +127,17 @@ function wakaba:RoomSpawn_AzureRir(type, variant, subType, gridIndex, seed)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, wakaba.RoomSpawn_AzureRir)
+
+
+function wakaba:preEntitySpawn_AzureRir(type, variant, subType, pos, velocity, spawner, seed)
+	if wakaba:getOptionValue("rirafullpica")
+	and type == EntityType.ENTITY_PICKUP
+	and variant == PickupVariant.PICKUP_COLLECTIBLE
+	and (subType <= 0 or not wakaba:IsQuestItem(subType)) then then
+		local rir, onlyRira = wakaba:anyPlayerHasAzureRir()
+		if rir and onlyRira then
+			return {type, PickupVariant.PICKUP_TRINKET, 0, seed}
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_AzureRir)

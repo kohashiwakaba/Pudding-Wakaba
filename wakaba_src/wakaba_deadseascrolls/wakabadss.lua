@@ -1111,7 +1111,6 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'rabbit sound','for chimaki'}}
 			},
-
 			{
 				str = 'rabbey ward effects',
 				choices = {'true', 'false'},
@@ -1128,6 +1127,23 @@ local wakabadirectory = {
 					wakaba.state.options.rabbeywardrender = (var == 1)
 				end,
 				tooltip = {strset = {'render effects','for', 'rabbey ward'}}
+			},
+			{
+				str = 't.rira full pica',
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'RiraFullPica',
+				load = function()
+					if wakaba.state.options.rirafullpica then
+						return 1
+					else
+						return 2
+					end
+				end,
+				store = function(var)
+					wakaba.state.options.rirafullpica = (var == 1)
+				end,
+				tooltip = {strset = {'tainted rira', 'converts all', 'items to trinkets'}}
 			},
 
 		},
