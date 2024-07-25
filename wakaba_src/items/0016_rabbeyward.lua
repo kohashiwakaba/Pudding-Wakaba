@@ -147,18 +147,20 @@ function wakaba:getRabbeyWardCheckArea(_gridIndex, radius)
 
 	local vecToCheck = offsetVecToCheck[shape]
 
-	for _, offset in ipairs(vecToCheck) do
-		for xx = -radius, radius do
+	for ix, offset in ipairs(vecToCheck) do
+		--print("[w] ------------------------------------")
+		for xx = -radius, radius  do
 			for yy = -radius, radius do
-				local distance = math.abs(xx + offset.X) + math.abs(yy + offset.Y)
+				local distance = math.abs(xx) + math.abs(yy)
 				if (distance <= radius) then
 					local newVec = vecPos + Vector(xx, yy) + offset
 					if newVec.X >= 0 and newVec.X < 13
 					and newVec.Y >= 0 and newVec.Y < 13 then
-						local gridIndex =  newVec.Y * 13 + newVec.X
-						local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(gridIndex)
+						local gridIndex2 = newVec.Y * 13 + newVec.X
+						local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(gridIndex2)
 						local shape = roomDesc.RoomShape
-						table.insert(retGridIndexes, {v = newVec, i = gridIndex, d = distance, s = shape})
+						--print("[w]", newVec, "/", gridIndex, "-", gridIndex2, "/", distance)
+						table.insert(retGridIndexes, {ix = ix, v = newVec, i = gridIndex2, d = distance, s = shape, si = roomDesc.SafeGridIndex})
 					end
 				end
 			end
@@ -231,7 +233,7 @@ function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.UseItem_RabbeyWard, wakaba.Enums.Collectibles.RABBEY_WARD)
 
-function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
+function wakaba:getRabbeyWardPower(gridIndex, taintedRira, printLog)
 	if not wakaba:IsDimension(0) then return 0 end
 	local pow = wakaba:getWardPower()
 	if taintedRira and gridIndex == 84 then
@@ -254,18 +256,26 @@ function wakaba:getRabbeyWardPower(gridIndex, taintedRira)
 		local roomDesc = wakaba.G:GetLevel():GetRoomByIdx(index)
 		--print("[]", index, rabbey_ward_data.level.wardRooms[tostring(index)])
 		if rabbey_ward_data.level.wardRooms[tostring(index)] then
-			if not checkedIndexes[tostring(index)] then
+			if not checkedIndexes[tostring(index)] or checkedIndexes[tostring(index)] > distance then
 				local p = rabbey_ward_data.level.wardRooms[tostring(index)]
-				--wakaba.Log("Ward power from index", index, "found: power:", p)
-				power = math.max(power, (p * pow) - distance)
-				checkedIndexes[tostring(index)] = true
+				if printLog then
+					wakaba.FLog("RabbeyWard", "Ward power from index", index, "found: power:", p, "dist:", distance)
+				end
+				if p > 0 then
+					power = math.max(power, (p * pow) - distance)
+					checkedIndexes[tostring(index)] = distance
+				end
 			end
 		elseif roomDesc and rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)] then
-			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] then
+			if not checkedIndexes[tostring(roomDesc.SafeGridIndex)] or checkedIndexes[tostring(roomDesc.SafeGridIndex)] > distance then
 				local p = rabbey_ward_data.level.wardRooms[tostring(roomDesc.SafeGridIndex)]
-				--wakaba.Log("Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p)
-				power = math.max(power, (p * pow) - distance)
-				checkedIndexes[tostring(roomDesc.SafeGridIndex)] = true
+				if printLog then
+					wakaba.FLog("RabbeyWard", "Ward power from safeindex", roomDesc.SafeGridIndex, "found: power:", p, "dist:", distance)
+				end
+				if p > 0 then
+					power = math.max(power, (p * pow) - distance)
+					checkedIndexes[tostring(roomDesc.SafeGridIndex)] = distance
+				end
 			end
 		end
 	end
