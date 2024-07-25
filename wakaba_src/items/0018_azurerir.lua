@@ -145,10 +145,13 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, wakaba.preEntitySpawn_Azure
 ---@param pickup EntityPickup
 function wakaba:PickupUpdate_AzureRir(pickup)
 	if not wakaba:getOptionValue("rirafullpica") then return end
-	local rir, onlyRira = wakaba:anyPlayerHasAzureRir()
-	if rir and onlyRira then
-		pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, false, true, false)
-		pickup.Price = 5
+	local subType = pickup.SubType
+	if (subType <= 0 or not wakaba:IsQuestItem(subType)) then
+		local rir, onlyRira = wakaba:anyPlayerHasAzureRir()
+		if rir and onlyRira then
+			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, false, true, false)
+			pickup.Price = 5
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_AzureRir, PickupVariant.PICKUP_COLLECTIBLE)
