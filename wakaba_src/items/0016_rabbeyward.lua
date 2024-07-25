@@ -436,7 +436,9 @@ function wakaba:SlotUpdate_RabbeyWard(slot)
 					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_FIREDELAY)
 					player:EvaluateItems()
 				end)
-				wakaba:recalculateWardMinimap()
+				if MinimapAPI then
+					wakaba:recalculateWardMinimap()
+				end
 				wakaba.Log("Rabbey Ward killed! recalculating...")
 			end, 1)
 			slot:ClearEntityFlags(EntityFlag.FLAG_NO_KNOCKBACK | EntityFlag.FLAG_NO_PHYSICS_KNOCKBACK)
@@ -660,7 +662,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_RabbeyWard)
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function (_, isContinue)
 	if not isContinue then
-		wakaba:recalculateWardMinimap()
+		if MinimapAPI then
+			wakaba:recalculateWardMinimap()
+		end
 	end
 end)
 
