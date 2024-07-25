@@ -10,7 +10,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba{{CR}}",
-		description = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}}Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
+		description = "{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
 		queueDesc = "폭발 피해 면역 + 식지 않는 흥분",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
@@ -30,7 +30,7 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
 		playerName = "{{ColorPink}}Tsukasa",
-		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#↑ {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar Stone 게이지의 상한이 200%로 증가합니다.",
+		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Lunar Stone 게이지의 상한이 200%로 증가합니다.",
 		queueDesc = "역사와 달빛을 제대로 보다",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
