@@ -1669,6 +1669,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Tainted Richer",
 		},
 	},
+	[wakaba.Enums.Collectibles.CONCENTRATION] = {
+		desc = "{{Player"..wakaba.Enums.Players.TSUKASA.."}} 연속 집중 시 방 클리어 필요, 패널티 카운터 60 이상일 때 집중 불가",
+	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba의 경우 변경되지 않습니다.",
 	},

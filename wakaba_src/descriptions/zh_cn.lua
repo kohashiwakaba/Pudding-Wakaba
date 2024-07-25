@@ -2678,6 +2678,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Tainted Richer", -- do NOT translate this
 		},
 	},
+	[wakaba.Enums.Collectibles.CONCENTRATION] = {
+		desc = "{{Player"..wakaba.Enums.Players.TSUKASA.."}} 重复使用需要清理房间，计数超过60时不能使用",
+	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player" .. wakaba.Enums.Players.WAKABA_B .. "}} 里若叶只是复活",
 	},

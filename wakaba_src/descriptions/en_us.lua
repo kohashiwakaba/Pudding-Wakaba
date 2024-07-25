@@ -2948,6 +2948,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Tainted Richer",
 		},
 	},
+	[wakaba.Enums.Collectibles.CONCENTRATION] = {
+		desc = "{{Player"..wakaba.Enums.Players.TSUKASA.."}} Repeating concentration reqires room clears, can't concentrate on 60+ counts",
+		func = EID.PlayersHaveCharacter,
+		vars = {wakaba.Enums.Players.TSUKASA},
+	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",
 		func = EID.PlayersHaveCharacter,
