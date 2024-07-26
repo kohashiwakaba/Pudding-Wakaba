@@ -1,3 +1,72 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v128a",
+[[{FSIZE2}general
+
+- updated chinese eid entries (v128)
+
+- added an option to remove
+rabbey ward effect.
+this affects water(rgon only),
+shockwave, and shader color effect.
+
+- added an option to make
+tainted rira to only see
+trinkets even outside
+of treasure rooms
+
+- adjust rabbey ward
+area calculation
+
+{FSIZE2}new challenge
+
+- [wb3] Melting Pica Run 2
+
+{FSIZE2}balance
+
+- concentration
+-- no longer prevents
+picking up lil batteries
+
+{FSIZE2}bug fixes
+
+- fix wakaba's uniform eid
+modifier breking
+card reading portals
+
+- fix tainted rira health
+system noy applying
+outside of repentogon
+
+- fix azure rir not converting
+non-blacklisted trinkets
+
+- fix clover luck multiplier
+not applying for some items
+
+- fix delimiter chance
+insanely go high on 2+ stacks
+
+- fix flag locked
+trinkets appearing
+
+- fix rabbey ward color
+render from minimapi
+incorrectly affecting
+unrelated rooms
+
+- fix broken rabbey wards
+still emiting shockwave
+
+- fix invdesc showing
+unidentified pill informations
+
+- fix some error without
+minimapi enabled
+
+- fix eid markup,
+conditional format issues
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v128",
 [[{FSIZE2}tainted rira
 

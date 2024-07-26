@@ -149,8 +149,11 @@ function wakaba:PickupUpdate_AzureRir(pickup)
 	if (subType <= 0 or not wakaba:IsQuestItem(subType)) then
 		local rir, onlyRira = wakaba:anyPlayerHasAzureRir()
 		if rir and onlyRira then
+			local isShop = pickup.Price ~= 0
 			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, false, true, false)
-			pickup.Price = 5
+			if isShop then
+				pickup.Price = 5
+			end
 		end
 	end
 end
