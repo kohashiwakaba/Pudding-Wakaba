@@ -243,18 +243,6 @@ function wakaba:Input_Concentration(entity, hook, action)
 end
 wakaba:AddCallback(ModCallbacks.MC_INPUT_ACTION, wakaba.Input_Concentration)
 
-
-function wakaba:PickupCollision_Concentration(pickup, collider, low)
-  if collider:ToPlayer() then
-    local player = collider:ToPlayer()
-		if wakaba:hasConcentration(player) then
-			return pickup:IsShopItem()
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_Concentration, PickupVariant.PICKUP_LIL_BATTERY)
-
-
 function wakaba:Cache_Concentration(player, cacheFlag)
 	if wakaba:hasPlayerDataEntry(player, "concentrationcount") then
 		if cacheFlag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
