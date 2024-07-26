@@ -370,13 +370,14 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "If concentration is finished, all normal active items will be fully charged."},
 			{str = "If Isaac's health is under 3 hearts, Isaac needs more time to concentrate."},
 			{str = "- If concentration is finished with low health, Isaac restores health to 3 hearts."},
-			{str = "Concentration charge time increases every time Isaac concentrate."},
+			{str = "Concentration count is added every time Isaac concentrates depending of active's max charge."},
 			{str = "- This count can be reduced when Isaac clears a room."},
+			{str = "- Isaac cannot concentrate if count is over 300."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Tsukasa starts with this item and is intrinsic to the character, and it can't be rerolled"},
-			{str = "- Tsukasa can still find this item on a pedestal. Picking the item does nothing."},
+			{str = "- Tsukasa can still find this item on a pedestal. Picking it extends her maximum concentration count to normal and removes room clear penalty."},
 			--{str = "Abyss Locust from this item deals 5X of Isaac's Damage."},
 		},
 		{ -- Interactions
