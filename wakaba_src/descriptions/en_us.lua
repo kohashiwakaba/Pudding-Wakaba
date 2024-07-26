@@ -21,11 +21,11 @@ wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "{{ColorWakabaBless}}Wakaba",
-		description = "↑ {{Heart}}Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in all floors",
+		description = "↑ {{Heart}} Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in all floors",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba",
-		description = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}}Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
+		description = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}Shiori",
@@ -621,7 +621,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#If damage is lethal while held, Isaac turns into Fallen Angel, and gives 6 Black Hearts"
 		.. "#!!! {{ColorSilver}}After Isaac turning into Fallen Angel:"
 		.. "#{{ColorSilver}}On use, Spawns 11 Hungry Souls that deals Isaac's Damage"
-		.. "#↓ {{ColorSilver}}Can no longer shoot tears"
+		.. "#!!! {{ColorSilver}}Can no longer shoot tears"
 		.. "#↑ {{Damage}} {{ColorSilver}}+600% Damage Multiplier"
 		.. "#!!! {{ColorYellow}}Isaac can no longer swap active items{{ColorReset}}"
 		.. "{{CR}}",
@@ -1039,7 +1039,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "Trial Stew",
-		description = "!!! While active:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge on room clears.",
+		description = "!!! While active:#↑ {{Tears}} +1 Fire rate per stack#↑ {{Damage}} +100% Damage Multiplier#↑ {{Damage}} +25% extra Damage per stack#All actives fully charge on room clears.",
 	},
 	[wakaba.Enums.Collectibles.SELF_BURNING] = {
 		itemName = "Self Burning",
@@ -1145,7 +1145,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
-		.. "#↓ {{Battery}}{{BlinkYellowRed}} Steals battery charges{{CR}}"
+		.. "#↓ {{Battery}} {{BlinkYellowRed}}Steals battery charges{{CR}}"
 		.. "#↑ {{Damage}} +0.05 Damage per stolen charges"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
@@ -1307,7 +1307,7 @@ wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_MONSTER_MANUAL] = {
 		primary = "",
 		secondary = "",
-		description = "No Extra temporary effect#↑ {{ColorBookofShiori}}Familiars deal 3x Damage until next book use",
+		description = "No Extra temporary effect#↑ {{ColorBookofShiori}} Familiars deal 3x Damage until next book use",
 	},
 	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = {
 		primary = "",
@@ -1543,7 +1543,7 @@ wakaba.descriptions[desclang].trinkets = {
 		description = ""
 		.. "#{{Collectible510}} 15% chance to spawn random delirious boss when entering an uncleared room"
 		.. "#{{GreedMode}} 5% chance for Greed mode, {{Luck}}max 25% for 10+ Luck"
-		.. "#↑ {{Card"..Card.CARD_CHAOS.."}}Chaos card can damage Delirium, and The Beast (339 damage per tick)"
+		.. "#{{Card"..Card.CARD_CHAOS.."}} Chaos card can damage Delirium, and The Beast (339 damage per tick)"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -1795,7 +1795,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_TRIAL_STEW] = {
 		itemName = "Trial Stew",
-		description = "Removes all health and Holy Mantle shields#Adds 8 stacks of effect for:#↑ {{Tears}}+1 Fire rate per stack#↑ {{Damage}}+100% Damage Multiplier#↑ {{Damage}}+25% extra Damage per stack#All actives fully charge, decreases a stack on room clears.",
+		description = "Removes all health and Holy Mantle shields#Adds 8 stacks of effect for:#↑ {{Tears}} +1 Fire rate per stack#↑ {{Damage}} +100% Damage Multiplier#↑ {{Damage}} +25% extra Damage per stack#All actives fully charge, decreases a stack on room clears.",
 		tarot = {8, 11},
 		mimiccharge = 8,
 	},
@@ -2909,7 +2909,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA) end,
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}} Luck Bonuses are not applied",
 		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
@@ -2921,7 +2921,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
+		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}} Luck Bonuses are not applied",
 		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
