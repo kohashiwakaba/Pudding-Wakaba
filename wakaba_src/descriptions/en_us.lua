@@ -2906,13 +2906,11 @@ wakaba.descriptions[desclang].conditionals = {}
 wakaba.descriptions[desclang].conditionals.collectibles = {
 	[CollectibleType.COLLECTIBLE_URANUS] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}} +50% Damage Multiplier#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}Armor-Piercing Tears",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.WAKABA},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA) end,
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.WAKABA_B},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		{
@@ -2924,55 +2922,46 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}Luck Bonuses are not applied",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.WAKABA_B},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		desc = "{{Player"..wakaba.Enums.Players.SHIORI.."}} Spawns 3 tiny Isaac familiars",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.SHIORI, true},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.SHIORI, true) end,
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		{
 			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
-			func = EID.PlayersHaveCharacter,
-			vars = {wakaba.Enums.Players.WAKABA},
+			func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA) end,
 			modifierText = "Wakaba",
 		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
 			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Absorb selected Wisp#{{Player"..wakaba.Enums.Players.RICHER_B.."}} Can be change selection by {{ButtonRT}}",
-			func = EID.PlayersHaveCharacter,
-			vars = {wakaba.Enums.Players.RICHER_B},
+			func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.RICHER_B) end,
 			modifierText = "Tainted Richer",
 		},
 	},
 	[wakaba.Enums.Collectibles.CONCENTRATION] = {
 		desc = "{{Player"..wakaba.Enums.Players.TSUKASA.."}} Repeating concentration reqires room clears, can't concentrate on 60+ counts",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.TSUKASA},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.TSUKASA) end,
 	},
 	[wakaba.Enums.Collectibles.JAR_OF_CLOVER] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} Tainted Wakaba simply revives",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.WAKABA_B},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
 	},
 	[wakaba.Enums.Collectibles.BUNNY_PARFAIT] = {
 		desc = "{{Player"..wakaba.Enums.Players.RIRA_B.."}} Tainted Rira simply revives",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.RIRA_B},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.RIRA_B) end,
 	},
 	[wakaba.Enums.Collectibles.CARAMELLA_PANCAKE] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} Tainted Richer simply revives",
-		func = EID.PlayersHaveCharacter,
-		vars = {wakaba.Enums.Players.RICHER_B},
+		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.RICHER_B) end,
 	},
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
 		type = "replaceAll",
 		desc = "{{WakabaMod}} Checks nearby collectible's quality#{{WakabaMod}} If matched, take it, otherwise, it disappears",
-		func = wakaba.EIDCond_IsChallenge,
-		vars = {wakaba.challenges.CHALLENGE_EVEN},
+		func = function() return wakaba:EIDCond_IsChallenge(wakaba.challenges.CHALLENGE_EVEN) end,
 	},
 	-- HIDDEN DESCRIPTIONS
 	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
@@ -3035,28 +3024,23 @@ wakaba.descriptions[desclang].conditionals.cards = {}
 wakaba.descriptions[desclang].conditionals.entities = {
 	["-998.-1."..LevelCurse.CURSE_OF_LABYRINTH] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Spawns extra special rooms",
-		func = wakaba.EIDCond_PlayerHasBirthright,
-		vars = {wakaba.Enums.Players.RICHER},
+		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
 	["-998.-1."..wakaba.curses.CURSE_OF_SNIPER] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Weapons are visible and can deal normal damage for nearby enemies",
-		func = wakaba.EIDCond_PlayerHasBirthright,
-		vars = {wakaba.Enums.Players.RICHER},
+		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
 	["-998.-1."..wakaba.curses.CURSE_OF_FAIRY] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Maps are not being lost",
-		func = wakaba.EIDCond_PlayerHasBirthright,
-		vars = {wakaba.Enums.Players.RICHER},
+		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
 	["-998.-1."..wakaba.curses.CURSE_OF_AMNESIA] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}Cleared rooms no longer being uncleared, room clear award still spawns",
-		func = wakaba.EIDCond_PlayerHasBirthright,
-		vars = {wakaba.Enums.Players.RICHER},
+		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
 	["-998.-1."..wakaba.curses.CURSE_OF_MAGICAL_GIRL] = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state",
-		func = wakaba.EIDCond_PlayerHasBirthright,
-		vars = {wakaba.Enums.Players.RICHER},
+		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
 }
 
