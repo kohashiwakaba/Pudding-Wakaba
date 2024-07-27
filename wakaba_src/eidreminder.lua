@@ -169,15 +169,23 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_EIDI
 
 do
 	local index = wakaba:EIDItemReminder_GetIndex("Special")
-	table.insert(EID.ItemReminderCategories, index, {id = "w_Character", entryGenerators = {
-		function(player) wakaba:EIDItemReminder_HandleCharacters(player) end,
-	}})
+	table.insert(EID.ItemReminderCategories, index, {id = "w_Character",
+		entryGenerators = {
+			function(player) wakaba:EIDItemReminder_HandleCharacters(player) end,
+		},
+		hideInOverview = function(_) -- hide character description from overview, if player is not in the starting room
+			return wakaba.G:GetLevel():GetStartingRoomIndex() ~= wakaba.G:GetLevel():GetCurrentRoomIndex()
+		end,
+	})
 	table.insert(EID.ItemReminderCategories, index+1, {id = "w_ShioriFlags", entryGenerators = {
 		function(player) wakaba:EIDItemReminder_HandleShioriFlags(player) end,
 	}})
-	table.insert(EID.ItemReminderCategories, index+2, {id = "w_Curse", entryGenerators = {
-		function(player) wakaba:EIDItemReminder_HandleCurses(player) end,
-	}})
+	table.insert(EID.ItemReminderCategories, index+2, {id = "w_Curse",
+		--isScrollable = true,
+		entryGenerators = {
+			function(player) wakaba:EIDItemReminder_HandleCurses(player) end,
+		}
+	})
 end
 
 do
