@@ -1,5 +1,15 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v128a",
-[[{FSIZE2}general
+[[{FSIZE2}v128b patch
+
+- fixed character pill
+conversion not working
+
+- detailed character infos
+from pnw mod now appear
+only in starting room
+just like eid char infos
+
+{FSIZE2}general
 
 - updated chinese eid entries (v128)
 
