@@ -90,7 +90,8 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 	local fhd = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_FALSE_PHD)
 	local onlyPhd = phd and not fhd
 	local onlyFhd = fhd and not phd
-	wakaba:ForAllPlayers(function (player)
+	for num = 0, wakaba.G:GetNumPlayers() - 1 do
+		local player = wakaba.G:GetPlayer(num)
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 			if pillEffect == PillEffect.PILLEFFECT_LUCK_DOWN then
 				if fhd then
@@ -112,9 +113,15 @@ function wakaba:getPillEffect(pillEffect, pillColor)
 				else
 					return PillEffect.PILLEFFECT_LUCK_DOWN
 				end
+			elseif pillEffect == PillEffect.PILLEFFECT_SPEED_DOWN then
+				if phd then
+					return PillEffect.DAMAGE_MULTIPLIER_UP
+				else
+					return PillEffect.PILLEFFECT_SPEED_UP
+				end
 			end
 		end
-	end)
+	end
 	if wakaba:ShouldRemoveBlind() then
 		if wakaba.ConvertBlessingPills[pillEffect] then
 			pillEffect = wakaba.ConvertBlessingPills[pillEffect]
