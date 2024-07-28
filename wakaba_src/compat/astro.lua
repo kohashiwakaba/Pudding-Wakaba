@@ -63,6 +63,13 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		end
 	end)
 
+	-- 메이드 듀엣, My Moon My Man 둘 다 보유 시 My Moon이 우선 적용
+	wakaba:AddCallback(wakaba.Callback.EVALUATE_MAID_DUET, function(_, player)
+		if player:HasCollectible(AstroItems.Collectible.MY_MOON_MY_MAN) then
+			return true
+		end
+	end)
+
 	if EID then
 		EID:AddSynergyConditional(wakaba.Enums.Collectibles.RABBEY_WARD, {
 			AstroItems.Collectible.WARD,
