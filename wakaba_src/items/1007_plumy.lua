@@ -407,7 +407,7 @@ function wakaba:TakeDamage_Plumy(familiar, damage, flags, source, cooldown)
 	--print("Plum took dmg")
 	if familiar.Variant ~= wakaba.Enums.Familiars.PLUMY then return end
 	if source.Entity and source.Entity.Type == EntityType.ENTITY_DARK_ESAU then return false end
-	if not wakaba:IsLunatic() then return end
+	if not wakaba:IsLunatic() then return false end
 	if not familiar:GetData().wakaba then return end
 	if familiar:GetData().wakaba.plumrecover then return false end
 	familiar:GetData().wakaba.plumhealth = familiar:GetData().wakaba.plumhealth - (damage * 1000)
