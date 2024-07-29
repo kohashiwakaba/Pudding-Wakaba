@@ -68,7 +68,7 @@ function wakaba:Cache_AzureRir(player, cacheFlag)
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((num * 0.2) * wakaba:getEstimatedTearsMult(player)))
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, ((mult * num * 0.2) * wakaba:getEstimatedTearsMult(player)))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_AzureRir)
