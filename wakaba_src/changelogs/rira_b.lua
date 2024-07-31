@@ -1,5 +1,18 @@
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v128a",
-[[{FSIZE2}v128b patch
+[[{FSIZE2}v128c patch
+
+- fix plumy suddenly
+disappearing if too much damaged
+
+- fix trinket flag check
+not applied which was
+supposed to be fixed in v128a
+
+- fix tears always granted
+by smelted trinkets
+even isaac doesn't have azure rir
+
+{FSIZE2}v128b patch
 
 - fixed character pill
 conversion not working
