@@ -16,9 +16,7 @@ function wakaba:trinketUnlockCheck(trinket)
 end
 
 function wakaba:GetTrinket_UnlockCheck(selected, rng)
-	if not wakaba.state.achievementPopupShown or wakaba.state.options.allowlockeditems then
-
-	elseif not wakaba:trinketUnlockCheck(selected) then
+	if not wakaba:trinketUnlockCheck(selected) then
 		return wakaba.G:GetItemPool():GetTrinket()
 	end
 end
