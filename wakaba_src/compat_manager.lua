@@ -81,6 +81,7 @@ do
 	include('wakaba_src.compat.sacred_dreams')
 	include('wakaba_src.compat.reshaken_v1')
 	include('wakaba_src.compat.astro')
+	--include('wakaba_src.compat.thesheriff')
 end
 
 if REPENTOGON then
