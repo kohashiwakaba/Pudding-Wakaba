@@ -356,11 +356,15 @@ if EID then
 				end
 				for playerType, chardesc in pairs(wakabaDescTables.characters) do
 					-- EID Character desc
-					local csdesc = wakaba:IsLunatic() and chardesc.shortLunatic or chardesc.shortDesc
-					EID:addCharacterInfo(playerType, csdesc, chardesc.playerName, lang)
+					if EID.descriptions[lang].CharacterInfo then
+						local csdesc = wakaba:IsLunatic() and chardesc.shortLunatic or chardesc.shortDesc
+						EID:addCharacterInfo(playerType, csdesc, chardesc.playerName, lang)
+					else
+						wakaba.Log("EID.descriptions["..lang.."].CharacterInfo does not exist! skipping...")
+					end
 					-- Invdesc Character Desc
 					local cldesc = wakaba:IsLunatic() and chardesc.detailedLunatic or chardesc.detailedDesc
-					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, chardesc.playerName, cldesc, lang)
+					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playerType, chardesc.playerName, cldesc, lang)
 					-- Birthright Desc
 					local brdesc = wakaba:IsLunatic() and chardesc.birthrightLunatic or chardesc.birthright
 					EID:addBirthright(playerType, brdesc, chardesc.playerName, lang)

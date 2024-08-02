@@ -4,7 +4,7 @@ wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthrightName = "생득권"
 wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
-		playerName = "{{ColorWakabaBless}}Wakaba{{CR}}",
+		playerName = "Wakaba",
 		shortDesc = "유도 눈물을 발사합니다.",
 		detailedDesc = "와카바는 하라 유이 작품의 단편작 {{ColorLime}}와카바 걸{{CR}}의 주인공입니다."
 		.. "#좋은 아이템이 등장하며 유도성 눈물을 발사합니다."
@@ -18,7 +18,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "그녀의 순수함이 영원하기를...",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
-		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba{{CR}}",
+		playerName = "Tainted Wakaba",
 		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#완전 관통 눈물을 발사합니다.#공격이 적의 방어를 무시합니다.",
 		detailedDesc = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
 		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
@@ -33,7 +33,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "폭발 피해 면역 + 식지 않는 흥분",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
-		playerName = "{{ColorBookofShiori}}Shiori",
+		playerName = "Shiori",
 		shortDesc = "직각 유도 눈물을 발사합니다.#액티브 아이템 사용에 열쇠를 소모합니다.#스테이지마다 랜덤 책을 부여받으며 {{ButtonRT}} 버튼으로 사용할 책을 교체할 수 있습니다.",
 		detailedDesc = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만이 아는 세계{{CR}}의 히로인 중 한명입니다."
 		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
@@ -46,7 +46,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "좀 더 똑똑해진 문학소녀",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
-		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
+		playerName = "Minerva",
 		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#직각 유도 눈물을 발사합니다.#액티브 아이템 사용에 열쇠를 소모합니다.",
 		detailedDesc = "The Minerva: 미네르바는 시오리에 깃든 여신이며 유피테르 6자매 중 한명입니다."
 		.. "#작지만 유피테르 자매의 날개로 날 수 있습니다."
@@ -67,7 +67,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "문학소녀의 유대감",
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
-		playerName = "{{ColorPink}}Tsukasa",
+		playerName = "Tsukasa",
 		shortDesc = "사거리가 짧은 레이저를 발사합니다.#무한정 부활할 수 있으나 푸른 게이지 소진 시 게임이 종료됩니다.",
 		detailedDesc = "츠카사는 하타 켄지로 작품의 {{ColorBookofConquest}}어쨌든 귀여워{{CR}}의 주인공입니다."
 		.. "#사거리가 짧은 레이저를 발사합니다. 레이저는 지형을 관통합니다."
@@ -80,7 +80,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "역사와 달빛을 제대로 보다",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
-		playerName = "???(Tainted Tsukasa)",
+		playerName = "Tainted Tsukasa",
 		shortDesc = "{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} 공격할 수 없으며 모든 공격을 무라사메가 대신해줍니다.",
 		detailedDesc = "The Phoenix: ???는 황제의 명을 거역하고 불사의 몸을 만들어주는 비약을 마신 이름 없는 소녀입니다."
 		.. "#이 소녀와 같은 시간을 보내온 정령이 함께해 주기에 눈물을 발사할 수 없지만 정령이 대신 공격할 수 있습니다."
@@ -95,7 +95,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "비극적 시련을 극복하다",
 	},
 	[wakaba.Enums.Players.RICHER] = {
-		playerName = "{{ColorRicher}}Richer",
+		playerName = "Richer",
 		shortDesc = "저주를 특별하게 바꿉니다.#피해량을 절반으로 줄여주며 장신구의 효과가 강화됩니다.",
 		detailedDesc = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
 		.. "#그녀의 부드러움 덕분에 받는 피해를 절반으로 줄여주며, 장신구의 효과가 강화됩니다."
@@ -121,7 +121,7 @@ wakaba.descriptions[desclang].characters = {
 		queueDesc = "점점 따뜻해져가는 달콤함",
 	},
 	[wakaba.Enums.Players.RIRA] = {
-		playerName = "{{ColorRira}}Rira",
+		playerName = "Rira",
 		shortDesc = "{{WakabaAqua}} 확률적으로 침수 공격을 합니다.#The Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다.",
 		detailedDesc = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
 		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."

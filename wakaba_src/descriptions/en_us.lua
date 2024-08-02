@@ -20,7 +20,7 @@ end
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
-		playerName = "{{ColorWakabaBless}}Wakaba",
+		playerName = "Wakaba",
 		shortDesc = "Homing Tears#Only Quality {{Quality2}} or higher items can spawn",
 		detailedDesc = "Wakaba is a kawaii, and lucky girl from anime {{ColorLime}}Wakaba Girl{{CR}} from Hara Yui"
 		.. "#She can get good items, and shoots homing tears"
@@ -33,7 +33,7 @@ wakaba.descriptions[desclang].characters = {
 		birthright = "↑ {{Heart}} Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in {{ColorLime}}ALL{{CR}} floors",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
-		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba",
+		playerName = "Tainted Wakaba",
 		shortDesc = "Can't have Red Hearts#Attacks pierce enemies' defense#Spectral, Piercing Tears",
 		detailedDesc = "Tainted Wakaba is the lonely, and unlucky past version"
 		.. "#She {{ColorRed}}CANNOT{{CR}} get good items, and shoots spectral and piercing tears"
@@ -47,7 +47,7 @@ wakaba.descriptions[desclang].characters = {
 		birthright = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
-		playerName = "{{ColorBookofShiori}}Shiori",
+		playerName = "Shiori",
 		shortDesc = "Directional tears#Consume Keys to use active items#Cycle which book to use with {{ButtonRT}}",
 		detailedDesc = "Shiori is a librarian from {{ColorBookofConquest}}The World God only Knows{{CR}} from Wakagi Tamaki"
 		.. "#Low damage but shoots directional tears"
@@ -59,7 +59,7 @@ wakaba.descriptions[desclang].characters = {
 		birthright = "↑ Halves key consume when using active item(Minimum 1)",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
-		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
+		playerName = "Minerva",
 		shortDesc = "Can't have Red Hearts#Directional tears#Consume Keys to use active items",
 		detailedDesc = "Minerva is one of Jupiter Sisters, who is attached with Shiori"
 		.. "#She is little girl, but her wings allow her to fly"
@@ -74,7 +74,7 @@ wakaba.descriptions[desclang].characters = {
 		birthright = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
-		playerName = "{{ColorPink}}Tsukasa",
+		playerName = "Tsukasa",
 		shortDesc = "Short range laser instead of tears#Infinite Revival#Gets Game Over on Lunar Gauge depletion",
 		detailedDesc = "Tsukasa is mysterious girl from {{ColorBookofConquest}}Tonikaku Kawaii{{CR}} from Hata Kenjiro"
 		.. "#Shoots short range, spectral lasers"
@@ -87,7 +87,7 @@ wakaba.descriptions[desclang].characters = {
 		birthright = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge limit",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
-		playerName = "???(Tainted Tsukasa)",
+		playerName = "Tainted Tsukasa",
 		shortDesc = "Shift attack with Attack buttons#No invincibility frames",
 		detailedDesc = "???"
 		.. "#Cannot shoot tears, but her fairy, Murasame can use short range melee attack instead of her"
