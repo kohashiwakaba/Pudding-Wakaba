@@ -611,11 +611,20 @@ local function onRender()
 					lang = EID:getLanguage() or "en_us"
 					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en_us"].playernotes
 					if entrytables[currentlist[i].subtype] then
-						local playerID = currentlist[i].subtype
-						local entry = entrytables[currentlist[i].subtype]
-						local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
-						desc.Name = icon.." "..entry.name
-						desc.Description = entry.description
+						if entrytables[currentlist[i].subtype]._fromCharDesc then
+							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en_us"].characters
+							local playerID = currentlist[i].subtype
+							local entry = entrytables[currentlist[i].subtype]
+							local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
+							desc.Name = icon.." "..entry.playerName
+							desc.Description = entry.detailedDesc
+						else
+							local playerID = currentlist[i].subtype
+							local entry = entrytables[currentlist[i].subtype]
+							local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
+							desc.Name = icon.." "..entry.name
+							desc.Description = entry.description
+						end
 					else
 						local entry = entrytables[-666]
 						desc.Name = entry.name
@@ -639,10 +648,18 @@ local function onRender()
 					lang = EID:getLanguage() or "en_us"
 					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en_us"].playernotes
 					if entrytables[currentlist[i].subtype] then
-						local playerID = currentlist[i].subtype
-						local entry = entrytables[currentlist[i].subtype]
-						obj.Name = entry.name
-						extIcon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
+						if entry._fromCharDesc then
+							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en_us"].characters
+							local playerID = currentlist[i].subtype
+							local entry = entrytables[currentlist[i].subtype]
+							obj.Name = entry.playerName
+							extIcon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
+						else
+							local playerID = currentlist[i].subtype
+							local entry = entrytables[currentlist[i].subtype]
+							obj.Name = entry.name
+							extIcon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
+						end
 					else
 						local entry = entrytables[-666]
 						obj.Name = entry.name
@@ -703,7 +720,7 @@ local function onRender()
 						local englishName = desc.PermanentTextEnglish or EID:getObjectName(v.type, v.variant, convertedSub or v.subtype)
 						if v.type == wakaba.INVDESC_TYPE_PLAYER then
 							if wakaba.descriptions["en_us"].playernotes[v.subtype] then
-								englishName = wakaba.descriptions["en_us"].playernotes[v.subtype].name
+								englishName = wakaba.descriptions["en_us"].playernotes[v.subtype].name or wakaba.descriptions["en_us"].characters[v.subtype].playerName
 							else
 								englishName = ""
 							end

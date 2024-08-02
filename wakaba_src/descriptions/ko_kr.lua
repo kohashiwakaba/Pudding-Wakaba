@@ -2,25 +2,63 @@ local desclang = "ko_kr"
 
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthrightName = "생득권"
-wakaba.descriptions[desclang].birthright = {
+wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "{{ColorWakabaBless}}Wakaba{{CR}}",
-		description = "↑ 체력 상한 +1#{{AngelChance}} 천사방이 모든 층에서 항상 등장합니다.",
+		shortDesc = "유도 눈물을 발사합니다.",
+		detailedDesc = "와카바는 하라 유이 작품의 단편작 {{ColorLime}}와카바 걸{{CR}}의 주인공입니다."
+		.. "#좋은 아이템이 등장하며 유도성 눈물을 발사합니다."
+		.. "#{{AngelChance}} 와카바로 플레이 시 악마방이 등장하지 않습니다."
+		.. "#{{BrokenHeart}} 그녀의 외로운 과거로 인해, 최대 3칸의 체력까지 소지할 수 있습니다."
+		.. "#{{Pill}} 와카바로 플레이 시 행운 감소, 이동 속도 증가 알약이 등장하지 않습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} 고유 능력 : 와카바의 축복"
+		--.. "#"
+		.. "",
+		birthright = "↑ 체력 상한 +1#{{AngelChance}} 천사방이 모든 층에서 항상 등장합니다.",
 		queueDesc = "그녀의 순수함이 영원하기를...",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba{{CR}}",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
+		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#완전 관통 눈물을 발사합니다.#공격이 적의 방어를 무시합니다.",
+		detailedDesc = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
+		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
+		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 모든 판매 아이템이 소울하트를 요구하게 됩니다."
+		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
+		.. "#{{Pill}} 알트 와카바로 플레이 시 행운 증가, 이동 속도 감소 알약이 등장하지 않습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} 고유 능력 : 와카바의 숙명"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} 고유 능력 : 사랑먹이"
+		--.. "#"
+		.. "",
+		birthright = "{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis의 능력치 감소가 해제되며 공격력 감소 속도가 느려집니다.#폭발 및 지진파에 피해를 받지 않습니다.",
 		queueDesc = "폭발 피해 면역 + 식지 않는 흥분",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}Shiori",
-		description = "↑ 액티브 아이템 사용에 필요한 열쇠 개수가 절반으로 감소합니다. (최소 1)",
+		shortDesc = "직각 유도 눈물을 발사합니다.#액티브 아이템 사용에 열쇠를 소모합니다.#스테이지마다 랜덤 책을 부여받으며 {{ButtonRT}} 버튼으로 사용할 책을 교체할 수 있습니다.",
+		detailedDesc = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만이 아는 세계{{CR}}의 히로인 중 한명입니다."
+		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
+		.. "#{{Key}} 시오리는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
+		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
+		--.. "#"
+		.. "",
+		birthright = "↑ 액티브 아이템 사용에 필요한 열쇠 개수가 절반으로 감소합니다. (최소 1)",
 		queueDesc = "좀 더 똑똑해진 문학소녀",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 미네르바의 오라 효과 적용:"
+		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#직각 유도 눈물을 발사합니다.#액티브 아이템 사용에 열쇠를 소모합니다.",
+		detailedDesc = "The Minerva: 미네르바는 시오리에 깃든 여신이며 유피테르 6자매 중 한명입니다."
+		.. "#작지만 유피테르 자매의 날개로 날 수 있습니다."
+		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
+		.. "#{{Key}} 미네르바는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
+		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 고유 능력 : 미네르바의 오라"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} 고유 능력 : 함락의 책"
+		--.. "#"
+		.. "",
+		birthright = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 미네르바의 오라 효과 적용:"
 		.. "#↓ {{DamageSmall}}공격력 -0.5 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#↑ {{TearsSmall}}연사 배율 x2.3 (중첩 불가)"
@@ -30,32 +68,85 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
 		playerName = "{{ColorPink}}Tsukasa",
-		description = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Lunar Stone 게이지의 상한이 200%로 증가합니다.",
+		shortDesc = "사거리가 짧은 레이저를 발사합니다.#무한정 부활할 수 있으나 푸른 게이지 소진 시 게임이 종료됩니다.",
+		detailedDesc = "츠카사는 하타 켄지로 작품의 {{ColorBookofConquest}}어쨌든 귀여워{{CR}}의 주인공입니다."
+		.. "#사거리가 짧은 레이저를 발사합니다. 레이저는 지형을 관통합니다."
+		.. "#영원과도 같은 시간을 보낸 츠카사는 고독한 추억을 보내왔습니다. 츠카사는 아이작의 번제:Rebirth까지의 아이템만 획득할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} 고유 능력 : 월석"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} 고유 능력 : 집중"
+		--.. "#"
+		.. "",
+		birthright = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Lunar Stone 게이지의 상한이 200%로 증가합니다.",
 		queueDesc = "역사와 달빛을 제대로 보다",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		playerName = "???(Tainted Tsukasa)",
-		description = "눈물 공격을 할 수 있게 됩니다.#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Flash Shift는 카드/알약 슬롯으로 이동되며 사용 시 이동방향으로 기존의 돌진 공격을 합니다.",
+		shortDesc = "{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} 공격할 수 없으며 모든 공격을 무라사메가 대신해줍니다.",
+		detailedDesc = "The Phoenix: ???는 황제의 명을 거역하고 불사의 몸을 만들어주는 비약을 마신 이름 없는 소녀입니다."
+		.. "#이 소녀와 같은 시간을 보내온 정령이 함께해 주기에 눈물을 발사할 수 없지만 정령이 대신 공격할 수 있습니다."
+		.. "#생명의 비약을 마셨지만 부작용으로 {{ColorRed}}피격 무적 시간이 존재하지 않습니다.{{CR}}"
+		.. "#생명의 비약의 효과로 그녀는 매우 빠른 속도로 체력을 회복할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} 고유 능력 : 생명의 비약"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} 고유 능력 : 무라사메(패시브)"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} 고유 능력 : 플래시 시프트"
+		--.. "#"
+		.. "",
+		birthright = "눈물 공격을 할 수 있게 됩니다.#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Flash Shift는 카드/알약 슬롯으로 이동되며 사용 시 이동방향으로 기존의 돌진 공격을 합니다.",
 		queueDesc = "비극적 시련을 극복하다",
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "{{ColorRicher}}Richer",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다. (Inventory Descriptions 참조)",
+		shortDesc = "저주를 특별하게 바꿉니다.#피해량을 절반으로 줄여주며 장신구의 효과가 강화됩니다.",
+		detailedDesc = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
+		.. "#그녀의 부드러움 덕분에 받는 피해를 절반으로 줄여주며, 장신구의 효과가 강화됩니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 고유 능력 : 달콤달콤 카탈로그"
+		--.. "#"
+		.. "",
+		birthright = "{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog의 효과가 다음 사용 전까지 유지됩니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Rabbit Ribbon의 특수 저주에서 발생하는 패널티가 제거됩니다. (Inventory Descriptions 참조)",
 		queueDesc = "더욱 달콤한 향기",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
-		description = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
+		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#저주를 특별하게 바꿉니다.#패시브 아이템을 획득할 수 없으며 획득을 시도하면 아이템 불꽃으로 바뀝니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame 사용 시 선택한 아이템 불꽃을 흡수합니다. ({{ButtonRT}}로 흡수할 아이템 선택)",
+		detailedDesc = "The Miko: 무척이나 달콤한 몸을 가진 그녀는 결국 민감해지기 마련입니다."
+		.. "#일반적인 방법으로 패시브 아이템을 획득할 수 없으며 획득을 시도할 경우 아이템이 불꽃으로 변합니다."
+		.. "#액티브 아이템은 기존과 같은 방식으로 획득할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} 고유 능력 : 워터 플레임"
+		--.. "#"
+		.. "",
+		birthright = "#변환된 불꽃의 방어력이 2배로 증가합니다.#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame으로 흡수 시 흡수한 아이템을 추가로 획득합니다.",
 		queueDesc = "점점 따뜻해져가는 달콤함",
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		playerName = "{{ColorRira}}Rira",
-		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Nerf Gun의 약화효과가 더 오래 지속됩니다.#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki의 공격이 더 강해지며 치마키의 눈물이 레이저로 대체됩니다.",
+		shortDesc = "{{WakabaAqua}} 확률적으로 침수 공격을 합니다.#The Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다.",
+		detailedDesc = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
+		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
+		.. "#{{WakabaAqua}} 확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
+		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
+		--.. "#"
+		.. "",
+		birthright = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Nerf Gun의 약화효과가 더 오래 지속됩니다.#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki의 공격이 더 강해지며 치마키의 눈물이 레이저로 대체됩니다.",
 		queueDesc = "아주 살짝만 더 야릇하게?",
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
-		description = "#토끼 와드 영향권 외부에 있어도 체력이 감소하지 않습니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Ward 사용 시 추가로 그 방의 가장 가까운 아이템 하나를 복사합니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 토끼 와드가 적을 향해 레이저 공격을 합니다.",
+		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#보물방의 아이템이 장신구로 바뀝니다.#{{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다.#클리어한 방 진입 시 토끼 와드의 충전량을 1칸 충전합니다.#The Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다.",
+		detailedDesc = "The Aqua: 리라의 달콤한 페로몬은 그녀도 모르게 퍼져갑니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} {{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다."
+		.. "#{{AquaTrinket}} 모든 보물방의 아이템이 {{ColorCyan}}아쿠아 장신구{{CR}}로 바뀝니다."
+		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} 고유 능력 : 아주르 리르"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 고유 능력 : 토끼 와드"
+		--.. "#"
+		.. "",
+		birthright = "#토끼 와드 영향권 외부에 있어도 체력이 감소하지 않습니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Ward 사용 시 추가로 그 방의 가장 가까운 아이템 하나를 복사합니다.#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 토끼 와드가 적을 향해 레이저 공격을 합니다.",
 		queueDesc = "리본 가르기",
 	},
 }
@@ -3104,133 +3195,40 @@ wakaba.descriptions[desclang].playernotes = {
 
 	},
 
-
-
 	-- wakaba
 	[wakaba.Enums.Players.WAKABA] = {
-		-- icon = "",
-		name = "와카바",
-	description = "와카바는 하라 유이 작품의 단편작 {{ColorLime}}와카바 걸{{CR}}의 주인공입니다."
-		.. "#좋은 아이템이 등장하며 유도성 빙결 눈물을 발사합니다."
-		.. "#{{AngelChance}} 와카바로 플레이 시 악마방이 등장하지 않습니다."
-		.. "#{{BrokenHeart}} 그녀의 외로운 과거로 인해, 대부분의 체력이 소지 불가능 하트로 채워져 있습니다."
-		.. "#{{Pill}} 와카바로 플레이 시 행운 감소, 이동 속도 증가 알약이 등장하지 않습니다."
-	.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} 고유 능력 : 와카바의 축복"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
-		-- icon = "",
-		name = "와카바(알트)",
-		description = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
-		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
-		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 모든 판매 아이템이 소울하트를 요구하게 됩니다."
-		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
-		.. "#{{Pill}} 알트 와카바로 플레이 시 행운 증가, 이동 속도 감소 알약이 등장하지 않습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} 고유 능력 : 와카바의 숙명"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} 고유 능력 : 사랑먹이"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- shiori
 	[wakaba.Enums.Players.SHIORI] = {
-		-- icon = "",
-		name = "시오리",
-		description = "시오리는 와카기 타마키 작품의 {{ColorBookofConquest}}신만이 아는 세계{{CR}}의 히로인 중 한명입니다."
-		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
-		.. "#{{Key}} 시오리는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
-		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
-		-- icon = "",
-		name = "미네르바",
-		description = "The Minerva: 미네르바는 시오리에 깃든 여신이며 유피테르 6자매 중 한명입니다."
-		.. "#작지만 유피테르 자매의 날개로 날 수 있습니다."
-		.. "#공격력이 매우 낮으나 직각 유도 눈물을 발사합니다."
-		.. "#{{Key}} 미네르바는 액티브 아이템 사용 시 열쇠를 소모합니다. 배터리 획득 시 열쇠 개수가 충전됩니다."
-		.. "#{{GoldenKey}} 상점에서 판매 중인 배터리는 황금열쇠로 변환되며 황금열쇠 획득 시 열쇠 6개로 변환됩니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} 고유 능력 : 시오리의 책"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 고유 능력 : 미네르바의 오라"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} 고유 능력 : 함락의 책"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- tsukasa
 	[wakaba.Enums.Players.TSUKASA] = {
-		-- icon = "",
-		name = "츠카사",
-		description = "츠카사는 하타 켄지로 작품의 {{ColorBookofConquest}}어쨌든 귀여워{{CR}}의 주인공입니다."
-		.. "#사거리가 짧은 레이저를 발사합니다. 레이저는 지형을 관통합니다."
-		.. "#영원과도 같은 시간을 보낸 츠카사는 고독한 추억을 보내왔습니다. 츠카사는 아이작의 번제:Rebirth까지의 아이템만 획득할 수 있습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} 고유 능력 : 월석"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} 고유 능력 : 집중"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
-		-- icon = "",
-		name = "???",
-		description = "The Phoenix: ???는 황제의 명을 거역하고 불사의 몸을 만들어주는 비약을 마신 이름 없는 소녀입니다."
-		.. "#이 소녀와 같은 시간을 보내온 정령이 함께해 주기에 눈물을 발사할 수 없지만 정령이 대신 공격할 수 있습니다."
-		.. "#생명의 비약을 마셨지만 부작용으로 {{ColorRed}}피격 무적 시간이 존재하지 않습니다.{{CR}}"
-		.. "#생명의 비약의 효과로 그녀는 매우 빠른 속도로 체력을 회복할 수 있습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} 고유 능력 : 생명의 비약"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} 고유 능력 : 무라사메(패시브)"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} 고유 능력 : 플래시 시프트"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- richer
 	[wakaba.Enums.Players.RICHER] = {
-		-- icon = "",
-		name = "리셰",
-		description = "리셰는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
-		.. "#그녀의 부드러움 덕분에 받는 피해를 절반으로 줄여주며, 장신구의 효과가 강화됩니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} 고유 능력 : 달콤달콤 카탈로그"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
-		-- icon = "",
-		name = "리셰(알트)",
-		description = "The Miko: 무척이나 달콤한 몸을 가진 그녀는 결국 민감해지기 마련입니다."
-		.. "#일반적인 방법으로 패시브 아이템을 획득할 수 없으며 획득을 시도할 경우 아이템이 불꽃으로 변합니다."
-		.. "#액티브 아이템은 기존과 같은 방식으로 획득할 수 있습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} 고유 능력 : 토끼 리본"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} 고유 능력 : 겨울의 알비레오"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} 고유 능력 : 워터 플레임"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- rira
 	[wakaba.Enums.Players.RIRA] = {
-		-- icon = "",
-		name = "리라",
-		description = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
-		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
-		.. "#{{WakabaAqua}} 확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
-		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} 고유 능력 : 너프 건"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
-		-- icon = "",
-		name = "리라(알트)",
-		description = "The Aqua: 리라의 달콤한 페로몬은 그녀도 모르게 퍼져갑니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} {{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다."
-		.. "#{{AquaTrinket}} 모든 보물방의 아이템이 {{ColorCyan}}아쿠아 장신구{{CR}}로 바뀝니다."
-		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} 고유 능력 : 아주르 리르"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} 고유 능력 : 토끼 와드"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 
 }

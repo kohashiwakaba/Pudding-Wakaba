@@ -18,46 +18,137 @@ function wakaba:EIDCond_IsHiddenEnabled()
 end
 
 wakaba.descriptions[desclang] = {}
-wakaba.descriptions[desclang].birthright = {
+wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "{{ColorWakabaBless}}Wakaba",
-		description = "↑ {{Heart}} Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in all floors",
+		shortDesc = "Homing Tears#Only Quality {{Quality2}} or higher items can spawn",
+		detailedDesc = "Wakaba is a kawaii, and lucky girl from anime {{ColorLime}}Wakaba Girl{{CR}} from Hara Yui"
+		.. "#She can get good items, and shoots homing tears"
+		.. "#{{AngelChance}} She only can see Angel rooms"
+		.. "#{{BrokenHeart}} Due to her lonely past, she only can have maximum of total 3 hearts"
+		.. "#{{Pill}} Wakaba is unable to see Speed up, Luck Down pills"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Wakaba starts with Wakaba's Blessing"
+		--.. "#"
+		.. "",
+		birthright = "↑ {{Heart}} Extends one Heart limit#{{AngelChance}} 100% chance to find an Angel Room in {{ColorLime}}ALL{{CR}} floors",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}Tainted Wakaba",
-		description = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
+		shortDesc = "Can't have Red Hearts#Attacks pierce enemies' defense#Spectral, Piercing Tears",
+		detailedDesc = "Tainted Wakaba is the lonely, and unlucky past version"
+		.. "#She {{ColorRed}}CANNOT{{CR}} get good items, and shoots spectral and piercing tears"
+		.. "#{{DevilChance}} She only can see Devil rooms. All collectibles for sale requires Soul Hearts"
+		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
+		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} Tainted Wakaba starts with Eat Heart"
+		--.. "#"
+		.. "",
+		birthright = "↑ {{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Wakaba's Nemesis no longer decreases all stats, and reduces damage fading rate#Explosions and crush impacts immunity",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}Shiori",
-		description = "↑ Halves key consume when using active item(Minimum 1)",
+		shortDesc = "Directional tears#Consume Keys to use active items#Cycle which book to use with {{ButtonRT}}",
+		detailedDesc = "Shiori is a librarian from {{ColorBookofConquest}}The World God only Knows{{CR}} from Wakagi Tamaki"
+		.. "#Low damage but shoots directional tears"
+		.. "#{{Key}} Shiori requires keys to use active items. Lil' Batteries recover Shiori's Keys"
+		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Shiori starts with Book of Shiori"
+		--.. "#"
+		.. "",
+		birthright = "↑ Halves key consume when using active item(Minimum 1)",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}Minerva{{CR}}(Tainted Shiori)",
-		description = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
+		shortDesc = "Can't have Red Hearts#Directional tears#Consume Keys to use active items",
+		detailedDesc = "Minerva is one of Jupiter Sisters, who is attached with Shiori"
+		.. "#She is little girl, but her wings allow her to fly"
+		.. "#Low damage but shoots directional tears"
+		.. "#{{Key}} Minerva requires keys to use active items. Lil' Batteries recover Minerva's Keys"
+		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Minerva starts with Book of Shiori"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Minerva starts with Minerva's Aura"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Minerva starts with Book of Conquest"
+		--.. "#"
+		.. "",
+		birthright = "{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Allows aura activation#The number of required keys for {{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}}Book of Conquest and active items are reduced (Minimum 1)#↑ All stats up for current number of conquered enemies",
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
 		playerName = "{{ColorPink}}Tsukasa",
-		description = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge limit",
+		shortDesc = "Short range laser instead of tears#Infinite Revival#Gets Game Over on Lunar Gauge depletion",
+		detailedDesc = "Tsukasa is mysterious girl from {{ColorBookofConquest}}Tonikaku Kawaii{{CR}} from Hata Kenjiro"
+		.. "#Shoots short range, spectral lasers"
+		.. "#Due to her eternities, Tsukasa only can see items from ~Rebirth, and modded items"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Tsukasa starts with Lunar Stone"
+		.. "#!!! Tsukasa dies when Lunar Stone disappears"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} Tsukasa starts with Concentration"
+		--.. "#"
+		.. "",
+		birthright = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge limit",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		playerName = "???(Tainted Tsukasa)",
-		description = "Allows Tainted Tsukasa to shoot tears#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Flash Shift ability is now moved into pocket item slot.",
+		shortDesc = "Shift attack with Attack buttons#No invincibility frames",
+		detailedDesc = "???"
+		.. "#Cannot shoot tears, but her fairy, Murasame can use short range melee attack instead of her"
+		.. "#Due to side effect from Elixir of Life, she {{ColorRed}}DOES NOT HAVE INVINCIBILITY FRAMES{{CR}}"
+		.. "#Due to Elixir of Life, she recovers health for fast speed"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} Tainted Tsukasa starts with Elixir of Life"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} Tainted Tsukasa starts with Murasame"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Tainted Tsukasa starts with Flash Shift"
+		--.. "#"
+		.. "",
+		birthright = "Allows Tainted Tsukasa to shoot tears#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Flash Shift ability is now moved into pocket item slot.",
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "Richer",
-		description = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties, or gives advantages from Rabbit Ribbon curses (can be checked through Inventory Descriptions)",
+		shortDesc = "Converts curses#Boosts trinkets#Reduces damage taken",
+		detailedDesc = "Richer is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
+		.. "#Her soft body allows make to take damage by half, and make trinket boosts"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"
+		--.. "#"
+		.. "",
+		birthright = "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Sweets Catalog effect is now persistent until next catalog usage#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Removes penalties, or gives advantages from Rabbit Ribbon curses (can be checked through Inventory Descriptions)",
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted Richer",
-		description = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame Grants additional passive per absorbed flame",
+		shortDesc = "Can't have Red Hearts#Converts curses#Touching an item pedestal turns it into an item wisp#The HUD has a preview of your item wisps#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame absorbs selected item wisp into actual item#Cycle which item wisp to absorb with {{ButtonRT}}",
+		detailedDesc = "Tainted Richer has a sweet body that is too delicate"
+		.. "#She cannot get any passives normally, any attempt to get one will change it into item Wisp"
+		.. "#Actives can be collected normally"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Tainted Richer starts with Rabbit Ribbon"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Tainted Richer starts with Water-Flame"
+		--.. "#"
+		.. "",
+		birthright = "#More durable Flames#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Water-Flame Grants additional passive per absorbed flame",
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		playerName = "Rira",
-		description = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
+		shortDesc = "Chance to shoot Aqua tears#Can use Donation mechanics while in white fire state",
+		detailedDesc = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
+		.. "#She seems very shy, but actually, is really ecchi"
+		.. "#{{WakabaAqua}} She shoots Aqua tears that aquafies enemies that take more damage from some sources"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
+		--.. "#"
+		.. "",
+		birthright = "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Weakness from Nerf Gun lasts longer#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Chimaki becomes more stronger",
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
-		description = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
+		shortDesc = "Can't have Red Hearts#Treasure rooms are converted into Trinkets#Being outside of Rabbey Ward area slowly drains health#Can charge Rabbey Ward even on non-hostile room#Can use Donation mechanics while in white fire state",
+		detailedDesc = "Tainted Rira's tempting aqua body, emits sweet pheromones even without knowing it"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} She needs to be nearby {{ColorRira}}Rabbey Ward{{CR}}rooms, otherwise drains health slowly"
+		.. "#{{AquaTrinket}} All Treasure room items are converted into {{ColorCyan}}Aqua Trinkets{{CR}}"
+		.. "#She can use donation mechanics even when in Lost state"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} Tainted Rira starts with Azure Rir"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Tainted Rira starts with Rabbey Ward"
+		--.. "#"
+		.. "",
+		birthright = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
 	},
 }
 wakaba.descriptions[desclang].collectibles = {
@@ -2775,129 +2866,38 @@ wakaba.descriptions[desclang].playernotes = {
 
 	-- wakaba
 	[wakaba.Enums.Players.WAKABA] = {
-		-- icon = "",
-		name = "Wakaba",
-		description = "Wakaba is a kawaii, and lucky girl from anime {{ColorLime}}Wakaba Girl{{CR}} from Hara Yui"
-		.. "#She can get good items, and shoots homing and ice tears"
-		.. "#{{AngelChance}} She only can see Angel rooms"
-		.. "#{{BrokenHeart}} Due to her lonely past, she only can have maximum of total 3 hearts"
-		.. "#{{Pill}} Wakaba is unable to see Speed up, Luck Down pills"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Wakaba starts with Wakaba's Blessing"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
-		-- icon = "",
-		name = "Tainted Wakaba",
-		description = "Tainted Wakaba is the lonely, and unlucky past version"
-		.. "#She {{ColorRed}}CANNOT{{CR}} get good items, and shoots spectral and piercing tears"
-		.. "#{{DevilChance}} She only can see Devil rooms. All collectibles for sale requires Soul Hearts"
-		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
-		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} Tainted Wakaba starts with Eat Heart"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- shiori
 	[wakaba.Enums.Players.SHIORI] = {
-		-- icon = "",
-		name = "Shiori",
-		description = "Shiori is a librarian from {{ColorBookofConquest}}The World God only Knows{{CR}} from Wakagi Tamaki"
-		.. "#Low damage but shoots directional tears"
-		.. "#{{Key}} Shiori requires keys to use active items. Lil' Batteries recover Shiori's Keys"
-		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Shiori starts with Book of Shiori"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
-		-- icon = "",
-		name = "Minerva",
-		description = "Minerva is one of Jupiter Sisters, who is attached with Shiori"
-		.. "#She is little girl, but her wings allow her to fly"
-		.. "#Low damage but shoots directional tears"
-		.. "#{{Key}} Minerva requires keys to use active items. Lil' Batteries recover Minerva's Keys"
-		.. "#{{GoldenKey}} Batteries in Shops are automatically converted into Golden Keys. Obtaining Golden Key automatically converts into 6 keys"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_SHIORI.."}} Minerva starts with Book of Shiori"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} Minerva starts with Minerva's Aura"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.BOOK_OF_CONQUEST.."}} Minerva starts with Book of Conquest"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- tsukasa
 	[wakaba.Enums.Players.TSUKASA] = {
-		-- icon = "",
-		name = "Tsukasa",
-		description = "Tsukasa is mysterious girl from {{ColorBookofConquest}}Tonikaku Kawaii{{CR}} from Hata Kenjiro"
-		.. "#Shoots short range, spectral lasers"
-		.. "#Due to her eternities, Tsukasa only can see items from ~Rebirth, and modded items"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Tsukasa starts with Lunar Stone"
-		.. "#!!! Tsukasa dies when Lunar Stone disappears"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} Tsukasa starts with Concentration"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
-		-- icon = "",
-		name = "Tainted Tsukasa",
-		description = "???"
-		.. "#Cannot shoot tears, but her fairy, Murasame "
-		.. "#Due to side effect from Elixir of Life, she {{ColorRed}}DOES NOT HAVE INVINCIBILITY FRAMES{{CR}}"
-		.. "#Due to Elixir of Life, she recovers health for fast speed"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.ELIXIR_OF_LIFE.."}} Tainted Tsukasa starts with Elixir of Life"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.MURASAME.."}} Tainted Tsukasa starts with Murasame"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.FLASH_SHIFT.."}} Tainted Tsukasa starts with Flash Shift"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- richer
 	[wakaba.Enums.Players.RICHER] = {
-		-- icon = "",
-		name = "Richer",
-		description = "Richer is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
-		.. "#Her soft body allows make to take damage by half, and make trinket boosts"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Richer starts with Rabbit Ribbon"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.SWEETS_CATALOG.."}} Richer starts with Sweets Catalog"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
-		-- icon = "",
-		name = "Tainted Richer",
-		description = "Tainted Richer has a sweet body that is too delicate"
-		.. "#She cannot get any passives normally, any attempt to get one will change it into item Wisp"
-		.. "#Actives can be collected normally"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}} Tainted Richer starts with Rabbit Ribbon"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WINTER_ALBIREO.."}} Tainted Richer starts with The Winter Albireo"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WATER_FLAME.."}} Tainted Richer starts with Water-Flame"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	-- rira
 	[wakaba.Enums.Players.RIRA] = {
-		-- icon = "",
-		name = "Rira",
-		description = "Rira is a kawaii maid girl from {{ColorLime}}Love's Sweet Garnish{{CR}} from Miyasaka Miyu, Miyasaka Naco"
-		.. "#She seems very shy, but actually, is really ecchi"
-		.. "#{{WakabaAqua}} She shoots Aqua tears that aquafies enemies that take more damage from some sources"
-		.. "#She can use donation mechanics even when in Lost state"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} Rira starts with Chimaki"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.NERF_GUN.."}} Rira starts with Nerf Gun"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
-		-- icon = "",
-		name = "Tainted Rira",
-		description = "Tainted Rira's tempting aqua body, emits sweet pheromones even without knowing it"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} She needs to be nearby {{ColorRira}}Rabbey Ward{{CR}}rooms, otherwise drains health slowly"
-		.. "#{{AquaTrinket}} All Treasure room items are converted into {{ColorCyan}}Aqua Trinkets{{CR}}"
-		.. "#She can use donation mechanics even when in Lost state"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} Tainted Rira starts with Azure Rir"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Tainted Rira starts with Rabbey Ward"
-		--.. "#"
-		.. "",
+		_fromCharDesc = true,
 	},
 
 }

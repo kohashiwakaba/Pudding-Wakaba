@@ -354,9 +354,16 @@ if EID then
 				for itemID, appendText in pairs(wakabaDescTables.goldtrinkets) do
 					EID.descriptions[lang].goldenTrinketEffects[itemID] = { appendText[1], appendText[2], appendText[3] }
 				end
-				for playerType, birthrightdesc in pairs(wakabaDescTables.birthright) do
-					local desc = wakaba:IsLunatic() and birthrightdesc.lunatic or birthrightdesc.description
-					EID:addBirthright(playerType, desc, birthrightdesc.playerName, lang)
+				for playerType, chardesc in pairs(wakabaDescTables.characters) do
+					-- EID Character desc
+					local csdesc = wakaba:IsLunatic() and chardesc.shortLunatic or chardesc.shortDesc
+					EID:addCharacterInfo(playerType, csdesc, chardesc.playerName, lang)
+					-- Invdesc Character Desc
+					local cldesc = wakaba:IsLunatic() and chardesc.detailedLunatic or chardesc.detailedDesc
+					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, chardesc.playerName, cldesc, lang)
+					-- Birthright Desc
+					local brdesc = wakaba:IsLunatic() and chardesc.birthrightLunatic or chardesc.birthright
+					EID:addBirthright(playerType, brdesc, chardesc.playerName, lang)
 				end
 				for cardid, carddesc in pairs(wakabaDescTables.cards) do
 					if not carddesc.targetMod then
@@ -508,8 +515,10 @@ if EID then
 					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, desc, lang)
 				end
 				for playertype, playerdesc in pairs(wakabaDescTables.playernotes) do
-					local desc = wakaba:IsLunatic() and playerdesc.lunatic or playerdesc.description
-					EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, playerdesc.name, desc, lang)
+					if not playerdesc._fromCharDesc then
+						local desc = wakaba:IsLunatic() and playerdesc.lunatic or playerdesc.description
+						EID:addEntity(wakaba.INVDESC_TYPE_PLAYER, wakaba.INVDESC_VARIANT, playertype, playerdesc.name, desc, lang)
+					end
 				end
 				for curseid, cursedesc in pairs(wakabaDescTables.curses) do
 					local desc = wakaba:IsLunatic() and cursedesc.lunatic or cursedesc.description
@@ -785,7 +794,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function (_, player) ---@
 	if (i_queueNow[initSeed] ~= nil) then
 		if i_queueNow[initSeed].ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 			local playerType = player:GetPlayerType()
-			for playerID, itemdesc in pairs(descTable.birthright) do
+			for playerID, itemdesc in pairs(descTable.characters) do
 				if (playerType == playerID and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil) then
 					local itemName = descTable.birthrightName
 					local queueDesc = itemdesc.queueDesc or i_queueNow[initSeed].Description
@@ -850,9 +859,9 @@ function wakaba:RegisterBirthrightLegacyItemNames()
 		if (i_queueNow[initSeed] ~= nil) then
 			if i_queueNow[initSeed].ID == CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 				local playerType = player:GetPlayerType()
-				if descTable.birthright[playerType] and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil then
+				if descTable.characters[playerType] and i_queueNow[initSeed]:IsCollectible() and i_queueLastFrame[initSeed] == nil then
 					local itemName = descTable.birthrightName
-					local queueDesc = descTable.birthright[playerType].queueDesc or i_queueNow[initSeed].Description
+					local queueDesc = descTable.characters[playerType].queueDesc or i_queueNow[initSeed].Description
 					wakaba.G:GetHUD():ShowItemText(itemName, queueDesc)
 				end
 			end

@@ -25,10 +25,10 @@ function wakaba:ConvertItemNameLocalization(forceLang)
 	if not descTable then return end
 
 	-- Birthright
-	if descTable.birthright then
+	if descTable.characters then
 		for _, playerType in pairs(wakaba.Enums.Players) do
 			local pConfig = EntityConfig.GetPlayer(playerType)
-			if pConfig and descTable.birthright[playerType] then
+			if pConfig and descTable.characters[playerType] then
 				-- TODO : Insert Birthright desc here
 			end
 		end

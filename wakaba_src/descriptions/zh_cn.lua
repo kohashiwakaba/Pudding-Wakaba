@@ -1,28 +1,36 @@
 local desclang = "zh_cn"
 
 wakaba.descriptions[desclang] = {}
-wakaba.descriptions[desclang].birthright = {
+wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "{{ColorWakabaBless}}若叶",
-		description =
+		shortDesc = "",
+		detailedDesc = "",
+		birthright =
 		"↑ {{Heart}}增加一个心上限#{{AngelChance}} 100%打开天使房",
 		queueDesc = "真正纯洁",
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "{{ColorWakabaNemesis}}里若叶",
-		description = "↑ {{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "↑ {{Collectible" ..
 			wakaba.Enums.Collectibles.WAKABAS_NEMESIS ..
 			"}}若叶的宿敌不再降低所有的属性，并且减少伤害衰减的速度#免疫爆炸和碰撞的影响",
 		queueDesc = "免疫爆炸+可控狂暴",
 	},
 	[wakaba.Enums.Players.SHIORI] = {
 		playerName = "{{ColorBookofShiori}}汐宫",
-		description = "↑ 钥匙被消耗时触发主动道具(最小为 1)",
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "↑ 钥匙被消耗时触发主动道具(最小为 1)",
 		queueDesc = "追求知识",
 	},
 	[wakaba.Enums.Players.SHIORI_B] = {
 		playerName = "{{ColorCyan}}密涅瓦{{CR}}(Tainted 汐宫)",
-		description = "{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "{{Collectible" ..
 			wakaba.Enums.Collectibles.MINERVA_AURA ..
 			"}} 一直激活光环# {{Collectible" ..
 			wakaba.Enums.Collectibles.BOOK_OF_CONQUEST ..
@@ -31,19 +39,25 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.TSUKASA] = {
 		playerName = "{{ColorPink}}司",
-		description = "让司找到胎衣 ~ 忏悔的物品#↑ 延长 {{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "让司找到胎衣 ~ 忏悔的物品#↑ 延长 {{Collectible" ..
 			wakaba.Enums.Collectibles.LUNAR_STONE .. "}}月亮石能量的最大上限",
 		queueDesc = "明亮的月光",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		playerName = "???(Tainted 司)",
-		description = "让里司能够发射眼泪#{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "让里司能够发射眼泪#{{Collectible" ..
 			wakaba.Enums.Collectibles.FLASH_SHIFT .. "}} 闪移能力现在被移动到口袋物品槽.",
 		queueDesc = "克服悲痛审判",
 	},
 	[wakaba.Enums.Players.RICHER] = {
 		playerName = "璃贝",
-		description = "#{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "#{{Collectible" ..
 			wakaba.Enums.Collectibles.SWEETS_CATALOG ..
 			"}} 甜品目录的效果现在会持续到下一次使用目录为止"
 			..
@@ -54,13 +68,17 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RICHER_B] = {
 		playerName = "Tainted 璃贝",
-		description = "#更耐用的火焰#{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "#更耐用的火焰#{{Collectible" ..
 			wakaba.Enums.Collectibles.WATER_FLAME .. "}} 水中焰每吸收一个火焰就会给予额外的被动效果",
 		queueDesc = "双倍火力",
 	},
 	[wakaba.Enums.Players.RIRA] = {
 		playerName = "莉良",
-		description = "#{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "#{{Collectible" ..
 			wakaba.Enums.Collectibles.NERF_GUN ..
 			"}}热火枪的弱化持续时间更长#{{Collectible" ..
 			wakaba.Enums.Collectibles.CHIMAKI .. "}} 小棕会变得更强",
@@ -68,7 +86,9 @@ wakaba.descriptions[desclang].birthright = {
 	},
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "里莉良",
-		description = "#生命值不再在区域外流失#{{Collectible" ..
+		shortDesc = "",
+		detailedDesc = "",
+		birthright = "#生命值不再在区域外流失#{{Collectible" ..
 			wakaba.Enums.Collectibles.RABBEY_WARD ..
 			"}} 在新房间兔兔衣柜有双倍充能速度#{{Collectible" ..
 			wakaba.Enums.Collectibles.RABBEY_WARD ..
