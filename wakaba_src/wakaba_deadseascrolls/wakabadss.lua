@@ -623,6 +623,27 @@ local wakabadirectory = {
 				tooltip = {strset = {'grid columns','for list','of items','','default = 6'}},
 			},
 			{
+				str = 'init position',
+				choices = {"character", "collectible", "collectible_modded", "trinket"},
+				setting = 1,
+				variable = 'InvDescInitPos',
+				load = function()
+					local c = wakaba.state.forcevoid.invinitcursor
+					if c == "character" then return 1 end
+					if c == "collectible" then return 2 end
+					if c == "collectible_modded" then return 3 end
+					if c == "trinket" then return 4 end
+				end,
+				store = function(var)
+					-- TODO lazy
+					if var == 1 then wakaba.state.options.invpassivehistory = "character" end
+					if var == 2 then wakaba.state.options.invpassivehistory = "collectible" end
+					if var == 3 then wakaba.state.options.invpassivehistory = "collectible_modded" end
+					if var == 4 then wakaba.state.options.invpassivehistory = "trinket" end
+				end,
+				tooltip = {strset = {'initial cursor', 'position in', 'inventory','descriptions'}}
+			},
+			--[[ {
 				str = 'show curses',
 				choices = {'true', 'false'},
 				setting = 1,
@@ -706,7 +727,7 @@ local wakabadirectory = {
 					wakaba.state.options.invpocketitems = (var == 1)
 				end,
 				tooltip = {strset = {'show','pocket items','in','inventory','descriptions'}}
-			},
+			}, ]]
 		},
 	},
 	hud_setting = {

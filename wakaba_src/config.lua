@@ -617,7 +617,31 @@ if MCM then
 			}
 		}
 	)
+	local initPositions = {"character", "collectible", "collectible_modded", "trinket"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(initPositions, wakaba.state.options.invinitcursor)
+			end,
+			Minimum = 1,
+			Maximum = 4,
+			ModifyBy = 1,
+			Display = function()
+				return "Initial cursor: " .. wakaba.state.options.invinitcursor
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invinitcursor = initPositions[current]
+			end,
+			Info = {
+				"Initial cursor position on list show (Default = character)",
+			}
+		}
+	)
 
+--[[
 	MCM.AddSetting(
 		"Pudding & Wakaba",
 		"General",
@@ -722,7 +746,7 @@ if MCM then
 			end,
 			Info = {"Show Cards/Pills in Inventory Descriptions."}
 		}
-	)
+	) ]]
 	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddSetting(
 		"Pudding & Wakaba",

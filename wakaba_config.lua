@@ -127,6 +127,7 @@ local config = {
 	invlistmode = "list",
 	invgridcolumn = 6,
 	invpassivehistory = false,
+	invinitcursor = "character",
 
 	-- Found HUD options
 	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
