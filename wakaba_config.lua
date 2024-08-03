@@ -118,6 +118,7 @@ local config = {
 	q2icon = 22,
 	q3icon = 23,
 	q4icon = 24,
+	q5icon = 12,
 	invplayerinfos = true,
 	invcurses = true,
 	invcollectibles = true,
