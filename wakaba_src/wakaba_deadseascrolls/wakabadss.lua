@@ -97,8 +97,8 @@ local function getScreenCenterPosition()
 	return getScreenBottomRight() / 2
 end
 
-local DSSInitializerFunction = include("wakaba_src.wakaba_deadseascrolls.dssmenucore")
-local dssmod = DSSInitializerFunction(DSSModName, DSSCoreVersion, MenuProvider)
+local dssmenucore = include("wakaba_src.wakaba_deadseascrolls.dssmenucore")
+local dssmod = dssmenucore.init(DSSModName, MenuProvider)
 
 local NOTE1_RENDER_OFFSET = Vector(-116, -27)
 local NOTE2_RENDER_OFFSET = Vector(-32, -27)
@@ -225,6 +225,7 @@ local wakabadirectory = {
 			-- allow locked items
 			{
 				str = 'allow locked items',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'AllowLockedItems',
@@ -243,6 +244,7 @@ local wakabadirectory = {
 			-- charge bar align
 			{
 				str = 'charge bar align',
+				fsize = 2,
 				choices = {'left', 'right'},
 				variable = "ChargebarAlign",
 				setting = 1,
@@ -261,6 +263,7 @@ local wakabadirectory = {
 			-- hud alpha
 			{
 				str = 'hud alpha',
+				fsize = 2,
 				min = 0,
 				max = 100,
 				increment = 1,
@@ -284,6 +287,7 @@ local wakabadirectory = {
 			-- instant vintage
 			{
 				str = 'instant vintage',
+				fsize = 2,
 				-- A keybind option lets you bind a key!
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
@@ -309,6 +313,7 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 			{
 				str = 'holy mantle',
+				fsize = 2,
 				-- If "min" and "max" are set without "slider", you've got yourself a number option!
 				-- It will allow you to scroll through the entire range of numbers from "min" to "max", incrementing by "increment"
 				min = -1,
@@ -336,6 +341,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'holy card',
+				fsize = 2,
 				min = -1,
 				max = 100,
 				increment = 1,
@@ -347,12 +353,11 @@ local wakabadirectory = {
 				store = function(var)
 					wakaba.state.options.stackableholycard = var
 				end,
-				tooltip = {strset = {'max stacks', 'for holy card,','wooden cross,','elixir of life,','and','mystic crystal'}},
+				tooltip = {strset = {'max stacks', 'for holy card,','wooden cross'}},
 			},
-			{str = 'elixir of life, and mystic crystal', fsize = 1, nosel = true},
-			{str = 'limits to 5 regardless of this option', fsize = 1, nosel = true},
 			{
 				str = 'blanket',
+				fsize = 2,
 				min = -1,
 				max = 100,
 				increment = 1,
@@ -368,6 +373,7 @@ local wakabadirectory = {
 			},
 			{
 				str = "wakaba's blessing",
+				fsize = 2,
 				min = -1,
 				max = 100,
 				increment = 1,
@@ -391,6 +397,7 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 			{
 				str = 'dogma',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'DogmaBlanket',
@@ -408,6 +415,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'beast',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'BeastBlanket',
@@ -442,11 +450,16 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'notify which','item wisp is','turned off'}}
 			},
-			--{str = 'Elixir of Life, and Mystic Crystal', fsize = 3, nosel = true},
 			{str = '', fsize = 1, nosel = true},
 			-- custom sounds
 			{
+				str = '-custom sounds-',
+				nosel = true,
+				glowcolor = 3
+			},
+			{
 				str = 'custom item sounds',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'CustomItemSound',
@@ -462,9 +475,9 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'custom item','sound from','pudding & wakaba','items'}}
 			},
-			-- custom sounds
 			{
 				str = 'custom hurt sounds',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'CustomHurtSound',
@@ -482,7 +495,7 @@ local wakabadirectory = {
 			},
 			{
 					str = 'custom sounds volume',
-
+					fsize = 2,
 					-- The "slider" tag allows you to make a button a slider, with notches that are transparent / opaque depending on if they're filled.
 					slider = true,
 					-- Increment determines how much the value of the slider changes with each notch
@@ -514,9 +527,9 @@ local wakabadirectory = {
 			},
 			{str = 'press toggle key to enter list', fsize = 1, nosel = true},
 			{str = 'press up/down for scroll', fsize = 1, nosel = true},
-			{str = '', fsize = 2, nosel = true},
 			{
-				str = 'keybind option',
+				str = 'list key',
+				fsize = 2,
 				-- A keybind option lets you bind a key!
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
@@ -532,6 +545,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'switch key',
+				fsize = 2,
 				-- A keybind option lets you bind a key!
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
@@ -547,6 +561,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'history mode',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'InvDescHistory',
@@ -567,6 +582,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'list offset',
+				fsize = 2,
 				min = 100,
 				max = 600,
 				increment = 10,
@@ -581,7 +597,8 @@ local wakabadirectory = {
 				tooltip = {strset = {'right offset','for list','of items','','default = 200'}},
 			},
 			{
-				str = 'display mode',
+				str = 'initial display mode',
+				fsize = 2,
 				choices = {'list', 'grid'},
 				setting = 1,
 				variable = 'InvDescDisplay',
@@ -599,6 +616,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'grid columns',
+				fsize = 2,
 				min = 3,
 				max = 10,
 				increment = 1,
@@ -610,124 +628,33 @@ local wakabadirectory = {
 				store = function(var)
 					wakaba.state.options.invgridcolumn = var
 				end,
-				displayif = function(btn, item, tbl)
-					if item and item.buttons then
-						for _, btn in ipairs(item.buttons) do
-							if btn.str == 'display mode' and btn.setting == 2 then
-								return true
-							end
-						end
-					end
-					return false
-				end,
 				tooltip = {strset = {'grid columns','for list','of items','','default = 6'}},
 			},
 			{
-				str = 'init position',
+				str = 'init cursor position',
+				fsize = 2,
 				choices = {"character", "collectible", "collectible_modded", "trinket"},
 				setting = 1,
 				variable = 'InvDescInitPos',
 				load = function()
-					local c = wakaba.state.forcevoid.invinitcursor
-					if c == "character" then return 1 end
-					if c == "collectible" then return 2 end
-					if c == "collectible_modded" then return 3 end
-					if c == "trinket" then return 4 end
+					local c = wakaba.state.options.invinitcursor
+					if not c or c == "character" then return 1
+					elseif c == "collectible" then return 2
+					elseif c == "collectible_modded" then return 3
+					elseif c == "trinket" then return 4
+					end
 				end,
 				store = function(var)
 					-- TODO lazy
-					if var == 1 then wakaba.state.options.invpassivehistory = "character" end
-					if var == 2 then wakaba.state.options.invpassivehistory = "collectible" end
-					if var == 3 then wakaba.state.options.invpassivehistory = "collectible_modded" end
-					if var == 4 then wakaba.state.options.invpassivehistory = "trinket" end
+					if var == 1 then wakaba.state.options.invinitcursor = "character"
+					elseif var == 2 then wakaba.state.options.invinitcursor = "collectible"
+					elseif var == 3 then wakaba.state.options.invinitcursor = "collectible_modded"
+					elseif var == 4 then wakaba.state.options.invinitcursor = "trinket"
+					else
+					end
 				end,
 				tooltip = {strset = {'initial cursor', 'position in', 'inventory','descriptions'}}
 			},
-			--[[ {
-				str = 'show curses',
-				choices = {'true', 'false'},
-				setting = 1,
-				variable = 'InvDescCurses',
-				load = function()
-					if wakaba.state.options.invcurses then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.invcurses = (var == 1)
-				end,
-				tooltip = {strset = {'show curses in','inventory','descriptions'}}
-			},
-			{
-				str = 'show collectibles',
-				choices = {'true', 'false'},
-				setting = 1,
-				variable = 'InvDescCollectibles',
-				load = function()
-					if wakaba.state.options.invcollectibles then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.invcollectibles = (var == 1)
-				end,
-				tooltip = {strset = {'show','collectibles','in','inventory','descriptions'}}
-			},
-			{
-				str = 'priority actives',
-				choices = {'true', 'false'},
-				setting = 1,
-				variable = 'InvDescActives',
-				load = function()
-					if wakaba.state.options.invactives then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.invactives = (var == 1)
-				end,
-				tooltip = {strset = {'show','active items','first in','inventory','descriptions'}}
-			},
-			{
-				str = 'show trinkets',
-				choices = {'true', 'false'},
-				setting = 1,
-				variable = 'InvDescTrinkets',
-				load = function()
-					if wakaba.state.options.invtrinkets then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.invtrinkets = (var == 1)
-				end,
-				tooltip = {strset = {'show','trinkets','in','inventory','descriptions'}}
-			},
-			{
-				str = 'show cards/pills',
-				choices = {'true', 'false'},
-				setting = 1,
-				variable = 'InvDescTrinkets',
-				load = function()
-					if wakaba.state.options.invpocketitems then
-						return 1
-					else
-						return 2
-					end
-				end,
-				store = function(var)
-					wakaba.state.options.invpocketitems = (var == 1)
-				end,
-				tooltip = {strset = {'show','pocket items','in','inventory','descriptions'}}
-			}, ]]
 		},
 	},
 	hud_setting = {
@@ -735,6 +662,7 @@ local wakabadirectory = {
 		buttons = {
 			{
 				str = 'hit counter',
+				fsize = 2,
 				choices = {"don't show", "penalties only", "all"},
 				setting = 1,
 				variable = 'HUDHitCounter',
@@ -747,7 +675,8 @@ local wakabadirectory = {
 				tooltip = {strset = {''}}
 			},
 			{
-				str = 'room no.',
+				str = 'room number',
+				fsize = 2,
 				choices = {"don't show", "number only", "full string", "combined with name"},
 				setting = 1,
 				variable = 'HUDRoomNumber',
@@ -761,6 +690,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room name',
+				fsize = 2,
 				choices = {"don't show", "name scroll", "name only", "full string"},
 				setting = 1,
 				variable = 'HUDRoomName',
@@ -774,6 +704,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room difficulty',
+				fsize = 2,
 				choices = {"don't show", "difficulty only", "full string", "combined with weight"},
 				setting = 1,
 				variable = 'HUDRoomDifficulty',
@@ -787,6 +718,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'room weight',
+				fsize = 2,
 				choices = {"don't show", "weight only", "full string"},
 				setting = 1,
 				variable = 'HUDRoomWeight',
@@ -809,7 +741,8 @@ local wakabadirectory = {
 
 			-- T.Lost starts Wakaba's Uniform : TRUE/false
 			{
-				str = 'uniform for t.lost',
+				str = 'uniform for tainted lost',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'LostUniform',
@@ -830,7 +763,8 @@ local wakabadirectory = {
 			},
 			-- T.Eden starts with Sticky Note : TRUE/false
 			{
-				str = 'sticky for t.eden',
+				str = 'sticky for tainted eden',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'EdenSticky',
@@ -860,6 +794,7 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 			{
 				str = 'clover chest chance',
+				fsize = 2,
 				min = 0,
 				max = 100,
 				increment = 0.5,
@@ -891,6 +826,7 @@ local wakabadirectory = {
 
 			{
 				str = 'modes',
+				fsize = 2,
 				choices = wakaba.shiorimodestringsdss,
 				setting = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS + 1,
 				variable = 'ShioriModes',
@@ -930,6 +866,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'books per floor',
+				fsize = 2,
 				min = 1,
 				max = 10,
 				increment = 1,
@@ -947,7 +884,8 @@ local wakabadirectory = {
 				tooltip = {strset = {'number of','books','shiori can','start','each floor','','default = 3'}},
 			},
 			{
-				str = 'min quality',
+				str = 'minimum quality',
+				fsize = 2,
 				min = 0,
 				max = 4,
 				increment = 1,
@@ -968,7 +906,8 @@ local wakabadirectory = {
 				tooltip = {strset = {'minimum','quality for','books','','default = 0'}},
 			},
 			{
-				str = 'max quality',
+				str = 'maximum quality',
+				fsize = 2,
 				min = 0,
 				max = 4,
 				increment = 1,
@@ -990,6 +929,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'shiori valut chance',
+				fsize = 2,
 				min = 0,
 				max = 100,
 				increment = 0.5,
@@ -1014,6 +954,7 @@ local wakabadirectory = {
 
 			{
 				str = 'concentration key',
+				fsize = 2,
 				-- A keybind option lets you bind a key!
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
@@ -1030,6 +971,7 @@ local wakabadirectory = {
 
 			{
 				str = 'show lunar percent',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'TsukasaLunarPercentShow',
@@ -1047,6 +989,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'easter egg chance',
+				fsize = 2,
 				min = 0,
 				max = 100,
 				increment = 0.5,
@@ -1070,6 +1013,7 @@ local wakabadirectory = {
 			{str = '', fsize = 2, nosel = true},
 			{
 				str = 'crystal restock chance',
+				fsize = 2,
 				min = 0,
 				max = 100,
 				increment = 0.5,
@@ -1094,6 +1038,7 @@ local wakabadirectory = {
 
 			{
 				str = 'swap stats',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 2,
 				variable = 'RiraStatSwap',
@@ -1117,6 +1062,7 @@ local wakabadirectory = {
 
 			{
 				str = 'chimaki sounds',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'RiraChimakiSound',
@@ -1134,6 +1080,7 @@ local wakabadirectory = {
 			},
 			{
 				str = 'rabbey ward effects',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'RiraRabbeyWardRender',
@@ -1150,7 +1097,8 @@ local wakabadirectory = {
 				tooltip = {strset = {'render effects','for', 'rabbey ward'}}
 			},
 			{
-				str = 't.rira full pica',
+				str = 'tainted rira full pica',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'RiraFullPica',
@@ -1435,34 +1383,44 @@ local wakabadirectory = {
 		buttons = {
 			{
 				str = 'boss',
+				fsize = 2,
 				choices = {"none", "random", "bluebaby", "lamb", "megasatan", "delirium", "mother", "beast"},
 				setting = 2,
 				variable = 'BossDest',
 			},
+			{str = "", fsize = 1, nosel = true},
 			{
 				str = 'health',
+				fsize = 2,
 				choices = {"default", "500,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"},
 				setting = 2,
 				variable = 'BossDestHealth',
 			},
+			{str = "", fsize = 1, nosel = true},
 			{
 				str = 'damocles start',
+				fsize = 2,
 				choices = {'none', 'vanilla', 'lunar', 'vintage'},
 				setting = 1,
 				variable = 'BossDestDamocles',
 			},
+			{str = "", fsize = 1, nosel = true},
 			{
 				str = 'lunatic mode',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 2,
 				variable = 'BossDestLunatic',
 			},
+			{str = "", fsize = 1, nosel = true},
 			{
 				str = 'lock until clear',
+				fsize = 2,
 				choices = {'true', 'false'},
 				setting = 1,
 				variable = 'BossDestLock',
 			},
+			{str = "", fsize = 2, nosel = true},
 			{
 				str = "roll!!!",
 				action = "resume",
@@ -1494,6 +1452,7 @@ local wakabadirectory = {
 					DeadSeaScrollsMenu.CloseMenu(true)
 				end
 			},
+			{str = "", fsize = 2, nosel = true},
 			{
 				str = "clear",
 				action = "resume",
@@ -1591,32 +1550,17 @@ local wakabadirectory = {
 				tooltip = {strset = {'drops','a trinket','at the','starting room'}}
 			},
 			{
-					str = 'entering mausoleum/gehenna ii',
+					str = 'starting room of mausoleum/gehenna ii',
 					nosel = true,
 					fsize = 1,
 			},
 			{
-					str = 'while holding/gulping the trinket',
+					str = 'spawns bring me there trinket',
 					nosel = true,
 					fsize = 1,
 			},
 			{
-					str = "will replace mom to dad's note",
-					nosel = true,
-					fsize = 1,
-			},
-			{
-					str = "the trinket will be",
-					nosel = true,
-					fsize = 1,
-			},
-			{
-					str = "spawn on starting room of",
-					nosel = true,
-					fsize = 1,
-			},
-			{
-					str = "mines/ashpit ii or mausoleum/gehenna i",
+					str = "that replaces mom to dad's note",
 					nosel = true,
 					fsize = 1,
 			},
