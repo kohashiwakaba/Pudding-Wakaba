@@ -212,7 +212,7 @@ function wakaba:EIDItemReminder_HandleCharacters(player)
 	if not EID:ItemReminderCanAddMoreToView() then return end
 	local t = player:GetPlayerType()
 	local entry = wakaba.descriptions["en_us"].playernotes[t] or wakaba.descriptions["en_us"].playernotes[-666]
-	local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..t) ~= EID.InlineIcons["ERROR"] and "{{Player"..t.."}}" or "{{CustomTransformation}}")
+	local icon = EID:getIcon("Player"..t) ~= EID.InlineIcons["ERROR"] and "{{Player"..t.."}}" or "{{CustomTransformation}}"
 	EID:ItemReminderAddDescription(player, -997, -1, t, icon)
 end
 

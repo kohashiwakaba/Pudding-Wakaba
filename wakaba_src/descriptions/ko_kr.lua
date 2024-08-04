@@ -1,6 +1,7 @@
 local desclang = "ko_kr"
 
 wakaba.descriptions[desclang] = {}
+wakaba.descriptions[desclang].birthright = {}
 wakaba.descriptions[desclang].birthrightName = "생득권"
 wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {

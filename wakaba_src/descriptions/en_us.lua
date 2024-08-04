@@ -18,6 +18,7 @@ function wakaba:EIDCond_IsHiddenEnabled()
 end
 
 wakaba.descriptions[desclang] = {}
+wakaba.descriptions[desclang].birthright = {}
 wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "Wakaba",

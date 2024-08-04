@@ -1,6 +1,7 @@
 local desclang = "zh_cn"
 
 wakaba.descriptions[desclang] = {}
+wakaba.descriptions[desclang].birthright = {}
 wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.WAKABA] = {
 		playerName = "{{ColorWakabaBless}}若叶",
