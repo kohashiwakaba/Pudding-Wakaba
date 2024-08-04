@@ -72,7 +72,7 @@ function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
 		if hasStopWatch then 
 			num = num + 1 
 		end
-		returndata.newDamage = newDamage * (1 + (num * 0.2))
+		returndata.newDamage = newDamage * (1 + (num * 0.25))
 		returndata.sendNewDamage = true
 		--returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
 	end
