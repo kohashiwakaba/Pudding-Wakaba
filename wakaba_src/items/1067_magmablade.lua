@@ -49,24 +49,50 @@ if REPENTOGON then
 			dmgMult = 3
 		end
 
+		if weapon:GetWeaponType() == WeaponType.WEAPON_SPIRIT_SWORD then
+			local multiParams = player:GetMultiShotParams(WeaponType.WEAPON_TEARS)
+		elseif weapon:GetWeaponType() == WeaponType.WEAPON_BONE then
+			local multiParams = player:GetMultiShotParams(WeaponType.WEAPON_TECH_X)
+			local range = math.max(player.TearRange // 80, 1)
+			local sPos = player.Position + Vector(0,0)
+			for dl = 1, range do
+				wakaba:scheduleForUpdate(function ()
+					for i = 0, multiParams:GetNumTears() - 1 do
+						local posVel = player:GetMultiShotPositionVelocity(i, WeaponType.WEAPON_TECH_X, dirVec, 1, multiParams)
+						local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_JET, sub, sPos + (posVel.Velocity * dl * 40), Vector.Zero, player):ToEffect()
+						effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+						effect.CollisionDamage = player.Damage * dmgMult
+					end
+				end, dl * 2)
+			end
+		end
+
 		if fires >= parNum then
 			fires = -fireAmount
 			if weapon:GetWeaponType() == WeaponType.WEAPON_SPIRIT_SWORD then
 				weapon:SetCharge(200000)
-				for i = 0, 7 do
-					wakaba:scheduleForUpdate(function()
-						local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_WAVE, sub, player.Position, Vector.Zero, player):ToEffect()
-						effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
-						effect.Rotation = dirVec:GetAngleDegrees() + (i * 45)
-						effect.CollisionDamage = player.Damage * dmgMult
-					end, i * 2)
+				local range = math.max(player.TearRange // 80, 1)
+				local sPos = player.Position + Vector(0,0)
+				for dl = 1, range do
+					wakaba:scheduleForUpdate(function ()
+						for i = 0, 11 do
+							local addPos = Vector.FromAngle(dirVec:GetAngleDegrees() + (i * 30)) * dl * 40
+							local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_JET, sub, sPos + addPos, Vector.Zero, player):ToEffect()
+							effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+							effect.CollisionDamage = player.Damage * dmgMult
+						end
+					end, dl * 2)
 				end
+			elseif weapon:GetWeaponType() == WeaponType.WEAPON_KNIFE then
+				dirVec = weapon:GetDirection()
+			elseif weapon:GetWeaponType() == WeaponType.WEAPON_BONE then
+
 			else
 				wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.MagmaBlade)
 			end
-			local multiParams = player:GetMultiShotParams(WeaponType.WEAPON_TEARS)
-			for i = 1, multiParams:GetNumTears() do
-				local posVel = player:GetMultiShotPositionVelocity(i, WeaponType.WEAPON_TEARS, dirVec, 1, multiParams)
+			local multiParams = player:GetMultiShotParams(weapon:GetWeaponType())
+			for i = 0, multiParams:GetNumTears() - 1 do
+				local posVel = player:GetMultiShotPositionVelocity(i, weapon:GetWeaponType(), dirVec, 1, multiParams)
 				local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_WAVE, sub, player.Position, posVel.Velocity, player):ToEffect()
 				effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
 				effect.Rotation = posVel.Velocity:GetAngleDegrees()
@@ -76,6 +102,30 @@ if REPENTOGON then
 		player:GetData().w_magmaCount = fires
 	end
 	wakaba:AddCallback(ModCallbacks.MC_POST_TRIGGER_WEAPON_FIRED, wakaba.TriggerWeaponFire_MagmaBlade)
+
+	---@param knife EntityKnife
+	function wakaba:KnifeUpdate_MagmaBlade(knife)
+		if knife.SpawnerEntity and knife.SpawnerEntity:ToPlayer() then
+			local player = knife.SpawnerEntity:ToPlayer()
+			if not canActivateMagmaBlade(player) then return end
+			local isFlying = knife:IsFlying()
+			if isFlying and knife.FrameCount % 4 == 0 then
+				local sub = 0
+				local dmgMult = 0.4
+				if player.TearFlags & TearFlags.TEAR_HOMING > 0 then
+					sub = 1
+				end
+				if player.TearFlags & TearFlags.TEAR_BURN > 0 then
+					dmgMult = 1
+				end
+				local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.FIRE_JET, sub, knife.Position, Vector.Zero, player):ToEffect()
+				effect:AddEntityFlags(EntityFlag.FLAG_FRIENDLY)
+				effect.CollisionDamage = player.Damage * dmgMult
+
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_MagmaBlade)
 
 	function wakaba:NegateDamage_MagmaBlade(player, amount, flags, source, cooldown)
 		if canActivateMagmaBlade(player) then
