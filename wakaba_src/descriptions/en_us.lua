@@ -230,6 +230,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! Cannot use the item if there are too many friendly enemies!"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		carBattery = "{{BlinkYellowGreen}}Also makes non-major bosses friendly",
 		--wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Makes a non-boss enemy friendly on contact",
 	},
 	[wakaba.Enums.Collectibles.MINERVA_AURA] = {
@@ -298,6 +299,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Can be used up to 3 times until recharged"
 		.. "#!!! Familiars do not shift, Beware when using orbitals or wisps"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.CONCENTRATION] = {
 		itemName = "Concentration",
@@ -338,6 +340,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Grants a random weapon for current room"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "The Winter Albireo",
@@ -363,6 +366,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#On use, spawns 2 copy wisps of the nearest pedestal"
 		.. "#Only can copy item that can be spawned by {{Collectible712}}Lemegeton"
 		.. "{{CR}}",
+		carBattery = {2, 4},
 	},
 	[wakaba.Enums.Collectibles.NERF_GUN] = {
 		itemName = "Nerf Gun",
@@ -370,6 +374,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Using the item and shooting in a direction fires multiple nerf tears"
 		.. "#{{Weakness}} Nerfed enemies are {{Slow}} slowed and take double damage for 10 seconds"
 		.. "{{CR}}",
+		carBattery = "More nerf tears",
 	},
 	[wakaba.Enums.Collectibles.CHIMAKI] = {
 		itemName = "Chimaki",
@@ -391,6 +396,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Damage, Tears up inside revealed rooms"
 		.. "#{{SoulHeart}} Clearing room inside Rabbit Ward recovers 1 soul heart"
 		.. "{{CR}}",
+		carBattery = {"a Rabbit Ward", "2{{CR}} Rabbit Wards"},
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		itemName = "Azure Rir",
@@ -426,6 +432,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner ring x1: {{CR}}#Invincible Wisp#Cannot shoot tears",
 		void = "No longer guarantees {{Quality3}}/{{Quality4}} when voided",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
 		itemName = "Book of Forgotten",
@@ -437,6 +444,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		belial = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
 		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed",
+		carBattery = {1, 2},
 	},
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D-Cup Ice Cream",
@@ -471,7 +479,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Shotspeed}} +0.1 Shot Speed"
 		.. "#↑ {{Range}} +0.85 Range"
 		.. "#↑ {{Damage}} +0.5 Damage"
-		.. "#{{ColorRainbow}} Rooms will be randomly colorized slightly"
+		.. "#{{ColorRainbow}}Rooms will be randomly colorized slightly"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -561,6 +569,7 @@ wakaba.descriptions[desclang].collectibles = {
 		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
 		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
 		void = "Can't change stored content anymore, copying stored content is changed to void usage",
+		carBattery = "Stored content is used on active usage",
 	},
 	[wakaba.Enums.Collectibles.EYE_OF_CLOCK] = {
 		itemName = "Eye of Clock",
@@ -611,6 +620,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		wisp = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect",
+		carBattery = "Adds 1 more choice per pedestal",
 	},
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		itemName = "D6 Chaos",
@@ -619,6 +629,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Rerolled items cycle for insane speed"
 		.. "{{CR}}",
 		wisp = "{{ColorLime}}Inner Ring x1: {{CR}}No special effect",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.LIL_MOE] = {
 		itemName = "Lil Moe",
@@ -639,6 +650,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#Homing tears",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
 		itemName = "Shiori's Bottle of Runes",
@@ -648,6 +660,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		belial = "50% chance to get Black rune instead of random one#{{ColorWakabaNemesis}}Invokes Black Rune effect for 10% chance",
 		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#{{Rune}}15% chance for enemy to drop rune on kill#{{Rune}}Spawns a rune when destroyed",
+		carBattery = {" a ", " 2 ", "random rune", "{{CR}}random runes"},
 	},
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
 		itemName = "Micro Doppelganger",
@@ -657,6 +670,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns MinIsaacs when destroyed",
+		carBattery = {12, 24, 3, 6, 1, 2},
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
 		itemName = "Book of Silence",
@@ -666,6 +680,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		belial = "Invokes {{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts effect and damages all enemies per erased projectiles",
 		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Immune to projectiles#Erases nearby projectiles",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "Vintage Threat",
@@ -704,7 +719,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Detonate Isaac's tears currently on the screen, causing each one to explode (Max 15)."
 		.. "#Exploded tear shots Brimstone laser at 4 directions."
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		carBattery = "Explosions are Giga Bomb explosions",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN] = {
 		itemName = "Book of The Fallen",
@@ -723,10 +739,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Maijima Mythology",
 		description = ""
 		.. "#Random book active item effect"
-		--[[ .. "#!!! Following books can be activated:" ]]
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		wisp = "{{ColorOrange}}Outer Ring x1: {{CR}}#Spawns Unknown Bookmark when destroyed",
+		carBattery = {"Random book", "2{{CR}} Random book", "effect", "effects"},
 	},
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "Apollyon Crisis",
@@ -737,7 +753,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ Passive item: Small stat upgrade to a random stat"
 		.. "#Spawns an attack fly familiar for each consumed item"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		carBattery = "Spawns 1 more Abyss locust",
 	},
 	[wakaba.Enums.Collectibles.LIL_SHIVA] = {
 		itemName = "Lil Shiva",
@@ -773,7 +789,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#12.5% chance to reroll items into items that Isaac already holds"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.GUPPY .. "",
 	},
 	[wakaba.Enums.Collectibles.LIL_MAO] = {
 		itemName = "Lil Mao",
@@ -794,7 +809,8 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Spawns a Lil Clot (max 4)"
 		.. "#Heals all spawned Lil Clots' health by 2"
 		.. "{{CR}}",
-	transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		carBattery = {" a ", " 2 ", "Lil Clot ", "{{CR}} Lil Clots ", 2, 4},
 	},
 	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "Balance ecnalaB",
@@ -806,12 +822,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while Isaac has same Keys and Bombs",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "Richer's Flipper",
 		description = ""
 		.. "#Converts {{Bomb}}/{{Key}} and {{Card}}/{{Pill}} each other"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_NECKLACE] = {
 		itemName = "Richer's Necklace",
@@ -888,6 +906,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Duplicates and smelts current held trinket"
 		.. "{{CR}}",
 		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#Spawns a trinket when destroyed",
+		carBattery = "Doubles smelted trinket",
 	},
 	[wakaba.Enums.Collectibles.SYRUP] = {
 		itemName = "Syrup",
@@ -913,6 +932,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Makes giant explosion that destroys all objects, opens all doors, and damages all enemies in the current room"
 		.. "#Pulls all pickups to explosion point on fading"
 		.. "{{CR}}",
+		carBattery = "Doubles explosion damage",
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		itemName = "Magma Blade",
@@ -933,6 +953,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		belial = "↑ {{Damage}} +25% Damage multiplier while in cloaked state",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "Red Corruption",
@@ -965,7 +986,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Pill}} When used, Randomizes a pill effect for current run and spawns changed pill"
 		.. "#{{Pill}} Extra pills can be spawned on room clears while held"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = {
 		itemName = "Curse of The Tower 2",
@@ -974,14 +995,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Upon taking damage or losing Holy Mantle shields, spawns 6 golden troll bombs around the room"
 		.. "#!!! Beware: All troll bombs are converted into Golden troll bombs if possible!"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
 		itemName = "Anti Balance",
 		description = ""
 		.. "{{Pill}} Identifies all pills#{{Pill}} All pills will be Horse pills"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
 	[wakaba.Enums.Collectibles.VENOM_INCANTATION] = {
 		itemName = "Venom Incantation",
@@ -1128,6 +1147,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Card}} Triggers a random card effect each use"
 		.. "{{CR}}",
+		carBattery = {" a ", " 2 ", "effect", "{{CR}}effects"},
 	},
 	[wakaba.Enums.Collectibles.TRIAL_STEW] = {
 		itemName = "Trial Stew",
@@ -1140,14 +1160,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Blood Donation machine (or similar), or Sacrifice rooms works normally"
 		.. "#Can only be used once per floor"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.POW_BLOCK] = {
 		itemName = "POW Block",
 		description = "{{Bomb}} +6 Bombs#Deals 275 split damage for all ground enemies#{{Bomb}} Costs 2 Bombs",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.MOD_BLOCK] = {
 		itemName = "MOd Block",
 		description = "{{Bomb}} +6 Bombs#Deals 333 split damage for all floating enemies#{{Bomb}} Costs 2 Bombs",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
 		itemName = "Secret Door",
@@ -1157,10 +1180,12 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = "Teleports to Starting room"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Other effects won't occur"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BRA] = {
 		itemName = "Rira's Bra",
 		description = "{{Collectible191}} Grants random tear effects for current room#Enemies with status effects take 25% more damage for current room",
+		carBattery = {25, 50},
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
