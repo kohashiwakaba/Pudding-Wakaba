@@ -1247,6 +1247,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "리라의 코트",
 		description = "사용 시 The Lost(영혼) 상태가 되며 캐릭터의 위치에 흰색 모닥불을 설치합니다.#{{Blank}} (Downpour/Dross 2 스테이지의 흰색 불에 닿은 효과와 동일)#방 클리어 후 다른 방 진입 시 상태가 복원됩니다.",
+		carBattery = {"설치합니다", "2개 {{CR}}설치합니다"},
 		queueDesc = "그렇게 뚫어지게 쳐다보시면 부끄러워요...",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
@@ -1354,6 +1355,7 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = "사용 시 시작 방으로 이동합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 반드시 시작 방 이동 효과만 발동)"
 		.. "{{CR}}",
+		carBattery = "무효과",
 		queueDesc = "긴급 탈출구",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_BRA] = {
@@ -1369,6 +1371,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "사용 시 피격 시 효과를 2회 발동, 2초간 게임 속도가 느려진 뒤;"
 		.. "#2초간 캐릭터의 {{SpeedSmall}}/{{DamageSmall}}/{{TearsSmall}}를 크게 증가시킵니다."
 		.. "{{CR}}",
+		carBattery = "능력치 증폭 2배",
 		queueDesc = "홍당무처럼 달려가 달려가",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
@@ -1380,6 +1383,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{LuckSmall}}행운 +2"
 		.. "#방 입장 시 혹은 사용 시 위의 4개 중 하나가 번갈아가며 변경됩니다."
 		.. "{{CR}}",
+		carBattery = "무효과",
 		queueDesc = "충전식 증폭기",
 	},
 	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
@@ -1417,6 +1421,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "영원한 꿈",
 		belial = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
 		void = "흡수 시 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card를 대신 소환",
+		carBattery = "무효과",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "에덴의 접착제",

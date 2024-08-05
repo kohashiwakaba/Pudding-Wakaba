@@ -1189,7 +1189,8 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_COAT] = {
 		itemName = "Rira's Coat",
-		description = "Activates white fire effect#Installs white fireplace on Isaac's position",
+		description = "Activates white fire effect#Installs a white fireplace on Isaac's position",
+		carBattery = {" a ", " 2 ", "white fireplace", "{{CR}}white fireplaces"},
 	},
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
@@ -1288,6 +1289,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Stops time for 2 seconds"
 		.. "#Greatly increases speed and fire rate for 2 seconds"
 		.. "{{CR}}",
+		carBattery = "Doubles stat boost",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE] = {
 		itemName = "Book of Amplitude",
@@ -1298,6 +1300,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Luck}} +2 Luck"
 		.. "#On use, or entering new room changes to next effect respectively"
 		.. "{{CR}}",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
 		itemName = "Bubble Bombs",
@@ -1331,6 +1334,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		belial = "↑ +4%p chance to drop {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card while held. No additional effect on use",
 		void = "Spawns {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card when voided",
+		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
