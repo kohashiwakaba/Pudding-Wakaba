@@ -241,6 +241,22 @@ wakaba.Enums.Trinkets = {
 	PINK_FORK = Isaac.GetTrinketIdByName("Pink Fork"),
 
 	HIGHEST_ID = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
+
+	-- Cursed Trinkets
+	CORRUPTED_CLOVER = Isaac.GetTrinketIdByName("Corrupted Clover"),
+	DARK_PENDANT = Isaac.GetTrinketIdByName("Dark Pendant"),
+	BROKEN_NECKLACE = Isaac.GetTrinketIdByName("Broken Necklace"),
+	LEAF_NEEDLE = Isaac.GetTrinketIdByName("Leaf Needle"),
+	RIRAS_HAIR = Isaac.GetTrinketIdByName("Rira's Hair"),
+	SPY_EYE = Isaac.GetTrinketIdByName("Spy Eye"),
+	FADED_MARK = Isaac.GetTrinketIdByName("Faded Mark"),
+	NEVERLASTING_BUNNY = Isaac.GetTrinketIdByName("Neverlasting Bunny"),
+	RIBBON_CAGE = Isaac.GetTrinketIdByName("Ribbon Cage"),
+	RIRAS_WORST_NIGHTMARE = Isaac.GetTrinketIdByName("Rira's Worst Nightmare"),
+	MASKED_SHOVEL = Isaac.GetTrinketIdByName("Masked Shovel"),
+	BROKEN_WATCH_2 = Isaac.GetTrinketIdByName("Broken Watch 2"),
+	ROUND_AND_ROUND = Isaac.GetTrinketIdByName("Round and Round"),
+	GEHENNA_ROCK = Isaac.GetTrinketIdByName("Gehenna Rock"),
 }
 
 --[[
