@@ -76,6 +76,7 @@ wakaba.Enums.Collectibles = {
 	RICHERS_BRA = Isaac.GetItemIdByName("Richer's Bra"),
 	KANAE_LENS = Isaac.GetItemIdByName("Kanae Lens"),
 	BOOK_OF_AMPLITUDE = Isaac.GetItemIdByName("Book of Amplitude"),
+	CLEAR_FILE = Isaac.GetItemIdByName("Clear File"),
 
 	-- Wakaba items
 	BOOK_OF_FORGOTTEN = Isaac.GetItemIdByName("Book of Forgotten"),
@@ -88,7 +89,10 @@ wakaba.Enums.Collectibles = {
 	LIL_WAKABA = Isaac.GetItemIdByName("Lil Wakaba"),
 	COUNTER = Isaac.GetItemIdByName("Counter"),
 	RETURN_POSTAGE = Isaac.GetItemIdByName("Return Postage"),
-	--HEALTH_REVERSAL = Isaac.GetItemIdByName("Health Reversal"),
+
+	NORNIR = Isaac.GetItemIdByName("Nornir"),
+	LAMP_GRIMORE = Isaac.GetItemIdByName("Lamp Grimore"),
+	ETOILIUM = Isaac.GetItemIdByName("Etoilium"),
 
 	-- Shiori items
 	BOOK_OF_FOCUS = Isaac.GetItemIdByName("Book of Focus"),
@@ -227,6 +231,7 @@ wakaba.Enums.Trinkets = {
 	ETERNITY_COOKIE = Isaac.GetTrinketIdByName("Eternity Cookie"),
 	REPORT_CARD = Isaac.GetTrinketIdByName("Richer's Report Card"),
 	RABBIT_PILLOW = Isaac.GetTrinketIdByName("Rabbit Pillow"),
+	SIGIL_OF_WAKABA = Isaac.GetTrinketIdByName("Sigil of Wakaba"),
 	SIGIL_OF_KAGUYA = Isaac.GetTrinketIdByName("Sigil of Kaguya"),
 	CANDY_OF_RICHER = Isaac.GetTrinketIdByName("Candy of Richer"),
 	CANDY_OF_RIRA = Isaac.GetTrinketIdByName("Candy of Rira"),

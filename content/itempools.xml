@@ -74,6 +74,7 @@
 		<Item Name="Richer's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
+		<Item Name="Clear File" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -184,6 +185,7 @@
 		<Item Name="Phantom Cloak" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Sweets Catalog" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Clear File" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.05"/>
 	</Pool>
 
 
@@ -460,6 +462,7 @@
 		<Item Name="Rira's Swimsuit" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.04" RemoveOn="0.04"/>
+		<Item Name="Clear File" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.05"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.1"/>

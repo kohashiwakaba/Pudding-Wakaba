@@ -642,6 +642,7 @@ wakaba.Callback = {
 	]]
 	-- ---
 	INVENTORY_DESCRIPTIONS_BASIC_ENTRIES = "WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES",
+	INVENTORY_DESCRIPTIONS_PRE_LOCK_INPUT = "WakabaCallbacks.INVENTORY_DESCRIPTIONS_PRE_LOCK_INPUT",
 	-- ---
 	-- EVALUATE_MAGNET_HEAVEN
 	-- ---
@@ -656,7 +657,7 @@ wakaba.Callback = {
 	-- - `ignoreObstructed` - boolean
 	--
 	-- ---
-	-- - Return true to make pulled by magnet, false to not. 
+	-- - Return true to make pulled by magnet, false to not.
 	-- - The last callback to return a valid return value wins out and overwrites previous callbacks' return values
 	-- ---
 	EVALUATE_MAGNET_HEAVEN = "WakabaCallbacks.EVALUATE_MAGNET_HEAVEN",

@@ -323,6 +323,18 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
+-- Clear File
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.CLEAR_FILE,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.CLEAR_FILE,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+	},
+})
 -- Richer Ticket
 Encyclopedia.AddCard({
 	Class = class,
@@ -415,36 +427,6 @@ Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
 	ID = wakaba.Enums.Collectibles.BOOK_OF_SHIORI_ROOM,
-	Hide = true,
-})
-Encyclopedia.AddTrinket({
-	Class = class,
-	ModName = class,
-	ID = Isaac.GetTrinketIdByName("Candy of Richer"),
-	Hide = true,
-})
-Encyclopedia.AddTrinket({
-	Class = class,
-	ModName = class,
-	ID = Isaac.GetTrinketIdByName("Candy of Rira"),
-	Hide = true,
-})
-Encyclopedia.AddTrinket({
-	Class = class,
-	ModName = class,
-	ID = Isaac.GetTrinketIdByName("Candy of Ciel"),
-	Hide = true,
-})
-Encyclopedia.AddTrinket({
-	Class = class,
-	ModName = class,
-	ID = Isaac.GetTrinketIdByName("Candy of Koron"),
-	Hide = true,
-})
-Encyclopedia.AddTrinket({
-	Class = class,
-	ModName = class,
-	ID = Isaac.GetTrinketIdByName("Caramella Candy Bag"),
 	Hide = true,
 })
 -- Broken Toolbox

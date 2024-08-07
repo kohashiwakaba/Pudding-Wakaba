@@ -1403,6 +1403,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "곡괭이 폭발 + 폭탄 5개",
 	},
+	[wakaba.Enums.Collectibles.CLEAR_FILE] = {
+		itemName = "클리어 파일",
+		description = ""
+		.. "#사용 시 가장 가까운 패시브 아이템과 캐릭터가 소지한 패시브 아이템 하나를 선택하여 맞바꿉니다."
+		.. "{{CR}}",
+		queueDesc = "운명을 뒤틀다",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""
@@ -3352,6 +3359,8 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}아쿠아 장신구 : 획득 시 자동으로 흡수됩니다.{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} 현재 스테이지에서의 배열 : "
+
+	EID.descriptions[desclang].ClearFileSelection = "Clear File 선택 항목"
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}토끼 와드 범위 증가"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1}로 범위 증가됨"

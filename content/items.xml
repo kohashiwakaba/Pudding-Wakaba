@@ -162,10 +162,12 @@
 	<passive id="125" description="Clear explosions +5 bombs" gfx="bubblebombs.png" name="Bubble Bombs" tags="summonable offensive noeden" quality="2" craftquality="2" bombs="5" hidden="true" achievement="9999"/>
 
 	<active id="126" description="Khala support" gfx="pylon.png" name="Pylon" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
-	<active id="127" description="Shift your destiny" gfx="clearfile.png" name="Clear File" tags="quest noeden" customtags="nometronome" maxcharges="2" quality="2" craftquality="4" hidden="true" achievement="9999"/>
+	<active id="127" description="Shift your destiny" gfx="clearfile.png" name="Clear File" tags="offensive nogreed" customtags="nometronome" maxcharges="2" quality="2" craftquality="4"/>
 
 	<!-- TR Wakaba Reserve -->
 	<active id="150" description="Embrace or Resist" gfx="nornir.png" name="Nornir" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
+	<passive id="151" description="???" gfx="lampgrimore.png" name="Lamp Grimore" tags="quest noeden" customtags="nometronome" quality="4" craftquality="4" hidden="true" achievement="9999"/>
+	<active id="152" description="Evolutionary Metal" gfx="etoilium.png" name="Etoilium" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
 	<!--  -->
 
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>
@@ -208,8 +210,7 @@
 	<!-- 원룸천사 아이템? -->
 	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->
 
-	<!-- <trinket name="Sigil of Wakaba" description="Weapon from Wealth" gfx="sigilofwakaba.png" hidden="true" achievement="9999"/> -->
-
+	<trinket name="Sigil of Wakaba" description="Return into Origin" gfx="sigilofwakaba.png" hidden="true" achievement="9999"/>
 	<trinket name="Sigil of Kaguya" description="Weapon from Moon" gfx="sigilofkaguya.png" hidden="true" achievement="9999"/>
 
 </items>

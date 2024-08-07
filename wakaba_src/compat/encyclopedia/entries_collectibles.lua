@@ -978,6 +978,14 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "RGON - Increases the chance to open the Devil Room or Angel Room after killing a boss by 20% while holding it"},
 		},
 	},
+	CLEAR_FILE = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, opens a list that contains Isaac's current held passives"},
+			{str = "Using again while on the list swaps nearby passive pedestal with selected item like Tainted Isaac."},
+			{str = "- Cannot use against actives or quest items"},
+		},
+	},
 	BUBBLE_BOMBS = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},

@@ -30,14 +30,14 @@ local class = "Pudding n Wakaba"
 -- Wakaba_B / Mother : Bitcoin II
 -- Wakaba_B / Beast : Wakaba's Nemesis [Starting item]
 
--- Wakaba_T / Quartet :
--- Wakaba_T / Duet :
--- Wakaba_T / MegaS :
--- Wakaba_T / Deli :
+-- Wakaba_T / Quartet : Lamp Grimore
+-- Wakaba_T / Duet : Essence of Wakaba
+-- Wakaba_T / MegaS : Wakaba's Seed
+-- Wakaba_T / Deli : Etoilium
 -- Wakaba_T / Gdier :
--- Wakaba_T / Mother :
+-- Wakaba_T / Mother : Sigil of Wakaba
 -- Wakaba_T / Beast :
--- Wakaba_T / Comp : Tree of Sepiroth [Starting item]
+-- Wakaba_T / Comp : Nornir [Starting item]
 
 --#region Wakaba
 -- Wakaba / Heart : Clover

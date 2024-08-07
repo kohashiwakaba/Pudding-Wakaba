@@ -1314,6 +1314,14 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "{{CR}}",
 		queueDesc = "可扩展爆炸+5个炸弹",
 	},
+	[wakaba.Enums.Collectibles.CLEAR_FILE] = { -- TODO
+		itemName = "Clear File",
+		description = ""
+		.. "#On use, swaps one of Isaac's held passives with nearest passive pedestal"
+		.. "#A list will appear for held passive selection"
+		.. "{{CR}}",
+		queueDesc = "Shift your destiny",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
 		description = ""

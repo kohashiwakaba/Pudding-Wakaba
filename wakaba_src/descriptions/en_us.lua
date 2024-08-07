@@ -1317,6 +1317,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Extra explosions deal 10 damage and does not harm Isaac"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.CLEAR_FILE] = {
+		itemName = "Clear File",
+		description = ""
+		.. "#On use, swaps one of Isaac's held passives with nearest passive pedestal"
+		.. "#A list will appear for held passive selection"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
@@ -3130,6 +3137,8 @@ if EID then
 	EID.descriptions[desclang].AquaTrinketText = "{{AquaTrinket}} {{ColorCyan}}Aqua Trinket : Automatically absorbed{{CR}}"
 
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
+
+	EID.descriptions[desclang].ClearFileSelection = "Selection for Clear File"
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}Expands Rabbey Ward area"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
