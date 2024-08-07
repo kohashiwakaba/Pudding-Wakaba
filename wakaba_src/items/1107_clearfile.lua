@@ -204,6 +204,7 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 		local target = pData.w_clearFileTarget ---@type EntityPickup
 		local newType = target.SubType
 		local touched = target.Touched
+		local oldPrice = target.Price
 		wakaba.Log("Clear File To replace:", type, "nearby pedestal:", newType)
 
 		-- trail : player to target
@@ -227,6 +228,7 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 		if REPENTOGON then
 			player:DropCollectible(type, target)
 			player:AddCollectible(newType, 0, not touched)
+			target.Price = oldPrice
 		else
 			player:RemoveCollectible(type, true, -1, false)
 			target:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, type, true, true, true)
