@@ -10,7 +10,7 @@ local game = Game()
 local _debug = false
 
 wakaba._InventoryDesc = RegisterMod("Inventory Descriptions", 1)
-local idesc = wakaba._InventoryDesc ---@class ModReference
+local idesc = wakaba._InventoryDesc ---@class InventoryDescriptions|ModReference
 InventoryDescriptions = idesc
 
 ---@type Sprite
@@ -128,6 +128,9 @@ local istate = {
 		pills = {},
 	},
 	listprops = {
+		name = nil,
+		displayName1 = nil,
+		displayName2 = nil,
 		screenx = EID:getScreenSize().X,
 		screeny = EID:getScreenSize().Y,
 		max = 1,
@@ -241,6 +244,30 @@ end
 --#endregion
 
 --#region basic api functions
+
+function idesc:isListActive()
+	return istate.showList
+end
+
+function idesc:getListPropName()
+	return istate.listprops.name or "basic"
+end
+
+function idesc:setListPropName(name)
+	istate.listprops.name = name
+end
+
+function idesc:getDisplayNames()
+	return {
+		DisplayName1 = istate.listprops.displayName1,
+		DisplayName2 = istate.listprops.displayName2,
+	}
+end
+
+function idesc:setDisplayNames(n1, n2)
+	istate.listprops.displayName1 = n1
+	istate.listprops.displayName2 = n2
+end
 
 function idesc:addDefault(category, target, entry)
 	if not idesc.defaults[category] then
@@ -727,7 +754,7 @@ idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES"
 
 ---@param entries InventoryDescEntry[]
 ---@param stopTimer boolean
-function idesc:showEntries(entries, listType, stopTimer, listOnly)
+function idesc:showEntries(entries, listType, stopTimer, listOnly, propName)
 	if #entries <= 0 then
 		return false
 	end
@@ -739,6 +766,7 @@ function idesc:showEntries(entries, listType, stopTimer, listOnly)
 	istate.listprops.screeny = y
 	istate.listprops.listonly = listOnly
 	istate.listprops.listmode = listType or "list"
+	istate.listprops.name = propName or "basic"
 	return istate.showList
 end
 
@@ -769,6 +797,9 @@ end
 function idesc:resetEntries()
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.showList = false
+	istate.listprops.name = nil
+	istate.listprops.displayName1 = nil
+	istate.listprops.displayName1 = nil
 	istate.listprops.screenx = x
 	istate.listprops.screeny = y
 	istate.listprops.offset = 0
@@ -1041,9 +1072,16 @@ function idesc:Render()
 		local oldTransparency = EID.Config["Transparency"] + 0
 		EID.Config["Transparency"] = 1
 
+		local dn = idesc:getDisplayNames()
+		local pstr = dn.DisplayName1 or "Current item list ({current}/{max})"
+		local sstr = dn.DisplayName2 or "Press {listkey} again to exit"
+		sstr = sstr:gsub("{current}", listprops.current)
+		sstr = sstr:gsub("{max}", listprops.max)
+		sstr = sstr:gsub("{listkey}", kts[inputKey])
+
 		-- Render headers
-		EID:renderString("Current item list("..listprops.current.."/"..listprops.max..")", Vector(x - optionsOffset, 36-(EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
-		EID:renderString("Press ".. kts[inputKey].." again to exit", Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
+		EID:renderString(pstr, Vector(x - optionsOffset, 36-(EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
+		EID:renderString(sstr, Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
 
 		local listOffset = listprops.offset
 		local entries = idesc:currentEntries()
@@ -1272,11 +1310,13 @@ function idesc:InputAction(entity, inputHook, buttonAction)
 	elseif istate.savedtimer then
 		istate.savedtimer = nil
 	end
+	local shouldBypassBlock = Isaac.RunCallback(wakaba.Callback.INVENTORY_DESCRIPTIONS_PRE_LOCK_INPUT, idesc, entity, inputHook, buttonAction)
 
 	if istate.showList
 	and buttonAction ~= ButtonAction.ACTION_FULLSCREEN
 	and buttonAction ~= ButtonAction.ACTION_CONSOLE
-	and buttonAction ~= idesc:getOptions("listkey") then
+	and buttonAction ~= idesc:getOptions("listkey")
+	and not shouldBypassBlock then
 
 		if inputHook == InputHook.IS_ACTION_PRESSED or inputHook == InputHook.IS_ACTION_TRIGGERED then
 			return false
@@ -1467,11 +1507,11 @@ function idesc:tme()
 			end
 		end
 	end
-	idesc:showEntries(entries, "grid", nil, true)
+	idesc:showEntries(entries, "grid", nil, true, "test_random")
 end
 
 --#endregion
 
 
 
-print("InvDesc v2 for Pudding and Wakaba Loaded")
+print("InvDesc v2.2 for Pudding and Wakaba Loaded")
