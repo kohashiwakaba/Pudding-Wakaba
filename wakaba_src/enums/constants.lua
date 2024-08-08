@@ -247,6 +247,7 @@ wakaba.Enums.Trinkets = {
 	DARK_PENDANT = Isaac.GetTrinketIdByName("Dark Pendant"),
 	BROKEN_NECKLACE = Isaac.GetTrinketIdByName("Broken Necklace"),
 	LEAF_NEEDLE = Isaac.GetTrinketIdByName("Leaf Needle"),
+	RICHERS_HAIR = Isaac.GetTrinketIdByName("Richer's Hair"),
 	RIRAS_HAIR = Isaac.GetTrinketIdByName("Rira's Hair"),
 	SPY_EYE = Isaac.GetTrinketIdByName("Spy Eye"),
 	FADED_MARK = Isaac.GetTrinketIdByName("Faded Mark"),
@@ -257,6 +258,9 @@ wakaba.Enums.Trinkets = {
 	BROKEN_WATCH_2 = Isaac.GetTrinketIdByName("Broken Watch 2"),
 	ROUND_AND_ROUND = Isaac.GetTrinketIdByName("Round and Round"),
 	GEHENNA_ROCK = Isaac.GetTrinketIdByName("Gehenna Rock"),
+	BROKEN_MURASAME = Isaac.GetTrinketIdByName("Broken Murasame"),
+	LUNATIC_CRYSTAL = Isaac.GetTrinketIdByName("Lunatic Crystal"),
+	TORN_PAPER_2 = Isaac.GetTrinketIdByName("Torn Paper 2"),
 }
 
 --[[
