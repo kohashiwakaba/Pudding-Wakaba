@@ -18,3 +18,94 @@
 ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+
+do -- Corrupted Clover
+	function wakaba:Cursed_NewRoom_CorruptedClover()
+		if wakaba.G:GetRoom():IsFirstVisit() then
+			local player = wakaba:AnyPlayerHasTrinket(wakaba.Enums.Trinkets.CORRUPTED_CLOVER)
+			if player then
+				for i = 0, 3 do
+					local addPos = Vector.FromAngle(Vector.Zero + (i * 90)) * 40
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY, 0, addPos, Vector.Zero, nil)
+				end
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_BookOfAmplitude)
+end
+
+do -- Dark Pendant
+	
+end
+
+do -- Broken Necklace
+	
+end
+
+do -- Leaf Needle
+	
+end
+
+do -- Rira's Hair
+	
+end
+
+do -- Spy Eye
+	
+end
+
+do -- Faded Mark
+	
+end
+
+do -- Neverlasting Bunny
+	
+end
+
+do -- Ribbon Cage
+	
+end
+
+do -- Rira's worst nightmare
+	
+end
+
+do -- Masked Shovel
+	
+end
+
+do -- Broken Watch 2
+	
+end
+
+do -- Round and Round
+	
+end
+
+do -- Gehenna Rock
+	
+end
+
+do -- Reserved
+	
+end
+
+do -- Reserved
+	
+end
+
+do -- Reserved
+	
+end
+
+do -- Reserved
+	
+end
+
+do -- Reserved
+	
+end
+
+do -- Reserved
+	
+end
