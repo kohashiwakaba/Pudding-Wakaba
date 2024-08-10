@@ -1817,6 +1817,137 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 	},
 
+
+	---------------------
+	-- Cursed Trinkets --
+	---------------------
+	[wakaba.Enums.Trinkets.CORRUPTED_CLOVER] = {
+		itemName = "Corrupted Clover",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.DARK_PENDANT] = {
+		itemName = "Dark Pendant",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_NECKLACE] = {
+		itemName = "Broken Necklace",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.LEAF_NEEDLE] = {
+		itemName = "Leaf Needle",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.RICHERS_HAIR] = {
+		itemName = "Richer's Hair",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.RIRAS_HAIR] = {
+		itemName = "Rira's Hair",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.SPY_EYE] = {
+		itemName = "Spy Eye",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.FADED_MARK] = {
+		itemName = "Faded Mark",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.NEVERLASTING_BUNNY] = {
+		itemName = "Neverlasting Bunny",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.RIBBON_CAGE] = {
+		itemName = "Ribbon Cage",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.RIRAS_WORST_NIGHTMARE] = {
+		itemName = "Rira's Worst Nightmare",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.MASKED_SHOVEL] = {
+		itemName = "Masked Shovel",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_WATCH_2] = {
+		itemName = "Broken Watch 2",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.ROUND_AND_ROUND] = {
+		itemName = "Round and Round",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.GEHENNA_ROCK] = {
+		itemName = "Gehenna Rock",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_MURASAME] = {
+		itemName = "Broken Murasame",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.LUNATIC_CRYSTAL] = {
+		itemName = "Lunatic Crystal",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.TORN_PAPER_2] = {
+		itemName = "Torn Paper 2",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.MINI_TORIZO] = {
+		itemName = "Mini Torizo",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.GRENADE_D20] = {
+		itemName = "Grenade D20",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Trinkets.WAKABA_SIREN] = {
+		itemName = "Wakaba Siren",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
+
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ Further increase chance for Lucky Penny" },

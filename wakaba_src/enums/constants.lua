@@ -261,6 +261,9 @@ wakaba.Enums.Trinkets = {
 	BROKEN_MURASAME = Isaac.GetTrinketIdByName("Broken Murasame"),
 	LUNATIC_CRYSTAL = Isaac.GetTrinketIdByName("Lunatic Crystal"),
 	TORN_PAPER_2 = Isaac.GetTrinketIdByName("Torn Paper 2"),
+	MINI_TORIZO = Isaac.GetTrinketIdByName("Mini Torizo"),
+	GRENADE_D20 = Isaac.GetTrinketIdByName("Grenade D20"),
+	WAKABA_SIREN = Isaac.GetTrinketIdByName("Wakaba Siren"),
 }
 
 --[[

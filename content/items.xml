@@ -233,5 +233,8 @@
 	<trinket name="Broken Murasame" description="No Deals" gfx="buta-chan/brokenmurasame.png" hidden="true" achievement="9999"/>
 	<trinket name="Lunatic Crystal" description="Unholy Curse" gfx="buta-chan/lunaticcrystal.png" hidden="true" achievement="9999"/>
 	<trinket name="Torn Paper 2" description="They now follow you" gfx="buta-chan/tornpaper2.png" hidden="true" achievement="9999"/>
+	<trinket name="Mini Torizo" description="Piercing tears..?" gfx="buta-chan/minitorizo.png" hidden="true" achievement="9999"/>
+	<trinket name="Grenade D20" description="Exploding pickups" gfx="buta-chan/grenaded20.png" hidden="true" achievement="9999"/>
+	<trinket name="Wakaba Siren" description="ALERT" gfx="buta-chan/wakabasiren.png" hidden="true" achievement="9999"/>
 
 </items>

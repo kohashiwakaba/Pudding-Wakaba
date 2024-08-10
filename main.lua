@@ -1113,6 +1113,8 @@ do -- Trinkets loader
 	include('wakaba_src.items.3018_richerreportcard')
 	include('wakaba_src.items.3021_caramellacandies')
 	include('wakaba_src.items.3022_pinkfork')
+
+	include('wakaba_src.items.3300_cursed_trinkets')
 end
 
 do -- Tarnished unlock trinkets

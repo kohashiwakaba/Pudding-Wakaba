@@ -2398,3 +2398,4 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, clearCaches)
 mod:AddCallback(ModCallbacks.MC_POST_GAME_END, clearCaches)
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, clearCaches)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, clearCaches)

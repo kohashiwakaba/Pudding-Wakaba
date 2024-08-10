@@ -1180,9 +1180,17 @@ local noRecursion
 local didModifyDamage
 
 -- Evaluate Damage Amount
-local function canModifyDamageAmount(player, flags)
+local function canModifyDamageAmount(player, flags, cooldown)
 	return (
-		flags & DamageFlag.DAMAGE_NO_MODIFIERS == 0
+		(flags & DamageFlag.DAMAGE_NO_MODIFIERS == 0)
+		and not (
+			flags ==
+			DamageFlag.DAMAGE_RED_HEARTS
+			| DamageFlag.DAMAGE_ISSAC_HEART
+			| DamageFlag.DAMAGE_INVINCIBLE
+			| DamageFlag.DAMAGE_IV_BAG
+			and (cooldown and cooldown == 30)
+		)
 	)
 end
 
@@ -1197,7 +1205,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, 
 	if not noRecursion then
 		didModifyDamage = false
 
-		if canModifyDamageAmount(entity:ToPlayer(), flags) then
+		if canModifyDamageAmount(entity:ToPlayer(), flags, cooldown) then
 			local somethingChanged = false
 
 			for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT)) do

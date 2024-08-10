@@ -57,6 +57,11 @@ function wakaba:Cache_Important(player, cacheFlag)
 				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
 			end
 		end
+		if player:HasTrinket(wakaba.Enums.Trinkets.DARK_PENDANT, false) then
+			if player.Luck > 0 then
+				player.Luck = player.Luck * -1
+			end
+		end
 	end
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010721, wakaba.Cache_Important)

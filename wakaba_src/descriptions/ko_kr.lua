@@ -2110,6 +2110,159 @@ wakaba.descriptions[desclang].trinkets = {
 		queueDesc = "파괴 월광선",
 	},
 
+
+	---------------------
+	-- Cursed Trinkets --
+	---------------------
+	[wakaba.Enums.Trinkets.CORRUPTED_CLOVER] = {
+		itemName = "타락한 클로버",
+		description = ""
+		.. "방 입장 시 캐릭터의 바로 가까이 4방향으로 빛줄기가 떨어집니다."
+		.. "{{CR}}",
+		queueDesc = "배신의 빛줄기",
+	},
+	[wakaba.Enums.Trinkets.DARK_PENDANT] = {
+		itemName = "어둠의 펜던트",
+		description = ""
+		.. "#↓ {{LuckSmall}}행운 -1"
+		.. "#↓ {{LuckSmall}}행운이 0 이상인 경우 0 이하가 되도록 반전됩니다."
+		.. "{{CR}}",
+		queueDesc = "반전된 행운",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_NECKLACE] = {
+		itemName = "망가진 목걸이",
+		description = ""
+		.. "적의 탄환이 Dogma의 레이저 탄환으로 바뀝니다."
+		.. "{{CR}}",
+		queueDesc = "따끔한 기억",
+	},
+	[wakaba.Enums.Trinkets.LEAF_NEEDLE] = {
+		itemName = "잎사귀 바늘",
+		description = ""
+		.. "{{BrokenHeart}} 액티브 아이템 사용 시 체력 반칸의 헌혈 피해를 입습니다."
+		.. "{{CR}}",
+		queueDesc = "피묻은 액티브",
+	},
+	[wakaba.Enums.Trinkets.RICHERS_HAIR] = {
+		itemName = "리셰의 머리카락",
+		description = ""
+		.. "↓ 방 입장 시 캐릭터의 바로 가까이에 보라색 모닥불을 하나 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "바로 앞의 오컬트",
+	},
+	[wakaba.Enums.Trinkets.RIRAS_HAIR] = {
+		itemName = "리라의 머리카락",
+		description = ""
+		.. "↓ 방 입장 시 캐릭터의 바로 가까이에 흰색 모닥불을 하나 소환합니다."
+		.. "{{CR}}",
+		queueDesc = "바로 앞의 유령",
+	},
+	[wakaba.Enums.Trinkets.SPY_EYE] = {
+		itemName = "감시자의 눈",
+		description = ""
+		.. "{{BrokenHeart}} 공격키를 누른 상태에서 방 입장 시 체력 반칸의 헌혈 피해를 입습니다."
+		.. "{{CR}}",
+		queueDesc = "무궁화 꽃이 피었습니다!",
+	},
+	[wakaba.Enums.Trinkets.FADED_MARK] = {
+		itemName = "흐려진 조준점",
+		description = ""
+		.. "{{WakabaCurseSniper}} 획득 시 및 스테이지 진입 시 Sniper 저주에 걸립니다."
+		.. "{{CR}}",
+		queueDesc = "스나이퍼의 저주",
+	},
+	[wakaba.Enums.Trinkets.NEVERLASTING_BUNNY] = {
+		itemName = "사라지는 토끼",
+		description = ""
+		.. "{{WakabaCurseAmnesia}} 획득 시 및 스테이지 진입 시 Amnesia 저주에 걸립니다."
+		.. "{{CR}}",
+		queueDesc = "망각의 저주",
+	},
+	[wakaba.Enums.Trinkets.RIBBON_CAGE] = {
+		itemName = "리본 감옥",
+		description = ""
+		.. "{{WakabaCurseFairy}} 획득 시 및 스테이지 진입 시 Fairy 저주에 걸립니다."
+		.. "{{CR}}",
+		queueDesc = "요정의 저주",
+	},
+	[wakaba.Enums.Trinkets.RIRAS_WORST_NIGHTMARE] = {
+		itemName = "리라의 악몽",
+		description = ""
+		.. "모든 Host류 적이 Floating Host로 바뀝니다."
+		.. "{{CR}}",
+		queueDesc = "우..움직여!",
+	},
+	[wakaba.Enums.Trinkets.MASKED_SHOVEL] = {
+		itemName = "가면 씌인 삽",
+		description = ""
+		.. "피격 시 캐릭터의 위치에 트랩도어를 생성합니다."
+		.. "{{CR}}",
+		queueDesc = "치명적인 구멍",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_WATCH_2] = {
+		itemName = "부서진 시계 2",
+		description = ""
+		.. "게임 속도가 실시간으로 빨라졌다가 느려집니다."
+		.. "{{CR}}",
+		queueDesc = "고장난 타임 머신",
+	},
+	[wakaba.Enums.Trinkets.ROUND_AND_ROUND] = {
+		itemName = "둥글게 둥글게",
+		description = ""
+		.. "방 중앙에 Stone Eye가 생깁니다."
+		.. "{{CR}}",
+		queueDesc = "영원한 돌림노래",
+	},
+	[wakaba.Enums.Trinkets.GEHENNA_ROCK] = {
+		itemName = "게헨나 돌덩이",
+		description = ""
+		.. "모든 Poky류 장애물이 Grudge로 바뀝니다."
+		.. "{{CR}}",
+		queueDesc = "전부 눈을 달고 있어",
+	},
+	[wakaba.Enums.Trinkets.BROKEN_MURASAME] = {
+		itemName = "부서진 무라사메",
+		description = ""
+		.. "{{AngelDevilChanceSmall}} 획득 시 그 스테이지에서 악마방을 닫습니다."
+		.. "{{CR}}",
+		queueDesc = "악마방 차단",
+	},
+	[wakaba.Enums.Trinkets.LUNATIC_CRYSTAL] = {
+		itemName = "루나틱 크리스탈",
+		description = ""
+		.. "{{HolyMantleSmall}} 모든 Holy Mantle 보호막을 제거합니다."
+		.. "{{CR}}",
+		queueDesc = "빼앗긴 신앙",
+	},
+	[wakaba.Enums.Trinkets.TORN_PAPER_2] = {
+		itemName = "찢어진 종이 2",
+		description = ""
+		.. "!!! 모든 트롤 폭탄이 황금 슈퍼트롤폭탄으로 바뀝니다."
+		.. "{{CR}}",
+		queueDesc = "저것들 이제 너 따라온다?",
+	},
+	[wakaba.Enums.Trinkets.MINI_TORIZO] = {
+		itemName = "미니 토리조",
+		description = ""
+		.. "적의 탄환이 캐릭터의 무적 시간을 무시하고 관통합니다."
+		.. "{{CR}}",
+		queueDesc = "관통 눈물..?",
+	},
+	[wakaba.Enums.Trinkets.GRENADE_D20] = {
+		itemName = "D20 수류탄",
+		description = ""
+		.. "픽업({{Coin}}/{{Bomb}}/{{Key}}/{{Heart}})이 때때로 폭발합니다."
+		.. "{{CR}}",
+		queueDesc = "폭발하는 픽업",
+	},
+	[wakaba.Enums.Trinkets.WAKABA_SIREN] = {
+		itemName = "와카바 사이렌",
+		description = ""
+		.. "화면이 항상 흔들립니다."
+		.. "{{CR}}",
+		queueDesc = "! 경고 !",
+	},
+
 }
 wakaba.descriptions[desclang].goldtrinkets = {
 	[wakaba.Enums.Trinkets.CLOVER] = { "↑ 행운의 동전 등장 확률 추가 증가" },
