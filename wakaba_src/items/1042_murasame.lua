@@ -405,17 +405,18 @@ local function getSelectionItems()
 end
 
 function wakaba:NewRoom_Murasame()
-	local murasame_count = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.MURASAME)
-	if murasame_count <= 1 then return end
 	local murasame_players = {}
-	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+	local murasame_count = 0
+	for num = 1, wakaba.G:GetNumPlayers() do
+		local player = wakaba.G:GetPlayer(num - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.MURASAME) then
 			table.insert(murasame_players, player)
+			murasame_count = murasame_count + 1
 		elseif player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
 			table.insert(murasame_players, player)
-			murasame_count = murasame_count + 1
 		end
-	end)
+	end
+	if murasame_count <= 1 then return end
 
 	local roomDesc = wakaba.G:GetLevel():GetCurrentRoomDesc()
 	local room = wakaba.G:GetRoom()

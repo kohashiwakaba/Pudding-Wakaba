@@ -224,10 +224,11 @@ function wakaba:NewRoom_RabbitRibbon()
 	local player = isc:getPlayersWithCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON)[1] or Isaac.GetPlayer()
 	local hasRibbon = false
 	local hasRicherBR = false
-	wakaba:ForAllPlayers(function (player)
+	for num = 1, wakaba.G:GetNumPlayers() do
+		local player = wakaba.G:GetPlayer(num - 1)
 		hasRibbon = hasRibbon or wakaba:hasRibbon(player)
 		hasRicherBR = hasRicherBR or wakaba:hasRicherBR(player)
-	end)
+	end
 	if wakaba.curses.CURSE_OF_FAIRY > 0 and isc:hasCurse(wakaba.curses.CURSE_OF_FAIRY) and not hasRicherBR then
 		for _, room in ipairs(isc:getRoomsInsideGrid()) do
 			if room.Data --[[ and room.Data.Type == RoomType.ROOM_DEFAULT ]] then
