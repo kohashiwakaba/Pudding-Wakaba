@@ -71,6 +71,9 @@ function wakaba:tryTransferRabbitCharge(player, activeSlot)
 	if wakaba:getRabbitCharges(player) <= 0 then return end
 	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
 	local playerIndex = isc:getPlayerIndex(player)
+	local activeItem = player:GetActiveItem(activeSlot)
+	local c = Isaac.GetItemConfig():GetCollectible(activeItem)
+	if not c or c.ChargeType ~= ItemConfig.CHARGE_NORMAL then return end
 	if player:NeedsCharge(activeSlot) then
 		while player:NeedsCharge(activeSlot) and richerCharges[playerIndex] > 0 and not (activeSlot ~= ActiveSlot.SLOT_POCKET and Epiphany and player:GetPlayerType() == Epiphany.table_type_id["EDEN"]) do
 			--isc:addRoomClearChargeToSlot(player, activeSlot)
