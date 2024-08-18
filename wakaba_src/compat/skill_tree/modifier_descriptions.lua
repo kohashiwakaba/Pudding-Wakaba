@@ -3,28 +3,59 @@ return {
 	w_EasterDmg = {
 		str = "%s%.2f%% damage per Easter Coin",
 		addPlus = true,
-		category = "condStats", sort = 3991
+		category = "wakabaGlobal", sort = 3901
+	},
+	shieldChance = {
+		str = "%.2f%% chance to recieve Holy Card shield on hit",
+		category = "wakabaGlobal", sort = 3902
+	},
+	cloverChestChance = {
+		str = "%s%.2f%% chance to spawn Clover chest",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3903
+	},
+	wakabaCloverChestRange = {
+		str = "%s%.2f range when opening Clover Chest",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3904
+	},
+	wakabaLeafTear = {
+		str = {
+			"Tearing Clover Leaf:",
+			"    Negates a hit that would've killed you, if you have more than 0 luck",
+			"    Negating a hit reduces 20, or 20%% of current luck, higher value prioritized",
+			"    Does not work if player has Rock Bottom",
+		},
+		category = "wakabaGlobal", sort = 3906
+	},
+	wakabaFreeClover = {
+		str = {
+			"Cloverfest:",
+			"    Clover chest can be appeared regardless of unlock",
+			"    Clover chest can be opened without using keys",
+		},
+		category = "wakabaGlobal", sort = 3907
 	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
 		str = {
 			"Good Girl:",
-			"    +50%% luck",
-			"    -10%% speed"
+			"    +50%% luck as Wakaba",
+			"    -10%% speed as Wakaba"
 		},
 		category = "charTree", sort = 4002
 	},
 	wakabaIsSmart = {
 		str = {
 			"Wakaba-chan is no longer baka:",
-			"    Starts with Perfection",
+			"    Wakaba Starts with Perfection",
 		},
 		category = "charTree", sort = 4003
 	},
 	wakabaJaebol = {
 		str = {
 			"Daughter of the Rich:",
-			"    Can get all selection items",
+			"    Wakaba Can get all selection items",
 		},
 		category = "charTree", sort = 4004
 	},
@@ -36,54 +67,33 @@ return {
 		},
 		category = "charTree", sort = 4005
 	},
-	wakabaLeafTear = {
-		str = {
-			"Tearing Clover Leaf:",
-			"    Negates a hit that would've killed you, if you have more than 0 luck",
-			"    Negating a hit reduces 20, or 20% of current luck, higher value prioritized",
-		},
-		category = "charTree", sort = 4006
-	},
-	wakabaFreeClover = {
-		str = {
-			"Cloverfest:",
-			"    Clover chest can be appeared regardless of unlock",
-			"    Clover chest can be opened without using keys",
-		},
-		category = "charTree", sort = 4007
-	},
 	---- WAKABA'S TREE NORMAL  ----
 	wakabaLuck = {
-		str = "%s%.2f%% luck",
+		str = "%s%.2f luck as Wakaba",
 		addPlus = true,
 		category = "charTree", sort = 4031
 	},
 	wakabaDevilChance = {
-		str = "%.2f%% extra chance to spawn a devil/angel room",
+		str = "%.2f%% extra chance to spawn a devil/angel room as Wakaba",
 		category = "charTree", sort = 4032
 	},
 	wakabaLuckyPennyChance = {
-		str = "%.2f%% chance to replace penny drops with a lucky penny",
+		str = "%.2f%% extra chance to replace penny drops with a lucky penny as Wakaba",
 		category = "charTree", sort = 4033
 	},
 	wakabaDamageLuck = {
-		str = "%s%.2f%% damage every 1 luck",
+		str = "%s%.2f%% damage every 1 luck as Wakaba",
 		addPlus = true,
 		category = "charTree", sort = 4034
 	},
 	wakabaShieldChance = {
-		str = "%.2f%% chance to recieve Holy Card shield on hit",
+		str = "%.2f%% extra chance to recieve Holy Card shield on hit as Wakaba",
 		category = "charTree", sort = 4035
 	},
 	wakabaCloverChestChance = {
-		str = "%s%.2f%% chance to spawn Clover chest",
+		str = "%s%.2f%% extra chance to spawn Clover chest as Wakaba",
 		addPlus = true,
 		category = "charTree", sort = 4036
-	},
-	wakabaCloverChestRange = {
-		str = "%s%.2f% range when opening Clover Chest",
-		addPlus = true,
-		category = "charTree", sort = 4037
 	},
 	---- SHIORI'S TREE SPECIAL ----
 	shioriGoldenKey = {
@@ -105,7 +115,7 @@ return {
 		category = "charTree", sort = 4093
 	},
 	shioriRoomKeyDamage = {
-		str = "%s%s%.2f damage for the current room when a key is consumed",
+		str = "%s%.2f damage for the current room when a key is consumed",
 		addPlus = true,
 		category = "charTree", sort = 4094
 	},

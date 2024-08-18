@@ -432,11 +432,15 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.blessDetectD6Card)
 
 function wakaba:blessnemesis()
+	local hasWakabaJB = false
 	local blesscount = 0
 	local nemesiscount = 0
 	local wakababrcount = 0
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
+		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA and wakaba:extraVal("wakabaJaebol") then
+			hasWakabaJB = true
+		end
 		if wakaba:HasBless(player) then
 			blesscount = blesscount + 1
 		end
@@ -461,6 +465,8 @@ function wakaba:blessnemesis()
 					e:ToPickup().OptionsPickupIndex = 0
 				end
 			elseif (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis) and (e.SubType == CollectibleType.COLLECTIBLE_POLAROID or e.SubType == CollectibleType.COLLECTIBLE_NEGATIVE) then
+				e:ToPickup().OptionsPickupIndex = 0
+			elseif hasWakabaJB then
 				e:ToPickup().OptionsPickupIndex = 0
 			end
 		end

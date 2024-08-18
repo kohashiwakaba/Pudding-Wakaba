@@ -111,7 +111,7 @@ function wakaba:onWakabaCache(player, cacheFlag)
 					player.MoveSpeed = player.MoveSpeed + WakabaChar.SPEED
 			end
 			if cacheFlag & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK then
-					player.Luck = player.Luck + WakabaChar.LUCK
+					player.Luck = player.Luck + WakabaChar.LUCK + wakaba:extraVal("wakabaLuck", 0)
 			end
 			if cacheFlag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING and WakabaChar.FLYING then
 					player.CanFly = true

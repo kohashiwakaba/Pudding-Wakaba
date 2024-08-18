@@ -661,11 +661,20 @@ wakaba.Callback = {
 	-- - The last callback to return a valid return value wins out and overwrites previous callbacks' return values
 	-- ---
 	EVALUATE_MAGNET_HEAVEN = "WakabaCallbacks.EVALUATE_MAGNET_HEAVEN",
+	-- ---
+	-- EXTRA_VALUE
+	-- ---
+	EXTRA_VALUE = "WakabaCallbacks.EXTRA_VALUE",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test
 	return not a or not b or a == b
 end)
+
+function wakaba:extraVal(key, default)
+	local v = Isaac.RunCallbackWithParam(wakaba.Callback.EXTRA_VALUE, key, key, default)
+	return v or default
+end
 
 ---comment
 ---@param player EntityPlayer

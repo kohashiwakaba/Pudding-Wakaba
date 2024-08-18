@@ -80,11 +80,14 @@ end
 function wakaba:ReplaceChests(pickup)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	if pickup.Variant == PickupVariant.PICKUP_CHEST then
+		local chance = wakaba.state.options.cloverchestchance
+		chance = chance + math.max(wakaba:extraVal("cloverChestChance", 0))
+		chance = chance + (isc:anyPlayerIs(wakaba.Enums.Players.WAKABA) and math.max(wakaba:extraVal("wakabaCloverChestChance", 0)) or 0)
 		local stage = wakaba.G:GetLevel():GetStage()
 		wakaba.ItemRNG:SetSeed(pickup.DropSeed, 0)
-		if wakaba:IsEntryUnlocked("cloverchest")
+		if (wakaba:IsEntryUnlocked("cloverchest") or wakaba:extraVal("wakabaFreeClover"))
 		and stage ~= LevelStage.STAGE6
-		and wakaba.ItemRNG:RandomFloat() * 100 < wakaba.state.options.cloverchestchance
+		and wakaba.ItemRNG:RandomFloat() * 100 < chance
 		and wakaba.G:GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
 			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end
@@ -130,8 +133,14 @@ function wakaba:spawnCloverChestReward(chest, player)
 	end
 end
 
-
+---@param player EntityPlayer
+---@param chest EntityPickup
 function wakaba:openCloverChest(player, chest)
+	local tmpRange = wakaba:extraVal("wakabaCloverChestRange", 0)
+	if tmpRange ~= 0 then
+		--wakaba:addCustomStat(player, "luck", luckToSub * -1)
+		--player:AddCacheFlags(CacheFlag.CACHE_LUCK, true)
+	end
 	wakaba:spawnCloverChestReward(chest, player)
 	wakaba:RemoveOtherOptionPickups(chest)
 end
@@ -142,8 +151,11 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 		local player = collider:ToPlayer()
 		if player:HasGoldenKey() or player:GetNumKeys() > 0
 		or player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP)
-		or (player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) and player:GetNumCoins() > 0) then
-			if not player:HasGoldenKey() and not player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP) then
+		or (player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) and player:GetNumCoins() > 0)
+		or wakaba:extraVal("wakabaFreeClover") then
+			if wakaba:extraVal("wakabaFreeClover") then
+
+			elseif not player:HasGoldenKey() and not player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP) then
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then
 					player:AddCoins(-1)
 				else
