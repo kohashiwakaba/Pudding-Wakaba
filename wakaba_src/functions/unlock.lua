@@ -102,6 +102,9 @@ wakaba.Blacklists.FlagLock.collectible = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = function()
 		return not REPENTOGON
 	end,
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = function()
+		return not REPENTOGON
+	end,
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = function()
 		return wakaba:IsLunatic()
 	end,

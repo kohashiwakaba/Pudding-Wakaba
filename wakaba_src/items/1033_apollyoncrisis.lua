@@ -1,31 +1,3 @@
-wakaba.BetterVoiding = {}
-
-local BetterVoiding_ApollyonCrisis = nil
-
-local flagsV = 0
-local flagsPC = 0
-
-function wakaba:tryAddBetterVoiding()
-	if BetterVoiding then
-		local BVIType = BetterVoiding.BetterVoidingItemType.TYPE_COLLECTIBLE
-		local preVoidingColor = Color(0.11,0.11,0.11,0.9,0,0,0)
-		flagsV = BetterVoiding.VoidingFlags.V_NEAREST_PAYABLE_PICKUP | BetterVoiding.VoidingFlags.V_ALL_FREE_PICKUPS
-		flagsPC = BetterVoiding.PickupCategoryFlags.PC_PRICE_FREE | BetterVoiding.PickupCategoryFlags.PC_PRICE_HEARTS | BetterVoiding.PickupCategoryFlags.PC_PRICE_COINS | BetterVoiding.PickupCategoryFlags.PC_PRICE_SPIKES | BetterVoiding.PickupCategoryFlags.PC_TYPE_COLLECTIBLE
-		BetterVoiding_ApollyonCrisis = BetterVoiding.betterVoidingItemConstructor(BVIType, wakaba.Enums.Collectibles.APOLLYON_CRISIS, true, flagsV, flagsPC, preVoidingColor)
-		if BetterVoiding_ApollyonCrisis then
-			--print("Better Voiding link for Apollyon Crisis")
-			wakaba.BetterVoiding.ApollyonCrisis = BetterVoiding_ApollyonCrisis
-			wakaba:RemoveCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.tryAddBetterVoiding)
-		end
-	end
-end
--- Added this callback because Pudding and Wakaba is currently being loaded before Better Voiding mod
-wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.tryAddBetterVoiding)
-
-if BetterVoiding then
-	wakaba:tryAddBetterVoiding()
-end
-
 
 function wakaba:RemovePedestalIndex(includeShop)
 	includeShop = includeShop or true
@@ -38,48 +10,154 @@ function wakaba:RemovePedestalIndex(includeShop)
 		end
 	end
 end
-	
-function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, varData)
-	if BetterVoiding_ApollyonCrisis then
-		wakaba:RemovePedestalIndex(false)
-		local pedestals = BetterVoiding.betterVoiding(BetterVoiding_ApollyonCrisis, player)
-		for p, dist in pairs(pedestals) do
-			--Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.SubType, player.Position, Vector.Zero, player):ToFamiliar()
-			if (p.SubType == CollectibleType.COLLECTIBLE_VOID or p.SubType == CollectibleType.COLLECTIBLE_ABYSS or p.SubType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
-				p:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
-			end
+
+wakaba.Blacklists.ApollyonCrisis = {
+	[CollectibleType.COLLECTIBLE_VOID] = true,
+	[CollectibleType.COLLECTIBLE_ABYSS] = true,
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = true,
+}
+
+if REPENTOGON then
+	local function recalculateVoidCursor(player, lastItem)
+		local list = player:GetVoidedCollectiblesList()
+	end
+	local extraLeft = Keyboard.KEY_LEFT_BRACKET
+	local extraRight = Keyboard.KEY_RIGHT_BRACKET
+	local extraLeftCont = Keyboard.KEY_LEFT_BRACKET
+	local extraRightCont = Keyboard.KEY_RIGHT_BRACKET
+
+
+	function wakaba:PlayerUpdate_ApollyonCrisis(player)
+		if not player:HasCollectible(wakaba.Enums.Collectibles.APOLLYON_CRISIS, true) then return end
+
+		local shift = 0
+		if Input.IsButtonTriggered(extraLeft, 0)
+			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex) then shift = -1 end
+		if Input.IsButtonTriggered(extraRight, 0)
+			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex) then shift = 1 end
+
+		if shift == 0 then return end
+
+		local list = player:GetVoidedCollectiblesList()
+		wakaba:initPlayerDataEntry(player, "apcrIndex", 0)
+		wakaba:addPlayerDataCounter(player, "apcrIndex", shift)
+
+		local newIndex = wakaba:getPlayerDataEntry(player, "apcrIndex", 0)
+		if newIndex < 0 then
+			wakaba:setPlayerDataEntry(player, "apcrIndex", #list)
+		elseif newIndex > #list then
+			wakaba:setPlayerDataEntry(player, "apcrIndex", 0)
 		end
-		local prepedestals = wakaba:GetPedestals(false)
-		if not prepedestals then
-			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, 0, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
-		end
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_VOID, 0, -1)
-		--print(#readyForAbyss)
-		for p, dist in pairs(pedestals) do
-			--print("Abyss fly spawned!")
-			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.SubType, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
-		end
-	else
-		wakaba:RemovePedestalIndex(false)
-		local pedestals = wakaba:GetPedestals(false)
-		if not pedestals then 
-			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, 0, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
-		else
-			for i, p in ipairs(pedestals) do
-				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.CollectibleType, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
-				if (p.CollectibleType == CollectibleType.COLLECTIBLE_VOID or p.CollectibleType == CollectibleType.COLLECTIBLE_ABYSS or p.CollectibleType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
-					p.Pedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_ApollyonCrisis)
+
+	local voidSprite = Sprite()
+	voidSprite:Load("gfx/005.100_collectible.anm2", false)
+	voidSprite:Play("ShopIdle", true)
+
+	---@param player EntityPlayer
+	---@param activeSlot ActiveSlot
+	---@param offset Vector
+	---@param alpha number
+	---@param scale number
+	---@param chargeBarOffset Vector
+	function wakaba:ActiveRender_ApollyonCrisis(player, activeSlot, offset, alpha, scale, chargeBarOffset)
+		local item = player:GetActiveItem(activeSlot)
+		if item == wakaba.Enums.Collectibles.APOLLYON_CRISIS and not player:IsCoopGhost() then
+			local list = player:GetVoidedCollectiblesList()
+			local index = wakaba:getPlayerDataEntry(player, "apcrIndex", 0)
+			if index ~= 0 then
+				local config = Isaac.GetItemConfig():GetCollectible(list[index])
+				if config then
+					local pocket = player:GetPocketItem(0)
+					local ispocketactive = (pocket:GetSlot() == 3 and pocket:GetType() == 2)
+					local renderPos = Vector(16, 24)
+					local renderScale = Vector(1, 1)
+
+					local g = config.GfxFileName
+
+					if activeSlot == ActiveSlot.SLOT_PRIMARY then
+					elseif activeSlot == ActiveSlot.SLOT_SECONDARY or (not ispocketactive) then
+						renderPos = renderPos / 2
+						renderScale = renderScale / 2
+					end
+					voidSprite:ReplaceSpritesheet(1, g, true)
+					voidSprite.Scale = renderScale
+					voidSprite:Render(renderPos + offset, Vector.Zero, Vector.Zero)
 				end
 			end
 		end
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_VOID, 0, -1)
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, wakaba.ActiveRender_ApollyonCrisis)
+
+	---@param itemID CollectibleType
+	---@param player EntityPlayer
+	---@param varData integer
+	---@param current integer
+	function wakaba:MaxCharge_ApollyonCrisis(itemID, player, varData, current)
+		if varData ~= 0 then
+			return varData
+		end
 	end
 	
-	if not (pedestals and useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.Enums.Collectibles.APOLLYON_CRISIS, "UseItem", "PlayerPickup")
+	wakaba:AddCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, wakaba.MaxCharge_ApollyonCrisis, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
+	
+	---@param rng RNG
+	---@param player EntityPlayer
+	---@param useFlags UseFlag
+	---@param activeSlot ActiveSlot
+	---@param varData integer
+	function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, varData)
+		
+		local index = wakaba:getPlayerDataEntry(player, "apcrIndex", 0)
+
+		if index == 0 then
+			wakaba:RemovePedestalIndex(false)
+			local pedestals = wakaba:GetPedestals(false)
+			if not pedestals then 
+				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, 0, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
+			else
+				for i, p in ipairs(pedestals) do
+					Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, p.CollectibleType, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
+					if (p.CollectibleType == CollectibleType.COLLECTIBLE_VOID or p.CollectibleType == CollectibleType.COLLECTIBLE_ABYSS or p.CollectibleType == wakaba.Enums.Collectibles.APOLLYON_CRISIS) then
+						p.Pedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_BREAKFAST, true, true, true)
+					end
+				end
+			end
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_VOID, 0, -1)
+			player:SetActiveVarData(0, activeSlot)
+		else
+			local list = player:GetVoidedCollectiblesList()
+			local target = list[index]
+			local config = Isaac.GetItemConfig():GetCollectible(target)
+			if not config then
+				return {
+					Discharge = false,
+					ShowAnim = false,
+					Remove = false,
+				}
+			end
+			player:UseActiveItem(target, UseFlag.USE_OWNED | UseFlag.USE_VOID | UseFlag.USE_ALLOWWISPSPAWN)
+			local maxCharges = math.min(math.max(1, config.MaxCharges), 12)
+			local chargeType = config.ChargeType
+			if chargeType == ItemConfig.CHARGE_TIMED then maxCharges = 1 end
+			player:SetActiveVarData(maxCharges, activeSlot)
+		end
+		return {
+			Discharge = true,
+			ShowAnim = true,
+			Remove = false,
+		}
 	end
-
+	wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_ApollyonCrisis, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
+else
+	function wakaba:ItemUse_ApollyonCrisis(_, rng, player, useFlags, activeSlot, varData)
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ABYSS_LOCUST, 0, player.Position, Vector.Zero, player):ToFamiliar():AddEntityFlags(EntityFlag.FLAG_DONT_OVERWRITE)
+		return {
+			Discharge = true,
+			ShowAnim = true,
+			Remove = false,
+		}
+	end
+	wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_ApollyonCrisis, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_ApollyonCrisis, wakaba.Enums.Collectibles.APOLLYON_CRISIS)
-
-wakaba.BetterVoiding.ApollyonCrisis = BetterVoiding_ApollyonCrisis

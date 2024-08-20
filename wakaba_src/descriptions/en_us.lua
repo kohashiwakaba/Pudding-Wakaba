@@ -747,13 +747,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "Apollyon Crisis",
 		description = ""
-		.. "#Invokes both {{Collectible477}}Void and {{Collectible706}}Abyss effect:"
-		.. "#!!! When used, consume any pedestal items in the room"
-		.. "#Active item: Its effect will be added to Void's effect (Stacking the effects)"
-		.. "#↑ Passive item: Small stat upgrade to a random stat"
-		.. "#Spawns an attack fly familiar for each consumed item"
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON"
 		.. "{{CR}}",
-		carBattery = "Spawns 1 more Abyss locust",
+		carBattery = "Activates selected active item again if possible",
 	},
 	[wakaba.Enums.Collectibles.LIL_SHIVA] = {
 		itemName = "Lil Shiva",
@@ -3179,6 +3175,14 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		desc = "{{WakabaModRgon}} {{ColorRicher}}Active chargebar is shown to indicate how many card spawn chance have been failed",
+		func = function() return REPENTOGON and true end,
+	},
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
+		desc = { ""
+		.. "Can be made to act as any absorbed item with the extra button ({wakaba_extra_left} / {wakaba_extra_right})"
+		.. "#Charge time varies based on the last active item used and updates with every use"
+		.. "#If not selected, invokes both {{Collectible477}}Void and {{Collectible706}}Abyss effect"
+		},
 		func = function() return REPENTOGON and true end,
 	},
 }

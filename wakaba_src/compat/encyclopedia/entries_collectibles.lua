@@ -2120,6 +2120,10 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- The locusts may gain additional effects depending on the item destroyed."},
 			{str = "Apollyon Crisis does not work on devil deal, black market, or shop items unless they have been bought first."},
 			{str = "If there are no available pedestals in the room, Apollyon Crisis will spawn a default locust."},
+			{str = "After absorbing 1 or more active items, Isaac also can activate one of individual absorbed active item."},
+			{str = "- Can be selected extra left/right button. configurable."},
+			{str = "- Activating individual ones change max charges to corresponding item."},
+			{str = "- Not selecting individual still activate original effect above."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

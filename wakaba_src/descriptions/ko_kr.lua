@@ -777,12 +777,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "아폴리온의 시련",
 		description = ""
-		.. "#사용 시 방 안의 아이템을 흡수합니다."
-		.. "#액티브 흡수 시 아이템을 사용할 때 마다 흡수한 액티브의 효과가 발동됩니다."
-		.. "#패시브 흡수 시 랜덤한 능력치가 2개 증가합니다."
-		.. "#흡수한 아이템의 수만큼 심연의 파리를 소환합니다"
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON 전용{{CR}}#REPENTOGON을 실행중이지 않았을 때 이 아이템을 발견하면 모드 개발자에게 연락 바람"
 		.. "{{CR}}",
-		carBattery = "심연의 파리를 하나 더 소환합니다.",
+		carBattery = "선택한 액티브를 한 번 더 발동하거나 심연의 파리를 하나 더 소환합니다.",
 		queueDesc = "공허함을 받아들여라",
 	},
 	[wakaba.Enums.Collectibles.LIL_SHIVA] = {
@@ -1846,6 +1843,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다."},
+	},
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
+		desc = {
+			"사용 시 {{Collectible477}}Void 및 {{Collectible706}}Abyss의 효과를 모두 발동합니다."
+		.. "흡수한 아이템 중 원하는 액티브를 골라 사용할 수 있습니다."
+		.. "#({wakaba_extra_left} / {wakaba_extra_right} 버튼으로 전환 가능, 미선택 시 기존 효과)"
+		},
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		desc = "{{WakabaModRgon}} {{TearsSmall}} {{ColorRicher}}흡수한 장신구 당 연사 +0.2#{{WakabaModRgon}} {{Heart}}{{ColorRicher}}체력 상한 +6",

@@ -705,11 +705,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		itemName = "亚波伦的危机",
 		description = ""
-			.. "#同时触发{{Collectible477}}虚空和{{Collectible706}}深渊的效果:"
-			.. "#!!!使用时，消耗房间内的全部道具"
-			.. "#主动物品：其效果将被添加到虚空的效果中（叠加效果"
-			.. "#↑ 被动物品：随机属性小幅提升"
-			.. "#为每个消耗的道具生成一个攻击苍蝇跟班"
+			.. "#{{WakabaModRgon}} {{ColorOrange}}只在REPENTOGON!{{CR}}如果你没有安装也发现了这个道具请汇报给开发者"
 			.. "{{CR}}",
 		queueDesc = "拥抱虚无",
 	},
@@ -2760,6 +2756,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = { "↑ {{Damage}} +1攻击力#{{WakabaModRgon}} 免疫爆炸#{{WakabaModRgon}} 玩家每发射20滴眼泪就挥出火焰之刃和火焰波" },
+	},
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
+		desc = { ""
+		.. "Can be made to act as any absorbed item with the extra button ({wakaba_extra_left} / {wakaba_extra_right})"
+		.. "#Charge time varies based on the last active item used and updates with every use"
+		.. "#If not selected, invokes both {{Collectible477}}Void and {{Collectible706}}Abyss effect"
+		}, -- TODO
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		desc =

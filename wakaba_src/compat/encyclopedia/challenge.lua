@@ -198,6 +198,10 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 	UnlockFunc = function(self)
+		if not REPENTOGON then
+			self.Desc = "Requires REPENTOGON"
+			return self
+		end
 		if not wakaba:IsEntryUnlocked("apollyoncrisis") then
 			self.Desc = "Complete Apollyon Crisis (challenge No.11w)"
 
