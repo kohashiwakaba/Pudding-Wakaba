@@ -1847,7 +1847,7 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		desc = {
 			"사용 시 {{Collectible477}}Void 및 {{Collectible706}}Abyss의 효과를 모두 발동합니다."
-		.. "흡수한 아이템 중 원하는 액티브를 골라 사용할 수 있습니다."
+		.. "#위 효과 대신 흡수한 아이템 중 원하는 액티브를 골라 사용할 수도 있습니다."
 		.. "#({wakaba_extra_left} / {wakaba_extra_right} 버튼으로 전환 가능, 미선택 시 기존 효과)"
 		},
 	},

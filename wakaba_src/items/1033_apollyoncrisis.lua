@@ -20,7 +20,15 @@ wakaba.Blacklists.ApollyonCrisis = {
 if REPENTOGON then
 	local function recalculateVoidCursor(player, lastItem)
 		local list = player:GetVoidedCollectiblesList()
+
+		local newIndex = wakaba:getPlayerDataEntry(player, "apcrIndex", 0)
+		if newIndex < 0 then
+			wakaba:setPlayerDataEntry(player, "apcrIndex", #list)
+		elseif newIndex > #list then
+			wakaba:setPlayerDataEntry(player, "apcrIndex", 0)
+		end
 	end
+
 	local extraLeft = Keyboard.KEY_LEFT_BRACKET
 	local extraRight = Keyboard.KEY_RIGHT_BRACKET
 	local extraLeftCont = Keyboard.KEY_LEFT_BRACKET
@@ -30,6 +38,10 @@ if REPENTOGON then
 	function wakaba:PlayerUpdate_ApollyonCrisis(player)
 		if not player:HasCollectible(wakaba.Enums.Collectibles.APOLLYON_CRISIS, true) then return end
 
+		local list = player:GetVoidedCollectiblesList()
+		wakaba:initPlayerDataEntry(player, "apcrIndex", 0)
+		recalculateVoidCursor(player)
+
 		local shift = 0
 		if Input.IsButtonTriggered(extraLeft, 0)
 			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex) then shift = -1 end
@@ -38,16 +50,9 @@ if REPENTOGON then
 
 		if shift == 0 then return end
 
-		local list = player:GetVoidedCollectiblesList()
-		wakaba:initPlayerDataEntry(player, "apcrIndex", 0)
 		wakaba:addPlayerDataCounter(player, "apcrIndex", shift)
-
-		local newIndex = wakaba:getPlayerDataEntry(player, "apcrIndex", 0)
-		if newIndex < 0 then
-			wakaba:setPlayerDataEntry(player, "apcrIndex", #list)
-		elseif newIndex > #list then
-			wakaba:setPlayerDataEntry(player, "apcrIndex", 0)
-		end
+		
+		recalculateVoidCursor(player)
 	end
 	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_ApollyonCrisis)
 
