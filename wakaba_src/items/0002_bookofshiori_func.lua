@@ -434,11 +434,11 @@ function wakaba:TearInit_BookofShiori(tear)
 			local player = tear.SpawnerEntity:ToPlayer()
 			if player == nil then return end
 			if not player:GetData().wakaba then return end
-			local luck = player.Luck
+			local luck = math.max(0, player.Luck)
 			local random = wakaba.RNG:RandomFloat() * 100
 			local nextflag = wakaba:getShioriFlag(player)
 			if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS
-			and random <= (20 + (2 * luck)) then
+			and random <= (5 + (2.5 * luck)) then
 				tear.TearFlags = tear.TearFlags | TearFlags.TEAR_LIGHT_FROM_HEAVEN
 				tear:GetData().wakabaInit = true
 				tear:GetData().wakabaTearFlag = TearFlags.TEAR_LIGHT_FROM_HEAVEN
@@ -457,7 +457,7 @@ function wakaba:TearInit_BookofShiori(tear)
 			local player = familiar.Player
 			if player ~= nil and player:GetData().wakaba ~= nil then
 				--local player = spawner:ToPlayer()
-				local luck = player.Luck
+				local luck = math.max(0, player.Luck)
 				local random = wakaba.RNG:RandomFloat() * 100
 				local nextflag = wakaba:getShioriFlag(player)
 				if nextflag == CollectibleType.COLLECTIBLE_MONSTER_MANUAL then
@@ -494,7 +494,7 @@ function wakaba:TearUpdate_BookofShiori(tear)
 				if familiar and (familiar.Player or familiar.SpawnerEntity:ToPlayer()) then
 					--local player = spawner:ToPlayer()
 					local player = familiar.Player or familiar.SpawnerEntity:ToPlayer()
-					local luck = player.Luck
+					local luck = math.max(0, player.Luck)
 					local random = wakaba.RNG:RandomFloat() * 100
 					local nextflag = wakaba:getShioriFlag(player)
 					if nextflag == CollectibleType.COLLECTIBLE_MONSTER_MANUAL then
@@ -541,7 +541,7 @@ function wakaba:FamiliarUpdate_BookofShiori(familiar)
 		local player = familiar.Player
 		if player ~= nil then
 			--local player = spawner:ToPlayer()
-			local luck = player.Luck
+			local luck = math.max(0, player.Luck)
 			local random = wakaba.RNG:RandomFloat() * 100
 			if not player:GetData().wakaba then return end
 			local nextflag = wakaba:getShioriFlag(player)
@@ -561,11 +561,11 @@ function wakaba:NPCDeath_BookofShiori(entity)
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if player:GetData().wakaba then
-			local luck = player.Luck
+			local luck = math.max(0, player.Luck)
 			local random = entity:GetDropRNG():RandomFloat() * 100
 			local nextflag = wakaba:getShioriFlag(player)
 			if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SIN
-			and random <= (8 + (0.75 * luck)) then
+			and random <= 1.2 then
 				local subrandom = wakaba.RNG:RandomInt(#wakaba.pickupvars) + 1
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, wakaba.pickupvars[subrandom], 0, Isaac.GetFreeNearPosition(entity.Position, 0.0), Vector.Zero, player)
 			end
@@ -613,7 +613,7 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 				end
 				if nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK and buffs > 0 then
 					local random = wakaba.RNG:RandomFloat() * 100
-					if random <= (8 + (player.Luck * 1.1)) then
+					if random <= 2.5 then
 						flag = flag | DamageFlag.DAMAGE_SPAWN_BLACK_HEART
 					end
 					amount = amount * 2
@@ -621,7 +621,7 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 				end
 				if nextflag == wakaba.Enums.Collectibles.DECK_OF_RUNES then
 					local random = wakaba.RNG:RandomFloat() * 100
-					if random <= (8 + (player.Luck * 0.6 )) then
+					if random <= 1.6 then
 						flag = flag | DamageFlag.DAMAGE_SPAWN_RUNE
 					end
 					amount = amount * 2
