@@ -44,7 +44,8 @@ wakaba.Callback = {
 	-- - `Sprite` : `Sprite` - Sprite to render
 	-- - `Text` : `String` - Text to render next to sprite
 	-- - `TextColor`(optional) : `KColor` - Text to render next to sprite
-	-- - `Skip`(optional) : `boolean` - Only available if Sprite, and Text isn't present. Return to shift HUD element offset by 1
+	-- - `Location`(optional) : `String` - Location for rendering HUD, available values: "vanilla", "top", "bottom"
+	-- - `Skip`(optional) : `boolean` - Only available if Sprite, and Text isn't present. Return to shift HUD element offset by 1. Does not affect for non-vanilla location
 	-- ---
 	RENDER_GLOBAL_FOUND_HUD = "WakabaCallbacks.RENDER_GLOBAL_FOUND_HUD",
 

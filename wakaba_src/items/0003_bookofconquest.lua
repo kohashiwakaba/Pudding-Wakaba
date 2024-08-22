@@ -591,9 +591,17 @@ function wakaba:HUD_BookOfConquest()
 	if hasConquest then
 		wakaba.globalHUDSprite:RemoveOverlay()
 		wakaba.globalHUDSprite:SetFrame("BookOfConquest", 0)
+		local loc = wakaba:getOptionValue("hud_conquest")
 		local tab = {
 			Sprite = wakaba.globalHUDSprite,
 			Text = math.floor(wakaba.killcount) .. "/" .. wakaba:GetMaxConquestCount(),
+			Location = loc,
+			SpriteOptions = {
+				Anim = "BookOfConquest",
+				Frame = 0,
+				OverlayAnim = nil,
+				OverlayFrame = nil,
+			},
 		}
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_CALC then
 			wakaba.globalHUDSprite:SetFrame("BookOfConquest", 1)

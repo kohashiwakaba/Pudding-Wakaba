@@ -277,23 +277,43 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function
 		table.insert(prepend, "L")
 		textColor = KColor(1,0.2,0.2,0.5,0,0,0)
 	end
+
+	local a = "BossDestination"
+	local f = bossTables[bossData.Boss]
+	local oa = nil
+	local of = nil
+
 	if bossData.ModifyHealth then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 6)
+		oa = "QualityFlag"
+		of = 6
 		table.insert(prepend, "E")
 	elseif bossData.Quality and type(bossData.Quality) == "number" then
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", bossData.Quality)
+		oa = "QualityFlag"
+		of = bossData.Quality
 		table.insert(prepend, "Q".. bossData.Quality)
 	else
+		oa = "QualityFlag"
+		of = 5
 		wakaba.globalHUDSprite:SetOverlayFrame("QualityFlag", 5)
 	end
 	if #prepend > 0 then
 		local prependText = table.concat(prepend, "|")
 		text = "["..prependText.."]"..text
 	end
+	local loc = wakaba:getOptionValue("hud_eboss")
 	local tab = {
 		Sprite = wakaba.globalHUDSprite,
 		Text = text,
 		TextColor = textColor,
+		Location = loc,
+		SpriteOptions = {
+			Anim = a,
+			Frame = f,
+			OverlayAnim = oa,
+			OverlayFrame = of,
+		},
 	}
 	return tab
 end)

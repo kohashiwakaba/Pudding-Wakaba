@@ -413,5 +413,39 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				end
 			end
 		end)
+		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 3, function(_)
+			if wakaba:getOptionValue("hudpst") then -- -1, 0, 1, 2
+				wakaba.globalHUDSprite:RemoveOverlay()
+				wakaba.globalHUDSprite:SetFrame("PST", 0)
+				local room = Game():GetRoom()
+				local loc = wakaba:getOptionValue("hud_pst")
+				local expType = wakaba:getOptionValue("hudpst")
+				local frame = 0
+				local charData = PST:getCurrentCharData()
+				if charData then
+					local name = PST:getCurrentCharName()
+					local level = charData.level
+					local current = charData.xp
+					local nextLevel = charData.xpRequired
+					local barPercent = math.min(1, charData.xp / math.max(1, charData.xpRequired))
+					local string = name .. " Lv." .. level
+					if expType >= 0 then
+						local ind = 10 ^ expType
+						string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
+					end
+
+					local tab = {
+						Sprite = wakaba.globalHUDSprite,
+						Text = string,
+						Location = loc,
+						SpriteOptions = {
+							Anim = "PST",
+							Frame = frame,
+						},
+					}
+					return tab
+				end
+			end
+		end)
 	end
 end)

@@ -151,6 +151,10 @@ function wakaba:Render_GlobalHUDStats(sn)
 	wakaba:FoundHUDUpdateCheck()
 	local position = Vector(wakaba.globalHUDCoords.X, wakaba.globalHUDCoords.Y)
 	local offset = 0
+	local topRender = {}
+	local topTotWidth = 0
+	local bottomRender = {}
+	local bottomTotWidth = 0
 
   for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD)) do
     local renderedHUDElement = callback.Function(callback.Mod)
@@ -158,21 +162,98 @@ function wakaba:Render_GlobalHUDStats(sn)
       local sprite = renderedHUDElement.Sprite
       local renderedText = renderedHUDElement.Text
       local textColor = renderedHUDElement.TextColor or colourDefault
-      if sprite and renderedText then
-        --account for screenshake offset
-				local renderPos = position + Vector(0, (12 * offset) )
-        local textCoords = renderPos + Game().ScreenShakeOffset
+			local location = renderedHUDElement.Location
+			local opt = renderedHUDElement.SpriteOptions
+			if location and location == "top" then
+				renderedHUDElement.TextWidth = font:GetStringWidth(renderedText)
+				topTotWidth = topTotWidth + font:GetStringWidth(renderedText) + 24
+				table.insert(topRender, renderedHUDElement)
+			elseif location and location == "bottom" then
+				renderedHUDElement.TextWidth = font:GetStringWidth(renderedText)
+				bottomTotWidth = bottomTotWidth + font:GetStringWidth(renderedText) + 24
+				table.insert(bottomRender, renderedHUDElement)
+			else
+				if sprite and renderedText then
+					--account for screenshake offset
+					local renderPos = position + Vector(0, (12 * offset) )
+					local textCoords = renderPos + Game().ScreenShakeOffset
 
-        font:DrawString(renderedText, textCoords.X + 16, textCoords.Y + 1, textColor, 0, true)
-				sprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0)
-        sprite:Render(renderPos + Vector(0, wakaba._hudShiftPos or 1), Vector(0, 0), Vector(0, 0))
+					font:DrawString(renderedText, textCoords.X + 16, textCoords.Y + 1, textColor, 0, true)
+					sprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0)
+					sprite:Render(renderPos + Vector(0, wakaba._hudShiftPos or 1), Vector(0, 0), Vector(0, 0))
 
-        offset = offset + 1
-      elseif renderedHUDElement.Skip then
-        offset = offset + 1
-      end
+					offset = offset + 1
+				elseif renderedHUDElement.Skip then
+					offset = offset + 1
+				end
+			end
     end
   end
+
+	topTotWidth = topTotWidth - 16
+	bottomTotWidth = bottomTotWidth - 16
+
+	local opOffset = wakaba:getOptionValue("ghud_offset") or (Options.HUDOffset * 10)
+
+	local tlOffset = 0
+	for _, renderedHUDElement in ipairs(topRender) do
+		local sprite = renderedHUDElement.Sprite
+		local opt = renderedHUDElement.SpriteOptions
+		local renderedText = renderedHUDElement.Text
+		local textColor = renderedHUDElement.TextColor or colourDefault
+		local width = renderedHUDElement.FixedWidth or renderedHUDElement.TextWidth
+
+		if opt.OverlayAnim and (opt.OverlayFrame and type(opt.OverlayFrame) == "number") then
+			sprite:SetOverlayFrame(opt.OverlayAnim, opt.OverlayFrame)
+		else
+			sprite:RemoveOverlay()
+		end
+
+		sprite:SetFrame(opt.Anim, opt.Frame)
+
+		local position = Vector(wakaba:GetScreenCenter().X - ((topTotWidth / 2) - tlOffset), opOffset)
+
+		--account for screenshake offset
+		local renderPos = position
+		local textCoords = renderPos + Game().ScreenShakeOffset
+
+		sprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0)
+		sprite:Render(renderPos + Vector(0, wakaba._hudShiftPos or 1), Vector(0, 0), Vector(0, 0))
+
+		font:DrawString(renderedText, textCoords.X + 16, textCoords.Y + 1, textColor, 0, true)
+
+		tlOffset = tlOffset + width + 16
+	end
+
+	local blOffset = 0
+	for _, renderedHUDElement in ipairs(bottomRender) do
+		local sprite = renderedHUDElement.Sprite
+		local opt = renderedHUDElement.SpriteOptions
+		local renderedText = renderedHUDElement.Text
+		local textColor = renderedHUDElement.TextColor or colourDefault
+		local width = renderedHUDElement.FixedWidth or renderedHUDElement.TextWidth
+
+		if opt.OverlayAnim and (opt.OverlayFrame and type(opt.OverlayFrame) == "number") then
+			sprite:SetOverlayFrame(opt.OverlayAnim, opt.OverlayFrame)
+		else
+			sprite:RemoveOverlay()
+		end
+
+		sprite:SetFrame(opt.Anim, opt.Frame)
+
+		local position = Vector(wakaba:GetScreenCenter().X - ((bottomTotWidth / 2) - blOffset), wakaba:GetScreenSize().Y - (opOffset + 16))
+
+		--account for screenshake offset
+		local renderPos = position
+		local textCoords = renderPos + Game().ScreenShakeOffset
+
+		sprite.Color = Color(1, 1, 1, 0.5, 0, 0, 0)
+		sprite:Render(renderPos + Vector(0, wakaba._hudShiftPos or 1), Vector(0, 0), Vector(0, 0))
+
+		font:DrawString(renderedText, textCoords.X + 16, textCoords.Y + 1, textColor, 0, true)
+
+		blOffset = blOffset + width + 16
+	end
 end
 
 wakaba:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_GlobalHUDStats)

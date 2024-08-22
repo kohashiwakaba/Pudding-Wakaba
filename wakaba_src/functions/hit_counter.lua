@@ -53,11 +53,17 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 0, function(
 		wakaba.globalHUDSprite:RemoveOverlay()
 		local totalHitCounter = wakaba.runstate.hitcounter or 0
 		local penaltyHitCounter = wakaba.runstate.hitcounterpenalty or 0
+		local loc = wakaba:getOptionValue("hud_hitcounter")
 		if wakaba.state.options.hudhitcounter == 1 then
 			wakaba.globalHUDSprite:SetFrame("HitCounter", 0)
 			local tab = {
 				Sprite = wakaba.globalHUDSprite,
 				Text = penaltyHitCounter,
+				Location = loc,
+				SpriteOptions = {
+					Anim = "HitCounter",
+					Frame = 0,
+				},
 			}
 			return tab
 		elseif wakaba.state.options.hudhitcounter == 2 then
@@ -65,6 +71,11 @@ wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 0, function(
 			local tab = {
 				Sprite = wakaba.globalHUDSprite,
 				Text = totalHitCounter,
+				Location = loc,
+				SpriteOptions = {
+					Anim = "HitCounter",
+					Frame = 0,
+				},
 			}
 			return tab
 		end
