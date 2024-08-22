@@ -47,7 +47,7 @@ function wakaba:ChargeBarUpdate_FlashShift(player)
 		}):UpdateSpritePercent(-1)
 	end
 	local chargeBar = wakaba:getRoundChargeBar(player, "FlashShift")
-	if wakaba:hasFlashShift(player) and wakaba:getFlashShiftTimer(player) > 0 then
+	if wakaba:getFlashShiftTimer(player) > 0 then
 		local current = wakaba:getFlashShiftTimer(player)
 		local maxval = wakaba:getMaxFlashShiftTimer(player)
 		chargeBar:UpdateSprite(current, 0, maxval)
@@ -114,6 +114,13 @@ function wakaba:PlayerUpdate_FlashShift(player)
 	else
 		pData.wakaba.fstimer = nil
 		pData.wakaba.fscounter = nil
+		if pData.wakaba.fsfrictiontimer then
+			pData.wakaba.fsfrictiontimer = pData.wakaba.fsfrictiontimer - 1
+			if pData.wakaba.fsfrictiontimer <= 0 then
+				pData.wakaba.fsfriction = nil
+				pData.wakaba.fsfrictiontimer = nil
+			end
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_FlashShift)
