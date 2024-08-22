@@ -1,19 +1,19 @@
---[[ 
+--[[
 	Richer's Uniform (리셰쨩의 제복) - 액티브 - 4 rooms
 	사용한 방에 따라 다른 효과 발동
 	- 기본 : 그 방에서 리스톡머신 1회 발동, Blind 저주 제거
 
 	- 시작방 : 최초 입장 시에 한해 Card Reading의 포탈 소환
 	- 일반방/아레나 : 그 방의 적을 2회 약화
-	- 보물방 : 
-	- 천체관 : 
+	- 보물방 :
+	- 천체관 :
 	- 상점 : 그 방에서 할인
 	- 블랙마켓 : 그 상점을 재입고
 	- 보스방/미니보스방 : 그 방에서 미네르바 오라(공격력/연사 증가 + 유도) 발동
 	- 에러방 : 그 방의 액티브/패시브와 같이 시작 방으로 텔레포트
-	- 비밀방 : 
-	- 일급비밀방 : 
-	- 특급비밀방 : 
+	- 비밀방 :
+	- 일급비밀방 :
+	- 특급비밀방 :
 	- 오락실 : 랜덤 슬롯머신 소환 + 그 방에서 Lucky Foot 효과 발동
 	- 저주방 : 체력 한칸을 소모하여 빨간 상자 소환
 	- 도전방/보스도전방 : 그 방의 픽업 및 아이템을 복사
@@ -22,16 +22,16 @@
 	- 악마방 : 최대 체력 2칸 거래가 필요한 3+ 퀄리티 아이템 소환
 	- 천사방 : 빨간하트, 소울하트를 반칸씩 회복, 저주 방어 횟수 추가
 	- 보스러시 : 선택형 상태 제거
-	- 레트로방 : 
-	- 침대방 : 
-	- 출구방 : 
+	- 레트로방 :
+	- 침대방 :
+	- 출구방 :
 
 	- 비스트방 : 도그마 지급 (일회용)
 
 	- 관측소(갓모드) : 가장 가까이에 있는 장신구 흡수
 	- 썩은 보물방(Tainted Treasure) : 제시된 아이템을 소모하지 않고 해당 알트 아이템 획득
 	- 버려진 천체관(안드로메다) : 해당 방을 리셰의 천체관으로 교체
-	- 천체보스방(Heaven's Call) : 
+	- 천체보스방(Heaven's Call) :
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 
@@ -84,8 +84,8 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		local pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP)
 		for _, pickup in ipairs(pickups) do
 			table.insert(ribbon_data.run.storedPickups, {
-				Type = EntityType.ENTITY_PICKUP, 
-				Variant = pickup.Variant, 
+				Type = EntityType.ENTITY_PICKUP,
+				Variant = pickup.Variant,
 				SubType = pickup.SubType,
 				X = pickup.Position.X,
 				Y = pickup.Position.Y,
@@ -103,7 +103,9 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		wakaba.runstate.rerollquality["0"] = false
 		wakaba.runstate.rerollquality["1"] = false
 		wakaba.runstate.rerollquality["2"] = false
-		local shopItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player):ToPickup()
+		local s = wakaba.G:GetRoom():GetSpawnSeed()
+		local shopItem = wakaba.G:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player, 0, s):ToPickup()
+		--local shopItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player):ToPickup()
 		shopItem.Price = PickupPrice.PRICE_TWO_HEARTS
 		shopItem.AutoUpdatePrice = false
 		wakaba.runstate.rerollquality["0"] = nil
@@ -168,9 +170,9 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 	--[[ elseif roomType == RoomType.ROOM_DICE then ]]
 
 	--[[ elseif roomType == RoomType.ROOM_BLACK_MARKET then ]]
-		
+
 	--[[ elseif roomType == RoomType.ROOM_GREED_EXIT or roomType == RoomType.ROOM_SECRET_EXIT then ]]
-		
+
 	else
 		room:ShopRestockFull()
 	end
@@ -232,11 +234,11 @@ if EID then
 		elseif roomType == RoomType.ROOM_SACRIFICE then
 			appendDesc = descTable.sacrifice
 		--[[ elseif roomType == RoomType.ROOM_SECRET then ]]
-	
+
 		--[[ elseif roomType == RoomType.ROOM_SUPERSECRET then ]]
-	
+
 		--[[ elseif roomType == RoomType.ROOM_ULTRASECRET then ]]
-	
+
 		elseif roomType == RoomType.ROOM_ARCADE then
 			appendDesc = descTable.arcade
 		elseif roomType == RoomType.ROOM_CURSE then
@@ -244,21 +246,21 @@ if EID then
 		elseif roomType == RoomType.ROOM_CHALLENGE then
 			appendDesc = descTable.challenge
 		--[[ elseif roomType == RoomType.ROOM_LIBRARY then ]]
-	
+
 		--[[ elseif roomType == RoomType.ROOM_DUNGEON then ]]
-	
+
 		elseif roomType == RoomType.ROOM_BOSSRUSH then
 			appendDesc = descTable.bossrush
 		--[[ elseif roomType == RoomType.ROOM_ISAACS or roomType == RoomType.ROOM_BARREN then ]]
-	
+
 		elseif roomType == RoomType.ROOM_CHEST then
 			appendDesc = descTable.chestroom
 		--[[ elseif roomType == RoomType.ROOM_DICE then ]]
-	
+
 		--[[ elseif roomType == RoomType.ROOM_BLACK_MARKET then ]]
-			
+
 		--[[ elseif roomType == RoomType.ROOM_GREED_EXIT or roomType == RoomType.ROOM_SECRET_EXIT then ]]
-			
+
 		else
 			appendDesc = descTable.default
 		end

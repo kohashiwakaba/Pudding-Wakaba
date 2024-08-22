@@ -10,6 +10,7 @@ local lastFrameGridChecked = 0
 local preGetCollectibleAntiRecursive = false
 
 function wakaba:preRollCheck(itemPoolType, decrease, seed)
+	wakaba.Log("Prepare reroll - pool " .. itemPoolType .. " / seed " ..seed)
 
 	if preGetCollectibleAntiRecursive then goto cont end
 

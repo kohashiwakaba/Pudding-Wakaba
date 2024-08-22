@@ -115,9 +115,10 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 		end
 		::failedSoulofWakaba::
 		if failed then
+			local s = wakaba.G:GetRoom():GetSpawnSeed()
 			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false), 
+					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false, s),
 					Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
 				p1.ShopItemId = -1
 				--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
@@ -128,7 +129,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				end ]]
 			else
 				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 
-					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false), 
+					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false, s),
 					Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
 				p1.ShopItemId = -1
 				--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
