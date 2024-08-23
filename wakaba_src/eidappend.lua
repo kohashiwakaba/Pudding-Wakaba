@@ -161,27 +161,6 @@ if EID then
 			return false
 		end
 
-		-- Handle Better Voiding description addition
-		local function BetterVoidingCondition(descObj)
-			if descObj.ObjType ~= 5 or descObj.ObjVariant ~= PickupVariant.PICKUP_COLLECTIBLE then
-				return false
-			end
-			if BetterVoiding then
-				return true
-			end
-			return false
-		end
-
-		local function BetterVoidingCallback(descObj)
-			local betterVoidingBuff = wakaba.eidextradesc.bettervoiding[descObj.ObjSubType]
-			if betterVoidingBuff ~= nil then
-				local description = (betterVoidingBuff[EID:getLanguage()] or betterVoidingBuff.en_us)
-				local iconStr = "#!!! Better Voiding detected!#"
-				EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
-			end
-			return descObj
-		end
-
 		local function ValutCondition(descObj)
 			if EID.Config["DisplayCraneInfo"]
 			and descObj.ObjType == 6
@@ -597,7 +576,6 @@ if EID then
 			end
 
 			EID:addDescriptionModifier("Book of Shiori", ShioriBookCondition, ShioriBookCallback)
-			EID:addDescriptionModifier("Better Voiding detection", BetterVoidingCondition, BetterVoidingCallback)
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
 			--EID:addDescriptionModifier("Apollyon Crisis", ApcCond)
