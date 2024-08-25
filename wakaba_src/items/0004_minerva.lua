@@ -426,6 +426,7 @@ end ]]
 --wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_Minerva)
 
 function wakaba:NegateDamage_Minerva(player, amount, flag, source, countdownFrames)
+	if flag & DamageFlag.DAMAGE_FAKE > 0 then return end
 	local data = player:GetData()
 	if data.wakaba.hasminerva > 0 then
 		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.MINERVA_AURA)
