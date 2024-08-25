@@ -45,7 +45,7 @@ end
 ---@param entryKey string
 ---@param fallbackValue any
 ---@return any
-function wakaba:getPlayerDataEntry(player ,entryKey, fallbackValue)
+function wakaba:getPlayerDataEntry(player, entryKey, fallbackValue)
 	local playerIndex = tostring(isc:getPlayerIndex(player))
 	rs.run[playerIndex] = rs.run[playerIndex] or {}
 	return rs.run[playerIndex][entryKey] or fallbackValue
