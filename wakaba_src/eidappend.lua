@@ -279,6 +279,9 @@ if EID then
 			EID:addIcon("RiraTreasure", "EID_Icons", 16, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("AquaTreasure", "EID_Icons", 17, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
+			EID:addIcon("ShioriPrimary", "EID_Icons", 18, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("ShioriSecondary", "EID_Icons", 19, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
 

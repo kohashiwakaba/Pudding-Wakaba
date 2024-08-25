@@ -444,7 +444,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 충전 속도 50% 감소)"
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
-		wisp = "{{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",
+		wisp = "{{InnerWisp}} {{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",
 		void = "흡수 시 더 이상 {{Quality3}}/{{Quality4}}등급을 보장하지 않음",
 		carBattery = "무효과",
 	},
@@ -458,7 +458,7 @@ wakaba.descriptions[desclang].collectibles = {
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "충전식 뼈",
 		belial = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
-		wisp = "{{ColorYellow}}중앙 x1{CR}}/{{Heart}}:3{#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#불꽃이 꺼지면 {{BoneHeart}}뼈하트, 혹은 아군 Bony류 몬스터를 소환합니다.",
+		wisp = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{CR}}/{{Heart}}:3{#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#불꽃이 꺼지면 {{BoneHeart}}뼈하트, 혹은 아군 Bony류 몬스터를 소환합니다.",
 		carBattery = {1, 2},
 	},
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
@@ -623,7 +623,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "레이저 반사",
-		wisp = "{{ColorOrange}}외부 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#방을 나가면 사라집니다.#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다.",
+		wisp = "{{OuterWisp}} {{ColorOrange}}외부 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#방을 나가면 사라집니다.#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다.",
 		void = "더 이상 자동으로 발동되지 않으며 사용 시 무적 시간이 20초로 증가",
 	},
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = {
