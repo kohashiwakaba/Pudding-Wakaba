@@ -63,7 +63,6 @@ return {
 		str = {
 			"The Wild Card:",
 			"    Spawns a Wild Card at the start of a floor",
-			"    Doesn't apply to first floor",
 		},
 		category = "charTree", sort = 4005
 	},
