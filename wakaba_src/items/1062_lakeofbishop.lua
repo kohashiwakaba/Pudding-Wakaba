@@ -124,6 +124,12 @@ function wakaba:AfterRevival_SakuraCapsule(player)
 	player:AddSoulHearts(-36)
 	player:AddMaxHearts(8)
 	player:AddHearts(8)
+	if REPENTOGON and player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+		local soul = player:GetOtherTwin()
+		if soul:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			soul:AddSoulHearts(1)
+		end
+	end
 	player:SetMinDamageCooldown(30)
 	wakaba.G:GetRoom():MamaMegaExplosion(player.Position)
 	wakaba:scheduleForUpdate(function ()
