@@ -426,14 +426,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				if charData then
 					local name = PST:getCurrentCharName()
 					local level = charData.level
-					local current = charData.xp + (charData.xpObtained or 0)
+					local current = charData.xp + (PST.modData.xpObtained or 0)
 					local nextLevel = charData.xpRequired
 					local barPercent = math.min(1, current / math.max(1, nextLevel))
 					local string = name .. " Lv." .. level
 					if expType >= 0 then
 						local ind = 10 ^ expType
 						--string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
-						string = string .. (math.ceil(barPercent * ind * 100) / ind) .."%"
+						string = string .. " : " .. (math.ceil(barPercent * ind * 100) / ind) .."%"
 					end
 
 					local tab = {
@@ -468,7 +468,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 					if expType >= 0 then
 						local ind = 10 ^ expType
 						--string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
-						string = string .. (math.ceil(barPercent * ind * 100) / ind) .."%"
+						string = string.. " : " .. (math.ceil(barPercent * ind * 100) / ind) .."%"
 					end
 
 					local tab = {
