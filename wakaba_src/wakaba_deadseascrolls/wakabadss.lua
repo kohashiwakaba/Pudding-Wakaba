@@ -1,5 +1,4 @@
 local DSSModName = "Dead Sea Scrolls (Wakaba)"
-local DSSCoreVersion = 6
 local MenuProvider = {}
 local game = Game()
 
@@ -1323,7 +1322,7 @@ local wakabadirectory = {
 	-----------------------------------ForceVoid-------------------------------
 	enhbossdest = {
 		title = 'boss destination',
-    generate = function(item)
+		generate = function(item)
 			item.ds1 = {
 				[1] = nil,
 				[2] = "Random",
