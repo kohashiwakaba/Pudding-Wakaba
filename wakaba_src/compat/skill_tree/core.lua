@@ -54,6 +54,13 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		PST.charNames[1 + wakaba.Enums.Players.RIRA_B] = "T. Rira"
 	end
 
+	do
+		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Azure Starcursed Jewel"))
+		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Crimson Starcursed Jewel"))
+		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Viridian Starcursed Jewel"))
+		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Ancient Starcursed Jewel"))
+	end
+
 	do -- NODES WAKABA
 		PST.SkillTreesAPI.AddCharacterTree("Wakaba", true, [[
 	{
