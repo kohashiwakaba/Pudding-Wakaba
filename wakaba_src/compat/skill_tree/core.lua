@@ -413,6 +413,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				end
 			end
 		end)
+
 		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 3, function(_)
 			if wakaba:getOptionValue("hudpst") then -- -1, 0, 1, 2
 				wakaba.globalHUDSprite:RemoveOverlay()
@@ -425,13 +426,49 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				if charData then
 					local name = PST:getCurrentCharName()
 					local level = charData.level
-					local current = charData.xp
+					local current = charData.xp + (charData.xpObtained or 0)
 					local nextLevel = charData.xpRequired
-					local barPercent = math.min(1, charData.xp / math.max(1, charData.xpRequired))
+					local barPercent = math.min(1, current / math.max(1, nextLevel))
 					local string = name .. " Lv." .. level
 					if expType >= 0 then
 						local ind = 10 ^ expType
-						string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
+						--string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
+						string = string .. (math.ceil(barPercent * ind * 100) / ind) .."%"
+					end
+
+					local tab = {
+						Sprite = wakaba.globalHUDSprite,
+						Text = string,
+						Location = loc,
+						SpriteOptions = {
+							Anim = "PST",
+							Frame = frame,
+						},
+					}
+					return tab
+				end
+			end
+		end)
+
+		wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 4, function(_)
+			if wakaba:getOptionValue("hudpstg") then -- -1, 0, 1, 2
+				wakaba.globalHUDSprite:RemoveOverlay()
+				wakaba.globalHUDSprite:SetFrame("PST", 1)
+				local room = Game():GetRoom()
+				local loc = wakaba:getOptionValue("hud_pstg")
+				local expType = wakaba:getOptionValue("hudpstg")
+				local frame = 1
+				local charData = PST.modData
+				if charData then
+					local level = charData.level
+					local current = charData.xp + (charData.xpObtained or 0)
+					local nextLevel = charData.xpRequired
+					local barPercent = math.min(1, current / math.max(1, nextLevel))
+					local string = "Global Lv." .. level
+					if expType >= 0 then
+						local ind = 10 ^ expType
+						--string = string .. " : "..current.."/"..nextLevel.." ("..  (math.ceil(barPercent * ind * 100) / ind)  .."%)"
+						string = string .. (math.ceil(barPercent * ind * 100) / ind) .."%"
 					end
 
 					local tab = {
