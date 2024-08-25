@@ -138,8 +138,10 @@ end
 function wakaba:openCloverChest(player, chest)
 	local tmpRange = wakaba:extraVal("wakabaCloverChestRange", 0)
 	if tmpRange ~= 0 then
+		wakaba:initPlayerDataEntry(player, "CloverChestRange", 0)
+		wakaba:addPlayerDataCounter(player, "CloverChestRange", tmpRange)
 		--wakaba:addCustomStat(player, "luck", luckToSub * -1)
-		--player:AddCacheFlags(CacheFlag.CACHE_LUCK, true)
+		player:AddCacheFlags(CacheFlag.CACHE_RANGE, true)
 	end
 	wakaba:spawnCloverChestReward(chest, player)
 	wakaba:RemoveOtherOptionPickups(chest)

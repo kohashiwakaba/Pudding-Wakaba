@@ -342,6 +342,23 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				end
 			end
 		end, 0)
+		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
+			for num = 1, wakaba.G:GetNumPlayers() do
+				local player = wakaba.G:GetPlayer(num - 1)
+				wakaba:removePlayerDataEntry(player, "CloverChestRange")
+			end
+		end)
+
+		---@param player EntityPlayer
+		---@param cacheFlag CacheFlag
+		wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function (_, player, cacheFlag)
+			if cacheFlag == CacheFlag.CACHE_RANGE then
+				local range = wakaba:getPlayerDataEntry(player, "CloverChestRange", 0)
+				if range > 0 then
+					player.TearRange = player.TearRange + (range * 40)
+				end
+			end
+		end)
 		wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010722, function (_, player, cacheFlag)
 			if cacheFlag == CacheFlag.CACHE_SPEED then
 				if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
