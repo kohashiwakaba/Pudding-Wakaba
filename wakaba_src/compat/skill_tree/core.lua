@@ -350,9 +350,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			end
 		end, 0)
 		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
+      local room = wakaba.G:GetRoom()
 			for num = 1, wakaba.G:GetNumPlayers() do
 				local player = wakaba.G:GetPlayer(num - 1)
 				wakaba:removePlayerDataEntry(player, "CloverChestRange")
+			end
+			if wakaba:extraVal("wakabaWildCard") then
+        local pos = room:GetGridPosition(102)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_WILD, room:FindFreePickupSpawnPosition(pos, 40), Vector.Zero, nil)
 			end
 		end)
 
