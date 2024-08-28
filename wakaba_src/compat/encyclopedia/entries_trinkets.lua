@@ -125,6 +125,7 @@ wakaba.encyclopediadesc.desc.trinkets = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "-60% Range Multiplier"},
+			{str = "- Range Limit is locked to 6.5."},
 			{str = "+125% Damage Multiplier"},
 		},
 		{ -- Trivia

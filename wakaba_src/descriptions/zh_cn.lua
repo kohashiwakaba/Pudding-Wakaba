@@ -1669,6 +1669,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "火控系统",
 		description = ""
 			.. "#↓ {{Range}} -60% 攻击距离倍率"
+			.. "#{{Range}} Limit Range to 6.5" -- TODO
 			.. "#↑ {{Damage}} +125% 伤害倍率"
 			.. "{{CR}}",
 		queueDesc = "向他们深入",

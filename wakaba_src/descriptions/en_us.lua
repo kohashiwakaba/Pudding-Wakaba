@@ -1684,6 +1684,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "Range OS",
 		description = ""
 		.. "#↓ {{Range}} -60% Range Multiplier"
+		.. "#{{Range}} Limit Range to 6.5"
 		.. "#↑ {{Damage}} +125% Damage Multiplier"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",

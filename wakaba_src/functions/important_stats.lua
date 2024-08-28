@@ -32,10 +32,26 @@ function wakaba:Cache_Important(player, cacheFlag)
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
 			player.Damage = player.Damage * (1 + (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO)))
 		end
+		if player:HasTrinket(wakaba.Enums.Trinkets.RANGE_OS) then
+			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
+				player.Damage = player.Damage * 2.25
+			end
+		end
 	end
 	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
 		if player:GetData().wakaba.minervacount > 0 then
 			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, wakaba:IsLunatic() and 1.6 or 2.3)
+		end
+	end
+	if cacheFlag == CacheFlag.CACHE_RANGE then
+		if player:HasTrinket(wakaba.Enums.Trinkets.RANGE_OS) then
+			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
+				player.TearRange = player.TearRange * 0.4
+			end
+		end
+
+		if player.TearRange > (6.5 * 40) then
+			player.TearRange = (6.5 * 40)
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then

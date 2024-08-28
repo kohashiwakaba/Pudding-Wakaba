@@ -1967,6 +1967,7 @@ wakaba.descriptions[desclang].trinkets = {
 		itemName = "강습형 전투 시스템",
 		description = ""
 		.. "#↓ {{RangeSmall}}사거리 배율 x0.4"
+		.. "#{{RangeSmall}} 사거리 상한이 6.5로 감소합니다."
 		.. "#↑ {{DamageSmall}}공격력 배율 x2.25"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.ANGEL .. "",
