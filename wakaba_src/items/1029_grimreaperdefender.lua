@@ -32,7 +32,10 @@ end
 
 function wakaba:AlterPlayerDamage_GrimreaperDefender(player, amount, flags, source, countdown)
 	if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
-		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS | DamageFlag.DAMAGE_NO_PENALTIES
+		if wakaba:WillDamageBeFatal(player, amount, flags, false, false, false) then
+			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
+		end
+		return amount, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_GrimreaperDefender)
