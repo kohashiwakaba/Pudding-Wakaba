@@ -486,6 +486,38 @@ function idesc:getHeldActives()
 end
 
 ---@return InventoryDescEntry[]
+function idesc:getVoidedActives()
+	if not REPENTOGON then return end
+	local ei = {}
+	local entries = {} ---@type InventoryDescEntry[]
+	for i = 0, game:GetNumPlayers() - 1 do
+		ei = {}
+		local player = Isaac.GetPlayer(i)
+		local playerType = player:GetPlayerType()
+		local voided = player:GetVoidedCollectiblesList()
+		for _, entryIndex in ipairs(voided) do
+			if entryIndex > 0 and not has(ei, entryIndex) then
+				local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(entryIndex)).Quality)
+				---@type InventoryDescEntry
+				local entry = {
+					Type = idescEIDType.COLLECTIBLE,
+					Variant = PickupVariant.PICKUP_COLLECTIBLE,
+					SubType = entryIndex,
+					Frame = function()
+						return idesc:getOptions("q0icon")
+					end,
+					LeftIcon = "{{Player"..player:GetPlayerType().."}}",
+					ExtraIcon = "{{Collectible"..CollectibleType.COLLECTIBLE_VOID.."}}",
+				}
+				table.insert(entries, entry)
+				table.insert(ei, entryIndex)
+			end
+		end
+	end
+	return entries
+end
+
+---@return InventoryDescEntry[]
 function idesc:getHeldCards()
 	local ei = {}
 	local entries = {} ---@type InventoryDescEntry[]
@@ -747,6 +779,7 @@ idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES"
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -380, function (_) return idesc:getDefaults() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -360, function (_) return idesc:getCurses() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -340, function (_) return idesc:getHeldActives() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -339, function (_) return idesc:getVoidedActives() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -320, function (_) return idesc:getHeldCards() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -300, function (_) return idesc:getHeldPills() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -280, function (_) return idesc:getPassives() end)
