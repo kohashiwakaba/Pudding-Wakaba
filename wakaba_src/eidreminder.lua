@@ -167,6 +167,11 @@ function wakaba:PlayerUpdate_EIDItemReminder(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_EIDItemReminder)
 
+function wakaba:GameStart_EIDItemReminder()
+	EID:ResetItemReminderSelectedItems()
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.GameStart_EIDItemReminder)
+
 do
 	local index = wakaba:EIDItemReminder_GetIndex("Special")
 	table.insert(EID.ItemReminderCategories, index, {id = "w_Character",
