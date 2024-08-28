@@ -1109,6 +1109,9 @@ function idesc:Render()
 		local dn = idesc:getDisplayNames()
 		local pstr = dn.DisplayName1 or "Current item list ({current}/{max})"
 		local sstr = dn.DisplayName2 or "Press {listkey} again to exit"
+		pstr = pstr:gsub("{current}", listprops.current)
+		pstr = pstr:gsub("{max}", listprops.max)
+		pstr = pstr:gsub("{listkey}", kts[inputKey])
 		sstr = sstr:gsub("{current}", listprops.current)
 		sstr = sstr:gsub("{max}", listprops.max)
 		sstr = sstr:gsub("{listkey}", kts[inputKey])
