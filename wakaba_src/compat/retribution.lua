@@ -122,9 +122,9 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 			[wakaba.Enums.Trinkets.WAKABA_SIREN] = 3,
 		}
 		for trinketID, baseSellValue in pairs(cursedTrinkets) do
-			mod.AddCursedTrinket(trinketID, baseSellValue)
+			--mod.AddCursedTrinket(trinketID, baseSellValue)
 		end
-
+--[[
 		local trinketsToCurse = {
 			[wakaba.Enums.Trinkets.FADED_MARK] = wakaba.curses.CURSE_OF_SNIPER,
 			[wakaba.Enums.Trinkets.NEVERLASTING_BUNNY] = wakaba.curses.CURSE_OF_AMNESIA,
@@ -153,6 +153,6 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 		wakaba:AddCallback(mod.Callback.GET_CURSED_TRINKET, function()
 			wakaba.G:GetLevel():DisableDevilRoom()
 		end, wakaba.Enums.Trinkets.BROKEN_MURASAME)
-
+ ]]
 	end
 end)

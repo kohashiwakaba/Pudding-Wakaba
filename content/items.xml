@@ -215,26 +215,26 @@
 
 	<!-- 저주받은 장신구 -->
 
-	<trinket name="Corrupted Clover" description="Cursed Light" gfx="buta-chan/corruptedclover.png" hidden="true" achievement="9999"/>
-	<trinket name="Dark Pendant" description="Inverted Luck" gfx="buta-chan/darkpendant.png" hidden="true" achievement="9999"/>
-	<trinket name="Broken Necklace" description="Itch memories" gfx="buta-chan/brokennecklace.png" hidden="true" achievement="9999"/>
-	<trinket name="Leaf Needle" description="Bleeding Actives" gfx="buta-chan/leafneedle.png" hidden="true" achievement="9999"/>
-	<trinket name="Richer's Hair" description="One touch occult" gfx="buta-chan/richerhair.png" hidden="true" achievement="9999"/>
-	<trinket name="Rira's Hair" description="One touch lost" gfx="buta-chan/rirahair.png" hidden="true" achievement="9999"/>
-	<trinket name="Spy Eye" description="Red Light!" gfx="buta-chan/spyeye.png" hidden="true" achievement="9999"/>
-	<trinket name="Faded Mark" description="Curse of Sniper" gfx="buta-chan/fadedmark.png" hidden="true" achievement="9999"/>
-	<trinket name="Neverlasting Bunny" description="Curse of Amnesia" gfx="buta-chan/neverlastingbunny.png" hidden="true" achievement="9999"/>
-	<trinket name="Ribbon Cage" description="Curse of Fairy" gfx="buta-chan/ribboncage.png" hidden="true" achievement="9999"/>
-	<trinket name="Rira's Worst Nightmare" description="It's Moving!!" gfx="buta-chan/riraworstnightmare.png" hidden="true" achievement="9999"/>
-	<trinket name="Masked Shovel" description="Fatal Hole" gfx="buta-chan/maskedshovel.png" hidden="true" achievement="9999"/>
-	<trinket name="Broken Watch 2" description="Time Machine" gfx="buta-chan/brokenwatch2.png" hidden="true" achievement="9999"/>
-	<trinket name="Round and Round" description="Eternal spinning" gfx="buta-chan/roundandround.png" hidden="true" achievement="9999"/>
-	<trinket name="Gehenna Rock" description="They now have eyes" gfx="buta-chan/gehennarock.png" hidden="true" achievement="9999"/>
-	<trinket name="Broken Murasame" description="No Deals" gfx="buta-chan/brokenmurasame.png" hidden="true" achievement="9999"/>
-	<trinket name="Lunatic Crystal" description="Unholy Curse" gfx="buta-chan/lunaticcrystal.png" hidden="true" achievement="9999"/>
-	<trinket name="Torn Paper 2" description="They now follow you" gfx="buta-chan/tornpaper2.png" hidden="true" achievement="9999"/>
-	<trinket name="Mini Torizo" description="Piercing tears..?" gfx="buta-chan/minitorizo.png" hidden="true" achievement="9999"/>
-	<trinket name="Grenade D20" description="Exploding pickups" gfx="buta-chan/grenaded20.png" hidden="true" achievement="9999"/>
-	<trinket name="Wakaba Siren" description="ALERT" gfx="buta-chan/wakabasiren.png" hidden="true" achievement="9999"/>
+	<trinket name="Corrupted Clover" description="Cursed Light" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Dark Pendant" description="Inverted Luck" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Broken Necklace" description="Itch memories" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Leaf Needle" description="Bleeding Actives" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Richer's Hair" description="One touch occult" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Rira's Hair" description="One touch lost" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Spy Eye" description="Red Light!" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Faded Mark" description="Curse of Sniper" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Neverlasting Bunny" description="Curse of Amnesia" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Ribbon Cage" description="Curse of Fairy" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Rira's Worst Nightmare" description="It's Moving!!" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Masked Shovel" description="Fatal Hole" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Broken Watch 2" description="Time Machine" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Round and Round" description="Eternal spinning" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Gehenna Rock" description="They now have eyes" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Broken Murasame" description="No Deals" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Lunatic Crystal" description="Unholy Curse" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Torn Paper 2" description="They now follow you" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Mini Torizo" description="Piercing tears..?" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Grenade D20" description="Exploding pickups" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Wakaba Siren" description="ALERT" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
 
 </items>
