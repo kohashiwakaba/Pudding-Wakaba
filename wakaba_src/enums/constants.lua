@@ -754,6 +754,7 @@ wakaba.Blacklists.Uniform.Cards = {
 	Card.CARD_ANCIENT_RECALL,
 	Card.CARD_WILD,
 	Card.CARD_QUESTIONMARK,
+	wakaba.Enums.Cards.CARD_COLOR_JOKER,
 }
 wakaba.Blacklists.Uniform.PillEffect = {
 	PillEffect.PILLEFFECT_VURP,
