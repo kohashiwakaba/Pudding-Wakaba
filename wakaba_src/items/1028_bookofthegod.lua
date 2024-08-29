@@ -110,7 +110,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.EnemyTakeDmg_BookOfTh
 
 function wakaba:AlterPlayerDamage_BookOfTheGod(player, amount, flags, source, countdown)
 	local data = player:GetData()
-	if wakaba:hasPlayerDataEntry(player, "shioriangel") and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) then
+	if wakaba:hasPlayerDataEntry(player, "shioriangel") and not player:HasCollectible(CollectibleType.COLLECTIBLE_HEARTBREAK) and player:GetHeartLimit() > 2 then
 		return 1, flags | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS
 	end
 end
