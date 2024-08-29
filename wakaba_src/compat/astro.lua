@@ -81,7 +81,7 @@ end)
 
 wakaba:RegisterPatch(0, "QP", function() return (QP ~= nil and QP.Settings ~= nil) end, function()
 	wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, 2, function(_)
-		if wakaba:getOptionValue("hudquickpick") and os then
+		if wakaba:getOptionValue("hudquickpick") then
 			wakaba.globalHUDSprite:RemoveOverlay()
 			wakaba.globalHUDSprite:SetFrame("QuickPick", 0)
 			local room = Game():GetRoom()
