@@ -1178,6 +1178,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, useditem, rng, player, 
 			if nextFlag ~= nil then
 				Isaac.RunCallbackWithParam(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT, nextFlag, nextFlag, rng, player, useflag, slot, vardata)
 			end
+			wakaba.HiddenItemManager:RemoveAll(player, "WAKABA_BOS_SECONDARY")
 			Isaac.RunCallbackWithParam(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, useditem, useditem, rng, player, useflag, slot, vardata)
 			player:AddCacheFlags(CacheFlag.CACHE_ALL)
 			player:EvaluateItems()

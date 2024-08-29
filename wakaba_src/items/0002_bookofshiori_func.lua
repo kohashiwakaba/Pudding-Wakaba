@@ -70,26 +70,22 @@ end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Bible, CollectibleType.COLLECTIBLE_BIBLE)
 
 function wakaba:Shiori_Belial(_, rng, player, useflag, slot, vardata)
-	wakaba:addShioriBuff(player)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
+	local entities = Isaac.GetRoomEntities()
+	for _, entity in ipairs(entities) do
+		if entity:IsEnemy() and not entity:IsDead() then
+			if not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+				entity:AddFear(EntityRef(Player), 150)
+			end
+		end
+	end
+	--wakaba:addShioriBuff(player)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Belial, CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL)
 
+---@param player EntityPlayer
 function wakaba:Shiori_Necronomicon(_, rng, player, useflag, slot, vardata)
-	local laser = player:SpawnMawOfVoid(30)
-	laser.CollisionDamage = player.Damage * 0.64
-	laser.Radius = 40
-	local laser2 = player:SpawnMawOfVoid(55)
-	laser2.CollisionDamage = player.Damage * 0.64
-	laser2.Radius = 80
-	local laser3 = player:SpawnMawOfVoid(80)
-	laser3.CollisionDamage = player.Damage * 0.64
-	laser3.Radius = 120
-	local laser4 = player:SpawnMawOfVoid(105)
-	laser4.CollisionDamage = player.Damage * 0.64
-	laser4.Radius = 160
-	local laser5 = player:SpawnMawOfVoid(130)
-	laser5.CollisionDamage = player.Damage * 0.64
-	laser5.Radius = 200
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Necronomicon, CollectibleType.COLLECTIBLE_NECRONOMICON)
 
@@ -110,13 +106,44 @@ function wakaba:Shiori_Revelations(_, rng, player, useflag, slot, vardata)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Revelations, CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS)
 
+wakaba.Weights.ShioriSins = {
+	{{EntityType.ENTITY_SLOTH, 0}, 1.00},
+	{{EntityType.ENTITY_LUST, 0}, 1.00},
+	{{EntityType.ENTITY_WRATH, 0}, 1.00},
+	{{EntityType.ENTITY_GLUTTONY, 0}, 1.00},
+	{{EntityType.ENTITY_GREED, 0}, 1.00},
+	{{EntityType.ENTITY_ENVY, 0}, 1.00},
+	{{EntityType.ENTITY_PRIDE, 0}, 1.00},
+
+	{{EntityType.ENTITY_SLOTH, 1}, 0.25},
+	{{EntityType.ENTITY_LUST, 1}, 0.25},
+	{{EntityType.ENTITY_WRATH, 1}, 0.25},
+	{{EntityType.ENTITY_GLUTTONY, 1}, 0.25},
+	{{EntityType.ENTITY_GREED, 1}, 0.25},
+	{{EntityType.ENTITY_ENVY, 1}, 0.25},
+	{{EntityType.ENTITY_PRIDE, 1}, 0.25},
+}
+
 function wakaba:Shiori_Sin(_, rng, player, useflag, slot, vardata)
+	local r = RNG()
+	r:SetSeed(rng:GetSeed(), 35)
+	local s = rng:RandomFloat()
+	if s < 0.5 then
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_SIN, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
+	else
+		local randomEntity = isc:getRandomFromWeightedArray(wakaba.Weights.ShioriSins, r)
+		local tp = randomEntity[1]
+		local vr = randomEntity[2] or 0
+		local st = randomEntity[3] or 0
+		local sin = Isaac.Spawn(tp, vr, st, player.Position, Vector.Zero, player):ToNPC()
+		sin:AddEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_CHARM)
+	end
 
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Sin, CollectibleType.COLLECTIBLE_BOOK_OF_SIN)
 
 function wakaba:Shiori_MonsterManual(_, rng, player, useflag, slot, vardata)
-
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_MONSTER_MANUAL, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_MonsterManual, CollectibleType.COLLECTIBLE_MONSTER_MANUAL)
 
@@ -322,7 +349,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 	elseif current == CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL then
 		if buffs > 0 then
 			if cacheFlag == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + ((1.5 * (buffs + 1)) * wakaba:getEstimatedDamageMult(player))
+				--player.Damage = player.Damage + ((1.5 * (buffs + 1)) * wakaba:getEstimatedDamageMult(player))
 			end
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
@@ -330,7 +357,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 		end
 	elseif current == CollectibleType.COLLECTIBLE_NECRONOMICON then
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_ROCK
+			--player.TearFlags = player.TearFlags | TearFlags.TEAR_ROCK
 		end
 	elseif current == CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS then
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
@@ -343,7 +370,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 			end
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING | TearFlags.TEAR_JACOBS
+			player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
 		end
 	elseif current == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then
 		local floorBuffs = wakaba:getShioriFloorBuffs(player, CollectibleType.COLLECTIBLE_SATANIC_BIBLE)
@@ -371,7 +398,7 @@ function wakaba:Cache_BookofShiori(player, cacheFlag)
 		if buffs > 0 then
 		end
 		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
-			player.TearFlags = player.TearFlags | TearFlags.TEAR_BAIT
+			--player.TearFlags = player.TearFlags | TearFlags.TEAR_BAIT
 		end
 	elseif current == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then
 		if buffs > 0 then
@@ -402,9 +429,15 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BookofShiori)
 function wakaba:PlayerUpdate_BookofShiori(player)
 	if player:GetData().wakaba then
 		local nextflag = wakaba:getShioriFlag(player)
-		local count = nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER and 1 or 0
-		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPIRIT_SWORD, count, "WAKABA_BOS_GRIMREAPER")
-		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_MOMS_KNIFE, count, "WAKABA_BOS_GRIMREAPER")
+
+		if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_ROTTEN_TOMATO, 1, "WAKABA_BOS_SECONDARY")
+		elseif nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_DARK_MATTER, 1, "WAKABA_BOS_SECONDARY")
+		elseif nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPIRIT_SWORD, 1, "WAKABA_BOS_SECONDARY")
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_MOMS_KNIFE, 1, "WAKABA_BOS_SECONDARY")
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_BookofShiori)
@@ -447,10 +480,10 @@ function wakaba:TearInit_BookofShiori(tear)
 				tear:GetData().wakabaTearFlag = TearFlags.TEAR_LIGHT_FROM_HEAVEN
 			end
 			if not wakaba:has_value(wakaba.shioritearblacklist, tear.Variant) then
-				if nextflag == CollectibleType.COLLECTIBLE_NECRONOMICON then tear:ChangeVariant(TearVariant.ROCK) end
-				if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS then tear:ChangeVariant(TearVariant.LOST_CONTACT) end
-				if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then tear:ChangeVariant(TearVariant.SCHYTHE) end
-				if nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then tear:ChangeVariant(TearVariant.DARK_MATTER) end
+				--if nextflag == CollectibleType.COLLECTIBLE_NECRONOMICON then tear:ChangeVariant(TearVariant.ROCK) end
+				--if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS then tear:ChangeVariant(TearVariant.LOST_CONTACT) end
+				--if nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then tear:ChangeVariant(TearVariant.SCHYTHE) end
+				--if nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then tear:ChangeVariant(TearVariant.DARK_MATTER) end
 				if nextflag == wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN then tear:ChangeVariant(TearVariant.BONE) end
 				if nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then tear:ChangeVariant(TearVariant.SCHYTHE) end
 			end
@@ -615,10 +648,6 @@ function wakaba:TakeDmg_BookofShiori(entity, amount, flag, source, countdownFram
 					ischanged = true
 				end
 				if nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK and buffs > 0 then
-					local random = wakaba.RNG:RandomFloat() * 100
-					if random <= 2.5 then
-						flag = flag | DamageFlag.DAMAGE_SPAWN_BLACK_HEART
-					end
 					amount = amount * 2
 					ischanged = true
 				end
@@ -684,3 +713,18 @@ function wakaba:updateDopp(familiar)
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.updateDopp, wakaba.MINISAAC)
 
+
+function wakaba:WeaponFire_BookOfShiori(player)
+	if player:GetData().wakaba then
+		local nextflag = wakaba:getShioriFlag(player)
+		if nextflag == CollectibleType.COLLECTIBLE_NECRONOMICON then
+			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
+			local rand = rng:RandomFloat()
+			local chance = 0.06
+			if rand < rand then
+				wakaba:SpawnPurgatoryGhost(player, rng)
+			end
+		end
+	end
+end
+wakaba:AddCallback(wakaba.Callback.ANY_WEAPON_FIRE, wakaba.WeaponFire_BookOfShiori)

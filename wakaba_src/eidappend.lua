@@ -281,6 +281,7 @@ if EID then
 
 			EID:addIcon("ShioriPrimary", "EID_Icons", 18, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			EID:addIcon("ShioriSecondary", "EID_Icons", 19, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			EID:addIcon("ShioriSecDel", "EID_Icons", 20, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
@@ -554,9 +555,22 @@ if EID then
 			local function ShioriBookCallback(descObj)
 				local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", descObj.ObjSubType)
 				if wakabaBuff then
+					local primary = wakabaBuff.primary
+					if primary and primary ~= "" then
+						local iconStr = "#{{ShioriPrimary}} "
+						EID:appendToDescription(descObj, iconStr.. primary)
+					end
+					local secondary = wakabaBuff.secondary
+					if secondary and secondary ~= "" then
+						local iconStr = "#{{ShioriSecondary}} "
+						EID:appendToDescription(descObj, iconStr.. secondary)
+					end
+
 					local description = wakabaBuff.description
-					local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
-					EID:appendToDescription(descObj, iconStr.. description .. "{{CR}}")
+					if description and description ~= "" then
+						local iconStr = "#"
+						EID:appendToDescription(descObj, iconStr.. description)
+					end
 				end
 				return descObj
 			end

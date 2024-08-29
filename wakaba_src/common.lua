@@ -1396,3 +1396,18 @@ function wakaba:RoomShouldCheckAscent()
 	end
 	return false
 end
+
+function wakaba:SpawnPurgatoryGhost(player, rng, wait)
+	local soul = Isaac.Spawn(1000, EffectVariant.PURGATORY, 1, player.Position, Vector.Zero, player):ToEffect()
+	soul:GetData().wakaba = {}
+	soul.Parent = player
+	soul:GetData().wakaba.isFallenGhost = true
+	if not wait then
+		for i = 1, 39 do
+			soul:Update()
+		end
+	end
+	soul.Target = wakaba:findRandomEnemy(player, rng, true)
+
+	return soul
+end
