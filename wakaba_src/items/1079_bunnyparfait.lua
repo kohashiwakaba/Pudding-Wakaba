@@ -1,9 +1,10 @@
---[[ 
+--[[
 	Bunny Parfait (토끼 파르페) - 패시브
 	방 번호에 따라 랜덤 아이템 효과, 사망 시 전 방에서 리라로 부활
  ]]
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+wakaba.HiddenItemManager:HideCostumes("WAKABA_BUNNY_PARFAIT")
 
 ---@param player EntityPlayer
 local function hasParfaitEffect(player)

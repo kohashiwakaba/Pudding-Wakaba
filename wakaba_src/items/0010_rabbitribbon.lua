@@ -12,6 +12,7 @@ local ribbon_data = {
 	}
 }
 wakaba:saveDataManager("Rabbit Ribbon", ribbon_data)
+wakaba.HiddenItemManager:HideCostumes("WAKABA_RABBIT_RIBBON")
 
 function wakaba:hasRibbon(player)
 	if not player then

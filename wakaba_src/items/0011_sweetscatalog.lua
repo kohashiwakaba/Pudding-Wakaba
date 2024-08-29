@@ -5,6 +5,7 @@
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 local collectible = wakaba.Enums.Collectibles.SWEETS_CATALOG
+wakaba.HiddenItemManager:HideCostumes("RICHER_CATALOG2")
 
 local pending_collectibles = {}
 local last_type

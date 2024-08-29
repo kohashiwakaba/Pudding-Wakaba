@@ -1,6 +1,9 @@
 local shioriSpriteDatas = {}
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+wakaba.HiddenItemManager:HideCostumes("WAKABA_BOS_PRIMARY")
+wakaba.HiddenItemManager:HideCostumes("WAKABA_BOS_SECONDARY")
+
 wakaba.ShioriSprite = Sprite()
 wakaba.ShioriSprite:Load("gfx/book_of_shiori.anm2", true)
 wakaba.ShioriSprite:SetFrame("Shiori", 0)

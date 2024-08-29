@@ -1,5 +1,6 @@
 
 local isc = require("wakaba_src.libs.isaacscript-common")
+wakaba.HiddenItemManager:HideCostumes("WAKABA_DUALITY")
 
 function wakaba:getDevilAngelStatus()
 	local bless = false
