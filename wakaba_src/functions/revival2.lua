@@ -42,10 +42,12 @@ function wakaba:IsPlayerDying(player)
 	return player:GetSprite():GetAnimation():sub(-#"Death") == "Death" --does their current animation end with "Death"?
 end
 
+---@param player EntityPlayer
 function wakaba:PlayerUpdate_Revival2(player)
 	local data = player:GetData().wakaba
 	local revivalData = wakaba:CanRevive(player)
 	local playerIndex = tostring(isc:getPlayerIndex(player))
+	local level = wakaba.G:GetLevel()
 	if revivalData then
 		if not player:WillPlayerRevive() and not data.willRevive then
 			player:GetEffects():AddNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
@@ -67,13 +69,32 @@ function wakaba:PlayerUpdate_Revival2(player)
 			end
 
 			data.willRevive = false
-			if not savedRevivalData.CurrentRoom and not isc:inBeastRoom() then
-				wakaba.G:StartRoomTransition(wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex, -1, 0, player)
+			local lastIndex = wakaba.G:GetLevel():GetLastRoomDesc().SafeGridIndex
+			if not savedRevivalData.CurrentRoom and not isc:inBeastRoom() and not REPENTOGON then
+				local room = wakaba.G:GetRoom()
+
+				local enterDoorIndex = level.EnterDoor
+				if enterDoorIndex == -1 or room:GetDoor(enterDoorIndex) == nil or level:GetCurrentRoomIndex() == level:GetPreviousRoomIndex() then
+					wakaba.G:StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.MAZE)
+				else
+					local enterDoor = room:GetDoor(enterDoorIndex)
+					local targetRoomIndex = enterDoor.TargetRoomIndex
+					local targetRoomDirection = enterDoor.Direction
+
+					level.LeaveDoor = -1 -- api why
+					wakaba.G:StartRoomTransition(lastIndex, targetRoomDirection, RoomTransitionAnim.MAZE)
+				end
+
+				--wakaba.G:StartRoomTransition(lastIndex, level.EnterDoor, RoomTransitionAnim.MAZE, player)
 			end
 			wakaba:scheduleForUpdate(function()
 				player:AnimateCollectible(savedRevivalData.ID)
 			end, 3)
 		end
+	elseif data.willRevive then
+		player:GetEffects():RemoveNullEffect(NullItemID.ID_LAZARUS_SOUL_REVIVE)
+		data.revivalData = nil
+		data.willRevive = false
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Revival2)
