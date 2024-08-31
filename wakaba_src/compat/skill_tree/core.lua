@@ -1,3 +1,5 @@
+local pa = false
+
 local modifiers = include("wakaba_src.compat.skill_tree.modifier_descriptions")
 local sprite_ids = include("wakaba_src.compat.skill_tree.sprite_ids")
 wakaba.PSTSprite = Sprite("gfx/ui/wakaba/skilltree/wakaba_nodes.anm2", true)
@@ -61,8 +63,12 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Ancient Starcursed Jewel"))
 	end
 
+  function wakaba:PreLoad_PST(saveslot, isSlotSelected, rawSlot)
+
+    if not isSlotSelected then return end
+
 	do -- NODES WAKABA
-		PST.SkillTreesAPI.AddCharacterTree("Wakaba", true, [[
+		PST.SkillTreesAPI.AddCharacterTree("Wakaba", false, [[
 	{
   "112": "{\"pos\":[3,-31],\"type\":22,\"size\":\"Small\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+0.25% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":0.25},\"adjacent\":[687,693]}",
   "114": "{\"pos\":[3,-33],\"type\":22,\"size\":\"Small\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+0.25% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":0.25},\"adjacent\":[693,694]}",
@@ -341,7 +347,13 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 
 	end
 
+  wakaba:RemoveCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, wakaba.PreLoad_PST)
+  end
+
 	do -- CALLBACKS
+
+    wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, CallbackPriority.LATE, wakaba.PreLoad_PST)
+
 		wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
 			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 				if wakaba:extraVal("wakabaIsSmart") then
