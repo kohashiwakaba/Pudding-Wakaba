@@ -279,11 +279,28 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.BOOK_OF_
 			local wakabaBuff = wakaba:getWakabaDesc("bookofshiori", shioriFlag)
 			if wakabaBuff then
 				local demoDescObj = EID:getDescriptionObj(5, 100, shioriFlag)
-				local description = wakabaBuff.description
-				local iconStr = "#{{Collectible" .. wakaba.Enums.Collectibles.BOOK_OF_SHIORI .. "}} {{ColorBookofShiori}}"
 				descObj.Icon = demoDescObj.Icon
 				descObj.Name = demoDescObj.Name
-				descObj.Description = iconStr.. description .. "{{CR}}"
+				descObj.Description = ""
+
+				local description = wakabaBuff.description
+
+				local primary = wakabaBuff.primary
+				if primary and primary ~= "" then
+					local iconStr = "#{{ShioriPrimary}} "
+					--descObj.Description = iconStr.. primary .. "{{CR}}"
+				end
+				local secondary = wakabaBuff.secondary
+				if secondary and secondary ~= "" then
+					local iconStr = "#{{ShioriSecondary}} "
+					descObj.Description = iconStr.. secondary .. "{{CR}}"
+				end
+
+				local description = wakabaBuff.description
+				if description and description ~= "" then
+					local iconStr = "#"
+					--descObj.Description = iconStr.. description .. "{{CR}}"
+				end
 			end
 		end
 	end,
