@@ -437,6 +437,8 @@ function wakaba:PlayerUpdate_BookofShiori(player)
 		elseif nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPIRIT_SWORD, 1, "WAKABA_BOS_SECONDARY")
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_MOMS_KNIFE, 1, "WAKABA_BOS_SECONDARY")
+		elseif nextflag == wakaba.Enums.Collectibles.ISEKAI_DEFINITION then
+
 		end
 	end
 end
