@@ -36,3 +36,4 @@ function wakaba:PlayerUpdate_RiraBandage(player)
 		end
 	end
 end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_RiraBandage)
