@@ -1335,12 +1335,13 @@ local wakabadirectory = {
 			}
 			item.ds2 = {
 				[1] = nil,
-				[2] = 500000,
-				[3] = 1000000,
-				[4] = 10000000,
-				[5] = 100000000,
-				[6] = 1000000000,
-				[7] = 10000000000,
+				[2] = -1,
+				[3] = 500000,
+				[4] = 1000000,
+				[5] = 10000000,
+				[6] = 100000000,
+				[7] = 1000000000,
+				[8] = 10000000000,
 			}
 			item.ds3 = {
 				[1] = nil,
@@ -1363,12 +1364,12 @@ local wakabadirectory = {
 			local sel = item.bsel
 			local selToEntry = {
 				[1] = "boss",
-				[2] = "health",
-				[3] = "damo",
-				[4] = "lunatic",
-				[5] = "lock",
-				[6] = "roll",
-				[7] = "clear",
+				[3] = "health",
+				[5] = "damo",
+				[7] = "lunatic",
+				[9] = "lock",
+				[11] = "roll",
+				[12] = "clear",
 			}
 			if EID and selToEntry[sel] then
 				local title = wakaba:getWakabaDesc("bossdest", "title_"..selToEntry[sel])
@@ -1391,7 +1392,7 @@ local wakabadirectory = {
 			{
 				str = 'health',
 				fsize = 2,
-				choices = {"default", "500,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"},
+				choices = {"default", "dynamic", "500,000", "1,000,000", "10,000,000", "100,000,000", "1,000,000,000", "10,000,000,000"},
 				setting = 2,
 				variable = 'BossDestHealth',
 			},
@@ -1427,10 +1428,12 @@ local wakabadirectory = {
 
 				func = function(button, item, root)
 					local s_BossDest = item.ds1[item.buttons[1].setting]
-					local s_BossDestHealth = item.ds2[item.buttons[2].setting]
-					local s_Damocles = item.ds3[item.buttons[3].setting]
-					local s_Lunatic = item.buttons[4].setting == 1
-					local s_Lock = item.buttons[5].setting == 1
+					local s_BossDestHealth = item.ds2[item.buttons[3].setting]
+					local s_Damocles = item.ds3[item.buttons[5].setting]
+					local s_Lunatic = item.buttons[7].setting == 1
+					local s_Lock = item.buttons[9].setting == 1
+
+					print(s_BossDest, s_BossDestHealth, s_Damocles, s_Lunatic, s_Lock)
 
 					if s_BossDest ~= "Random" then
 						wakaba.state.bossdest = s_BossDest

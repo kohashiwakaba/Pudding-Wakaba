@@ -5,6 +5,8 @@
  ]]
 local toCheck = false
 
+include("wakaba_src.functions.dynamic_boss_health")
+
 local bossTables = {
 	["BlueBaby"] = 0,
 	["Lamb"] = 1,
@@ -122,9 +124,17 @@ function wakaba:NPCInit_BossDest(npc)
 	if not (bossData and bossData.ModifyHealth) then return end
 	local weight = wakaba:getBossBuffWeight(npc)
 	if not weight or npc:GetData().w_destHealthAltered then return end
-	local totalHealth = bossData.ModifyHealthAmount or 500000
-	npc.MaxHitPoints = math.max(totalHealth * weight, 1)
-	npc.HitPoints = npc.MaxHitPoints
+	local isDynamic = (bossData.ModifyHealthAmount and bossData.ModifyHealthAmount == -1)
+	if isDynamic then
+		local totalHealth = npc.MaxHitPoints * wakaba:getBossHealthFactor(bossData.Boss)
+		print(totalHealth)
+		npc.MaxHitPoints = math.max(totalHealth * weight, 1)
+		npc.HitPoints = npc.MaxHitPoints
+	else
+		local totalHealth = bossData.ModifyHealthAmount or 500000
+		npc.MaxHitPoints = math.max(totalHealth * weight, 1)
+		npc.HitPoints = npc.MaxHitPoints
+	end
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_POST_NPC_INIT, 200, wakaba.NPCInit_BossDest)
 
