@@ -3227,7 +3227,7 @@ wakaba.descriptions[desclang].bossdest = {
 	title_clear			= "Clear challenge",
 
 	desc_boss			= "Select boss to challenge",
-	desc_health		= "Select health to challenge",
+	desc_health		= "Select health to challenge#Dynamic: Health multiplier is set dynamically with Isaac's current strength",
 	desc_damo			= "Choose damocles to start (Only affected on starting room)#{{Collectible656}} {{ColorSilver}}Vanilla{{CR}}: Normal Damocles#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_DAMOCLES.."}} {{ColorYellow}}Lunar{{CR}}: High chance to fall, removes half of items on fall#{{Collectible"..wakaba.Enums.Collectibles.VINTAGE_THREAT.."}} {{ColorRed}}Vintage{{CR}}: 4 swords. Any prior penalty damage ends the run, damage penalty protection items are invalid",
 	desc_lunatic	= "Choose to enable Lunatic mode#In Lunatic mode, most of Pudding & Wakaba items will be nerfed#All damage penalty protection effect except Richer's Bra will be disabled#All Armor-piercing effect/items except Advanced Crystal will be disabled/removed from the pool",
 	desc_lock			= "Preserve this challenge until game is cleared",
