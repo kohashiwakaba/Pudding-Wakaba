@@ -19,6 +19,7 @@ function wakaba:NewLevel_RiraBandage()
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_RiraBandage)
 
+---@param player EntityPlayer
 function wakaba:PlayerUpdate_RiraBandage(player)
 	local num = wakaba:getPlayerDataEntry(player, "riraBandageCount")
 	if num then
@@ -36,4 +37,4 @@ function wakaba:PlayerUpdate_RiraBandage(player)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_RiraBandage)
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_RiraBandage)
