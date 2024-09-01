@@ -29,14 +29,14 @@ if REPENTOGON then
 		end
 	end
 
-	local extraLeft = Keyboard.KEY_LEFT_BRACKET
-	local extraRight = Keyboard.KEY_RIGHT_BRACKET
-	local extraLeftCont = Keyboard.KEY_LEFT_BRACKET
-	local extraRightCont = Keyboard.KEY_RIGHT_BRACKET
-
 
 	function wakaba:PlayerUpdate_ApollyonCrisis(player)
 		if not player:HasCollectible(wakaba.Enums.Collectibles.APOLLYON_CRISIS, true) then return end
+
+		local extraLeft = wakaba:getOptionValue("exl")
+		local extraRight = wakaba:getOptionValue("exr")
+		local extraLeftCont = Keyboard.KEY_LEFT_BRACKET
+		local extraRightCont = Keyboard.KEY_RIGHT_BRACKET
 
 		local list = player:GetVoidedCollectiblesList()
 		wakaba:initPlayerDataEntry(player, "apcrIndex", 0)
@@ -44,9 +44,11 @@ if REPENTOGON then
 
 		local shift = 0
 		if Input.IsButtonTriggered(extraLeft, 0)
-			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex) then shift = -1 end
+			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
+		then shift = -1 end
 		if Input.IsButtonTriggered(extraRight, 0)
-			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex) then shift = 1 end
+			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
+		then shift = 1 end
 
 		if shift == 0 then return end
 

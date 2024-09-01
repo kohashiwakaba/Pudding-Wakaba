@@ -1,5 +1,24 @@
 -- Todos : Add weight values for EID Bag of Crafting
 
+wakaba.HotkeyToString = {}
+for key,num in pairs(Keyboard) do
+	local keyString = key
+	local keyStart, keyEnd = string.find(keyString, "KEY_")
+	keyString = string.sub(keyString, keyEnd+1, string.len(keyString))
+	keyString = string.gsub(keyString, "_", " ")
+	wakaba.HotkeyToString[num] = keyString
+end
+
+wakaba.HotkeyToString[Keyboard.KEY_LEFT_BRACKET] = "["
+wakaba.HotkeyToString[Keyboard.KEY_RIGHT_BRACKET] = "]"
+wakaba.HotkeyToString[Keyboard.KEY_COMMA] = ","
+wakaba.HotkeyToString[Keyboard.KEY_PERIOD] = "."
+
+--convert controller enum to buttons
+local ControllerToString = { [0] = "{{ButtonDLeft}}", "{{ButtonDRight}}", "{{ButtonDUp}}", "{{ButtonDDown}}",
+"{{ButtonA}}", "{{ButtonB}}", "{{ButtonX}}", "{{ButtonY}}", "{{ButtonLB}}", "{{ButtonLT}}", "{{ButtonLStick}}",
+"{{ButtonRB}}", "{{ButtonRT}}", "{{ButtonRStick}}", "{{ButtonSelect}}", "{{ButtonMenu}}" }
+
 if EID then
 	if EIDKR then
 		print("Pudding and Wakaba no longer supports EID Korean. Use Original External Item Descriptions mod.")
@@ -596,6 +615,29 @@ if EID then
 			EID:addDescriptionModifier("Sweets Catalog", CatalogCondition, CatalogCallback)
 			EID:addDescriptionModifier("Shiori's Valut", ValutCondition, ValutCallback)
 			--EID:addDescriptionModifier("Apollyon Crisis", ApcCond)
+
+
+
+			local function CaramellaCondition(descObj)
+				if descObj.Description and (descObj.Description:find("{wakaba_extra_left}") or descObj.Description:find("{wakaba_extra_right}")) then
+					return true
+				end
+				return false
+			end
+			local function CaramellaCallback(descObj)
+				local left = wakaba:getOptionValue("exl")
+				local right = wakaba:getOptionValue("exr")
+
+				local controllerEnabled = #wakaba:getAllMainPlayers() > 0
+				local leftKey = wakaba.HotkeyToString[left]
+				local rightKey = wakaba.HotkeyToString[right]
+				--local leftButton = controllerEnabled and ControllerToString[ButtonAction.ACTION_DROP]
+
+				descObj.Description = descObj.Description:gsub("{wakaba_extra_left}", leftKey)
+				descObj.Description = descObj.Description:gsub("{wakaba_extra_right}", rightKey)
+				return descObj
+			end
+			EID:addDescriptionModifier("Wakaba Extra Keys", CaramellaCondition, CaramellaCallback)
 
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end
