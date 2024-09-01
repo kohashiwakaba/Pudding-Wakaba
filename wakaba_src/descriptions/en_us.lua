@@ -439,7 +439,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Applies to all players on use:"
 		.. "#↑ {{BoneHeart}} +1 Bone Heart"
-		.. "#{{Heart}} Heals all heart containers"
+		.. "#{{HealingRed}} Heals all heart containers"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		belial = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
@@ -449,14 +449,14 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
 		itemName = "D-Cup Ice Cream",
 		description = ""
-		.. "#↑ {{Heart}} +1 Heart Container"
-		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "#↑ {{Heart}} +1 Health"
+		.. "#↑ {{HealingRed}} Heals one Red Heart"
 		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#↑ {{Damage}} +80% Damage Multiplier (Does not stack)"
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#↑ {{Heart}} +1 Heart Container"
-		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "#↑ {{Heart}} +1 Health"
+		.. "#↑ {{HealingRed}} Heals one Red Heart"
 		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% Damage Multiplier (Does not stack)"
 		.. "{{CR}}",
@@ -473,7 +473,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "Mysterious game CD",
 		description = ""
-		.. "#↑ {{Heart}} +1 Heart Container"
+		.. "#↑ {{Heart}} +1 Health"
 		.. "#↑ {{Speed}} +0.16 Speed"
 		.. "#↑ {{Tears}} +0.7 Tears"
 		.. "#↑ {{Shotspeed}} +0.1 Shot Speed"
@@ -489,13 +489,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Luck}} Sets your Luck to 7 if you have less than 7"
 		--.. "#↑ {{Luck}} +0.35 Luck per Luck affect items"
 		.. "#↑ {{Damage}} +1 Damage"
-		.. "#{{Heart}} Full Health"
+		.. "#{{HealingRed}} Full Health"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Luck}} Sets your Luck to 3 if you have less than 3"
 		--.. "#{{WakabaModLunatic}} {{ColorOrange}}(No additional luck)"
 		.. "#↑ {{Damage}} +1 Damage"
-		.. "#{{Heart}} Full Health"
+		.. "#{{HealingRed}} Full Health"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	},
@@ -836,8 +836,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
 		itemName = "Moe's Muffin",
 		description = ""
-		.. "↑ {{Heart}} +1 Heart Container"
-		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "↑ {{Heart}} +1 Health"
+		.. "#↑ {{HealingRed}} Heals one Red Heart"
 		.. "#↑ {{Damage}} +1.5 Damage Up"
 		.. "#↑ {{Range}} +1.5 Range Up"
 		.. "{{CR}}",
@@ -853,8 +853,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CLOVER_SHARD] = {
 		itemName = "Clover Shard",
 		description = ""
-		.. "↑ {{Heart}} +1 Heart Container"
-		.. "#↑ {{Heart}} Heals one Red Heart"
+		.. "↑ {{Heart}} +1 Health"
+		.. "#↑ {{HealingRed}} Heals one Red Heart"
 		.. "#↑ {{Damage}} +11% Damage Multiplier"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -1236,7 +1236,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BENTO] = {
 		itemName = "Rira's Bento",
-		description = "↑ {{Heart}} +1 Health#{{Heart}} Heals 1 heart#↑ {{Speed}} +0.02 Speed#↑ {{Tears}} +0.2 Fire Rate#↑ {{Damage}} +0.1 Damage for every {{HalfHeart}} Half Heart Isaac has#↑ {{Damage}} +4% Damage Up#↑ {{Range}} +0.25 Range#↑ {{Luck}} +0.2 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
+		description = "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart#↑ {{Speed}} +0.02 Speed#↑ {{Tears}} +0.2 Fire Rate#↑ {{Damage}} +0.1 Damage for every {{HalfHeart}} Half Heart Isaac has#↑ {{Damage}} +4% Damage Up#↑ {{Range}} +0.25 Range#↑ {{Luck}} +0.2 Luck#!!! All future items will be {{Collectible"..wakaba.Enums.Collectibles.RIRAS_BENTO.."}}Rira's Bento",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_CAPSULE] = {
 		itemName = "Sakura Capsule",
@@ -2027,7 +2027,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "Soul of Shiori",
-		description = "{{Heart}} Heals 2 Red Hearts#Activates Random Book of Shiori tear effect",
+		description = "{{HealingRed}} Heals 2 Red Hearts#Activates Random Book of Shiori tear effect",
 		mimiccharge = 6,
 		isrune = true,
 	},
@@ -2062,8 +2062,8 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "Rira Ticket",
-		description = "{{BrokenHeart}}Recovers 1 Broken Heart into {{EmptyBoneHeart}}or{{SoulHeart}}#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals 1 Red Heart if no trinkets and Broken Hearts",
-		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{Heart}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
+		description = "{{BrokenHeart}}Recovers 1 Broken Heart into {{EmptyBoneHeart}}or{{SoulHeart}}#{{Collectible479}} Smelt current held trinkets#{{HealingRed}} Heals 1 Red Heart if no trinkets and Broken Hearts",
+		tarot = {"{{BrokenHeart}}Recovers 1 Broken Heart into {{ColorShinyPurple}}({{EmptyBoneHeart}}or{{SoulHeart}}+{{Heart}})#{{Collectible479}} Smelt current held trinkets#{{HealingRed}} Heals {{ColorShinyPurple}}2{{CR}} Red Heart if no trinkets and Broken Hearts"},
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_FLIP] = {
@@ -2188,7 +2188,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.TO_THE_START] = {
 		tostring(wakaba.Enums.Pills.TO_THE_START),
 		"To the Start!",
-		"Teleports to Starting room on the floor#Heals 1 Heart#Removes a Broken Heart",
+		"Teleports to Starting room on the floor#{{HealingRed}} Heals 1 Heart#Removes a Broken Heart",
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),

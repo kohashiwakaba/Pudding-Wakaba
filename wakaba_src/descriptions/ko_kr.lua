@@ -453,7 +453,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#!!! 사용 시 모든 플레이어에게 적용:"
 		.. "#↑ {{BoneHeart}}뼈하트 +1"
-		.. "#{{Heart}} 체력을 전부 회복합니다."
+		.. "#{{HealingRed}} 체력을 전부 회복합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "충전식 뼈",
@@ -465,13 +465,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "D컵 아이스크림",
 		description = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
-		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 +0.3"
 		.. "#↑ {{DamageSmall}}공격력 배율 x1.8 (중첩 불가)"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
-		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 +0.3"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.36 (중첩 불가)"
 		.. "{{CR}}",
@@ -507,13 +507,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
 		--.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 개수만큼 행운 +0.35"
 		.. "#↑ {{DamageSmall}}공격력 +1"
-		.. "#{{Heart}} 체력을 모두 회복합니다"
+		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{LuckSmall}}행운을 최소 3 이상으로 설정"
 		--.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 추가 행운 없음)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
-		.. "#{{Heart}} 체력을 모두 회복합니다"
+		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		queueDesc = "공격력 증가 + 엄청난 강운",
 	},
@@ -867,7 +867,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "모에의 머핀",
 		description = ""
 		.. "↑ {{Heart}}최대 체력 +1"
-		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 +1.5"
 		.. "#↑ {{RangeSmall}}사거리 +1.5"
 		.. "{{CR}}",
@@ -886,8 +886,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CLOVER_SHARD] = {
 		itemName = "클로버 잎사귀",
 		description = ""
-		.. "↑ 최대 체력 +1"
-		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "↑ {{Heart}}최대 체력 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 배율 x1.11"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -1295,7 +1295,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리라의 도시락",
 		description = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
-		.. "#↑ {{Heart}}빨간하트 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{SpeedSmall}}이동속도 +0.02"
 		.. "#↑ {{TearsSmall}}연사 +0.2"
 		.. "#↑ {{DamageSmall}}하트 1칸당 공격력 +0.1"
@@ -2356,7 +2356,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_SHIORI] = {
 		itemName = "시오리의 영혼",
 		queueDesc = "운명의 윤회",
-		description = "{{Heart}}빨간하트 +2#임의의 시오리의 책 지속 효과를 발동합니다.#이 조합은 시오리의 영혼을 다시 사용하거나 시오리의 책을 소지한 상태에서 다른 책을 사용할 때까지 유지됩니다.",
+		description = "{{HealingRed}}빨간하트 +2#임의의 시오리의 책 지속 효과를 발동합니다.#이 조합은 시오리의 영혼을 다시 사용하거나 시오리의 책을 소지한 상태에서 다른 책을 사용할 때까지 유지됩니다.",
 	},
 	[wakaba.Enums.Cards.SOUL_TSUKASA] = {
 		itemName = "츠카사의 영혼",
@@ -2388,7 +2388,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_RIRA_TICKET] = {
 		itemName = "리라 티켓",
 		queueDesc = "야릇한 반창고",
-		description = "{{BrokenHeart}}부서진하트 1개를 {{EmptyBoneHeart}} 혹은 {{SoulHeart}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 +1",
+		description = "{{BrokenHeart}}부서진하트 1개를 {{EmptyBoneHeart}} 혹은 {{SoulHeart}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{HealingRed}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 +1",
 		tarot = {"{{BrokenHeart}}부서진하트 1개를 {{ColorShinyPurple}}{{BoneHeart}} 혹은 {{SoulHeart}}+{{Heart}}{{CR}}로 복구하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.#{{Heart}} 부서진하트 혹은 장신구가 없을 경우 빨간하트 {{ColorShinyPurple}}+2{{CR}}"},
 		mimiccharge = 6,
 	},
