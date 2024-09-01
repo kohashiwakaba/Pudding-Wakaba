@@ -71,6 +71,13 @@ wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Bi
 
 function wakaba:Shiori_Belial(_, rng, player, useflag, slot, vardata)
 	player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
+	--wakaba:addShioriBuff(player)
+end
+wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Belial, CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL)
+
+---@param player EntityPlayer
+function wakaba:Shiori_Necronomicon(_, rng, player, useflag, slot, vardata)
+	player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
 	local entities = Isaac.GetRoomEntities()
 	for _, entity in ipairs(entities) do
 		if entity:IsEnemy() and not entity:IsDead() then
@@ -79,13 +86,6 @@ function wakaba:Shiori_Belial(_, rng, player, useflag, slot, vardata)
 			end
 		end
 	end
-	--wakaba:addShioriBuff(player)
-end
-wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Belial, CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL)
-
----@param player EntityPlayer
-function wakaba:Shiori_Necronomicon(_, rng, player, useflag, slot, vardata)
-	player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM | UseFlag.USE_CARBATTERY)
 end
 wakaba:AddCallback(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, wakaba.Shiori_Necronomicon, CollectibleType.COLLECTIBLE_NECRONOMICON)
 
