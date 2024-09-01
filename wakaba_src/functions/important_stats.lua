@@ -48,10 +48,10 @@ function wakaba:Cache_Important(player, cacheFlag)
 			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
 				player.TearRange = player.TearRange * 0.4
 			end
-		end
 
-		if player.TearRange > (6.5 * 40) then
-			player.TearRange = (6.5 * 40)
+			if player.TearRange > (6.5 * 40) then
+				player.TearRange = (6.5 * 40)
+			end
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then
