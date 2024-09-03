@@ -2725,7 +2725,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#Lilith is permanently blindfolded, meaning she has no ability to fire tears; she instead deals damage with the Incubus Incubus familiar that follows her"
 		.. "#Lilith strongly benefits from other familiars and familiar enhancers"
 		.. "#{{Collectible360}} Unique ability : Incubus"
-		.. "#{{Collectible367}} Starts with : Box of Friends"
+		.. "#{{Collectible357}} Starts with : Box of Friends"
 		.. "#{{Collectible412}} Starts with : Cambion Conception"
 		.. "#"
 		.. "",
