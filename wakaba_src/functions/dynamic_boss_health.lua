@@ -81,6 +81,11 @@ function wakaba:getBossHealthFactor(entry)
 			end
 		else
 		end
+		if REPENTOGON then
+			startQuality = 4
+		else
+			startQuality = math.max(wakaba:getPlayerDataEntry(player, "FirstQuality", 0) , startQuality)
+		end
 		totalItems = math.max(items, totalItems)
 		totalQuality = math.max(quality, totalQuality)
 		totalDamage = math.max(player.Damage, totalDamage)
