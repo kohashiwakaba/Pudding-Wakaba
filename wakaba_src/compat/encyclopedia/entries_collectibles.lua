@@ -1027,7 +1027,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Sets to 7 Luck if Luck is lower than 7."},
-			{str = "+0.35 Luck up per Luck affect items."},
 			{str = "+1 Damage."},
 			{str = "Restores all Health."},
 		},

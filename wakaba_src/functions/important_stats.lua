@@ -62,21 +62,24 @@ function wakaba:Cache_Important(player, cacheFlag)
 			end
 		end
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT) and player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_B then
+			local parLuck = 7
 			if wakaba:IsLunatic() then
-				player.Luck = math.max(player.Luck, 3)
-			else
-				local pendantcnt = 0
-				if player:GetData().wakaba and player:GetData().wakaba.PendantCandidates then
-					pendantcnt = #player:GetData().wakaba.PendantCandidates
-				end
-				player.Luck = math.max(player.Luck, 7)
-				player.Luck = player.Luck + (0.35 * pendantcnt * player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT))
+				parLuck = 3
 			end
+			if wakaba:extraVal("pendantMinLuck") then
+				parLuck = parLuck + wakaba:extraVal("pendantMinLuck", 0)
+			end
+			player.Luck = math.max(player.Luck, parLuck)
 		end
 		if player:HasTrinket(wakaba.Enums.Trinkets.DARK_PENDANT, false) then
 			if player.Luck > 0 then
 				player.Luck = player.Luck * -1
 			end
+		end
+
+		local leafTear = wakaba:getPlayerDataEntry(player, "leafTearLuck", 0)
+		if leafTear < 0 then
+			player.Luck = player.Luck + leafTear
 		end
 	end
 end

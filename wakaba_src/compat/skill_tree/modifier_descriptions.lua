@@ -19,11 +19,17 @@ return {
 		addPlus = true,
 		category = "wakabaGlobal", sort = 3904
 	},
+	pendantMinLuck = {
+		str = "%s%.2f min luck for Wakaba's Pendant",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3905
+	},
 	wakabaLeafTear = {
 		str = {
 			"Tearing Clover Leaf:",
 			"    Negates a hit that would've killed you, if you have more than 0 luck",
 			"    Negating a hit reduces 20, or 20%% of current luck, higher value prioritized",
+			"    Reduced luck this way ignores Wakaba's Pendant",
 			"    Does not work if player has Rock Bottom",
 		},
 		category = "wakabaGlobal", sort = 3906
@@ -40,8 +46,7 @@ return {
 	wakabaGudGirl = {
 		str = {
 			"Good Girl:",
-			"    +50%% luck as Wakaba",
-			"    -10%% speed as Wakaba"
+			"    Wakaba starts with Wakaba's Pendant",
 		},
 		category = "charTree", sort = 4002
 	},
@@ -67,11 +72,6 @@ return {
 		category = "charTree", sort = 4005
 	},
 	---- WAKABA'S TREE NORMAL  ----
-	wakabaLuck = {
-		str = "%s%.2f luck as Wakaba",
-		addPlus = true,
-		category = "charTree", sort = 4031
-	},
 	wakabaDevilChance = {
 		str = "%.2f%% extra chance to spawn a devil/angel room as Wakaba",
 		category = "charTree", sort = 4032
