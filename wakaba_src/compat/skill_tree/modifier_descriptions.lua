@@ -67,7 +67,7 @@ return {
 	wakabaWildCard = {
 		str = {
 			"The Wild Card:",
-            "    Begin the game with Birthright",
+			"    Spawns a Wild Card at the start of a floor",
 		},
 		category = "charTree", sort = 4005
 	},
