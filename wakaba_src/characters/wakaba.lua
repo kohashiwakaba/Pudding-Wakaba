@@ -67,6 +67,12 @@ function wakaba:PlayerUpdate_Wakaba(player)
 		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, 1, "WAKABA_I_WAKABA")
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
+		if wakaba:extraVal("wakabaBirthright") then
+			local level = wakaba.G:GetLevel()
+			if not level:GetStateFlag(LevelStateFlag.STATE_SATANIC_BIBLE_USED) then
+				level:SetStateFlag(LevelStateFlag.STATE_SATANIC_BIBLE_USED, true)
+			end
+		end
 	else
 		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, "WAKABA_I_WAKABA") then
 			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, "WAKABA_I_WAKABA")

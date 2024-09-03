@@ -298,7 +298,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "660": "{\"pos\":[13,-4],\"type\":5010,\"size\":\"Small\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.01% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.01},\"adjacent\":[658,661],\"customID\":\"w_wakaba_0011\"}",
   "661": "{\"pos\":[14,-5],\"type\":5010,\"size\":\"Small\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.01% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.01},\"adjacent\":[660,662],\"customID\":\"w_wakaba_0011\"}",
   "662": "{\"pos\":[15,-5],\"type\":5010,\"size\":\"Small\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.01% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.01},\"adjacent\":[661,663],\"customID\":\"w_wakaba_0011\"}",
-  "663": "{\"pos\":[16,-6],\"type\":5011,\"size\":\"Med\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.04% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.04},\"adjacent\":[662,664],\"customID\":\"w_wakaba_0012\"}",
+  "663": "{\"pos\":[16,-6],\"type\":5011,\"size\":\"Med\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.04% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.04},\"adjacent\":[662,664,697],\"customID\":\"w_wakaba_0012\"}",
   "664": "{\"pos\":[16,-7],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[663],\"customID\":\"w_wakaba_0013\"}",
   "665": "{\"pos\":[0,-12],\"type\":5010,\"size\":\"Small\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.01% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.01},\"adjacent\":[368,666],\"customID\":\"w_wakaba_0011\"}",
   "666": "{\"pos\":[0,-14],\"type\":5010,\"size\":\"Small\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.01% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.01},\"adjacent\":[665,667],\"customID\":\"w_wakaba_0011\"}",
@@ -329,7 +329,8 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "692": "{\"pos\":[5,-30],\"type\":5004,\"size\":\"Med\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+2% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":2},\"adjacent\":[695,687],\"customID\":\"w_wakaba_0005\"}",
   "693": "{\"pos\":[3,-32],\"type\":28,\"size\":\"Med\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+1% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":1},\"adjacent\":[112,114]}",
   "694": "{\"pos\":[4,-34],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[114,116],\"customID\":\"w_wakaba_0006\"}",
-  "695": "{\"pos\":[6,-30],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[691,692],\"customID\":\"w_wakaba_0006\"}"
+  "695": "{\"pos\":[6,-30],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[691,692],\"customID\":\"w_wakaba_0006\"}",
+  "697": "{\"pos\":[17,-5],\"type\":5037,\"size\":\"Large\",\"name\":\"Impure Girl\",\"description\":[\"Begin the game with Birthright\",\"All Boss items are replaced with Devil deals\"],\"modifiers\":{\"wakabaBirthright\":true},\"adjacent\":[663],\"customID\":\"w_wakaba_1008\"}"
 }
 ]])
 	end
@@ -358,6 +359,9 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 				if wakaba:extraVal("wakabaIsSmart") then
 					player:AddTrinket(TrinketType.TRINKET_PERFECTION)
+				end
+				if wakaba:extraVal("wakabaBirthright") then
+					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 				end
 			end
 		end, 0)

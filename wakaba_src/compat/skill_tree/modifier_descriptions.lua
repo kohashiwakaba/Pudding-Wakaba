@@ -67,9 +67,24 @@ return {
 	wakabaWildCard = {
 		str = {
 			"The Wild Card:",
-			"    Spawns a Wild Card at the start of a floor",
+            "    Begin the game with Birthright",
 		},
 		category = "charTree", sort = 4005
+	},
+	wakabaUniformCharge = {
+		str = {
+			"Joshikousei:",
+			"    Wakaba's Uniform no longer consumes charge",
+		},
+		category = "charTree", sort = 4006
+	},
+	wakabaBirthright = {
+		str = {
+			"Impure Girl:",
+			"    Begin the game with Birthright",
+			"    All Boss items are replaced with Devil deals",
+		},
+		category = "charTree", sort = 4007
 	},
 	---- WAKABA'S TREE NORMAL  ----
 	wakabaDevilChance = {
@@ -93,6 +108,11 @@ return {
 		str = "%s%.2f%% extra chance to spawn Clover chest as Wakaba",
 		addPlus = true,
 		category = "charTree", sort = 4036
+	},
+	wakabaUniformSlot = {
+		str = "%s%d Wakaba's Uniform slot",
+		addPlus = true,
+		category = "charTree", sort = 4037
 	},
 	---- SHIORI'S TREE SPECIAL ----
 	shioriGoldenKey = {
