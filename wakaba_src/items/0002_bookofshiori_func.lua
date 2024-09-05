@@ -434,6 +434,10 @@ function wakaba:PlayerUpdate_BookofShiori(player)
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_ROTTEN_TOMATO, 1, "WAKABA_BOS_SECONDARY")
 		elseif nextflag == CollectibleType.COLLECTIBLE_SATANIC_BIBLE then
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_DARK_MATTER, 1, "WAKABA_BOS_SECONDARY")
+		elseif nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_LOST_CONTACT, 1, "WAKABA_BOS_SECONDARY")
+		elseif nextflag == CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_DEATHS_TOUCH, 1, "WAKABA_BOS_SECONDARY")
 		elseif nextflag == wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER then
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_SPIRIT_SWORD, 1, "WAKABA_BOS_SECONDARY")
 			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_MOMS_KNIFE, 1, "WAKABA_BOS_SECONDARY")
