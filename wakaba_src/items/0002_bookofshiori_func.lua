@@ -727,7 +727,7 @@ function wakaba:WeaponFire_BookOfShiori(player)
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)
 			local rand = rng:RandomFloat()
 			local chance = 0.06
-			if rand < rand then
+			if rand < chance then
 				wakaba:SpawnPurgatoryGhost(player, rng)
 			end
 		end
