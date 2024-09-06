@@ -53,7 +53,7 @@ return {
 	wakabaIsSmart = {
 		str = {
 			"Wakaba-chan is no longer baka:",
-			"    Wakaba Starts with Perfection",
+			"    Wakaba Starts with Perfection (placeholder)",
 		},
 		category = "charTree", sort = 4003
 	},
@@ -165,7 +165,7 @@ return {
 	tsukasaConcentration = {
 		str = {
 			"Mind Control:",
-			"    Allows full use of Concentration",
+			"    Allows full use of Concentration as Tsukasa",
 			"    No longer requires room clear on multiple usage",
 			"    Concentration limit is increased to 300",
 		},
