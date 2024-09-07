@@ -109,8 +109,8 @@ function wakaba:getBossHealthFactor(entry)
 	wakaba.Log("Dynamic boss health - itemsMult", itemsMult)
 
 	-- 최종 대미지
-	totalDamage = math.max(totalDamage - 30, 0)
-	local damageMult = ((totalDamage / 30) + 1) ^ 2
+	totalDamage = math.max(totalDamage - 50, 0)
+	local damageMult = ((totalDamage / 50) + 1) ^ 2
 	wakaba.Log("Dynamic boss health - damageMult", damageMult)
 
 	finalMultiplier = startQualityMult * qualityMult * itemsMult * damageMult
