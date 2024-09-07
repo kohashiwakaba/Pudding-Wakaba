@@ -1,7 +1,7 @@
 local function TryOpenChallengeDoor()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 		local doorR = wakaba.G:GetRoom():GetDoor(i)
-		if doorR then 
+		if doorR then
 			if doorR.TargetRoomType == RoomType.ROOM_CHALLENGE then
 				doorR:TryUnlock(Isaac.GetPlayer(), true)
 			end
@@ -12,9 +12,9 @@ end
 local function TryOpenQuestDoor()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 		local doorR = wakaba.G:GetRoom():GetDoor(i)
-		if doorR then 
+		if doorR then
 			if doorR.TargetRoomIndex == -7
-			or doorR.TargetRoomIndex == -10 
+			or doorR.TargetRoomIndex == -10
 			then
 				doorR:TryUnlock(Isaac.GetPlayer(), true)
 			end
@@ -72,7 +72,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.ChargeBarUpdate_P
 
 local function canRefillCloak(player, data)
 	if not wakaba:getOptionValue("phantomcloakhearts") then
-		
+
 	elseif player:GetPlayerType() == PlayerType.PLAYER_BETHANY then
 		local totalHearts = player:GetHearts() + player:GetSoulCharge()
 		if totalHearts > 1 then
@@ -166,7 +166,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_PhantomCloak)
 
 function wakaba:PNPCUpdate_PhantomCloak(npc)
-	if not npc:IsEnemy() or npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return end
+	if not npc:IsEnemy() or not wakaba:CanApplyStatusEffect(npc, true) then return end
 	local target = npc:GetPlayerTarget()
 	npc:GetData().wakaba = npc:GetData().wakaba or {}
 	pData = target:GetData()
@@ -177,7 +177,7 @@ function wakaba:PNPCUpdate_PhantomCloak(npc)
 			npc:AddEntityFlags(EntityFlag.FLAG_SLOW)
 		end
 		--return true
-	elseif npc:GetData().wakaba.clocked then 
+	elseif npc:GetData().wakaba.clocked then
 		npc:GetData().wakaba.clocked = false
 		npc:ClearEntityFlags(EntityFlag.FLAG_CONFUSION | EntityFlag.FLAG_SLOW)
 	end
@@ -213,7 +213,7 @@ function wakaba:ItemUse_PhantomCloak(item, rng, player, useFlags, activeSlot, va
 		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_TEARFLAG)
 		player:EvaluateItems()
 	end
-	
+
 end
 
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_PhantomCloak, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
