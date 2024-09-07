@@ -363,6 +363,9 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				if wakaba:extraVal("wakabaBirthright") then
 					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 				end
+				if wakaba:extraVal("wakabaGudGirl") then
+					player:AddCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT)
+				end
 			end
 		end, 0)
 		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
@@ -391,14 +394,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			if cacheFlag == CacheFlag.CACHE_SPEED then
 				if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 					if wakaba:extraVal("wakabaGudGirl") then
-						player.MoveSpeed = player.MoveSpeed * 0.9
+						--player.MoveSpeed = player.MoveSpeed * 0.9
 					end
 				end
 			end
 			if cacheFlag == CacheFlag.CACHE_LUCK then
 				if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 					if wakaba:extraVal("wakabaGudGirl") then
-						player.Luck = player.Luck * 1.5
+						--player.Luck = player.Luck * 1.5
 					end
 				end
 			end
