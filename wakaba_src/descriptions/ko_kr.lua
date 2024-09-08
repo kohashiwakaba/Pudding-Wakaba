@@ -584,13 +584,13 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "와카바의 교복",
 		description = ""
-		.. "#사용 시 현재 선택된 슬롯과 들고 있는 알약/카드/룬을 서로 맞바꿉니다."
+		.. "#사용 시 현재 선택된 슬롯과 가장 가까운 알약/카드/룬을 서로 맞바꿉니다."
 		.. "#{{Blank}} ({wakaba_extra_left} / {wakaba_extra_right} 키로 슬롯 선택)"
-		.. "#알약/카드/룬 사용 시 교복의 담긴 항목을 같이 사용합니다."
+		.. "#알약/카드/룬 사용 시 교복의 내용물을 같이 사용합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",
-		belial = "교복에 담긴 알약/카드/룬의 개수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
+		belial = "교복의 내용물 수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
 		wisp = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다.",
 		void = "더 이상 내용물을 바꿀 수 없으며 내용물 사용도 액티브 사용으로 변경됩니다.",
 		carBattery = "교복 사용 시 내용물도 같이 사용합니다.",
