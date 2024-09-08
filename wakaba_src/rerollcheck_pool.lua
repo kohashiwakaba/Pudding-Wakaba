@@ -83,7 +83,7 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 	if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL then
 		if room:GetType() == RoomType.ROOM_BOSS then
 			if itemPoolType == ItemPoolType.POOL_BOSS then
-				if room:GetBossID() == BossType.FALLEN then
+				if room:GetBossID() == 23 then
 					preGetCollectibleAntiRecursive = true
 					local newItem = wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, decrease, seed+2)
 					preGetCollectibleAntiRecursive = false
