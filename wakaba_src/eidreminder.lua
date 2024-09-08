@@ -199,7 +199,7 @@ do
 		function(player) wakaba:EIDItemReminder_HandleWakabaUniform(player) end,
 	}})
 end
---[[ 
+--[[
 do
 	local index = wakaba:EIDItemReminder_GetIndex("Passives")
 	local ent = EID.ItemReminderCategories[index]
@@ -311,24 +311,24 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 		if EID:IsCategorySelected("w_WakabaUniform") then
 			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 			local eidstring = ""
-			local preservedslotstate = false
+			local preservedslotstate
 			local itemConfig = Isaac.GetItemConfig()
-
-			for i,item in pairs(player:GetData().wakaba.uniform.items) do
-				if i > wakaba.Enums.Constants.WAKABA_UNIFORM_MAX_SLOTS then
-					goto wakabaUniformEIDSkip
+			local max = wakaba:getMaxWakabaUniformSlots(player)
+			local current = wakaba:getCurrentWakabaUniformCursor(player)
+			for i = 0, max - 1 do
+				local item = wakaba:getCurrentWakabaUniformSlot(player, i)
+				local isCurrent = i == current
+				if isCurrent then
+					eidstring = eidstring .. "#{{ArrowGrayRight}} {{ColorGold}}"
+				else
+					eidstring = eidstring .. "#{{Blank}} "
 				end
-				do
-					if player:GetData().wakaba.uniform.cursor == i then
-						eidstring = eidstring .. "#{{ArrowGrayRight}} {{ColorGold}}"
-					else
-						eidstring = eidstring .. "#{{Blank}} "
-					end
+				if item then
 					if item.type == "card" then
 						local str = (EID and EID:getObjectName(5, PickupVariant.PICKUP_TAROTCARD, item.cardpill)) or itemConfig:GetCard(item.cardpill).Name
 						eidstring = eidstring .. "{{Card" .. item.cardpill .. "}} " .. str
-						if player:GetData().wakaba.uniform.cursor == i then
-							preservedslotstate = true
+						if isCurrent then
+							preservedslotstate = EID:getDescriptionObj(5, 300, item.cardpill)
 						end
 					elseif item.type == "pill" then
 						if wakaba.G:GetItemPool():IsPillIdentified(item.cardpill) then
@@ -345,14 +345,13 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 						else
 							eidstring = eidstring .. "{{Pill" .. item.cardpill .. "}}{{WakabaUniformUnknownPill}}"
 						end
-						if player:GetData().wakaba.uniform.cursor == i then
-							preservedslotstate = true
+						if isCurrent then
+							preservedslotstate = EID:getDescriptionObj(5, 70, item.cardpill)
 						end
 					else
 						eidstring = eidstring .. "{{WakabaUniformEmpty}}"
 					end
 				end
-				::wakabaUniformEIDSkip::
 			end
 			--demoDescObj.ObjVariant = 350
 			local prefix = unistr.changeslot .. " : {{ButtonRT}}"
@@ -362,6 +361,11 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 
 			eidstring = eidstring:gsub("{{WakabaUniformEmpty}}",unistr.empty)
 			eidstring = eidstring:gsub("{{WakabaUniformUnknownPill}}",unistr.unknownpill)
+
+			if preservedslotstate then
+				eidstring = eidstring .. "##" .. preservedslotstate.Description
+			end
+
 			descObj.Description = eidstring
 		end
 	end,

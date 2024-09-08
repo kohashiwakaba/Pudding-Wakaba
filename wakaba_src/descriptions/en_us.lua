@@ -561,13 +561,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "Wakaba's Uniform",
 		description = ""
-		.. "#Upon use, stores/swaps current card, pill, or rune"
-		.. "#Drop button changes which slot to store/swap"
-		.. "#When Isaac uses a card, pill, or rune, he also uses a copy of every card/pill/rune stored in Wakaba's Uniform"
-		.. "#Hold Tab Key/Map Button to show current slot"
+		.. "#On use, stores/swaps current card, pill, or rune"
+		.. "#(change slot with {wakaba_extra_left} / {wakaba_extra_right})"
+		.. "#Using a consumable, also activates stored contents"
 		.. "{{CR}}",
 		belial = "Invokes XV - The Devil card effect per card/pill/rune used inside Uniform",
-		wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
+		--wisp = "{{ColorRed}}!!!No Wisp {{CR}}#All wisps become invincible while held",
 		void = "Can't change stored content anymore, copying stored content is changed to void usage",
 		carBattery = "Stored content is used on active usage",
 	},

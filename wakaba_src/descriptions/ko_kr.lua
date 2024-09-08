@@ -584,10 +584,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "와카바의 교복",
 		description = ""
-		.. "#교복 아이템 사용 시 현재 선택된 슬롯과 들고 있는 알약/카드/룬을 서로 맞바꿉니다."
-		.. "#{{Blank}} (Ctrl 키로 슬롯 선택 가능)"
-		.. "#알약/카드/룬 사용 시 교복의 담긴 알약/카드/룬도 같이 사용합니다."
-		.. "#교복에 담긴 알약/카드/룬은 Tab 키를 누른 상태에서 확인할 수 있습니다."
+		.. "#사용 시 현재 선택된 슬롯과 들고 있는 알약/카드/룬을 서로 맞바꿉니다."
+		.. "#{{Blank}} ({wakaba_extra_left} / {wakaba_extra_right} 키로 슬롯 선택)"
+		.. "#알약/카드/룬 사용 시 교복의 담긴 항목을 같이 사용합니다."
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",

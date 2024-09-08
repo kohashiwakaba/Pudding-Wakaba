@@ -14,7 +14,7 @@
 	<passive id="10" description="???" gfx="executioner.png" name="Executioner" tags="offensive summonable" quality="4" craftquality="4" />
 	<passive id="11" description="Extreme Hot Taste" gfx="revengefruit.png" name="Revenge Fruit" tags="offensive summonable" quality="3" craftquality="3" />
 	<passive id="12" description="No more pesky Needles" gfx="returnpostage.png" name="Return Postage" shopprice="27" devilprice="2" tags="nocantrip summonable lazarusshared" quality="3" craftquality="4" />
-	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="3" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" craftquality="4" customtags="nometronome" />
+	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="0" chargetype="special" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" craftquality="4" customtags="nometronome" />
 	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="4" craftquality="4" bombs="9"/>
 
 	<passive id="15" description="Orbiting Lasers" gfx="eyeofclock.png" name="Eye of Clock" tags="stars offensive lazarusshared tech" quality="4" craftquality="4" />
