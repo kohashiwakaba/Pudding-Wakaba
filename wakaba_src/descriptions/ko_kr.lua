@@ -139,7 +139,7 @@ wakaba.descriptions[desclang].characters = {
 	[wakaba.Enums.Players.RIRA_B] = {
 		playerName = "Tainted Rira",
 		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#보물방의 아이템이 장신구로 바뀝니다.#{{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다.#클리어한 방 진입 시 토끼 와드의 충전량을 1칸 충전합니다.#The Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다.",
-		detailedDesc = "The Aqua: 리라의 달콤한 페로몬은 그녀도 모르게 퍼져갑니다."
+		detailedDesc = "The Aqua: 리라의 달콤한 기운은 그녀도 모르게 퍼져갑니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.AZURE_RIR.."}} {{ColorRira}}토끼 와드{{CR}}의 영향권 밖에 있으면 서서히 체력이 감소합니다."
 		.. "#{{AquaTrinket}} 모든 보물방의 아이템이 {{ColorCyan}}아쿠아 장신구{{CR}}로 바뀝니다."
 		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
