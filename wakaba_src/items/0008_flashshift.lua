@@ -200,7 +200,7 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 		if not pData.wakaba.fsfriction then
 			--player.Friction = (8.0 + ((player.TearRange / 40) - 5.0)) * player.ShotSpeed * player.MoveSpeed
 			--player.Friction = 8.0
-			player.Friction = (8.0 + (((player.TearRange / 40) - 5.0) / 2)) * (1 + (player.ShotSpeed) / 8) * (1 + (player.MoveSpeed) / 8)
+			player.Friction = (8.0 + (((player.TearRange / 40) - 5.0) / 8)) * (1 + ((1 - player.ShotSpeed) / 32)) * (1 + ((1 - player.MoveSpeed) / 16))
 		end
 		pData.wakaba.fsfriction = 1.0
 		pData.wakaba.fsfrictiontimer = 3
