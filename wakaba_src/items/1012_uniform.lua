@@ -264,7 +264,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Uniform, wakaba.Enum
 
 function wakaba:PocketUse_Uniform(cardpill, player, flags)
 	wakaba.Log(flags)
-	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) and flags & (UseFlag.USE_NOHUD | UseFlag.USE_CARBATTERY | UseFlag.USE_MIMIC) == 0 then
+	if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) and flags & (UseFlag.USE_NOHUD | UseFlag.USE_CARBATTERY | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER) == 0 then
 		player:GetData().wakaba_reservedPill = player:GetData().wakaba_currentPill
 		usinguniform = true
 		wakaba:useUniform(player)
