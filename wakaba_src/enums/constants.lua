@@ -738,6 +738,22 @@ wakaba.ClubOptions = {
 		collisionMulti = 1.2,
 		tearFlags = TearFlags.TEAR_ACID,
 	},
+	FlashMurasameKnife = {
+		--knifeGfx = "gfx/wakaba_magmablade.anm2",
+		knifeVariant = 2,
+		knifeSubType = 4,
+		sizeMulti = 1.8,
+		collisionMulti = 1.8,
+		tearFlags = TearFlags.TEAR_ACID,
+	},
+	FlashMurasameSpirit = {
+		--knifeGfx = "gfx/wakaba_magmablade.anm2",
+		knifeVariant = 10,
+		knifeSubType = 4,
+		sizeMulti = 2.5,
+		collisionMulti = 2.5,
+		tearFlags = TearFlags.TEAR_ACID,
+	},
 	MagmaBlade = {
 		knifeGfx = "gfx/wakaba_magmablade.anm2",
 		knifeVariant = 2,

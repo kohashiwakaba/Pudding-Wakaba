@@ -225,6 +225,10 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 						effect:FollowParent(player)
 						effect.LifeSpan = 11
 						effect.SpriteRotation = dirVec:GetAngleDegrees() - 90
+					elseif player:HasWeaponType(WeaponType.WEAPON_SPIRIT_SWORD) then
+						wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.FlashMurasameSpirit, familiar, 8)
+					elseif player:HasWeaponType(WeaponType.WEAPON_KNIFE) then
+						wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.FlashMurasameKnife, familiar, 6)
 					else
 						wakaba:FireClub(player, player:GetFireDirection(), wakaba.ClubOptions.FlashMurasame, familiar, 4)
 					end
