@@ -105,12 +105,16 @@ function wakaba:TrinketCollision_AquaTrinkets(pickup, collider)
 		if player and pickup:GetData().wakaba.isAquaTrinket then
 			player:GetData().wakaba.tryAquaTrinket = pickup.SubType
 			player:GetData().wakaba.prevTrinketPrimary = player:GetTrinket(0)
+			wakaba.Log("Registerting temporary trinket 1", player:GetTrinket(0))
 			player:GetData().wakaba.prevTrinketSecondary = player:GetTrinket(1)
-			if player:GetTrinket(0) > 0 then
-				player:TryRemoveTrinket(player:GetTrinket(0))
-			end
+			wakaba.Log("Registerting temporary trinket 2", player:GetTrinket(1))
 			if player:GetTrinket(1) > 0 then
+				wakaba.Log("Removing temporary trinket 2", player:GetTrinket(1))
 				player:TryRemoveTrinket(player:GetTrinket(1))
+			end
+			if player:GetTrinket(0) > 0 then
+				wakaba.Log("Removing temporary trinket 1", player:GetTrinket(0))
+				player:TryRemoveTrinket(player:GetTrinket(0))
 			end
 		elseif player then
 			player:GetData().wakaba.blockAquaSpawn = true
