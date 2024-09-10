@@ -225,8 +225,8 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "571": "{\"pos\":[7,-2],\"type\":333,\"size\":\"Med\",\"name\":\"Boss Challenge Room Unlock\",\"description\":[\"When entering a floor, +20% chance to unlock its boss challenge room regardless of hearts,\",\"if it's present.\"],\"modifiers\":{\"bossChallengeUnlock\":20},\"adjacent\":[570]}",
   "582": "{\"pos\":[-10,-5],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[544],\"customID\":\"w_wakaba_0013\"}",
   "583": "{\"pos\":[10,-7],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[566],\"customID\":\"w_wakaba_0013\"}",
-  "584": "{\"pos\":[15,-21],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[633],\"customID\":\"w_wakaba_0013\"}",
-  "585": "{\"pos\":[-15,-22],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[603],\"customID\":\"w_wakaba_0013\"}",
+  "584": "{\"pos\":[15,-21],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[633,698],\"customID\":\"w_wakaba_0013\"}",
+  "585": "{\"pos\":[-15,-22],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[603,699],\"customID\":\"w_wakaba_0013\"}",
   "586": "{\"pos\":[-15,-11],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[639],\"customID\":\"w_wakaba_0013\"}",
   "587": "{\"pos\":[-13,-16],\"type\":5035,\"size\":\"Large\",\"name\":\"Cloverfest\",\"description\":[\"Clover chest can be appeared regardless of unlock.\",\"Clover chest can be opened without using keys.\"],\"modifiers\":{\"wakabaFreeClover\":true},\"adjacent\":[654,635,598],\"customID\":\"w_wakaba_1006\"}",
   "588": "{\"pos\":[11,-14],\"type\":5031,\"size\":\"Large\",\"name\":\"Wakaba-chan is no longer baka\",\"description\":[\"Wakaba Starts with Perfection\"],\"modifiers\":{\"wakabaIsSmart\":true},\"adjacent\":[612,622,613],\"customID\":\"w_wakaba_1002\"}",
@@ -330,7 +330,9 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "693": "{\"pos\":[3,-32],\"type\":28,\"size\":\"Med\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+1% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":1},\"adjacent\":[112,114]}",
   "694": "{\"pos\":[4,-34],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[114,116],\"customID\":\"w_wakaba_0006\"}",
   "695": "{\"pos\":[6,-30],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[691,692],\"customID\":\"w_wakaba_0006\"}",
-  "697": "{\"pos\":[17,-5],\"type\":5037,\"size\":\"Large\",\"name\":\"Impure Girl\",\"description\":[\"Begin the game with Birthright\",\"All Boss items are replaced with Devil deals\"],\"modifiers\":{\"wakabaBirthright\":true},\"adjacent\":[663],\"customID\":\"w_wakaba_1008\"}"
+  "697": "{\"pos\":[17,-5],\"type\":5037,\"size\":\"Large\",\"name\":\"Impure Girl\",\"description\":[\"Begin the game with Birthright\",\"All Boss items are replaced with Devil deals\"],\"modifiers\":{\"wakabaBirthright\":true},\"adjacent\":[663],\"customID\":\"w_wakaba_1008\"}",
+  "698": "{\"pos\":[15,-22],\"type\":5036,\"size\":\"Large\",\"name\":\"Extra Uniform Slot\",\"description\":[\"+1 Wakaba's Uniform slot\"],\"modifiers\":{\"wakabaUniformSlot\":1},\"adjacent\":[584],\"customID\":\"w_wakaba_1007\"}",
+  "699": "{\"pos\":[-15,-23],\"type\":5036,\"size\":\"Large\",\"name\":\"Extra Uniform Slot\",\"description\":[\"+1 Wakaba's Uniform slot\"],\"modifiers\":{\"wakabaUniformSlot\":1},\"adjacent\":[585],\"customID\":\"w_wakaba_1007\"}"
 }
 ]])
 	end
@@ -354,6 +356,10 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 	do -- CALLBACKS
 
     wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, CallbackPriority.LATE, wakaba.PreLoad_PST)
+
+    wakaba:AddCallback(wakaba.Callback.MAX_UNIFORM_SLOTS, function(_, player, originalMax)
+      return originalMax + wakaba:extraVal("wakabaUniformSlot", 0)
+    end)
 
 		wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
 			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then

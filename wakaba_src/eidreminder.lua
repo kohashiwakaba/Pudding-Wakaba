@@ -315,7 +315,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 			local itemConfig = Isaac.GetItemConfig()
 			local max = wakaba:getMaxWakabaUniformSlots(player)
 			local current = wakaba:getCurrentWakabaUniformCursor(player)
-			for i = 0, max - 1 do
+			for i = 1, max do
 				local item = wakaba:getCurrentWakabaUniformSlot(player, i)
 				local isCurrent = i == current
 				if isCurrent then
@@ -351,6 +351,8 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 					else
 						eidstring = eidstring .. "{{WakabaUniformEmpty}}"
 					end
+				else
+					eidstring = eidstring .. "{{WakabaUniformEmpty}}"
 				end
 			end
 			--demoDescObj.ObjVariant = 350
@@ -363,7 +365,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM]
 			eidstring = eidstring:gsub("{{WakabaUniformUnknownPill}}",unistr.unknownpill)
 
 			if preservedslotstate then
-				eidstring = eidstring .. "##" .. preservedslotstate.Description
+				eidstring = eidstring .. "#{{Blank}}#" .. preservedslotstate.Description
 			end
 
 			descObj.Description = eidstring
