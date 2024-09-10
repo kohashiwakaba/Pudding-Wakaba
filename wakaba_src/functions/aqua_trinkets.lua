@@ -96,8 +96,11 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_AquaTrinkets, PickupVariant.PICKUP_TRINKET)
 
 function wakaba:TrinketCollision_AquaTrinkets(pickup, collider)
-	local player = collider:ToPlayer()
+	local player = collider:ToPlayer() ---@type EntityPlayer
 	if player then
+		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			player = player:GetMainTwin()
+		end
 		wakaba.Log("hasTrinketDropped set")
 		hasTrinketDropped = true
 		wakaba:GetPlayerEntityData(player)
