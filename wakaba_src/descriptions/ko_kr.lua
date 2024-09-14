@@ -488,7 +488,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{ShotspeedSmall}}탄속 +0.1"
 		.. "#↑ {{RangeSmall}}사거리 +0.85"
 		.. "#↑ {{DamageSmall}}공격력 +0.5"
-		.. "#{{ColorRainbow}} 방 색상이 임의의 색상으로 바뀝니다."
+		.. "#{{ColorRainbow}}방 색상이 임의의 색상으로 바뀝니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "모든 능력치 증가 + 뭔가 분위기가 이상해",
@@ -712,12 +712,11 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = {
 		itemName = "신의 책",
 		description = ""
-		.. "#피격 시 체력이 없을 경우 천사로 변신합니다."
+		.. "#피격 시 체력이 없을 경우 천사 상태로 돌입합니다."
 		.. "#!!! 천사 상태로 돌입 시 이하 효과 발동:"
 		.. "#↓ {{DamageSmall}}공격력 배율 x0.5"
-		.. "#눈물에 후광이 생기며 후광에 닿은 적은 프레임당 캐릭터의 공격력의 피해를 입습니다."
-		.. "#피격 시 부서진 하트 하나가 추가되며 모든 하트가 {{BrokenHeart}}부서진 하트로 채워질 경우 사망합니다."
-		.. "#!!! 천사 상태로 돌입하면 더 이상 희생 방의 희생 보상을 받을 수 없습니다."
+		.. "#눈물에 후광이 생기며 후광에 닿은 적은 초당 캐릭터의 공격력 x15의 피해를 받습니다."
+		.. "#{{BrokenHeart}} 피격 시 부서진하트 +1"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "더 강해져서 돌아오마",
@@ -973,12 +972,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PHANTOM_CLOAK] = {
 		itemName = "팬텀 클로크",
 		description = ""
-		.. "#짧은 시간동안 캐릭터의 모습을 숨겨 은폐 상태로 만듭니다."
-		.. "#캐릭터가 숨어있는 동안 캐릭터를 향해 공격하던 적들은 혼란 상태이상에 걸립니다."
-		.. "#!!! 은폐 상태에도 캐릭터는 무적이 아닙니다."
-		.. "#움직이거나 공격 중일 때 시간을 더 빨리 소모합니다."
-		.. "#완충 상태에서만 사용할 수 있으며 게이지는 공격 중이거나 움직일 때만 회복할 수 있습니다."
-		.. "#캐릭터가 숨어있는 동안 도전방, 보스 도전방의 문이 열립니다."
+		.. "#{{Confusion}} 짧은 시간동안 캐릭터를 은폐, 그 방의 적에게 혼란을 겁니다."
+		.. "#움직이거나 공격 중일 때 지속시간 감소"
+		.. "#은폐 중 도전방, 보스 도전방의 문이 열립니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "은신은 무적이 아니다",
@@ -1181,12 +1177,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.LIL_RICHER] = {
 		itemName = "리틀 리셰",
 		description = ""
-		.. "#공격하는 방향으로 틱 당 공격력 2의 추적 눈물을 발사합니다."
+		.. "#공격하는 방향으로 초당 8의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#{{Battery}} 방 클리어 시 충전량을 하나 보존합니다. (최대 12)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#공격하는 방향으로 틱 당 공격력 2의 추적 눈물을 발사합니다."
+		.. "#공격하는 방향으로 초당 8의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 충전량을 하나 보존합니다. (최대 4)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
@@ -1317,7 +1313,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.LIL_RIRA] = {
 		itemName = "리틀 리라",
 		description = ""
-		.. "#공격하는 방향으로 틱 당 공격력 2의 추적 눈물을 발사합니다."
+		.. "#공격하는 방향으로 초당 8의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#↓ {{Battery}}{{BlinkYellowRed}}액티브 아이템의 충전량을 강제로 훔치며{{CR}};"
 		.. "#↑ 훔친 충전량 당 {{DamageSmall}}공격력 +0.05"
 		.. "{{CR}}",
