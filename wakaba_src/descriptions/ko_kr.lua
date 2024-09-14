@@ -163,7 +163,6 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
 		.. "{{CR}}",
 		queueDesc = "악마 봉인 + 더 나아진 운명",
@@ -181,11 +180,9 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 방어 무시 제거됨)"
 		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
 		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
 		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
 		.. "{{CR}}",
 		queueDesc = "천사 봉인 + 더 나빠진 운명",
@@ -247,8 +244,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 -2 (중첩 불가)"
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.6 (중첩 불가)"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 유도 눈물 제거됨)"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
 		.. "{{CR}}",
 		queueDesc = "공격력, 연사 증가 + 동료를 치유해주자",
 	},
@@ -267,8 +262,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{DamageSmall}}공격력과 {{TearsSmall}}연사가 증가합니다."
 		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소하며 방 클리어 시 월석 게이지를 회복합니다."
 		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 피격 패널티 면역 제거됨)"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 월석 게이지 감소량 증가)"
 		.. "#!!! 월석 게이지 전부 소진 시 월석이 증발합니다."
 		.. "{{CR}}",
 		queueDesc = "신성함을 유지시켜줘",
@@ -441,7 +434,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}배터리 없이 초과 충전이 가능합니다."
 		.. "#사용 시 현재 방 배열의 아이템을 소환합니다."
 		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 충전 속도 50% 감소)"
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
 		wisp = "{{InnerWisp}} {{ColorLime}}내부 x1{{CR}}/{{Heart}}:절대무적#일반 눈물을 발사합니다. ({{DamageSmall}}:3)",
@@ -1268,7 +1260,6 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = "{{WakabaZip}} 10% 확률로 적을 6초동안 '압박'시키는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 16+일 때 100%"
 		.. "#{{WakabaZip}} 압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 압박 폭발이 더 이상 캐릭터의 폭탄 아이템의 영향을 받지 않음)"
 		.. "{{CR}}",
 		queueDesc = "리라의 추억은 누군가에겐 악몽",
 	},
@@ -1348,7 +1339,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 특정 조건에서 사용 시 다른 효과가 발동됩니다."
 		.. "{{CR}}",
 		lunatic = "사용 시 시작 방으로 이동합니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 반드시 시작 방 이동 효과만 발동)"
 		.. "{{CR}}",
 		carBattery = "무효과",
 		queueDesc = "긴급 탈출구",
