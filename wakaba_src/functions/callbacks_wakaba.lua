@@ -670,6 +670,10 @@ wakaba.Callback = {
 	-- MAX_UNIFORM_SLOTS
 	-- ---
 	MAX_UNIFORM_SLOTS = "WakabaCallbacks.MAX_UNIFORM_SLOTS",
+	-- ---
+	-- EVALUATE_RICHER_UNIFORM_MODE
+	-- ---
+	EVALUATE_RICHER_UNIFORM_MODE = "WakabaCallbacks.EVALUATE_RICHER_UNIFORM_MODE",
 }
 
 wakaba.SetCallbackMatchTest(wakaba.Callback.POST_GET_COLLECTIBLE, function(a, b) -- TMTRAINER makes ID=-1 items, which bypasses the old match test

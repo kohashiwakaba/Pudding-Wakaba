@@ -1,4 +1,5 @@
 local desclang = "zh_cn"
+local u = wakaba.Enums.RicherUniformMode
 
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {}
@@ -2265,27 +2266,35 @@ wakaba.descriptions[desclang].entities = {
 			.. "#{{Luck}} {{ColorSilver}}四叶草道具"
 	},
 }
-wakaba.descriptions[desclang].richeruniform = {
-	default = "#{{Room}} {{ColorCyan}}默认#激活一次补货机",
-	beast = "#{{Room}} {{ColorCyan}}三眼房#!!! 仅限一次使用#{{Collectible633}} 再次获得教条 ({{Heart}}最少6/{{Damage}}+2/{{HolyMantle}})",
-	startroom = "#{{RedRoom}} {{ColorCyan}}起始房#生成牌意解读的一个传送门",
-	regular = "#{{Room}} {{ColorCyan}}普通房#{{Collectible285}} 使房间内的所有敌人退化2次",
-	shop = "#{{Shop}} {{ColorCyan}}商店#{{Collectible64}} 房内的商店物品价格减半",
-	error = "#{{ErrorRoom}} {{ColorCyan}}错误房#把房间内的所有物品和掉落物带到起始房",
-	treasure = "#{{TreasureRoom}} {{ColorCyan}}道具房#{{Card90}} 重置房间内的所有物品和掉落物#重置后的物品来自随机物品池",
-	planetarium = "#{{Planetarium}} {{ColorCyan}}星象房#{{Collectible105}} 重置房间内的所有物品",
-	boss = "#{{BossRoom}} {{ColorCyan}}Boss房#{{Collectible" ..
-		wakaba.Enums.Collectibles.MINERVA_AURA .. "}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/跟踪眼泪 在当前房间有效",
-	devil = "#{{DevilRoom}} {{ColorCyan}}恶魔房#生成品质 {{Quality3}} 的物品，需要2个心之容器",
-	angel = "#{{AngelRoom}} {{ColorCyan}}天使房#获得 {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} 防止一次诅咒的生效",
-	sacrifice =
-	"#{{SacrificeRoom}} {{ColorCyan}}献祭房#把下一次献祭的计数器设为第6次 ({{AngelChance}}33%/{{Chest}}67%)#!!! 如果计数器小于6，会受到1个心的伤害",
-	arcade =
-	"#{{ArcadeRoom}} {{ColorCyan}}游戏房#生成一个 {{Slotmachine}} 老虎机或 {{FortuneTeller}} 占卜机#{{Collectible46}} 在当前房间赌博的胜率提高",
-	curse = "#{{CursedRoom}} {{ColorCyan}}诅咒房#{{RedChest}} 生成2个红色箱子#!!! 受到1个心的伤害",
-	challenge = "#{{ChallengeRoom}} {{ColorCyan}}挑战房#{{Collectible347}} 复制房间内的所有物品和掉落物",
-	bossrush = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#移除所有的选项，使所有道具都可以拾取",
-	chestroom = "#{{ChestRoom}} {{ColorCyan}}宝箱房#{{GoldenChest}} 生成3个金色箱子"
+wakaba.descriptions[desclang].richeruniform = { -- TODO
+	default = "#{{Room}} {{ColorCyan}}Default#Activates restock machine once",
+	[u.DEFAULT] = "#{{Room}} {{ColorCyan}}Normal Room#{{Collectible285}} Devolves all enemies in the room 2 times#20% Armor Piercing damage for bosses",
+	[u.SHOP] = "#{{Shop}} {{ColorCyan}}Shop#{{Collectible64}} Shop items cost 75% less for current room",
+	[u.ERROR] = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
+	[u.TREASURE] = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
+	[u.BOSS] = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
+	[u.MINIBOSS] = "#{{BossRoom}} {{ColorCyan}}Miniboss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
+	[u.SECRET] = "#{{SecretRoom}} {{ColorCyan}}Secret Room#{{Collectible609}} Rerolls all pedestal items in the room#Has a 25% chance to delete items instead of rerolling them",
+	[u.SUPERSECRET] = "#{{SuperSecretRoom}} {{ColorCyan}}Super Secret Room#{{Collectible609}} Rerolls all pedestal items in the room#Has a 25% chance to delete items instead of rerolling them",
+	[u.ARCADE] = "#{{ArcadeRoom}} {{ColorCyan}}Arcade Room#Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{Collectible46}} Better chance to win while gambling for current room",
+	[u.CURSE] = "#{{CursedRoom}} {{ColorCyan}}Curse Room#{{RedChest}}	Spawns 2 red chests#!!! Takes 1 full heart of damage",
+	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} Duplicates any pedestals and consumables in the current room",
+	[u.LIBRARY] = "#{{Library}} {{ColorCyan}}Library#{{Card53}} Spawns 3 cards",
+	[u.SACRIFICE] = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
+	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers#The spawned item disappears on room exit",
+	[u.ANGEL] = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Heals {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
+	--[u.DUNGEON] = "",
+	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected",
+	[u.ISAACS] = "#{{IsaacsRoom}} {{ColorCyan}}Bedroom#{{Card92}} Permanently grants a random familiar",
+	[u.BARREN] = "#{{BarrenRoom}} {{ColorCyan}}Bedroom#{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}} Spawns 12 tiny Isaac familiars",
+	[u.CHEST] = "#{{ChestRoom}} {{ColorCyan}}Valut Room#{{EternalChest}} Spanws a Eternal chest and 3 Golden chests",
+	[u.DICE] = "#{{DiceRoom}} {{ColorCyan}}Dice Room#{{Card78}} Spawns Cracked Key",
+	[u.BLACK_MARKET] = "#{{LadderRoom}} {{ColorCyan}}Black Market#{{Collectible521}} Makes one random item for sale free",
+	[u.GREED_EXIT] = "#{{MinecartRoom}} {{ColorCyan}}Greed Exit#{{Coin}} Grants 50% of Isaac's number of coins",
+	[u.PLANETARIUM] = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room#{{Collectible589}} Spawns Luna Light",
+
+	[u.START_ROOM] = "#{{RedRoom}} {{ColorCyan}}Starting Room#Spawns one of portals from Card Reading",
+	[u.BEAST] = "#{{Room}} {{ColorCyan}}Beast Room#!!! ONE TIME USE#{{Collectible633}} Grants Dogma once more ({{Heart}}min6/{{Damage}}+2/{{HolyMantle}})",
 }
 
 

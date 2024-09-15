@@ -197,6 +197,63 @@ function wakaba:ActiveRender_BookOfAmplitude(player, activeSlot, offset, alpha, 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, wakaba.ActiveRender_BookOfAmplitude)
 
+local counterSprite = Sprite()
+counterSprite:Load("gfx/ui/wakaba/uniform_indicator.anm2", true)
+
+local uniformSprite = Sprite()
+uniformSprite:Load('gfx/items/wakaba_richeruniform.anm2', true)
+
+wakaba._counterx = 0
+wakaba._countery = 0
+
+-- Richer's Uniform
+---@param player EntityPlayer
+---@param activeSlot ActiveSlot
+---@param offset Vector
+---@param alpha number
+---@param scale number
+---@param chargeBarOffset Vector
+function wakaba:ActiveRender_RicherUniform(player, activeSlot, offset, alpha, scale, chargeBarOffset)
+	local item = player:GetActiveItem(activeSlot)
+	if item == wakaba.Enums.Collectibles.RICHERS_UNIFORM and not player:IsCoopGhost() then
+		local ampStat = wakaba:getCurrentRicherUniformType(player)
+		local count = wakaba.runstate.pendingCurseImmunityCount
+
+		local pocket = player:GetPocketItem(0)
+		local ispocketactive = (pocket:GetSlot() == 3 and pocket:GetType() == 2)
+
+		if ampStat then
+
+			local renderPos = Vector(16, 16)
+			local renderScale = Vector(1, 1)
+			if activeSlot == ActiveSlot.SLOT_PRIMARY then
+			elseif activeSlot == ActiveSlot.SLOT_SECONDARY or (not ispocketactive) then
+				renderPos = renderPos / 2
+				renderScale = renderScale / 2
+			end
+
+			uniformSprite:SetFrame("Idle", ampStat)
+			uniformSprite.Scale = renderScale
+			uniformSprite:Render(renderPos + offset, Vector.Zero, Vector.Zero)
+		end
+		if count and count > 0 then
+			count = math.min(count, 16)
+			local renderPos = Vector(wakaba._counterx, wakaba._countery)
+			local renderScale = Vector(1, 1)
+			if activeSlot == ActiveSlot.SLOT_PRIMARY then
+			elseif activeSlot == ActiveSlot.SLOT_SECONDARY or (not ispocketactive) then
+				renderPos = renderPos / 2
+				renderScale = renderScale / 2
+			end
+
+			counterSprite:SetFrame("Counter", count)
+			counterSprite.Scale = renderScale
+			counterSprite:Render(renderPos + offset, Vector.Zero, Vector.Zero)
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, wakaba.ActiveRender_RicherUniform)
+
 -- Clover Chest + Guppy's Eye
 ---@param pickup EntityPickup
 function wakaba:PickupLoot_CloverChest(pickup)

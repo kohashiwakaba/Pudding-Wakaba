@@ -35,12 +35,46 @@
  ]]
 local isc = require("wakaba_src.libs.isaacscript-common")
 
+local u = wakaba.Enums.RicherUniformMode
+
 local ribbon_data = {
 	run = {
 		storedPickups = {},
 	},
 }
 wakaba:saveDataManager("Richer Uniform", ribbon_data)
+
+function wakaba:getCurrentRicherUniformType(player, rng)
+	local type = u.NULL
+	local room = wakaba.G:GetRoom()
+	local rType = room:GetType()
+	for k, v in pairs(u) do
+		if v == rType then
+			type = v
+			break
+		end
+	end
+
+	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_RICHER_UNIFORM_MODE)) do
+		local newData = callbackData.Function(callbackData.Mod, type, player)
+		if newData then
+			type = newData
+		end
+	end
+
+	return type
+end
+
+function wakaba:RicherUniform_Basic(originalType, player)
+	local level = wakaba.G:GetLevel()
+	local room = wakaba.G:GetRoom()
+	if isc:inBeastRoom() then
+		return u.BEAST
+	elseif not wakaba.G:IsGreedMode() and isc:inStartingRoom() and level:GetAbsoluteStage() ~= LevelStage.STAGE8 then
+		return u.START_ROOM
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_RICHER_UNIFORM_MODE, wakaba.RicherUniform_Basic)
 
 ---@param item CollectibleType
 ---@param rng RNG
@@ -62,10 +96,13 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 	local sfx = SFXManager()
 	local RECOMMENDED_SHIFT_IDX = 35
 
-	if isc:inBeastRoom() then
+	local uniformMode = wakaba:getCurrentRicherUniformType(player, rng)
+
+	if uniformMode == u.BEAST then
 		player:AddCollectible(CollectibleType.COLLECTIBLE_DOGMA)
+		SFXManager():Play(SoundEffect.SOUND_SUPERHOLY)
 		remove = true
-	elseif not wakaba.G:IsGreedMode() and isc:inStartingRoom() and level:GetAbsoluteStage() ~= LevelStage.STAGE8 then
+	elseif uniformMode == u.START_ROOM then
 		local hasTreasureRoom = isc:levelHasRoomType(RoomType.ROOM_TREASURE)
 		local f = 0
 		if hasTreasureRoom then
@@ -75,12 +112,20 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		end
 		Isaac.Spawn(1000, 161, f-1, room:FindFreePickupSpawnPosition(player.Position + Vector(40, 40)), Vector(0,0), nil)
 		sfx:Play(SoundEffect.SOUND_SUMMONSOUND, 1, 0, false, 1)
-	elseif roomType == RoomType.ROOM_DEFAULT or roomType == RoomType.ROOM_BLUE then
+	elseif uniformMode == u.DEFAULT then
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_D10, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
-	elseif roomType == RoomType.ROOM_SHOP then
-		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_STEAM_SALE, -1, 1, "RICHER_UNIFORM")
-	elseif roomType == RoomType.ROOM_ERROR then
+		local entities = Isaac.GetRoomEntities()
+		for _, e in ipairs(entities) do
+			if e:Exists() and e:ToNPC() and e:ToNPC():IsBoss() then
+				local damageToTake = e.MaxHitPoints * 0.2
+				e:TakeDamage(damageToTake, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(player), 0)
+			end
+		end
+	elseif uniformMode == u.SHOP then
+		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_STEAM_SALE, -1, 3, "RICHER_UNIFORM")
+		SFXManager():Play(SoundEffect.SOUND_POWERUP3)
+	elseif uniformMode == u.ERROR then
 		local pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP)
 		for _, pickup in ipairs(pickups) do
 			table.insert(ribbon_data.run.storedPickups, {
@@ -93,13 +138,19 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 			})
 		end
 		player:UseCard(Card.CARD_FOOL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
-	elseif roomType == RoomType.ROOM_TREASURE then
+	elseif uniformMode == u.TREASURE then
 		player:UseCard(Card.CARD_SOUL_EDEN, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
-	elseif roomType == RoomType.ROOM_PLANETARIUM then
-		player:UseCard(Card.RUNE_PERTHRO, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
-	elseif roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_MINIBOSS then
+	elseif uniformMode == u.PLANETARIUM then
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_D6, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+		local entities = Isaac.GetRoomEntities()
+		for _, e in ipairs(entities) do
+			if e:Exists() and e.Type == EntityType.ENTITY_PICKUP and e.Variant == PickupVariant.PICKUP_COLLECTIBLE then
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 1, e.Position, Vector.Zero, nil)
+			end
+		end
+	elseif uniformMode == u.BOSS or uniformMode == u.MINIBOSS then
 		player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.MINERVA_AURA)
-	elseif roomType == RoomType.ROOM_DEVIL then
+	elseif uniformMode == u.DEVIL then
 		wakaba.runstate.rerollquality["0"] = false
 		wakaba.runstate.rerollquality["1"] = false
 		wakaba.runstate.rerollquality["2"] = false
@@ -108,10 +159,12 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		--local shopItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player):ToPickup()
 		shopItem.Price = PickupPrice.PRICE_TWO_HEARTS
 		shopItem.AutoUpdatePrice = false
+		shopItem.Timeout = 999999
 		wakaba.runstate.rerollquality["0"] = nil
 		wakaba.runstate.rerollquality["1"] = nil
 		wakaba.runstate.rerollquality["2"] = nil
-	elseif roomType == RoomType.ROOM_ANGEL then
+		SFXManager():Play(SoundEffect.SOUND_DEATH_CARD)
+	elseif uniformMode == u.ANGEL then
 		player:AddSoulHearts(1)
 		player:AddHearts(1)
 		local curse = level:GetCurses() & ~wakaba.curses.CURSE_OF_SATYR
@@ -120,7 +173,8 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		else
 			wakaba.runstate.pendingCurseImmunityCount = wakaba.runstate.pendingCurseImmunityCount + 1
 		end
-	elseif roomType == RoomType.ROOM_SACRIFICE then
+		SFXManager():Play(SoundEffect.SOUND_ANGEL_WING)
+	elseif uniformMode == u.SACRIFICE then
 		local damagePlayer = false
 		local spikes = isc:getGridEntities(GridEntityType.GRID_SPIKES)
 		for i, spike in ipairs(spikes) do
@@ -137,46 +191,51 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		if damagePlayer then
 			player:TakeDamage(2, DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 60)
 		end
-	--[[ elseif roomType == RoomType.ROOM_SECRET then ]]
+		SFXManager():Play(SoundEffect.SOUND_ANGEL_BEAM)
+	elseif uniformMode == u.SECRET then
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_ETERNAL_D6, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+	elseif uniformMode == u.SUPERSECRET then
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_ETERNAL_D6, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+	--[[ elseif uniformMode == u.ULTRASECRET then ]]
 
-	--[[ elseif roomType == RoomType.ROOM_SUPERSECRET then ]]
-
-	--[[ elseif roomType == RoomType.ROOM_ULTRASECRET then ]]
-
-	elseif roomType == RoomType.ROOM_ARCADE then
+	elseif uniformMode == u.ARCADE then
 		player:UseCard(Card.CARD_WHEEL_OF_FORTUNE, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 		wakaba.HiddenItemManager:AddForRoom(player, CollectibleType.COLLECTIBLE_LUCKY_FOOT, -1, 1, "RICHER_UNIFORM")
-	elseif roomType == RoomType.ROOM_CURSE then
+		SFXManager():Play(SoundEffect.SOUND_LUCKYPICKUP)
+	elseif uniformMode == u.CURSE then
 		player:TakeDamage(2, DamageFlag.DAMAGE_INVINCIBLE | DamageFlag.DAMAGE_RED_HEARTS | DamageFlag.DAMAGE_NOKILL | DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 60)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(40, 0)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(-40, 0)), Vector(0,0), nil)
-	elseif roomType == RoomType.ROOM_CHALLENGE then
+	elseif uniformMode == u.CHALLENGE then
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_DIPLOPIA, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
-	--[[ elseif roomType == RoomType.ROOM_LIBRARY then ]]
+	elseif uniformMode == u.LIBRARY then
+		player:UseCard(Card.CARD_ANCIENT_RECALL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
+	--[[ elseif uniformMode == u.DUNGEON then ]]
 
-	--[[ elseif roomType == RoomType.ROOM_DUNGEON then ]]
-
-	elseif roomType == RoomType.ROOM_BOSSRUSH then
+	elseif uniformMode == u.BOSSRUSH then
 		local pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
 		for _, pickup in ipairs(pickups) do
 			pickup:ToPickup().OptionsPickupIndex = 0
 		end
-	--[[ elseif roomType == RoomType.ROOM_ISAACS or roomType == RoomType.ROOM_BARREN then ]]
-
-	elseif roomType == RoomType.ROOM_CHEST then
+	elseif uniformMode == u.ISAACS then
+		player:UseCard(Card.CARD_SOUL_LILITH, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
+	elseif uniformMode == u.BARREN then
+		player:UseActiveItem(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+	elseif uniformMode == u.CHEST then
+		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_ETERNALCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(0, -40)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LOCKEDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(40, 0)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LOCKEDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(0, 40)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_LOCKEDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(-40, 0)), Vector(0,0), nil)
-	--[[ elseif roomType == RoomType.ROOM_DICE then ]]
-
-	--[[ elseif roomType == RoomType.ROOM_BLACK_MARKET then ]]
-
-	--[[ elseif roomType == RoomType.ROOM_GREED_EXIT or roomType == RoomType.ROOM_SECRET_EXIT then ]]
-
-	else
+	elseif uniformMode == u.DICE then
+		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_CRACKED_KEY, room:FindFreePickupSpawnPosition(player.Position + Vector(0, 40)), Vector(0,0), nil)
+	elseif uniformMode == u.BLACK_MARKET then
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_COUPON, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+	elseif uniformMode == u.GREED_EXIT then
+		local coinsToAdd = player:GetNumCoins() // 2
+		player:AddCoins(coinsToAdd)
+	elseif uniformMode == u.NULL then
 		room:ShopRestockFull()
 	end
-
 
 	if not failed and not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
 		player:AnimateCollectible(item, "UseItem", "PlayerPickup")
@@ -211,56 +270,11 @@ if EID then
 		local roomType = room:GetType()
 		local appendDesc = ""
 		local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en_us"].richeruniform
-		if isc:inBeastRoom() then
-			appendDesc = descTable.beast
-		elseif not wakaba.G:IsGreedMode() and isc:inStartingRoom() and level:GetAbsoluteStage() ~= LevelStage.STAGE8 then
-			appendDesc = descTable.startroom
-		elseif roomType == RoomType.ROOM_DEFAULT or roomType == RoomType.ROOM_BLUE then
-			appendDesc = descTable.regular
-		elseif roomType == RoomType.ROOM_SHOP then
-			appendDesc = descTable.shop
-		elseif roomType == RoomType.ROOM_ERROR then
-			appendDesc = descTable.error
-		elseif roomType == RoomType.ROOM_TREASURE then
-			appendDesc = descTable.treasure
-		elseif roomType == RoomType.ROOM_PLANETARIUM then
-			appendDesc = descTable.planetarium
-		elseif roomType == RoomType.ROOM_BOSS or roomType == RoomType.ROOM_MINIBOSS then
-			appendDesc = descTable.boss
-		elseif roomType == RoomType.ROOM_DEVIL then
-			appendDesc = descTable.devil
-		elseif roomType == RoomType.ROOM_ANGEL then
-			appendDesc = descTable.angel
-		elseif roomType == RoomType.ROOM_SACRIFICE then
-			appendDesc = descTable.sacrifice
-		--[[ elseif roomType == RoomType.ROOM_SECRET then ]]
 
-		--[[ elseif roomType == RoomType.ROOM_SUPERSECRET then ]]
+		local uniformMode = wakaba:getCurrentRicherUniformType()
 
-		--[[ elseif roomType == RoomType.ROOM_ULTRASECRET then ]]
-
-		elseif roomType == RoomType.ROOM_ARCADE then
-			appendDesc = descTable.arcade
-		elseif roomType == RoomType.ROOM_CURSE then
-			appendDesc = descTable.curse
-		elseif roomType == RoomType.ROOM_CHALLENGE then
-			appendDesc = descTable.challenge
-		--[[ elseif roomType == RoomType.ROOM_LIBRARY then ]]
-
-		--[[ elseif roomType == RoomType.ROOM_DUNGEON then ]]
-
-		elseif roomType == RoomType.ROOM_BOSSRUSH then
-			appendDesc = descTable.bossrush
-		--[[ elseif roomType == RoomType.ROOM_ISAACS or roomType == RoomType.ROOM_BARREN then ]]
-
-		elseif roomType == RoomType.ROOM_CHEST then
-			appendDesc = descTable.chestroom
-		--[[ elseif roomType == RoomType.ROOM_DICE then ]]
-
-		--[[ elseif roomType == RoomType.ROOM_BLACK_MARKET then ]]
-
-		--[[ elseif roomType == RoomType.ROOM_GREED_EXIT or roomType == RoomType.ROOM_SECRET_EXIT then ]]
-
+		if descTable[uniformMode] then
+			appendDesc = descTable[uniformMode]
 		else
 			appendDesc = descTable.default
 		end
@@ -269,4 +283,7 @@ if EID then
 		return descObj
 	end
 	EID:addDescriptionModifier("Wakaba Richer Uniform", RicherUniformCondition, RicherUniformCallback)
+end
+
+if REPENTOGON then
 end

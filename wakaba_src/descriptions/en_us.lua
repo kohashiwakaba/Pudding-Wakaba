@@ -1,5 +1,5 @@
 local desclang = "en_us"
-
+local u = wakaba.Enums.RicherUniformMode
 
 function wakaba:EIDCond_PlayerHasBirthright(playerType)
 	for i = 0, wakaba.G:GetNumPlayers() - 1 do
@@ -2366,22 +2366,33 @@ wakaba.descriptions[desclang].entities = {
 }
 wakaba.descriptions[desclang].richeruniform = {
 	default = "#{{Room}} {{ColorCyan}}Default#Activates restock machine once",
-	beast = "#{{Room}} {{ColorCyan}}Beast Room#!!! ONE TIME USE#{{Collectible633}} Grants Dogma once more ({{Heart}}min6/{{Damage}}+2/{{HolyMantle}})",
-	startroom = "#{{RedRoom}} {{ColorCyan}}Starting Room#Spawns one of portals from Card Reading",
-	regular = "#{{Room}} {{ColorCyan}}Normal Room#{{Collectible285}} Devolves all enemies in the room 2 times",
-	shop = "#{{Shop}} {{ColorCyan}}Shop#{{Collectible64}} Shop items cost 50% less for current room",
-	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
-	treasure = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
-	planetarium = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room",
-	boss = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
-	devil = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers",
-	angel = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Grants {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
-	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
-	arcade = "#{{ArcadeRoom}} {{ColorCyan}}Arcade Room#Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{Collectible46}} Better chance to win while gambling for current room",
-	curse = "#{{CursedRoom}} {{ColorCyan}}Curse Room#{{RedChest}}	Spawns 2 red chests#!!! Takes 1 full heart of damage",
-	challenge = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} Duplicates any pedestals and consumables in the current room",
-	bossrush = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected",
-	chestroom = "#{{ChestRoom}} {{ColorCyan}}Valut Room#{{GoldenChest}}	Spans 3 golden chests",
+	[u.DEFAULT] = "#{{Room}} {{ColorCyan}}Normal Room#{{Collectible285}} Devolves all enemies in the room 2 times#20% Armor Piercing damage for bosses",
+	[u.SHOP] = "#{{Shop}} {{ColorCyan}}Shop#{{Collectible64}} Shop items cost 75% less for current room",
+	[u.ERROR] = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#Brings all collectibles and pickups in the room to starting room",
+	[u.TREASURE] = "#{{TreasureRoom}} {{ColorCyan}}Treasure Room#{{Card90}} Rerolls pedestals and pickups in the current room#The rerolled items come from random item pools",
+	[u.BOSS] = "#{{BossRoom}} {{ColorCyan}}Boss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
+	[u.MINIBOSS] = "#{{BossRoom}} {{ColorCyan}}Miniboss Room#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} {{Damage}}-0.5/{{Tears}}+0.5x2.3/Homing tears for current room",
+	[u.SECRET] = "#{{SecretRoom}} {{ColorCyan}}Secret Room#{{Collectible609}} Rerolls all pedestal items in the room#Has a 25% chance to delete items instead of rerolling them",
+	[u.SUPERSECRET] = "#{{SuperSecretRoom}} {{ColorCyan}}Super Secret Room#{{Collectible609}} Rerolls all pedestal items in the room#Has a 25% chance to delete items instead of rerolling them",
+	[u.ARCADE] = "#{{ArcadeRoom}} {{ColorCyan}}Arcade Room#Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{Collectible46}} Better chance to win while gambling for current room",
+	[u.CURSE] = "#{{CursedRoom}} {{ColorCyan}}Curse Room#{{RedChest}}	Spawns 2 red chests#!!! Takes 1 full heart of damage",
+	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} Duplicates any pedestals and consumables in the current room",
+	[u.LIBRARY] = "#{{Library}} {{ColorCyan}}Library#{{Card53}} Spawns 3 cards",
+	[u.SACRIFICE] = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
+	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers#The spawned item disappears on room exit",
+	[u.ANGEL] = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Heals {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
+	--[u.DUNGEON] = "",
+	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected",
+	[u.ISAACS] = "#{{IsaacsRoom}} {{ColorCyan}}Bedroom#{{Card92}} Permanently grants a random familiar",
+	[u.BARREN] = "#{{BarrenRoom}} {{ColorCyan}}Bedroom#{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}} Spawns 12 tiny Isaac familiars",
+	[u.CHEST] = "#{{ChestRoom}} {{ColorCyan}}Valut Room#{{EternalChest}} Spanws a Eternal chest and 3 Golden chests",
+	[u.DICE] = "#{{DiceRoom}} {{ColorCyan}}Dice Room#{{Card78}} Spawns Cracked Key",
+	[u.BLACK_MARKET] = "#{{LadderRoom}} {{ColorCyan}}Black Market#{{Collectible521}} Makes one random item for sale free",
+	[u.GREED_EXIT] = "#{{MinecartRoom}} {{ColorCyan}}Greed Exit#{{Coin}} Grants 50% of Isaac's number of coins",
+	[u.PLANETARIUM] = "#{{Planetarium}} {{ColorCyan}}Planetarium#{{Collectible105}} Rerolls all pedestal items in the room#{{Collectible589}} Spawns Luna Light",
+
+	[u.START_ROOM] = "#{{RedRoom}} {{ColorCyan}}Starting Room#Spawns one of portals from Card Reading",
+	[u.BEAST] = "#{{Beast}} {{ColorCyan}}Beast Room#!!! ONE TIME USE#{{Collectible633}} Grants Dogma once more ({{Heart}}min6/{{Damage}}+2/{{HolyMantle}})",
 }
 
 

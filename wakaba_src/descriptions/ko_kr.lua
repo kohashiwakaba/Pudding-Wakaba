@@ -1,4 +1,5 @@
 local desclang = "ko_kr"
+local u = wakaba.Enums.RicherUniformMode
 
 wakaba.descriptions[desclang] = {}
 wakaba.descriptions[desclang].birthright = {}
@@ -630,7 +631,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.D6_PLUS] = {
 		itemName = "향상된 6면 주사위",
 		description = ""
-		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 방 안의 모든 아이템이 랜덤한 아이템과 1초마다 전환되며 두 아이템 중 하나를 선택할 수 있습니다."
+		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 그 방의 모든 아이템이 랜덤한 아이템과 1초마다 전환되며 두 아이템 중 하나를 선택할 수 있습니다."
 		.. "#이미 전환되고 있는 아이템에 사용 시 하나의 선택지가 추가됩니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
@@ -641,7 +642,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "혼돈의 6면 주사위",
 		description = ""
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 아이작의 영혼 효과를 {{ColorRed}}9번{{CR}} 발동합니다 :"
-		.. "#방 안의 모든 아이템이 랜덤한 아이템과 매우 빠른 속도로 전환되며 9개의 아이템 중 하나를 선택할 수 있습니다."
+		.. "#그 방의 모든 아이템이 랜덤한 아이템과 매우 빠른 속도로 전환되며 9개의 아이템 중 하나를 선택할 수 있습니다."
 		.. "{{CR}}",
 	carBattery = "무효과",
 		queueDesc = "자신의 운명을 믿는 자들을 위하여",
@@ -695,7 +696,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "탄막 청소기",
-	belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 방 안의 모든 적들에게 대미지를 줍니다.",
+	belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 그 방의 모든 적들에게 대미지를 줍니다.",
 	carBattery = "무효과",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
@@ -1306,7 +1307,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "!!! 피격 시 그 방에서:"
 		.. "#↑ 그 방에서 {{SpeedSmall}}이동속도 +0.3"
 		.. "#주변의 탄환을 제거합니다."
-		.. "#{{Slow}} 방 안의 모든 적들을 영구적으로 둔화시킵니다."
+		.. "#{{Slow}} 그 방의 모든 적들을 영구적으로 둔화시킵니다."
 		.. "{{CR}}",
 		queueDesc = "휘몰아치는 그 맛",
 	},
@@ -1655,7 +1656,7 @@ wakaba.descriptions[desclang].epiphany_golden = {
 		isReplace = true,
 		description = ""
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 아이작의 영혼 효과를 {{ColorGold}}4번{{CR}} 발동합니다 :"
-		.. "#방 안의 모든 아이템이 랜덤한 아이템과 {{ColorGold}}빠른 속도{{CR}}로 전환되며 4개의 아이템 중 하나를 선택할 수 있습니다."
+		.. "#그 방의 모든 아이템이 랜덤한 아이템과 {{ColorGold}}빠른 속도{{CR}}로 전환되며 4개의 아이템 중 하나를 선택할 수 있습니다."
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SYRUP] = {
@@ -2663,22 +2664,33 @@ wakaba.descriptions[desclang].entities = {
 }
 wakaba.descriptions[desclang].richeruniform = {
 	default = "#{{Room}} {{ColorCyan}}기본#사용 시 재입고 기계 효과를 1회 발동합니다.",
-	beast = "#{{Room}} {{ColorCyan}}비스트#!!! 일회용#{{Collectible633}} 사용 시 Dogma 아이템을 한 번 더 획득합니다. ({{Heart}}최소6/{{Damage}}+2/{{HolyMantle}})",
-	startroom = "#{{RedRoom}} {{ColorCyan}}시작방#사용 시 색상에 따라 특정한 장소로 이동할 수 있는 포탈이 하나 생성됩니다.",
-	regular = "#{{Room}} {{ColorCyan}}일반방#{{Collectible285}} 사용 시 그 방의 적을 2회 약화시킵니다.",
-	shop = "#{{Shop}} {{ColorCyan}}상점#{{Collectible64}} 사용 시 그 방에서 판매하는 물품의 가격을 50% 할인합니다.",
-	error = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#사용 시 그 방의 모든 아이템 및 픽업과 함께 시작방으로 이동합니다.",
-	treasure = "#{{TreasureRoom}} {{ColorCyan}}보물방#{{Card90}} 방 안의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다.",
-	planetarium = "#{{Planetarium}} {{ColorCyan}}천체관#{{Collectible105}} 사용 시 방 안의 모든 아이템을 다른 아이템으로 바꿉니다.",
-	boss = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}-0.5/{{TearsSmall}}+0.5x2.3/공격이 적에게 유도됩니다.",
-	devil = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.",
-	angel = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
-	sacrifice = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",
-	arcade = "#{{ArcadeRoom}} {{ColorCyan}}오락실#사용 시 {{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 소환하며;#{{Collectible46}} 그 방에서 야바위와 도박기계의 성공 확률이 증가합니다.",
-	curse = "#{{CursedRoom}} {{ColorCyan}}저주방#{{RedChest}}	빨간하트 1칸을 소모하여 빨간상자 2개를 소환합니다.",
-	challenge = "#{{ChallengeRoom}} {{ColorCyan}}도전방#{{Collectible347}} 사용 시 방 안의 모든 아이템과 픽업을 2배로 복사합니다.",
-	bossrush = "#{{BossRushRoom}} {{ColorCyan}}보스러시#사용 시 그 방의 모든 선택형 상태를 제거합니다.",
-	chestroom = "#{{ChestRoom}} {{ColorCyan}}금고방#{{GoldenChest}}	사용 시 황금상자 3개를 소환합니다.",
+	[u.DEFAULT] = "#{{Room}} {{ColorCyan}}일반방#{{Collectible285}} 사용 시 그 방의 적을 2회 약화시킵니다.#보스의 경우 최대 체력 20%의 방어 무시 피해를 줍니다.",
+	[u.SHOP] = "#{{Shop}} {{ColorCyan}}상점#{{Collectible64}} 사용 시 그 방에서 판매하는 물품의 가격을 75% 할인합니다.",
+	[u.ERROR] = "#{{ErrorRoom}} {{ColorCyan}}I AM ERROR#사용 시 그 방의 모든 아이템 및 픽업과 함께 시작방으로 이동합니다.",
+	[u.TREASURE] = "#{{TreasureRoom}} {{ColorCyan}}보물방#{{Card90}} 그 방의 모든 아이템과 픽업을 다른 아이템으로 바꿉니다.#바뀐 아이템의 배열은 랜덤으로 결정됩니다.",
+	[u.BOSS] = "#{{BossRoom}} {{ColorCyan}}보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}-0.5/{{TearsSmall}}+0.5x2.3/공격이 적에게 유도됩니다.",
+	[u.MINIBOSS] = "#{{BossRoom}} {{ColorCyan}}미니보스방#{{Collectible"..wakaba.Enums.Collectibles.MINERVA_AURA.."}} 사용 시 그 방에서 {{DamageSmall}}-0.5/{{TearsSmall}}+0.5x2.3/공격이 적에게 유도됩니다.",
+	[u.SECRET] = "#{{SecretRoom}} {{ColorCyan}}비밀방#{{Collectible609}} 사용 시 그 방의 모든 아이템을 다른 아이템으로 바꾸며 25% 확률로 아이템이 사라집니다.",
+	[u.SUPERSECRET] = "#{{SuperSecretRoom}} {{ColorCyan}}일급비밀방#{{Collectible609}} 사용 시 그 방의 모든 아이템을 다른 아이템으로 바꾸며 25% 확률로 아이템이 사라집니다.",
+	[u.ARCADE] = "#{{ArcadeRoom}} {{ColorCyan}}오락실#사용 시 {{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 소환하며;#{{Collectible46}} 그 방에서 야바위와 도박기계의 성공 확률이 증가합니다.",
+	[u.CURSE] = "#{{CursedRoom}} {{ColorCyan}}저주방#{{RedChest}}	빨간하트 1칸을 소모하여 빨간상자 2개를 소환합니다.",
+	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}도전방#{{Collectible347}} 사용 시 그 방의 모든 아이템과 픽업을 2배로 복사합니다.",
+	[u.LIBRARY] = "#{{Library}} {{ColorCyan}}책방#{{Card53}} 사용 시 카드를 3장 소환합니다.",
+	[u.SACRIFICE] = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",
+	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.#소환된 아이템은 방을 나가면 사라집니다.",
+	[u.ANGEL] = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
+	--[u.DUNGEON] = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
+	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}보스러시#사용 시 그 방의 모든 선택형 상태를 제거합니다.",
+	[u.ISAACS] = "#{{IsaacsRoom}} {{ColorCyan}}침대방#{{Card92}} 사용 시 랜덤 패밀리어를 하나 획득합니다.",
+	[u.BARREN] = "#{{BarrenRoom}} {{ColorCyan}}침대방#{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}} 사용 시 작은 아이작 패밀리어를 12마리 소환합니다.",
+	[u.CHEST] = "#{{ChestRoom}} {{ColorCyan}}금고방#{{EternalChest}} 사용 시 이터널상자 1개와 황금상자 3개를 소환합니다.",
+	[u.DICE] = "#{{DiceRoom}} {{ColorCyan}}주사위방#{{Card78}} 사용 시 Cracked Key를 하나 소환합니다.",
+	[u.BLACK_MARKET] = "#{{LadderRoom}} {{ColorCyan}}블랙마켓#{{Collectible521}} 사용 시 그 방의 판매 항목 중 하나를 무료로 바꿉니다.",
+	[u.GREED_EXIT] = "#{{MinecartRoom}} {{ColorCyan}}Greed Mode 출구#{{Coin}} 사용 시 캐릭터의 동전 +50%",
+	[u.PLANETARIUM] = "#{{Planetarium}} {{ColorCyan}}천체관#{{Collectible105}} 사용 시 그 방의 모든 아이템을 다른 아이템으로 바꾸며;#{{Collectible589}} 달빛을 소환합니다.",
+
+	[u.START_ROOM] = "#{{RedRoom}} {{ColorCyan}}시작방#사용 시 색상에 따라 특정한 장소로 이동할 수 있는 포탈이 하나 생성됩니다.",
+	[u.BEAST] = "#{{BeastSmall}} {{ColorCyan}}비스트#!!! 일회용#{{Collectible633}} 사용 시 Dogma 아이템을 한 번 더 획득합니다. ({{Heart}}최소6/{{Damage}}+2/{{HolyMantle}})",
 }
 
 
