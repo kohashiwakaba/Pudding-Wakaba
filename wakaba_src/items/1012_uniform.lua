@@ -395,3 +395,60 @@ if EID then
 	end
 	EID:addDescriptionModifier("Wakaba's Uniform_CardPill", UniformCondition_CardPill, UniformCallback_CardPill)
 end
+do
+	---@return InventoryDescEntry[]
+	function wakaba:InvdescEntries_Uniform()
+		local idesc = wakaba._InventoryDesc
+		local entries = {} ---@type InventoryDescEntry[]
+		for i = 0, game:GetNumPlayers() - 1 do
+			ei = {}
+			local player = Isaac.GetPlayer(i)
+			local playerType = player:GetPlayerType()
+
+			if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM, true, true) then
+				local max = wakaba:getMaxWakabaUniformSlots(player)
+				for i = 1, max do
+					local entry = wakaba:getCurrentWakabaUniformSlot(player, i)
+					if entry then
+						local type = entry.type
+						local cardpill = entry.cardpill
+						local pilleffect = entry.pilleffect
+						if type == "card" then
+							---@type InventoryDescEntry
+							local entry = {
+								Type = InvDescEIDType.CARD,
+								Variant = PickupVariant.PICKUP_TAROTCARD,
+								SubType = cardpill,
+								Frame = function()
+									return idesc:getOptions("q0icon")
+								end,
+								LeftIcon = "{{Player"..player:GetPlayerType().."}}",
+								ExtraIcon = "{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}}",
+								ListSecondaryTitle = EID:getObjectName(5, 100, wakaba.Enums.Collectibles.UNIFORM) .. " Slot " .. i,
+							}
+							table.insert(entries, entry)
+						elseif type == "pill" then
+							---@type InventoryDescEntry
+							local entry = {
+								Type = InvDescEIDType.PILL,
+								Variant = PickupVariant.PICKUP_PILL,
+								SubType = cardpill,
+								IsHidden = not wakaba.G:GetItemPool():IsPillIdentified(cardpill),
+								Frame = function()
+									return idesc:getOptions("q0icon")
+								end,
+								LeftIcon = "{{Player"..player:GetPlayerType().."}}",
+								ExtraIcon = "{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}}",
+								ListSecondaryTitle = EID:getObjectName(5, 100, wakaba.Enums.Collectibles.UNIFORM) .. " Slot " .. i,
+							}
+						else
+						end
+					else
+					end
+				end
+			end
+		end
+		return entries
+	end
+	wakaba:AddPriorityCallback(wakaba.Callback.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES, -339, function (_) return wakaba:InvdescEntries_Uniform() end)
+end

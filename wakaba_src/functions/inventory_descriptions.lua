@@ -779,7 +779,7 @@ idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES"
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -380, function (_) return idesc:getDefaults() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -360, function (_) return idesc:getCurses() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -340, function (_) return idesc:getHeldActives() end)
-idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -339, function (_) return idesc:getVoidedActives() end)
+idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -330, function (_) return idesc:getVoidedActives() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -320, function (_) return idesc:getHeldCards() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -300, function (_) return idesc:getHeldPills() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -280, function (_) return idesc:getPassives() end)
