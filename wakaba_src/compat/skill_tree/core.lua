@@ -361,20 +361,6 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		wakaba:AddCallback(wakaba.Callback.MAX_UNIFORM_SLOTS, function(_, player, originalMax)
 			return originalMax + wakaba:extraVal("wakabaUniformSlot", 0)
 		end)
-
-		wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function(_, player)
-			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
-				if wakaba:extraVal("wakabaIsSmart") then
-					player:AddTrinket(TrinketType.TRINKET_PERFECTION)
-				end
-				if wakaba:extraVal("wakabaBirthright") then
-					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-				end
-				if wakaba:extraVal("wakabaGudGirl") then
-					player:AddCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT)
-				end
-			end
-		end, 0)
 		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
 			local room = wakaba.G:GetRoom()
 			for num = 1, wakaba.G:GetNumPlayers() do
@@ -390,27 +376,46 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			if isContinued then
 				return
 			end
-			local treesToCheck = {
-				wakaba.Enums.Players.WAKABA,
-			}
-			for _, char in ipairs(treesToCheck) do
-				if char ~= PST.selectedMenuChar then
-					local currentChar = PST.charNames[1 + char]
-					if currentChar and PST.trees[currentChar] then
-						for nodeID, node in pairs(PST.trees[currentChar]) do
-							if PST:isNodeAllocated(currentChar, nodeID) then
-								local shouldAdd = false
-								for name, val in pairs(node.modifiers) do
-									if wakaba:has_value(global_nodes, name) then
-										shouldAdd = true
+			local treeActive = not PST.modData.treeDisabled and ((not PST.config.treeOnChallenges and Isaac.GetChallenge() == 0) or PST.config.treeOnChallenges)
+			if treeActive then
+				local treesToCheck = {
+					wakaba.Enums.Players.WAKABA,
+				}
+				for _, char in ipairs(treesToCheck) do
+					if char ~= PST.selectedMenuChar then
+						local currentChar = PST.charNames[1 + char]
+						if currentChar and PST.trees[currentChar] then
+							for nodeID, node in pairs(PST.trees[currentChar]) do
+								if PST:isNodeAllocated(currentChar, nodeID) then
+									local shouldAdd = false
+									for name, val in pairs(node.modifiers) do
+										if wakaba:has_value(global_nodes, name) then
+											shouldAdd = true
+										end
 									end
-								end
-								if shouldAdd then
-									PST:addModifiers(node.modifiers, true)
+									if shouldAdd then
+										PST:addModifiers(node.modifiers, true)
+									end
 								end
 							end
 						end
 					end
+				end
+			end
+
+			local player = Isaac.GetPlayer()
+			local playerTwin = player:GetOtherTwin()
+			local itemPool = Game():GetItemPool()
+
+			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
+				if wakaba:extraVal("wakabaIsSmart") then
+					player:AddTrinket(TrinketType.TRINKET_PERFECTION)
+				end
+				if wakaba:extraVal("wakabaBirthright") then
+					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+				end
+				if wakaba:extraVal("wakabaGudGirl") then
+					player:AddCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT)
 				end
 			end
 		end)
