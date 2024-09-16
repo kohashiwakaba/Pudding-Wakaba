@@ -313,7 +313,7 @@ if REPENTOGON then
 			local current = wakaba:getCurrentWakabaUniformCursor(player)
 			for i = 1, max do
 				local entry = wakaba:getCurrentWakabaUniformSlot(player, i)
-				local renderPos2 = renderPos + Vector(i * 8, 0)
+				local renderPos2 = renderPos + (Vector(i * 8, 0) * renderScale)
 				if entry then
 					local type = entry.type
 					local cardpill = entry.cardpill
