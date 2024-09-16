@@ -53,7 +53,7 @@ return {
 	wakabaIsSmart = {
 		str = {
 			"Wakaba-chan is no longer baka:",
-			"    Wakaba Starts with Perfection (placeholder)",
+			"    Perfection appears 1 floor earlier at the beginning",
 		},
 		category = "charTree", sort = 4003
 	},

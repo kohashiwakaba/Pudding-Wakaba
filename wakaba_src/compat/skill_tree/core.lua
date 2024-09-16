@@ -230,7 +230,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 	"585": "{\"pos\":[-15,-22],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[603,699],\"customID\":\"w_wakaba_0013\"}",
 	"586": "{\"pos\":[-15,-11],\"type\":5012,\"size\":\"Large\",\"name\":\"Wakaba Damage to Luck\",\"description\":[\"0.1% damage every 1 luck\"],\"modifiers\":{\"wakabaDamageLuck\":0.1},\"adjacent\":[639],\"customID\":\"w_wakaba_0013\"}",
 	"587": "{\"pos\":[-13,-16],\"type\":5035,\"size\":\"Large\",\"name\":\"Cloverfest\",\"description\":[\"Clover chest can be appeared regardless of unlock.\",\"Clover chest can be opened without using keys.\"],\"modifiers\":{\"wakabaFreeClover\":true},\"adjacent\":[654,635,598],\"customID\":\"w_wakaba_1006\"}",
-	"588": "{\"pos\":[11,-14],\"type\":5031,\"size\":\"Large\",\"name\":\"Wakaba-chan is no longer baka\",\"description\":[\"Wakaba Starts with Perfection\"],\"modifiers\":{\"wakabaIsSmart\":true},\"adjacent\":[612,622,613],\"customID\":\"w_wakaba_1002\"}",
+	"588": "{\"pos\":[11,-14],\"type\":5031,\"size\":\"Large\",\"name\":\"Wakaba-chan is no longer baka\",\"description\":[\"Perfection appears 1 floor earlier at the beginning\"],\"modifiers\":{\"wakabaIsSmart\":true},\"adjacent\":[612,622,613],\"customID\":\"w_wakaba_1002\"}",
 	"595": "{\"pos\":[14,-18],\"type\":336,\"size\":\"Small\",\"name\":\"Shop Saving\",\"description\":[\"When first entering a shop, +4% chance to reduce a random item's price\",\"by 2-4 coins.\"],\"modifiers\":{\"shopSaving\":4},\"adjacent\":[617,596]}",
 	"596": "{\"pos\":[14,-19],\"type\":336,\"size\":\"Small\",\"name\":\"Shop Saving\",\"description\":[\"When first entering a shop, +4% chance to reduce a random item's price\",\"by 2-4 coins.\"],\"modifiers\":{\"shopSaving\":4},\"adjacent\":[595,597]}",
 	"597": "{\"pos\":[14,-20],\"type\":336,\"size\":\"Small\",\"name\":\"Shop Saving\",\"description\":[\"When first entering a shop, +4% chance to reduce a random item's price\",\"by 2-4 coins.\"],\"modifiers\":{\"shopSaving\":4},\"adjacent\":[596]}",
@@ -406,11 +406,11 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			local player = Isaac.GetPlayer()
 			local playerTwin = player:GetOtherTwin()
 			local itemPool = Game():GetItemPool()
+			if wakaba:extraVal("wakabaIsSmart") then
+				wakaba.G:AddStageWithoutDamage()
+			end
 
 			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
-				if wakaba:extraVal("wakabaIsSmart") then
-					player:AddTrinket(TrinketType.TRINKET_PERFECTION)
-				end
 				if wakaba:extraVal("wakabaBirthright") then
 					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 				end

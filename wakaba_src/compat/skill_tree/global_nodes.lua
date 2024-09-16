@@ -24,5 +24,5 @@ return {
 	"wakabaFreeClover",
 	"wakabaWildCard",
 	"wakabaUniformSlot",
-	--"wakabaIsSmart",
+	"wakabaIsSmart",
 }
