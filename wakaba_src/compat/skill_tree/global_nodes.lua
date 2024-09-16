@@ -1,0 +1,28 @@
+return {
+
+	"devilChance",
+	"mapChance",
+	"luck",
+	"xpgain",
+	"secretRoomFloorLuck",
+	"luckyPennyChance",
+	"respecChance",
+	"beggarLuck",
+	"bossChallengeUnlock",
+	"shopSaving",
+	"coinDupe",
+	"cardFloorLuck",
+	"pillFloorLuck",
+	"allstatsPerc",
+
+	"w_EasterDmg",
+	"shieldChance",
+	"cloverChestChance",
+	"wakabaCloverChestRange",
+	"pendantMinLuck",
+	"wakabaLeafTear",
+	"wakabaFreeClover",
+	"wakabaWildCard",
+	"wakabaUniformSlot",
+	--"wakabaIsSmart",
+}
