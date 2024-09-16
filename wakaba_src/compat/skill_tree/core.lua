@@ -394,18 +394,20 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				wakaba.Enums.Players.WAKABA,
 			}
 			for _, char in ipairs(treesToCheck) do
-				local currentChar = PST.charNames[1 + char]
-				if currentChar and PST.trees[currentChar] then
-					for nodeID, node in pairs(PST.trees[currentChar]) do
-						if PST:isNodeAllocated(currentChar, nodeID) then
-							local shouldAdd = false
-							for name, val in pairs(node.modifiers) do
-								if wakaba:has_value(global_nodes, name) then
-									shouldAdd = true
+				if char ~= PST.selectedMenuChar then
+					local currentChar = PST.charNames[1 + char]
+					if currentChar and PST.trees[currentChar] then
+						for nodeID, node in pairs(PST.trees[currentChar]) do
+							if PST:isNodeAllocated(currentChar, nodeID) then
+								local shouldAdd = false
+								for name, val in pairs(node.modifiers) do
+									if wakaba:has_value(global_nodes, name) then
+										shouldAdd = true
+									end
 								end
-							end
-							if shouldAdd then
-								PST:addModifiers(node.modifiers, true)
+								if shouldAdd then
+									PST:addModifiers(node.modifiers, true)
+								end
 							end
 						end
 					end
