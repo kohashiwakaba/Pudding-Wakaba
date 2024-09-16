@@ -47,6 +47,7 @@ return {
 		str = {
 			"Good Girl:",
 			"    Wakaba starts with Wakaba's Pendant",
+			"    Perfection trinket no longer spawns",
 		},
 		category = "charTree", sort = 4002
 	},
@@ -81,7 +82,7 @@ return {
 	wakabaBirthright = {
 		str = {
 			"Impure Girl:",
-			"    Begin the game with Birthright",
+			"    Begin the game with Birthright as Wakaba",
 			"    All Boss items are replaced with Devil deals",
 		},
 		category = "charTree", sort = 4007

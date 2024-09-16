@@ -159,7 +159,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 	"486": "{\"pos\":[4,-26],\"type\":5006,\"size\":\"Small\",\"name\":\"Wakaba Lucky Pennies\",\"description\":[\"0.2% extra chance to replace penny drops with a lucky penny as Wakaba\"],\"modifiers\":{\"pendantMinLuckyPennyChance\":0.2},\"adjacent\":[485,487],\"customID\":\"w_wakaba_0007\"}",
 	"487": "{\"pos\":[5,-25],\"type\":5008,\"size\":\"Large\",\"name\":\"Wakaba Lucky Pennies\",\"description\":[\"1% extra chance to replace penny drops with a lucky penny as Wakaba\"],\"modifiers\":{\"pendantMinLuckyPennyChance\":1},\"adjacent\":[486,675],\"customID\":\"w_wakaba_0009\"}",
 	"491": "{\"pos\":[5,-32],\"type\":5032,\"size\":\"Large\",\"name\":\"Daughter of the Rich\",\"description\":[\"Wakaba Can get all selection items\"],\"modifiers\":{\"wakabaJaebol\":true},\"adjacent\":[621],\"customID\":\"w_wakaba_1003\"}",
-	"492": "{\"pos\":[-3,-34],\"type\":5030,\"size\":\"Large\",\"name\":\"Good Girl\",\"description\":[\"Wakaba starts with Wakaba's Pendant\"],\"modifiers\":{\"wakabaGudGirl\":true},\"adjacent\":[620],\"customID\":\"w_wakaba_1001\"}",
+	"492": "{\"pos\":[-3,-34],\"type\":5030,\"size\":\"Large\",\"name\":\"Good Girl\",\"description\":[\"Wakaba starts with Wakaba's Pendant\",\"Perfection no longer spawns\"],\"modifiers\":{\"wakabaGudGirl\":true},\"adjacent\":[620],\"customID\":\"w_wakaba_1001\"}",
 	"493": "{\"pos\":[-5,-26],\"type\":5034,\"size\":\"Large\",\"name\":\"Tearing Clover Leaf\",\"description\":[\"Negates a hit that would've killed you, if you have more than 0 luck.\",\"Negating a hit reduces 20, or 20% of current luck, higher value prioritized.\",\"Reduced luck this way ignores Wakaba's Pendant\",\"Does not work if player has Rock Bottom.\"],\"modifiers\":{\"wakabaLeafTear\":true},\"adjacent\":[619],\"customID\":\"w_wakaba_1005\"}",
 	"494": "{\"pos\":[-1,-28],\"type\":5015,\"size\":\"Large\",\"name\":\"Wakaba Holy Shield on hit\",\"description\":[\"5% chance to recieve Holy shield on hit\"],\"modifiers\":{\"wakabaShieldChance\":5},\"adjacent\":[674,495],\"customID\":\"w_wakaba_0016\"}",
 	"495": "{\"pos\":[-1,-27],\"type\":5043,\"size\":\"Small\",\"name\":\"Holy Shield on hit\",\"description\":[\"0.1% chance to recieve Holy shield on hit\"],\"modifiers\":{\"shieldChance\":0.1},\"adjacent\":[494,496],\"customID\":\"w_global_0004\"}",
@@ -331,7 +331,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 	"693": "{\"pos\":[3,-32],\"type\":28,\"size\":\"Med\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+1% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":1},\"adjacent\":[112,114]}",
 	"694": "{\"pos\":[4,-34],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[114,116],\"customID\":\"w_wakaba_0006\"}",
 	"695": "{\"pos\":[6,-30],\"type\":5005,\"size\":\"Large\",\"name\":\"Wakaba Devil/Angel Rooms\",\"description\":[\"+5% chance for the devil/angel room to show up\"],\"modifiers\":{\"wakabaDevilChance\":5},\"adjacent\":[691,692],\"customID\":\"w_wakaba_0006\"}",
-	"697": "{\"pos\":[17,-5],\"type\":5037,\"size\":\"Large\",\"name\":\"Impure Girl\",\"description\":[\"Begin the game with Birthright\",\"All Boss items are replaced with Devil deals\"],\"modifiers\":{\"wakabaBirthright\":true},\"adjacent\":[663],\"customID\":\"w_wakaba_1008\"}",
+	"697": "{\"pos\":[17,-5],\"type\":5037,\"size\":\"Large\",\"name\":\"Impure Girl\",\"description\":[\"Begin the game with Birthright as Wakaba\",\"All Boss items are replaced with Devil deals\"],\"modifiers\":{\"wakabaBirthright\":true},\"adjacent\":[663],\"customID\":\"w_wakaba_1008\"}",
 	"698": "{\"pos\":[15,-22],\"type\":5036,\"size\":\"Large\",\"name\":\"Extra Uniform Slot\",\"description\":[\"+1 Wakaba's Uniform slot\"],\"modifiers\":{\"wakabaUniformSlot\":1},\"adjacent\":[584],\"customID\":\"w_wakaba_1007\"}",
 	"699": "{\"pos\":[-15,-23],\"type\":5036,\"size\":\"Large\",\"name\":\"Extra Uniform Slot\",\"description\":[\"+1 Wakaba's Uniform slot\"],\"modifiers\":{\"wakabaUniformSlot\":1},\"adjacent\":[585],\"customID\":\"w_wakaba_1007\"}"
 }
@@ -416,6 +416,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				end
 				if wakaba:extraVal("wakabaGudGirl") then
 					player:AddCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT)
+					wakaba.G:SetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED, true)
 				end
 			end
 		end)
