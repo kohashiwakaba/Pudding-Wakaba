@@ -88,7 +88,7 @@
 	<active id="62" description="Silent movement" gfx="phantomcloak.png" maxcharges="0" chargetype="special" name="Phantom Cloak" tags="offensive book" quality="2" craftquality="3"/>
 	<active id="63" description="Trinket Multiplier" gfx="3dprinter.png" maxcharges="12" name="3D Printer" shopprice="20" devilprice="2" tags="offensive nocantrip" quality="4" craftquality="4" />
 	<passive id="64" description="Clean them all" gfx="clensingfoam.png" name="Clensing Foam" tags="offensive" devilprice="1" quality="2" craftquality="2" />
-	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive" devilprice="1" quality="1" craftquality="-1" />
+	<passive id="67" description="Embrace total chaos" gfx="curseofthetower2.png" name="Curse of The Tower 2" tags="offensive lazarusshared" devilprice="1" quality="1" craftquality="-1" />
 	<passive id="68" description="No Medians" gfx="antibalance.png" name="Anti Balance" tags="offensive nocantrip" customtags="nometronome" devilprice="1" quality="2" craftquality="4"/>
 
 
