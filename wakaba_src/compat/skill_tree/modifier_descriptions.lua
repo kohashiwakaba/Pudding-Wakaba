@@ -20,7 +20,7 @@ return {
 		category = "wakabaGlobal", sort = 3904
 	},
 	pendantMinLuck = {
-		str = "%s%.2f min luck for Wakaba's Pendant",
+		str = "%s%.2f minimum luck for Wakaba's Pendant",
 		addPlus = true,
 		category = "wakabaGlobal", sort = 3905
 	},
@@ -42,6 +42,21 @@ return {
 		},
 		category = "wakabaGlobal", sort = 3907
 	},
+	wakabaIsSmart = {
+		str = {
+			"Wakaba-chan is no longer baka:",
+			"    Perfection appears 1 floor earlier at the beginning",
+			"    If Good Girl is allocated as Wakaba, +3 minimum luck for Wakaba's Pendant instead",
+		},
+		category = "wakabaGlobal", sort = 3908
+	},
+	wakabaWildCard = {
+		str = {
+			"The Wild Card:",
+			"    Spawns a Wild Card at the start of a floor",
+		},
+		category = "wakabaGlobal", sort = 3909
+	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
 		str = {
@@ -51,26 +66,12 @@ return {
 		},
 		category = "charTree", sort = 4002
 	},
-	wakabaIsSmart = {
-		str = {
-			"Wakaba-chan is no longer baka:",
-			"    Perfection appears 1 floor earlier at the beginning",
-		},
-		category = "charTree", sort = 4003
-	},
 	wakabaJaebol = {
 		str = {
 			"Daughter of the Rich:",
 			"    Wakaba Can get all selection items",
 		},
 		category = "charTree", sort = 4004
-	},
-	wakabaWildCard = {
-		str = {
-			"The Wild Card:",
-			"    Spawns a Wild Card at the start of a floor",
-		},
-		category = "charTree", sort = 4005
 	},
 	wakabaUniformCharge = {
 		str = {

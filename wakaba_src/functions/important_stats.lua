@@ -69,6 +69,11 @@ function wakaba:Cache_Important(player, cacheFlag)
 			if wakaba:extraVal("pendantMinLuck") then
 				parLuck = parLuck + wakaba:extraVal("pendantMinLuck", 0)
 			end
+			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
+				if wakaba:extraVal("wakabaIsSmart") then
+					parLuck = parLuck + 3
+				end
+			end
 			player.Luck = math.max(player.Luck, parLuck)
 		end
 		if player:HasTrinket(wakaba.Enums.Trinkets.DARK_PENDANT, false) then
