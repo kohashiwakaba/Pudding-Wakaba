@@ -1919,9 +1919,10 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Spawns a familiar that follows Isaac around shooting chasing tears that deal 2 damage each tick."},
 			{str = "Lil Rira shoots once per second."},
-			{str = "Steals a charge for active items if Isaac has any."},
-			{str = "- Does not steal special charge items."},
-			{str = "Every charge stolen by Lil Rira grants Isaac +0.05 Damage up"},
+			{str = "Grants permanent damage up on active usage"},
+			{str = "- Does not add damage if charge is not consumed, such as debug 8 mode."},
+			{str = "Every charge pip used grants Isaac +0.05 Damage up"},
+			{str = "- For timed ones, +0.05 is granted per 12 second max charges."},
 		},
 	},
   SAKURA_CAPSULE = {

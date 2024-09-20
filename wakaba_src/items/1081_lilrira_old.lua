@@ -32,50 +32,61 @@ function wakaba:addRiraDamage(player, count, ignoreMax)
 	return riraCharges[playerIndex]
 end
 
----@param activeItem any
----@param rng any
----@param player any
----@param flags any
----@param slot any
----@param vardata any
-function wakaba:UseItem_LilRira(activeItem, rng, player, flags, slot, vardata)
-	if flags & UseFlag.USE_OWNED == 0 then return end
-	wakaba:setPlayerDataEntry(player, "LilRiraLastItem", activeItem)
-	wakaba:setPlayerDataEntry(player, "LilRiraLastSlot", slot)
-end
-wakaba:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE, wakaba.UseItem_LilRira)
-
 ---@param familiar EntityFamiliar
 ---@param player EntityPlayer
----@param activeItem CollectibleType
-function wakaba:tryAddLilRiraDamageByItem(familiar, player, activeItem, charges)
-	if not activeItem then return end
+---@param activeSlot ActiveSlot
+function wakaba:tryStealRiraCharge(familiar, player, activeSlot)
+	activeSlot = activeSlot or ActiveSlot.SLOT_PRIMARY
+	local playerIndex = isc:getPlayerIndex(player)
+	local activeItem = player:GetActiveItem(activeSlot)
 	if activeItem ~= 0 then
 		local config = Isaac.GetItemConfig():GetCollectible(activeItem)
-		local maxCharges = charges or config.MaxCharges
+		local maxCharges = config.MaxCharges
 		if maxCharges == 0 then return end
-		--local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
+		local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
 		local chargeType = config.ChargeType
 		if chargeType == ItemConfig.CHARGE_TIMED then
-			familiar.Coins = familiar.Coins + maxCharges
+			if charges >= maxCharges or not player:NeedsCharge(activeSlot) then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				local dmgToAdd = charges / 1800
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
 		elseif (chargeType == ItemConfig.CHARGE_NORMAL and maxCharges == 1 and player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)) then
-			familiar.Coins = familiar.Coins + (15 * 15)
-		else
-			familiar.Hearts = familiar.Hearts + maxCharges
+			if charges >= maxCharges or not player:NeedsCharge(activeSlot) then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				local dmgToAdd = charges / 4
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
+		elseif chargeType == ItemConfig.CHARGE_NORMAL then
+			local minCharges = wakaba:GetMinimumPreservedCharge(player, activeItem)
+			if charges > minCharges then
+				local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 3, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
+				sfx:Play(SoundEffect.SOUND_BATTERYDISCHARGE)
+				riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges
+				player:DischargeActiveItem(activeSlot)
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
 		end
 	end
 end
 
 ---@param familiar EntityFamiliar
 ---@param player EntityPlayer
----@param activeSlot ActiveSlot
-function wakaba:tryDetectChargeChange(familiar, player, activeSlot)
-	if not activeSlot then return end
+function wakaba:tryStealRiraCharge_Shiori(familiar, player)
 	local playerIndex = isc:getPlayerIndex(player)
-	local activeItem = player:GetActiveItem(activeSlot)
-	if activeItem ~= 0 then
-		local charges = REPENTOGON and player:GetActiveMaxCharge(activeSlot)
-		wakaba:tryAddLilRiraDamageByItem(familiar, player, activeItem, charges)
+	local keys = player:GetNumKeys()
+	if keys > 0 then
+		player:AddKeys(keys * -1)
+		rira_saved_recipies.run[playerIndex] = (riraCharges[playerIndex] or 0) + keys
 	end
 end
 
@@ -115,7 +126,6 @@ function wakaba:FamiliarInit_LilRira(familiar)
 
 end
 
----@param familiar EntityFamiliar
 function wakaba:FamiliarUpdate_LilRira(familiar)
 	local fData = familiar:GetData()
 	local player = familiar.Player
@@ -124,38 +134,8 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 
-	local lastSlot = wakaba:getPlayerDataEntry(player, "LilRiraLastSlot")
-	if lastSlot then
-		if player:NeedsCharge(lastSlot) then
-			local lastItem = wakaba:getPlayerDataEntry(player, "LilRiraLastItem")
-			wakaba.Log("Lil Rira charge usage detected from slot", lastSlot, ", item", lastItem, "! adding to damage...")
-			wakaba:tryDetectChargeChange(familiar, player, lastSlot)
-			wakaba:removePlayerDataEntry(player, "LilRiraLastItem")
-			wakaba:removePlayerDataEntry(player, "LilRiraLastSlot")
-		end
-	end
-
-	if familiar.Coins > 0 then
-		local timedCharges = familiar.Coins
-		local dmgToAdd = timedCharges / 1800
-		wakaba.Log("Lil Rira adding damage from timed active :", dmgToAdd)
-		wakaba:addRiraDamage(player, dmgToAdd)
-		--riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
-
-		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-		player:EvaluateItems()
-		familiar.Coins = 0
-	end
-
-	if familiar.Hearts > 0 then
-		local charges = familiar.Hearts
-		wakaba.Log("Lil Rira adding damage from normal active :", charges)
-		--riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges
-		wakaba:addRiraDamage(player, charges)
-
-		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-		player:EvaluateItems()
-		familiar.Hearts = 0
+	for i = 0, 2 do
+		wakaba:tryStealRiraCharge(familiar, player, i)
 	end
 
 	if player_fire_direction == Direction.NO_DIRECTION then
@@ -229,3 +209,19 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRira)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
+
+---@param player EntityPlayer
+---@param slot ActiveSlot
+---@param item CollectibleType
+---@param keys integer
+---@param charge integer
+---@param conf ItemConfigItem
+function wakaba:ShioriCharge_LilRira(player, slot, item, keys, charge, conf)
+	local count = 0
+	local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+	local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
+	if hasitem or efcount > 0 then
+		return true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_SHIORI_CHARGE, 20000, wakaba.ShioriCharge_LilRira)

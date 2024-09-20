@@ -1315,8 +1315,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리틀 리라",
 		description = ""
 		.. "#공격하는 방향으로 초당 8의 피해를 주는 추적 눈물을 발사합니다."
-		.. "#↓ {{Battery}}{{BlinkYellowRed}}액티브 아이템의 충전량을 강제로 훔치며{{CR}};"
-		.. "#↑ 훔친 충전량 당 {{DamageSmall}}공격력 +0.05"
+		.. "#{{DamageSmall}} 액티브 사용 시 소모한 충전량 당 공격력 +0.05"
 		.. "{{CR}}",
 		queueDesc = "핑크빛을 위한 리본",
 	},

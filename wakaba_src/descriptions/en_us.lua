@@ -1258,8 +1258,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Shoots chasing tears"
 		.. "#Deals 2 damage per tick"
-		.. "#↓ {{Battery}} {{BlinkYellowRed}}Steals battery charges{{CR}}"
-		.. "#↑ {{Damage}} +0.05 Damage per stolen charges"
+		.. "#{{Damage}} +0.05 Damage per used active pips"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",
 	},

@@ -1252,8 +1252,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#追踪眼泪"
 			.. "#每一帧造成2点伤害"
-			.. "#↓ {{Battery}}{{BlinkYellowRed}}偷取充能{{CR}}"
-			.. "#↑ {{Damage}} +0.05 伤害每次偷取充能"
+			.. "#{{Damage}} +0.05 Damage per used active pips" -- TODO
 			.. "{{CR}}",
 		queueDesc = "红丝带",
 	},
