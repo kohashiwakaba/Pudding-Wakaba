@@ -35,11 +35,11 @@ end ]]
 function wakaba:PlayerChange_Tsukasa_b(player, oldPlayerType, newPlayerType)
 	if oldPlayerType == wakaba.Enums.Players.TSUKASA_B then
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			isc:setBlindfold(player, false)
+			wakaba:setBlindfold(player, false)
 		end
 	elseif newPlayerType == wakaba.Enums.Players.TSUKASA_B then
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			isc:setBlindfold(player, true)
+			wakaba:setBlindfold(player, true)
 		end
 	end
 end
@@ -47,7 +47,7 @@ wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_PLAYER_CHANGE_TYPE, wakaba.P
 
 function wakaba:PostGetCollectible_TsukasaB(player, item)
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
-		isc:setBlindfold(player, false)
+		wakaba:setBlindfold(player, false)
 		local sprite = player:GetSprite()
 		sprite:ReplaceSpritesheet(0, "gfx/characters/costumes/character_tsukasa.png")
 		sprite:LoadGraphics()
@@ -58,10 +58,10 @@ wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectib
 function wakaba:PostTsukasaUpdate_b(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA_B then
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:CanShoot() then
-			isc:setBlindfold(player, true)
+			wakaba:setBlindfold(player, true)
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			if not player:CanShoot() then
-				isc:setBlindfold(player, false)
+				wakaba:setBlindfold(player, false)
 				if player:IsCoopGhost() then
 				else
 					local sprite = player:GetSprite()

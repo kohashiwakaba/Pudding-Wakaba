@@ -236,6 +236,16 @@ function wakaba:getEstimatedDamageMult(player, negativeOnly, level)
 	return mult
 end
 
+---@param player EntityPlayer
+---@param isSet boolean
+function wakaba:setBlindfold(player, isSet)
+	if REPENTOGON then
+		player:SetCanShoot(isSet)
+	else
+		isc:setBlindfold(player, isSet)
+	end
+end
+
 ---결과 아이템 받침대 소환
 ---@param id CollectibleType 아이템 번호, 0 : 빈 받침대
 ---@param position Vector
