@@ -239,11 +239,15 @@ end
 ---@param player EntityPlayer
 ---@param isSet boolean
 function wakaba:setBlindfold(player, isSet)
+	isc:setBlindfold(player, isSet)
+--[[
 	if REPENTOGON then
-		player:SetCanShoot(isSet)
+		player:SetCanShoot(not isSet)
+		player:UpdateCanShoot()
 	else
 		isc:setBlindfold(player, isSet)
 	end
+	 ]]
 end
 
 ---결과 아이템 받침대 소환
