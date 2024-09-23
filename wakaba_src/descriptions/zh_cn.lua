@@ -106,13 +106,13 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#↑阻止{{Quality0}}/{{Quality1}}物品出现"
 			.. "#所有受到的伤害都不会有惩罚"
-			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
+			.. "#{{HolyMantle}} Gives Holy Mantle shield per room on a total of 1 heart or less" -- TODO
 			.. "{{CR}}",
 		lunatic = ""
 			.. "#{{WakabaAntiCurseBlind}} 免疫致盲诅咒"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}阻止{{Quality0}}物品出现"
 			.. "#{{WakabaModLunatic}} {{ColorOrange}}不再阻止所有伤害的惩罚"
-			.. "#每个房间都会给予{{Collectible313}}圣衣的护盾（除了里罗）"
+			.. "#{{HolyMantle}} Gives Holy Mantle shield per room on a total of 1 heart or less" -- TODO
 			.. "{{CR}}",
 		queueDesc = "信仰上升 + 更好的道具",
 	},
@@ -2700,6 +2700,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		{
 			desc = "{{Player" .. wakaba.Enums.Players.WAKABA .. "}} ↑{{Tears}} -25% 射速",
 			modifierText = "Wakaba",
+		},
+		{
+			desc = "{{Player31}} 除了里罗", -- TODO check
+			modifierText = "Tainted Lost",
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {

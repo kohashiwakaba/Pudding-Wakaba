@@ -41,7 +41,7 @@ wakaba.descriptions[desclang].characters = {
 		.. "#{{DevilChance}} She only can see Devil rooms. All collectibles for sale requires Soul Hearts"
 		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
 		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_BLESSING.."}} Tainted Wakaba starts with Wakaba's Nemesis"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Tainted Wakaba starts with Wakaba's Nemesis"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} Tainted Wakaba starts with Eat Heart"
 		--.. "#"
 		.. "",
@@ -159,13 +159,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Prevents {{Quality0}}/{{Quality1}} items from spawning"
 		.. "#↑ Prevents penalties from all damage taken"
-		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
+		.. "#{{HolyMantle}} Gives Holy Mantle shield per room on a total of 1 heart or less"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality0}} items from spawning"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
-		.. "#Gives {{Collectible313}}Holy Mantle shield per room on a total of 1 heart or less (Except T.Lost)"
+		.. "#{{HolyMantle}} Gives Holy Mantle shield per room on a total of 1 heart or less"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "",
 	},
@@ -3107,6 +3107,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑{{Tears}} -25% Tear Delay",
 			func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA) end,
 			modifierText = "Wakaba",
+		},
+		{
+			desc = "{{Player31}} No mantle shields",
+			func = function() return EID:ConditionalCharCheck(PlayerType.PLAYER_THELOST_B) end,
+			modifierText = "Tainted Lost",
 		},
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {

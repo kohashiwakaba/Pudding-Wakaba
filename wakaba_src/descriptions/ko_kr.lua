@@ -159,12 +159,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{Quality0}}/{{Quality1}}등급 아이템이 등장하지 않습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
-		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다. (T.Lost 제외)"
+		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		queueDesc = "악마 봉인 + 더 나아진 운명",
 	},
@@ -1771,6 +1771,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		{
 			desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Tears}}연사 배율 x1.25",
 			modifierText = "Wakaba",
+		},
+		{
+			desc = "{{Player31}} Tainted Lost: 보호막이 지급되지 않음",
+			modifierText = "Tainted Lost",
 		},
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
