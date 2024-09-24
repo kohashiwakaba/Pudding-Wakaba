@@ -151,6 +151,9 @@ function wakaba:Render_Uniform()
 			if Input.IsButtonTriggered(extraRight, 0)
 				or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
 			then shift = 1 end
+			if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
+				shift = 1
+			end
 
 			if shift ~= 0 then
 				wakaba:addPlayerDataCounter(player, "uniformSlot", shift)
