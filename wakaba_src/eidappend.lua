@@ -520,6 +520,14 @@ if EID then
 					local desc = wakaba:IsLunatic() and entitydesc.lunatic or entitydesc.description
 					EID:addEntity(entitydesc.type, entitydesc.variant, entitydesc.subtype, entitydesc.name, desc, lang)
 				end
+				for uniformType, uniformDesc in pairs(wakabaDescTables.richeruniform) do
+					if uniformType == "default" then uniformType = 0 end
+					local desc = uniformDesc
+					local icon, _, name, actualDesc = string.match(desc, "({{.-}}) ({{.-}})(.-)#(.+)")
+					icon = icon:gsub("%{{(.*)}}", "%1")
+					EID:addEntity(-996, 0, uniformType, name, actualDesc, lang)
+					EID:AddIconToObject(-996, 0, uniformType, icon)
+				end
 				for playertype, playerdesc in pairs(wakabaDescTables.playernotes) do
 					if not playerdesc._fromCharDesc then
 						local desc = wakaba:IsLunatic() and playerdesc.lunatic or playerdesc.description

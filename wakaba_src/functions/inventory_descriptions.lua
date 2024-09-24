@@ -68,12 +68,14 @@ local idescEIDType = {
 	TRINKET = EntityType.ENTITY_PICKUP,
 	CARD = EntityType.ENTITY_PICKUP,
 	PILL = EntityType.ENTITY_PICKUP,
+	RICHER = -996,
 }
 InvDescEIDType = idescEIDType
 
 ---@enum InvDescEIDVariant
 local idescEIDVariant = {
 	DEFAULT = -1,
+	RICHER_UNIFORM = 0,
 }
 InvDescEIDVariant = idescEIDVariant
 
@@ -107,6 +109,7 @@ if _wakaba then
 
 	wakaba.INVDESC_TYPE_PLAYER = -997
 	wakaba.INVDESC_TYPE_CURSE = -998
+	wakaba.INVDESC_RICHER_UNIFORM = -996
 	wakaba.INVDESC_VARIANT = -1
 
 	_debug = wakaba.Flags.debugInvDescList

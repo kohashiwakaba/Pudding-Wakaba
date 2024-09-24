@@ -287,3 +287,41 @@ end
 
 if REPENTOGON then
 end
+
+do
+	---@return InventoryDescEntry[]
+	function wakaba:InvdescEntries_RicherUniform()
+		local idesc = wakaba._InventoryDesc
+		local entries = {} ---@type InventoryDescEntry[]
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
+			ei = {}
+			local player = Isaac.GetPlayer(i)
+			local playerType = player:GetPlayerType()
+			if player:HasCollectible(wakaba.Enums.Collectibles.RICHERS_UNIFORM, true, true) then
+				local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en_us"].richeruniform
+				local fallbackTable = wakaba.descriptions["en_us"].richeruniform
+
+				for _, uniformMode in pairs(wakaba.Enums.RicherUniformMode) do
+					local appendDesc = ""
+					if descTable[uniformMode] then
+						appendDesc = descTable[uniformMode]
+						---@type InventoryDescEntry
+						local entry = {
+							Type = InvDescEIDType.RICHER,
+							Variant = InvDescEIDVariant.RICHER_UNIFORM,
+							SubType = uniformMode,
+							Frame = function()
+								return idesc:getOptions("q0icon")
+							end,
+							ExtraIcon = "{{Collectible"..wakaba.Enums.Collectibles.RICHERS_UNIFORM.."}}",
+							ListSecondaryTitle = EID:getObjectName(5, 100, wakaba.Enums.Collectibles.RICHERS_UNIFORM),
+						}
+						table.insert(entries, entry)
+					end
+				end
+			end
+		end
+		return entries
+	end
+	wakaba:AddPriorityCallback(wakaba.Callback.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES, -338, function (_) return wakaba:InvdescEntries_RicherUniform() end)
+end
