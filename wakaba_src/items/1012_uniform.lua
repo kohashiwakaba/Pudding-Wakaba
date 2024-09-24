@@ -400,7 +400,7 @@ do
 	function wakaba:InvdescEntries_Uniform()
 		local idesc = wakaba._InventoryDesc
 		local entries = {} ---@type InventoryDescEntry[]
-		for i = 0, game:GetNumPlayers() - 1 do
+		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			ei = {}
 			local player = Isaac.GetPlayer(i)
 			local playerType = player:GetPlayerType()
