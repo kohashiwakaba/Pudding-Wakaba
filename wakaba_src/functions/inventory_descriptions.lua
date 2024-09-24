@@ -216,7 +216,7 @@ end
 local function getListCount()
 	local x = EID:getScreenSize().X
 	local y = EID:getScreenSize().Y
-	local validcount = math.ceil((y - getOffset() * 72) / ((EID.lineHeight + 1) * 2.5))
+	local validcount = math.ceil((y - getOffset() * 27) / ((EID.lineHeight + 1) * 2) ) - 3
 	return validcount
 end
 
