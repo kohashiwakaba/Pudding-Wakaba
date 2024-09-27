@@ -42,6 +42,7 @@ wakaba.descriptions[desclang].characters = {
 		.. "#{{Damage}} Due to her lack of affection, she gets temporary +3.6 Damage up for getting a collectible item, but other stats are reduced permanently"
 		.. "#{{Pill}} Tainted Wakaba is unable to see Speed down, Luck up pills"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} Tainted Wakaba starts with Wakaba's Nemesis"
+		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} Tainted Wakaba starts with Eat Heart"
 		--.. "#"
 		.. "",
@@ -173,21 +174,19 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Wakaba's Nemesis",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{DevilChance}} Prevents Angel room to be spawned"
 		.. "#↑ Armor-piercing tears"
-		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
+		.. "#{{Damage}} Picking up an item grants temporary +3.6 Damage"
 		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
-		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#↑ Prevents penalties from all damage taken"
-		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
+		.. "#{{DevilChance}} Prevents Angel room to be spawned"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
-		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
+		.. "#{{Damage}} Picking up an item grants temporary +3.6 Damage"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}} items from spawning"
-		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
-		.. "#!!! Taking this item by any means counts as Taking Devil deals."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",
 	},
@@ -196,10 +195,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#↑ Armor-piercing tears"
-		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost and permanent all stats downs"
-		.. "#{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors except Blue Womb"
+		.. "#↓ Picking up an item grants temporary {{Damage}} +3.6 damage boost"
+		.. "#{{AngelDevilChance}}100% chance to find an Devil/Angel Room in all floors"
 		.. "#↑ Can get all items with selection"
-		.. "#{{DevilRoom}} Collectibles on sale requires {{SoulHeart}}Soul Hearts"
 		.. "#↑ Prevents penalties from all damage taken"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
@@ -1970,12 +1968,12 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "Black Joker",
-		description = "{{DevilChance}} While held, prevents Angel room to be spawned. #{{DevilRoom}} Upon use, Teleports the player to the Devil room",
+		description = "{{DevilChance}} While held, prevents Angel room to be spawned #{{DevilRoom}} Upon use, Teleports the player to the Devil room",
 		mimiccharge = 2,
 	},
 	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "White Joker",
-		description = "{{AngelChance}} While held, prevents Devil room to be spawned. #{{AngelRoom}} Upon use, Teleports the player to the Angel room",
+		description = "{{AngelChance}} While held, prevents Devil room to be spawned #{{AngelRoom}} Upon use, Teleports the player to the Angel room",
 		mimiccharge = 2,
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {

@@ -25,6 +25,8 @@ function wakaba:onNemesisCache(player, cacheFlag)
 			else
 				nemesiscount = nemesiscount + 1
 			end
+		else
+			nemesiscount = 0
 		end
 		if player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 			nemesiscount = 0
@@ -527,7 +529,7 @@ function wakaba:pickupinit(pickup)
 		end
 	end
 
-	if wakaba.runstate.hasnemesis and not (isc:anyPlayerIs(PlayerType.PLAYER_KEEPER) or isc:anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) then
+	if isc:anyPlayerIs(wakaba.Enums.Players.WAKABA_B) and not (isc:anyPlayerIs(PlayerType.PLAYER_KEEPER) or isc:anyPlayerIs(PlayerType.PLAYER_KEEPER_B)) then
 		if pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and pickup:IsShopItem() and pickup.Price ~= -1000 then
 			local player = isc:getClosestPlayer(pickup.Position) or Isaac.GetPlayer()
 			local config = Isaac.GetItemConfig():GetCollectible(pickup.SubType)

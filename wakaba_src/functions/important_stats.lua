@@ -32,6 +32,17 @@ function wakaba:Cache_Important(player, cacheFlag)
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
 			player.Damage = player.Damage * (1 + (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO)))
 		end
+		if wakaba:hasPlayerDataEntry(player, "lunargauge") and wakaba:hasPlayerDataEntry(player, "lunarregenrate") then
+			local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
+			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+				count = count + 1
+			end
+			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 then
+				player.Damage = player.Damage * (1 + (0.2 * count))
+			else
+				player.Damage = player.Damage * 0.85
+			end
+		end
 		if player:HasTrinket(wakaba.Enums.Trinkets.RANGE_OS) then
 			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
 				player.Damage = player.Damage * 2.25
@@ -41,6 +52,17 @@ function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
 		if player:GetData().wakaba.minervacount > 0 then
 			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, wakaba:IsLunatic() and 1.6 or 2.3)
+		end
+		if wakaba:hasPlayerDataEntry(player, "lunargauge") and wakaba:hasPlayerDataEntry(player, "lunarregenrate") then
+			local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
+			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+				count = count + 1
+			end
+			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 then
+				player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, (1 + (0.2 * count)))
+			else
+				player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 0.8)
+			end
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_RANGE then

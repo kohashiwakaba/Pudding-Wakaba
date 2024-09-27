@@ -157,12 +157,14 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 축복",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{AngelChanceSmall}} 악마방이 등장하지 않습니다."
 		.. "#{{Quality0}}/{{Quality1}}등급 아이템이 등장하지 않습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{AngelChanceSmall}} 악마방이 등장하지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
@@ -172,19 +174,17 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 숙명",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
 		.. "#!!! {{Quality4}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
-		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
+		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
+		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
-		.. "#!!! 모든 판매 액티브/패시브 아이템이 소울하트를 요구하게 바뀝니다."
-		.. "#!!! 이 아이템 획득 시 악마 거래를 한 것으로 취급됩니다."
 		.. "{{CR}}",
 		queueDesc = "천사 봉인 + 더 나빠진 운명",
 	},
@@ -193,8 +193,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6 효과를 얻으나 나머지 스탯은 영구적으로 감소합니다."
-		.. "#{{AngelDevilChance}}악마방/천사방이 Hush 스테이지를 제외한 모든 층에서 항상 등장합니다."
+		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6"
+		.. "#{{AngelDevilChance}}악마방/천사방이 모든 층에서 항상 등장합니다."
 		.. "#↑ 선택형 아이템을 모두 획득할 수 있습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
@@ -252,18 +252,20 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "월석",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{DamageSmall}}공격력과 {{TearsSmall}}연사가 증가합니다."
-		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소하며 방 클리어 시 월석 게이지를 회복합니다."
-		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
+		.. "#활성화 중일 때 {{DamageSmall}}x1.2/{{TearsSmall}}x1.2"
+		.. "#피격 시, 월석이 비활성화 및 게이지가 감소하며 방 클리어 시 월석 게이지를 회복합니다."
+		.. "#비활성화 중일 때 {{DamageSmall}}x0.85/{{TearsSmall}}x0.8, 주기적으로 독가스 생성"
+		.. "#월석 소지 중 무제한 부활 가능"
 		.. "#모든 피격에 대한 패널티에 면역"
-		.. "#!!! 월석 게이지 전부 소진 시 월석이 증발합니다."
+		.. "#!!! 월석 게이지 소진 시 아이템이 사라집니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#↑ 월석 게이지가 발동 중인 경우 게이지에 비례하여 {{DamageSmall}}공격력과 {{TearsSmall}}연사가 증가합니다."
-		.. "#피격 시, 월석의 효과가 사라지며 월석 게이지가 서서히 감소하며 방 클리어 시 월석 게이지를 회복합니다."
-		.. "#↑ 월석을 소지하고 있는 동안 제한 없이 부활할 수 있습니다."
-		.. "#!!! 월석 게이지 전부 소진 시 월석이 증발합니다."
+		.. "#활성화 중일 때 {{DamageSmall}}x1.2/{{TearsSmall}}x1.2"
+		.. "#피격 시, 월석이 비활성화 및 게이지가 감소하며 방 클리어 시 월석 게이지를 회복합니다."
+		.. "#비활성화 중일 때 {{DamageSmall}}x0.85/{{TearsSmall}}x0.8, 주기적으로 독가스 생성"
+		.. "#월석 소지 중 무제한 부활 가능"
+		.. "#!!! 월석 게이지 소진 시 아이템이 사라집니다."
 		.. "{{CR}}",
 		queueDesc = "신성함을 유지시켜줘",
 	},
@@ -274,14 +276,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#↓ {{ColorOrange}}피격 무적 시간이 2프레임으로 감소됩니다."
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
-		.. "#!!! 헌혈류 4회 사용 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
+		.. "#!!! 헌혈류 4회 사용 및 소울하트 2회 피격 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorRed}}피격 무적 시간이 제거됩니다."
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
-		.. "#!!! 헌혈류 4회 사용 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
+		.. "#!!! 헌혈류 4회 사용 및 소울하트 2회 피격 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
 		.. "{{CR}}",
 		queueDesc = "무적 시간 제거 + 초고속 회복",
 	},
@@ -427,13 +429,13 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#피격이나 적들에게 대미지를 입혔을 때만 충전됩니다."
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}배터리 없이 초과 충전이 가능합니다."
-		.. "#사용 시 현재 방 배열의 아이템을 소환합니다."
+		.. "#사용 시 그 방 배열의 아이템을 소환합니다."
 		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#피격이나 적들에게 대미지를 입혔을 때만 충전됩니다."
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BATTERY .."}}배터리 없이 초과 충전이 가능합니다."
-		.. "#사용 시 현재 방 배열의 아이템을 소환합니다."
+		.. "#사용 시 그 방 배열의 아이템을 소환합니다."
 		.. "#{{Quality3}}/{{Quality4}}아이템이 반드시 등장합니다."
 		.. "{{CR}}",
 		queueDesc = "푸딩을 맛보듯이",
@@ -547,7 +549,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_ERASER .."}} 0.75%의 확률로 적을 현재 게임에서 지우는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 117+일 때 10%, 보스의 경우 100%"
-		.. "#!!! {{ColorSilver}}(일부 보스의 경우 확률과 상관없이 적용되지 않음){{ColorReset}}"
+		.. "#!!! {{ColorSilver}}(지웠을 때 진행에 문제가 생기는 보스의 경우 확률과 상관없이 적용되지 않음){{ColorReset}}"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "???",
@@ -609,9 +611,9 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "카운터",
 		description = ""
 		.. "#사용 시 캐릭터가 1초간 무적이 됩니다."
-		.. "#무적 상태에서 피격을 받으면 피격을 준 대상에게 레이저를 발사합니다."
-		.. "#이 아이템이 완충인 상태에서 피격 시 강제로 발동되며 대미지를 입지 않습니다."
-		.. "#!!! 이 아이템이 아닌 다른 아이템의 보호막이 발동 중이면 레이저가 발사되지 않습니다."
+		.. "#무적 상태에서 피격 시 캐릭터의 공격력 x1의 레이저로 반격합니다."
+		.. "#완충인 상태에서 피격 시 자동으로 발동합니다."
+		.. "#!!! 다른 보호막이 있을 때 발동 안함"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "레이저 반사",
@@ -641,8 +643,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		itemName = "혼돈의 6면 주사위",
 		description = ""
-		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 아이작의 영혼 효과를 {{ColorRed}}9번{{CR}} 발동합니다 :"
-		.. "#그 방의 모든 아이템이 랜덤한 아이템과 매우 빠른 속도로 전환되며 9개의 아이템 중 하나를 선택할 수 있습니다."
+		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 그 방의 모든 아이템이 랜덤한 아이템과 매우 빠른 속도로 전환되며 9개의 아이템 중 하나를 선택할 수 있습니다."
 		.. "{{CR}}",
 	carBattery = "무효과",
 		queueDesc = "자신의 운명을 믿는 자들을 위하여",
@@ -651,9 +652,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리틀 모에",
 		description = ""
 		.. "#일정 주기로 모에 주변을 도는 유도 눈물을 발사합니다."
-		.. "#눈물의 효과는 각각 랜덤이며 각각의 눈물은 적에게 최소 4의 대미지를 줍니다."
+		.. "#눈물의 효과는 각각 랜덤이며 각각의 눈물은 적에게 최소 4의 피해를 줍니다."
 		.. "#{{Blank}} (폭발성 눈물은 발사되지 않습니다)."
-		.. "#눈물의 발사 주기는 캐릭터의 연사에 비례합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "퓨전 친구",
@@ -661,12 +661,12 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "집중의 책",
 		description = ""
-		.. "#{{Weakness}} 사용 시 현재 방의 모든 적들의 피격 대미지를 두 배로 늘립니다."
+		.. "#{{Weakness}} 사용 시 그 방의 적을 약화시킵니다."
 		.. "#캐릭터가 움직이지 않을 경우 {{DamageSmall}}공격력 +1.4, {{TearsSmall}}연사 +1.0 증가한 상태로 유도 눈물을 발사합니다."
 		.. "#!!! 캐릭터 역시 피격 시 최소 2칸의 피해를 받습니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	carBattery = "무효과",
+		carBattery = "무효과",
 		queueDesc = "취급주의",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
@@ -686,7 +686,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#작은 아이작 패밀리어는 캐릭터와 함께 이동하며 적이 있는 방향으로 공격력 1.35의 눈물을 발사합니다."
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
-	carBattery = {12, 24, 3, 6, 1, 2},
+		carBattery = {12, 24, 3, 6, 1, 2},
 		queueDesc = "자기 자신을 인수분해",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = {
@@ -696,14 +696,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "탄막 청소기",
-	belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 그 방의 모든 적들에게 대미지를 줍니다.",
-	carBattery = "무효과",
+		belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 그 방의 모든 적들에게 대미지를 줍니다.",
+		carBattery = "무효과",
 	},
 	[wakaba.Enums.Collectibles.VINTAGE_THREAT] = {
 		itemName = "빈티지의 위협",
 		description = ""
 		.. "#↑ 목숨 +1"
-		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} 사망 시 현재 방에서 Tainted Shiori로 부활하며;"
+		.. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} 사망 시 그 방에서 Tainted Shiori로 부활하며;"
 		.. "#{{Blank}} 열쇠 개수가 0개로 초기화, 4개의 {{Collectible656}}Damocles의 검이 활성화됩니다."
 		.. "#{{Warning}} {{ColorBlink}}{{ColorRed}}경고 : 패널티 피격을 받으면 피격받는 그 즉시 Damocles의 검이 떨어지며 추가 목숨 개수 및 남은 플레이어와 관계없이 즉시 게임이 종료됩니다.{{ColorReset}}"
 		.. "{{CR}}",
@@ -713,8 +713,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = {
 		itemName = "신의 책",
 		description = ""
-		.. "#피격 시 체력이 없을 경우 천사 상태로 돌입합니다."
-		.. "#!!! 천사 상태로 돌입 시 이하 효과 발동:"
+		.. "#피격 시 체력이 없을 경우 천사 상태로 돌입하며 이하 효과 발동:"
 		.. "#↓ {{DamageSmall}}공격력 배율 x0.5"
 		.. "#눈물에 후광이 생기며 후광에 닿은 적은 초당 캐릭터의 공격력 x15의 피해를 받습니다."
 		.. "#{{BrokenHeart}} 피격 시 부서진하트 +1"
@@ -745,8 +744,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "타천사의 책",
 		description = ""
 		.. "#사용 시 캐릭터의 공격력 x0.4의 연옥의 유령 3마리를 소환합니다."
-		.. "#피격 시 하트가 없을 경우 타천사로 변신하며 블랙하트 6개를 획득합니다."
-		.. "#!!! {{ColorSilver}}타천사 상태로 돌입 시 이하 효과 발동:"
+		.. "#피격 시 체력이 없을 경우 타천사({{BlackHeart}}6) 상태로 돌입하며 이하 효과 발동:"
 		.. "#{{ColorSilver}}사용 시 캐릭터의 공격력 +35의 적을 추적하는 유령 11마리를 소환합니다."
 		.. "#↓ {{ColorSilver}}눈물 발사 불가능"
 		.. "#↑ {{DamageSmall}}{{ColorSilver}}공격력 배율 7.0"
@@ -1370,7 +1368,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = {
 		itemName = "방울방울 폭탄",
 		description = "↑ {{Bomb}}폭탄 +5"
-		.. "#{{WakabaAqua}} 폭탄이 터질 때 주변의 적을 침수시킵니다.."
+		.. "#{{WakabaAqua}} 폭탄이 터질 때 주변의 적을 침수시킵니다."
 		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
@@ -1654,8 +1652,7 @@ wakaba.descriptions[desclang].epiphany_golden = {
 	[wakaba.Enums.Collectibles.D6_CHAOS] = {
 		isReplace = true,
 		description = ""
-		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 아이작의 영혼 효과를 {{ColorGold}}4번{{CR}} 발동합니다 :"
-		.. "#그 방의 모든 아이템이 랜덤한 아이템과 {{ColorGold}}빠른 속도{{CR}}로 전환되며 4개의 아이템 중 하나를 선택할 수 있습니다."
+		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 그 방의 모든 아이템이 랜덤한 아이템과 {{ColorGold}}빠른 속도{{CR}}로 전환되며 4개의 아이템 중 하나를 선택할 수 있습니다."
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.SYRUP] = {
@@ -2284,12 +2281,12 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_BLACK_JOKER] = {
 		itemName = "블랙 조커",
 		queueDesc = "당신은 죄악이 등을 타고 오르는 것을 느꼈다",
-		description = "{{DevilChance}} 카드를 소지하는 동안 천사방이 등장하지 않습니다. #사용 시 {{DevilRoom}}악마방으로 텔레포트합니다.",
+		description = "{{DevilChanceSmall}} 카드를 소지하는 동안 천사방이 등장하지 않습니다. #사용 시 {{DevilRoom}}악마방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_WHITE_JOKER] = {
 		itemName = "화이트 조커",
 		queueDesc = "당신은 죄악이 등을 타고 오르는 것을 느꼈다",
-		description = "{{AngelChance}} 카드를 소지하는 동안 악마방이 등장하지 않습니다. #사용 시 {{AngelRoom}}천사방으로 텔레포트합니다.",
+		description = "{{AngelChanceSmall}} 카드를 소지하는 동안 악마방이 등장하지 않습니다. #사용 시 {{AngelRoom}}천사방으로 텔레포트합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "컬러 조커",
@@ -2305,7 +2302,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "와카바의 꿈 카드",
 		queueDesc = "소원이 이루어지는 순간",
-		description = "사용 시 현재 방 배열의 랜덤 아이템 하나를 소환합니다.",
+		description = "사용 시 그 방 배열의 랜덤 아이템 하나를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK] = {
 		itemName = "미지의 책갈피",
@@ -2806,7 +2803,7 @@ wakaba.descriptions[desclang].curses = {
 		name = "요정의 저주",
 		description = "!!! {{Player"..wakaba.Enums.Players.RICHER.."}}리셰 캐릭터, 혹은 {{Collectible"..wakaba.Enums.Collectibles.RABBIT_RIBBON.."}}Rabbit Ribbon 소지 시에만 등장"
 		.. "#{{CurseLost}} Lost 저주를 교체하여 등장합니다."
-		.. "#현재 방 주변의 방 위치를 볼 수 있으나 더 멀리 있는 위치의 방은 지도에 표시되지 않습니다."
+		.. "#그 방 주변의 방 위치를 볼 수 있으나 더 멀리 있는 위치의 방은 지도에 표시되지 않습니다."
 		.. "#{{SecretRoom}} 비밀방 및 일급비밀방의 위치가 표시됩니다."
 		.. "",
 	},

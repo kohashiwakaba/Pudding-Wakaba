@@ -56,8 +56,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "The extra blind items in Downpour, Mines and Mausoleum and their alternate stages will be revealed."},
 			{str = "Armor-piercing tears"},
 			{str = "- some enemies like Hush have armor, taking less damage than regular enemies"},
-			{str = "All stats downs per item Isaac have."},
-			{str = "- Stats decreasing rate is 1% per item. maximum is 99.5% of Isaac's original stats for having 100 items."},
 			{str = "Upon picking up an item, Isaac gains a +3.6 temporary damage boost."},
 			{str = "- The temporary boost fades over 30 seconds."},
 			{str = "- The temporary boost stacks, taking more items gains additional +3.6 temporary damage up."},
@@ -69,7 +67,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Prevents high-quality items from spawning. Greatly decreasing quality of items recieved from all item pools."},
 			{str = "- Items with a quality of 4 are automatically rerolled."},
 			{str = "- Items with a quality of 3 have 50% chance to be rerolled."},
-			{str = "All collectibles on sale require soul hearts corresponding original devil price."},
 			{str = "All penalties by taking damage are removed. See synergies."},
 		},
 		{ -- Notes
@@ -118,7 +115,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Guarenteed Devil/Angel rooms. An Devil/Angel Room Door will always spawn after every boss fight."},
 			{str = "- The spawned door will not disappear when leaving and re-entering the boss room (except in Greed Mode)"},
 			{str = "- If Confessional or a Sacrifice Room would give an Angel Room item, it will instead spawn Redemption if it is unlocked. NOTE: This is not 100% consistent."},
-			{str = "All collectibles on sale require soul hearts corresponding original devil price."},
 			{str = "All collectibles can be picked up without removing other items."},
 			{str = "- To prevent softlock, Options in Death Certificate rooms will not be removed."},
 			{str = "All penalties by taking damage are removed. See synergies."},
@@ -1189,7 +1185,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	GRIMREAPER_DEFENDER = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
-			{str = "Prevents death and all damage taken is reduced to half a heart for current room."},
+			{str = "Prevents death once and all damage taken is reduced to half a heart for current room."},
 			{str = "all damage takes red hearts first and prevents penalty damage."},
 			{str = "- The effect will be ignored when use of Sacrifice room spikes."},
 			{str = "This item belongs to the Bookworm set. Collecting three items from this set will transform Isaac into Bookworm."},

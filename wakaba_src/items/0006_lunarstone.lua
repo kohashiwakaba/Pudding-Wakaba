@@ -29,6 +29,9 @@ function wakaba:ChargeBarUpdate_LunarStone(player)
 	if player.FrameCount % 2 == 0 then
 		if wakaba:hasLunarStone(player, false) then
 			local percent = ((wakaba:getPlayerDataEntry(player, "lunargauge", 0) // 1000) / 10) or 100
+			if percent > 99 and wakaba:getLunarGaugeSpeed(player) < 0 then
+				percent = 99
+			end
 			chargeBar:UpdateSpritePercent(percent // 1)
 			chargeBar:UpdateText(percent, "", "%")
 		else
@@ -233,7 +236,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakab
 function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldown)
 	local data = player:GetData()
 	if wakaba:hasLunarStone(player)	and data.wakaba.reducelunargauge then
-		wakaba:addCurrentLunarGauge(player, wakaba:IsLunatic() and -90000 or -40000)
+		wakaba:addCurrentLunarGauge(player, wakaba:IsLunatic() and -250000 or -180000)
 		--print("Lunar Reduced!")
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
@@ -261,9 +264,9 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 		end
 		if not data.wakaba.nolunarreduction then
 			if wakaba:getLunarGaugeSpeed(player) >= 0 then
-				wakaba:setLunarGaugeSpeed(player, wakaba:IsLunatic() and -100 or -25)
+				wakaba:setLunarGaugeSpeed(player, wakaba:IsLunatic() and -225 or -100)
 			else
-				wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + (wakaba:IsLunatic() and -10 or -5))
+				wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + (wakaba:IsLunatic() and -30 or -10))
 			end
 		end
 		SFXManager():Play(SoundEffect.SOUND_GLASS_BREAK, 2, 0, false, 1)
@@ -274,51 +277,6 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_LunarStone)
-
-function wakaba:Cache_LunarStone(player, cacheFlag)
-	if wakaba:hasLunarStone(player) then
-		local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
-		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
-			count = count + 1
-		end
-		wakaba:GetPlayerEntityData(player)
-		local data = player:GetData()
-		if wakaba:hasPlayerDataEntry(player, "lunargauge") and wakaba:hasPlayerDataEntry(player, "lunarregenrate") then
-			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 then
-				local bonus = (wakaba:getPlayerDataEntry(player, "lunargauge", 0) / 2500000) + 1
-				if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-					player.Damage = player.Damage + player.Damage * (bonus) * (count ^ 2)
-				end
-				if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-					if player.MaxFireDelay >= 0 then
-						player.MaxFireDelay = player.MaxFireDelay / bonus
-					else
-						player.MaxFireDelay = player.MaxFireDelay * (bonus * 0.25)
-					end
-				end
-			else
-				if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-					player.Damage = player.Damage + player.Damage * 0.85
-				end
-				if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-					if player.MaxFireDelay >= 0 then
-						player.MaxFireDelay = player.MaxFireDelay * 1.1
-					else
-						player.MaxFireDelay = player.MaxFireDelay * 0.8
-					end
-				end
-			end
-		end
-
-		--[[ if cacheFlag & CacheFlag.CACHE_TEARCOLOR == CacheFlag.CACHE_TEARCOLOR then
-			player.TearColor = newTearColor
-		end ]]
-	end
-
-end
-
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LunarStone)
-
 
 function wakaba:RoomClear_LunarStone(rng, pos)
 	local roomType = wakaba.G:GetRoom():GetType()
@@ -331,8 +289,8 @@ function wakaba:RoomClear_LunarStone(rng, pos)
 					wakaba:setCurrentLunarGauge(player, wakaba:getMaxLunarGauge(player))
 					wakaba:setLunarGaugeSpeed(player, 0)
 				else
-					wakaba:addCurrentLunarGauge(player, 30000)
-					wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 4)
+					wakaba:addCurrentLunarGauge(player, 50000)
+					wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + 10)
 				end
 			end
 		end
