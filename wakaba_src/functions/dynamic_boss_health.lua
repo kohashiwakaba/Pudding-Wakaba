@@ -80,8 +80,17 @@ function wakaba:getBossHealthFactor(entry)
 				end
 			end
 		else
+			local passives = EID:GetAllPassiveItems()
+			for _, itemID in ipairs(passives) do
+				if itemID > 0 and player:HasCollectible(itemID, true) then
+					local ic = c:GetCollectible(itemID)
+					local num = player:GetCollectibleNum(itemID, true)
+					items = items + num
+					quality = quality + (num * (ic.Quality ^ 2))
+				end
+			end
 		end
-		if REPENTOGON then
+		if not REPENTOGON then
 			startQuality = 4
 		else
 			startQuality = math.max(wakaba:getPlayerDataEntry(player, "FirstQuality", 0) , startQuality)
