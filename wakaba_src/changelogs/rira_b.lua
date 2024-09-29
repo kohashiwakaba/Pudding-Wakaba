@@ -1,3 +1,232 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v129",
+[[{FSIZE2}general
+
+- added simple character
+description for eid
+
+- added car battery
+description for eid
+
+- added extra key option
+for various active items
+
+-- extra key is intended
+for controllers that support
+extra bindings
+
+- bumped up dead sea scrolls
+version to 7
+(to fix several issues)
+
+- added some hud elements
+(can be activated from console)
+-- lil timer
+-- system timer
+(requires luadebug or repentogon)
+
+- revamped some hud elements,
+allowing some elements to be top,
+or bottom of the screen
+(can be set from console)
+
+- added some tmtrainer
+exclusive effects
+
+{FSIZE2}enhanced boss dest
+
+- added dynamic health option
+for target major bosses
+(selected by default)
+
+{FSIZE2}inventory descriptions
+
+- added option
+for starting cursor
+-- character
+-- collectible
+-- collectible_modded
+-- trinket
+
+- added placeholder
+for quality 5, 6 items
+
+- added function to
+make custom list,
+custom titles
+
+- [rgon] list of voided
+actives are also be shown
+
+- added new callback
+for inventory descriptions
+
+{FSIZE2}repentogon
+
+- passive skill tree support
+-- added tree support for wakaba
+
+- wakaba's uniform
+-- preview of type
+from the slots are shown
+
+- richer's uniform
+-- preview of effect
+from each room are shown
+
+{FSIZE2}items
+
+- [rgon] clear file
+active, unlocked by default
+
+{FSIZE2}balance
+
+curse of the tower 2
+- the item is now lazarusshared
+
+wakaba's uniform
+- blacklisted color joker
+(for now)
+- no longer requires
+any charges
+- slot change key is
+changed to brackets,
+drop key still changes
+slot due to controller support
+- now has inventory
+descriptions integration
+
+wakaba's nemesis
+- no longer require soul hearts
+for collectible for sale
+-- tainted wakaba still
+applies this effect
+- no longer decreases
+non damage stats
+-- tainted wakaba still
+applies this effect
+
+grimreaper defender
+- now death defend is
+one time only for current room
+
+minerva's aura
+- no longer negates
+fake damage
+(dull razor)
+
+lunar stone
+- increased penalty
+for lunar gauge on damage
+
+magma blade
+- add some minor synergies
+-- the forgotten
+-- spirit sword
+-- mom's knife
+
+flash shift
+- reduced bonus flash
+friction from
+speed, range, shotspeed
+
+range os
+- stat multipliers
+now apply correctly
+- now reduces final
+range limit while held.
+this does not stack.
+
+apollyon crisis
+- now the item is
+repentogon exclusive
+- now can be activate
+individual absorbed
+active instead of default item
+- activating individual
+one changes active
+charge to corresponding one
+- selection can be
+changed with extra key
+
+richer's uniform
+- devil : now the spawned
+item disappears on room exit
+- now has inventory
+descriptions integration
+
+lil rira
+- no longer steals charges,
+damage increases on consuming
+active charges instead
+
+- major changes with
+book of shiori synergy effects
+
+{FSIZE2}bug fixes
+
+- fix plumy suddenly disappearing
+
+- fix rira's bra
+extra damage dealing 20%
+instead of 25%
+
+- fix an oversight that
+items alter damage not
+allowing to use blood bombs
+
+- added some failsafe
+from crashes
+
+- fix lil richer, rabbit ribbon
+losing charge if
+isaac holds uncharged
+timed item
+
+- fix item spawn from
+pnw items not being seeded
+
+- fix m + flash shift
+prevent moving entirely
+
+- fix rira's bandage
++ glowing hourglass exploit
+
+- reverted sakura capsule
+revival mechanic to
+non-rgon method
+due to t.forgotten bug
+
+- fix inventory description
+lists rendering offscreen
+if hud offset is not 100%
+
+- fix trinket, passive
+category eid reminder
+causing errors
+
+- fix book of the god
+completely preventing death
+even after 1 heart
+limit remains
+
+- fix boss room item pool
+issue outside of rgon
+
+- fix t.soul not absorbing
+aqua trinkets
+
+- fix an oversight with
+aqua trinkets + mom's purse
+
+- fix pnw familiars showing
+wrong shooting animation
+on left direction
+
+- fix some wrong icons for
+eid and invdesc character entries
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Rira v128a",
 [[{FSIZE2}v128c patch
 

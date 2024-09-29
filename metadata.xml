@@ -47,7 +47,7 @@ Mod Includes :
 [h1]Inventory Descriptions[/h1]
  - Press F5 to show current items you have. Pressing F5 again to exit list mode.
  - Also shows current curse descriptions.
- - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2613009134]Standalone version[/url]
+ - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3255660204]Standalone version[/url]
 
 [h1] More Notes [/h1]
 [list]
@@ -74,7 +74,7 @@ Mod Includes :
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
 - YouDuckBoom - Chinese EID translation</description>
-    <version>128.0</version>
+    <version>129.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
