@@ -60,6 +60,147 @@ if MCM then
 		}
 	)
 	MCM.AddSpace("Pudding & Wakaba", "General")
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.exl
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.exl
+				local displayString = "Extra left : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.exl
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.exl = current
+				end
+			end,
+			Info = {
+				"Press to scroll left for certain pnw items(Default = [ key)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.exr
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.exr
+				local displayString = "Extra left : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.exr
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.exr = current
+				end
+			end,
+			Info = {
+				"Press to scroll right for certain pnw items(Default = ] key)",
+			}
+		}
+	)
+	MCM.AddSpace("Pudding & Wakaba", "General")
 	MCM.AddText("Pudding & Wakaba", "General", function() return "Charge Bars" end)
 	-- General - Charge Bar
 	MCM.AddSetting(

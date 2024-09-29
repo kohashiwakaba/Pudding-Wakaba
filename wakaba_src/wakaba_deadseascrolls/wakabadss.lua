@@ -240,6 +240,38 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'change this', 'to enable or', 'disable all', 'unlocks.', "we'll still", 'keep track', 'for you!'}}
 			},
+			{
+				str = 'extra left',
+				fsize = 2,
+				-- A keybind option lets you bind a key!
+				keybind = true,
+				-- -1 means no key set, otherwise use the Keyboard enum!
+				setting = Keyboard.KEY_LEFT_BRACKET,
+				variable = "InvDescListkey",
+				load = function()
+						return wakaba.state.options.exl or Keyboard.KEY_LEFT_BRACKET
+				end,
+				store = function(var)
+						wakaba.state.options.exl = var
+				end,
+				tooltip = {strset = {'extra left','for some','items from','pnw','','default = ['}},
+			},
+			{
+				str = 'extra right',
+				fsize = 2,
+				-- A keybind option lets you bind a key!
+				keybind = true,
+				-- -1 means no key set, otherwise use the Keyboard enum!
+				setting = Keyboard.KEY_RIGHT_BRACKET,
+				variable = "InvDescListkey",
+				load = function()
+						return wakaba.state.options.exr or Keyboard.KEY_RIGHT_BRACKET
+				end,
+				store = function(var)
+						wakaba.state.options.exr = var
+				end,
+				tooltip = {strset = {'extra right','for some','items from','pnw','','default = ]'}},
+			},
 			-- charge bar align
 			{
 				str = 'charge bar align',
