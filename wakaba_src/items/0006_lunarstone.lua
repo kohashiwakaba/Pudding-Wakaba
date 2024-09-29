@@ -236,7 +236,9 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, -40000, wakab
 function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldown)
 	local data = player:GetData()
 	if wakaba:hasLunarStone(player)	and data.wakaba.reducelunargauge then
-		wakaba:addCurrentLunarGauge(player, wakaba:IsLunatic() and -250000 or -180000)
+		local decreaseRate = player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and -100000 or -180000
+		decreaseRate = wakaba:IsLunatic() and decreaseRate -70000 or decreaseRate
+		wakaba:addCurrentLunarGauge(player, decreaseRate)
 		--print("Lunar Reduced!")
 
 		if wakaba:getCurrentLunarGauge(player) < 0 then
@@ -264,7 +266,9 @@ function wakaba:PostTakeDamage_LunarStone(player, amount, flags, source, cooldow
 		end
 		if not data.wakaba.nolunarreduction then
 			if wakaba:getLunarGaugeSpeed(player) >= 0 then
-				wakaba:setLunarGaugeSpeed(player, wakaba:IsLunatic() and -225 or -100)
+				local decreaseSpeed = player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and -40 or -100
+				decreaseSpeed = wakaba:IsLunatic() and decreaseSpeed * 2.25 or decreaseSpeed
+				wakaba:setLunarGaugeSpeed(player, decreaseSpeed)
 			else
 				wakaba:setLunarGaugeSpeed(player, wakaba:getLunarGaugeSpeed(player) + (wakaba:IsLunatic() and -30 or -10))
 			end
