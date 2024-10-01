@@ -869,6 +869,7 @@ local candidates = {}
 local treasureRooms = {}
 
 wakaba.deliblacklist = {
+	EntityType.ENTITY_LARRYJR,
 	EntityType.ENTITY_MOTHER,
 	EntityType.ENTITY_VISAGE,
 	EntityType.ENTITY_ROTGUT,
