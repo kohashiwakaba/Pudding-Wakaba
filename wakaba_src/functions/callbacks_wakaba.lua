@@ -727,7 +727,7 @@ function wakaba:playerItemsArrayUpdate(player)
 		for item = 1, itemSize do
 			local beforeHeld = queuedItem.Touched
 			if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
-				if player.FrameCount > 7 and not beforeHeld then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
+				if (player.FrameCount > 7 and not beforeHeld) or wakaba.G:GetFrameCount() == 0 then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
 					Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
 				end
 				--increase by 1
