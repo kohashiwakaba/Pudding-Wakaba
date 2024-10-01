@@ -14,7 +14,7 @@ function wakaba:PreRoomClear_SecretCard()
   	if (wakaba.G.Difficulty ~= Difficulty.DIFFICULTY_HARD and wakaba.G:GetRoom():IsFirstVisit() and player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD)) or wakaba.G:IsGreedMode() then
   	  enemycount = enemycount + rng:RandomInt(4) * player:GetCollectibleNum(wakaba.Enums.Collectibles.SECRET_CARD) + 1
   	end
-  
+
   end
 
 	if wakaba.G:IsGreedMode() then return end

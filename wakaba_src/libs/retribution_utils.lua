@@ -52,7 +52,10 @@ end
 ---@param func function
 ---@param typeFilter PlayerType
 ---@return any
-function wakaba:ForAllPlayers(func, typeFilter)
+function wakaba:ForAllPlayers(func, typeFilter, clearCache)
+	if clearCache then
+		mod.roomPlayersCache = nil
+	end
 	for _, player in pairs(mod:GetRoomPlayers()) do
 		if player:Exists() and not typeFilter or typeFilter == player:GetPlayerType() then
 			local returnValue = func(player)

@@ -12,7 +12,7 @@ function wakaba:getDevilAngelStatus()
 	local jokers = false
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local pl = Isaac.GetPlayer(i - 1)
-		if wakaba:HasBless(pl) then
+		if wakaba:HasBless(pl, true, true) then
 			bless = true
 		end
 		if pl:GetPlayerType() == wakaba.Enums.Players.WAKABA and pl:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
@@ -21,7 +21,7 @@ function wakaba:getDevilAngelStatus()
 		if wakaba:HasMurasame(pl) then
 			murasame = true
 		end
-		if wakaba:HasNemesis(pl) then
+		if wakaba:HasNemesis(pl, true, true) then
 			nemesis = true
 		end
 		if pl:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) or pl:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then

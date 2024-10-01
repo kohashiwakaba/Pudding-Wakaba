@@ -1,16 +1,20 @@
 wakaba.state.currentlibraryindex = 0
 local isc = require("wakaba_src.libs.isaacscript-common")
 
-function wakaba:HasShiori(player)
-	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("Shiori", false) then
+function wakaba:HasShiori(player, includeShiori, includeTLaz)
+	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
     return true
-	elseif player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
+	elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
 		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI) then
 		return true
-	else
-		return false
+	--[[ elseif includeTLaz and wakaba:isTLaz(player) then
+		local tLaz = wakaba:getFlippedForm(player)
+		if tLaz:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)then
+			return true
+		end ]]
 	end
+	return false
 end
 
 function wakaba:HasTaintedShiori(player)
@@ -88,7 +92,7 @@ function wakaba:BookofShioriUpdate()
 	local taintedshioricount = 0
   for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
-		if wakaba:HasShiori(player) then
+		if wakaba:HasShiori(player, true, true) then
 			shioricount = shioricount + 1
 		end
 		if wakaba:HasTaintedShiori(player) then

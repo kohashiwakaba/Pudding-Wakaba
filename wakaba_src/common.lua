@@ -1425,3 +1425,16 @@ function wakaba:SpawnPurgatoryGhost(player, rng, wait)
 
 	return soul
 end
+function wakaba:isTLaz(player)
+	local playerType = player:GetPlayerType()
+	return playerType == PlayerType.PLAYER_LAZARUS_B or playerType == PlayerType.PLAYER_LAZARUS2_B
+end
+
+function wakaba:getFlippedForm(player)
+	if REPENTOGON then
+		return player:GetFlippedForm()
+	elseif wakaba:isTLaz(player) then
+		return wakaba:getTaintedLazarusSubPlayer(player)
+	end
+	return false
+end

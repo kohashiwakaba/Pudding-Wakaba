@@ -1,8 +1,8 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/wakaba_dreamcatcher.anm2">
 
 	<!-- Death items frame 0 -->
-	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" shopprice="41" devilprice="2" tags="angel stars offensive nocantrip summonable noeden lazarusshared tearsup" quality="4" craftquality="3" />
-	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarusshared" quality="4" craftquality="4" persistent="true"/>
+	<passive id="1" cache="firedelay luck" description="Faith Up + Better Items" gfx="wakabablessing.png" name="Wakaba's Blessing" shopprice="41" devilprice="2" tags="angel stars offensive nocantrip summonable noeden lazarussharedglobal tearsup" quality="4" craftquality="3" />
+	<passive id="2" cache="all" description="Evil &amp; Rage Up + Worse Items" gfx="wakabanemesis.png" name="Wakaba's Nemesis" shopprice="41" devilprice="2" tags="devil nocantrip summonable noeden lazarussharedglobal" quality="4" craftquality="4" persistent="true"/>
 
 	<active id="3" description="Like a Pudding" gfx="eatheart.png" maxcharges="240000" name="Eat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" craftquality="-1"/>
 	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" craftquality="3" />
@@ -174,20 +174,20 @@
 	<passive id="998" cache="all" description="Between Luck and Fury" gfx="wakabaduality.png" name="Wakaba Duality" shopprice="41" devilprice="2" tags="quest angel devil nocantrip noeden" customtags="nometronome" quality="4" hidden="true" achievement="9999"/>
 
 
-	<trinket name="Bring me there" cache="firedelay" description="Don't forget!" gfx="bringmethere.png" />
+	<trinket name="Bring me there" cache="firedelay" description="Don't forget!" tags="lazarusshared" gfx="bringmethere.png" />
 	<trinket name="Clover" cache="firedelay luck" description="You feel lucky" gfx="clover.png" />
 	<trinket name="Bitcoin II" description="True Gamble" gfx="bitcoin.png" cache="all"/>
 	<trinket name="Magnet Heaven" description="The moment of dream" gfx="magnetheaven.png" />
 	<trinket name="Hard Book" description="It's Fragile..." gfx="hardbook.png" />
 	<trinket name="Determination Ribbon" description="Stay Determined!" gfx="determinationribbon.png" />
 	<trinket name="Bookmark Bag" description="It seems shuffled..." gfx="bookmarkbag.png" tags="nogreed"/>
-	<trinket cache="all" name="Ring of Jupiter" description="We become one" gfx="ringofjupiter.png" />
+	<trinket cache="all" name="Ring of Jupiter" description="We become one" gfx="ringofjupiter.png" tags="lazarusshared" />
 	<trinket name="Dimension Cutter" description="Voided Memory" gfx="dimensioncutter.png" tags=""/>
 	<trinket name="Delimiter" description="Weaker rocks" gfx="delimiter.png" tags="nogreed"/>
 	<trinket name="Range OS" description="Make deeper towards them" gfx="rangeos.png" cache="damage range" />
 	<trinket name="Siren's Badge" description="Kisses don't have sins" gfx="sirenbadge.png" />
 	<trinket name="Star Reversal" description="Take this to treasure" gfx="starreversal.png" />
-	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" />
+	<trinket name="Aurora Gem" description="It shines" gfx="auroragem.png" tags="lazarusshared" />
 	<trinket name="Kuromi Card" description="She made it for us" gfx="kuromicard.png" hidden="true" achievement="9999"/>
 
 	<trinket name="Isaac Cartridge" description="Only Isaac to Rebirth" gfx="isaaccartridge.png" />

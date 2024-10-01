@@ -293,18 +293,22 @@ function wakaba:ShouldRemoveIndex()
 	return true
 end
 
-function wakaba:HasBless(player, includeWakaba)
+function wakaba:HasBless(player, includeWakaba, includeTLaz)
 	includeWakaba = includeWakaba or true
-	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
+	if includeWakaba and player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
 		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		return true
-	else
-		return false
+	elseif includeTLaz and wakaba:isTLaz(player) then
+		local tLaz = wakaba:getFlippedForm(player)
+		if tLaz:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING) or tLaz:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
+			return true
+		end
 	end
+	return false
 end
 
-function wakaba:GetBlessNum(player, includeWakaba)
+function wakaba:GetBlessNum(player, includeWakaba, includeTLaz)
 	includeWakaba = includeWakaba or true
 	local r = 0
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("Wakaba", false) then
@@ -321,7 +325,7 @@ function wakaba:ReEvaluateNemesisStats(player, item)
 end
 wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.ReEvaluateNemesisStats)
 
-function wakaba:HasNemesis(player, includeWakaba)
+function wakaba:HasNemesis(player, includeWakaba, includeTLaz)
 	includeWakaba = includeWakaba or true
 	if includeWakaba and player:GetPlayerType() == Isaac.GetPlayerTypeByName("WakabaB", true) then
 		--wakaba:addNemesisCount(player, 0)
@@ -329,9 +333,13 @@ function wakaba:HasNemesis(player, includeWakaba)
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or player:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
 		--wakaba:addNemesisCount(player, 0)
 		return true
-	else
-		return false
+	elseif includeTLaz and wakaba:isTLaz(player) then
+		local tLaz = wakaba:getFlippedForm(player)
+		if tLaz:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS) or tLaz:HasCollectible(wakaba.Enums.Collectibles.WAKABA_DUALITY) then
+			return true
+		end
 	end
+	return false
 end
 
 function wakaba:TaintedWakabaBirthright(player)
@@ -443,10 +451,10 @@ function wakaba:blessnemesis()
 		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA and wakaba:extraVal("wakabaJaebol") then
 			hasWakabaJB = true
 		end
-		if wakaba:HasBless(player) then
+		if wakaba:HasBless(player, true, true) then
 			blesscount = blesscount + 1
 		end
-		if wakaba:HasNemesis(player) then
+		if wakaba:HasNemesis(player, true, true) then
 			nemesiscount = nemesiscount + 1
 		end
 		if wakaba:TaintedWakabaBirthright(player) then
@@ -583,7 +591,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
 
 function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, countdown)
-	if not wakaba:IsLunatic() and (wakaba.runstate.hasbless or wakaba.runstate.hasnemesis or wakaba:hasLunarStone(player)) then
+	if not wakaba:IsLunatic() and (wakaba:HasBless(player, true) or wakaba:HasNemesis(player, true) or wakaba:hasLunarStone(player)) then
 		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
 	end
 end

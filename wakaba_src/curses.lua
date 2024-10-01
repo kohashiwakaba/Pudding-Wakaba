@@ -24,9 +24,9 @@ end
 function wakaba:ShouldRemoveBlind()
 	local returnVal
 	wakaba:ForAllPlayers(function(player)
-		if wakaba:HasBless(player)
-		or wakaba:HasNemesis(player)
-		or wakaba:HasShiori(player)
+		if wakaba:HasBless(player, true, true)
+		or wakaba:HasNemesis(player, true, true)
+		or wakaba:HasShiori(player, true, true)
 		or wakaba:hasLunarStone(player)
 		or wakaba:hasElixir(player)
 		or wakaba:hasRibbon(player)
