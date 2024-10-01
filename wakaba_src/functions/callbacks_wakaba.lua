@@ -708,41 +708,52 @@ function wakaba.addPostItemGetFunction(self, _func, _item)
 end
 
 --Post Get Collectible
-function wakaba:playerItemsArrayInit(player)
-	local data = player:GetData()
-	data.w_heldItems = {}
-	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
-	for item = 1, itemSize do
-		data.w_heldItems[item] = 0
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.playerItemsArrayInit)
 
-function wakaba:playerItemsArrayUpdate(player)
-	if player:IsCoopGhost() then return end
-	local data = player:GetData()
-	local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
-	local queuedItem = player.QueuedItem
-	if data.w_heldItems then
-		for item = 1, itemSize do
-			local beforeHeld = queuedItem.Touched
-			if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
-				if (player.FrameCount > 7 and not beforeHeld) or wakaba.G:GetFrameCount() == 0 then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
-					Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
-				end
-				--increase by 1
-				data.w_heldItems[item] = data.w_heldItems[item] + 1
-			elseif (data.w_heldItems[item] > player:GetCollectibleNum(item, true)) then
-				data.w_heldItems[item] = player:GetCollectibleNum(item, true)
-			end
+if REPENTOGON then
+	wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, function(_, item, charge, firstTime, slot, varData, player)
+		if firstTime then
+			Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item,
+				player, item, charge, slot, varData
+			)
 		end
-	else
-		--if not initialized for some reason
-		--inventoryDataSet(player)
+	end)
+else
+	function wakaba:playerItemsArrayInit(player)
+		local data = player:GetData()
 		data.w_heldItems = {}
+		local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
+		for item = 1, itemSize do
+			data.w_heldItems[item] = 0
+		end
 	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.playerItemsArrayInit)
+
+	function wakaba:playerItemsArrayUpdate(player)
+		if player:IsCoopGhost() then return end
+		local data = player:GetData()
+		local itemSize = Isaac.GetItemConfig():GetCollectibles().Size - 1
+		local queuedItem = player.QueuedItem
+		if data.w_heldItems then
+			for item = 1, itemSize do
+				local beforeHeld = queuedItem.Touched
+				if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
+					if (player.FrameCount > 7 and not beforeHeld) or wakaba.G:GetFrameCount() == 0 then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
+						Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
+					end
+					--increase by 1
+					data.w_heldItems[item] = data.w_heldItems[item] + 1
+				elseif (data.w_heldItems[item] > player:GetCollectibleNum(item, true)) then
+					data.w_heldItems[item] = player:GetCollectibleNum(item, true)
+				end
+			end
+		else
+			--if not initialized for some reason
+			--inventoryDataSet(player)
+			data.w_heldItems = {}
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.playerItemsArrayUpdate)
 
 function wakaba:IsLudoTear(weapon, onlyTear)
 	if not weapon then return false end

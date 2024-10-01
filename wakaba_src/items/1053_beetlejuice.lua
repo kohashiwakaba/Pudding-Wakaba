@@ -62,7 +62,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClearAwards_Beetlejuice)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClearAwards_Beetlejuice)
 
-function wakaba:PostGetCollectible_Beetlejuice(player, item)
+function wakaba:PostGetCollectible_Beetlejuice(player, item, charge, slot, varData)
 	local game = wakaba.G
 	local room = game:GetRoom()
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
