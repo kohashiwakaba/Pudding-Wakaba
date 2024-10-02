@@ -177,12 +177,12 @@
 	nomarks="true"
 	/>
 
-	<!-- 텐노스 아테네 - 하야테처럼 (미확정) -->
-	<player name="Athena" costume="52" hidden="true"
+	<!-- 야마다 안나 - 내마위 -->
+	<player name="Anna" costume="52" hidden="true"
 	hp="6"  birthright="???"
-	portrait="RicherPortrait_b.png"
-	nameimage="playername_richer.png"
-	skin="character_richer.png" skinColor="-1" costumeSuffix="richer_t"
+	portrait="AnnaPortrait_b.png"
+	nameimage="playername_anna.png"
+	skin="character_anna.png" skinColor="-1" costumeSuffix="anna"
 	nomarks="true"
 	/>
 

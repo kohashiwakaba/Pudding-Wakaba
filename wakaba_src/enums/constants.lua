@@ -30,7 +30,7 @@ wakaba.Enums.Players = {
 	-- Challenge exclusive characters
 	SHIMA = Isaac.GetPlayerTypeByName("Shima", false),
 	CECILIA = Isaac.GetPlayerTypeByName("Cecilia", false), -- not final, can be changed
-	ATHENA = Isaac.GetPlayerTypeByName("Athena", false), -- not final, can be changed
+	ANNA = Isaac.GetPlayerTypeByName("Anna", false),
 	CIEL = Isaac.GetPlayerTypeByName("Ciel", false),
 	KORON = Isaac.GetPlayerTypeByName("Koron", false),
 }
