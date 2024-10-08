@@ -20,22 +20,6 @@ local function shouldCheckAscent()
 	return room:GetType() == RoomType.ROOM_BOSS or room:GetType() == RoomType.ROOM_TREASURE
 end
 
-wakaba.Blacklists.GambleRun = {
-	[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true,
-	[CollectibleType.COLLECTIBLE_DAMOCLES] = true,
-	[CollectibleType.COLLECTIBLE_ETERNAL_D6] = true,
-	[CollectibleType.COLLECTIBLE_CROOKED_PENNY] = true,
-	[CollectibleType.COLLECTIBLE_TMTRAINER] = true,
-	[CollectibleType.COLLECTIBLE_EVERYTHING_JAR] = true,
-	[CollectibleType.COLLECTIBLE_GLITCHED_CROWN] = true,
-	[CollectibleType.COLLECTIBLE_BINGE_EATER] = true,
-	[CollectibleType.COLLECTIBLE_MOVING_BOX] = true,
-	[CollectibleType.COLLECTIBLE_VOID] = true,
-	[wakaba.Enums.Collectibles.EATHEART] = true,
-	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = true,
-	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = true,
-}
-
 function wakaba:setGamblePedestalStatus(set, t, prevCount)
 	local s = set and "1" or "0"
 	local pedestals = wakaba:GetPedestals(true)
