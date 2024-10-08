@@ -7,6 +7,9 @@ local config = {
 	exl = Keyboard.KEY_LEFT_BRACKET,
 	exr = Keyboard.KEY_RIGHT_BRACKET,
 
+	gdkey = Keyboard.KEY_6,
+	gpkey = Keyboard.KEY_7,
+
 	kud_wafu = false,
 	fortunereplacechance = 10,
 

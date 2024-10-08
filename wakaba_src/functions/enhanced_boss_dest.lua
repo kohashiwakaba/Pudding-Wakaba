@@ -270,7 +270,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_END, wakaba.GameEnd_BossDest)
 
 local cachedBossData = nil
 
-wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -2, function(_)
+wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -100, function(_)
 	local bossData
 	if wakaba.G:IsPaused() then
 		bossData = cachedBossData

@@ -374,18 +374,20 @@ function wakaba:GetPedestals(includeShop)
 
 	local items = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
 	if (#items == 0) then return {} end
-	for i = 1, #items do
-		local item = items[i]:ToPickup()
-		local iConfig = config:GetCollectible(item.SubType)
-		if iConfig and (not item.IsShopItem or includeShop) then
-			table.insert(Pedestals, {
-				CollectibleType = item.SubType,
-				Pedestal = item,
-				Pool = pool:GetLastPool(),
-				Tags = iConfig.Tags,
-				Quality = iConfig.Quality,
-				Config = iConfig
-			})
+	for _, it in ipairs(items) do
+		if it:Exists() then
+			local item = it:ToPickup()
+			local iConfig = config:GetCollectible(item.SubType)
+			if iConfig and (not item.IsShopItem or includeShop) then
+				table.insert(Pedestals, {
+					CollectibleType = item.SubType,
+					Pedestal = item,
+					Pool = pool:GetLastPool(),
+					Tags = iConfig.Tags,
+					Quality = iConfig.Quality,
+					Config = iConfig
+				})
+			end
 		end
 	end
 

@@ -1204,6 +1204,8 @@ if REPENTOGON then -- REPENTOGON loader
 	include('wakaba_src.compat.repentogon.item_additions')
 	include('wakaba_src.compat.repentogon.achievements')
 	include('wakaba_src.compat.repentogon.revivals')
+	include('wakaba_src.compat.repentogon.difflib')
+	--include('wakaba_src.compat.repentogon.main_menu')
 	--include('wakaba_src.compat.repentogon.imgui')
 	if _DISCORDRPC then
 		include('wakaba_src.compat.repentogon.discord_rich_presence')
