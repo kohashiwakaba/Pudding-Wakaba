@@ -839,8 +839,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "리셰의 뒤집개",
 		description = ""
-		.. "#↑ {{HealingRed}}빨간하트 +1"
-		.. "#↑ {{HealingRed}}빨간하트 +1"
+		.. "#↑ {{Bomb}}폭탄 +1"
+		.. "#↑ {{Key}}열쇠 +1"
 		.. "#사용 시 {{Bomb}}/{{Key}} 및 {{Card}}/{{Pill}} 픽업을 각각 반대 타입으로 바꿉니다."
 		.. "{{CR}}",
 		carBattery = "무효과",
