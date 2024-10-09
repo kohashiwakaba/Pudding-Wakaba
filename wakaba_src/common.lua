@@ -420,12 +420,16 @@ function wakaba:detectD4(usedItem, rng)
 	or usedItem == CollectibleType.COLLECTIBLE_D100
 	then
 		wakaba.fullreroll = true
-		if FairOptionsConfig then
-			FairOptionsConfig.Disabled = true
-		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectD4)
+
+function wakaba:PostTakeDamage_TEden(player, amount, flag, source, countdownFrames)
+	if player:GetPlayerType() == PlayerType.PLAYER_EDEN_B then
+		wakaba.fullreroll = true
+	end
+end
+wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_TEden)
 
 --[[
 wakaba.state.forcevoid
