@@ -123,14 +123,6 @@ wakaba:RegisterPatch(0, "FiendFolio", function() return (FiendFolio ~= nil) end,
 
 		})
 
-		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
-			if isCustom and (selected >= Isaac.GetItemIdByName("Pyromancy") and selected <= Isaac.GetItemIdByName("Shredder")) then
-				if not FiendFolio.IsCompletionItemUnlocked(selected) then
-					return true
-				end
-			end
-		end)
-
 		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
 			{FiendFolio.ITEM.COLLECTIBLE.STORE_WHISTLE, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.PINHEAD, 1.00},

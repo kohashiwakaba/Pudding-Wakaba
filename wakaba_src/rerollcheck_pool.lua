@@ -256,7 +256,7 @@ function wakaba:newRollCheck(selected, itemPoolType, decrease, seed)
 
 
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, wakaba.newRollCheck)
+--wakaba:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, wakaba.newRollCheck)
 
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL, function(_, selected, itemPoolType, decrease, seed)
 	local shouldSkip =
@@ -266,114 +266,6 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL, function(
 		or (LibraryExpanded and LibraryExpanded:IsLibraryCertificateRoom())
 		or wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
 	if shouldSkip then return true end
-end)
-
-wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, function(_, rerollProps, selected, itemPoolType, decrease, seed, isCustom)
-	--local estimatedPlayerCount = 0
-	wakaba:ForAllPlayers(function (player) ---@param player EntityPlayer
-		if player.Variant == 0 then
-			local pData = player:GetData()
-			--estimatedPlayerCount = estimatedPlayerCount + 1
-			rerollProps.IsaacCartridge = rerollProps.IsaacCartridge or player:HasTrinket(wakaba.Enums.Trinkets.ISAAC_CARTRIDGE) or (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
-			rerollProps.AftCartridge = rerollProps.AftCartridge or player:HasTrinket(wakaba.Enums.Trinkets.AFTERBIRTH_CARTRIDGE)
-			rerollProps.RepCartridge = rerollProps.RepCartridge or player:HasTrinket(wakaba.Enums.Trinkets.REPENTANCE_CARTRIDGE)
-			rerollProps.DejaVu = rerollProps.DejaVu or player:HasCollectible(wakaba.Enums.Collectibles.DEJA_VU)
-			rerollProps.NekoFigure = rerollProps.NekoFigure or player:HasCollectible(wakaba.Enums.Collectibles.NEKO_FIGURE)
-			rerollProps.SacredOrb = rerollProps.SacredOrb or player:HasCollectible(CollectibleType.COLLECTIBLE_SACRED_ORB)
-			rerollProps.WaterFlame = rerollProps.WaterFlame or (player:HasCollectible(wakaba.Enums.Collectibles.WATER_FLAME) or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B)
-			rerollProps.DoubleDreams = rerollProps.DoubleDreams or player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
-			rerollProps.WakabaBlessing = rerollProps.WakabaBlessing or player:GetPlayerType() == wakaba.Enums.Players.WAKABA or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
-			rerollProps.WakabaNemesis = rerollProps.WakabaNemesis or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
-			if pData.wakaba and pData.wakaba.eatheartused then
-				rerollProps.eatHeartUsed = true
-				rerollProps.eatHeartQuality = math.max((rerollProps.eatHeartQuality or 0), (pData.wakaba.eatheartquality or 0))
-			end
-		end
-	end)
-	rerollProps.allowActives = (wakaba.roomstate.allowactives == nil or wakaba.fullreroll ~= nil) and wakaba.G.Challenge ~= wakaba.challenges.CHALLENGE_EVEN
-	if rerollProps.DoubleDreams and not isCustom then
-		rerollProps.GoldenDoubleDreams = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
-
-		if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.state.rerollloopcount <= 5 then
-			rerollProps.itemType = wakaba.runstate.dreampool
-			rerollProps.allowActives = false
-		end
-
-		-- Was trying to check Devil's crown, but doesn't work, there are RoomDescriptor.FLAG_DEVIL_TREASURE, which cannot be accessable yet.
-		if wakaba.runstate.dreampool == ItemPoolType.POOL_NULL and wakaba.G:GetLevel():GetCurrentRoomDesc().Flags & RoomDescriptor.FLAG_DEVIL_TREASURE == RoomDescriptor.FLAG_DEVIL_TREASURE then
-			rerollProps.itemType = ItemPoolType.POOL_DEVIL
-		end
-	end
-	return rerollProps
-end)
-
-wakaba:AddCallback(wakaba.Callback.POST_EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, function(_, rerollProps, selected, itemPoolType, decrease, seed, isCustom)
-
-	if rerollProps.eatHeartUsed then
-		rerollProps.qualityChance[0] = rerollProps.eatHeartQuality <= 0 and 1 or 0
-		rerollProps.qualityChance[1] = rerollProps.eatHeartQuality <= 1 and 1 or 0
-		rerollProps.qualityChance[2] = rerollProps.eatHeartQuality <= 2 and 1 or 0
-		rerollProps.qualityChance[3] = rerollProps.eatHeartQuality <= 3 and 1 or 0
-		rerollProps.qualityChance[4] = 1
-	elseif rerollProps.NekoFigure and wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
-		rerollProps.qualityChance[0] = 0
-		rerollProps.qualityChance[1] = 0
-		rerollProps.qualityChance[2] = 0
-	elseif not rerollProps.eatHeartUsed and rerollProps.WakabaNemesis and not rerollProps.WakabaBlessing and not rerollProps.SacredOrb then
-		rerollProps.qualityChance[3] = wakaba:IsLunatic() and 0 or 0.5
-		rerollProps.qualityChance[4] = 0
-	elseif not rerollProps.eatHeartUsed and rerollProps.WakabaBlessing and not rerollProps.WakabaNemesis and not rerollProps.SacredOrb then
-		rerollProps.qualityChance[0] = 0
-		if not wakaba:IsLunatic() then
-			rerollProps.qualityChance[1] = 0
-		end
-	end
-
-	if rerollProps.DoubleDreams and rerollProps.GoldenDoubleDreams then
-		rerollProps.qualityChance[0] = 0
-	end
-
-end)
-wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
-	local rng = RNG()
-	rng:SetSeed(seed, 35)
-	-- Quality Check
-	local itemQuality = isc:clamp(selectedItemConf.Quality, 0, 4)
-	local qualityChance = rerollProps.qualityChance[itemQuality]
-	if rng:RandomFloat() > qualityChance then return true end
-
-	-- Unlock Check
-	if not wakaba:unlockCheck(selected) then return true end
-
-	-- Active Check
-	if selectedItemConf.Type == ItemType.ITEM_ACTIVE and not rerollProps.allowActives then return true end
-
-	-- Pool Check
-	if not isCustom and rerollProps.itemType ~= itemPoolType then return true end
-
-	-- Isaac Cartridge
-	if selected ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
-		local isModded = selected > CollectibleType.COLLECTIBLE_MOMS_RING
-		if rerollProps.RepCartridge then
-			if isModded then
-				return true
-			end
-		elseif rerollProps.AftCartridge then
-			if (selected > CollectibleType.COLLECTIBLE_MOMS_SHOVEL and not isModded) or selected == CollectibleType.COLLECTIBLE_CLEAR_RUNE then
-				return true
-			end
-		elseif rerollProps.IsaacCartridge then
-			if (selected >= CollectibleType.COLLECTIBLE_DIPLOPIA and not isModded) or selected == CollectibleType.COLLECTIBLE_CLEAR_RUNE then
-				return true
-			end
-		end
-	end
-
-	-- Winter Albireo
-	if rerollProps.WaterFlame then
-		if selectedItemConf.Type ~= ItemType.ITEM_ACTIVE and not isc:collectibleHasTag(selected, ItemConfig.TAG_SUMMONABLE) then return true end
-	end
-
 end)
 
 function wakaba:rerollCooltime()

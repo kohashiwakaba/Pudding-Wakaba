@@ -3,14 +3,6 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 	do
 		local mod = Retribution
 
-		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL, function(_, rerollProps, selected, selectedItemConf, itemPoolType, decrease, seed, isCustom)
-			if isCustom and (selected >= Retribution.ITEMS.ARROW_OF_LIGHT and selected <= Retribution.ITEMS.HIGHEST_ID) then
-				if not Retribution.IsCompletionItemUnlocked(selected) then
-					return true
-				end
-			end
-		end)
-
 		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
 			{Retribution.Item.BLACK_BOX, 1.00},
 			{Retribution.Item.FALSE_IDOL, 1.00},

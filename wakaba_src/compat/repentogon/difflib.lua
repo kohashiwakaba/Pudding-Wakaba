@@ -178,6 +178,21 @@ function wakaba:PickupRender_GambleRun(pickup, offset)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_GambleRun, PickupVariant.PICKUP_COLLECTIBLE)
 
+
+---@param selected CollectibleType
+---@param selectedItemConf ItemConfigItem
+---@param itemPoolType ItemPoolType
+---@param decrease boolean
+---@param seed integer
+wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL_BLACKLIST, function(_, selected, selectedItemConf, rerollProps, itemPoolType, decrease, seed, isCustom)
+	if DifficultyManager and DifficultyManager.GetDifficulty() == "Gamble" then
+		if wakaba.Blacklists.GambleRun[selected] then
+			wakaba.Log("Blacklisted item", selected, "from gamble run")
+			return true
+		end
+	end
+end)
+
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -90, function(_)
 	if DifficultyManager and DifficultyManager.GetDifficulty() == "Gamble" then
 		local k = wakaba:getOptionValue("gpkey") or Keyboard.KEY_7

@@ -1181,7 +1181,7 @@ do -- Extra functions loader
 	include('wakaba_src.devilangel')
 	include('wakaba_src.encyclopedia')
 	include('wakaba_src.rerollcheck')
-	include('wakaba_src.rerollcheck_pool')
+	include('wakaba_src.rerollcheck_blacklist')
 	include('wakaba_src.functions.item_pool_wakaba')
 	include('wakaba_src.wardrobeplus')
 	include('wakaba_src.stackablemantle')

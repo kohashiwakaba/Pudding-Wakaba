@@ -98,5 +98,9 @@ function wakaba:PlayerUpdate_EatHeart(player)
 			player:GetEffects():RemoveCollectibleEffect(wakaba.Enums.Collectibles.EATHEART)
 		end
 	end
+	if player:GetData().wakaba and player:GetData().wakaba.eatheartused == true then
+		player:GetData().wakaba.eatheartused = false
+		player:GetData().wakaba.eatheartquality = nil
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_EatHeart)

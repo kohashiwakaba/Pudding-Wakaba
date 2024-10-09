@@ -818,6 +818,13 @@ wakaba.Blacklists.AquaTrinkets = {
 	TrinketType.TRINKET_PERFECTION,
 }
 
+wakaba.Blacklists.FullReroll = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = true,
+	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = true,
+	[wakaba.Enums.Collectibles.RICHERS_BRA] = true,
+	[wakaba.Enums.Collectibles.MINERVA_AURA] = true,
+}
+
 wakaba.Blacklists.GambleRun = {
 	[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true,
 	[CollectibleType.COLLECTIBLE_DAMOCLES] = true,
