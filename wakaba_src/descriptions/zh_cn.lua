@@ -770,7 +770,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "平衡 恒平",
 		description = ""
-			.. "#↑ {{Coin}} +10 硬币"
 			.. "#将5个{{Coin}}硬币转换为1个{{Key}}钥匙和1个{{Bomb}}炸弹."
 			.. "#如果硬币不够: "
 			.. "#将1个钥匙/炸弹转换为以撒更少拥有的另一个."
@@ -781,6 +780,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "璃贝的脚蹼",
 		description = ""
+			.. "#{{Bomb}} +1 炸弹"
+			.. "#{{Key}} +1 钥匙"
 			.. "#将{{Bomb}}/{{Key}} 和 {{Card}}/{{Pill}} 互相转换"
 			.. "{{CR}}",
 		queueDesc = "翻转掉落物",

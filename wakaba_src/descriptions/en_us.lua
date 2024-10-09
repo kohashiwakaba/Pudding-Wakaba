@@ -808,7 +808,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "Balance ecnalaB",
 		description = ""
-		.. "#↑ {{Coin}} +10 Coins"
 		.. "#Converts 5 {{Coin}}coins into 1 {{Key}}key and 1 {{Bomb}}bomb."
 		.. "#If there are not enough coins: "
 		.. "#Converts 1 of Key/Bomb into another one that Isaac less have."
@@ -820,6 +819,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "Richer's Flipper",
 		description = ""
+		.. "#{{Bomb}} +1 Bomb"
+		.. "#{{Key}} +1 Key"
 		.. "#Converts {{Bomb}}/{{Key}} and {{Card}}/{{Pill}} each other"
 		.. "{{CR}}",
 		carBattery = "No effect",

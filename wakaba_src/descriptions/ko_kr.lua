@@ -828,7 +828,6 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BALANCE] = {
 		itemName = "미러 밸런스",
 		description = ""
-		.. "#↑ {{Coin}}동전 +10"
 		.. "#동전 5개를 소모하여 폭탄과 열쇠를 각각 1개씩 획득합니다."
 		.. "#!!! 동전이 부족한 상태에서 사용 시: "
 		.. "#폭탄 혹은 열쇠 중 개수가 많은 쪽을 1개 차감하여 다른 쪽 픽업을 1개 획득합니다."
@@ -840,6 +839,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RICHERS_FLIPPER] = {
 		itemName = "리셰의 뒤집개",
 		description = ""
+		.. "#↑ {{HealingRed}}빨간하트 +1"
+		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#사용 시 {{Bomb}}/{{Key}} 및 {{Card}}/{{Pill}} 픽업을 각각 반대 타입으로 바꿉니다."
 		.. "{{CR}}",
 		carBattery = "무효과",
