@@ -46,6 +46,9 @@ wakaba.ChallengeParams.CharacterInitFuncs = {
 		player:AddSoulHearts(6)
 		player:SetPocketActiveItem(wakaba.Enums.Collectibles.NERF_GUN, ActiveSlot.SLOT_POCKET, true)
 	end,
+	[wakaba.Enums.Players.ANNA] = function(player)
+		player:AddMaxHearts(6 - player:GetMaxHearts())
+	end,
 }
 wakaba.ChallengeParams.Fast = {
 	[wakaba.challenges.CHALLENGE_ELEC] = true,
@@ -97,6 +100,7 @@ include('wakaba_src.challenges.w99_truepuristgirl')
 include('wakaba_src.challenges.wb1_puredelirium')
 include('wakaba_src.challenges.wb2_supersensitive')
 include('wakaba_src.challenges.wb3_pikarun2')
+include('wakaba_src.challenges.wb4_mazeinmyheart')
 
 function wakaba:isSpeed()
 	return wakaba.ChallengeParams.Fast[wakaba.G.Challenge] ~= nil

@@ -13,20 +13,28 @@ wakaba.COSTUME_TSUKASA = Isaac.GetCostumeIdByPath("gfx/characters/character_tsuk
 wakaba.COSTUME_TSUKASA_B = Isaac.GetCostumeIdByPath("gfx/characters/character_tsukasa_b.anm2")
 
 wakaba.cpManagedPlayerType = {
-  [wakaba.Enums.Players.WAKABA] = {sheetName = "wakaba", flightSheetName = "wakaba", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.WAKABA_B] = {sheetName = "wakabab", flightSheetName = "wakabab", flightID = 40, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.SHIORI] = {sheetName = "shiori", flightSheetName = "shiori", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.SHIORI_B] = {sheetName = "shiorib", flightSheetName = "shiorib", flightID = wakaba.COSTUME_SHIORI_B_BODY, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.TSUKASA] = {sheetName = "tsukasa", flightSheetName = "tsukasa", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.TSUKASA_B] = {sheetName = "tsukasab", flightSheetName = "tsukasab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.RICHER] = {sheetName = "richer", flightSheetName = "richer", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.RICHER_B] = {sheetName = "richerb", flightSheetName = "richerb", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.RIRA] = {sheetName = "rira", flightSheetName = "rira", flightID = 67, extraNullID = NullItemID.ID_JACOB},
-  [wakaba.Enums.Players.RIRA_B] = {sheetName = "rirab", flightSheetName = "rirab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.WAKABA] = {sheetName = "wakaba", flightSheetName = "wakaba", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.WAKABA_B] = {sheetName = "wakabab", flightSheetName = "wakabab", flightID = 40, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.SHIORI] = {sheetName = "shiori", flightSheetName = "shiori", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.SHIORI_B] = {sheetName = "shiorib", flightSheetName = "shiorib", flightID = wakaba.COSTUME_SHIORI_B_BODY, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.TSUKASA] = {sheetName = "tsukasa", flightSheetName = "tsukasa", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.TSUKASA_B] = {sheetName = "tsukasab", flightSheetName = "tsukasab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RICHER] = {sheetName = "richer", flightSheetName = "richer", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RICHER_B] = {sheetName = "richerb", flightSheetName = "richerb", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RIRA] = {sheetName = "rira", flightSheetName = "rira", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RIRA_B] = {sheetName = "rirab", flightSheetName = "rirab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	
+	[wakaba.Enums.Players.WAKABA_T] = {sheetName = "wakaba", flightSheetName = "wakaba", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.SHIORI_T] = {sheetName = "shiori", flightSheetName = "shiori", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.TSUKASA_T] = {sheetName = "tsukasab", flightSheetName = "tsukasab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RICHER_T] = {sheetName = "richerb", flightSheetName = "richerb", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+	[wakaba.Enums.Players.RIRA_T] = {sheetName = "rirab", flightSheetName = "rirab", flightID = 67, extraNullID = NullItemID.ID_JACOB},
+
+	[wakaba.Enums.Players.ANNA] = {sheetName = "anna", flightSheetName = "anna", flightID = 67, extraNullID = NullItemID.ID_JACOB},
 }
 
 wakaba.costumeCollectibleWhiteList = {
-  [wakaba.Enums.Collectibles.SYRUP] = true,
+	[wakaba.Enums.Collectibles.SYRUP] = true,
 }
 wakaba.costumeNullWhiteList = {
 }

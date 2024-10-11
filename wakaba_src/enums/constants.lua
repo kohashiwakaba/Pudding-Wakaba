@@ -188,6 +188,7 @@ wakaba.Enums.Collectibles = {
 	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
+	KYOUTAROU_LOVER = Isaac.GetItemIdByName("Kyoutarou Lover"),
 
 }
 
@@ -1203,6 +1204,7 @@ wakaba.challenges = {
 	CHALLENGE_SLNT = Isaac.GetChallengeIdByName("[wb1] Pure Delirium vs Silence"), --wb1
 	CHALLENGE_SSRC = Isaac.GetChallengeIdByName("[wb2] Super Sensitive Richer-chan"), --wb2
 	CHALLENGE_MELT = Isaac.GetChallengeIdByName("[wb3] Melting Pika Run 2"), --wb3
+	CHALLENGE_ANNA = Isaac.GetChallengeIdByName("[wb4] The Maze In My Heart"), --wb4
 }
 
 wakaba.useflag = {

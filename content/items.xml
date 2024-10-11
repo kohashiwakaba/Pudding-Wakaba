@@ -162,6 +162,7 @@
 
 	<active id="126" description="Khala support" gfx="pylon.png" name="Pylon" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
 	<active id="127" description="Shift your destiny" gfx="clearfile.png" name="Clear File" tags="offensive nogreed book" customtags="nometronome" maxcharges="2" quality="2" craftquality="4"/>
+	<familiar id="128" description="More promising than it seems" gfx="kyoulover.png" name="Kyoutarou Lover" tags="noeden offensive uniquefamiliar lazarusshared monstermanual" customtags="nometronome" quality="3" hidden="true" achievement="9999" craftquality="-1"/>
 
 	<!-- TR Wakaba Reserve -->
 	<active id="150" description="Embrace or Resist" gfx="nornir.png" name="Nornir" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>

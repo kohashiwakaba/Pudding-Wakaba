@@ -57,4 +57,5 @@ See this community post for more details. It's not mine, but it's still very use
 	<challenge name="[wb1] Pure Delirium vs Silence" playertype="Shiori" difficulty="1" endstage="11" maxhp="18" redhp="18" startingitems="669,101,598,182,708,708,708,708,6" cursefilter="127" />
 	<challenge name="[wb2] Super Sensitive Richer-chan" playertype="RicherB" endstage="11" secretpath="true" startingitems="626,627"/>
 	<challenge name="[wb3] Melting Pika Run 2" playertype="Richer" roomfilter="21" endstage="11" startingitems="63,356,479"/>
+	<challenge name="[wb4] The Maze In My Heart" playertype="Anna" endstage="11" megasatan="true"/>
 </challenges>

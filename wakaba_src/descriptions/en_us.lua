@@ -152,6 +152,17 @@ wakaba.descriptions[desclang].characters = {
 		.. "",
 		birthright = "#Health no longer drains outside of ward area#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Doubles Rabbey Ward charge rate for new room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Using Rabbey Ward also divides nearby pedestal in the room#{{Collectible"..wakaba.Enums.Collectibles.RABBEY_WARD.."}} Rabbey Wards shoot homing laser to enemies",
 	},
+	[wakaba.Enums.Players.ANNA] = {
+		playerName = "Anna",
+		shortDesc = "",
+		detailedDesc = "Anna is a lovely model from {{ColorLime}}The Dangers in My Heart{{CR}} from Nurio"
+		.. "#{{Collectible402}} Her lovey-dovey behaviors with her lover Kyoutarou makes chaos around her"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.KYOUTAROU_LOVER.."}} Anna starts with Kyoutarou Lover"
+		--.. "#"
+		.. "#{{WakabaModLunatic}} Effectiveness from P&W items are reduced"
+		.. "",
+		birthright = "Prevents Quality {{Quality0}} items from spawning#{{Speed}} +0.003 Speed per obtained collectible",
+	},
 }
 wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
@@ -1315,6 +1326,15 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#On use, swaps one of Isaac's held passives with nearest passive pedestal"
 		.. "#A list will appear for held passive selection"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.KYOUTAROU_LOVER] = {
+		itemName = "Kyoutarou Lover",
+		description = ""
+		.. "#{{Collectible402}} All items are chosen from random item pools"
+		.. "#Only certain of Quality items can be spawn"
+		.. "#Getting an item changes next Quality that can be spawned"
+		.. "#{{Blank}} ({{Quality0}} > {{Quality1}} > {{Quality2}} > {{Quality3}} > {{Quality4}} > {{Quality0}} ...)"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
