@@ -39,8 +39,6 @@ local iFeatures = {
 if REPENTOGON then
 	iFeatures = {
 		isc.ISCFeature.SAVE_DATA_MANAGER,
-		isc.ISCFeature.TAINTED_LAZARUS_PLAYERS,
-		isc.ISCFeature.NO_SIREN_STEAL,
 		isc.ISCFeature.MODDED_ELEMENT_SETS,
 	}
 end
@@ -53,8 +51,8 @@ include('wakaba_src.debug_area')
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include("wakaba_src.libs.retribution_utils")
-include('wakaba_src.libs.achievement_display_api') -- TODO move to non-repengoton area if finished
 if not REPENTOGON then
+	include('wakaba_src.libs.achievement_display_api')
 	include("wakaba_src.libs.pause_screen_completion_marks_api")
 	--require("wakaba_src.libs.item_display_library")
 	PauseScreenCompletionMarksAPI:SetShader("wakaba_ChallengeDest_DummyShader")
@@ -1303,8 +1301,10 @@ function wakaba:init(continue)
 		--wakaba:UpdateWakabaEncyclopediaDescriptions()
 	end
 
-	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
-	wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.MURASAME)
+	if not REPENTOGON then
+		wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
+		wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.MURASAME)
+	end
 	wakaba:updateHUDPosition()
 end
 
