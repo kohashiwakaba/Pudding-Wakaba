@@ -41,6 +41,10 @@ function wakaba:FireTear_KanaeLens(tear)
 			if rng:RandomFloat() < 0.5 then
 				isPassed = true
 			end
+		elseif REPENTOGON then
+			if player:GetTearDisplacement() < 0 then
+				isPassed = true
+			end
 		elseif player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B or player:HasCollectible(CollectibleType.COLLECTIBLE_20_20) or player:HasCollectible(CollectibleType.COLLECTIBLE_INNER_EYE) or player:HasCollectible(CollectibleType.COLLECTIBLE_MUTANT_SPIDER) then
 			if data.wakaba.kanaeOneEye then
 				data.wakaba.kanaeOneEye = false
