@@ -316,6 +316,21 @@ wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL_BLACKLIST, function
 	end
 end)
 
+function wakaba:afterRollCheck(selectedCollectible, itemPoolType, decrease, seed)
+	if EID then
+		for _, crane in ipairs(Isaac.FindByType(6, 16, -1, true, false)) do
+			if not crane:GetSprite():IsPlaying("Broken") then
+				if not EID.CraneItemType[tostring(crane.InitSeed)] then
+					print("[wakaba] Crane " .. tostring(crane.InitSeed) .. " assigned item ".. selectedCollectible.." from seed "..seed)
+					EID.CraneItemType[tostring(crane.InitSeed)] = selectedCollectible
+					break
+				end
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_GET_COLLECTIBLE, wakaba.afterRollCheck)
+
 function wakaba:newRollCooltime()
 	wakaba._blacklistCleared = false
 end
