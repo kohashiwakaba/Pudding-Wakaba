@@ -152,7 +152,7 @@
 	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" craftquality="1" tags="offensive nogreed"/>
 	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="offensive" maxcharges="1" quality="1" craftquality="1"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" shopprice="16" devilprice="2" tags="summonable offensive" quality="4" craftquality="4"/>
-	<passive id="122" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" devilprice="2" tags="summonable nolostbr" quality="3" craftquality="4" />
+	<passive id="122" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" shopprice="31" devilprice="2" tags="summonable nolostbr" quality="3" craftquality="4" />
 
 	<passive id="123" cache="all" description="Weapon Nullifier" gfx="cleaner.png" name="Dual Cleaner" quality="0" tags="quest noeden" customtags="nometronome" hidden="true" achievement="9999"/>
 
@@ -163,6 +163,11 @@
 	<active id="126" description="Khala support" gfx="pylon.png" name="Pylon" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
 	<active id="127" description="Shift your destiny" gfx="clearfile.png" name="Clear File" tags="offensive nogreed book" customtags="nometronome" maxcharges="2" quality="2" craftquality="4"/>
 	<familiar id="128" description="More promising than it seems" gfx="kyoulover.png" name="Kyoutarou Lover" tags="noeden offensive uniquefamiliar lazarusshared monstermanual" customtags="nometronome" quality="3" hidden="true" achievement="9999" craftquality="-1"/>
+	<passive id="129" cache="range" description="Keep gather" gfx="annaribbon0.png" name="Anna Ribbon" tags="noeden" quality="0" hidden="true" achievement="9999"/>
+	<passive id="130" cache="speed" description="Keep gather" gfx="annaribbon1.png" name="Anna Ribbon " tags="noeden" quality="1" hidden="true" achievement="9999"/>
+	<passive id="131" cache="luck" description="Keep gather" gfx="annaribbon2.png" name="Anna Ribbon  " tags="noeden" quality="2" hidden="true" achievement="9999"/>
+	<passive id="132" cache="firedelay" description="Keep gather" gfx="annaribbon3.png" name="Anna Ribbon   " tags="noeden" quality="3" hidden="true" achievement="9999"/>
+	<passive id="133" cache="damage" description="Keep gather" gfx="annaribbon4.png" name="Anna Ribbon    " tags="noeden" quality="4" hidden="true" achievement="9999"/>
 
 	<!-- TR Wakaba Reserve -->
 	<active id="150" description="Embrace or Resist" gfx="nornir.png" name="Nornir" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>

@@ -55,6 +55,8 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		PST.charNames[1 + wakaba.Enums.Players.TSUKASA_B] = "T. Tsukasa"
 		PST.charNames[1 + wakaba.Enums.Players.RICHER_B] = "T. Richer"
 		PST.charNames[1 + wakaba.Enums.Players.RIRA_B] = "T. Rira"
+
+		PST.charNames[1 + wakaba.Enums.Players.ANNA] = "Anna"
 	end
 
 	do

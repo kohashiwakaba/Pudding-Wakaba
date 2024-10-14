@@ -8,7 +8,7 @@ function wakaba:preRollCheck(itemPoolType, decrease, seed)
 	loopCount = loopCount + 1
 	local callbacks = Isaac.GetCallbacks(wakaba.Callback.PRE_WAKABA_REROLL)
 	for _, callback in pairs(callbacks) do
-		local result = callback.Function(mod, pool, decrease, seed, loopCount)
+		local result = callback.Function(mod, itemPoolType, decrease, seed, loopCount)
 		if result then
 			loopCount = loopCount - 1
 			return result
@@ -41,6 +41,15 @@ function wakaba:PreReroll_DejaVu(itemPoolType, decrease, seed, loopCount)
 	end
 end
 wakaba:AddPriorityCallback(wakaba.Callback.PRE_WAKABA_REROLL, 0, wakaba.PreReroll_DejaVu)
+
+function wakaba:PreReroll_KyoutarouLover(itemPoolType, decrease, seed, loopCount)
+	if loopCount <= 1 and not wakaba.fullreroll and wakaba:anyPlayerHasKyouchan() then
+		wakaba.Log("Hijack pool from kyou lover - pool " .. itemPoolType .. " / seed " ..seed .. " / loopCount " .. loopCount .. " / targetQuality " .. wakaba.state.annaquality)
+		local targetDefault = wakaba.Enums.Collectibles["ANNA_RIBBON_"..wakaba.state.annaquality] or wakaba.Enums.Collectibles.ANNA_RIBBON_0
+		return wakaba:getItemFromAnyPool(decrease, seed, targetDefault)
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_WAKABA_REROLL, 0, wakaba.PreReroll_KyoutarouLover)
 
 function wakaba:PreReroll_DoubleDreams(itemPoolType, decrease, seed, loopCount)
 	if loopCount <= 1 and wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS) and (wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.runstate.dreampool ~= itemPoolType) then
@@ -200,6 +209,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_COLLECTIBLE_REROLL_PROPS, fun
 			rerollProps.DoubleDreams = rerollProps.DoubleDreams or player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_DREAMS)
 			rerollProps.WakabaBlessing = rerollProps.WakabaBlessing or player:GetPlayerType() == wakaba.Enums.Players.WAKABA or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_BLESSING)
 			rerollProps.WakabaNemesis = rerollProps.WakabaNemesis or player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B or player:HasCollectible(wakaba.Enums.Collectibles.WAKABAS_NEMESIS)
+			rerollProps.Kyouchan = rerollProps.Kyouchan or player:GetPlayerType() == wakaba.Enums.Players.ANNA or player:HasCollectible(wakaba.Enums.Collectibles.KYOUTAROU_LOVER)
 			if pData.wakaba and pData.wakaba.eatheartused then
 				rerollProps.eatHeartUsed = true
 				rerollProps.eatHeartQuality = math.max((rerollProps.eatHeartQuality or 0), (pData.wakaba.eatheartquality or 0))
@@ -274,6 +284,10 @@ wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL_BLACKLIST, function
 			elseif rerollProps.NekoFigure and wakaba.G:GetRoom():GetType() == RoomType.ROOM_ULTRASECRET then
 				if quality < 3 then
 					--wakaba.Log("Blacklisted item", selected, "from neko figure")
+					return true
+				end
+			elseif rerollProps.Kyouchan then
+				if quality ~= wakaba.state.annaquality then
 					return true
 				end
 			elseif not rerollProps.eatHeartUsed and rerollProps.WakabaNemesis and not rerollProps.WakabaBlessing and not rerollProps.SacredOrb then

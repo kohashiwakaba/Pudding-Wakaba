@@ -966,6 +966,7 @@ do -- Items loader
 	include('wakaba_src.items.0016_rabbeyward')
 	include('wakaba_src.items.0018_azurerir')
 	include('wakaba_src.items.1001_eatheart')
+	include('wakaba_src.items.0035_kyoulover')
 
 	include('wakaba_src.items.1002_bookofforgotten')
 	include('wakaba_src.items.1003_dcupicecream')
@@ -1139,6 +1140,7 @@ do -- Characters loader
 	include('wakaba_src.characters.richer_b')
 	include('wakaba_src.characters.rira')
 	include('wakaba_src.characters.rira_b')
+	include('wakaba_src.characters.anna')
 end
 
 do -- Core functions loader

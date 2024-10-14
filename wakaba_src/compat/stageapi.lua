@@ -54,4 +54,9 @@ wakaba:RegisterPatch(0, "StageAPI", function() return (StageAPI ~= nil) end, fun
 		Portrait = "gfx/ui/stage/RiraPortrait_b.png",
 		NoShake = true,
 	})
+	StageAPI.AddPlayerGraphicsInfo(wakaba.Enums.Players.ANNA, {
+		Name = "gfx/ui/boss/playername_anna.png",
+		Portrait = "gfx/ui/stage/AnnaPortrait.png",
+		NoShake = true,
+	})
 end)

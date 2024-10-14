@@ -179,8 +179,8 @@
 
 	<!-- 야마다 안나 - 내마위 -->
 	<player name="Anna" costume="52" hidden="true"
-	hp="6"  birthright="???"
-	portrait="AnnaPortrait_b.png"
+	hp="6"  birthright="Lover's Link"
+	portrait="AnnaPortrait.png"
 	nameimage="playername_anna.png"
 	skin="character_anna.png" skinColor="-1" costumeSuffix="anna"
 	nomarks="true"

@@ -70,7 +70,7 @@ end
 ---@param player EntityPlayer
 ---@param activeSlot ActiveSlot
 function wakaba:tryDetectChargeChange(familiar, player, activeSlot)
-	if not activeSlot then return end
+	if not activeSlot or activeSlot == -1 then return end
 	local playerIndex = isc:getPlayerIndex(player)
 	local activeItem = player:GetActiveItem(activeSlot)
 	if activeItem ~= 0 then

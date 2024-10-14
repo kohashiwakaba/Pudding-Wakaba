@@ -69,6 +69,7 @@ if EID then
 			[wakaba.Enums.Players.RICHER_B] = "RicherB",
 			[wakaba.Enums.Players.RIRA] = "Rira",
 			[wakaba.Enums.Players.RIRA_B] = "RiraB",
+			[wakaba.Enums.Players.ANNA] = "Anna",
 		}
 
 		function wakaba:getWakabaDesc(entries, id)

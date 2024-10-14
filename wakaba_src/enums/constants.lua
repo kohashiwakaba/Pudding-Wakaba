@@ -189,6 +189,11 @@ wakaba.Enums.Collectibles = {
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
 	KYOUTAROU_LOVER = Isaac.GetItemIdByName("Kyoutarou Lover"),
+	ANNA_RIBBON_0 = Isaac.GetItemIdByName("Anna Ribbon"),
+	ANNA_RIBBON_1 = Isaac.GetItemIdByName("Anna Ribbon "),
+	ANNA_RIBBON_2 = Isaac.GetItemIdByName("Anna Ribbon  "),
+	ANNA_RIBBON_3 = Isaac.GetItemIdByName("Anna Ribbon   "),
+	ANNA_RIBBON_4 = Isaac.GetItemIdByName("Anna Ribbon    "),
 
 }
 
@@ -205,7 +210,7 @@ wakaba.Enums.Familiars = {
 	LIL_RICHER = Isaac.GetEntityVariantByName("Lil Richer"),
 	LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
 	CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
-
+	LIL_KYOUTAROU = Isaac.GetEntityVariantByName("Lil Kyoutarou"),
 }
 
 -- 와카바 모드 장신구

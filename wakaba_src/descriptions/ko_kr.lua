@@ -157,7 +157,7 @@ wakaba.descriptions[desclang].characters = {
 		detailedDesc = "야마다 안나는 누리오 작품의 {{ColorLime}}내 마음의 위험한 녀석{{CR}}의 주인공입니다."
 		.. "#{{Collectible402}} 신경쓰이던 남학생인 쿄타로와 무척이나 꽁냥거려 주위를 혼란에 빠트립니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.KYOUTAROU_LOVER.."}} 고유 능력 : 쿄타로 러버"
-		--.. "#"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.KYOUTAROU_LOVER.."}} 지정된 등급의 아이템 획득 시 등급이 맞지 않는 다른 아이템은 등급이 일치하도록 바뀝니다."
 		.. "#{{WakabaModLunatic}} 와카바 모드의 일부 아이템 효과가 하향됩니다."
 		.. "",
 		birthright = "{{Quality0}}등급 아이템이 등장하지 않습니다.#{{SpeedSmall}} 획득한 아이템 수만큼 이동속도 +0.003",
@@ -1405,9 +1405,9 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.KYOUTAROU_LOVER] = {
 		itemName = "쿄타로 러버",
 		description = ""
+		.. "#{{BleedingOut}} 공격하는 방향으로 3.5의 출혈 피해를 주는 눈물을 발사합니다."
 		.. "#{{Collectible402}} 등장 아이템의 방 배열 구분이 사라집니다."
-		.. "#특정 등급의 아이템만 등장합니다."
-		.. "#아이템 획득 시 등장하는 아이템의 등급이 바뀝니다."
+		.. "#특정 등급의 아이템만 등장하며 아이템 획득 시 등장하는 아이템의 등급이 바뀝니다."
 		.. "#{{Blank}} ({{Quality0}} > {{Quality1}} > {{Quality2}} > {{Quality3}} > {{Quality4}} > {{Quality0}} ...)"
 		.. "{{CR}}",
 		queueDesc = "보기보다 믿음직",
@@ -2275,6 +2275,13 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "! 경고 !",
 	},
+	--[[ [wakaba.Enums.Trinkets.SHIELD_KILLER] = {
+		itemName = "보호막 제거기",
+		description = ""
+		.. "Book of Shadows 계열의 보호막을 제거합니다."
+		.. "{{CR}}",
+		queueDesc = "튜닝의 끝은 순정",
+	}, ]]
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {
