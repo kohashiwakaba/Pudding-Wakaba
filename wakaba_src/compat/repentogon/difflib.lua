@@ -72,6 +72,8 @@ wakaba:AddPriorityCallback("DIFFLIB_MC_PRE_ADD_AFTERBIRTH_DIFFICULTIES", 1, func
 	end
 end)
 
+local keyPressFrame = 0
+
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_GambleRun(player)
 	if not DifficultyManager or DifficultyManager.GetDifficulty() ~= "Gamble" then return end
@@ -92,17 +94,22 @@ function wakaba:PlayerUpdate_GambleRun(player)
 	player:GetData().w_lastGambleCount = nil
 
 	local shift = 0
-	if Input.IsButtonTriggered(extraLeft, 0)
-		or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
-	then
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_ETERNAL_D6, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
-		return
-	end
-	if Input.IsButtonTriggered(extraRight, 0)
-		or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
-	then
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_CROOKED_PENNY, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
-		return
+	local currFrame = wakaba.G:GetFrameCount()
+	if currFrame > keyPressFrame then
+		if Input.IsButtonTriggered(extraLeft, 0)
+			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
+		then
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_ETERNAL_D6, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
+			keyPressFrame = currFrame
+			return
+		end
+		if Input.IsButtonTriggered(extraRight, 0)
+			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
+		then
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_CROOKED_PENNY, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
+			keyPressFrame = currFrame
+			return
+		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_GambleRun)
