@@ -1212,9 +1212,12 @@ local noRecursion
 local didModifyDamage
 
 -- Evaluate Damage Amount
+
+---@param player EntityPlayer
 local function canModifyDamageAmount(player, flags, cooldown)
 	return (
 		(flags & DamageFlag.DAMAGE_NO_MODIFIERS == 0)
+		and not (player:IsCoopGhost())
 		and not (
 			flags ==
 			DamageFlag.DAMAGE_RED_HEARTS
@@ -1262,7 +1265,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, 
 				didModifyDamage = true
 
 				noRecursion = true
-				entity:TakeDamage(amount, flags, source, cooldown)
+				entity:ToPlayer():TakeDamage(amount, flags, source, cooldown)
 				noRecursion = false
 
 				return false
