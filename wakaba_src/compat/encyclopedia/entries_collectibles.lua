@@ -2182,6 +2182,68 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	},
   GOOMBELLA = {},
 
+	-- Anna items
+	ANNA_RIBBON_0 = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.05 Range"},
+			{str = "Gives random troll trinket"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Anna"},
+			{str = "- This item only appears when Quality 0 is not available."},
+		},
+	},
+
+	ANNA_RIBBON_1 = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.01 Speed"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Anna"},
+			{str = "- This item only appears when Quality 1 is not available."},
+		},
+	},
+
+	ANNA_RIBBON_2 = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.1 Luck"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Anna"},
+			{str = "- This item only appears when Quality 2 is not available."},
+		},
+	},
+
+	ANNA_RIBBON_3 = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.01 Tears"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Anna"},
+			{str = "- This item only appears when Quality 3 is not available."},
+		},
+	},
+
+	ANNA_RIBBON_4 = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.02 Damage"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Anna"},
+			{str = "- This item only appears when Quality 4 is not available."},
+		},
+	},
+
 	-- Final items
 
   WAKABAS_CURFEW = {

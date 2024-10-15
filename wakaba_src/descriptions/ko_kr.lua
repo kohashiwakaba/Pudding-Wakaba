@@ -1412,6 +1412,42 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "보기보다 믿음직",
 	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_0] = {
+		itemName = "안나 리본",
+		description = ""
+		.. "#↑ {{RangeSmall}}사거리 +0.05"
+		.. "#!!! 랜덤 부정 효과를 발동합니다."
+		.. "{{CR}}",
+		queueDesc = "쿄타로의 맛이 나",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_1] = {
+		itemName = "안나 리본",
+		description = ""
+		.. "#↑ {{SpeedSmall}}이동속도 +0.01"
+		.. "{{CR}}",
+		queueDesc = "쿄타로의 맛이 나",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_2] = {
+		itemName = "안나 리본",
+		description = ""
+		.. "#↑ {{LuckSmall}}행운 +0.1"
+		.. "{{CR}}",
+		queueDesc = "쿄타로의 맛이 나",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_3] = {
+		itemName = "안나 리본",
+		description = ""
+		.. "#↑ {{TearsSmall}}연사 +0.1"
+		.. "{{CR}}",
+		queueDesc = "쿄타로의 맛이 나",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_4] = {
+		itemName = "안나 리본",
+		description = ""
+		.. "#↑ {{DamageSmall}}공격력 +0.2"
+		.. "{{CR}}",
+		queueDesc = "쿄타로의 맛이 나",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

@@ -1319,6 +1319,52 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "Shift your destiny",
 	},
+	[wakaba.Enums.Collectibles.KYOUTAROU_LOVER] = {
+		itemName = "Kyoutarou Lover",
+		description = ""
+		.. "#{{Collectible402}} All items are chosen from random item pools"
+		.. "#Only certain of Quality items can be spawn"
+		.. "#Getting an item changes next Quality that can be spawned"
+		.. "#{{Blank}} ({{Quality0}} > {{Quality1}} > {{Quality2}} > {{Quality3}} > {{Quality4}} > {{Quality0}} ...)"
+		.. "{{CR}}",
+		queueDesc = "More promising than it seems",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_0] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Range}} +0.05 Range"
+		.. "#!!! Gives random negative effect"
+		.. "{{CR}}",
+		queueDesc = "Tastes like Kyoutarou",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_1] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Speed}} +0.01 Speed"
+		.. "{{CR}}",
+		queueDesc = "Tastes like Kyoutarou",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_2] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Luck}} +0.1 Luck"
+		.. "{{CR}}",
+		queueDesc = "Tastes like Kyoutarou",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_3] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Tears}} +0.1 Tears"
+		.. "{{CR}}",
+		queueDesc = "Tastes like Kyoutarou",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_4] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Damage}} +0.2 Damage"
+		.. "{{CR}}",
+		queueDesc = "Tastes like Kyoutarou",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
 		description = ""

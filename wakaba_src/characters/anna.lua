@@ -69,6 +69,48 @@ end
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onAnnaCache)
 
+
+
+function wakaba:Cache_AnnaRibbon(player, cacheFlag)
+	if cacheFlag == CacheFlag.CACHE_RANGE then
+		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_0)
+		player.TearRange = player.TearRange + (num * 2)
+	end
+	if cacheFlag == CacheFlag.CACHE_SPEED then
+		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_1)
+		player.MoveSpeed = player.MoveSpeed + (num * 0.01)
+	end
+	if cacheFlag == CacheFlag.CACHE_LUCK then
+		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_2)
+		player.Luck = player.Luck + (num * 0.1)
+	end
+	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_3)
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (0.1 * num * wakaba:getEstimatedTearsMult(player)))
+	end
+	if cacheFlag == CacheFlag.CACHE_DAMAGE then
+		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_4)
+		player.Damage = player.Damage + (num * 0.2 * wakaba:getEstimatedDamageMult(player))
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_AnnaRibbon)
+
+local cachedCursedTrinketArray
+function wakaba:PostGetCollectible_AnnaRibbon(player, item)
+	if item == wakaba.Enums.Collectibles.ANNA_RIBBON_0 then
+		if not cachedCursedTrinketArray then
+			cachedCursedTrinketArray = {}
+			for c, _ in pairs(wakaba.Enums.CursedTrinketsValues) do
+				table.insert(cachedCursedTrinketArray, c)
+			end
+		end
+		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.ANNA_RIBBON_0)
+		local trinket = cachedCursedTrinketArray[rng:RandomInt(#cachedCursedTrinketArray) + 1]
+		wakaba:AddSmeltedTrinket(player, trinket, true)
+	end
+end
+wakaba:AddCallback(wakaba.Callback.POST_GET_COLLECTIBLE, wakaba.PostGetCollectible_AnnaRibbon)
+
 function wakaba:AfterAnnaInit(player)
 	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then

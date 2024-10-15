@@ -1300,7 +1300,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = "{{ArrowGrayRight}} One of effects while held:"
 		.. "#↑ {{Damage}} +2 Damage"
 		.. "#↑ {{Tears}} +1 Fire rate"
-		.. "#↑ {{Range}} +0.15 Speed"
+		.. "#↑ {{Speed}} +0.15 Speed"
 		.. "#↑ {{Luck}} +2 Luck"
 		.. "#On use, or entering new room changes to next effect respectively"
 		.. "{{CR}}",
@@ -1335,6 +1335,37 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Only certain of Quality items can be spawn"
 		.. "#Getting an item changes next Quality that can be spawned"
 		.. "#{{Blank}} ({{Quality0}} > {{Quality1}} > {{Quality2}} > {{Quality3}} > {{Quality4}} > {{Quality0}} ...)"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_0] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Range}} +0.05 Range"
+		.. "#!!! Gives random negative effect"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_1] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Speed}} +0.01 Speed"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_2] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Luck}} +0.1 Luck"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_3] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Tears}} +0.1 Tears"
+		.. "{{CR}}",
+	},
+	[wakaba.Enums.Collectibles.ANNA_RIBBON_4] = {
+		itemName = "Anna Ribbon",
+		description = ""
+		.. "#↑ {{Damage}} +0.2 Damage"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {

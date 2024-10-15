@@ -90,30 +90,7 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 
 		wakaba:BulkAppend(wakaba.Blacklists.AquaTrinkets, mod.CursedTrinketPool)
 
-		local cursedTrinkets = {
-			[wakaba.Enums.Trinkets.CORRUPTED_CLOVER] = 7,
-			[wakaba.Enums.Trinkets.DARK_PENDANT] = 5,
-			[wakaba.Enums.Trinkets.BROKEN_NECKLACE] = 10,
-			[wakaba.Enums.Trinkets.LEAF_NEEDLE] = 7,
-			[wakaba.Enums.Trinkets.RICHERS_HAIR] = 10,
-			[wakaba.Enums.Trinkets.RIRAS_HAIR] = 10,
-			[wakaba.Enums.Trinkets.SPY_EYE] = 5,
-			[wakaba.Enums.Trinkets.FADED_MARK] = 5,
-			[wakaba.Enums.Trinkets.NEVERLASTING_BUNNY] = 5,
-			[wakaba.Enums.Trinkets.RIBBON_CAGE] = 7,
-			[wakaba.Enums.Trinkets.RIRAS_WORST_NIGHTMARE] = 10,
-			[wakaba.Enums.Trinkets.MASKED_SHOVEL] = 7,
-			[wakaba.Enums.Trinkets.BROKEN_WATCH_2] = 5,
-			[wakaba.Enums.Trinkets.ROUND_AND_ROUND] = 5,
-			[wakaba.Enums.Trinkets.GEHENNA_ROCK] = 7,
-			[wakaba.Enums.Trinkets.BROKEN_MURASAME] = 7,
-			[wakaba.Enums.Trinkets.LUNATIC_CRYSTAL] = 5,
-			[wakaba.Enums.Trinkets.TORN_PAPER_2] = 10,
-			[wakaba.Enums.Trinkets.MINI_TORIZO] = 10,
-			[wakaba.Enums.Trinkets.GRENADE_D20] = 7,
-			[wakaba.Enums.Trinkets.WAKABA_SIREN] = 3,
-		}
-		for trinketID, baseSellValue in pairs(cursedTrinkets) do
+		for trinketID, baseSellValue in pairs(wakaba.Enums.CursedTrinketsValues) do
 			--mod.AddCursedTrinket(trinketID, baseSellValue)
 		end
 		local trinketsToCurse = {
