@@ -46,7 +46,7 @@ function wakaba:PreReroll_KyoutarouLover(itemPoolType, decrease, seed, loopCount
 	if loopCount <= 1 and not wakaba.fullreroll and wakaba:anyPlayerHasKyouchan() then
 		wakaba.Log("Hijack pool from kyou lover - pool " .. itemPoolType .. " / seed " ..seed .. " / loopCount " .. loopCount .. " / targetQuality " .. wakaba.state.annaquality)
 		local targetDefault = wakaba.Enums.Collectibles["ANNA_RIBBON_"..wakaba.state.annaquality] or wakaba.Enums.Collectibles.ANNA_RIBBON_0
-		return wakaba:getItemFromAnyPool(decrease, seed, targetDefault)
+		return wakaba:getItemFromAnyPool(false, seed, targetDefault)
 	end
 end
 wakaba:AddPriorityCallback(wakaba.Callback.PRE_WAKABA_REROLL, 0, wakaba.PreReroll_KyoutarouLover)
