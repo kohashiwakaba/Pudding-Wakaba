@@ -82,7 +82,7 @@ function wakaba:anyPlayerHasAzureRir()
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i-1)
 		hasAzureRir = hasAzureRir or (player.Variant == 0 and wakaba:hasAzureRir(player))
-		onlyTaintedRira = wakaba:IsLunatic() or (onlyTaintedRira and player:GetPlayerType() == wakaba.Enums.Players.RIRA_B)
+		onlyTaintedRira = onlyTaintedRira and player:GetPlayerType() == wakaba.Enums.Players.RIRA_B
 	end
 	return hasAzureRir, onlyTaintedRira
 end
