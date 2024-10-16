@@ -343,3 +343,12 @@ wakaba:AddCallback(ModCallbacks.MC_POST_COMPLETION_MARK_GET, function(_, complet
 	checkGroup[playerType] = nil
 end)
 
+wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function (_, isContinued)
+
+	local c = Isaac.GetItemConfig()
+	local extend = wakaba:getOptionValue("extendquality")
+	for id, q in pairs(wakaba.Enums.ExtendQuality) do
+		local item = c:GetCollectible(id)
+		item.Quality = extend and q or 4
+	end
+end)
