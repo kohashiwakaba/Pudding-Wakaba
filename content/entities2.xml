@@ -37,6 +37,14 @@
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
 
+	<entity anm2path="lilricher_maid.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Richer (Maid)" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="1724113">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
+	<entity anm2path="lilrira_maid.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Rira (Maid)" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="1724114">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
+
 	<!-- 4108 reserved for Lil Ciel -->
 
 	<!-- 4109 reserved for Lil Koron -->
@@ -48,6 +56,10 @@
 	<!-- 4111 Listed for Murasame -->
 
 	<!-- 4112 Listed for Lunar Damocles -->
+
+	<!-- 4113 Listed for Lil Richer Maid -->
+
+	<!-- 4114 Listed for Lil Rira Maid -->
 
 	<entity anm2path="lilkyou.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Lil Kyoutarou" numGridCollisionPoints="12" shadowSize="11" stageHP="0" tags="nocharm" variant="1724201">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />

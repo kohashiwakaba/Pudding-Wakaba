@@ -146,6 +146,8 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 				player:GetEffects():AddCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET)
 				data.wakaba.lastmaidplayertype = player:GetPlayerType()
 				data.wakaba.lastmaidpocketitem = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
+				data.wakaba.sendmaidricher = true
+				data.wakaba.sendmaidrira = true
 			else
 				SFXManager():Play(SoundEffect.SOUND_BOSS2INTRO_ERRORBUZZ)
 			end
@@ -163,6 +165,20 @@ function wakaba:PlayerUpdate_MaidDuet(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_MaidDuet)
 
+function wakaba:Cache_MaidDuet(player, cacheFlag)
+	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
+		local count = 0
+		local hasmaid = player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET)
+		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.MAID_DUET)
+		if hasmaid or efcount > 0 then
+			count = 1
+		end
+		player:CheckFamiliar(wakaba.Enums.Familiars.MAID_RICHER, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.MAID_DUET))
+		player:CheckFamiliar(wakaba.Enums.Familiars.MAID_RIRA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.MAID_DUET))
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_MaidDuet)
+
 -- TODO 패밀리어 기능으로 교체
 function wakaba:RoomClear_MaidDuet()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
@@ -173,6 +189,28 @@ function wakaba:RoomClear_MaidDuet()
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_MaidDuet)
 wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_MaidDuet)
+
+function wakaba:FamiliarUpdate_MaidDuet(familiar)
+	local fType = familiar.Variant
+	local fData = familiar:GetData()
+	local player = familiar.Player
+	local move_dir = player:GetMovementDirection()
+	local sprite = familiar:GetSprite()
+	local player_fire_direction = player:GetFireDirection()
+	local autoaim = false
+	if fType == wakaba.Enums.Familiars.MAID_RICHER and player:GetData().wakaba.sendmaidricher then
+		player:GetData().wakaba.sendmaidricher = nil
+		familiar.SubType = familiar.SubType == 0 and 1 or 0
+		--familiar:Update()
+	end
+	if fType == wakaba.Enums.Familiars.MAID_RIRA and player:GetData().wakaba.sendmaidrira then
+		player:GetData().wakaba.sendmaidrira = nil
+		familiar.SubType = familiar.SubType == 0 and 1 or 0
+		--familiar:Update()
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_MaidDuet, wakaba.Enums.Familiars.MAID_RICHER)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_MaidDuet, wakaba.Enums.Familiars.MAID_RIRA)
 
 if EID then
 	local HotkeyToString = {}

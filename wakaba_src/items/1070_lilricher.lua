@@ -138,6 +138,7 @@ local function fireTearRicher(player, familiar, vector, rotation)
 end
 
 function wakaba:FamiliarInit_LilRicher(familiar)
+	local fType = familiar.Variant
 	familiar.IsFollower = true
 	familiar:AddToFollowers()
 
@@ -147,6 +148,7 @@ function wakaba:FamiliarInit_LilRicher(familiar)
 end
 
 function wakaba:FamiliarUpdate_LilRicher(familiar)
+	local fType = familiar.Variant
 	local fData = familiar:GetData()
 	local player = familiar.Player
 	local move_dir = player:GetMovementDirection()
@@ -154,17 +156,19 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
 	local mark = wakaba:GetMarkedTarget(player)
+	local hasRicher = fType == wakaba.Enums.Familiars.LIL_RICHER or player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RICHER)
+	local hasRibbon = wakaba:hasRibbon(player, true)
 
 	local playerIndex = isc:getPlayerIndex(player)
 	richer_saved_recipies.run[playerIndex] = richerCharges[playerIndex] or 0
 	local limit = c.LIL_RICHER_BASIC_CHARGES + (player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RICHER) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)) * c.LIL_RICHER_EXTRA_CHARGES
 
-	if familiar.RoomClearCount > 0 then
+	if (hasRicher or hasRibbon) and familiar.RoomClearCount > 0 then
 		wakaba:addRabbitCharge(player, familiar.RoomClearCount)
 		familiar.RoomClearCount = 0
 	end
 
-	if wakaba:getRabbitCharges(player) > 0 then
+	if (hasRicher or hasRibbon) and wakaba:getRabbitCharges(player) > 0 then
 		for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE)) do
 			local evals = callback.Function(callback.Mod, player)
 			if evals then
@@ -179,8 +183,8 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 			familiar.FireCooldown = 0
 		end
 	else
-		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
-		if familiar.FireCooldown <= 0 then
+		sprite:Play(hasRicher and wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction] or wakaba.DIRECTION_FLOAT_ANIM[move_dir], false)
+		if hasRicher and familiar.FireCooldown <= 0 then
 			local tear_vector = wakaba.DIRECTION_VECTOR[player_fire_direction]:Normalized()
 			sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
 			if not autoaim and mark then
@@ -197,7 +201,26 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 		end
 	end
 	familiar.FireCooldown = familiar.FireCooldown - 1
-	if player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	if fType == wakaba.Enums.Familiars.MAID_RICHER then
+		familiar:RemoveFromFollowers()
+		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
+
+		local dirVec = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
+		if player:AreControlsEnabled() and
+		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+			or Input.IsMouseBtnPressed(0)
+		) then
+			dirVec = player:GetAimDirection()
+		end
+		dirVec = dirVec:Rotated(familiar.SubType == 1 and 90 or -90)
+		local playerpos = player.Position
+		local oldpos = familiar.Position
+		local newpos = playerpos + dirVec:Resized(32) + Vector(0, 2)
+		familiar.Velocity = (newpos - oldpos):Normalized():Resized((newpos - oldpos):Length() * 0.4)
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
 
@@ -222,8 +245,10 @@ function wakaba:FamiliarUpdate_LilRicher(familiar)
 end
 
 function wakaba:FamiliarRender_LilRicher(familiar)
+	local fType = familiar.Variant
   if wakaba.G:GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFLECT then return end
 	local player = familiar.Player
+	local hasRicher = fType == wakaba.Enums.Familiars.LIL_RICHER or player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RICHER)
 
 	local playerIndex = isc:getPlayerIndex(player)
 	richerCharges[playerIndex] = richerCharges[playerIndex] or 0
@@ -234,7 +259,11 @@ function wakaba:FamiliarRender_LilRicher(familiar)
 		local center = true
 		local charges = richerCharges[playerIndex]
 		local isMirror = wakaba.G:GetRoom():IsMirrorWorld()
-		if wakaba.state.options.leftchargebardigits then
+		if fType == wakaba.Enums.Familiars.MAID_RICHER then
+			fpos = Isaac.WorldToScreen(familiar.Position) + Vector(1, -44)
+			boxwidth = 1
+			center = false
+		elseif fType == wakaba.Enums.Familiars.LIL_RICHER and wakaba.state.options.leftchargebardigits then
 			fpos = Isaac.WorldToScreen(familiar.Position) + Vector(-18, -11) + Vector(8, -8)
 			boxwidth = 1
 			center = false
@@ -247,8 +276,9 @@ function wakaba:Cache_LilRicher(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
 		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER)
+		local hasmaid = player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET)
 		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RICHER)
-		if hasitem or efcount > 0 then
+		if not hasmaid and (hasitem or efcount > 0) then
 			count = 1
 		end
 		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_RICHER, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_RICHER))
@@ -259,3 +289,6 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRicher)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
 wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_LilRicher, wakaba.Enums.Familiars.LIL_RICHER)
+
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRicher, wakaba.Enums.Familiars.MAID_RICHER)
+wakaba:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, wakaba.FamiliarRender_LilRicher, wakaba.Enums.Familiars.MAID_RICHER)

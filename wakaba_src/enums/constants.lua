@@ -211,6 +211,10 @@ wakaba.Enums.Familiars = {
 	LIL_RIRA = Isaac.GetEntityVariantByName("Lil Rira"),
 	CHIMAKI = Isaac.GetEntityVariantByName("Chimaki"),
 	LIL_KYOUTAROU = Isaac.GetEntityVariantByName("Lil Kyoutarou"),
+	LIL_RICHER_MAID = Isaac.GetEntityVariantByName("Lil Richer (Maid)"),
+	LIL_RIRA_MAID = Isaac.GetEntityVariantByName("Lil Rira (Maid)"),
+	MAID_RICHER = Isaac.GetEntityVariantByName("Lil Richer (Maid)"),
+	MAID_RIRA = Isaac.GetEntityVariantByName("Lil Rira (Maid)"),
 }
 
 -- 와카바 모드 장신구

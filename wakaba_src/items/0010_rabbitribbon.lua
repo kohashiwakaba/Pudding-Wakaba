@@ -14,13 +14,13 @@ local ribbon_data = {
 wakaba:saveDataManager("Rabbit Ribbon", ribbon_data)
 wakaba.HiddenItemManager:HideCostumes("WAKABA_RABBIT_RIBBON")
 
-function wakaba:hasRibbon(player)
+function wakaba:hasRibbon(player, excludeTainted)
 	if not player then
 		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then
 		return true
-	elseif player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+	elseif player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not excludeTainted then
 		return true
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON) then
 		return true
@@ -336,6 +336,7 @@ function wakaba:ShouldChargeRabbitRibbon(player)
 	return wakaba:hasRibbon(player)
 	and not (player:GetPlayerType() == wakaba.Enums.Players.RICHER_B and not player:HasCollectible(wakaba.Enums.Collectibles.RABBIT_RIBBON))
 	and not (player:HasCollectible(wakaba.Enums.Collectibles.LIL_RICHER) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RICHER))
+	and not (player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MAID_DUET))
 end
 
 function wakaba:RoomClear_RabbitRibbon(rng, pos)

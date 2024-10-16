@@ -107,6 +107,7 @@ local function fireTearRira(player, familiar, vector, rotation)
 end
 
 function wakaba:FamiliarInit_LilRira(familiar)
+	local fType = familiar.Variant
 	familiar.IsFollower = true
 	familiar:AddToFollowers()
 
@@ -117,25 +118,29 @@ end
 
 ---@param familiar EntityFamiliar
 function wakaba:FamiliarUpdate_LilRira(familiar)
+	local fType = familiar.Variant
 	local fData = familiar:GetData()
 	local player = familiar.Player
 	local move_dir = player:GetMovementDirection()
 	local sprite = familiar:GetSprite()
 	local player_fire_direction = player:GetFireDirection()
 	local autoaim = false
+	local hasRira = fType == wakaba.Enums.Familiars.LIL_RIRA or player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA) or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.LIL_RIRA)
 
 	local lastSlot = wakaba:getPlayerDataEntry(player, "LilRiraLastSlot")
 	if lastSlot then
 		if player:NeedsCharge(lastSlot) then
 			local lastItem = wakaba:getPlayerDataEntry(player, "LilRiraLastItem")
 			wakaba.Log("Lil Rira charge usage detected from slot", lastSlot, ", item", lastItem, "! adding to damage...")
-			wakaba:tryDetectChargeChange(familiar, player, lastSlot)
+			if hasRira then
+				wakaba:tryDetectChargeChange(familiar, player, lastSlot)
+			end
 			wakaba:removePlayerDataEntry(player, "LilRiraLastItem")
 			wakaba:removePlayerDataEntry(player, "LilRiraLastSlot")
 		end
 	end
 
-	if familiar.Coins > 0 then
+	if hasRira and familiar.Coins > 0 then
 		local timedCharges = familiar.Coins
 		local dmgToAdd = timedCharges / 1800
 		wakaba.Log("Lil Rira adding damage from timed active :", dmgToAdd)
@@ -147,7 +152,7 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 		familiar.Coins = 0
 	end
 
-	if familiar.Hearts > 0 then
+	if hasRira and familiar.Hearts > 0 then
 		local charges = familiar.Hearts
 		wakaba.Log("Lil Rira adding damage from normal active :", charges)
 		--riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + charges
@@ -164,8 +169,8 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 			familiar.FireCooldown = 0
 		end
 	else
-		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
-		if familiar.FireCooldown <= 0 then
+		sprite:Play(hasRira and wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction] or wakaba.DIRECTION_FLOAT_ANIM[move_dir], false)
+		if hasRira and familiar.FireCooldown <= 0 then
 			local tear_vector = wakaba.DIRECTION_VECTOR[player_fire_direction]:Normalized()
 			sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
 			if not autoaim and mark then
@@ -182,7 +187,26 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 		end
 	end
 	familiar.FireCooldown = familiar.FireCooldown - 1
-	if player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	if fType == wakaba.Enums.Familiars.MAID_RIRA then
+		familiar:RemoveFromFollowers()
+		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
+
+		local dirVec = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
+		if player:AreControlsEnabled() and
+		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
+			or Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+			or Input.IsMouseBtnPressed(0)
+		) then
+			dirVec = player:GetAimDirection()
+		end
+		dirVec = dirVec:Rotated(familiar.SubType == 1 and -90 or 90)
+		local playerpos = player.Position
+		local oldpos = familiar.Position
+		local newpos = playerpos + dirVec:Resized(32) + Vector(0, 2)
+		familiar.Velocity = (newpos - oldpos):Normalized():Resized((newpos - oldpos):Length() * 0.4)
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
 
@@ -218,8 +242,9 @@ function wakaba:Cache_LilRira(player, cacheFlag)
 	elseif cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
 		local hasitem = player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+		local hasmaid = player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET)
 		local efcount = player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
-		if hasitem or efcount > 0 then
+		if not hasmaid and (hasitem or efcount > 0) then
 			count = 1
 		end
 		player:CheckFamiliar(wakaba.Enums.Familiars.LIL_RIRA, count, player:GetCollectibleRNG(wakaba.Enums.Collectibles.LIL_RIRA))
@@ -229,3 +254,4 @@ end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRira)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
+wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.MAID_RIRA)
