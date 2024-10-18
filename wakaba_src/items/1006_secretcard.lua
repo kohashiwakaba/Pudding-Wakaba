@@ -4,12 +4,12 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:PreRoomClear_SecretCard()
 	if wakaba.G:IsGreedMode() then return end
 	local hasSecretCard = false
-  for i = 1, wakaba.G:GetNumPlayers() do
-  	local player = Isaac.GetPlayer(i - 1)
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD) then
 			hasSecretCard = true
 		end
-  end
+	end
 
 	if hasSecretCard then
 		for i = 0, 169 do
@@ -23,12 +23,12 @@ end
 
 function wakaba:RoomClear_SecretCard()
 	local extra = wakaba.G:GetLevel():GetStateFlag(LevelStateFlag.STATE_DAMAGED) and 0 or 1
-  for i = 1, wakaba.G:GetNumPlayers() do
-    local player = Isaac.GetPlayer(i - 1)
+	for i = 1, wakaba.G:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD) then
 			player:AddCoins(extra + player:GetCollectibleNum(wakaba.Enums.Collectibles.SECRET_CARD))
 		end
-  end
+	end
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.PreRoomClear_SecretCard)
