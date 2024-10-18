@@ -545,7 +545,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Luck}} 10% chance at 117 Luck, 100% chance for bosses"
 		.. "#!!! {{ColorSilver}}Some bosses are not affected like Dogma and Mother due to potential softlocks{{ColorReset}}"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		LuckFormula = function(luck) return wakaba:StackChance(0.0075 + wakaba:LuckBonus(luck, 117, 0.1 - 0.0075), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
 		itemName = "New Year's Eve Bomb",
@@ -884,7 +884,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#20% chance to take extra damage for enemies"
 		.. "#{{Luck}} 60% chance at 43 Luck"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		LuckFormula = function(luck) return wakaba:StackChance(0.2 + wakaba:LuckBonus(luck, 43, 0.6 - 0.2), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.ADVANCED_CRYSTAL] = {
 		itemName = "Advanced Crystal",
@@ -894,7 +894,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#5% chance to take armor-piercing damage for enemies"
 		.. "#{{Luck}} 43% chance at 55 Luck"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		LuckFormula = function(luck) return wakaba:StackChance(0.05 + wakaba:LuckBonus(luck, 55, 0.43 - 0.05), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.MYSTIC_CRYSTAL] = {
 		itemName = "Mystic Crystal",
@@ -968,7 +968,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Luck}} 100% chance at 29 Luck"
 		.. "#!!! Some doors may lead to {{ErrorRoom}}I AM ERROR rooms!"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		LuckFormula = function(luck) return wakaba:StackChance(0.46 + wakaba:LuckBonus(luck, 29, 1 - 0.46), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "Question Block",
@@ -1200,6 +1200,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RIRAS_SWIMSUIT] = {
 		itemName = "Rira's Swimsuit",
 		description = "{{WakabaAqua}} 10% chance to shoot tears that aquafy enemies#{{Luck}} 100% chance at 38 Luck#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage#{{WakabaAqua}} Aqua attacks instakill stone enemies",
+		LuckFormula = function(luck) return wakaba:StackChance(0.1 + wakaba:LuckBonus(luck, 38, 1 - 0.1), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "Rira's Bandage",
@@ -1218,6 +1219,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Zip explosion does not harm Isaac"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Zip explosions no longer inherit Isaac's bomb synergies"
 		.. "{{CR}}",
+		LuckFormula = function(luck) return wakaba:StackChance(0.1 + wakaba:LuckBonus(luck, 16, 1 - 0.1), 1) * 100 end
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "Sakura Mont Blanc",
@@ -1852,6 +1854,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#{{Luck}} 100% chance at 34 Luck"
 		.. "#Activation will be delayed in cleared rooms"
 		.. "{{CR}}",
+		LuckFormula = function(luck) return wakaba:StackChance(0.16 + wakaba:LuckBonus(luck, 34, 1 - 0.16), 1) * 100 end
 	},
 
 

@@ -328,6 +328,9 @@ if EID then
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("collectible", itemID, itemdesc.transformations)
 					end
+					if lang == "en_us" and itemdesc.LuckFormula then
+						EID.LuckFormulas["5.100."..itemID] = itemdesc.LuckFormula
+					end
 					if itemdesc.carBattery then
 						EID.descriptions[lang].carBattery[itemID] = itemdesc.carBattery
 					end
@@ -354,6 +357,9 @@ if EID then
 					EID:addTrinket(itemID, desc, itemdesc.itemName, lang)
 					if lang == "en_us" and itemdesc.transformations then
 						EID:assignTransformation("trinket", itemID, itemdesc.transformations)
+					end
+					if lang == "en_us" and itemdesc.LuckFormula then
+						EID.LuckFormulas["5.350."..itemID] = itemdesc.LuckFormula
 					end
 				end
 				for itemID, appendText in pairs(wakabaDescTables.goldtrinkets) do
