@@ -466,8 +466,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "秘密卡",
 		description = ""
-			.. "#↑ {{Coin}} +22 硬币"
 			.. "#每清理一个房间就会生成{{Coin}} 硬币"
+			.. "#{{Coin}} +1 extra coin if Isaac did not take damage for current floor" -- TODO
 			.. "#{{Shop}} 阻止贪婪/超级贪婪出现在商店里"
 			.. "{{CR}}",
 		queueDesc = "堆叠硬币&成为秘密朋友",

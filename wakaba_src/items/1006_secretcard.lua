@@ -1,23 +1,15 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
-local enemycount = 0
 --LagCheck
 
 function wakaba:PreRoomClear_SecretCard()
+	if wakaba.G:IsGreedMode() then return end
 	local hasSecretCard = false
-	enemycount = 0
   for i = 1, wakaba.G:GetNumPlayers() do
   	local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD) then
 			hasSecretCard = true
 		end
-		local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.SECRET_CARD)
-  	if (wakaba.G.Difficulty ~= Difficulty.DIFFICULTY_HARD and wakaba.G:GetRoom():IsFirstVisit() and player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD)) or wakaba.G:IsGreedMode() then
-  	  enemycount = enemycount + rng:RandomInt(4) * player:GetCollectibleNum(wakaba.Enums.Collectibles.SECRET_CARD) + 1
-  	end
-
   end
-
-	if wakaba.G:IsGreedMode() then return end
 
 	if hasSecretCard then
 		for i = 0, 169 do
@@ -30,11 +22,11 @@ function wakaba:PreRoomClear_SecretCard()
 end
 
 function wakaba:RoomClear_SecretCard()
+	local extra = wakaba.G:GetLevel():GetStateFlag(LevelStateFlag.STATE_DAMAGED) and 0 or 1
   for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		if player:HasCollectible(wakaba.Enums.Collectibles.SECRET_CARD) then
-			player:AddCoins(enemycount + player:GetCollectibleNum(wakaba.Enums.Collectibles.SECRET_CARD))
-			enemycount = 0
+			player:AddCoins(extra + player:GetCollectibleNum(wakaba.Enums.Collectibles.SECRET_CARD))
 		end
   end
 end

@@ -519,8 +519,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "Secret Card",
 		description = ""
-		.. "#↑ {{Coin}} +22 Coins"
 		.. "#{{Coin}} Coins will be generated per room cleared"
+		.. "#{{Coin}} +1 extra coin if Isaac did not take damage for current floor"
 		.. "#{{Shop}} Prevents Greed / Super Greed to be spawned in Shops"
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",

@@ -1047,8 +1047,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 	SECRET_CARD = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "+22 Coins."},
 			{str = "Coins will be generated per room cleared."},
+			{str = "Extra coin will be generated if Isaac did not take damage for current floor"},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

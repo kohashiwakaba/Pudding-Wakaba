@@ -536,8 +536,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
 		itemName = "극비 카드",
 		description = ""
-		.. "#↑ {{Coin}}동전 +22"
-		.. "#방 클리어 시 랜덤한 개수의 동전이 쌓입니다."
+		.. "#{{Coin}} 방 클리어 시 동전이 1개씩 쌓입니다."
+		.. "#{{Coin}} 그 스테이지에서 피격되지 않았을 경우 추가 동전 +1"
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
 		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
