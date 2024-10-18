@@ -1273,11 +1273,7 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "사쿠라 몽블랑",
-		description = "{{WakabaAqua}} 적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.5, {{TearsSmall}}연사 +1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
-		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
-		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
-		.. "{{CR}}",
-		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}{{WakabaAqua}}적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.25, {{TearsSmall}}연사 +0.1 증가하며(최대 6회) 주변의 적을 침수시킵니다."
+		description = "{{WakabaAqua}} 적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.16, {{TearsSmall}}연사 +0.67 증가하며(최대 6회) 주변의 적을 침수시킵니다."
 		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",

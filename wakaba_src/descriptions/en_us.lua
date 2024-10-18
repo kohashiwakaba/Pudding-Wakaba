@@ -1222,16 +1222,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "Sakura Mont Blanc",
 		description = "For each enemy killed in the room:"
-		.. "#↑ {{Damage}} +0.5 Damage"
-		.. "#↑ {{Tears}} +1 Fire rate"
-		.. "#Caps at 6 kills"
-		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
-		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"
-		.. "#{{WakabaAqua}} Aqua attacks instakill stone enemies"
-		.. "{{CR}}",
-		lunatic = "For each enemy killed in the room:"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.25 Damage"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Tears}} +0.1 Fire rate"
+		.. "#↑ {{Damage}} +0.16 Damage"
+		.. "#↑ {{Tears}} +0.67 Fire rate"
 		.. "#Caps at 6 kills"
 		.. "#{{WakabaAqua}} Killed enemies aquafy nearby enemies"
 		.. "#{{WakabaAqua}} Aquafied enemies take less damage from red poop/fire/burn/posion, but more damage from laser/explosion/aqua damage"

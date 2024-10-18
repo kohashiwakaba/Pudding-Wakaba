@@ -1829,8 +1829,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Each time an enemy is killed, Isaac gains a damage, fire rate boost for the current room."},
-			{str = "- Each kill increases damage by 0.5, up to a maximum of 3 damage after 6 kills."},
-			{str = "- Each kill increases fire rate by 1, up to a maximum of 6 fire rate after 6 kills."},
+			{str = "- Each kill increases damage by 0.16, up to a maximum of 1 damage after 6 kills."},
+			{str = "- Each kill increases fire rate by 0.67, up to a maximum of 4 fire rate after 6 kills."},
 			{str = "Killed enemies also make nearby enemies aquafied."},
 			{str = "- Aquafied enemies take more damage from:"},
 			{str = "-- Laser, Explosions, Aqua tears"},
