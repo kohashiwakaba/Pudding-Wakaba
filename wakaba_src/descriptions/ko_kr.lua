@@ -189,14 +189,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
 		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
-		.. "#!!! {{Quality4}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
+		.. "#!!! {{Quality4}}/{{Quality5}}/{{Quality6}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}등급 아이템이 등장하지 않습니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}/{{Quality5}}/{{Quality6}}등급 아이템이 등장하지 않습니다."
 		.. "{{CR}}",
 		queueDesc = "천사 봉인 + 더 나빠진 운명",
 	},

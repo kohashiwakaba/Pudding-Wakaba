@@ -188,7 +188,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{DevilChance}} Prevents Angel room to be spawned"
 		.. "#↑ Armor-piercing tears"
 		.. "#{{Damage}} Picking up an item grants temporary +3.6 Damage"
-		.. "#↓ Prevents {{Quality4}} items from spawning, also reduces chances for {{Quality3}} items"
+		.. "#↓ Prevents {{Quality4}}/{{Quality5}}/{{Quality6}} items from spawning, also reduces chances for {{Quality3}} items"
 		.. "#↑ Prevents penalties from all damage taken"
 		.. "{{CR}}",
 		lunatic = ""
@@ -196,7 +196,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{DevilChance}} Prevents Angel room to be spawned"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
 		.. "#{{Damage}} Picking up an item grants temporary +3.6 Damage"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}} items from spawning"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}}/{{Quality5}}/{{Quality6}} items from spawning"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "{{CR}}",
 		transformations = EID.TRANSFORMATION.LEVIATHAN .. "",

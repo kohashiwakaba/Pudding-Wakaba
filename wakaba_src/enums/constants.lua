@@ -214,6 +214,7 @@ wakaba.Enums.ExtendQuality = {
 	[exq.CHIMAKI] = 5,
 	[exq.PRESTIGE_PASS] = 6,
 	[exq.MAID_DUET] = 6,
+	[exq.WAKABA_DUALITY] = 6,
 }
 
 -- 와카바 모드 패밀리어 : FamiliarVariant 위치에서 사용
