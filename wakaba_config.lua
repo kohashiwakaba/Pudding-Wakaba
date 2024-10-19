@@ -41,13 +41,6 @@ local config = {
 	taintedcloverchestchance = 5,
 
 	-- Shiori options
-	shiorimodes = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
-	shioridreams = false,
-	shiorikeychance = 50,
-	shioribombchance = 50,
-	shioriakasicbooks = 3,
-	shioriakasicminquality = 0,
-	shioriakasicmaxquality = 4,
 	vintagetriggerkey = Keyboard.KEY_9,
 
 	valutchance = 10,

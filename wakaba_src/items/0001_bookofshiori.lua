@@ -34,26 +34,9 @@ function wakaba:NewLevel_BookOfShiori()
 		for i = 1, wakaba.G:GetNumPlayers() do
 			local player = Isaac.GetPlayer(i - 1)
 			if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_SHIORI)then
-				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+				local books = wakaba:getBooks(player, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 				if #books < 1 then
-					books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_HARD_BOOK)
-				end
-				local selected = books[wakaba.RNG:RandomInt(#books) + 1]
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(room:GetGridPosition(102), 32.0), Vector.Zero, player)
-				table.insert(wakaba.runstate.shioridropped, selected)
-				wakaba.G:GetItemPool():RemoveCollectible(selected)
-			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI
-			and (wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_COLLECTOR and wakaba.G.TimeCounter > 0) then
-				local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
-				if #books < 1 then
-					books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_HARD_BOOK)
-				end
-				if wakaba.G.TimeCounter > 0 then
-					for i = #books, 1, -1 do
-						if wakaba:has_value(player:GetData().wakaba.books, books[i]) then
-							table.remove(books, i)
-						end
-					end
+					books = wakaba:getBooks(player, wakaba.bookstate.BOOKSHELF_HARD_BOOK)
 				end
 				local selected = books[wakaba.RNG:RandomInt(#books) + 1]
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, selected, Isaac.GetFreeNearPosition(room:GetGridPosition(102), 32.0), Vector.Zero, player)
@@ -73,7 +56,8 @@ function wakaba:RoomGen_BookOfShiori()
 	local level = wakaba.G:GetLevel()
 	if level:GetAbsoluteStage() == LevelStage.STAGE4_3 or level:GetAbsoluteStage() >= LevelStage.STAGE6 then return end
 	if #players == 0 then
-		if not fallbackPlayer or wakaba.runstate.currentshiorimode ~= wakaba.shiorimodes.SHIORI_COLLECTOR then
+		-- TODO
+		if --[[ not certain node is allocated ]] true then
 			return
 		end
 	end

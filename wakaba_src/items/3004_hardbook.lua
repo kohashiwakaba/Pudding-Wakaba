@@ -25,7 +25,7 @@ function wakaba:tryDropHardBook(player)
 		local newTrinketCount = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.HARD_BOOK)
 		local spawnedBooks = {}
 		for i = 1, (oldTrinketCount - newTrinketCount) do
-			local books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_HARD_BOOK)
+			local books = wakaba:getBooks(player, wakaba.bookstate.BOOKSHELF_HARD_BOOK)
 			local selected = books[player:GetTrinketRNG(wakaba.Enums.Trinkets.HARD_BOOK):RandomInt(#books) + 1]
 			while(wakaba:has_value(spawnedBooks, selected)) do
 				selected = books[player:GetTrinketRNG(wakaba.Enums.Trinkets.HARD_BOOK):RandomInt(#books) + 1]

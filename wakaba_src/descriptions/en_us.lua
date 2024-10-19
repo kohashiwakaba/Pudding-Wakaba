@@ -1362,6 +1362,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +0.2 Damage"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.PURIFIER] = {
+		itemName = "Purifier",
+		description = ""
+		.. "#{{Key}} Dissolves pedestal into keys"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""
@@ -1381,7 +1387,7 @@ wakaba.descriptions[desclang].collectibles = {
 		void = "Spawns {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card when voided",
 		carBattery = "No effect",
 	},
-	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
+	[wakaba.Enums.Collectibles.STICKY_NOTE] = {
 		itemName = "Eden's Sticky Note",
 		description = ""
 		.. "#!!! ONE TIME USE"
@@ -2968,7 +2974,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible721}} {{ColorRed}}Every time they take damage, all of their stats, items (passive and active), their trinket and their currently-held card or pill get re-rolled{{CR}}"
 		.. "#{{CurseBlind}} Starts with : ???"
 		.. "#{{CurseBlind}} Starts with : ???"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.EDEN_STICKY_NOTE.."}} {{GoldenKey}}Unique ability : Eden's Sticky Note(w98: Complete Hyper Random)"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.STICKY_NOTE.."}} {{GoldenKey}}Unique ability : Eden's Sticky Note(w98: Complete Hyper Random)"
 		.. "",
 	},
 	[PlayerType.PLAYER_THELOST_B] = {

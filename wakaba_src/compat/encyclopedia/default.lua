@@ -334,6 +334,12 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_LIBRARY,
 		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
+	UnlockFunc = function(self)
+		if not REPENTOGON then
+			self.Desc = "Requires REPENTOGON"
+			return self
+		end
+	end,
 })
 -- Richer Ticket
 Encyclopedia.AddCard({

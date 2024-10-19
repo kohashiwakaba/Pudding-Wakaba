@@ -1444,6 +1444,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "쿄타로의 맛이 나",
 	},
+	[wakaba.Enums.Collectibles.PURIFIER] = {
+		itemName = "정화 장치",
+		description = ""
+		.. "#{{Key}} 사용 시 그 방의 아이템을 열쇠로 분해합니다."
+		.. "{{CR}}",
+		queueDesc = "도서위원 전용 - 재활용을 생활화합시다",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""
@@ -1464,7 +1471,7 @@ wakaba.descriptions[desclang].collectibles = {
 		void = "흡수 시 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card를 대신 소환",
 		carBattery = "무효과",
 	},
-	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
+	[wakaba.Enums.Collectibles.STICKY_NOTE] = {
 		itemName = "에덴의 접착제",
 		description = ""
 		.. "#!!! 알트 에덴 전용"
@@ -3339,7 +3346,7 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Collectible721}} {{ColorRed}}패널티 피격 시 모든 것이 랜덤으로 정해집니다.{{CR}}"
 		.. "#{{CurseBlind}} 기본 소지 아이템 : ???"
 		.. "#{{CurseBlind}} 기본 소지 아이템 : ???"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.EDEN_STICKY_NOTE.."}} {{GoldenKey}}고유 능력 : 스티커 노트(와카바98: 하이퍼 랜덤 클리어)"
+		.. "#{{Collectible"..wakaba.Enums.Collectibles.STICKY_NOTE.."}} {{GoldenKey}}고유 능력 : 스티커 노트(와카바98: 하이퍼 랜덤 클리어)"
 		.. "",
 	},
 	[PlayerType.PLAYER_THELOST_B] = {

@@ -60,6 +60,10 @@ end
 
 ---@type Game
 wakaba.G = Game() -- Cache game object
+---@type Level
+wakaba.L = Game():GetLevel() -- Cache level object
+---@type Room
+wakaba.R = Game():GetRoom() -- Cache room object
 ---@type Font
 wakaba.f = Font() -- init font object
 wakaba.f:Load("font/pftempestasevencondensed.fnt") -- load a font into the font object
@@ -430,7 +434,6 @@ local richer_saved_recipies = {
 		HIDDEN_ITEM_DATA = {},
 
 		-- Shiori modes
-		currentshiorimode = wakaba.shiorimodes.SHIORI_AKASIC_RECORDS,
 		shioridropped = {},
 		cachedmaijimabooks = {},
 		persistentPickupData = {},
@@ -967,6 +970,7 @@ do -- Items loader
 	include('wakaba_src.items.0018_azurerir')
 	include('wakaba_src.items.1001_eatheart')
 	include('wakaba_src.items.0035_kyoulover')
+	include('wakaba_src.items.0036_purifier')
 
 	include('wakaba_src.items.1002_bookofforgotten')
 	include('wakaba_src.items.1003_dcupicecream')
@@ -1252,10 +1256,8 @@ function wakaba:init(continue)
 			wakaba:LockItems()
 		end
 
-		wakaba.runstate.currentshiorimode = wakaba.state.options.shiorimodes
-
 		-- Caching Books for Maijima
-		local tempMaijimaBooks = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+		local tempMaijimaBooks = wakaba:getBooks(player, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 		local maijimaBooksToAdd = {}
 		local maijimaRng = RNG()
 		maijimaRng:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
@@ -1511,7 +1513,7 @@ function wakaba:PostGlobalPlayerInit(player)
 
 	if wakaba.G.TimeCounter == 0 then
 		if wakaba.state.unlock.edensticky and wakaba.state.options.edensticky and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 30 then
-			player:SetPocketActiveItem(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE, ActiveSlot.SLOT_POCKET, false)
+			player:SetPocketActiveItem(wakaba.Enums.Collectibles.STICKY_NOTE, ActiveSlot.SLOT_POCKET, false)
 		elseif wakaba.state.unlock.lostuniform and wakaba.state.options.lostuniform and wakaba.G.Challenge == Challenge.CHALLENGE_NULL and player:GetPlayerType() == 31 then
 			player:AddCollectible(wakaba.Enums.Collectibles.UNIFORM, 0, false, ActiveSlot.SLOT_PRIMARY, 0)
 		end

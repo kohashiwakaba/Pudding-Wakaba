@@ -38,7 +38,7 @@ return {
 		str = {
 			"Cloverfest:",
 			"    Clover chest can be appeared regardless of unlock",
-			"    Clover chest can be opened without using keys",
+			"    If already unlocked, Clover chest can be opened without using keys",
 		},
 		category = "wakabaGlobal", sort = 3907
 	},
@@ -117,12 +117,57 @@ return {
 		category = "charTree", sort = 4037
 	},
 	---- SHIORI'S TREE SPECIAL ----
+	shioriTaste = {
+		str = {
+			"Taste of Shiori:",
+			"    %s%d Shiori's available book slot",
+		},
+		addPlus = true,
+		category = "charTree", sort = 4061
+	},
+	shioriKnowledge = {
+		str = {
+			"Knowledge is power:",
+			"    +5% damage up per enteing special rooms",
+			"    Resets every floor",
+		},
+		addPlus = true,
+		category = "charTree", sort = 4062
+	},
 	shioriGoldenKey = {
 		str = {
 			"Regulation:",
 			"    All battery pickups are replaced to Golden keys",
 		},
-		category = "charTree", sort = 4061
+		category = "charTree", sort = 4063
+	},
+	shioriAssistant = {
+		str = {
+			"Library Assistant:",
+			"    Unknown Bookmark can be appeared regardless of unlock",
+			"    If already unlocked, Unknown Bookmark effect is fixed rather than selected from 5 random books",
+		},
+		addPlus = true,
+		category = "charTree", sort = 4064
+	},
+	shioriSatyr = {
+		str = {
+			"Curse of Satyr:",
+			"    Books from Shiori's book pool no longer require keys and can be used anytime",
+			"    Using a book randomly shuffles Shiori's book pool",
+		},
+		addPlus = true,
+		category = "charTree", sort = 4065
+	},
+	shioriPurify = {
+		str = {
+			"Purifier:",
+			"    Purifier is allocated and be is always available for Shiori",
+			"    Purifier dissolve pedestal into keys",
+			"    Curse of Satyr reduces number of keys",
+		},
+		addPlus = true,
+		category = "charTree", sort = 4066
 	},
 	---- SHIORI'S TREE NORMAL  ----
 	shioriExtraBooks = {

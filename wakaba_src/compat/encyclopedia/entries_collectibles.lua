@@ -599,6 +599,21 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		},
 	},
 
+	KYOUTAROU_LOVER = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns a familiar that follows Anna around shooting backstabbing tears that deal 3.5 damage."},
+			{str = "All items are chosen from random item pools."},
+			{str = "Only certain of Quality items can be spawn."},
+			{str = "If Anna gets a collectible, The set quality is shifted by 1."},
+			{str = "- If previous quality was 4, it will be shifted to 0."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Anna starts with this item and is intrinsic to the character, and it can't be rerolled"},
+		},
+	},
+
 	BROKEN_TOOLBOX = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2246,6 +2261,17 @@ wakaba.encyclopediadesc.desc.collectibles = {
 
 	-- Final items
 
+	PURIFIER = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Dissolves item pedestals into several keys for several keys"},
+			{str = "- The Number of keys are 4 + Quality of the item."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "This item can be only appeared through Shiori, with Passive Skill Tree support"},
+		},
+	},
   WAKABAS_CURFEW = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
@@ -2270,7 +2296,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "The concept for Hyper Random challenge(98w) was combining Ultra Hard(34) + DELETE THIS(45) + Tainted Eden + Tainted Lazarus, but later some concept was forfeited due to constant, or high chance of getting game crash."},
 		},
 	},
-	EDEN_STICKY_NOTE = {
+	STICKY_NOTE = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Gives Tainted Eden a Birthright upon use."},

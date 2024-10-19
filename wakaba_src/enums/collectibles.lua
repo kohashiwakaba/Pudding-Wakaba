@@ -80,5 +80,5 @@ wakaba.Enums.Collectibles.LIL_WAKABA = Isaac.GetItemIdByName("#WAKABA_ITEM_LIL_W
 wakaba.Enums.Collectibles.APOLLYON_CRISIS = Isaac.GetItemIdByName("#WAKABA_ITEM_APOLLYON_CRISIS")
 wakaba.Enums.Collectibles.ISEKAI_DEFINITION = Isaac.GetItemIdByName("#WAKABA_ITEM_ISEKAI_DEFINITION")
 wakaba.Enums.Collectibles.BALANCE = Isaac.GetItemIdByName("#WAKABA_ITEM_BALANCE")
-wakaba.Enums.Collectibles.EDEN_STICKY_NOTE = Isaac.GetItemIdByName("#WAKABA_ITEM_EDEN_STICKY_NOTE")
+wakaba.Enums.Collectibles.STICKY_NOTE = Isaac.GetItemIdByName("#WAKABA_ITEM_STICKY_NOTE")
 wakaba.Enums.Collectibles.DOUBLE_DREAMS = Isaac.GetItemIdByName("#WAKABA_ITEM_DOUBLE_DREAMS")

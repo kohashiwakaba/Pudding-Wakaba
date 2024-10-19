@@ -164,6 +164,21 @@ Encyclopedia.AddItem({
 		end
 	end,
 })
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.PURIFIER,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.PURIFIER,
+	UnlockFunc = function(self)
+		if not (REPENTOGON and PST) then
+			self.Desc = "Requires REPENTOGON and Passive Skill Tree support"
+			return self
+		elseif not wakaba:extraVal("shioriPurify") then
+			self.Desc = "Requires Purifier node to be allocated"
+			return self
+		end
+	end,
+})
 -- Shiori_B / Book of Conquest
 Encyclopedia.AddItem({
 	Class = class,
@@ -469,5 +484,79 @@ Encyclopedia.AddItem({
 })
 -- Rira_T / Pluton
 -- Rira_T / ????
+
+-- Anna / Kyoutarou Lover
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.KYOUTAROU_LOVER,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.KYOUTAROU_LOVER,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANNA_RIBBON_0,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANNA_RIBBON_0,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANNA_RIBBON_1,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANNA_RIBBON_1,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANNA_RIBBON_2,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANNA_RIBBON_2,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANNA_RIBBON_3,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANNA_RIBBON_3,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
+Encyclopedia.AddItem({
+	Class = class,
+	ModName = class,
+	ID = wakaba.Enums.Collectibles.ANNA_RIBBON_4,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.ANNA_RIBBON_4,
+	UnlockFunc = function(self)
+		if not wakaba:GameHasPlayerType(wakaba.Enums.Players.ANNA) then
+			self.Desc = "Only available as Anna"
+			return self
+		end
+	end,
+})
 
 --#endregion

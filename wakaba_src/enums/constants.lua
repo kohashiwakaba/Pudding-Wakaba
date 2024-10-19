@@ -185,7 +185,9 @@ wakaba.Enums.Collectibles = {
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 
 	-- Misc items
-	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Eden's Sticky Note"),
+	PURIFIER = Isaac.GetItemIdByName("Purifier"),
+	STICKY_NOTE = Isaac.GetItemIdByName("Sticky Note"),
+	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Sticky Note"),
 	WAKABAS_CURFEW = Isaac.GetItemIdByName("Wakaba's 6'o Clock Curfew"),
 	WAKABAS_CURFEW2 = Isaac.GetItemIdByName("Wakaba's 9'o Clock Curfew"),
 	KYOUTAROU_LOVER = Isaac.GetItemIdByName("Kyoutarou Lover"),
@@ -602,6 +604,8 @@ wakaba.Enums.Constants = {
 	STACK_STRENGTH_LOW = 0.25, -- 중첩 효과 약
 	STACK_STRENGTH_MIN = 0.1, -- 중첩 효과 미약
 	STACK_STRENGTH_NONE = -1, -- 중첩 효과 없음
+
+	SHIORI_BOOKS = 3,
 
 	PONY_COOLDOWN = 720, -- 러쉬 챌린지 화이트 포니 쿨타임
 	MAX_TRAUMA_COUNT = 7, -- 트라우마 책 최대 폭발 수
@@ -1264,6 +1268,7 @@ wakaba.useflag = {
 	USE_UNIFORM = 1 << 11, -- Same as USE_ECHO_CHAMBER
 }
 
+---@enum WakabaShioriBookState
 wakaba.bookstate = {
 	BOOKSHELF_SHIORI = 1,
 	BOOKSHELF_UNKNOWN_BOOKMARK = 2,
@@ -1453,6 +1458,7 @@ wakaba.Enums.UniqueItemsAppend = {
 	"Tsukasa",
 	"Richer",
 	"Rira",
+	"Anna",
 }
 wakaba.Enums.UniqueItemsAppendTainted = {
 	"Wakaba",
@@ -1469,56 +1475,3 @@ wakaba.VoidFlags = {
 	CONTINUE = 1<<2,
 	PIECES = 1<<3,
 }
-
-wakaba.shiorimodes = {
-	["SHIORI_LIBRARIAN"] = 0,
-	["SHIORI_COLLECTOR"] = 1,
-	["SHIORI_AKASIC_RECORDS"] = 2,
-	["SHIORI_PURE_BODY"] = 3,
-	["SHIORI_CURSE_OF_SATYR"] = 4,
-	["NUM_SHIORI_MAX"] = 4,
-}
-
-wakaba.shiorimodestrings = {
-	[wakaba.shiorimodes.SHIORI_LIBRARIAN] = {
-		name = "Librarian",
-		configdesc = "Shiori starts with most books",
-		dssdesc1 = "shiori starts with most books",
-	},
-	[wakaba.shiorimodes.SHIORI_COLLECTOR] = {
-		name = "Collector",
-		configdesc = "Shiori starts with a random book, and must be collected manually. Most book actives will be moved into pocket slot automatically",
-		dssdesc1 = "shiori starts with a random book,",
-		dssdesc2 = "and must be collected manually.",
-		dssdesc3 = "most book actives will be moved",
-		dssdesc4 = "into pocket slot automatically",
-	},
-	[wakaba.shiorimodes.SHIORI_AKASIC_RECORDS] = {
-		name = "Akasic Records",
-		configdesc = "Shiori can use only 3 books per floor(Default)",
-		dssdesc1 = "shiori can use only 3 books",
-		dssdesc2 = "per floor(default)",
-	},
-	[wakaba.shiorimodes.SHIORI_PURE_BODY] = {
-		name = "Pure Body",
-		configdesc = "Shiori starts with most books, but cannot collect any collectibles. Touching the collectible will dissolved into keys",
-		dssdesc1 = "shiori starts with most books,",
-		dssdesc2 = "but cannot collect any collectibles",
-		dssdesc3 = "touching the collectible",
-		dssdesc4 = "will dissolved into keys",
-	},
-	--[wakaba.shiorimodes.SHIORI_MINERVA] = {name = "Minerva?", configdesc = "Unimplemented",},
-	[wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR] = {
-		name = "Curse of Saytr",
-		configdesc = "Shiori cannot switch books manually, books will be randomized on active item usage.",
-		dssdesc1 = "shiori cannot switch books manually",
-		dssdesc2 = "books will be randomized",
-		dssdesc3 = "on active item usage",
-	},
-}
-
-wakaba.shiorimodestringsdss = {}
-
-for i = 0, #wakaba.shiorimodestrings do
-	wakaba.shiorimodestringsdss[i+1] = wakaba.shiorimodestrings[i].name:lower()
-end

@@ -366,6 +366,16 @@ function wakaba:HasJudasBr(player)
 	return false
 end
 
+---@class WakabaPedestalData
+---@field CollectibleType CollectibleType
+---@field Pedestal EntityPickup
+---@field Pool ItemPoolType
+---@field Tags ItemConfig
+---@field Quality integer
+---@field Config ItemConfigItem
+
+---@param includeShop boolean
+---@return WakabaPedestalData[]
 function wakaba:GetPedestals(includeShop)
 	local pool = pool or wakaba.G:GetItemPool()
 	local config = config or Isaac.GetItemConfig()

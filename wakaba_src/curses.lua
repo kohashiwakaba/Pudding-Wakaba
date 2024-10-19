@@ -81,7 +81,7 @@ end)
 function wakaba:Curse_BlackCandleCheck(player)
 	local curse = wakaba.G:GetLevel():GetCurses()
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
-	and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR
+	and wakaba:extraVal("shioriSatyr")
 	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 	and curse & wakaba.curses.CURSE_OF_SATYR ~= wakaba.curses.CURSE_OF_SATYR
 	then
@@ -97,8 +97,7 @@ function wakaba:Curse_Evaluate(curse)
 		local player = Isaac.GetPlayer(i - 1)
 		if wakaba.curses.CURSE_OF_SATYR > 0
 		and player:GetPlayerType() == wakaba.Enums.Players.SHIORI
-		and ((wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and wakaba.G.TimeCounter == 0)
-		or wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR) then
+		and wakaba:extraVal("shioriSatyr") then
 			curse = curse | wakaba.curses.CURSE_OF_SATYR
 			skip = true
 			goto wakabaCurseSkip
@@ -193,7 +192,7 @@ function wakaba:Curse_PlayerRender(player)
 		end
 	end
 	-- Force add curse for Black Candle/Sol
-	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
+	if wakaba.curses.CURSE_OF_SATYR > LevelCurse.CURSE_OF_GIANT and player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba:extraVal("shioriSatyr") and not isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
 		wakaba.G:GetLevel():AddCurse(wakaba.curses.CURSE_OF_SATYR, false)
 	end
 	if wakaba.runstate.pendingCurseImmunityCount > 0 and curse & ~(LevelCurse.CURSE_OF_LABYRINTH | wakaba.curses.CURSE_OF_SATYR) > 0 and not IsExtraRoom() then

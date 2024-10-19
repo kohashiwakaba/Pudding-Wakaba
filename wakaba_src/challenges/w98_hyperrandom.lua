@@ -5,7 +5,7 @@ local randtainted = wakaba.runstate.randtainted
 wakaba.ChallengeParams.HyperRandomBlacklisted = {
   [CollectibleType.COLLECTIBLE_GENESIS] = true,
   [CollectibleType.COLLECTIBLE_DAMOCLES] = true,
-  [wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = true,
+  [wakaba.Enums.Collectibles.STICKY_NOTE] = true,
   [wakaba.Enums.Collectibles.SELF_BURNING] = true,
 }
 

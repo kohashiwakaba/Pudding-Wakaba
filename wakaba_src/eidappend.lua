@@ -781,7 +781,7 @@ if EID then
 			str = str .. getboolup(wakaba.state.unlock.calculation) .. "{{Collectible"..wakaba.Enums.Collectibles.BALANCE.."}}"
 			str = str .. getboolup(wakaba.state.unlock.lilmao) .. "{{Collectible"..wakaba.Enums.Collectibles.LIL_MAO.."}}"
 			str = str .. getboolup(wakaba.state.unlock.richerflipper) .. "{{Collectible"..wakaba.Enums.Collectibles.RICHERS_FLIPPER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.edensticky) .. "{{Collectible"..wakaba.Enums.Collectibles.EDEN_STICKY_NOTE.."}}"
+			str = str .. getboolup(wakaba.state.unlock.edensticky) .. "{{Collectible"..wakaba.Enums.Collectibles.STICKY_NOTE.."}}"
 			str = str .. getboolup(wakaba.state.unlock.doubledreams) .. "{{Collectible"..wakaba.Enums.Collectibles.DOUBLE_DREAMS.."}}"
 
 			return str

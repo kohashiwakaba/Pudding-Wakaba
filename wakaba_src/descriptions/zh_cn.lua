@@ -1356,6 +1356,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "Tastes like Kyoutarou",
 	},
+	[wakaba.Enums.Collectibles.PURIFIER] = {
+		itemName = "Purifier",
+		description = ""
+		.. "#{{Key}} Dissolves pedestal into keys"
+		.. "{{CR}}",
+		queueDesc = "Only for Librarians - Recycle for Books",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "若叶的双重梦境",
 		description = ""
@@ -1376,7 +1383,7 @@ wakaba.descriptions[desclang].collectibles = {
 		belial = "↑ +4% 的的概率掉落{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}若叶拥有时。当使用物品时，没有额外的效果",
 		void = "{{Card" .. wakaba.Enums.Cards.CARD_DREAM_CARD .. "}}被吸收时生成一次卡牌",
 	},
-	[wakaba.Enums.Collectibles.EDEN_STICKY_NOTE] = {
+	[wakaba.Enums.Collectibles.STICKY_NOTE] = {
 		itemName = "伊甸的便利贴",
 		description = ""
 			.. "#!!! 一次性使用"

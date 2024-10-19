@@ -21,15 +21,15 @@ function wakaba:ItemUse_EdenNote(_, rng, player, useFlags, activeSlot, varData)
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_RAND then return end
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.prevcharge = player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) + player:GetBatteryCharge(ActiveSlot.SLOT_PRIMARY)
-	player:RemoveCollectible(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
+	player:RemoveCollectible(wakaba.Enums.Collectibles.STICKY_NOTE)
 	player:AddCollectible(player:GetActiveItem(ActiveSlot.SLOT_PRIMARY), prevcharge, false, ActiveSlot.SLOT_POCKET, 0)
 	player:RemoveCollectible(player:GetActiveItem(ActiveSlot.SLOT_PRIMARY), true, ActiveSlot.SLOT_PRIMARY, true)
 	player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
-		player:AnimateCollectible(wakaba.Enums.Collectibles.EDEN_STICKY_NOTE, "UseItem", "PlayerPickup")
+		player:AnimateCollectible(wakaba.Enums.Collectibles.STICKY_NOTE, "UseItem", "PlayerPickup")
 	end
 	SFXManager():Play(SoundEffect.SOUND_MIRROR_ENTER)
 	SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
 	player:GetData().wakaba.edencharge = true
 end
-wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_EdenNote, wakaba.Enums.Collectibles.EDEN_STICKY_NOTE)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_EdenNote, wakaba.Enums.Collectibles.STICKY_NOTE)

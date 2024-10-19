@@ -27,6 +27,7 @@ wakaba.Enums.Players.SHIORI_T,
 wakaba.Enums.Players.TSUKASA_T,
 wakaba.Enums.Players.RICHER_T,
 wakaba.Enums.Players.RIRA_T,
+wakaba.Enums.Players.ANNA,
 }
 
 include('wakaba_src.compat.encyclopedia.characters')

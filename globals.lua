@@ -1,5 +1,6 @@
 ---@meta
 ---@diagnostic disable: lowercase-global
+REPENTOGON = {}
 ModConfigMenu = {}
 ModConfigMenuPopupGfx = {}
 CCO = {}
@@ -27,6 +28,7 @@ LibraryExpanded = {}
 UnlockAPI = {}
 AstroItems = {}
 MilkshakeVol1 = {}
+PST = {}
 SacredDreams = {}
 Sheriff = {}
 EEVEEMOD = {} --The demo

@@ -1,199 +1,180 @@
+wakaba._ShioriData = {}
 
-local playerType = Isaac.GetPlayerTypeByName("Shiori", false)
+local playerType = wakaba.Enums.Players.SHIORI
+local isShioriContinue = true
+
 wakaba.SHIORI_BOOKMARK = Isaac.GetItemIdByName("Shiori's Red Bookmark")
 wakaba.SHIORI_BOOKMARK2 = Isaac.GetItemIdByName("Shiori's Blue Bookmark")
 wakaba.SHIORI_BOOKMARK3 = Isaac.GetItemIdByName("Shiori's Yellow Bookmark")
-local removed = false
-local collectibleCount
-local costumeEquipped
-local isShioriContinue = true
-local iskeyinit = false
+
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 local indicator = Sprite()
 indicator:Load("gfx/ui/wakaba/shiori_book_indicator.anm2",true)
-wakaba.ShioriIndicator = indicator
+--wakaba.ShioriIndicator = indicator
+wakaba._ShioriData.IndicatorSprite = indicator
 
-wakaba.shioriconsume = {
-	[CollectibleType.COLLECTIBLE_BIBLE] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL] = -1,
-	[CollectibleType.COLLECTIBLE_NECRONOMICON] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS] = -1,
-	[CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_SIN] = -1,
-	[CollectibleType.COLLECTIBLE_TELEPATHY_BOOK] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS] = -1,
-	[CollectibleType.COLLECTIBLE_SATANIC_BIBLE] = -1,
-	[CollectibleType.COLLECTIBLE_BOOK_OF_THE_DEAD] = -1,
-	[CollectibleType.COLLECTIBLE_LEMEGETON] = -1,
+-- wakaba.shioribookblacklisted
+wakaba._ShioriData.BlacklistBook = {}
+-- wakaba.shioriblacklisted
+wakaba._ShioriData.BlacklistShiori = {
+	[CollectibleType.COLLECTIBLE_BREATH_OF_LIFE] = true,
+	[CollectibleType.COLLECTIBLE_ISAACS_TEARS] = true,
+	[CollectibleType.COLLECTIBLE_SPIN_TO_WIN] = true,
 }
-wakaba.shioribookblacklisted = {}
-wakaba.shioriblacklisted = {
-	CollectibleType.COLLECTIBLE_BREATH_OF_LIFE,
-	CollectibleType.COLLECTIBLE_ISAACS_TEARS,
-	CollectibleType.COLLECTIBLE_SPIN_TO_WIN,
+-- wakaba.shioriwhitelisted
+wakaba._ShioriData.WhitelistShiori = {
+	[CollectibleType.COLLECTIBLE_ERASER] = true,
+	[wakaba.Enums.Collectibles.BOOK_OF_SILENCE] = true,
 }
-wakaba.shioriwhitelisted = {
-	CollectibleType.COLLECTIBLE_ERASER,
-	wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
-	wakaba.Enums.Collectibles.BOOK_OF_SILENCE,
+wakaba._ShioriData.UnlockNeeded = {
+	[wakaba.Enums.Collectibles.D6_PLUS] = true,
+	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = true,
+	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = true,
+	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = true,
+	[wakaba.Enums.Collectibles.BALANCE] = true,
 }
-wakaba.bookcache = {}
 
-function wakaba:BlacklistBook(item, bookstate)
-	wakaba.shioribookblacklisted[item] = wakaba.shioribookblacklisted[item] or {}
-	wakaba.shioribookblacklisted[item][bookstate] = true
+---@class WakabaCachedBooks
+---@field ID CollectibleType
+---@field Quality integer
+---@field Tags ItemConfig
+---@field CustomTags string
+---@field ShopPrice integer
+---@field DevilPrice integer
+
+
+function wakaba:ModsLoaded_CacheBooks()
+	if wakaba._ShioriData.CachedBooks then return end
+
+	wakaba._ShioriData.CachedBooks = {} ---@type WakabaCachedBooks
+
+	local itemConfig = Isaac.GetItemConfig()
+	local collectibles = itemConfig:GetCollectibles()
+
+	for i = 1, collectibles.Size do
+		local config = itemConfig:GetCollectible(i)
+		if (config) then
+			local isBook = config:HasTags(ItemConfig.TAG_BOOK)
+			local isActive = config.Type == ItemType.ITEM_ACTIVE
+			if isBook and isActive and not config.Hidden then
+				table.insert(wakaba._ShioriData.CachedBooks, {
+					ID = i,
+					Quality = config.Quality,
+					Tags = config.Tags,
+					CustomTags = (REPENTOGON and config:GetCustomTags()),
+					ShopPrice = config.ShopPrice,
+					DevilPrice = config.DevilPrice,
+				})
+			end
+		end
+	end
+
+	if not REPENTOGON then
+		wakaba:RemoveCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.ModsLoaded_CacheBooks)
+	end
 end
 
--- Blacklist items for Shiori character
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
+if REPENTOGON then
+	wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, wakaba.ModsLoaded_CacheBooks)
+else
+	wakaba:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_INIT, -50000000, wakaba.ModsLoaded_CacheBooks)
+end
 
--- Blacklist items for Hard Drop trinket
-wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SHIORI, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+function wakaba:BlacklistBook(item, bookstate)
+	wakaba._ShioriData.BlacklistBook[item] = wakaba._ShioriData.BlacklistBook[item] or {}
+	wakaba._ShioriData.BlacklistBook[item][bookstate] = true
+end
 
--- Blacklist items for Unknown Bookmark, Maijima Mythology
-wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BALANCE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+do -- Shiori Blacklists
+	-- Blacklist items for Shiori character
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.CLEAR_FILE, wakaba.bookstate.BOOKSHELF_SHIORI)
 
--- Blacklist items for Soul of Shiori
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.D6_PLUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_FOCUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+	-- Blacklist items for Hard Drop trinket
+	wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SHIORI, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
 
--- Blacklist items for Shiori character
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_LEMEGETON, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
+	-- Blacklist items for Unknown Bookmark, Maijima Mythology
+	wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.DOUBLE_DREAMS, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BALANCE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.CLEAR_FILE, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
 
-function wakaba:GetBookItems(bookstate)
-	local isShiori = false
-	local config = Isaac.GetItemConfig()
-	local maxID = wakaba:GetMaxCollectibleID()
+	-- Blacklist items for Soul of Shiori
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.D6_PLUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.MICRO_DOPPELGANGER, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_FOCUS, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
+end
+
+function wakaba:getShioriBookCapacity()
+	local extraCount = 0
+	return wakaba.Enums.Constants.SHIORI_BOOKS + extraCount
+end
+
+function wakaba:resetShioriBookPool(player, force)
+	if not (player and player:Exists()) then return end
+	if player:GetPlayerType() == playerType and (force or wakaba.G.TimeCounter > 0) then
+		if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
+			local data = player:GetData()
+			data.wakaba.books = wakaba:getRandomBooks(player, wakaba.bookstate.BOOKSHELF_SHIORI, wakaba:getShioriBookCapacity())
+			if force then
+				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
+			else
+				player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
+			end
+			data.wakaba.bookindex = 1
+		end
+	end
+end
+
+---@param player EntityType
+---@param bookState WakabaShioriBookState
+---@return CollectibleType[]
+function wakaba:getBooks(player, bookState)
+	---@type CollectibleType[]
 	local books = {}
+	---@type WakabaShioriBookState
 	local bookstate = bookstate or wakaba.bookstate.BOOKSHELF_SHIORI
-	wakaba:getUnlockState()
+
 	if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI then
 		if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_DOPP then
-			table.insert(books,wakaba.Enums.Collectibles.MICRO_DOPPELGANGER)
+			table.insert(books, wakaba.Enums.Collectibles.MICRO_DOPPELGANGER)
 			return books
 		elseif wakaba.G.Challenge == wakaba.challenges.CHALLENGE_SLNT then
-			table.insert(books,wakaba.Enums.Collectibles.BOOK_OF_SILENCE)
+			table.insert(books, wakaba.Enums.Collectibles.BOOK_OF_SILENCE)
 			return books
 		end
 	end
 
-	for i = 1, maxID do
-		local item = config:GetCollectible(i)
-		if item ~= nil and item:HasTags(ItemConfig.TAG_BOOK)
-		and not item.Hidden
-		then
-			local isQualityMet = true
-			isQualityMet = isQualityMet and item.Quality >= wakaba.state.options.shioriakasicminquality
-			isQualityMet = isQualityMet and item.Quality <= wakaba.state.options.shioriakasicmaxquality
-			--wakaba.FLog("debugShiori","Checking Book -	" .. item.Name .. "...")
-			if bookstate == wakaba.bookstate.BOOKSHELF_SHIORI
-			or bookstate == wakaba.bookstate.BOOKSHELF_PURE_SHIORI
-			or (bookstate == wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS and isQualityMet)
-			then
-				if item.Type == ItemType.ITEM_ACTIVE then
-					if item.ID == wakaba.Enums.Collectibles.D6_PLUS then
-						if wakaba.state.unlock.shiorid6plus > 0 then
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					elseif item.ID == wakaba.Enums.Collectibles.MICRO_DOPPELGANGER then
-						if wakaba:unlockCheck(item.ID) then
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					elseif item.ID == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then
-						if wakaba:unlockCheck(item.ID) then
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					elseif item.ID == wakaba.Enums.Collectibles.ISEKAI_DEFINITION then
-						if wakaba:unlockCheck(item.ID) then
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					elseif item.ID == wakaba.Enums.Collectibles.BALANCE then
-						if wakaba:unlockCheck(item.ID) then
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					elseif wakaba.shioribookblacklisted[item.ID] then
-						if wakaba.shioribookblacklisted[item.ID][bookstate] == true then
-							-- Do nothing
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Blacklisted")
-						else
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					else
-						table.insert(books,item.ID)
-						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-					end
-				end
-			elseif bookstate == wakaba.bookstate.BOOKSHELF_HARD_BOOK then
-				if wakaba:unlockCheck(item.ID) then
-					if wakaba.shioribookblacklisted[item.ID] and wakaba.shioribookblacklisted[item.ID][bookstate] then
+	if not wakaba._ShioriData.CachedBooks then
+		wakaba:ModsLoaded_CacheBooks()
+	end
 
-					else
-						table.insert(books,item.ID)
-						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-					end
-				end
-			elseif bookstate == wakaba.bookstate.BOOKSHELF_SHIORI_DROP then
-				if wakaba:unlockCheck(item.ID) then
-					if (wakaba.shioribookblacklisted[item.ID] and wakaba.shioribookblacklisted[item.ID][bookstate]) or wakaba:has_value(wakaba.runstate.shioridropped, item.ID) then
-						-- Do nothing
-					else
-						table.insert(books,item.ID)
-						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-					end
-				end
-			elseif bookstate == wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK then
-				if item.Type == ItemType.ITEM_ACTIVE then
-					if wakaba.shioribookblacklisted[item.ID] then
-						if wakaba.shioribookblacklisted[item.ID][bookstate] then
-							-- Do nothing
-						else
-							table.insert(books,item.ID)
-							wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-						end
-					else
-						table.insert(books,item.ID)
-						wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-					end
-				end
-			else
-				if wakaba:unlockCheck(item.ID) then
-					table.insert(books,item.ID)
-					wakaba.FLog("debugShiori","Book " .. item.Name .. " Inserted")
-				end
-			end
+	---@type WakabaCachedBooks[]
+	local cachedBooks = wakaba:deepcopy(wakaba._ShioriData.CachedBooks)
+
+	for _, e in ipairs(cachedBooks) do
+		local v = Isaac.RunCallbackWithParam(wakaba.Callback.PRE_GET_SHIORI_BOOKS, e.ID, player, bookState, e.ID, e)
+		if not v then
+			table.insert(books, e.ID)
 		end
 	end
 
 	return books
 end
 
-function wakaba:GetRandomBook(bookstate, player, number)
-	local books = wakaba:GetBookItems(bookstate)
+function wakaba:getRandomBooks(player, bookState, number)
 	player = player or Isaac.GetPlayer()
+	local books = wakaba:getBooks(player, bookState)
 	number = number or 1
 	local newbook = {}
 	for i = 1, number do
-
 		local rng = player:GetCollectibleRNG(wakaba.SHIORI_BOOKMARK)
 		local pos = rng:RandomInt(#books) + 1
 		local randbook = books[pos]
@@ -203,23 +184,17 @@ function wakaba:GetRandomBook(bookstate, player, number)
 	return newbook
 end
 
-function wakaba:GetShioriCostume(player)
-	if wakaba.costumecurrframe == 0 then
-		wakaba.costumecurrframe = wakaba.costumecooldown
-		player:AddNullCostume(wakaba.COSTUME_SHIORI)
+wakaba:AddCallback(wakaba.Callback.PRE_GET_SHIORI_BOOKS, function(_, player, bookState, collectibleType, e)
+	local c = wakaba.Enums.Collectibles
+	wakaba.Log("PRE_GET_SHIORI_BOOKS", player, bookState, collectibleType, e)
+	if bookState == wakaba.bookstate.BOOKSHELF_SHIORI then
+		if wakaba._ShioriData.UnlockNeeded[collectibleType] and not wakaba:unlockCheck(collectibleType) then return true end
+		if wakaba._ShioriData.BlacklistBook[collectibleType] and wakaba._ShioriData.BlacklistBook[collectibleType][bookState] then return true end
+	else
+		if not wakaba:unlockCheck(collectibleType) then return true end
+		if wakaba._ShioriData.BlacklistBook[collectibleType] and wakaba._ShioriData.BlacklistBook[collectibleType][bookState] then return true end
 	end
-end
-
---[[ if Poglite then
-	local pogCostume = Isaac.GetCostumeIdByPath("gfx/characters/wakaba_pog.anm2")
-	Poglite:AddPogCostume("ShioriPog",playerType,pogCostume)
-end ]]
-
---Costume currently not working in Knife Piece 2 area. Needs to be fixed.
-function wakaba:PostShioriUpdate()
-
-end
---wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.PostShioriUpdate)
+end)
 
 function wakaba:ShioriHasBook(player, item)
 	if player:HasCollectible(item, true) then return true end
@@ -230,6 +205,7 @@ function wakaba:ShioriHasBook(player, item)
 		end
 	end
 end
+
 
 ---@param player EntityPlayer
 ---@param slot ActiveSlot
@@ -242,7 +218,7 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 	local maxCharges = conf.MaxCharges
 	local chargeType = conf.ChargeType
 	if chargeType == ItemConfig.CHARGE_TIMED or chargeType == ItemConfig.CHARGE_SPECIAL then
-		if keys > 0 and wakaba:has_value(wakaba.shioriwhitelisted, item) then
+		if keys > 0 and wakaba:has_value(wakaba._ShioriData.WhitelistShiori, item) then
 			return chargeType == ItemConfig.CHARGE_TIMED and 1000000 or charge
 		else
 			return true
@@ -292,57 +268,41 @@ function wakaba:PlayerEffectUpdate_Shiori(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerEffectUpdate_Shiori)
 
-function wakaba:updateShiori(player)
+function wakaba:PlayerUpdate_Shiori(player)
 	if player:GetPlayerType() == playerType and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 		local data = player:GetData()
 		pdata = data.wakaba
+		local shift = 0
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
-			if player:GetPill(0) == 0 and player:GetCard(0) == 0 then
-				data.wakaba.books = data.wakaba.books or wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
-				if #data.wakaba.books > 0 then
-					data.wakaba.bookindex = data.wakaba.bookindex or 1
-					player:RemoveCollectible(pdata.books[pdata.bookindex], false, ActiveSlot.SLOT_POCKET, true)
-					if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
-						pdata.bookindex = pdata.bookindex - 1
-					else
-						pdata.bookindex = pdata.bookindex + 1
-					end
-					if pdata.bookindex > #pdata.books then
-						pdata.bookindex = 1
-					end
-					if pdata.bookindex < 1 then
-						pdata.bookindex = #pdata.books
-					end
-					--player:SetPocketActiveItem(pdata.books[pdata.bookindex], ActiveSlot.SLOT_POCKET, true)
-					player:AddCollectible(pdata.books[pdata.bookindex], 0, false, ActiveSlot.SLOT_POCKET)
-					--local keys = player:GetNumKeys()
-					--wakaba:SetShioriCharge(player, keys, ActiveSlot.SLOT_POCKET)
-				end
+			if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
+				shift = -1
+			else
+				shift = 1
 			end
 		end
 
-		if wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_COLLECTOR then
-			local active = player:GetActiveItem(ActiveSlot.SLOT_PRIMARY)
-			if active > 0 then
-				local config = Isaac.GetItemConfig():GetCollectible(active)
-				if config and config:HasTags(ItemConfig.TAG_BOOK) and not (wakaba.shioribookblacklisted[active] and wakaba.shioribookblacklisted[active][wakaba.bookstate.BOOKSHELF_SHIORI]) then
-					player:RemoveCollectible(active, true, ActiveSlot.SLOT_PRIMARY, false)
-					local pData = player:GetData()
-					table.insert(pData.wakaba.books, active)
-					player:GetData().wakaba.bookindex = #pData.wakaba.books
-					player:AddCollectible(active, 0, false, ActiveSlot.SLOT_POCKET)
-					--player:SetPocketActiveItem(active, ActiveSlot.SLOT_POCKET, true)
+		if shift == 0 then return end
+		if player:GetPill(0) == 0 and player:GetCard(0) == 0 then
+			data.wakaba.books = data.wakaba.books or wakaba:getBooks(player, wakaba.bookstate.BOOKSHELF_SHIORI)
+			if #data.wakaba.books > 0 then
+				data.wakaba.bookindex = data.wakaba.bookindex or 1
+				player:RemoveCollectible(pdata.books[pdata.bookindex], false, ActiveSlot.SLOT_POCKET, true)
+				pdata.bookindex = pdata.bookindex + shift
+				if pdata.bookindex > #pdata.books then
+					pdata.bookindex = 1
+				elseif pdata.bookindex < 1 then
+					pdata.bookindex = #pdata.books
 				end
+				player:AddCollectible(pdata.books[pdata.bookindex], 0, false, ActiveSlot.SLOT_POCKET)
 			end
 		end
 	end
 end
 
-wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.updateShiori)
-
+wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Shiori)
 
 function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
-	if wakaba.shioriblacklisted[useditem] then return end
+	if wakaba._ShioriData.BlacklistShiori[useditem] then return end
 	if useflag | UseFlag.USE_VOID == UseFlag.USE_VOID then return end
 	if slot == ActiveSlot.SLOT_POCKET2 then return end
 	if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) and slot ~= -1 then
@@ -351,15 +311,15 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
-		if ((item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
-		and not wakaba:has_value(wakaba.shioriwhitelisted, useditem)) then
+		if (item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
+		and not wakaba._ShioriData.WhitelistShiori[useditem] then
 			if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then
 				return
 			else
 				consume = 1
 			end
 		end
-		if wakaba:has_value(wakaba.shioriwhitelisted, useditem) then
+		if wakaba._ShioriData.WhitelistShiori[useditem] then
 			consume = 1
 		end
 		consume = math.max(consume - wakaba:GetMinimumPreservedCharge(player, useditem), 1)
@@ -370,105 +330,17 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 				consume = math.max(consume - 1, 1)
 			end
 		end
-		player:AddKeys(-consume)
-		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR then
-			local data = player:GetData()
-			data.wakaba = data.wakaba or {}
-			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-			if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-				--player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-			end
+		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba:extraVal("shioriSatyr") then
+			wakaba:resetShioriBookPool(player)
+		else
+			player:AddKeys(-consume)
 		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Shiori)
 
 
-function wakaba:PrePickupCollision_Shiori(pickup, collider, low)
-	if not collider:ToPlayer() then return end
-	local player = collider:ToPlayer()
-	local sprite = pickup:GetSprite()
-	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI
-	or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
-	then
-		if pickup:IsShopItem() and (not wakaba:canAffordPickup(player, pickup) or not player:IsExtraAnimationFinished()) then
-			return true
-		elseif sprite:IsPlaying("Collect") then
-			return true
-		elseif pickup.Wait > 0 then
-			return not sprite:IsPlaying("Idle")
-		elseif sprite:WasEventTriggered("DropSound") or sprite:IsPlaying("Idle") or sprite:GetAnimation() == "Idle" then
-			if pickup.Price == PickupPrice.PRICE_SPIKES then
-				local tookDamage = player:TakeDamage(2, DamageFlag.DAMAGE_SPIKES | DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(nil), 30)
-				if not tookDamage then
-					return pickup:IsShopItem()
-				end
-			end
-			if pickup.Variant == PickupVariant.PICKUP_LIL_BATTERY then
-				if player:GetNumKeys() < 99 then
-					player:AddKeys(wakaba.Enums.ShioriBatteries[pickup.SubType] or 3)
-					if not pickup:IsShopItem() then
-						local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 1, Vector(player.Position.X, player.Position.Y - 75), Vector.Zero, nil):ToEffect()
-						--notif:FollowParent(player)
-						notif.DepthOffset = player.DepthOffset + 5
-						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE, 2, 0, false, 1)
-					end
-					if pickup.SubType == BatterySubType.BATTERY_GOLDEN then
-						player:TakeDamage(2, DamageFlag.DAMAGE_NO_PENALTIES, EntityRef(pickup), 0)
-					end
-				else
-					return pickup:IsShopItem()
-				end
-			elseif pickup.Variant == PickupVariant.PICKUP_KEY then
-				if pickup.SubType == KeySubType.KEY_CHARGED then
-					if player:GetNumKeys() < 99 then
-						player:AddKeys(3)
-					else
-						return pickup:IsShopItem()
-					end
-				end
-			elseif pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_PURE_BODY then
-
-				local itemID = pickup.SubType
-				local config = Isaac.GetItemConfig():GetCollectible(itemID)
-				if itemID > 0 and config and not config:HasTags(ItemConfig.TAG_QUEST) then
-
-
-					if pickup:IsShopItem() then
-						wakaba:PurchasePickup(player, pickup)
-					end
-					for i = 1, 8 + (config.Quality * 2) do
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, pickup.Position, wakaba.RandomVelocity(), nil)
-					end
-					player:AnimateSad()
-					pickup:Die()
-					return false
-				end
-			end
-			wakaba:RemoveOtherOptionPickups(pickup)
-
-
-			if pickup:IsShopItem() and pickup.Price ~= PickupPrice.PRICE_FREE then
-				wakaba:PurchasePickup(player, pickup)
-				pickup:GetData().wakaba_purchased = true
-				return true
-			elseif not pickup:GetData().wakaba_purchased then
-				sprite:Play("Collect", true)
-				pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-				pickup:Die()
-			end
-
-		else
-			--return false
-		end
-	end
-
-end
---wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PrePickupCollision_Shiori)
-
-
-function wakaba:PostShioriPickupCollision(pickup, collider, low)
+function wakaba:PickupCollision_Shiori(pickup, collider, low)
 	if collider:ToPlayer() ~= nil then
 		local player = collider:ToPlayer()
 		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
@@ -540,84 +412,13 @@ function wakaba:PostShioriPickupCollision(pickup, collider, low)
 				if pickup.SubType == KeySubType.KEY_CHARGED then
 					player:AddKeys(3)
 				end
-			elseif pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE
-			and wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_PURE_BODY
-			and player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
-				if pickup.Wait > 0 then return false end
-				local itemID = pickup.SubType
-				local config = Isaac.GetItemConfig():GetCollectible(itemID)
-				if itemID > 0 and config and not config:HasTags(ItemConfig.TAG_QUEST) then
-
-					if pickup:IsShopItem() then
-						if pickup.Price > 0 then
-							if player:GetNumCoins() >= pickup.Price then
-								player:AddCoins(pickup.Price * -1)
-							else
-								return true
-							end
-						elseif pickup.Price < 0 then
-							local maxHearts = player:GetEffectiveMaxHearts()
-							local maxRedHearts = player:GetMaxHearts()
-							local maxSoulHearts = player:GetSoulHearts()
-							if pickup.Price == PickupPrice.PRICE_ONE_HEART then
-								if maxHearts >= 2 then
-									if maxRedHearts < 2 then
-										player:AddBoneHearts(-1)
-									else
-										player:AddMaxHearts(-2, true)
-									end
-								else
-									return true
-								end
-							elseif pickup.Price == PickupPrice.PRICE_TWO_HEARTS then
-								if maxHearts >= 4 then
-									if maxRedHearts < 4 then
-										player:AddBoneHearts(-2)
-									elseif maxRedHearts < 2 then
-										player:AddBoneHearts(-1)
-										player:AddMaxHearts(-2, true)
-									else
-										player:AddMaxHearts(-4, true)
-									end
-								else
-									return true
-								end
-							elseif pickup.Price == PickupPrice.PRICE_THREE_SOULHEARTS then
-								if maxSoulHearts >= 6 then
-									player:AddSoulHearts(-6, true)
-								else
-									return true
-								end
-							elseif pickup.Price == PickupPrice.PRICE_ONE_HEART_AND_TWO_SOULHEARTS then
-								if maxHearts >= 2 and maxSoulHearts >= 4 then
-									player:AddSoulHearts(-4, true)
-									if maxRedHearts < 2 then
-										player:AddBoneHearts(-1)
-									else
-										player:AddMaxHearts(-2, true)
-									end
-								else
-									return true
-								end
-							end
-						end
-
-					end
-
-
-					for i = 1, 8 + (config.Quality * 2) do
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, pickup.Position, wakaba.RandomVelocity(), nil)
-						player:AnimateSad()
-						pickup:Remove()
-					end
-				end
 			end
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PostShioriPickupCollision)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_Shiori)
 
-function wakaba:PostNPCDeathShiori(entity)
+function wakaba:NPCDeath_Shiori(entity)
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
 		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
@@ -634,9 +435,10 @@ function wakaba:PostNPCDeathShiori(entity)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.PostNPCDeathShiori)
+wakaba:AddCallback(ModCallbacks.MC_POST_NPC_DEATH, wakaba.NPCDeath_Shiori)
 
-function wakaba:PreTakeDamageShiori(entity, amount, flags, source, countdown)
+
+function wakaba:TakeDamage_Shiori(entity, amount, flags, source, countdown)
 	if entity.Type ~= EntityType.ENTITY_PLAYER
 	then
 		local player = nil
@@ -674,51 +476,20 @@ function wakaba:PreTakeDamageShiori(entity, amount, flags, source, countdown)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.PreTakeDamageShiori)
+wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Shiori)
 
-function wakaba:PreRoomClearShiori(rng, spawnPosition)
-	local hasshiori = false
-	local shioriluck = 0
-	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
-			hasshiori = true
-			shioriluck = shioriluck + player.Luck
-			local rng = wakaba.PickupRNG
-			local randomNum = rng:RandomFloat()
-			randomNum = randomNum * 100
-			local minNum = wakaba.state.options.shiorikeychance
-			minNum = minNum + (shioriluck * 4)
-			if randomNum <= minNum then
-				player:AddKeys(1)
-			end
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.PreRoomClearShiori)
-wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.PreRoomClearShiori)
 
 function wakaba:NewLevel_Shiori()
 	for i = 1, wakaba.G:GetNumPlayers() do
-		local player = Isaac.GetPlayer(i - 1)
-		if player:GetPlayerType() == playerType
-		and (wakaba.runstate.currentshiorimode == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS and wakaba.G.TimeCounter > 0) then
-			if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				local data = player:GetData()
-				data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS, player, wakaba.state.options.shioriakasicbooks)
-				--player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-				data.wakaba.bookindex = 1
-			end
-		end
+		wakaba:resetShioriBookPool(Isaac.GetPlayer(i - 1))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
 
+
 function wakaba:PickupUpdate_Shiori(pickup)
 	if isc:anyPlayerIs(wakaba.Enums.Players.SHIORI) or isc:anyPlayerIs(wakaba.Enums.Players.SHIORI_B) then
 		if pickup:IsShopItem() then
-
 			-- Pickup Price modification from Retribution, need to move to common functions though....
 			local persistentData = wakaba:GetPersistentPickupData(pickup)
 
@@ -823,75 +594,29 @@ end
 
 wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onShioriCache)
 
+---@param player EntityPlayer
 function wakaba:AfterShioriInit(player)
-	local player = player or Isaac.GetPlayer()
+	player = player or Isaac.GetPlayer()
 	if player:GetPlayerType() == playerType then
 		local data = player:GetData()
 		data.wakaba = data.wakaba or {}
-		if wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_LIBRARIAN then
-			data.wakaba.books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_SHIORI)
-			if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-			end
-		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_COLLECTOR then
-			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-			if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-			end
-		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_AKASIC_RECORDS then
-			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_AKASIC_RECORDS, player, wakaba.state.options.shioriakasicbooks)
-			if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-			end
-		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_PURE_BODY then
-			data.wakaba.books = wakaba:GetBookItems(wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-			if player:GetActiveItem(ActiveSlot.SLOT_POCKET) <= 0 and wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-			end
-		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_MINERVA then
-			data.wakaba.books = {}
-		elseif wakaba.state.options.shiorimodes == wakaba.shiorimodes.SHIORI_CURSE_OF_SATYR then
-			data.wakaba.books = wakaba:GetRandomBook(wakaba.bookstate.BOOKSHELF_SHIORI, player)
-			if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
-				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
-				--player:AddCollectible(data.wakaba.books[1], 0, false, ActiveSlot.SLOT_POCKET)
-			end
-		end
 
-
+		wakaba:resetShioriBookPool(player, true)
 
 		data.wakaba.bookindex = data.wakaba.bookindex or 1
 		data.wakaba.currdamage = data.wakaba.currdamage or 0
 		data.wakaba.enemieskilled = data.wakaba.enemieskilled or 0
 		data.wakaba.nextshioriflag = data.wakaba.nextshioriflag or 0
-		wakaba.FLog("debugShiori","Adding bookmakrs")
-		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
-		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
-		if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end
-
-		if not player:HasTrinket(TrinketType.TRINKET_OLD_CAPACITOR, false) then
-			player:AddTrinket(TrinketType.TRINKET_OLD_CAPACITOR)
-			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
-		end
-		if wakaba.G:IsGreedMode() and not player:HasTrinket(TrinketType.TRINKET_FLAT_PENNY, false) then
-			player:AddTrinket(TrinketType.TRINKET_FLAT_PENNY)
-			player:UseActiveItem(CollectibleType.COLLECTIBLE_SMELTER, UseFlag.USE_NOANIM, -1)
-		end
-
-
-		if wakaba.state.options.cp_wakaba then
-			player:EvaluateItems()
-			--player:ClearCostumes()
+		if REPENTOGON then
+			player:IncrementPlayerFormCounter(PlayerForm.PLAYERFORM_BOOK_WORM, 9)
 		else
-			--wakaba:GetShioriCostume(player)
+			if not player:HasCollectible(wakaba.SHIORI_BOOKMARK) then player:AddCollectible(wakaba.SHIORI_BOOKMARK) end
+			if not player:HasCollectible(wakaba.SHIORI_BOOKMARK2) then player:AddCollectible(wakaba.SHIORI_BOOKMARK2) end
+			if not player:HasCollectible(wakaba.SHIORI_BOOKMARK3) then player:AddCollectible(wakaba.SHIORI_BOOKMARK3) end
 		end
-
 	end
 end
+
 
 function wakaba:PostShioriInit(player)
 	if player:GetPlayerType() == playerType then
@@ -907,19 +632,6 @@ function wakaba:ShioriInit(continue)
 	if (not continue) then
 		isShioriContinue = false
 		wakaba:AfterShioriInit()
-	end
-	if Poglite then
-		if wakaba.state.pog ~= nil then
-			if wakaba.state.pog then
-				-- Shiori POG
-				local pogCostume = Isaac.GetCostumeIdByPath("gfx/characters/shiorisosig.anm2")
-				Poglite:AddPogCostume("ShioriPog",playerType,pogCostume)
-			else
-				-- Origin POG
-				local pogCostume = Isaac.GetCostumeIdByPath("gfx/characters/shioripog.anm2")
-				Poglite:AddPogCostume("ShioriPog",playerType,pogCostume)
-			end
-		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.ShioriInit)

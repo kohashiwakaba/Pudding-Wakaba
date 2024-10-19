@@ -353,6 +353,41 @@ if Encyclopedia then
 				{str = "She also appears in a visual novel 'Love's Sweet Garnish'."},
 			},
 		},
+		Anna = {
+			{ -- Start Data
+				{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+				{str = "Items", clr = 3, halign = 0},
+				{str = "- Kyoutarou Lover"},
+				{str = "Stats", clr = 3, halign = 0},
+				{str = "- HP: 3 Red Hearts"},
+				{str = "- Speed: 1.00"},
+				{str = "- Tear Rate: 2.73"},
+				{str = "- Damage: 3.50"},
+				{str = "- Range: 6.50"},
+				{str = "- Shot Speed: 1.00"},
+				{str = "- Luck: 0.00"},
+			},
+			{ -- Traits
+				{str = "Traits", fsize = 2, clr = 3, halign = 0},
+					--{str = ""},
+				{str = ""},
+				{str = "Anna needs to be stable to keep her beauty"},
+				{str = "- Any collectible items that not matching Kyoutarou Lover will be rerolled."},
+			},
+			{ -- Birthright
+				{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+				{str = "Prevents Quality 0 items from spawning."},
+				{str = "+0.003 Speed per obtained collectible"},
+			},
+			{ -- Notes
+				{str = "Notes", fsize = 2, clr = 3, halign = 0},
+				{str = "Kyoutarou Lover effect for Anna is intrinsic to the character, and it can't be rerolled."},
+			},
+			{ -- Trivia
+				{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+				{str = "'Anna' is one of main characters from 'The Dangers in My Heart'."},
+			},
+		},
 	}
 	local wikiTainted = {
 		Wakaba = {
@@ -697,6 +732,11 @@ if Encyclopedia then
 			Description = "The Curity",
 			Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraits.anm2", "Rira", 0),
 			CompletionTrackerFuncs = { function() return wakaba:GetEncyPaper(wakaba.Enums.Players.RIRA) end },
+		},
+		[wakaba.Enums.Players.ANNA] = {
+			Name = "Anna",
+			Description = "The Harmony",
+			Sprite = Encyclopedia.RegisterSprite(wakaba.modpath .. "content/gfx/characterportraits.anm2", "Anna", 0),
 		},
 		[wakaba.Enums.Players.WAKABA_B] = {
 			Tainted = true,

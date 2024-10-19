@@ -381,8 +381,8 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	Class = class,
 	ModName = class,
-	ID = i.EDEN_STICKY_NOTE,
-	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.EDEN_STICKY_NOTE,
+	ID = i.STICKY_NOTE,
+	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.STICKY_NOTE,
 	UnlockFunc = function(self)
 		if not wakaba:IsEntryUnlocked("edensticky") then
 			self.Desc = "Complete Hyper Random (challenge No.98w)"

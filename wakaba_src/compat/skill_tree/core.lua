@@ -1,4 +1,5 @@
 local pa = false
+local pstFirstLevel = false
 
 local modifiers = include("wakaba_src.compat.skill_tree.modifier_descriptions")
 local sprite_ids = include("wakaba_src.compat.skill_tree.sprite_ids")
@@ -363,7 +364,11 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		wakaba:AddCallback(wakaba.Callback.MAX_UNIFORM_SLOTS, function(_, player, originalMax)
 			return originalMax + wakaba:extraVal("wakabaUniformSlot", 0)
 		end)
-		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function(_)
+
+		function wakaba:NewLevel_PST()
+			if not pstFirstLevel and wakaba.G:GetFrameCount() == 0 then
+				return
+			end
 			local room = wakaba.G:GetRoom()
 			for num = 1, wakaba.G:GetNumPlayers() do
 				local player = wakaba.G:GetPlayer(num - 1)
@@ -373,7 +378,13 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				local pos = room:GetGridPosition(102)
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, Card.CARD_WILD, room:FindFreePickupSpawnPosition(pos, 40), Vector.Zero, nil)
 			end
+		end
+		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_PST)
+
+		wakaba:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function(_)
+			pstFirstLevel = false
 		end)
+
 		wakaba:AddPriorityCallback(ModCallbacks.MC_POST_GAME_STARTED, CallbackPriority.LATE, function(_, isContinued)
 			if isContinued then
 				return
@@ -421,6 +432,8 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 					wakaba.G:SetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED, true)
 				end
 			end
+			pstFirstLevel = true
+			wakaba:NewLevel_PST()
 		end)
 
 		---@param player EntityPlayer
