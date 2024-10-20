@@ -682,6 +682,44 @@ function wakaba:getShioriBooks(player)
 	end
 end
 
+if REPENTOGON then
+	function wakaba:PreRoomClearShiori(player)
+		if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
+			local rng = wakaba.PickupRNG
+			local randomNum = rng:RandomFloat()
+			randomNum = randomNum * 100
+			local minNum = 50
+			minNum = minNum + (player.Luck * 4)
+			if randomNum <= minNum then
+				player:AddKeys(1)
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TRIGGER_ROOM_CLEAR, wakaba.PreRoomClearShiori)
+else
+	function wakaba:PreRoomClearShiori(rng, spawnPosition)
+		local hasshiori = false
+		local shioriluck = 0
+		for i = 1, wakaba.G:GetNumPlayers() do
+			local player = Isaac.GetPlayer(i - 1)
+			if (player:GetPlayerType() == wakaba.Enums.Players.SHIORI or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B) then
+				hasshiori = true
+				shioriluck = shioriluck + player.Luck
+				local rng = wakaba.PickupRNG
+				local randomNum = rng:RandomFloat()
+				randomNum = randomNum * 100
+				local minNum = 50
+				minNum = minNum + (shioriluck * 4)
+				if randomNum <= minNum then
+					player:AddKeys(1)
+				end
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.PreRoomClearShiori)
+	wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.PreRoomClearShiori)
+end
+
 local cachedColors = {}
 
 function wakaba:resetShioriCachedColorIndicators()

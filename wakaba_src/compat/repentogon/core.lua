@@ -134,6 +134,8 @@ end, PickupVariant.PICKUP_COLLECTIBLE) ]]
 wakaba:RemoveCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_GlobalHUDStats)
 wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_GlobalHUDStats)
 wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_GlobalHUDStats)
+wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_ShioriIndicator)
+wakaba:AddCallback(ModCallbacks.MC_HUD_RENDER, wakaba.Render_ShioriIndicator)
 
 -- Can't render above HUD with MC_HUD_RENDER
 --wakaba:RemoveCallback(ModCallbacks.MC_GET_SHADER_PARAMS, wakaba.Render_ChallengeDest)
