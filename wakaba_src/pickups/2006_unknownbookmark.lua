@@ -2,6 +2,9 @@ function wakaba:onUseCard2006(_, player, flags)
 	local books = wakaba.runstate.cachedmaijimabooks
 	if books then
 		local subrandom = player:GetCardRNG(wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK):RandomInt(#books) + 1
+		if wakaba:IsEntryUnlocked("unknownbookmark") and wakaba:extraVal("shioriAssistant") then
+			subrandom = 1
+		end
 		local selected = books[subrandom]
 		if selected == wakaba.Enums.Collectibles.DOUBLE_DREAMS then
 			player:UseCard(wakaba.Enums.Cards.CARD_DREAM_CARD, 0 | UseFlag.USE_NOHUD)

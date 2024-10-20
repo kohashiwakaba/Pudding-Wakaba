@@ -25,4 +25,9 @@ return {
 	"wakabaWildCard",
 	"wakabaUniformSlot",
 	"wakabaIsSmart",
+
+	"unknownBookmarkTears",
+	"libraryDamage",
+	"libraryReveal",
+	"shioriAssistant",
 }

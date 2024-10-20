@@ -2439,7 +2439,6 @@ wakaba.descriptions[desclang].curses = {
 		icon = "WakabaCurseSatyr",
 		name = "半人羊诅咒",
 		description = "!!! 只有在汐宫使用'半人羊诅咒'模式时才会出现"
-			.. "#汐宫无法切换书籍"
 			.. "#使用口袋里的书会使书变成另一本"
 			.. "#不像未知书签或Maijima Mythology，这样使用书会改变汐宫的眼泪加成"
 			.. "#这个诅咒无法被{{Collectible260}}黑蜡烛移除"

@@ -2852,7 +2852,6 @@ wakaba.descriptions[desclang].curses = {
 		icon = "WakabaCurseSatyr",
 		name = "사티로스의 저주",
 		description = "!!! 시오리 캐릭터 중 'Curse of Satyr' 모드로 플레이할 때만 항상 걸립니다."
-		.. "#시오리가 책을 자유롭게 선택할 수 없으며 현재 지니고 있는 단 하나의 책만 사용할 수 있습니다."
 		.. "#픽업 슬롯에 있는 책을 사용할 때마다 다음에 사용할 수 있는 책이 랜덤하게 정해집니다."
 		.. "#해당 책 사용 시에도 시오리의 책 눈물 보너스가 바뀝니다."
 		.. "#이 저주는 {{Collectible260}}Black Candle 아이템으로도 제거할 수 없습니다."

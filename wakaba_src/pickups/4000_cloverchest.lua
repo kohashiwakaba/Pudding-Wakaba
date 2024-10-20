@@ -155,7 +155,7 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 		or player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP)
 		or (player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) and player:GetNumCoins() > 0)
 		or wakaba:extraVal("wakabaFreeClover") then
-			if wakaba:extraVal("wakabaFreeClover") then
+			if wakaba:IsEntryUnlocked("cloverchest") and wakaba:extraVal("wakabaFreeClover") then
 
 			elseif not player:HasGoldenKey() and not player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP) then
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then

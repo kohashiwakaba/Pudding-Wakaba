@@ -112,17 +112,26 @@ do -- Shiori Blacklists
 	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_SILENCE, wakaba.bookstate.BOOKSHELF_SOUL_OF_SHIORI)
 end
 
-function wakaba:getShioriBookCapacity()
-	local extraCount = 0
-	return wakaba.Enums.Constants.SHIORI_BOOKS + extraCount
+function wakaba:getShioriBookCapacity(player)
+	local max = wakaba.Enums.Constants.SHIORI_BOOKS
+	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.MAX_SHIORI_SLOTS)) do
+		local evals = callback.Function(callback.Mod, player, max)
+		if evals and type(evals) == "number" then
+			max = evals
+		end
+	end
+	return max
 end
 
-function wakaba:resetShioriBookPool(player, force)
+function wakaba:resetShioriBookPool(player, force, seedOrRNG)
 	if not (player and player:Exists()) then return end
 	if player:GetPlayerType() == playerType and (force or wakaba.G.TimeCounter > 0) then
 		if wakaba.G.Challenge == Challenge.CHALLENGE_NULL then
 			local data = player:GetData()
-			data.wakaba.books = wakaba:getRandomBooks(player, wakaba.bookstate.BOOKSHELF_SHIORI, wakaba:getShioriBookCapacity())
+			data.wakaba.books = wakaba:getRandomBooks(player, wakaba.bookstate.BOOKSHELF_SHIORI, wakaba:getShioriBookCapacity(), seedOrRNG)
+			if wakaba:extraVal("shioriPurify") then
+				table.insert(data.wakaba.books, 1, wakaba.Enums.Collectibles.PURIFIER)
+			end
 			if force then
 				player:SetPocketActiveItem(data.wakaba.books[1], ActiveSlot.SLOT_POCKET, true)
 			else
@@ -169,13 +178,21 @@ function wakaba:getBooks(player, bookState)
 	return books
 end
 
-function wakaba:getRandomBooks(player, bookState, number)
+function wakaba:getRandomBooks(player, bookState, number, seedOrRNG)
 	player = player or Isaac.GetPlayer()
 	local books = wakaba:getBooks(player, bookState)
 	number = number or 1
 	local newbook = {}
 	for i = 1, number do
 		local rng = player:GetCollectibleRNG(wakaba.SHIORI_BOOKMARK)
+		if seedOrRNG then
+			if type(seedOrRNG) == "number" then
+				rng = RNG()
+				rng:SetSeed(seedOrRNG, 35)
+			elseif seedOrRNG.Next and seedOrRNG.SetSeed then
+				rng = seedOrRNG
+			end
+		end
 		local pos = rng:RandomInt(#books) + 1
 		local randbook = books[pos]
 		table.insert(newbook, randbook)
@@ -227,6 +244,8 @@ function wakaba:ShioriCharge_Shiori(player, slot, item, keys, charge, conf)
 		return wakaba.killcount <= 160 and 200000 or 0
 	elseif item == CollectibleType.COLLECTIBLE_BLANK_CARD and player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.TRIAL_STEW) then
 		return 0
+	elseif isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) and slot == ActiveSlot.SLOT_POCKET then
+		return 200000
 	elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local reqconsume = maxCharges // 2
 		return charge + (maxCharges - reqconsume)
@@ -240,7 +259,11 @@ function wakaba:PlayerEffectUpdate_Shiori(player)
 		local itemConfig = Isaac.GetItemConfig()
 		if player:HasGoldenKey() then
 			player:RemoveGoldenKey()
-			player:AddKeys(6)
+			local keys = 6
+			if wakaba:extraVal("shioriGoldenKey") then
+				keys = keys + 2
+			end
+			player:AddKeys(keys)
 		end
 		local keys = player:GetNumKeys()
 		for i = 0, 2 do
@@ -330,10 +353,16 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 				consume = math.max(consume - 1, 1)
 			end
 		end
-		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and wakaba:extraVal("shioriSatyr") then
+		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) and useditem ~= wakaba.Enums.Collectibles.PURIFIER then
 			wakaba:resetShioriBookPool(player)
 		else
 			player:AddKeys(-consume)
+		end
+		local tmpDamage = wakaba:extraVal("shioriRoomKeyDamage", 0)
+		if tmpDamage ~= 0 then
+			wakaba:initPlayerDataEntry(player, "shioriRoomKeyDamage", 0)
+			wakaba:addPlayerDataCounter(player, "shioriRoomKeyDamage", tmpDamage * consume)
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE, true)
 		end
 	end
 end
@@ -481,7 +510,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Shiori)
 
 function wakaba:NewLevel_Shiori()
 	for i = 1, wakaba.G:GetNumPlayers() do
-		wakaba:resetShioriBookPool(Isaac.GetPlayer(i - 1))
+		wakaba:resetShioriBookPool(Isaac.GetPlayer(i - 1), nil, wakaba.L:GetDungeonPlacementSeed())
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
@@ -489,7 +518,11 @@ wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
 
 function wakaba:PickupUpdate_Shiori(pickup)
 	if isc:anyPlayerIs(wakaba.Enums.Players.SHIORI) or isc:anyPlayerIs(wakaba.Enums.Players.SHIORI_B) then
-		if pickup:IsShopItem() then
+		if wakaba:extraVal("shioriGoldenKey") then
+			if pickup.Variant == PickupVariant.PICKUP_LIL_BATTERY then
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN, true, true, true)
+			end
+		elseif pickup:IsShopItem() then
 			-- Pickup Price modification from Retribution, need to move to common functions though....
 			local persistentData = wakaba:GetPersistentPickupData(pickup)
 
@@ -601,7 +634,7 @@ function wakaba:AfterShioriInit(player)
 		local data = player:GetData()
 		data.wakaba = data.wakaba or {}
 
-		wakaba:resetShioriBookPool(player, true)
+		wakaba:resetShioriBookPool(player, true, wakaba.L:GetDungeonPlacementSeed())
 
 		data.wakaba.bookindex = data.wakaba.bookindex or 1
 		data.wakaba.currdamage = data.wakaba.currdamage or 0

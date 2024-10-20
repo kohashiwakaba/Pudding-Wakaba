@@ -57,6 +57,20 @@ return {
 		},
 		category = "wakabaGlobal", sort = 3909
 	},
+	unknownBookmarkTears = {
+		str = "%s%.2f tears for the current room when you use an Unknown Bookmark.",
+		addPlus = true,
+		category = "charTree", sort = 4094
+	},
+	libraryDamage = {
+		str = "%s%.2f increased damage when entering Library.",
+		addPlus = true,
+		category = "charTree", sort = 4094
+	},
+	libraryReveal = {
+		str = "%d%% chance to reveal the library's location if it's present on the floor",
+		category = "charTree", sort = 4095
+	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
 		str = {
@@ -155,6 +169,7 @@ return {
 			"Curse of Satyr:",
 			"    Books from Shiori's book pool no longer require keys and can be used anytime",
 			"    Using a book randomly shuffles Shiori's book pool",
+			"    Using Purifier does not trigger shuffle",
 		},
 		addPlus = true,
 		category = "charTree", sort = 4065
@@ -169,19 +184,47 @@ return {
 		addPlus = true,
 		category = "charTree", sort = 4066
 	},
+	shioriGod = {
+		str = {
+			"Become Goddess:",
+			"    Starts with GodHead",
+			"    -75% Damage unless The Bible secondary effect is active",
+		},
+		category = "charTree", sort = 4067
+	},
 	---- SHIORI'S TREE NORMAL  ----
-	shioriExtraBooks = {
-		str = "%s%d book capacity per floor",
+	shioriKeyRange = {
+		str = "%s%.2f%% range when collecting a key. Resets every floor.",
 		addPlus = true,
-		category = "charTree", sort = 4092
+		category = "charTree", sort = 4093
+	},
+	shioriSecondaryLuck = {
+		str = "%s%.2f%% luck when secondary effect of Book of Shiori changes. Resets every floor.",
+		addPlus = true,
+		category = "charTree", sort = 4093
 	},
 	shioriExtraKeyDrop = {
-		str = "%s%.2f%% chance to gain an additional key on room clear",
+		str = "%s%.2f%% chance to gain an additional key when clearing a room",
 		addPlus = true,
 		category = "charTree", sort = 4093
 	},
 	shioriRoomKeyDamage = {
-		str = "%s%.2f damage for the current room when a key is consumed",
+		str = "%s%.2f damage for the current room per key consumed",
+		addPlus = true,
+		category = "charTree", sort = 4094
+	},
+	shioriUnknownBookmarkTears = {
+		str = "%s%.2f tears for the current room when you use an Unknown Bookmark.",
+		addPlus = true,
+		category = "charTree", sort = 4094
+	},
+	shioriCardFloorDamage = {
+		str = "%s%.2f%% increased damage for the current floor when you use a card, up to a total 15%.",
+		addPlus = true,
+		category = "charTree", sort = 4094
+	},
+	shioriLibraryDamage = {
+		str = "%s%.2f increased damage when entering Library.",
 		addPlus = true,
 		category = "charTree", sort = 4094
 	},

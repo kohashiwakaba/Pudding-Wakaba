@@ -2538,7 +2538,6 @@ wakaba.descriptions[desclang].curses = {
 		icon = "WakabaCurseSatyr",
 		name = "Curse of Satyr",
 		description = "!!! Only appears for Shiori with 'Curse of Satyr' mode"
-		.. "#Shiori cannot switch books"
 		.. "#Using the book in pocket slot makes the book change into another"
 		.. "#Unlike Unknown Bookmark or Maijima Mythology, Using the book this way will change Shiori's tear bonus"
 		.. "#This curse cannot be removed by {{Collectible260}}Black Candle"

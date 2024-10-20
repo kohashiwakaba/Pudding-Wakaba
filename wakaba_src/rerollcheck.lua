@@ -7,6 +7,9 @@ rollItem code originally by Mana, modified for Eat Heart, Wakaba's Blessing, Wak
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 function wakaba:cardUnlockCheck(card)
+	if card == wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK then
+		return wakaba:IsCompletionItemUnlockedTemp(card, "card") or wakaba:extraVal("shioriAssistant")
+	end
 	return wakaba:IsCompletionItemUnlockedTemp(card, "card")
 end
 

@@ -673,6 +673,10 @@ wakaba.Callback = {
 	-- ---
 	MAX_UNIFORM_SLOTS = "WakabaCallbacks.MAX_UNIFORM_SLOTS",
 	-- ---
+	-- MAX_SHIORI_SLOTS
+	-- ---
+	MAX_SHIORI_SLOTS = "WakabaCallbacks.MAX_SHIORI_SLOTS",
+	-- ---
 	-- EVALUATE_RICHER_UNIFORM_MODE
 	-- ---
 	EVALUATE_RICHER_UNIFORM_MODE = "WakabaCallbacks.EVALUATE_RICHER_UNIFORM_MODE",
@@ -1197,7 +1201,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, useditem, rng, player, 
 				player:GetData().wakaba.nextshioriflag = nextFlag
 			end
 			if nextFlag ~= nil then
-				Isaac.RunCallbackWithParam(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT, nextFlag, nextFlag, rng, player, useflag, slot, vardata)
+				Isaac.RunCallbackWithParam(wakaba.Callback.POST_CHANGE_SHIORI_EFFECT, nextFlag, nextFlag, rng, player, useflag, slot, vardata, prevFlag)
 			end
 			wakaba.HiddenItemManager:RemoveAll(player, "WAKABA_BOS_SECONDARY")
 			Isaac.RunCallbackWithParam(wakaba.Callback.POST_ACTIVATE_SHIORI_EFFECT, useditem, useditem, rng, player, useflag, slot, vardata)
