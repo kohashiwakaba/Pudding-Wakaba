@@ -1683,7 +1683,7 @@ local skipWarning = false
 if EID then
 	local shouldShowWarning = {}
 	if not REPENTOGON then
-		table.insert(shouldShowWarning, "WakabaRGONWarningText")
+		--table.insert(shouldShowWarning, "WakabaRGONWarningText")
 	end
 	if not wakaba.Flags.stackableDamocles then
 		table.insert(shouldShowWarning, "WakabaDamoclesWarningText")
