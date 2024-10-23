@@ -247,7 +247,7 @@ local wakabadirectory = {
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
 				setting = Keyboard.KEY_LEFT_BRACKET,
-				variable = "InvDescListkey",
+				variable = "ExtraLeftKey",
 				load = function()
 						return wakaba.state.options.exl or Keyboard.KEY_LEFT_BRACKET
 				end,
@@ -263,7 +263,7 @@ local wakabadirectory = {
 				keybind = true,
 				-- -1 means no key set, otherwise use the Keyboard enum!
 				setting = Keyboard.KEY_RIGHT_BRACKET,
-				variable = "InvDescListkey",
+				variable = "ExtraRightKey",
 				load = function()
 						return wakaba.state.options.exr or Keyboard.KEY_RIGHT_BRACKET
 				end,
