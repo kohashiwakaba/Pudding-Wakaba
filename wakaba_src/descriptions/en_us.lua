@@ -1774,8 +1774,14 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.AURORA_GEM] = {
 		itemName = "Aurora Gem",
 		description = ""
-		.. "#Increased chance for Easter Coins"
+		.. "#+6.66% chance for Easter Coins"
 		.. "{{CR}}",
+		LuckFormula = function(luck)
+			local basicChance = (wakaba.Enums.Chances.AURORA_DEFAULT / 100)
+			local parLuck = 69
+			local maxChance = (wakaba.Enums.Chances.AURORA_MAX / 100) - basicChance
+			return wakaba:StackChance(basicChance + wakaba:LuckBonus(luck, parLuck, maxChance), 1) * 100
+		end,
 	},
 	[wakaba.Enums.Trinkets.MISTAKE] = {
 		itemName = "Mistake",

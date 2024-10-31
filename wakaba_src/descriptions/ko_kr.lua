@@ -2063,8 +2063,8 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.AURORA_GEM] = {
 		itemName = "오로라 보석",
 		description = ""
-		.. "#이스터 동전의 등장 확률이 6.66% 증가합니다."
-		.. "#{{LuckSmall}}  6.66 +(1*{{LuckSmall}})%"
+		.. "#{{Coin}} 이스터 동전 등장 확률 +6.66%p"
+		.. "#{{Luck}} 행운 69+일 때 100%"
 		.. "{{CR}}",
 		queueDesc = "황금빛 장소로 가져다줘",
 	},

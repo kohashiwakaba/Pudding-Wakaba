@@ -182,8 +182,8 @@ wakaba.encyclopediadesc.desc.trinkets = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "6.66% chance to replace normal coin into purple coins."},
-			{str = "- The chance scales with Luck, +1%p per luck"},
-			{str = "When picking up a purple coin for the first time, a ghostly rainbow sphere orbit around Isaac."},
+			{str = "- The chance for purple coins depends on the luck stat and goes up to 100% at 69 Luck."},
+			{str = "When picking up a purple coin for the first time, a ghostly rainbow sphere called as 'Easter Egg' following Isaac."},
 			{str = "- Rainbow sphere shoot homing, spectral tears that do 1 damage."},
 			{str = "Picking multiple purple coins make rainbow sphere deal more damage, and shoot tears more frequently."},
 		},
