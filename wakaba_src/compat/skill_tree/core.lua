@@ -443,7 +443,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "111": "{\"pos\":[-6,10],\"type\":5081,\"size\":\"Large\",\"name\":\"[Shiori] Purifier\",\"description\":[\"Purifier is allocated and be is always available for Shiori.\",\"Purifier dissolve pedestal into keys.\",\"Curse of Satyr reduces number of keys.\"],\"modifiers\":{\"shioriPurify\":true},\"adjacent\":[169,197],\"customID\":\"w_shiori_1006\"}",
   "112": "{\"pos\":[6,10],\"type\":5078,\"size\":\"Large\",\"name\":\"[Shiori] Regulation\",\"description\":[\"All battery pickups are replaced to Golden keys\"],\"modifiers\":{\"shioriGoldenKey\":true},\"adjacent\":[148,195],\"customID\":\"w_shiori_1003\"}",
   "113": "{\"pos\":[-9,8],\"type\":5077,\"size\":\"Large\",\"name\":\"[Shiori] Knowledge is Power\",\"description\":[\"+5% damage up per enteing special rooms\",\"Resets every floor\"],\"modifiers\":{\"shioriKnowledge\":true},\"adjacent\":[178,182],\"customID\":\"w_shiori_1002\"}",
-  "114": "{\"pos\":[9,8],\"type\":5082,\"size\":\"Large\",\"name\":\"[Shiori] Goddess\",\"description\":[\"Starts with Godhead.\",\"-75% Damage unless The Bible secondary effect is active.\"],\"modifiers\":{\"shioriGod\":true},\"adjacent\":[160,186],\"customID\":\"w_shiori_1007\"}",
+  "114": "{\"pos\":[9,8],\"type\":5082,\"size\":\"Large\",\"name\":\"[Shiori] Goddess\",\"description\":[\"Starts with Godhead.\",\"-75% Damage\"],\"modifiers\":{\"shioriGod\":true},\"adjacent\":[160,186],\"customID\":\"w_shiori_1007\"}",
   "115": "{\"pos\":[-6,18],\"type\":5076,\"size\":\"Large\",\"name\":\"[Shiori] Taste of Shiori\",\"description\":[\"+1 Shiori's available book slot\"],\"modifiers\":{\"shioriTaste\":1},\"adjacent\":[200,221],\"customID\":\"w_shiori_1001\"}",
   "116": "{\"pos\":[6,18],\"type\":5076,\"size\":\"Large\",\"name\":\"[Shiori] Taste of Shiori\",\"description\":[\"+1 Shiori's available book slot\"],\"modifiers\":{\"shioriTaste\":1},\"adjacent\":[202,219],\"customID\":\"w_shiori_1001\"}",
   "117": "{\"pos\":[0,1],\"type\":44,\"size\":\"Small\",\"name\":\"Luck Down\",\"description\":[\"-0.03 luck\"],\"modifiers\":{\"luck\":-0.03},\"adjacent\":[1,118]}",
@@ -586,7 +586,8 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 
 				-- Mod: chance to reveal the library's location if it is present (Shiori's Tree)
 				local tmpMod = wakaba:extraVal("libraryReveal", 0)
-				local rng = RNG(wakaba.L:GetDungeonPlacementSeed())
+				local level = wakaba.L
+				local rng = RNG(level:GetDungeonPlacementSeed())
 				if tmpMod > 0 and 100 * rng:PhantomFloat() < tmpMod then
 					local libraryIdx = level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, RNG())
 					local libraryRoom = level:GetRoomByIdx(libraryIdx)

@@ -32,7 +32,7 @@ wakaba._ShioriData.UnlockNeeded = {
 	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = true,
 	[wakaba.Enums.Collectibles.BOOK_OF_CONQUEST] = true,
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = true,
-	[wakaba.Enums.Collectibles.BALANCE] = true,
+	--[wakaba.Enums.Collectibles.BALANCE] = true,
 }
 
 ---@class WakabaCachedBooks
@@ -92,6 +92,7 @@ do -- Shiori Blacklists
 	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, wakaba.bookstate.BOOKSHELF_SHIORI)
 	wakaba:BlacklistBook(wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY, wakaba.bookstate.BOOKSHELF_SHIORI)
 	wakaba:BlacklistBook(wakaba.Enums.Collectibles.CLEAR_FILE, wakaba.bookstate.BOOKSHELF_SHIORI)
+	wakaba:BlacklistBook(wakaba.Enums.Collectibles.BALANCE, wakaba.bookstate.BOOKSHELF_SHIORI)
 
 	-- Blacklist items for Hard Drop trinket
 	wakaba:BlacklistBook(CollectibleType.COLLECTIBLE_HOW_TO_JUMP, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
