@@ -188,7 +188,7 @@ return {
 		str = {
 			"Become Goddess:",
 			"    Starts with GodHead",
-			"    -75% Damage unless The Bible secondary effect is active",
+			"    -75% Damage",
 		},
 		category = "charTree", sort = 4067
 	},
