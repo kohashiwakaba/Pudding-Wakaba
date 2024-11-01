@@ -6,24 +6,10 @@ wakaba.Reminder.DefaultItems = {
 		{
 			item = CollectibleType.COLLECTIBLE_LAZARUS_RAGS
 		},
-		{
-			item = CollectibleType.COLLECTIBLE_ANEMIC,
-			cond = function()
-				EID:HaveUnlockedAchievement(Achievement.LAZARUS_BLEEDS_MORE)
-			end,
-		},
 	},
 	[PlayerType.PLAYER_LAZARUS2] = {
 		{
 			item = CollectibleType.COLLECTIBLE_ANEMIC
-		},
-	},
-	[PlayerType.PLAYER_THELOST] = {
-		{
-			item = CollectibleType.COLLECTIBLE_HOLY_MANTLE,
-			cond = function()
-				EID:HaveUnlockedAchievement(Achievement.LOST_HOLDS_HOLY_MANTLE)
-			end,
 		},
 	},
 	[PlayerType.PLAYER_LILITH] = {
