@@ -8,15 +8,20 @@ function wakaba:UseItem_Purifier(activeItem, rng, player, flags, slot, vardata)
 	for i, p in ipairs(pedestals) do
 		local pickup = p.Pedestal
 		if not p.Config:HasTags(ItemConfig.TAG_QUEST) then
-			local numKeys = 4 + p.Quality
-			if isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
-				numKeys = numKeys // 2
+			if pickup:IsShopItem() then
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN, true, true, true)
+			else
+				local numKeys = 4 + p.Quality
+				if isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) then
+					numKeys = numKeys // 2
+				end
+				for i = 1, numKeys do
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, pickup.Position, wakaba:RandomVelocity(), nil):ToPickup()
+				end
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
+				pickup:Remove()
 			end
-			for i = 1, numKeys do
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_KEY, 0, pickup.Position, wakaba:RandomVelocity(), nil):ToPickup()
-			end
-			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, nil)
-			pickup:Remove()
 			showAnim = true
 		end
 	end

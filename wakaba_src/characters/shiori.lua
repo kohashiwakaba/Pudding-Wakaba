@@ -511,7 +511,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDamage_Shiori)
 
 function wakaba:NewLevel_Shiori()
 	for i = 1, wakaba.G:GetNumPlayers() do
-		wakaba:resetShioriBookPool(Isaac.GetPlayer(i - 1), nil, wakaba.L:GetDungeonPlacementSeed())
+		wakaba:resetShioriBookPool(Isaac.GetPlayer(i - 1), nil, wakaba.L():GetDungeonPlacementSeed())
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_Shiori)
@@ -635,7 +635,7 @@ function wakaba:AfterShioriInit(player)
 		local data = player:GetData()
 		data.wakaba = data.wakaba or {}
 
-		wakaba:resetShioriBookPool(player, true, wakaba.L:GetDungeonPlacementSeed())
+		wakaba:resetShioriBookPool(player, true, wakaba.L():GetDungeonPlacementSeed())
 
 		data.wakaba.bookindex = data.wakaba.bookindex or 1
 		data.wakaba.currdamage = data.wakaba.currdamage or 0

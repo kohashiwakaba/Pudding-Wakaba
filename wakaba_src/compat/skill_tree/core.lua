@@ -586,7 +586,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 
 				-- Mod: chance to reveal the library's location if it is present (Shiori's Tree)
 				local tmpMod = wakaba:extraVal("libraryReveal", 0)
-				local level = wakaba.L
+				local level = wakaba.L()
 				local rng = RNG(level:GetDungeonPlacementSeed())
 				if tmpMod > 0 and 100 * rng:PhantomFloat() < tmpMod then
 					local libraryIdx = level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, RNG())
@@ -623,7 +623,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, wakaba.NewLevel_PST)
 
 		wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
-			local room = wakaba.R
+			local room = wakaba.R()
 			for num = 1, wakaba.G:GetNumPlayers() do
 				local player = wakaba.G:GetPlayer(num - 1)
 				if room:IsFirstVisit() then
@@ -731,7 +731,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 					wakaba.G:SetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED, true)
 				end
 			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
-				wakaba:resetShioriBookPool(player, true, wakaba.L:GetDungeonPlacementSeed())
+				wakaba:resetShioriBookPool(player, true, wakaba.L():GetDungeonPlacementSeed())
 			end
 			pstFirstLevel = true
 			wakaba:NewLevel_PST()
@@ -821,7 +821,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
 				if wakaba:extraVal("shioriExtraKeyDrop", 0) then
 					local extraChance = wakaba:extraVal("shioriExtraKeyDrop", 0) / 100
-					local rng = RNG(wakaba.R:GetAwardSeed())
+					local rng = RNG(wakaba.R():GetAwardSeed())
 					local result = rng:PhantomFloat()
 					if result < extraChance then
 						player:AddKeys(1)

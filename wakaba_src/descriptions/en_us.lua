@@ -1366,6 +1366,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Purifier",
 		description = ""
 		.. "#{{Key}} Dissolves pedestal into keys"
+		.. "#{{GoldenKey}} Converts pedestal for sale into golden key"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
