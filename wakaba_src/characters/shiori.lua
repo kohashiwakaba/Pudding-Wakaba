@@ -335,7 +335,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
-		if consume > 0 then
+		if charge > 0 then
 			if (item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
 			and not wakaba._ShioriData.WhitelistShiori[useditem] then
 				if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then
@@ -355,6 +355,7 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 					consume = math.max(consume - 1, 1)
 				end
 			end
+			consume = math.max(consume, 1)
 		end
 		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) and useditem ~= wakaba.Enums.Collectibles.PURIFIER then
 			wakaba:resetShioriBookPool(player)
