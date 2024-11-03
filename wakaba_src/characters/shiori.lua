@@ -297,6 +297,19 @@ function wakaba:PlayerUpdate_Shiori(player)
 		local data = player:GetData()
 		pdata = data.wakaba
 		local shift = 0
+
+		local extraLeft = wakaba:getOptionValue("exl")
+		local extraRight = wakaba:getOptionValue("exr")
+		local extraLeftCont = Keyboard.KEY_LEFT_BRACKET
+		local extraRightCont = Keyboard.KEY_RIGHT_BRACKET
+
+		if Input.IsButtonTriggered(extraLeft, 0)
+			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
+		then shift = -1 end
+		if Input.IsButtonTriggered(extraRight, 0)
+			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
+		then shift = 1 end
+
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
 			if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
 				shift = -1
