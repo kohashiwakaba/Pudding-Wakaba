@@ -17,7 +17,7 @@ local function ApplyWakabaTearEffects(entity, source, isLaser)
 		if data.wakaba_TearEffectEntityBlacklist[entity.InitSeed] then return end
 
 		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.APPLY_TEARFLAG_EFFECT)) do
-			if wakaba:HasRicherTearFlags(source.Entity, callbackData.Param) then
+			if wakaba:HasRicherTearFlags(source.Entity, callbackData.Param) and source.Entity.SpawnerEntity then
 				local newEntity = callbackData.Function(callbackData.Mod, entity, source.Entity.SpawnerEntity:ToPlayer(), source.Entity)
 
 				if newEntity then
