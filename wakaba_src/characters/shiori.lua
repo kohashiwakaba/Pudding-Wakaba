@@ -335,23 +335,25 @@ function wakaba:ItemUse_Shiori(useditem, rng, player, useflag, slot, vardata)
 		local chargeType = item.chargeType
 		local consume = charge
 		if useditem == wakaba.Enums.Collectibles.BOOK_OF_CONQUEST then return end
-		if (item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
-		and not wakaba._ShioriData.WhitelistShiori[useditem] then
-			if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then
-				return
-			else
+		if consume > 0 then
+			if (item.ChargeType == ItemConfig.CHARGE_TIMED or item.ChargeType == ItemConfig.CHARGE_SPECIAL)
+			and not wakaba._ShioriData.WhitelistShiori[useditem] then
+				if player:GetActiveCharge(slot) + player:GetBatteryCharge(slot) >= charge then
+					return
+				else
+					consume = 1
+				end
+			end
+			if wakaba._ShioriData.WhitelistShiori[useditem] then
 				consume = 1
 			end
-		end
-		if wakaba._ShioriData.WhitelistShiori[useditem] then
-			consume = 1
-		end
-		consume = math.max(consume - wakaba:GetMinimumPreservedCharge(player, useditem), 1)
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
-				consume = consume // 2
-			elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
-				consume = math.max(consume - 1, 1)
+			consume = math.max(consume - wakaba:GetMinimumPreservedCharge(player, useditem), 1)
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then
+					consume = consume // 2
+				elseif player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B then
+					consume = math.max(consume - 1, 1)
+				end
 			end
 		end
 		if player:GetPlayerType() == wakaba.Enums.Players.SHIORI and isc:hasCurse(wakaba.curses.CURSE_OF_SATYR) and useditem ~= wakaba.Enums.Collectibles.PURIFIER then
