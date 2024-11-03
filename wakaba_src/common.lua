@@ -409,7 +409,30 @@ end
 ]]
 
 function wakaba:RandomVelocity()
-	return Vector(math.random() * 2, math.random() * 2)
+	return Vector((math.random() - 0.5) * 2, (math.random() - 0.5) * 2)
+end
+
+---@param rng RNG|integer
+---@param multiplier integer
+---@param entity Entity?
+---@return Vector
+function wakaba:RandomCenteredVelocity(rng, multiplier, entity)
+	multiplier = multiplier or 1
+	if rng and type(rng) == "number" then
+		local seed = rng + 0
+		rng = RNG()
+		rng:SetSeed(seed, 35)
+	elseif not rng and (entity and entity:Exists()) then
+		rng = RNG()
+		rng:SetSeed(entity.InitSeed, 35)
+	elseif not rng then
+		return wakaba:RandomVelocity()
+	end
+
+	local randX = (rng:RandomFloat() - 0.5) * multiplier
+	local randY = (rng:RandomFloat() - 0.5) * multiplier
+
+	return Vector(randX * 2, randY * 2)
 end
 
 function wakaba:OneIndexedRandom(rng, max)

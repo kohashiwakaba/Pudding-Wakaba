@@ -29,6 +29,9 @@ if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RIRA_B, isc.HeartSubType.SOUL)
 end
 
+wakaba.__taintedriraptcolor = {0.7, 1, 1.6}
+wakaba.__taintedriraptscale = 1.2
+
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RiraB(player)
 	if not player or player:GetPlayerType() ~= playerType then return end
@@ -41,6 +44,20 @@ function wakaba:PlayerUpdate_RiraB(player)
 	if rabbeyPower > 0 then
 		wakaba:removePlayerDataEntry(player, "rabbeyburningtimer")
 	else
+		if (wakaba.G:GetFrameCount() % 4) < 1 then
+			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBEY_WARD)
+			local ba = player.SpriteScale
+			local da = player.PositionOffset / ba
+			local offset = (Vector(0, -28) + da) * ba
+			--local xd = (RandomVector() * 7)
+			local xd = wakaba:RandomCenteredVelocity(rng, 7)
+			local effect = Isaac.Spawn(1000, 111, 0, player.Position + offset + xd, xd / 1.5, player):ToEffect()
+			local efsprite = effect:GetSprite()
+			local efcolor = Color(1,1,1,0.65)
+			efcolor:SetOffset(wakaba.__taintedriraptcolor[1], wakaba.__taintedriraptcolor[2], wakaba.__taintedriraptcolor[3])
+			efsprite.Color = efcolor
+			efsprite.Scale = efsprite.Scale * wakaba.__taintedriraptscale
+		end
 		wakaba:initPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
 		wakaba:addPlayerDataCounter(player, "rabbeyburningtimer", -1)
 		if wakaba:getPlayerDataEntry(player ,"rabbeyburningtimer", 0) < 0 then
