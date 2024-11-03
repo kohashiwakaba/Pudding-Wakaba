@@ -214,8 +214,11 @@ wakaba.Enums.ExtendQuality = {
 	[exq.RED_CORRUPTION] = 5,
 	[exq.CARAMELLA_PANCAKE] = 5,
 	[exq.CHIMAKI] = 5,
+	[exq.COUNTER] = 5,
 	[exq.PRESTIGE_PASS] = 6,
 	[exq.MAID_DUET] = 6,
+	[exq.WAKABAS_BLESSING] = 5,
+	[exq.WAKABAS_NEMESIS] = 5,
 	[exq.WAKABA_DUALITY] = 6,
 }
 
