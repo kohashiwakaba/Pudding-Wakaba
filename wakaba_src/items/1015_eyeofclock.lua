@@ -8,7 +8,7 @@ local lasertimer = {}
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 local function fireTechClock(player)
-	local multiplier = (0.75 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.5 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechXLaser(player.Position, Vector.Zero, 0.02, nil, multiplier)
 	--local laser = Isaac.Spawn(EntityType.ENTITY_LASER, LaserVariant.THIN_RED, LaserSubType.LASER_SUBTYPE_RING_PROJECTILE, player.Position, Vector.Zero, player):ToLaser()
 	laser.CollisionDamage = player.Damage * multiplier
@@ -23,7 +23,7 @@ local function fireTechClock(player)
 end
 
 local function fireTechClock_Sub(player, parentLaser, direction)
-	local multiplier = (0.25 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
+	local multiplier = (0.16 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))
 	local laser = player:FireTechLaser(parentLaser.Position, LaserOffset.LASER_BRIMSTONE_OFFSET, direction, false, false, player, multiplier)
 	--laser.CollisionDamage = 1
 	laser:AddTearFlags(TearFlags.TEAR_SPECTRAL)
@@ -39,7 +39,7 @@ end
 
 
 local function calculateLength(player, r, i)
-	
+
 	local x, y = player.Position.X, player.Position.Y
   local angle = i * math.pi / 180
   local ptx, pty = x + r * math.cos( angle ), y + r * math.sin( angle )
@@ -126,7 +126,7 @@ function wakaba:PlayerUpdate_EyeOfClock(player)
 						sublasers[pi][i] = fireTechClock_Sub(player, laser, shootInput)
 					end
 					local sublaser = sublasers[pi][i]
-					local laserPos = calculateLength(player, 40.0 * i, getLaserRotationAngle(player, i))
+					local laserPos = calculateLength(player, 20 + (15.0 * i), getLaserRotationAngle(player, i))
 					laser.Position = laserPos
 					laser:SetTimeout(30)
 					sublaser.Position = laserPos

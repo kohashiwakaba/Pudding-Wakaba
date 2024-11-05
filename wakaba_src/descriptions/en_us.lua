@@ -584,8 +584,8 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Constantly shooting gradually spawns Tech. X lasers orbiting Isaac"
 		.. "#Orbiting lasers also shoots extra lasers"
-		.. "#Orbiting lasers deal 0.75x of Isaac's damage"
-		.. "#Extra lasers deal 0.25x of Isaac's damage"
+		.. "#Orbiting lasers deal 0.5x of Isaac's damage"
+		.. "#Extra lasers deal 0.16x of Isaac's damage"
 		.. "{{CR}}",
 	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 	},
