@@ -305,10 +305,10 @@ function wakaba:PlayerUpdate_Shiori(player)
 
 		if Input.IsButtonTriggered(extraLeft, 0)
 			or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
-		then shift = -1 end
+		then shift = 1 end
 		if Input.IsButtonTriggered(extraRight, 0)
 			or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
-		then shift = 1 end
+		then shift = -1 end
 
 		if Input.IsActionTriggered(ButtonAction.ACTION_DROP, player.ControllerIndex) then
 			if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
