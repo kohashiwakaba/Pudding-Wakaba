@@ -74,7 +74,7 @@ Mod Includes :
 - NFrost - charge bar library
 - Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
 - YouDuckBoom - Chinese EID translation</description>
-    <version>129.0</version>
+    <version>130.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
