@@ -114,6 +114,9 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_Self
 wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_MagmaBlade)
 wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_MagmaBlade)
 
+wakaba:RemoveCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_BookOfTheGod)
+wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_TAKE_DMG, wakaba.NegateDamage_BookOfTheGod)
+
 -- Post Pickup Purchase to Repentogon callbacks
 wakaba:RemoveCallback(wakaba.Callback.POST_PURCHASE_PICKUP, wakaba.PickupPurchase_Elixir)
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_SHOP_PURCHASE, wakaba.PickupPurchase_Elixir)

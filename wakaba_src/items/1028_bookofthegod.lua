@@ -75,9 +75,6 @@ function wakaba:PickupCollision_BookOfTheGod(pickup, collider, low)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, wakaba.PickupCollision_BookOfTheGod, PickupVariant.PICKUP_HEART)
 
-
-
-
 function wakaba:Cache_BookOfTheGod(player, cacheFlag)
   if wakaba:hasPlayerDataEntry(player, "shioriangel") then
     if cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
@@ -107,6 +104,17 @@ function wakaba:EnemyTakeDmg_BookOfTheGod(target, damage, flags, source, cooldow
 end
 
 wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.EnemyTakeDmg_BookOfTheGod)
+
+function wakaba:NegateDamage_BookOfTheGod(player, amount, flag, source, countdownFrames)
+	if flag & DamageFlag.DAMAGE_FAKE > 0 then return end
+	if wakaba:hasPlayerDataEntry(player, "shioriangel") then
+		if wakaba:isMausoleumDoor(flag) then
+			wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+		end
+		return false
+	end
+end
+wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_BookOfTheGod)
 
 function wakaba:AlterPlayerDamage_BookOfTheGod(player, amount, flags, source, countdown)
 	local data = player:GetData()
