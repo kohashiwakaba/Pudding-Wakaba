@@ -65,6 +65,11 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Crimson Starcursed Jewel"))
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Viridian Starcursed Jewel"))
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Ancient Starcursed Jewel"))
+		local start = Isaac.GetTrinketIdByName("Arcane Obols 1")
+		local final = Isaac.GetTrinketIdByName("Astral weapon: Circuit Splitter")
+		for i = start, final do
+			table.insert(wakaba.Blacklists.AquaTrinkets, i)
+		end
 	end
 
 	function wakaba:PreLoad_PST(saveslot, isSlotSelected, rawSlot)
