@@ -110,8 +110,8 @@ function wakaba:NegateDamage_BookOfTheGod(player, amount, flag, source, countdow
 	if wakaba:hasPlayerDataEntry(player, "shioriangel") then
 		if wakaba:isMausoleumDoor(flag) then
 			wakaba:ForceOpenDoor(player, RoomType.ROOM_SECRET_EXIT)
+			return false
 		end
-		return false
 	end
 end
 wakaba:AddCallback(wakaba.Callback.TRY_NEGATE_DAMAGE, wakaba.NegateDamage_BookOfTheGod)
