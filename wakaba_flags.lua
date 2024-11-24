@@ -1,4 +1,6 @@
 wakaba.Flags = {
+	disableGlobalNodes = false,
+
 	debugCore = true,
 	debugLogs = true,
 	debugConsole = false,

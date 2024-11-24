@@ -586,6 +586,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		end)
 
 		function wakaba:PST_ReallocateGlobalNodes(playerType)
+			if wakaba.Flags.disableGlobalNodes then return end
 			local treesToCheck = {
 				wakaba.Enums.Players.WAKABA,
 				wakaba.Enums.Players.SHIORI,
