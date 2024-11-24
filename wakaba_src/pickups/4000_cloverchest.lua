@@ -143,6 +143,12 @@ function wakaba:openCloverChest(player, chest)
 		--wakaba:addCustomStat(player, "luck", luckToSub * -1)
 		player:AddCacheFlags(CacheFlag.CACHE_RANGE, true)
 	end
+	-- TODO move to compat
+	if PST then
+		if PST:isRunSidereal() then
+			PST:expedAddProgInRun("chests", 1)
+		end
+	end
 	wakaba:spawnCloverChestReward(chest, player)
 	wakaba:RemoveOtherOptionPickups(chest)
 end
