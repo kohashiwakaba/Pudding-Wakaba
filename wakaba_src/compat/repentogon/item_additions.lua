@@ -4,7 +4,7 @@
 ---@param itemID CollectibleType
 ---@param player EntityPlayer
 ---@param varData integer
-wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, function(_, itemID, player, varData)
+wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 22222, function(_, itemID, player, varData)
 	if wakaba.G.Challenge == wakaba.challenges.CHALLENGE_EVEN then
 		return 0
 	end
@@ -19,7 +19,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MIN_USABLE_CHARGE, 
 	end
 end, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
 
-wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 0, function(_, itemID, player, varData)
+wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 22222, function(_, itemID, player, varData)
 	return 12000
 end, wakaba.Enums.Collectibles.PHANTOM_CLOAK)
 
@@ -64,14 +64,12 @@ end
 ---@param itemID CollectibleType
 ---@param player EntityPlayer
 ---@param varData integer
-wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 20000, function(_, itemID, player, varData)
-	if not maidRecursive and player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and itemID ~= 0 and not wakaba.Blacklists.MaidDuetCharges[itemID] then
+wakaba:AddPriorityCallback(ModCallbacks.MC_PLAYER_GET_ACTIVE_MAX_CHARGE, 20000, function(_, itemID, player, varData, current)
+	if player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET) and itemID ~= 0 and not wakaba.Blacklists.MaidDuetCharges[itemID] then
 		maidRecursive = true
 		local cfg = Isaac.GetItemConfig():GetCollectible(itemID)
-		local maxCharges = player:GetActiveMaxCharge(player:GetActiveItemSlot(itemID))
 		local type = cfg.ChargeType
-		maidRecursive = false
-		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID, maxCharges)
+		local newCharge = wakaba:GetCalculatedMaidMaxCharges(player, itemID, current)
 		return newCharge
 	end
 end)
