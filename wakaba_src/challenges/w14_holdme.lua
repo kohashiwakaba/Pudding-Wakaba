@@ -4,6 +4,11 @@ local c = wakaba.challenges.CHALLENGE_HOLD
 
 function wakaba:Challenge_PlayerUpdate_HoldMe(player)
 	if wakaba.G.Challenge ~= c then return end
+	if EID then
+		if not (EID.BoC and EID.BoC.BagItems) or type(EID.BoC.BagItems) ~= "table" then
+			EID.BoC.BagItems = {}
+		end
+	end
 	wakaba.HiddenItemManager:CheckStack(player, wakaba.Enums.Collectibles.LIL_MAO, 1, "WAKABA_CHALLENGES")
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.Challenge_PlayerUpdate_HoldMe)
