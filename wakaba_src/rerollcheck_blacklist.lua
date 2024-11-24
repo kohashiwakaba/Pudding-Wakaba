@@ -1,6 +1,8 @@
 local isc = require("wakaba_src.libs.isaacscript-common")
 wakaba.tempRoomBlacklist = {}
 wakaba._rerollBlacklist = false
+wakaba._rerollPreNoClear = false
+wakaba._rerollPostNoClear = false
 
 local loopCount = 0
 function wakaba:preRollCheck(itemPoolType, decrease, seed)
@@ -134,7 +136,9 @@ function wakaba:newRollCheck(itemPoolType, decrease, seed)
 		}
 
 		local itemPool = wakaba.G:GetItemPool()
-		itemPool:ResetRoomBlacklist()
+		if not wakaba._rerollPreNoClear then
+			itemPool:ResetRoomBlacklist()
+		end
 
 		for _, id in ipairs(wakaba.tempRoomBlacklist) do
 			itemPool:AddRoomBlacklist(id)
@@ -341,6 +345,8 @@ function wakaba:newRollRoom()
 	if not wakaba._blacklistCleared then
 		wakaba.tempRoomBlacklist = {}
 		wakaba._blacklistCleared = true
+		wakaba._rerollPreNoClear = false
+		wakaba._rerollPostNoClear = false
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.newRollRoom)
