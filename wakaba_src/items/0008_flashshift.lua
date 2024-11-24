@@ -264,9 +264,9 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 		if pData.wakaba.fscounter > 0 then
 			pData.wakaba.fscounter = pData.wakaba.fscounter - 1
 		end
-		player:SetMinDamageCooldown(20)
+		--player:SetMinDamageCooldown(20)
 		SFXManager():Play(SoundEffect.SOUND_HELL_PORTAL1)
-		pData.wakaba.elixirinvframes = (pData.wakaba.elixirinvframes and pData.wakaba.elixirinvframes + 20) or 20
+		wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, 20)
 		pData.wakaba.flashshifttrigger = nil
 		if not pData.wakaba.fstimer then
 			pData.wakaba.fstimer = 0
@@ -303,7 +303,7 @@ function wakaba:TakeDmg_FlashShift_Wisp(wisp, amount, flag, source, countdown)
 	or wisp.Variant == FamiliarVariant.WISP then
 		local player = wisp:ToFamiliar().Player
 		local pData = player:GetData()
-		if pData.wakaba and pData.wakaba.elixirinvframes and pData.wakaba.elixirinvframes >= 0 then
+		if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE) then
 			return false
 		end
 	end

@@ -70,7 +70,7 @@
 
 	<passive id="47" description="Reusable recharger" gfx="concentration.png" name="Concentration" tags="offensive nocantrip" devilprice="2" quality="4" craftquality="4" persistent="true"/>
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3" craftquality="4" />
-	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="4" />
+	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" cooldown="1" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="4" />
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" customtags="nometronome" quality="1" craftquality="3" />
 	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
 	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3" craftquality="-1" />

@@ -774,17 +774,22 @@ function mod:SetCollectibleEffectNum(player, item, amount)
 
 	effects:RemoveCollectibleEffect(item, current)
 	if amount > 0 then
-		effects:AddCollectibleEffect(item, false, amount)
+		for i = 1, amount do
+			effects:AddCollectibleEffect(item, false, 1)
+		end
 	end
 end
 
-function mod:IncrementCollectibleEffectNum(player, item, decrement)
+function mod:IncrementCollectibleEffectNum(player, item, decrement, num)
 	local effects = player:GetEffects()
+	num = num or 1
 
 	if decrement then
-		effects:RemoveCollectibleEffect(item, 1)
+		effects:RemoveCollectibleEffect(item, num)
 	else
-		effects:AddCollectibleEffect(item, false, 1)
+		for i = 1, num do
+			effects:AddCollectibleEffect(item, false, 1)
+		end
 	end
 
 	return effects:GetCollectibleEffectNum(item)

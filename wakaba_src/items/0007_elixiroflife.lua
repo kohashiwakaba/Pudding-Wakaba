@@ -22,79 +22,133 @@ local function getElixirPower(player)
 	return power + player:GetCollectibleNum(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE)
 end
 
+function wakaba:PreEvalElixirType(player, elixirType)
+	if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) then
+		return "Keeper"
+	elseif wakaba:IsLost(player) then
+		return "Lost"
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_EVALUATE_ELIXIR_TYPE, 20000, wakaba.PreEvalElixirType)
+
+function wakaba:PostEvalElixirType(player, elixirType)
+	if elixirType and (elixirType == "Keeper" or elixirType == "Lost") then
+		return
+	else
+		if player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN then -- Do this again to check non-red hearts character
+			wakaba:setPlayerDataEntry(player, "elixirmaxsoulhearts", math.max(wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0), player:GetSoulHearts()))
+		end
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.POST_EVALUATE_ELIXIR_TYPE, 20000, wakaba.PostEvalElixirType)
+
+function wakaba:PreElixirRecover(player, elixirType, recoverType)
+	local savedSoulCap = wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0)
+	if REPENTOGON then
+		if player:GetHealthType() == HealthType.SOUL then
+			return "Soul"
+		end
+	else
+		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
+		or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
+		or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
+		then
+			return "Soul"
+		elseif not isc:canCharacterHaveRedHearts(player:GetPlayerType()) then
+			return "Soul"
+		end
+	end
+
+	if (not elixirType or elixirType == "Red") and savedSoulCap > 0 then
+		return "Soul"
+	end
+
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_ELIXIR_RECOVER, 0, wakaba.PreElixirRecover)
+
+function wakaba:PostElixirRecover(player, elixirType, recoverType)
+	local data = player:GetData()
+	local savedSoulCap = wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0)
+
+	if recoverType == "Lost" then
+		if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) == 0 then
+			SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+			player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOHUD)
+			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
+		end
+	elseif recoverType == "Keeper" then
+		if player:GetHearts() < player:GetMaxHearts() then
+			SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+			player:AddHearts(1)
+			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
+		end
+	elseif elixirType == "Soul" or recoverType == "Soul" then
+		local availableMaxSoul
+		if elixirType and elixirType == "Soul" then
+			availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), savedSoulCap)
+		else
+			availableMaxSoul = math.min(player:GetHeartLimit() - player:GetMaxHearts() - (player:GetBoneHearts() * 2), savedSoulCap)
+		end
+		if (player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetSoulHearts() < availableMaxSoul) then
+			SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+			player:AddSoulHearts(1)
+			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
+		end
+	elseif (not elixirType or elixirType == "Red") or (not recoverType or recoverType == "Red") then
+		if player:CanPickRedHearts() then
+			SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+			player:AddHearts(1)
+			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
+		end
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.POST_ELIXIR_RECOVER, 20000, wakaba.PostElixirRecover)
+
 function wakaba:PlayerUpdate_Elixir(player)
 	wakaba:GetPlayerEntityData(player)
 	local data = player:GetData()
 	if wakaba:hasElixir(player) then
 		wakaba:initPlayerDataEntry(player, "elixirdonationcount", 0)
 		wakaba:initPlayerDataEntry(player, "elixirsouldamagedcount", 0)
-		local keeperSkipped = false
-		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
-			keeperSkipped = true
-			goto KeeperSkip
+		local elixirType, recoverType
+		local cooldownTime = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
+
+		for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.PRE_EVALUATE_ELIXIR_TYPE)) do
+			local newType = callbackData.Function(callbackData.Mod, player, elixirType)
+			if newType then
+				elixirType = newType
+			end
 		end
-		if player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN then -- Do this again to check non-red hearts character
-			wakaba:setPlayerDataEntry(player, "elixirmaxsoulhearts", math.max(wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0), player:GetSoulHearts()))
-		end
-		::KeeperSkip::
+		Isaac.RunCallback(wakaba.Callback.POST_EVALUATE_ELIXIR_TYPE, player, elixirType)
 		player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
 		if player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
-			if data.wakaba.elixirinvframes and data.wakaba.elixirinvframes >= 0 then
-				--player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
-				data.wakaba.elixirinvframes = data.wakaba.elixirinvframes - 1
-			elseif not keeperSkipped then
-				--player:ClearEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
-				local power = math.max(getElixirPower(player) + (wakaba.G.Difficulty % 2), 1)
-				power = wakaba:IsLunatic() and power or 0
-				if power == 0 or player.FrameCount % power == 0 then
-					player:ResetDamageCooldown()
-				else
-					player:SetMinDamageCooldown(1)
-				end
+			if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.ELIXIR_OF_LIFE) then
+				player:SetMinDamageCooldown(1)
+			else
+				player:ResetDamageCooldown()
 			end
 		end
 		data.wakaba.elixircooldown = data.wakaba.elixircooldown or wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
 		if not player:GetEffects():GetCollectibleEffect(CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS) then
-			local isSoulCharacter, shouldConvertFunc = Isaac.RunCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, player) ~= nil
-			local availableMaxSoul
-			local savedSoulCap = wakaba:getPlayerDataEntry(player, "elixirmaxsoulhearts", 0)
-			if isSoulCharacter and shouldConvertFunc then
-				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetEffectiveMaxHearts(), savedSoulCap)
-			else
-				availableMaxSoul = math.min(player:GetHeartLimit() - player:GetMaxHearts() - (player:GetBoneHearts() * 2), savedSoulCap)
-			end
 			if data.wakaba.elixircooldown > 0 then
 				data.wakaba.elixircooldown = data.wakaba.elixircooldown - 1
 			elseif data.wakaba.elixircooldown == -1 then
 				-- do nothing
-			elseif wakaba:IsLost(player) then
-				if player:AreControlsEnabled() and not player:IsDead() and player:GetEffects():GetCollectibleEffectNum(CollectibleType.COLLECTIBLE_HOLY_MANTLE) == 0 then
-					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-					player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_MIMIC | UseFlag.USE_NOHUD | UseFlag.USE_NOHUD)
-					data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
+			else
+				recoverType = elixirType
+				for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.PRE_ELIXIR_RECOVER)) do
+					local recoverType = callbackData.Function(callbackData.Mod, player, elixirType or "", recoverType)
+					if newType then
+						recoverType = newType
+					end
 				end
-			elseif player:CanPickRedHearts() and not isSoulCharacter then
-				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-				player:AddHearts(1)
-				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
-			elseif (player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetSoulHearts() < availableMaxSoul) then
-				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-				player:AddSoulHearts(1)
-				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN
-			elseif (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) and player:GetHearts() < player:GetMaxHearts() then
-				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-				player:AddHearts(1)
-				data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
+				Isaac.RunCallback(wakaba.Callback.POST_ELIXIR_RECOVER, player, elixirType, recoverType)
 			end
 		end
 	else
 		wakaba:removePlayerDataEntry(player, "elixirdonationcount")
 		wakaba:removePlayerDataEntry(player, "elixirsouldamagedcount")
 		wakaba:removePlayerDataEntry(player, "elixirmaxsoulhearts")
-		if data.wakaba.elixirinvframes and data.wakaba.elixirinvframes >= 0 then
-			--player:AddEntityFlags(EntityFlag.FLAG_NO_DAMAGE_BLINK)
-			data.wakaba.elixirinvframes = data.wakaba.elixirinvframes - 1
-		end
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Elixir)
@@ -103,9 +157,7 @@ function wakaba:MantleBreak_Elixir(player, prevCount, nextCount)
 	if wakaba:hasElixir(player) and wakaba:IsLost(player) then
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
-		data.wakaba.elixirinvframes = 15
-		player:ResetDamageCooldown()
-		player:SetMinDamageCooldown(15)
+		wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
 	end
 end
@@ -113,12 +165,17 @@ wakaba:AddCallback(wakaba.Callback.POST_MANTLE_BREAK, wakaba.MantleBreak_Elixir)
 
 function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 	if wakaba:hasElixir(player) and player:GetSprite():GetAnimation() ~= "Death" and player:GetSprite():GetAnimation() ~= "LostDeath" then
+		if wakaba:getPlayerDataEntry(player, "skipelixirdmgcheck") then
+			wakaba:removePlayerDataEntry(player, "skipelixirdmgcheck")
+			return
+		end
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_DMG
 		local donationThreshold = 3 + getElixirPower(player)
 		local soulThreshold = 2 + getElixirPower(player)
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
+			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
 			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER // math.min(math.max(getElixirPower(player), 1), 6)
 		end
 		if (source.Type == EntityType.ENTITY_SLOT and source.Variant == 2)
@@ -148,29 +205,13 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 			end
 		end
 		if flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
-			data.wakaba.elixirinvframes = 20
+			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 20)
+		elseif not wakaba:IsLunatic() then
+			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 2)
 		end
 	end
 end
 wakaba:AddCallback(wakaba.Callback.POST_TAKE_DAMAGE, wakaba.PostTakeDamage_Elixir)
-
-function wakaba:ElixirSoulRecover_Elixir(player)
-	if REPENTOGON then
-		if player:GetHealthType() == HealthType.SOUL then
-			return true, true
-		end
-	else
-		if player:GetPlayerType() == wakaba.Enums.Players.WAKABA_B
-		or player:GetPlayerType() == wakaba.Enums.Players.SHIORI_B
-		or player:GetPlayerType() == wakaba.Enums.Players.RICHER_B
-		then
-			return true, false
-		elseif not isc:canCharacterHaveRedHearts(player:GetPlayerType()) then
-			return true, true
-		end
-	end
-end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_ELIXIR_SOUL_RECOVER, wakaba.ElixirSoulRecover_Elixir)
 
 local priceToSoulCount = {
 	[PickupPrice.PRICE_ONE_HEART_AND_ONE_SOUL_HEART] = 2,

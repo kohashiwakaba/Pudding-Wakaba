@@ -367,6 +367,10 @@ wakaba.Callback = {
 	-- - Return non-nil value to consider as soul character
 	-- ---
 	EVALUATE_ELIXIR_SOUL_RECOVER = "WakabaCallbacks.EVALUATE_ELIXIR_SOUL_RECOVER",
+	PRE_EVALUATE_ELIXIR_TYPE = "WakabaCallbacks.PRE_EVALUATE_ELIXIR_TYPE",
+	POST_EVALUATE_ELIXIR_TYPE = "WakabaCallbacks.POST_EVALUATE_ELIXIR_TYPE",
+	PRE_ELIXIR_RECOVER = "WakabaCallbacks.PRE_ELIXIR_RECOVER",
+	POST_ELIXIR_RECOVER = "WakabaCallbacks.POST_ELIXIR_RECOVER",
 
 	-- ---
 	-- EVALUATE_CHIMAKI_COMMAND
