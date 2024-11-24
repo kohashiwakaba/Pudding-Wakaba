@@ -1,5 +1,6 @@
 local pa = false
 local pstFirstLevel = false
+local updateTrackers = {}
 
 local modifiers = include("wakaba_src.compat.skill_tree.modifier_descriptions")
 local sprite_ids = include("wakaba_src.compat.skill_tree.sprite_ids")
@@ -584,8 +585,40 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			return originalMax + wakaba:extraVal("shioriTaste", 0)
 		end)
 
+		function wakaba:PST_ReallocateGlobalNodes(playerType)
+			local treesToCheck = {
+				wakaba.Enums.Players.WAKABA,
+				wakaba.Enums.Players.SHIORI,
+			}
+			for _, char in ipairs(treesToCheck) do
+				if char ~= playerType then
+					local currentChar = PST.charNames[1 + char]
+					if currentChar and PST.trees[currentChar] then
+						for nodeID, node in pairs(PST.trees[currentChar]) do
+							if PST:isNodeAllocated(currentChar, nodeID) then
+								local shouldAdd = false
+								for name, val in pairs(node.modifiers) do
+									if wakaba:has_value(global_nodes, name) then
+										shouldAdd = true
+									end
+								end
+								if shouldAdd then
+									PST:addModifiers(node.modifiers, true)
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+
+		local modResetUpdate = false
 		wakaba._pstFloorFirst = false
 		function wakaba:Update_PST()
+			if wakaba._pstFloorFirst or not modResetUpdate then
+				updateTrackers.charTracker = PST:getCurrentCharName()
+				modResetUpdate = true
+			end
 			if wakaba._pstFloorFirst then
 				wakaba._pstFloorFirst = false
 
@@ -602,6 +635,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 					end
 				end
 			end
+
+			local tmpCharName = PST:getCurrentCharName()
+			if tmpCharName ~= updateTrackers.charTracker then
+				wakaba:PST_ReallocateGlobalNodes(PST:getPlayer():GetPlayerType())
+				PST:updateCacheDelayed()
+				updateTrackers.charTracker = tmpCharName
+			end
+
 		end
 		wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_PST)
 
@@ -695,29 +736,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			end
 			local treeActive = not PST.modData.treeDisabled and ((not PST.config.treeOnChallenges and Isaac.GetChallenge() == 0) or PST.config.treeOnChallenges)
 			if treeActive then
-				local treesToCheck = {
-					wakaba.Enums.Players.WAKABA,
-				}
-				for _, char in ipairs(treesToCheck) do
-					if char ~= PST.selectedMenuChar then
-						local currentChar = PST.charNames[1 + char]
-						if currentChar and PST.trees[currentChar] then
-							for nodeID, node in pairs(PST.trees[currentChar]) do
-								if PST:isNodeAllocated(currentChar, nodeID) then
-									local shouldAdd = false
-									for name, val in pairs(node.modifiers) do
-										if wakaba:has_value(global_nodes, name) then
-											shouldAdd = true
-										end
-									end
-									if shouldAdd then
-										PST:addModifiers(node.modifiers, true)
-									end
-								end
-							end
-						end
-					end
-				end
+				wakaba:PST_ReallocateGlobalNodes(PST.selectedMenuChar)
 			end
 
 			local player = Isaac.GetPlayer()
