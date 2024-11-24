@@ -80,6 +80,10 @@ wakaba.MiniMapAPISprite:Load("gfx/ui/wakaba/minimapapi.anm2", true)
 wakaba.globalHUDSprite = Sprite()
 wakaba.globalHUDSprite:Load("gfx/ui/wakaba/hudstats2.anm2", true)
 
+function wakaba:isRepPlus()
+	return FontRenderSettings ~= nil
+end
+
 -- Hidden Item Manager
 wakaba.HiddenItemManager = include("wakaba_src.libs.hidden_item_manager"):Init(wakaba)
 
