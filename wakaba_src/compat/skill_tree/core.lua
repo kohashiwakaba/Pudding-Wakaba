@@ -61,6 +61,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		PST.charNames[1 + wakaba.Enums.Players.ANNA] = "Anna"
 	end
 
+	local function getPlayerTypeFromName(sel)
+		for i, name in ipairs(PST.charNames) do
+			if name == sel then
+				return i - 1
+			end
+		end
+	end
+
 	do
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Azure Starcursed Jewel"))
 		table.insert(wakaba.Blacklists.AquaTrinkets, Isaac.GetTrinketIdByName("Crimson Starcursed Jewel"))
@@ -585,14 +593,14 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			return originalMax + wakaba:extraVal("shioriTaste", 0)
 		end)
 
-		function wakaba:PST_ReallocateGlobalNodes(playerType)
+		function wakaba:PST_ReallocateGlobalNodes(playerType, oldType)
 			if wakaba.Flags.disableGlobalNodes then return end
 			local treesToCheck = {
 				wakaba.Enums.Players.WAKABA,
 				wakaba.Enums.Players.SHIORI,
 			}
 			for _, char in ipairs(treesToCheck) do
-				if char ~= playerType then
+				if (not oldType and char ~= playerType) or (oldType and char == oldType) then
 					local currentChar = PST.charNames[1 + char]
 					if currentChar and PST.trees[currentChar] then
 						for nodeID, node in pairs(PST.trees[currentChar]) do
@@ -639,7 +647,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 
 			local tmpCharName = PST:getCurrentCharName()
 			if tmpCharName ~= updateTrackers.charTracker then
-				wakaba:PST_ReallocateGlobalNodes(PST:getPlayer():GetPlayerType())
+				wakaba:PST_ReallocateGlobalNodes(PST:getPlayer():GetPlayerType(), getPlayerTypeFromName(updateTrackers.charTracker))
 				PST:updateCacheDelayed()
 				updateTrackers.charTracker = tmpCharName
 			end
