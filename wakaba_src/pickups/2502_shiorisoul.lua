@@ -22,6 +22,7 @@ function wakaba:UseCard_SoulOfShiori(_, player, flags)
 		selected = keys[rng:RandomInt(#keys) + 1]
 	end
 	wakaba:GetPlayerEntityData(player)
+	wakaba.HiddenItemManager:RemoveAll(player, "WAKABA_BOS_SECONDARY")
 	player:GetData().wakaba.nextshioriflag = selected
 	player:AddCacheFlags(CacheFlag.CACHE_ALL)
 	player:EvaluateItems()
