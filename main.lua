@@ -5,6 +5,7 @@ if not (REPENTANCE or REPENTANCE_PLUS) then
 	Isaac.DebugString("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
 	return
 end
+if REPENTANCE_PLUS then REPENTANCE = true end
 _wakaba = RegisterMod("Pudding and Wakaba", 1)
 if EIDKR then
 	local printCounter = 600

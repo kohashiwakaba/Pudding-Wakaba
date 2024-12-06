@@ -2,7 +2,7 @@
 --- STANDALONE OR IMPORTED MODS MUST INCLUDE THIS LINE FOR MOD CONFLIT PREVENTATION
 -- if _wakaba then return end
 
-if not REPENTANCE then return end
+if not (REPENTANCE or REPENTANCE_PLUS) then return end
 if not EID then return end
 if EIDKR then return end
 
