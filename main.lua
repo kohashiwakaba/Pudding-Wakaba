@@ -1,6 +1,6 @@
 
 -- Pudding and Wakaba is Repentance only.
-if not REPENTANCE then
+if not (REPENTANCE or REPENTANCE_PLUS) then
 	print("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
 	Isaac.DebugString("Pudding and Wakaba is Repentance only. If this message pops up even in Repentance, check other mods that modify repentance variable.")
 	return
