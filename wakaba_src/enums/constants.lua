@@ -185,6 +185,8 @@ wakaba.Enums.Collectibles = {
 	DOUBLE_DREAMS = Isaac.GetItemIdByName("Wakaba's Double Dreams"),
 
 	-- Misc items
+	SHIFTER_PASSIVE = Isaac.GetItemIdByName(" Shifter "),
+	SHIFTER = Isaac.GetItemIdByName("Shifter"),
 	PURIFIER = Isaac.GetItemIdByName("Purifier"),
 	STICKY_NOTE = Isaac.GetItemIdByName("Sticky Note"),
 	EDEN_STICKY_NOTE = Isaac.GetItemIdByName("Sticky Note"),

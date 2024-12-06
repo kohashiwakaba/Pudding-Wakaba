@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="catinsurance" CreatedOn="2024-10-04 00:15:47" Version="16" Fps="30"/>
+	<Info CreatedBy="catinsurance" CreatedOn="2024-12-06 22:32:13" Version="17" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="wakaba_diff.png" Id="0"/>
@@ -18,6 +18,18 @@
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true">
 					<Frame XPosition="-2" YPosition="-1" XPivot="16" YPivot="16" XCrop="0" YCrop="0" Width="128" Height="36" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				</LayerAnimation>
+			</LayerAnimations>
+			<NullAnimations/>
+			<Triggers/>
+		</Animation>
+		<Animation Name="UpDown" FrameNum="2" Loop="false">
+			<RootAnimation>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+			</RootAnimation>
+			<LayerAnimations>
+				<LayerAnimation LayerId="0" Visible="true">
+					<Frame XPosition="-2" YPosition="-1" XPivot="16" YPivot="16" XCrop="0" YCrop="36" Width="128" Height="36" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>
