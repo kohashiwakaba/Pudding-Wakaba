@@ -2191,7 +2191,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.LEAF_NEEDLE] = {
 		itemName = "잎사귀 바늘",
 		description = ""
-		.. "{{BrokenHeart}} 액티브 아이템 사용 시 체력 반칸의 헌혈 피해를 입습니다."
+		.. "{{BrokenHeart}} 액티브 아이템 사용 시 체력 반칸의 헌혈 피해를 받습니다."
 		.. "{{CR}}",
 		queueDesc = "피묻은 액티브",
 	},
@@ -2212,7 +2212,7 @@ wakaba.descriptions[desclang].trinkets = {
 	[wakaba.Enums.Trinkets.SPY_EYE] = {
 		itemName = "감시자의 눈",
 		description = ""
-		.. "{{BrokenHeart}} 공격키를 누른 상태에서 방 입장 시 체력 반칸의 헌혈 피해를 입습니다."
+		.. "{{BrokenHeart}} 공격키를 누른 상태에서 방 입장 시 체력 반칸의 헌혈 피해를 받습니다."
 		.. "{{CR}}",
 		queueDesc = "무궁화 꽃이 피었습니다!",
 	},
