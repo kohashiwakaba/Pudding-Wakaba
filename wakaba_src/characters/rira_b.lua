@@ -47,7 +47,7 @@ function wakaba:PlayerUpdate_RiraB(player)
 		if (wakaba.G:GetFrameCount() % 4) < 1 then
 			local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.RABBEY_WARD)
 			local ba = player.SpriteScale
-			local da = player.PositionOffset / ba
+			local da = Vector(player.PositionOffset.X / ba.X, player.PositionOffset.Y / ba.Y) -- REP_PLUS WHY
 			local offset = (Vector(0, -28) + da) * ba
 			--local xd = (RandomVector() * 7)
 			local xd = wakaba:RandomCenteredVelocity(rng, 7)
