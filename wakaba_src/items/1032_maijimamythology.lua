@@ -77,6 +77,10 @@ if EID then
 		if availableMaijimaItems then
 			local description = ""
 			for i, e in ipairs(availableMaijimaItems) do
+				if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD and descObj.ObjSubType == wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK
+				and i > 1 then
+					break
+				end
 				description = description .. "{{Collectible".. e .. "}} "
 			end
 			local iconStr = "#!!! "
