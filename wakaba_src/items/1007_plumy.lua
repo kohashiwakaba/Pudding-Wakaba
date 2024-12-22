@@ -30,6 +30,11 @@ local function getPlumShootFrame(angle)
 	return res
 end
 
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param multiplier integer
+---@param direction Vector
+---@return EntityLaser
 function wakaba:initPlumBrimstoneLaser(player, familiar, multiplier, collisionsize, direction)
 	local laser = player:FireBrimstone(direction, player, multiplier)
 	--laser.ParentOffset = familiar.Position
@@ -43,6 +48,10 @@ function wakaba:initPlumBrimstoneLaser(player, familiar, multiplier, collisionsi
 end
 
 
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param multiplier integer
+---@return EntityLaser
 function wakaba:InitPlumMainBrimstoneLaser(player, familiar, multiplier)
 	local fData = familiar:GetData()
 	local laser = Isaac.Spawn(EntityType.ENTITY_LASER, 3, LaserSubType.LASER_SUBTYPE_RING_FOLLOW_PARENT, familiar.Position, Vector.Zero, familiar):ToLaser()
@@ -59,6 +68,10 @@ function wakaba:InitPlumMainBrimstoneLaser(player, familiar, multiplier)
 	return laser
 end
 
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param vector Vector
+---@return EntityLaser
 function wakaba:initPlumSingleLaser(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(13.5) or vector:Resized(8)
@@ -84,6 +97,10 @@ function wakaba:initPlumSingleLaser(player, familiar, vector)
 	return laser
 end
 
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param vector Vector
+---@return EntityTear
 local function InitPlumTear(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(math.max(30 / player.MaxFireDelay, 13.5)) or vector:Resized(math.max(30 / player.MaxFireDelay, 8))
@@ -132,7 +149,11 @@ local function InitPlumTear(player, familiar, vector)
 	return tear
 end
 
-function wakaba:initPlumKnife(player, familiar, vector)
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param vector Vector
+---@return EntityKnife
+function wakaba:initPlumKnife_old(player, familiar, vector)
 	local fData = familiar:GetData()
 	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(13.5) or vector:Resized(8)
 	local tear_angle = vector:GetAngleDegrees()
@@ -163,6 +184,53 @@ function wakaba:initPlumKnife(player, familiar, vector)
 		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
 	
+	knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
+	knife.Color = tearparams.TearColor
+	if (Sewn_API and Sewn_API:IsUltra(fData)) then
+		knife.TearFlags = knife.TearFlags | TearFlags.TEAR_BOUNCE
+	end
+
+	local dmg = tearparams.TearDamage * 0.4
+	dmg = dmg >= 0.4 and dmg or 0.4
+	knife.CollisionDamage = dmg * multiplier * ((Sewn_API and Sewn_API:IsSuper(fData)) and 1.5 or 1)
+
+	return knife
+end
+
+---@param player EntityPlayer
+---@param familiar EntityFamiliar
+---@param vector Vector
+---@return EntityKnife
+function wakaba:initPlumKnife(player, familiar, vector)
+	local fData = familiar:GetData()
+	local tear_vector = (Sewn_API and Sewn_API:IsUltra(fData)) and vector:Resized(13.5) or vector:Resized(8)
+	local tear_angle = vector:GetAngleDegrees()
+	local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.PLUMY)
+	local cornangle = (Sewn_API and Sewn_API:IsUltra(fData)) and 1 or 4
+	local randcornangle = rng:RandomFloat() * cornangle - (cornangle / 2)
+	local float = Vector(0, randcornangle):Rotated(tear_angle)
+	local multiplier = 1 + (rng:RandomFloat() * 0.4 - 0.2)
+	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_KNIFE, 1, 1, player)
+	--local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, familiar.Position + getPlumShootFrame(tear_angle).Offset, tear_vector + float, familiar)
+	local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 0, familiar.Position, Vector.Zero, player):ToEffect() ---@cast effect EntityEffect
+	--effect.Timeout = effect.Timeout + 10
+	effect.Visible = false
+
+	local angle = tear_angle
+	local knife = player:FireKnife(effect, angle, false, 0, KnifeVariant.MOMS_KNIFE)
+	knife:Shoot(1, player.TearRange * 0.5)
+	knife.SpriteRotation = tear_angle + randcornangle - 90
+	knife:Update()
+	wakaba:ApplyWakabaTearParams(knife, player)
+
+	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
+		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
+		knife.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
+	end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
+		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
+	end
+
 	knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
 	knife.Color = tearparams.TearColor
 	if (Sewn_API and Sewn_API:IsUltra(fData)) then
@@ -394,14 +462,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, tear)
 	end
 end)
 ]]
-
-function wakaba:KnifeUpdate_Plumy(knife)
-	if not knife:GetData().wakaba then return end
-	if not knife:GetData().wakaba.isplum then return end
-	if not knife:GetData().wakaba.plumvel then return end
-	knife.Velocity = knife:GetData().wakaba.plumvel
-end
-wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, wakaba.KnifeUpdate_Plumy)
 
 function wakaba:TakeDamage_Plumy(familiar, damage, flags, source, cooldown)
 	--print("Plum took dmg")
