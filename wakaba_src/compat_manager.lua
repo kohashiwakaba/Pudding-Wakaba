@@ -76,6 +76,7 @@ do
 	include('wakaba_src.compat.fiendfolio')
 	include('wakaba_src.compat.retribution')
 	include('wakaba_src.compat.epiphany')
+	include('wakaba_src.compat.epiphany_d')
 	include('wakaba_src.compat.samael')
 	include('wakaba_src.compat.taintedtreasure')
 	include('wakaba_src.compat.thefuture')

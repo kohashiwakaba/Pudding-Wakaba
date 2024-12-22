@@ -189,7 +189,7 @@ local throwingBagSynergyLinks = {
 	},
 }
 
-wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_6", function() return (Epiphany and Epiphany.API ~= nil and tonumber(Epiphany.WAVE_NUMBER) < 7) end, function()
+wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epiphany and Epiphany.API ~= nil and tonumber(Epiphany.WAVE_NUMBER) >= 7) end, function()
 	local Mod = Epiphany
 	local api = Mod.API
 	local KEEPER = Mod.Character.KEEPER
@@ -395,9 +395,11 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_6", function() return (Epi
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.ISAAC] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.MAGDALENE] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.CAIN] = true
-		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS] = true
+		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS1] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS2] = true
-		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS3] = true
+		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS] = true
+		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS4] = true
+		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.JUDAS5] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.SAMSON] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.EDEN] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.LOST] = true
@@ -417,114 +419,114 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_6", function() return (Epi
 
 		-- Epiphany Turnover Shop pools
 		api:AddItemsToCustomPool("VaultShop",
-			wakaba.Enums.Collectibles.SECRET_CARD
+			{V = wakaba.Enums.Collectibles.SECRET_CARD}
 		)
 		api:AddItemsToCustomPool("DiceShop",
-			wakaba.Enums.Collectibles.SECRET_CARD
+			{V = wakaba.Enums.Collectibles.SECRET_CARD}
 		)
 		api:AddItemsToCustomPool("BedroomShop",
-			wakaba.Enums.Collectibles.SECRET_CARD
+			{V = wakaba.Enums.Collectibles.SECRET_CARD}
 		)
 		api:AddItemsToCustomPool("SacRoomShop",
-			wakaba.Enums.Collectibles.SECRET_CARD
+			{V = wakaba.Enums.Collectibles.SECRET_CARD}
 		)
 
 		-- Epiphany Beggar/slots pools
 		api:AddItemsToCustomPool("PainPool",
-			wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
-			wakaba.Enums.Collectibles.RIRAS_BANDAGE
+			{V = wakaba.Enums.Collectibles.BOOK_OF_TRAUMA},
+			{V = wakaba.Enums.Collectibles.RIRAS_BANDAGE}
 		)
 		api:AddItemsToCustomPool("ConverterBeggarPool",
-			wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
-			{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			{V = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN},
+			{V = wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
 		)
 		api:AddItemsToCustomPool("GlitchSlotPool",
-			{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			{V = wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
 		)
 
 		-- Epiphany Surprise box Won items pools
 		api:AddItemsToCustomPool("SurpriseBox_Heart",
-			wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN,
-			{wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, Weight = 0.1},
-			{wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
+			{V = wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN},
+			{V = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, Weight = 0.1},
+			{V = wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, Weight = 0.1}
 		)
 		api:AddItemsToCustomPool("SurpriseBox_Coin",
-			wakaba.Enums.Collectibles.SECRET_CARD
+			{V = wakaba.Enums.Collectibles.SECRET_CARD}
 		)
 		api:AddItemsToCustomPool("SurpriseBox_Bomb",
-			wakaba.Enums.Collectibles.BOOK_OF_TRAUMA,
-			wakaba.Enums.Collectibles.POW_BLOCK,
-			wakaba.Enums.Collectibles.MOD_BLOCK,
-			{wakaba.Enums.Collectibles.POWER_BOMB, Weight = 0.5},
-			{wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB, Weight = 0.5}
+			{V = wakaba.Enums.Collectibles.BOOK_OF_TRAUMA},
+			{V = wakaba.Enums.Collectibles.POW_BLOCK},
+			{V = wakaba.Enums.Collectibles.MOD_BLOCK},
+			{V = wakaba.Enums.Collectibles.POWER_BOMB, Weight = 0.5},
+			{V = wakaba.Enums.Collectibles.NEW_YEAR_EVE_BOMB, Weight = 0.5}
 		)
 		api:AddItemsToCustomPool("SurpriseBox_Battery",
-			{wakaba.Enums.Collectibles.RABBIT_RIBBON, Weight = 0.2},
-			{wakaba.Enums.Collectibles.LIL_RICHER, Weight = 0.4}
+			{V = wakaba.Enums.Collectibles.RABBIT_RIBBON, Weight = 0.2},
+			{V = wakaba.Enums.Collectibles.LIL_RICHER, Weight = 0.4}
 		)
 		api:AddItemsToCustomPool("SurpriseBox_Pill",
-			wakaba.Enums.Collectibles.BEETLEJUICE,
-			wakaba.Enums.Collectibles.ANTI_BALANCE
+			{V = wakaba.Enums.Collectibles.BEETLEJUICE},
+			{V = wakaba.Enums.Collectibles.ANTI_BALANCE}
 		)
 
-		api:AddSlotsToSlotGroup("Slots", wakaba.Enums.Slots.SHIORI_VALUT)
+		api:AddSlotsToSlotGroup("Slots", {V = wakaba.Enums.Slots.SHIORI_VALUT})
 
-		api:AddSlotsToSlotGroup("CrystalRestock", wakaba.Enums.Slots.CRYSTAL_RESTOCK)
+		api:AddSlotsToSlotGroup("CrystalRestock", {V = wakaba.Enums.Slots.CRYSTAL_RESTOCK})
 
 		api:AddCardsToCardGroup("Tarot",
-			wakaba.Enums.Cards.CARD_CRANE_CARD,
-			wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
-			wakaba.Enums.Cards.CARD_VALUT_RIFT,
-			wakaba.Enums.Cards.CARD_MINERVA_TICKET,
-			wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
-			wakaba.Enums.Cards.CARD_TRIAL_STEW,
-			wakaba.Enums.Cards.CARD_RICHER_TICKET,
-			wakaba.Enums.Cards.CARD_RIRA_TICKET
+			{V = wakaba.Enums.Cards.CARD_CRANE_CARD},
+			{V = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD},
+			{V = wakaba.Enums.Cards.CARD_VALUT_RIFT},
+			{V = wakaba.Enums.Cards.CARD_MINERVA_TICKET},
+			{V = wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK},
+			{V = wakaba.Enums.Cards.CARD_TRIAL_STEW},
+			{V = wakaba.Enums.Cards.CARD_RICHER_TICKET},
+			{V = wakaba.Enums.Cards.CARD_RIRA_TICKET}
 		)
 
 		api:AddCardsToCardGroup("Suit",
-			wakaba.Enums.Cards.CARD_BLACK_JOKER,
-			wakaba.Enums.Cards.CARD_WHITE_JOKER,
-			wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES,
-			wakaba.Enums.Cards.CARD_COLOR_JOKER
+			{V = wakaba.Enums.Cards.CARD_BLACK_JOKER},
+			{V = wakaba.Enums.Cards.CARD_WHITE_JOKER},
+			{V = wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES},
+			{V = wakaba.Enums.Cards.CARD_COLOR_JOKER}
 		)
 
 		api:AddCardsToCardGroup("Soul",
-			wakaba.Enums.Cards.SOUL_SHIORI,
-			wakaba.Enums.Cards.SOUL_WAKABA,
-			wakaba.Enums.Cards.SOUL_WAKABA2,
-			{wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
-			{wakaba.Enums.Cards.SOUL_RICHER, Weight = 0.5}
+			{V = wakaba.Enums.Cards.SOUL_SHIORI},
+			{V = wakaba.Enums.Cards.SOUL_WAKABA},
+			{V = wakaba.Enums.Cards.SOUL_WAKABA2},
+			{V = wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
+			{V = wakaba.Enums.Cards.SOUL_RICHER, Weight = 0.5}
 		)
 
 		api:AddCardsToCardGroup("Holy",
-			wakaba.Enums.Cards.CARD_MINERVA_TICKET,
-			wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
-			wakaba.Enums.Cards.CARD_DREAM_CARD
+			{V = wakaba.Enums.Cards.CARD_MINERVA_TICKET},
+			{V = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD},
+			{V = wakaba.Enums.Cards.CARD_DREAM_CARD}
 		)
 
 		api:AddCardsToCardGroup("DiceCapsule",
-			{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.05}
+			{V = wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.05}
 		)
 
 		api:AddCardsToCardGroup("Object",
-			{wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.2}
+			{V = wakaba.Enums.Cards.CARD_RETURN_TOKEN, Weight = 0.2}
 		)
 
 		api:AddCardsToCardGroup("RicherTicket",
-			wakaba.Enums.Cards.CARD_CRANE_CARD,
-			wakaba.Enums.Cards.CARD_BLACK_JOKER,
-			wakaba.Enums.Cards.CARD_COLOR_JOKER,
-			wakaba.Enums.Cards.CARD_WHITE_JOKER,
-			wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD,
-			{wakaba.Enums.Cards.CARD_DREAM_CARD, Weight = 0.5},
-			wakaba.Enums.Cards.CARD_MINERVA_TICKET,
-			wakaba.Enums.Cards.CARD_RICHER_TICKET,
-			wakaba.Enums.Cards.CARD_RIRA_TICKET,
-			wakaba.Enums.Cards.CARD_TRIAL_STEW,
-			wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK,
-			{wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
-			{wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2}
+			{V = wakaba.Enums.Cards.CARD_CRANE_CARD},
+			{V = wakaba.Enums.Cards.CARD_BLACK_JOKER},
+			{V = wakaba.Enums.Cards.CARD_COLOR_JOKER},
+			{V = wakaba.Enums.Cards.CARD_WHITE_JOKER},
+			{V = wakaba.Enums.Cards.CARD_CONFESSIONAL_CARD},
+			{V = wakaba.Enums.Cards.CARD_DREAM_CARD, Weight = 0.5},
+			{V = wakaba.Enums.Cards.CARD_MINERVA_TICKET},
+			{V = wakaba.Enums.Cards.CARD_RICHER_TICKET},
+			{V = wakaba.Enums.Cards.CARD_RIRA_TICKET},
+			{V = wakaba.Enums.Cards.CARD_TRIAL_STEW},
+			{V = wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK},
+			{V = wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
+			{V = wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2}
 		)
 
 		-- Blacklist items to check within Use Item func, will be used inside same use function instead
@@ -1063,64 +1065,3 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_6", function() return (Epi
 		end
 	end
 end)
-
-wakaba:RegisterPatch(1, "Epiphany_level", function() return (Epiphany and Epiphany.API ~= nil) end, function()
-end, true)
-
-wakaba:RegisterPatch(0, "LibraryExpanded", function() return (LibraryExpanded ~= nil) end, function()
-	do
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID2, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID3, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID4, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.KINDLING_BOOK.ID2, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.ELECTROMAGNETISM_EXPLAINED.ID, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.CURSED_BOOK.ID, wakaba.bookstate.BOOKSHELF_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.WEIRD_BOOK.ID, wakaba.bookstate.BOOKSHELF_SHIORI)
-		--wakaba:BlacklistBook(LibraryExpanded.Item.CERTIFICATE.ID, wakaba.bookstate.BOOKSHELF_SHIORI)
-
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID2, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID3, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID4, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-		wakaba:BlacklistBook(LibraryExpanded.Item.KINDLING_BOOK.ID2, wakaba.bookstate.BOOKSHELF_SHIORI_DROP)
-
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID2, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID3, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID4, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.KINDLING_BOOK.ID2, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.ELECTROMAGNETISM_EXPLAINED.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.CURSED_BOOK.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		wakaba:BlacklistBook(LibraryExpanded.Item.WEIRD_BOOK.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-		--wakaba:BlacklistBook(LibraryExpanded.Item.CERTIFICATE.ID, wakaba.bookstate.BOOKSHELF_UNKNOWN_BOOKMARK)
-
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID0, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID1, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID2, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID3, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.BLANK_BOOK.ID4, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.KINDLING_BOOK.ID2, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.ELECTROMAGNETISM_EXPLAINED.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.CURSED_BOOK.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		wakaba:BlacklistBook(LibraryExpanded.Item.WEIRD_BOOK.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-		--wakaba:BlacklistBook(LibraryExpanded.Item.CERTIFICATE.ID, wakaba.bookstate.BOOKSHELF_PURE_SHIORI)
-	end
-end)
-
-function wakaba:Epiphany_AddThrowingBagSynergies()
-	for synergyName, collectibleType in pairs(throwingBagSynergyLinks) do
-		Epiphany.API:AddCollectibleToCainBagSynergy(synergyName, collectibleType)
-	end
-end
-
-function wakaba:IsGoldenItem(itemID)
-	if not (Epiphany and Epiphany.API) then return false end
-	return Epiphany.Pickup.GOLDEN_ITEM:IsGoldenItem(itemID)
-end
