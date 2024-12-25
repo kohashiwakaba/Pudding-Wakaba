@@ -84,7 +84,7 @@ function wakaba:initPlumSingleLaser(player, familiar, vector)
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_LASER, 1, 1, player)
 	laser.TearFlags = TearFlags.TEAR_SPECTRAL | player.TearFlags | tearparams.TearFlags
 	wakaba:ApplyWakabaTearParams(laser, player)
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		laser.TearFlags = laser.TearFlags | TearFlags.TEAR_HOMING
 	end
@@ -120,7 +120,7 @@ local function InitPlumTear(player, familiar, vector)
 	else
 		tear.DepthOffset = familiar.DepthOffset - 2
 	end
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 		tear.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
@@ -175,7 +175,7 @@ function wakaba:initPlumKnife_old(player, familiar, vector)
 	knife:GetData().wakaba.isplum = true
 	knife:GetData().wakaba.plumvel = (tear_vector + float) * Vector(player.ShotSpeed * 1.5, player.ShotSpeed * 1.5)
 	wakaba:ApplyWakabaTearParams(knife, player)
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 		knife.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
@@ -183,7 +183,7 @@ function wakaba:initPlumKnife_old(player, familiar, vector)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
 		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
-	
+
 	knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
 	knife.Color = tearparams.TearColor
 	if (Sewn_API and Sewn_API:IsUltra(fData)) then
@@ -256,7 +256,7 @@ function wakaba:FamiliarInit_Plumy(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("Idle")
-	
+
 end
 
 ---@param familiar EntityFamiliar
@@ -274,7 +274,7 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 	if not familiar:HasEntityFlags(EntityFlag.FLAG_NO_SPIKE_DAMAGE) then
 		familiar:AddEntityFlags(EntityFlag.FLAG_NO_SPIKE_DAMAGE)
 	end
-	
+
 	if fData.wakaba.plumhealth <= 0 and not fData.wakaba.plumrecover then
 		fData.wakaba.plumrecover = true
 		familiar.Velocity = Vector.Zero
@@ -333,7 +333,7 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 			local oldpos = familiar.Position
 			local newpos = playerpos + dirVec:Resized(60)
 			familiar.Velocity = (newpos - oldpos):Normalized():Resized((newpos - oldpos):Length() * 0.4)
-			
+
 			if player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) then
 				if not fData.wakaba.plumybrlaser then
 					fData.wakaba.plumybrlaser = wakaba:InitPlumMainBrimstoneLaser(player, familiar, 0.88)
@@ -342,7 +342,7 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 				laser.Timeout = laser.Timeout + 1
 				laser.ParentOffset = Vector(0,-40)
 			end
-			
+
 			--[[ if not fData.wakaba.plumlaser then
 				fData.wakaba.plumlaser = wakaba:initPlumBrimstoneLaser(player, familiar, 0.3, collisionsize, dirVec)
 			end
@@ -350,7 +350,7 @@ function wakaba:FamiliarUpdate_Plumy(familiar)
 			print(fData.wakaba.plumlaser.ParentOffset, fData.wakaba.plumlaser.Position, newpos)
 			fData.wakaba.plumlaser.AngleDegrees = dirVec:GetAngleDegrees() ]]
 			if familiar.FireCooldown <= 0 then
-				
+
 				local nontear = false
 				if player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasCollectible(CollectibleType.COLLECTIBLE_MOMS_KNIFE) then
 					wakaba:initPlumKnife(player, familiar, dirVec:Resized(math.min(30 / player.MaxFireDelay, 1)))
@@ -399,7 +399,7 @@ function wakaba:FamiliarCollision_Plumy(familiar, entity, bool)
 end
 
 
---[[ 
+--[[
 
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, e)
 	--print(e.State)
@@ -413,13 +413,13 @@ wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, function(_, e)
 			wakaba.runstate.hasbless = true
 		end
   end
-	
+
   if hasPlum then
 		--print("Plum Update ", npc.State)
 		if e.State == 7 then
 			e.State = 4
 		end
-		
+
   end
 end, FamiliarVariant.BABY_PLUM)
 

@@ -264,9 +264,9 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 		if pData.wakaba.fscounter > 0 then
 			pData.wakaba.fscounter = pData.wakaba.fscounter - 1
 		end
-		--player:SetMinDamageCooldown(20)
 		SFXManager():Play(SoundEffect.SOUND_HELL_PORTAL1)
-		wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, 20)
+		player:SetMinDamageCooldown(20)
+		wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, 20)
 		pData.wakaba.flashshifttrigger = nil
 		if not pData.wakaba.fstimer then
 			pData.wakaba.fstimer = 0
