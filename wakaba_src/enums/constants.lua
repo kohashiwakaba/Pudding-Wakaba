@@ -2,10 +2,10 @@ wakaba.Enums = {}
 
 -- 모드 밸런스 옵션
 wakaba.Enums.BalanceModes = {
-	WAKABA = 1, -- 와카바 모드 : 컨셉 중시, 밸런스 비중시
-	REVERSE = 2, -- 리버스 모드 : 밸런스 중시, 모드 옵션 무시
-	HY_REPAIR = 3, -- 리페어 싱글 : 리페어 모드 연계, 밸런스 중시
-	HY_REPAIR_VS = 4, -- 리페어 대결 : 리페어 모드 연계, 대결 중시
+	WAKABA = 0, -- 와카바 모드 : 컨셉 중시, 밸런스 비중시
+	LUNATIC_ITEMS = 1 << 1, -- 루나틱 모드
+	RANDOM_HEADS = 1 << 2, -- 루나틱 모드
+	INSANE = 1 << 3, -- 인세인 모드
 }
 
 --플레이어 타입
