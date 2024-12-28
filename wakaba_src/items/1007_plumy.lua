@@ -213,6 +213,7 @@ function wakaba:initPlumKnife(player, familiar, vector)
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_KNIFE, 1, 1, player)
 	--local entity = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, familiar.Position + getPlumShootFrame(tear_angle).Offset, tear_vector + float, familiar)
 	local effect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 0, familiar.Position, Vector.Zero, player):ToEffect() ---@cast effect EntityEffect
+	effect:FollowParent(familiar)
 	--effect.Timeout = effect.Timeout + 10
 	effect.Visible = false
 
