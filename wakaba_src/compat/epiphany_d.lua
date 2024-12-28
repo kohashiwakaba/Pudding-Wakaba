@@ -330,21 +330,20 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			wakaba.Enums.Collectibles.BOOK_OF_SHIORI, -- Tear effect lasts entire run unless player uses Soul of Shiori
 			wakaba.Enums.Collectibles.RED_CORRUPTION, -- Compass effect lasts entire floor
 			wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2, -- Golden Bomb lasts entire floor
-			wakaba.Enums.Collectibles.DOUBLE_INVADER, -- Disables Devil/Angel rooms for entire floor
-			wakaba.Enums.Collectibles.DOUBLE_DREAMS, -- Disables Devil/Angel rooms for entire floor
+			wakaba.Enums.Collectibles.DOUBLE_INVADER, -- Disables Devil/Angel rooms for entire floor on non-RGON
+			wakaba.Enums.Collectibles.DOUBLE_DREAMS, -- Disables Devil/Angel rooms for entire floor on non-RGON
 			-- Items considered too confusing on a constantly rerolling character
 			wakaba.Enums.Collectibles.UNIFORM,
 			wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, -- Constant health refill
 			wakaba.Enums.Collectibles.QUESTION_BLOCK,
 			wakaba.Enums.Collectibles.LIL_RIRA,
-			wakaba.Enums.Collectibles.MAID_DUET, -- Both for glitched item and TR Eden
+			wakaba.Enums.Collectibles.MAID_DUET, -- Both for glitched item and TR Eden, and TR Eden can't use this item anyways
 			-- Items that can't be filled, or has no effect before they get rerolled away
 			wakaba.Enums.Collectibles.EATHEART, -- Requires 7500 dmg, and can't be debugged
 			wakaba.Enums.Collectibles.SECRET_CARD, -- Useless when given for 1 room
 			wakaba.Enums.Collectibles.WINTER_ALBIREO, -- Useless when given for 1 room
 			wakaba.Enums.Collectibles.DEJA_VU, -- Useless when given for 1 room
 			wakaba.Enums.Collectibles.RIRAS_BANDAGE, -- Useless when given for 1 room
-			wakaba.Enums.Collectibles.PRESTIGE_PASS, -- Useless when given for 1 room
 			-- Items that revive the player as another character
 			wakaba.Enums.Collectibles.VINTAGE_THREAT, -- Tainted Shiori
 			wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, -- Tainted Tsukasa
@@ -352,7 +351,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			wakaba.Enums.Collectibles.BUNNY_PARFAIT, -- Rira
 			wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, -- Richer
 			-- Strong item pool modifiers
-			wakaba.Enums.Collectibles.RIRAS_BENTO, -- Richer
+			wakaba.Enums.Collectibles.RIRAS_BENTO,
 			-- Bomb modifiers
 			wakaba.Enums.Collectibles.NEW_YEAR_BOMB,
 			-- Items that give soul or black hearts
@@ -391,6 +390,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			wakaba.Enums.Collectibles.WAKABAS_BLESSING,
 			wakaba.Enums.Collectibles.WAKABAS_NEMESIS
 		)
+		wakaba.Blacklists.InnateRevivals[Mod.PlayerType.LOST] = true
 
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.ISAAC] = true
 		wakaba.Blacklists.MaidDuetPlayers[Mod.PlayerType.MAGDALENE] = true

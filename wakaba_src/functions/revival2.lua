@@ -3,6 +3,10 @@ local tempRevivalFunc = {
 
 }
 
+wakaba.Blacklists.InnateRevivals = {
+	[PlayerType.PLAYER_THELOST_B] = true,
+}
+
 function wakaba:CanRevive(player)
 	--if not player then return false end
 	--[[ if player:WillPlayerRevive() then
@@ -10,6 +14,7 @@ function wakaba:CanRevive(player)
 		--return false
 	end ]]
 	if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return false end
+	local isBlacklistedPlayerType = wakaba.Blacklists.InnateRevivals[player:GetPlayerType()]
 	local data = player:GetData()
 	if player:GetData().wakaba.vintagethreat then return false end
 	if wakaba:hasLunarStone(player, true) and wakaba:getPlayerDataEntry(player , "lunargauge", 0) > 0 then
@@ -18,17 +23,17 @@ function wakaba:CanRevive(player)
 		return {ID = wakaba.Enums.Collectibles.QUESTION_BLOCK, PostRevival = function() wakaba:AfterRevival_QuestionBlock(player) end}
 	elseif wakaba:HasWisp(player, wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER) then
 		return {ID = wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER, PostRevival = function() wakaba:AfterRevival_GrimreaperDefender(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.SAKURA_CAPSULE, isBlacklistedPlayerType) then
 		return {ID = wakaba.Enums.Collectibles.SAKURA_CAPSULE, PostRevival = function() wakaba:AfterRevival_SakuraCapsule(player) end, CurrentRoom = true}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_GOD) then
 		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_GOD, PostRevival = function() wakaba:AfterRevival_BookOfTheGod(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, isBlacklistedPlayerType) then
 		return {ID = wakaba.Enums.Collectibles.SEE_DES_BISCHOFS, PostRevival = function() wakaba:AfterRevival_LakeOfBishop(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.JAR_OF_CLOVER, isBlacklistedPlayerType) then
 		return {ID = wakaba.Enums.Collectibles.JAR_OF_CLOVER, PostRevival = function() wakaba:AfterRevival_JarOfClover(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.BUNNY_PARFAIT, isBlacklistedPlayerType) then
 		return {ID = wakaba.Enums.Collectibles.BUNNY_PARFAIT, PostRevival = function() wakaba:AfterRevival_BunnyParfait(player) end}
-	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) then
+	elseif player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, isBlacklistedPlayerType) then
 		return {ID = wakaba.Enums.Collectibles.CARAMELLA_PANCAKE, PostRevival = function() wakaba:AfterRevival_CaramellaPancake(player) end}
 	elseif player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN) and not wakaba:hasPlayerDataEntry(player, "shioridevil") then
 		return {ID = wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, PostRevival = function() wakaba:AfterRevival_BookOfTheFallen(player) end}
