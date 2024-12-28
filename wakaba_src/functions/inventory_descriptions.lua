@@ -796,6 +796,8 @@ function idesc:showEntries(entries, listType, stopTimer, listOnly, propName)
 	if #entries <= 0 then
 		return false
 	end
+	local preventOpen = Isaac.RunCallbackWithParam("WakabaCallbacks.INVENTORY_DESCRIPTIONS_PRE_LIST_OPEN", propName)
+	if preventOpen then return end
 	istate.lists.items = entries
 	istate.listprops.max = #entries
 	istate.showList = not istate.showList
@@ -805,6 +807,7 @@ function idesc:showEntries(entries, listType, stopTimer, listOnly, propName)
 	istate.listprops.listonly = listOnly
 	istate.listprops.listmode = listType or "list"
 	istate.listprops.name = propName or "basic"
+	Isaac.RunCallbackWithParam("WakabaCallbacks.INVENTORY_DESCRIPTIONS_POST_LIST_OPEN", propName)
 	return istate.showList
 end
 
@@ -833,6 +836,11 @@ function idesc:appendCurrentEntries(newEntries)
 end
 
 function idesc:resetEntries()
+	local postClose
+	if istate.showList then
+		Isaac.RunCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_PRE_LIST_CLOSE")
+		postClose = true
+	end
 	local x,y = EID:getScreenSize().X, EID:getScreenSize().Y
 	istate.showList = false
 	istate.listprops.name = nil
@@ -855,6 +863,9 @@ function idesc:resetEntries()
 			data.InvDescPlayerControlsDisabled = false
 		end
 		istate.savedtimer = nil
+	end
+	if postClose then
+		Isaac.RunCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_POST_LIST_CLOSE")
 	end
 end
 function idesc:recalculateOffset()
