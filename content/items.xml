@@ -52,7 +52,7 @@
 	<active id="36" description="Demeter Lore" gfx="maijimamythology.png" chargetype="timed" maxcharges="150" name="Maijima Mythology" tags="offensive stars book angel" customtags="nometronome" quality="1" craftquality="1" />
 	<active id="37" description="Explosive Tear Detonator" gfx="bookoftrauma.png" maxcharges="2" name="Book of Trauma" tags="book devil offensive" quality="2" craftquality="3" />
 
-	<active id="38" description="Embrace Emptiness" gfx="apollyoncrisis.png" maxcharges="6" name="Apollyon Crisis" devilprice="2" tags="noeden offensive nocantrip" quality="4" craftquality="-1" />
+	<active id="38" description="Embrace Emptiness" gfx="apollyoncrisis.png" maxcharges="6" name="Apollyon Crisis" devilprice="2" tags="noeden offensive nocantrip" quality="4" craftquality="-1" hidden="true"/>
 	<familiar id="39" cache="speed" description="Buddy for water" gfx="lilshiva.png" name="Lil Shiva" tags="stars offensive baby summonable monstermanual" quality="3" craftquality="3" />
 	<passive id="40" cache="damage" description="Damage down... but what at cost?" gfx="nekofigure.png" name="Neko Figure" tags="offensive guppy nocantrip" devilprice="2" quality="3" craftquality="3" />
 
@@ -73,7 +73,7 @@
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" cooldown="1" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="4" />
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" customtags="nometronome" quality="1" craftquality="3" />
 	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
-	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3" craftquality="-1" />
+	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3" craftquality="-1" hidden="true"/>
 	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" customtags="nometronome" quality="4" craftquality="4"/>
 
 	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3" craftquality="3"/>
@@ -214,7 +214,7 @@
 	<trinket name="Candy of Ciel" description="I bring star" gfx="candyofciel.png" />
 	<trinket name="Candy of Koron" description="I bring ice" gfx="candyofkoron.png" />
 	<trinket name="Caramella Candy Bag" description="Smells sweets" gfx="caramellacandybag.png" />
-	<trinket name="Pink Fork" description="Aquatic strength" gfx="pinkfork.png" />
+	<trinket name="Pink Fork" description="Aquatic strength" gfx="pinkfork.png" hidden="true"/>
 
 	<!-- 원룸천사 아이템? -->
 	<!-- <trinket name="Towa's Wings" description="Aquatic shield" gfx="towawings.png" hidden="true" achievement="9999"/> -->

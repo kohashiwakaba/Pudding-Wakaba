@@ -7,6 +7,31 @@ wakaba.FamiliarPriority = {
 	[wakaba.Enums.Familiars.LIL_RIRA] = FollowerPriority.DEFENSIVE,
 }
 
+wakaba.RepentogonExclusives = {}
+wakaba.RepentogonExclusives.Collectibles = {
+	[wakaba.Enums.Collectibles.MAGMA_BLADE] = true,
+	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = true,
+}
+wakaba.RepentogonExclusives.Trinkets = {
+	[wakaba.Enums.Trinkets.PINK_FORK] = true,
+}
+
+wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function(_)
+	local itemConfig = Isaac.GetItemConfig()
+	for collectibleType, hidden in pairs(wakaba.RepentogonExclusives.Collectibles) do
+		if hidden then
+			local conf = itemConfig:GetCollectible(collectibleType)
+			conf.Hidden = false
+		end
+	end
+	for trinketType, hidden in pairs(wakaba.RepentogonExclusives.Trinkets) do
+		if hidden then
+			local conf = itemConfig:GetTrinket(trinketType)
+			conf.Hidden = false
+		end
+	end
+end)
+
 
 local function SyncRepentogonMarks(playerType)
 	if not REPENTOGON or not playerType then return end
