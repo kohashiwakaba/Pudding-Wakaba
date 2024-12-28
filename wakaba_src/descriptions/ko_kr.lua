@@ -1800,6 +1800,10 @@ wakaba.descriptions[desclang].epiphany_golden = {
 		isReplace = false,
 		description = "{{ColorGold}}그 방의 액티브/패시브 아이템을 황금화 시킵니다.",
 	},
+	[wakaba.Enums.Collectibles.CLEAR_FILE] = {
+		isReplace = false,
+		description = "{{ColorGold}}교체 이후의 아이템 받침대를 황금화 시킵니다.",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		isReplace = false,
 		description = "{{ColorGold}}{{Quality0}}등급인 아이템이 등장하지 않습니다.",

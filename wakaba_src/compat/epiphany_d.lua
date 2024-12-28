@@ -496,7 +496,8 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			{V = wakaba.Enums.Cards.SOUL_WAKABA},
 			{V = wakaba.Enums.Cards.SOUL_WAKABA2},
 			{V = wakaba.Enums.Cards.SOUL_TSUKASA, Weight = 0.5},
-			{V = wakaba.Enums.Cards.SOUL_RICHER, Weight = 0.5}
+			{V = wakaba.Enums.Cards.SOUL_RICHER, Weight = 0.5},
+			{V = wakaba.Enums.Cards.SOUL_RIRA, Weight = 0.5}
 		)
 
 		api:AddCardsToCardGroup("Holy",
@@ -526,17 +527,13 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			{V = wakaba.Enums.Cards.CARD_TRIAL_STEW},
 			{V = wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK},
 			{V = wakaba.Enums.Cards.CARD_VALUT_RIFT, Weight = 0.2},
-			{V = wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2}
+			{V = wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES, Weight = 0.2},
+			{V = wakaba.Enums.Cards.CARD_FLIP}
 		)
 
 		-- Blacklist items to check within Use Item func, will be used inside same use function instead
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.D6_CHAOS)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BOOK_OF_TRAUMA)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.RICHERS_FLIPPER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles._3D_PRINTER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BALANCE)
-		api:BlacklistGoldActive(wakaba.Enums.Collectibles.BEETLEJUICE)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.SHIFTER)
+		api:BlacklistGoldActive(wakaba.Enums.Collectibles.SHIFTER_PASSIVE)
 
 		-- Whitelist Keeper pickups
 		wakaba:DictionaryBulkAppend(KEEPER.DisallowedPickUpVariants[100], {
@@ -556,15 +553,18 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 		})
 
 		--#region Multitool
-		--[[
-		local multitool = Mod.Pickup.MULTITOOL.ChestOpenFunctions
+		---@param chest EntityPickup
+		function wakaba:UseMultitool_WakabaChests(player, chest)
+			if chest.Variant == wakaba.Enums.Pickups.CLOVER_CHEST and chest.SubType > 0 and chest:GetSprite():IsPlaying("Idle") then
 
-		wakaba:DictionaryBulkAppend(multitool, {
-			[wakaba.Enums.Pickups.CLOVER_CHEST] = function (chest)
+				chest.Touched = true
+				chest:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN, false, true)
+				wakaba:openCloverChest(player, chest)
+				return true
+			end
+		end
 
-			end,
-		})
-		]]
+		Mod:AddExtraCallback(Epiphany.ExtraCallbacks.PRE_MULTITOOL_OPEN_CHEST, wakaba.UseMultitool_WakabaChests)
 		--#endregion
 	end
 
@@ -1057,7 +1057,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 					if wakabaBuff.isReplace then
 						descObj.Description = desc
 					else
-						EID:appendToDescription(descObj, "# {{GoldenItem}}".. desc .. "{{CR}}")
+						EID:appendToDescription(descObj, "#{{GoldenItem}} ".. desc .. "{{CR}}")
 					end
 				end
 				return descObj

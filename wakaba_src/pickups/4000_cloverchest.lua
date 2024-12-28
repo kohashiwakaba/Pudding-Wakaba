@@ -100,12 +100,17 @@ function wakaba:ReplaceChests(pickup)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.ReplaceChests)
 
-function wakaba:UpdateChests(pickup)
-	if pickup:GetSprite():IsEventTriggered("DropSound") then
+function wakaba:PickupUpdate_CloverChest(pickup)
+	local sprite = pickup:GetSprite()
+	if sprite:IsEventTriggered("DropSound") then
 		SFXManager():Play(SoundEffect.SOUND_CHEST_DROP)
+	elseif sprite:IsFinished("Appear") then
+		sprite:Play("Opened", true)
+	elseif sprite:IsFinished("Appear") then
+		sprite:Play("Idle", true)
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.UpdateChests, PickupVariant.PICKUP_CHEST)
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_CloverChest, wakaba.Enums.Pickups.CLOVER_CHEST)
 
 function wakaba:spawnCloverChestReward(chest, player)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
@@ -155,7 +160,7 @@ end
 
 
 function wakaba:PickupCollision_CloverChest(pickup, collider, low)
-	if pickup.SubType > 0 and collider.Type == EntityType.ENTITY_PLAYER then
+	if pickup.SubType > 0 and collider.Type == EntityType.ENTITY_PLAYER and pickup:GetSprite():IsPlaying("Idle") then
 		local player = collider:ToPlayer()
 		if player:HasGoldenKey() or player:GetNumKeys() > 0
 		or player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP)

@@ -1628,6 +1628,10 @@ wakaba.descriptions[desclang].epiphany_golden = {
 		isReplace = false,
 		description = "{{ColorGold}}Converts item pedestals into Golden variation",
 	},
+	[wakaba.Enums.Collectibles.CLEAR_FILE] = {
+		isReplace = false,
+		description = "{{ColorGold}}Dropped items become Golden if possible",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		isReplace = false,
 		description = "{{ColorGold}}Prevents Quality{{Quality0}} to be spawned",

@@ -234,6 +234,11 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 			target:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, type, true, true, true)
 			player:AddCollectible(newType, 0, not touched)
 		end
+		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.CLEAR_FILE) then
+			if Epiphany then
+				Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(target)
+			end
+		end
 		idesc:resetEntries()
 		player:AnimateCollectible(newType, "HideItem", "PlayerPickup")
 		--player:GetEffects():RemoveCollectibleEffect(item, -1)
