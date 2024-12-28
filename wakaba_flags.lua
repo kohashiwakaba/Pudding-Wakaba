@@ -1,4 +1,6 @@
 wakaba.Flags = {
+	disableRandomEIDModNames = false,
+
 	disableGlobalNodes = false,
 
 	debugCore = true,

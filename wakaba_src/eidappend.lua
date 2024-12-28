@@ -1,4 +1,17 @@
--- Todos : Add weight values for EID Bag of Crafting
+local modNameList = {
+	"Pudding & Wakaba",
+	"Wakaba-chan",
+	"Richer-chan",
+	"Kyuu~!",
+}
+local modNameListKorean = {
+	"Pudding & Wakaba",
+	"리셰의 푸딩",
+	"와카바쨩",
+	"뀨~!",
+	"부끄부끄 리라",
+	"말랑말랑 리셰",
+}
 
 wakaba.HotkeyToString = {}
 for key,num in pairs(Keyboard) do
@@ -235,9 +248,26 @@ if EID then
 		local hasPlayer = {}
 
 		function wakaba:UpdateWakabaDescriptions(lunaticOnly)
+
+			local gmName = modNameList[(Isaac.GetTime() % #modNameList)+1]
+			local gmkName = modNameListKorean[(Isaac.GetTime() % #modNameListKorean)+1]
+
+			local nameToUse = EID:getLanguage() == "ko_kr" and gmkName or gmName
+			if wakaba.Flags.disableRandomEIDModNames then
+				nameToUse = "Pudding & Wakaba"
+			end
+			local currentVerName = ""
+			if REPENTANCE_PLUS then
+				currentVerName = "[R+]"
+			elseif REPENTOGON then
+				currentVerName = "[RGON]"
+			elseif REPENTANCE then
+				currentVerName = "[REP]"
+			end
+
 			EID._currentMod = "Pudding and Wakaba"
 			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
-			EID:setModIndicatorName("Pudding & Wakaba")
+			EID:setModIndicatorName(nameToUse .. currentVerName)
 			EID:setModIndicatorIcon(REPENTOGON and "WakabaModRgon" or "WakabaMod", true)
 			for cardid, carddata in pairs(wakaba.descriptions["en_us"].cards) do
 				if carddata.mimiccharge then
