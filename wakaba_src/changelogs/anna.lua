@@ -21,6 +21,25 @@ disabled by default
 are shown on eid
 - added tainted rira indicator
 when outside of ward area
+- mod name displayed by eid
+is now randomized
+- rgon exclusive items
+no longer appear on
+spindown/death certificate
+on non-rgon environment
+- removed unused lang
+specific resources
+- added compatibility
+with enhanced boss bars
+- updated compatibility
+for next epiphany wave
+-- prestige pass no longer
+blacklisted for t.eden
+-- added multitool
+interaction with clover chest
+-- added golden item synergy
+for following items
+--- clear file
 
 {FSIZE2}repentogon
 
@@ -49,6 +68,11 @@ get without duplication
 --- some items are
 banned in this difficulty
 
+{FSIZE2}inventory descriptions
+- added 'WakabaCallbacks.
+INVENTORY_DESCRIPTIONS_(PRE/POST)
+_LIST_(OPEN/CLOSE)'
+callbacks for further usage
 
 {FSIZE2}balance/bug fixes
 
@@ -126,6 +150,20 @@ spawn rate (suit -> special)
 - balance ecnalab
 -- no longer gives coins, price reduced
 
+- plumy
+-- mom's knife now allows plumy shoot
+knives correctly (thanks thecatwizard)
+
+- tainted lost and tr lost(epiphany)
+no longer revive through
+following items as
+innate items (such as tmtrainer)
+-- see des bischofs
+-- sakura capsule
+-- jar of clover
+-- bunny parfait
+-- caramella pancake
+
 - fix following items taking effect
 for both forms of tainted lazarus
 -- wakaba's blessing : only 100% angel
@@ -160,5 +198,9 @@ on non-rgon environment
 - fix apollyon crisis appearing
 outside of rgon
 as eden's starting item
+
+- fix using soul of shiori
+not resetting some
+secondary effects
 
 ]])
