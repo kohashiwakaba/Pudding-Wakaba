@@ -11,7 +11,7 @@ function wakaba:CoinInit_AuroraGem(pickup)
   rng:SetSeed(seed, 35)
   local randInt = rng:RandomFloat() * 100
 
-  local canTurn = wakaba:Roll(rng, 0, easterEggChance, 0)
+  local canTurn = wakaba:Roll(rng, 0, wakaba:getOptionValue("eastereggchance") or 2, 0)
 
   if not wakaba.G:IsGreedMode() and canTurn then
     pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)

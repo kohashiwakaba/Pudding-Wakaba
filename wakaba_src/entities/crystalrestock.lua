@@ -78,7 +78,7 @@ function wakaba:convertRestockMachines(entype, var, subtype, grindex, seed)
 		local rand = wakaba.RNG
 		rand:SetSeed(rand:Next(),1)
 		local ran = rand:RandomFloat()
-		if ran < wakaba.state.options.crystalrestockchance / 100 then
+		if ran < wakaba:getOptionValue("crystalrestockchance") / 100 then
 			return {EntityType.ENTITY_SLOT, wakaba.Enums.Slots.CRYSTAL_RESTOCK, 0}
 		end
 	end

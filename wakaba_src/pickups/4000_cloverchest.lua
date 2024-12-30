@@ -80,7 +80,7 @@ end
 function wakaba:ReplaceChests(pickup)
 	local haspp = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY)
 	if pickup.Variant == PickupVariant.PICKUP_CHEST then
-		local chance = wakaba.state.options.cloverchestchance
+		local chance = wakaba:getOptionValue("cloverchestchance")
 		chance = chance + math.max(wakaba:extraVal("cloverChestChance", 0))
 		chance = chance + (isc:anyPlayerIs(wakaba.Enums.Players.WAKABA) and math.max(wakaba:extraVal("wakabaCloverChestChance", 0)) or 0)
 		local stage = wakaba.G:GetLevel():GetStage()
