@@ -138,7 +138,7 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 		bookSprite:LoadGraphics()
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_ENTER)
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
-	else
+	elseif useFlags & UseFlag.USE_CARBATTERY == 0 then
 		local dreamcard = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.Enums.Cards.CARD_DREAM_CARD, Isaac.GetFreeNearPosition(player.Position, 0.0), Vector(0,0), nil):ToPickup()
 	end
 	if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then
