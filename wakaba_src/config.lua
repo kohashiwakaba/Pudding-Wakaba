@@ -793,7 +793,7 @@ if MCM then
 			Maximum = 1,
 			ModifyBy = 0.05,
 			Display = function()
-				return "List offset: " .. wakaba.state.options.listdimmeralpha
+				return "Screen dim opacity: " .. wakaba.state.options.listdimmeralpha
 			end,
 			OnChange = function(current)
 				wakaba.state.options.listdimmeralpha = current
