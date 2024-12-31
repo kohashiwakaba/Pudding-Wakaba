@@ -1069,9 +1069,13 @@ function idesc:RenderEarly()
 	if istate.showList and not EID.CachingDescription then
 		if not istate.listprops.listonly then
 			local alpha = idesc:getOptions("listdimmeralpha")
-			local ntColor = idesc.BackgroundSprite.Color
-			ntColor.A = alpha
-			idesc.BackgroundSprite.Color = ntColor
+			if REPENTOGON then
+				local ntColor = idesc.BackgroundSprite.Color
+				ntColor.A = alpha
+				idesc.BackgroundSprite.Color = ntColor
+			else
+				idesc.BackgroundSprite.Color = Color(1, 1, 1, alpha, 0, 0, 0)
+			end
 			local x = EID:getScreenSize().X
 			local y = EID:getScreenSize().Y
 			idesc.BackgroundSprite:Render(Vector(x/2, y/2), Vector(0,0), Vector(0,0))
