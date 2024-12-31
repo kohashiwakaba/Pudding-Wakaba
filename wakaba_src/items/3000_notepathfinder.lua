@@ -39,8 +39,10 @@ function wakaba:RoomGen_BringMeThere()
 				if room.GridIndex > 0 and room.Data.Type == RoomType.ROOM_BOSS and room.Data.Subtype == 89 then
 					altMomRoom.Data = room.Data
 					wakaba.runstate.savednoteroom = room.GridIndex
-					local note = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, wakaba.G:GetRoom():GetGridPosition(102), Vector(0,0), nil):ToPickup()
-					wakaba:TryTurnAquaTrinket(note, true)
+					if wakaba.state.forcevoid.beast == 1 then
+						local note = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, wakaba.Enums.Trinkets.BRING_ME_THERE, wakaba.G:GetRoom():GetGridPosition(102), Vector(0,0), nil):ToPickup()
+						wakaba:TryTurnAquaTrinket(note, true)
+					end
 					break
 				end
 			end
