@@ -103,6 +103,7 @@ idesc.options = {
 	invlistmode = "list",
 	invgridcolumn = 6,
 	invinitcursor = "character",
+	listdimmeralpha = 0.5,
 }
 if _wakaba then
 	idesc.options = wakaba.state.options
@@ -1063,6 +1064,21 @@ function idesc:Update(player)
 	end
 end
 idesc:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, idesc.Update)
+
+function idesc:RenderEarly()
+	if istate.showList and not EID.CachingDescription then
+		if not istate.listprops.listonly then
+			local alpha = idesc:getOptions("listdimmeralpha")
+			local ntColor = idesc.BackgroundSprite.Color
+			ntColor.A = alpha
+			idesc.BackgroundSprite.Color = ntColor
+			local x = EID:getScreenSize().X
+			local y = EID:getScreenSize().Y
+			idesc.BackgroundSprite:Render(Vector(x/2, y/2), Vector(0,0), Vector(0,0))
+		end
+	end
+end
+idesc:AddPriorityCallback(ModCallbacks.MC_POST_RENDER, -20000000, idesc.RenderEarly)
 
 function idesc:Render()
 	if istate.showList and ModConfigMenu and ModConfigMenu.IsVisible then

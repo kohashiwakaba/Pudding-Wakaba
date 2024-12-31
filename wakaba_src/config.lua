@@ -781,6 +781,28 @@ if MCM then
 			}
 		}
 	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.listdimmeralpha
+			end,
+			Minimum = 0,
+			Maximum = 1,
+			ModifyBy = 0.05,
+			Display = function()
+				return "List offset: " .. wakaba.state.options.listdimmeralpha
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listdimmeralpha = current
+			end,
+			Info = {
+				"Opacity to dim game screen while showing the list (Default = 0.5)",
+			}
+		}
+	)
 
 --[[
 	MCM.AddSetting(

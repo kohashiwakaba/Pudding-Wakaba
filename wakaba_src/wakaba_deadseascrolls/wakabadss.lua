@@ -686,6 +686,22 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'initial cursor', 'position in', 'inventory','descriptions'}}
 			},
+			{
+				str = 'dim screen opac',
+				fsize = 2,
+				min = 0,
+				max = 1,
+				increment = 0.05,
+				setting = 0.5,
+				variable = "InvDescListDimmerAlpha",
+				load = function()
+					return wakaba.state.options.listdimmeralpha or 0.5
+				end,
+				store = function(var)
+					wakaba.state.options.listdimmeralpha = var
+				end,
+				tooltip = {strset = {'dim screen','opacity','while','list show','','default = 0.5'}},
+			},
 		},
 	},
 	hud_setting = {

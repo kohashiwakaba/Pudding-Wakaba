@@ -130,6 +130,7 @@ local config = {
 	invgridcolumn = 6,
 	invpassivehistory = false,
 	invinitcursor = "character",
+	listdimmeralpha = 0.5,
 
 	-- Found HUD options
 	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all
