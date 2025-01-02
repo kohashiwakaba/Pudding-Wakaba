@@ -29,9 +29,7 @@ function wakaba:ChargeBarUpdate_LunarStone(player)
 	if player.FrameCount % 2 == 0 then
 		if wakaba:hasLunarStone(player, false) then
 			local percent = ((wakaba:getPlayerDataEntry(player, "lunargauge", 0) // 1000) / 10) or 100
-			if percent > 99 and wakaba:getLunarGaugeSpeed(player) < 0 then
-				percent = 99
-			end
+			percent = math.ceil(percent)
 			chargeBar:UpdateSpritePercent(percent // 1)
 			chargeBar:UpdateText(percent, "", "%")
 		else
@@ -46,8 +44,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.ChargeBarUpdate_Lu
 function wakaba:getMaxLunarGauge(player)
 	local max = 1000000
 	if wakaba:hasLunarStone(player) then
-		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			max = max + 1000000
+		if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+			max = max + (1000000 * player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 		end
 	end
 	return max
@@ -69,6 +67,13 @@ end
 
 function wakaba:addCurrentLunarGauge(player, amount)
 	if player.FrameCount > 7 then
+		if amount < 0 then
+			local reductionRate = 100 - (wakaba:extraVal("tsukasaLunarProtection", 0) + wakaba:extraVal("lunarProtection", 0))
+			amount = amount * (reductionRate / 100)
+			if wakaba:extraVal("tsukasaAcceleration") then
+				amount = amount * 3
+			end
+		end
 		wakaba:addPlayerDataCounter(player, "lunargauge", amount)
 	end
 end
@@ -105,9 +110,9 @@ function wakaba:PlayerUpdate_LunarStone(player)
 		wakaba:initPlayerDataEntry(player, "lunarregenrate", 0)
 		data.wakaba.lunargastimeout = data.wakaba.lunargastimeout or 0
 		if player:AreControlsEnabled() then
-			if wakaba:getLunarGaugeSpeed(player) >= 0 then
+			if wakaba:getLunarGaugeSpeed(player) >= 0 or wakaba:extraVal("tsukasaAcceleration") then
 				data.wakaba.lunargastimeout = 0
-				wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + wakaba:getLunarGaugeSpeed(player))
+				wakaba:setCurrentLunarGauge(player, wakaba:getCurrentLunarGauge(player) + math.max(wakaba:getLunarGaugeSpeed(player), 0))
 			elseif wakaba:getLunarGaugeSpeed(player) < 0 then
 				if player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER
 				and player:GetPlayerType() ~= PlayerType.PLAYER_KEEPER_B

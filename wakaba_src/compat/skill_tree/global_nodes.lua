@@ -15,6 +15,11 @@ return {
 	"pillFloorLuck",
 	"allstatsPerc",
 
+	"hushTimer",
+	"bossRushTimer",
+	"bossRedChest",
+	"bossRushWaves",
+
 	"w_EasterDmg",
 	"shieldChance",
 	"cloverChestChance",
@@ -30,4 +35,12 @@ return {
 	"libraryDamage",
 	"libraryReveal",
 	"shioriAssistant",
+
+	"tsukasaRaid",
+	"tsukasaIntervention",
+	"tsukasaMagnetObols",
+	"lunarRange",
+	"starAllstatsPerc",
+	"starReq",
+	"lunarProtection",
 }

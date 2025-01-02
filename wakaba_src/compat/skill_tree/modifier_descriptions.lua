@@ -60,16 +60,57 @@ return {
 	unknownBookmarkTears = {
 		str = "%s%.2f tears for the current room when you use an Unknown Bookmark.",
 		addPlus = true,
-		category = "charTree", sort = 4094
+		category = "wakabaGlobal", sort = 3910
 	},
 	libraryDamage = {
 		str = "%s%.2f increased damage when entering Library.",
 		addPlus = true,
-		category = "charTree", sort = 4094
+		category = "wakabaGlobal", sort = 3911
 	},
 	libraryReveal = {
 		str = "%d%% chance to reveal the library's location if it's present on the floor",
-		category = "charTree", sort = 4095
+		category = "wakabaGlobal", sort = 3912
+	},
+	tsukasaRaid = {
+		str = {
+			"RAID:",
+			"    +0.001 Damage per Global SP (Caps at +2)",
+			"    +0.001 Tears per Respec (Caps at +2)",
+		},
+		category = "wakabaGlobal", sort = 3913
+	},
+	tsukasaIntervention = {
+		str = {
+			"Intervention:",
+			"    Reduce charge time for Beetlejuice",
+			"    Reduce Concentration time",
+		},
+		category = "wakabaGlobal", sort = 3914
+	},
+	tsukasaMagnetObols = {
+		str = {
+			"Magnetic Obols:",
+			"    Arcane Obols and Astral Weapons are automatically collected",
+		},
+		category = "wakabaGlobal", sort = 3915
+	},
+	lunarRange = {
+		str = "%s%.2f range when Lunar gauge is active",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3916
+	},
+	starAllstatsPerc = {
+		str = "%s%.2f all stats if starmight is over 1000",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3917
+	},
+	starReq = {
+		str = "-%d starmight requirements for all stats",
+		category = "wakabaGlobal", sort = 3918
+	},
+	lunarProtection = {
+		str = "-%.2f%% Lunar Gauge reduction",
+		category = "wakabaGlobal", sort = 3919
 	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
@@ -239,18 +280,12 @@ return {
 	tsukasaServerOffline = {
 		str = {
 			"Server Offline:",
-			"    Lunar Stone no longer gives revival",
-			"    Negates a hit that would've killed you, if you have more than 20%%p of your Lunar gauge",
-			"    Negating a hit reduces fixed 20%%p of your Lunar Stone gauge"
+			"    +150% Damage",
+			"    Starts with Luna.",
+			"    Lunar Stone no longer revives Tsukasa.",
+			"    +100% extra Damage if Lunar Acceleration is allocated."
 		},
 		category = "charTree", sort = 4122
-	},
-	tsukasaRaid = {
-		str = {
-			"RAID:",
-			"    +1%% damage, +0.5%% speed per respec points",
-		},
-		category = "charTree", sort = 4123
 	},
 	tsukasaConcentration = {
 		str = {
@@ -261,7 +296,58 @@ return {
 		},
 		category = "charTree", sort = 4124
 	},
+	tsukasaLuna = {
+		str = {
+			"Crack in the Sky:",
+			"    Luna lights appear at special rooms",
+			"    (except Boss, Dungeon)",
+			"    -50%% tears for Luna",
+		},
+		category = "charTree", sort = 4125
+	},
+	tsukasaAcceleration = {
+		str = {
+			"Lunar Acceleration:",
+			"    Lunar Stone is always active",
+			"    Stat bonus from Lunar Stone is doubled",
+			"    Lunar gauge reduction is tripled",
+		},
+		category = "charTree", sort = 4125
+	},
 	---- TSUKASA'S TREE NORMAL  ----
+	tsukasaLunarRange = {
+		str = "%s%.2f range when Lunar gauge is active",
+		addPlus = true,
+		category = "charTree", sort = 4151
+	},
+	tsukasaRevivalRespec = {
+		str = {
+			"%.2f%% chance for gain Respec point on revival. Once per floor.",
+			"Above 100%% total chance, roll for multiple Respec points",
+		},
+		category = "charTree", sort = 4152
+	},
+	tsukasaStarAllstatsPerc = {
+		str = "%s%.2f all stats if starmight is over 1000",
+		addPlus = true,
+		category = "charTree", sort = 4153
+	},
+	tsukasaStarReq = {
+		str = "-%d starmight requirements for all stats",
+		category = "charTree", sort = 4154
+	},
+	tsukasaSoulRecover = {
+		str = "%.2f%% Lunar gauge recover when picking up Soul Hearts",
+		category = "charTree", sort = 4155
+	},
+	tsukasaOrbitalRevenge = {
+		str = "%.2f%% chance to shoot orbiting tear when damaged",
+		category = "charTree", sort = 4156
+	},
+	tsukasaLunarProtection = {
+		str = "-%.2f%% Lunar Gauge reduction",
+		category = "charTree", sort = 4157
+	},
 	---- RICHER'S TREE SPECIAL ----
 	richerTaste = {
 		str = {

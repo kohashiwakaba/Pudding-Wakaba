@@ -34,11 +34,21 @@ function wakaba:Cache_Important(player, cacheFlag)
 		end
 		if wakaba:hasPlayerDataEntry(player, "lunargauge") and wakaba:hasPlayerDataEntry(player, "lunarregenrate") then
 			local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
+			local serverMult = 1
+			if wakaba:extraVal("tsukasaServerOffline") then
+				serverMult = serverMult + 1.5
+			end
 			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 				count = count + 1
 			end
-			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 then
-				player.Damage = player.Damage * (1 + (0.2 * count))
+			if wakaba:extraVal("tsukasaAcceleration") then
+				count = count + 1
+				if wakaba:extraVal("tsukasaServerOffline") then
+					serverMult = serverMult + 1
+				end
+			end
+			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 or wakaba:extraVal("tsukasaAcceleration") then
+				player.Damage = player.Damage * (1 + (0.2 * count)) * serverMult
 			else
 				player.Damage = player.Damage * 0.85
 			end
@@ -58,7 +68,7 @@ function wakaba:Cache_Important(player, cacheFlag)
 			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
 				count = count + 1
 			end
-			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 then
+			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 or wakaba:extraVal("tsukasaAcceleration") then
 				player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, (1 + (0.2 * count)))
 			else
 				player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 0.8)
@@ -66,6 +76,17 @@ function wakaba:Cache_Important(player, cacheFlag)
 		end
 	end
 	if cacheFlag == CacheFlag.CACHE_RANGE then
+		if wakaba:hasPlayerDataEntry(player, "lunargauge") and wakaba:hasPlayerDataEntry(player, "lunarregenrate") then
+			local count = player:GetCollectibleNum(wakaba.Enums.Collectibles.LUNAR_STONE)
+			local bonus = wakaba:extraVal("lunarRange", 0)
+			if player:GetPlayerType() == wakaba.Enums.Players.TSUKASA then
+				count = count + 1
+				local bonus = bonus + wakaba:extraVal("tsukasaLunarRange", 0)
+			end
+			if wakaba:getPlayerDataEntry(player, "lunarregenrate") >= 0 or wakaba:extraVal("tsukasaAcceleration") then
+				player.TearRange = player.TearRange + (bonus * 40)
+			end
+		end
 		if player:HasTrinket(wakaba.Enums.Trinkets.RANGE_OS) then
 			for i = 1, player:GetTrinketMultiplier(wakaba.Enums.Trinkets.RANGE_OS) do
 				player.TearRange = player.TearRange * 0.4

@@ -69,6 +69,9 @@ local function getConcentrationSpeed(speedType, usedCount)
 		midSpeed = 10
 		finalSpeed = midSpeed - (speedreduce * 0.03)
 	end
+	if wakaba:extraVal("tsukasaIntervention") then
+		finalSpeed = finalSpeed * 2.4
+	end
 	if tempUsedCount ~= usedCount then
 		wakaba.Log("Concentration speed : initial:", initialSpeed, "mid:", midSpeed, "final:", finalSpeed)
 		tempUsedCount = usedCount
@@ -84,7 +87,7 @@ function wakaba:PlayerUpdate_Concentration(player)
 		local count = wakaba:getPlayerDataEntry(player, "concentrationcount")
 		if IsConcentrationButtonHeld(player) and not data.wakaba.concentrationtriggered then
 			if count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT then return end
-			if wakaba:IsLunatic() or (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION)) then
+			if wakaba:IsLunatic() or (player:GetPlayerType() == wakaba.Enums.Players.TSUKASA and not player:HasCollectible(wakaba.Enums.Collectibles.CONCENTRATION) and not wakaba:extraVal("tsukasaConcentration")) then
 				if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.CONCENTRATION) or count > wakaba.Enums.Constants.MAX_CONCENTRATION_COUNT_TSUKASA then return end
 			end
 			if not data.wakaba.concentrationframes or data.wakaba.concentrationframes < 0 then
