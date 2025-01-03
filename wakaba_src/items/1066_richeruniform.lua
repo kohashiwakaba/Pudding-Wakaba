@@ -157,9 +157,12 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		local s = wakaba.G:GetRoom():GetSpawnSeed()
 		local shopItem = wakaba.G:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player, 0, s):ToPickup()
 		--local shopItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(player.Position, 32), Vector.Zero, player):ToPickup()
-		shopItem.Price = PickupPrice.PRICE_TWO_HEARTS
+		shopItem.Price = PickupPrice.PRICE_THREE_SOULHEARTS
 		shopItem.AutoUpdatePrice = false
 		shopItem.Timeout = 999999
+		shopItem:GetData().wakaba = shopItem:GetData().wakaba or {}
+		shopItem:GetData().wakaba.richeruniform = u.DEVIL
+		shopItem:GetData().wakaba.richerdevilprice = shopItem.Price
 		wakaba.runstate.rerollquality["0"] = nil
 		wakaba.runstate.rerollquality["1"] = nil
 		wakaba.runstate.rerollquality["2"] = nil
@@ -207,7 +210,13 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(40, 0)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(-40, 0)), Vector(0,0), nil)
 	elseif uniformMode == u.CHALLENGE then
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_DIPLOPIA, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+		if rng:GetSeed() % 2 == 0 then
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_DIPLOPIA, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+		else
+			SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
+		end
+		SFXManager():Play(SoundEffect.SOUND_DEATH_CARD)
+		isc:startAmbush()
 	elseif uniformMode == u.LIBRARY then
 		player:UseCard(Card.CARD_ANCIENT_RECALL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 	--[[ elseif uniformMode == u.DUNGEON then ]]
@@ -216,6 +225,10 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		local pickups = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
 		for _, pickup in ipairs(pickups) do
 			pickup:ToPickup().OptionsPickupIndex = 0
+		end
+
+		if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.RICHERS_UNIFORM) then
+			player:UseCard(Card.CARD_DEVIL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 		end
 	elseif uniformMode == u.ISAACS then
 		player:UseCard(Card.CARD_SOUL_LILITH, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
@@ -247,6 +260,32 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 	}
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_RicherUniform, wakaba.Enums.Collectibles.RICHERS_UNIFORM)
+
+---@param pickup EntityPickup
+function wakaba:PickupUpdate_RicherUniform(pickup)
+  if not pickup:GetData().wakaba then return end
+	if not pickup:GetData().wakaba.richeruniform then return end
+
+	local uniformMode = pickup:GetData().wakaba.richeruniform
+
+	if uniformMode == u.DEVIL then
+		local prev = pickup:GetData().wakaba.richerdevilprice
+		local timer = pickup.FrameCount % 15
+		if timer == 0 then
+			if pickup:GetData().wakaba.richerdevilprice == 36 then
+				pickup.Price = PickupPrice.PRICE_TWO_HEARTS
+				pickup:GetData().wakaba.richerdevilprice = PickupPrice.PRICE_TWO_HEARTS
+			elseif pickup:GetData().wakaba.richerdevilprice == PickupPrice.PRICE_TWO_HEARTS then
+				pickup.Price = PickupPrice.PRICE_THREE_SOULHEARTS
+				pickup:GetData().wakaba.richerdevilprice = PickupPrice.PRICE_THREE_SOULHEARTS
+			elseif pickup:GetData().wakaba.richerdevilprice == PickupPrice.PRICE_THREE_SOULHEARTS then
+				pickup.Price = 36
+				pickup:GetData().wakaba.richerdevilprice = 36
+			end
+		end
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_RicherUniform, PickupVariant.PICKUP_COLLECTIBLE)
 
 function wakaba:NewRoom_RicherUniform()
 	if #ribbon_data.run.storedPickups > 0 then

@@ -86,7 +86,7 @@ wakaba.descriptions[desclang].characters = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} Tsukasa starts with Concentration"
 		--.. "#"
 		.. "",
-		birthright = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ Extends maximum {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge limit",
+		birthright = "Allows Tsukasa to find Afterbirth ~ Repentance items#↑ +100% {{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}}Lunar gauge capacity",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
 		playerName = "Tainted Tsukasa",
@@ -2437,13 +2437,13 @@ wakaba.descriptions[desclang].richeruniform = {
 	[u.SUPERSECRET] = "#{{SuperSecretRoom}} {{ColorCyan}}Super Secret Room#{{Collectible609}} Rerolls all pedestal items in the room#Has a 25% chance to delete items instead of rerolling them",
 	[u.ARCADE] = "#{{ArcadeRoom}} {{ColorCyan}}Arcade Room#Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine#{{Collectible46}} Better chance to win while gambling for current room",
 	[u.CURSE] = "#{{CursedRoom}} {{ColorCyan}}Curse Room#{{RedChest}}	Spawns 2 red chests#!!! Takes 1 full heart of damage",
-	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} Duplicates any pedestals and consumables in the current room",
+	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}Challenge Room#{{Collectible347}} 50% chance to duplicate any pedestals and consumables in the current room",
 	[u.LIBRARY] = "#{{Library}} {{ColorCyan}}Library#{{Card53}} Spawns 3 cards",
 	[u.SACRIFICE] = "#{{SacrificeRoom}} {{ColorCyan}}Sacrifice Room#Sets next sacrifice counter into 6th ({{AngelChance}}33%/{{Chest}}67%)#!!! Takes 1 full heart of damage if counter is < 6",
-	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 heart containers#The spawned item disappears on room exit",
+	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}Devil Room#Spawns Quality {{Quality3}} item that costs 2 Heart Containers or 3 Soul Hearts#The spawned item disappears on room exit",
 	[u.ANGEL] = "#{{AngelRoom}} {{ColorCyan}}Angel Room#Heals {{HalfHeart}} + {{HalfSoulHeart}}#{{CurseCursed}} Protects curse from being applied for one time",
 	--[u.DUNGEON] = "",
-	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected",
+	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}Boss Rush#All choices are removed, resulting all items can be collected#{{Damage}} +2 Damage on repeat usage",
 	[u.ISAACS] = "#{{IsaacsRoom}} {{ColorCyan}}Bedroom#{{Card92}} Permanently grants a random familiar",
 	[u.BARREN] = "#{{BarrenRoom}} {{ColorCyan}}Bedroom#{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}} Spawns 12 tiny Isaac familiars",
 	[u.CHEST] = "#{{ChestRoom}} {{ColorCyan}}Valut Room#{{EternalChest}} Spanws a Eternal chest and 3 Golden chests",

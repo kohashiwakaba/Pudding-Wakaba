@@ -78,7 +78,7 @@ wakaba.descriptions[desclang].characters = {
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CONCENTRATION.."}} 고유 능력 : 집중"
 		--.. "#"
 		.. "",
-		birthright = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Lunar Stone 게이지의 상한이 200%로 증가합니다.",
+		birthright = "Afterbirth ~ Repentance 아이템을 획득할 수 있습니다.#{{Collectible"..wakaba.Enums.Collectibles.LUNAR_STONE.."}} Lunar Stone 게이지 상한 +100%p",
 		queueDesc = "역사와 달빛을 제대로 보다",
 	},
 	[wakaba.Enums.Players.TSUKASA_B] = {
@@ -2747,13 +2747,13 @@ wakaba.descriptions[desclang].richeruniform = {
 	[u.SUPERSECRET] = "#{{SuperSecretRoom}} {{ColorCyan}}일급비밀방#{{Collectible609}} 사용 시 그 방의 모든 아이템을 다른 아이템으로 바꾸며 25% 확률로 아이템이 사라집니다.",
 	[u.ARCADE] = "#{{ArcadeRoom}} {{ColorCyan}}오락실#사용 시 {{Slotmachine}}도박기계 혹은 {{FortuneTeller}}운세기계를 소환하며;#{{Collectible46}} 그 방에서 야바위와 도박기계의 성공 확률이 증가합니다.",
 	[u.CURSE] = "#{{CursedRoom}} {{ColorCyan}}저주방#{{RedChest}}	빨간하트 1칸을 소모하여 빨간상자 2개를 소환합니다.",
-	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}도전방#{{Collectible347}} 사용 시 그 방의 모든 아이템과 픽업을 2배로 복사합니다.",
+	[u.CHALLENGE] = "#{{ChallengeRoom}} {{ColorCyan}}도전방#{{Collectible347}} 사용 시 50%의 확률로 그 방의 모든 아이템과 픽업을 2배로 복사합니다.",
 	[u.LIBRARY] = "#{{Library}} {{ColorCyan}}책방#{{Card53}} 사용 시 카드를 3장 소환합니다.",
 	[u.SACRIFICE] = "#{{SacrificeRoom}} {{ColorCyan}}희생방#사용 시 그 방의 희생 카운터를 6번째({{AngelChance}}33%/{{Chest}}67%)로 설정합니다.#!!! 카운터가 6 미만인 경우 빨간하트 1칸의 피해를 받습니다.",
-	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.#소환된 아이템은 방을 나가면 사라집니다.",
+	[u.DEVIL] = "#{{DevilRoom}} {{ColorCyan}}악마방#사용 시 최대 체력 2칸 혹은 소울하트 3칸을 요구하는 최소 {{Quality3}}등급의 아이템을 하나 소환합니다.#소환된 아이템은 방을 나가면 사라집니다.",
 	[u.ANGEL] = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
 	--[u.DUNGEON] = "#{{AngelRoom}} {{ColorCyan}}천사방#사용 시 {{HalfHeart}} + {{HalfSoulHeart}}를 회복하며;#{{CurseCursed}} 이후 등장하는 저주를 1회 방어합니다.",
-	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}보스러시#사용 시 그 방의 모든 선택형 상태를 제거합니다.",
+	[u.BOSSRUSH] = "#{{BossRushRoom}} {{ColorCyan}}보스러시#사용 시 그 방의 모든 선택형 상태를 제거합니다.#{{DamageSmall}} 연속 사용 시 그 방에서 공격력 +2",
 	[u.ISAACS] = "#{{IsaacsRoom}} {{ColorCyan}}침대방#{{Card92}} 사용 시 랜덤 패밀리어를 하나 획득합니다.",
 	[u.BARREN] = "#{{BarrenRoom}} {{ColorCyan}}침대방#{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}} 사용 시 작은 아이작 패밀리어를 12마리 소환합니다.",
 	[u.CHEST] = "#{{ChestRoom}} {{ColorCyan}}금고방#{{EternalChest}} 사용 시 이터널상자 1개와 황금상자 3개를 소환합니다.",
