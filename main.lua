@@ -148,6 +148,8 @@ wakaba.hasdreams = false
 wakaba.costumecooldown = 600
 wakaba.costumecurrframe = 0
 
+wakaba._keyPressFrame = 0
+
 wakaba.fullreroll = false
 wakaba.pedestalreroll = false
 
@@ -1315,6 +1317,7 @@ function wakaba:init(continue)
 		wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.LUNAR_DAMOCLES)
 		wakaba:setFamiliarNoSirenSteal(wakaba.Enums.Familiars.MURASAME)
 	end
+	wakaba._keyPressFrame = wakaba.G:GetFrameCount()
 	wakaba:updateHUDPosition()
 end
 

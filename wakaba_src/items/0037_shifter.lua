@@ -86,8 +86,6 @@ local function FindTarget(player)
 	end
 end
 
-local keyPressFrame = 0
-
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_Shifter(player)
 	local pData = player:GetData()
@@ -106,7 +104,7 @@ function wakaba:PlayerUpdate_Shifter(player)
 
 		local shift = 0
 		local currFrame = wakaba.G:GetFrameCount()
-		if currFrame > keyPressFrame then
+		if currFrame > wakaba._keyPressFrame then
 			if Input.IsButtonTriggered(extraLeft, 0)
 				or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
 			then
@@ -122,7 +120,7 @@ function wakaba:PlayerUpdate_Shifter(player)
 				local random = REPENTOGON and rng:RandomInt(min, max) or rng:RandomInt(randMax) + min
 				wakaba:shiftItem(pData.w_shifterTarget, -1, random)
 
-				keyPressFrame = currFrame
+				wakaba._keyPressFrame = currFrame
 				return
 			end
 			if Input.IsButtonTriggered(extraRight, 0)
@@ -140,7 +138,7 @@ function wakaba:PlayerUpdate_Shifter(player)
 				local random = REPENTOGON and rng:RandomInt(min, max) or rng:RandomInt(randMax) + min
 				wakaba:shiftItem(pData.w_shifterTarget, 1, random)
 
-				keyPressFrame = currFrame
+				wakaba._keyPressFrame = currFrame
 				return
 			end
 		end

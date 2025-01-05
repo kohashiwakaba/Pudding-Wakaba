@@ -76,8 +76,6 @@ wakaba:AddPriorityCallback("DIFFLIB_MC_PRE_ADD_AFTERBIRTH_DIFFICULTIES", 1, func
 	end
 end)
 
-local keyPressFrame = 0
-
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_GambleRun(player)
 	if not DifficultyManager then return end
@@ -101,19 +99,19 @@ function wakaba:PlayerUpdate_GambleRun(player)
 
 		local shift = 0
 		local currFrame = wakaba.G:GetFrameCount()
-		if currFrame > keyPressFrame then
+		if currFrame > wakaba._keyPressFrame then
 			if Input.IsButtonTriggered(extraLeft, 0)
 				or Input.IsButtonTriggered(extraLeftCont, player.ControllerIndex)
 			then
 				player:UseActiveItem(CollectibleType.COLLECTIBLE_ETERNAL_D6, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
-				keyPressFrame = currFrame
+				wakaba._keyPressFrame = currFrame
 				return
 			end
 			if Input.IsButtonTriggered(extraRight, 0)
 				or Input.IsButtonTriggered(extraRightCont, player.ControllerIndex)
 			then
 				player:UseActiveItem(CollectibleType.COLLECTIBLE_CROOKED_PENNY, UseFlag.USE_NOANIM | UseFlag.USE_VOID)
-				keyPressFrame = currFrame
+				wakaba._keyPressFrame = currFrame
 				return
 			end
 		end
