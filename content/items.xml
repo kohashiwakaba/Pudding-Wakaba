@@ -176,7 +176,7 @@
 	<!--  -->
 
 	<active id="993" description="Designed for Maid - Destiny mover" gfx="shifter.png" name=" Shifter " tags="quest nocantrip noeden" maxcharges="0" quality="4" craftquality="-1" hidden="true" achievement="9999"/>
-	<active id="994" description="Designed for Maid - Destiny mover" gfx="shifter.png" name="Shifter" tags="quest nocantrip noeden" maxcharges="0" quality="4" craftquality="-1" hidden="true" achievement="9999"/>
+	<passive id="994" description="Designed for Maid - Destiny mover" gfx="shifter.png" name="Shifter" tags="quest nocantrip noeden" maxcharges="0" quality="4" craftquality="-1" hidden="true" achievement="9999"/>
 	<!-- <active id="995" description="Librarian only - Book Replicator" gfx="bookofshiori2.png" name="Shiori's Book" tags="quest nocantrip noeden" maxcharges="0" quality="6" craftquality="-1" hidden="true" achievement="9999"/> -->
 	<active id="996" description="Only for Librarians - Recycle for Books" gfx="purifier.png" name="Purifier" tags="quest nocantrip noeden" maxcharges="0" quality="0" craftquality="-1" hidden="true" achievement="9999"/>
 	<passive id="997" cache="damage" hearts="4" maxhearts="2" description="Keep gather" gfx="clovershard.png" name="Clover Shard" tags="quest noeden" quality="3" hidden="true" achievement="9999"/>

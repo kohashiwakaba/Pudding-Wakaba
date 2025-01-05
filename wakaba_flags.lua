@@ -1,4 +1,7 @@
 wakaba.Flags = {
+	shifterMin = 0,
+	shifterMax = 4,
+
 	disableRandomEIDModNames = false,
 
 	disableGlobalNodes = false,

@@ -976,6 +976,7 @@ do -- Items loader
 	include('wakaba_src.items.1001_eatheart')
 	include('wakaba_src.items.0035_kyoulover')
 	include('wakaba_src.items.0036_purifier')
+	include('wakaba_src.items.0037_shifter')
 
 	include('wakaba_src.items.1002_bookofforgotten')
 	include('wakaba_src.items.1003_dcupicecream')

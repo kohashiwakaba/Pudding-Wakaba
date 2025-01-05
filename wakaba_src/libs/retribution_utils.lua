@@ -1708,6 +1708,14 @@ function mod:IsQuestItem(itemId)
 	return Isaac.GetItemConfig():GetCollectible(itemId):HasTags(ItemConfig.TAG_QUEST)
 end
 
+function mod:IsHiddenItem(itemId)
+	return Isaac.GetItemConfig():GetCollectible(itemId).Hidden
+end
+
+function mod:IsItemAvailable(itemId)
+	return Isaac.GetItemConfig():GetCollectible(itemId):IsAvailable() and not Isaac.GetItemConfig():GetCollectible(itemId).Hidden
+end
+
 function mod:GetItemQuality(itemId)
 	return Isaac.GetItemConfig():GetCollectible(itemId).Quality
 end

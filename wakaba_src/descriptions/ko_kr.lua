@@ -1451,6 +1451,14 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		queueDesc = "도서위원 전용 - 재활용을 생활화합시다",
 	},
+	[wakaba.Enums.Collectibles.SHIFTER] = {
+		itemName = "시프트 장치",
+		description = ""
+		.. "#!!! 소지 중일 때 바뀌지 않은 아이템 획득 불가"
+		.. "#{wakaba_extra_dleft} / {wakaba_extra_dright} 버튼을 누르면 가장 가까운 아이템을 랜덤 수량의 코드 앞/뒷번호의 아이템으로 바꿉니다."
+		.. "{{CR}}",
+		queueDesc = "메이드 전용 - 운명 옮기기",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "와카바의 꿈꾸는 꿈",
 		description = ""

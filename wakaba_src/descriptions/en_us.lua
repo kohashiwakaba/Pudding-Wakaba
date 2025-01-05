@@ -1369,6 +1369,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{GoldenKey}} Converts pedestal for sale into golden key"
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Collectibles.SHIFTER] = {
+		itemName = "Shifter",
+		description = ""
+		.. "#!!! Cannot get any items that isn't shifted"
+		.. "#Press {wakaba_extra_dleft} / {wakaba_extra_dright} to reroll nearest item by decrease / increase its internal ID by random amount"
+		.. "{{CR}}",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		itemName = "Wakaba's Double Dreams",
 		description = ""

@@ -335,6 +335,11 @@ if EID then
 			EID:addIcon("Quality5", "Quality", 0, 10, 10, 0, 0, wakaba.MiniMapAPISprite)
 			EID:addIcon("Quality6", "Quality", 1, 10, 10, 0, 0, wakaba.MiniMapAPISprite)
 
+			for i = 0, 9 do
+				EID:addIcon("WakabaUp"..i, "EID_Up", i, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+				EID:addIcon("WakabaDown"..i, "EID_Down", i, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
+			end
+
 			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
 			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
 
@@ -666,7 +671,12 @@ if EID then
 
 
 			local function CaramellaCondition(descObj)
-				if descObj.Description and (descObj.Description:find("{wakaba_extra_left}") or descObj.Description:find("{wakaba_extra_right}")) then
+				if descObj.Description and (
+						descObj.Description:find("{wakaba_extra_left}")
+						or descObj.Description:find("{wakaba_extra_right}")
+						or descObj.Description:find("{wakaba_extra_dleft}")
+						or descObj.Description:find("{wakaba_extra_dright}")
+					) then
 					return true
 				end
 				return false
@@ -674,14 +684,20 @@ if EID then
 			local function CaramellaCallback(descObj)
 				local left = wakaba:getOptionValue("exl")
 				local right = wakaba:getOptionValue("exr")
+				local dleft = wakaba:getOptionValue("gdkey")
+				local dright = wakaba:getOptionValue("gpkey")
 
 				local controllerEnabled = #wakaba:getAllMainPlayers() > 0
 				local leftKey = wakaba.HotkeyToString[left]
 				local rightKey = wakaba.HotkeyToString[right]
+				local dleftKey = wakaba.HotkeyToString[dleft]
+				local drightKey = wakaba.HotkeyToString[dright]
 				--local leftButton = controllerEnabled and ControllerToString[ButtonAction.ACTION_DROP]
 
 				descObj.Description = descObj.Description:gsub("{wakaba_extra_left}", leftKey)
 				descObj.Description = descObj.Description:gsub("{wakaba_extra_right}", rightKey)
+				descObj.Description = descObj.Description:gsub("{wakaba_extra_dleft}", dleftKey)
+				descObj.Description = descObj.Description:gsub("{wakaba_extra_dright}", drightKey)
 				return descObj
 			end
 			EID:addDescriptionModifier("Wakaba Extra Keys", CaramellaCondition, CaramellaCallback)
