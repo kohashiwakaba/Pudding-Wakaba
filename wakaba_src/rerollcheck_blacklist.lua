@@ -33,11 +33,12 @@ function wakaba:PreReroll_DejaVu(itemPoolType, decrease, seed, loopCount)
 		wakaba.Log("Hijack pool from deja vu - pool " .. itemPoolType .. " / seed " ..seed .. " / loopCount " .. loopCount)
 		local candidates = wakaba:ReadDejaVuCandidates()
 		if seed % 4 == 0 then
+			local itemPool = wakaba.G:GetItemPool()
 			local rng2 = RNG()
 			rng2:SetSeed(seed, 35)
 			local TargetIndex = rng2:RandomInt(#candidates) + 1
 			local sel = candidates[TargetIndex]
-			pool:AddRoomBlacklist(sel)
+			itemPool:AddRoomBlacklist(sel)
 			return sel
 		end
 	end
