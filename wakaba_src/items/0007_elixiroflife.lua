@@ -157,7 +157,7 @@ function wakaba:MantleBreak_Elixir(player, prevCount, nextCount)
 	if wakaba:hasElixir(player) and wakaba:IsLost(player) then
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
-		wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
+		wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
 		data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER
 	end
 end
@@ -175,7 +175,7 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 		local donationThreshold = 3 + getElixirPower(player)
 		local soulThreshold = 2 + getElixirPower(player)
 		if (player:GetPlayerType() == PlayerType.PLAYER_KEEPER or player:GetPlayerType() == PlayerType.PLAYER_KEEPER_B) or wakaba:IsLost(player) then
-			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
+			wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 15)
 			data.wakaba.elixircooldown = wakaba.Enums.Constants.ELIXIR_MAX_COOLDOWN_KEEPER // math.min(math.max(getElixirPower(player), 1), 6)
 		end
 		if (source.Type == EntityType.ENTITY_SLOT and source.Variant == 2)
@@ -205,9 +205,9 @@ function wakaba:PostTakeDamage_Elixir(player, amount, flags, source, cooldown)
 			end
 		end
 		if flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
-			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 20)
+			wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 20)
 		elseif not wakaba:IsLunatic() then
-			wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 2)
+			wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 2)
 		end
 	end
 end

@@ -89,9 +89,9 @@ function mod:AnyPlayerHasTrinket(id)
 	return returnValue or false
 end
 
-function mod:AnyPlayerHasCollectible(id)
+function mod:AnyPlayerHasCollectible(id, ignoreModifiers)
 	local returnValue = mod:ForAllPlayers(function(player)
-		if player:HasCollectible(id) then
+		if player:HasCollectible(id, ignoreModifiers) then
 			return player
 		end
 	end)

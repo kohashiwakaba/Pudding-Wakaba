@@ -60,9 +60,9 @@ wakaba:RegisterPatch(0, "Reverie", function() return (CuerLib ~= nil and Reverie
 					wakaba:setPlayerDataEntry(player, "elixirfandamagedcount", 0)
 				end
 				if flags & DamageFlag.DAMAGE_CURSED_DOOR > 0 then
-					wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 20)
+					wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 20)
 				elseif not wakaba:IsLunatic() then
-					wakaba:IncrementCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 2)
+					wakaba:SetCollectibleEffectNum(player, wakaba.Enums.Collectibles.ELIXIR_OF_LIFE, false , 2)
 				end
 				return amount, flags | DamageFlag.DAMAGE_NOKILL
 			end
