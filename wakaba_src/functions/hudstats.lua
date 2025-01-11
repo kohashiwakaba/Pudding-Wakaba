@@ -2,13 +2,25 @@
 local font = Font()
 font:Load("font/luaminioutlined.fnt")
 
+local roomChanged = false
+
+local function isBeast(shouldShow)
+	local inBeastRoom = Game():GetRoom():GetType() == RoomType.ROOM_DUNGEON and Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE8
+	local beastHUD = BeastStats and BeastStats.config.showStats
+	return {
+		inside = inBeastRoom,
+		allowhud = beastHUD
+	}
+end
+
 local function shouldDeHook()
+	local beast = isBeast(true)
 
 	local reqs = {
 		not wakaba.ChallengeDest.initialized,
 		not Options.FoundHUD,
 		not Game():GetHUD():IsVisible(),
-		Game():GetRoom():GetType() == RoomType.ROOM_DUNGEON and Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE8, --beast fight
+		(beast.inside and not beast.allowhud), --beast fight
 		Game():GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD),
 		-- Game():IsGreedMode() //The chance should still display on Greed Mode even if its 0 for consistency with the rest of the HUD.
 	}
@@ -50,6 +62,11 @@ function wakaba:FoundHUDUpdateCheck()
 		wakaba.runstate.NumSeedEffects = Game():GetSeeds():CountSeedEffects()
 	end
 
+	if roomChanged then
+		updatePos = true
+		roomChanged = false
+	end
+
 	if updatePos then
 		wakaba:updateHUDPosition()
 	end
@@ -63,6 +80,9 @@ function wakaba:updateHUDPosition()
 	local RedHeartShift = false
 	local SoulHeartShift = false
 	local DualityShift = false
+
+	local isBeast = isBeast(true)
+	local isBeastHUD = isBeast.inside and isBeast.allowhud
 
 	local ShiftCount = 0
 
@@ -94,6 +114,11 @@ function wakaba:updateHUDPosition()
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_DUALITY) and not DualityShift then -- Shifts Stats because of Duality
 			DualityShift = true
 		end
+	end
+
+	if isBeastHUD then
+		wakaba.globalHUDCoords = wakaba.globalHUDCoords + Vector(0, -24)
+		DualityShift = false
 	end
 
 	if BombShift then
@@ -292,8 +317,7 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 	local data = player:GetData()
-	local playerType = player:GetPlayerType()
-	if not data.w_lastPlayerType then
+	local playerType = player:GetPlayerType()	if not data.w_lastPlayerType then
 		data.w_lastPlayerType = playerType
 	end
 	data.w_playerTypeJustChanged = false
@@ -303,9 +327,15 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, function(_, player)
 	data.w_lastPlayerType = playerType
 end)
 
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
+	roomChanged = true
+end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -30000, function(_)
-	if PlanetariumChance and not PlanetariumChance:shouldDeHook() then
+	local isBeast = isBeast(true)
+	local isBeastHUD = isBeast.inside and isBeast.allowhud
+	if isBeastHUD then
+	elseif PlanetariumChance and not PlanetariumChance:shouldDeHook() then
 		return {Skip = true}
 	elseif REPENTOGON and Options.StatHUDPlanetarium then
 		local pd = Isaac.GetPersistentGameData()
