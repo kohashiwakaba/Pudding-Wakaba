@@ -59,6 +59,32 @@ function wakaba:isGamblePedestalAllowed(pickup)
 	return canGetAll or canGetNonShop
 end
 
+function wakaba:setUpDownPedestalStatus(pickup, result)
+	pedestal_data.level.wakabaPedestals[wakaba:getPickupIndex(pickup)] = pedestal_data.level.wakabaPedestals[wakaba:getPickupIndex(pickup)] or {}
+	pedestal_data.level.wakabaPedestals[wakaba:getPickupIndex(pickup)][tostring(result)] = true
+	if shouldCheckAscent() then
+		pedestal_data.run.ascentSharedSeeds[wakaba:getPickupIndex(pickup)] = pedestal_data.level.wakabaPedestals[wakaba:getPickupIndex(pickup)]
+	end
+end
+
+function wakaba:isUpDownPedestalAllowed(pickup)
+	if pickup.Touched then return true end
+	local floorCheck = pedestal_data.level.wakabaPedestals[wakaba:getPickupIndex(pickup)]
+	local ascentCheck = pedestal_data.run.ascentSharedSeeds[wakaba:getPickupIndex(pickup)]
+
+	local allowed = (floorCheck and floorCheck[tostring(pickup.SubType)]) or (ascentCheck and ascentCheck[tostring(pickup.SubType)])
+
+	local cycle = pickup:GetCollectibleCycle()
+	for _, id in ipairs(cycle) do
+		if (floorCheck or floorCheck[tostring(id)]) or (ascentCheck or ascentCheck[tostring(id)]) then
+			allowed = true
+			break
+		end
+	end
+
+	return allowed
+end
+
 local isc = require("wakaba_src.libs.isaacscript-common")
 
 local difficultyWidget = Sprite("gfx/ui/wakaba/wakaba_diff.anm2")
@@ -72,7 +98,7 @@ wakaba:AddPriorityCallback("DIFFLIB_MC_PRE_ADD_AFTERBIRTH_DIFFICULTIES", 1, func
 			DifficultyManager.ClearDifficulty("UpDown")
 		end
 		DifficultyManager.AddDifficulty("Gamble", difficultyWidget, Difficulty.DIFFICULTY_HARD)
-		--DifficultyManager.AddDifficulty("UpDown", difficultyWidget, Difficulty.DIFFICULTY_HARD)
+		DifficultyManager.AddDifficulty("UpDown", difficultyWidget, Difficulty.DIFFICULTY_HARD)
 	end
 end)
 
@@ -115,7 +141,7 @@ function wakaba:PlayerUpdate_GambleRun(player)
 				return
 			end
 		end
-	elseif DifficultyManager.GetDifficulty() == "UpDown" then
+	elseif wakaba:hasShifter(player) then
 
 	end
 end
@@ -145,7 +171,14 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.UseItem_GambleRun, Colle
 
 function wakaba:PickupCollision_GambleRun(pickup, colliders, low)
 	if isc:inDeathCertificateArea() or isc:inGenesisRoom() or not DifficultyManager then return end
+	if pickup.Touched then return end
 	if DifficultyManager.GetDifficulty() == "Gamble" and not wakaba:isGamblePedestalAllowed(pickup) then
+		local id = pickup.SubType
+		local config = Isaac.GetItemConfig():GetCollectible(id)
+		if not config or not config:HasTags(ItemConfig.TAG_QUEST) then
+			return pickup:IsShopItem()
+		end
+	elseif wakaba:hasShifter() and not wakaba:isUpDownPedestalAllowed(pickup) then
 		local id = pickup.SubType
 		local config = Isaac.GetItemConfig():GetCollectible(id)
 		if not config or not config:HasTags(ItemConfig.TAG_QUEST) then
@@ -171,7 +204,8 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RESTOCK_SHOP, wakaba.PostRestock_GambleR
 
 function wakaba:PickupRender_GambleRun(pickup, offset)
 	if isc:inDeathCertificateArea() or isc:inGenesisRoom() or not DifficultyManager then return end
-	if DifficultyManager.GetDifficulty() == "Gamble" and not wakaba:isGamblePedestalAllowed(pickup) then
+	if (DifficultyManager.GetDifficulty() == "Gamble" and not wakaba:isGamblePedestalAllowed(pickup))
+	or (wakaba:hasShifter() and not wakaba:isUpDownPedestalAllowed(pickup)) then
 		local pickupData = pickup:GetData()
 		local sprite = pickup:GetSprite()
 		local id = pickup.SubType
@@ -203,7 +237,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.PickupRender_Gambl
 ---@param seed integer
 wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL_BLACKLIST, function(_, selected, selectedItemConf, rerollProps, itemPoolType, decrease, seed, isCustom)
 	if not DifficultyManager then return end
-	if DifficultyManager.GetDifficulty() == "Gamble" then
+	if DifficultyManager.GetDifficulty() == "Gamble" or wakaba:hasShifter() then
 		if wakaba.Blacklists.GambleRun[selected] then
 			wakaba.Log("Blacklisted item", selected, "from gamble run")
 			return true

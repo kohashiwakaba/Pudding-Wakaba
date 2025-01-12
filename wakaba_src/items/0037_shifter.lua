@@ -3,9 +3,18 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local searchPartitions = EntityPartition.PICKUP
 
 function wakaba:hasShifter(player)
-	return player:HasCollectible(wakaba.Enums.Collectibles.SHIFTER, true)
-	or player:HasCollectible(wakaba.Enums.Collectibles.SHIFTER_PASSIVE, true)
-	or (DifficultyManager and DifficultyManager.GetDifficulty() == "UpDown")
+	if (DifficultyManager and DifficultyManager.GetDifficulty() == "UpDown") then return true end
+
+	if not player then
+		if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.SHIFTER, true)
+		or wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.SHIFTER_PASSIVE, true) then
+			return true
+		end
+	else
+		return player:HasCollectible(wakaba.Enums.Collectibles.SHIFTER, true)
+		or player:HasCollectible(wakaba.Enums.Collectibles.SHIFTER_PASSIVE, true)
+	end
+
 end
 
 ---@param pickup EntityPickup
@@ -35,7 +44,7 @@ function wakaba:spawnShiftResultEffect(pickup, shift, count)
 	return effect
 end
 
----@param entity Entity
+---@param target Entity
 local function isShifterCapable(target)
 	if target:GetSprite():IsPlaying("Collect") or target:GetSprite():IsPlaying("PlayerPickupSparkle") then return false end
 
@@ -56,10 +65,12 @@ local function isShifterCapable(target)
 		and eSubType < 1
 	)
 
+	local isPickedUp = target:ToPickup() and target:ToPickup().Touched
+
 	local isStory = (
 		conf:GetCollectible(eSubType) and conf:GetCollectible(eSubType):HasTags(ItemConfig.TAG_QUEST)
 	)
-	return isCollectible and target:Exists() and not isEmptyPedestal and not isStory
+	return isCollectible and target:Exists() and not isEmptyPedestal and not isPickedUp and not isStory and not wakaba:isUpDownPedestalAllowed(target:ToPickup())
 end
 
 ---@param player EntityPlayer
@@ -225,9 +236,13 @@ function wakaba:shiftItem(pickup, shift, count)
 	if not (pickup or pickup:Exists()) then return end
 	local current = pickup.SubType
 	local next = wakaba:getNextIDFromShifter(shift, count, current)
+	local nextConfig = Isaac.GetItemConfig():GetCollectible(next)
 	pickup.SubType = next
+	pickup.Charge = nextConfig.InitCharge
+	pickup.Touched = false
+	wakaba:setUpDownPedestalStatus(pickup, next)
 	local sprite = pickup:GetSprite()
-	sprite:ReplaceSpritesheet(1, isc:getCollectibleGfxFilename(next))
+	sprite:ReplaceSpritesheet(1, nextConfig.GfxFileName)
 	sprite:LoadGraphics()
 	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector(0,0), nil)
 	wakaba:spawnShiftResultEffect(pickup, shift, count)
@@ -241,13 +256,12 @@ if EID then
 	end
 
 	local function STCondition(descObj)
-		if not (
-			wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.SHIFTER)
-			or wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.SHIFTER_PASSIVE)
-			or (DifficultyManager and DifficultyManager.GetDifficulty() == "UpDown")
-		) then return false end
+		if not wakaba:hasShifter() then return false end
 		if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and not wakaba:IsQuestItem(descObj.ObjSubType) then
-			return true
+			local idesc = wakaba._InventoryDesc ---@type InventoryDescriptions
+			if EID.InsideItemReminder or idesc.state.showList or (descObj.Entity and isShifterCapable(descObj.Entity)) then
+				return true
+			end
 		end
 		return false
 	end
