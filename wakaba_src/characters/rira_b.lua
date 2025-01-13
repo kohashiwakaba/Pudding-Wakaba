@@ -32,6 +32,59 @@ end
 wakaba.__taintedriraptcolor = {0.7, 1, 1.6}
 wakaba.__taintedriraptscale = 1.2
 
+-- Register HUD Helper for Tainted Rira
+HudHelper.RegisterHUDElement({
+	Name = "wakaba_TRira",
+	Priority = HudHelper.Priority.NORMAL,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	Condition = function(player, playerHUDIndex, hudLayout, position)
+		if isc:hasCurse(LevelCurse.CURSE_OF_THE_UNKNOWN) or not wakaba:IsDimension(0) then return false end
+		local level = wakaba.G:GetLevel()
+		local rabbeyPower = wakaba:getRabbeyWardPower(level:GetCurrentRoomIndex(), true)
+		return player:GetPlayerType() == playerType and rabbeyPower <= 0
+	end,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	OnRender = function(player, playerHUDIndex, hudLayout, position, maxColumns)
+		local spr = wakaba.WakabaHealthSprite
+		spr:SetFrame("RiraSoul", 0)
+
+		local souls = player:GetSoulHearts()
+		local soulHeartCount = math.ceil(souls / 2) + player:GetBoneHearts()
+		local isLastHalf = souls % 2 == 1
+		local blackBit = player:GetBlackHearts()
+		-- from Epiphany
+		local alpha = (math.sin(wakaba.G:GetFrameCount() * 4 * 1.5 * math.pi / 180) + 1) / 2
+
+		for i = 0, soulHeartCount - 1 do
+			local isHalf = isLastHalf and i == soulHeartCount - 1
+			if isHalf then
+				spr:SetFrame("RiraHeartHalf", 0)
+			else
+				spr:SetFrame("RiraHeartFull", 0)
+			end
+			local x = (i % maxColumns) * 12
+			local y = math.floor(i / maxColumns) * 10
+			spr.Color = Color(0, 0, 0, alpha / 2 + 0.25, 0.5 - alpha / 2, 0, 0)
+			spr:Render(position + Vector(x, y))
+		end
+
+	end,
+	--PreRenderCallback = true
+}, HudHelper.HUDType.HEALTH)
+
+--[[
+if REPENTOGON then
+	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, function(_, _, _, _, _, player)
+	end)
+end
+ ]]
+
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_RiraB(player)
 	if not player or player:GetPlayerType() ~= playerType then return end

@@ -49,6 +49,7 @@ include('wakaba_flags')
 include('wakaba_src.debug_area')
 
 --include("wakaba_src.libs.filepathhelper")
+include('wakaba_src.libs.hud_helper')
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include("wakaba_src.libs.retribution_utils")
@@ -80,6 +81,9 @@ wakaba.MiniMapAPISprite:Load("gfx/ui/wakaba/minimapapi.anm2", true)
 ---@type Sprite
 wakaba.globalHUDSprite = Sprite()
 wakaba.globalHUDSprite:Load("gfx/ui/wakaba/hudstats2.anm2", true)
+---@type Sprite
+wakaba.WakabaHealthSprite = Sprite()
+wakaba.WakabaHealthSprite:Load("gfx/ui/wakaba/ui_hearts_wakaba.anm2", true)
 
 function wakaba:isRepPlus()
 	return FontRenderSettings ~= nil
