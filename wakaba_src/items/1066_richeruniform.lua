@@ -270,7 +270,7 @@ function wakaba:PickupUpdate_RicherUniform(pickup)
 
 	if uniformMode == u.DEVIL then
 		local prev = pickup:GetData().wakaba.richerdevilprice
-		local timer = pickup.FrameCount % 15
+		local timer = pickup.FrameCount % 30
 		if timer == 0 then
 			if pickup:GetData().wakaba.richerdevilprice == 36 then
 				pickup.Price = PickupPrice.PRICE_TWO_HEARTS
