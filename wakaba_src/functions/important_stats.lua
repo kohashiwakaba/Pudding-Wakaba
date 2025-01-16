@@ -109,6 +109,7 @@ function wakaba:Cache_Important(player, cacheFlag)
 			if wakaba:IsLunatic() then
 				parLuck = 3
 			end
+			parLuck = parLuck + (player:GetCollectibleNum(wakaba.Enums.Collectibles.WAKABAS_PENDANT) * 0.25) - 0.25
 			if wakaba:extraVal("pendantMinLuck") then
 				parLuck = parLuck + wakaba:extraVal("pendantMinLuck", 0)
 			end

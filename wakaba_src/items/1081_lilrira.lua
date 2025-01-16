@@ -95,7 +95,7 @@ local function fireTearRira(player, familiar, vector, rotation)
 	if (player:HasCollectible(CollectibleType.COLLECTIBLE_BFFS)) then
 		multiplier = multiplier * 2
 	end
-	tearDamage = 4
+	tearDamage = 3
 	tear.CollisionDamage = tearDamage * multiplier
 
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then

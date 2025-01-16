@@ -1273,7 +1273,7 @@ function wakaba:init(continue)
 		local maijimaBooksToAdd = {}
 		local maijimaRng = RNG()
 		maijimaRng:SetSeed(wakaba.G:GetSeeds():GetStartSeed(), 35)
-		for i = 0, 4 do
+		for i = 0, 7 do
 			local index = maijimaRng:RandomInt(#tempMaijimaBooks) + 1
 			table.insert(maijimaBooksToAdd, tempMaijimaBooks[index])
 			table.remove(tempMaijimaBooks, index)

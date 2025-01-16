@@ -1243,7 +1243,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "莉良宝宝",
 		description = ""
 			.. "#追踪眼泪"
-			.. "#每一帧造成2点伤害"
+			.. "#每一帧造成3点伤害"
 			.. "#{{Damage}} +0.05 Damage per used active pips" -- TODO
 			.. "{{CR}}",
 		queueDesc = "红丝带",

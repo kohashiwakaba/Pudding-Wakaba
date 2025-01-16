@@ -1261,7 +1261,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Lil Rira",
 		description = ""
 		.. "#Shoots chasing tears"
-		.. "#Deals 2 damage per tick"
+		.. "#Deals 3 damage per tick"
 		.. "#{{Damage}} +0.05 Damage per used active pips"
 		.. "{{CR}}",
 	transformations = EID.TRANSFORMATION.CONJOINED .. "",

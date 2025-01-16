@@ -512,13 +512,13 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "와카바의 펜던트",
 		description = ""
 		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
-		--.. "#↑ {{LuckSmall}}행운에 영향을 주는 아이템의 개수만큼 행운 +0.35"
+		.. "#{{Blank}} {{ColorGray}}(중첩 당 행운 하한 +0.25)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{LuckSmall}}행운을 최소 3 이상으로 설정"
-		--.. "#{{WakabaModLunatic}} {{ColorOrange}}(루나틱 : 추가 행운 없음)"
+		.. "#{{Blank}} {{ColorGray}}(중첩 당 행운 하한 +0.25)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
@@ -1183,6 +1183,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리셰쨩의 제복",
 		description = ""
 		.. "#사용 시 그 방의 종류에 따라 다른 효과를 발동합니다."
+		.. "#{{Blank}} {{ColorGray}}(Inventory Descriptions에서 확인 가능)"
 		.. "{{CR}}",
 		queueDesc = "귀여운 건 최고!",
 	},
@@ -1321,7 +1322,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.LIL_RIRA] = {
 		itemName = "리틀 리라",
 		description = ""
-		.. "#공격하는 방향으로 초당 8의 피해를 주는 추적 눈물을 발사합니다."
+		.. "#공격하는 방향으로 초당 6의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#{{DamageSmall}} 액티브 사용 시 소모한 충전량 당 공격력 +0.05"
 		.. "{{CR}}",
 		queueDesc = "핑크빛을 위한 리본",
