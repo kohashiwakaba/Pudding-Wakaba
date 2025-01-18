@@ -201,28 +201,7 @@ wakaba.Enums.Collectibles = {
 
 }
 
-local exq = wakaba.Enums.Collectibles
--- 확장 퀄리티
-wakaba.Enums.ExtendQuality = {
-	[exq.EXECUTIONER] = 5,
-	[exq.UNIFORM] = 5,
-	[exq.DOUBLE_DREAMS] = 6,
-	[exq.D6_PLUS] = 5,
-	[exq.APOLLYON_CRISIS] = 5,
-	[exq.NEKO_FIGURE] = 5,
-	[exq.WINTER_ALBIREO] = 5,
-	[exq.CONCENTRATION] = 5,
-	[exq.MURASAME] = 5,
-	[exq.RED_CORRUPTION] = 5,
-	[exq.CARAMELLA_PANCAKE] = 5,
-	[exq.CHIMAKI] = 5,
-	[exq.COUNTER] = 5,
-	[exq.PRESTIGE_PASS] = 6,
-	[exq.MAID_DUET] = 6,
-	[exq.WAKABAS_BLESSING] = 5,
-	[exq.WAKABAS_NEMESIS] = 5,
-	[exq.WAKABA_DUALITY] = 6,
-}
+include("wakaba_src.enums.ext_quality")
 
 -- 와카바 모드 패밀리어 : FamiliarVariant 위치에서 사용
 wakaba.Enums.Familiars = {

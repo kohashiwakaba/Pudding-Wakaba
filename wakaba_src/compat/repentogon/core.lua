@@ -377,9 +377,20 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function (_, isContinued)
 
 	local c = Isaac.GetItemConfig()
 	local extend = wakaba:getOptionValue("extendquality")
+	if not extend then return end
 	for id, q in pairs(wakaba.Enums.ExtendQuality) do
 		local item = c:GetCollectible(id)
-		item.Quality = extend and q or 4
+		if not wakaba.savedQuality[id] then
+			wakaba.savedQuality[id] = item.Quality
+		end
+		item.Quality = q
+	end
+	for id, q in pairs(wakaba.Enums.ExtendQualityVanilla) do
+		local item = c:GetCollectible(id)
+		if not wakaba.savedQuality[id] then
+			wakaba.savedQuality[id] = item.Quality
+		end
+		item.Quality = q
 	end
 end)
 if Options.Language == "kr" then -- Character Menu Korean Sprite
