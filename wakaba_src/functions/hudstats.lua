@@ -3,6 +3,32 @@ local font = Font()
 font:Load("font/luaminioutlined.fnt")
 
 local roomChanged = false
+local dogmaEnded = false
+
+function wakaba:isDogmaDefeated()
+	-- This is super lame, but the only way to avoid drawing over the death animation (dogma flash) is by considering dogma "dead" after 80 frames of his death animation have played.
+	if dogmaEnded then return true end
+	local isDogma = Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE8 and Game():GetRoom():IsCurrentRoomLastBoss()
+	if isDogma then
+		for _,v in pairs(Isaac.GetRoomEntities()) do
+			if v:IsBoss() then
+				if v:GetSprite():GetAnimation() == "Death" and v:GetSprite():GetFrame() > 80 then
+					dogmaEnded = true
+					return true
+				end
+			end
+		end
+	end
+	return false
+end
+
+local function TextAcceleration(frame) --Overfit distance profile for difference text slide in
+	frame = frame - 14
+	if frame > 0 then
+		return 0
+	end
+	return -(15.1 / (13 * 13)) * frame * frame
+end
 
 local function isBeast(shouldShow)
 	local inBeastRoom = Game():GetRoom():GetType() == RoomType.ROOM_DUNGEON and Game():GetLevel():GetAbsoluteStage() == LevelStage.STAGE8
@@ -20,12 +46,13 @@ local function shouldDeHook()
 		not wakaba.ChallengeDest.initialized,
 		not Options.FoundHUD,
 		not Game():GetHUD():IsVisible(),
+		wakaba:isDogmaDefeated(),
 		(beast.inside and not beast.allowhud), --beast fight
 		Game():GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD),
 		-- Game():IsGreedMode() //The chance should still display on Greed Mode even if its 0 for consistency with the rest of the HUD.
 	}
 
-	return reqs[1] or reqs[2] or reqs[3] or reqs[4] or reqs[5]
+	return reqs[1] or reqs[2] or reqs[3] or reqs[4] or reqs[5] or reqs[6]
 end
 
 function wakaba:FoundHUDUpdateCheck()
@@ -329,6 +356,7 @@ end)
 
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function(_)
 	roomChanged = true
+	dogmaEnded = false
 end)
 
 wakaba:AddPriorityCallback(wakaba.Callback.RENDER_GLOBAL_FOUND_HUD, -30000, function(_)
