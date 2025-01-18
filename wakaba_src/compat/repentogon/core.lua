@@ -18,6 +18,21 @@ wakaba.RepentogonExclusives.Trinkets = {
 
 wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function(_)
 	local itemConfig = Isaac.GetItemConfig()
+
+	for collectibleType, q in pairs(wakaba.Enums.ExtendQuality) do
+		local item = itemConfig:GetCollectible(collectibleType)
+		if not wakaba.savedQuality[collectibleType] then
+			wakaba.savedQuality[collectibleType] = item.Quality
+		end
+	end
+
+	for collectibleType, q in pairs(wakaba.Enums.ExtendQualityVanilla) do
+		local item = itemConfig:GetCollectible(collectibleType)
+		if not wakaba.savedQuality[collectibleType] then
+			wakaba.savedQuality[collectibleType] = item.Quality
+		end
+	end
+
 	for collectibleType, hidden in pairs(wakaba.RepentogonExclusives.Collectibles) do
 		if hidden then
 			local conf = itemConfig:GetCollectible(collectibleType)
@@ -377,6 +392,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function (_, isContinued)
 
 	local c = Isaac.GetItemConfig()
 	local extend = wakaba:getOptionValue("extendquality")
+	local extendv = wakaba:getOptionValue("extendvanillaquality")
 	if not extend then return end
 	for id, q in pairs(wakaba.Enums.ExtendQuality) do
 		local item = c:GetCollectible(id)
@@ -385,12 +401,14 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function (_, isContinued)
 		end
 		item.Quality = q
 	end
-	for id, q in pairs(wakaba.Enums.ExtendQualityVanilla) do
-		local item = c:GetCollectible(id)
-		if not wakaba.savedQuality[id] then
-			wakaba.savedQuality[id] = item.Quality
+	if extendv then
+		for id, q in pairs(wakaba.Enums.ExtendQualityVanilla) do
+			local item = c:GetCollectible(id)
+			if not wakaba.savedQuality[id] then
+				wakaba.savedQuality[id] = item.Quality
+			end
+			item.Quality = q
 		end
-		item.Quality = q
 	end
 end)
 if Options.Language == "kr" then -- Character Menu Korean Sprite

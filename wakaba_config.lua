@@ -4,6 +4,7 @@ local config = {
 	allowlockeditems = true,
 	balancemode = wakaba.Enums.BalanceModes.WAKABA,
 	extendquality = true,
+	extendvanillaquality = false,
 
 	exl = Keyboard.KEY_LEFT_BRACKET,
 	exr = Keyboard.KEY_RIGHT_BRACKET,
