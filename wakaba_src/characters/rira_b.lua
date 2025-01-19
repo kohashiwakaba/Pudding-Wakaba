@@ -57,7 +57,6 @@ HudHelper.RegisterHUDElement({
 		local souls = player:GetSoulHearts()
 		local soulHeartCount = math.ceil(souls / 2) + player:GetBoneHearts()
 		local isLastHalf = souls % 2 == 1
-		local blackBit = player:GetBlackHearts()
 		-- from Epiphany
 		local alpha = (math.sin(wakaba.G:GetFrameCount() * 4 * 1.5 * math.pi / 180) + 1) / 2
 
@@ -70,7 +69,7 @@ HudHelper.RegisterHUDElement({
 			end
 			local x = (i % maxColumns) * 12
 			local y = math.floor(i / maxColumns) * 10
-			spr.Color = Color(0, 0, 0, alpha / 2 + 0.25, 0.5 - alpha / 2, 0, 0)
+			spr.Color = Color(0, 0, 0, alpha / 2 + 0.25, 0, 0, 0.5 - alpha / 2)
 			spr:Render(position + Vector(x, y))
 		end
 
