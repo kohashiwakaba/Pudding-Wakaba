@@ -69,7 +69,7 @@ HudHelper.RegisterHUDElement({
 			end
 			local x = (i % maxColumns) * 12
 			local y = math.floor(i / maxColumns) * 10
-			spr.Color = Color(0, 0, 0, alpha / 2 + 0.25, 0, 0, 0.5 - alpha / 2)
+			spr.Color = Color(alpha / 2 + 0.25, 0, alpha / 2 + 0.25, alpha / 2 + 0.05, 0.3 - alpha / 2, 0, 0.3 - alpha / 2)
 			spr:Render(position + Vector(x, y))
 		end
 
