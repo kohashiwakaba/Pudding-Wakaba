@@ -149,7 +149,7 @@
 	<familiar id="113" description="Active switcher" gfx="maidduet.png" name="Maid Duet" shopprice="25" devilprice="2" tags="summonable offensive baby monstermanual uniquefamiliar nochallenge lazarusshared lazarussharedglobal" quality="4" craftquality="4" persistent="true"/>
 	<familiar id="114" description="Ironbonk" gfx="goombella.png" name="Goombella" tags="noeden summonable offensive baby uniquefamiliar" customtags="nometronome" quality="2" craftquality="4" hidden="true" achievement="9999"/>
 	<active id="115" description="Aqua expander" gfx="rabbeyward.png" name="Rabbey Ward" shopprice="20" devilprice="2" tags="offensive" maxcharges="6" quality="3" craftquality="3" />
-	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="3" quality="1" craftquality="1" tags="offensive nogreed"/>
+	<active id="116" description="Blush exceed" gfx="rirauniform.png" name="Rira's Uniform" maxcharges="1" quality="1" craftquality="1" tags="offensive nogreed"/>
 	<active id="117" description="Reusable amplifier" gfx="bookofamplitude.png" name="Book of Amplitude" tags="offensive" maxcharges="1" quality="1" craftquality="1"/>
 	<passive id="121" cache="tearcolor tearflag damage" description="Eye for the guardian" gfx="kanaelens.png" name="Kanae Lens" shopprice="16" devilprice="2" tags="summonable offensive" quality="4" craftquality="4"/>
 	<passive id="122" cache="" description="Mofu-Mofu" gfx="richerbra2.png" name="Richer's Bra" shopprice="31" devilprice="2" tags="summonable nolostbr" quality="3" craftquality="4" />
