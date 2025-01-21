@@ -39,11 +39,11 @@ end
 ---@param slot any
 ---@param vardata any
 function wakaba:UseItem_LilRira(activeItem, rng, player, flags, slot, vardata)
-	if flags & UseFlag.USE_OWNED == 0 then return end
+	if flags & UseFlag.USE_OWNED == 0 or slot < 0 then return end
 	wakaba:setPlayerDataEntry(player, "LilRiraLastItem", activeItem)
 	wakaba:setPlayerDataEntry(player, "LilRiraLastSlot", slot)
 end
-wakaba:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.LATE, wakaba.UseItem_LilRira)
+wakaba:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.IMPORTANT, wakaba.UseItem_LilRira)
 
 ---@param familiar EntityFamiliar
 ---@param player EntityPlayer
@@ -142,7 +142,7 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 
 	if hasRira and familiar.Coins > 0 then
 		local timedCharges = familiar.Coins
-		local dmgToAdd = timedCharges / 1800
+		local dmgToAdd = timedCharges / 180
 		wakaba.Log("Lil Rira adding damage from timed active :", dmgToAdd)
 		wakaba:addRiraDamage(player, dmgToAdd)
 		--riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
