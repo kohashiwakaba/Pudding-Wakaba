@@ -127,7 +127,7 @@ wakaba.descriptions[desclang].characters = {
 		shortDesc = "{{WakabaAqua}} 확률적으로 침수 공격을 합니다.#The Lost 상태일 때도 헌혈류 요소를 사용할 수 있습니다.",
 		detailedDesc = "리라는 미야자마 미유, 미야자카 나코 작품의 {{ColorLime}}Love's Sweet Garnish{{CR}}의 히로인입니다."
 		.. "#얌전하고 조숙해 보이지만, 말할 수 없는 또 다른 면모도 있습니다."
-		.. "#{{WakabaAqua}} 확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 확률적으로 침수 공격을 하며 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "#The Lost(유령) 상태일 때도 헌혈류 요소를 사용할 수 있습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.CHIMAKI.."}} 고유 능력 : 치마키"
@@ -1250,7 +1250,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "리라의 수영복",
 		description = "{{WakabaAqua}} 10%의 확률로 맞은 적을 침수시키는 공격이 나갑니다."
 		.. "#{{LuckSmall}} 행운 38+일 때 100%"
-		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
 		queueDesc = "이거, 살짝 부끄러울지도...?",
@@ -1275,7 +1275,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
 		itemName = "사쿠라 몽블랑",
 		description = "{{WakabaAqua}} 적 처치 시 그 방에서 {{DamageSmall}}공격력 +0.16, {{TearsSmall}}연사 +0.67 증가하며(최대 6회) 주변의 적을 침수시킵니다."
-		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
 		queueDesc = "페로몬에 젖어",
@@ -1379,7 +1379,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "방울방울 폭탄",
 		description = "↑ {{Bomb}}폭탄 +5"
 		.. "#{{WakabaAqua}} 폭탄이 터질 때 주변의 적을 침수시킵니다."
-		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥 공격에 더 적은 피해를 받으나, 폭발/침수/레이저 공격에 추가 피해를 받습니다."
+		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
 		queueDesc = "씻겨나가는 폭발 + 폭탄 5개",
