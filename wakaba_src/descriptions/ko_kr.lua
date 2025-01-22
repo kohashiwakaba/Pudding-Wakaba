@@ -180,6 +180,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 추가 보호막 +1",
 		queueDesc = "악마 봉인 + 더 나아진 운명",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
@@ -198,6 +199,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}/{{Quality5}}/{{Quality6}}등급 아이템이 등장하지 않습니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 추가 임시 공격력 +3.6",
 		queueDesc = "천사 봉인 + 더 나빠진 운명",
 	},
 	[wakaba.Enums.Collectibles.WAKABA_DUALITY] = {
@@ -211,7 +213,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "",
 		queueDesc = "축복과 숙명 사이",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
@@ -236,7 +237,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#방 안에 있는 모든 일반 적들을 아군으로 만듭니다."
 		.. "#!!! 아군 적의 수가 너무 많을 경우 아이템을 사용할 수 없습니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = "{{BlinkYellowGreen}}그 방의 모든 일반 보스를 아군으로 만듭니다.",
 		queueDesc = "길 잃은 어린 양의 공략집",
 	},
@@ -258,6 +258,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{TearsSmall}}연사(+상한) +0.5"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{TearsSmall}}연사 배율 x1.6 (중첩 불가)"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 연사 +0.5",
 		queueDesc = "공격력, 연사 증가 + 동료를 치유해주자",
 	},
 	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
@@ -279,6 +280,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#월석 소지 중 무제한 부활 가능"
 		.. "#!!! 월석 게이지 소진 시 아이템이 사라집니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 활성 중일 때 {{DamageSmall}}/{{TearsSmall}} 추가",
 		queueDesc = "신성함을 유지시켜줘",
 	},
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
@@ -297,6 +299,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
 		.. "#!!! 헌혈류 4회 사용 및 소울하트 2회 피격 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 피격 무적 시간 +1프레임",
 		queueDesc = "무적 시간 제거 + 초고속 회복",
 	},
 	[wakaba.Enums.Collectibles.FLASH_SHIFT] = {
@@ -341,6 +344,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 충전량을 하나 보존합니다. (최대 6)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 최대 보존 +4",
 		queueDesc = "메이드 소녀의 부적",
 	},
 	[wakaba.Enums.Collectibles.SWEETS_CATALOG] = {
@@ -371,6 +375,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계(해금 무관)"
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 일정 횟수 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}{{RicherPlanetarium}}에서 추가 아이템 등장",
 		queueDesc = "저 너머로 이어져 있어",
 	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
@@ -403,6 +408,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} {{ColorGray}}({{LuckSmall}} 40%, 8+일 때 100%)"
 		.. "#{{Trinket63}} 트롤 폭탄 해체"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}치마키의 효과 강화#{{ColorKoron}}치마키는 복사되지 않음",
 		queueDesc = "리라의 소울메이트",
 	},
 	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
@@ -462,7 +468,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{BoneHeart}}뼈하트 +1"
 		.. "#{{HealingRed}} 체력을 전부 회복합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "충전식 뼈",
 		belial = "뼈하트 대신 {{BlackHeart}}블랙하트 1개를 획득합니다.",
 		wisp = "{{MiddleWisp}} {{ColorYellow}}중앙 x1{CR}}/{{Heart}}:3{#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#불꽃이 꺼지면 {{BoneHeart}}뼈하트, 혹은 아군 Bony류 몬스터를 소환합니다.",
@@ -474,14 +479,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 +0.3"
-		.. "#↑ {{DamageSmall}}공격력 배율 x1.8 (중첩 불가)"
+		.. "#↑ {{DamageSmall}}공격력 배율 x1.8"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 +0.3"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.36 (중첩 불가)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.36"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}공격력 배율은 중첩되지 않음",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
 		binge = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
 	},
@@ -491,7 +497,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{TearsSmall}}연사 +0.2"
 		.. "#↑ {{TearsSmall}}연사 배율 x2 (중첩 불가)"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "연사 대폭 증가",
 	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
@@ -505,23 +510,21 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}공격력 +0.5"
 		.. "#{{ColorRainbow}}방 색상이 임의의 색상으로 바뀝니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "모든 능력치 증가 + 뭔가 분위기가 이상해",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		itemName = "와카바의 펜던트",
 		description = ""
 		.. "#↑ {{LuckSmall}}행운을 최소 7 이상으로 설정"
-		.. "#{{Blank}} {{ColorGray}}(중첩 당 행운 하한 +0.25)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{LuckSmall}}행운을 최소 3 이상으로 설정"
-		.. "#{{Blank}} {{ColorGray}}(중첩 당 행운 하한 +0.25)"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "#{{HealingRed}} 체력을 모두 회복합니다"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 추가 행운 하한 +0.25",
 		queueDesc = "공격력 증가 + 엄청난 강운",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
@@ -530,7 +533,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{LuckSmall}}알약 사용 시마다 행운 +0.35"
 		.. "#↑ {{DamageSmall}}공격력 +1"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "기분 좋은 느낌",
 	},
 	[wakaba.Enums.Collectibles.SECRET_CARD] = {
@@ -540,7 +542,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Coin}} 그 스테이지에서 피격되지 않았을 경우 추가 동전 +1"
 		.. "#{{Shop}} 상점에서 Greed/Super Greed 미니보스가 등장하지 않습니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "동전 적립 + 우리 비밀친구 할래?",
 	},
 	[wakaba.Enums.Collectibles.PLUMY] = {
@@ -563,7 +564,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{LuckSmall}} 행운 117+일 때 10%, 보스의 경우 100%"
 		.. "#!!! {{ColorSilver}}(지웠을 때 진행에 문제가 생기는 보스의 경우 확률과 상관없이 적용되지 않음){{ColorReset}}"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "???",
 	},
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
@@ -575,7 +575,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Player25}} Hold 사용 시 {{PoopPickup}}똥 3개를 소모하여 폭탄을 대신 사용합니다."
 		.. "#!!! 똥이 3개 이하인 경우에만 Hold 사용 가능"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "공허해지는 폭탄 + 폭탄 9개",
 	},
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
@@ -585,7 +584,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#피격 시 그 스테이지에서 혈사포의 발사 확률이 증가합니다."
 		--.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 1.5x Damage multiplier"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "불닭맛",
 	},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
@@ -595,7 +593,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} ({wakaba_extra_left} / {wakaba_extra_right} 키로 슬롯 선택)"
 		.. "#알약/카드/룬 사용 시 교복의 내용물을 같이 사용합니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "평안하세요!",
 		belial = "교복의 내용물 수만큼 {{Card16}}XV - The Devil 효과를 같이 발동합니다.",
 		wisp = "{{ColorRed}}!!!불꽃이 소환되지 않음 {{CR}}#소지한 상태에는 현재 켜져 있는 모든 불꽃이 어떠한 피해도 입지 않습니다.#소모성 픽업 사용 시 현재 켜져 있는 모든 불꽃에 대응되는 액티브 아이템을 전부 발동합니다.",
@@ -608,7 +605,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#공격키를 누르는 동안 캐릭터 주변을 도는 원형 레이저를 생성합니다.#{{Blank}} (레이저 피해량 : 공격력 x0.5)"
 		.. "#각 원형 레이저에서 새로운 직선 레이저를 추가로 발사합니다.#{{Blank}} (레이저 피해량 : 공격력 x0.16)"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
+		duplicate = "{{ColorRira}}레이저 공격력 강화#{{ColorRira}}추가 레이저 없음",
 		queueDesc = "궤도 레이저",
 	},
 	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
@@ -616,7 +613,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_TECH_X .."}} 공격하는 방향으로 캐릭터의 공격력 x0.4의 원형 레이저를 발사합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "행운의 삐비빅 친구",
 	},
 	[wakaba.Enums.Collectibles.COUNTER] = {
@@ -627,8 +623,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#완충인 상태에서 피격 시 자동으로 발동합니다."
 		.. "#!!! 다른 보호막이 있을 때 발동 안함"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.CONJOINED .. "",
-		queueDesc = "레이저 반사",
+			queueDesc = "레이저 반사",
 		wisp = "{{OuterWisp}} {{ColorOrange}}외부 x1{{CR}}/{{Heart}}:2#일반 눈물을 발사합니다. ({{DamageSmall}}:3)#방을 나가면 사라집니다.#카운터가 발동 중일 때 모든 불꽃이 무적이 됩니다.",
 		void = "더 이상 자동으로 발동되지 않으며 사용 시 무적 시간이 20초로 증가",
 	},
@@ -639,7 +634,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 유령 상자는 여전히 캐릭터에게 대미지를 주지만 캐릭터가 아닌 다른 곳을 향해 던지게 됩니다."
 		.. "#모든 Eternal Fly가 제거됩니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "이런 놈들 다시 만나기 싫어",
 	},
 	[wakaba.Enums.Collectibles.D6_PLUS] = {
@@ -648,7 +642,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Card"..Card.CARD_SOUL_ISAAC.."}} 사용 시 그 방의 모든 아이템이 랜덤한 아이템과 1초마다 전환되며 두 아이템 중 하나를 선택할 수 있습니다."
 		.. "#이미 전환되고 있는 아이템에 사용 시 하나의 선택지가 추가됩니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 	carBattery = "추가 선택지 +1",
 		queueDesc = "주사위 주문서",
 	},
@@ -667,7 +660,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#눈물의 효과는 각각 랜덤이며 각각의 눈물은 적에게 최소 4의 피해를 줍니다."
 		.. "#{{Blank}} (폭발성 눈물은 발사되지 않습니다)."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "퓨전 친구",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
@@ -677,7 +669,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#캐릭터가 움직이지 않을 경우 {{DamageSmall}}공격력 +1.4, {{TearsSmall}}연사 +1.0 증가한 상태로 유도 눈물을 발사합니다."
 		.. "#!!! 캐릭터 역시 피격 시 최소 2칸의 피해를 받습니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = "무효과",
 		queueDesc = "취급주의",
 	},
@@ -686,7 +677,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Rune}} 사용 시 임의의 룬 하나를 지급합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "충전식 룬 뽑기",
 	belial = "{{Card41}}Black Rune을 획득할 확률이 50%로 증가합니다.#{{ColorWakabaNemesis}}10%의 확률로 {{Card41}}Black Rune의 효과를 발동합니다.",
 	carBattery = {"하나", "2개"},
@@ -697,7 +687,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#작은 아이작 패밀리어를 12마리 소환합니다."
 		.. "#작은 아이작 패밀리어는 캐릭터와 함께 이동하며 적이 있는 방향으로 공격력 1.35의 눈물을 발사합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = {12, 24, 3, 6, 1, 2},
 		queueDesc = "자기 자신을 인수분해",
 	},
@@ -706,7 +695,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#적의 모든 탄환을 지웁니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "탄막 청소기",
 		belial = "{{Collectible" .. CollectibleType.COLLECTIBLE_DARK_ARTS .. "}}Dark Arts의 효과 발동과 동시에 지운 투사체 수만큼 그 방의 모든 적들에게 대미지를 줍니다.",
 		carBattery = "무효과",
@@ -719,7 +707,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Blank}} 열쇠 개수가 0개로 초기화, 4개의 {{Collectible656}}Damocles의 검이 활성화됩니다."
 		.. "#{{Warning}} {{ColorBlink}}{{ColorRed}}경고 : 패널티 피격을 받으면 피격받는 그 즉시 Damocles의 검이 떨어지며 추가 목숨 개수 및 남은 플레이어와 관계없이 즉시 게임이 종료됩니다.{{ColorReset}}"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "영원한 생명?",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_THE_GOD] = {
@@ -730,7 +717,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#눈물에 후광이 생기며 후광에 닿은 적은 초당 캐릭터의 공격력 x15의 피해를 받습니다."
 		.. "#{{BrokenHeart}} 피격 시 부서진하트 +1"
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "더 강해져서 돌아오마",
 	},
 	[wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER] = {
@@ -739,7 +725,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 그 방에서 캐릭터의 사망을 1회 막으며 보호막을 1개 지급합니다."
 		.. "#사망 방어 이전까지 빨간 하트 피격을 먼저 받으며 피격 시 발생하는 패널티를 막아줍니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "생명 보호서",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_TRAUMA] = {
@@ -748,7 +733,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#사용 시 최대 15개의 캐릭터의 눈물이 폭발합니다."
 		.. "#폭발 지점마다 혈사포를 4방향으로 발사합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = "폭발이 기가폭탄의 폭발로 바뀝니다.",
 		queueDesc = "분노의 눈물 폭파기",
 	},
@@ -762,7 +746,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}{{ColorSilver}}공격력 배율 7.0"
 		.. "#!!! {{ColorYellow}}더 이상 액티브 아이템을 바꿀 수 없습니다{{ColorReset}}"
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LEVIATHAN .. "," ..EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "흐름 느끼기",
 	},
 	[wakaba.Enums.Collectibles.MAIJIMA_MYTHOLOGY] = {
@@ -770,7 +753,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#사용 시 아래 중 하나의 책 효과 하나를 발동합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = {"하나", "2개"},
 		queueDesc = "데메테르 주문서",
 	},
@@ -797,11 +779,11 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
 		itemName = "고양이 피규어",
 		description = ""
-		.. "#↓ {{DamageSmall}}공격력 배율 x0.9"
+		.. "#↓ {{DamageSmall}}공격력 배율 -10%p"
 		.. "#폭발을 제외한 캐릭터의 공격이 적의 방어력을 무시합니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.GUPPY .. "",
+		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +10%p",
 		queueDesc = "약해졌다... 하지만 대가는?",
 	},
 	[wakaba.Enums.Collectibles.DEJA_VU] = {
@@ -809,7 +791,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#아이템이 등장할 때 12.5%의 확률로 캐릭터가 이미 소지한 아이템이 다시 등장합니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.GUPPY .. "",
 		queueDesc = "잊혀져 가는 느낌",
 	},
 	[wakaba.Enums.Collectibles.LIL_MAO] = {
@@ -819,7 +800,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#스스로 움직일 수 없으며 둥근 레이저가 그녀 주변을 둘러쌉니다."
 		.. "#캐릭터와 접촉 후 공격 키로 던질 수 있습니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.CONJOINED .. "",
 		queueDesc = "던질 수 있는 친구",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
@@ -844,7 +824,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 동전이 부족한 상태에서 사용 시: "
 		.. "#폭탄 혹은 열쇠 중 개수가 많은 쪽을 1개 차감하여 다른 쪽 픽업을 1개 획득합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		carBattery = "무효과",
 		queueDesc = "소모품 교환소 + 동전 10개",
 	},
@@ -863,6 +842,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#적을 놓친 눈물에 도그마 레이저가 생깁니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 도그마 레이저 빈도 증가",
 		queueDesc = "따끔!",
 	},
 	[wakaba.Enums.Collectibles.MOE_MUFFIN] = {
@@ -873,7 +853,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}공격력 +1.5"
 		.. "#↑ {{RangeSmall}}사거리 +1.5"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "공격력, 사거리 증가",
 	},
 	[wakaba.Enums.Collectibles.MURASAME] = {
@@ -882,7 +861,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{Collectible215}} {{AngelDevilChanceSmall}}악마방/천사방 확률이 100%로 고정됩니다."
 		.. "#{{Collectible498}} {{AngelDevilChanceSmall}}악마방과 천사방이 함께 등장하며 두 방 중 한곳을 선택할 수 있습니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 악마방 아이템 무료화 +1#{{ColorRira}}중첩 당 천사방 아이템 선택형 제거 +1",
 		queueDesc = "신사 지킴이",
 	},
 	[wakaba.Enums.Collectibles.CLOVER_SHARD] = {
@@ -892,7 +871,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{HealingRed}}빨간하트 +1"
 		.. "#↑ {{DamageSmall}}공격력 배율 x1.11"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "계속 모아보자",
 	},
 	[wakaba.Enums.Collectibles.NASA_LOVER] = {
@@ -901,39 +879,38 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."
 		.. "#패밀리어의 공격이 적에게 부딪힐 때 마다 1~2개의 짧은 유도 레이저가 발사됩니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "전류 텔레파시",
 	},
 	[wakaba.Enums.Collectibles.ARCANE_CRYSTAL] = {
 		itemName = "아케인 크리스탈",
 		description = ""
-		.. "#↑ {{DamageSmall}}공격력 배율 1.12x"
+		.. "#↑ {{DamageSmall}}공격력 배율 +12%p"
 		.. "#공격에 유도 효과가 생깁니다."
 		.. "#공격이 적 명중 시 20%의 확률로 한 번 더 받습니다."
 		.. "#{{LuckSmall}} 행운 43+일 때 60%"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +12%p",
 		queueDesc = "공격력 증가",
 	},
 	[wakaba.Enums.Collectibles.ADVANCED_CRYSTAL] = {
 		itemName = "어드밴스드 크리스탈",
 		description = ""
-		.. "#↑ {{DamageSmall}}공격력 배율 1.14x"
+		.. "#↑ {{DamageSmall}}공격력 배율 +14%p"
 		.. "#공격이 적을 관통합니다."
 		.. "#공격이 적 명중 시 5%의 확률로 적의 방어를 무시합니다."
 		.. "#{{LuckSmall}} 행운 55+일 때 43%"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +14%p",
 		queueDesc = "공격력 증가",
 	},
 	[wakaba.Enums.Collectibles.MYSTIC_CRYSTAL] = {
 		itemName = "미스틱 크리스탈",
 		description = ""
-		.. "#↑ {{DamageSmall}}공격력 배율 1.16x"
+		.. "#↑ {{DamageSmall}}공격력 배율 +16%p"
 		.. "#눈물에 후광이 생깁니다."
 		.. "#{{Card" .. Card.CARD_HOLY .."}} 방 8개 클리어 시마다 Holy Mantle 방어막을 지급합니다. (최대 2개)"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +16%p#{{ColorRira}}중첩 당 보호막에 필요한 방 클리어 수 -1",
 		queueDesc = "공격력 증가",
 	},
 	[wakaba.Enums.Collectibles._3D_PRINTER] = {
@@ -955,7 +932,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#비행 능력을 얻습니다."
 		.. "#!!! (사용 효과는 없습니다)"
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "떠다니는 거북이",
 	},
 	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
@@ -988,7 +964,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#움직이거나 공격 중일 때 지속시간 감소"
 		.. "#은폐 중 도전방, 보스 도전방의 문이 열립니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "은신은 무적이 아니다",
 		belial = "은폐 상태일 때 {{DamageSmall}}공격력 배율 x1.25",
 		carBattery = "무효과",
@@ -1001,7 +976,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{LuckSmall}} 행운 29+일 때 100%"
 		.. "#!!! {{ErrorRoom}}오류방으로 향하는 문이 생성될 수 있습니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 확률 증가",
 		queueDesc = "감염된 지도",
 	},
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
@@ -1012,7 +987,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 패널티 피격 시 Magic Mushroom 아이템이 사라집니다."
 		.. "#!!! Magic Mushroom 아이템이 없는 상태에서 패널티 피격 시 The Lost 캐릭터로 변합니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "뭔가 익숙한 상자다",
 	},
 	[wakaba.Enums.Collectibles.CLENSING_FOAM] = {
@@ -1021,7 +995,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Poison}} 캐릭터와 가까이 있는 적을 중독시킵니다."
 		.. "#캐릭터와 가까이 있는 일반 몬스터의 챔피언 속성을 제거합니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
+		duplicate = "{{ColorRira}}중첩 당 중독 지속시간 증가",
 		queueDesc = "강화 해제",
 	},
 	[wakaba.Enums.Collectibles.BEETLEJUICE] = {
@@ -1031,7 +1005,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Pill}} 사용 시 현재 게임의 알약 효과 중 1개를 랜덤으로 바꾸며 바뀐 알약을 드랍합니다."
 		.. "#{{Pill}} 소지한 상태에서 방 클리어 시 알약을 추가로 드랍합니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "알약 내용물을 바꾸는 능력",
 		carBattery = "무효과",
 	},
@@ -1042,7 +1015,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#피격 시 및 Holy Mantle 보호막 소모 시 황금 트롤폭탄을 6개 소환합니다."
 		.. "#!!! 경고: 모든 트롤 폭탄이 황금 트롤폭탄으로 바뀝니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "이제 그만 혼돈을 받아들이자",
 	},
 	[wakaba.Enums.Collectibles.ANTI_BALANCE] = {
@@ -1050,7 +1022,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Pill}} 확인되지 않은 알약의 효과를 알 수 있습니다.#{{Pill}} 모든 알약을 거대 알약으로 바꿉니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.BOOKWORM .. "",
 		queueDesc = "극과 극은 통한다",
 	},
 	[wakaba.Enums.Collectibles.VENOM_INCANTATION] = {
@@ -1069,15 +1040,16 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseDarkness}} Darkness 저주에 걸리지 않습니다."
 		.. "#버튼으로 인한 함정이 발동되어도 방 클리어 보상을 소환합니다."
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.LORD_OF_THE_FLIES .. "",
 		queueDesc = "사거리, 행운 증가 + 반딧불이의 도움",
 	},
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = {
 		itemName = "침략자",
 		description = ""
 		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
-		.. "#↑ {{DamageSmall}}공격력 배율 x2.5#{{Blank}} (중첩 시 x1.0배 추가)"
+		.. "#↑ {{DamageSmall}}공격력 배율 +150%p"
+		.. "#{{WakabaModHidden}} {{ColorKoron}}???"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +100%p#{{WakabaModHidden}} {{ColorKoron}}중첩 당 부정 효과 개체 +1",
 		queueDesc = "공격력 대폭 증가... 그 대가는?",
 	},
 	[wakaba.Enums.Collectibles.SEE_DES_BISCHOFS] = {
@@ -1157,6 +1129,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#캐릭터 주위를 돌며 공격하는 방향으로 공격력 1의 유도 눈물을 발사합니다."
 		.. "#이스터 코인을 모을 때마다 공격력과 공격 속도가 증가합니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}5개 이상일 때 중첩 당 공격력, 공격 속도 대폭 증가",
 		queueDesc = "수상한 달걀",
 	},
 	[wakaba.Enums.Collectibles.ONSEN_TOWEL] = {
@@ -1169,6 +1142,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{SoulHeart}}소울하트 +1"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}타이머가 1분 00초가 될 때마다 10%의 확률로 {{HalfSoulHeart}}소울하트 반 칸을 회복합니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 확률 증가",
 		queueDesc = "영혼 재생 + 체력 증가",
 	},
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
@@ -1199,6 +1173,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 충전량을 하나 보존합니다. (최대 4)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 최대 보존 +4#{{ColorKoron}}리셰는 복사되지 않음",
 		queueDesc = "이거 떼면 곤란해요...",
 	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
@@ -1253,11 +1228,13 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 확률 증가",
 		queueDesc = "이거, 살짝 부끄러울지도...?",
 	},
 	[wakaba.Enums.Collectibles.RIRAS_BANDAGE] = {
 		itemName = "리라의 반창고",
 		description = "!!! 스테이지 진입 시:#{{Collectible486}} 피격 시 효과를 6회 발동하며;#{{Collectible479}} 소지 중인 장신구를 흡수합니다.",
+		duplicate = "{{ColorRira}}중첩 당 피격 효과 +2",
 		queueDesc = "그녀의 기운이 느껴져",
 	},
 	[wakaba.Enums.Collectibles.BLACK_BEAN_MOCHI] = {
@@ -1270,6 +1247,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{LuckSmall}} 행운 16+일 때 100%"
 		.. "#{{WakabaZip}} 압박 상태의 적 처치 시 폭발하며 주변의 적에게 15의 피해를 줍니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 확률 증가",
 		queueDesc = "리라의 추억은 누군가에겐 악몽",
 	},
 	[wakaba.Enums.Collectibles.SAKURA_MONT_BLANC] = {
@@ -1278,6 +1256,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAqua}} 침수된 적은 독/화상/빨간똥의 경우 x0.8배, 폭발/침수/레이저의 경우 x1.5배의 피해를 받습니다."
 		.. "#{{WakabaAqua}} 침수 공격은 돌 타입의 적을 즉사시킵니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 적 처치 카운트 상한 +6",
 		queueDesc = "페로몬에 젖어",
 	},
 	[wakaba.Enums.Collectibles.KANAE_LENS] = {
@@ -1317,6 +1296,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#주변의 탄환을 제거합니다."
 		.. "#{{Slow}} 그 방의 모든 적들을 영구적으로 둔화시킵니다."
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 발동 중 이동속도 +0.1",
 		queueDesc = "휘몰아치는 그 맛",
 	},
 	[wakaba.Enums.Collectibles.LIL_RIRA] = {
@@ -1325,6 +1305,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#공격하는 방향으로 초당 6의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#{{DamageSmall}} 액티브 사용 시 소모한 충전량 당 공격력 +0.05"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 {{DamageSmall}} 증가#{{ColorKoron}}리라는 복사되지 않음",
 		queueDesc = "핑크빛을 위한 리본",
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
@@ -1335,6 +1316,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#한 번 옮기면 방 클리어 시 다시 옮길 수 있습니다."
 		.. "#!!! (일부 아이템은 픽업 슬롯으로 옮길 수 없음)"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}액티브 교체 시 충전량 중첩 당 +1칸#{{ColorKoron}}리셰, 리라는 복사되지 않음",
 		queueDesc = "액티브 교체 요정",
 	},
 	[wakaba.Enums.Collectibles.SECRET_DOOR] = {
@@ -1474,7 +1456,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#아이템이 등장할 경우 해당 꿈에 해당되는 배열의 아이템이 등장합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 1%의 확률로 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드를 드랍합니다. (천장 15회)"
 		.. "{{CR}}",
-		transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		queueDesc = "영원한 꿈",
 		belial = "(사용 시 부가효과 없음)#↑ {{ColorWakabaNemesis}} {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}와카바의 꿈 카드의 등장 확률 +4%",
 		void = "흡수 시 {{Card"..wakaba.Enums.Cards.CARD_DREAM_CARD.."}}Wakaba's Dream Card를 대신 소환",
@@ -1487,7 +1468,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 일회용"
 		.. "#사용 시 생득권을 획득하며 현재 소지 중인 첫번째 액티브 아이템을 픽업 슬롯으로 옮깁니다."
 		.. "{{CR}}",
-	--transformations = EID.TRANSFORMATION.ANGEL .. "," .. EID.TRANSFORMATION.LEVIATHAN .. "," .. EID.TRANSFORMATION.BOOKWORM,
 		queueDesc = "붙이기 전에 생각하자",
 	},
 }
@@ -1926,8 +1906,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#↑ {{TearsSmall}}연사 +1.5"
 		.. "#소지 중일 때 Mausoleum/Gehenna II의 보스방 진입 시 Mom 대신 Dad's Note가 등장합니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "들고 가는 거 잊지 마!",
+			queueDesc = "들고 가는 거 잊지 마!",
 	},
 	[wakaba.Enums.Trinkets.BITCOIN] = {
 		itemName = "비트코인 II",
@@ -1936,8 +1915,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#각각의 픽업 소지 수는 0개부터 999개 까지 나올 수 있습니다."
 		.. "#!!! 교체, 버리기 시 사라지며 흡수 시 픽업의 개수가 유지됩니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "도박 중독",
+			queueDesc = "도박 중독",
 	},
 	[wakaba.Enums.Trinkets.CLOVER] = {
 		itemName = "클로버",
@@ -1948,8 +1926,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#↑ 행운이 0 이하인 경우 0 이상이 되도록 반전됩니다."
 		.. "#행운 동전의 등장 확률이 증가합니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "행운 증가",
+			queueDesc = "행운 증가",
 	},
 	[wakaba.Enums.Trinkets.MAGNET_HEAVEN] = {
 		itemName = "무한 자석",
@@ -1957,8 +1934,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#모든 소모성 동전/폭탄/열쇠를 자동으로 수집합니다."
 		.. "#끈적한 니켈을 니켈로 바꿉니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "꿈꿔왔던 순간",
+			queueDesc = "꿈꿔왔던 순간",
 	},
 	[wakaba.Enums.Trinkets.HARD_BOOK] = {
 		itemName = "금이 간 책",
@@ -1967,8 +1943,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#{{SacrificeRoom}} 희생방에서 피격 시 100%의 확률로 책 아이템을 드랍합니다."
 		.. "#!!! 책 아이템 드랍 시 장신구는 사라집니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "이 책, 연약해",
+			queueDesc = "이 책, 연약해",
 	},
 	[wakaba.Enums.Trinkets.DETERMINATION_RIBBON] = {
 		itemName = "결의의 리본",
@@ -1978,8 +1953,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#!!! {{ColorYellow}}희생 방 가시는 이 장신구의 효과를 무시합니다.{{ColorReset}}"
 		.. "#!!! 피격 시 2%의 확률로 해당 장신구가 강제로 바닥에 놓여집니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "결의를 가져야 한다!",
+			queueDesc = "결의를 가져야 한다!",
 	},
 	[wakaba.Enums.Trinkets.BOOKMARK_BAG] = {
 		itemName = "책갈피 가방",
@@ -1987,8 +1961,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#방에 처음으로 진입 할 때 랜덤 일회성 책 액티브 아이템을 획득합니다."
 		.. "#시오리 캐릭터가 가질 수 있는 책이 나옵니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "뭔가 섞여있어...",
+			queueDesc = "뭔가 섞여있어...",
 	},
 	[wakaba.Enums.Trinkets.RING_OF_JUPITER] = {
 		itemName = "유피테르의 유대",
@@ -2000,8 +1973,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#↑ {{LuckSmall}}행운 +1"
 		.. "#모든 플레이어가 해당 장신구의 능력치 증가량만큼 증가합니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "자매의 유대감",
+			queueDesc = "자매의 유대감",
 	},
 	[wakaba.Enums.Trinkets.DIMENSION_CUTTER] = {
 		itemName = "차원검",
@@ -2010,8 +1982,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#{{GreedModeSmall}} Greed 모드의 경우 5%, {{LuckSmall}}행운 10+일 때 25%"
 		.. "#{{Card"..Card.CARD_CHAOS.."}} Chaos Card가 Delirium과 The Beast에게 초당 캐릭터의 공격력 x150의 피해를 줍니다.(최소 5085)"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "텅 비어 있는 기억",
+			queueDesc = "텅 비어 있는 기억",
 	},
 	[wakaba.Enums.Trinkets.DELIMITER] = {
 		itemName = "구분자",
@@ -2020,8 +1991,7 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#색돌과 금광을 파괴합니다."
 		.. "#기둥, 검은 블록, 가시돌을 일반 돌로 바꿉니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "약해진 지반",
+			queueDesc = "약해진 지반",
 	},
 	[wakaba.Enums.Trinkets.RANGE_OS] = {
 		itemName = "강습형 전투 시스템",
@@ -2030,16 +2000,14 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "#{{RangeSmall}} 사거리 상한이 6.5로 감소합니다."
 		.. "#↑ {{DamageSmall}}공격력 배율 x2.25"
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "좀 더 가까이",
+			queueDesc = "좀 더 가까이",
 	},
 	[wakaba.Enums.Trinkets.SIREN_BADGE] = {
 		itemName = "사이렌 뱃지",
 		description = ""
 		.. "#캐릭터가 접촉 피해를 받지 않습니다."
 		.. "{{CR}}",
-		--transformations = EID.TRANSFORMATION.ANGEL .. "",
-		queueDesc = "키스하는 건 무죄",
+			queueDesc = "키스하는 건 무죄",
 	},
 	[wakaba.Enums.Trinkets.ISAAC_CARTRIDGE] = {
 		itemName = "아이작 카트리지",

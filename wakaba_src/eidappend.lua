@@ -366,6 +366,19 @@ if EID then
 					if lang == "en_us" and itemdesc.LuckFormula then
 						EID.LuckFormulas["5.100."..itemID] = itemdesc.LuckFormula
 					end
+					if itemdesc.duplicate ~= nil then
+						if lang == "en_us" and not _wakaba["__descInsertedCore"] then
+							wakaba.Log("adding wakaba dip cond", lang, itemID)
+							if type(itemdesc.duplicate) == "boolean" and itemdesc.duplicate == false then
+								EID:AddSelfConditional({itemID}, "No Effect (Copies)")
+							else
+								EID:AddSelfConditional({itemID}, "Copies")
+							end
+						end
+						if type(itemdesc.duplicate) == "string" then
+							EID.descriptions[lang].ConditionalDescs["5.100."..itemID.." (Copies)"] = itemdesc.duplicate
+						end
+					end
 					if itemdesc.carBattery then
 						EID.descriptions[lang].carBattery[itemID] = itemdesc.carBattery
 					end
@@ -461,7 +474,7 @@ if EID then
 										vars = itemdesc.vars,
 										type = itemdesc.type,
 										modifierText = itemdesc.modifierText,
-										layer = itemdesc.layer or 0,
+										layer = itemdesc.layer or 1,
 									})
 								end
 								-- TODO EID version check
@@ -600,6 +613,9 @@ if EID then
 						Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc.ultra, nil, famdesc.name, lang)
 					end
 				end
+				if lang == "en_us" then
+					_wakaba["__descInsertedCore"] = true
+				end
 			end
 			if lunaticOnly then return end
 
@@ -704,167 +720,6 @@ if EID then
 
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end
-
-		--wakaba:UpdateWakabaDescriptions()
-		--EID:addDescriptionModifier("Wakaba's Horse Pills", WakabaPillCondition, WakabaPillCallback)
-
-		local checkedWakabaAchievement = false
-
-		local function getmarkup(val)
-			if val == 2 then
-				return "{{IconRedTint}}"
-			elseif val == 1 then
-				return ""
-			else
-				return "{{IconBlack}}"
-			end
-		end
-
-		local function getboolup(val)
-			if val then
-				return ""
-			else
-				return "{{IconBlack}}"
-			end
-		end
-
-		function wakaba:CheckWakabaAchievementString()
-			local str = "#Colored:Normal/Red:Hard"
-			-- Wakaba
-			str = str .. "#{{Player"..wakaba.Enums.Players.WAKABA.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.clover) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlock.counter) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlock.dcupicecream) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlock.pendant) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlock.revengefruit) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.donationcard) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.colorjoker) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.whitejoker) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.wakabauniform) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.cranecard) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.confessionalcard) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.returnpostage) .. "{{Beast}}"
-			str = str .. getboolup(wakaba.state.unlock.blessing) .. "{{VictoryLap}}"
-			str = str .. "#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.taintedwakabamomsheart) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofforgotten1) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofforgotten2) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofforgotten3) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofforgotten4) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.wakabasoul1) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.wakabasoul2) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.cloverchest) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.eatheart) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.blackjoker) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.bitcoin) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.nemesis) .. "{{Beast}}"
-			str = str .. "#{{Player"..wakaba.Enums.Players.SHIORI.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.hardbook) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlock.shiorid6plus) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookoffocus) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlock.deckofrunes) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlock.grimreaperdefender) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.unknownbookmark) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookoftrauma) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookoffallen) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofsilence) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.determinationribbon) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.vintagethreat) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofthegod) .. "{{Beast}}"
-			str = str .. getboolup(wakaba.state.unlock.bookofshiori) .. "{{VictoryLap}}"
-			str = str .. "#{{Player"..wakaba.Enums.Players.SHIORI_B.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.taintedshiorimomsheart) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookmarkbag1) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookmarkbag2) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookmarkbag3) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookmarkbag4) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.shiorisoul1) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.shiorisoul2) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.shiorivalut) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.bookofconquest) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.queenofspades) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.ringofjupiter) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.minervaaura) .. "{{Beast}}"
-			str = str .. "#{{Player"..wakaba.Enums.Players.TSUKASA.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.murasame) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlock.nasalover) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlock.beetlejuice) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlock.redcorruption) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlock.powerbomb) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.concentration) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.rangeos) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.plasmabeam) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.newyearbomb) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.questionblock) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.phantomcloak) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.magmablade) .. "{{Beast}}"
-			str = str .. getboolup(wakaba.state.unlock.lunarstone) .. "{{VictoryLap}}"
-			str = str .. "#"..getboolup(wakaba.state.unlock.taintedtsukasa) .. "{{Player"..wakaba.Enums.Players.TSUKASA_B.."}} "
-			str = str .. getmarkup(wakaba.state.unlock.taintedtsukasamomsheart) .. "{{MomsHeart}}"
-			str = str .. getmarkup(wakaba.state.unlockisaaccartridge1) .. "{{Isaac}}"
-			str = str .. getmarkup(wakaba.state.unlockisaaccartridge2) .. "{{Satan}}"
-			str = str .. getmarkup(wakaba.state.unlockisaaccartridge3) .. "{{BlueBaby}}"
-			str = str .. getmarkup(wakaba.state.unlockisaaccartridge4) .. "{{TheLamb}}"
-			str = str .. getmarkup(wakaba.state.unlock.tsukasasoul1) .. "{{Timer}}"
-			str = str .. getmarkup(wakaba.state.unlock.tsukasasoul2) .. "{{Hush}}"
-			str = str .. getmarkup(wakaba.state.unlock.maplesyrup) .. "{{MegaSatan}}"
-			str = str .. getmarkup(wakaba.state.unlock.flashshift) .. "{{Delirium}}"
-			str = str .. getmarkup(wakaba.state.unlock.returntoken) .. "{{GreedMode}}"
-			str = str .. getmarkup(wakaba.state.unlock.sirenbadge) .. "{{Mother}}"
-			str = str .. getmarkup(wakaba.state.unlock.elixiroflife) .. "{{Beast}}"
-			str = str .. "#{{Trophy}} "
-			str = str .. getboolup(wakaba.state.unlock.eyeofclock) .. "{{Collectible"..wakaba.Enums.Collectibles.EYE_OF_CLOCK.."}}"
-			str = str .. getboolup(wakaba.state.unlock.plumy) .. "{{Collectible"..wakaba.Enums.Collectibles.PLUMY.."}}"
-			str = str .. getboolup(wakaba.state.unlock.delimiter) .. "{{Trinket"..wakaba.Enums.Trinkets.DELIMITER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.nekodoll) .. "{{Collectible"..wakaba.Enums.Collectibles.NEKO_FIGURE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.microdoppelganger) .. "{{Collectible"..wakaba.Enums.Collectibles.MICRO_DOPPELGANGER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.delirium) .. "{{Trinket"..wakaba.Enums.Trinkets.DIMENSION_CUTTER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.lilwakaba) .. "{{Collectible"..wakaba.Enums.Collectibles.LIL_WAKABA.."}}"
-			str = str .. getboolup(wakaba.state.unlock.lostuniform) .. "{{Player31}}"
-			str = str .. getboolup(wakaba.state.unlock.executioner) .. "{{Collectible"..wakaba.Enums.Collectibles.EXECUTIONER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.apollyoncrisis) .. "{{Collectible"..wakaba.Enums.Collectibles.APOLLYON_CRISIS.."}}"
-			str = str .. getboolup(wakaba.state.unlock.deliverysystem) .. "{{Collectible"..wakaba.Enums.Collectibles.ISEKAI_DEFINITION.."}}"
-			str = str .. getboolup(wakaba.state.unlock.calculation) .. "{{Collectible"..wakaba.Enums.Collectibles.BALANCE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.lilmao) .. "{{Collectible"..wakaba.Enums.Collectibles.LIL_MAO.."}}"
-			str = str .. getboolup(wakaba.state.unlock.richerflipper) .. "{{Collectible"..wakaba.Enums.Collectibles.RICHERS_FLIPPER.."}}"
-			str = str .. getboolup(wakaba.state.unlock.edensticky) .. "{{Collectible"..wakaba.Enums.Collectibles.STICKY_NOTE.."}}"
-			str = str .. getboolup(wakaba.state.unlock.doubledreams) .. "{{Collectible"..wakaba.Enums.Collectibles.DOUBLE_DREAMS.."}}"
-
-			return str
-		end
-
-		function wakaba:RenderWakabaAchievement()
-			if wakaba.G:GetFrameCount() > wakaba.unlockdisplaytimer and wakaba.G:GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
-				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-				demoDescObj.Name = "{{Player"..Isaac.GetPlayerTypeByName("Wakaba", false).."}} Pudding & Wakaba - completion mark status"
-				demoDescObj.Description = wakaba.eidunlockstr
-				EID:displayPermanentText(demoDescObj)
-				checkedWakabaAchievement = true
-			elseif checkedWakabaAchievement then
-				wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
-				EID:hidePermanentText()
-				wakaba.eidunlockstr = ""
-				checkedWakabaAchievement = false
-			end
-		end
-		--[[ function wakaba:RenderWakabaDebug()
-			if wakaba.G:GetFrameCount() > wakaba.unlockdisplaytimer and wakaba.G:GetFrameCount() < (wakaba.unlockdisplaytimer + 10*30) then
-				local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-				demoDescObj.Name = "{{Player"..Isaac.GetPlayerTypeByName("Wakaba", false).."}} Pudding & Wakaba - 한글 설명 디버그용"
-				demoDescObj.Description = "#가나다라마바사아자차카타파하"
-				.."#보는 내는 보내는 같이, 것이다. 자신과 이상은 방지하는 가슴에 만천하의 뿐이다. 듣기만 모래뿐일 위하여서 피어나는 가슴에 인생의 방지하는 어디 원대하고, 있는가? 간에 청춘의 열락의 굳세게 사랑의 아니한 착목한는 위하여서. 남는 속잎나고, 보이는 이상 이 심장은 풍부하게 그들은 것이다. 생생하며, 두손을 보내는 말이다. 지혜는 되는 찬미를 피는 부패뿐이다. 고동을 그들은 불어 있다. 따뜻한 풍부하게 인도하겠다는 이상 것은 이상이 교향악이다. 무엇을 그들의 열락의 그들을 구하지 불어 같은 구하기 못할 듣는다. 소담스러운 충분히 얼음과 쓸쓸하랴?"
-				.."#어디 착목한는 이상은 무한한 봄바람을 못할 튼튼하며, 이것이다. 사람은 만천하의 무엇을 뼈 이상을 교향악이다. 그들은 전인 인류의 석가는 것이다. 물방아 위하여서 이상의 것이다. 이것이야말로 눈에 뭇 행복스럽고 구하지 눈이 청춘 것이다. 튼튼하며, 무한한 희망의 바로 없으면, 그와 간에 무엇을 길지 것이다. 봄날의 것이다.보라, 되는 예가 가지에 만천하의 설산에서 것이다. 무엇을 때까지 든 눈이 옷을 꽃이 위하여서, 할지니, 것이다.보라, 사막이다. 크고 우리 인간이 얼음과 청춘이 어디 앞이 듣는다."
-				.."#고동을 어디 얼음 용기가 길지 더운지라 사막이다. 끓는 창공에 시들어 가는 관현악이며, 그림자는 커다란 아름다우냐? 이상의 미묘한 위하여, 발휘하기 대고, 끝에 어디 풀이 것이다.보라, 황금시대다. 피는 모래뿐일 낙원을 부패뿐이다. 바이며, 새 이상은 있으랴? 위하여서, 소금이라 바이며, 심장은 구하지 뛰노는 것이다. 없는 따뜻한 무엇을 우리 품으며, 불어 쓸쓸하랴? 그들은 웅대한 피고, 산야에 때문이다. 많이 그와 쓸쓸한 운다."
-				EID:displayPermanentText(demoDescObj)
-				checkedWakabaAchievement = true
-			elseif checkedWakabaAchievement then
-				wakaba:RemoveCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
-				EID:hidePermanentText()
-				wakaba.eidunlockstr = ""
-				checkedWakabaAchievement = false
-			end
-		end ]]
-		--wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
 
 	end
 end
