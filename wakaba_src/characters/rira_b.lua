@@ -110,13 +110,13 @@ function wakaba:PlayerUpdate_RiraB(player)
 			efsprite.Color = efcolor
 			efsprite.Scale = efsprite.Scale * wakaba.__taintedriraptscale
 		end
-		wakaba:initPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
+		wakaba:initPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER - ((math.max(0, player:GetSoulHearts() + player:GetBoneHearts() - 8)) * 6))
 		wakaba:addPlayerDataCounter(player, "rabbeyburningtimer", -1)
 		if wakaba:getPlayerDataEntry(player ,"rabbeyburningtimer", 0) < 0 then
 			if player:GetSoulHearts() > 1 then
 				player:AddSoulHearts(-1)
 			end
-			wakaba:setPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER)
+			wakaba:setPlayerDataEntry(player, "rabbeyburningtimer", wakaba.Enums.Constants.SELF_BURNING_DAMAGE_TIMER - ((math.max(0, player:GetSoulHearts() + player:GetBoneHearts() - 8)) * 6))
 		end
 	end
 end
