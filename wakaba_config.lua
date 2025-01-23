@@ -6,6 +6,8 @@ local config = {
 	extendquality = true,
 	extendvanillaquality = false,
 
+	forcelunatic = false,
+
 	exl = Keyboard.KEY_LEFT_BRACKET,
 	exr = Keyboard.KEY_RIGHT_BRACKET,
 
