@@ -75,7 +75,7 @@ function wakaba:EffectUpdate_PowerBomb(effect)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_PowerBomb, wakaba.Enums.Effects.POWER_BOMB)
 
 function wakaba:NewRoom_PowerBomb()
 	if sfx:IsPlaying(wakaba.Enums.SoundEffects.POWER_BOMB_LOOP) then

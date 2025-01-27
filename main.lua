@@ -1164,6 +1164,7 @@ do -- Core functions loader
 
 	include('wakaba_src.items.0002_bookofshiori_func')
 
+	include('wakaba_src.entities.effects')
 	include('wakaba_src.functions.charge_richer')
 	include('wakaba_src.functions.unlock_old')
 	include('wakaba_src.functions.aqua_trinkets')

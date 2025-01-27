@@ -962,7 +962,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#기존 레이저 공격은 적의 방어를 무시합니다.",
 		lunatic = ""
 		.. "#캐릭터의 모든 공격이 적에게 1.25배의 레이저 피해를 줍니다."
-		.. "#기존 레이저 공격은 적에게 1.4배의 피해를 줍니다."
+		.. "#기존 레이저 공격은 적에게 1.4배의 피해를 줍니다.",
 		queueDesc = "초강력 정전기 공격",
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
@@ -2372,13 +2372,13 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "컬러 조커",
 		queueDesc = "당신은 이 결과를 원하지 않을 것이다",
-		description = "{{BrokenHeart}} 부서진 하트의 개수를 6개로 설정합니다. 와카바는 이 효과의 영향이 없습니다.#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
-		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}}  {{ColorOrange}}부서진 하트 +6#액티브/패시브 아이템 3개와 카드 혹은 룬 8개를 소환합니다.",
+		description = "{{BrokenHeart}} 부서진하트의 개수를 체력 상한의 50%로 설정합니다.#액티브/패시브 아이템 3개를 소환합니다.",
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}}  {{ColorOrange}}부서진하트를 체력 상한의 50%만큼 추가합니다.#액티브/패시브 아이템 3개를 소환합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {
 		itemName = "스페이드 Q",
-		description = "사용 시 3~26개의 {{Key}}열쇠를 드랍합니다.",
-		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}사용 시 1~6개의 {{Key}}열쇠를 드랍합니다.",
+		description = "사용 시 2~11개의 {{Key}}열쇠를 드랍합니다.",
+		lunatic = "{{WakabaModLunatic}} {{ColorOrange}}사용 시 1~4개의 {{Key}}열쇠를 드랍합니다.",
 	},
 	[wakaba.Enums.Cards.CARD_DREAM_CARD] = {
 		itemName = "와카바의 꿈 카드",

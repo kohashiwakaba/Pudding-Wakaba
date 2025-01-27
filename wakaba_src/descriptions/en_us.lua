@@ -928,7 +928,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Plasma Beam",
 		description = ""
 		.. "#↑ All Isaac's attack deal 1.25x laser damage"
-		.. "#↑ Prior laser damage now ignore enemies' armor"
+		.. "#↑ Prior laser damage now ignore enemies' armor",
 		lunatic = ""
 		.. "#↑ All Isaac's attack deal 1.25x laser damage"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prior laser damage deal extra +15% damage"
@@ -2053,8 +2053,8 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.CARD_COLOR_JOKER] = {
 		itemName = "Color Joker",
-		description = "{{BrokenHeart}} Sets Broken Heart counts to 6 #Spawns 3 Collectible items and 8 Card/Rune/Soul Stones",
-		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}Adds 6 Broken Hearts#Spawns 3 Collectible items and 8 Card/Rune/Soul Stones",
+		description = "{{BrokenHeart}} Sets Broken Heart counts to 50% of total heart limit#Spawns 3 Collectible items",
+		lunatic = "{{WakabaModLunatic}} {{BrokenHeart}} {{ColorOrange}}Adds Broken Hearts for 50% of total heart limit amount#Spawns 3 Collectible items",
 		mimiccharge = 6,
 	},
 	[wakaba.Enums.Cards.CARD_QUEEN_OF_SPADES] = {

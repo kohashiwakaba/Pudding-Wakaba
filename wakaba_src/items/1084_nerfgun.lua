@@ -57,7 +57,7 @@ function wakaba:TrailUpdate_NerfGun(trail)
 		end
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.TrailUpdate_NerfGun, EffectVariant.SPRITE_TRAIL)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.TrailUpdate_NerfGun, EffectVariant.SPRITE_TRAIL)
 
 local function addNerfPendingCount(player)
 	player:GetData().wakaba.pendingNerfGunCount = (player:GetData().wakaba.pendingNerfGunCount or 0) + 5

@@ -123,6 +123,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearInit_Pancake)
 
 ---리셰 팬케이크 혈사/레이저 : 레이저 발사 위치에서 독파리 생성
+--[[
 ---@param effect EntityEffect
 function wakaba:EffectUpdate_CaramellaPancake_Laser(laserEndpoint)
 	if laserEndpoint.SpawnerEntity and laserEndpoint.SpawnerEntity.Type == EntityType.ENTITY_LASER then
@@ -143,7 +144,7 @@ function wakaba:EffectUpdate_CaramellaPancake_Laser(laserEndpoint)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_CaramellaPancake_Laser, EffectVariant.LASER_IMPACT)
-
+ ]]
 ---리셰 팬케이크 식칼 : 발사되는 도중 독파리 생성
 ---리셰 팬케이크 스피릿 소드 : 투사체 or 회전 공격 시 독파리 생성
 ---리셰 팬케이크 포가튼 뼈 : 공격 시 독파리 생성
@@ -227,6 +228,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, wakaba.BombInit_Pancake)
 
 ---리셰 팬케이크 에픽 : 조준하는 동안 조준점 위치에서 독파리 생성
+--[[
 ---@param effect EntityEffect
 function wakaba:EffectUpdate_CaramellaPancake_EpicFetus(effect)
 	local player = isc:getPlayerFromEntity(effect)
@@ -238,7 +240,7 @@ function wakaba:EffectUpdate_CaramellaPancake_EpicFetus(effect)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_CaramellaPancake_EpicFetus, EffectVariant.TARGET)
-
+ ]]
 
 
 

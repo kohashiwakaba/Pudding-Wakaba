@@ -72,8 +72,8 @@ function wakaba:EffectUpdate_Missile_BubbleBombs(effect)
 		sprite:LoadGraphics()
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_BubbleBombs, EffectVariant.ROCKET)
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_BubbleBombs, EffectVariant.SMALL_ROCKET)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_BubbleBombs, EffectVariant.ROCKET)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_BubbleBombs, EffectVariant.SMALL_ROCKET)
 
 ---@param bomb EntityBomb|EntityEffect
 ---@param player EntityPlayer

@@ -73,8 +73,8 @@ function wakaba:EffectUpdate_Missile_CrossBomb(effect)
 		--sprite:LoadGraphics()
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_CrossBomb, EffectVariant.ROCKET)
-wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_CrossBomb, EffectVariant.SMALL_ROCKET)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_CrossBomb, EffectVariant.ROCKET)
+--wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Missile_CrossBomb, EffectVariant.SMALL_ROCKET)
 
 local bombRoomNo = 0
 

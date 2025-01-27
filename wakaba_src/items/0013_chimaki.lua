@@ -77,6 +77,7 @@ function wakaba:Chimaki_CommandShootFlames(familiar, pos, hit, tinted, speedMult
 	end
 	return fires
 end
+--[[
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 	local parent = effect:GetData().wakaba_chimakiBFParent --- @type EntityRef
 	if parent and parent.Entity then
@@ -93,6 +94,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		end
 	end
 end, EffectVariant.BLUE_FLAME)
+ ]]
 function wakaba:Chimaki_CommandKnife(familiar, pos, hit, tinted, speedMult)
 	local player = familiar:GetData().player or familiar.Player
 	local tearparams = player:GetTearHitParams(WeaponType.WEAPON_KNIFE, 1, 1, player)
@@ -958,7 +960,7 @@ wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_CHIMAKI_COMMAND, 20000, func
 	if data.rockCooldown > 0 or data.lightCooldown > 0 then return end
 	local room = wakaba.G:GetRoom()
 	--if not room:IsClear() then return end
-	
+
 	local sind, tind = room:GetGridIndex(ent.Position), room:GetGridIndex(player.Position)
 
 	if room:GetGridCollisionAtPos(player.Position) ~= GridCollisionClass.COLLISION_NONE

@@ -940,7 +940,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 		end
 	end
 end)
-
+--[[
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 	local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
 	if player then
@@ -961,7 +961,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		end
 	end
 end, EffectVariant.SMALL_ROCKET) -- Epic Fetus Forgotten
-
+ ]]
 
 local function isKnifeVariantValidForEffects(variant)
 	return (

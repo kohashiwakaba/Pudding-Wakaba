@@ -5,8 +5,8 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local auraDatas = {}
 
 function wakaba:hasAura(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) then
     return true
@@ -98,7 +98,7 @@ function wakaba:NewRoom_Minerva()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Minerva)
-
+--[[
 function wakaba:EffectUpdate_Minerva(effect)
 	local data = effect:GetData()
 	local wdata = data.wakaba
@@ -169,13 +169,6 @@ function wakaba:EffectUpdate_Minerva(effect)
 		end
 	end
 
-  --[[ for i = 1, wakaba.G:GetNumPlayers() do
-    local pl = Isaac.GetPlayer(i - 1)
-
-		pl:GetData().wakaba = pl:GetData().wakaba or {}
-		pl:GetData().wakaba.minervalevel = 1
-	end ]]
-
 	--88 for radius
 	for i, ent in ipairs(Isaac.FindInRadius(effect.Position, 2000, EntityPartition.PLAYER)) do
 		local distance = math.sqrt(((effect.Position.X - ent.Position.X) ^ 2) + ((effect.Position.Y - ent.Position.Y) ^ 2))
@@ -229,7 +222,7 @@ function wakaba:EffectUpdate_Minerva(effect)
 
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_Minerva, EffectVariant.HALLOWED_GROUND)
-
+ ]]
 function wakaba:PlayerUpdate_Minerva(player)
 	local playerIndex = isc:getPlayerIndex(player)
 	auraDatas[playerIndex] = auraDatas[playerIndex] or {}

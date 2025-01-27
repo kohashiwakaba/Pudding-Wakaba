@@ -209,7 +209,7 @@ function wakaba:PlayerUpdate_LunarStone(player)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_LunarStone)
-
+--[[
 function wakaba:EffectUpdate_LunarStone(effect)
 	if effect:GetData().wakaba and effect:GetData().wakaba.lunarstone then
 		local alpha = (effect.FrameCount < 15 and effect.FrameCount) or 15
@@ -221,7 +221,7 @@ function wakaba:EffectUpdate_LunarStone(effect)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, wakaba.EffectUpdate_LunarStone, EffectVariant.SMOKE_CLOUD)
-
+ ]]
 function wakaba:AlterPlayerDamage_LunarStone(player, amount, flags, source, cooldown)
 	if wakaba:hasLunarStone(player) then
 		local data = player:GetData()
