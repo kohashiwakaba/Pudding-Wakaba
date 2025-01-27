@@ -142,7 +142,7 @@ wakaba.encyclopediadesc.desc.cards = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Sets Broken Heart counts to 6."},
 			{str = "- For characters that have less heart limit, sets broken heart counts to half of their initial heart limit."},
-			{str = "Spawns 3 Collectible items and 8 Card/Rune/Soul Stones."},
+			{str = "Spawns 3 Collectible items."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
