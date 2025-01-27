@@ -103,9 +103,6 @@ function wakaba:onWakabaCache(player, cacheFlag)
 		else
 			if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 				player.Damage = player.Damage * WakabaChar.DAMAGE
-				if player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS) then
-					player.Damage = player.Damage * 1.5
-				end
 			end
 			if cacheFlag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
 					player.ShotSpeed = player.ShotSpeed * WakabaChar.SHOTSPEED

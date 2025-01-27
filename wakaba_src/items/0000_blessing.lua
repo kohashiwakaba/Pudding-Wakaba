@@ -601,12 +601,15 @@ function wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 	local returndata = {}
 	local passed = false
 	wakaba:ForAllPlayers(function(player)
-		passed = passed or (player:GetPlayerType() == wakaba.Enums.Players.WAKABA and player:HasCollectible(CollectibleType.COLLECTIBLE_URANUS))
 		passed = passed or wakaba:HasNemesis(player)
 	end)
-	if not wakaba:IsLunatic() and passed then
+	if passed then
 		returndata.sendNewDamage = true
-		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		if wakaba:IsLunatic() then
+			returndata.newDamage = newDamage * 1.15
+		else
+			returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		end
 	end
 	return returndata
 end

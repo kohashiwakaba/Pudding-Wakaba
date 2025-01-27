@@ -1,12 +1,3 @@
-function wakaba:Cache_NekoFigure(player, cacheFlag)
-	local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
-	if num > 0 then
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1 + (0.1 * (num - 2)))
-		end
-	end
-end
-wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_NekoFigure)
 
 function wakaba:NekoFigureDamage(source, target, data, newDamage, newFlags)
 	local returndata = {}
@@ -15,9 +6,13 @@ function wakaba:NekoFigureDamage(source, target, data, newDamage, newFlags)
 		local player = Isaac.GetPlayer(i)
 		num = num + player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
 	end
-	if not wakaba:IsLunatic() and num > 0 then
+	if num > 0 then
 		returndata.sendNewDamage = true
-		returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		if wakaba:IsLunatic() then
+			returndata.newDamage = newDamage * 1.15
+		else
+			returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+		end
 	end
 	return returndata
 end

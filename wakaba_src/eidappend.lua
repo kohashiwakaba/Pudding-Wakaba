@@ -388,6 +388,9 @@ if EID then
 					if itemdesc.abyss then
 						--EID.descriptions[lang].abyssSynergies[itemID] = itemdesc.abyss
 					end
+					if itemdesc.bffs then
+						EID.descriptions[lang].BFFSSynergies["5.100."..itemID] = itemdesc.bffs
+					end
 					if itemdesc.belial then
 						EID.descriptions[lang].bookOfBelialBuffs[itemID] = itemdesc.belial
 					end

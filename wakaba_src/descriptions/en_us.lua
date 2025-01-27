@@ -176,7 +176,6 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality0}} items from spawning"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#{{HolyMantle}} Gives Holy Mantle shield per room on a total of 1 heart or less"
 		.. "{{CR}}",
 		duplicate = "+1 extra shield on 1{{Heart}}",
@@ -194,10 +193,9 @@ wakaba.descriptions[desclang].collectibles = {
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity"
 		.. "#{{DevilChance}} Prevents Angel room to be spawned"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives Armor-piercing tears)"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}} +15% extra damage to enemies"
 		.. "#{{Damage}} Picking up an item grants temporary +3.6 Damage"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prevents {{Quality3}}/{{Quality4}}/{{Quality5}}/{{Quality6}} items from spawning"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "{{CR}}",
 		duplicate = "+3.6 extra temp damage on pickup",
 	},
@@ -256,8 +254,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{Damage}} {{ColorOrange}}-2 damage"
 		.. "#↑ {{Tears}} +0.5 Fire rate up"
 		.. "#{{WakabaModLunatic}} {{Tears}} {{ColorOrange}}x1.6 Fire rate multiplier"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER gives homing tears)"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#Friendly monsters/familiars inside the aura gradually recovers their health"
 		.. "{{CR}}",
 		duplicate = "+0.5 extra fire rate",
@@ -278,7 +274,6 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Taking damage deactivates and lunar gauge starts deplete, Clearing rooms recover it"
 		.. "#↑ Unlimited lives while holding Lunar Stone"
 		.. "#!!! Lunar Stone is removed when gauge depletes"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}(NO LONGER Prevents penalties from all damage taken)"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}(Faster lunar gauge reduction speed)"
 		.. "{{CR}}",
 		duplicate = "Higher {{Tears}}/{{Damage}} mult while active",
@@ -399,6 +394,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Trinket63}} Converts Troll Bombs"
 		.. "{{CR}}",
 		duplicate = "More efficient abilities#No additional rabbit",
+		bffs = "More efficient abilities",
 	},
 	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
 		itemName = "Rabbey Ward",
@@ -536,6 +532,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Shoots tears in front of Isaac and blocks projectiles"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}When Plumy gets damaged too much, Plumy cannot move and needs 10 seconds to recovery"
 		.. "{{CR}}",
+		bffs = "Damage doubled",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
 		itemName = "Executioner",
@@ -553,8 +550,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Bomb}} +9 Bombs"
 		.. "#All explosions ignore enemies' armor"
 		.. "#Explosions already ignored armor deal 2x damage"
-		.. "#{{Player25}} Using Hold as Tainted ??? consumes 3 {{PoopPickup}}Poops and holds a bomb"
-		.. "#!!! Can use Hold only when less than 3 Poops"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{Bomb}} +9 Bombs"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}All explosions deal +15% damage"
+		.. "#Explosions already ignored armor deal 2x damage"
 		.. "{{CR}}",
 		},
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
@@ -593,6 +593,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Shoots small Tech.X Lasers"
 		.. "#Deals 40% of Isaac's damage"
 		.. "{{CR}}",
+		bffs = {40, 70},
 	},
 	[wakaba.Enums.Collectibles.COUNTER] = {
 		itemName = "Counter",
@@ -643,6 +644,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{Blank}} (Explosive effects not included)"
 		.. "#Fire rate depends on Isaac's Tears stats"
 		.. "{{CR}}",
+		bffs = {4, 8},
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
 		itemName = "Book of Focus",
@@ -763,11 +765,17 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Tears can be fired in other tears, making them bigger"
 		.. "#Isaac can support Lil Shiva using his tears"
 		.. "{{CR}}",
+		bffs = "Damage Doubled",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
 		itemName = "Neko Figure",
 		description = ""
 		.. "#↓ {{Damage}} -10% Damage"
+		.. "#Isaac's non-explosive attacks now ignores armor"
+		.. "#↑ Guarantees {{Quality3}}/{{Quality4}} items in {{UltraSecretRoom}}Ultra Secret Room"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} -60% Damage"
 		.. "#Isaac's non-explosive attacks now ignores armor"
 		.. "#↑ Guarantees {{Quality3}}/{{Quality4}} items in {{UltraSecretRoom}}Ultra Secret Room"
 		.. "{{CR}}",
@@ -787,6 +795,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Familiar that slides around and emits surrounding laser around her"
 		.. "#Isaac can pick up and throw by touching her"
 		.. "{{CR}}",
+		bffs = "Damage Doubled",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
 		itemName = "Isekai Definition",
@@ -854,8 +863,10 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Nasa Lover",
 		description = ""
 		.. "#{{Collectible494}} Electric tear familiar"
+		.. "#Deals 3.5 damage per tear"
 		.. "#{{Collectible494}} All of Isaac's familiars also gain electric tears"
 		.. "{{CR}}",
+		bffs = {3.5, 7},
 	},
 	[wakaba.Enums.Collectibles.ARCANE_CRYSTAL] = {
 		itemName = "Arcane Crystal",
@@ -874,6 +885,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Damage}} +14% Damage Multiplier"
 		.. "#Piercing tears"
 		.. "#5% chance to take armor-piercing damage for enemies"
+		.. "#{{Luck}} 43% chance at 55 Luck"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{Damage}} +14% Damage Multiplier"
+		.. "#Piercing tears"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}5% chance deal +15% damage for enemies"
 		.. "#{{Luck}} 43% chance at 55 Luck"
 		.. "{{CR}}",
 		duplicate = "Additional copies only give +14% {{Damage}}",
@@ -910,8 +927,11 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.PLASMA_BEAM] = {
 		itemName = "Plasma Beam",
 		description = ""
-		.. "#↑ All Isaac's attack now deal 1.25x laser damage"
+		.. "#↑ All Isaac's attack deal 1.25x laser damage"
 		.. "#↑ Prior laser damage now ignore enemies' armor"
+		lunatic = ""
+		.. "#↑ All Isaac's attack deal 1.25x laser damage"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prior laser damage deal extra +15% damage"
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
 		itemName = "Power Bomb",
@@ -1128,6 +1148,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Stores extra charge after clearing a room (max 4)"
 		.. "#Automatically consumes stored ones for uncharged actives"
 		.. "{{CR}}",
+		bffs = {2, 4},
 		duplicate = "+4 max store charge#No addditional Richer",
 	},
 	[wakaba.Enums.Collectibles.CUNNING_PAPER] = {
@@ -1252,6 +1273,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Deals 3 damage per tick"
 		.. "#{{Damage}} +0.05 Damage per used active pips"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#Shoots chasing tears"
+		.. "#Deals 3 damage per tick"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +0.01 Damage per used active pips"
+		.. "{{CR}}",
+		bffs = {3, 6},
 		duplicate = "Additional copies only give damage",
 	},
 	[wakaba.Enums.Collectibles.MAID_DUET] = {
@@ -3123,10 +3150,6 @@ wakaba.descriptions[desclang].playernotes = {
 
 wakaba.descriptions[desclang].conditionals = {}
 wakaba.descriptions[desclang].conditionals.collectibles = {
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}} +50% Damage Multiplier#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}Armor-Piercing Tears",
-		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA) end,
-	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}} Luck Bonuses are not applied",
 		func = function() return EID:ConditionalCharCheck(wakaba.Enums.Players.WAKABA_B) end,
@@ -3138,6 +3161,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			type = "findReplace",
 			modifierText = "Hard Mode",
 		},
+	},
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
+		desc = "{{Player25}} Using Hold consumes 3 {{PoopPickup}}Poops and holds a bomb#!!! Can use Hold only when less than 3 Poops",
+		func = function() return EID:ConditionalCharCheck(PlayerType.PLAYER_BLUEBABY_B) end,
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}} Damage +0.35 per pill consumed#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}} Luck Bonuses are not applied",

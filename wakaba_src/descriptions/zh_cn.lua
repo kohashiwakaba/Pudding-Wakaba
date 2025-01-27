@@ -502,8 +502,6 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#↑ {{Bomb}} +9 炸弹"
 			.. "#所有的爆炸都无视敌人的护甲"
 			.. "#已经无视护甲的爆炸造成2倍伤害"
-			.. "#{{Player25}} 作为里蓝人使用Hold时消耗3个{{PoopPickup}}便便并且握住一个炸弹"
-			.. "#!!! 只有在少于3个便便时才能使用Hold"
 			.. "{{CR}}",
 		queueDesc = "空包弹",
 	},
@@ -2715,11 +2713,6 @@ wakaba.descriptions[desclang].playernotes = {
 
 wakaba.descriptions[desclang].conditionals = {}
 wakaba.descriptions[desclang].conditionals.collectibles = {
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		desc = "{{Player" ..
-			wakaba.Enums.Players.WAKABA ..
-			"}} ↑ {{Damage}} +50% 攻击倍率#{{{Player" .. wakaba.Enums.Players.WAKABA .. "}} {ColorWakabaBless}}穿甲眼泪",
-	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		desc = "{{Player" ..
 			wakaba.Enums.Players.WAKABA_B ..
@@ -2730,6 +2723,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			desc = { "硬币", "1 硬币" },
 			modifierText = "Hard Mode", -- do NOT translate this
 		},
+	},
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
+		desc = "#{{Player25}} 作为里蓝人使用Hold时消耗3个{{PoopPickup}}便便并且握住一个炸弹"
+		.. "#!!! 只有在少于3个便便时才能使用Hold",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		desc = "{{Player" ..

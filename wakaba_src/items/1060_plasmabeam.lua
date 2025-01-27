@@ -7,11 +7,15 @@ function wakaba:PlasmaBeamDamage(source, target, data, newDamage, newFlags, isAl
 			num = num + player:GetCollectibleNum(wakaba.Enums.Collectibles.PLASMA_BEAM) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.PLASMA_BEAM)
 		end
 		if num > 0 then
-			returndata.newDamage = newDamage * (1.25 ^ num)
+			returndata.newDamage = newDamage * (1 + (0.25 ^ num))
 			returndata.sendNewDamage = true
 			returndata.newFlags = newFlags | DamageFlag.DAMAGE_LASER
-			if not wakaba:IsLunatic() and isAlreadyLaser then
-				returndata.newFlags = returndata.newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+			if isAlreadyLaser then
+				if wakaba:IsLunatic() then
+					returndata.newDamage = newDamage * 1.15
+				else
+					returndata.newFlags = newFlags | DamageFlag.DAMAGE_IGNORE_ARMOR
+				end
 			end
 			SFXManager():Play(SoundEffect.SOUND_REDLIGHTNING_ZAP_WEAK)
 		end

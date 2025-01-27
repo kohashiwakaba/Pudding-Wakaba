@@ -74,7 +74,12 @@ function wakaba:TakeDmg_Crystals(entity, amount, flag, source, countdownFrames)
 				local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck + charmBonus, parLuck, maxChance), 1)
 
 				if rng:RandomFloat() < chance then
-					flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR | DamageFlag.DAMAGE_CLONES
+					if wakaba:IsLunatic() then
+						amount = amount * 1.15
+					else
+						flag = flag | DamageFlag.DAMAGE_IGNORE_ARMOR
+					end
+					flag = flag | DamageFlag.DAMAGE_CLONES
 					entity:TakeDamage(amount, flag, source, countdownFrames)
 					return false
 				end

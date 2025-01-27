@@ -21,11 +21,11 @@ wakaba.descriptions[desclang].characters = {
 	},
 	[wakaba.Enums.Players.WAKABA_B] = {
 		playerName = "Tainted Wakaba",
-		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#완전 관통 눈물을 발사합니다.#공격이 적의 방어를 무시합니다.",
+		shortDesc = "{{SoulHeart}} 최대 체력 = 소울하트의 보정을 받습니다.#완전 관통 눈물을 발사합니다.",
 		detailedDesc = "The Fury: 알트 와카바는 와카바의 과거의 내면을 투영한 캐릭터입니다."
 		.. "#{{ColorRed}}좋은 아이템이 등장하지 않으며{{CR}} 적과 지형을 관통하는 눈물을 발사합니다."
 		.. "#{{DevilChance}} 알트 와카바로 플레이 시 천사방이 등장하지 않으며 모든 판매 아이템이 소울하트를 요구하게 됩니다."
-		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 서서히 감소하는 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
+		.. "#{{DamageSmall}} 그녀의 메마른 애정으로 인해, 아이템 획득 시마다 증발성 공격력이 +3.6 증가하나, 나머지 능력치가 영구적으로 감소합니다."
 		.. "#{{Pill}} 알트 와카바로 플레이 시 행운 증가, 이동 속도 감소 알약이 등장하지 않습니다."
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.WAKABAS_NEMESIS.."}} 고유 능력 : 와카바의 숙명"
 		.. "#{{Collectible"..wakaba.Enums.Collectibles.EATHEART.."}} 고유 능력 : 사랑먹이"
@@ -189,14 +189,15 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
-		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
+		.. "#{{DamageSmall}} 아이템 획득 시 증발성 공격력 +3.6"
 		.. "#!!! {{Quality4}}/{{Quality5}}/{{Quality6}}등급 아이템이 등장하지 않으며 {{Quality3}}등급의 아이템이 50%의 확률로 다른 아이템으로 변경됩니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
-		.. "#{{DamageSmall}} 아이템 획득 시 서서히 감소하는 공격력 +3.6"
+		.. "#{{WakabaModLunatic}} 적에게 +15%p 추가 피해"
+		.. "#{{DamageSmall}} 아이템 획득 시 증발성 공격력 +3.6"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality3}}/{{Quality4}}/{{Quality5}}/{{Quality6}}등급 아이템이 등장하지 않습니다."
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}중첩 당 추가 임시 공격력 +3.6",
@@ -207,7 +208,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
-		.. "#↓ 아이템 획득 시 서서히 감소하는 {{DamageSmall}}공격력 +3.6"
+		.. "#↓ 아이템 획득 시 증발성 {{DamageSmall}}공격력 +3.6"
 		.. "#{{AngelDevilChance}}악마방/천사방이 모든 층에서 항상 등장합니다."
 		.. "#↑ 선택형 아이템을 모두 획득할 수 있습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
@@ -359,7 +360,7 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "겨울의 알비레오",
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{RicherPlanetarium}} 가능한 경우, 스테이지 진입 시 Tainted Richer의 전용 천체방이 등장합니다."
+		.. "#{{RicherPlanetarium}} 가능한 경우, 스테이지 진입 시 리셰의 전용 천체방이 등장합니다."
 		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
 		.. "#현재 스테이지에 따른 배열의 아이템"
 		.. "#흰색 모닥불"
@@ -368,7 +369,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}Tainted Richer의 전용 천체방이 보물방을 대체하여 등장합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}리셰의 전용 천체방이 보물방을 대체하여 등장합니다."
 		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
 		.. "#현재 스테이지에 따른 배열의 아이템"
 		.. "#흰색 모닥불"
@@ -409,6 +410,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{Trinket63}} 트롤 폭탄 해체"
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}치마키의 효과 강화#{{ColorKoron}}치마키는 복사되지 않음",
+		bffs = "{{ColorRira}}치마키의 효과 강화",
 		queueDesc = "리라의 소울메이트",
 	},
 	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
@@ -555,6 +557,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#캐릭터가 발사하는 방향 앞에서 눈물을 따라서 발사합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}너무 많이 피해를 입으면 잠시동안 활동할 수 없으며 10초동안의 휴식이 필요합니다."
 		.. "{{CR}}",
+		bffs = "피해량 x2",
 		queueDesc = "잠깐만 뭐라고?",
 	},
 	[wakaba.Enums.Collectibles.EXECUTIONER] = {
@@ -572,8 +575,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{Bomb}}폭탄 +9"
 		.. "#모든 폭발이 적의 방어를 무시합니다."
 		.. "#기존 방어 무시 폭발의 위력이 2배로 증가합니다."
-		.. "#{{Player25}} Hold 사용 시 {{PoopPickup}}똥 3개를 소모하여 폭탄을 대신 사용합니다."
-		.. "#!!! 똥이 3개 이하인 경우에만 Hold 사용 가능"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{Bomb}}폭탄 +9"
+		.. "#{{WakabaModLunatic}} 폭발 피해가 적에게 +15%p 추가 피해"
+		.. "#기존 방어 무시 폭발의 위력이 2배로 증가합니다."
 		.. "{{CR}}",
 		queueDesc = "공허해지는 폭탄 + 폭탄 9개",
 	},
@@ -613,6 +619,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_TECH_X .."}} 공격하는 방향으로 캐릭터의 공격력 x0.4의 원형 레이저를 발사합니다."
 		.. "{{CR}}",
+		bffs = {0.4, 0.7},
 		queueDesc = "행운의 삐비빅 친구",
 	},
 	[wakaba.Enums.Collectibles.COUNTER] = {
@@ -660,6 +667,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#눈물의 효과는 각각 랜덤이며 각각의 눈물은 적에게 최소 4의 피해를 줍니다."
 		.. "#{{Blank}} (폭발성 눈물은 발사되지 않습니다)."
 		.. "{{CR}}",
+		bffs = {4, 8},
 		queueDesc = "퓨전 친구",
 	},
 	[wakaba.Enums.Collectibles.BOOK_OF_FOCUS] = {
@@ -774,6 +782,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Collectible532}}일정 주기로 눈물을 흡수하는 눈물을 발사합니다."
 		.. "#최대 5번 흡수 시 파열되어 8방향으로 작은 눈물이 발사됩니다."
 		.. "{{CR}}",
+		bffs = "피해량 x2",
 		queueDesc = "소원을 비는 친구",
 	},
 	[wakaba.Enums.Collectibles.NEKO_FIGURE] = {
@@ -782,6 +791,10 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↓ {{DamageSmall}}공격력 배율 -10%p"
 		.. "#폭발을 제외한 캐릭터의 공격이 적의 방어력을 무시합니다."
 		.. "#↑ {{UltraSecretRoom}}특급 비밀방에서 반드시 {{Quality3}}/{{Quality4}} 아이템이 등장합니다."
+		.. "{{CR}}",
+		description = ""
+		.. "#↓ {{DamageSmall}}공격력 배율 -60%p"
+		.. "#폭발을 제외한 캐릭터의 공격이 적의 방어력을 무시합니다."
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +10%p",
 		queueDesc = "약해졌다... 하지만 대가는?",
@@ -800,6 +813,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#스스로 움직일 수 없으며 둥근 레이저가 그녀 주변을 둘러쌉니다."
 		.. "#캐릭터와 접촉 후 공격 키로 던질 수 있습니다."
 		.. "{{CR}}",
+		bffs = "피해량 x2",
 		queueDesc = "던질 수 있는 친구",
 	},
 	[wakaba.Enums.Collectibles.ISEKAI_DEFINITION] = {
@@ -879,6 +893,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "공격하는 방향으로 공격력 3.5의 눈물을 발사합니다."
 		.. "#패밀리어의 공격이 적에게 부딪힐 때 마다 1~2개의 짧은 유도 레이저가 발사됩니다."
 		.. "{{CR}}",
+		bffs = {3.5, 7},
 		queueDesc = "전류 텔레파시",
 	},
 	[wakaba.Enums.Collectibles.ARCANE_CRYSTAL] = {
@@ -898,6 +913,12 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#↑ {{DamageSmall}}공격력 배율 +14%p"
 		.. "#공격이 적을 관통합니다."
 		.. "#공격이 적 명중 시 5%의 확률로 적의 방어를 무시합니다."
+		.. "#{{LuckSmall}} 행운 55+일 때 43%"
+		.. "{{CR}}",
+		lunatic = ""
+		.. "#↑ {{DamageSmall}}공격력 배율 +14%p"
+		.. "#공격이 적을 관통합니다."
+		.. "#{{WakabaModLunatic}} 공격이 적 명중 시 5%의 확률로 적에게 +15%의 추가 피해를 줍니다."
 		.. "#{{LuckSmall}} 행운 55+일 때 43%"
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +14%p",
@@ -939,6 +960,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#캐릭터의 모든 공격이 적에게 1.25배의 레이저 피해를 줍니다."
 		.. "#기존 레이저 공격은 적의 방어를 무시합니다.",
+		lunatic = ""
+		.. "#캐릭터의 모든 공격이 적에게 1.25배의 레이저 피해를 줍니다."
+		.. "#기존 레이저 공격은 적에게 1.4배의 피해를 줍니다."
 		queueDesc = "초강력 정전기 공격",
 	},
 	[wakaba.Enums.Collectibles.POWER_BOMB] = {
@@ -1088,12 +1112,12 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "프리스티지 패스",
 		description = ""
 		.. "#{{CrystalRestock}} {{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
-		.. "#{{CrystalRestock}} {{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
+		.. "#{{CrystalRestock}} {{DevilRoom}}{{AngelRoom}}/{{Planetarium}}/{{SecretRoom}}/{{UltraSecretRoom}}/블랙마켓에 리셰의 재입고 기계를 생성합니다."
 		.. "#{{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 2회 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#{{CrystalRestock}} {{BossRoom}}보스방 클리어 시 리셰의 재입고 기계를 생성합니다."
-		.. "#{{CrystalRestock}} {{DevilRoom}}악마방/{{AngelRoom}}천사방, {{Planetarium}}천체관, {{SecretRoom}}비밀방, {{UltraSecretRoom}}특급비밀방, 블랙마켓에 리셰의 재입고 기계를 생성합니다."
+		.. "#{{CrystalRestock}} {{DevilRoom}}{{AngelRoom}}/{{Planetarium}}/{{SecretRoom}}/{{UltraSecretRoom}}/블랙마켓에 리셰의 재입고 기계를 생성합니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{CrystalRestock}}리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 1회 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		queueDesc = "리셰쨩의 마법",
@@ -1173,6 +1197,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 충전량을 하나 보존합니다. (최대 4)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
+		bffs = {8, 16},
 		duplicate = "{{ColorRira}}중첩 당 최대 보존 +4#{{ColorKoron}}리셰는 복사되지 않음",
 		queueDesc = "이거 떼면 곤란해요...",
 	},
@@ -1305,6 +1330,11 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#공격하는 방향으로 초당 6의 피해를 주는 추적 눈물을 발사합니다."
 		.. "#{{DamageSmall}} 액티브 사용 시 소모한 충전량 당 공격력 +0.05"
 		.. "{{CR}}",
+		lunatic = ""
+		.. "#공격하는 방향으로 초당 6의 피해를 주는 추적 눈물을 발사합니다."
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}} 액티브 사용 시 소모한 충전량 당 공격력 +0.01"
+		.. "{{CR}}",
+		bffs = {6, 12},
 		duplicate = "{{ColorRira}}중첩 당 {{DamageSmall}} 증가#{{ColorKoron}}리라는 복사되지 않음",
 		queueDesc = "핑크빛을 위한 리본",
 	},
@@ -1801,9 +1831,6 @@ wakaba.descriptions[desclang].epiphany_golden = {
 
 wakaba.descriptions[desclang].conditionals = {}
 wakaba.descriptions[desclang].conditionals.collectibles = {
-	[CollectibleType.COLLECTIBLE_URANUS] = {
-		desc = "{{Player"..wakaba.Enums.Players.WAKABA.."}} ↑ {{Damage}}공격력 배율 x1.5#{{{Player"..wakaba.Enums.Players.WAKABA.."}} {ColorWakabaBless}}공격이 적의 방어를 무시합니다.",
-	},
 	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}공격력 +4#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",
 	},
@@ -1812,6 +1839,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			desc = {"랜덤한 개수", "1개"},
 			modifierText = "Hard Mode",
 		},
+	},
+	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
+		desc = "#{{Player25}} Hold 사용 시 {{PoopPickup}}똥 3개를 소모하여 폭탄을 대신 사용합니다."
+		.. "#!!! 똥이 3개 이하인 경우에만 Hold 사용 가능",
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		desc = "{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↑ {{Damage}}알약 사용 시마다 공격력 +0.35#{{Player"..wakaba.Enums.Players.WAKABA_B.."}} ↓ {{ColorWakabaNemesis}}모든 행운 증가 효과가 적용되지 않습니다.",

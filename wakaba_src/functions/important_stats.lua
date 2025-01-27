@@ -29,6 +29,12 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
 		player.Damage = player.Damage * (1 + (wakaba:getCustomStat(player, "damagemult") or 0))
+
+		local neko = player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
+		if neko > 0 then
+			local reduce = wakaba:IsLunatic() and 7 or 2
+			player.Damage = player.Damage * (1 + (0.1 * (neko - reduce)))
+		end
 		if player:HasCollectible(wakaba.Enums.Collectibles.RIRAS_BENTO) then
 			player.Damage = player.Damage * (1 + (0.04 * player:GetCollectibleNum(wakaba.Enums.Collectibles.RIRAS_BENTO)))
 		end

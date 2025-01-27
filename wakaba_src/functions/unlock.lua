@@ -108,15 +108,6 @@ wakaba.Blacklists.FlagLock.collectible = {
 	[wakaba.Enums.Collectibles.RETURN_POSTAGE] = function()
 		return wakaba:IsLunatic()
 	end,
-	[wakaba.Enums.Collectibles.NEKO_FIGURE] = function()
-		return wakaba:IsLunatic()
-	end,
-	[wakaba.Enums.Collectibles.PLASMA_BEAM] = function()
-		return wakaba:IsLunatic()
-	end,
-	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = function()
-		return wakaba:IsLunatic()
-	end,
 	[wakaba.Enums.Collectibles.DOUBLE_INVADER] = function()
 		return wakaba:IsLunatic()
 	end,

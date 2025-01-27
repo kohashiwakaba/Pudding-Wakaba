@@ -237,7 +237,9 @@ function wakaba:Cache_LilRira(player, cacheFlag)
 			local playerIndex = isc:getPlayerIndex(player)
 			riraPower = riraCharges[playerIndex] or 0
 
-			player.Damage = player.Damage + (0.05 * riraPower * power * wakaba:getEstimatedDamageMult(player))
+			local mult = wakaba:IsLunatic() and 0.01 or 0.05
+
+			player.Damage = player.Damage + (mult * riraPower * power * wakaba:getEstimatedDamageMult(player))
 		end
 	elseif cacheFlag == CacheFlag.CACHE_FAMILIARS then
 		local count = 0
