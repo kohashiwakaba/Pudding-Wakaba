@@ -42,7 +42,7 @@
 		<Item Name="Secret Card" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Counter" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.1"/>
 		<Item Name="Return Postage" Weight="0.35" DecreaseBy="0.35" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Balance ecnalaB" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -134,7 +134,7 @@
 		<Item Name="Wakaba's Double Dreams" Weight="0.02" DecreaseBy="0.02" RemoveOn="0.02"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Silence" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lunar Stone" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.04"/>
@@ -200,7 +200,7 @@
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Mao" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Nasa Lover" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
@@ -256,7 +256,7 @@
 		<Item Name="Counter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

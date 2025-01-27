@@ -124,7 +124,7 @@ if Encyclopedia then
 				{str = "- Hard Book : Defeat Mom's Heart as Shiori on Hard Mode"},
 				{str = "- Shiori starts with D6 Plus : Defeat Isaac as Shiori"},
 				{str = "- Book of Focus : Defeat Satan as Shiori"},
-				{str = "- Shiori's Bottle of Runes : Defeat ??? as Shiori"},
+				{str = "- Rune Archives : Defeat ??? as Shiori"},
 				{str = "- Grimreaper Defender : Defeat The Lamb as Shiori"},
 				{str = "- Book of the Fallen : Defeat Mega Satan as Shiori"},
 				{str = "- Unknown Bookmark : Defeat Boss Rush as Shiori"},

@@ -681,7 +681,7 @@ wakaba.descriptions[desclang].collectibles = {
 		queueDesc = "취급주의",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		itemName = "시오리의 룬이 담긴 병",
+		itemName = "룬 기록서",
 		description = ""
 		.. "#{{Rune}} 사용 시 임의의 룬 하나를 지급합니다."
 		.. "{{CR}}",

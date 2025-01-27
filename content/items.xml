@@ -40,7 +40,7 @@
 	<passive id="24" name="Shiori's Blue Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" customtags="nometronome" hidden="true" quality="0" achievement="9999"/>
 	<passive id="25" name="Shiori's Yellow Bookmark" description="???" gfx="bookmark1.png" tags="book quest nocantrip noeden" customtags="nometronome" hidden="true" quality="0" achievement="9999"/>
 	<active id="26" cache="damage firedelay range tearflag" description="Use with Caution" gfx="bookoffocus.png" maxcharges="6" name="Book of Focus" tags="book offensive tearsup" quality="3" craftquality="3" />
-	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="6" name="Shiori's Bottle of Runes" tags="book offensive nocantrip" quality="2" craftquality="3" />
+	<active id="27" description="Reusable Magic Stones" gfx="deckofrunes.png" maxcharges="6" name="Rune Archives" tags="book offensive nocantrip" quality="2" craftquality="3" />
 	<active id="28" description="Split yourself" gfx="microdoppelganger.png" maxcharges="8" name="Micro Doppelganger" tags="book offensive" quality="2" craftquality="2" />
 	<active id="29" description="cleanup" gfx="bookofsilence.png" chargetype="timed" maxcharges="180" name="Book of Silence" cooldown="60" tags="book offensive" quality="2" craftquality="2" />
 	<passive id="30" description="Eternal Life?" gfx="vintagethreat.png" name="Vintage Threat" tags="noeden nochallenge" quality="2" craftquality="4" customtags="revive"/>

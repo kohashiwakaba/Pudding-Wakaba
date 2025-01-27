@@ -19,7 +19,7 @@
 		<Item Name="Wakaba's Nemesis" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>
 		<Item Name="Counter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -69,7 +69,7 @@
 		<Item Name="Wakaba's Double Dreams" Weight="0.75" DecreaseBy="0.75" RemoveOn="0.075"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Silence" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apollyon Crisis" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -87,7 +87,7 @@
 		<Item Name="D6 Plus" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Book of Shiori" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.02"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Grimreaper Defender" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Book of Silence" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
@@ -98,8 +98,8 @@
 		<Item Name="Book of Conquest" Weight="0.4" DecreaseBy="0.04" RemoveOn="0.1"/>
 		<Item Name="Minerva's Aura" Weight="0.8" DecreaseBy="0.08" RemoveOn="0.1"/>
 	</Pool>
-	
-	
+
+
 	<Pool Name="greedTreasure">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.01" RemoveOn="0.001"/>
@@ -112,7 +112,7 @@
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.1"/>
@@ -136,7 +136,7 @@
 		<Item Name="Counter" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Return Postage" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Focus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Maijima Mythology" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Trauma" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -180,15 +180,15 @@
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Neko Figure" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
-	
-	
+
+
 	<Pool Name="beggar">
 		<!-- <Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/> -->
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.1" RemoveOn="0.1"/>
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.01" RemoveOn="0.001"/>
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Balance ecnalaB" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
@@ -198,7 +198,7 @@
 		<Item Name="Eat Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Revenge Fruit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shiori's Bottle of Runes" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Rune Archives" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of The Fallen" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<Item Name="Book of Conquest" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Isekai Definition" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -221,8 +221,8 @@
 	</Pool>
 	<Pool name="shellGame">
 	</Pool>
-	
-	
+
+
 	<Pool Name="goldenChest">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Wakaba's Blessing" Weight="0.1" DecreaseBy="0.01" RemoveOn="0.001"/>

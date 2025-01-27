@@ -657,7 +657,7 @@ wakaba.descriptions[desclang].collectibles = {
 		carBattery = "No effect",
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		itemName = "Shiori's Bottle of Runes",
+		itemName = "Rune Archives",
 		description = ""
 		.. "#{{Rune}} Gives Isaac a random rune"
 		.. "{{CR}}",

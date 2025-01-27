@@ -612,7 +612,7 @@ wakaba.descriptions[desclang].collectibles = {
 		wisp = "{{ColorYellow}}中环 x1: {{CR}}#跟踪眼泪"
 	},
 	[wakaba.Enums.Collectibles.DECK_OF_RUNES] = {
-		itemName = "汐宫的符文瓶",
+		itemName = "Rune Archives",
 		description = ""
 			.. "#{{Rune}} 给一个随机符文"
 			.. "{{CR}}",

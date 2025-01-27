@@ -96,7 +96,7 @@ wakaba.Enums.Collectibles = {
 
 	-- Shiori items
 	BOOK_OF_FOCUS = Isaac.GetItemIdByName("Book of Focus"),
-	DECK_OF_RUNES = Isaac.GetItemIdByName("Shiori's Bottle of Runes"),
+	DECK_OF_RUNES = Isaac.GetItemIdByName("Rune Archives"),
 	MICRO_DOPPELGANGER = Isaac.GetItemIdByName("Micro Doppelganger"),
 	BOOK_OF_SILENCE = Isaac.GetItemIdByName("Book of Silence"),
 	VINTAGE_THREAT = Isaac.GetItemIdByName("Vintage Threat"),

@@ -1111,7 +1111,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Schoolbag", clr = 3, halign = 0},
 			{str = "As isaac needs to hold uniform constantly on his active item slot, schoolbag allows use another active item besides Wakaba's Uniform"},
 			{str = "+ D1: copies dropped Card/Pill/Rune, allowing to stack single effect multiple times"},
-			{str = "+ Deck of Cards/Mom's Bottle of Pills/Shiori's Bottle of Runes", clr = 3, halign = 0},
+			{str = "+ Deck of Cards/Mom's Bottle of Pills/Rune Archives", clr = 3, halign = 0},
 			{str = "Faster build speed for Wakaba's Uniform."},
 		},
 		{ -- Synergies

@@ -43,7 +43,7 @@
 	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="27" Name="Shiori's Blue Bookmark" Image="wakaba/collectibles/__placeholder.png"/> -->
 	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="28" Name="Shiori's Yellow Bookmark" Image="wakaba/collectibles/__placeholder.png"/> -->
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="29" Name="Book of Focus" Image="wakaba/collectibles/bookoffocus.png"/>
-	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="30" Name="Shiori's Bottle of Runes" Image="wakaba/collectibles/deckofrunes.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="30" Name="Rune Archives" Image="wakaba/collectibles/deckofrunes.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="31" Name="Micro Doppelganger" Image="wakaba/collectibles/microdoppelganger.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="32" Name="Book of Silence" Image="wakaba/collectibles/bookofsilence.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="33" Name="Vintage Threat" Image="wakaba/collectibles/vintagethreat.png"/>
