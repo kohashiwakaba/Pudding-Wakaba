@@ -39,3 +39,28 @@ function wakaba:AlterPlayerDamage_GrimreaperDefender(player, amount, flags, sour
 	end
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_GrimreaperDefender)
+
+
+-- Register HUD Helper for Tainted Rira
+HudHelper.RegisterHUDElement({
+	Name = "wakaba_GrimReaper",
+	Priority = HudHelper.Priority.LOWEST,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	Condition = function(player, playerHUDIndex, hudLayout, position)
+		if isc:hasCurse(LevelCurse.CURSE_OF_THE_UNKNOWN) then return false end
+		return player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER)
+	end,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	OnRender = function(player, playerHUDIndex, hudLayout, position, maxColumns)
+		local spr = wakaba.WakabaHealthSprite
+		spr:SetFrame("GrimReaper", 0)
+		spr:Render(position)
+	end,
+	--PreRenderCallback = true
+}, HudHelper.HUDType.HEALTH)

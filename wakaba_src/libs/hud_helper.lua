@@ -1,7 +1,7 @@
 local Mod = wakaba
 local emptyShaderName = "wakaba_ChallengeDest_DummyShader"
 
-local VERSION = 1.02 -- do not modify
+local VERSION = 1.03 -- do not modify
 local game = Game()
 
 -- debug
@@ -31,6 +31,10 @@ local function InitMod()
 	---@class HUDInfo_PocketItem: HUDInfo
 	---@field OnRender fun(player: EntityPlayer, playerHUDIndex: integer, hudLayout: HUDLayout, position: Vector, alpha: integer, scale: integer) @Runs for each player, if the condition is true.
 
+	---@class HUDInfo_Trinket: HUDInfo
+	---@field Condition fun(player: EntityPlayer, playerHUDIndex: integer, hudLayout: HUDLayout, slot: integer): boolean @A function that returns true if the HUD element should be drawn.
+	---@field OnRender fun(player: EntityPlayer, playerHUDIndex: integer, hudLayout: HUDLayout, position: Vector, scale: integer, slot: integer) @Runs for each player, if the condition is true.
+
 	---@class HUDInfo_Extra: HUDInfo
 	---@field YPadding integer | fun(player: EntityPlayer, playerHUDIndex: integer, hudLayout: HUDLayout): integer @The height of the HUD element. This is used to calculate the padding between HUD elements.
 	---@field XPadding integer | table<integer, integer> @The padding between the HUD element and vanilla ui, by player index.
@@ -41,16 +45,22 @@ local function InitMod()
 	---@field Args any[]
 
 	local HudHelper = RegisterMod(("[%s] HUD Helper"):format(Mod.Name), 1)
-	HudHelper.HUD_ELEMENTS = {
-		Base = CACHED_ELEMENTS and CACHED_ELEMENTS.Base or {}, ---@type HUDInfo[]
-		Actives = CACHED_ELEMENTS and CACHED_ELEMENTS.Actives or {}, ---@type HUDInfo_Active[]
-		Health = CACHED_ELEMENTS and CACHED_ELEMENTS.Health or {}, ---@type HUDInfo_Health[]
-		PocketItems = CACHED_ELEMENTS and CACHED_ELEMENTS.PocketItems or {}, ---@type HUDInfo_PocketItem[]
-		Extra = CACHED_ELEMENTS and CACHED_ELEMENTS.Extra or {}, ---@type HUDInfo_Extra[]
-		--maybe?
-		--Trinkets = {}
-	}
 	HudHelper.Version = VERSION
+
+	HudHelper.HUD_ELEMENTS = {
+		Base = {}, ---@type HUDInfo[]
+		Actives = {}, ---@type HUDInfo_Active[]
+		Health = {}, ---@type HUDInfo_Health[]
+		PocketItems = {}, ---@type HUDInfo_PocketItem[]
+		Trinkets = {}, ---@type HUDInfo_Trinket[]
+		Extra = {}, ---@type HUDInfo_Extra[]
+	}
+
+	if CACHED_ELEMENTS then
+		for tableName, elements in pairs(CACHED_ELEMENTS) do
+			HudHelper.HUD_ELEMENTS[tableName] = elements
+		end
+	end
 	HudHelper.ItemSpecificOffset = {
 		[CollectibleType.COLLECTIBLE_JAR_OF_FLIES] = Vector(4, 2),
 	}
@@ -60,14 +70,17 @@ local function InitMod()
 		ACTIVE = 1, --Renders on every active item
 		HEALTH = 2, --Location of the first heart of each HUD
 		POCKET = 3, --Renders on the primary pocket item slot of each HUD
-		EXTRA = 4 --For any miscellaneous HUD elements per-player. Renders below/above the player's health
+		TRINKET = 4, --Renders on every trinket
+		EXTRA = 5 --For any miscellaneous HUD elements per-player. Renders below/above the player's health
+
 	}
 	HudHelper.HUDTypeToTable = {
 		[0] = HudHelper.HUD_ELEMENTS.Base,
 		[1] = HudHelper.HUD_ELEMENTS.Actives,
 		[2] = HudHelper.HUD_ELEMENTS.Health,
 		[3] = HudHelper.HUD_ELEMENTS.PocketItems,
-		[4] = HudHelper.HUD_ELEMENTS.Extra,
+		[4] = HudHelper.HUD_ELEMENTS.Trinkets,
+		[5] = HudHelper.HUD_ELEMENTS.Extra,
 	}
 	---@enum HUDLayout
 	HudHelper.HUDLayout = {
@@ -82,7 +95,7 @@ local function InitMod()
 	---@type table<ModCallbacks, function[]>
 	HudHelper.AddedCallbacks = {
 		[ModCallbacks.MC_USE_ITEM] = {},
-		[ModCallbacks.MC_POST_RENDER] = {}
+		[ModCallbacks.MC_POST_RENDER] = {},
 	} -- for any vanilla callback functions added by this library
 
 	if REPENTOGON then
@@ -91,7 +104,9 @@ local function InitMod()
 		HudHelper.AddedCallbacks[ModCallbacks.MC_PRE_PLAYERHUD_RENDER_ACTIVE_ITEM] = {}
 		HudHelper.AddedCallbacks[ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM] = {}
 		HudHelper.AddedCallbacks[ModCallbacks.MC_POST_HUD_RENDER] = {}
+		HudHelper.AddedCallbacks[ModCallbacks.MC_POST_MODS_LOADED] = {}
 	else
+		HudHelper.AddedCallbacks[ModCallbacks.MC_POST_GAME_STARTED] = {}
 		HudHelper.AddedCallbacks[ModCallbacks.MC_GET_SHADER_PARAMS] = {}
 	end
 
@@ -100,6 +115,8 @@ local function InitMod()
 	---@type table<string, HUDCallback[]>
 	HudHelper.Callbacks.RegisteredCallbacks = game:GetFrameCount() == 0 and CACHED_CALLBACKS or {}
 	HudHelper.AddedCallbacks = game:GetFrameCount() == 0 and CACHED_MOD_CALLBACKS or HudHelper.AddedCallbacks
+
+	HudHelper.LoadedPatches = false
 
 	return HudHelper
 end
@@ -204,7 +221,12 @@ local function InitFunctions()
 	end
 
 	---@param player EntityPlayer
-	function HudHelper.Utils.GetEffectiveMaxHealth(player)
+	---@param ignoreMod? boolean
+	function HudHelper.Utils.GetEffectiveMaxHealth(player, ignoreMod)
+		if NoHealthCapModEnabled and not ignoreMod then
+			return NoHealthCapRedMax + NoHealthCapSoulHearts + (NoHealthCapBoneHearts * 2) +
+				(NoHealthCapBrokenHearts * 2)
+		end
 		return player:GetEffectiveMaxHearts() + player:GetSoulHearts() +
 			(player:GetBrokenHearts() * 2)
 	end
@@ -440,19 +462,19 @@ local function InitFunctions()
 		local cornerOffsets = {
 			Vector((hudOffsetOption * 20), (hudOffsetOption * 12)),
 			Vector((-hudOffsetOption * 24) + width, (hudOffsetOption * 12)),
-			Vector((hudOffsetOption * 22), (-hudOffsetOption * 6) + height),
+			Vector((hudOffsetOption * 22), (-hudOffsetOption * 16) + height),
 			Vector((-hudOffsetOption * 16) + width, (-hudOffsetOption * 6) + height)
 		}
 		local REP_HUD_OFFSET = {
 			Vector.Zero,
 			Vector(-159, 0),
-			Vector(10, -39),
+			Vector(10, -29),
 			Vector(-167, -39)
 		}
 		local REP_PLUS_OFFSET = {
 			Vector(0, 6),
 			Vector(-175, 6),
-			Vector(10, -39),
+			Vector(10, -29),
 			Vector(-183, -39)
 		}
 
@@ -507,7 +529,8 @@ local function InitFunctions()
 		--Keys or Bombs only
 		if specificResource then
 			if specificResource == "Bombs" then
-				return Vector(0, repPlusOffset + (offset > 0 and -1 or 0))
+				local stupidJEOffset = ((offset - p1TwinOffset) > 0 or p1TwinOffset == 0) and 0 or 1
+				return Vector(0, repPlusOffset + p1TwinOffset + (offset > 0 and -1 or 0) + stupidJEOffset)
 			elseif specificResource == "Keys" then
 				local keysOffset = p1TwinOffset + poopAndBombsOffset
 				if poopAndBombsOffset == 0 and bethOffset > 0 then
@@ -687,7 +710,7 @@ local function InitFunctions()
 			else
 				pocketPosOffset = pocketPosOffset + (REPENTANCE_PLUS and Vector(138, 33) or Vector(160, -5))
 			end
-		elseif playerHUDIndex == 1 and hudLayout == HudHelper.HUDLayout.P1 then
+		elseif hudLayout == HudHelper.HUDLayout.P1 then
 			---Should be mindful that this is relative to bottom right HUD and should be combined with that HUD's position
 			pocketPosOffset = pocketPosOffset + (REPENTANCE_PLUS and Vector(171, 27) or Vector(155, 27))
 		elseif hudLayout == HudHelper.HUDLayout.TWIN_COOP then
@@ -708,6 +731,36 @@ local function InitFunctions()
 			end
 		end
 		return pocketPosOffset
+	end
+
+	---@param player EntityPlayer
+	---@param slot integer
+	function HudHelper.GetTrinketHUDOffset(player, slot)
+		local playerHUDIndex = HudHelper.Utils.GetHUDPlayerNumberIndex(player)
+		local hudLayout = HudHelper.Utils.GetHUDLayout(playerHUDIndex)
+		playerHUDIndex = math.min(4, playerHUDIndex)
+		local pos = Vector.Zero
+
+		if hudLayout == HudHelper.HUDLayout.P1 or (hudLayout == HudHelper.HUDLayout.P1_MAIN_TWIN and not REPENTANCE_PLUS) then
+			pos = slot == 0 and Vector(28, 26) or Vector(4, 2)
+		elseif hudLayout == HudHelper.HUDLayout.COOP then
+			if REPENTANCE_PLUS then
+				pos = slot == 0 and Vector(46.5, 37.5) or Vector(62.5, 37.5)
+			else
+				pos = slot == 0 and Vector(14, 36.5) or Vector(24, 36.5)
+			end
+		elseif hudLayout == HudHelper.HUDLayout.P1_MAIN_TWIN and REPENTANCE_PLUS then
+			pos = slot == 0 and Vector(46.5, 37.5) or Vector(62.5, 37.5)
+		elseif hudLayout == HudHelper.HUDLayout.TWIN_COOP then
+			pos = slot == 0 and Vector(34.5, 35.5) or Vector(50.5, 35.5)
+		elseif hudLayout == HudHelper.HUDLayout.P1_OTHER_TWIN then
+			if REPENTANCE_PLUS then
+				pos = slot == 0 and Vector(133.5, 35.5) or Vector(117.5, 35.5)
+			else
+				pos = slot == 0 and Vector(151, 5) or Vector(123, 5)
+			end
+		end
+		return pos
 	end
 
 	---@param HUDSprite Sprite
@@ -822,6 +875,7 @@ local function InitFunctions()
 		Actives = {}, ---@type table<integer, HUDInfo_Active>
 		Health = {}, ---@type table<integer, HUDInfo_Health>
 		PocketItems = {}, ---@type table<integer, HUDInfo_PocketItem>
+		Trinkets = {}, ---@type table<integer, HUDInfo_Trinket>
 		Extra = {}, ---@type table<integer, HUDInfo_Extra>
 	}
 
@@ -1083,6 +1137,34 @@ local function InitFunctions()
 		HudHelper.LastAppliedHUD.PocketItems[playerHUDIndex] = hud
 	end
 
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param pos Vector
+	---@param hud HUDInfo_Trinket
+	local function renderTrinketHUDs(player, playerHUDIndex, hudLayout, pos, hud, i)
+		local cornerHUD = math.min(4, playerHUDIndex)
+		if hudLayout == HudHelper.HUDLayout.P1 or (hudLayout == HudHelper.HUDLayout.P1_MAIN_TWIN and not REPENTANCE_PLUS) then
+			cornerHUD = 3
+		end
+		local scale = 1
+		for slot = 0, 1 do
+			pos = HudHelper.GetHUDPosition(cornerHUD) + HudHelper.GetTrinketHUDOffset(player, slot)
+			if i == 2 then
+				pos = pos + TWIN_COOP_OFFSET
+			end
+			if hudLayout == HudHelper.HUDLayout.COOP
+				or (REPENTANCE_PLUS and hudLayout ~= HudHelper.HUDLayout.P1)
+			then
+				scale = 0.5
+			end
+			if not hud.Condition(player, playerHUDIndex, hudLayout, slot) then goto continue end
+			hud.OnRender(player, playerHUDIndex, hudLayout, pos, scale, slot)
+			HudHelper.LastAppliedHUD.Trinkets[playerHUDIndex] = hud
+			::continue::
+		end
+	end
+
 	local extraYPadding = 0
 
 	---@param player EntityPlayer
@@ -1152,11 +1234,12 @@ local function InitFunctions()
 					extraYPadding = 0
 					for _, hud in ipairs(hudTable) do
 						if not ((not player:IsCoopGhost() or hud.BypassGhostBaby)
-								and (hudName ~= "Actives" and hud.Condition(player, playerHUDIndex, hudLayout))
+								and (hudName == "Actives" or hudName == "Trinkets" or hud.Condition(player, playerHUDIndex, hudLayout))
 								and ((not hud.PreRenderCallback and not isPreCallback) or (hud.PreRenderCallback and isPreCallback))
 							) then
 							goto continue2
 						end
+
 						local pos = HudHelper.GetHUDPosition(playerHUDIndex)
 						if i == 2 then
 							pos = pos + TWIN_COOP_OFFSET
@@ -1167,16 +1250,6 @@ local function InitFunctions()
 						elseif hudName == "Actives" then
 							---@cast hud HUDInfo_Active
 							renderActiveHUDs(player, playerHUDIndex, hudLayout, pos, hud, i)
-						elseif hudName == "PocketItems" then
-							---@cast hud HUDInfo_PocketItem
-							if hudLayout == HudHelper.HUDLayout.P1 and not condensedCoopHUD then
-								pos = HudHelper.GetHUDPosition(4)
-								if i == 2 then
-									pos = pos + TWIN_COOP_OFFSET
-								end
-							end
-							pos = pos + HudHelper.GetPocketHUDOffset(player)
-							renderPocketItemHUDs(player, playerHUDIndex, hudLayout, pos, hud, i)
 						elseif hudName == "Health" then
 							---@cast hud HUDInfo_Health
 							pos = pos + HudHelper.GetHealthHUDOffset(playerHUDIndex)
@@ -1185,6 +1258,19 @@ local function InitFunctions()
 								pos = pos + Vector(0, 2)
 							end
 							renderHeartHUDs(player, playerHUDIndex, hudLayout, pos, hud)
+						elseif hudName == "PocketItems" then
+							---@cast hud HUDInfo_PocketItem
+							if hudLayout == HudHelper.HUDLayout.P1 and not condensedCoopHUD then
+								pos = HudHelper.GetHUDPosition(4)
+							end
+							if i == 2 then
+								pos = pos + TWIN_COOP_OFFSET
+							end
+							pos = pos + HudHelper.GetPocketHUDOffset(player)
+							renderPocketItemHUDs(player, playerHUDIndex, hudLayout, pos, hud, i)
+						elseif hudName == "Trinkets" then
+							---@cast hud HUDInfo_Trinket
+							renderTrinketHUDs(player, playerHUDIndex, hudLayout, pos, hud, i)
 						elseif hudName == "Extra" then
 							pos = pos + HudHelper.GetExtraHUDOffset(playerHUDIndex)
 							---@cast hud HUDInfo_Extra
@@ -1254,6 +1340,72 @@ local function InitFunctions()
 		end
 	end
 
+	local function postModsLoaded()
+		if HudHelper.LoadedPatches then return end
+		HudHelper.LoadedPatches = true
+
+		if EID then
+			--EID support. Adds a custom position modifier to work with other HUD elements registered under HudHelper
+			--If any elements are active, gets rid of EID's own position modifiers as HudHelper already accounts for them
+			--If none are active, resets the modifier
+			HudHelper.RegisterHUDElement({
+				Name = "Reset EID",
+				Priority = HudHelper.Priority.EID,
+				XPadding = 0,
+				YPadding = 0,
+				Condition = function(player, playerHUDIndex)
+					return game:GetFrameCount() > 0
+						and EID.player
+						and EID.player.FrameCount > 0
+						and playerHUDIndex == 1
+						and not HudHelper.LastAppliedHUD.Extra[1]
+						and EID.PositionModifiers["HudHelper"]
+						and EID.PositionModifiers["HudHelper"].Y ~= 0
+				end,
+				OnRender = function()
+					EID:addTextPosModifier("HudHelper", Vector.Zero)
+				end
+			}, HudHelper.HUDType.EXTRA)
+
+			HudHelper.RegisterHUDElement({
+				Name = "EID",
+				Priority = HudHelper.Priority.EID,
+				XPadding = 0,
+				YPadding = 0,
+				Condition = function(player, playerHUDIndex)
+					return game:GetFrameCount() > 0
+						and EID.player
+						and EID.player.FrameCount > 0
+						and playerHUDIndex == 1
+						and HudHelper.LastAppliedHUD.Extra[1]
+						and HudHelper.LastAppliedHUD.Extra[1].Name ~= "Reset EID"
+				end,
+				OnRender = function(_, _, _, position)
+					local posYModifier = 0
+					local offset = -40
+					local vanillaOffsets = {
+						"Tainted HUD",
+						"J&E HUD",
+						"18 Heart HUD",
+						"24 Heart HUD"
+					}
+					for _, offsetName in ipairs(vanillaOffsets) do
+						if EID.PositionModifiers[offsetName] then
+							offset = offset - EID.PositionModifiers[offsetName].Y
+						end
+					end
+
+					posYModifier = position.Y + offset
+
+					EID:addTextPosModifier(
+						"HudHelper",
+						Vector(0, math.max(0, posYModifier))
+					)
+				end
+			}, HudHelper.HUDType.EXTRA)
+		end
+	end
+
 	local function AddPriorityCallback(callback, priority, func, arg)
 		HudHelper:AddPriorityCallback(callback, priority, func, arg)
 
@@ -1274,6 +1426,7 @@ local function InitFunctions()
 		AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_ACTIVE_ITEM, postRenderActiveHUDs_REPENTOGON)
 		AddCallback(ModCallbacks.MC_PRE_PLAYERHUD_RENDER_HEARTS, preRenderHeartHUDs_REPENTOGON)
 		AddCallback(ModCallbacks.MC_POST_PLAYERHUD_RENDER_HEARTS, postRenderHeartHUDs_REPENTOGON)
+		AddCallback(ModCallbacks.MC_POST_MODS_LOADED, postModsLoaded)
 	else
 		local function getShaderParams(_, name)
 			if name == emptyShaderName then
@@ -1281,6 +1434,7 @@ local function InitFunctions()
 			end
 		end
 		AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, getShaderParams)
+		AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postModsLoaded)
 	end
 
 	AddPriorityCallback(ModCallbacks.MC_POST_RENDER, CallbackPriority.LATE, preRenderHUDs)
@@ -1336,90 +1490,28 @@ local function InitFunctions()
 		Priority = HudHelper.Priority.VANILLA,
 		XPadding = 0,
 		YPadding = function(player)
-			if HudHelper.Utils.GetEffectiveMaxHealth(player) > 36 then
-				return 20
-			else
-				return 10
+			local rows = math.ceil(HudHelper.Utils.GetEffectiveMaxHealth(player) / 12)
+			if REPENTOGON and not NoHealthCapModEnabled then
+				rows = math.min(4, rows) --Hearts literally stop rendering after 4 rows legitimately
 			end
+			return 5 + (rows - 3) * 10
 		end,
 		Condition = function(player)
-			--Maybe do something if they're not P1?
 			return HudHelper.Utils.GetEffectiveMaxHealth(player) > 24
 		end,
 		OnRender = function() end, -- handled by the game
 	}, HudHelper.HUDType.EXTRA)
-
-	--EID support. Adds a custom position modifier to work with other HUD elements registered under HudHelper
-	--If any elements are active, gets rid of EID's own position modifiers as HudHelper already accounts for them
-	--If none are active, resets the modifier
-	HudHelper.RegisterHUDElement({
-		Name = "Reset EID",
-		Priority = HudHelper.Priority.EID,
-		XPadding = 0,
-		YPadding = 0,
-		Condition = function(player, playerHUDIndex)
-			return EID
-				and game:GetFrameCount() > 0
-				and EID.player
-				and EID.player.FrameCount > 0
-				and playerHUDIndex == 1
-				and not HudHelper.LastAppliedHUD.Extra[1]
-				and EID.PositionModifiers["HudHelper"]
-				and EID.PositionModifiers["HudHelper"].Y ~= 0
-		end,
-		OnRender = function()
-			EID:addTextPosModifier("HudHelper", Vector.Zero)
-		end
-	}, HudHelper.HUDType.EXTRA)
-
-	HudHelper.RegisterHUDElement({
-		Name = "EID",
-		Priority = HudHelper.Priority.EID,
-		XPadding = 0,
-		YPadding = 0,
-		Condition = function(player, playerHUDIndex)
-			return EID
-				and game:GetFrameCount() > 0
-				and EID.player
-				and EID.player.FrameCount > 0
-				and playerHUDIndex == 1
-				and HudHelper.LastAppliedHUD.Extra[1]
-				and HudHelper.LastAppliedHUD.Extra[1].Name ~= "Reset EID"
-		end,
-		OnRender = function(_, _, _, position)
-			local posYModifier = 0
-			local offset = -40
-			local vanillaOffsets = {
-				"Tainted HUD",
-				"J&E HUD",
-				"18 Heart HUD",
-				"24 Heart HUD"
-			}
-			for _, offsetName in ipairs(vanillaOffsets) do
-				if EID.PositionModifiers[offsetName] then
-					offset = offset - EID.PositionModifiers[offsetName].Y
-				end
-			end
-
-			posYModifier = position.Y + offset
-
-			EID:addTextPosModifier(
-				"HudHelper",
-				Vector(0, math.max(0, posYModifier))
-			)
-		end
-	}, HudHelper.HUDType.EXTRA)
 end
 
-if HudHelper and (VERSION > HudHelper.Version or FORCE_VERSION_UPDATE) then
-	InitFunctions()
-	HudHelper.Version = VERSION
-else
-	if HudHelper then
-		CACHED_CALLBACKS = HudHelper.Callbacks.RegisteredCallbacks
-		CACHED_ELEMENTS = HudHelper.HUD_ELEMENTS
-		CACHED_MOD_CALLBACKS = HudHelper.AddedCallbacks
+if HudHelper then
+	if HudHelper.Version > VERSION and not FORCE_VERSION_UPDATE then
+		return
 	end
-	HudHelper = InitMod()
-	InitFunctions()
+
+	CACHED_CALLBACKS = HudHelper.Callbacks.RegisteredCallbacks
+	CACHED_ELEMENTS = HudHelper.HUD_ELEMENTS
+	CACHED_MOD_CALLBACKS = HudHelper.AddedCallbacks
 end
+
+HudHelper = InitMod()
+InitFunctions()
