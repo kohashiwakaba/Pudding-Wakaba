@@ -4,7 +4,7 @@
 	올스탯, 이후 등장하는 모든 아이템이 리라의 도시락으로 변경
 	체력이 높을수록 공격력 배율 증가
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---comment
 ---@param player EntityPlayer

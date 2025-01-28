@@ -1,5 +1,5 @@
 local sfx = SFXManager()
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 function wakaba:UseCard_SoulOfRicher(_, player, flags)

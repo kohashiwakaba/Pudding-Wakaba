@@ -4,7 +4,7 @@
 	장신구가 없을 경우 뼈하트, 있을 경우 장신구 흡수 + 소울하트
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 ---@param flags UseFlag

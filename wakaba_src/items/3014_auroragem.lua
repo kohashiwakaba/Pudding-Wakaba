@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local easterEggChance = wakaba.state.options.eastereggchance
 
 function wakaba:CoinInit_AuroraGem(pickup)

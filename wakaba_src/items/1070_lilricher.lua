@@ -4,7 +4,7 @@
 	방 클리어 시마다 액티브 게이지 추가 충전
 	완충 시 최대 16회분까지 보존
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.Enums.Constants
 
 local richer_saved_recipies = {

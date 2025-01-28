@@ -1,5 +1,6 @@
 -- make effect callback to single callback
 local sfx = SFXManager()
+local isc = _wakaba.isc
 
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 
@@ -221,7 +222,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 			if (var == 1 and subt == 3) or var == 5 or var == 12 then
 			elseif player and player:HasWeaponType(WeaponType.WEAPON_LUDOVICO_TECHNIQUE) then
 			elseif player and laser.FrameCount % 6 == 0 then
-				if hasCaramellaEffect(player) then
+				if wakaba:hasCaramellaEffect(player) then
 					local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.RIRA)
 					if #flies < 10 then
 						wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.RIRA)
@@ -234,7 +235,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 	-- Caramella pancake epic fetus
 	if effect.Variant == EffectVariant.TARGET then
 		local player = isc:getPlayerFromEntity(effect)
-		if effect.FrameCount % 10 == 0 and player and hasCaramellaEffect(player) and player:HasWeaponType(WeaponType.WEAPON_ROCKETS) then
+		if effect.FrameCount % 10 == 0 and player and wakaba:hasCaramellaEffect(player) and player:HasWeaponType(WeaponType.WEAPON_ROCKETS) then
 			local flies = wakaba:GetCaramellaFlies(player, wakaba.Enums.Flies.CIEL)
 			if #flies < 10 then
 				wakaba:SpawnCaramellaFly(player, wakaba.Enums.Flies.CIEL, player.Damage * 10, effect.Position, true)
@@ -308,7 +309,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		if trail:GetData().w_parent then
 			local parent = trail:GetData().w_parent
 			if parent:Exists() then
-				trail.ParentOffset = getPositionOffset(parent, trail.SpriteScale.Y)
+				trail.ParentOffset = wakaba:getTrailPositionOffset(parent, trail.SpriteScale.Y)
 			else
 				trail:Remove()
 			end

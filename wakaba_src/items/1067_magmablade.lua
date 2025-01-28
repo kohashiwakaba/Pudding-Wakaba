@@ -4,7 +4,7 @@
 	20발 공격 시 불꽃 블레이드를 추가로 휘두름
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function canActivateMagmaBlade(player)
 	return player:HasCollectible(wakaba.Enums.Collectibles.MAGMA_BLADE)	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MAGMA_BLADE)

@@ -4,7 +4,7 @@ local removed = false
 local collectibleCount_b
 local costumeEquipped_b
 local isWakabaContinue = true
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.WAKABA_B, isc.HeartSubType.BLACK)
 end

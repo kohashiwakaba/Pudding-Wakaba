@@ -85,7 +85,7 @@ function wakaba:isUpDownPedestalAllowed(pickup)
 	return allowed
 end
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local difficultyWidget = Sprite("gfx/ui/wakaba/wakaba_diff.anm2")
 

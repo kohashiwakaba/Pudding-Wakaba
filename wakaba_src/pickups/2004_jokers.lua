@@ -1,5 +1,5 @@
 local rng = wakaba.RNG
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 
 function wakaba:UseCard_BlackJoker(_, player, flags)

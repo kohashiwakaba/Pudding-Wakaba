@@ -3,7 +3,7 @@
 	행운 +5, 중첩 당 추가 행운 +2.5, 패널티 피격 시 행운 -0.5, 스테이지 진입 시 초기화
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:NewLevel_RicherReportCard()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer

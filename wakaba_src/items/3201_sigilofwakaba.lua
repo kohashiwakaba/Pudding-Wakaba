@@ -4,4 +4,4 @@
 	스테이지 입장 시 Afterbirth/Repentance 변형 스테이지가 등장하지 않음
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

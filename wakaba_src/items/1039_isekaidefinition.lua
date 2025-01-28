@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:GetMaxIsekaiClots()
 	return wakaba:IsLunatic() and wakaba.Enums.Constants.MAX_ISEKAI_CLOTS_LUNATIC or wakaba.Enums.Constants.MAX_ISEKAI_CLOTS

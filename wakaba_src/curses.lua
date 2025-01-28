@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local blackcandletrigger = false
 
 if Isaac.GetCurseIdByName("Curse of Blight") > 0 then
@@ -107,7 +107,7 @@ function wakaba:Curse_Evaluate(curse)
 			goto wakabaCurseSkip
 		end
 		-- Not checking for blight here, since Pudding and Wakaba loads before Cursed Collection
-		if wakaba:ShouldRemoveBlind() then
+		if wakaba:ShouldRemoveBlind() or wakaba:hasShifter(player) then
 			if isc:hasCurse(LevelCurse.CURSE_OF_BLIND) then
 				curse = isc:removeFlag(curse, LevelCurse.CURSE_OF_BLIND)
 			end

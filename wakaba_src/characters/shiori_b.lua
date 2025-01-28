@@ -6,7 +6,7 @@ local collectibleCount
 local costumeEquipped
 local isShioriContinue = true
 local iskeyinit = false
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.SHIORI_B, isc.HeartSubType.SOUL)
 end

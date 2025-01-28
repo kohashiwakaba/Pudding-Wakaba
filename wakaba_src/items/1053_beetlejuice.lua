@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local replacedPills = {}
 
 function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, varData)
@@ -7,7 +7,7 @@ function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, var
 	local room = game:GetRoom()
 	pData = player:GetData()
 	pData.wakaba = pData.wakaba or {}
-	local failed = false 
+	local failed = false
   local discharge = true
 	local pool = wakaba.G:GetItemPool()
 	--local rng = player:GetCollectibleRNG(wakaba.Enums.Collectibles.BEETLEJUICE)
@@ -66,7 +66,7 @@ function wakaba:PostGetCollectible_Beetlejuice(player, item, charge, slot, varDa
 	local game = wakaba.G
 	local room = game:GetRoom()
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_PILL, 0, room:FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil)
-	
+
 	local pool = game:GetItemPool()
 	for i = 1, 13 do
 		if not pool:IsPillIdentified(i) then

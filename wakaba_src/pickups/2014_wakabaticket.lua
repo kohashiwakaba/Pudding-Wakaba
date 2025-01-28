@@ -4,7 +4,7 @@
 	사용 시 행운의 와카바 상자와 불운의 와카바 상자를 1개씩 소환 (선택형)
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 ---@param flags UseFlag

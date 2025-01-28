@@ -2,7 +2,7 @@
 	Rira's Coat (리라의 코트) - 액티브(Active) : ?칸
 	사용 시 휜 불 상태 돌입, 클리어 시 다음 방에서 흰 불 상태 해제 + 그 방에서 흰 불 생성
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:ItemUse_RiraCoat(usedItem, rng, player, useFlags, activeSlot, varData)
 

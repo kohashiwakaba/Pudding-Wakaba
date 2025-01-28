@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:IsLost(player)
   if player:GetPlayerType() == PlayerType.PLAYER_THELOST then return true end
@@ -27,7 +27,7 @@ end
 
 function wakaba:isMausoleumDoor(damageflag)
 	if not damageflag then return false end
-	
+
 	if damageflag & DamageFlag.DAMAGE_SPIKES == DamageFlag.DAMAGE_SPIKES
 	and damageflag & DamageFlag.DAMAGE_INVINCIBLE == DamageFlag.DAMAGE_INVINCIBLE
 	and damageflag & DamageFlag.DAMAGE_NO_MODIFIERS == DamageFlag.DAMAGE_NO_MODIFIERS
@@ -56,12 +56,12 @@ function wakaba:IsSacrificeRoomSpikes(flag)
 end
 
 -- Barebone function by Mr.SeemsGood
---[[ 
+--[[
 local function isPlayerDying(player)
   if player:GetBabySkin() == BabySubType.BABY_FOUND_SOUL then return end
   -- and by 'dying' I (unfortunately) mean 'playing death animation'
   local sprite = player:GetSprite()
-  
+
   return (sprite:IsPlaying("Death") and sprite:GetFrame() > 50) or
   (sprite:IsPlaying("LostDeath") and sprite:GetFrame() > 30)
 end

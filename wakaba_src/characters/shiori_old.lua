@@ -8,7 +8,7 @@ local collectibleCount
 local costumeEquipped
 local isShioriContinue = true
 local iskeyinit = false
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local indicator = Sprite()
 indicator:Load("gfx/ui/wakaba/shiori_book_indicator.anm2",true)

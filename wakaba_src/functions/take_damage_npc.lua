@@ -2,7 +2,7 @@
 	Base damage function from Fiend Folio
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function ApplyWakabaTearEffects(entity, source, isLaser)
 	if isLaser then

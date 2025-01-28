@@ -5,7 +5,7 @@ local lasers = {}
 local sublasers = {}
 local lasertimer = {}
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function fireTechClock(player)
 	local multiplier = (0.5 * player:GetCollectibleNum(wakaba.Enums.Collectibles.EYE_OF_CLOCK))

@@ -33,7 +33,7 @@
 	- 버려진 천체관(안드로메다) : 해당 방을 리셰의 천체관으로 교체
 	- 천체보스방(Heaven's Call) :
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local u = wakaba.Enums.RicherUniformMode
 

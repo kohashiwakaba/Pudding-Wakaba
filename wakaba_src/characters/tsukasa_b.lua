@@ -1,7 +1,7 @@
 
 local removed = false
 local isWakabaContinue = true
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 
 

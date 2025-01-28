@@ -4,7 +4,7 @@ rollItem code originally by Mana, modified for Eat Heart, Wakaba's Blessing, Wak
 
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local randselected = false
 
 local selecteditems = {}

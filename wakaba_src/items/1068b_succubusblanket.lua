@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function canActivateSuccubusBlanket(player)
 	return player:HasCollectible(wakaba.Enums.Collectibles.SUCCUBUS_BLANKET)	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.SUCCUBUS_BLANKET)
@@ -32,6 +32,6 @@ function wakaba:Update_SuccubusBlanket()
 			end
 		end
 	end
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_SuccubusBlanket)

@@ -3,7 +3,7 @@
 	- REPENTOGON 전용
 	- 사용 시 선택한 패시브 중 하나와 받침대 패시브 하나를 교체
 ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 ---@param rng RNG

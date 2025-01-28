@@ -3,4 +3,4 @@
 	뒤틀린 리라(TR 리라)로 Mother 처치
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

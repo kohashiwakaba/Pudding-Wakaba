@@ -4,7 +4,7 @@ rollItem code originally by Mana, modified for Eat Heart, Wakaba's Blessing, Wak
 
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:cardUnlockCheck(card)
 	if card == wakaba.Enums.Cards.CARD_UNKNOWN_BOOKMARK then

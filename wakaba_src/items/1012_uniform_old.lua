@@ -1,7 +1,7 @@
 local usinguniform = false
 local displayuniformslot = false
 --wakaba.f:DrawString("droid",60,50,KColor(1,1,1,1,0,0,0),0,true) -- render string with loaded font on position 60x50y
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 -- wakaba_compat_check : Fiend Folio
 local isFFPill = {}

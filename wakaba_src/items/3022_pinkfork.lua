@@ -3,7 +3,7 @@
 	1칸 이상의 피해를 받으면 피해량의 절반만큼의 소울하트 회복
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 if REPENTOGON then
 	---@param entity Entity

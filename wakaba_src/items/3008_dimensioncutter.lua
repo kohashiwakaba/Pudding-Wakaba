@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 function wakaba:NewRoom_DimensionCutter()
 	if not wakaba.G:GetRoom():IsClear() then
 		for i = 1, wakaba.G:GetNumPlayers() do
@@ -32,7 +32,7 @@ function wakaba:TearCollision_DimensionCutter(tear, entity, low)
 			if dmg <= 339 then
 				dmg = 339
 			end
-				
+
 			entity:TakeDamage(dmg, DamageFlag.DAMAGE_IGNORE_ARMOR, EntityRef(tear), 0)
 			return true
 		end

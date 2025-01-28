@@ -3,7 +3,7 @@ local playerType = wakaba.Enums.Players.RICHER
 local removed = false
 local isRicherContinue = true
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:PostRicherUpdate(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER then

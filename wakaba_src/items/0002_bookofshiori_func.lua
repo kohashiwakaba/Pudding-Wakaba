@@ -1,5 +1,5 @@
 local shioriSpriteDatas = {}
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.HiddenItemManager:HideCostumes("WAKABA_BOS_PRIMARY")
 wakaba.HiddenItemManager:HideCostumes("WAKABA_BOS_SECONDARY")

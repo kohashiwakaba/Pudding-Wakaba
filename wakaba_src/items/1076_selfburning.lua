@@ -1,10 +1,10 @@
---[[ 
+--[[
 	Self Burning (셀프 버닝) - 액티브 : 스테이지 당 1회
 	사용 시 탄횐을 제외한 모든 피격에 무적이 되며 접촉한 적에게 초당 1의 피해를 줌.
 	탄환 피격 시 해제됨.
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_SelfBurning(player)

@@ -7,7 +7,7 @@
 	- 코론 : 1~2마리
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:NewRoom_CaramellaCandies()
 	local room = wakaba.G:GetRoom()

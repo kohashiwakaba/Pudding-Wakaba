@@ -7,7 +7,7 @@ wakaba.SHIORI_BOOKMARK = Isaac.GetItemIdByName("Shiori's Red Bookmark")
 wakaba.SHIORI_BOOKMARK2 = Isaac.GetItemIdByName("Shiori's Blue Bookmark")
 wakaba.SHIORI_BOOKMARK3 = Isaac.GetItemIdByName("Shiori's Yellow Bookmark")
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local indicator = Sprite()
 indicator:Load("gfx/ui/wakaba/shiori_book_indicator.anm2",true)

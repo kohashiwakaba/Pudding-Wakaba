@@ -2,7 +2,7 @@
 	Black Bean Mochi - 패시브(Passive)
 	적 처치 시 폭발
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
@@ -84,11 +84,12 @@ function wakaba:NPCDeath_BlackBeanMochi(entity)
 	if wakaba.Status:HasStatusEffect(entity, wakaba.Status.StatusFlag.wakaba_ZIPPED) then
 		local statusData = wakaba.Status:GetStatusEffectData(npc, wakaba.Status.StatusFlag.wakaba_ZIPPED)
 		local source = statusData.Source
-		if source then
+		local player = source.Entity and source.Entity:ToPlayer()
+		if source and player then
 			local enemies = isc:getNPCs()
 			for i, e in ipairs(enemies) do
 				if wakaba:EntitiesAreWithinRange(npc, e, 75) then
-					wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, source)
+					wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, source)
 				end
 			end
 			local flags = wakaba:IsLunatic() and 0 or player:GetBombFlags()

@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local haspostage = 0
 
 wakaba.PostageConquerEntities = {
@@ -54,7 +54,7 @@ function wakaba:NPCUpdate_Postage(entity)
 		elseif isPostageEntity(entity) then
 			entity:AddCharmed(EntityRef(player), -1)
 		end
-		
+
 	end
 end
 

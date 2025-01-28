@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba:RegisterPatch(0, "SamaelMod", function() return (SamaelMod ~= nil) end, function()
 	do

@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.Reminder = {}
 wakaba.Reminder.DefaultItems = {

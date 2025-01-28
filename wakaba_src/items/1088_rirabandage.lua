@@ -2,7 +2,7 @@
 	Rira's Bandage (리라의 반창고) - 패시브(Passive)
 	스테이지 입장 시 피격 효과 6회 발동, 소지 장신구 흡수
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:NewLevel_RiraBandage()
 	wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer

@@ -8,7 +8,7 @@
 	신성한 동전 드랍률 증가
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:CoinInit_AuroraGem(pickup)
 	if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.easteregg < 1 then return end
@@ -43,7 +43,7 @@ function wakaba:CoinInit_AuroraGem(pickup)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, wakaba.CoinInit_AuroraGem, PickupVariant.PICKUP_COIN)
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local sacredSpawnChance = wakaba.Enums.Constants.CLOVER_CHEST_COLLECTIBLE_CHANCE
 
 function wakaba:CoinUpdate_SacredPenny(pickup)

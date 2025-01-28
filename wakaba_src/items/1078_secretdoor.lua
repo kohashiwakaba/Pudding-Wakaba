@@ -1,9 +1,9 @@
---[[ 
+--[[
 	Secret Door () - 액티브 : 2칸
 	사용 시 시작 방으로 텔레포트, 특정 조건에서 다른 효과 발동
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:ItemUse_SecretDoor(usedItem, rng, player, useFlags, activeSlot, varData)
 

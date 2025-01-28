@@ -1,9 +1,9 @@
---[[ 
+--[[
 	Eternity Cookie (이터니티 쿠키) - 장신구
 	소멸형 픽업의 소멸 방지
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local maxMult = 0
 function wakaba:PostUpdate_EternityCookie()

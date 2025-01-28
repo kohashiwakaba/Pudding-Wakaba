@@ -1,7 +1,7 @@
 -- main unlock related functions mixed from Fiend Folio, Retribution
 
 local game = Game()
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local playertype_cache =  wakaba.CACHED_PLAYERTYPE_CACHE or {}
 wakaba.CACHED_PLAYERTYPE_CACHE = playertype_cache

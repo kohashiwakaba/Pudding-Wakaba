@@ -1,7 +1,7 @@
 wakaba.KNIFE_FLASH_SHIFT = 4101
 wakaba.SUBTYPE_FLASH_SHIFT = 4101
 local flashcooldown = 8
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:hasFlashShift(player)
 	if not player then

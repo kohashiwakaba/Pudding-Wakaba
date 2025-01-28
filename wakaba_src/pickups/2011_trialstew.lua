@@ -5,7 +5,7 @@
 	방 클리어 시 즉시 액티브 충전(시간제 제외), 중첩 1개분 해제
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 function wakaba:UseCard_TrialStew(_, player, flags)
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.trialstewtimer = 25

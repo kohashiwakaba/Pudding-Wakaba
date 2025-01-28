@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.Weights.ValutRiftSubTypes = {
 	{wakaba.Enums.ShioriValutSubType.SHIORI, 1},

@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local collectible = wakaba.Enums.Collectibles.WATER_FLAME
 
 local flames = {}
@@ -66,8 +66,8 @@ wakaba:addActiveRender({
 })
 
 function wakaba:hasWaterFlame(player)
-	if not player then 
-		return false 
+	if not player then
+		return false
 	end
 	if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
 		return true
@@ -93,7 +93,7 @@ function wakaba:ItemUse_WaterFlame(_, rng, player, useFlags, activeSlot, varData
 				ShowAnim = false,
 			}
 		end
-		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then 
+		if useFlags & UseFlag.USE_CARBATTERY == UseFlag.USE_CARBATTERY then
 
 		else
 			local wisp = current.list[current.index]

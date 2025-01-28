@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:UseItem_Purifier(activeItem, rng, player, flags, slot, vardata)
 	if flags & UseFlag.USE_OWNED == 0 then return end

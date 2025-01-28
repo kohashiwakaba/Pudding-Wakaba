@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function shouldSpawnTrinket(onInit)
 	local level = wakaba.G:GetLevel()

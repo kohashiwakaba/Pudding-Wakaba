@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local usinguniform = false
 
 wakaba.save_uniform_data = {

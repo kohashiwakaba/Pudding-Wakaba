@@ -5,7 +5,7 @@
 	현재 방이 클리어되지 않은 상태에서만 발동
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 function wakaba:PlayerUpdate_SigilOfKaguya(player)

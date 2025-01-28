@@ -1,5 +1,5 @@
 local rng = wakaba.RNG
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 
 
@@ -91,7 +91,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			end
 		end
 
-	
+
 		while #candidates > 0 do
 			--print("Found Angel Candidate!")
 			local s = RNG():RandomInt(#candidates) + 1
@@ -122,7 +122,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 				--print(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant, wakaba:has_value(availabledevilroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant))
 				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 				end
-				--[[ 
+				--[[
 					-1 : Devil/Angel room : Must invalidate before copy
 					-2 : Error room
 					-3 : Goto rooms. Planetariums this time
@@ -163,7 +163,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 		if selected then
 			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
 				local doorR = room:GetDoor(i)
-				if doorR then 
+				if doorR then
 					if doorR.TargetRoomIndex == selected then
 						if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
 							doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEVIL)
@@ -182,7 +182,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 			--wakaba.G:StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 		end
 
-	
+
 	else
 		--wakaba.G:StartRoomTransition(-18,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
 	end
@@ -193,7 +193,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.Enums.Cards.SOUL_WAKABA)
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba.Enums.Cards.SOUL_WAKABA2)
 
---[[ 
+--[[
 	Angel Position : 52
 	Shop location
 	1 : [82]
@@ -203,7 +203,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfWakaba, wakaba
 	5 : [49, 55, 80, 82, 84]
 	Fireplace location
 	a : 16, 17, 18, 26, 27, 28
-	b : 
+	b :
 
 
  ]]
@@ -292,12 +292,12 @@ function wakaba:NewRoom_SoulOfWakaba()
 				maxspawn = 2
 			end
 			local angelresult = rng:RandomInt(maxspawn) + 1
-			if angelresult < minspawn then 
+			if angelresult < minspawn then
 				angelresult = minspawn
-			elseif angelresult > maxspawn then 
+			elseif angelresult > maxspawn then
 				angelresult = maxspawn
 			end
-			
+
 			local angelspawn = angelpools[angelresult]
 			local fixedcollectiblecount = guarenteedangelitems[angelresult] + 0
 			for i = 1, #angelspawn do
@@ -349,9 +349,9 @@ function wakaba:NewRoom_SoulOfWakaba()
 			end
 			local angelresult = rng:RandomInt(maxspawn) + 1
 			local fireresult = rng:RandomInt(#firepools) + 1
-			if angelresult < minspawn then 
+			if angelresult < minspawn then
 				angelresult = minspawn
-			elseif angelresult > maxspawn then 
+			elseif angelresult > maxspawn then
 				angelresult = maxspawn
 			end
 			--print(angelresult)

@@ -2,7 +2,7 @@
 local playerType = wakaba.Enums.Players.RICHER_B
 local removed = false
 local isRicherContinue = true
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RICHER_B, isc.HeartSubType.SOUL)
 end
@@ -251,7 +251,7 @@ local rb = 1.0
 function wakaba:PickupRender_TaintedRicher(pickup, offset)
 	local pickupData = pickup:GetData()
 	if isc:inDeathCertificateArea() or isc:inGenesisRoom() then return end
-	
+
 	local dist = wakaba:isTaintedRicherNearby(pickup)
 	local sprite = pickup:GetSprite()
 	if wakaba:shouldConvertedForTaintedRicher(pickup) and dist then

@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.challenges.CHALLENGE_PLUM
 
 function wakaba:Challenge_PlayerUpdate_BerryBestFriend(player)

@@ -3,7 +3,7 @@
   https://github.com/slvn/isaac-destination-indicator/blob/main/src/main.ts
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 wakaba.ChallengeDest = {
   initialized = false,
   baseLoc = Vector(20, 73)

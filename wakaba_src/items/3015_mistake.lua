@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 
 function wakaba:PostTakeDamage_Mistake(player, amount, flags, source, cooldown)

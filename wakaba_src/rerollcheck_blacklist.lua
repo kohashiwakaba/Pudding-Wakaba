@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 wakaba.tempRoomBlacklist = {}
 wakaba._rerollBlacklist = false
 wakaba._rerollPreNoClear = false

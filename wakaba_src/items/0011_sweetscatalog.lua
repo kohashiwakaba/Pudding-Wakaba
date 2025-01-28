@@ -3,7 +3,7 @@
 	리셰로 Isaac 처치
 	사용 시 그 방에서 특정 무기 적용
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local collectible = wakaba.Enums.Collectibles.SWEETS_CATALOG
 wakaba.HiddenItemManager:HideCostumes("RICHER_CATALOG2")
 

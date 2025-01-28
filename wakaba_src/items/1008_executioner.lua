@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.ExecutionerBlacklistEntities = {
 	{EntityType.ENTITY_DOGMA},
@@ -88,7 +88,7 @@ function wakaba:TakeDmg_Executioner(entity, amount, flag, source, countdownFrame
 	or (source.Entity and source.Type == EntityType.ENTITY_PLAYER and shouldApplySwordExecute(source.Entity:ToPlayer())) -- Spirit Sword
 	then
 		if source.Type == EntityType.ENTITY_TEAR and source.Variant == TearVariant.ERASER then
-			
+
 		elseif entity:IsBoss() and entity.HitPoints <= amount then
 			entity.HitPoints = amount + 10
 			tryEraseEnemy(entity, true)

@@ -1,5 +1,5 @@
 local game = Game()
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local aqua_trinkets_data = {
 	run = {

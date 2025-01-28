@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:Cache_Crystals(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.ARCANE_CRYSTAL) then

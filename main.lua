@@ -27,7 +27,8 @@ end
 
 
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+_wakaba.isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local iFeatures = {
 	isc.ISCFeature.SAVE_DATA_MANAGER,
 	--isc.ISCFeature.PICKUP_INDEX_CREATION,

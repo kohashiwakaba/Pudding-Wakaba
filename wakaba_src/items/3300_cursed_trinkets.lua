@@ -24,7 +24,7 @@
 -- wakaba siren (상시 지진 효과, 이펙트만)
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 do -- Corrupted Clover
 	function wakaba:Cursed_NewRoom_CorruptedClover()

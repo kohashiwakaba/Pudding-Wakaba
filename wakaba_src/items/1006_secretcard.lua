@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 --LagCheck
 
 function wakaba:PreRoomClear_SecretCard()

@@ -1,6 +1,6 @@
 wakaba.fcount = 0
 wakaba.killcount = 0
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local auraDatas = {}
 

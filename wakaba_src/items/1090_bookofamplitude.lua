@@ -7,7 +7,7 @@
 	- 행운 + 2
 	사용 시 차례를 다음 차례로 변경
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 function wakaba:PostGetCollectible_BookOfAmplitude(player, item)

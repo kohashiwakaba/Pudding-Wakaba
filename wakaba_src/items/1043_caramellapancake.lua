@@ -13,7 +13,7 @@
 	- 에픽 : 조준하는 동안 조준점 위치에서 독파리 생성
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local flyType = 2
 wakaba.CaramellaAutoTargetFiles = {
 	[wakaba.Enums.Flies.RICHER] = true,
@@ -28,6 +28,10 @@ local function hasCaramellaEffect(player)
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.caramellacount = player:GetData().wakaba.caramellacount or 0
 	return player:HasCollectible(wakaba.Enums.Collectibles.CARAMELLA_PANCAKE) or player:GetData().wakaba.caramellacount > 0
+end
+
+function wakaba:hasCaramellaEffect(player)
+	return hasCaramellaEffect(player)
 end
 
 ---@param player EntityPlayer

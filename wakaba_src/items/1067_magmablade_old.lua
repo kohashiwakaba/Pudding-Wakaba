@@ -11,7 +11,7 @@
 	- 에픽 : 폭발한 위치에서 360도 방향으로 짧은 화염을 남김
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function canActivateMagmaBlade(player)
 	return player:HasCollectible(wakaba.Enums.Collectibles.MAGMA_BLADE)	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.MAGMA_BLADE)

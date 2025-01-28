@@ -7,7 +7,7 @@
 	P.S. 침수 공격은 돌 종류의 몬스터 즉사
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.AquaInstakillEntities = {
 	{EntityType.ENTITY_GIDEON},

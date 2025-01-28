@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 --wakaba.f:DrawString("droid",60,50,KColor(1,1,1,1,0,0,0),0,true) -- render string with loaded font on position 60x50y
 wakaba.ItemPoolType = {
 	ItemPoolType.POOL_NULL,
@@ -54,7 +54,7 @@ wakaba.ItemPoolName = {
 }
  ]]
 
--- return the first integer index holding the value 
+-- return the first integer index holding the value
 local function AnIndexOf(t,val)
 	for k,v in ipairs(t) do
 		if v == val then return k end
@@ -85,7 +85,7 @@ wakaba:addActiveRender({
 	Condition = function(player, activeSlot)
 		local data = player:GetData().wakaba
 		local item = player:GetActiveItem(activeSlot)
-		
+
 		return item == wakaba.Enums.Collectibles.DOUBLE_DREAMS
 	end,
 })
@@ -99,7 +99,7 @@ function wakaba:renderDreams()
 			wakaba.hasdreams = true
 		end
 	end
-	--[[ 
+	--[[
 	if wakaba.hasdreams
 	and wakaba.G:GetHUD():IsVisible()
 	then
@@ -113,14 +113,14 @@ function wakaba:renderDreams()
 		else
 			wakaba.f:DrawString(pooltype .. " " .. poolname, 20 - wakaba.G.ScreenShakeOffset.X, 5 - wakaba.G.ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
 		end
-		
+
 		--Isaac.RenderText("Sample text", 155, 20, 1, 1, 1, 255)
 	end ]]
 	if not wakaba.hasdreams then
 		wakaba.runstate.dreampool = ItemPoolType.POOL_NULL
 	end
-	
-	
+
+
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.renderDreams)
@@ -202,7 +202,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.dreamsUpdate)
 
 function wakaba:dreamsCardBonus(rng, spawnPosition)
 	--local randomInt = rng:RandomInt(100)
-	
+
 	local border = wakaba:IsLunatic() and 100 or 800
 	if wakaba:HasJudasBr(player) then
 		border = border + 400
@@ -236,7 +236,7 @@ if EID then
 		--if not descObj.Entity then return false end
 		return descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.DOUBLE_DREAMS
 	end
-	
+
 	local function DDCallback(descObj)
 		local player = EID.player
 		local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en_us"].doubledreams

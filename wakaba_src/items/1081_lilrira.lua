@@ -4,7 +4,7 @@
 	지형 관통, 특수 유도 눈물 발사
 	액티브 아이템 충전량을 흡수하여 공격력 (or 랜덤 스탯) 증가
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.Enums.Constants
 local sfx = SFXManager()
 

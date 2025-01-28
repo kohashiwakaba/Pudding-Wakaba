@@ -5,7 +5,7 @@
 	부활하지 않은 다음 스테이지 진입 시 각 종류별 픽업 1개씩 생성
 	(히든) 최초 획득 시 Gulp 알약 할당
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:NewLevel_SakuraCapsule()
 	local room = wakaba.G:GetRoom()

@@ -2,7 +2,7 @@
 	Chewy Rolly Cake (츄잉 롤케이크) - 패시브(Passive)
 	피격 시, 혹은 홀실 제거 시 그 방의 적 속도 감소, 캐릭터 이동속도 +0.3, 캐릭터 주변의 탄환 제거
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 ---@param cacheFlag CacheFlag

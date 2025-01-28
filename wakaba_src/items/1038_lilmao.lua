@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 wakaba.SUBTYPE_LIL_MAO = 93
 
 function wakaba:InitMaoLaser(player, familiar, multiplier)
@@ -55,7 +55,7 @@ end
 
 function wakaba:updateLilMao(familiar)
 	if familiar.SubType ~= wakaba.SUBTYPE_LIL_MAO then return end
-	--if familiar.State 
+	--if familiar.State
 	familiar:GetData().wakaba = familiar:GetData().wakaba or {}
 	local player = familiar.Player
 	if familiar.FireCooldown > 0 then
@@ -122,9 +122,9 @@ end
 
 function wakaba:PreCollision_LilMao(familiar, entity, bool)
 	if familiar.SubType ~= wakaba.SUBTYPE_LIL_MAO then return end
-	if entity:ToProjectile() then 
-		entity:Die() 
-		return true 
+	if entity:ToProjectile() then
+		entity:Die()
+		return true
 	end
 	if not entity:ToPlayer() then return end
 

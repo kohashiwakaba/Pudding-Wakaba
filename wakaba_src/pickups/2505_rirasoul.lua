@@ -1,5 +1,5 @@
 local sfx = SFXManager()
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local spawncount = wakaba.Enums.Constants.SOUL_OF_RIRA_AQUA_TRINKET_COUNT
 local clearcount = wakaba.Enums.Constants.SOUL_OF_RIRA_AQUA_TRINKET_COUNT_CLEAR_RUNE

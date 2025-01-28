@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function fireTearMoe(player, familiar, vector, rotation)
 	local fData = familiar:GetData()
@@ -19,7 +19,7 @@ local function fireTearMoe(player, familiar, vector, rotation)
 	end
 	local tearDamage = 2
 	tear.CollisionDamage = tearDamage * multiplier
-	
+
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
 		tear.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
@@ -27,7 +27,7 @@ local function fireTearMoe(player, familiar, vector, rotation)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
 		tear.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
-	
+
 	if Sewn_API then
 		local secondTearFlag = wakaba.RNG:RandomInt(TearFlags.TEAR_EFFECT_COUNT - 2) + 1
 		if Sewn_API:IsSuper(fData) then
@@ -55,7 +55,7 @@ function wakaba:initLilMoe(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
-	
+
 end
 
 function wakaba:updateLilMoe(familiar)
@@ -72,7 +72,7 @@ function wakaba:updateLilMoe(familiar)
 		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
 		if familiar.FireCooldown <= 0 then
 			fireTearMoe(player, familiar, Vector(0, player.ShotSpeed * 10), 0)
-	
+
 			if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
 				familiar.FireCooldown = player.MaxFireDelay * 1.25 // 1
 			else
@@ -85,7 +85,7 @@ function wakaba:updateLilMoe(familiar)
 	if player:GetPlayerType() == PlayerType.PLAYER_LILITH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
-		
+
 		local dirVec = wakaba.DIRECTION_VECTOR[player:GetHeadDirection()]
 		if player:AreControlsEnabled() and
 		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)

@@ -24,7 +24,7 @@
 local playerType = wakaba.Enums.Players.RIRA_B
 local isRiraContinue = true
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 if not REPENTOGON then
 	wakaba:registerCharacterHealthConversion(wakaba.Enums.Players.RIRA_B, isc.HeartSubType.SOUL)
 end

@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function canActivateOnsenTowel(player)
 	return player:HasCollectible(wakaba.Enums.Collectibles.ONSEN_TOWEL)	or player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.ONSEN_TOWEL)
@@ -32,6 +32,6 @@ function wakaba:Update_OnsenTowel()
 			end
 		end
 	end
-	
+
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_OnsenTowel)

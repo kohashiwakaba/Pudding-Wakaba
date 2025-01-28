@@ -4,7 +4,7 @@
 	동전 획득 시 2%의 확률로 소지한 아이템의 불꽃 소환 (Deja Vu 판정)
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:CoinInit_AuroraGem(pickup)
 	if not wakaba.state.options.allowlockeditems and wakaba.state.unlock.easteregg < 1 then return end

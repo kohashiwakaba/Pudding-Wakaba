@@ -1,8 +1,8 @@
---[[ 
+--[[
 	Richer's Flipper (리셰의 반전기) - 액티브(Active) - 3 rooms
 	사용 시 카드/알약 및 폭탄/열쇠를 반전
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:ItemUse_RicherFlipper(item, rng, player, useFlags, activeSlot, varData)
 	local discharge = false

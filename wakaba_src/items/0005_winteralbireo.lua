@@ -6,7 +6,7 @@
 	Based off on Retribution Tainted Mammon Shop
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 wakaba.minimapRooms = {}
 local game = wakaba.G
 

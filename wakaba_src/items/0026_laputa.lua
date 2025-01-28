@@ -8,4 +8,4 @@
 	- 가장 가까운 적
 	- 일정 거리 내에 가장 멀리 있는 적
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

@@ -2,7 +2,7 @@
 	Nerf Gun (너프 건) - 액티브(Active)
 	공격방향으로 너프 샷을 여러 번 발사
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local collectible = wakaba.Enums.Collectibles.NERF_GUN
 
 local function isRiraBR(player)
@@ -10,7 +10,7 @@ local function isRiraBR(player)
 end
 
 ---@param parent EntityTear
-local function getPositionOffset(parent, scale)
+function wakaba:getTrailPositionOffset(parent, scale)
 	local angle = parent.Velocity:Normalized() * 2
 	local height = parent.FallingAcceleration * parent.FallingSpeed
 	local offset = parent.PositionOffset + angle * scale + Vector(0, height / 2)
@@ -42,7 +42,7 @@ local function FireNerfShot(player, direction, dirOffset, launchSpeed)
 	trail:Update()
 	trail:GetData().w_trail = true
 	trail:GetData().w_parent = tear
-	trail.ParentOffset = getPositionOffset(tear, trail.SpriteScale.Y)
+	trail.ParentOffset = wakaba:getTrailPositionOffset(tear, trail.SpriteScale.Y)
 end
 
 -- Trail offset from Bullet Trails mod
@@ -51,7 +51,7 @@ function wakaba:TrailUpdate_NerfGun(trail)
 	if trail:GetData().w_parent then
 		local parent = trail:GetData().w_parent
 		if parent:Exists() then
-			trail.ParentOffset = getPositionOffset(parent, trail.SpriteScale.Y)
+			trail.ParentOffset = wakaba:getTrailPositionOffset(parent, trail.SpriteScale.Y)
 		else
 			trail:Remove()
 		end

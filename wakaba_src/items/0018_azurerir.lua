@@ -14,7 +14,7 @@
 	-- 모든 보물방에 적용 가능, 해당 방은 아이템 대신 아쿠아 장신구가 등장
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 wakaba.AzureRirBlacklistEntities = {
 	{EntityType.ENTITY_DOGMA},

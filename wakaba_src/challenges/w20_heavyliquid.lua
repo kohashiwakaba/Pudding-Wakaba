@@ -4,7 +4,7 @@
 	목표 : Hush
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.challenges.CHALLENGE_HVLQ
 local tp = wakaba.Enums.Players.RIRA_B
 wakaba.ChallengeParams.TargetCharacters[c] = tp

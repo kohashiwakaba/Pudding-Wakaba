@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 function wakaba:ItemUse_BookOfTrauma(item, rng, player, useFlags, activeSlot, varData)
 	local i = 0
 	local max = wakaba.Enums.Constants.MAX_TRAUMA_COUNT

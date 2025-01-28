@@ -2,7 +2,7 @@
 	Richer's Necklace (리셰의 목걸이) - 패시브(Passive)
 	눈물이 무언가에 부딪히면 잠시 후 랜덤 위치로 레이저를 발사합니다.
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local function getNecklaceCooldown(player)
 end

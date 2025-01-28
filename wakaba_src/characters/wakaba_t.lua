@@ -1,7 +1,7 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
-wakaba.playerstats.WAKABA_T = { 
+wakaba.playerstats.WAKABA_T = {
 	DAMAGE_MULTI = 0.5,
 	DAMAGE_FLAT = 3.5,
 	FIRERATE_MULTI = 0.6,
@@ -37,7 +37,7 @@ local function SauceLazerAnim(_,player)
 	if player:GetPlayerType() ~= wakaba.Enums.Players.WAKABA_T then return end
 
 	local controllerIndex = GetPlayerNumber(player)
-	
+
 	if Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, controllerIndex)
 	or Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, controllerIndex)
 	or Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, controllerIndex)

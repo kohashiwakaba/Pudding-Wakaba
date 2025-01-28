@@ -5,4 +5,4 @@
 	- 베이커리(특수방) : 빵 관련 아이템만 등장,
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

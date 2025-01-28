@@ -3,4 +3,4 @@
 	- 사용한 위치에 오르골 설치
 	- 오르골은 항상 자력+표식 상태
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

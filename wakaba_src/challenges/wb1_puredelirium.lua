@@ -1,5 +1,5 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.challenges.CHALLENGE_SLNT
 local tp = wakaba.Enums.Players.SHIORI
 wakaba.ChallengeParams.TargetCharacters[c] = tp

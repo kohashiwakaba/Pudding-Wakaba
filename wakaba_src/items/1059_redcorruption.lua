@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local baseChance = wakaba.Enums.Constants.RED_CORRUPTION_BASE_CHANCE
 local parLuck = wakaba.Enums.Constants.RED_CORRUPTION_PAR_LUCK
 
@@ -9,7 +9,7 @@ function wakaba:UpdateRoomDisplayFlags(initroomdesc)
 	local roomdata = roomdesc.Data
 	if level:GetRoomByIdx(roomdesc.GridIndex).DisplayFlags then
 		if level:GetRoomByIdx(roomdesc.GridIndex) ~= level:GetCurrentRoomDesc().GridIndex then
-			if roomdata then 
+			if roomdata then
 				if level:GetStateFlag(LevelStateFlag.STATE_FULL_MAP_EFFECT) then
 					roomdesc.DisplayFlags = 111
 				elseif roomdata.Type ~= RoomType.ROOM_DEFAULT and roomdata.Type ~= RoomType.ROOM_SECRET and roomdata.Type ~= RoomType.ROOM_SUPERSECRET and roomdata.Type ~= RoomType.ROOM_ULTRASECRET and level:GetStateFlag(LevelStateFlag.STATE_COMPASS_EFFECT) then

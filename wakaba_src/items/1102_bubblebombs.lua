@@ -3,7 +3,7 @@
 	- 폭탄 +5
 	- 폭탄이 확률적으로 약화 or 침수 상태이상
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 local function shouldApplyAqua(player, rng)

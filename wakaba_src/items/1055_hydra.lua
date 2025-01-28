@@ -1,7 +1,7 @@
 local HYDRA_CENTER = 0
 local HYDRA_LEFT = 1
 local HYDRA_RIGHT = 2
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local HydraState = {
 	IDLE = 0,
@@ -36,7 +36,7 @@ function wakaba:FamiliarInit_Hydra(familiar)
 
 	local sprite = familiar:GetSprite()
 	sprite:Play("IdleDown")
-	
+
 end
 
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_Hydra, wakaba.Enums.Familiars.HYDRA)
@@ -83,7 +83,7 @@ function wakaba:FamiliarUpdate_Hydra(familiar)
 		sprite:Play(wakaba.DIRECTION_SHOOT_ANIM[player_fire_direction], false)
 		if familiar.FireCooldown <= 0 then
 			fireTearNasa(player, familiar, tear_vector, 0)
-	
+
 			if player:HasTrinket(TrinketType.TRINKET_FORGOTTEN_LULLABY) then
 				familiar.FireCooldown = 5
 			else

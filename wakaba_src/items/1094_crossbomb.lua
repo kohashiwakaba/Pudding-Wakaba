@@ -4,7 +4,7 @@
 	캐릭터의 폭탄 폭발을 기준 4방향으로 3칸씩 추가 폭발
 	추가 폭발은 캐릭터 자해 없음
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 
 ---@param player EntityPlayer

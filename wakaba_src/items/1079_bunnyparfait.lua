@@ -3,7 +3,7 @@
 	방 번호에 따라 랜덤 아이템 효과, 사망 시 전 방에서 리라로 부활
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 wakaba.HiddenItemManager:HideCostumes("WAKABA_BUNNY_PARFAIT")
 
 ---@param player EntityPlayer

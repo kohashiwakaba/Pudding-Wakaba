@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local clover_chest_data = {
 	run = {
@@ -35,7 +35,7 @@ wakaba.Weights.CloverChest.Extra = {
 
 function wakaba:manageCloverChests()
 	local haspp = false
-	
+
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i-1)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) then
@@ -60,15 +60,15 @@ function wakaba:ReplaceChests(pickup)
 	if pickup.Variant == PickupVariant.PICKUP_CHEST then
 		local stage = wakaba.G:GetLevel():GetStage()
 		wakaba.ItemRNG:SetSeed(pickup.DropSeed, 0)
-		if wakaba.state.unlock.cloverchest > 0 
-		and stage ~= LevelStage.STAGE6 
-		and wakaba.ItemRNG:RandomFloat() < 0.05 
+		if wakaba.state.unlock.cloverchest > 0
+		and stage ~= LevelStage.STAGE6
+		and wakaba.ItemRNG:RandomFloat() < 0.05
 		and wakaba.G:GetRoom():GetType() ~= RoomType.ROOM_CHALLENGE then
 			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.CLOSED)
 		end
 	elseif pickup.Variant == wakaba.Enums.Pickups.CLOVER_CHEST then
 		if haspp then
-			pickup:GetSprite():ReplaceSpritesheet(0, "gfx/cloverchest_pp.png") 
+			pickup:GetSprite():ReplaceSpritesheet(0, "gfx/cloverchest_pp.png")
 			pickup:GetSprite():LoadGraphics()
 		end
 	end
@@ -85,7 +85,7 @@ function wakaba:ReplaceChestsLate(pickup)
 	local currentRoomIndex = isc:getRoomListIndex()
 	if not clover_chest_data.floor.cloverchestpedestals[currentRoomIndex] then return end
 	if wakaba:has_value(clover_chest_data.floor.cloverchestpedestals[currentRoomIndex], wakaba:getPickupIndex(pickup)) then
-		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
+		pickup:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 		if haspp then
 			pickup:GetSprite():SetOverlayFrame("Alternates", 16)
 		else
@@ -115,7 +115,7 @@ function wakaba:spawnCloverChestReward(chest)
 		local itemID = wakaba:GetItemFromWakabaPools("CloverChest", false, chest.InitSeed)
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, itemID, chest.Position, Vector.Zero, nil):ToPickup()
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
+		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 		if haspp then
 			item:GetSprite():SetOverlayFrame("Alternates", 16)
 		else
@@ -131,7 +131,7 @@ function wakaba:spawnCloverChestReward(chest)
 	elseif wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE6 then
 		local item = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, chest.Position, Vector.Zero, nil):ToPickup()
 		item:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
-		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png") 
+		item:GetSprite():ReplaceSpritesheet(5, "gfx/items/wakaba_altars.png")
 		if haspp then
 			item:GetSprite():SetOverlayFrame("Alternates", 16)
 		else
@@ -166,7 +166,7 @@ function wakaba:spawnCloverChestReward(chest)
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_LUCKYPENNY, chest.Position, wakaba.RandomVelocity(), nil)
 		else
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_GOLDEN, chest.Position, wakaba.RandomVelocity(), nil)
-		end 
+		end
 	end
 end
 
@@ -195,7 +195,7 @@ end
 function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 	if pickup.SubType == wakaba.ChestSubType.CLOSED and collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()
-		if player:HasGoldenKey() or player:GetNumKeys() > 0 
+		if player:HasGoldenKey() or player:GetNumKeys() > 0
 		or player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP)
 		or (player:HasCollectible(CollectibleType.COLLECTIBLE_PAY_TO_PLAY) and player:GetNumCoins() > 0) then
 			if not player:HasGoldenKey() and not player:HasTrinket(TrinketType.TRINKET_PAPER_CLIP) then
@@ -206,7 +206,7 @@ function wakaba:PickupCollision_CloverChest(pickup, collider, low)
 				end
 			end
 			pickup.Touched = true
-		
+
 			pickup:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
@@ -223,11 +223,11 @@ function wakaba:TearUpdate_CloverChest(tear)
 		if entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == wakaba.Enums.Pickups.CLOVER_CHEST and entity.SubType == wakaba.ChestSubType.CLOSED then
 			entity = entity:ToPickup()
 			entity.Touched = true
-		
+
 			entity:Morph(EntityType.ENTITY_PICKUP, wakaba.Enums.Pickups.CLOVER_CHEST, wakaba.ChestSubType.OPEN)
 			SFXManager():Play(SoundEffect.SOUND_CHEST_OPEN)
 			SFXManager():Play(SoundEffect.SOUND_UNLOCK00)
-	
+
 			local spawner = tear.SpawnerEntity
 			if spawner and spawner:ToPlayer() then
 				wakaba:openCloverChest(spawner:ToPlayer(), entity)

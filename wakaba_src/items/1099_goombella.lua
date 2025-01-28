@@ -8,4 +8,4 @@
 	-- 응원 키스 : 액티브 아이템을 한칸 충전
 
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc

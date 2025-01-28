@@ -2,7 +2,7 @@
 	Richer's Bra (리셰의 속옷) - 패시브(Passive)
 	- 모든 피격에 대한 패널티 방어
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:AlterPlayerDamage_RicherBra(player, amount, flags, source, countdown)
 	if player:HasCollectible(wakaba.Enums.Collectibles.RICHERS_BRA) then

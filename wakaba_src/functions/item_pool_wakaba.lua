@@ -1,7 +1,7 @@
 -- main unlock related functions mixed from Fiend Folio, Retribution
 
 local game = Game()
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 local local_item_pools = {
 	run = {}

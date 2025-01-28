@@ -1,9 +1,9 @@
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:CoinUpdate_EasterEgg(pickup)
 	if pickup.SubType ~= wakaba.Enums.Coins.EASTER_EGG then return end
-	
+
 	if pickup:GetSprite():IsEventTriggered("DropSound") then
 		SFXManager():Play(SoundEffect.SOUND_PENNYDROP, 1, 0, false, 1)
 	end
@@ -12,7 +12,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.CoinUpdate_EasterE
 
 function wakaba:CoinCollision_EasterEgg(pickup, collider)
 	if pickup.SubType ~= wakaba.Enums.Coins.EASTER_EGG then return end
-	
+
 	if collider:ToPlayer() or
 	   (collider:ToFamiliar() and (collider.Variant == FamiliarVariant.BUM_FRIEND or
 							  collider.Variant == FamiliarVariant.BUMBO or
@@ -45,7 +45,7 @@ function wakaba:CoinCollision_EasterEgg(pickup, collider)
 		pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
 		sprite:Play("Collect", true)
 		pickup:Die()
-		
+
 		Game():SetStateFlag(GameStateFlag.STATE_HEART_BOMB_COIN_PICKED, true)
 
 		return true
@@ -80,7 +80,7 @@ function wakaba:FamiliarInit_EasterEgg(familiar)
 end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_EasterEgg, wakaba.Enums.Familiars.EASTER_EGG)
 
---[[ 
+--[[
 for i = 1, 2 do
 	local variant = FamiliarVariant["MERN_"..i]
 	mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, function(_, fam)
@@ -197,7 +197,7 @@ function wakaba:FamiliarUpdate_EasterEgg(familiar)
 	if p:GetPlayerType() == PlayerType.PLAYER_LILITH and p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		familiar:RemoveFromFollowers()
 		familiar:GetData().BlacklistFromLilithBR = true -- to prevent conflict with using im_tem's code
-		
+
 		local dirVec = wakaba.DIRECTION_VECTOR[p:GetHeadDirection()]
 		if p:AreControlsEnabled() and
 		(		 Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, p.ControllerIndex)
@@ -220,7 +220,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_EasterEgg, wakaba.Enums.Familiars.EASTER_EGG)
 
 function wakaba:FamiliarRender_EasterEgg(familiar)
-	
+
 	local sprite = familiar:GetSprite()
 	local tcolor = Color(1, 1, 1, 1, 0, 0, 0)
 	tcolor:SetColorize(wakaba.RGB.R/255,wakaba.RGB.G/255,wakaba.RGB.B/255, 0.42)

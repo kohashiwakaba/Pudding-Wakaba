@@ -1,5 +1,5 @@
 wakaba.state.currentlibraryindex = 0
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:HasShiori(player, includeShiori, includeTLaz)
 	if player:GetPlayerType() == wakaba.Enums.Players.SHIORI then

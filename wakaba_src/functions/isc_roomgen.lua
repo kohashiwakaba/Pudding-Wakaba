@@ -208,7 +208,7 @@ function wakaba:getLevelDeadEndCandidates(onnewlevel)
 	return candidates
 end
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:NewLevel_RoomGen()
 	local roomsToGenerate = {}

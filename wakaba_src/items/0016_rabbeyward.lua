@@ -10,7 +10,7 @@
 	리라영혼 한정 추가 - 그 방의 모든 장신구를 아쿠아화 (해금 무관)
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local sfx = SFXManager()
 local rabbey_ward_data = {
 	run = {

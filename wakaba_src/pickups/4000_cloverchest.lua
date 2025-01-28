@@ -1,4 +1,4 @@
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local collectibleSpawnChance = wakaba.Enums.Constants.CLOVER_CHEST_COLLECTIBLE_CHANCE
 
 local clover_chest_data = {

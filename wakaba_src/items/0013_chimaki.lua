@@ -6,7 +6,7 @@
 	based off from virgil from Revelations
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local sfx = SFXManager()
 
 local function GetValidGridCollisions(groundMove)

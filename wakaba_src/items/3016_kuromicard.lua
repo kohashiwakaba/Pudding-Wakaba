@@ -1,9 +1,9 @@
---[[ 
+--[[
 	Kuromi Card (쿠로미 카드) - 장신구
 	액티브 아이템 사용 시 확률적으로 충전량 보존 or 일회성 미소멸
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:UseItem_KuromiCard(item, rng, player, useFlags, activeSlot, varData)
 	if player:GetTrinketMultiplier(wakaba.Enums.Trinkets.KUROMI_CARD) > 0 then

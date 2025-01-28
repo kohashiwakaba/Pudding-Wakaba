@@ -5,7 +5,7 @@
 	목표 : Mom's Heart
 ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 local c = wakaba.challenges.CHALLENGE_MNPL
 local tp = wakaba.Enums.Players.RIRA_B
 wakaba.ChallengeParams.TargetCharacters[c] = tp

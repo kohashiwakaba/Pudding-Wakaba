@@ -2,7 +2,7 @@
 	Kanae Lens (카나에 렌즈) - 패시브(Passive)
 	공격력 x1.65, 왼쪽 눈에 유도 효과 부여
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:Cache_KanaeLens(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.KANAE_LENS) then

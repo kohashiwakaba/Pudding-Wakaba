@@ -1,9 +1,9 @@
---[[ 
+--[[
 	Pow/MOd Block (POW/MOd 블록) - 액티브 : 기타
 	사용 시 폭탄 2개를 소모하여 지상의 적에게 280(POW)/공중의 적에게 320(MOd) 분산 피해
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:ItemUse_PowMod(usedItem, rng, player, useFlags, activeSlot, varData)
 	if player:GetActiveItem(activeSlot) == wakaba.Enums.Collectibles.POW_BLOCK

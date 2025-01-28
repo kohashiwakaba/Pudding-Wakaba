@@ -2,7 +2,7 @@
 	Rira's Uniform (리라의 제복) - 패시브(Passive)
 	- 사용 시 아스트랄 + 은신 속옷 효과 발동
  ]]
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param item CollectibleType
 ---@param rng RNG

@@ -21,7 +21,7 @@
 	- Trial Stew
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---comment
 ---@param player EntityPlayer

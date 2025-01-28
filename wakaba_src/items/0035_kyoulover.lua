@@ -4,7 +4,7 @@
 	아이템 획득 시 색상 변경, 표시된 색상의 퀄리티만 표시
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 ---@param player EntityPlayer
 ---@return boolean
 function wakaba:hasKyouchan(player)

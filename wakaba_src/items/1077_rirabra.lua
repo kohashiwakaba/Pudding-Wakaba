@@ -1,9 +1,9 @@
---[[ 
+--[[
 	Rira's Bra (리라의 브래지어) - 액티브 : 4칸
 	사용 시 그 방에서 랜덤 눈물 효과(3달러 지폐와 동일), 상태이상에 걸린 적에게 추가 피해
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 function wakaba:ItemUse_RiraBra(usedItem, rng, player, useFlags, activeSlot, varData)
 
@@ -22,8 +22,8 @@ function wakaba:HasStatusEffects(entity)
 	local hasEffect = false
 	for _, flag in ipairs(wakaba.Checks.VanillaStatusEffects) do
 		hasEffect = hasEffect or entity:HasEntityFlags(flag)
-		if hasEffect then 
-			break 
+		if hasEffect then
+			break
 		end
 	end
 
@@ -72,8 +72,8 @@ function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
 	end
 	local hasStopWatch = wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_STOP_WATCH)
 	if num > 0 and (wakaba:HasStatusEffects(entity) or hasStopWatch) then
-		if hasStopWatch then 
-			num = num + 1 
+		if hasStopWatch then
+			num = num + 1
 		end
 		returndata.newDamage = newDamage * (1 + (num * 0.25))
 		returndata.sendNewDamage = true

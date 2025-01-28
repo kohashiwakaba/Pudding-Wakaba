@@ -4,5 +4,5 @@
 	Lost 상태일 때 헌혈류 요소 사용 가능
  ]]
 
--- local isc = require("wakaba_src.libs.isaacscript-common")
+-- local isc = _wakaba.isc
 -- rira.lua

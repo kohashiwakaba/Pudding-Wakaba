@@ -4,7 +4,7 @@
 	소지/사용 시 Flip 효과 발동
  ]]
 
-local isc = require("wakaba_src.libs.isaacscript-common")
+local isc = _wakaba.isc
 
 ---@param player EntityPlayer
 ---@param flags UseFlag
