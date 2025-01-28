@@ -1,3 +1,5 @@
+local isc = require("wakaba_src.libs.isaacscript-common")
+
 function wakaba:ItemUse_GrimreaperDefender(item, rng, player, useFlags, activeSlot, varData)
 	local isGolden = wakaba:IsGoldenItem(item)
 
