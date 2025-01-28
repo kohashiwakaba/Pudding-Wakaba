@@ -1440,7 +1440,6 @@ function wakaba:IsActiveFromProceduralItem(player, usedItem, slot)
 end
 
 function wakaba:IsLunatic()
-	return wakaba.state.bossdestlunatic -- TODO add callback for this
 	return wakaba.state.bossdestlunatic or wakaba.state.options.forceLunatic -- TODO move to lunatic.lua
 end
 
