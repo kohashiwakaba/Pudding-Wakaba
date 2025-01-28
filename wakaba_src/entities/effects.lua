@@ -305,6 +305,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 
 	-- effect trail
 	if effect.Variant == EffectVariant.SPRITE_TRAIL then
+		local trail = effect
 		-- nerf gun
 		if trail:GetData().w_parent then
 			local parent = trail:GetData().w_parent
