@@ -50,6 +50,7 @@ include('wakaba_src.debug_area')
 
 --include("wakaba_src.libs.filepathhelper")
 include('wakaba_src.libs.hud_helper')
+include('wakaba_src.libs.status_effect_library')
 include('wakaba_src.libs.screenhelper')
 include("wakaba_src.enums.constants")
 include("wakaba_src.libs.retribution_utils")
@@ -84,6 +85,9 @@ wakaba.globalHUDSprite:Load("gfx/ui/wakaba/hudstats2.anm2", true)
 ---@type Sprite
 wakaba.WakabaHealthSprite = Sprite()
 wakaba.WakabaHealthSprite:Load("gfx/ui/wakaba/ui_hearts_wakaba.anm2", true)
+
+wakaba.Status = StatusEffectLibrary
+include('wakaba_src.libs.status_effect_library_append')
 
 function wakaba:isRepPlus()
 	return FontRenderSettings ~= nil
@@ -945,7 +949,6 @@ end
 do -- Core loader
 	include('wakaba_src.functions.callbacks_wakaba')
 	include('wakaba_src.functions.secondary_player_data')
-	include('wakaba_src.libs.retribution_status')
 	include('wakaba_src.libs.revel_utils')
 	include('wakaba_src.functions.hudstats')
 	include('wakaba_src.functions.hit_counter')

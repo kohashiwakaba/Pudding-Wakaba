@@ -7,11 +7,11 @@ local isc = require("wakaba_src.libs.isaacscript-common")
 local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Zipped")
-wakaba:RegisterStatusEffect("ZIPPED", sprite, {
-	CanStack = false,
-	EntityColor = wakaba.Colors.ZIPPED_ENTITY_COLOR,
-	VasculitisFlag = wakaba.TearFlag.ZIPPED,
-})
+wakaba.Status.RegisterStatusEffect(
+	"wakaba_ZIPPED",
+	sprite,
+	wakaba.Colors.ZIPPED_ENTITY_COLOR
+)
 
 local function shouldAlwaysColorWeapon(player)
 	return player:HasWeaponType(WeaponType.WEAPON_BRIMSTONE) or player:HasWeaponType(WeaponType.WEAPON_LASER) or player:HasWeaponType(WeaponType.WEAPON_KNIFE) or player:HasWeaponType(WeaponType.WEAPON_TECH_X)
@@ -63,9 +63,8 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 				elseif weapon.Type ~= EntityType.ENTITY_LASER then
 					weapon.Color = wakaba.Colors.ZIPPED_WEAPON_COLOR
 				end
-			elseif wakaba:CanApplyStatusEffect(effectTarget) then
-				--print("passed")
-				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
+			else
+				wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, EntityRef(player))
 			end
 		elseif weapon and wakaba:IsLudoTear(weapon, onlyTear) then
 			wakaba:ClearRicherTearFlags(weapon, wakaba.TearFlag.ZIPPED)
@@ -75,26 +74,21 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_BlackBeanMochi)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if wakaba:CanApplyStatusEffect(effectTarget) then
-		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.ZIPPED, 90, player)
-		if effectTarget:IsBoss() then
-			wakaba:AddStatusCooldown(effectTarget)
-		end
-	end
+	wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, EntityRef(player))
 end, wakaba.TearFlag.ZIPPED)
 
 ---@param npc EntityNPC
 function wakaba:NPCDeath_BlackBeanMochi(entity)
 	if not entity:ToNPC() then return end
 	local npc = entity:ToNPC()
-	if wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED) then
-		local statusData = wakaba:HasStatusEffect(npc, wakaba.StatusEffect.ZIPPED)
-		local player = statusData.Player
-		if player then
+	if wakaba.Status:HasStatusEffect(entity, wakaba.Status.StatusFlag.wakaba_ZIPPED) then
+		local statusData = wakaba.Status:GetStatusEffectData(npc, wakaba.Status.StatusFlag.wakaba_ZIPPED)
+		local source = statusData.Source
+		if source then
 			local enemies = isc:getNPCs()
 			for i, e in ipairs(enemies) do
-				if wakaba:EntitiesAreWithinRange(npc, e, 75) and not wakaba:isStatusBlacklisted(e) then
-					wakaba:AddStatusEffect(e, wakaba.StatusEffect.ZIPPED, 90, player)
+				if wakaba:EntitiesAreWithinRange(npc, e, 75) then
+					wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, source)
 				end
 			end
 			local flags = wakaba:IsLunatic() and 0 or player:GetBombFlags()

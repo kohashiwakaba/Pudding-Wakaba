@@ -7,7 +7,7 @@ wakaba:RegisterPatch(0, "HPBars", function() return (HPBars ~= nil) end, functio
 		HPBars.StatusEffects["Zipped_wakaba"] = {
 			sprite = tSprite,
 			condition = function(entity)
-				return entity and wakaba:HasStatusEffect(entity, wakaba.StatusEffect.ZIPPED)
+				return entity and wakaba.Status:HasStatusEffect(entity, wakaba.Status.StatusFlag.wakaba_ZIPPED)
 			end,
 			animation = "Zipped",
 			frame = 0,
@@ -15,7 +15,7 @@ wakaba:RegisterPatch(0, "HPBars", function() return (HPBars ~= nil) end, functio
 		HPBars.StatusEffects["Aqua_wakaba"] = {
 			sprite = tSprite,
 			condition = function(entity)
-				return entity and wakaba:HasStatusEffect(entity, wakaba.StatusEffect.AQUA)
+				return entity and wakaba.Status:HasStatusEffect(entity, wakaba.Status.StatusFlag.wakaba_AQUA)
 			end,
 			animation = "Aqua",
 			frame = 0,

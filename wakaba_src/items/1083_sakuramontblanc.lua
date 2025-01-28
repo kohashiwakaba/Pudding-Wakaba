@@ -20,14 +20,14 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 		end
 		local enemies = isc:getNPCs()
 		for i, e in ipairs(enemies) do
-			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) and not wakaba:isStatusBlacklisted(e) then
+			if wakaba:EntitiesAreWithinRange(entity, e, 85 * power) then
 				if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
 					e.HitPoints = 0
 					e:Update()
 				elseif wakaba:isAquaInstakill(entity) then
 					e:Kill()
 				else
-					wakaba:AddStatusEffect(e, wakaba.StatusEffect.AQUA, 300 * power, player)
+					wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 300 * power, EntityRef(player))
 				end
 			end
 		end

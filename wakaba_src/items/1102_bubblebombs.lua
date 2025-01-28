@@ -86,14 +86,14 @@ function wakaba:ActivateBubbleBomb(bomb, player)
 			local size = boom.SpriteScale.X
 			local nearby = Isaac.FindInRadius(boom.Position, 75*size)
 			for _, e in pairs(nearby) do
-				if e:IsVulnerableEnemy() and not wakaba:isStatusBlacklisted(e) then
+				if e:IsVulnerableEnemy() then
 					if e:HasEntityFlags(EntityFlag.FLAG_ICE) then
 						e.HitPoints = 0
 						e:Update()
 					elseif wakaba:isAquaInstakill(e) then
 						e:Kill()
 					else
-						wakaba:AddStatusEffect(e, wakaba.StatusEffect.AQUA, 150, player)
+						wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 150, EntityRef(player))
 					end
 				end
 			end

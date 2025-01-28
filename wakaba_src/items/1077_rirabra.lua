@@ -27,6 +27,9 @@ function wakaba:HasStatusEffects(entity)
 		end
 	end
 
+	local wakabaEffects = wakaba.Status:GetStatusEffects(entity)
+	hasEffect = hasEffect or wakabaEffects.NumStatusesActive > 0
+
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_RIRA_BRA)) do
 		local returnedFlag = callback.Function(callback.Mod, entity)
 		if returnedFlag ~= nil and returnedFlag ~= false then

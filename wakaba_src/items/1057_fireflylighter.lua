@@ -70,9 +70,7 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_FireflyLighter)
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if wakaba:CanApplyStatusEffect(effectTarget) then
-		spawnLightBeam(effectTarget, player)
-	end
+	spawnLightBeam(effectTarget, player)
 end, wakaba.TearFlag.PSEUDO_HEAVEN)
 
 ---@param npc EntityNPC

@@ -166,7 +166,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_PhantomCloak)
 
 function wakaba:PNPCUpdate_PhantomCloak(npc)
-	if not npc:IsEnemy() or not wakaba:CanApplyStatusEffect(npc, true) then return end
+	if not npc:IsEnemy() then return end
 	local target = npc:GetPlayerTarget()
 	npc:GetData().wakaba = npc:GetData().wakaba or {}
 	pData = target:GetData()

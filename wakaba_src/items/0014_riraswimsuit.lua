@@ -53,11 +53,11 @@ wakaba.AquaDowngradeEntities = {
 local sprite = Sprite()
 sprite:Load("gfx/ui/wakaba/ui_statusicons.anm2", true)
 sprite:Play("Aqua")
-wakaba:RegisterStatusEffect("AQUA", sprite, {
-	CanStack = false,
-	EntityColor = wakaba.Colors.AQUA_ENTITY_COLOR,
-	VasculitisFlag = wakaba.TearFlag.AQUA,
-})
+wakaba.Status.RegisterStatusEffect(
+	"wakaba_AQUA",
+	sprite,
+	wakaba.Colors.AQUA_ENTITY_COLOR
+)
 
 function wakaba:isAquaInstakill(entity)
 	for _, dict in ipairs(wakaba.AquaInstakillEntities) do
@@ -141,9 +141,8 @@ function wakaba:EvalTearFlag_RiraSwimsuit(weapon, player, effectTarget)
 				elseif weapon.Type ~= EntityType.ENTITY_LASER then
 					weapon.Color = wakaba.Colors.AQUA_WEAPON_COLOR
 				end
-			elseif wakaba:CanApplyStatusEffect(effectTarget) then
-				--print("passed")
-				wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
+			else
+				wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 150, EntityRef(player))
 			end
 		elseif weapon and wakaba:IsLudoTear(weapon, true) then
 			wakaba:ClearRicherTearFlags(weapon, wakaba.TearFlag.AQUA)
@@ -160,12 +159,7 @@ wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarg
 		effectTarget:Update()
 		--effectTarget:AddEntityFlags(EntityFlag.FLAG_ICE_FROZEN)
 	end
-	if wakaba:CanApplyStatusEffect(effectTarget) then
-		wakaba:AddStatusEffect(effectTarget, wakaba.StatusEffect.AQUA, 150, player)
-		if effectTarget:IsBoss() then
-			wakaba:AddStatusCooldown(effectTarget)
-		end
-	end
+	wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 150, EntityRef(player))
 end, wakaba.TearFlag.AQUA)
 
 local function shouldApplySwordAqua(player)
@@ -176,7 +170,7 @@ end
 function wakaba:AquaDamage(source, target, data, newDamage, newFlags)
 	local returndata = {}
 	local num = 0
-	local statusData = wakaba:HasStatusEffect(target, wakaba.StatusEffect.AQUA)
+	local statusData = wakaba.Status:GetStatusEffectData(target, wakaba.Status.StatusFlag.wakaba_AQUA)
 	if statusData then
 		--print(source.Entity, wakaba:HasRicherTearFlags(source.Entity, wakaba.TearFlag.AQUA))
 		if newFlags & DamageFlag.DAMAGE_FIRE > 0

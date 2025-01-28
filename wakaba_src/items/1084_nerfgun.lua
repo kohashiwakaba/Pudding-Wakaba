@@ -72,14 +72,12 @@ local function TryCancelNerfGun(player)
 end
 
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
-	if wakaba:CanApplyStatusEffect(effectTarget, true) then
-		local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
-		effectTarget:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
-		if not isRiraBR(player) then
-			local data = effectTarget:GetData()
-			local currentExpirey = data.wakaba_nerfExpireFrame
-			data.wakaba_nerfExpireFrame = math.max(data.wakaba_nerfExpireFrame or effectTarget.FrameCount, effectTarget.FrameCount + (150 * (1 + secondHandMultiplier)))
-		end
+	local secondHandMultiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_SECOND_HAND)
+	effectTarget:AddEntityFlags(EntityFlag.FLAG_WEAKNESS)
+	if not isRiraBR(player) then
+		local data = effectTarget:GetData()
+		local currentExpirey = data.wakaba_nerfExpireFrame
+		data.wakaba_nerfExpireFrame = math.max(data.wakaba_nerfExpireFrame or effectTarget.FrameCount, effectTarget.FrameCount + (150 * (1 + secondHandMultiplier)))
 	end
 end, wakaba.TearFlag.NERF)
 
