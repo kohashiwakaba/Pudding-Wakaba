@@ -73,6 +73,18 @@ function wakaba:EvalTearFlag_BlackBeanMochi(weapon, player, effectTarget)
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag_BlackBeanMochi)
 
+
+---@param ent Entity
+---@param statusEffect StatusFlag
+---@param statusEffectData StatusEffectData
+function wakaba:Status_PostAddEffect_Zipped(ent, statusEffect, statusEffectData)
+	if not statusEffectData.CustomData.w_Player then
+		statusEffectData.CustomData.w_Player = statusEffectData.Source.Entity and statusEffectData.Source.Entity:ToPlayer()
+	end
+end
+
+wakaba.Status.Callbacks.AddCallback(wakaba.Status.Callbacks.ID.POST_ADD_ENTITY_STATUS_EFFECT, wakaba.Status_PostAddEffect_Zipped, wakaba.Status.StatusFlag.wakaba_ZIPPED)
+
 wakaba:AddCallback(wakaba.Callback.APPLY_TEARFLAG_EFFECT, function(_, effectTarget, player, effectSource)
 	wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 90, EntityRef(player))
 end, wakaba.TearFlag.ZIPPED)
@@ -84,7 +96,7 @@ function wakaba:NPCDeath_BlackBeanMochi(entity)
 	if wakaba.Status:HasStatusEffect(entity, wakaba.Status.StatusFlag.wakaba_ZIPPED) then
 		local statusData = wakaba.Status:GetStatusEffectData(npc, wakaba.Status.StatusFlag.wakaba_ZIPPED)
 		local source = statusData.Source
-		local player = source.Entity and source.Entity:ToPlayer()
+		local player = (source.Entity and source.Entity:ToPlayer()) or statusData.CustomData.w_Player
 		if source and player then
 			local enemies = isc:getNPCs()
 			for i, e in ipairs(enemies) do
