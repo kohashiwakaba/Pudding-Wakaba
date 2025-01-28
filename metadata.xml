@@ -29,12 +29,12 @@ Mod Includes :
 
 [img]https://i.imgur.com/iskBGLc.png[/img]
 
-10 New Characters(Wakaba, Shiori, Tsukasa, Richér, Rira, with both tainted forms)
-80+ new Items
-15+ new Trinkets
-15+ new Card/Runes
-10+ new Pills
-20 new Challenges
+11 Characters
+80+ Items
+15+ Trinkets
+15+ Card/Runes
+10+ Pills
+20 Challenges
 
 [h1]Items[/h1]
 [b]Under construction, Using Encyclopedia Wiki is strongly recommended. [/b]
@@ -72,7 +72,7 @@ Mod Includes :
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - NFrost - charge bar library
-- Sanio - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector[/url] library / PnW uses modified version of Costume Protector.
+- Benny(Sanio) - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector, HUD Helper[/url] library
 - YouDuckBoom - Chinese EID translation</description>
     <version>130.0</version>
     <visibility>Public</visibility>
