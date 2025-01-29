@@ -61,6 +61,48 @@ local function getRenderList(player)
 	return renderList
 end
 
+_wakaba.tricher_yoffset = 30
+
+-- Register HUD Helper for Tainted Richer
+HudHelper.RegisterHUDElement({
+	Name = "wakaba_TRicher",
+	Priority = HudHelper.Priority.HIGHEST,
+	XPadding = -4,
+	YPadding = 0,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	Condition = function(player, playerHUDIndex, hudLayout, position)
+		return player:GetPlayerType() == playerType
+	end,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	OnRender = function(player, playerHUDIndex, hudLayout, position)
+		local playerIndex = isc:getPlayerIndex(player)
+		local list = getRenderList(player)
+		local spr_table = {}
+		for i, id in ipairs(list) do
+			spr_table[i] = Sprite()
+			spr_table[i]:Load("gfx/ui/wakaba/ui_richer_b.anm2",true)
+			if id and id ~= 0 and Isaac.GetItemConfig():GetCollectible(id) then
+				spr_table[i]:ReplaceSpritesheet(2, Isaac.GetItemConfig():GetCollectible(id).GfxFileName)
+				spr_table[i]:LoadGraphics()
+			end
+			if i == 1 then
+				spr_table[i]:SetFrame("Idle",0)
+			else
+				spr_table[i]:SetFrame("Idle",1)
+			end
+			spr_table[i]:Render(position + Vector(12*(i-1), 0),Vector(0,0),Vector(0,0))
+		end
+	end,
+	--PreRenderCallback = true
+}, HudHelper.HUDType.EXTRA)
+
+
 function wakaba:Render_WaterFlame()
 	if (ModConfigMenu and ModConfigMenu.IsVisible)
 	or not wakaba.G:GetHUD():IsVisible()
@@ -100,7 +142,7 @@ function wakaba:Render_WaterFlame()
 	end
 
 end
-wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WaterFlame)
+--wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.Render_WaterFlame)
 
 ---@param player EntityPlayer
 local function GetVisibleWisps(player)
