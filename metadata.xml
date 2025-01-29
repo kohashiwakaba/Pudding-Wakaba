@@ -72,9 +72,9 @@ Mod Includes :
 - Connor - Hidden Item manager
 - bogdanrudyka - PostGetCollectible custom callback
 - NFrost - charge bar library
-- Benny(Sanio) - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector, HUD Helper[/url] library
+- Benny(Sanio) - [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2541362255]Character Costume Protector, HUD Helper, Status Effect library[/url]
 - YouDuckBoom - Chinese EID translation</description>
-    <version>130.0</version>
+    <version>131.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

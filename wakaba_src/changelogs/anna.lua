@@ -1,3 +1,172 @@
+DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Anna v131",
+[[{FSIZE2}general
+
+- reorganized conditional
+eid for multiple copies
+- added minor compatiblity
+for 'found hud in the beast'
+- added heart drain
+hud effect for
+t.rira (thanks to benny)
+- added hidden
+'forcelunatic' option.
+can only be set through console
+-- this option will
+be removed after
+save data refactor
+- renamed 'bottle of runes'
+item into 'rune archives'
+to make proper transformation match
+- changed isekai definition
+item sprite to make
+proper transformation match
+- added hud library
+by benevolusgoat
+- added status effect library
+by benevolusgoat
+
+{FSIZE2}repentogon
+
+- added hidden
+'vanilla item quality tweaks'
+option. can only be set
+through console
+
+- passive skill tree
+-- added tree support
+for tsukasa
+-- added crimson nodes
+for wakaba, shiori
+
+- difficulty library support
+-- added 'up/down' difficulty
+--- pressing '6/7' to
+try shift up/down
+--- shifting makes nearest
+item to shift up/down of
+random amount (1~5)
+--- can only get shifted items.
+quest items can be get
+without duplication
+--- some items are banned
+in this difficulty
+
+{FSIZE2}inventory descriptions
+
+- added option to set
+dim screen opacity
+
+{FSIZE2}balance/bug fixes
+
+- reduced general item pool weight
+
+- wakaba
+-- removed not-so hidden
+uranus synergy
+
+- tainted rira
+-- heart drain rate now depends
+on current heart count.
+faster drain on more hearts
+
+- wakaba's nemesis
+- plasma beam
+- advanced crystal
+- new year's eve bomb
+-- on lunatic mode,
+now deal +15%p non-stat
+damage instead of armor-piercing
+
+- rira
+- rira's swimsuit
+- sakura mont blanc
+-- ice damage against
+aquafied enemies
+now ignore enemies' armor
+
+- wakaba's pendant
+-- multiple copies
+now raises minimum
+luck by 0.25 per copy
+
+- maijima mythology
+-- book pool per game
+that can be selected
+is increased to 5 > 8
+
+- plasma beam
+-- extra copies
+no longer multiplies
+multiplier, it adds instead
+
+- color joker
+-- fix eid errors
+-- no longer spawns cards.
+only spawns items
+
+- rira's uniform
+-- cooldown decreased to 3 > 1
+
+- lil rira
+-- base familiar damage reduced to 4 > 3
+
+- richer's uniform
+-- devil : now price
+will cycle between
+2 hearts, 3 souls, and 36 coins
+-- challenge : now duplication
+chance is 50% (crooked penny)
+and will trigger ambush
+-- boss rush : now triggers
+ambush and actives
+devil effect on repeat usage
+
+- changed wakaba's uniform
+charge type to normal.
+this does not change
+anything but fixes
+minor eid issue
+
+- fix easter coin spawn
+chance option not
+working properly
+
+- fix wakaba's double dreams
+infinitely spawning
+dream card with car battery
+
+- fix forcevoid option
+for dad's note not preventing
+bring me there trinket
+
+- fix gamble difficulty keys
+not working when starting new run
+
+- fix deja vu
+not working intentionally
+
+- fix maijima eid
+showing only 1 entry
+outside of pst support
+
+- fix using flash shift
+removing invincibility
+frames for t.tsukasa
+
+- fix lil rira granting
+isaac damage incorrectly
+with timed items
+
+- fix lil rira not granting
+isaac damage if item
+is not discarged
+with modded items
+
+- fix plumy + mom's knife
+on non-rgon environment
+
+]])
+
 DeadSeaScrollsMenu.AddChangelog("Pudding n Wakaba", "Anna v130",
 [[{FSIZE2}anna
 
