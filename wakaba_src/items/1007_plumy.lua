@@ -218,7 +218,7 @@ function wakaba:initPlumKnife(player, familiar, vector)
 	effect.Visible = false
 
 	local angle = tear_angle
-	local knife = player:FireKnife(effect, angle, false, 0, KnifeVariant.MOMS_KNIFE)
+	local knife = player:FireKnife(effect, angle, false, 0, KnifeVariant and KnifeVariant.MOMS_KNIFE or wakaba.KnifeVariant.MOMS_KNIFE)
 	knife:Shoot(1, player.TearRange * 0.5)
 	knife.SpriteRotation = tear_angle + randcornangle - 90
 	knife:Update()
