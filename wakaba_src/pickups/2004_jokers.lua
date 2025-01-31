@@ -49,8 +49,10 @@ function wakaba:UseCard_ColorJoker(_, player, flags)
 	wakaba.G:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil, 0, s):ToPickup()
 	wakaba.G:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil, 0, s):ToPickup()
 	wakaba.G:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, wakaba.G:GetRoom():FindFreePickupSpawnPosition(player.Position, 40, true), Vector.Zero, nil, 0, s):ToPickup()
+	--[[
 	for i = 1, 8 do
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, wakaba.G:GetItemPool():GetCard(rng:Next(), false, true, false), Isaac.GetFreeNearPosition(Vector(player.Position.X + 30, player.Position.Y - 30), 0), Vector(0,0), nil)
 	end
+	 ]]
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_ColorJoker, wakaba.Enums.Cards.CARD_COLOR_JOKER)
