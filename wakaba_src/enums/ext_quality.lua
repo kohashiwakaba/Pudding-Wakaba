@@ -4,9 +4,7 @@ local wexq = wakaba.Enums.Collectibles
 -- 확장 퀄리티
 wakaba.Enums.ExtendQuality = {
 	[wexq.EXECUTIONER] = 5,
-	[wexq.UNIFORM] = 5,
 	[wexq.DOUBLE_DREAMS] = 6,
-	[wexq.D6_PLUS] = 5,
 	[wexq.APOLLYON_CRISIS] = 5,
 	[wexq.NEKO_FIGURE] = 5,
 	[wexq.WINTER_ALBIREO] = 5,
@@ -15,7 +13,6 @@ wakaba.Enums.ExtendQuality = {
 	[wexq.RED_CORRUPTION] = 5,
 	[wexq.CARAMELLA_PANCAKE] = 5,
 	[wexq.CHIMAKI] = 5,
-	[wexq.COUNTER] = 5,
 	[wexq.PRESTIGE_PASS] = 6,
 	[wexq.MAID_DUET] = 6,
 	[wexq.WAKABAS_BLESSING] = 5,
@@ -96,7 +93,6 @@ wakaba.Enums.ExtendQualityVanilla = {
   [vexq.COLLECTIBLE_SACRED_HEART] = 5,
   [vexq.COLLECTIBLE_STOP_WATCH] = 5,
   [vexq.COLLECTIBLE_DEATH_CERTIFICATE] = 6,
-  [vexq.COLLECTIBLE_R_KEY] = 5,
   [vexq.COLLECTIBLE_C_SECTION] = 5,
   [vexq.COLLECTIBLE_SACRED_ORB] = 5,
 }
