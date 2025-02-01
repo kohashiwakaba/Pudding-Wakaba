@@ -73,6 +73,7 @@ end
 do
 	include('wakaba_src.compat.stageapi')
 	include('wakaba_src.compat.enhanced_boss_bars')
+	include('wakaba_src.compat.status')
 	include('wakaba_src.compat.fiendfolio')
 	include('wakaba_src.compat.retribution')
 	include('wakaba_src.compat.epiphany')
