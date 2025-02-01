@@ -1,7 +1,9 @@
 wakaba:RegisterPatch(0, "CustomHealthAPI", function() return (CustomHealthAPI ~= nil) end, function()
 	do
 		CustomHealthAPI.Library.UnregisterCallbacks("wakaba")
-		wakaba:RemoveCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork)
+		if REPENTOGON then
+			wakaba:RemoveCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork)
+		end
 	end
 	do
 		CustomHealthAPI.Library.AddCallback("wakaba", CustomHealthAPI.Enums.Callbacks.PRE_ADD_HEALTH, -20, function(player, key, hp)
