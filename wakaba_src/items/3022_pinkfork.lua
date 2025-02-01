@@ -33,6 +33,6 @@ if REPENTOGON then
 			return amount - 1
 		end
 	end
-	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork, AddHealthType.SOUL)
-	wakaba:AddCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, wakaba.PreAddHealth_PinkFork, AddHealthType.BLACK)
+	wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, CallbackPriority.LATE, wakaba.PreAddHealth_PinkFork, AddHealthType.SOUL)
+	wakaba:AddPriorityCallback(ModCallbacks.MC_PRE_PLAYER_ADD_HEARTS, CallbackPriority.LATE, wakaba.PreAddHealth_PinkFork, AddHealthType.BLACK)
 end
