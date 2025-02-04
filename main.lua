@@ -146,8 +146,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v131a Anna 2025.01.30"
-wakaba.intversion = 13101
+wakaba.version = "v131b Anna 2025.02.05"
+wakaba.intversion = 13102
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -165,11 +165,6 @@ wakaba.pedestalreroll = false
 wakaba.unlockdisplaytimer = -(30*30)
 
 wakaba.playerstats = {}
-
-wakaba.roomoverride = {
-	devilroom = -4100,
-	angelroom = -4101,
-}
 
 wakaba.sprites = {}
 include('wakaba_src.rgb')
