@@ -93,7 +93,7 @@ function wakaba:ActivateBubbleBomb(bomb, player)
 					elseif wakaba:isAquaInstakill(e) then
 						e:Kill()
 					else
-						wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 150, EntityRef(player))
+						wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 150, EntityRef(player))
 					end
 				end
 			end

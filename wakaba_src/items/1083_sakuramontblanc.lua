@@ -27,7 +27,7 @@ function wakaba:NPCDeath_SakuraMontBlanc(entity)
 				elseif wakaba:isAquaInstakill(entity) then
 					e:Kill()
 				else
-					wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_ZIPPED, 300 * power, EntityRef(player))
+					wakaba.Status:AddStatusEffect(e, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 300 * power, EntityRef(player))
 				end
 			end
 		end

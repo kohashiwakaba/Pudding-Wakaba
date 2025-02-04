@@ -78,7 +78,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, wakaba.EvalTearFlag
 ---@param statusEffect StatusFlag
 ---@param statusEffectData StatusEffectData
 function wakaba:Status_PostAddEffect_Zipped(ent, statusEffect, statusEffectData)
-	if not statusEffectData.CustomData.w_Player then
+	if statusEffectData and statusEffectData.CustomData and not statusEffectData.CustomData.w_Player then
 		statusEffectData.CustomData.w_Player = statusEffectData.Source.Entity and statusEffectData.Source.Entity:ToPlayer()
 	end
 end
