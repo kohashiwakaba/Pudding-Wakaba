@@ -3,7 +3,7 @@
 -- Not finished
 
 function wakaba:ConsoleCommands(cmd, param)
-	-- Reload Wakaba Status : Debug only 
+	-- Reload Wakaba Status : Debug only
 	if cmd == "reloadwakabastatus" then
 	end
 	-- Global Wakaba commands
@@ -53,7 +53,7 @@ function wakaba:ConsoleCommands(cmd, param)
 		print("wakaba_unlockstats - Show Unlock status for Pudding and Wakaba. Requires EID")
 		print("wakaba_cheat - Unlock everything for certain character.")
 		--[[ print("wakaba_unlockn - Same as wakaba_unlock, but does not show achievement papers.")
-		
+
 		print("wakaba_reset - Reset unlock status for certain character.") ]]
 
 		print("[Press Page Up or Page Down for scroll]")
@@ -149,13 +149,6 @@ function wakaba:ConsoleCommands(cmd, param)
 			print("Please enter valid number (0 ~ 100) for set Book of Shiori effect indicators.")
 		end
 	end
-	-- Wakaba unlock status
-	if EID and cmd == "wakaba_unlockstats" then
-		wakaba.unlockdisplaytimer = wakaba.G:GetFrameCount()
-		wakaba.eidunlockstr = wakaba:CheckWakabaAchievementString()
-		wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.RenderWakabaAchievement)
-		print("Exit the console and Pudding and Wakaba unlock status will be displayed on EID for 10 seconds.")
-	end
 
 	if wakaba.debug then
 		if cmd == "wd" then
@@ -170,4 +163,20 @@ function wakaba:ConsoleCommands(cmd, param)
 
 end
 
-wakaba:AddCallback(ModCallbacks.MC_EXECUTE_CMD, wakaba.ConsoleCommands)
+-- wakaba:AddCallback(ModCallbacks.MC_EXECUTE_CMD, wakaba.ConsoleCommands)
+
+
+function wakaba:ConsoleCommands2(cmd, param)
+	if cmd == "wakaba" and string.sub(param, 0, 10) == "macro_bomb" then
+		print(string.sub(param, 11))
+		local level = tonumber(string.sub(param, 11)) or 0
+		wakaba:ForAllPlayers(function(player) ---@param player EntityPlayer
+			for k, v in pairs(wakaba.__bombItems) do
+				if v <= level then
+					player:AddCollectible(k)
+				end
+			end
+		end)
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_EXECUTE_CMD, wakaba.ConsoleCommands2)

@@ -1459,3 +1459,30 @@ wakaba.VoidFlags = {
 	CONTINUE = 1<<2,
 	PIECES = 1<<3,
 }
+
+-- 임시
+wakaba.__bombItems = {
+	[CollectibleType.COLLECTIBLE_BOOM] = 0,
+	[CollectibleType.COLLECTIBLE_DR_FETUS] = 0,
+	[CollectibleType.COLLECTIBLE_MR_MEGA] = 0,
+	[CollectibleType.COLLECTIBLE_BOBBY_BOMB] = 0,
+	[CollectibleType.COLLECTIBLE_BOBS_CURSE] = 0,
+	[CollectibleType.COLLECTIBLE_IPECAC] = 0,
+	[CollectibleType.COLLECTIBLE_PYRO] = 0,
+	[CollectibleType.COLLECTIBLE_BUTT_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_SAD_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_HOT_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_BOMBER_BOY] = 0,
+	[CollectibleType.COLLECTIBLE_SCATTER_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_STICKY_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_GLITTER_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_FAST_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_NANCY_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_ROCKET_IN_A_JAR] = 0,
+	[CollectibleType.COLLECTIBLE_BLOOD_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_BRIMSTONE_BOMBS] = 0,
+	[CollectibleType.COLLECTIBLE_GHOST_BOMBS] = 0,
+	[wakaba.Enums.Collectibles.BUBBLE_BOMBS] = 1,
+	[wakaba.Enums.Collectibles.CROSS_BOMB] = 1,
+	[wakaba.Enums.Collectibles.CURSE_OF_THE_TOWER_2] = 2,
+}

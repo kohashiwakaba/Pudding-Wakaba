@@ -568,6 +568,11 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 		--#endregion
 	end
 
+	-- 임시
+	do
+		wakaba.__bombItems[Mod.Item.ZIP_BOMBS.ID] = 1
+	end
+
 	do
 		local ShopItemType = Mod.Item.TURNOVER.ShopItemType
 		local Get = Mod.PickupGetter
