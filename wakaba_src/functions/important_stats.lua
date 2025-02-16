@@ -28,7 +28,7 @@ local isc = _wakaba.isc
 ---@param cacheFlag CacheFlag
 function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
-		player.Damage = player.Damage * (1 + (wakaba:getCustomStat(player, "damagemult") or 0))
+		player.Damage = player.Damage * (1 + math.max((wakaba:getCustomStat(player, "damagemult") or 0), -0.75))
 
 		local neko = player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
 		if neko > 0 then
