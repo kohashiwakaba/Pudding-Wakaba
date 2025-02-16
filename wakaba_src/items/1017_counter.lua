@@ -107,4 +107,4 @@ function wakaba:ItemUse_Counter(_, rng, player, useFlags, activeSlot, varData)
 		player:AnimateCollectible(wakaba.Enums.Collectibles.COUNTER, "UseItem", "PlayerPickup")
 	end
 end
-wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.ItemUse_Counter, wakaba.Enums.Collectibles.COUNTER)
+wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Counter, wakaba.Enums.Collectibles.COUNTER)
