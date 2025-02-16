@@ -2016,7 +2016,7 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "攻击倍率下降",
-		description = "↓ {{Damage}} -2% 攻击倍率",
+		description = "↓ {{Damage}} -6% 攻击倍率",
 		mimiccharge = 4,
 		class = "3-",
 	},
