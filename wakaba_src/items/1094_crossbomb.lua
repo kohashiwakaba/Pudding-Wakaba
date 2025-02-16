@@ -92,32 +92,35 @@ local bombRot = {
 ---@param bomb EntityBomb|EntityEffect
 ---@param player EntityPlayer
 function wakaba:ActivateCrossBomb(bomb, player)
+	bomb:GetData().wakaba_crossbomb = true
 	local explosion = Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.BOMB_EXPLOSION)
 	for _, boom in pairs(explosion) do
-		local crossCount = (player and player:GetCollectibleNum(wakaba.Enums.Collectibles.CROSS_BOMB) + 2) or 3
-		local sprite = boom:GetSprite()
-		local frame = sprite:GetFrame()
-		if frame < 3 then
-			for i = 1, crossCount do
-				boom:GetData().wakaba_crossbomb = true
-				wakaba:scheduleForUpdate(function ()
-					local saved = bombRoomNo + 0
-					local current = bombRoomNo
-					if saved ~= current then return end
-					for k = 0, 3 do
-						wakaba.G:BombExplosionEffects(
-							boom.Position + (bombRot[k] * i),
-							10,
-							TearFlags.TEAR_NORMAL,
-							Color.Default,
-							player,
-							0.4,
-							false,
-							false,
-							DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR
-						)
-					end
-				end, (4 * i))
+		if not boom:GetData().wakaba_crossbomb and boom.Position:DistanceSquared(bomb.Position) <= 25 then
+			local crossCount = (player and player:GetCollectibleNum(wakaba.Enums.Collectibles.CROSS_BOMB) + 2) or 3
+			local sprite = boom:GetSprite()
+			local frame = sprite:GetFrame()
+			if frame < 3 then
+				for i = 1, crossCount do
+					boom:GetData().wakaba_crossbomb = true
+					wakaba:scheduleForUpdate(function ()
+						local saved = bombRoomNo + 0
+						local current = bombRoomNo
+						if saved ~= current then return end
+						for k = 0, 3 do
+							wakaba.G:BombExplosionEffects(
+								boom.Position + (bombRot[k] * i),
+								10.000304,
+								TearFlags.TEAR_NORMAL,
+								Color.Default,
+								player,
+								0.4,
+								false,
+								false,
+								DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_IGNORE_ARMOR
+							)
+						end
+					end, (4 * i))
+				end
 			end
 		end
 	end
