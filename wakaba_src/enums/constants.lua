@@ -1460,6 +1460,12 @@ wakaba.VoidFlags = {
 	PIECES = 1<<3,
 }
 
+wakaba.Enums.LilRiraChargeType = {
+	[CollectibleType.COLLECTIBLE_ISAACS_TEARS] = {ChargeType = ItemConfig.CHARGE_TIMED, MaxCharges = 60},
+	[CollectibleType.COLLECTIBLE_BERSERK] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1},
+	[CollectibleType.COLLECTIBLE_ERASER] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12},
+}
+
 -- 임시
 wakaba.__bombItems = {
 	[CollectibleType.COLLECTIBLE_BOOM] = 0,

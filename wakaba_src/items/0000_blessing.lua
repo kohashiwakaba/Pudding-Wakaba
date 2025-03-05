@@ -225,8 +225,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Neme
 function wakaba:CheckItemCandidates(player)
 	wakaba:GetPlayerEntityData(player)
 	local DejaVuCandidates = {}
-	local AlbireoCandidates = {}
-	local PendantCandidates = {}
 
 	-- Item tables. Used Job mod as Reference.
 	for itemId = 1, wakaba:GetMaxCollectibleID() do
@@ -236,22 +234,12 @@ function wakaba:CheckItemCandidates(player)
 		and (targetItem.Type == ItemType.ITEM_PASSIVE or targetItem.Type == ItemType.ITEM_FAMILIAR)
 		and itemId ~= wakaba.Enums.Collectibles.DEJA_VU
 		then
-			for i = 1, player:GetCollectibleNum(itemId) do
+			for i = 1, player:GetCollectibleNum(itemId, true) do
 				DejaVuCandidates[#DejaVuCandidates + 1] = itemId
-			end
-		elseif targetItem and targetItem:HasTags(ItemConfig.TAG_STARS) then
-			for i = 1, player:GetCollectibleNum(itemId) do
-				AlbireoCandidates[#AlbireoCandidates + 1] = itemId
-			end
-		elseif targetItem and (targetItem.CacheFlags & CacheFlag.CACHE_LUCK == CacheFlag.CACHE_LUCK) then
-			for i = 1, player:GetCollectibleNum(itemId) do
-				PendantCandidates[#PendantCandidates + 1] = itemId
 			end
 		end
 	end
 	player:GetData().wakaba.DejaVuCandidates = DejaVuCandidates
-	player:GetData().wakaba.AlbireoCandidates = AlbireoCandidates
-	player:GetData().wakaba.PendantCandidates = PendantCandidates
 end
 
 function wakaba:ReadDejaVuCandidates()

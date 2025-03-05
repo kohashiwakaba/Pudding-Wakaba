@@ -354,6 +354,8 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			wakaba.Enums.Collectibles.RIRAS_BENTO,
 			-- Bomb modifiers
 			wakaba.Enums.Collectibles.NEW_YEAR_BOMB,
+			wakaba.Enums.Collectibles.CROSS_BOMB,
+			wakaba.Enums.Collectibles.BUBBLE_BOMBS,
 			-- Items that give soul or black hearts
 			wakaba.Enums.Collectibles.ONSEN_TOWEL,
 			wakaba.Enums.Collectibles.SUCCUBUS_BLANKET,

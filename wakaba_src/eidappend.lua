@@ -381,9 +381,6 @@ if EID then
 					if itemdesc.wisp then
 						--EID.descriptions[lang].bookOfVirtuesWisps[itemID] = itemdesc.wisp
 					end
-					if itemdesc.abyss then
-						--EID.descriptions[lang].abyssSynergies[itemID] = itemdesc.abyss
-					end
 					if itemdesc.bffs then
 						EID.descriptions[lang].BFFSSynergies["5.100."..itemID] = itemdesc.bffs
 					end
@@ -447,6 +444,28 @@ if EID then
 					end
 					local desc = wakaba:IsLunatic() and pilldesc.lunatic or pilldesc.description
 					EID:addPill(pillid, desc, pilldesc.itemName, lang)
+				end
+				if lang == "en_us" then
+					for itemid, locustTable in pairs(wakabaDescTables.locusts) do
+						if not EID.XMLLocusts[itemid] then
+							EID.XMLLocusts[itemid] = {
+								locustTable.amount,
+								locustTable.scale,
+								locustTable.speed,
+								locustTable.locustFlags1,
+								locustTable.locustFlags2,
+								locustTable.locustFlags3,
+								locustTable.tearFlags1,
+								locustTable.tearFlags2,
+								locustTable.tearFlags3,
+								locustTable.procChance1,
+								locustTable.procChance2,
+								locustTable.procChance3,
+								locustTable.damageMultiplier1,
+								locustTable.damageMultiplier2
+							}
+						end
+					end
 				end
 				--EID:addHorsePill doesn't exist lol
 				--EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)

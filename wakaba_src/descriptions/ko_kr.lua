@@ -1575,53 +1575,8 @@ wakaba.descriptions[desclang].bookofvirtues = {
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
 		description = "{{ColorRed}}!!!효과 없음{{CR}}"
 	},
-
-
-
-
-
 }
-wakaba.descriptions[desclang].abyss = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "deals 7x faster than normal locust, double of Isaac's Damage, chases through enemies, and freezes on death"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		description = "deals 5X of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "deals 3.5x faster than normal locust, triple of Isaac's Damage, travels at double speed"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "deals 3.5x faster than normal locust, double of Isaac's Damage, travels at double speed"
-	},
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "deals 1.2x faster than normal locust, double of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
-		description = "deals 1.7x faster than normal locust, double of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "3 Locusts that deal 1.7x faster than normal locust"
-	},
-	[wakaba.Enums.Collectibles.SECRET_CARD] = {
-		description = "2 yellow locust that deal 7x faster than normal locust, 0.8x Isaac's Damage, drops coins when dealing damage"
-	},
-	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "Plumy Locust deals 2.3x faster than normal locust, 4x Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "4.2x 'slower' than normal locust, 16x Isaac's Damage, travels at 0.1x speed"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "5 Locusts that deal 2.3x faster than normal locust, drops card when killed by the locust"
-	},
-	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
-		description = "deals 1.3x faster than normal locust, travels 3x speed"
-	},
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "3 Locusts that deals 7x faster than normal locust, 0.9x Isaac's Damage, travels 3x speed"
-	},
-}
+
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		primary = "그 방에서 {{DamageSmall}}공격력 배율 x1.2, {{HolyMantle}}1회의 피격을 막아주는 보호막이 제공됩니다",
@@ -2476,11 +2431,11 @@ wakaba.descriptions[desclang].runechalk = {
 wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		itemName = "공격력 배율 증가",
-		description = "↑ {{DamageSmall}}공격력 배율 x1.08#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		description = "↑ {{DamageSmall}}공격력 배율 +8%p",
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "공격력 배율 감소",
-		description = "↓ {{DamageSmall}}공격력 배율 x0.98#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		description = "↓ {{DamageSmall}}공격력 배율 -6%p",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		itemName = "모든 능력치 증가",
@@ -2535,12 +2490,12 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
 		"공격력 배율 증가",
-		"↑ {{DamageSmall}}공격력 배율 {{ColorCyan}}x1.16{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		"↑ {{DamageSmall}}공격력 배율 {{ColorCyan}}+16%p{{CR}}",
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"공격력 배율 감소",
-		"↓ {{DamageSmall}}공격력 배율 {{ColorYellow}}x0.96{{CR}}#이 알약의 배수 수치는 합연산으로 적용됩니다.",
+		"↓ {{DamageSmall}}공격력 배율 {{ColorYellow}}-12%p{{CR}}",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_UP),

@@ -1423,47 +1423,6 @@ wakaba.descriptions[desclang].collectibles = {
 		},
 }
 
-wakaba.descriptions[desclang].abyss = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description = "deals 7x faster than normal locust, double of Isaac's Damage, chases through enemies, and freezes on death"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		description = "deals 5X of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "deals 3.5x faster than normal locust, triple of Isaac's Damage, travels at double speed"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "deals 3.5x faster than normal locust, double of Isaac's Damage, travels at double speed"
-	},
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "deals 1.2x faster than normal locust, double of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
-		description = "deals 1.7x faster than normal locust, double of Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "3 Locusts that deal 1.7x faster than normal locust"
-	},
-	[wakaba.Enums.Collectibles.SECRET_CARD] = {
-		description = "2 yellow locust that deal 7x faster than normal locust, 0.8x Isaac's Damage, drops coins when dealing damage"
-	},
-	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "Plumy Locust deals 2.3x faster than normal locust, 4x Isaac's Damage"
-	},
-	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "4.2x 'slower' than normal locust, 16x Isaac's Damage, travels at 0.1x speed"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "5 Locusts that deal 2.3x faster than normal locust, drops card when killed by the locust"
-	},
-	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
-		description = "deals 1.3x faster than normal locust, travels 3x speed"
-	},
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "3 Locusts that deals 7x faster than normal locust, 0.9x Isaac's Damage, travels 3x speed"
-	},
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		primary = "{{Damage}} 1.2x Damage multiplier and {{Collectible313}}Holy Mantle shield for current room",
@@ -3301,6 +3260,25 @@ wakaba.descriptions[desclang].conditionals.entities = {
 		desc = "{{Player"..wakaba.Enums.Players.RICHER.."}} +{{Collectible619}} {{ColorRicher}}All damage deals Richer normally as if Richer is not in Lost state",
 		func = function() return wakaba:EIDCond_PlayerHasBirthright(wakaba.Enums.Players.RICHER) end,
 	},
+}
+
+wakaba.descriptions[desclang].locusts = {
+	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
+		amount = nil,
+		scale = nil,
+		speed = nil,
+		locustFlags1 = nil,
+		locustFlags2 = nil,
+		locustFlags3 = nil,
+		tearFlags1 = nil,
+		tearFlags2 = nil,
+		tearFlags3 = nil,
+		procChance1 = nil,
+		procChance2 = nil,
+		procChance3 = nil,
+		damageMultiplier1 = nil,
+		damageMultiplier2 = nil,
+	}
 }
 
 wakaba.descriptions[desclang].bossdest = {

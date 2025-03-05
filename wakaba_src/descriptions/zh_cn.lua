@@ -1393,50 +1393,6 @@ wakaba.descriptions[desclang].collectibles = {
 	},
 }
 
-wakaba.descriptions[desclang].abyss = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
-		description =
-		"比普通蝗虫快7倍，伤害是玩家的2倍，穿过敌人追击，死亡时冻结"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
-		description = "伤害是玩家的5倍"
-	},
-	[wakaba.Enums.Collectibles.EATHEART] = {
-		description = "比普通蝗虫快3.5倍，伤害是玩家的3倍，速度是2倍"
-	},
-	[wakaba.Enums.Collectibles.BOOK_OF_FORGOTTEN] = {
-		description = "比普通蝗虫快3.5倍，伤害是玩家的2倍，速度是2倍"
-	},
-	[wakaba.Enums.Collectibles.D_CUP_ICECREAM] = {
-		description = "比普通蝗虫快1.2倍，伤害是玩家的2倍"
-	},
-	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
-		description = "比普通蝗虫快1.7倍，伤害是玩家的2倍"
-	},
-	[wakaba.Enums.Collectibles.WAKABAS_PENDANT] = {
-		description = "3只蝗虫，比普通蝗虫快1.7倍"
-	},
-	[wakaba.Enums.Collectibles.SECRET_CARD] = {
-		description =
-		"2只黄色蝗虫，比普通蝗虫快7倍，伤害是玩家的0.8倍，造成伤害时掉落硬币"
-	},
-	[wakaba.Enums.Collectibles.PLUMY] = {
-		description = "大可爱蝗虫比普通蝗虫快2.3倍，伤害是玩家的4倍"
-	},
-	[wakaba.Enums.Collectibles.EXECUTIONER] = {
-		description = "比普通蝗虫'慢'4.2倍，伤害是玩家的16倍，速度是0.1倍"
-	},
-	[wakaba.Enums.Collectibles.UNIFORM] = {
-		description = "5只蝗虫，比普通蝗虫快2.3倍，被蝗虫杀死时掉落卡牌"
-	},
-	[wakaba.Enums.Collectibles.LIL_WAKABA] = {
-		description = "比普通蝗虫快1.3倍，速度是3倍"
-	},
-	[wakaba.Enums.Collectibles.MICRO_DOPPELGANGER] = {
-		description = "3只蝗虫，比普通蝗虫快7倍，伤害是玩家的0.9倍，速度是3倍"
-	},
-
-}
 wakaba.descriptions[desclang].bookofshiori = {
 	[CollectibleType.COLLECTIBLE_BIBLE] = {
 		description =
@@ -2100,7 +2056,7 @@ wakaba.descriptions[desclang].horsepills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
 		"攻击倍率 下降",
-		"↓ {{Damage}} -4% 攻击倍率",
+		"↓ {{Damage}} -12% 攻击倍率",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
