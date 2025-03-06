@@ -174,7 +174,6 @@ wakaba.descriptions = wakaba.descriptions or {}
 wakaba.encyclopediadesc = wakaba.encyclopediadesc or {}
 wakaba.eidunlockstr = ""
 
-
 wakaba.eidextradesc = {}
 wakaba.eidextradesc.bettervoiding = {}
 

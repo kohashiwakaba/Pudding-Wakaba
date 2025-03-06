@@ -154,7 +154,7 @@ if EID then
 	local function VintageCallback(descObj)
 		local append = EID:getDescriptionEntry("WakabaVintageHotkey") or EID:getDescriptionEntryEnglish("WakabaVintageHotkey")
 		descObj.Name = "{{ColorRed}}"..descObj.Name.."{{CR}}"
-		EID:appendToDescription(descObj, "".. append:gsub("{1}", InputHelper.KeyboardToString[wakaba.state.options.vintagetriggerkey]) .. "{{CR}}")
+		EID:appendToDescription(descObj, "".. append:gsub("{1}", EID.KeyboardToString[wakaba:getOptionValue("vintagetriggerkey") or Keyboard.KEY_9]) .. "{{CR}}")
 		return descObj
 	end
 	EID:addDescriptionModifier("Wakaba Vintage Hotkey", VintageCondition, VintageCallback)
