@@ -29,10 +29,13 @@ end
 wakaba:AddPriorityCallback(wakaba.Callback.PRE_WAKABA_REROLL, 0, wakaba.PreReroll_RiraBento)
 
 function wakaba:PreReroll_DejaVu(itemPoolType, decrease, seed, loopCount)
-	if loopCount <= 1 and not wakaba.fullreroll and wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DEJA_VU) then
-		wakaba.Log("Hijack pool from deja vu - pool " .. itemPoolType .. " / seed " ..seed .. " / loopCount " .. loopCount)
-		local candidates = wakaba:ReadDejaVuCandidates()
-		if seed % 4 == 0 then
+	if loopCount <= 1 and not wakaba.fullreroll then
+		if wakaba.__RicherSoul or (wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DEJA_VU) and seed % 4 == 0) then
+			wakaba.Log("Hijack pool from deja vu, soul of richer - pool " .. itemPoolType .. " / seed " ..seed .. " / loopCount " .. loopCount)
+			local candidates = wakaba:ReadDejaVuCandidates(wakaba.__RicherSoul)
+			if #candidates == 0 then
+				return wakaba.Enums.Collectibles.ANNA_RIBBON_4
+			end
 			local itemPool = wakaba.G:GetItemPool()
 			local rng2 = RNG()
 			rng2:SetSeed(seed, 35)

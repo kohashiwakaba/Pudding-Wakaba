@@ -345,9 +345,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#{{WakabaAntiCurseBlind}} 在持有时免疫致盲诅咒"
 			.. "#使用时，安装一个兔兔衣柜，导致:"
+			.. "#{{HalfSoulHeart}} +0.5 Soul Heart on install"
 			.. "#显示更多房间"
 			.. "#此房间射速和攻击力上升"
-			.. "#{{SoulHeart}} 清理房间后恢复半魂心"
 			.. "{{CR}}",
 		queueDesc = "水流扩展",
 	},
@@ -1920,8 +1920,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "璃贝魂石",
-		description =
-		"{{Collectible712}} 随机生成1-6个道具灵火 ({{Collectible263}} : 1 ~ 3)#灵火的品质至少是{{Quality2}}+",
+		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps from Isaac's held passives ({{Collectible263}} : 1 ~ 3)#{{Card"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{Damage}} +0.2 Damage Wisp if no items are available",
 		isrune = true,
 		queueDesc = "魔法施放",
 	},

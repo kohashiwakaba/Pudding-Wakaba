@@ -594,8 +594,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "- Can also reveal Secret Rooms, Super Secret Rooms, Ultra Secret Rooms, and Mini-Boss Rooms."},
 			{str = "Rooms within Rabbey Ward, or revealed by one also grants Damage, Tears up bonus."},
 			{str = "- Bonus is determined how near the ward is"},
-			{str = "Gives 1 Soul Heart per ward install."},
-			{str = "- If the room is not cleared, Soul hearts are given on room clear instead."},
+			{str = "Gives half Soul Heart when install."},
 		},
 	},
 

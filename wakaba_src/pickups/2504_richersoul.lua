@@ -6,6 +6,11 @@ function wakaba:UseCard_SoulOfRicher(_, player, flags)
 	wakaba.HiddenItemManager:AddForRoom(player, wakaba.Enums.Collectibles.WATER_FLAME, 1, 1, "WAKABA_SOUL_OF_RICHER")
 	local count = wakaba.Enums.Constants.SOUL_OF_RICHER_WISP_COUNT
 	if flags & UseFlag.USE_MIMIC > 0 then count = wakaba.Enums.Constants.SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE end
+	wakaba.__RicherSoul = true
+	for i = 1, count do
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_LEMEGETON, UseFlag.USE_NOANIM)
+	end
+	wakaba.__RicherSoul = false
 	sfx:Play(SoundEffect.SOUND_SOUL_PICKUP, 1, 0, false, 1)
 end
 wakaba:AddCallback(ModCallbacks.MC_USE_CARD, wakaba.UseCard_SoulOfRicher, wakaba.Enums.Cards.SOUL_RICHER)

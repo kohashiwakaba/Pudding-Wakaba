@@ -242,7 +242,7 @@ function wakaba:CheckItemCandidates(player)
 	player:GetData().wakaba.DejaVuCandidates = DejaVuCandidates
 end
 
-function wakaba:ReadDejaVuCandidates()
+function wakaba:ReadDejaVuCandidates(onlySummonable)
 	local TotalDejaVuCandidates = {}
 	for i = 1, wakaba.G:GetNumPlayers() do
 		local player = Isaac.GetPlayer(i - 1)
@@ -250,7 +250,9 @@ function wakaba:ReadDejaVuCandidates()
 			local DejaVuItems = player:GetData().wakaba.DejaVuCandidates
 			if #DejaVuItems > 0 then
 				for i = 1, #DejaVuItems do
-					TotalDejaVuCandidates[#TotalDejaVuCandidates + 1] = DejaVuItems[i]
+					if not onlySummonable or wakaba:ItemHasTags(ItemConfig.TAG_SUMMONABLE) then
+						table.insert(TotalDejaVuCandidates, DejaVuItems[i])
+					end
 				end
 			end
 		end

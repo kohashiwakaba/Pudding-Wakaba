@@ -98,7 +98,8 @@ wakaba.encyclopediadesc.desc.cards = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Spawns 6 Lemegeton Wisps."},
-			{str = "All items spawned are guaranteed for at least Quality 2."},
+			{str = "All items spawned are from Isaac's held passives."},
+			{str = "If no items are available, +0.2 Damage Wisp will be spawned."},
 		},
 	},
 	[c.SOUL_RIRA] = {

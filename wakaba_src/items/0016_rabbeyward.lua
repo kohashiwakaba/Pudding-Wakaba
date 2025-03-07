@@ -201,12 +201,11 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_RabbeyWard)
 
 function wakaba:UseItem_RabbeyWard(_, rng, player, useFlags, activeSlot, varData)
 	local room = wakaba.G:GetRoom()
-	if room:IsClear() then
-		wakaba:ForAllPlayers(function (p)
-			local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(p.Position.X, p.Position.Y - 95), Vector.Zero, nil):ToEffect()
-			p:AddSoulHearts(2)
-		end)
-	end
+
+	wakaba:ForAllPlayers(function (p)
+		local notif = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 4, Vector(p.Position.X, p.Position.Y - 95), Vector.Zero, nil):ToEffect()
+		p:AddSoulHearts(1)
+	end)
 
 	if player:GetPlayerType() == wakaba.Enums.Players.RIRA_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
@@ -510,6 +509,7 @@ function wakaba:getNearbyRabbitWard(player)
 	return nearest
 end
 
+--[[
 function wakaba.RoomClear_RabbeyWard()
 	local wards = wakaba:recalculateWards()
 	if wards > 0 then
@@ -520,6 +520,7 @@ function wakaba.RoomClear_RabbeyWard()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, wakaba.RoomClear_RabbeyWard)
+ ]]
 --wakaba:AddCallbackCustom(isc.ModCallbackCustom.POST_GREED_MODE_WAVE, wakaba.RoomClear_RabbeyWard)
 
 function wakaba:Update_RabbeyWard()

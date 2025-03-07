@@ -401,9 +401,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} Curse of the Blind immunity while held"
 		.. "#On use, installs a Rabbit Ward that causes:"
+		.. "#{{HalfSoulHeart}} +0.5 Soul Heart on install"
 		.. "#Reveals further rooms"
 		.. "#Damage, Tears up inside revealed rooms"
-		.. "#{{SoulHeart}} Clearing room inside Rabbit Ward recovers 1 soul heart"
 		.. "{{CR}}",
 		carBattery = {"a Rabbit Ward", "2{{CR}} Rabbit Wards"},
 	},
@@ -2069,7 +2069,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "Soul of Richer",
-		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps ({{Collectible263}} : 1 ~ 3)#All wisps are guaranteed to be Quality{{Quality2}}+",
+		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps from Isaac's held passives ({{Collectible263}} : 1 ~ 3)#{{Card"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{Damage}} +0.2 Damage Wisp if no items are available",
 		mimiccharge = 6,
 		isrune = true,
 	},

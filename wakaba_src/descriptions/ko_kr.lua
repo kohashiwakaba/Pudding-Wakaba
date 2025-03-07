@@ -418,9 +418,9 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
 		.. "#사용 시 아래 효과를 지닌 토끼 와드를 설치:"
+		.. "#{{HalfSoulHeart}} 설치 시 소울하트 +0.5"
 		.. "#{{Collectible91}} 설치한 방에서 2칸 이내에 있는 스테이지 구조 및 특수방을 맵에 표시 및 영향권으로 만듭니다."
 		.. "#영향권 내에서 {{DamageSmall}}공격력/{{TearsSmall}}연사 증가"
-		.. "#{{SoulHeart}} 클리어한 방에서 설치 및 토끼 와드가 설치된 방 클리어 시 추가 소울하트 +1"
 		.. "{{CR}}",
 		carBattery = {"설치:", "2개{{CR}} 설치:"},
 		queueDesc = "아쿠아 확장 장치",
@@ -2388,7 +2388,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
 		queueDesc = "마녀의 불꽃",
-		description = "{{Collectible712}} Lemegeton의 아이템 불꽃을 최대 6개({{Collectible263}} : 3개) 소환합니다.#모든 불꽃은 최소 {{Quality2}}등급의 아이템으로 소환됩니다.",
+		description = "{{Collectible712}} 캐릭터가 소지 중인 아이템의 아이템 위습을 최대 6개({{Collectible263}} : 3개) 소환합니다.#{{Card"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{DamageSmall}}유효한 아이템이 없는 경우 공격력 +0.2 효과의 아이템 불꽃 소환",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",
