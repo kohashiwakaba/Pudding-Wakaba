@@ -8,7 +8,7 @@ function wakaba:PEffectUpdate_ClensingFoam(player)
   if player:HasCollectible(wakaba.Enums.Collectibles.CLENSING_FOAM) then
     local entities = Isaac.FindInRadius(player.Position, radius, EntityPartition.ENEMY)
     for _, entity in ipairs(entities) do
-      if entity:IsEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+      if entity:IsEnemy() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) and not entity:HasEntityFlags(EntityFlag.FLAG_ICE_FROZEN) then
         local multiplier = (1 + player:GetCollectibleNum(wakaba.Enums.Collectibles.CLENSING_FOAM)) * multi
         local length = 15
         if entity:IsBoss() then
