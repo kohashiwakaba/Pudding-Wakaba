@@ -42,6 +42,8 @@ function wakaba:UseItem_LilRira(activeItem, rng, player, flags, slot, vardata)
 	if flags & UseFlag.USE_OWNED == 0 or slot < 0 then return end
 	wakaba:setPlayerDataEntry(player, "LilRiraLastItem", activeItem)
 	wakaba:setPlayerDataEntry(player, "LilRiraLastSlot", slot)
+	local bypass = wakaba.LilRiraChargeType[activeItem] and wakaba.LilRiraChargeType[activeItem].CanBypass
+	wakaba:setPlayerDataEntry(player, "LilRiraBypassCharge", bypass)
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.IMPORTANT, wakaba.UseItem_LilRira)
 
@@ -53,9 +55,15 @@ function wakaba:tryAddLilRiraDamageByItem(familiar, player, activeItem, charges)
 	if activeItem ~= 0 then
 		local config = Isaac.GetItemConfig():GetCollectible(activeItem)
 		local maxCharges = charges or config.MaxCharges
+		local chargeType = config.ChargeType
+
+		if wakaba.LilRiraChargeType[activeItem] then
+			local override = wakaba.LilRiraChargeType[activeItem]
+			maxCharges = override.MaxCharges or maxCharges
+			chargeType = override.ChargeType or chargeType
+		end
 		if maxCharges == 0 then return end
 		--local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
-		local chargeType = config.ChargeType
 		if chargeType == ItemConfig.CHARGE_TIMED then
 			familiar.Coins = familiar.Coins + maxCharges
 		elseif (chargeType == ItemConfig.CHARGE_NORMAL and maxCharges == 1 and player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT)) then
@@ -129,7 +137,7 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 
 	local lastSlot = wakaba:getPlayerDataEntry(player, "LilRiraLastSlot")
 	if lastSlot then
-		if player:NeedsCharge(lastSlot) then
+		if wakaba:getPlayerDataEntry(player, "LilRiraBypassCharge") or player:NeedsCharge(lastSlot) then
 			local lastItem = wakaba:getPlayerDataEntry(player, "LilRiraLastItem")
 			wakaba.Log("Lil Rira charge usage detected from slot", lastSlot, ", item", lastItem, "! adding to damage...")
 			if hasRira then
@@ -137,12 +145,13 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 			end
 			wakaba:removePlayerDataEntry(player, "LilRiraLastItem")
 			wakaba:removePlayerDataEntry(player, "LilRiraLastSlot")
+			wakaba:removePlayerDataEntry(player, "LilRiraBypassCharge")
 		end
 	end
 
 	if hasRira and familiar.Coins > 0 then
 		local timedCharges = familiar.Coins
-		local dmgToAdd = timedCharges / 180
+		local dmgToAdd = timedCharges / (30 * 20)
 		wakaba.Log("Lil Rira adding damage from timed active :", dmgToAdd)
 		wakaba:addRiraDamage(player, dmgToAdd)
 		--riraCharges[playerIndex] = (riraCharges[playerIndex] or 0) + dmgToAdd
@@ -257,3 +266,45 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_LilRira)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, wakaba.FamiliarInit_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.LIL_RIRA)
 wakaba:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, wakaba.FamiliarUpdate_LilRira, wakaba.Enums.Familiars.MAID_RIRA)
+
+if EID then
+	local function RiraCondition(descObj)
+		if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and wakaba:isActiveItem(descObj.ObjSubType)then
+			return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+		end
+		return false
+	end
+	local function RiraCallback(descObj)
+		local config = Isaac.GetItemConfig():GetCollectible(descObj.ObjSubType)
+		local maxCharges = charges or config.MaxCharges
+		local chargeType = config.ChargeType
+		local bypassed = false
+
+		if wakaba.LilRiraChargeType[descObj.ObjSubType] then
+			local override = wakaba.LilRiraChargeType[descObj.ObjSubType]
+			maxCharges = override.MaxCharges or maxCharges
+			chargeType = override.ChargeType or chargeType
+			bypassed = true
+		end
+		local append = "" ---@type string
+		local damageUps = 0
+		local count = 0
+		if chargeType == ItemConfig.CHARGE_NORMAL and maxCharges > 0 then
+			append = EID:getDescriptionEntry("LilRiraEntryNormal") or EID:getDescriptionEntryEnglish("LilRiraEntryNormal")
+			damageUps = maxCharges * 0.05
+			count = maxCharges
+		elseif chargeType == ItemConfig.CHARGE_TIMED and maxCharges > 0 then
+			append = EID:getDescriptionEntry("LilRiraEntryTimed") or EID:getDescriptionEntryEnglish("LilRiraEntryTimed")
+			damageUps = wakaba:Round((maxCharges / (30 * 20)) * 0.05, 0.001)
+			count = wakaba:Round(maxCharges / 30, 0.001)
+		else
+			append = EID:getDescriptionEntry("LilRiraEntryInvalid") or EID:getDescriptionEntryEnglish("LilRiraEntryInvalid")
+		end
+		append = append:gsub("{1}", damageUps)
+		append = append:gsub("{2}", count)
+
+		EID:appendToDescription(descObj, "#{{Collectible"..wakaba.Enums.Collectibles.LIL_RIRA.."}} ".. append)
+		return descObj
+	end
+	EID:addDescriptionModifier("Wakaba Lil Rira", RiraCondition, RiraCallback)
+end

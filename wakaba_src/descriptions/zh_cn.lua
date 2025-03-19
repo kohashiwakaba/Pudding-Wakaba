@@ -395,7 +395,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#对所有玩家使用:"
 			.. "#↑ {{BoneHeart}} +1 骨心"
-			.. "#{{Heart}} 恢复所有红心"
 			.. "{{CR}}",
 		queueDesc = "可回收死灵",
 		belial = "{{BlackHeart}}给出一个黑心，而不是是骨心。恢复所有红心的效果仍然有效",
@@ -508,12 +507,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
 		itemName = "复仇之果",
 		description = ""
-			..
-			"#{{Collectible" ..
-			CollectibleType.COLLECTIBLE_BRIMSTONE .. "}} 增加一定几率用硫磺火代替泪弹射击"
-			.. "#每当以撒在当前楼层受到伤害，几率就会增加"
-			--.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 1.5x攻击力 multiplier"
-			.. "{{CR}}",
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_MAW_OF_THE_VOID .."}} 5% chance to shoot black ring"
+		.. "#{{Luck}} 20% at 39 Luck"
+		.. "{{CR}}",
+		duplicate = "Increased ring effect time",
 		queueDesc = "极限热泪",
 	},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
@@ -1966,12 +1963,14 @@ wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		itemName = "攻击倍率上升",
 		description = "↑ {{Damage}} +8% 攻击倍率",
+		horse = "↑ {{Damage}} +16% 攻击倍率",
 		mimiccharge = 12,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "攻击倍率下降",
 		description = "↓ {{Damage}} -6% 攻击倍率",
+		horse = "↓ {{Damage}} -12% 攻击倍率",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -1979,6 +1978,7 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "全属性上升",
 		description =
 		"↑ {{Damage}} +0.25攻击力#↑ {{Tears}} +0.2 射速#↑ {{Speed}} +0.12速度#↑ {{Range}} +0.4攻击距离#↑ {{Shotspeed}} +0.04 弹速#↑ {{Luck}} +1 幸运#",
+		horse = "↑ {{Damage}} +0.5攻击力#↑ {{Tears}} +0.4 射速#↑ {{Speed}} +0.24速度#↑ {{Range}} +0.8攻击距离#↑ {{Shotspeed}} +0.08 弹速#↑ {{Luck}} +2 幸运#",
 		mimiccharge = 8,
 		class = "3+",
 	},
@@ -1986,36 +1986,42 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "全属性下降",
 		description =
 		"↓ {{Damage}} -0.1攻击力#↓ {{Tears}} -0.08 射速#↓ {{Speed}} -0.09速度#↓ {{Range}} -0.25攻击距离#↓ {{Shotspeed}} -0.03 弹速#↓ {{Luck}} -1 幸运#",
+		horse = "↓ {{Damage}} -0.2攻击力#↓ {{Tears}} -0.16 射速#↓ {{Speed}} -0.18速度#↓ {{Range}} -0.5攻击距离#↓ {{Shotspeed}} -0.06 弹速#↓ {{Luck}} -2 幸运#",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.TROLLED] = {
 		itemName = "鬼畜!",
 		description = "{{ErrorRoom}} 传送到错误房#{{Collectible721}} 在???/家里生成故障物品",
+		horse = "{{ErrorRoom}} 传送到错误房#{{Collectible721}} 在???/家里生成故障物品#移除一个碎心",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.TO_THE_START] = {
 		itemName = "回到起点!",
 		description = "传送到本层初始房间",
+		horse = "传送到本层初始房间#治愈一红心#移除一碎心",
 		mimiccharge = 2,
 		class = "0+",
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		itemName = "喷射战士!",
 		description = "在以撒的位置生成两个敌对硫磺漩涡",
+		horse = "在以撒的位置生成两个敌对硫磺漩涡#{{Collectible293}} 向四个方向射出硫磺火",
 		mimiccharge = 3,
 		class = "2-",
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		itemName = "喷射战士?",
 		description = "{{Collectible118}} 在当前房间获得硫磺火",
+		horse = "{{Card88}}{{Collectible441}}连续喷射7.5秒巨型硫磺火",
 		mimiccharge = 6,
 		class = "2+",
 	},
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
 		itemName = "社交距离",
 		description = "关闭当前楼层的恶魔/天使房间",
+		horse = "关闭当前楼层的恶魔/天使房间#↓ {{AngelDevilChance}} 减少之后楼层恶魔/天使房的机会",
 		mimiccharge = 4,
 		class = "2-",
 	},
@@ -2023,6 +2029,7 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "二元命令",
 		description =
 		"{{Collectible498}} 保证当前楼层同时出现恶魔和天使房间#进入其中一个会使另一个消失",
+		horse = "{{Collectible498}} 保证当前楼层同时出现恶魔和天使房间#进入其中一个会使另一个消失#房间内多产生一个道具#可以双拿",
 		mimiccharge = 6,
 		class = "3+",
 	},
@@ -2030,87 +2037,23 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "Priest的祝福",
 		description =
 		"给予一层神圣斗篷#{{Card51}} 效果与神圣卡相同",
+		horse = "给予一层神圣斗篷#{{Card51}} 效果与神圣卡相同",
 		mimiccharge = 4,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		itemName = "不洁诅咒",
 		description = "打破一层神圣斗篷#如果没有神圣斗篷，则无效",
+		horse = "打破二层神圣斗篷#如果没有神圣斗篷，则无效",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		itemName = "沉重的睫毛膏",
 		description = "{{CurseBlind}} 此层赋予盲目诅咒",
+		horse = "此层{{CurseBlind}} 赋予盲目诅咒和#{CurseUnknown}}未知诅咒",
 		mimiccharge = 4,
 		class = "3-",
-	},
-}
-wakaba.descriptions[desclang].horsepills = {
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
-		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
-		"攻击倍率 上升",
-		"↑ {{Damage}} +16% 攻击倍率",
-	},
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
-		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
-		"攻击倍率 下降",
-		"↓ {{Damage}} -12% 攻击倍率",
-	},
-	[wakaba.Enums.Pills.ALL_STATS_UP] = {
-		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
-		"全属性上升",
-		"↑ {{Damage}} +0.5攻击力#↑ {{Tears}} +0.4 射速#↑ {{Speed}} +0.24速度#↑ {{Range}} +0.8攻击距离#↑ {{Shotspeed}} +0.08 弹速#↑ {{Luck}} +2 幸运#",
-	},
-	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
-		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
-		"全属性下降",
-		"↓ {{Damage}} -0.2攻击力#↓ {{Tears}} -0.16 射速#↓ {{Speed}} -0.18速度#↓ {{Range}} -0.5攻击距离#↓ {{Shotspeed}} -0.06 弹速#↓ {{Luck}} -2 幸运#",
-	},
-	[wakaba.Enums.Pills.TROLLED] = {
-		tostring(wakaba.Enums.Pills.TROLLED),
-		"鬼畜!",
-		"{{ErrorRoom}} 传送到错误房#{{Collectible721}} 在???/家里生成故障物品#移除一个碎心",
-	},
-	[wakaba.Enums.Pills.TO_THE_START] = {
-		tostring(wakaba.Enums.Pills.TO_THE_START),
-		"回到起点!",
-		"传送到本层初始房间#治愈一红心#移除一碎心",
-	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
-		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),
-		"喷射战士!",
-		"在以撒的位置生成两个敌对硫磺漩涡#{{Collectible293}} 向四个方向射出硫磺火",
-	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
-		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT),
-		"喷射战士?",
-		"{{Card88}}{{Collectible441}}连续喷射7.5秒巨型硫磺火",
-	},
-	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
-		tostring(wakaba.Enums.Pills.SOCIAL_DISTANCE),
-		"社交距离",
-		"关闭当前楼层的恶魔/天使房间#↓ {{AngelDevilChance}} 减少之后楼层恶魔/天使房的机会",
-	},
-	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
-		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
-		"二元命令",
-		"{{Collectible498}} 保证当前楼层同时出现恶魔和天使房间#进入其中一个会使另一个消失#房间内多产生一个道具#可以双拿",
-	},
-	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
-		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
-		"Priest的祝福",
-		"给予一层神圣斗篷#{{Card51}} 效果与神圣卡相同",
-	},
-	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
-		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
-		"不洁诅咒",
-		"打破二层神圣斗篷#如果没有神圣斗篷，则无效",
-	},
-	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
-		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
-		"沉重的睫毛膏",
-		"此层{{CurseBlind}} 赋予盲目诅咒和#{CurseUnknown}}未知诅咒",
 	},
 }
 

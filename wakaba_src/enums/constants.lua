@@ -1460,11 +1460,69 @@ wakaba.VoidFlags = {
 	PIECES = 1<<3,
 }
 
-wakaba.Enums.LilRiraChargeType = {
-	[CollectibleType.COLLECTIBLE_ISAACS_TEARS] = {ChargeType = ItemConfig.CHARGE_TIMED, MaxCharges = 60},
-	[CollectibleType.COLLECTIBLE_BERSERK] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1},
+wakaba.LilRiraChargeType = {
+	[CollectibleType.COLLECTIBLE_ISAACS_TEARS] = {ChargeType = ItemConfig.CHARGE_TIMED, MaxCharges = 15},
+	[CollectibleType.COLLECTIBLE_BERSERK] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 4},
 	[CollectibleType.COLLECTIBLE_ERASER] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12},
+	[CollectibleType.COLLECTIBLE_KAMIKAZE] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_RAZOR_BLADE] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_GUPPYS_PAW] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 3, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_IV_BAG] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_REMOTE_DETONATOR] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_PORTABLE_SLOT] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_BLOOD_RIGHTS] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_MAGIC_FINGERS] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_POTATO_PEELER] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_GOLDEN_RAZOR] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_FORGET_ME_NOW] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_BLUE_BOX] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_DIPLOPIA] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_PLAN_C] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1000, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_MAMA_MEGA] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_MYSTERY_GIFT] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_DAMOCLES] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 6, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_R_KEY] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 24, CanBypass = true},
+	[wakaba.Enums.Collectibles.EATHEART] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 12, CanBypass = true},
+	[wakaba.Enums.Collectibles.SELF_BURNING] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 6, CanBypass = true},
 }
+
+wakaba.WeaponTypeLuckScale = {
+	[WeaponType.WEAPON_TEARS] = 1.00,
+	[WeaponType.WEAPON_BRIMSTONE] = 1.00,
+	[WeaponType.WEAPON_LASER] = 1.00,
+	[WeaponType.WEAPON_KNIFE] = 1.00,
+	[WeaponType.WEAPON_BOMBS] = 1.00,
+	[WeaponType.WEAPON_ROCKETS] = 1.00,
+	[WeaponType.WEAPON_MONSTROS_LUNGS] = 1.00,
+	[WeaponType.WEAPON_LUDOVICO_TECHNIQUE] = 0.30,
+	[WeaponType.WEAPON_TECH_X] = 1.00,
+	[WeaponType.WEAPON_BONE] = 1.00,
+	[WeaponType.WEAPON_NOTCHED_AXE] = 0.00,
+	[WeaponType.WEAPON_URN_OF_SOULS] = 0.00,
+	[WeaponType.WEAPON_SPIRIT_SWORD] = 1.00,
+	[WeaponType.WEAPON_FETUS] = 1.00,
+	[WeaponType.WEAPON_UMBILICAL_WHIP] = 1.00,
+}
+if REPENTOGON then
+	wakaba.WeaponTypeLuckScale = {
+		[WeaponType.WEAPON_TEARS] = 1.00,
+		[WeaponType.WEAPON_BRIMSTONE] = 0.20,
+		[WeaponType.WEAPON_LASER] = 1.00,
+		[WeaponType.WEAPON_KNIFE] = 0.17,
+		[WeaponType.WEAPON_BOMBS] = 1.00,
+		[WeaponType.WEAPON_ROCKETS] = 0.17,
+		[WeaponType.WEAPON_MONSTROS_LUNGS] = 1.00,
+		[WeaponType.WEAPON_LUDOVICO_TECHNIQUE] = 0.17,
+		[WeaponType.WEAPON_TECH_X] = 1.00,
+		[WeaponType.WEAPON_BONE] = 1.00,
+		[WeaponType.WEAPON_NOTCHED_AXE] = 0.00,
+		[WeaponType.WEAPON_URN_OF_SOULS] = 0.00,
+		[WeaponType.WEAPON_SPIRIT_SWORD] = 0.20,
+		[WeaponType.WEAPON_FETUS] = 1.00,
+		[WeaponType.WEAPON_UMBILICAL_WHIP] = 1.00,
+	}
+end
 
 -- 임시
 wakaba.__bombItems = {

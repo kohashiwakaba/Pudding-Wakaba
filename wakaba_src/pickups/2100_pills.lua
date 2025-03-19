@@ -521,12 +521,6 @@ if EID then
 				descObj.Name = pillDesc.itemNameAfter
 			end
 		end
-		if descObj.ObjSubType > PillColor.PILL_GIANT_FLAG then
-			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].horsepills) or wakaba.descriptions["en_us"].horsepills
-			if unistr[adjustedID-1] then
-				descObj.Description = unistr[adjustedID-1][3]
-			end
-		end
 		return descObj
 	end)
 end

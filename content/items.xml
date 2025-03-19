@@ -12,7 +12,7 @@
 	<passive id="8" description="Stack coins &amp; become secret friend" gfx="secretcard.png" name="Secret Card" shopprice="12" tags="offensive nocantrip summonable lazarusshared" quality="3" craftquality="4"/>
 	<familiar id="9" description="Wait What?" gfx="plumy.png" name="Plumy" devilprice="2" tags="offensive fly summonable" quality="3" craftquality="3" />
 	<passive id="10" description="???" gfx="executioner.png" name="Executioner" tags="offensive summonable" quality="4" craftquality="4" />
-	<passive id="11" description="Extreme Hot Taste" gfx="revengefruit.png" name="Revenge Fruit" tags="offensive summonable" quality="3" craftquality="3" />
+	<passive id="11" description="Extreme Hot Taste" gfx="revengefruit.png" name="Revenge Fruit" tags="offensive summonable" quality="2" craftquality="2" />
 	<passive id="12" description="No more pesky Needles" gfx="returnpostage.png" name="Return Postage" shopprice="27" devilprice="2" tags="nocantrip summonable lazarusshared" quality="3" craftquality="4" />
 	<active id="13"  description="Gokigenyou!" gfx="schooluniform.png" maxcharges="0" chargetype="special" devilprice="2" name="Wakaba's Uniform" tags="stars nocantrip" quality="4" craftquality="4" customtags="nometronome" />
 	<passive id="14" description="Voided Bombs" gfx="newyearbomb.png" name="New Year's Eve Bomb" maxcharges="0" devilprice="2" tags="offensive" quality="4" craftquality="4" bombs="9"/>
@@ -72,7 +72,7 @@
 	<passive id="48" cache="firedelay" description="Keep it sacred" gfx="lunarstone.png" name="Lunar Stone" tags="stars nocantrip tearsup" devilprice="2" quality="3" craftquality="4" />
 	<passive id="49" cache="luck" description="Kaguya's Potion" gfx="elixiroflife.png" name="Elixir of Life" cooldown="1" persistent="true" tags="stars offensive nocantrip" devilprice="2" quality="3" craftquality="4" />
 	<active id="50" description="The Comet Girl" gfx="flashshift.png" maxcharges="0" name="Flash Shift" tags="stars offensive nocantrip" customtags="nometronome" quality="1" craftquality="3" />
-	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive nocantrip" quality="3" craftquality="4"/>
+	<active id="51" description="Reroll Pill insides" gfx="beetlejuice.png" maxcharges="6" name="Beetlejuice" tags="syringe offensive" quality="3" craftquality="4"/>
 	<passive id="52" cache="damage shotspeed tearflag" description="Burn to the Ground!" gfx="magmablade.png" name="Magma Blade" devilprice="2" tags="devil stars offensive" quality="3" craftquality="-1" hidden="true"/>
 	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" customtags="nometronome" quality="4" craftquality="4"/>
 
@@ -101,7 +101,7 @@
 	<passive id="74" cache="luck" description="Waiting for her birth" gfx="jarofclover.png" name="Jar of Clover" quality="2" craftquality="3" tags="nochallenge" persistent="true" customtags="revive"/>
 	<passive id="75" cache="damage tearflag" description="Forgotten recipies" gfx="bunnyparfait.png" name="Bunny Parfait" quality="3" craftquality="3" tags="nochallenge" persistent="true" customtags="revive"/>
 	<passive id="76" cache="damage luck" description="Forgotten recipies" gfx="caramellapancake.png" name="Caramella Pancake" shopprice="24" devilprice="2" quality="4" craftquality="4" tags="nochallenge" persistent="true" customtags="revive"/>
-	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" maxcharges="4" quality="3" craftquality="4" tags="offensive nocantrip" />
+	<active id="77" description="Resuable Giant Bomb" gfx="powerbomb.png" name="Power Bomb" maxcharges="6" quality="3" craftquality="4" tags="offensive" />
 
 	<familiar id="78" description="Kaguya's fate..." gfx="lunardamocles.png" name="Lunar Damocles" quality="2" tags="quest nocantrip noeden" customtags="nometronome" hidden="true" achievement="9999"/>
 
@@ -175,6 +175,10 @@
 	<active id="152" description="Evolutionary Metal" gfx="etoilium.png" name="Etoilium" tags="quest noeden" customtags="nometronome" maxcharges="0" quality="4" craftquality="4" hidden="true" achievement="9999"/>
 	<!--  -->
 
+	<!-- TR Richer Reserve -->
+	<passive id="666" description="???" gfx="bunnyextintion.png" name="Bunny Extinction" tags="quest noeden" customtags="nometronome" quality="0" craftquality="0" hidden="true" achievement="9999"/>
+	<!--  -->
+
 	<active id="993" description="Designed for Maid - Destiny mover" gfx="shifter.png" name=" Shifter " tags="quest nocantrip noeden" maxcharges="0" quality="4" craftquality="-1" hidden="true" achievement="9999"/>
 	<passive id="994" description="Designed for Maid - Destiny mover" gfx="shifter.png" name="Shifter" tags="quest nocantrip noeden" maxcharges="0" quality="4" craftquality="-1" hidden="true" achievement="9999"/>
 	<!-- <active id="995" description="Librarian only - Book Replicator" gfx="bookofshiori2.png" name="Shiori's Book" tags="quest nocantrip noeden" maxcharges="0" quality="6" craftquality="-1" hidden="true" achievement="9999"/> -->
@@ -245,5 +249,6 @@
 	<trinket name="Mini Torizo" description="Piercing tears..?" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
 	<trinket name="Grenade D20" description="Exploding pickups" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
 	<trinket name="Wakaba Siren" description="ALERT" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
+	<trinket name="Stealth Bond" description="Can you hear me?" gfx="buta-chan/troll.png" hidden="true" achievement="9999"/>
 
 </items>

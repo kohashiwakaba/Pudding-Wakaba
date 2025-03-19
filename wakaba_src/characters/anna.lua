@@ -74,23 +74,23 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_EVALUATE_CACHE, 41010720, wakaba.onAn
 function wakaba:Cache_AnnaRibbon(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_RANGE then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_0)
-		player.TearRange = player.TearRange + (num * 2)
+		player.TearRange = player.TearRange + (num * 20)
 	end
 	if cacheFlag == CacheFlag.CACHE_SPEED then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_1)
-		player.MoveSpeed = player.MoveSpeed + (num * 0.01)
+		player.MoveSpeed = player.MoveSpeed + (num * 0.1)
 	end
 	if cacheFlag == CacheFlag.CACHE_LUCK then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_2)
-		player.Luck = player.Luck + (num * 0.1)
+		player.Luck = player.Luck + (num * 1)
 	end
 	if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_3)
-		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (0.1 * num * wakaba:getEstimatedTearsMult(player)))
+		player.MaxFireDelay = wakaba:TearsUp(player.MaxFireDelay, (0.7 * num * wakaba:getEstimatedTearsMult(player)))
 	end
 	if cacheFlag == CacheFlag.CACHE_DAMAGE then
 		local num = player:GetCollectibleNum(wakaba.Enums.Collectibles.ANNA_RIBBON_4)
-		player.Damage = player.Damage + (num * 0.2 * wakaba:getEstimatedDamageMult(player))
+		player.Damage = player.Damage + (num * 3 * wakaba:getEstimatedDamageMult(player))
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_AnnaRibbon)

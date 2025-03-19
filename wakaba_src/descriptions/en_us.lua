@@ -448,7 +448,6 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#Applies to all players on use:"
 		.. "#↑ {{BoneHeart}} +1 Bone Heart"
-		.. "#{{HealingRed}} Heals all heart containers"
 		.. "{{CR}}",
 		belial = "{{BlackHeart}}Gives 1 Black Heart instead of Bone Heart. Full Health effect is still intact",
 		wisp = "{{ColorYellow}}Center Ring x1: {{CR}}#{{BoneHeart}}Spawns a Bone Heart when destroyed",
@@ -560,10 +559,11 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.REVENGE_FRUIT] = {
 		itemName = "Revenge Fruit",
 		description = ""
-		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} Adds a chance to shoot Brimstone Lasers instead of a tear"
-		.. "#Chance increases every time Isaac takes damage on current floor"
-		--.. "#{{Collectible"..CollectibleType.COLLECTIBLE_BRIMSTONE .."}} 1.5x Damage multiplier"
+		.. "#{{Collectible"..CollectibleType.COLLECTIBLE_MAW_OF_THE_VOID .."}} 5% chance to shoot black ring"
+		.. "#{{Luck}} 20% at 39 Luck"
 		.. "{{CR}}",
+		duplicate = "Increased ring effect time",
+		LuckFormula = function(luck) return wakaba:StackChance(0.05 + wakaba:LuckBonus(luck, 39, 0.2 - 0.05), 1) * 100 end,
 		},
 	[wakaba.Enums.Collectibles.UNIFORM] = {
 		itemName = "Wakaba's Uniform",
@@ -2112,24 +2112,28 @@ wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
 		itemName = "Damage Multiplier Up",
 		description = "↑ {{Damage}} +8% Damage Multiplier",
+		horse = "↑ {{Damage}} +16% Damage Multiplier",
 		mimiccharge = 12,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
 		itemName = "Damage Multiplier Down",
-		description = "↓ {{Damage}} -6% Damage Multiplier",
+		description = "↓ {{Damage}} -12% Damage Multiplier",
+		horse = "",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_UP] = {
 		itemName = "All Stats Up",
 		description = "↑ {{Damage}} +0.25 Damage#↑ {{Tears}} +0.2 Tears#↑ {{Speed}} +0.12 Speed#↑ {{Range}} +0.4 Range#↑ {{Shotspeed}} +0.04 Shot Speed#↑ {{Luck}} +1 Luck#",
+		horse = "↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +2 Luck#",
 		mimiccharge = 8,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
 		itemName = "All Stats Down",
 		description = "↓ {{Damage}} -0.1 Damage#↓ {{Tears}} -0.08 Tears#↓ {{Speed}} -0.09 Speed#↓ {{Range}} -0.25 Range#↓ {{Shotspeed}} -0.03 Shot Speed#↓ {{Luck}} -1 Luck#",
+		horse = "↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↓ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
 		mimiccharge = 4,
 		class = "3-",
 	},
@@ -2137,126 +2141,67 @@ wakaba.descriptions[desclang].pills = {
 		itemName = "Trolled!",
 		itemNameAfter = "A pill for troll",
 		description = "{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home",
+		horse = "{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.TO_THE_START] = {
 		itemName = "To the Start!",
 		description = "Teleports to Starting room on the floor",
+		horse = "Teleports to Starting room on the floor#{{HealingRed}} Heals 1 Heart#Removes a Broken Heart",
 		mimiccharge = 2,
 		class = "0+",
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
 		itemName = "Explosive Diarrehea 2!",
 		description = "Spawns 2 troll Brimstone swirls at Isaac's position",
+		horse = "Spawns 2 troll Brimstone swirls at Isaac's position#{{Collectible293}} Shoot brimstone lasers in all 4 directions",
 		mimiccharge = 3,
 		class = "2-",
 	},
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
 		itemName = "Explosive Diarrehea 2?",
 		description = "{{Collectible118}} Grants Brimstone for the current room",
+		horse = "{{Card88}} Activates {{Collectible441}}Mega Blast for 7.5 seconds",
 		mimiccharge = 6,
 		class = "2+",
 	},
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
 		itemName = "Social Distance",
 		description = "Closes Devil/Angel room for current floor",
+		horse = "Closes Devil/Angel room for current floor#↓ {{AngelDevilChance}} Decreases Devil/Angel room chance for later floors",
 		mimiccharge = 4,
 		class = "2-",
 	},
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
 		itemName = "Duality Orders",
 		description = "{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear",
+		horse = "{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear#Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
 		mimiccharge = 6,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
 		itemName = "Priest's Blessing",
 		description = "Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken#{{Card51}} Same Effect as Holy Card",
+		horse = "{{Card51}} Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken",
 		mimiccharge = 4,
 		class = "3+",
 	},
 	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
 		itemName = "Unholy Curse",
 		description = "Breaks a stack from Holy Mantle shield#Does nothing if Isaac don't have Holy Mantle shields",
+		horse = "Breaks 2 stacks from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
 		mimiccharge = 4,
 		class = "3-",
 	},
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		itemName = "Heavy Mascara",
 		description = "{{CurseBlind}} Curse of the Blind effect for the floor",
+		horse = "{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor",
 		mimiccharge = 4,
 		class = "3-",
 	},
 }
-wakaba.descriptions[desclang].horsepills = {
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP] = {
-		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP),
-		"Damage Multiplier Up",
-		"↑ {{Damage}} +16% Damage Multiplier",
-	},
-	[wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN] = {
-		tostring(wakaba.Enums.Pills.DAMAGE_MULTIPLIER_DOWN),
-		"Damage Multiplier Down",
-		"↓ {{Damage}} -12% Damage Multiplier",
-	},
-	[wakaba.Enums.Pills.ALL_STATS_UP] = {
-		tostring(wakaba.Enums.Pills.ALL_STATS_UP),
-		"All Stats Up",
-		"↑ {{Damage}} +0.5 Damage#↑ {{Tears}} +0.4 Tears#↑ {{Speed}} +0.24 Speed#↑ {{Range}} +0.8 Range#↑ {{Shotspeed}} +0.08 Shot Speed#↑ {{Luck}} +2 Luck#",
-	},
-	[wakaba.Enums.Pills.ALL_STATS_DOWN] = {
-		tostring(wakaba.Enums.Pills.ALL_STATS_DOWN),
-		"All Stats Down",
-		"↓ {{Damage}} -0.2 Damage#↓ {{Tears}} -0.16 Tears#↓ {{Speed}} -0.18 Speed#↓ {{Range}} -0.5 Range#↓ {{Shotspeed}} -0.06 Shot Speed#↓ {{Luck}} -2 Luck#",
-	},
-	[wakaba.Enums.Pills.TROLLED] = {
-		tostring(wakaba.Enums.Pills.TROLLED),
-		"Trolled!",
-		"{{ErrorRoom}} Teleports to I AM ERROR room#{{Collectible721}} Spawns Glitched items on ???/Home#Removes a Broken Heart",
-	},
-	[wakaba.Enums.Pills.TO_THE_START] = {
-		tostring(wakaba.Enums.Pills.TO_THE_START),
-		"To the Start!",
-		"Teleports to Starting room on the floor#{{HealingRed}} Heals 1 Heart#Removes a Broken Heart",
-	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = {
-		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2),
-		"Explosive Diarrehea 2!",
-		"Spawns 2 troll Brimstone swirls at Isaac's position#{{Collectible293}} Shoot brimstone lasers in all 4 directions",
-	},
-	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = {
-		tostring(wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT),
-		"Explosive Diarrehea 2?",
-		"{{Card88}} Activates {{Collectible441}}Mega Blast for 7.5 seconds",
-	},
-	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = {
-		tostring(wakaba.Enums.Pills.SOCIAL_DISTANCE),
-		"Social Distance",
-		"Closes Devil/Angel room for current floor#↓ {{AngelDevilChance}} Decreases Devil/Angel room chance for later floors",
-	},
-	[wakaba.Enums.Pills.DUALITY_ORDERS] = {
-		tostring(wakaba.Enums.Pills.DUALITY_ORDERS),
-		"Duality Orders",
-		"{{Collectible498}} Guarantees both an Angel and Devil room for current floor#Entering one makes the other disappear#Spawns an each of {{DevilRoom}}Devil/{{AngelRoom}}Angel room items#Both items can be taken",
-	},
-	[wakaba.Enums.Pills.PRIEST_BLESSING] = {
-		tostring(wakaba.Enums.Pills.PRIEST_BLESSING),
-		"Priest's Blessing",
-		"{{Card51}} Grants the Holy Mantle effect#(Prevents damage once)#Effect lasts until damage is taken",
-	},
-	[wakaba.Enums.Pills.UNHOLY_CURSE] = {
-		tostring(wakaba.Enums.Pills.UNHOLY_CURSE),
-		"Unholy Curse",
-		"Breaks 2 stacks from Holy Mantle shield#Does nothing if Isaac does not have Holy Mantle shields",
-	},
-	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
-		tostring(wakaba.Enums.Pills.HEAVY_MASCARA),
-		"Heavy Mascara",
-		"{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor",
-	},
-}
-
 wakaba.descriptions[desclang].sewnupgrade = {
 	[wakaba.Enums.Familiars.LIL_WAKABA] = {
 		super = ""
@@ -2966,7 +2911,6 @@ wakaba.descriptions[desclang].playernotes = {
 		.. "#{{Blank}} Blacklisted items only appear with set drops"
 		.. "#{{Card51}} Starts with : Holy Card"
 		.. "#{{Card51}} All cards that spawn have roughly a 10% chance of being turned into a Holy Card"
-		.. "#{{Collectible"..wakaba.Enums.Collectibles.UNIFORM.."}} {{GoldenKey}}Starts with : Wakaba's Uniform(w09: Complete Draw Five)"
 		.. "",
 	},
 	[PlayerType.PLAYER_LAZARUS2_B] = {
@@ -3339,6 +3283,10 @@ if EID then
 	EID.descriptions[desclang].AlbireoPool = "{{RicherPlanetarium}} Pool for this floor : "
 
 	EID.descriptions[desclang].ClearFileSelection = "Selection for Clear File"
+
+	EID.descriptions[desclang].LilRiraEntryNormal = "{1} Damage per use ({2} room charges)"
+	EID.descriptions[desclang].LilRiraEntryTimed = "{1} Damage per use ({2} second charges)"
+	EID.descriptions[desclang].LilRiraEntryInvalid = "Cannot add Damage"
 
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}Expands Rabbey Ward area"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
