@@ -580,12 +580,15 @@ function wakaba:RevealItemImage(pickup, offset)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, wakaba.RevealItemImage, PickupVariant.PICKUP_COLLECTIBLE)
 
-function wakaba:AlterPlayerDamage_BlessNemesis(player, amount, flags, source, countdown)
+function wakaba:PenaltyProtection_BlessNemesis(player, amount, flags, source, countdown)
 	if not wakaba:IsLunatic() and (wakaba:HasBless(player, true) or wakaba:HasNemesis(player, true) or wakaba:hasLunarStone(player)) then
-		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
+		return {
+			Protect = true,
+			Override = true,
+		}
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_BlessNemesis)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION, wakaba.PenaltyProtection_BlessNemesis)
 
 function wakaba:BlessNemesisDamage(source, target, data, newDamage, newFlags)
 	local returndata = {}

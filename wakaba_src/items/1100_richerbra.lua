@@ -4,12 +4,16 @@
  ]]
 local isc = _wakaba.isc
 
-function wakaba:AlterPlayerDamage_RicherBra(player, amount, flags, source, countdown)
+function wakaba:PenaltyProtection_RicherBra(player, amount, flags, source, countdown)
 	if player:HasCollectible(wakaba.Enums.Collectibles.RICHERS_BRA) then
-		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
+		return {
+			Protect = true,
+			Override = true,
+			Force = true,
+		}
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_RicherBra)
+wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION, -200, wakaba.PenaltyProtection_RicherBra)
 
 function wakaba:NewRoom_RicherBra()
 	local room = wakaba.G:GetRoom()

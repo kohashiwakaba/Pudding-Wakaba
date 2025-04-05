@@ -3495,6 +3495,8 @@ if EID then
 	EID.descriptions[desclang].LilRiraEntryTimed = "{{ColorRira}}{{DamageSmall}}사용 당 공격력 +{1} ({2}초)"
 	EID.descriptions[desclang].LilRiraEntryInvalid = "{{ColorCiel}}!!! 공격력이 증가되지 않음"
 
+	EID.descriptions[desclang].WakabaDmgProtectionInvalid = "{{NoLB}}{{ColorOrange}}피격 패널티 보호 무효화됨:"
+
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}토끼 와드 범위 증가"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1}로 범위 증가됨"
 

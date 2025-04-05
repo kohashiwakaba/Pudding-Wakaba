@@ -458,7 +458,7 @@ function mod:GetCrutchIgnoredFlags()
 	)
 end
  ]]
---[[ 
+--[[
 function mod:TearHasCustomEffect(tear, isCrutchCheck)
 	local testFlags = mod.TearFlag.ALL
 	local myFlags = mod:GetRicherTearFlags(tear)

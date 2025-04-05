@@ -617,6 +617,8 @@ wakaba.Callback = {
 	-- ---
 	EVALUATE_RABBEY_WARD_POWER = "WakabaCallbacks.EVALUATE_RABBEY_WARD_POWER",
 	--
+	EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION = "WakabaCallbacks.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION",
+	--
 	-- ---
 	-- Add entries for Inventory Descriptions
 	-- ---
@@ -727,6 +729,7 @@ end
 if REPENTOGON then
 	wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, function(_, item, charge, firstTime, slot, varData, player)
 		if firstTime then
+			wakaba:UniversalRemoveItemFromPools(item)
 			Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item,
 				player, item, charge, slot, varData
 			)
@@ -753,6 +756,7 @@ else
 				local beforeHeld = queuedItem.Touched
 				if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
 					if (player.FrameCount > 7 and not beforeHeld) or wakaba.G:GetFrameCount() == 0 then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
+						wakaba:UniversalRemoveItemFromPools(item)
 						Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
 					end
 					--increase by 1
@@ -1249,10 +1253,9 @@ local function shouldDamageAmoundHalved(player)
 	)
 end
 
-wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, entity, amount, flags, source, cooldown)
-	if not noRecursion then
-		didModifyDamage = false
-
+-- REPENTOGON return method doesn't work somehow
+if (REPENTOGON and false) then
+	wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, entity, amount, flags, source, cooldown)
 		if canModifyDamageAmount(entity:ToPlayer(), flags, cooldown) then
 			local somethingChanged = false
 
@@ -1275,17 +1278,55 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, 
 			end
 
 			if somethingChanged then
-				didModifyDamage = true
-
-				noRecursion = true
-				entity:ToPlayer():TakeDamage(amount, flags, source, cooldown)
-				noRecursion = false
-
-				return false
+				wakaba.Log("Damage value change passed!")
+				return {
+					Damage = amount,
+					DamageFlags = flags,
+				}
 			end
 		end
-	end
-end, EntityType.ENTITY_PLAYER)
+	end, EntityType.ENTITY_PLAYER)
+else
+	wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -20000, function(_, entity, amount, flags, source, cooldown)
+		if not noRecursion then
+			didModifyDamage = false
+
+			if canModifyDamageAmount(entity:ToPlayer(), flags, cooldown) then
+				local somethingChanged = false
+
+				for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT)) do
+					local newAmount, newFlags = callbackData.Function(callbackData.Mod, entity:ToPlayer(), amount, flags, source, cooldown)
+
+					if newAmount and newAmount ~= amount then
+						amount = newAmount
+						somethingChanged = true
+					end
+
+					if newFlags and newFlags ~= 0 then
+						flags = newFlags
+						somethingChanged = true
+					end
+
+					if flags & DamageFlag.DAMAGE_NO_MODIFIERS > 0 then
+						break
+					end
+				end
+
+				if somethingChanged then
+					didModifyDamage = true
+
+					noRecursion = true
+					wakaba.Log("non-RGON Damage value change passed!")
+					entity:ToPlayer():TakeDamage(amount, flags, source, cooldown)
+					noRecursion = false
+
+					return false
+				end
+			end
+		end
+	end, EntityType.ENTITY_PLAYER)
+end
+
 
 -- Try Negate Damage
 wakaba:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, -19000, function(_, entity, amount, flags, source, cooldown)
@@ -1367,3 +1408,30 @@ function wakaba:GetMinimumPreservedCharge(player, itemID)
 	end
 	return pr
 end
+
+-- Evaluate Wakaba Damage Protection
+function wakaba:AlterPlayerDamage_DamageProtection(player, amount, flags, source, countdown)
+	local doProtect = false
+
+	for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION)) do
+		local result = callbackData.Function(callbackData.Mod, player, amount, flags, source, cooldown)
+		if result then
+			if type(result) == "boolean" then
+				doProtect = result or doProtect
+			elseif result.Override then
+				doProtect = result.Protect
+			else
+				doProtect = result.Protect or doProtect
+			end
+			amount = result.Damage or amount
+			if result.Force then
+				break
+			end
+		end
+	end
+	if doProtect then
+		wakaba.Log("Damage Protection passed!")
+		return amount, flags | DamageFlag.DAMAGE_NO_PENALTIES
+	end
+end
+wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.AlterPlayerDamage_DamageProtection)

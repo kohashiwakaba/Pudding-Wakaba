@@ -305,7 +305,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 
 		wakaba:Epiphany_AddThrowingBagSynergies()
 
-		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+		wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
 			{Epiphany.Item.DEBUG.ID, 1.00},
 			{Epiphany.Item.EMPTY_DECK.ID, 1.00},
 			{Epiphany.Item.WARM_COAT.ID, 1.00},
@@ -313,7 +313,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			{Epiphany.Item.KINS_CURSE.ID, 1.00},
 			{Epiphany.Item.COIN_CASE.ID, 1.00},
 		})
-		wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+		wakaba:BulkAppend(wakaba.CustomPool.ShioriValut, {
 			{Epiphany.Item.D5.ID, 1.00},
 			{Epiphany.Item.CHANCE_CUBE.ID, 1.00},
 			{Epiphany.Item.DIVINE_REMNANTS.ID, 0.20},

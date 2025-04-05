@@ -17,6 +17,16 @@ if EID then
 	table.insert(EID.TextReplacementPairs, {"↕", "{{ArrowUpDown}}"})
 end
 
+wakaba.DamagePenaltyProtectionItems = {
+	wakaba.Enums.Collectibles.WAKABAS_BLESSING,
+	wakaba.Enums.Collectibles.MINERVA_AURA,
+	wakaba.Enums.Collectibles.LUNAR_STONE,
+	wakaba.Enums.Collectibles.RABBIT_RIBBON,
+	wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
+	wakaba.Enums.Collectibles.RICHERS_BRA,
+}
+wakaba.DamagePenaltyProtectionInvalidStr = {}
+
 wakaba.HotkeyToString = {}
 for key,num in pairs(Keyboard) do
 	local keyString = key
@@ -581,15 +591,7 @@ if EID then
 				end
 				_wakaba["condInserted_"..lang] = true
 				if not _wakaba["condInserted_global"] then
-					EID:AddSynergyConditional(wakaba.Enums.Collectibles.VINTAGE_THREAT, {
-						wakaba.Enums.Collectibles.WAKABAS_BLESSING,
-						wakaba.Enums.Collectibles.MINERVA_AURA,
-						wakaba.Enums.Collectibles.LUNAR_STONE,
-						wakaba.Enums.Collectibles.RABBIT_RIBBON,
-						wakaba.Enums.Collectibles.GRIMREAPER_DEFENDER,
-						wakaba.Enums.Collectibles.RICHERS_BRA,
-					}, "WakabaVintageInvalidates", "WakabaVintageInvalidated")
-
+					EID:AddSynergyConditional(wakaba.Enums.Collectibles.VINTAGE_THREAT, wakaba.DamagePenaltyProtectionItems, "WakabaVintageInvalidates", "WakabaVintageInvalidated")
 
 					_wakaba["condInserted_global"] = true
 				end
@@ -738,6 +740,23 @@ if EID then
 				return descObj
 			end
 			EID:addDescriptionModifier("Wakaba Extra Keys", CaramellaCondition, CaramellaCallback)
+
+			local function DmgProtectionInvalidCond(descObj)
+				if not wakaba.DamagePenaltyProtectionInvalidStr or #wakaba.DamagePenaltyProtectionInvalidStr == 0 then return false end
+				if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and wakaba:has_value(wakaba.DamagePenaltyProtectionItems, descObj.ObjSubType) then
+					return descObj.ObjSubType ~= wakaba.Enums.Collectibles.RICHERS_BRA
+				end
+				return false
+			end
+			local function DmgProtectionInvalidCall(descObj)
+				local append = EID:getDescriptionEntry("WakabaDmgProtectionInvalid") or EID:getDescriptionEntryEnglish("WakabaDmgProtectionInvalid")
+				EID:appendToDescription(descObj, "#!!! ".. append)
+				for _, a in ipairs(wakaba.DamagePenaltyProtectionInvalidStr) do
+					EID:appendToDescription(descObj, "#>>> ".. a)
+				end
+				return descObj
+			end
+			EID:addDescriptionModifier("Wakaba Damage Protection invalidation", DmgProtectionInvalidCond, DmgProtectionInvalidCall)
 
 			EID._currentMod = "Pudding and Wakaba_reserved"
 		end

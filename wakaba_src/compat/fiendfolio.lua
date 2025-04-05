@@ -123,7 +123,7 @@ wakaba:RegisterPatch(0, "FiendFolio", function() return (FiendFolio ~= nil) end,
 
 		})
 
-		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+		wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
 			{FiendFolio.ITEM.COLLECTIBLE.STORE_WHISTLE, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.PINHEAD, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.IMP_SODA, 1.00},
@@ -155,7 +155,7 @@ wakaba:RegisterPatch(0, "FiendFolio", function() return (FiendFolio ~= nil) end,
 			{FiendFolio.ITEM.COLLECTIBLE.LOADED_D6, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.ERRORS_CRAZY_SLOTS, 0.50},
 		})
-		wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+		wakaba:BulkAppend(wakaba.CustomPool.ShioriValut, {
 			{FiendFolio.ITEM.COLLECTIBLE.MAMA_SPOOTER, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.GOLEMS_ORB, 1.00},
 			{FiendFolio.ITEM.COLLECTIBLE.CHIRUMIRU, 1.00},

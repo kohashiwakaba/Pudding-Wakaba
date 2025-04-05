@@ -23,8 +23,20 @@ end)
 function wakaba:GenerateWakabaPools()
 	local config = Isaac.GetItemConfig()
 	for _, poolName in ipairs(wakaba.CustomPoolNames) do
-		if wakaba.Weights[poolName] then
-			wakaba.CurrentCustomPool[poolName] = wakaba:DeepClone(wakaba.Weights[poolName])
+		if wakaba.CustomPool[poolName] then
+			wakaba.CurrentCustomPool[poolName] = wakaba:DeepClone(wakaba.CustomPool[poolName])
+		end
+	end
+end
+
+function wakaba:RemoveItemFromCustomItemPools(collectibleType)
+	for _, poolName in ipairs(wakaba.CustomPoolNames) do
+		if wakaba.CurrentCustomPool[poolName] then
+			for i, weight in ipairs(wakaba.CurrentCustomPool[poolName]) do
+				if weight[1] == collectibleType then
+					table.remove(wakaba.CurrentCustomPool[poolName], i)
+				end
+			end
 		end
 	end
 end

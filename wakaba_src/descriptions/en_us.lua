@@ -3288,6 +3288,8 @@ if EID then
 	EID.descriptions[desclang].LilRiraEntryTimed = "{1} Damage per use ({2} second charges)"
 	EID.descriptions[desclang].LilRiraEntryInvalid = "Cannot add Damage"
 
+	EID.descriptions[desclang].WakabaDmgProtectionInvalid = "Damage penalty protection invalidated : "
+
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergy = "{{ColorRira}}Expands Rabbey Ward area"
 	EID.descriptions[desclang].ConditionalDescs.WakabaWardSynergyFrom = "{1} expands ward area"
 

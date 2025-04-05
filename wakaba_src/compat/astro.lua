@@ -1,6 +1,9 @@
 
-wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end, function()
-	wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function()
+	if Astro.IsFight then
+		table.insert(wakaba.DamagePenaltyProtectionInvalidStr, "Astrobirth")
+	end
+	wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
 		{AstroItems.Collectible.AKASHIC_RECORDS, 1.00},
 		-- {AstroItems.Collectible.AMAZING_CHAOS_SCROLL, 1.00}, -- Reshaken 아이템과 중복
 		{AstroItems.Collectible.AQUARIUS_EX, 1.00},
@@ -22,7 +25,7 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		{AstroItems.Collectible.PTOLEMAEUS, 1.00},
 		{AstroItems.Collectible.QUASAR, 1.00},
 	})
-	wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+	wakaba:BulkAppend(wakaba.CustomPool.ShioriValut, {
 		{AstroItems.Collectible.ALTAIR, 0.20},
 		{AstroItems.Collectible.AQUARIUS_EX, 1.00},
 		{AstroItems.Collectible.ARIES_EX, 1.00},
@@ -70,6 +73,16 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		end
 	end)
 
+	function wakaba:PenaltyProtection_Astro(player, amount, flags, source, countdown)
+		if Astro.IsFight then
+			return {
+				Protect = false,
+				Force = true,
+			}
+		end
+	end
+	wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION, -100, wakaba.PenaltyProtection_Astro)
+
 	if EID then
 		EID:AddSynergyConditional(wakaba.Enums.Collectibles.RABBEY_WARD, {
 			AstroItems.Collectible.WARD,
@@ -77,6 +90,17 @@ wakaba:RegisterPatch(0, "AstroItems", function() return (AstroItems ~= nil) end,
 		}, "WakabaWardSynergyFrom", "WakabaWardSynergy")
 	end
 
+end)
+
+wakaba:RegisterPatch(0, "DAMO", function() return (DAMO ~= nil) end, function()
+	table.insert(wakaba.DamagePenaltyProtectionInvalidStr, "Damo Run")
+	function wakaba:PenaltyProtection_Damo(player, amount, flags, source, countdown)
+		return {
+			Protect = false,
+			Force = true,
+		}
+	end
+	wakaba:AddPriorityCallback(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION, -100, wakaba.PenaltyProtection_Damo)
 end)
 
 wakaba:RegisterPatch(0, "QP", function() return (QP ~= nil and QP.Settings ~= nil) end, function()

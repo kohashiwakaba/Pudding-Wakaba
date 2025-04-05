@@ -3,7 +3,7 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 	do
 		local mod = Retribution
 
-		wakaba:BulkAppend(wakaba.Weights.CloverChest, {
+		wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
 			{Retribution.Item.BLACK_BOX, 1.00},
 			{Retribution.Item.FALSE_IDOL, 1.00},
 			{Retribution.Item.SCULPTING_CLAY, 1.00},
@@ -37,7 +37,7 @@ wakaba:RegisterPatch(0, "Retribution", function() return (Retribution ~= nil) en
 			{Retribution.Item.RED_CHAIN, 1.00},
 			{Retribution.Item.TECHNOLOGY_OMICRON, 1.00},
 		})
-		wakaba:BulkAppend(wakaba.Weights.ShioriValut, {
+		wakaba:BulkAppend(wakaba.CustomPool.ShioriValut, {
 			{Retribution.ITEMS.BAPTISMAL_FONT, 1.00},
 			{Retribution.ITEMS.BOOK_OF_MORMON, 1.00},
 			{Retribution.ITEMS.FALSE_IDOL, 1.00},
