@@ -12,6 +12,10 @@ local modNameListKorean = {
 	"부끄부끄 리라",
 	"말랑말랑 리셰",
 }
+if EID then
+	table.insert(EID.TextReplacementPairs, {">>>", "{{ArrowGrayRight}}"})
+	table.insert(EID.TextReplacementPairs, {"↕", "{{ArrowUpDown}}"})
+end
 
 wakaba.HotkeyToString = {}
 for key,num in pairs(Keyboard) do
@@ -444,6 +448,10 @@ if EID then
 					end
 					local desc = wakaba:IsLunatic() and pilldesc.lunatic or pilldesc.description
 					EID:addPill(pillid, desc, pilldesc.itemName, lang)
+					if pilldesc.horse then
+						local desc = wakaba:IsLunatic() and pilldesc.horselunatic or pilldesc.horse
+						EID:addHorsePill(pillid, desc, pilldesc.itemName, lang)
+					end
 				end
 				if lang == "en_us" then
 					for itemid, locustTable in pairs(wakabaDescTables.locusts) do
@@ -467,11 +475,6 @@ if EID then
 						end
 					end
 				end
-				--EID:addHorsePill doesn't exist lol
-				--EID:updateDescriptionsViaTable(wakabaDescTables.horsepills, EID.descriptions[lang].horsepills)
-				--[[ for pillid, pilldesc in pairs(wakabaDescTables.horsepills) do
-					EID:addPill(pillid+2048, pilldesc.description, pilldesc.itemName, lang, pilldesc.mimiccharge, pilldesc.class)
-				end ]]
 				if not _wakaba["condInserted_"..lang] and wakabaDescTables.conditionals then
 					local conDescTables = wakabaDescTables.conditionals
 					if conDescTables.collectibles then
