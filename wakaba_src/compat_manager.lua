@@ -87,6 +87,7 @@ do
 	include('wakaba_src.compat.astro')
 	--include('wakaba_src.compat.thesheriff')
 	include('wakaba_src.compat.cuerlib')
+	include('wakaba_src.compat.lost_and_forgotten')
 	if REPENTOGON then
 		include('wakaba_src.compat.skill_tree.core')
 	end

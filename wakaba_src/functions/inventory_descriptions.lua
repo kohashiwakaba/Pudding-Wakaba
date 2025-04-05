@@ -780,6 +780,40 @@ function idesc:getBasicEntries(init)
 	return entries
 end
 
+function idesc:getDeathCertificateEntries()
+	local entries = {} ---@type InventoryDescEntry[]
+	local rooms = Game():GetLevel():GetRooms()
+	for i = 0, rooms.Size - 1 do
+		local r = rooms:Get(i)
+		if r:GetDimension() == Dimension.DEATH_CERTIFICATE then
+			local es = r:GetEntitiesSaveState()
+			for j = 0, #es - 1 do
+				local s = es:Get(j)
+				if s:GetType() == EntityType.ENTITY_PICKUP and s:GetVariant() == PickupVariant.PICKUP_COLLECTIBLE then
+					local entryIndex = s:GetSubType()
+					local quality = tonumber(EID.itemConfig:GetCollectible(tonumber(entryIndex)).Quality)
+					local modifiers = entryIndex == CollectibleType.COLLECTIBLE_BIRTHRIGHT
+					---@type InventoryDescEntry
+					local entry = {
+						Type = idescEIDType.COLLECTIBLE,
+						Variant = PickupVariant.PICKUP_COLLECTIBLE,
+						SubType = entryIndex,
+						AllowModifiers = modifiers,
+						Frame = function()
+							return idesc:getOptions("q"..quality.."icon")
+						end,
+						LeftIcon = "{{Quality"..quality.."}}",
+						InnerText = entryIndex,
+						ExtraParams = r.SafeGridIndex,
+					}
+					table.insert(entries, entry)
+				end
+			end
+		end
+	end
+	return entries
+end
+
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -400, function (_) return idesc:getPlayers() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -380, function (_) return idesc:getDefaults() end)
 idesc:AddPriorityCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_BASIC_ENTRIES", -360, function (_) return idesc:getCurses() end)
@@ -989,7 +1023,8 @@ function idesc:Update(player)
 					istate.listprops.current = 1
 					istate.listprops.offset = 0
 				end
-			elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex or 0) then
+			elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex or 0)
+			or Input.IsButtonTriggered(Keyboard.KEY_PAGE_UP, 0) then
 				inputready = false
 				istate.listprops.current = listprops.current - columns
 				if listprops.current - listprops.offset < 0 and listprops.offset > 0 then
@@ -999,7 +1034,8 @@ function idesc:Update(player)
 					istate.listprops.current = listprops.max
 					istate.listprops.offset = math.max((math.ceil(listprops.max / columns) * columns) - (listcount * columns), 0)
 				end
-			elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex or 0) then
+			elseif Input.IsActionTriggered(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex or 0)
+			or Input.IsButtonTriggered(Keyboard.KEY_PAGE_UP, 0) then
 				inputready = false
 				local cr = istate.listprops.current
 				local mx = istate.listprops.max
@@ -1060,6 +1096,23 @@ function idesc:Update(player)
 					istate.listprops.offset = listprops.max - listcount
 				end
 			end
+		end
+	end
+
+	if REPENTOGON and wakaba:L():GetDimension() == Dimension.DEATH_CERTIFICATE and Input.IsButtonTriggered(switchKey, 0) and not istate.showList then
+		inputready = false
+		if Isaac.CountBosses() > 0 or Isaac.CountEnemies() > 0 then
+			return
+		end
+		local entries = idesc:getDeathCertificateEntries()
+		local listMode = idesc:getOptions("invlistmode", "list")
+		if idesc:showEntries(entries, listMode, true, false, "wakaba_dc_shortcut") then
+			--player:AnimateCollectible(item, "LiftItem", "PlayerPickup")
+			idesc:setDisplayNames("Press Esc", "to move room")
+			istate.savedtimer = wakaba.G.TimeCounter
+			player:GetData().InvDescPlayerControlsDisabled = true
+		else
+			player:AnimateSad()
 		end
 	end
 end
@@ -1374,7 +1427,7 @@ end
 idesc:AddCallback(ModCallbacks.MC_POST_RENDER, idesc.Render)
 
 function idesc:InputAction(entity, inputHook, buttonAction)
-	if idesc:getOptions("listkey", -1) == -1 then return end
+	if idesc:getOptions("listkey", -1) == -1 or not istate.showList then return end
 
 	if istate.showList and istate.savedtimer then
 		game.TimeCounter = istate.savedtimer
@@ -1397,6 +1450,58 @@ function idesc:InputAction(entity, inputHook, buttonAction)
 	end
 end
 idesc:AddCallback(ModCallbacks.MC_INPUT_ACTION, idesc.InputAction)
+
+
+wakaba:AddCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_PRE_LIST_CLOSE", function()
+	local istate = idesc.state
+	local iListPropName = idesc:getListPropName()
+	if istate.showList and iListPropName == "wakaba_dc_shortcut" then
+		local entries = idesc:currentEntries()
+		local current = istate.listprops.current
+		local sel = entries[current]
+		local roomIdx = sel.ExtraParams
+		Game():StartRoomTransition(roomIdx, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, nil, Dimension.DEATH_CERTIFICATE)
+	end
+end)
+
+wakaba:AddPriorityCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, CallbackPriority.IMPORTANT, function(_, player)
+	local istate = idesc.state
+	local iListPropName = idesc:getListPropName()
+	if istate.showList and iListPropName == "wakaba_dc_shortcut" then
+		local entries = idesc:currentEntries()
+		local target = 0
+		if Input.IsButtonTriggered(Keyboard.KEY_1, 0) then
+			target = 100
+		elseif Input.IsButtonTriggered(Keyboard.KEY_2, 0) then
+			target = 200
+		elseif Input.IsButtonTriggered(Keyboard.KEY_3, 0) then
+			target = 300
+		elseif Input.IsButtonTriggered(Keyboard.KEY_4, 0) then
+			target = 400
+		elseif Input.IsButtonTriggered(Keyboard.KEY_5, 0) then
+			target = 500
+		elseif Input.IsButtonTriggered(Keyboard.KEY_6, 0) then
+			target = 600
+		elseif Input.IsButtonTriggered(Keyboard.KEY_7, 0) then
+			target = 700
+		elseif Input.IsButtonTriggered(Keyboard.KEY_8, 0) then
+			target = 800
+		elseif Input.IsButtonTriggered(Keyboard.KEY_9, 0) then
+			target = 900
+		elseif Input.IsButtonTriggered(Keyboard.KEY_0, 0) then
+			target = 1000
+		end
+		for i, entry in ipairs(entries) do
+			if entry.SubType == target then
+				istate.listprops.current = 1
+				idesc:recalculateOffset()
+				istate.listprops.current = i
+				idesc:recalculateOffset()
+				return
+			end
+		end
+	end
+end)
 
 --#region 와카바 모드 테스트용 간단 설명 리스트
 
