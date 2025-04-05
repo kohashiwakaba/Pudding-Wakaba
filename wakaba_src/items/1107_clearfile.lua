@@ -232,6 +232,7 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 		else
 			player:RemoveCollectible(type, true, -1, false)
 			target:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, type, true, true, true)
+			target.Touched = touched
 			player:AddCollectible(newType, 0, not touched)
 		end
 		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.CLEAR_FILE) then
