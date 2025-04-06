@@ -1403,10 +1403,10 @@ function wakaba:LockItems()
 
 end
 
-function wakaba.UniversalRemoveItemFromPools(item)
-	--wakaba.RemoveItemFromCustomItemPools(item)
+function wakaba.UniversalRemoveItemFromAllPools(item)
+	wakaba:RemoveItemFromCustomItemPools(item)
 
-	local itempool = game:GetItemPool()
+	local itempool = wakaba.G:GetItemPool()
 	itempool:RemoveCollectible(item)
 end
 
@@ -1418,7 +1418,7 @@ function wakaba.UniversalRemoveTrinketFromPools(trinket)
 end
 
 local unlockTypeToRemoveFunction = {
-	collectible	= wakaba.UniversalRemoveItemFromPools,
+	collectible	= wakaba.UniversalRemoveItemFromAllPools,
 	trinket		= wakaba.UniversalRemoveTrinketFromPools,
 }
 

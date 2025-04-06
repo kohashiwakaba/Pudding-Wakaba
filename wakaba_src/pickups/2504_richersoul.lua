@@ -7,6 +7,7 @@ function wakaba:UseCard_SoulOfRicher(_, player, flags)
 	local count = wakaba.Enums.Constants.SOUL_OF_RICHER_WISP_COUNT
 	if flags & UseFlag.USE_MIMIC > 0 then count = wakaba.Enums.Constants.SOUL_OF_RICHER_WISP_COUNT_CLEAR_RUNE end
 	wakaba.__RicherSoul = true
+	wakaba:CheckItemCandidates(player)
 	for i = 1, count do
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_LEMEGETON, UseFlag.USE_NOANIM)
 	end

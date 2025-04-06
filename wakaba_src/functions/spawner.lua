@@ -62,7 +62,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, function(_, pickup)
 	end
 
 	pickup:Morph(5, 100, wakaba.Enums.Collectibles.WAKABAS_BLESSING + pickup.SubType - 1)
-	wakaba.UniversalRemoveItemFromPools(wakaba.Enums.Collectibles.WAKABAS_BLESSING + pickup.SubType - 1)
+	wakaba.UniversalRemoveItemFromAllPools(wakaba.Enums.Collectibles.WAKABAS_BLESSING + pickup.SubType - 1)
 end, wakaba.Enums.Pickups.WAKABA_ITEM_SPAWNER)
 
 wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, function(_, pickup)

@@ -729,7 +729,7 @@ end
 if REPENTOGON then
 	wakaba:AddCallback(ModCallbacks.MC_POST_ADD_COLLECTIBLE, function(_, item, charge, firstTime, slot, varData, player)
 		if firstTime then
-			wakaba:UniversalRemoveItemFromPools(item)
+			wakaba.UniversalRemoveItemFromAllPools(item)
 			Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item,
 				player, item, charge, slot, varData
 			)
@@ -756,7 +756,7 @@ else
 				local beforeHeld = queuedItem.Touched
 				if (data.w_heldItems[item] < player:GetCollectibleNum(item, true)) then
 					if (player.FrameCount > 7 and not beforeHeld) or wakaba.G:GetFrameCount() == 0 then --do not trigger on game continue. it still updates the count tho, so this allows us not to use savedata
-						wakaba:UniversalRemoveItemFromPools(item)
+						wakaba.UniversalRemoveItemFromAllPools(item)
 						Isaac.RunCallbackWithParam(wakaba.Callback.POST_GET_COLLECTIBLE, item, player, item)
 					end
 					--increase by 1
