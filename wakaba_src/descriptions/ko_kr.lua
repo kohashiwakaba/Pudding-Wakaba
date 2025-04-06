@@ -2387,7 +2387,7 @@ wakaba.descriptions[desclang].cards = {
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "리셰의 영혼",
 		queueDesc = "마녀의 불꽃",
-		description = "{{Collectible712}} 캐릭터가 소지 중인 아이템의 아이템 위습을 최대 6개({{Collectible263}} : 3개) 소환합니다.#{{Card"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{DamageSmall}}유효한 아이템이 없는 경우 공격력 +3 효과의 아이템 불꽃 소환",
+		description = "{{Collectible712}} 캐릭터가 소지 중인 아이템의 아이템 위습을 최대 6개({{Collectible263}} : 3개) 소환합니다.#{{Collectible"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{DamageSmall}}유효한 아이템이 없는 경우 공격력 +3 효과의 아이템 불꽃 소환",
 	},
 	[wakaba.Enums.Cards.CARD_VALUT_RIFT] = {
 		itemName = "창고의 틈새",

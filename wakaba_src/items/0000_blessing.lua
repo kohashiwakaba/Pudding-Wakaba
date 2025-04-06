@@ -250,7 +250,7 @@ function wakaba:ReadDejaVuCandidates(onlySummonable)
 			local DejaVuItems = player:GetData().wakaba.DejaVuCandidates
 			if #DejaVuItems > 0 then
 				for i = 1, #DejaVuItems do
-					if not onlySummonable or wakaba:ItemHasTags(ItemConfig.TAG_SUMMONABLE) then
+					if not onlySummonable or wakaba:ItemHasTags(DejaVuItems[i], ItemConfig.TAG_SUMMONABLE) then
 						table.insert(TotalDejaVuCandidates, DejaVuItems[i])
 					end
 				end

@@ -210,13 +210,19 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(40, 0)), Vector(0,0), nil)
 		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_REDCHEST, -1, room:FindFreePickupSpawnPosition(player.Position + Vector(-40, 0)), Vector(0,0), nil)
 	elseif uniformMode == u.CHALLENGE then
-		if rng:GetSeed() % 2 == 0 then
+
+		player:UseActiveItem(CollectibleType.COLLECTIBLE_CROOKED_PENNY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
+		--[[ if rng:GetSeed() % 2 == 0 then
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_DIPLOPIA, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_VOID, -1)
 		else
 			SFXManager():Play(SoundEffect.SOUND_THUMBS_DOWN)
-		end
+		end ]]
 		SFXManager():Play(SoundEffect.SOUND_DEATH_CARD)
-		isc:startAmbush()
+		if REPENTOGON then
+			Ambush.StartChallenge()
+		else
+			wakaba:startAmbush()
+		end
 	elseif uniformMode == u.LIBRARY then
 		player:UseCard(Card.CARD_ANCIENT_RECALL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
 	--[[ elseif uniformMode == u.DUNGEON then ]]
@@ -229,6 +235,11 @@ function wakaba:ItemUse_RicherUniform(item, rng, player, useFlags, activeSlot, v
 
 		if player:GetEffects():HasCollectibleEffect(wakaba.Enums.Collectibles.RICHERS_UNIFORM) then
 			player:UseCard(Card.CARD_DEVIL, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)
+		end
+		if REPENTOGON then
+			Ambush.StartChallenge()
+		else
+			wakaba:startAmbush()
 		end
 	elseif uniformMode == u.ISAACS then
 		player:UseCard(Card.CARD_SOUL_LILITH, UseFlag.USE_NOANIM | UseFlag.USE_MIMIC | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOHUD)

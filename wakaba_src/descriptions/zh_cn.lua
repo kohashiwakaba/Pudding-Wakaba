@@ -1917,7 +1917,7 @@ wakaba.descriptions[desclang].cards = {
 	},
 	[wakaba.Enums.Cards.SOUL_RICHER] = {
 		itemName = "璃贝魂石",
-		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps from Isaac's held passives ({{Collectible263}} : 1 ~ 3)#{{Card"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{Damage}} +0.2 Damage Wisp if no items are available",
+		description = "{{Collectible712}} Grants 1 ~ 6 Lemegeton Wisps from Isaac's held passives ({{Collectible263}} : 1 ~ 3)#{{Collectible"..wakaba.Enums.Collectibles.ANNA_RIBBON_4.."}} {{Damage}} +3 Damage Wisp if no items are available",
 		isrune = true,
 		queueDesc = "魔法施放",
 	},

@@ -37,6 +37,7 @@ local iFeatures = {
 	isc.ISCFeature.TAINTED_LAZARUS_PLAYERS,
 	isc.ISCFeature.NO_SIREN_STEAL,
 	isc.ISCFeature.MODDED_ELEMENT_SETS,
+	isc.ISCFeature.START_AMBUSH,
 }
 if REPENTOGON then
 	iFeatures = {
