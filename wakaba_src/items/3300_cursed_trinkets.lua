@@ -22,6 +22,7 @@
 -- mini torizo (탄환이 캐릭터의 무적을 무시, 캐릭터에게 탄환이 닿아도 사라지지 않음)
 -- grenade d20 (픽업이 때때로 폭발)
 -- wakaba siren (상시 지진 효과, 이펙트만)
+-- stealth bond (방마다 랜덤 위치에 camillo jr. 소환, 보이지 않으나 접촉 피해는 받지 않음)
 ]]
 
 local isc = _wakaba.isc
@@ -318,7 +319,45 @@ do -- Wakaba Siren
 	wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Cursed_Update_WakabaSiren)
 end
 
-do -- Reserved
+do -- Stealth Bond
+	function wakaba:Cursed_NewRoom_StealthBond()
+		local room = wakaba.G:GetRoom()
+		if not room:IsClear() and wakaba:AnyPlayerHasTrinket(wakaba.Enums.Trinkets.STEALTH_BOND) then
+			local n = wakaba:GetGlobalTrinketMultiplier(wakaba.Enums.Trinkets.STEALTH_BOND)
+
+			for i = 1, n do
+				local addPos = room:GetRandomPosition(40)
+				local npc = Isaac.Spawn(EntityType.ENTITY_CAMILLO_JR, 0, 0, addPos, Vector.Zero, nil):ToNPC()
+				--npc.Visible = false
+				npc.CanShutDoors = false
+				npc:ClearEntityFlags(EntityFlag.FLAG_APPEAR)
+				npc:GetData().wakaba_stbond = true
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.Cursed_NewRoom_StealthBond)
+
+	function wakaba:Cursed_EnemyCollision_StealthBond(enemy, collider, low)
+		if enemy:GetData().wakaba_stbond then
+			return true
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Cursed_EnemyCollision_StealthBond, EntityType.ENTITY_CAMILLO_JR)
+
+	---@param enemy EntityNPC
+	function wakaba:Cursed_NPCUpdate_StealthBond(enemy)
+		if enemy:GetData().wakaba_stbond and wakaba.G:GetRoom():IsClear() then
+			enemy:Remove()
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.Cursed_NPCUpdate_StealthBond)
+
+	function wakaba:Cursed_TakeDamage_StealthBond(enemy, _, _, _, _)
+		if enemy:GetData().wakaba_stbond then
+			return false
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.Cursed_TakeDamage_StealthBond, EntityType.ENTITY_CAMILLO_JR)
 
 end
 

@@ -1974,6 +1974,12 @@ wakaba.descriptions[desclang].trinkets = {
 		.. ""
 		.. "{{CR}}",
 	},
+	[wakaba.Enums.Trinkets.STEALTH_BOND] = {
+		itemName = "Stealth Bond",
+		description = ""
+		.. ""
+		.. "{{CR}}",
+	},
 
 }
 wakaba.descriptions[desclang].goldtrinkets = {

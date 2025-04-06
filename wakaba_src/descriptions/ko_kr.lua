@@ -2280,6 +2280,14 @@ wakaba.descriptions[desclang].trinkets = {
 		.. "{{CR}}",
 		queueDesc = "! 경고 !",
 	},
+	[wakaba.Enums.Trinkets.STEALTH_BOND] = {
+		itemName = "보이지 않는 유대감",
+		description = ""
+		.. "#방 입장 시 보이지 않는 Camillo Jr.가 등장합니다."
+		.. "#소환된 Camillo Jr.는 무적이며 방 클리어 시 사라집니다."
+		.. "{{CR}}",
+		queueDesc = "내 속삭임이 들려?",
+	},
 	--[[ [wakaba.Enums.Trinkets.SHIELD_KILLER] = {
 		itemName = "보호막 제거기",
 		description = ""

@@ -280,6 +280,7 @@ wakaba.Enums.Trinkets = {
 	MINI_TORIZO = Isaac.GetTrinketIdByName("Mini Torizo"),
 	GRENADE_D20 = Isaac.GetTrinketIdByName("Grenade D20"),
 	WAKABA_SIREN = Isaac.GetTrinketIdByName("Wakaba Siren"),
+	STEALTH_BOND = Isaac.GetTrinketIdByName("Stealth Bond"),
 }
 
 wakaba.Enums.CursedTrinketsValues = {
@@ -304,6 +305,7 @@ wakaba.Enums.CursedTrinketsValues = {
 	[wakaba.Enums.Trinkets.MINI_TORIZO] = 10,
 	[wakaba.Enums.Trinkets.GRENADE_D20] = 7,
 	[wakaba.Enums.Trinkets.WAKABA_SIREN] = 3,
+	[wakaba.Enums.Trinkets.STEALTH_BOND] = 10,
 }
 
 --[[
