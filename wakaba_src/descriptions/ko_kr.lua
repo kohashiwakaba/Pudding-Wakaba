@@ -1065,7 +1065,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "침략자",
 		description = ""
 		.. "#↓ 악마/천사방이 더 이상 등장하지 않습니다."
-		.. "#↑ {{DamageSmall}}공격력 배율 +150%p"
+		.. "#↑ {{DamageSmall}}공격력 배율 +320%p"
+		.. "#↓ 메이저 보스방의 속도가 빨라집니다."
 		.. "#{{WakabaModHidden}} {{ColorKoron}}???"
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}중첩 당 공격력 배율 +100%p#{{WakabaModHidden}} {{ColorKoron}}중첩 당 부정 효과 개체 +1",

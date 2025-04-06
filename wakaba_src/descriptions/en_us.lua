@@ -1029,7 +1029,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Double Invader",
 		description = ""
 		.. "#↓ Devil/Angel rooms no longer appear"
-		.. "#↑ {{Damage}} +250% Damage Multiplier"
+		.. "#↑ {{Damage}} +320% Damage Multiplier"
+		.. "#↓ Faster room for major bosses"
 		.. "#{{WakabaModHidden}} ???"
 		.. "{{CR}}",
 		duplicate = "Additional copies only give +100% {{Damage}}",

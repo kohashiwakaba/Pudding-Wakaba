@@ -981,7 +981,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "双重入侵者",
 		description = ""
 			.. "#↓ 恶魔/天使房不再出现"
-			.. "#↑ {{Damage}} +250% 攻击倍率#{{Blank}} （每多一层增加100%)"
+			.. "#↑ {{Damage}} +320% 攻击倍率#{{Blank}} （每多一层增加100%)"
+			.. "#↓ Faster room for major bosses"
 			.. "{{CR}}",
 		queueDesc = "伤害很高，但代价是什么?",
 	},

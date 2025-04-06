@@ -5,9 +5,22 @@ local headErased = false
 
 wakaba.DoubleInvaderDeathHeads = {
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
 }
 
 wakaba.DoubleInvaderHeadLocations = {
@@ -84,15 +97,17 @@ local function spawnHeads(type, rng)
 	for i, e in ipairs(wakaba.DoubleInvaderHeadLocations[type]) do
 		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
 		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
-		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil)
+		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil):ToNPC()
 		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
+		npc.CanShutDoors = false
+		npc:GetData().wakaba_stbond = true
 	end
 end
 
 function wakaba:Cache_DoubleInvader(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) then
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * (1.5 + player:GetCollectibleNum(wakaba.Enums.Collectibles.DOUBLE_INVADER))
+			player.Damage = player.Damage * (3.2 + player:GetCollectibleNum(wakaba.Enums.Collectibles.DOUBLE_INVADER))
 		end
 	end
 end
@@ -260,6 +275,10 @@ function wakaba:EraseDeathHeads()
 	for i, e in ipairs(entities) do
 		e:ToNPC().State = 18
 	end
+	local entities = Isaac.FindByType(EntityType.ENTITY_CAMILLO_JR)
+	for i, e in ipairs(entities) do
+		e:ToNPC():Die()
+	end
 	wakaba.Log("Trying to remove Death Heads...")
 end
 
@@ -293,6 +312,7 @@ function wakaba:NewRoom_DoubleInvader()
 		end
 
 		if wakaba.DoubleInvaderHeadLocations[entry] then
+			room:SetBrokenWatchState(2)
 			local rng = RNG()
 			rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
 			spawnHeads(entry, rng)
