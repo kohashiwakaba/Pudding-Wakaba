@@ -24,6 +24,19 @@ proper transformation match
 by benevolusgoat
 - added status effect library
 by benevolusgoat
+- added minor compatibilities for
+lost and forgotten
+- disabled damage penalty protection
+for pnw items if
+ astrobirth(not astroitems)
+ or damo run(hy companion mod)
+ is enabled
+-- richer's bra still
+gives protection
+- removed all abyss synergies
+from pnw items for now
+(will be readded in later
+patch with rep+ exclusive)
 
 {FSIZE2}repentogon
 
@@ -55,8 +68,54 @@ in this difficulty
 
 - added option to set
 dim screen opacity
+- (rgon) pressing f6 in
+death certificate area
+shows all items available
+-- pressing esc teleports
+player to room that
+contains selected item
 
 {FSIZE2}balance/bug fixes
+
+- book of the forgotten
+-- no longer recovers full health
+
+- revenge fruit
+-- no longer gives x1.5
+dmg mult on other weapons
+-- now fires maw of the void
+ring instead of brimstone
+-- luck scale has changed
+to 5% chance, 20% max at 39
+-- no longer grants additional
+chance for taking damage
+
+- rabbey ward
+-- now recovers soul heart
+immediately on use
+-- decreased soul heart
+recover from 1 > 0.5
+
+- lil rira
+-- reduced damage ups for
+timed actives from 0.05 per 12 sec
+> 0.05 per 20 sec
+
+- soul of richer
+-- now grants items wisps
+that isaac already own
+
+- clensing foam
+-- no longer works on
+frozen enemies (like uranus)
+
+- power bomb
+-- reduced cooldown
+from 4 > 6 rooms
+
+- anna ribbons
+-- general stat adjust
+to match quality
 
 - reduced general item pool weight
 
@@ -120,6 +179,40 @@ and will trigger ambush
 -- boss rush : now triggers
 ambush and actives
 devil effect on repeat usage
+
+- fix eid issues with
+dmg down pill
+
+- dmg down pills now
+caps at minimum 25% of damage
+
+- attempt to fix
+cross bomb + dr.fetus +
+soy milk interactions
+
+- fix possible issues with
+deja vu that showing
+invalid items and inherit items
+
+- fix oversight with
+lil rira charge + special charge
+type items such as;
+-- isaac's tears
+(now counts as 1 second charge)
+-- berserk
+(now counts as 4 room charge)
+-- eraser
+(now counts as 12 room charge)
+
+- fix lil rira not granting
+damage ups with 9 bolt + timed actives
+
+- fix richer's uniform
+not working on challenge rooms
+
+- (non-rgon) fix swapped
+pedestals from clear file
+granting on-pickup effects
 
 - changed wakaba's uniform
 charge type to normal.
