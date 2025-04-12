@@ -43,4 +43,14 @@ return {
 	"starAllstatsPerc",
 	"starReq",
 	"lunarProtection",
+
+	"rabbitChargeGain",
+	"rabbitChargePreserve",
+	"rabbitChargeDmg",
+	"sniperDeduction",
+	"fairyDeduction",
+	"fairyBlessing",
+	"richerUbercharge",
+	"richerSweetRecipe",
+	"richerMofuMofu",
 }

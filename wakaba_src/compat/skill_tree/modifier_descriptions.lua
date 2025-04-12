@@ -74,8 +74,8 @@ return {
 	tsukasaRaid = {
 		str = {
 			"RAID:",
-			"    +0.001 Damage per Global SP (Caps at +2)",
-			"    +0.001 Tears per Respec (Caps at +2)",
+			"    +0.001 Damage per Global SP (Caps at +2.5)",
+			"    +0.001 Tears per Respec (Caps at +2.5)",
 		},
 		category = "wakabaGlobal", sort = 3913
 	},
@@ -112,12 +112,63 @@ return {
 		str = "-%.2f%% Lunar Gauge reduction",
 		category = "wakabaGlobal", sort = 3919
 	},
+	rabbitChargeGain = {
+		str = "%.2f%% chance to gain additional stored charge for Rabbit Ribbon or Lil Richer",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3920
+	},
+	rabbitChargePreserve = {
+		str = "%.2f%% chance to preserve stored charge for Rabbit Ribbon or Lil Richer when transfering to actives (per charge)",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3921
+	},
+	rabbitChargeDmg = {
+		str = "%s%.2f damage when transfering charge to actives from Rabbit Ribbon or Lil Richer (per charge). Resets every floor",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3922
+	},
+	sniperDeduction = {
+		str = "-%.2f%% damage penalty for nearby enemies for Curse of Sniper",
+		category = "wakabaGlobal", sort = 3923
+	},
+	fairyDeduction = {
+		str = "%s%.2f chance to preserve minimap for Curse of Fairy",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3924
+	},
+	fairyBlessing = {
+		str = "%s%.2f chance to reveal further rooms on minimap when new room is entered",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 3925
+	},
+	richerUbercharge = {
+		str = {
+			"UberCharge:",
+			"    Grants electric tears when Rabbit Ribbon's charge is maxed or higher",
+		},
+		category = "wakabaGlobal", sort = 3926
+	},
+	richerSweetRecipe = {
+		str = {
+			"Sweet Recipe:",
+			"    Spawns Richer type locust on room clear",
+			"    Richer type locusts automatically chase enemies even if they are far away",
+		},
+		category = "wakabaGlobal", sort = 3927
+	},
+	richerMofuMofu = {
+		str = {
+			"Mofu Mofu:",
+			"    Consuming stored charges from Rabbit Ribbon and Lil Richer adds 2 pips per charge",
+		},
+		category = "wakabaGlobal", sort = 3928
+	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
 		str = {
 			"Good Girl:",
 			"    Wakaba starts with Wakaba's Pendant",
-			"    Perfection trinket no longer spawns",
+			"    Perfection trinket no longer spawns naturally",
 		},
 		category = "charTree", sort = 4002
 	},
@@ -200,7 +251,7 @@ return {
 		str = {
 			"Library Assistant:",
 			"    Unknown Bookmark can be appeared regardless of unlock",
-			"    If already unlocked, Unknown Bookmark effect is fixed rather than selected from 5 random books",
+			"    If already unlocked, Unknown Bookmark effect is fixed rather than selected from 8 random books",
 		},
 		addPlus = true,
 		category = "charTree", sort = 4064
@@ -228,7 +279,7 @@ return {
 	shioriGod = {
 		str = {
 			"Become Goddess:",
-			"    Starts with GodHead",
+			"    Starts with GodHead tears",
 			"    -75% Damage",
 		},
 		category = "charTree", sort = 4067
@@ -352,7 +403,8 @@ return {
 	richerTaste = {
 		str = {
 			"Taste of Richer:",
-			"    Sweets Catalog allows select weapon to use instead of random weapon",
+			"    Sweets Catalog allows select weapon property to use instead of random weapon",
+			"    Cooldown for Sweets Catalog increased to 6",
 		},
 		category = "charTree", sort = 4181
 	},
@@ -360,22 +412,42 @@ return {
 		str = {
 			"Richer's Best Friend:",
 			"    Starts with Maid Duet",
+			"    Schoolbag no longer appear naturally",
 		},
 		category = "charTree", sort = 4182
 	},
-	richerUbercharge = {
+	richerLabyrinth = {
 		str = {
-			"UberCharge:",
-			"    Grants electric tears when Rabbit Ribbon's charge is 16 or higher",
+			"Deep Maze:",
+			"    Curse of Labyrinth is always active if possible",
+			"    Some normal rooms can be replaced with special rooms",
+			"    Higher chance for Boss/Miniboss rooms",
 		},
-		category = "charTree", sort = 4183
+		category = "charTree", sort = 4185
 	},
-	richerSweetRecipe = {
+	richerDiscord = {
 		str = {
-			"Sweet Recipe:",
-			"    Spawns Richer type locust on room clear",
+			"Discord:",
+			"    Every even room changes 'Harmony' status",
+			"    Blue : ",
+			"        Normal behavior",
+			"    Red : ",
+			"        Invincibility (post-damage type)",
+			"        High chance to drop hearts on damaging enemies",
+			"        Picking up hearts reduce health instead of adding them",
+			"    Eternity Cookie no longer appears naturally",
 		},
-		category = "charTree", sort = 4184
+		category = "charTree", sort = 4186
+	},
+	richerRibbonReplica = {
+		str = {
+			"Ribbon Replica:",
+			"    Using active item consumes all stored charges from Rabbit Ribbon, Lil Richer and spawns 2 orbiting ribbons",
+			"    Ribbons can block projectiles and deal significant amount of damage",
+			"    Ribbon damage scales with consumed charges",
+			"    Preserve charge nodes no longer work, instead chance to adding extra damage for ribbons",
+		},
+		category = "charTree", sort = 4187
 	},
 	---- RICHER'S TREE NORMAL  ----
 	richerSpeed = {
@@ -384,19 +456,33 @@ return {
 		category = "charTree", sort = 4211
 	},
 	richerRabbitChargeGain = {
-		str = "%.2f%% chance to gain additional Rabbit Ribbon charge",
+		str = "%.2f%% chance to gain additional charge for Rabbit Ribbon or Lil Richer",
 		addPlus = true,
 		category = "charTree", sort = 4212
 	},
-	richerRabbitChargeUse = {
-		str = "%.2f%% chance to preserve Rabbit Ribbon charge when transfering to actives",
+	richerRabbitChargePreserve = {
+		str = "%.2f%% chance to preserve charge for Rabbit Ribbon or Lil Richer when transfering to actives",
 		addPlus = true,
 		category = "charTree", sort = 4213
 	},
 	richerRabbitChargeDmg = {
-		str = "%s%.2f damage when transfering Rabbit Ribbon charge to actives",
+		str = "%s%.2f damage when transfering charge to actives from Rabbit Ribbon or Lil Richer. Resets every floor",
 		addPlus = true,
 		category = "charTree", sort = 4214
+	},
+	richerSniperDeduction = {
+		str = "-%.2f%% damage penalty for nearby enemies for Curse of Sniper",
+		category = "wakabaGlobal", sort = 4215
+	},
+	richerFairyDeduction = {
+		str = "%s%.2f chance to preserve minimap for Curse of Fairy",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 4216
+	},
+	richerFairyBlessing = {
+		str = "%s%.2f chance to reveal further rooms when new room is entered",
+		addPlus = true,
+		category = "wakabaGlobal", sort = 4217
 	},
 	---- RIRA'S TREE SPECIAL ----
 	riraTaste = {
@@ -407,33 +493,47 @@ return {
 		},
 		category = "charTree", sort = 4241
 	},
-	RiraEasterEgg = {
+	riraEasterEgg = {
 		str = {
 			"Easter:",
 			"    Easter Egg coins appear regardless of unlock",
 		},
 		category = "charTree", sort = 4242
 	},
-	RiraSchoolMizugi = {
+	riraSchoolMizugi = {
 		str = {
 			"Blue Swimsuit:",
-			"    All enemies are permanently wet on water rooms",
+			"    All enemies are permanently aquafied on water rooms",
 		},
 		category = "charTree", sort = 4243
 	},
-	RiraHazukashi = {
+	riraHazukashi = {
 		str = {
 			"Rira-chan is too embarrased:",
 			"    speed is fixed to 2.25 on cleared rooms",
 		},
 		category = "charTree", sort = 4244
 	},
-	RiraEasterFuse = {
+	riraEasterFuse = {
 		str = {
-			"Fused with Easter Egg:",
-			"    Getting 10+ Easter Egg coins grants Homing Tears",
+			"Easter Egg Fusion:",
+			"    Getting 10+ Easter Eggs grants Homing Tears",
 		},
 		category = "charTree", sort = 4244
+	},
+	riraChimakiLayer = {
+		str = {
+			"Layered Chimaki:",
+			"    Chimaki instantly teleports toward target destination",
+		},
+		category = "charTree", sort = 4245
+	},
+	riraLegacyEasterEgg = {
+		str = {
+			"Legacy Easter Egg:",
+			"    Easter Egg orbits player instead of following them",
+		},
+		category = "charTree", sort = 4245
 	},
 	---- RIRA'S TREE NORMAL  ----
 	riraTears = {
@@ -442,17 +542,17 @@ return {
 		category = "charTree", sort = 4271
 	},
 	riraWetChance = {
-		str = "%s%.2f%% chance shoot wet tears",
+		str = "%s%.2f%% chance shoot aqua tears",
 		addPlus = true,
 		category = "charTree", sort = 4272
 	},
 	riraWetExtraDamage = {
-		str = "%s%.2f%% extra damage to wet enemies",
+		str = "%s%.2f%% extra damage to aquafied enemies",
 		addPlus = true,
 		category = "charTree", sort = 4273
 	},
 	riraWetSpeed = {
-		str = "%s%.2f speed when killing wet enemies. Resets every floor",
+		str = "%s%.2f speed when killing aquafied enemies. Resets every floor",
 		addPlus = true,
 		category = "charTree", sort = 4274
 	},

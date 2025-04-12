@@ -409,7 +409,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "24": "{\"pos\":[2,-9],\"type\":24,\"size\":\"Small\",\"name\":\"Damage\",\"description\":[\"+0.01 damage\"],\"modifiers\":{\"damage\":0.01},\"adjacent\":[23,26]}",
   "25": "{\"pos\":[-1,-9],\"type\":31,\"size\":\"Small\",\"name\":\"Tears\",\"description\":[\"+0.01 tears\"],\"modifiers\":{\"tears\":0.01},\"adjacent\":[21,27]}",
   "26": "{\"pos\":[1,-9],\"type\":31,\"size\":\"Small\",\"name\":\"Tears\",\"description\":[\"+0.01 tears\"],\"modifiers\":{\"tears\":0.01},\"adjacent\":[24,27]}",
-  "27": "{\"pos\":[0,-9],\"type\":5079,\"size\":\"Large\",\"name\":\"Library Assistant\",\"description\":[\"Unknown Bookmark can be appeared regardless of unlock\",\"If already unlocked, Unknown Bookmark effect is fixed rather than selected from 5 random books\"],\"modifiers\":{\"shioriAssistant\":true},\"adjacent\":[25,26,28],\"customID\":\"w_shiori_1004\"}",
+  "27": "{\"pos\":[0,-9],\"type\":5079,\"size\":\"Large\",\"name\":\"Library Assistant\",\"description\":[\"Unknown Bookmark can be appeared regardless of unlock\",\"If already unlocked, Unknown Bookmark effect is fixed rather than selected from 8 random books\"],\"modifiers\":{\"shioriAssistant\":true},\"adjacent\":[25,26,28],\"customID\":\"w_shiori_1004\"}",
   "28": "{\"pos\":[0,-8],\"type\":5059,\"size\":\"Small\",\"name\":\"[Shiori] Bookmark Tears\",\"description\":[\"+0.02 tears for the current room when you use an Unknown Bookmark.\"],\"modifiers\":{\"shioriUnknownBookmarkTears\":0.02},\"adjacent\":[27,29],\"customID\":\"w_shiori_0014\"}",
   "29": "{\"pos\":[0,-7],\"type\":5059,\"size\":\"Small\",\"name\":\"[Shiori] Bookmark Tears\",\"description\":[\"+0.02 tears for the current room when you use an Unknown Bookmark.\"],\"modifiers\":{\"shioriUnknownBookmarkTears\":0.02},\"adjacent\":[28,31,34],\"customID\":\"w_shiori_0014\"}",
   "31": "{\"pos\":[-1,-7],\"type\":5059,\"size\":\"Small\",\"name\":\"[Shiori] Bookmark Tears\",\"description\":[\"+0.02 tears for the current room when you use an Unknown Bookmark.\"],\"modifiers\":{\"shioriUnknownBookmarkTears\":0.02},\"adjacent\":[29,32],\"customID\":\"w_shiori_0014\"}",
@@ -483,7 +483,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "111": "{\"pos\":[-6,10],\"type\":5081,\"size\":\"Large\",\"name\":\"[Shiori] Purifier\",\"description\":[\"Purifier is allocated and be is always available for Shiori.\",\"Purifier dissolve pedestal into keys.\",\"Curse of Satyr reduces number of keys.\"],\"modifiers\":{\"shioriPurify\":true},\"adjacent\":[169,197],\"customID\":\"w_shiori_1006\"}",
   "112": "{\"pos\":[6,10],\"type\":5078,\"size\":\"Large\",\"name\":\"[Shiori] Regulation\",\"description\":[\"All battery pickups are replaced to Golden keys\"],\"modifiers\":{\"shioriGoldenKey\":true},\"adjacent\":[148,195],\"customID\":\"w_shiori_1003\"}",
   "113": "{\"pos\":[-9,8],\"type\":5077,\"size\":\"Large\",\"name\":\"[Shiori] Knowledge is Power\",\"description\":[\"+5% damage up per enteing special rooms\",\"Resets every floor\"],\"modifiers\":{\"shioriKnowledge\":true},\"adjacent\":[178,182],\"customID\":\"w_shiori_1002\"}",
-  "114": "{\"pos\":[9,8],\"type\":5082,\"size\":\"Large\",\"name\":\"[Shiori] Goddess\",\"description\":[\"Starts with Godhead.\",\"-75% Damage\"],\"modifiers\":{\"shioriGod\":true},\"adjacent\":[160,186],\"customID\":\"w_shiori_1007\"}",
+  "114": "{\"pos\":[9,8],\"type\":5082,\"size\":\"Large\",\"name\":\"[Shiori] Goddess\",\"description\":[\"Starts with Godhead tears.\",\"-75% Damage\"],\"modifiers\":{\"shioriGod\":true},\"adjacent\":[160,186],\"customID\":\"w_shiori_1007\"}",
   "115": "{\"pos\":[-6,18],\"type\":5076,\"size\":\"Large\",\"name\":\"[Shiori] Taste of Shiori\",\"description\":[\"+1 Shiori's available book slot\"],\"modifiers\":{\"shioriTaste\":1},\"adjacent\":[200,221],\"customID\":\"w_shiori_1001\"}",
   "116": "{\"pos\":[6,18],\"type\":5076,\"size\":\"Large\",\"name\":\"[Shiori] Taste of Shiori\",\"description\":[\"+1 Shiori's available book slot\"],\"modifiers\":{\"shioriTaste\":1},\"adjacent\":[202,219],\"customID\":\"w_shiori_1001\"}",
   "117": "{\"pos\":[0,1],\"type\":44,\"size\":\"Small\",\"name\":\"Luck Down\",\"description\":[\"-0.03 luck\"],\"modifiers\":{\"luck\":-0.03},\"adjacent\":[1,118]}",
@@ -678,7 +678,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
   "79": "{\"pos\":[6,1],\"type\":22,\"size\":\"Small\",\"name\":\"Devil/Angel Rooms\",\"description\":[\"+0.25% chance for the devil/angel room to show up\"],\"modifiers\":{\"devilChance\":0.25},\"adjacent\":[78,59]}",
   "80": "{\"pos\":[6,3],\"type\":299,\"size\":\"Small\",\"name\":\"Lucky Pennies\",\"description\":[\"0.04% chance to replace penny drops with a lucky penny.\"],\"modifiers\":{\"luckyPennyChance\":0.04},\"adjacent\":[56,81]}",
   "81": "{\"pos\":[7,2],\"type\":299,\"size\":\"Small\",\"name\":\"Lucky Pennies\",\"description\":[\"0.04% chance to replace penny drops with a lucky penny.\"],\"modifiers\":{\"luckyPennyChance\":0.04},\"adjacent\":[80,59]}",
-  "140": "{\"pos\":[-8,-16],\"type\":5128,\"size\":\"Large\",\"name\":\"RAID\",\"description\":[\"+0.001 Damage per Global SP (Caps at +2)\",\"+0.001 Tears per Respec (Caps at +2)\"],\"modifiers\":{\"tsukasaRaid\":true},\"adjacent\":[257,289],\"customID\":\"w_tsukasa_1003\"}",
+  "140": "{\"pos\":[-8,-16],\"type\":5128,\"size\":\"Large\",\"name\":\"RAID\",\"description\":[\"+0.001 Damage per Global SP (Caps at +2.5)\",\"+0.001 Tears per Respec (Caps at +2.5)\"],\"modifiers\":{\"tsukasaRaid\":true},\"adjacent\":[257,289],\"customID\":\"w_tsukasa_1003\"}",
   "141": "{\"pos\":[-16,-8],\"type\":5129,\"size\":\"Large\",\"name\":\"[Tsukasa] Full Concentration\",\"description\":[\"Allows Tsukasa use full effect of Concentration:\",\"- Caps at 300 pips\",\"- No longer require room clear for repeat concentration\"],\"modifiers\":{\"tsukasaConcentration\":true},\"adjacent\":[239,286],\"customID\":\"w_tsukasa_1004\"}",
   "142": "{\"pos\":[-10,1],\"type\":5127,\"size\":\"Large\",\"name\":\"[Tsukasa] Server offline\",\"description\":[\"+150% Damage\",\"Starts with Luna.\",\"Lunar Stone no longer revives Tsukasa.\",\"+100% extra Damage if Lunar Acceleration is allocated.\"],\"modifiers\":{\"tsukasaServerOffline\":true},\"adjacent\":[144,216,273,223],\"customID\":\"w_tsukasa_1002\"}",
   "144": "{\"pos\":[-9,1],\"type\":824,\"size\":\"Small\",\"name\":\"Hush Door Timer Increase\",\"description\":[\"+5 seconds to the total time limit for Hush's door to open.\"],\"modifiers\":{\"hushTimer\":5},\"adjacent\":[46,142,208,208,223]}",
@@ -1000,6 +1000,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			end
 		end)
 
+    ---@param pickup EntityPickup
 		wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, function(_, pickup)
 			if wakaba:extraVal("tsukasaMagnetObols") then
 				local subtype = pickup.SubType
@@ -1008,16 +1009,23 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				for i, obolValue in ipairs(PST.expedObolDropValues) do
 					local tmpName = "Arcane Obols " .. tostring(i)
 					if subtype == Isaac.GetTrinketIdByName(tmpName) or subtype == Isaac.GetTrinketIdByName(tmpName) | TrinketType.TRINKET_GOLDEN_FLAG then
+            local player = Isaac.GetPlayer()
+            if pickup:GetSprite():GetAnimation() != "Idle" then
+              for i = 1, 32 do
+                pickup:Update()
+              end
+            end
+            pickup.Position = player.Position
 
-						SFXManager():Play(SoundEffect.SOUND_LUCKYPICKUP, 0.6, 2, false, 0.8)
+						--SFXManager():Play(SoundEffect.SOUND_LUCKYPICKUP, 0.6, 2, false, 0.8)
 
-						PST:addCurrentCharObols(obolValue)
-						PST:createFloatTextFX("+" .. tostring(obolValue) .. " Arcane Obols", Vector.Zero, Color(0.8, 0.35, 1, 1), 0.13, 70, true)
+						--PST:addCurrentCharObols(obolValue)
+						--PST:createFloatTextFX("+" .. tostring(obolValue) .. " Arcane Obols", Vector.Zero, Color(0.8, 0.35, 1, 1), 0.13, 70, true)
 
 						-- Expedition objective: collect Arcane Obols
-						PST:expedAddProgInRun("obols", obolValue)
+						--PST:expedAddProgInRun("obols", obolValue)
 
-						pickup:Remove()
+						--pickup:Remove()
 						return
 					end
 				end
@@ -1025,13 +1033,20 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				-- Astral weapon pickup
 				local itemCfg = Isaac.GetItemConfig():GetTrinket(subtype)
 				if itemCfg and PST:strStartsWith(itemCfg.Name, "Astral weapon") then
-					SFXManager():Play(SoundEffect.SOUND_SWORD_SPIN, 0.8, 2, false, 1.1 + math.random())
-					PST:createFloatTextFX("+ " .. itemCfg.Name, Vector.Zero, Color(0.6, 0.6, 1, 1), 0.13, 100, true)
+          local player = Isaac.GetPlayer()
+          if pickup:GetSprite():GetAnimation() != "Idle" then
+            for i = 1, 32 do
+              pickup:Update()
+            end
+          end
+          pickup.Position = player.Position
+					--SFXManager():Play(SoundEffect.SOUND_SWORD_SPIN, 0.8, 2, false, 1.1 + math.random())
+					--PST:createFloatTextFX("+ " .. itemCfg.Name, Vector.Zero, Color(0.6, 0.6, 1, 1), 0.13, 100, true)
 
-					PST:astralWepTrinketPickup(itemCfg.Name)
+					--PST:astralWepTrinketPickup(itemCfg.Name)
 
-					pickup:Remove()
-					return
+					--pickup:Remove()
+					--return
 				end
 			end
 
