@@ -1010,7 +1010,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 					local tmpName = "Arcane Obols " .. tostring(i)
 					if subtype == Isaac.GetTrinketIdByName(tmpName) or subtype == Isaac.GetTrinketIdByName(tmpName) | TrinketType.TRINKET_GOLDEN_FLAG then
             local player = Isaac.GetPlayer()
-            if pickup:GetSprite():GetAnimation() != "Idle" then
+            if pickup:Exists() and pickup:GetSprite():GetAnimation() != "Idle" then
               for i = 1, 32 do
                 pickup:Update()
               end
@@ -1034,7 +1034,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 				local itemCfg = Isaac.GetItemConfig():GetTrinket(subtype)
 				if itemCfg and PST:strStartsWith(itemCfg.Name, "Astral weapon") then
           local player = Isaac.GetPlayer()
-          if pickup:GetSprite():GetAnimation() != "Idle" then
+          if pickup:Exists() and pickup:GetSprite():GetAnimation() != "Idle" then
             for i = 1, 32 do
               pickup:Update()
             end
