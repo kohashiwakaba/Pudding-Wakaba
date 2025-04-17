@@ -4,6 +4,10 @@ wakaba.CompatManager = {
 	PatchesApplied = {},
 }
 
+if not _wakaba.Enums then
+	_wakaba.Enums = wakaba.Enums
+end
+
 --wakaba.Callback.APPLY_PATCH_GAME_START = "WakabaCallbacks.APPLY_PATCH_GAME_START"
 --wakaba.Callback.APPLY_PATCH_NEW_LEVEL = "WakabaCallbacks.APPLY_PATCH_NEW_LEVEL"
 
