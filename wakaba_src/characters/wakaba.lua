@@ -30,7 +30,6 @@ end
 	Poglite:AddPogCostume("WakabaPog",playerType,pogCostume)
 end ]]
 
---Costume currently not working in Knife Piece 2 area. Needs to be fixed.
 function wakaba:HandleWakabaHealth()
 	local hasconf = false
 	local conf = Isaac.FindByType(6, 17, -1, false, false)

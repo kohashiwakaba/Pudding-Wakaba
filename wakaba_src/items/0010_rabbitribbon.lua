@@ -41,8 +41,6 @@ end
 -- Curse of the Unknown → Curse of Magical Girl : All enemies are devolved, but always ‘Lost Curse’ state / 모든 적이 약화형으로 등장, 그 층 내내 로스트 상태
 -- Curse of the Maze → Curse of Amnesia : Sometimes cleared rooms are randomly be uncleared / 방 입장 시 확률적으로 클리어한 방을 다시 클리어해야 함
 
-
-
 ---@param player EntityPlayer
 function wakaba:ChargeBarUpdate_RabbitRibbon(player)
 	if not wakaba:getRoundChargeBar(player, "RabbitRibbon") then
