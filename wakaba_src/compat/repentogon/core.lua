@@ -113,7 +113,7 @@ function wakaba:Repentogon_HandleWakabaHealth(player, limit, isKeeper)
 		-- do nothing
 	elseif player:GetData().wakaba and player:GetData().wakaba.shioriangel then
 		return math.max(24, limit)
-	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT, true, true) then
 		return math.min(8, limit)
 	else
 		return math.min(6, limit)

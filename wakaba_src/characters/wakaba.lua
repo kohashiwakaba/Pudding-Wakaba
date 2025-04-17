@@ -47,7 +47,7 @@ function wakaba:HandleWakabaHealth()
 			and not wakaba:hasPlayerDataEntry(player, "shioriangel") then
 				if hasconf then
 					broken = 0
-				elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT, true) then
 					broken = 8
 				else
 					broken = 9
