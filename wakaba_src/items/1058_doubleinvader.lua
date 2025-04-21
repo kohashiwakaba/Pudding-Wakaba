@@ -94,6 +94,7 @@ local beastLoc = Vector(0,0)
 
 local function spawnHeads(type, rng)
 	if not wakaba.DoubleInvaderHeadLocations[type] then return end
+	wakaba.G:GetRoom():SetBrokenWatchState(2)
 	for i, e in ipairs(wakaba.DoubleInvaderHeadLocations[type]) do
 		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
 		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
@@ -312,7 +313,6 @@ function wakaba:NewRoom_DoubleInvader()
 		end
 
 		if wakaba.DoubleInvaderHeadLocations[entry] then
-			room:SetBrokenWatchState(2)
 			local rng = RNG()
 			rng:SetSeed(level:GetDungeonPlacementSeed(), 35)
 			spawnHeads(entry, rng)
