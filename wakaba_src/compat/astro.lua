@@ -132,3 +132,11 @@ wakaba:RegisterPatch(0, "QP", function() return (QP ~= nil and QP.Settings ~= ni
 		end
 	end)
 end)
+
+wakaba:RegisterPatch(0, "EpicBeam", function() return (EpicBeam ~= nil) end, function()
+	if EpicBeam.Quality5 then
+		for k, v in pairs(wakaba.ExtendQuality) do
+			table.insert(EpicBeam.Quality5, k)
+		end
+	end
+end)
