@@ -163,6 +163,13 @@ return {
 		},
 		category = "wakabaGlobal", sort = 3928
 	},
+	richerPlatinumPass = {
+		str = {
+			"Platinum Pass:",
+			"    +1 reroll per Prestige Pass restock machines",
+		},
+		category = "wakabaGlobal", sort = 3929
+	},
 	---- WAKABA'S TREE SPECIAL ----
 	wakabaGudGirl = {
 		str = {
