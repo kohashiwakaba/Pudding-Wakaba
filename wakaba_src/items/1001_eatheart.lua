@@ -37,7 +37,7 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 
 	local tempeatheartcharges = 0
 	local multiplier = 32
-	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.EATHEART)
+	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.EATHEART, player)
 	if mode == "PlayerDamage" then
 		amount = amount * 5000
 		multiplier = 1
@@ -52,7 +52,7 @@ function wakaba:ChargeEatHeart(player, amount, mode)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT) then
 			multiplier = multiplier * 2
 		end
-	elseif mode == "Preserve" then 
+	elseif mode == "Preserve" then
 		multiplier = 0
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) then
 			multiplier = multiplier + 0.08

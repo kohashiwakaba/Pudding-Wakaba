@@ -8,7 +8,7 @@ function wakaba:ItemUse_3dPrinter(item, rng, player, useFlags, activeSlot, varDa
 	local trinket0 = player:GetTrinket(0)
 	local trinket1 = player:GetTrinket(1)
 
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 
 	if isGolden then
 		if trinket0 ~= 0 and trinket0 < TrinketType.TRINKET_GOLDEN_FLAG then

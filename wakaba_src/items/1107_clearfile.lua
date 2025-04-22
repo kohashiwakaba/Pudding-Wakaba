@@ -235,9 +235,13 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 			target.Touched = touched
 			player:AddCollectible(newType, 0, not touched)
 		end
-		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.CLEAR_FILE) then
+		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.CLEAR_FILE, player) then
 			if Epiphany then
-				Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(target)
+				if tonumber(Epiphany.WAVE_NUMBER) >= 7.5 then
+					Epiphany.Pickup.GOLDEN_ITEM:TurnPedestalGold(pickup, false)
+				else
+					Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
+				end
 			end
 		end
 		idesc:resetEntries()

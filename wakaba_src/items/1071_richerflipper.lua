@@ -7,7 +7,7 @@ local isc = _wakaba.isc
 function wakaba:ItemUse_RicherFlipper(item, rng, player, useFlags, activeSlot, varData)
 	local discharge = false
 	local pickups = isc:getEntities(EntityType.ENTITY_PICKUP)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	for _, prePickup in ipairs(pickups) do
 		local pickup = prePickup:ToPickup()
 		if pickup then
@@ -25,7 +25,11 @@ function wakaba:ItemUse_RicherFlipper(item, rng, player, useFlags, activeSlot, v
 				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
 			elseif isGolden and pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 				Epiphany.Pickup.GOLDEN_ITEM.DisableGoldPedestal = true
-				Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
+				if tonumber(Epiphany.WAVE_NUMBER) >= 7.5 then
+					Epiphany.Pickup.GOLDEN_ITEM:TurnPedestalGold(pickup, false)
+				else
+					Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
+				end
 				Epiphany.Pickup.GOLDEN_ITEM.DisableGoldPedestal = false
 				discharge = true
 			end

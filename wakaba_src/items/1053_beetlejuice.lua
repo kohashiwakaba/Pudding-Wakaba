@@ -2,7 +2,7 @@ local isc = _wakaba.isc
 local replacedPills = {}
 
 function wakaba:ItemUse_Beetlejuice(item, rng, player, useFlags, activeSlot, varData)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	local game = wakaba.G
 	local room = game:GetRoom()
 	pData = player:GetData()

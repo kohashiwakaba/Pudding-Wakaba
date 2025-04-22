@@ -54,7 +54,7 @@ function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, v
 	if wakaba:HasShiori(player) then
 		hasshiori = true
 	end
-	if wakaba:IsGoldenItem(item) then
+	if wakaba:IsGoldenItem(item, player) then
 		isGolden = true
 	end
 	for _, entry in ipairs(wakaba.SilenceErasures) do
@@ -72,7 +72,7 @@ function wakaba:ItemUse_BookOfSilence(item, rng, player, useFlags, activeSlot, v
 	if hasjudas then
 		local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 3000, EntityPartition.ENEMY)
 		for _, entity in ipairs(entities) do
-			if entity:IsEnemy() 
+			if entity:IsEnemy()
 			and not entity:IsInvincible()
 			and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 			then
@@ -106,7 +106,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_BookOfSilence)
 
 
- 
+
 function wakaba:Cache_BookOfSilence(player, cacheFlag)
 	local buffs = wakaba:getSilenceTearsBuff(player)
 	if buffs > 0 then
@@ -115,5 +115,5 @@ function wakaba:Cache_BookOfSilence(player, cacheFlag)
     end
   end
 end
- 
+
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_BookOfSilence)

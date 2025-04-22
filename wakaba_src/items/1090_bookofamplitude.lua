@@ -61,7 +61,7 @@ function wakaba:Cache_BookOfAmplitude(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE) and ampStat then
 		ampStat = ampStat % 4
 		local mult = 1
-		mult = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE) and mult + 1 or mult
+		mult = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_AMPLITUDE, player) and mult + 1 or mult
 		mult = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) and mult + 1 or mult
 		if ampStat == 2 then
 			if cacheFlag == CacheFlag.CACHE_SPEED then

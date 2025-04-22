@@ -1,7 +1,7 @@
 local isc = _wakaba.isc
 
 function wakaba:ItemUse_GrimreaperDefender(item, rng, player, useFlags, activeSlot, varData)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 
 	wakaba:GetPlayerEntityData(player)
 	player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_WAFER)

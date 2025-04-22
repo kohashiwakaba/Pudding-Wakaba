@@ -20,7 +20,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_INIT, wakaba.EffectInit_PowerBomb
 function wakaba:EffectUpdate_PowerBomb(effect)
 	effect:GetData().wakaba = effect:GetData().wakaba or {}
 	local damage = effect:GetData().wakaba.damage or 5
-	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.POWER_BOMB)
+	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.POWER_BOMB, player)
 	if isGolden then damage = damage * 2 end
 	local state = 0
 	local effectsprite = effect:GetSprite()

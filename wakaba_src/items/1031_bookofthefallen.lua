@@ -27,7 +27,7 @@ function wakaba:PlayerUpdate_BookOfTheFallen()
 	for i = 1, wakaba.G:GetNumPlayers() do
     local player = Isaac.GetPlayer(i - 1)
 		wakaba:GetPlayerEntityData(player)
-		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
+		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, player)
 		if player:GetData().wakaba then
 			if (player:GetPlayerType() ~= 23 and not isGolden) and wakaba:hasPlayerDataEntry(player, "shioridevil") and (not player:GetData().wakaba.blindfolded or player:CanShoot()) then
 				local OldChallenge=wakaba.G.Challenge
@@ -63,7 +63,7 @@ end
 
 function wakaba:ItemUse_BookOfTheFallen(item, rng, player, useFlags, activeSlot, varData)
 	wakaba:GetPlayerEntityData(player)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	if wakaba:hasPlayerDataEntry(player, "shioridevil") or isGolden then
 		SFXManager():Play(SoundEffect.SOUND_FLOATY_BABY_ROAR, 0.6, 0, false, 2)
 		local damage = player.Damage
@@ -107,7 +107,7 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_BookOfTheFallen, wak
 
 function wakaba:Cache_BookOfTheFallen(player, cacheFlag)
 	if not player:GetData().wakaba then return end
-	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN)
+	local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_THE_FALLEN, player)
   if wakaba:hasPlayerDataEntry(player, "shioridevil") then
     if cacheFlag | CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			if isGolden or player:GetPlayerType() == 23 then

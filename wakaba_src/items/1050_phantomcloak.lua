@@ -28,7 +28,7 @@ function wakaba:NewRoom_PhantomCloak()
 		pData = player:GetData()
 		if pData.wakaba and pData.wakaba.phantomcloak and pData.wakaba.phantomcloak.active then
 			TryOpenChallengeDoor()
-			if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.PHANTOM_CLOAK) then
+			if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.PHANTOM_CLOAK, player) then
 				TryOpenQuestDoor()
 			end
 		end
@@ -192,7 +192,7 @@ function wakaba:ItemUse_PhantomCloak(item, rng, player, useFlags, activeSlot, va
 		pData.wakaba.phantomcloak.active = true
 		player:AddEntityFlags(EntityFlag.FLAG_NO_TARGET)
 		TryOpenChallengeDoor()
-		if wakaba:IsGoldenItem(item) then
+		if wakaba:IsGoldenItem(item, player) then
 			TryOpenQuestDoor()
 		end
 		--[[ if not (useFlags & UseFlag.USE_NOANIM == UseFlag.USE_NOANIM) then

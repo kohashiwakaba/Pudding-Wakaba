@@ -1,6 +1,6 @@
 function wakaba:Cache_Syrup(player, cacheFlag)
 	if player:HasCollectible(wakaba.Enums.Collectibles.SYRUP) then
-		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.SYRUP)
+		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.SYRUP, player)
 		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + (1.25 * wakaba:getEstimatedDamageMult(player))
 		end

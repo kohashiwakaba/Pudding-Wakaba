@@ -141,7 +141,7 @@ function wakaba:PickupUpdate_MagnetHeaven(pickup)
 	if velocityMode == "powerbomb" then
 		pickup.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
 		pickup.EntityCollisionClass = EntityCollisionClass.ENTCOLL_PLAYERONLY
-		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.POWER_BOMB) then
+		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.POWER_BOMB, player) then
 			pickup.OptionsPickupIndex = 0
 		end
 		if (playerpos - oldpos):Length() > 500 then

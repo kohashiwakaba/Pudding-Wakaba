@@ -11,9 +11,9 @@ end
 wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_D6Plus, wakaba.Enums.Collectibles.D6_PLUS)
 
 function wakaba:ItemUse_D6Chaos(item, rng, player, useFlags, activeSlot, varData)
-	
+
 	local flag = UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOANIM | UseFlag.USE_NOHUD
-	local rerollcount = (wakaba:IsGoldenItem(item) and 4) or 9
+	local rerollcount = (wakaba:IsGoldenItem(item, player) and 4) or 9
 	for i = 1, rerollcount do
 		player:UseCard(Card.CARD_SOUL_ISAAC, flag)
 	end

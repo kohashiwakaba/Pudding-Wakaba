@@ -1,5 +1,5 @@
 function wakaba:ItemUse_Balance(item, rng, player, useFlags, activeSlot, varData)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	if player:GetNumCoins() < 5 then
 		if (player:GetNumBombs() - player:GetNumKeys()) ^ 2 == 1 then
 			player:AddBombs(player:GetNumKeys() - player:GetNumBombs())

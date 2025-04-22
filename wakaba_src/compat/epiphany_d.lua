@@ -1056,7 +1056,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 				and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE
 				and descObj.ObjSubType > 0
 				and wakaba:isActiveItem(descObj.ObjSubType)
-				and wakaba:IsGoldenItem(descObj.ObjSubType)
+				and (wakaba:IsGoldenItem(descObj.ObjSubType) or descObj.Entity and Epiphany:IsGoldenPedestal(descObj.Entity))
 			end, function(descObj)
 				local wakabaBuff = wakaba:getWakabaDesc("epiphany_golden", descObj.ObjSubType)
 				if wakabaBuff then

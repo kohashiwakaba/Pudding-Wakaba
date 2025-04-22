@@ -6,7 +6,7 @@ end
 
 
 function wakaba:ItemUse_Isekai(item, rng, player, useFlags, activeSlot, varData)
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	local fam = isc:getPlayerFamiliars(player)
 	local count = 0
 	for _,f in ipairs(fam) do

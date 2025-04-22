@@ -173,7 +173,7 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 			end
 		end
 		--player:UseActiveItem(CollectibleType.COLLECTIBLE_MARS, UseFlag.USE_NOANIM | UseFlag.USE_NOCOSTUME, -1)
-		local isGolden = wakaba:IsGoldenItem(item)
+		local isGolden = wakaba:IsGoldenItem(item, player)
 
 		local trail = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, 0, player.Position, Vector.Zero, nil):ToEffect()
 		trail:GetData().wakaba = {}

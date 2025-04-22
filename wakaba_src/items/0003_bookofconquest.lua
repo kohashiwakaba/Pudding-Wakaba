@@ -156,7 +156,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			player:GetData().wakaba.conquestmode = true
 			player:GetData().wakaba.conquestcursor = 1
 			local hasbirthright = player:GetPlayerType() == Isaac.GetPlayerTypeByName("ShioriB", true) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, player)
 			local target = wakaba.conquestready[player:GetData().wakaba.conquestcursor].Entity
 			if REPENTOGON then
 				camPos = target.Position
@@ -170,7 +170,7 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			end
 			wakaba.conquestmode = true
 		else
-			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
+			local hascarbattery = player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) or wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST, player)
 			local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 			for _, entity in ipairs(entities) do
 				if entity:IsEnemy()

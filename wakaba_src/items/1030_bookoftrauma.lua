@@ -2,7 +2,7 @@ local isc = _wakaba.isc
 function wakaba:ItemUse_BookOfTrauma(item, rng, player, useFlags, activeSlot, varData)
 	local i = 0
 	local max = wakaba.Enums.Constants.MAX_TRAUMA_COUNT
-	local isGolden = wakaba:IsGoldenItem(item)
+	local isGolden = wakaba:IsGoldenItem(item, player)
 	local allowOtherTears = false
 	local entities = Isaac.FindByType(EntityType.ENTITY_TEAR)
 	if #entities > 0 then

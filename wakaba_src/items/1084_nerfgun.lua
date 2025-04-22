@@ -103,7 +103,7 @@ function wakaba:UseItem_NerfGun(_, rng, player, useFlags, activeSlot, varData)
 	else
 		addNerfPendingCount(player)
 	end
-	if wakaba:IsGoldenItem(collectible) then
+	if wakaba:IsGoldenItem(collectible, player) then
 		addNerfPendingCount(player)
 	end
 	return {Discharge = false, Remove = false, ShowAnim = false} -- stops the item from discharging unless something actually shoots out
