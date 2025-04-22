@@ -350,7 +350,7 @@ function wakaba:TakeDmg_Pancake(entity, amount, flag, source, countdownFrames)
 			if fly.Variant == FamiliarVariant.BLUE_FLY then
 				if fly.SubType == wakaba.Enums.Flies.RIRA then
 					local player = fly.Player or Isaac.GetPlayer()
-					wakaba.Status:AddStatusEffect(effectTarget, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 150, EntityRef(player))
+					wakaba.Status:AddStatusEffect(entity, StatusEffectLibrary.StatusFlag.wakaba_AQUA, 150, EntityRef(player))
 				elseif fly.SubType == wakaba.Enums.Flies.CIEL then
 					local player = fly.Player or Isaac.GetPlayer()
 					wakaba.G:BombExplosionEffects(fly.Position, fly.CollisionDamage, player.TearFlags, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION | (not wakaba:IsLunatic() and DamageFlag.DAMAGE_IGNORE_ARMOR or 0))
