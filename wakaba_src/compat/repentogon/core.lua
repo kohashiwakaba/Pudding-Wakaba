@@ -214,7 +214,7 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 	if isSlotSelected and wakaba:saveDataManagerInMenu() then
 		wakaba.Log("Start Repentogon Sync MC_POST_SAVESLOT_LOAD")
 		wakaba:saveDataManagerLoad()
-		if wakaba.state.unlock.repentogon then
+		if wakaba.state.unlock.sync_repentogon and wakaba.state.unlock.sync_gamever == ((REPENTANCE_PLUS and "REP_PLUS") or "REP") then
 			wakaba._ignoreBossDestState = false
 			wakaba:ClearBossDestData()
 			return
@@ -231,7 +231,8 @@ wakaba:AddPriorityCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, 100, function(_, 
 			end
 		end
 		SyncRepentogonChallengeMarks()
-		wakaba.state.unlock.repentogon = true
+		wakaba.state.unlock.sync_repentogon = true
+		wakaba.state.unlock.sync_gamever = ((REPENTANCE_PLUS and "REP_PLUS") or "REP")
 		wakaba:saveDataManagerSave()
 		print("saved!")
 	end

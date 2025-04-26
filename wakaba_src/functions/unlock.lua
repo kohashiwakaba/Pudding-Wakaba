@@ -942,7 +942,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if REPENTOGON then
-						wakaba.state.unlock.repentogon = false
+						wakaba.state.unlock.sync_repentogon = false
 					elseif shouldShowPopup then
 						unlockTableEntry[4]()
 					end
@@ -951,7 +951,7 @@ function wakaba:UnlockCheck(rng, spawnPosition)
 				if wakaba.state.unlock[unlockTableEntry[1]] == false then
 					wakaba.state.unlock[unlockTableEntry[1]] = true
 					if REPENTOGON then
-						wakaba.state.unlock.repentogon = false
+						wakaba.state.unlock.sync_repentogon = false
 					elseif shouldShowPopup then
 						unlockTableEntry[4]()
 					end
