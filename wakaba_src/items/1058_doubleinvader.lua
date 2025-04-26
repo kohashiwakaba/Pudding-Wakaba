@@ -4,23 +4,27 @@ local headSpawned = false
 local headErased = false
 
 wakaba.DoubleInvaderDeathHeads = {
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0, AllowExtra = true},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
-	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
-	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2, AllowExtra = true},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
-	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
-	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3, NoDuplicate = true},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 3, NoDuplicate = true},
+	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4, AllowExtra = true},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 4},
+	{Type = EntityType.ENTITY_DUSTY_DEATHS_HEAD, Variant = 0, AllowExtra = true},
+	{Type = EntityType.ENTITY_DUSTY_DEATHS_HEAD, Variant = 0, AllowExtra = true},
+	{Type = EntityType.ENTITY_DUSTY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
-	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
-	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
-	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0, NoLunatic = true},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0, NoLunatic = true},
+	{Type = EntityType.ENTITY_CAMILLO_JR, Variant = 0, NoLunatic = true},
 }
 
 wakaba.DoubleInvaderHeadLocations = {
@@ -86,23 +90,54 @@ wakaba.DoubleInvaderHeadLocations = {
 	},
 }
 
-local function invEnabled()
-	return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) or wakaba:IsLunatic() or wakaba:getOptionValue("alwaysdoubleinvader")
+local function invEnabled(noLunatic)
+	return wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.DOUBLE_INVADER) or (wakaba:IsLunatic() and not noLunatic) or wakaba:getOptionValue("alwaysdoubleinvader")
 end
 
 local beastLoc = Vector(0,0)
 
+local spawnedEntries = {}
+
+local function isDuplicate(entry)
+	for _, dict in ipairs(spawnedEntries) do
+		if entry.Type == dict.Type then
+			if not dict.Variant or entry.Variant == dict.Variant then
+				if not dict.SubType or entry.SubType == dict.SubType then
+					return true
+				end
+			end
+		end
+	end
+end
+
 local function spawnHeads(type, rng)
 	if not wakaba.DoubleInvaderHeadLocations[type] then return end
 	wakaba.G:GetRoom():SetBrokenWatchState(2)
+	local spawnedIndex = {}
+	local extra = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.DOUBLE_INVADER)
 	for i, e in ipairs(wakaba.DoubleInvaderHeadLocations[type]) do
-		local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
-		local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
-		local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil):ToNPC()
-		npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
-		npc.CanShutDoors = false
-		npc:GetData().wakaba_stbond = true
+		for try = 1, 4 do
+			local entryIndex = rng:RandomInt(#wakaba.DoubleInvaderDeathHeads) + 1
+			local entry = wakaba.DoubleInvaderDeathHeads[entryIndex]
+			if invEnabled(true) and not isDuplicate(entry) then
+				local npc = Isaac.Spawn(entry.Type, entry.Variant or 0, entry.SubType or 0, isc:gridCoordinatesToWorldPosition(e.X, e.Y), Vector.Zero, nil):ToNPC()
+				npc:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
+				npc.CanShutDoors = false
+				npc:GetData().wakaba_stbond = true
+				spawnedIndex[i] = entryIndex
+				if entry.NoDuplicate then
+					table.insert(spawnedEntries, entry)
+				end
+				if not entry.AllowExtra then
+					extra = extra - 1
+				end
+				if extra <= 0 then
+					break
+				end
+			end
+		end
 	end
+	spawnedEntries = {}
 end
 
 function wakaba:Cache_DoubleInvader(player, cacheFlag)
@@ -116,6 +151,9 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE , wakaba.Cache_DoubleInvader)
 
 function wakaba:PreTakeDamage_DoubleInvader(entity)
 	if headSpawned then
+		if entity:GetData().wakaba_stbond then
+			return false
+		end
 		for _, dict in ipairs(wakaba.DoubleInvaderDeathHeads) do
 			if entity.Type == dict.Type then
 				if not dict.Variant or entity.Variant == dict.Variant then
@@ -152,21 +190,33 @@ wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInv
 ---comment
 ---@param npc EntityNPC
 function wakaba:NPCUpdate_DoubleInvader(npc)
-	if not (invEnabled() and isc:inBeastRoom()) then return end
-	local d = npc:GetData()
-	local addVec = d.w_beastVec or Vector(0,0)
-	local pos = npc.Position
-	local vec = npc.Velocity
-	local fv = vec - addVec
-	if (pos.X <= -48 and vec.X < 0) or pos.X >= 688 and vec.X > 0 then
-		npc:AddVelocity(Vector(-vec.X, 0))
+	if not invEnabled() then return end
+	if not headSpawned or headErased then return end
+	if not npc:GetData().wakaba_stbond then return end
+
+	if not npc:Exists() then
+		local npc2 = Isaac.Spawn(enpcntry.Type, npc.Variant or 0, npc.SubType or 0, npc.Position, Vector.Zero, nil):ToNPC()
+		npc2:AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS | EntityFlag.FLAG_NO_TARGET)
+		npc2.CanShutDoors = false
+		npc2:GetData().wakaba_stbond = true
+		return
 	end
-	if (pos.Y <= 73 and vec.Y < 0) or pos.Y >= 484 and vec.Y > 0 then
-		npc:AddVelocity(Vector(0, -vec.Y))
+
+	if isc:inBeastRoom() then
+		local d = npc:GetData()
+		local addVec = d.w_beastVec or Vector(0,0)
+		local pos = npc.Position
+		local vec = npc.Velocity
+		local fv = vec - addVec
+		if (pos.X <= -48 and vec.X < 0) or pos.X >= 688 and vec.X > 0 then
+			npc:AddVelocity(Vector(-vec.X, 0))
+		end
+		if (pos.Y <= 73 and vec.Y < 0) or pos.Y >= 484 and vec.Y > 0 then
+			npc:AddVelocity(Vector(0, -vec.Y))
+		end
+		d.w_beastVec = beastVec
 	end
-	d.w_beastVec = beastVec
 end
-wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, EntityType.ENTITY_DEATHS_HEAD)
 
 ---comment
 ---@param tear EntityTear
@@ -174,7 +224,7 @@ wakaba:AddCallback(ModCallbacks.MC_NPC_UPDATE, wakaba.NPCUpdate_DoubleInvader, E
 ---@param low boolean
 function wakaba:TearCollision_DoubleInvader(tear, collider, low)
 	if invEnabled() and headSpawned then
-		if collider.Type == EntityType.ENTITY_DEATHS_HEAD then
+		if collider:GetData().wakaba_stbond then
 			return true
 		end
 	end
@@ -272,13 +322,13 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, wakaba.NPCUpdate_DoubleInvader_Death)
 
 function wakaba:EraseDeathHeads()
-	local entities = Isaac.FindByType(EntityType.ENTITY_DEATHS_HEAD)
-	for i, e in ipairs(entities) do
-		e:ToNPC().State = 18
-	end
-	local entities = Isaac.FindByType(EntityType.ENTITY_CAMILLO_JR)
-	for i, e in ipairs(entities) do
-		e:ToNPC():Die()
+	for i, e in ipairs(Isaac.GetRoomEntities()) do
+		if e:ToNPC() and e.Type == EntityType.ENTITY_DEATHS_HEAD then
+			e:ToNPC().State = 18
+		end
+		if e:ToNPC() and e:Exists() and e:GetData().wakaba_stbond then
+			e:ToNPC():Die()
+		end
 	end
 	wakaba.Log("Trying to remove Death Heads...")
 end
