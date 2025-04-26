@@ -40,6 +40,10 @@ patch with rep+ exclusive)
 
 {FSIZE2}repentogon
 
+- save sync with repentogon
+now also checks game version
+(rep or rep+)
+
 - added hidden
 'vanilla item quality tweaks'
 option. can only be set
@@ -50,6 +54,21 @@ through console
 for tsukasa
 -- added crimson nodes
 for wakaba, shiori
+
+-- [wakaba] impure girl
+no longer gives birthright directly
+instead added through innate item
+(to prevent being removed)
+-- [shiori] library assistant
+fix outdated description
+-- [shiori] become goddess
+fix non-accurate description
+-- [tsukasa] raid
+increased cap of each
+stats from 2 > 2.5
+-- [tsukasa] magnetic obols
+rewritten mechanics to fix
+issues with deep space nodes
 
 - difficulty library support
 -- added 'up/down' difficulty
@@ -76,6 +95,11 @@ player to room that
 contains selected item
 
 {FSIZE2}balance/bug fixes
+
+- wakaba
+-- birthright no longer
+adds heart limit
+if given as innate items
 
 - book of the forgotten
 -- no longer recovers full health
@@ -179,6 +203,28 @@ and will trigger ambush
 -- boss rush : now triggers
 ambush and actives
 devil effect on repeat usage
+
+- double invader
+-- dusty death's heads
+and mockulus
+now can be spawned
+-- 2+ brimstone death's head
+no longer appear
+at the same time
+-- mega satan room
+is now properly sped up
+-- camillo jr now has
+reduced chance on
+lunatic mode
+(expect isaac got the actual item)
+-- (non-rgon) fixed eucharist,
+goat head opening deal room doors
+
+- trolled!
+-- now grants both polaroid
+and negative if isaac
+does not have one when
+teleporting to i am error room
 
 - fix eid issues with
 dmg down pill
