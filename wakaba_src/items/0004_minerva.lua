@@ -444,10 +444,10 @@ function wakaba:PenaltyProtection_Minerva(player, amount, flags, source, countdo
 	local data = player:GetData()
 	if not wakaba:IsLunatic() and data.wakaba.hasminerva > 0 then
 		return {
-			Damage = 1,
+			Damage = amount,
 			Protect = true,
 			Override = true,
 		}
 	end
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_DAMAGE_AMOUNT, wakaba.PenaltyProtection_Minerva)
+wakaba:AddCallback(wakaba.Callback.EVALUATE_WAKABA_DAMAGE_PENALTY_PROTECTION, wakaba.PenaltyProtection_Minerva)
