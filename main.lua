@@ -68,7 +68,7 @@ wakaba.G = Game() -- Cache game object
 ---@type Level
 wakaba.L = function() return wakaba.G:GetLevel() end -- Cache level object
 ---@type Room
-wakaba.R = function() return wakaba.G:GetRoom() end-- Cache room object
+wakaba.R = function() return wakaba.G:GetRoom() end -- Cache room object
 ---@type Font
 wakaba.f = Font() -- init font object
 wakaba.f:Load("font/pftempestasevencondensed.fnt") -- load a font into the font object

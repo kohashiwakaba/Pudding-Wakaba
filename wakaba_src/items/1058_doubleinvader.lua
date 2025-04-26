@@ -115,7 +115,9 @@ end
 
 local function spawnHeads(type, rng)
 	if not wakaba.DoubleInvaderHeadLocations[type] then return end
-	wakaba.G:GetRoom():SetBrokenWatchState(2)
+	if invEnabled(true) then
+		wakaba.G:GetRoom():SetBrokenWatchState(2)
+	end
 	local spawnedIndex = {}
 	local extra = wakaba:GetGlobalCollectibleNum(wakaba.Enums.Collectibles.DOUBLE_INVADER)
 	for i, e in ipairs(wakaba.DoubleInvaderHeadLocations[type]) do
@@ -375,3 +377,21 @@ function wakaba:NewRoom_DoubleInvader()
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_DoubleInvader)
+
+if not REPENTOGON then
+	function wakaba:Update_DoubleInvader()
+		if invEnabled(true) and wakaba.R():GetType() == RoomType.ROOM_BOSS then
+			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+				local door = wakaba.R():GetDoor(i)
+				if door and (door.TargetRoomType == RoomType.ROOM_DEVIL or door.TargetRoomType == RoomType.ROOM_ANGEL) and door:IsOpen() then
+					--door:Bar()
+					door:Close(true)
+					door:GetSprite().Scale = Vector(0.00001, 0.00001)
+					door:SetType(GridEntityType.GRID_WALL)
+					return
+				end
+			end
+		end
+	end
+	wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.Update_DoubleInvader)
+end
