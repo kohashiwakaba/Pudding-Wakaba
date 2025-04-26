@@ -238,9 +238,9 @@ function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varDa
 		if wakaba:IsGoldenItem(wakaba.Enums.Collectibles.CLEAR_FILE, player) then
 			if Epiphany then
 				if tonumber(Epiphany.WAVE_NUMBER) >= 7.5 then
-					Epiphany.Pickup.GOLDEN_ITEM:TurnPedestalGold(pickup, false)
+					Epiphany.Pickup.GOLDEN_ITEM:TurnPedestalGold(target, false)
 				else
-					Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
+					Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(target, false)
 				end
 			end
 		end

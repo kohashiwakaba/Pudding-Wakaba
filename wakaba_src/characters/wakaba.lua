@@ -64,6 +64,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_UPDATE, wakaba.HandleWakabaHealth)
 function wakaba:PlayerUpdate_Wakaba(player)
 	if player:GetPlayerType() == wakaba.Enums.Players.WAKABA	then
 		wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, 1, "WAKABA_I_WAKABA")
+		if wakaba:extraVal("wakabaBirthright") then
+			wakaba.HiddenItemManager:CheckStack(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT, 1, "WAKABA_I_WAKABA_PST")
+		end
 		wakaba:GetPlayerEntityData(player)
 		local data = player:GetData()
 		if wakaba:extraVal("wakabaBirthright") then
@@ -75,6 +78,9 @@ function wakaba:PlayerUpdate_Wakaba(player)
 	else
 		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, "WAKABA_I_WAKABA") then
 			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_DEEP_POCKETS, "WAKABA_I_WAKABA")
+		end
+		if wakaba.HiddenItemManager:Has(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT, "WAKABA_I_WAKABA_PST") then
+			wakaba.HiddenItemManager:RemoveStack(player, CollectibleType.COLLECTIBLE_BIRTHRIGHT, "WAKABA_I_WAKABA_PST")
 		end
 	end
 end

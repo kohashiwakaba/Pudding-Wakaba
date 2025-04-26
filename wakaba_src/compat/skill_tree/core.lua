@@ -1134,9 +1134,6 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 			end
 
 			if player:GetPlayerType() == wakaba.Enums.Players.WAKABA then
-				if wakaba:extraVal("wakabaBirthright") then
-					player:AddCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
-				end
 				if wakaba:extraVal("wakabaGudGirl") then
 					player:AddCollectible(wakaba.Enums.Collectibles.WAKABAS_PENDANT)
 					wakaba.G:SetStateFlag(GameStateFlag.STATE_PERFECTION_SPAWNED, true)
