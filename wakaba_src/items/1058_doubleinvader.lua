@@ -9,6 +9,9 @@ wakaba.DoubleInvaderDeathHeads = {
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 0},
+	{Type = EntityType.ENTITY_MOCKULUS, Variant = 0},
+	{Type = EntityType.ENTITY_MOCKULUS, Variant = 0},
+	{Type = EntityType.ENTITY_MOCKULUS, Variant = 0},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2, AllowExtra = true},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
 	{Type = EntityType.ENTITY_DEATHS_HEAD, Variant = 2},
@@ -186,6 +189,7 @@ function wakaba:Collision_DoubleInvader(npc, collider, low)
 	end
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInvader, EntityType.ENTITY_DEATHS_HEAD)
+wakaba:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, wakaba.Collision_DoubleInvader, EntityType.ENTITY_MOCKULUS)
 
 ---comment
 ---@param npc EntityNPC
