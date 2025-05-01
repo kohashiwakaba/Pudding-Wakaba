@@ -4,71 +4,71 @@ wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function(
 		table.insert(wakaba.DamagePenaltyProtectionInvalidStr, "Astrobirth")
 	end
 	wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
-		{AstroItems.Collectible.AKASHIC_RECORDS, 1.00},
-		-- {AstroItems.Collectible.AMAZING_CHAOS_SCROLL, 1.00}, -- Reshaken 아이템과 중복
-		{AstroItems.Collectible.AQUARIUS_EX, 1.00},
-		{AstroItems.Collectible.ARTIFACT_SANCTUM, 1.00},
-		{AstroItems.Collectible.BACHELORS_DEGREE, 1.00},
-		{AstroItems.Collectible.CANCER_EX, 1.00},
-		{AstroItems.Collectible.CHAOS_DICE, 1.00},
-		{AstroItems.Collectible.CLOVER, 1.00},
-		{AstroItems.Collectible.CURSE_OF_ARAMATIR, 1.00},
-		{AstroItems.Collectible.CYGNUS, 1.00},
-		{AstroItems.Collectible.GALACTIC_MEDAL_OF_VALOR, 1.00},
-		{AstroItems.Collectible.GEMINI_EX, 1.00},
-		{AstroItems.Collectible.LANIAKEA_SUPERCLUSTER, 1.00},
-		{AstroItems.Collectible.LIBRA_EX, 1.00},
-		{AstroItems.Collectible.LUCKY_ROCK_BOTTOM, 1.00},
-		{AstroItems.Collectible.PIRATE_MAP, 1.00},
-		{AstroItems.Collectible.PISCES_EX, 1.00},
-		{AstroItems.Collectible.PLATINUM_BULLET, 1.00},
-		{AstroItems.Collectible.PTOLEMAEUS, 1.00},
-		{AstroItems.Collectible.QUASAR, 1.00},
+		{Astro.Collectible.AKASHIC_RECORDS, 1.00},
+		-- {Astro.Collectible.AMAZING_CHAOS_SCROLL, 1.00}, -- Reshaken 아이템과 중복
+		{Astro.Collectible.AQUARIUS_EX, 1.00},
+		{Astro.Collectible.ARTIFACT_SANCTUM, 1.00},
+		{Astro.Collectible.BACHELORS_DEGREE, 1.00},
+		{Astro.Collectible.CANCER_EX, 1.00},
+		{Astro.Collectible.CHAOS_DICE, 1.00},
+		{Astro.Collectible.CLOVER, 1.00},
+		{Astro.Collectible.CURSE_OF_ARAMATIR, 1.00},
+		{Astro.Collectible.CYGNUS, 1.00},
+		{Astro.Collectible.GALACTIC_MEDAL_OF_VALOR, 1.00},
+		{Astro.Collectible.GEMINI_EX, 1.00},
+		{Astro.Collectible.LANIAKEA_SUPERCLUSTER, 1.00},
+		{Astro.Collectible.LIBRA_EX, 1.00},
+		{Astro.Collectible.LUCKY_ROCK_BOTTOM, 1.00},
+		{Astro.Collectible.PIRATE_MAP, 1.00},
+		{Astro.Collectible.PISCES_EX, 1.00},
+		{Astro.Collectible.PLATINUM_BULLET, 1.00},
+		{Astro.Collectible.PTOLEMAEUS, 1.00},
+		{Astro.Collectible.QUASAR, 1.00},
 	})
 	wakaba:BulkAppend(wakaba.CustomPool.ShioriValut, {
-		{AstroItems.Collectible.ALTAIR, 0.20},
-		{AstroItems.Collectible.AQUARIUS_EX, 1.00},
-		{AstroItems.Collectible.ARIES_EX, 1.00},
-		{AstroItems.Collectible.CANCER_EX, 1.00},
-		{AstroItems.Collectible.CAPRICORN_EX, 1.00},
-		{AstroItems.Collectible.CASIOPEA, 1.00},
-		{AstroItems.Collectible.COMET, 1.00},
-		{AstroItems.Collectible.CORVUS, 1.00},
-		{AstroItems.Collectible.CURSE_OF_ARAMATIR, 1.00},
-		{AstroItems.Collectible.CYGNUS, 1.00},
-		{AstroItems.Collectible.DENEB, 1.00},
-		{AstroItems.Collectible.GEMINI_EX, 1.00},
-		{AstroItems.Collectible.LEO_EX, 1.00},
-		{AstroItems.Collectible.LIBRA_EX, 1.00},
-		{AstroItems.Collectible.PAVO, 1.00},
-		{AstroItems.Collectible.PISCES_EX, 1.00},
-		{AstroItems.Collectible.PROMETHEUS, 1.00},
-		{AstroItems.Collectible.QUASAR, 1.00},
-		{AstroItems.Collectible.RITE_OF_ARAMESIR, 1.00},
-		{AstroItems.Collectible.SAGITTARIUS_EX, 1.00},
-		{AstroItems.Collectible.SCORPIO_EX, 1.00},
-		-- {AstroItems.Collectible.SINFUL_SPOILS_STRUGGLE, 1.00}, -- 도트 이미지 중복 문제로 제외
-		{AstroItems.Collectible.STARLIT_PAPILLON, 1.00},
-		{AstroItems.Collectible.TAURUS_EX, 1.00},
-		{AstroItems.Collectible.VEGA, 1.00},
-		{AstroItems.Collectible.VIRGO_EX, 1.00},
+		{Astro.Collectible.ALTAIR, 0.20},
+		{Astro.Collectible.AQUARIUS_EX, 1.00},
+		{Astro.Collectible.ARIES_EX, 1.00},
+		{Astro.Collectible.CANCER_EX, 1.00},
+		{Astro.Collectible.CAPRICORN_EX, 1.00},
+		{Astro.Collectible.CASIOPEA, 1.00},
+		{Astro.Collectible.COMET, 1.00},
+		{Astro.Collectible.CORVUS, 1.00},
+		{Astro.Collectible.CURSE_OF_ARAMATIR, 1.00},
+		{Astro.Collectible.CYGNUS, 1.00},
+		{Astro.Collectible.DENEB, 1.00},
+		{Astro.Collectible.GEMINI_EX, 1.00},
+		{Astro.Collectible.LEO_EX, 1.00},
+		{Astro.Collectible.LIBRA_EX, 1.00},
+		{Astro.Collectible.PAVO, 1.00},
+		{Astro.Collectible.PISCES_EX, 1.00},
+		{Astro.Collectible.PROMETHEUS, 1.00},
+		{Astro.Collectible.QUASAR, 1.00},
+		{Astro.Collectible.RITE_OF_ARAMESIR, 1.00},
+		{Astro.Collectible.SAGITTARIUS_EX, 1.00},
+		{Astro.Collectible.SCORPIO_EX, 1.00},
+		-- {Astro.Collectible.SINFUL_SPOILS_STRUGGLE, 1.00}, -- 도트 이미지 중복 문제로 제외
+		{Astro.Collectible.STARLIT_PAPILLON, 1.00},
+		{Astro.Collectible.TAURUS_EX, 1.00},
+		{Astro.Collectible.VEGA, 1.00},
+		{Astro.Collectible.VIRGO_EX, 1.00},
 	})
 
-	wakaba.Blacklists.Pica2[AstroItems.Trinket.BLACK_MIRROR] = true
-	wakaba.Blacklists.Pica2[AstroItems.Trinket.LAVA_HAND] = true
+	wakaba.Blacklists.Pica2[Astro.Trinket.BLACK_MIRROR] = true
+	wakaba.Blacklists.Pica2[Astro.Trinket.LAVA_HAND] = true
 
 	-- 와드 or 핑크 와드 소지 시 토끼 와드 영향권 범위 증가
 	wakaba:AddCallback(wakaba.Callback.EVALUATE_RABBEY_WARD_POWER, function(_, player)
-		if player:HasCollectible(AstroItems.Collectible.WARD) or player:HasCollectible(AstroItems.Collectible.PINK_WARD) then
+		if player:HasCollectible(Astro.Collectible.WARD) or player:HasCollectible(Astro.Collectible.PINK_WARD) then
 			return
-				math.max(player:GetCollectibleNum(AstroItems.Collectible.WARD), 0)
-				+ math.max(player:GetCollectibleNum(AstroItems.Collectible.PINK_WARD), 0)
+				math.max(player:GetCollectibleNum(Astro.Collectible.WARD), 0)
+				+ math.max(player:GetCollectibleNum(Astro.Collectible.PINK_WARD), 0)
 		end
 	end)
 
 	-- 메이드 듀엣, My Moon My Man 둘 다 보유 시 My Moon이 우선 적용
 	wakaba:AddCallback(wakaba.Callback.EVALUATE_MAID_DUET, function(_, player)
-		if player:HasCollectible(AstroItems.Collectible.MY_MOON_MY_MAN) then
+		if player:HasCollectible(Astro.Collectible.MY_MOON_MY_MAN) then
 			return true
 		end
 	end)
@@ -85,8 +85,8 @@ wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function(
 
 	if EID then
 		EID:AddSynergyConditional(wakaba.Enums.Collectibles.RABBEY_WARD, {
-			AstroItems.Collectible.WARD,
-			AstroItems.Collectible.PINK_WARD,
+			Astro.Collectible.WARD,
+			Astro.Collectible.PINK_WARD,
 		}, "WakabaWardSynergyFrom", "WakabaWardSynergy")
 	end
 
