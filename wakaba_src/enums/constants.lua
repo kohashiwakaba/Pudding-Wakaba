@@ -350,7 +350,8 @@ wakaba.Enums.GridVars = {
 	--[[
 		Question Block
 	 ]]
-	QUESTION_BLOCK = 1983,
+	QUESTION_BLOCK = 411,
+	QUESTION_BLOCK_USED = 412,
 	--[[
 		Bocchi the Rock
 	 ]]
