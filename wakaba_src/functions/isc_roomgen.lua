@@ -275,7 +275,7 @@ function wakaba:NewLevel_RoomGen()
 			end
 		else
 			wakaba.FLog("debugLevelGen", "Found invalid location for gridIndex", e.roomidx, "slot", e.Slot)
-			preserved = e
+			preserved = roomVar
 		end
 	end
 
