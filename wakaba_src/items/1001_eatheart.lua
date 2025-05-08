@@ -1,8 +1,10 @@
 
 ---@param player EntityPlayer
 function wakaba:PreUseItem_EatHeart(_, rng, player, useFlags, activeSlot, varData)
-	if activeSlot < 0 and useFlags & UseFlag.USE_VOID == 0 and useFlags & UseFlag.USE_CARBATTERY == 0 then
-		player:UseActiveItem(CollectibleType.COLLECTIBLE_METRONOME, UseFlag.USE_VOID, -1)
+	if activeSlot < 0 and useFlags & UseFlag.USE_VOID == 0 then
+		if useFlags & UseFlag.USE_CARBATTERY == 0 then
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_METRONOME, UseFlag.USE_VOID, -1)
+		end
 	else
 		if useFlags & UseFlag.USE_VOID == UseFlag.USE_VOID then
 			player:GetData().wakaba.eatheartquality = 1
