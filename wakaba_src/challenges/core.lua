@@ -266,6 +266,16 @@ function wakaba:startChallenge(continue)
 	if wakaba:isDelirium() or wakaba:isHush() then
 		wakaba.G.BlueWombParTime = 2147483647
 	end
+	if not continue then
+		local c = wakaba.G.Challenge
+		if c ~= Challenge.CHALLENGE_NULL and wakaba.ChallengeParams.TargetCharacters[c] then
+			for num = 1, wakaba.G:GetNumPlayers() do
+				local player = wakaba.G:GetPlayer(num - 1)
+				player:AddCacheFlags(CacheFlag.CACHE_FAMILIARS)
+				player:EvaluateItems()
+			end
+		end
+	end
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, wakaba.startChallenge)
 
