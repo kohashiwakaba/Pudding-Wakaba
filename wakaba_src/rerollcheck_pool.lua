@@ -285,6 +285,7 @@ function wakaba:rerollCooltime()
 		--print("nemesis check reset")
 
 		wakaba.fullreroll = false
+		wakaba.spindownreroll = 0
 		if FairOptionsConfig and FairOptionsConfig.Disabled then
 			FairOptionsConfig.Disabled = false
 		end

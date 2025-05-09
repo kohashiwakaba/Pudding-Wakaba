@@ -66,12 +66,28 @@ wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function(
 		end
 	end)
 
-	-- 메이드 듀엣, My Moon My Man 둘 다 보유 시 My Moon이 우선 적용
-	wakaba:AddCallback(wakaba.Callback.EVALUATE_MAID_DUET, function(_, player)
-		if player:HasCollectible(Astro.Collectible.MY_MOON_MY_MAN) then
-			return true
+	-- My Moon My Man 게임에서 제거, 루시의 경우 메이드 듀엣 배열 블랙리스트
+	do
+
+		function wakaba:detectSpinup_Astro(usedItem, rng)
+			wakaba.spindownreroll = 1
 		end
-	end)
+		wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectSpinup_Astro, Astro.Collectible.SPINUP_DICE)
+		wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectSpindown, Astro.Collectible.QUBIT_DICE)
+
+		wakaba:flagBanCollectible(Astro.Collectible.MY_MOON_MY_MAN)
+
+		---@param selected CollectibleType
+		---@param selectedItemConf ItemConfigItem
+		---@param itemPoolType ItemPoolType
+		---@param decrease boolean
+		---@param seed integer
+		wakaba:AddCallback(wakaba.Callback.WAKABA_COLLECTIBLE_REROLL_BLACKLIST, function(_, selected, selectedItemConf, rerollProps, itemPoolType, decrease, seed, isCustom)
+			if selected == wakaba.Enums.Collectibles.MAID_DUET and isc:anyPlayerIs(Astro.Players.DAVID_MARTINEZ_B) then
+				return true
+			end
+		end)
+	end
 
 	function wakaba:PenaltyProtection_Astro(player, amount, flags, source, countdown)
 		if Astro.IsFight then

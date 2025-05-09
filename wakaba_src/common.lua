@@ -457,6 +457,11 @@ function wakaba:detectD4(usedItem, rng)
 end
 wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectD4)
 
+function wakaba:detectSpindown(usedItem, rng)
+	wakaba.spindownreroll = -1
+end
+wakaba:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, wakaba.detectSpindown, CollectibleType.COLLECTIBLE_SPINDOWN_DICE)
+
 function wakaba:PostTakeDamage_TEden(player, amount, flag, source, countdownFrames)
 	if player:GetPlayerType() == PlayerType.PLAYER_EDEN_B then
 		wakaba.fullreroll = true
@@ -1477,4 +1482,14 @@ function wakaba:getFlippedForm(player)
 		return wakaba:getTaintedLazarusSubPlayer(player)
 	end
 	return false
+function wakaba:flagBanCollectible(collectibleType)
+	local config = Isaac.GetItemConfig():GetCollectible(collectibleType)
+	if not config then return end
+	wakaba.Blacklists.FlagLock.collectible[collectibleType] = function()
+		return true
+	end
+	if REPENTOGON then
+		config.Hidden = true
+		config.AchievementID = 9999
+	end
 end

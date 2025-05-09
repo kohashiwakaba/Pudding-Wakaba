@@ -232,7 +232,7 @@ end
 ---@param pickup EntityPickup
 ---@param shift integer `1|-1`
 ---@param count integer
-function wakaba:shiftItem(pickup, shift, count)
+function wakaba:shiftItem(pickup, shift, count, silent)
 	if not (pickup or pickup:Exists()) then return end
 	local current = pickup.SubType
 	local next = wakaba:getNextIDFromShifter(shift, count, current)
@@ -240,14 +240,19 @@ function wakaba:shiftItem(pickup, shift, count)
 	pickup.SubType = next
 	pickup.Charge = nextConfig.InitCharge
 	pickup.Touched = false
-	wakaba:setUpDownPedestalStatus(pickup, next)
-	local sprite = pickup:GetSprite()
-	sprite:ReplaceSpritesheet(1, nextConfig.GfxFileName)
-	sprite:LoadGraphics()
-	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector(0,0), nil)
-	wakaba:spawnShiftResultEffect(pickup, shift, count)
-	SFXManager():Play(SoundEffect.SOUND_BLACK_POOF)
-	wakaba.Log("Shift item result from ", current, "/ shift by ", count, "/ to ", next)
+	if not silent then
+		wakaba:setUpDownPedestalStatus(pickup, next)
+	end
+
+		local sprite = pickup:GetSprite()
+		sprite:ReplaceSpritesheet(1, nextConfig.GfxFileName)
+		sprite:LoadGraphics()
+	if not silent then
+		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickup.Position, Vector(0,0), nil)
+		wakaba:spawnShiftResultEffect(pickup, shift, count)
+		SFXManager():Play(SoundEffect.SOUND_BLACK_POOF)
+		wakaba.Log("Shift item result from ", current, "/ shift by ", count, "/ to ", next)
+	end
 end
 
 if EID then

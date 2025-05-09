@@ -162,6 +162,7 @@ wakaba._keyPressFrame = 0
 
 wakaba.fullreroll = false
 wakaba.pedestalreroll = false
+wakaba.spindownreroll = 0
 
 wakaba.unlockdisplaytimer = -(30*30)
 
