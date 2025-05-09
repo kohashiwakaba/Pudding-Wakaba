@@ -12,7 +12,6 @@ wakaba.Blacklists.MaidDuet = {
 	[CollectibleType.COLLECTIBLE_BLANK_CARD] = true,
 	[CollectibleType.COLLECTIBLE_PLACEBO] = true,
 	[CollectibleType.COLLECTIBLE_CLEAR_RUNE] = true,
-
 }
 if not REPENTOGON then
 	wakaba.Blacklists.MaidDuet[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
@@ -246,8 +245,10 @@ if EID then
 			end
 			descObj.Description = descObj.Description:gsub("{wakaba_md1}", append)
 		elseif wakaba.Blacklists.MaidDuet[descObj.ObjSubType] then
-			local append = EID:getDescriptionEntry("MaidDuetBlacklisted") or EID:getDescriptionEntryEnglish("MaidDuetBlacklisted")
-			descObj.Description = descObj.Description .. "#" .. append
+			if wakaba:AnyPlayerHaveCollectible(wakaba.Enums.Collectibles.MAID_DUET) then
+				local append = EID:getDescriptionEntry("MaidDuetBlacklisted") or EID:getDescriptionEntryEnglish("MaidDuetBlacklisted")
+				descObj.Description = descObj.Description .. "#" .. append
+			end
 		end
 		return descObj
 	end
