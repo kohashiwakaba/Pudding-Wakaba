@@ -105,7 +105,7 @@ end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.PlayerUpdate_Revival2)
 
 
-if DetailedRespawnGlobalAPI then
+if not REPENTOGON and DetailedRespawnGlobalAPI then
 	DetailedRespawnGlobalAPI:AddCustomRespawn({
 		name = "Lunar Stone",
 		itemId = wakaba.Enums.Collectibles.LUNAR_STONE,
