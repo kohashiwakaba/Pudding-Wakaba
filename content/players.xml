@@ -178,7 +178,7 @@
 	/>
 
 	<!-- 야마다 안나 - 내마위 -->
-	<player name="Anna" costume="52" hidden="true"
+	<player name="Anna" costume="52"
 	hp="6"  birthright="Lover's Link"
 	portrait="AnnaPortrait.png"
 	nameimage="playername_anna.png"
