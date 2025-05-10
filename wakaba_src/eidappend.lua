@@ -350,10 +350,10 @@ if EID then
 				EID:addIcon("WakabaDown"..i, "EID_Down", i, 11, 11, -1.5, -1.5, wakaba.MiniMapAPISprite)
 			end
 
-			EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
-			EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
+			--EID:addIcon("Beast", "Destination", 0, 17, 16, 0, -2, wakaba.TargetIcons)
+			--EID:addIcon("BeastSmall", "Destination", 1, 13, 9, 0, 1, wakaba.TargetIcons)
 
-			EID.MarkupSizeMap["{{Beast}}"] = "{{BeastSmall}}"
+			--EID.MarkupSizeMap["{{Beast}}"] = "{{BeastSmall}}"
 
 			--[[ if Sewn_API then -- no support for multilang sadly
 				for familiar, famdesc in pairs(wakaba.descriptions["en_us"].sewnupgrade) do
