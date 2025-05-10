@@ -1021,9 +1021,8 @@ function wakaba:Update_FlagBan()
 		local pickup = pedestal:ToPickup()
 		local itemID = pickup.SubType
 
-		local flagBlacklist = wakaba.Blacklists.FlagLock.collectible[itemID]
-		if flagBlacklist and type(flagBlacklist) == "function" and flagBlacklist() then
-			wakaba.Log(typeString, itemID, "Blacklisted by flag")
+		if not wakaba:unlockCheck(itemID) then
+			wakaba.Log("collectible", itemID, "is locked")
 			wakaba:shiftItem(pickup, wakaba.spindownreroll, 1, true)
 		end
 	end
