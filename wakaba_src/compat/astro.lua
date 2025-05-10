@@ -87,6 +87,17 @@ wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function(
 				return true
 			end
 		end)
+
+
+		---@param player EntityPlayer
+		function wakaba:Astro_PlayerUpdate_MaidDuet(player)
+			if not player:HasCollectible(wakaba.Enums.Collectibles.MAID_DUET, true) then return end
+			if player:HasCollectible(Astro.Collectible.MY_MOON_MY_MAN, true) then
+				player:RemoveCollectible(Astro.Collectible.MY_MOON_MY_MAN)
+			end
+		end
+		wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, wakaba.Astro_PlayerUpdate_MaidDuet)
+
 	end
 
 	function wakaba:PenaltyProtection_Astro(player, amount, flags, source, countdown)
