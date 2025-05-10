@@ -1,19 +1,19 @@
 <ItemPools>
 	<Pool Name="treasure">
 		<Item Name="D-Cup Ice Cream" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.0001"/>
-		<Item Name="Plumy" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.0001"/>
+		<Item Name="Plumy" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Lil Shiva" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Lil Mao" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
-		<Item Name="Nasa Lover" Weight="0.3" DecreaseBy="0.3" RemoveOn="0.0001"/>
-		<Item Name="D6 Plus" Weight="0.3" DecreaseBy="0.3" RemoveOn="0.0001"/>
+		<Item Name="Nasa Lover" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
+		<Item Name="D6 Plus" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="D6 Chaos" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Micro Doppelganger" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Deja Vu" Weight="1" DecreaseBy="0" RemoveOn="0.0001"/>
-		<Item Name="Arcane Crystal" Weight="0.08" DecreaseBy="0.08" RemoveOn="0.0001"/>
-		<Item Name="Advanced Crystal" Weight="0.08" DecreaseBy="0.08" RemoveOn="0.0001"/>
-		<Item Name="Mystic Crystal" Weight="0.08" DecreaseBy="0.08" RemoveOn="0.0001"/>
+		<Item Name="Arcane Crystal" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
+		<Item Name="Advanced Crystal" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
+		<Item Name="Mystic Crystal" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Question Block" Weight="0.25" DecreaseBy="0.25" RemoveOn="0.0001"/>
 		<Item Name="Syrup" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Curse of The Tower 2" Weight="0.05" DecreaseBy="0.05" RemoveOn="0.0001"/>
@@ -81,7 +81,7 @@
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Syrup" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Firefly Lighter" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
-		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Onsen Towel" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 	</Pool>
 	<Pool Name="devil">
@@ -99,7 +99,7 @@
 		<Item Name="Isekai Definition" Weight="0.66" DecreaseBy="0.66" RemoveOn="0.0001"/>
 		<Item Name="Prestige Pass" Weight="0.1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Elixir of Life" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
-		<Item Name="Kanae Lens" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Kanae Lens" Weight="0.8" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Richer's Bra" Weight="0.66" DecreaseBy="0.66" RemoveOn="0.0001"/>
 		<Item Name="Black Bean Mochi" Weight="0.66" DecreaseBy="0.66" RemoveOn="0.0001"/>
 		<Item Name="Rira's Bra" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
