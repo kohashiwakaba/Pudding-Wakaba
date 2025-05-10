@@ -245,7 +245,7 @@ if EID then
 			end
 			descObj.Description = descObj.Description:gsub("{wakaba_md1}", append)
 		elseif wakaba.Blacklists.MaidDuet[descObj.ObjSubType] then
-			if wakaba:AnyPlayerHaveCollectible(wakaba.Enums.Collectibles.MAID_DUET) then
+			if wakaba:AnyPlayerHasCollectible(wakaba.Enums.Collectibles.MAID_DUET) then
 				local append = EID:getDescriptionEntry("MaidDuetBlacklisted") or EID:getDescriptionEntryEnglish("MaidDuetBlacklisted")
 				descObj.Description = descObj.Description .. "#" .. append
 			end
