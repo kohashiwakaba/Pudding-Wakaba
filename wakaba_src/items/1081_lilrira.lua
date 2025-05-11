@@ -239,6 +239,14 @@ function wakaba:FamiliarUpdate_LilRira(familiar)
 	end
 end
 
+---@param player EntityPlayer
+function wakaba:RibbonTransfer_LilRira(player)
+	if wakaba:getPlayerDataEntry(player, "LilRiraLastSlot") then
+		return true
+	end
+end
+wakaba:AddPriorityCallback(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE, -20000, wakaba.RibbonTransfer_LilRira)
+
 function wakaba:Cache_LilRira(player, cacheFlag)
 	if cacheFlag == CacheFlag.CACHE_DAMAGE then
 		local power = player:GetCollectibleNum(wakaba.Enums.Collectibles.LIL_RIRA) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA)
