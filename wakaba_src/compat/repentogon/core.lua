@@ -412,29 +412,32 @@ wakaba:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function (_, isContinued)
 		end
 	end
 end)
-if Options.Language == "kr" then -- Character Menu Korean Sprite
-	do
-		local playerConf = EntityConfig.GetPlayer(wakaba.Enums.Players.WAKABA)
-		local cs = playerConf:GetModdedMenuBackgroundSprite()
-		local sloc = "/gfx/ui/wakaba/charactermenu_kr.png"
-		if cs then
-			cs:ReplaceSpritesheet(3, sloc, true)
-			cs:ReplaceSpritesheet(8, sloc, true)
-			cs:ReplaceSpritesheet(13, sloc, true)
-			cs:ReplaceSpritesheet(15, sloc, true)
-			cs:ReplaceSpritesheet(16, sloc, true)
+
+wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function(_)
+	if Options.Language == "kr" or REPKOR then -- Character Menu Korean Sprite
+		do
+			local playerConf = EntityConfig.GetPlayer(wakaba.Enums.Players.WAKABA)
+			local cs = playerConf:GetModdedMenuBackgroundSprite()
+			local sloc = "/gfx/ui/wakaba/charactermenu_kr.png"
+			if cs then
+				cs:ReplaceSpritesheet(3, sloc, true)
+				cs:ReplaceSpritesheet(8, sloc, true)
+				cs:ReplaceSpritesheet(13, sloc, true)
+				cs:ReplaceSpritesheet(15, sloc, true)
+				cs:ReplaceSpritesheet(16, sloc, true)
+			end
+		end
+		do
+			local playerConf = EntityConfig.GetPlayer(wakaba.Enums.Players.WAKABA_B)
+			local cs = playerConf:GetModdedMenuBackgroundSprite()
+			local sloc = "/gfx/ui/wakaba/charactermenualt_kr.png"
+			if cs then
+				cs:ReplaceSpritesheet(3, sloc, true)
+				cs:ReplaceSpritesheet(8, sloc, true)
+				cs:ReplaceSpritesheet(13, sloc, true)
+				cs:ReplaceSpritesheet(15, sloc, true)
+				cs:ReplaceSpritesheet(16, sloc, true)
+			end
 		end
 	end
-	do
-		local playerConf = EntityConfig.GetPlayer(wakaba.Enums.Players.WAKABA_B)
-		local cs = playerConf:GetModdedMenuBackgroundSprite()
-		local sloc = "/gfx/ui/wakaba/charactermenualt_kr.png"
-		if cs then
-			cs:ReplaceSpritesheet(3, sloc, true)
-			cs:ReplaceSpritesheet(8, sloc, true)
-			cs:ReplaceSpritesheet(13, sloc, true)
-			cs:ReplaceSpritesheet(15, sloc, true)
-			cs:ReplaceSpritesheet(16, sloc, true)
-		end
-	end
-end
+end)
