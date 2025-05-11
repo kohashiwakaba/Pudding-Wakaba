@@ -77,7 +77,7 @@
 	<familiar id="53" description="Shrine protector" gfx="murasame.png" name="Murasame" shopprice="25" devilprice="2" tags="angel baby offensive uniquefamiliar lazarusshared" customtags="nometronome" quality="4" craftquality="4"/>
 
 	<familiar id="54" cache="tearflag" description="Electric Khala" gfx="nasalover.png" name="Nasa Lover" tags="stars offensive nocantrip baby" devilprice="1" quality="3" craftquality="3"/>
-	<active id="55" description="What is in the box?" gfx="questionblock.png" maxcharges="6" name="Question Block" shopprice="36" devilprice="2" tags="noeden offensive nocantrip" customtags="nometronome" quality="3" craftquality="4" hidden="true" achievement="9999"/>
+	<passive id="55" description="What is in the box?" gfx="questionblock.png" name="Question Block" shopprice="36" devilprice="2" tags="noeden offensive nocantrip" customtags="nometronome" quality="3" craftquality="4" hidden="true" achievement="9999"/>
 
 	<passive id="56" cache="damage tearflag" description="DMG up" gfx="arcanecrystal.png" name="Arcane Crystal" tags="offensive stars" devilprice="1" quality="4" craftquality="4" />
 	<passive id="57" cache="damage tearflag" description="DMG up" gfx="advancedcrystal.png" name="Advanced Crystal" tags="offensive stars" devilprice="1" quality="4" craftquality="4" />
