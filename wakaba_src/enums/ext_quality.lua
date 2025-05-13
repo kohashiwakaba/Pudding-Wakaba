@@ -3,8 +3,15 @@ local vexq = CollectibleType
 local wexq = wakaba.Enums.Collectibles
 -- 확장 퀄리티
 wakaba.Enums.ExtendQuality = {
-	[wexq.EXECUTIONER] = 5,
+  -- 퀄리티 6
 	[wexq.DOUBLE_DREAMS] = 6,
+	[wexq.WAKABA_DUALITY] = 6,
+	[wexq.PRESTIGE_PASS] = 6,
+	[wexq.MAID_DUET] = 6,
+
+  -- 퀄리티 5
+	[wexq.MINERVA_AURA] = 5,
+	[wexq.EXECUTIONER] = 5,
 	[wexq.APOLLYON_CRISIS] = 5,
 	[wexq.NEKO_FIGURE] = 5,
 	[wexq.WINTER_ALBIREO] = 5,
@@ -13,11 +20,8 @@ wakaba.Enums.ExtendQuality = {
 	[wexq.RED_CORRUPTION] = 5,
 	[wexq.CARAMELLA_PANCAKE] = 5,
 	[wexq.CHIMAKI] = 5,
-	[wexq.PRESTIGE_PASS] = 6,
-	[wexq.MAID_DUET] = 6,
 	[wexq.WAKABAS_BLESSING] = 5,
 	[wexq.WAKABAS_NEMESIS] = 5,
-	[wexq.WAKABA_DUALITY] = 6,
 }
 
 wakaba.Enums.ExtendQualityVanilla = {
