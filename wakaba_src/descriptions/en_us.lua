@@ -3072,6 +3072,33 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 			modifierText = "Hard Mode",
 		},
 	},
+	[wakaba.Enums.Collectibles.EATHEART] = {
+		{
+			desc = "{{Collectible116}} Preserve 8% of charges on use",
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) ~= nil end,
+			modifierText = "9 Bolt",
+		},
+		{
+			desc = "{{Collectible63}} Preserve 25% of charges on use",
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_BATTERY) ~= nil end,
+			modifierText = "Battery",
+		},
+		{
+			desc = "{{Collectible156}} +50% charge rate on player damage",
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_HABIT) ~= nil end,
+			modifierText = "Habit",
+		},
+		{
+			desc = "{{Collectible520}} +20% charge rate on enemy damage",
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_JUMPER_CABLES) ~= nil end,
+			modifierText = "Jumper Cables",
+		},
+		{
+			desc = "{{Collectible647}} +100% charge rate on enemy damage",
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT) ~= nil end,
+			modifierText = "4.5 Bolt",
+		},
+	},
 	[wakaba.Enums.Collectibles.NEW_YEAR_BOMB] = {
 		desc = "{{Player25}} Using Hold consumes 3 {{PoopPickup}}Poops and holds a bomb#!!! Can use Hold only when less than 3 Poops",
 		func = function() return EID:ConditionalCharCheck(PlayerType.PLAYER_BLUEBABY_B) end,

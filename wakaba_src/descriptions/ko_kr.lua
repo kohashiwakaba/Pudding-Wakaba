@@ -1817,6 +1817,28 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 	},
+	[wakaba.Enums.Collectibles.EATHEART] = {
+		{
+			desc = "{{Collectible116}} 사용 시 충전량 8% 보존",
+			modifierText = "9 Bolt",
+		},
+		{
+			desc = "{{Collectible63}} 사용 시 충전량 25% 보존",
+			modifierText = "Battery",
+		},
+		{
+			desc = "{{Collectible156}} 피격 시 충전량 +50%",
+			modifierText = "Habit",
+		},
+		{
+			desc = "{{Collectible520}} 적 명중 시 충전량 +20%",
+			modifierText = "Jumper Cables",
+		},
+		{
+			desc = "{{Collectible647}} 적 명중 시 충전량 +100%",
+			modifierText = "4.5 Bolt",
+		},
+	},
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		{
 			desc = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} 사용 시 선택한 불꽃을 흡수하여 아이템으로 획득합니다.#{{Player"..wakaba.Enums.Players.RICHER_B.."}} {{ButtonRT}}버튼으로 흡수할 불꽃을 선택할 수 있습니다.",
