@@ -608,7 +608,7 @@ wakaba.Enums.Constants = {
 	RED_CORRUPTION_BASE_CHANCE = 0.46, -- 적색 감염 레드방 생성 기본 확률
 	RED_CORRUPTION_PAR_LUCK = 29, -- 적색 감염 레드방 100% 확률 행운 수치
 
-	QUESTION_BLOCK_SPAWN_RATE = 0.2,
+	QUESTION_BLOCK_SPAWN_RATE = 0.15,
 
 	ELIXIR_MAX_COOLDOWN = 16, -- 생명의 비약 반칸 회복 당 프레임 수
 	ELIXIR_MAX_COOLDOWN_DMG = 50, -- 생명의 비약 피격 직후 회복에 필요한 프레임 수

@@ -974,7 +974,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "Question Block",
 		description = ""
-		.. "#REPORT TO DEV IF YOU FOUND THIS ITEM"
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON ONLY!{{CR}} REPORT TO DEV IF YOU FOUND THIS ITEM OUTSIDE FROM RGON"
 		.. "{{CR}}",
 		},
 	[wakaba.Enums.Collectibles.CLENSING_FOAM] = {
@@ -3191,6 +3191,14 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"↑ {{Damage}} +1 Damage#{{WakabaModRgon}} Explosion immunity#{{WakabaModRgon}} Isaac swings fire blade and flame wave every 20 tears"},
+		func = function() return REPENTOGON and true end,
+	},
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
+		desc = { ""
+		.. "{{WakabaModRgon}} Rocks have 15% chance to be replaced with 'Question Block's"
+		.. "#Hitting blocks with tears spawn various pickup rewards"
+		.. "#!!! Breaking with the block does not spawn rewards"
+		},
 		func = function() return REPENTOGON and true end,
 	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {

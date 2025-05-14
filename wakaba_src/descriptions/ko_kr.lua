@@ -1001,10 +1001,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
 		itemName = "물음표 블럭",
 		description = ""
-		.. "#사용시 25%의 확률로 아이템을 소환합니다."
-		.. "#Magic Mushroom을 갖고 있지 않은 경우 반드시 해당 아이템이 소환됩니다."
-		.. "#!!! 패널티 피격 시 Magic Mushroom 아이템이 사라집니다."
-		.. "#!!! Magic Mushroom 아이템이 없는 상태에서 패널티 피격 시 The Lost 캐릭터로 변합니다."
+		.. "#{{WakabaModRgon}} {{ColorOrange}}REPENTOGON 전용{{CR}}#REPENTOGON을 실행중이지 않았을 때 이 아이템을 발견하면 모드 개발자에게 연락 바람"
 		.. "{{CR}}",
 		queueDesc = "뭔가 익숙한 상자다",
 	},
@@ -1891,6 +1888,13 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	},
 	[wakaba.Enums.Collectibles.MAGMA_BLADE] = {
 		desc = {"{{WakabaModRgon}} ↑{{DamageSmall}}공격력 +1#{{WakabaModRgon}} 폭발 피해를 받지 않습니다.#{{WakabaModRgon}} 눈물을 20번 발사할 때마다 화염 검을 휘두릅니다."},
+	},
+	[wakaba.Enums.Collectibles.QUESTION_BLOCK] = {
+		desc = {
+			"{{WakabaModRgon}} 방 입장 시 돌 오브젝트가 15%의 확률로 '물음표 블럭'으로 바뀝니다."
+		.. "#물음표 블럭 명중 시 랜덤 픽업이 등장합니다."
+		.. "#!!! 폭발로 부수면 내용물이 사라집니다."
+		},
 	},
 	[wakaba.Enums.Collectibles.APOLLYON_CRISIS] = {
 		desc = {
