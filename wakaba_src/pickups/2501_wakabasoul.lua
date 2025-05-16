@@ -40,101 +40,121 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 	local failed = false
 
 	if CurStage ~= LevelStage.STAGE8 then
-		local selected
-
-		local newRoom = isc:newRoom(player:GetCardRNG(card))
-		if newRoom then
-			local targetSpecial = level:GetRoomByIdx(newRoom)
-			local roomIdx = newRoom
-			local copyIdx = -1
-			local tempRoomData = wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data
-			wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
-			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-				wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
-				while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-					wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
-					wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
-				end
-			else
-				wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
-				while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
-					wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
-					wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
+		if REPENTOGON then
+			failed = not wakaba:generateDevilAngelRoom(card == wakaba.Enums.Cards.SOUL_WAKABA2 and RoomType.ROOM_DEVIL or RoomType.ROOM_ANGEL, 41, true, true)
+			if failed then
+				local s = wakaba.G:GetRoom():GetSpawnSeed()
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+					local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+						wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false, s),
+						Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+					p1.ShopItemId = -1
+				else
+					local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+						wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false, s),
+						Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+					p1.ShopItemId = -1
 				end
 			end
-			--[[
-				-1 : Devil/Angel room : Must invalidate before copy
-				-2 : Error room
-				-3 : Goto rooms. Planetariums this time
-				-12 : Genesis Room : Game crash :(
-				-13 : Member card room : Just another Shop with Member card shop layout.
-				-18 : Stairway room
-			]]
-			local d = targetSpecial.Data
-			targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
-			wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
-			--[[ if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-				table.insert(wakaba.levelstate.wakabadevilshops, roomIdx)
-			else
-				table.insert(wakaba.levelstate.wakabaangelshops, roomIdx)
-			end ]]
-			targetSpecial.DisplayFlags = 1 << 0 | 1 << 2
-			if MinimapAPI then
-				local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
-				if mRoom then
-					mRoom.Shape = RoomShape.ROOMSHAPE_1x1
-					if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-						mRoom.Type = RoomType.ROOM_DEVIL
-						mRoom.PermanentIcons = {"DevilRoom"}
-					else
-						mRoom.Type = RoomType.ROOM_ANGEL
-						mRoom.PermanentIcons = {"AngelRoom"}
+		else
+
+			local candidates = wakaba:getLevelDeadEndCandidates(false)
+			local selected
+
+			local newRoom = isc:newRoom(player:GetCardRNG(card))
+			if newRoom then
+				local targetSpecial = level:GetRoomByIdx(newRoom)
+				local roomIdx = newRoom
+				local copyIdx = -1
+				local tempRoomData = wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data
+				wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+					wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
+					while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availabledevilroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						wakaba.G:GetLevel():InitializeDevilAngelRoom(false, true)
 					end
 				else
-					failed = true
-					goto failedSoulofWakaba
+					wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
+					while(wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data and wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant and not wakaba:has_value(availableangelroom, wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data.Variant)) do
+						wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=nil
+						wakaba.G:GetLevel():InitializeDevilAngelRoom(true, false)
+					end
 				end
-			end
-			for i = 0, DoorSlot.NUM_DOOR_SLOTS do
-				local doorR = room:GetDoor(i)
-				if doorR then
-					if doorR.TargetRoomIndex == roomIdx then
+				--[[
+					-1 : Devil/Angel room : Must invalidate before copy
+					-2 : Error room
+					-3 : Goto rooms. Planetariums this time
+					-12 : Genesis Room : Game crash :(
+					-13 : Member card room : Just another Shop with Member card shop layout.
+					-18 : Stairway room
+				]]
+				local d = targetSpecial.Data
+				targetSpecial.Data = level:GetRoomByIdx(copyIdx).Data
+				wakaba.G:GetLevel():GetRoomByIdx(-1,-1).Data=tempRoomData
+				--[[ if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+					table.insert(wakaba.levelstate.wakabadevilshops, roomIdx)
+				else
+					table.insert(wakaba.levelstate.wakabaangelshops, roomIdx)
+				end ]]
+				targetSpecial.DisplayFlags = 1 << 0 | 1 << 2
+				if MinimapAPI then
+					local mRoom = MinimapAPI:GetRoomByIdx(targetSpecial.GridIndex)
+					if mRoom then
+						mRoom.Shape = RoomShape.ROOMSHAPE_1x1
 						if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-							doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEVIL)
+							mRoom.Type = RoomType.ROOM_DEVIL
+							mRoom.PermanentIcons = {"DevilRoom"}
 						else
-							doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ANGEL)
+							mRoom.Type = RoomType.ROOM_ANGEL
+							mRoom.PermanentIcons = {"AngelRoom"}
 						end
-						doorR:GetSprite():Play('Opened',true)
+					else
+						failed = true
+						goto failedSoulofWakaba
 					end
 				end
-			end
-
-		else
-			failed = true
-			goto failedSoulofWakaba
-		end
-		::failedSoulofWakaba::
-		if failed then
-			local s = wakaba.G:GetRoom():GetSpawnSeed()
-			if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
-				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
-					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false, s),
-					Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
-				p1.ShopItemId = -1
-				--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
-					p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1
-					if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY then
-						p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1 - 6
+				for i = 0, DoorSlot.NUM_DOOR_SLOTS do
+					local doorR = room:GetDoor(i)
+					if doorR then
+						if doorR.TargetRoomIndex == roomIdx then
+							if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+								doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_DEVIL)
+							else
+								doorR:SetRoomTypes(RoomType.ROOM_DEFAULT, RoomType.ROOM_ANGEL)
+							end
+							doorR:GetSprite():Play('Opened',true)
+						end
 					end
-				end ]]
+				end
+
 			else
-				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
-					wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false, s),
-					Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
-				p1.ShopItemId = -1
-				--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
-					p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * 15
-				end ]]
+				failed = true
+				goto failedSoulofWakaba
+			end
+			::failedSoulofWakaba::
+			if failed then
+				local s = wakaba.G:GetRoom():GetSpawnSeed()
+				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
+					local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+						wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_DEVIL, false, s),
+						Isaac.GetFreeNearPosition(player.Position - Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+					p1.ShopItemId = -1
+					--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
+						p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1
+						if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY then
+							p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * -1 - 6
+						end
+					end ]]
+				else
+					local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE,
+						wakaba.G:GetItemPool():GetCollectible(ItemPoolType.POOL_ANGEL, false, s),
+						Isaac.GetFreeNearPosition(player.Position + Vector(32, 0), 32), Vector(0,0), nil):ToPickup()
+					p1.ShopItemId = -1
+					--[[ if Isaac.GetItemConfig():GetCollectible(p1.SubType) then
+						p1.Price = Isaac.GetItemConfig():GetCollectible(p1.SubType).DevilPrice * 15
+					end ]]
+				end
 			end
 		end
 		SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER)

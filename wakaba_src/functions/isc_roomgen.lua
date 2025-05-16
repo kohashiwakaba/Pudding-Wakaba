@@ -210,6 +210,115 @@ end
 
 local isc = _wakaba.isc
 
+if REPENTOGON then
+	function wakaba:generateDevilAngelRoom(roomType, roomSubType, allowConnectStartingRoom, showIfGenerated)
+    local level = game:GetLevel()
+
+    local dimension = -1  -- current dimension
+    local seed = level:GetDungeonPlacementSeed()
+
+    -- Fetch a random RoomConfig for a new treasure room.
+  	local roomConfig = RoomConfigHolder.GetRandomRoom(seed, true, StbType.SPECIAL_ROOMS, roomType, RoomShape.ROOMSHAPE_1x1, 0, -1, 0, 99, 4, roomSubType)
+
+    -- Disallow placements with multiple doors, or placements that connect to other special rooms.
+    local allowMultipleDoors = false
+    local allowSpecialNeighbors = false
+
+    -- Fetch all valid locations.
+    local options = level:FindValidRoomPlacementLocations(roomConfig, dimension, allowMultipleDoors, allowSpecialNeighbors)
+
+    for _, gridIndex in pairs(options) do
+      -- You may have additional conditions or priorities when it comes to where you would prefer to place your room.
+      -- For the purposes of this example we arbitarily forbid the new room from being connected to the starting room,
+      -- and otherwise just place the room at the first place we check.
+
+      -- Get the RoomDescriptors of all rooms that would be neighboring the room if placed here.
+      local neighbors = level:GetNeighboringRooms(gridIndex, roomConfig.Shape)
+
+      local connectsToStartingRoom = false
+
+      for doorSlot, neighborDesc in pairs(neighbors) do
+        if neighborDesc.GridIndex == level:GetStartingRoomIndex() then
+          connectsToStartingRoom = true
+        end
+      end
+
+      if allowConnectStartingRoom or not connectsToStartingRoom then
+        -- Try to place the room.
+        local room = level:TryPlaceRoom(roomConfig, gridIndex, dimension, seed, allowMultipleDoors, allowSpecialNeighbors)
+        if room then
+          -- The room was placed successfully!
+					if showIfGenerated then
+						room.DisplayFlags = 1 << 0 | 1 << 2
+					end
+					if MinimapAPI then
+						local mRoom = MinimapAPI:GetRoomByIdx(room.GridIndex)
+						if mRoom then
+							mRoom.Shape = RoomShape.ROOMSHAPE_1x1
+							if roomType == RoomType.ROOM_DEVIL then
+								mRoom.Type = RoomType.ROOM_DEVIL
+								mRoom.PermanentIcons = {"DevilRoom"}
+							elseif roomType == RoomType.ROOM_ANGEL then
+								mRoom.Type = RoomType.ROOM_ANGEL
+								mRoom.PermanentIcons = {"AngelRoom"}
+							end
+						end
+					end
+          return true
+        end
+      end
+    end
+		return false
+	end
+	function wakaba:generateNewRoom(roomType, roomID, allowConnectStartingRoom)
+    local level = game:GetLevel()
+
+    local dimension = -1  -- current dimension
+    local seed = level:GetDungeonPlacementSeed()
+
+    -- Fetch a random RoomConfig for a new treasure room.
+  	-- local roomConfig = RoomConfigHolder.GetRandomRoom(seed, true, StbType.SPECIAL_ROOMS, RoomType.ROOM_TREASURE, RoomShape.ROOMSHAPE_1x1)
+		local roomConfig = RoomConfigHolder.GetRoomByStageTypeAndVariant(StbType.SPECIAL_ROOMS, roomType, roomID)
+
+    -- Disallow placements with multiple doors, or placements that connect to other special rooms.
+    local allowMultipleDoors = false
+    local allowSpecialNeighbors = false
+
+    -- Fetch all valid locations.
+    local options = level:FindValidRoomPlacementLocations(roomConfig, dimension, allowMultipleDoors, allowSpecialNeighbors)
+
+    for _, gridIndex in pairs(options) do
+      -- You may have additional conditions or priorities when it comes to where you would prefer to place your room.
+      -- For the purposes of this example we arbitarily forbid the new room from being connected to the starting room,
+      -- and otherwise just place the room at the first place we check.
+
+      -- Get the RoomDescriptors of all rooms that would be neighboring the room if placed here.
+      local neighbors = level:GetNeighboringRooms(gridIndex, roomConfig.Shape)
+
+      local connectsToStartingRoom = false
+
+      for doorSlot, neighborDesc in pairs(neighbors) do
+        if neighborDesc.GridIndex == level:GetStartingRoomIndex() then
+          connectsToStartingRoom = true
+        end
+      end
+
+      if allowConnectStartingRoom or not connectsToStartingRoom then
+        -- Try to place the room.
+        local room = level:TryPlaceRoom(roomConfig, gridIndex, dimension, seed, allowMultipleDoors, allowSpecialNeighbors)
+        if room then
+          -- The room was placed successfully!
+          return true
+        end
+      end
+    end
+		return false
+	end
+else
+	function wakaba:generateNewRoom()
+	end
+end
+
 function wakaba:NewLevel_RoomGen()
 	local roomsToGenerate = {}
 	for _, callback in ipairs(Isaac.GetCallbacks(wakaba.Callback.ROOM_GENERATION)) do
@@ -223,77 +332,89 @@ function wakaba:NewLevel_RoomGen()
 		end
 	end
 
-	local rng = RNG()
-	local level = wakaba.G:GetLevel()
-	local seeds = wakaba.G:GetSeeds()
-	local currentroomidx = level:GetCurrentRoomIndex()
-	local candidates = {}
-	local haspermamaze = false
-	local hascurseofmaze = false
-
-	local tried = false
-	local tries = 0
-
-	local currentRoomIdx = level:GetCurrentRoomIndex()
-	candidates = wakaba:getLevelDeadEndCandidates(true)
-	wakaba.FLog("debugLevelGen", "roomsToGenerate:", #roomsToGenerate, "/ candidates:", #candidates)
-	local preserved = nil
-	while (#roomsToGenerate > 0 or preserved) and #candidates > 0 do
-		if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
-			seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
-			haspermamaze = true
-		end
-		if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
-			level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
-			hascurseofmaze = true
-		end
-
-		tried = true
-		tries = tries + 1
-		wakaba.FLog("debugLevelGen", "current tries:", tries)
-
-		local roomVar = preserved or isc:getRandomArrayElementAndRemove(roomsToGenerate, rng)
-		local e = isc:getRandomArrayElementAndRemove(candidates, rng)
-		local roomData = isc:getRoomDataForTypeVariant(roomVar[1], roomVar[2], false)
-
-		local deadendslot = e.Slot
-		local deadendidx = e.GridIndex
-		local roomidx = e.roomidx
-		local visitcount = e.visitcount
-		local roomdesc = level:GetRoomByIdx(roomidx)
-		if roomdesc.Data and level:GetRoomByIdx(roomdesc.GridIndex).GridIndex ~= -1 and mod:GetOppositeDoorSlot(deadendslot) and roomData.Doors & (1 << mod:GetOppositeDoorSlot(deadendslot)) > 0 then
-			local success = level:MakeRedRoomDoor(e.roomidx, e.Slot)
-			wakaba.FLog("debugLevelGen", "Trying to Generate room for gridIndex", e.roomidx, "slot", e.Slot, success)
-			if success then
-
-				local writeableRoom = level:GetRoomByIdx(e.GridIndex, -1)
-				writeableRoom.Data = roomData
-				writeableRoom.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
-
-				level:UpdateVisibility()
-				preserved = nil
+	if REPENTOGON then
+		local valid = true
+		for _, roomVar in ipairs(roomsToGenerate) do
+			if valid then
+				valid = wakaba:generateNewRoom(roomVar[1], roomVar[2], true)
 			end
-		else
-			wakaba.FLog("debugLevelGen", "Found invalid location for gridIndex", e.roomidx, "slot", e.Slot)
-			preserved = roomVar
 		end
-	end
+		if MinimapAPI then
+			MinimapAPI:LoadDefaultMap()
+		end
+	else
+		local rng = RNG()
+		local level = wakaba.G:GetLevel()
+		local seeds = wakaba.G:GetSeeds()
+		local currentroomidx = level:GetCurrentRoomIndex()
+		local candidates = {}
+		local haspermamaze = false
+		local hascurseofmaze = false
 
-	if tried then
-		wakaba:scheduleForUpdate(function()
-			SFXManager():Stop(SoundEffect.SOUND_UNLOCK00)
-			wakaba.G:StartRoomTransition(currentroomidx, 0, RoomTransitionAnim.FADE)
-		end, 0, ModCallbacks.MC_POST_RENDER)
-		wakaba:scheduleForUpdate(function()
-			if haspermamaze then
-				seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
-			end
-			if hascurseofmaze then
-				level:AddCurse(LevelCurse.CURSE_OF_MAZE)
-			end
-		end, 0, ModCallbacks.MC_POST_UPDATE)
+		local tried = false
+		local tries = 0
 
-		Game():StartRoomTransition(currentRoomIdx, Direction.NO_DIRECTION, RoomTransitionAnim.FADE)
+		local currentRoomIdx = level:GetCurrentRoomIndex()
+		candidates = wakaba:getLevelDeadEndCandidates(true)
+		wakaba.FLog("debugLevelGen", "roomsToGenerate:", #roomsToGenerate, "/ candidates:", #candidates)
+		local preserved = nil
+		while (#roomsToGenerate > 0 or preserved) and #candidates > 0 do
+			if seeds:HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE) then
+				seeds:RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+				haspermamaze = true
+			end
+			if level:GetCurses() & LevelCurse.CURSE_OF_MAZE > 0 then
+				level:RemoveCurses(LevelCurse.CURSE_OF_MAZE)
+				hascurseofmaze = true
+			end
+
+			tried = true
+			tries = tries + 1
+			wakaba.FLog("debugLevelGen", "current tries:", tries)
+
+			local roomVar = preserved or isc:getRandomArrayElementAndRemove(roomsToGenerate, rng)
+			local e = isc:getRandomArrayElementAndRemove(candidates, rng)
+			local roomData = isc:getRoomDataForTypeVariant(roomVar[1], roomVar[2], false)
+
+			local deadendslot = e.Slot
+			local deadendidx = e.GridIndex
+			local roomidx = e.roomidx
+			local visitcount = e.visitcount
+			local roomdesc = level:GetRoomByIdx(roomidx)
+			if roomdesc.Data and level:GetRoomByIdx(roomdesc.GridIndex).GridIndex ~= -1 and mod:GetOppositeDoorSlot(deadendslot) and roomData.Doors & (1 << mod:GetOppositeDoorSlot(deadendslot)) > 0 then
+				local success = level:MakeRedRoomDoor(e.roomidx, e.Slot)
+				wakaba.FLog("debugLevelGen", "Trying to Generate room for gridIndex", e.roomidx, "slot", e.Slot, success)
+				if success then
+
+					local writeableRoom = level:GetRoomByIdx(e.GridIndex, -1)
+					writeableRoom.Data = roomData
+					writeableRoom.Flags = writeableRoom.Flags & ~RoomDescriptor.FLAG_RED_ROOM -- remove red room flag
+
+					level:UpdateVisibility()
+					preserved = nil
+				end
+			else
+				wakaba.FLog("debugLevelGen", "Found invalid location for gridIndex", e.roomidx, "slot", e.Slot)
+				preserved = roomVar
+			end
+		end
+
+		if tried then
+			wakaba:scheduleForUpdate(function()
+				SFXManager():Stop(SoundEffect.SOUND_UNLOCK00)
+				wakaba.G:StartRoomTransition(currentroomidx, 0, RoomTransitionAnim.FADE)
+			end, 0, ModCallbacks.MC_POST_RENDER)
+			wakaba:scheduleForUpdate(function()
+				if haspermamaze then
+					seeds:AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_MAZE)
+				end
+				if hascurseofmaze then
+					level:AddCurse(LevelCurse.CURSE_OF_MAZE)
+				end
+			end, 0, ModCallbacks.MC_POST_UPDATE)
+
+			Game():StartRoomTransition(currentRoomIdx, Direction.NO_DIRECTION, RoomTransitionAnim.FADE)
+		end
 	end
 	if MinimapAPI then
 		MinimapAPI:LoadDefaultMap()
