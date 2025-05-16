@@ -132,7 +132,9 @@ if REPENTOGON then
 				end
 			end
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_VOID, 0, -1)
-			player:SetActiveVarData(0, activeSlot)
+			if useFlags && UseFlag.USE_CARBATTERY == 0 then
+				player:SetActiveVarData(0, activeSlot)
+			end
 		else
 			local list = player:GetVoidedCollectiblesList()
 			local target = list[index]
@@ -148,7 +150,9 @@ if REPENTOGON then
 			local maxCharges = math.min(math.max(1, config.MaxCharges), 12)
 			local chargeType = config.ChargeType
 			if chargeType == ItemConfig.CHARGE_TIMED then maxCharges = 1 end
-			player:SetActiveVarData(maxCharges, activeSlot)
+			if useFlags && UseFlag.USE_CARBATTERY == 0 then
+				player:SetActiveVarData(maxCharges, activeSlot)
+			end
 		end
 		return {
 			Discharge = true,
