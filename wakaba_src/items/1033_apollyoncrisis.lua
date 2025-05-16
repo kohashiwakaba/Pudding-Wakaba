@@ -132,7 +132,7 @@ if REPENTOGON then
 				end
 			end
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_VOID, 0, -1)
-			if useFlags && UseFlag.USE_CARBATTERY == 0 then
+			if useFlags & UseFlag.USE_CARBATTERY == 0 then
 				player:SetActiveVarData(0, activeSlot)
 			end
 		else
@@ -150,7 +150,7 @@ if REPENTOGON then
 			local maxCharges = math.min(math.max(1, config.MaxCharges), 12)
 			local chargeType = config.ChargeType
 			if chargeType == ItemConfig.CHARGE_TIMED then maxCharges = 1 end
-			if useFlags && UseFlag.USE_CARBATTERY == 0 then
+			if useFlags & UseFlag.USE_CARBATTERY == 0 then
 				player:SetActiveVarData(maxCharges, activeSlot)
 			end
 		end
