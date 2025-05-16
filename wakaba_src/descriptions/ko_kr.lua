@@ -2526,8 +2526,8 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		itemName = "무거운 마스카라",
-		description = "{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.",
-		horse = "{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.#{{CurseUnknownSmall}} {{ColorYellow}}Unknown 저주에 걸리며 그 스테이지에서 체력이 보이지 않습니다.",
+		description = "{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.#{{Timer}} 60초 후 해제",
+		horse = "{{CurseBlindSmall}} Blind 저주에 걸리며 스테이지 안의 아이템이 보이지 않습니다.#{{CurseUnknownSmall}} {{ColorYellow}}Unknown 저주에 걸리며 그 스테이지에서 체력이 보이지 않습니다.#{{Timer}} 60초 후 해제",
 	},
 }
 

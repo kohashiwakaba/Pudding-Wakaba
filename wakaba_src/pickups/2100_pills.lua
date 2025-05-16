@@ -416,6 +416,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 			end
 			player:AnimateSad()
 		elseif pillEffect == wakaba.Enums.Pills.HEAVY_MASCARA then
+			player:GetData().wakaba.trollblindcounter = 15 * 60
 			wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_BLIND, false)
 			if isHorse then
 				wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false)
@@ -480,10 +481,17 @@ wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onPillCache)
 function wakaba:onPillUpdate(player)
 	wakaba:GetPlayerEntityData(player)
 	player:GetData().wakaba.trollbrimstonecounter = player:GetData().wakaba.trollbrimstonecounter or -1
+	player:GetData().wakaba.trollblindcounter = player:GetData().wakaba.trollblindcounter or -1
 	if player:GetData().wakaba.trollbrimstonecounter > -1 then
 		player:GetData().wakaba.trollbrimstonecounter = player:GetData().wakaba.trollbrimstonecounter - 1
 		if player:GetData().wakaba.trollbrimstonecounter == 0 then
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ENEMY_BRIMSTONE_SWIRL, 0, player.Position, Vector.Zero, nil)
+		end
+	end
+	if player:GetData().wakaba.trollblindcounter > -1 then
+		player:GetData().wakaba.trollblindcounter = player:GetData().wakaba.trollblindcounter - 1
+		if player:GetData().wakaba.trollblindcounter == 0 then
+			wakaba.L():RemoveCurses(LevelCurse.CURSE_OF_BLIND | LevelCurse.CURSE_OF_THE_UNKNOWN)
 		end
 	end
 end
