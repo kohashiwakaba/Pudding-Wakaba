@@ -162,7 +162,7 @@ end)
 
 wakaba:RegisterPatch(0, "EpicBeam", function() return (EpicBeam ~= nil) end, function()
 	if EpicBeam.Quality5 then
-		for k, v in pairs(wakaba.ExtendQuality) do
+		for k, v in pairs(wakaba.Enums.ExtendQuality) do
 			table.insert(EpicBeam.Quality5, k)
 		end
 	end
