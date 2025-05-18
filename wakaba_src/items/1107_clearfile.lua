@@ -181,6 +181,7 @@ wakaba:AddCallback(wakaba.Callback.INVENTORY_DESCRIPTIONS_PRE_LOCK_INPUT, wakaba
 ---@param activeSlot ActiveSlot
 ---@param varData integer
 function wakaba:ItemUse_ClearFile(item, rng, player, useFlags, activeSlot, varData)
+	if useFlags & UseFlag.USE_CARBATTERY > 0 or activeSlot < 0 then return end
 	local pData = player:GetData()
 	if not (pData.w_clearFileTarget and pData.w_clearFileTarget:Exists()) then
 		player:AnimateSad()
