@@ -1,4 +1,6 @@
 
+local isc = _wakaba.isc
+
 wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function()
 	if Astro.IsFight then
 		table.insert(wakaba.DamagePenaltyProtectionInvalidStr, "Astrobirth")
