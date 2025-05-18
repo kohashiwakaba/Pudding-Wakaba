@@ -32,6 +32,12 @@ function wakaba:addRiraDamage(player, count, ignoreMax)
 	return riraCharges[playerIndex]
 end
 
+function wakaba:hasLilRira(player)
+	return
+		player:HasCollectible(wakaba.Enums.Collectibles.LIL_RIRA)
+		or player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.LIL_RIRA) > 0
+end
+
 ---@param activeItem any
 ---@param rng any
 ---@param player any
@@ -79,6 +85,7 @@ end
 ---@param activeSlot ActiveSlot
 function wakaba:tryDetectChargeChange(familiar, player, activeSlot)
 	if not activeSlot or activeSlot == -1 then return end
+	if not wakaba:hasLilRira(player) then return end
 	local playerIndex = isc:getPlayerIndex(player)
 	local activeItem = player:GetActiveItem(activeSlot)
 	if activeItem ~= 0 then
@@ -242,7 +249,7 @@ end
 ---@param player EntityPlayer
 function wakaba:RibbonTransfer_LilRira(player)
 	if wakaba:getPlayerDataEntry(player, "LilRiraLastSlot") then
-		return true
+		return wakaba:hasLilRira(player)
 	end
 end
 wakaba:AddPriorityCallback(wakaba.Callback.PRE_RABBIT_RIBBON_CHARGE, -20000, wakaba.RibbonTransfer_LilRira)
