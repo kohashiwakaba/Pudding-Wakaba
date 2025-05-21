@@ -264,6 +264,7 @@ if REPENTOGON then
 							end
 						end
 					end
+					level:UpdateVisibility()
           return true
         end
       end
