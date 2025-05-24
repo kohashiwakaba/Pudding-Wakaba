@@ -104,6 +104,9 @@ idesc.options = {
 	invgridcolumn = 6,
 	invinitcursor = "character",
 	listdimmeralpha = 0.5,
+	listoffsety = 36,
+	invdescgutterx = 0,
+	invdescguttery = 0,
 }
 if _wakaba then
 	idesc.options = wakaba.state.options
@@ -1188,6 +1191,7 @@ function idesc:Render()
 		local currentcursor = 1
 
 		local optionsOffset = idesc:getOptions("listoffset")
+		local optionsOffsetY = idesc:getOptions("listoffsety")
 		local inputKey = idesc:getOptions("listkey", -1)
 
 		local oldTransparency = EID.Config["Transparency"] + 0
@@ -1204,8 +1208,8 @@ function idesc:Render()
 		sstr = sstr:gsub("{listkey}", kts[inputKey])
 
 		-- Render headers
-		EID:renderString(pstr, Vector(x - optionsOffset, 36-(EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
-		EID:renderString(sstr, Vector(x - optionsOffset, 36-EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
+		EID:renderString(pstr, Vector(x - optionsOffset, optionsOffsetY - (EID.lineHeight*2)) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
+		EID:renderString(sstr, Vector(x - optionsOffset, optionsOffsetY - EID.lineHeight) - Vector(offset * 10, offset * -10), Vector(1,1), EID:getNameColor())
 
 		local listOffset = listprops.offset
 		local entries = idesc:currentEntries()
@@ -1217,6 +1221,9 @@ function idesc:Render()
 			local columns = idesc:getOptions("invgridcolumn", 6)
 			local min = listOffset + 1
 			local max = math.min(listOffset + (validcount * columns), #entries)
+
+			local gutterX = idesc:getOptions("invdescgutterx", 0)
+			local gutterY = idesc:getOptions("invdescguttery", 0)
 
 			for ix = min, max do
 				local lIndex = ix - listOffset
@@ -1234,8 +1241,9 @@ function idesc:Render()
 				local currCol = ((i - 1) % columns)
 
 				local height = EID.lineHeight
-				local renderpos = Vector(x - optionsOffset, 36 + ((iv-1) * (height + 1) * 2)) - Vector(offset * 10, offset * -10)
+				local renderpos = Vector(x - optionsOffset, optionsOffsetY + ((iv-1) * (height + 1) * 2)) - Vector(offset * 10, offset * -10)
 				renderpos = renderpos + Vector(currCol * 24, 0)
+				renderpos = renderpos + Vector(currCol * gutterX, (iv-1) * gutterY)
 
 				local iconrenderpos = renderpos + Vector(-23, ((height + 0) / 2) - 4)
 				local qtextrenderpos = renderpos + Vector(-26, -2)

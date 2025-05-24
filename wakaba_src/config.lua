@@ -713,6 +713,72 @@ if MCM then
 			}
 		}
 	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.listoffsety
+			end,
+			Minimum = -100,
+			Maximum = 200,
+			ModifyBy = 2,
+			Display = function()
+				return "List offset: " .. wakaba.state.options.listoffsety
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listoffsety = current
+			end,
+			Info = {
+				"Top offset for list of items(Default = 36)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invdescgutterx
+			end,
+			Minimum = -5,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "List offset: " .. wakaba.state.options.invdescgutterx
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invdescgutterx = current
+			end,
+			Info = {
+			"X Margin list of items(Default = 0)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"General",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invdescguttery
+			end,
+			Minimum = -5,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "List offset: " .. wakaba.state.options.invdescguttery
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invdescguttery = current
+			end,
+			Info = {
+			"Y Margin list of items(Default = 0)",
+			}
+		}
+	)
 
 	MCM.AddSetting(
 		"Pudding & Wakaba",

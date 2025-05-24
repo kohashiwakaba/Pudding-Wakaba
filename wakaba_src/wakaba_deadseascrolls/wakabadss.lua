@@ -612,7 +612,7 @@ local wakabadirectory = {
 				tooltip = {strset = {'display type', 'in', 'inventory','descriptions'}}
 			},
 			{
-				str = 'list offset',
+				str = 'list offset x',
 				fsize = 2,
 				min = 100,
 				max = 600,
@@ -626,6 +626,54 @@ local wakabadirectory = {
 					wakaba.state.options.listoffset = var
 				end,
 				tooltip = {strset = {'right offset','for list','of items','','default = 200'}},
+			},
+			{
+				str = 'list offset y',
+				fsize = 2,
+				min = -100,
+				max = 200,
+				increment = 2,
+				setting = 36,
+				variable = "InvDescListOffsetY",
+				load = function()
+					return wakaba.state.options.listoffsety or 36
+				end,
+				store = function(var)
+					wakaba.state.options.listoffsety = var
+				end,
+				tooltip = {strset = {'top offset','for list','of items','','default = 36'}},
+			},
+			{
+				str = 'item margin x',
+				fsize = 2,
+				min = -5,
+				max = 10,
+				increment = 1,
+				setting = 0,
+				variable = "InvDescListGutterX",
+				load = function()
+					return wakaba.state.options.invdescgutterx or 0
+				end,
+				store = function(var)
+					wakaba.state.options.invdescgutterx = var
+				end,
+				tooltip = {strset = {'x margin','for list','of items','','default = 0'}},
+			},
+			{
+				str = 'item margin y',
+				fsize = 2,
+				min = -5,
+				max = 10,
+				increment = 1,
+				setting = 0,
+				variable = "InvDescListGutterY",
+				load = function()
+					return wakaba.state.options.invdescguttery or 0
+				end,
+				store = function(var)
+					wakaba.state.options.invdescguttery = var
+				end,
+				tooltip = {strset = {'y margin','for list','of items','','default = 0'}},
 			},
 			{
 				str = 'initial display mode',
