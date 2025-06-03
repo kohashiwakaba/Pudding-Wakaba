@@ -67,6 +67,8 @@ wakaba.Callback = {
 
 	ANY_WEAPON_FIRE = "WakabaCallbacks.ANY_WEAPON_FIRE",
 
+	LASER_WEAPON_FIRE = "WakabaCallbacks.LASER_WEAPON_FIRE",
+
 	-- ---
 	-- REAL_FIRE_TEAR
 	-- ---
@@ -822,7 +824,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, wakaba.TearUpdate_Callbacks
 wakaba:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
 	if player then
-		Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+		Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, tear)
 		Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, tear, player)
 	end
 end)
@@ -893,7 +895,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
 	local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
 	if player then
 		if laser.FrameCount == 1 then
-			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, laser)
 			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player)
 		elseif not laser.OneHit then
 			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, laser, player)
@@ -905,7 +907,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, function(_, bomb)
 	if bomb.FrameCount == 1 and bomb.IsFetus then
 		local player = bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()
 		if player then
-			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+			Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, bomb)
 			Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, bomb, player)
 		end
 	end
@@ -928,7 +930,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 					end
 
 					if pass then
-						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, knife)
 						--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
 					end
 				end
@@ -936,7 +938,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 		else
 			local data = knife:GetData()
 			if data.flyinglastframe and not knife:IsFlying() then
-				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, knife)
 				--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
 			end
 

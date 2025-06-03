@@ -2,6 +2,7 @@
 local sfx = SFXManager()
 local isc = _wakaba.isc
 
+---@param effect EntityEffect
 wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 
 	-- Epic Fetus
@@ -9,7 +10,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
 		if player then
 			if not effect:Exists() then
-				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+				Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, effect)
 			elseif effect.FrameCount == 1 then
 				Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, effect, player)
 			end
@@ -37,7 +38,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 		if not effect:Exists() then
 			local player = effect.SpawnerEntity and effect.SpawnerEntity:ToPlayer()
 			if player then
-				--Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player)
+				--Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, effect)
 				Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, effect, player)
 
 				-- cross bomb, bubble bombs
@@ -315,9 +316,6 @@ wakaba:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, function(_, effect)
 				trail:Remove()
 			end
 		end
-	end
-
-	if effect.Variant == EffectVariant.ROCKET then
 	end
 
 end)
