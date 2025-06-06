@@ -34,9 +34,12 @@ wakaba.cpManagedPlayerType = {
 }
 
 wakaba.costumeCollectibleWhiteList = {
+	[CollectibleType.COLLECTIBLE_BRIMSTONE] = true,
 	[wakaba.Enums.Collectibles.SYRUP] = true,
 }
 wakaba.costumeNullWhiteList = {
+	[NullItemID.ID_CHRISTMAS] = true,
+	[NullItemID.ID_BRIMSTONE2] = true,
 }
 
 
