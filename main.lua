@@ -1549,6 +1549,12 @@ function wakaba:PostGlobalPlayerInit(player)
 end
 wakaba:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, wakaba.PostGlobalPlayerInit)
 
+costumeProtector.AddCallback("MC_POST_COSTUME_RESET", function(player)
+	if wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_CHRISTMAS) then
+		player:AddNullCostume(NullItemID.ID_CHRISTMAS)
+	end
+end)
+
 function wakaba:getcurrentindex(player)
 	for num = 0, wakaba.G:GetNumPlayers()-1 do
 		if GetPtrHash(player) == GetPtrHash(Isaac.GetPlayer(num)) then

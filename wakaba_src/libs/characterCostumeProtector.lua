@@ -21,7 +21,9 @@ local defaultItemWhitelist = {
 	[CollectibleType.COLLECTIBLE_HOLY_MANTLE] = true,
 	[CollectibleType.COLLECTIBLE_DADS_RING] = true,
 }
-local defaultNullItemWhitelist = {}
+local defaultNullItemWhitelist = {
+	[NullItemID.ID_CHRISTMAS] = true,
+}
 local nullEffectsBlacklist = {}
 local CallbacksTable = {
 	["MC_POST_COSTUME_RESET"] = {},
