@@ -2203,8 +2203,8 @@ wakaba.descriptions[desclang].pills = {
 	},
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		itemName = "Heavy Mascara",
-		description = "{{CurseBlind}} Curse of the Blind effect for the floor#Removed after 60 seconds",
-		horse = "{{CurseBlind}} Curse of the Blind effect for the floor#{{CurseUnknown}} Curse of the Unknown effect for the floor#Removed after 60 seconds",
+		description = "{{CurseBlind}} Curse of the Blind effect#Persists across floors#Removed after 30 seconds",
+		horse = "{{CurseBlind}} Curse of the Blind effect#Persists across floors#Removed after 60 seconds",
 		mimiccharge = 4,
 		class = "3-",
 	},

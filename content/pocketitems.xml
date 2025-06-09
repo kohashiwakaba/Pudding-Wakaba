@@ -46,6 +46,6 @@
 	<pilleffect name="Unholy Curse" description="Protection taken off" class="3-" mimiccharge="4" />
 	<pilleffect name="Duality Orders" description="Devil and Angel awaits you" class="3+" mimiccharge="8" tags="nogreed"/>
 	<pilleffect name="Hellish Vomit" description="Release your blast" class="2+" mimiccharge="6"/>
-	<pilleffect name="Heavy Mascara" description="You are now blinded" class="3-" mimiccharge="4"/>
+	<pilleffect name="Heavy Mascara" description="Blinded for a while" class="3-" mimiccharge="4"/>
 
 </pocketitems>

@@ -2052,7 +2052,7 @@ wakaba.descriptions[desclang].pills = {
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = {
 		itemName = "沉重的睫毛膏",
 		description = "{{CurseBlind}} 此层赋予盲目诅咒",
-		horse = "此层{{CurseBlind}} 赋予盲目诅咒和#{CurseUnknown}}未知诅咒",
+		horse = "此层{{CurseBlind}} 赋予盲目诅咒和",
 		mimiccharge = 4,
 		class = "3-",
 	},

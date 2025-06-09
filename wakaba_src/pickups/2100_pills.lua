@@ -416,10 +416,9 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 			end
 			player:AnimateSad()
 		elseif pillEffect == wakaba.Enums.Pills.HEAVY_MASCARA then
-			player:GetData().wakaba.trollblindcounter = 15 * 60
-			wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_BLIND, false)
-			if isHorse then
-				wakaba.G:GetLevel():AddCurse(LevelCurse.CURSE_OF_THE_UNKNOWN, false)
+			if wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND) then
+				player:GetData().wakaba.trollblindcounter = 15 * (isHorse and 60 or 30)
+				wakaba.G:GetSeeds():AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND)
 			end
 			player:AnimateSad()
 		end
@@ -491,7 +490,7 @@ function wakaba:onPillUpdate(player)
 	if player:GetData().wakaba.trollblindcounter > -1 then
 		player:GetData().wakaba.trollblindcounter = player:GetData().wakaba.trollblindcounter - 1
 		if player:GetData().wakaba.trollblindcounter == 0 then
-			wakaba.L():RemoveCurses(LevelCurse.CURSE_OF_BLIND | LevelCurse.CURSE_OF_THE_UNKNOWN)
+			wakaba.G:GetSeeds():RemoveSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND)
 		end
 	end
 end
