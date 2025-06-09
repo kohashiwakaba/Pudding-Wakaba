@@ -3,8 +3,8 @@
 	<card pickup="4101" type="special" description="Money for people" hud="Silver Donation Card" name="Silver Donation Card" mimiccharge="6" />
 	<card pickup="4102" type="special" description="Money for people" hud="VIP Donation Card" name="VIP Donation Card" mimiccharge="6" />
 	 -->
-	<card pickup="4103" type="tarot_reverse" description="Gacha time!" hud="wakaba_Crane Card" name="Crane Card" mimiccharge="6" />
-	<card pickup="4104" type="tarot_reverse" description="Repent" hud="wakaba_Confessional Card" name="Confessional Card" mimiccharge="4" />
+	<card pickup="4103" type="tarot" description="Gacha time!" hud="wakaba_Crane Card" name="Crane Card" mimiccharge="6" />
+	<card pickup="4104" type="tarot" description="Repent" hud="wakaba_Confessional Card" name="Confessional Card" mimiccharge="4" />
 	<card pickup="2" type="suit" description="You feel your sins" hud="wakaba_Black Joker" name="Black Joker" mimiccharge="2" />
 	<card pickup="2" type="suit" description="You feel your sins" hud="wakaba_White Joker" name="White Joker" mimiccharge="2" />
 	<card pickup="2" type="special" description="You will not want this" hud="wakaba_Color Joker" name="Color Joker" mimiccharge="12" />
@@ -27,12 +27,12 @@
 
 	<!-- Wakaba Tickets -->
 	<card pickup="4112" type="tarot" description="Goddess trial" hud="Minerva Ticket" name="Minerva Ticket" mimiccharge="3"/>
-	<card pickup="4112" type="tarot_reverse" description="Shiori's valuables" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
-	<card pickup="4112" type="tarot_reverse" description="Lunch time!" hud="wakaba_Richer Ticket" name="Richer Ticket" mimiccharge="8"/>
-	<card pickup="4112" type="tarot_reverse" description="Ecchi patcher" hud="wakaba_Rira Ticket" name="Rira Ticket" mimiccharge="6"/>
+	<card pickup="4112" type="tarot" description="Shiori's valuables" hud="wakaba_Valut Rift" name="Valut Rift" mimiccharge="6"/>
+	<card pickup="4112" type="tarot" description="Lunch time!" hud="wakaba_Richer Ticket" name="Richer Ticket" mimiccharge="8"/>
+	<card pickup="4112" type="tarot" description="Ecchi patcher" hud="wakaba_Rira Ticket" name="Rira Ticket" mimiccharge="6"/>
 
-	<card pickup="4112" type="tarot_reverse" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>
-	<card pickup="4114" type="special" description="Rira's Backside" hud="wakaba_Flip" name="Flip Card" mimiccharge="4"/>
+	<card pickup="4112" type="tarot" description="???" hud="wakaba_Trial Stew" name="Trial Stew" mimiccharge="8"/>
+	<card pickup="4114" type="tarot" description="Rira's Backside" hud="wakaba_Flip" name="Flip Card" mimiccharge="4"/>
 
 	<pilleffect name="Damage Multiplier Down" class="3-" mimiccharge="4" />
 	<pilleffect name="Damage Multiplier Up" class="3+" mimiccharge="6" />
