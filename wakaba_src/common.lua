@@ -589,7 +589,7 @@ function wakaba:ForceVoid(rng, spawnPosition)
 				end
 			end
 		end
-		if finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES and wakaba:CanOpenMegaSatan() then
+		if not REPENTANCE_PLUS and finalcheck & wakaba.VoidFlags.PIECES == wakaba.VoidFlags.PIECES and wakaba:CanOpenMegaSatan() then
 			local p1 = wakaba:SpawnResultPedestal(CollectibleType.COLLECTIBLE_KEY_PIECE_1, room:GetGridPosition(92))
 			local p2 = wakaba:SpawnResultPedestal(CollectibleType.COLLECTIBLE_KEY_PIECE_2, room:GetGridPosition(102))
 		end
@@ -615,12 +615,16 @@ function wakaba:ForceVoid(rng, spawnPosition)
 		and (level:GetStageType() == StageType.STAGETYPE_REPENTANCE or level:GetStageType() == StageType.STAGETYPE_REPENTANCE_B)
 		and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
 		and wakaba:CanOpenMother() then
-			local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
-			local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
-			p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, false, false, true)
-			p2:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, false, false, true)
-			p1:GetData().DamoclesDuplicate = true
-			p2:GetData().DamoclesDuplicate = true
+			if REPENTANCE_PLUS then
+				wakaba.G:SetStateFlag(52, true) -- 52 : Mother Open
+			else
+				local p1 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(92), Vector(0,0), nil):ToPickup()
+				local p2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_POOP, 0, room:GetGridPosition(102), Vector(0,0), nil):ToPickup()
+				p1:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_1, false, false, true)
+				p2:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KNIFE_PIECE_2, false, false, true)
+				p1:GetData().DamoclesDuplicate = true
+				p2:GetData().DamoclesDuplicate = true
+			end
 		end
 		-- -------------------------------
 		-- Fool card for Mom fight.
@@ -675,6 +679,17 @@ function wakaba:ForceVoidNewRoomCheck()
 	local stage = level:GetAbsoluteStage()
 	local stageType = level:GetStageType()
 	local room = wakaba.G:GetRoom()
+
+	if wakaba.state.forcevoid.keypiece == 1
+	and wakaba:CanOpenMegaSatan()
+	and REPENTANCE_PLUS
+	then
+		if level:GetAbsoluteStage() == LevelStage.STAGE6 then
+			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
+				wakaba.G:SetStateFlag(49, true) -- 49 : Mega Satan Open
+			end
+		end
+	end
 
 	if wakaba.state.forcevoid.crackedkey == 1
 	and wakaba.G.Challenge == Challenge.CHALLENGE_NULL
