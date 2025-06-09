@@ -703,7 +703,7 @@ if MCM then
 			Maximum = 600,
 			ModifyBy = 10,
 			Display = function()
-				return "List offset: " .. wakaba.state.options.listoffset
+				return "List offset X: " .. wakaba.state.options.listoffset
 			end,
 			OnChange = function(current)
 				wakaba.state.options.listoffset = current
@@ -725,7 +725,7 @@ if MCM then
 			Maximum = 200,
 			ModifyBy = 2,
 			Display = function()
-				return "List offset: " .. wakaba.state.options.listoffsety
+				return "List offset Y: " .. wakaba.state.options.listoffsety
 			end,
 			OnChange = function(current)
 				wakaba.state.options.listoffsety = current
@@ -747,7 +747,7 @@ if MCM then
 			Maximum = 10,
 			ModifyBy = 1,
 			Display = function()
-				return "List offset: " .. wakaba.state.options.invdescgutterx
+				return "gutter X: " .. wakaba.state.options.invdescgutterx
 			end,
 			OnChange = function(current)
 				wakaba.state.options.invdescgutterx = current
@@ -769,7 +769,7 @@ if MCM then
 			Maximum = 10,
 			ModifyBy = 1,
 			Display = function()
-				return "List offset: " .. wakaba.state.options.invdescguttery
+				return "gutter Y: " .. wakaba.state.options.invdescguttery
 			end,
 			OnChange = function(current)
 				wakaba.state.options.invdescguttery = current

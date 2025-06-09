@@ -15,6 +15,7 @@ wakaba.Flags = {
 	debugChimaki = false,
 	
 	debugInvDescList = false,
+	thumbnailInvDescList = false,
 
 	stackableDamocles = true or (CCO and CCO.DamoclesAPI ~= nil),
 }

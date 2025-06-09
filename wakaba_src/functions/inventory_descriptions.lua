@@ -1244,6 +1244,9 @@ function idesc:Render()
 				local renderpos = Vector(x - optionsOffset, optionsOffsetY + ((iv-1) * (height + 1) * 2)) - Vector(offset * 10, offset * -10)
 				renderpos = renderpos + Vector(currCol * 24, 0)
 				renderpos = renderpos + Vector(currCol * gutterX, (iv-1) * gutterY)
+				if wakaba.Flags.thumbnailInvDescList then
+					renderpos = renderpos + Vector(0, currCol * 4)
+				end
 
 				local iconrenderpos = renderpos + Vector(-23, ((height + 0) / 2) - 4)
 				local qtextrenderpos = renderpos + Vector(-26, -2)
