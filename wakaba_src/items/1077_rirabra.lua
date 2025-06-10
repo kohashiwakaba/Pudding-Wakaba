@@ -59,7 +59,7 @@ end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_FiendFolio)
 
 function wakaba:RiraBra_Basic(entity)
-	return wakaba:HasStatusEffect(entity)
+	return wakaba:HasStatusEffects(entity)
 end
 wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_Basic)
 
