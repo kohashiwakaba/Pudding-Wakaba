@@ -876,6 +876,7 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ 所有攻击现在造成1.25倍的激光伤害"
 			.. "#↑ 之前的激光伤害现在无视敌人的护甲"
+			.. "#Spawns plasma ball on hit"
 			.. "{{CR}}",
 		queueDesc = "高科技穿刺眼泪",
 	},

@@ -928,7 +928,8 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "Plasma Beam",
 		description = ""
 		.. "#↑ All Isaac's attack deal 1.25x laser damage"
-		.. "#↑ Prior laser damage now ignore enemies' armor",
+		.. "#↑ Prior laser damage now ignore enemies' armor"
+		.. "#Spawns plasma ball on hit",
 		lunatic = ""
 		.. "#↑ All Isaac's attack deal 1.25x laser damage"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}Prior laser damage deal extra +15% damage"

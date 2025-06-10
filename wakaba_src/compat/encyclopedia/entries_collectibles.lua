@@ -1436,6 +1436,8 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "All enemies now take 1.25x laser damage from all player's damage source."},
 			{str = "All damage type that was already laser ignore enemies' armor."},
+			{str = "Spawns plasma ball that deals 33 damage per second"},
+			{str = "- Plasma ball is 2 seconds long, and respawns after 7 seconds on same enemy"},
 		},
 		--[[ { -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
