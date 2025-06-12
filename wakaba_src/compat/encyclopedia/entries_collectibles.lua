@@ -856,18 +856,7 @@ wakaba.encyclopediadesc.desc.collectibles = {
 		{ -- Effects
 			{str = "Effects", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants one Black Heart when picked up."},
-			{str = "Isaac has a chance to regenerate a Half Black Heart every time the in-game timer hits a new minute (00:01:00, 00:02:00, etc)."},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The regeneration can happen multiple times in the same room, so there is no need to move between rooms to continue regeneration."},
-			{str = "- However, regeneration does not occur when standing in a Crawl Space."},
-			{str = "Regeneration will only occur when Isaac can have Soul hearts:"},
-			{str = "- Keeper's and Tainted Keeper's coin hearts will not regenerate, instead, a blue fly will be spawned instead."},
-		},
-		{ -- Synergies
-			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Gnawed Leaf: Allows Isaac to safely regenerate in any room."},
+			{str = "+0.5 Damage per Black Heart"},
 		},
 	},
 	RIRAS_BRA = {

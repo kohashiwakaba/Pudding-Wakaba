@@ -40,7 +40,7 @@ function wakaba:ApplyCompat()
 			if not exist then
 				exist = _G[patch.modName]
 			end
-	
+
 			if exist and (patch.ignoreLoadCheck or not patch.loaded) then
 				local loaded = patch.patchFunc()
 				if loaded == nil then loaded = true end
@@ -63,7 +63,7 @@ function wakaba:NewLevel_ApplyCompat()
 			if not exist then
 				exist = _G[patch.modName]
 			end
-	
+
 			if exist and (patch.ignoreLoadCheck or not patch.loaded) then
 				local loaded = patch.patchFunc()
 				if loaded == nil then loaded = true end
@@ -84,7 +84,6 @@ do
 	include('wakaba_src.compat.epiphany')
 	include('wakaba_src.compat.epiphany_d')
 	include('wakaba_src.compat.samael')
-	include('wakaba_src.compat.taintedtreasure')
 	include('wakaba_src.compat.thefuture')
 	include('wakaba_src.compat.sacred_dreams')
 	include('wakaba_src.compat.reshaken_v1')

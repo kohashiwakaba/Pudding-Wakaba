@@ -403,15 +403,10 @@ Encyclopedia.AddItem({
 	ID = wakaba.Enums.Collectibles.SUCCUBUS_BLANKET,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.SUCCUBUS_BLANKET,
 	Pools = {
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 	},
-	UnlockFunc = function(self)
-		if true then
-			self.Desc = "???"
-
-			return self
-		end
-	end,
-	Hide = true,
 })
 --#endregion
 

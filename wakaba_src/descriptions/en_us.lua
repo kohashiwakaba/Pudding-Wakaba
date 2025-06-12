@@ -1126,8 +1126,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
 		itemName = "Succubus Blanket",
 		description = ""
-		.. "#↑ {{BlackHeart}} +1 Black Heart"
-		.. "#{{HalfBlackHeart}} 45% Chance to heal half a black heart every minute"
+		.. "#{{BlackHeart}} +1 Black Heart"
+		.. "#{{Damage}} +0.5 Damage per Black Heart"
 		.. "{{CR}}",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {

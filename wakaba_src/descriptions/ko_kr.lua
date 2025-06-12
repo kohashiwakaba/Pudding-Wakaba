@@ -1167,12 +1167,12 @@ wakaba.descriptions[desclang].collectibles = {
 		itemName = "서큐버스의 망토",
 		description = ""
 		.. "#↑ {{BlackHeart}}블랙하트 +1"
-		.. "#타이머가 1분 00초가 될 때마다 45%의 확률로 {{HalfBlackHeart}}블랙하트 반 칸을 회복합니다."
+		.. "#{{DamageSmall}} 블랙하트 1칸 당 공격력 +0.5"
 		.. "{{CR}}",
-		queueDesc = "타락한 영혼 재생 + 체력 증가",
+		queueDesc = "타락한 영혼 공명",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
-		itemName = "리셰쨩의 제복",
+		itemName = "리셰의 제복",
 		description = ""
 		.. "#사용 시 그 방의 종류에 따라 다른 효과를 발동합니다."
 		.. "#>>> {{ColorGray}}(Inventory Descriptions에서 확인 가능)"

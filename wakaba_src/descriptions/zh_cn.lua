@@ -1080,10 +1080,10 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.SUCCUBUS_BLANKET] = {
 		itemName = "魅魔毯子",
 		description = ""
-			.. "#↑ {{BlackHeart}} +1 黑心"
-			.. "#{{HalfBlackHeart}} 每分钟有45%的几率恢复半个黑心"
-			.. "{{CR}}",
-		queueDesc = "再生 + 生命提升",
+		.. "#↑ {{BlackHeart}} +1 Black Heart"
+		.. "#{{Damage}} +0.5 Damage per Black Heart"
+		.. "{{CR}}",
+		queueDesc = "HP up + Fallen resonance",
 	},
 	[wakaba.Enums.Collectibles.RICHERS_UNIFORM] = {
 		itemName = "璃贝的制服",
