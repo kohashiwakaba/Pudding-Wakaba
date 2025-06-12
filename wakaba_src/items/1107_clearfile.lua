@@ -169,10 +169,10 @@ wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_Clea
 function wakaba:IDescLockInput_ClearFile(idesc, entity, inputHook, buttonAction)
 	local iListPropName = idesc:getListPropName()
 	if iListPropName == "wakaba_clearfile" then
-		if buttonAction == ButtonAction.ACTION_ITEM and player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.CLEAR_FILE then
+		if buttonAction == ButtonAction.ACTION_ITEM and (not entity:ToPlayer() or entity:ToPlayer():GetActiveItem(ActiveSlot.SLOT_PRIMARY) == wakaba.Enums.Collectibles.CLEAR_FILE) then
 			return true
 		end
-		if buttonAction == ButtonAction.ACTION_PILLCARD and player:GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.CLEAR_FILE then
+		if buttonAction == ButtonAction.ACTION_PILLCARD and (not entity:ToPlayer() or entity:ToPlayer():GetActiveItem(ActiveSlot.SLOT_POCKET) == wakaba.Enums.Collectibles.CLEAR_FILE) then
 			return true
 		end
 	end
