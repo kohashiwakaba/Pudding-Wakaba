@@ -204,6 +204,8 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 	if wakaba:getstoredindex(player) ~= nil then
 		player:GetData().wakaba.statmodify.hairpinluck = player:GetData().wakaba.statmodify.hairpinluck or 0
 		wakaba:addCustomStat(player, "hairpinluck", multiplier)
+		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE | CacheFlag.CACHE_LUCK)
+		player:EvaluateItems()
 
 		if pillEffect == wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP then
 			wakaba:addCustomStat(player, "damagemult", 0.08 * multiplier)

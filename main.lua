@@ -989,6 +989,7 @@ do -- Items loader
 	include('wakaba_src.items.1003b_mintchocoicecream')
 	include('wakaba_src.items.1004_gamecd')
 	include('wakaba_src.items.1005_wakabapendant')
+	include('wakaba_src.items.1005b_wakabahairpin')
 	include('wakaba_src.items.1006_secretcard')
 	include('wakaba_src.items.1007_plumy')
 	include('wakaba_src.items.1008_executioner')
