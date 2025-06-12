@@ -988,10 +988,11 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RED_CORRUPTION] = {
 		itemName = "적색 감염",
 		description = "{{Collectible21}} 맵에 특수방의 위치를 표시합니다."
-		.. "#보스방을 제외한 모든 특수 방이 빨간 방으로 바뀝니다."
+		.. "#모든 특수 방이 빨간 방으로 바뀝니다."
 		.. "#가능한 경우, 스테이지 진입 시 46%의 확률로 특수 방 주변에 새로운 방이 생성됩니다."
 		.. "#{{LuckSmall}} 행운 29+일 때 100%"
 		.. "#!!! {{ErrorRoom}}오류방으로 향하는 문이 생성될 수 있습니다."
+		.. "#!!!{{BossRoom}}/{{UltraSecretRoom}}에는 영향 없음"
 		.. "{{CR}}",
 		duplicate = "{{ColorRira}}중첩 당 확률 증가",
 		queueDesc = "감염된 지도",

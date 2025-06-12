@@ -914,6 +914,7 @@ wakaba.descriptions[desclang].collectibles = {
 			.. "#如果可能的话，进入新楼层有46%的机会在特殊房间附近生成新房间"
 			.. "#{{Luck}} 29幸运是100%"
 			.. "#!!! 一些房间可能通向 {{ErrorRoom}}错误房!"
+			.. "#!!! Does not affect {{BossRoom}}/{{UltraSecretRoom}}"
 			.. "{{CR}}",
 		queueDesc = "受感染的指南针",
 	},

@@ -965,6 +965,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#Entering a new floor has 46% chance to generate new rooms adjacent special rooms if possible"
 		.. "#{{Luck}} 100% chance at 29 Luck"
 		.. "#!!! Some doors may lead to {{ErrorRoom}}I AM ERROR rooms!"
+		.. "#!!! Does not affect {{BossRoom}}/{{UltraSecretRoom}}"
 		.. "{{CR}}",
 		duplicate = "Higher chance to make new rooms",
 		LuckFormula = function(luck) return wakaba:StackChance(0.46 + wakaba:LuckBonus(luck, 29, 1 - 0.46), 1) * 100 end
