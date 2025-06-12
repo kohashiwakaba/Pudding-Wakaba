@@ -384,17 +384,12 @@ Encyclopedia.AddItem({
 	ModName = class,
 	ID = wakaba.Enums.Collectibles.WAKABAS_HAIRPIN,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.WAKABAS_HAIRPIN,
-	Hide = true,
 	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
-	UnlockFunc = function(self)
-		if not wakaba:IsEntryUnlocked("pendant") then
-			self.Desc = "Defeat ??? as Wakaba"
-
-			return self
-		end
-	end,
-	Hide = true,
 })
 -- Succubus Blanket
 Encyclopedia.AddItem({

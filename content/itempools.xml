@@ -75,6 +75,7 @@
 		<Item Name="Book of Amplitude" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.4" RemoveOn="0.0001"/>
 		<Item Name="Clear File" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
+		<Item Name="Wakaba's Hairpin" Weight="0.7" DecreaseBy="0.7" RemoveOn="0.0001"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Mysterious game CD" Weight="0.25" DecreaseBy="0.25" RemoveOn="0.0001"/>
@@ -84,6 +85,7 @@
 		<Item Name="Onsen Towel" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Rira's Bandage" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Succubus Blanket" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Wakaba's Hairpin" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Wakaba's Nemesis" Weight="0.66" DecreaseBy="0.66" RemoveOn="0.0001"/>
@@ -249,6 +251,7 @@
 		<Item Name="Onsen Towel" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Magma Blade" Weight="0.7" DecreaseBy="0.7" RemoveOn="0.0001"/>
 		<Item Name="Succubus Blanket" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Wakaba's Hairpin" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Secret Card" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
@@ -466,6 +469,7 @@
 		<Item Name="Rira's Uniform" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Rabbey Ward" Weight="0.4" DecreaseBy="0.04" RemoveOn="0.0001"/>
 		<Item Name="Clear File" Weight="0.5" DecreaseBy="0.05" RemoveOn="0.0001"/>
+		<Item Name="Wakaba's Hairpin" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 	</Pool>
 	<Pool Name="ultraSecret">
 		<Item Name="Wakaba's Nemesis" Weight="1" DecreaseBy="0.4" RemoveOn="0.0001"/>

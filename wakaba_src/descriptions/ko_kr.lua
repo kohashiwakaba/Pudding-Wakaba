@@ -529,8 +529,8 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_HAIRPIN] = {
 		itemName = "와카바의 헤어핀",
 		description = ""
-		.. "#↑ {{LuckSmall}}알약 사용 시마다 행운 +0.35"
 		.. "#↑ {{DamageSmall}}공격력 +1"
+		.. "#{{LuckSmall}} 알약 사용 시마다 행운 +0.35"
 		.. "{{CR}}",
 		queueDesc = "기분 좋은 느낌",
 	},
