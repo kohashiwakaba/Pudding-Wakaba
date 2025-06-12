@@ -1,6 +1,7 @@
 <ItemPools>
 	<Pool Name="treasure">
 		<Item Name="D-Cup Ice Cream" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.0001"/>
+		<Item Name="Mint Chocolate Ice cream" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.0001"/>
 		<Item Name="Plumy" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.0001"/>
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Lil Moe" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
@@ -194,6 +195,7 @@
 
 	<Pool Name="greedTreasure">
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Mint Chocolate Ice cream" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Book of Forgotten" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
@@ -242,6 +244,7 @@
 	<Pool Name="greedBoss">
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
+		<Item Name="Mint Chocolate Ice cream" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Mysterious game CD" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Moe's Muffin" Weight="1" DecreaseBy="1" RemoveOn="0.0001"/>
 		<Item Name="Arcane Crystal" Weight="0.8" DecreaseBy="1" RemoveOn="0.0001"/>
@@ -389,6 +392,7 @@
 
 	<Pool Name="goldenChest">
 		<Item Name="D-Cup Ice Cream" Weight="0.4" DecreaseBy="0.16" RemoveOn="0.0001"/>
+		<Item Name="Mint Chocolate Ice cream" Weight="0.4" DecreaseBy="0.16" RemoveOn="0.0001"/>
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.4" RemoveOn="0.0001"/>
 		<Item Name="Secret Card" Weight="1" DecreaseBy="0.4" RemoveOn="0.0001"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.4" RemoveOn="0.0001"/>
@@ -446,6 +450,7 @@
 		<Item Name="Wakaba's Pendant" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Executioner" Weight="0.375" DecreaseBy="0.0375" RemoveOn="0.0001"/>
 		<Item Name="D-Cup Ice Cream" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
+		<Item Name="Mint Chocolate Ice cream" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Plumy" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Wakaba's Uniform" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>
 		<Item Name="Lil Wakaba" Weight="1" DecreaseBy="0.1" RemoveOn="0.0001"/>

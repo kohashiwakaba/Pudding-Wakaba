@@ -368,15 +368,12 @@ Encyclopedia.AddItem({
 	ID = wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM,
 	WikiDesc = wakaba.encyclopediadesc.desc.collectibles.MINT_CHOCO_ICECREAM,
 	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
-	UnlockFunc = function(self)
-		if not wakaba:IsEntryUnlocked("dcupicecream") then
-			self.Desc = "Defeat Satan as Wakaba"
-
-			return self
-		end
-	end,
-	Hide = true,
 })
 -- Wakaba's Hairpin
 Encyclopedia.AddItem({

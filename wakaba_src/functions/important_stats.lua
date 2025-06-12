@@ -30,6 +30,12 @@ function wakaba:Cache_Important(player, cacheFlag)
 	if cacheFlag  == CacheFlag.CACHE_DAMAGE then
 		player.Damage = player.Damage * (1 + math.max((wakaba:getCustomStat(player, "damagemult") or 0), -0.75))
 
+		local dcup = player:GetCollectibleNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.D_CUP_ICECREAM)
+		if dcup > 0 then
+			local mult = (0.36 * dcup) + (wakaba:IsLunatic() and 0 or 0.44)
+			player.Damage = player.Damage * (1 + mult)
+		end
+
 		local neko = player:GetCollectibleNum(wakaba.Enums.Collectibles.NEKO_FIGURE) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.NEKO_FIGURE)
 		if neko > 0 then
 			local reduce = wakaba:IsLunatic() and 7 or 2
@@ -66,6 +72,12 @@ function wakaba:Cache_Important(player, cacheFlag)
 		end
 	end
 	if cacheFlag  == CacheFlag.CACHE_FIREDELAY then
+
+		local mint = player:GetCollectibleNum(wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM) + player:GetEffects():GetCollectibleEffectNum(wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM)
+		if mint > 0 then
+			local mult = (0.16 * mint) + 0.84
+			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, 1 + mult)
+		end
 		if player:GetData().wakaba.minervacount > 0 then
 			player.MaxFireDelay = wakaba:MultiplyTears(player.MaxFireDelay, wakaba:IsLunatic() and 1.6 or 2.3)
 		end

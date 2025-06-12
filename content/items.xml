@@ -6,7 +6,7 @@
 
 	<active id="3" description="Like a Pudding" gfx="eatheart.png" maxcharges="240000" name="Eat Heart" chargetype="special" devilprice="2" tags="offensive nocantrip" quality="4" cooldown="30" craftquality="-1"/>
 	<active id="4" description="Reusable Undead" gfx="bookofforgotten.png" maxcharges="6" name="Book of Forgotten" tags="book nolostbr" quality="3" craftquality="3" />
-	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive food summonable" quality="4" craftquality="4" />
+	<passive id="5" cache="damage speed" hearts="4" maxhearts="2" description="DMG Up + It isn't what you were thinking!" devilprice="2" gfx="dcupicecream.png" name="D-Cup Ice Cream" tags="offensive summonable" quality="4" craftquality="4" />
 	<passive id="6" cache="all" hearts="4" maxhearts="2" description="All Stats Up! + You feel lewd" gfx="gamecd.png" name="Mysterious game CD" tags="offensive tearsup summonable" quality="3" craftquality="3" />
 	<passive id="7" cache="damage luck" hearts="120" description="You feel Super Lucky!" gfx="wakabapendant.png" name="Wakaba's Pendant" shopprice="21" devilprice="2" tags="stars offensive summonable" quality="3" craftquality="4"/>
 	<passive id="8" description="Stack coins &amp; become secret friend" gfx="secretcard.png" name="Secret Card" shopprice="12" tags="offensive nocantrip summonable lazarusshared" quality="3" craftquality="4"/>
@@ -127,7 +127,7 @@
 	<passive id="92" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" customtags="nometronome" quality="0" hidden="true" achievement="9999" persistent="true" />
 
 	<passive id="93" description="HP up + Fallen resonance" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1" craftquality="1" />
-	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice-cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4" craftquality="4" />
+	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4" craftquality="4" />
 	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="wakabahairpin.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2" craftquality="2" />
 	<active id="96" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" bombs="1" keys="1" tags="offensive nocantrip" quality="1" craftquality="3" />
 	<passive id="97" description="Leaking pickups, but Watch out!" gfx="brokentoolbox.png" name="Broken Toolbox" tags="offensive summonable" quality="4" craftquality="4" hidden="true" achievement="9999"/>

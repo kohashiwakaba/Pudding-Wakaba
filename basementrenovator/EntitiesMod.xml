@@ -107,7 +107,7 @@
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="91" Name="Cunning Paper" Image="wakaba/collectibles/cunningpaper.png"/>
 	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="92" Name="Trial Stew" Image="wakaba/collectibles/__placeholder.png"/> -->
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="93" Name="Succubus Blanket" Image="wakaba/collectibles/trialstew.png"/>
-	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="94" Name="Mint Chocolate Ice-cream" Image="wakaba/collectibles/mintchocolate.png"/>
+	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="94" Name="Mint Chocolate Ice cream" Image="wakaba/collectibles/mintchocolate.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="95" Name="Wakaba's Hairpin" Image="wakaba/collectibles/wakabahairpin.png"/>
 	<entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="96" Name="Richer's Flipper" Image="wakaba/collectibles/richerflipper.png"/>
 	<!-- <entity Kind="wakaba" Group="Collectibles" ID="5" Variant="3900" Subtype="97" Name="Broken Toolbox" Image="wakaba/collectibles/brokentoolbox.png"/> -->

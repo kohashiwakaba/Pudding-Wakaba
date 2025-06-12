@@ -405,23 +405,20 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 			.. "#↑ {{Heart}} +1 心之容器"
 			.. "#↑ {{Heart}} 治疗1红心"
-			.. "#↑ {{Damage}} +0.3攻击力"
-			.. "#↑ {{Damage}} +80% 攻击倍率 (不叠加)"
+			.. "#↑ {{Damage}} +80% 攻击倍率"
 			.. "{{CR}}",
 		lunatic = ""
 			.. "#↑ {{Heart}} +1 心之容器"
 			.. "#↑ {{Heart}} 治疗1红心"
 			.. "#↑ {{Damage}} +0.3攻击力"
-			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% 攻击倍率 (不叠加)"
+			.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% 攻击倍率"
 			.. "{{CR}}",
 		queueDesc = "攻击力上升 + 不是你想的那样!",
-		binge = "↑ {{Damage}} +1.0攻击力#↓ {{Speed}} -0.04速度",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "薄荷巧克力冰淇淋",
 		description = ""
-			.. "#↑ {{Tears}} +100% 射速倍率 (不叠加)"
-			.. "#↑ {{Tears}} +0.2 额外射速修正(叠加)"
+			.. "#↑ {{Tears}} +100% 射速倍率"
 			.. "{{CR}}",
 		queueDesc = "泪流满面",
 	},

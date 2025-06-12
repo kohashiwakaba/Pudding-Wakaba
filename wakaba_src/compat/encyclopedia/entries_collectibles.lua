@@ -1009,12 +1009,6 @@ wakaba.encyclopediadesc.desc.collectibles = {
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "D-Cup Ice-Cream Locust deals 1.2x faster than normal locust, double of Isaac's Damage."},
 		},
-		{ -- Notes
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Binge Eater", clr = 3, halign = 0},
-			{str = "D-Cup Ice-cream can be appeared in the food section. Taking the ice-cream will give additional +0.75 Damage."},
-			{str = "- D-Cup Ice-cream will be appeared in the food section even it is not unlocked."},
-		},
 	},
 	MINT_CHOCO_ICECREAM = {
 		{ -- Effect

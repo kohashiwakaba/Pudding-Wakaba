@@ -458,24 +458,21 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Heart}} +1 Health"
 		.. "#↑ {{HealingRed}} Heals one Red Heart"
-		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#↑ {{Damage}} +80% Damage Multiplier"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#↑ {{Heart}} +1 Health"
 		.. "#↑ {{HealingRed}} Heals one Red Heart"
-		.. "#↑ {{Damage}} +0.3 Damage Up"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Damage}} +36% Damage Multiplier"
 		.. "{{CR}}",
-		binge = "↑ {{Damage}} +1.0 Damage#↓ {{Speed}} -0.04 Speed",
-		duplicate = "Damage mult does not stack",
+		duplicate = "Extra +36% Damage mult per stack",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "Mint-Chocolate Ice Cream",
 		description = ""
-		.. "#↑ {{Tears}} +100% Fire rate Multiplier (Does not stack)"
-		.. "#↑ {{Tears}} +0.2 additional Fire rate per stack"
+		.. "#↑ {{Tears}} +100% Fire rate Multiplier"
 		.. "{{CR}}",
+		duplicate = "Extra +16% Fire rate mult per stack",
 	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
 		itemName = "Mysterious game CD",

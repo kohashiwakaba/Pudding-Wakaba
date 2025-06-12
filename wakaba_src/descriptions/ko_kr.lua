@@ -477,25 +477,22 @@ wakaba.descriptions[desclang].collectibles = {
 		description = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{HealingRed}}빨간하트 +1"
-		.. "#↑ {{DamageSmall}}공격력 +0.3"
-		.. "#↑ {{DamageSmall}}공격력 배율 x1.8"
+		.. "#↑ {{DamageSmall}}공격력 배율 +80%p"
 		.. "{{CR}}",
 		lunatic = ""
 		.. "#↑ {{Heart}}최대 체력 +1"
 		.. "#↑ {{HealingRed}}빨간하트 +1"
-		.. "#↑ {{DamageSmall}}공격력 +0.3"
-		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 x1.36"
+		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{DamageSmall}}공격력 배율 +36%p"
 		.. "{{CR}}",
-		duplicate = "{{ColorRira}}공격력 배율은 중첩되지 않음",
+		duplicate = "{{ColorRira}}중첩 당 추가 공격력 배율 +36%p",
 		queueDesc = "공격력 증가 + 너가 생각한 그게 아니란다",
-		binge = "↑ {{DamageSmall}}공격력 +1.0#↓ {{SpeedSmall}}이동속도 -0.04",
 	},
 	[wakaba.Enums.Collectibles.MINT_CHOCO_ICECREAM] = {
 		itemName = "민트초코 아이스크림",
 		description = ""
-		.. "#↑ {{TearsSmall}}연사 +0.2"
-		.. "#↑ {{TearsSmall}}연사 배율 x2 (중첩 불가)"
+		.. "#↑ {{TearsSmall}}연사 배율 +100%p"
 		.. "{{CR}}",
+		duplicate = "{{ColorRira}}중첩 당 추가 연사 배율 +16%p",
 		queueDesc = "연사 대폭 증가",
 	},
 	[wakaba.Enums.Collectibles.MYSTERIOUS_GAME_CD] = {
