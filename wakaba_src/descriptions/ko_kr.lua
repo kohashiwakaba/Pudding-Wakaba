@@ -168,14 +168,14 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		itemName = "와카바의 축복",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{AngelChanceSmall}} 악마방이 등장하지 않습니다."
 		.. "#{{Quality0}}/{{Quality1}}등급 아이템이 등장하지 않습니다."
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{AngelChanceSmall}} 악마방이 등장하지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{Quality0}}등급 아이템이 등장하지 않습니다."
 		.. "#{{HolyMantleSmall}} 전체 체력이 1칸 이하일 때 방마다 피격을 1회 막아주는 보호막이 제공됩니다."
@@ -186,7 +186,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABAS_NEMESIS] = {
 		itemName = "와카바의 숙명",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#↑ 공격이 적의 방어를 무시합니다."
 		.. "#{{DamageSmall}} 아이템 획득 시 증발성 공격력 +3.6"
@@ -194,7 +194,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#모든 피격에 대한 패널티에 면역"
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{DevilChanceSmall}} 천사방이 등장하지 않습니다."
 		.. "#{{WakabaModLunatic}} 적에게 +15%p 추가 피해"
 		.. "#{{DamageSmall}} 아이템 획득 시 증발성 공격력 +3.6"
@@ -206,7 +206,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WAKABA_DUALITY] = {
 		itemName = "와카바 듀얼리티",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#↑ 공격이 적의 방어를 무시합니다."
 		.. "#↓ 아이템 획득 시 증발성 {{DamageSmall}}공격력 +3.6"
 		.. "#{{AngelDevilChance}}악마방/천사방이 모든 층에서 항상 등장합니다."
@@ -219,13 +219,13 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BOOK_OF_SHIORI] = {
 		itemName = "시오리의 책",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{ShioriValut}} 가능한 경우 모든 스테이지에서 책방이 등장합니다."
 		.. "#책 유형의 액티브 아이템 사용 시 {{ShioriPrimary}}1차 추가 효과와 {{ShioriSecondary}}2차 추가 효과가 발동됩니다."
 		.. "#{{ShioriSecondary}} 2차 추가 효과는 다른 책을 사용하기 전까지 계속 유지됩니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{ShioriValut}} 가능한 경우 모든 스테이지에서 책방이 등장합니다."
 		.. "#책 유형의 액티브 아이템 사용 시 {{ShioriPrimary}}1차 추가 효과와 {{ShioriSecondary}}2차 추가 효과가 발동됩니다."
 		.. "#{{WakabaModLunatic}} {{ShioriSecondary}}{{ColorOrange}}2차 추가 효과는 다른 책 사용 및 스테이지 진입 시 변경 혹은 초기화됩니다."
@@ -265,7 +265,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.LUNAR_STONE] = {
 		itemName = "월석",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#활성화 중일 때 {{DamageSmall}}x1.2/{{TearsSmall}}x1.2"
 		.. "#피격 시, 월석이 비활성화 및 게이지가 감소하며 방 클리어 시 월석 게이지를 회복합니다."
 		.. "#비활성화 중일 때 {{DamageSmall}}x0.85/{{TearsSmall}}x0.8, 주기적으로 독가스 생성"
@@ -274,7 +274,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#!!! 월석 게이지 소진 시 아이템이 사라집니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#활성화 중일 때 {{DamageSmall}}x1.2/{{TearsSmall}}x1.2"
 		.. "#피격 시, 월석이 비활성화 및 게이지가 감소하며 방 클리어 시 월석 게이지를 회복합니다."
 		.. "#비활성화 중일 때 {{DamageSmall}}x0.85/{{TearsSmall}}x0.8, 주기적으로 독가스 생성"
@@ -287,14 +287,14 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.ELIXIR_OF_LIFE] = {
 		itemName = "생명의 비약",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#↓ {{ColorOrange}}피격 무적 시간이 2프레임으로 감소됩니다."
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
 		.. "#!!! 헌혈류 4회 사용 및 소울하트 2회 피격 시마다 최대 체력 혹은 최대 소울하트 회복량 -1"
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{WakabaAntiCurseUnknown}} Unknown 저주에 걸리지 않습니다."
 		.. "#{{WakabaModLunatic}} {{ColorRed}}피격 무적 시간이 제거됩니다."
 		.. "#짧은 시간동안 피격되지 않았을 경우 캐릭터의 체력 상태에 따라 체력을 회복합니다."
@@ -334,13 +334,13 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RABBIT_RIBBON] = {
 		itemName = "토끼 리본",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{CurseCursedSmall}} 기존 저주가 다른 저주로 변경됩니다."
 		.. "#{{Battery}} 방 클리어 시 충전량을 하나 보존합니다. (최대 16)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{CurseCursedSmall}} 기존 저주가 다른 저주로 변경됩니다."
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}방 클리어 시 충전량을 하나 보존합니다. (최대 6)"
 		.. "#액티브 아이템이 완충되지 않았을 경우 보존한 충전량을 자동으로 소모하여 해당 액티브 아이템을 충전시킵니다."
@@ -359,7 +359,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WINTER_ALBIREO] = {
 		itemName = "겨울의 알비레오",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{RicherPlanetarium}} 가능한 경우, 스테이지 진입 시 리셰의 전용 천체방이 등장합니다."
 		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
 		.. "#{{ArrowGrayRight}} 현재 스테이지에 따른 배열의 아이템"
@@ -368,7 +368,7 @@ wakaba.descriptions[desclang].collectibles = {
 		.. "#{{ArrowGrayRight}} {{CrystalRestock}} 리셰의 재입고 기계는 폭발 및 5{{Coin}}을 소모하여 사용할 수 있으나 일정 횟수 사용 시 비활성화 됩니다."
 		.. "{{CR}}",
 		lunatic = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{WakabaModLunatic}} {{ColorOrange}}{{RicherPlanetarium}}리셰의 전용 천체방이 보물방을 대체하여 등장합니다."
 		.. "#{{RicherPlanetarium}} 전용 천체방에 진입 시 아래 중 하나 등장:"
 		.. "#{{ArrowGrayRight}} 현재 스테이지에 따른 배열의 아이템"
@@ -382,7 +382,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.WATER_FLAME] = {
 		itemName = "워터 플레임",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 면역 + 대체 루트 아이템 공개"
 		.. "#사용 시 가장 가까이에 있는 패시브 아이템을 아이템 불꽃 2개로 복제합니다."
 		.. "#{{Collectible712}}Lemegeton으로 획득할 수 있는 아이템만 적용할 수 있습니다."
 		.. "{{CR}}",
@@ -401,7 +401,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.CHIMAKI] = {
 		itemName = "치마키",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#방 안을 돌아다니며 이하를 포함한 여러 방면으로 캐릭터를 도와줍니다:"
 		.. "#{{TearsizeSmall}} 눈물/불꽃 발사"
 		.. "#{{Collectible374}} 적을 향해 점프"
@@ -416,7 +416,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.RABBEY_WARD] = {
 		itemName = "토끼 와드",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} 소지 중일 때 Blind 면역 + 대체 루트 아이템 공개"
 		.. "#사용 시 아래 효과를 지닌 토끼 와드를 설치:"
 		.. "#{{HalfSoulHeart}} 설치 시 소울하트 +0.5"
 		.. "#{{Collectible91}} 설치한 방에서 2칸 이내에 있는 스테이지 구조 및 특수방을 맵에 표시 및 영향권으로 만듭니다."
@@ -428,7 +428,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		itemName = "아주르 리르",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#{{AquaTrinket}} 모든 장신구가 획득 시 즉시 흡수되는 아쿠아 장신구로 바뀝니다."
 		.. "#{{Blank}} (일부 장신구는 제외)"
 		--.. "#방 클리어 보상이 더 일찍 등장합니다."
@@ -438,7 +438,7 @@ wakaba.descriptions[desclang].collectibles = {
 	[wakaba.Enums.Collectibles.BROKEN_TOOLBOX] = {
 		itemName = "망가진 도시락",
 		description = ""
-		.. "#{{WakabaAntiCurseBlind}} Blind 저주에 걸리지 않습니다."
+		.. "#{{WakabaAntiCurseBlind}} Blind 면역 + 대체 루트 아이템 공개"
 		.. "#클리어하지 않은 방에서 1초마다 픽업을 드랍합니다."
 		.. "#방 안에 픽업 및 아이템이 15개 이상 있으면 그 방의 픽업 및 아이템이 폭발합니다."
 		.. "{{CR}}",
