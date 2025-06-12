@@ -3074,27 +3074,27 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.EATHEART] = {
 		{
 			desc = "{{Collectible116}} Preserve 8% of charges on use",
-			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) ~= nil end,
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_9_VOLT) ~= false end,
 			modifierText = "9 Bolt",
 		},
 		{
 			desc = "{{Collectible63}} Preserve 25% of charges on use",
-			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_BATTERY) ~= nil end,
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_BATTERY) ~= false end,
 			modifierText = "Battery",
 		},
 		{
 			desc = "{{Collectible156}} +50% charge rate on player damage",
-			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_HABIT) ~= nil end,
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_HABIT) ~= false end,
 			modifierText = "Habit",
 		},
 		{
 			desc = "{{Collectible520}} +20% charge rate on enemy damage",
-			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_JUMPER_CABLES) ~= nil end,
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_JUMPER_CABLES) ~= false end,
 			modifierText = "Jumper Cables",
 		},
 		{
 			desc = "{{Collectible647}} +100% charge rate on enemy damage",
-			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT) ~= nil end,
+			func = function() return wakaba:AnyPlayerHasCollectible(CollectibleType.COLLECTIBLE_4_5_VOLT) ~= false end,
 			modifierText = "4.5 Bolt",
 		},
 	},
