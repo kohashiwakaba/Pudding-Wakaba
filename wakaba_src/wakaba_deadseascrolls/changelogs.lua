@@ -1,4 +1,5 @@
 
+include("wakaba_src.changelogs.richer2")
 include("wakaba_src.changelogs.anna")
 include("wakaba_src.changelogs.rira_b")
 include("wakaba_src.changelogs.rira")
