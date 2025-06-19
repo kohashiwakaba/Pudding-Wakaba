@@ -48,8 +48,13 @@ function wakaba:UseItem_LilRira(activeItem, rng, player, flags, slot, vardata)
 	if flags & UseFlag.USE_OWNED == 0 or slot < 0 then return end
 	wakaba:setPlayerDataEntry(player, "LilRiraLastItem", activeItem)
 	wakaba:setPlayerDataEntry(player, "LilRiraLastSlot", slot)
-	local bypass = wakaba.LilRiraChargeType[activeItem] and wakaba.LilRiraChargeType[activeItem].CanBypass
-	wakaba:setPlayerDataEntry(player, "LilRiraBypassCharge", bypass)
+	local rd = wakaba.LilRiraChargeType[activeItem]
+	local bypass = rd and (rd.CanBypass or rd.PostFunc ~= nil)
+	local shouldBypass
+	if rd.PreFunc and type(rd.PreFunc) == "function" then
+		shouldBypass = rd.PreFunc(player)
+	end
+	wakaba:setPlayerDataEntry(player, "LilRiraBypassCharge", bypass or shouldBypass)
 end
 wakaba:AddPriorityCallback(ModCallbacks.MC_USE_ITEM, CallbackPriority.IMPORTANT, wakaba.UseItem_LilRira)
 
@@ -62,12 +67,19 @@ function wakaba:tryAddLilRiraDamageByItem(familiar, player, activeItem, charges)
 		local config = Isaac.GetItemConfig():GetCollectible(activeItem)
 		local maxCharges = charges or config.MaxCharges
 		local chargeType = config.ChargeType
+		local postEvaluate
+		local postBypass = false
 
 		if wakaba.LilRiraChargeType[activeItem] then
 			local override = wakaba.LilRiraChargeType[activeItem]
 			maxCharges = override.MaxCharges or maxCharges
 			chargeType = override.ChargeType or chargeType
+			postEvaluate = override.PostFunc
 		end
+		if postEvaluate and type(postEvaluate) == "function" then
+			postBypass = postEvaluate(player)
+		end
+		if postEvaluate ~= nil and not postBypass then return end
 		if maxCharges == 0 then return end
 		--local charges = player:GetActiveCharge(activeSlot) + player:GetBatteryCharge(activeSlot)
 		if chargeType == ItemConfig.CHARGE_TIMED then

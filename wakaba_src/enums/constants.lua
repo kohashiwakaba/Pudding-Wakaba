@@ -1474,8 +1474,19 @@ wakaba.LilRiraChargeType = {
 	[CollectibleType.COLLECTIBLE_RAZOR_BLADE] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
 	[CollectibleType.COLLECTIBLE_GUPPYS_PAW] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 3, CanBypass = true},
 	[CollectibleType.COLLECTIBLE_IV_BAG] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
-	[CollectibleType.COLLECTIBLE_REMOTE_DETONATOR] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
-	[CollectibleType.COLLECTIBLE_PORTABLE_SLOT] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
+	[CollectibleType.COLLECTIBLE_REMOTE_DETONATOR] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, PreFunc = function (player)
+		local bombs = Isaac.FindByType(EntityType.ENTITY_BOMB)
+		for _, bomb in ipairs(bombs) do
+			if GetPtrHash(bomb.SpawnerEntity) == GetPtrHash(player) then
+				return true
+			end
+		end
+	end},
+	[CollectibleType.COLLECTIBLE_PORTABLE_SLOT] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, PreFunc = function (player)
+		if player:GetNumCoins() > 0 then return true end
+		if SFXManager():IsPlaying(SoundEffect.SOUND_THUMBS_DOWN) then return true end
+		if player:IsHoldingItem() then return true end
+	end},
 	[CollectibleType.COLLECTIBLE_BLOOD_RIGHTS] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
 	[CollectibleType.COLLECTIBLE_MAGIC_FINGERS] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 1, CanBypass = true},
 	[CollectibleType.COLLECTIBLE_POTATO_PEELER] = {ChargeType = ItemConfig.CHARGE_NORMAL, MaxCharges = 2, CanBypass = true},
