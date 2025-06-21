@@ -51,7 +51,7 @@ function wakaba:UseItem_LilRira(activeItem, rng, player, flags, slot, vardata)
 	local rd = wakaba.LilRiraChargeType[activeItem]
 	local bypass = rd and (rd.CanBypass or rd.PostFunc ~= nil)
 	local shouldBypass
-	if rd.PreFunc and type(rd.PreFunc) == "function" then
+	if rd and (rd.PreFunc and type(rd.PreFunc) == "function") then
 		shouldBypass = rd.PreFunc(player)
 	end
 	wakaba:setPlayerDataEntry(player, "LilRiraBypassCharge", bypass or shouldBypass)
