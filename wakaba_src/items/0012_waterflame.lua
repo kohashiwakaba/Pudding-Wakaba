@@ -148,7 +148,7 @@ if EID then
 	end
 	local function WFCallback(descObj)
 		local player = EID.holdTabPlayer
-		local wfstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].waterflame) or wakaba.descriptions["en_us"].waterflame
+		local wfstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].waterflame) or wakaba.descriptions["en"].waterflame
 		local eidstring = ""
 
 		local playerIndex = isc:getPlayerIndex(player)

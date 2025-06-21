@@ -319,7 +319,7 @@ if EID then
 		local room = wakaba.G:GetRoom()
 		local roomType = room:GetType()
 		local appendDesc = ""
-		local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en_us"].richeruniform
+		local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en"].richeruniform
 
 		local uniformMode = wakaba:getCurrentRicherUniformType()
 
@@ -348,8 +348,8 @@ do
 			local player = Isaac.GetPlayer(i)
 			local playerType = player:GetPlayerType()
 			if player:HasCollectible(wakaba.Enums.Collectibles.RICHERS_UNIFORM, true, true) then
-				local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en_us"].richeruniform
-				local fallbackTable = wakaba.descriptions["en_us"].richeruniform
+				local descTable = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].richeruniform) or wakaba.descriptions["en"].richeruniform
+				local fallbackTable = wakaba.descriptions["en"].richeruniform
 
 				for _, uniformMode in pairs(wakaba.Enums.RicherUniformMode) do
 					local appendDesc = ""

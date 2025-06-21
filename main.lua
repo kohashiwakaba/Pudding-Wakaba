@@ -1203,7 +1203,7 @@ do -- Extra functions loader
 	include('wakaba_src.functions.item_pool_wakaba')
 	include('wakaba_src.wardrobeplus')
 	include('wakaba_src.stackablemantle')
-	include('wakaba_src.deadwispnotif')
+	--include('wakaba_src.deadwispnotif')
 	--include('wakaba_src.inventorydesc')
 	include('wakaba_src.minimapi')
 	include('wakaba_src.challenges_dest')

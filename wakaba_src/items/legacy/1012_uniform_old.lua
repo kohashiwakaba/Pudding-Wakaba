@@ -142,7 +142,7 @@ function wakaba:render32()
 				if Input.IsActionPressed(ButtonAction.ACTION_MAP, player.ControllerIndex) then
 					displayuniformslot = true
 					local demoDescObj = EID:getDescriptionObj(5, 100, wakaba.Enums.Collectibles.UNIFORM)
-					local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
+					local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en"].uniform
 					--demoDescObj.ObjVariant = 350
 					local prefix = unistr.changeslot .. " : {{ButtonRT}}"
 					eidstring = "#{{CustomTransformation}} {{ColorGray}}" .. player:GetName() .. "(Player " .. player.ControllerIndex+1 .. ")#" .. prefix .. eidstring
@@ -181,7 +181,7 @@ if EID then
 
 	local function UniformCallback(descObj)
 		local player = EID.holdTabPlayer
-		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
+		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en"].uniform
 		local eidstring = ""
 		local preservedslotstate = false
 		local itemConfig = Isaac.GetItemConfig()
@@ -267,7 +267,7 @@ if EID then
 
 	local function UniformCallback_CardPill(descObj)
 		local player = EID.player
-		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
+		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en"].uniform
 		local eidstring = ""
 		for _, player in ipairs(EID.coopAllPlayers) do
 			if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) then

@@ -372,7 +372,7 @@ function wakaba:Render_BookOfConquest()
  ]]
 	if wakaba.conquestmode then
 		local isGolden = wakaba:IsGoldenItem(wakaba.Enums.Collectibles.BOOK_OF_CONQUEST)
-		local conqstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].bookofconquest) or wakaba.descriptions["en_us"].bookofconquest
+		local conqstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].bookofconquest) or wakaba.descriptions["en"].bookofconquest
 		local eidstring = "#"..conqstr.selectstr..": {{ButtonX}}/{{ButtonB}}"
 		eidstring = eidstring .."#"..conqstr.selectenemy..": {{ColorBookofConquest}}{{{SelectedEnemy}}}"
 		eidstring = eidstring .."#!!! "..conqstr.selectreq.." :"

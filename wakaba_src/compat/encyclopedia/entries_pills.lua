@@ -4,7 +4,7 @@ wakaba.encyclopediadesc.desc.pills = {
 
 }
 
-for k, v in pairs(wakaba.descriptions["en_us"].pills) do
+for k, v in pairs(wakaba.descriptions["en"].pills) do
 	Encyclopedia.AddPill({
 		Class = class,
 		ModName = class,

@@ -1,4 +1,4 @@
-local desclang = "en_us"
+local desclang = "en"
 local u = wakaba.Enums.RicherUniformMode
 
 function wakaba:EIDCond_PlayerHasBirthright(playerType)

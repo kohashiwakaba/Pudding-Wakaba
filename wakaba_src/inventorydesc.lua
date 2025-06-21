@@ -5,7 +5,7 @@ wakaba.INVDESC_TYPE_CURSE = -998
 wakaba.INVDESC_VARIANT = -1
 
 wakaba._InventoryDesc = RegisterMod("Inventory Descriptions", 1)
---[[ 
+--[[
 
 	Inventory Descriptions
 	List of datas and functions
@@ -149,7 +149,7 @@ idesc.state = {
 		pills = {},
 	},
 	listprops = {
-		screenx = EID:getScreenSize().X, 
+		screenx = EID:getScreenSize().X,
 		screeny = EID:getScreenSize().Y,
 		max = 1,
 		current = 1,
@@ -359,7 +359,7 @@ function idesc:SetCurrentItemLists()
 		for i = 0, wakaba.G:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local playerType = player:GetPlayerType()
-			if not wakaba:has_value(collectibles, itemId) 
+			if not wakaba:has_value(collectibles, itemId)
 			and not wakaba:has_value(impitems, itemId)
 			and not wakaba:has_value(wakaba._InventoryDesc.collectibleBlacklist, itemId)
 			and player:HasCollectible(itemId, true) then
@@ -390,8 +390,8 @@ function idesc:SetCurrentItemLists()
 	end
 	local wisps = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, -1, false, false)
 	for i, e in ipairs(wisps) do
-		if not wakaba:has_value(collectibles, e.SubType) 
-		and not wakaba:has_value(lemegetonwisps, e.SubType) 
+		if not wakaba:has_value(collectibles, e.SubType)
+		and not wakaba:has_value(lemegetonwisps, e.SubType)
 		and not wakaba:has_value(wakaba._InventoryDesc.collectibleBlacklist, e.SubType)
 		then
 			table.insert(lemegetonwisps, e.SubType)
@@ -451,9 +451,9 @@ end
 
 local function onUpdate(player)
 	if wakaba.state.options.listkey == -1 then return end
-	if not inputready then 
+	if not inputready then
 		inputready = true
-		return 
+		return
 	end
 	if Input.IsButtonTriggered(wakaba.state.options.listkey, 0) then
 		inputready = false
@@ -608,11 +608,11 @@ local function onRender()
 				currentcursor = i
 				desc = EID:getDescriptionObj(currentlist[i].type, currentlist[i].variant, currentlist[i].subtype, nil, idesc.state.allowmodifiers or (currentlist[i].type == 5 and currentlist[i].variant == 100 and currentlist[i].subtype == CollectibleType.COLLECTIBLE_BIRTHRIGHT))
 				if currentlist[i].type == wakaba.INVDESC_TYPE_PLAYER then
-					lang = EID:getLanguage() or "en_us"
-					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en_us"].playernotes
+					lang = EID:getLanguage() or "en"
+					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en"].playernotes
 					if entrytables[currentlist[i].subtype] then
 						if entrytables[currentlist[i].subtype]._fromCharDesc then
-							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en_us"].characters
+							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en"].characters
 							local playerID = currentlist[i].subtype
 							local entry = entrytables[currentlist[i].subtype]
 							local icon = (entry.icon and "{{"..entry.icon.."}}") or (EID:getIcon("Player"..playerID) ~= EID.InlineIcons["ERROR"] and "{{Player"..playerID.."}}" or "{{CustomTransformation}}")
@@ -630,8 +630,8 @@ local function onRender()
 						desc.Name = entry.name
 					end
 				elseif currentlist[i].type == wakaba.INVDESC_TYPE_CURSE then
-					lang = EID:getLanguage() or "en_us"
-					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].curses or wakaba.descriptions["en_us"].curses
+					lang = EID:getLanguage() or "en"
+					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].curses or wakaba.descriptions["en"].curses
 					if not entrytables[currentlist[i].subtype] then
 						desc = EID:getDescriptionObj(currentlist[i].type, currentlist[i].variant, -1)
 					end
@@ -645,11 +645,11 @@ local function onRender()
 				local obj = EID:getDescriptionObj(v.type, v.variant, v.subtype, nil, false)
 				local extIcon = nil
 				if v.type == wakaba.INVDESC_TYPE_PLAYER then
-					lang = EID:getLanguage() or "en_us"
-					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en_us"].playernotes
+					lang = EID:getLanguage() or "en"
+					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].playernotes or wakaba.descriptions["en"].playernotes
 					if entrytables[currentlist[i].subtype] then
 						if entry._fromCharDesc then
-							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en_us"].characters
+							entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].characters or wakaba.descriptions["en"].characters
 							local playerID = currentlist[i].subtype
 							local entry = entrytables[currentlist[i].subtype]
 							obj.Name = entry.playerName
@@ -666,8 +666,8 @@ local function onRender()
 						extIcon = "{{CustomTransformation}}"
 					end
 				elseif v.type == wakaba.INVDESC_TYPE_CURSE then
-					lang = EID:getLanguage() or "en_us"
-					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].curses or wakaba.descriptions["en_us"].curses
+					lang = EID:getLanguage() or "en"
+					local entrytables = wakaba.descriptions[lang] and wakaba.descriptions[lang].curses or wakaba.descriptions["en"].curses
 					if not entrytables[currentlist[i].subtype] then
 						obj = EID:getDescriptionObj(v.type, v.variant, -1)
 					end
@@ -709,24 +709,24 @@ local function onRender()
 				end
 				local curName = obj.Name
 				curName = v.lemegeton and "{{Collectible"..CollectibleType.COLLECTIBLE_LEMEGETON.."}} "..curName or curName
-				
+
 				if EID.Config["TranslateItemName"] ~= 2 then
 					local prevLanguage = EID.Config["Language"]
 					local curLanguage = EID:getLanguage()
-					if curLanguage ~= "en_us" then
-						EID.Config["Language"] = "en_us"
+					if curLanguage ~= "en" then
+						EID.Config["Language"] = "en"
 						local convertedSub
 						if v.variant == 350 then convertedSub = v.subtype % 32768 end
 						local englishName = desc.PermanentTextEnglish or EID:getObjectName(v.type, v.variant, convertedSub or v.subtype)
 						if v.type == wakaba.INVDESC_TYPE_PLAYER then
-							if wakaba.descriptions["en_us"].playernotes[v.subtype] then
-								englishName = wakaba.descriptions["en_us"].playernotes[v.subtype].name or wakaba.descriptions["en_us"].characters[v.subtype].playerName
+							if wakaba.descriptions["en"].playernotes[v.subtype] then
+								englishName = wakaba.descriptions["en"].playernotes[v.subtype].name or wakaba.descriptions["en"].characters[v.subtype].playerName
 							else
 								englishName = ""
 							end
 						elseif v.type == wakaba.INVDESC_TYPE_CURSE then
-							if wakaba.descriptions["en_us"].curses[v.subtype] then
-								englishName = wakaba.descriptions["en_us"].curses[v.subtype].name
+							if wakaba.descriptions["en"].curses[v.subtype] then
+								englishName = wakaba.descriptions["en"].curses[v.subtype].name
 							else
 								englishName = ""
 							end
@@ -760,10 +760,10 @@ idesc:AddCallback(ModCallbacks.MC_POST_RENDER, onRender)
 
 function idesc.InputAction(_, entity, inputHook, buttonAction)
 	if wakaba.state.options.listkey == -1 then return end
-	
+
 	if idesc.state.showList and idesc.state.savedtimer then
 		wakaba.G.TimeCounter = idesc.state.savedtimer
-	elseif idesc.state.savedtimer then 
+	elseif idesc.state.savedtimer then
 		idesc.state.savedtimer = nil
 	end
 

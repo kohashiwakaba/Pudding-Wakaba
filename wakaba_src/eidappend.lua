@@ -96,13 +96,13 @@ if EID then
 		}
 
 		function wakaba:getWakabaDesc(entries, id)
-			lang = EID:getLanguage() or "en_us"
-			local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
+			lang = EID:getLanguage() or "en"
+			local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en"]
 			if id then
 				if entrytables[entries] then
 					return entrytables[entries][id]
 				else
-					entrytables = wakaba.descriptions["en_us"]
+					entrytables = wakaba.descriptions["en"]
 					if entrytables[entries] then
 						return entrytables[entries][id]
 					end
@@ -189,7 +189,7 @@ if EID then
 		end
 
 		local function LastPoolCallback(descObj)
-			local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en_us"].doubledreams
+			local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en"].doubledreams
 			local current = wakaba.G:GetItemPool():GetLastPool()
 			local currentPoolData = wakaba.VanillaPoolDatas[current]
 			descObj.Description = "{{ColorSilver}}"..ddstr.lastpool.. ": " ..(currentPoolData.Icon or "{{SuperSecretRoom}}") .. "" .. (ddstr[(currentPoolData.StringID or "Default")] or "???").."{{CR}}#"..descObj.Description
@@ -262,7 +262,7 @@ if EID then
 			local gmName = modNameList[(Isaac.GetTime() % #modNameList)+1]
 			local gmkName = modNameListKorean[(Isaac.GetTime() % #modNameListKorean)+1]
 
-			local nameToUse = EID:getLanguage() == "ko_kr" and gmkName or gmName
+			local nameToUse = EID:getLanguage() == "ko" and gmkName or gmName
 			if wakaba.Flags.disableRandomEIDModNames then
 				nameToUse = "Pudding & Wakaba"
 			end
@@ -279,12 +279,12 @@ if EID then
 			EID:addEntity(wakaba.INVDESC_TYPE_CURSE, -1, -1, "Curses")
 			EID:setModIndicatorName(nameToUse .. currentVerName)
 			EID:setModIndicatorIcon(REPENTOGON and "WakabaModRgon" or "WakabaMod", true)
-			for cardid, carddata in pairs(wakaba.descriptions["en_us"].cards) do
+			for cardid, carddata in pairs(wakaba.descriptions["en"].cards) do
 				if carddata.mimiccharge then
 					EID:addCardMetadata(cardid, carddata.mimiccharge, carddata.isrune)
 				end
 			end
-			for pillid, pilldata in pairs(wakaba.descriptions["en_us"].pills) do
+			for pillid, pilldata in pairs(wakaba.descriptions["en"].pills) do
 				EID:addPillMetadata(pillid, pilldata.mimiccharge, pilldata.class)
 			end
 			for card, frame in pairs(wakaba.CardSpriteFrames) do
@@ -356,7 +356,7 @@ if EID then
 			--EID.MarkupSizeMap["{{Beast}}"] = "{{BeastSmall}}"
 
 			--[[ if Sewn_API then -- no support for multilang sadly
-				for familiar, famdesc in pairs(wakaba.descriptions["en_us"].sewnupgrade) do
+				for familiar, famdesc in pairs(wakaba.descriptions["en"].sewnupgrade) do
 					Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc.ultra)
 				end
 			end ]]
@@ -370,14 +370,14 @@ if EID then
 					end
 					local desc = wakaba:IsLunatic() and itemdesc.lunatic or itemdesc.description
 					EID:addCollectible(itemID, desc, itemdesc.itemName, lang)
-					if lang == "en_us" and itemdesc.transformations then
+					if lang == "en" and itemdesc.transformations then
 						EID:assignTransformation("collectible", itemID, itemdesc.transformations)
 					end
-					if lang == "en_us" and itemdesc.LuckFormula then
+					if lang == "en" and itemdesc.LuckFormula then
 						EID.LuckFormulas["5.100."..itemID] = itemdesc.LuckFormula
 					end
 					if itemdesc.duplicate ~= nil then
-						if lang == "en_us" and not _wakaba["__descInsertedCore"] then
+						if lang == "en" and not _wakaba["__descInsertedCore"] then
 							wakaba.Log("adding wakaba dip cond", lang, itemID)
 							if type(itemdesc.duplicate) == "boolean" and itemdesc.duplicate == false then
 								EID:AddSelfConditional({itemID}, "No Effect (Copies)")
@@ -413,10 +413,10 @@ if EID then
 					end
 					local desc = wakaba:IsLunatic() and itemdesc.lunatic or itemdesc.description
 					EID:addTrinket(itemID, desc, itemdesc.itemName, lang)
-					if lang == "en_us" and itemdesc.transformations then
+					if lang == "en" and itemdesc.transformations then
 						EID:assignTransformation("trinket", itemID, itemdesc.transformations)
 					end
-					if lang == "en_us" and itemdesc.LuckFormula then
+					if lang == "en" and itemdesc.LuckFormula then
 						EID.LuckFormulas["5.350."..itemID] = itemdesc.LuckFormula
 					end
 				end
@@ -463,7 +463,7 @@ if EID then
 						EID:addHorsePill(pillid, desc, pilldesc.itemName, lang)
 					end
 				end
-				if lang == "en_us" then
+				if lang == "en" then
 					for itemid, locustTable in pairs(wakabaDescTables.locusts) do
 						if not EID.XMLLocusts[itemid] then
 							EID.XMLLocusts[itemid] = {
@@ -490,7 +490,7 @@ if EID then
 					if conDescTables.collectibles then
 						for itemID, wcd in pairs(conDescTables.collectibles) do
 							local conditionalEntry = "5.100."..tostring(itemID)
-							if lang == "en_us" then
+							if lang == "en" then
 								EID.DescriptionConditions[conditionalEntry] = EID.DescriptionConditions[conditionalEntry] or {}
 							end
 							if #wcd == 0 then wcd = {wcd} end
@@ -499,7 +499,7 @@ if EID then
 								if itemdesc.modifierText then
 									subEntry = conditionalEntry .. " (" .. itemdesc.modifierText .. ")"
 								end
-								if lang == "en_us" then
+								if lang == "en" then
 									table.insert(EID.DescriptionConditions[conditionalEntry], {
 										func = itemdesc.func,
 										vars = itemdesc.vars,
@@ -519,7 +519,7 @@ if EID then
 					if conDescTables.trinkets then
 						for itemID, wcd in pairs(conDescTables.trinkets) do
 							local conditionalEntry = "5.350."..tostring(itemID)
-							if lang == "en_us" then
+							if lang == "en" then
 								EID.DescriptionConditions[conditionalEntry] = EID.DescriptionConditions[conditionalEntry] or {}
 							end
 							if #wcd == 0 then wcd = {wcd} end
@@ -528,7 +528,7 @@ if EID then
 								if itemdesc.modifierText then
 									subEntry = conditionalEntry .. " (" .. itemdesc.modifierText .. ")"
 								end
-								if lang == "en_us" then
+								if lang == "en" then
 									table.insert(EID.DescriptionConditions[conditionalEntry], {
 										func = itemdesc.func,
 										vars = itemdesc.vars,
@@ -548,7 +548,7 @@ if EID then
 					if conDescTables.cards then
 						for itemID, itemdesc in pairs(conDescTables.cards) do
 							local conditionalEntry = "5.300."..tostring(itemID)
-							if lang == "en_us" then
+							if lang == "en" then
 								EID.DescriptionConditions[conditionalEntry] = {
 									func = itemdesc.func,
 									vars = itemdesc.vars,
@@ -562,7 +562,7 @@ if EID then
 					end
 					if conDescTables.entities then
 						for conditionalEntry, wcd in pairs(conDescTables.entities) do
-							if lang == "en_us" then
+							if lang == "en" then
 								EID.DescriptionConditions[conditionalEntry] = {}
 							end
 							if #wcd == 0 then wcd = {wcd} end
@@ -571,7 +571,7 @@ if EID then
 								if itemdesc.modifierText then
 									subEntry = conditionalEntry .. " (" .. itemdesc.modifierText .. ")"
 								end
-								if lang == "en_us" then
+								if lang == "en" then
 									table.insert(EID.DescriptionConditions[conditionalEntry], {
 										func = itemdesc.func,
 										vars = itemdesc.vars,
@@ -636,13 +636,13 @@ if EID then
 						Sewn_API:AddFamiliarDescription(familiar, famdesc.super, famdesc.ultra, nil, famdesc.name, lang)
 					end
 				end
-				if lang == "en_us" then
+				if lang == "en" then
 					_wakaba["__descInsertedCore"] = true
 				end
 			end
 			if lunaticOnly then return end
 
-			for curseid, cursedesc in pairs(wakaba.descriptions["en_us"].curses) do
+			for curseid, cursedesc in pairs(wakaba.descriptions["en"].curses) do
 				EID:AddIconToObject(wakaba.INVDESC_TYPE_CURSE, wakaba.INVDESC_VARIANT, curseid, cursedesc.icon)
 			end
 
@@ -765,12 +765,12 @@ if EID then
 end
 
 wakaba.LanguageMap = {
-	["en"] = "en_us",
-	["jp"] = "ja_jp",
+	["en"] = "en",
+	["jp"] = "ja",
 	["es"] = "spa",
 	["de"] = "de",
 	["ru"] = "ru",
-	["kr"] = "ko_kr",
+	["kr"] = "ko",
 	["zh"] = "zh_cn",
 }
 wakaba.Blacklists.NameLocalization = {

@@ -202,7 +202,7 @@ end
 function wakaba:EIDItemReminder_HandleCharacters(player)
 	if not EID:ItemReminderCanAddMoreToView() then return end
 	local t = player:GetPlayerType()
-	local entry = wakaba.descriptions["en_us"].playernotes[t] or wakaba.descriptions["en_us"].playernotes[-666]
+	local entry = wakaba.descriptions["en"].playernotes[t] or wakaba.descriptions["en"].playernotes[-666]
 	local icon = EID:getIcon("Player"..t) ~= EID.InlineIcons["ERROR"] and "{{Player"..t.."}}" or "{{CustomTransformation}}"
 	EID:ItemReminderAddDescription(player, -997, -1, t, icon)
 end
@@ -239,7 +239,7 @@ function wakaba:EIDItemReminder_HandleCurses(player)
 	for curseId = 0, getMaxCurseId(currCurse) do
 		if 1 << curseId & currCurse > 0 and EID:ItemReminderCanAddMoreToView() then
 			local c = 1 << curseId
-			local entry = wakaba.descriptions["en_us"].curses[c]
+			local entry = wakaba.descriptions["en"].curses[c]
 			local icon = entry and entry.icon and "{{"..entry.icon.."}}"
 			EID:ItemReminderAddDescription(player, wakaba.INVDESC_TYPE_CURSE, wakaba.INVDESC_VARIANT, c, icon)
 		end
@@ -295,7 +295,7 @@ EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.BOOK_OF_
 EID.ItemReminderDescriptionModifier["5.100."..wakaba.Enums.Collectibles.UNIFORM] = {
 	modifierFunction = function(descObj, player, inOverview)
 		if EID:IsCategorySelected("w_WakabaUniform") then
-			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
+			local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en"].uniform
 			local eidstring = ""
 			local preservedslotstate
 			local itemConfig = Isaac.GetItemConfig()

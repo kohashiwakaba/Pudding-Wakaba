@@ -527,7 +527,7 @@ if EID then
 			--and descObj.ObjSubType > PillColor.PILL_GIANT_FLAG
 	end, function (descObj)
 		local adjustedID = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
-		local engDesc = wakaba.descriptions["en_us"]
+		local engDesc = wakaba.descriptions["en"]
 		local desc = wakaba.descriptions[EID:getLanguage()] or engDesc
 		local pillEntries = desc.pills or engDesc.pills
 		local pillDesc = pillEntries[adjustedID-1] or engDesc.pills[adjustedID-1]

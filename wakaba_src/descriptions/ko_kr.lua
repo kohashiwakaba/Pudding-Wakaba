@@ -1,4 +1,4 @@
-local desclang = "ko_kr"
+local desclang = "ko"
 local u = wakaba.Enums.RicherUniformMode
 
 wakaba.descriptions[desclang] = {}

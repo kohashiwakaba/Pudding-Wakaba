@@ -21,7 +21,7 @@ end)
 function wakaba:ConvertItemNameLocalization(forceLang)
 	local languageMap = wakaba.LanguageMap
 	local descTable = wakaba.descriptions[languageMap[forceLang] or languageMap[Options.Language]]
-	local descTableEng = wakaba.descriptions["en_us"]
+	local descTableEng = wakaba.descriptions["en"]
 	if not descTable then return end
 
 	-- Birthright
