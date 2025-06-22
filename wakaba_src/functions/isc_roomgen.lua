@@ -236,14 +236,19 @@ if REPENTOGON then
       local neighbors = level:GetNeighboringRooms(gridIndex, roomConfig.Shape)
 
       local connectsToStartingRoom = false
+			local isValidPosition = false
 
       for doorSlot, neighborDesc in pairs(neighbors) do
         if neighborDesc.GridIndex == level:GetStartingRoomIndex() then
           connectsToStartingRoom = true
         end
+
+				if neighborDesc.Data and neighborDesc.Data.Type == RoomType.ROOM_DEFAULT then
+					isValidPosition = true
+				end
       end
 
-      if allowConnectStartingRoom or not connectsToStartingRoom then
+      if isValidPosition and allowConnectStartingRoom or not connectsToStartingRoom then
         -- Try to place the room.
         local room = level:TryPlaceRoom(roomConfig, gridIndex, dimension, seed, allowMultipleDoors, allowSpecialNeighbors)
         if room then
