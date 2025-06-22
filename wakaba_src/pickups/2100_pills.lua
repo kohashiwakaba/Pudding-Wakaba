@@ -261,16 +261,11 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 				end
 			else
 				wakaba.G:StartRoomTransition(-2,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
-				if wakaba.G:GetLevel():GetAbsoluteStage() == LevelStage.STAGE3_2 then
-					if not player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID, true) then
-						player:AddCollectible(CollectibleType.COLLECTIBLE_POLAROID)
-					end
-					if not player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE, true) then
-						player:AddCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
-					end
+				if not player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID, true) then
+					player:AddCollectible(CollectibleType.COLLECTIBLE_POLAROID)
 				end
-				if REPENTANCE_PLUS then
-					wakaba.G:SetStateFlag(52, true) -- 52 : Mother Open
+				if not player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE, true) then
+					player:AddCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
 				end
 				if isHorse then
 					player:AddBrokenHearts(-1)
