@@ -20,21 +20,24 @@ function wakaba:CoinInit_AuroraGem(pickup)
 
   if not isc:anyPlayerHasTrinket(wakaba.Enums.Trinkets.AURORA_GEM) then return end
   local players = isc:getPlayersWithTrinket(wakaba.Enums.Trinkets.AURORA_GEM) ---@type EntityPlayer[]
+  local totalLuck = 0
+  local count = 0
   for i, player in ipairs(players) do
-	  local basicChance = (wakaba.Enums.Chances.AURORA_DEFAULT / 100)
-	  local parLuck = 69
-	  local maxChance = (wakaba.Enums.Chances.AURORA_MAX / 100) - basicChance
-    local rng = player:GetTrinketRNG(wakaba.Enums.Trinkets.AURORA_GEM)
-    local count = player:GetTrinketMultiplier(wakaba.Enums.Trinkets.AURORA_GEM)
+    totalLuck = totalLuck + player.Luck
+    count = count + player:GetTrinketMultiplier(wakaba.Enums.Trinkets.AURORA_GEM)
+  end
 
-    local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(player.Luck, parLuck, maxChance), count)
+	local basicChance = (wakaba.Enums.Chances.AURORA_DEFAULT / 100)
+	local parLuck = 69
+	local maxChance = (wakaba.Enums.Chances.AURORA_MAX / 100) - basicChance
+  local rng = RNG()
+  rng:SetSeed(pickup.InitSeed, 35)
 
-    local canTurn = rng:RandomFloat() < chance
+  local chance = wakaba:StackChance(basicChance + wakaba:LuckBonus(totalLuck, parLuck, maxChance), count)
 
-    if canTurn then
-      pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)
-      return
-    end
+  local canTurn = rng:RandomFloat() < chance
+  if canTurn then
+    pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, wakaba.Enums.Coins.EASTER_EGG, false, true, true)
   end
 
 end
