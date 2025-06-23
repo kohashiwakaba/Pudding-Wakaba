@@ -2,7 +2,21 @@
 local isc = _wakaba.isc
 local easterEggChance = wakaba.state.options.eastereggchance
 
+local aurora_gem_data = {
+	run = {
+		triedindexes = {},
+	},
+	level = {
+	},
+	room = {
+	}
+}
+wakaba:saveDataManager("Aurora Gem", aqua_trinkets_data)
+
 function wakaba:CoinInit_AuroraGem(pickup)
+	if aurora_gem_data.run.triedindexes[wakaba:getPickupIndex(pickup)] then return end
+
+  aurora_gem_data.run.triedindexes[wakaba:getPickupIndex(pickup)] = true
   if not wakaba:IsEntryUnlocked("easteregg") then return end
 	if pickup.SubType ~= 1 then return end
   local seed = pickup.InitSeed
