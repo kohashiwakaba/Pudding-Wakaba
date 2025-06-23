@@ -1497,6 +1497,8 @@ function wakaba:getFlippedForm(player)
 		return wakaba:getTaintedLazarusSubPlayer(player)
 	end
 	return false
+end
+
 function wakaba:flagBanCollectible(collectibleType)
 	local config = Isaac.GetItemConfig():GetCollectible(collectibleType)
 	if not config then return end

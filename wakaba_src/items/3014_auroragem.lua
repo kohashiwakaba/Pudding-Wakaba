@@ -11,7 +11,7 @@ local aurora_gem_data = {
 	room = {
 	}
 }
-wakaba:saveDataManager("Aurora Gem", aqua_trinkets_data)
+wakaba:saveDataManager("Aurora Gem", aurora_gem_data)
 
 function wakaba:CoinInit_AuroraGem(pickup)
 	if aurora_gem_data.run.triedindexes[wakaba:getPickupIndex(pickup)] then return end

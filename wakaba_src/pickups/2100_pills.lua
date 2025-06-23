@@ -1,4 +1,5 @@
 
+local isc = _wakaba.isc
 wakaba.minpillno = wakaba.Enums.Pills.DAMAGE_MULTIPLIER_UP
 wakaba.maxpillno = wakaba.Enums.Pills.UNHOLY_CURSE
 
@@ -23,7 +24,7 @@ local convertFalsePHD = {
 	[wakaba.Enums.Pills.ALL_STATS_UP] = wakaba.Enums.Pills.ALL_STATS_DOWN,
 	[wakaba.Enums.Pills.ALL_STATS_DOWN] = -1,
 	[wakaba.Enums.Pills.TROLLED] = -1,
-	[wakaba.Enums.Pills.TO_THE_START] = -1,
+	[wakaba.Enums.Pills.TO_THE_START] = wakaba.Enums.Pills.TROLLED,
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2] = -1,
 	[wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2_NOT] = wakaba.Enums.Pills.EXPLOSIVE_DIARRHEA_2,
 	[wakaba.Enums.Pills.DUALITY_ORDERS] = wakaba.Enums.Pills.SOCIAL_DISTANCE,
@@ -41,12 +42,10 @@ local pillClass = {
 	[wakaba.Enums.Pills.HEAVY_MASCARA] = -3,
 }
 wakaba.ConvertBlessingPills = {
-	[PillEffect.PILLEFFECT_AMNESIA] = PillEffect.PILLEFFECT_SEE_FOREVER,
-	[PillEffect.PILLEFFECT_RETRO_VISION] = PillEffect.PILLEFFECT_VURP,
-	[PillEffect.PILLEFFECT_IM_EXCITED] = PillEffect.PILLEFFECT_GULP,
 	[wakaba.Enums.Pills.SOCIAL_DISTANCE] = wakaba.Enums.Pills.DUALITY_ORDERS,
-	[wakaba.Enums.Pills.HEAVY_MASCARA] = PillEffect.PILLEFFECT_SUNSHINE,
 }
+
+local trolled = false
 
 function wakaba:PlayerUpdate_Pills(player)
 	player:GetData().wakaba_currentPill = player:GetPill(0)
@@ -261,12 +260,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 				end
 			else
 				wakaba.G:StartRoomTransition(-2,Direction.NO_DIRECTION,RoomTransitionAnim.TELEPORT,nil,-1)
-				if not player:HasCollectible(CollectibleType.COLLECTIBLE_POLAROID, true) then
-					player:AddCollectible(CollectibleType.COLLECTIBLE_POLAROID)
-				end
-				if not player:HasCollectible(CollectibleType.COLLECTIBLE_NEGATIVE, true) then
-					player:AddCollectible(CollectibleType.COLLECTIBLE_NEGATIVE)
-				end
+				trolled = true
 				if isHorse then
 					player:AddBrokenHearts(-1)
 				end
@@ -418,7 +412,7 @@ function wakaba:useWakabaPill(_pillEffect, player, useFlags, _pillColor)
 			end
 			player:AnimateSad()
 		elseif pillEffect == wakaba.Enums.Pills.HEAVY_MASCARA then
-			if wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND) then
+			if not wakaba.G:GetSeeds():HasSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND) then
 				player:GetData().wakaba.trollblindcounter = 15 * (isHorse and 60 or 30)
 				wakaba.G:GetSeeds():AddSeedEffect(SeedEffect.SEED_PERMANENT_CURSE_BLIND)
 			end
@@ -476,6 +470,15 @@ end
 
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.onPillCache)
 
+function wakaba:NewRoom_Pills()
+	if trolled then
+		local gridLoc = isc:gridCoordinatesToWorldPosition(7, 4)
+		local safeLoc = Isaac.GetFreeNearPosition(gridLoc, 40)
+		local portal = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PORTAL_TELEPORT, 1000 + wakaba.G:GetLevel():GetStartingRoomIndex(), safeLoc, Vector.Zero, nil)
+		trolled = false
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, wakaba.NewRoom_Pills)
 
 --Updates the Passive Effects
 
