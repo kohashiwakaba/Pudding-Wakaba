@@ -239,7 +239,7 @@ if EID then
 
 	local function DDCallback(descObj)
 		local player = EID.player
-		local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en"].doubledreams
+		local ddstr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].doubledreams) or wakaba.descriptions["en_us"].doubledreams
 		local eidstring = ""
 		local current = wakaba.runstate.dreampool
 		local currentPoolData = wakaba.VanillaPoolDatas[current]

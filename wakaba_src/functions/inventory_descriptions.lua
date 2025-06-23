@@ -345,12 +345,12 @@ end
 --[[
 	- Adding player descriptions / 플레이어 설명 추가
 	local playerType = player:GetPlayerType()
-	EID:addEntity(InvDescEIDType.PLAYER, InvdescEIDVariant.DEFAULT, playerType, "PlayerName", "Player Descriptions", "en")
+	EID:addEntity(InvDescEIDType.PLAYER, InvdescEIDVariant.DEFAULT, playerType, "PlayerName", "Player Descriptions", "en_us")
 ]]
 --[[
 	- Adding curse descriptions / 저주 설명 추가
 	local curse = 1 << (Isaac.GetCurseIdByName("Curse of Flames!") - 1)
-	EID:addEntity(InvDescEIDType.CURSE, InvdescEIDVariant.DEFAULT, curse, "CurseName", "Curse Descriptions", "en")
+	EID:addEntity(InvDescEIDType.CURSE, InvdescEIDVariant.DEFAULT, curse, "CurseName", "Curse Descriptions", "en_us")
 
 	- Adding curse icons, if available / 저주 아이콘 추가
 	- "CurseCustom" is used as "{{CurseCustom}}" on EID descriptions
@@ -1333,8 +1333,8 @@ function idesc:Render()
 					local curName = obj.Name
 					if EID.Config["TranslateItemName"] ~= 2 then
 						local curLanguage = EID.Config["Language"]
-						if EID:getLanguage() ~= "en" then
-							EID.Config["Language"] = "en"
+						if EID:getLanguage() ~= "en_us" then
+							EID.Config["Language"] = "en_us"
 							local englishName = EID:getObjectName(obj.ObjType, obj.ObjVariant, obj.ObjSubType)
 							EID.Config["Language"] = curLanguage
 							if EID.Config["TranslateItemName"] == 1 then

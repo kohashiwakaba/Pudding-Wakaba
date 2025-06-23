@@ -1,8 +1,8 @@
 local eidmatchlang = {
-	["en"] = "en",
+	["en"] = "en_us",
 	["es"] = "spa",
 	["ru"] = "ru",
-	["kr"] = "ko",
+	["kr"] = "ko_kr",
 }
 
 local maijamastring = {
@@ -44,10 +44,10 @@ function wakaba:ItemUse_Maijima(_, rng, player, useFlags, activeSlot, varData)
 		end
 		player:GetData().wakaba.pendingmaijima = player:GetData().wakaba.pendingmaijima or {}
 		local lang = Options.Language or "en"
-		local eidlang = eidmatchlang[lang] or "en"
+		local eidlang = eidmatchlang[lang] or "en_us"
 		local tempeidlang = EID.Config.Language
-		if lang ~= "kr" and (EID.Config.Language == "ko") then
-			eidlang = "en"
+		if lang ~= "kr" and EID.Config.Language == "ko_kr" then
+			eidlang = "en_us"
 		end
 		EID.Config.Language = eidlang
 		local bookstring =

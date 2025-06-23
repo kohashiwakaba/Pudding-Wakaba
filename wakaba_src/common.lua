@@ -1264,12 +1264,12 @@ end
 function wakaba:DisplayHUDItemText(player, tableName, id)
 	if Options.Language ~= "en" and id then
 		tableName = tableName or "collectibles"
-		lang = EID.LanguageMap[Options.Language] or "en"
-		local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en"]
+		lang = EID.LanguageMap[Options.Language] or "en_us"
+		local entrytables = wakaba.descriptions[lang] or wakaba.descriptions["en_us"]
 		if entrytables and entrytables[tableName] then
 			local config = Isaac.GetItemConfig()
 			local iConf = config:GetCollectible(id)
-			local fallbackEntry = wakaba.descriptions["en"][tableName][id]
+			local fallbackEntry = wakaba.descriptions["en_us"][tableName][id]
 			local entry = entrytables[tableName][id] or fallbackEntry
 			local name = (entry and entry.itemName) or (fallbackEntry and fallbackEntry.itemName) or iConf.Name
 			local queueDesc = (entry and entry.queueDesc) or (fallbackEntry and fallbackEntry.itemName) or iConf.Description

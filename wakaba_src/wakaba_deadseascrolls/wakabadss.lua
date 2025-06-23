@@ -1742,7 +1742,7 @@ DeadSeaScrollsMenu.AddMenu("Pudding n wakaba", {Run = dssmod.runMenu, Open = dss
 local displayOptionsEID = false
 local tempFont
 --[[ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	if EID and EID:getLanguage() ~= "en" then
+	if EID and EID:getLanguage() ~= "en_us" then
 		if DeadSeaScrollsMenu.IsOpen() and DeadSeaScrollsMenu.OpenedMenu.Name == "Pudding n wakaba" then
 			displayOptionsEID = true
 			local openedMenu = DeadSeaScrollsMenu.OpenedMenu

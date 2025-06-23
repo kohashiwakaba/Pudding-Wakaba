@@ -2,10 +2,10 @@
 wakaba._DeadWispNotif = RegisterMod("Dead Wisp Notification", 1)
 
 local eidmatchlang = {
-	["en"] = "en",
+	["en"] = "en_us",
 	["es"] = "spa",
 	["ru"] = "ru",
-	["kr"] = "ko",
+	["kr"] = "ko_kr",
 }
 local deadwispprefix = {
 	["en"] = "",
@@ -29,10 +29,10 @@ local deadwispsuffix = {
 local deadwisp = wakaba._DeadWispNotif
 function deadwisp:GetStringfromLang(id, lang)
 	lang = lang or "en"
-	local eidlang = eidmatchlang[lang] or "en"
+	local eidlang = eidmatchlang[lang] or "en_us"
 	local tempeidlang = EID.Config.Language
-	if lang ~= "kr" and EID.Config.Language == "ko" then
-		eidlang = "en"
+	if lang ~= "kr" and EID.Config.Language == "ko_kr" then
+		eidlang = "en_us"
 	end
 	EID.Config.Language = eidlang
 	local str = 

@@ -375,7 +375,7 @@ if EID then
 
 	local function UniformCallback_CardPill(descObj)
 		local player = EID.player
-		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en"].uniform
+		local unistr = (EID and wakaba.descriptions[EID:getLanguage()] and wakaba.descriptions[EID:getLanguage()].uniform) or wakaba.descriptions["en_us"].uniform
 		local eidstring = ""
 		for _, player in ipairs(EID.coopAllPlayers) do
 			if player:HasCollectible(wakaba.Enums.Collectibles.UNIFORM) then
