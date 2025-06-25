@@ -92,6 +92,7 @@ do
 	include('wakaba_src.compat.cuerlib')
 	include('wakaba_src.compat.lost_and_forgotten')
 	if REPENTOGON then
+		include('wakaba_src.compat.battle_fantasy')
 		include('wakaba_src.compat.skill_tree.core')
 	end
 end
