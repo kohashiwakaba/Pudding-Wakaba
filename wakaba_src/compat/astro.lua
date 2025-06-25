@@ -4,6 +4,7 @@ local isc = _wakaba.isc
 wakaba:RegisterPatch(0, "Astro", function() return (Astro ~= nil) end, function()
 	if Astro.IsFight then
 		table.insert(wakaba.DamagePenaltyProtectionInvalidStr, "Astrobirth")
+		wakaba:flagBanCollectible(wakaba.Enums.Collectibles.VINTAGE_THREAT)
 	end
 	wakaba:BulkAppend(wakaba.CustomPool.CloverChest, {
 		{Astro.Collectible.AKASHIC_RECORDS, 1.00},
