@@ -25,6 +25,57 @@ local function canDisplayWaterFlame(player)
 	end
 end
 
+HudHelper.RegisterHUDElement({
+	ItemID = wakaba.Enums.Collectibles.WATER_FLAME,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	Condition = function(player, playerHUDIndex, hudLayout)
+		return canDisplayWaterFlame(player) ~= nil and not player:HasCurseMistEffect()
+	end,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	---@param alpha float
+	---@param scale float
+	---@param slot ActiveSlot
+	---@param itemID CollectibleType
+	OnRender = function(player, playerHUDIndex, hudLayout, position, alpha, scale, itemID, slot)
+		local playerIndex = isc:getPlayerIndex(player)
+		local spr = wandSprite
+		local offset = Vector(16, 30)
+		if player:GetPlayerType() == wakaba.Enums.Players.RICHER_B then
+			local current = wakaba.TotalWisps[playerIndex]
+			if #current.list > 0 then
+				local wisp = current.list[current.index]
+				itemID = wisp.SubType
+				local conf = Isaac.GetItemConfig():GetCollectible(itemID)
+				if conf then
+					spr:ReplaceSpritesheet(0, conf.GfxFileName)
+					spr:LoadGraphics()
+					spr:Render(position + offset)
+				end
+			end
+		else
+			local collectibles = isc:getEntities(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)
+			local nearest = isc:getClosestEntityTo(player, collectibles, function(_, e) return isc:collectibleHasTag(e.SubType, ItemConfig.TAG_SUMMONABLE) end)
+			if nearest then
+				local conf = Isaac.GetItemConfig():GetCollectible(nearest.SubType)
+				if conf then
+					spr:ReplaceSpritesheet(0, conf.GfxFileName)
+					spr:LoadGraphics()
+					spr:Render(position + offset)
+				end
+			end
+		end
+
+
+	end,
+	--PreRenderCallback = true
+}, HudHelper.HUDType.ACTIVE_ID)
+--[[
 wakaba:addActiveRender({
 	Sprite = wandSprite,
 	Offset = Vector(16, 30),
@@ -64,7 +115,7 @@ wakaba:addActiveRender({
 		end
 	end,
 })
-
+ ]]
 function wakaba:hasWaterFlame(player)
 	if not player then
 		return false

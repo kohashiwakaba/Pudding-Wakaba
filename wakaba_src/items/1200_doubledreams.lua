@@ -70,25 +70,24 @@ function wakaba:GetNextPool(current)
 	return wakaba.ItemPoolType[1]
 end
 
-
-local bookSprite = Sprite()
-local bookSpritePool = ItemPoolType.POOL_NULL
-bookSprite:Load("gfx/005.100_collectible.anm2", false)
-bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/".. wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
-bookSprite:LoadGraphics()
-bookSprite:Play("ShopIdle", true)
-
-wakaba:addActiveRender({
-	Sprite = bookSprite,
-	Offset = Vector(16, 24),
-	RenderAbove = false,
-	Condition = function(player, activeSlot)
-		local data = player:GetData().wakaba
-		local item = player:GetActiveItem(activeSlot)
-
-		return item == wakaba.Enums.Collectibles.DOUBLE_DREAMS
+HudHelper.RegisterHUDElement({
+	ItemID = wakaba.Enums.Collectibles.DOUBLE_DREAMS,
+	---@param player EntityPlayer
+	---@param playerHUDIndex integer
+	---@param hudLayout HUDLayout
+	---@param position Vector
+	---@param alpha float
+	---@param scale float
+	---@param slot ActiveSlot
+	---@param itemID CollectibleType
+	OnRender = function(player, playerHUDIndex, hudLayout, position, alpha, scale, itemID, slot)
+		local currentPool = wakaba.runstate.dreampool
+		local bookInnerSprite = wakaba.VanillaPoolDatas[currentPool].DoubleDreams
+		HudHelper.RenderHUDItem("gfx/items/collectibles/dreams/"..bookInnerSprite..".png", position, scale, alpha, false, false)
+		HudHelper.RenderHUDItem("gfx/items/collectibles/doubledreams.png", position, scale, alpha, false, false)
 	end,
-})
+	--PreRenderCallback = true
+}, HudHelper.HUDType.ACTIVE_ID)
 
 -- Replaced by renderactive from ff
 function wakaba:renderDreams()
@@ -99,28 +98,9 @@ function wakaba:renderDreams()
 			wakaba.hasdreams = true
 		end
 	end
-	--[[
-	if wakaba.hasdreams
-	and wakaba.G:GetHUD():IsVisible()
-	then
-		local ypos = 10
-		local list = wakaba.ItemPoolType
-		local pooltype = wakaba.runstate.dreampool
-		local current = AnIndexOf(list, wakaba.runstate.dreampool)
-		local poolname = wakaba.ItemPoolName[current]
-		if wakaba.G:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN == LevelCurse.CURSE_OF_THE_UNKNOWN then
-			wakaba.f:DrawString("???", 20 - wakaba.G.ScreenShakeOffset.X, 5 - wakaba.G.ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
-		else
-			wakaba.f:DrawString(pooltype .. " " .. poolname, 20 - wakaba.G.ScreenShakeOffset.X, 5 - wakaba.G.ScreenShakeOffset.Y ,KColor(1,1,1,1,0,0,0),0,true)
-		end
-
-		--Isaac.RenderText("Sample text", 155, 20, 1, 1, 1, 255)
-	end ]]
 	if not wakaba.hasdreams then
 		wakaba.runstate.dreampool = ItemPoolType.POOL_NULL
 	end
-
-
 end
 
 wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, wakaba.renderDreams)
@@ -133,9 +113,6 @@ function wakaba:ItemUse_Dreams(_, rng, player, useFlags, activeSlot, varData)
 		wakaba.runstate.dreampool = wakaba:GetNextPool(current)
 		wakaba.runstate.dreamroom = wakaba.ItemPoolRoomType[AnIndexOf(list, wakaba.runstate.dreampool)]
 		wakaba.G:GetRoom():InvalidatePickupVision()
-		bookSpritePool = wakaba.runstate.dreampool
-		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
-		bookSprite:LoadGraphics()
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_ENTER)
 		SFXManager():Play(SoundEffect.SOUND_MIRROR_EXIT)
 	elseif useFlags & UseFlag.USE_CARBATTERY == 0 then
@@ -150,12 +127,6 @@ wakaba:AddCallback(ModCallbacks.MC_USE_ITEM, wakaba.ItemUse_Dreams, wakaba.Enums
 
 ---@param player EntityPlayer
 function wakaba:dreamsUpdate(player)
-	if wakaba.runstate.dreampool and wakaba.runstate.dreampool ~= bookSpritePool then
-		wakaba.G:GetRoom():InvalidatePickupVision()
-		bookSpritePool = wakaba.runstate.dreampool
-		bookSprite:ReplaceSpritesheet(1, "gfx/items/collectibles/dreams/"..wakaba.VanillaPoolDatas[bookSpritePool].DoubleDreams ..".png")
-		bookSprite:LoadGraphics()
-	end
 	if Deliverance then
 		if wakaba.runstate.dreampool ~= ItemPoolType.POOL_NULL and wakaba.runstate.dreampool ~= deliveranceData.temporary.lawfulPool then
 			deliveranceData.temporary.lawfulPool = wakaba.runstate.dreampool
