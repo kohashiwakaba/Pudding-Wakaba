@@ -14,7 +14,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if shouldBlacklisted and not isEnglishName then
 		wakaba:ConvertItemNameLocalization("en")
 	elseif not shouldBlacklisted and isEnglishName then
-		wakaba:ConvertItemNameLocalization()
+		local force = nil
+		if REPENTANCE_PLUS and REPKOR then force = "kr" end
+		wakaba:ConvertItemNameLocalization(force)
 	end
 end)
 

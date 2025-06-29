@@ -479,6 +479,10 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2493403665
 
 ]]
 function wakaba:CanOpenMother()
+	if REPENTOGON then
+		local save = Isaac.GetPersistentGameData()
+		return save:Unlocked(Achievement.JACOB_AND_ESAU)
+	end
 	local c = Isaac.GetItemConfig()
 	return c:GetCollectible(CollectibleType.COLLECTIBLE_MEAT_CLEAVER):IsAvailable()
 			or c:GetCollectible(CollectibleType.COLLECTIBLE_YUCK_HEART):IsAvailable()
@@ -500,16 +504,28 @@ function wakaba:CanOpenMother()
 end
 
 function wakaba:CanOpenBeast()
+	if REPENTOGON then
+		local save = Isaac.GetPersistentGameData()
+		return save:Unlocked(Achievement.RED_KEY)
+	end
 	local c = Isaac.GetItemConfig()
 	return c:GetCollectible(CollectibleType.COLLECTIBLE_RED_KEY):IsAvailable()
 end
 
 function wakaba:CanOpenMegaSatan()
+	if REPENTOGON then
+		local save = Isaac.GetPersistentGameData()
+		return save:Unlocked(Achievement.APOLLYON)
+	end
 	local c = Isaac.GetItemConfig()
 	return c:GetCollectible(CollectibleType.COLLECTIBLE_DADS_KEY):IsAvailable()
 end
 
 function wakaba:CanOpenDeli()
+	if REPENTOGON then
+		local save = Isaac.GetPersistentGameData()
+		return save:Unlocked(Achievement.VOID_FLOOR)
+	end
 	local c = Isaac.GetItemConfig()
 	return c:GetCollectible(CollectibleType.COLLECTIBLE_DELIRIOUS):IsAvailable()
 			or c:GetCollectible(CollectibleType.COLLECTIBLE_LIL_DELIRIUM):IsAvailable()
@@ -684,8 +700,8 @@ function wakaba:ForceVoidNewRoomCheck()
 	and wakaba:CanOpenMegaSatan()
 	and REPENTANCE_PLUS
 	then
-		if level:GetAbsoluteStage() == LevelStage.STAGE6 then
-			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() and room:IsFirstVisit() then
+		if level:GetAbsoluteStage() == LevelStage.STAGE6 or level:GetAbsoluteStage() == LevelStage.STAGE5 then
+			if level:GetStartingRoomIndex() == level:GetCurrentRoomIndex() then
 				wakaba.G:SetStateFlag(49, true) -- 49 : Mega Satan Open
 			end
 		end
