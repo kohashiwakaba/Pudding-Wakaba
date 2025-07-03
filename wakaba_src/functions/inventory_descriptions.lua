@@ -1699,6 +1699,30 @@ end
 
 --#endregion
 
+--#region 사운드
 
+function idesc:cancelLoopSound()
+	if SFXManager():IsPlaying(wakaba.Enums.SoundEffects.INVDESC_LIST_LOOP) then
+		SFXManager():Stop(wakaba.Enums.SoundEffects.INVDESC_LIST_LOOP)
+	end
+end
 
-print("InvDesc v2.2 for Pudding and Wakaba Loaded")
+wakaba:AddCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_POST_LIST_OPEN", function()
+	if idesc:getOptions("invtogglesound") then
+		SFXManager():Play(wakaba.Enums.SoundEffects.INVDESC_LIST_ON, idesc:getOptions("invtogglevolume") or 2)
+	end
+	if idesc:getOptions("invloopsound") then
+		SFXManager():Play(wakaba.Enums.SoundEffects.INVDESC_LIST_LOOP, idesc:getOptions("invloopvolume") or 2, 2, true)
+	end
+end)
+
+wakaba:AddCallback("WakabaCallbacks.INVENTORY_DESCRIPTIONS_POST_LIST_CLOSE", function()
+	if idesc:getOptions("invtogglesound") then
+		SFXManager():Play(wakaba.Enums.SoundEffects.INVDESC_LIST_OFF, idesc:getOptions("invtogglevolume") or 2)
+	end
+	idesc:cancelLoopSound()
+end)
+
+--#endregion
+
+print("InvDesc v2.8 for Pudding and Wakaba Loaded")

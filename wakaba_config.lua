@@ -38,6 +38,10 @@ local config = {
 	customhitsoundprof = -1,
 	customitemsound = true,
 	customsoundvolume = 5,
+	invtogglesound = true,
+	invtogglevolume = 2,
+	invloopsound = true,
+	invloopvolume = 2,
 
 	-- Wakaba options
 	cloverchestchance = 5,
@@ -137,6 +141,10 @@ local config = {
 	listoffsety = 36,
 	invdescgutterx = 0,
 	invdescguttery = 0,
+	invtogglesound = true,
+	invtogglevolume = 2,
+	invloopsound = false,
+	invloopvolume = 2,
 
 	-- Found HUD options
 	hudhitcounter = 1, -- hit counter - 0: false, 1: penaties only, 2: all

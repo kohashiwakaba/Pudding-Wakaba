@@ -529,346 +529,6 @@ if MCM then
 		}
 	) ]]
 
-	MCM.AddSpace("Pudding & Wakaba", "General")
-	MCM.AddText("Pudding & Wakaba", "General", function() return "Inventory Descriptions" end)
-	-- General - Inventory Descriptions
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
-			CurrentSetting = function()
-				return wakaba.state.options.listkey
-			end,
-			Display = function()
-				local currentValue = wakaba.state.options.listkey
-				local displayString = "List toggle key : "
-				local key = "None"
-				if currentValue > -2 then
-					key = "Unknown Key"
-					if currentValue == -1 then
-						key = "(Disabled)"
-					end
-					if InputHelper.KeyboardToString[currentValue] then
-						key = InputHelper.KeyboardToString[currentValue]
-					end
-				end
-				displayString = displayString .. key
-				return displayString
-			end,
-			Popup = function()
-
-				local currentValue = wakaba.state.options.listkey
-
-				local goBackString = "back"
-				if ModConfigMenu.Config.LastBackPressed then
-
-					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
-						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
-					end
-
-				end
-
-				local keepSettingString = ""
-				if currentValue > -2 then
-
-					local currentSettingString = nil
-					if currentValue == -1 then
-						currentSettingString = "(Disabled)"
-					end
-					if InputHelper.KeyboardToString[currentValue] then
-						currentSettingString = InputHelper.KeyboardToString[currentValue]
-					end
-
-					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-
-				end
-
-				local deviceString = ""
-				deviceString = "keyboard"
-
-				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-
-			end,
-			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
-			PopupWidth = 280,
-			OnChange = function(current)
-				if current then
-					wakaba.state.options.listkey = current
-				end
-			end,
-			Info = {
-				"Press to display list and descriptions for current held items(Default = F5 key)",
-			}
-		}
-	)
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
-			CurrentSetting = function()
-				return wakaba.state.options.switchkey
-			end,
-			Display = function()
-				local currentValue = wakaba.state.options.switchkey
-				local displayString = "Mode switch key : "
-				local key = "None"
-				if currentValue > -2 then
-					key = "Unknown Key"
-					if currentValue == -1 then
-						key = "(Disabled)"
-					end
-					if InputHelper.KeyboardToString[currentValue] then
-						key = InputHelper.KeyboardToString[currentValue]
-					end
-				end
-				displayString = displayString .. key
-				return displayString
-			end,
-			Popup = function()
-
-				local currentValue = wakaba.state.options.switchkey
-
-				local goBackString = "back"
-				if ModConfigMenu.Config.LastBackPressed then
-
-					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
-						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
-					end
-
-				end
-
-				local keepSettingString = ""
-				if currentValue > -2 then
-
-					local currentSettingString = nil
-					if currentValue == -1 then
-						currentSettingString = "(Disabled)"
-					end
-					if InputHelper.KeyboardToString[currentValue] then
-						currentSettingString = InputHelper.KeyboardToString[currentValue]
-					end
-
-					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
-
-				end
-
-				local deviceString = ""
-				deviceString = "keyboard"
-
-				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
-
-			end,
-			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
-			PopupWidth = 280,
-			OnChange = function(current)
-				if current then
-					wakaba.state.options.switchkey = current
-				end
-			end,
-			Info = {
-				"Press to switch list mode of descriptions for current held items(Default = F6 key)",
-			}
-		}
-	)
-	if REPENTOGON then
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return wakaba.state.options.invpassivehistory
-			end,
-			Display = function()
-				return 'Collectible History: ' .. (wakaba.state.options.invpassivehistory and "true" or "false")
-			end,
-			OnChange = function(currentBool)
-				wakaba.state.options.invpassivehistory = currentBool
-			end,
-			Info = {"Set display mode in Inventory Descriptions."}
-		}
-	)
-	end
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.listoffset
-			end,
-			Minimum = 100,
-			Maximum = 600,
-			ModifyBy = 10,
-			Display = function()
-				return "List offset X: " .. wakaba.state.options.listoffset
-			end,
-			OnChange = function(current)
-				wakaba.state.options.listoffset = current
-			end,
-			Info = {
-				"Right offset for list of items(Default = 200)",
-			}
-		}
-	)
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.listoffsety
-			end,
-			Minimum = -100,
-			Maximum = 200,
-			ModifyBy = 2,
-			Display = function()
-				return "List offset Y: " .. wakaba.state.options.listoffsety
-			end,
-			OnChange = function(current)
-				wakaba.state.options.listoffsety = current
-			end,
-			Info = {
-				"Top offset for list of items(Default = 36)",
-			}
-		}
-	)
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.invdescgutterx
-			end,
-			Minimum = -5,
-			Maximum = 10,
-			ModifyBy = 1,
-			Display = function()
-				return "gutter X: " .. wakaba.state.options.invdescgutterx
-			end,
-			OnChange = function(current)
-				wakaba.state.options.invdescgutterx = current
-			end,
-			Info = {
-			"X Margin list of items(Default = 0)",
-			}
-		}
-	)
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.invdescguttery
-			end,
-			Minimum = -5,
-			Maximum = 10,
-			ModifyBy = 1,
-			Display = function()
-				return "gutter Y: " .. wakaba.state.options.invdescguttery
-			end,
-			OnChange = function(current)
-				wakaba.state.options.invdescguttery = current
-			end,
-			Info = {
-			"Y Margin list of items(Default = 0)",
-			}
-		}
-	)
-
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return wakaba.state.options.invlistmode == "grid"
-			end,
-			Display = function()
-				local onOff = "List"
-				if wakaba.state.options.invlistmode == "grid" then
-					onOff = "Grid"
-				end
-				return 'Display Mode: ' .. onOff
-			end,
-			OnChange = function(currentBool)
-				wakaba.state.options.invlistmode = currentBool and "grid" or "list"
-			end,
-			Info = {"Set display mode in Inventory Descriptions."}
-		}
-	)
-
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.invgridcolumn
-			end,
-			Minimum = 3,
-			Maximum = 10,
-			ModifyBy = 1,
-			Display = function()
-				return "Grid columns: " .. wakaba.state.options.invgridcolumn
-			end,
-			OnChange = function(current)
-				wakaba.state.options.invgridcolumn = current
-			end,
-			Info = {
-				"Number of Columns for grid of items(Default = 6)",
-			}
-		}
-	)
-	local initPositions = {"character", "collectible", "collectible_modded", "trinket"}
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return AnIndexOf(initPositions, wakaba.state.options.invinitcursor)
-			end,
-			Minimum = 1,
-			Maximum = 4,
-			ModifyBy = 1,
-			Display = function()
-				return "Initial cursor: " .. wakaba.state.options.invinitcursor
-			end,
-			OnChange = function(current)
-				wakaba.state.options.invinitcursor = initPositions[current]
-			end,
-			Info = {
-				"Initial cursor position on list show (Default = character)",
-			}
-		}
-	)
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.NUMBER,
-			CurrentSetting = function()
-				return wakaba.state.options.listdimmeralpha
-			end,
-			Minimum = 0,
-			Maximum = 1,
-			ModifyBy = 0.05,
-			Display = function()
-				return "Screen dim opacity: " .. wakaba.state.options.listdimmeralpha
-			end,
-			OnChange = function(current)
-				wakaba.state.options.listdimmeralpha = current
-			end,
-			Info = {
-				"Opacity to dim game screen while showing the list (Default = 0.5)",
-			}
-		}
-	)
 
 --[[
 	MCM.AddSetting(
@@ -976,24 +636,6 @@ if MCM then
 			Info = {"Show Cards/Pills in Inventory Descriptions."}
 		}
 	) ]]
-	MCM.AddSpace("Pudding & Wakaba", "General")
-	MCM.AddSetting(
-		"Pudding & Wakaba",
-		"General",
-		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function() return true end,
-			Display = function()
-				return "--! DISABLE INVDESC HOTKEY !--"
-			end,
-			OnChange = function(current)
-				wakaba.state.options.listkey = -1
-			end,
-			Info = {
-				"Press this to disable Inventory Descriptions hotkeys",
-			}
-		}
-	)
 
 
 
@@ -1072,6 +714,458 @@ if MCM then
 		)
 	end
 	MCM.AddSpace("Pudding & Wakaba", "General")
+	---------------------------------------------------------------------------
+	---------------------------Inventory Descriptions--------------------------
+	MCM.UpdateSubcategory("Pudding & Wakaba", "InvDesc", {
+		Info = ""
+	})
+	-- General - Inventory Descriptions
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.listkey
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.listkey
+				local displayString = "List toggle key : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.listkey
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.listkey = current
+				end
+			end,
+			Info = {
+				"Press to display list and descriptions for current held items(Default = F5 key)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.KEYBIND_KEYBOARD,
+			CurrentSetting = function()
+				return wakaba.state.options.switchkey
+			end,
+			Display = function()
+				local currentValue = wakaba.state.options.switchkey
+				local displayString = "Mode switch key : "
+				local key = "None"
+				if currentValue > -2 then
+					key = "Unknown Key"
+					if currentValue == -1 then
+						key = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						key = InputHelper.KeyboardToString[currentValue]
+					end
+				end
+				displayString = displayString .. key
+				return displayString
+			end,
+			Popup = function()
+
+				local currentValue = wakaba.state.options.switchkey
+
+				local goBackString = "back"
+				if ModConfigMenu.Config.LastBackPressed then
+
+					if InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed] then
+						goBackString = InputHelper.KeyboardToString[ModConfigMenu.Config.LastBackPressed]
+					end
+
+				end
+
+				local keepSettingString = ""
+				if currentValue > -2 then
+
+					local currentSettingString = nil
+					if currentValue == -1 then
+						currentSettingString = "(Disabled)"
+					end
+					if InputHelper.KeyboardToString[currentValue] then
+						currentSettingString = InputHelper.KeyboardToString[currentValue]
+					end
+
+					keepSettingString = "This setting is currently set to \"" .. currentSettingString .. "\".$newlinePress this button to keep it unchanged.$newline$newline"
+
+				end
+
+				local deviceString = ""
+				deviceString = "keyboard"
+
+				return "Press a button on your " .. deviceString .. " to change this setting.$newline$newline" .. keepSettingString .. "Press \"" .. goBackString .. "\" to go back and clear this setting."
+
+			end,
+			PopupGfx = ModConfigMenu.PopupGfx.WIDE_SMALL,
+			PopupWidth = 280,
+			OnChange = function(current)
+				if current then
+					wakaba.state.options.switchkey = current
+				end
+			end,
+			Info = {
+				"Press to switch list mode of descriptions for current held items(Default = F6 key)",
+			}
+		}
+	)
+	if REPENTOGON then
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invpassivehistory
+			end,
+			Display = function()
+				return 'Collectible History: ' .. (wakaba.state.options.invpassivehistory and "true" or "false")
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invpassivehistory = currentBool
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+	end
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.listoffset
+			end,
+			Minimum = 100,
+			Maximum = 600,
+			ModifyBy = 10,
+			Display = function()
+				return "List offset X: " .. wakaba.state.options.listoffset
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listoffset = current
+			end,
+			Info = {
+				"Right offset for list of items(Default = 200)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.listoffsety
+			end,
+			Minimum = -100,
+			Maximum = 200,
+			ModifyBy = 2,
+			Display = function()
+				return "List offset Y: " .. wakaba.state.options.listoffsety
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listoffsety = current
+			end,
+			Info = {
+				"Top offset for list of items(Default = 36)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invdescgutterx
+			end,
+			Minimum = -5,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "gutter X: " .. wakaba.state.options.invdescgutterx
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invdescgutterx = current
+			end,
+			Info = {
+			"X Margin list of items(Default = 0)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invdescguttery
+			end,
+			Minimum = -5,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "gutter Y: " .. wakaba.state.options.invdescguttery
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invdescguttery = current
+			end,
+			Info = {
+			"Y Margin list of items(Default = 0)",
+			}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invlistmode == "grid"
+			end,
+			Display = function()
+				local onOff = "List"
+				if wakaba.state.options.invlistmode == "grid" then
+					onOff = "Grid"
+				end
+				return 'Display Mode: ' .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invlistmode = currentBool and "grid" or "list"
+			end,
+			Info = {"Set display mode in Inventory Descriptions."}
+		}
+	)
+
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.invgridcolumn
+			end,
+			Minimum = 3,
+			Maximum = 10,
+			ModifyBy = 1,
+			Display = function()
+				return "Grid columns: " .. wakaba.state.options.invgridcolumn
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invgridcolumn = current
+			end,
+			Info = {
+				"Number of Columns for grid of items(Default = 6)",
+			}
+		}
+	)
+	local initPositions = {"character", "collectible", "collectible_modded", "trinket"}
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return AnIndexOf(initPositions, wakaba.state.options.invinitcursor)
+			end,
+			Minimum = 1,
+			Maximum = 4,
+			ModifyBy = 1,
+			Display = function()
+				return "Initial cursor: " .. wakaba.state.options.invinitcursor
+			end,
+			OnChange = function(current)
+				wakaba.state.options.invinitcursor = initPositions[current]
+			end,
+			Info = {
+				"Initial cursor position on list show (Default = character)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.NUMBER,
+			CurrentSetting = function()
+				return wakaba.state.options.listdimmeralpha
+			end,
+			Minimum = 0,
+			Maximum = 1,
+			ModifyBy = 0.05,
+			Display = function()
+				return "Screen dim opacity: " .. wakaba.state.options.listdimmeralpha
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listdimmeralpha = current
+			end,
+			Info = {
+				"Opacity to dim game screen while showing the list (Default = 0.5)",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invtogglesound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.invtogglesound then
+					onOff = "True"
+				end
+				return "Toggle Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invtogglesound = currentBool
+
+			end,
+			Info = {
+				"Allow list toggle sound from Inventory Descriptions",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return wakaba.state.options.invtogglevolume
+			end,
+			Display = function()
+				return "Toggle Sound volume: $scroll" .. wakaba.state.options.invtogglevolume
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.invtogglevolume = currentNum
+			end,
+			Info = {
+				"Adjust volume for Inventory Descriptions toggle sounds",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function()
+				return wakaba.state.options.invloopsound
+			end,
+			Display = function()
+				local onOff = "False"
+				if wakaba.state.options.invloopsound then
+					onOff = "True"
+				end
+				return "List Loop Sound: " .. onOff
+			end,
+			OnChange = function(currentBool)
+				wakaba.state.options.invloopsound = currentBool
+
+			end,
+			Info = {
+				"Allow list loop sound from Inventory Descriptions",
+				"Only active while list is on",
+			}
+		}
+	)
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.SCROLL,
+			CurrentSetting = function()
+				return wakaba.state.options.invloopvolume
+			end,
+			Display = function()
+				return "Loop Sound volume: $scroll" .. wakaba.state.options.invloopvolume
+			end,
+			OnChange = function(currentNum)
+				wakaba.state.options.invloopvolume = currentNum
+			end,
+			Info = {
+				"Adjust volume for Inventory Descriptions loop sounds",
+				"Only active while list is on",
+			}
+		}
+	)
+
+	MCM.AddSpace("Pudding & Wakaba", "InvDesc")
+	MCM.AddSetting(
+		"Pudding & Wakaba",
+		"InvDesc",
+		{
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function() return true end,
+			Display = function()
+				return "--! DISABLE INVDESC HOTKEY !--"
+			end,
+			OnChange = function(current)
+				wakaba.state.options.listkey = -1
+			end,
+			Info = {
+				"Press this to disable Inventory Descriptions hotkeys",
+			}
+		}
+	)
+
+
 	---------------------------------------------------------------------------
 	------------------------------Item Functions-------------------------------
 	MCM.UpdateSubcategory("Pudding & Wakaba", "Items", {
