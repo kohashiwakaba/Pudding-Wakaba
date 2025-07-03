@@ -38,10 +38,6 @@ local config = {
 	customhitsoundprof = -1,
 	customitemsound = true,
 	customsoundvolume = 5,
-	invtogglesound = true,
-	invtogglevolume = 2,
-	invloopsound = true,
-	invloopvolume = 2,
 
 	-- Wakaba options
 	cloverchestchance = 5,
