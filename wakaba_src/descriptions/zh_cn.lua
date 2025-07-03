@@ -2716,6 +2716,9 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		.. "#If not selected, invokes both {{Collectible477}}Void and {{Collectible706}}Abyss effect"
 		}, -- TODO
 	},
+	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+50% Devil/Angel Room chance#{{WakabaModRgon}} {{ColorRicher}}All Crystal Restocks are free to use",
+	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		desc =
 		"{{WakabaModRgon}} {{Tears}} {{ColorRicher}}+0.2 增加射速上限每吞下一个饰品 #{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 心之容器上限",

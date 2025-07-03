@@ -1905,8 +1905,11 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		desc = "{{WakabaModRgon}} {{TearsSmall}} {{ColorRicher}}흡수한 장신구 당 연사 +0.2#{{WakabaModRgon}} {{Heart}}{{ColorRicher}}체력 상한 +6",
 	},
+	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
+		desc = "{{WakabaModRgon}} {{DevilChanceSmall}} {{ColorRicher}}악마방 확률 +50%#{{WakabaModRgon}} {{CrystalRestock}} {{ColorRicher}}모든 크리스탈 리스톡 머신이 동전을 소모하지 않습니다.",
+	},
 	[wakaba.Enums.Collectibles.DOUBLE_DREAMS] = {
-		desc = "{{WakabaModRgon}} 카드 소환 실패 횟수가 액티브 충전량을 통해 보여집니다.",
+		desc = "{{WakabaModRgon}} 카드 소환 천장 게이지가 액티브 충전량을 통해 보여집니다.",
 	},
 }
 

@@ -234,6 +234,9 @@ if EID then
 			if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_COLLECTIBLE and descObj.ObjSubType == wakaba.Enums.Collectibles.SWEETS_CATALOG then
 				return true
 			end
+			if descObj.ObjType == 5 and descObj.ObjVariant == PickupVariant.PICKUP_TAROTCARD and descObj.ObjSubType == wakaba.Enums.Cards.CARD_RICHER_TICKET then
+				return true
+			end
 			return false
 		end
 

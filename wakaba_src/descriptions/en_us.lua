@@ -3200,6 +3200,10 @@ wakaba.descriptions[desclang].conditionals.collectibles = {
 		},
 		func = function() return REPENTOGON and true end,
 	},
+	[wakaba.Enums.Collectibles.PRESTIGE_PASS] = {
+		desc = "{{WakabaModRgon}} {{AngelDevilChance}} {{ColorRicher}}+50% Devil/Angel Room chance#{{WakabaModRgon}} {{ColorRicher}}All Crystal Restocks are free to use",
+		func = function() return REPENTOGON and true end,
+	},
 	[wakaba.Enums.Collectibles.AZURE_RIR] = {
 		desc = "{{WakabaModRgon}} {{Tears}} {{ColorRicher}}+0.2 Fire delay up per smelted trinkets#{{WakabaModRgon}} {{Heart}} {{ColorRicher}}+6 Total heart limit",
 		func = function() return REPENTOGON and true end,

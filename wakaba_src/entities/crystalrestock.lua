@@ -94,7 +94,10 @@ function wakaba:SlotCollision_CrystalRestock(slot, player)
 	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and player:GetNumCoins() >= 5 then
 		local restockData = wakaba:GetCrystalRestockData(slot)
 		if not restockData.dead then
+			if REPENTOGON and player:HasCollectible(wakaba.Enums.Collectibles.PRESTIGE_PASS) then
+			else
 			player:AddCoins(-5)
+			end
 			--restockData.restockCount = restockData.restockCount - 1
 			slot:GetSprite():PlayOverlay("CoinInsert")
 		end
