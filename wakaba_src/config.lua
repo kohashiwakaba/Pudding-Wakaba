@@ -496,6 +496,8 @@ if MCM then
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.customsoundvolume = currentNum
+				SFXManager():Stop(SoundEffect.SOUND_PLOP)
+				SFXManager():Play(wakaba.Enums.SoundEffects.CHIMAKI_KYUU, wakaba.state.options.customsoundvolume / 10)
 			end,
 			Info = {
 				"Adjust volume for Pudding & Wakaba custom sounds",
@@ -1085,15 +1087,20 @@ if MCM then
 		"Pudding & Wakaba",
 		"InvDesc",
 		{
-			Type = ModConfigMenu.OptionType.SCROLL,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return wakaba.state.options.invtogglevolume
 			end,
+			Minimum = 0,
+			Maximum = 4,
+			ModifyBy = 0.1,
 			Display = function()
-				return "Toggle Sound volume: $scroll" .. wakaba.state.options.invtogglevolume
+				return "Toggle Sound volume: " .. wakaba.state.options.invtogglevolume
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.invtogglevolume = currentNum
+				SFXManager():Stop(SoundEffect.SOUND_PLOP)
+				SFXManager():Play(wakaba.Enums.SoundEffects.INVDESC_LIST_ON, wakaba.state.options.invtogglevolume)
 			end,
 			Info = {
 				"Adjust volume for Inventory Descriptions toggle sounds",
@@ -1129,12 +1136,15 @@ if MCM then
 		"Pudding & Wakaba",
 		"InvDesc",
 		{
-			Type = ModConfigMenu.OptionType.SCROLL,
+			Type = ModConfigMenu.OptionType.NUMBER,
 			CurrentSetting = function()
 				return wakaba.state.options.invloopvolume
 			end,
+			Minimum = 0,
+			Maximum = 4,
+			ModifyBy = 0.1,
 			Display = function()
-				return "Loop Sound volume: $scroll" .. wakaba.state.options.invloopvolume
+				return "Loop Sound volume: " .. wakaba.state.options.invloopvolume
 			end,
 			OnChange = function(currentNum)
 				wakaba.state.options.invloopvolume = currentNum
