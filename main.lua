@@ -147,8 +147,8 @@ local function GetCurrentModPath()
 end
 
 -- Current version from Pudding & Wakaba mod
-wakaba.version = "v132c 2025.06.30"
-wakaba.intversion = 13203
+wakaba.version = "v132d 2025.07.04"
+wakaba.intversion = 13204
 
 wakaba.modpath = GetCurrentModPath()
 
@@ -1738,7 +1738,3 @@ end
 
 
 print("Pudding and Wakaba", wakaba.version, "load complete.")
-
-if REPENTOGON and REPKOR then
-	print("말랑말랑한 리셰쨩이 REPENTOGON을 감지했어요. 추가 아이템과 추가 효과가 발동됩니다.")
-end

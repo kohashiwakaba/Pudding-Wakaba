@@ -439,5 +439,9 @@ wakaba:AddCallback(ModCallbacks.MC_POST_MODS_LOADED, function(_)
 				cs:ReplaceSpritesheet(16, sloc, true)
 			end
 		end
+		do
+			print("말랑말랑한 리셰쨩이 REPENTOGON을 감지했어요. 추가 아이템과 추가 효과가 발동됩니다.")
+			print("우리 귀여운 플럼이와 치마키 많이 사랑해 주세요.")
+		end
 	end
 end)
