@@ -1739,3 +1739,6 @@ end
 
 print("Pudding and Wakaba", wakaba.version, "load complete.")
 
+if REPENTOGON and REPKOR then
+	print("말랑말랑한 리셰쨩이 REPENTOGON을 감지했어요. 추가 아이템과 추가 효과가 발동됩니다.")
+end
