@@ -750,6 +750,74 @@ local wakabadirectory = {
 				end,
 				tooltip = {strset = {'dim screen','opacity','while','list show','','default = 0.5'}},
 			},
+			{
+				str = 'list toggle sound',
+				fsize = 2,
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'InvToggleSound',
+				load = function()
+					return wakaba.state.options.invtogglesound and 1 or 2
+				end,
+				store = function(var)
+					wakaba.state.options.invtogglesound = (var == 1)
+				end,
+				tooltip = {strset = {'toggle for','invdesc','open, close sounds'}}
+			},
+			{
+				str = 'list toggle volume',
+				fsize = 2,
+				min = 0,
+				max = 4,
+				increment = 0.1,
+				setting = 2,
+				variable = 'InvToggleVolume',
+				load = function()
+					return wakaba.state.options.invtogglevolume or 2
+				end,
+				store = function(var)
+					wakaba.state.options.invtogglevolume = var
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.options.invtogglesound == true
+				end,
+
+				tooltip = {strset = {'volume for','invdesc','open, close sounds'}}
+			},
+			{
+				str = 'list loop sound',
+				fsize = 2,
+				choices = {'true', 'false'},
+				setting = 1,
+				variable = 'InvLoopSound',
+				load = function()
+					return wakaba.state.options.invloopsound and 1 or 2
+				end,
+				store = function(var)
+					wakaba.state.options.invloopsound = (var == 1)
+				end,
+				tooltip = {strset = {'toggle for','invdesc','loop sounds'}}
+			},
+			{
+				str = 'list loop volume',
+				fsize = 2,
+				min = 0,
+				max = 4,
+				increment = 0.1,
+				setting = 2,
+				variable = 'InvLoopVolume',
+				load = function()
+					return wakaba.state.options.invloopvolume or 2
+				end,
+				store = function(var)
+					wakaba.state.options.invloopvolume = var
+				end,
+				displayif = function(btn, item, tbl)
+					return wakaba.state.options.invloopsound == true
+				end,
+
+				tooltip = {strset = {'volume for','invdesc','loop sounds'}}
+			},
 		},
 	},
 	hud_setting = {
