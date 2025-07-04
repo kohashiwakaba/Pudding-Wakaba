@@ -91,7 +91,7 @@ function wakaba:SlotCollision_CrystalRestock(slot, player)
 		player = player:ToPlayer()
 		if not player then return end
 	end
-	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and player:GetNumCoins() >= 5 then
+	if (slot:GetSprite():GetAnimation() == "Idle") and not slot:GetSprite():IsOverlayPlaying("CoinInsert") and ((REPENTOGON and player:HasCollectible(wakaba.Enums.Collectibles.PRESTIGE_PASS)) or player:GetNumCoins() >= 5) then
 		local restockData = wakaba:GetCrystalRestockData(slot)
 		if not restockData.dead then
 			if REPENTOGON and player:HasCollectible(wakaba.Enums.Collectibles.PRESTIGE_PASS) then
