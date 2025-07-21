@@ -61,7 +61,7 @@ wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_FiendFolio)
 function wakaba:RiraBra_Basic(entity)
 	return wakaba:HasStatusEffects(entity)
 end
-wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_Basic)
+--wakaba:AddCallback(wakaba.Callback.EVALUATE_RIRA_BRA, wakaba.RiraBra_Basic)
 
 function wakaba:RiraBraOnDamage(source, entity, data, newDamage, newFlags)
 	local returndata = {}
