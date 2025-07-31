@@ -3252,7 +3252,7 @@ wakaba.descriptions[desclang].conditionals.entities = {
 }
 
 wakaba.descriptions[desclang].locusts = {
-	[wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
+	--[[ [wakaba.Enums.Collectibles.WAKABAS_BLESSING] = {
 		amount = nil,
 		scale = nil,
 		speed = nil,
@@ -3267,7 +3267,7 @@ wakaba.descriptions[desclang].locusts = {
 		procChance3 = nil,
 		damageMultiplier1 = nil,
 		damageMultiplier2 = nil,
-	}
+	} ]]
 }
 
 wakaba.descriptions[desclang].bossdest = {

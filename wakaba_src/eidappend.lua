@@ -470,20 +470,20 @@ if EID then
 					for itemid, locustTable in pairs(wakabaDescTables.locusts) do
 						if not EID.XMLLocusts[itemid] then
 							EID.XMLLocusts[itemid] = {
-								locustTable.amount,
-								locustTable.scale,
-								locustTable.speed,
-								locustTable.locustFlags1,
-								locustTable.locustFlags2,
-								locustTable.locustFlags3,
-								locustTable.tearFlags1,
-								locustTable.tearFlags2,
-								locustTable.tearFlags3,
-								locustTable.procChance1,
-								locustTable.procChance2,
-								locustTable.procChance3,
-								locustTable.damageMultiplier1,
-								locustTable.damageMultiplier2
+								locustTable.amount or 1,
+								locustTable.scale or 1,
+								locustTable.speed or 1,
+								locustTable.locustFlags1 or {-1},
+								locustTable.locustFlags2 or {-1},
+								locustTable.locustFlags3 or {-1},
+								locustTable.tearFlags1 or {-1},
+								locustTable.tearFlags2 or {-1},
+								locustTable.tearFlags3 or {-1},
+								locustTable.procChance1 or 1,
+								locustTable.procChance2 or 1,
+								locustTable.procChance3 or 1,
+								locustTable.damageMultiplier1 or 1,
+								locustTable.damageMultiplier2 or 1
 							}
 						end
 					end
