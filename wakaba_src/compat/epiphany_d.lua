@@ -219,6 +219,7 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			end
 		end)
 
+--[[
 		-- TR characters for Pudding & Wakaba not available yet, just for reserve
 		api.AddCharacter({
 			charName = "WAKABA", --Internal character name (REQUIRED)
@@ -284,7 +285,6 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 			end, -- function that returns whether the character is unlocked. Defaults to always returning true.
 			floorTutorial = "gfx/ui/wakaba/tutorial_placeholder.anm2"
 		})
---[[
 		api.AddCharacter({
 			charName = "RIRA", --Internal character name (REQUIRED)
 			charID = wakaba.Enums.Players.RIRA_T, -- Character ID (REQUIRED)

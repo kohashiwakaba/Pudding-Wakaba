@@ -25,7 +25,7 @@ function wakaba:ItemUse_RicherFlipper(item, rng, player, useFlags, activeSlot, v
 				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TAROTCARD, 0, false, false, true)
 			elseif isGolden and pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 				Epiphany.Pickup.GOLDEN_ITEM.DisableGoldPedestal = true
-				if tonumber(Epiphany.WAVE_NUMBER) >= 7.5 then
+				if tonumber(Epiphany.VERSION) >= 7.5 then
 					Epiphany.Pickup.GOLDEN_ITEM:TurnPedestalGold(pickup, false)
 				else
 					Epiphany.Pickup.GOLDEN_ITEM:TurnItemGold(pickup, false)
