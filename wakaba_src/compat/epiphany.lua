@@ -1122,13 +1122,9 @@ end
 
 function wakaba:IsGoldenItem(itemID, player, slot)
 	if not (Epiphany and Epiphany.API) then return false end
-	if tonumber(Epiphany.VERSION) >= 7.5 then
 		if player then
 			return Epiphany:HasGoldenItem(itemID, player, slot)
 		else
 			return Epiphany:AnyPlayerHasGoldenCollectible(itemID)
 		end
-	else
-		return Epiphany.Pickup.GOLDEN_ITEM:IsGoldenItem(itemID)
-	end
 end
