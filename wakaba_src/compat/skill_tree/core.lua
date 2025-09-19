@@ -988,7 +988,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 							wakaba:initPlayerDataEntry(player, "shioriKnowledgeDamage", 0)
 							wakaba:addPlayerDataCounter(player, "shioriKnowledgeDamage", 5)
 						end
-						if wakaba:extraVal("tsukasaLuna") and not wakaba.Blacklsits.PST.tsukasaLuna[room:GetType()] then
+						if wakaba:extraVal("tsukasaLuna") and not wakaba.Blacklists.PST.tsukasaLuna[room:GetType()] then
 							local spawnPos = room:GetCenterPos()
 							Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR, 1, spawnPos, Vector.Zero, nil)
 						end
