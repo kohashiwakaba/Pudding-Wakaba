@@ -605,7 +605,7 @@ wakaba:RegisterPatch(0, "PST", function() return (PST ~= nil) end, function()
 		do -- NODES TSUKASA
 			PST.SkillTreesAPI.AddCharacterTree("Tsukasa", false, [[
 	{
-  "1": "{\"pos\":[0,0],\"type\":5105,\"size\":\"Large\",\"name\":\"Tree of Tsukasa\",\"description\":[\"+0.05 all stats\",\"All nodes from this tree except stats will impact all characters unless specified for Shiori\"],\"modifiers\":{\"allstatsPerc\":0.05},\"adjacent\":[2,10],\"alwaysAvailable\":true,\"customID\":\"w_tsukasa_0000\"}",
+  "1": "{\"pos\":[0,0],\"type\":5105,\"size\":\"Large\",\"name\":\"Tree of Tsukasa\",\"description\":[\"+0.05 all stats\",\"All nodes from this tree except stats will impact all characters unless specified for Tsukasa\"],\"modifiers\":{\"allstatsPerc\":0.05},\"adjacent\":[2,10],\"alwaysAvailable\":true,\"customID\":\"w_tsukasa_0000\"}",
   "2": "{\"pos\":[-1,-1],\"type\":5096,\"size\":\"Small\",\"name\":\"[Tsukasa] Lunar Range\",\"description\":[\"+0.01 range when Lunar gauge is active.\"],\"modifiers\":{\"tsukasaLunarRange\":0.01},\"adjacent\":[1,3],\"customID\":\"w_tsukasa_0001\"}",
   "3": "{\"pos\":[-2,-2],\"type\":5096,\"size\":\"Small\",\"name\":\"[Tsukasa] Lunar Range\",\"description\":[\"+0.01 range when Lunar gauge is active.\"],\"modifiers\":{\"tsukasaLunarRange\":0.01},\"adjacent\":[2,4],\"customID\":\"w_tsukasa_0001\"}",
   "4": "{\"pos\":[-3,-3],\"type\":5136,\"size\":\"Small\",\"name\":\"Lunar Range\",\"description\":[\"+0.005 range when Lunar gauge is active.\"],\"modifiers\":{\"lunarRange\":0.005},\"adjacent\":[3,5],\"customID\":\"w_global_0071\"}",
