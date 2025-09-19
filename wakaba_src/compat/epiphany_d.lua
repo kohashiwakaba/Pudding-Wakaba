@@ -1049,6 +1049,18 @@ wakaba:RegisterPatch(REPENTOGON and 0 or 1, "Epiphany_7", function() return (Epi
 	end
 
 	do
+		function wakaba:PickupUpdate_AzureRir_Epiph(pickup)
+			if pickup:GetData().wakaba and pickup:GetData().wakaba.isAquaTrinket then
+				local pData = Mod:GetPickupData(pickup)
+				if not pData.TRK_HasMidasImmunity then
+					Epiphany:AddMidasImmunity(pickup)
+				end
+			end
+		end
+		wakaba:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, wakaba.PickupUpdate_AzureRir_Epiph, PickupVariant.PICKUP_TRINKET)
+	end
+
+	do
 		-- Golden Item descriptions for EID
 		if EID then
 			EID:addDescriptionModifier("Wakaba_Epiphany Golden Actives", function(descObj)
