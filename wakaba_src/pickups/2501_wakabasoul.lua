@@ -41,7 +41,7 @@ function wakaba:UseCard_SoulOfWakaba(card, player, flags)
 
 	if CurStage ~= LevelStage.STAGE8 then
 		if REPENTOGON then
-			failed = game:IsGreedMode() and not wakaba:generateDevilAngelRoom(card == wakaba.Enums.Cards.SOUL_WAKABA2 and RoomType.ROOM_DEVIL or RoomType.ROOM_ANGEL, 41, true, true)
+			failed = game:IsGreedMode() or not wakaba:generateDevilAngelRoom(card == wakaba.Enums.Cards.SOUL_WAKABA2 and RoomType.ROOM_DEVIL or RoomType.ROOM_ANGEL, 41, true, true)
 			if failed then
 				local s = wakaba.G:GetRoom():GetSpawnSeed()
 				if card == wakaba.Enums.Cards.SOUL_WAKABA2 then
