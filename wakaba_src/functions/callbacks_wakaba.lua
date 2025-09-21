@@ -930,7 +930,7 @@ wakaba:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, function(_, knife)
 					end
 
 					if pass then
-						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, knife)
+						Isaac.RunCallback(wakaba.Callback.ANY_WEAPON_FIRE, player, knife)
 						--Isaac.RunCallback(wakaba.Callback.EVALUATE_WAKABA_TEARFLAG, knife, player)
 					end
 				end
