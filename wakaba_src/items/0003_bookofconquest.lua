@@ -138,6 +138,16 @@ function wakaba:ItemUse_BookOfConquest(_, rng, player, useFlags, activeSlot, var
 			--Isaac.GetPlayer(0):UseActiveItem(CollectibleType.COLLECTIBLE_PAUSE, UseFlag.USE_NOANIM)
 			local entities = Isaac.FindInRadius(wakaba.GetGridCenter(), 2000, EntityPartition.ENEMY)
 			local canConquerBosses = true
+			local conqBosses = Isaac.GetRoomEntities()
+			for _, entity in ipairs(conqBosses) do
+				if entity:IsEnemy()
+				and entity:IsBoss()
+				and entity:HasEntityFlags(EntityFlag.FLAG_PERSISTENT | EntityFlag.FLAG_FRIENDLY)
+				then
+					canConquerBosses = false
+					break
+				end
+			end
 			for _, entity in ipairs(entities) do
 				if entity:IsEnemy()
 				and not entity:IsInvincible()
