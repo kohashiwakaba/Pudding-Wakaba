@@ -10,7 +10,7 @@ local isc = _wakaba.isc
 ---@param flags UseFlag
 function wakaba:UseCard_RiraTicket(_, player, flags)
 	wakaba:GetPlayerEntityData(player)
-	local broken = math.min(player:GetBrokenHearts(), 0)
+	local broken = math.max(player:GetBrokenHearts(), 0)
 	if broken > 0 then
 		player:AddBrokenHearts(-1)
 	end
