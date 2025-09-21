@@ -1030,7 +1030,7 @@ function idesc:Update(player)
 			or Input.IsButtonTriggered(Keyboard.KEY_PAGE_UP, 0) then
 				inputready = false
 				istate.listprops.current = listprops.current - columns
-				if listprops.current - listprops.offset < 0 and listprops.offset > 0 then
+				if listprops.current - listprops.offset <= 0 and listprops.offset > 0 then
 					istate.listprops.offset = math.max(listprops.offset - columns, 0)
 				end
 				if listprops.current <= 0 then
@@ -1396,7 +1396,7 @@ function idesc:Render()
 		end
 		EID.Config["Transparency"] = oldTransparency + 0
 
-		if _debug then
+		if _wakaba and wakaba.Flags.debugInvDescList then
 			local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
 			demoDescObj.Name = "{{Player"..wakaba.Enums.Players.RICHER_B.."}} " .. "Inventory Description list debug"
 
