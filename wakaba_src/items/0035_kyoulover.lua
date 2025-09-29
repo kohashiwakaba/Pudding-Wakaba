@@ -188,10 +188,12 @@ function wakaba:Update_KyouLover()
 	for i, p in ipairs(pedestals) do
 		if not p.Pedestal.Touched and not isc:isQuestCollectible(p.CollectibleType) and p.Quality ~= wakaba.state.annaquality then
 			local pickup = p.Pedestal ---@type EntityPickup
-			local new = wakaba:getItemFromAnyPool(false, pickup.InitSeed, 25)
-			pickup:ClearEntityFlags(EntityFlag.FLAG_ITEM_SHOULD_DUPLICATE)
-			pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, new, true, true, false)
-			Isaac.Spawn(1000, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, pickup)
+			if pickup.OptionsPickupIndex == 0 and isc:inDeathCertificateArea() then
+				local new = wakaba:getItemFromAnyPool(false, pickup.InitSeed, 25)
+				pickup:ClearEntityFlags(EntityFlag.FLAG_ITEM_SHOULD_DUPLICATE)
+				pickup:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, new, true, true, false)
+				Isaac.Spawn(1000, EffectVariant.POOF01, 0, pickup.Position, Vector.Zero, pickup)
+			end
 		end
 	end
 end
