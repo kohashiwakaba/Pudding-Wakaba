@@ -1009,7 +1009,7 @@ function idesc:Update(player)
 			if Input.IsActionTriggered(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex or 0) then
 				inputready = false
 				istate.listprops.current = listprops.current - 1
-				if listprops.current - listprops.offset < 0 and listprops.offset > 0 then
+				if listprops.current - listprops.offset <= 0 and listprops.offset > 0 then
 					istate.listprops.offset = math.max(listprops.offset - columns, 0)
 				end
 				if listprops.current <= 0 then
