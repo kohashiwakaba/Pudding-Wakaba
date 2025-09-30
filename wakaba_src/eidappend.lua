@@ -177,14 +177,21 @@ if EID then
 			return SwagColors({KColor(0.75, 0.66, 0.87, 1), KColor(0.5, 0.37, 0.55, 1), KColor(0.22, 0.11, 0.25, 1)})
 		end)
 
-		table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.WAKABA_B)
-		table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.SHIORI_B)
-		table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.RICHER_B)
-		table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.RIRA_B)
-		EID.CharacterToHeartType[wakaba.Enums.Players.WAKABA_B] = "Soul"
-		EID.CharacterToHeartType[wakaba.Enums.Players.SHIORI_B] = "Soul"
-		EID.CharacterToHeartType[wakaba.Enums.Players.RICHER_B] = "Soul"
-		EID.CharacterToHeartType[wakaba.Enums.Players.RIRA_B] = "Soul"
+		if EID.ModVersion >= 5.07 or EID.SpecialHeartPlayers then
+			table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.WAKABA_B)
+			table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.SHIORI_B)
+			table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.RICHER_B)
+			table.insert(EID.SpecialHeartPlayers.Soul, wakaba.Enums.Players.RIRA_B)
+			EID.CharacterToHeartType[wakaba.Enums.Players.WAKABA_B] = "Soul"
+			EID.CharacterToHeartType[wakaba.Enums.Players.SHIORI_B] = "Soul"
+			EID.CharacterToHeartType[wakaba.Enums.Players.RICHER_B] = "Soul"
+			EID.CharacterToHeartType[wakaba.Enums.Players.RIRA_B] = "Soul"
+		elseif EID.NoRedHeartsPlayerIDs then
+			EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.WAKABA_B] = true
+			EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.SHIORI_B] = true
+			EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.RICHER_B] = true
+			EID.NoRedHeartsPlayerIDs[wakaba.Enums.Players.RIRA_B] = true
+		end
 
 		local function LastPoolCondition(descObj)
 			if EID.InsideItemReminder then return false end
