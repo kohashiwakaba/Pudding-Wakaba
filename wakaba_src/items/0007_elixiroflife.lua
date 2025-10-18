@@ -137,7 +137,7 @@ function wakaba:PlayerUpdate_Elixir(player)
 			else
 				recoverType = elixirType
 				for _, callbackData in pairs(Isaac.GetCallbacks(wakaba.Callback.PRE_ELIXIR_RECOVER)) do
-					local recoverType = callbackData.Function(callbackData.Mod, player, elixirType or "", recoverType)
+					local newType = callbackData.Function(callbackData.Mod, player, elixirType or "", recoverType)
 					if newType then
 						recoverType = newType
 					end
