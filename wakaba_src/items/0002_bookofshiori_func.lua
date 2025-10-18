@@ -60,6 +60,7 @@ function wakaba:getShioriFlag(player)
 end
 
 function wakaba:setShioriFlag(player, CollectibleType)
+	if not player:GetData().wakaba then return end
 	player:GetData().wakaba.nextshioriflag = CollectibleType
 end
 
@@ -536,6 +537,7 @@ function wakaba:TearUpdate_BookofShiori(tear)
 				if familiar and (familiar.Player or familiar.SpawnerEntity:ToPlayer()) then
 					--local player = spawner:ToPlayer()
 					local player = familiar.Player or familiar.SpawnerEntity:ToPlayer()
+					if not player:GetData().wakaba then return end
 					local luck = math.max(0, player.Luck)
 					local random = wakaba.RNG:RandomFloat() * 100
 					local nextflag = wakaba:getShioriFlag(player)
@@ -697,6 +699,7 @@ wakaba:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, wakaba.TakeDmg_BookofShiori)
 
 
 function wakaba:NegateDamage_BookOfShiori(player, amount, flags, source, countdown)
+	if not player:GetData().wakaba then return end
 	local nextflag = wakaba:getShioriFlag(player)
 	local troll = wakaba:getShioriBuffs(player, CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
 	if (troll > 0 or nextflag == CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK)
