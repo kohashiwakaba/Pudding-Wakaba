@@ -225,11 +225,11 @@ function wakaba:initPlumKnife(player, familiar, vector)
 	wakaba:ApplyWakabaTearParams(knife, player)
 
 	if player:HasTrinket(TrinketType.TRINKET_BABY_BENDER) then
-		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_HOMING
+		knife.TearFlags = knife.TearFlags | TearFlags.TEAR_HOMING
 		knife.Color = Color(0.3, 0.15, 0.37, 1, 0.2, 0.02, 0.37)
 	end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_KING_BABY) then
-		knife.TearFlags = tear.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
+		knife.TearFlags = knife.TearFlags | TearFlags.TEAR_TURN_HORIZONTAL
 	end
 
 	knife.TearFlags = knife.TearFlags | player.TearFlags | tearparams.TearFlags
