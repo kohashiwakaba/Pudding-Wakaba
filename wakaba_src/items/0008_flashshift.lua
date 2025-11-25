@@ -176,6 +176,7 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 		local isGolden = wakaba:IsGoldenItem(item, player)
 
 		local trail = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SPRITE_TRAIL, 0, player.Position, Vector.Zero, nil):ToEffect()
+		trail:SetTimeout(20)
 		trail:GetData().wakaba = {}
 		trail:GetData().wakaba.flashshift = true
 		trail:FollowParent(player) -- parents the trail to another entity and makes it follow it around
@@ -185,7 +186,6 @@ function wakaba:ItemUse_FlashShift(item, rng, player, useFlags, activeSlot, varD
 			trail:GetSprite().Color = Color(0.9, 0.8, 1, 0.5) -- sets the color of the trail
 		end
 		trail.MinRadius = 0.05 -- fade rate, lower values yield a longer trail
-		trail:SetTimeout(20)
 		trail:Update()
 
 		local oldpos = player.Position + Vector.Zero
