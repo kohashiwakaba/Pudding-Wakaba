@@ -1421,7 +1421,7 @@ function idesc:Render()
 				end
 				EID:renderQuestionMark(nil)
 			else
-				desc = selObj
+				local desc = selObj
 				if selEntry.Type == idescEIDType.PLAYER then
 					local extIcon = type(selEntry.Icon) == "function" and selEntry.Icon() or selEntry.Icon;
 					if extIcon then
