@@ -126,7 +126,7 @@
 
 	<passive id="92" cache="damage firedelay" description="???" gfx="trialstew.png" name="Trial Stew" tags="quest noeden" customtags="nometronome" quality="0" hidden="true" achievement="9999" persistent="true" />
 
-	<passive id="93" description="HP up + Fallen resonance" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1" craftquality="1" />
+	<passive id="93" cache="damage" description="HP up + Fallen resonance" gfx="succubusblanket.png" name="Succubus Blanket" blackhearts="2" cache="" tags="nolostbr summonable" quality="1" craftquality="1" />
 	<passive id="94" description="Tears Way up" gfx="mintchocolate.png" name="Mint Chocolate Ice cream" blackhearts="2" cache="firedelay" tags="summonable tearsup" quality="4" craftquality="4" />
 	<passive id="95" cache="damage luck" description="Feeling Fine!" gfx="wakabahairpin.png" name="Wakaba's Hairpin" tags="stars offensive summonable" quality="2" craftquality="2" />
 	<active id="96" description="Flip pickups" gfx="richerflipper.png" maxcharges="3" name="Richer's Flipper" bombs="1" keys="1" tags="offensive nocantrip" quality="1" craftquality="3" />
