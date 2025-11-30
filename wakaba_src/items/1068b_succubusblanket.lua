@@ -16,6 +16,14 @@ function wakaba:Cache_SuccubusBlanket(player, cacheFlag)
 			player.Damage = player.Damage + (0.25 * blackHearts * num * wakaba:getEstimatedDamageMult(player))
 		end
 	end
-
 end
 wakaba:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, wakaba.Cache_SuccubusBlanket)
+
+function wakaba:PlayerUpdate_SuccubusBlanket(player)
+	if not canActivateSuccubusBlanket(player) then return end
+	if player.FrameCount % 5 == 0 then
+		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+		player:EvaluateItems()
+	end
+end
+wakaba:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, wakaba.PlayerUpdate_SuccubusBlanket)
